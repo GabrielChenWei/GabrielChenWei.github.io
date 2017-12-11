@@ -384,7 +384,7 @@ section:last-child {
     border-collapse: collapse;		/*no-collapse*/
 }
 
-.altColorTable td, #altColorTable th {
+.altColorTable td, th {
     font-size: 1em;
     border: 1px solid #0f73ff;
     padding: 3px 7px 2px 7px;
@@ -406,10 +406,14 @@ section:last-child {
 }
 
 	/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-	.text {font-size: .5em};
+@media only screen and (max-width: 400px) {
+	.altColorTable th {
+		font-size: .6em;
+	}
+	.altColorTable td {
+		font-size: .5em;
+	}	
 }
-
 
 /********************************* Alter-Colored table CSS *************************************/
 
