@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<title>Slide show</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<style type="text/css">
+.fling-minislide {width:75%; height:0px; padding-bottom: 50%; overflow:hidden; position:relative; }
+.fling-minislide img{ position:absolute; animation:fling-minislide 50s infinite; opacity:0; width: 100%; height: auto;}
+
+@keyframes fling-minislide {
+	0%{opacity:0;}
+	2%{opacity:1;}		
+	8%{opacity:1;} 
+	10%{opacity:0;} 
+	98%{opacity:0;} 
+} 
+.fling-minislide img:nth-child(10){animation-delay:0s;}
+.fling-minislide img:nth-child(9){animation-delay:5s;}
+.fling-minislide img:nth-child(8){animation-delay:10s;}
+.fling-minislide img:nth-child(7){animation-delay:15s;}
+.fling-minislide img:nth-child(6){animation-delay:20s;}
+.fling-minislide img:nth-child(5){animation-delay:25s;}
+.fling-minislide img:nth-child(4){animation-delay:30s;}
+.fling-minislide img:nth-child(3){animation-delay:35s;}
+.fling-minislide img:nth-child(2){animation-delay:40s;}
+.fling-minislide img:nth-child(1){animation-delay:45s;}
+</style>
+</head>
+
+<body>
+<div class="fling-minislide" dir="ltr">
+	<img alt="Slide 10" src="https://farm5.staticflickr.com/4588/38803845794_058b6c78ca_o.jpg" />
+	<img alt="Slide 9" src="https://farm5.staticflickr.com/4727/38803845684_3d84c1957b_o.jpg" />
+	<img alt="Slide 8" src="https://farm5.staticflickr.com/4644/27736071549_50376ea3b3_o.jpg" />
+	<img alt="Slide 7" src="https://farm5.staticflickr.com/4691/38616492905_ce5354c7a9_o.jpg" />
+	<img alt="Slide 6" src="https://farm5.staticflickr.com/4687/38803846084_b7789faac3_o.jpg" />
+	<img alt="Slide 5" src="https://farm5.staticflickr.com/4596/38803845534_04b9cf78bd_o.jpg" />
+	<img alt="Slide 4" src="https://farm5.staticflickr.com/4636/39481975592_4784de269e_o.jpg" /> 
+	<img alt="Slide 3" src="https://farm5.staticflickr.com/4727/38803846124_c7ebbfc59a_o.jpg" /> 
+	<img alt="Slide 2" src="https://farm5.staticflickr.com/4679/38803846024_350440185d_o.jpg" /> 
+	<img alt="Slide 1" src="https://farm5.staticflickr.com/4727/38803845884_562eb05088_o.jpg" />
+</div>
+</body>
+</html>
