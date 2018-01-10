@@ -15,6 +15,7 @@
 	border-radius: 50px;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	/*display: inline-block;*/
+	white-space: nowrap; /* to prevent text wrap at white space place*/
 } 
 
 .btnContactCardImg{
@@ -30,7 +31,7 @@
 
 .btnNickName, .btnCompany, .btnPosition{
 	position: relative;
-	padding: 0.5em 0.5em 1em 10px;
+	padding: 0.5em 120px 1em 10px; /* top right bottom left, right set to 120px so the text will not exceed button area, left uses px as em affected by font-size*/
 	line-height: 140%;
 	font-family: Arial;
 	font-size: 2em;
