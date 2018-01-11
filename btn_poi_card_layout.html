@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.btnContactCard {
+	position: absolute;
+	min-width: 300px;
+	height: 100px; 
+	/*opacity:0.5;*/
+	background-color: pink; 
+	text-align: left;
+	border: 2px solid #000000; /* black */
+	border-radius: 50px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	/*display: inline-block;*/
+	white-space: nowrap; /* to prevent text wrap at white space place*/
+	/*z-index: 1;*/
+} 
+
+.btnContactCardImg{
+	position: relative;
+	top: 0px;
+	width: 80px;
+    height: 80px; 
+	border: 2px solid #AABBCC;
+	border-radius: 50%; /*make the image round*/
+	float: left;
+	
+}
+
+.btnNickName, .btnCompany, .btnPosition{
+	position: relative;
+	padding: 0.5em 120px 1em 10px; /* top right bottom left, right set to 120px so the text will not exceed button area, left uses px as em affected by font-size*/
+	line-height: 140%;
+	font-family: Arial;
+	font-size: 2em;
+	color: black;
+}
+
+
+.btnNickName{
+	font-weight: bold; 
+	/*font-style: italic;*/
+	color: black; 
+	
+}
+
+.btnCompany{
+	/*font-weight: bold; */
+	/*font-style: italic;*/
+	color: green; 
+	font-size: 1.2em;
+}
+
+.btnPosition{
+	/*font-weight: bold;*/
+	/*font-style: italic;*/
+	color: yellow; 
+	/*font-size: 20px;*/
+	font-size: 1.5em;
+}
+
+
+.poiContent{
+	position: absolute;
+	min-width: 400px;
+	max-width: 800px;
+	font-size: 20px;
+	margin-left: 50px;
+	/*height: 100px; */
+	/*opacity:0.5;*/
+	background-color: LightGreen; 
+	text-align: left;
+	border: 2px solid #000000; /* black */
+	/*border-radius: 10px;*/
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	/*display: inline-block;*/
+	/*white-space: nowrap;  to prevent text wrap at white space place*/
+}
+.poiTitle{
+	position: absolute;
+	height: 50px;
+	right: 0px;
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 100px;
+	margin: 0px;
+	
+	/*padding: 10px;*/
+	/*height: 100px; */
+	/*opacity:0.5;*/
+	background-color: SpringGreen; 
+	text-align: right;
+	border: 2px solid #000000; /* black */
+	border-radius: 0px 10px 0px 0px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	/*display: inline-block;*/
+	/*white-space: nowrap;  to prevent text wrap at white space place*/
+}
+
+
+</style>
+</head>
+<body>
+
+
+<button type="button" class = "btnContactCard" style="top:0px; left:0px;">
+		<img src="https://farm6.staticflickr.com/5498/31228589662_25697d08bf_o.jpg" alt="Joey Photo" class="btnContactCardImg" />
+		<span class="btnNickName">Joey Wu</span><br/>
+		<span class="btnCompany">@AIA@</span><br/>
+		<span class="btnPosition">Financial Service Consultant</span>
+</button>
+
+
+<button type="button" class = "poiTitle" style="top:50px; left:50px;">
+	This is title title title title title title title title title title title title title title
+</button>
+	
+<button type="button" class = "poiContent" style="top:100px; left:0px;">content to be displayed content to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayedcontent to be displayed
+
+
+</button>	
+
+	
+
+<button type="button" class = "btnContactCard" style="top:320px; left:500px;">
+		<img src="https://farm6.staticflickr.com/5672/31257704791_84e826064d_o.png" alt="Joey Photo" class="btnContactCardImg" />
+		<span class="btnNickName">Gabriel Chen</span><br/>
+		<span class="btnCompany">@Philips@</span><br/>
+		<span class="btnPosition">System Engineer</span>
+</button>
+	
+
+	
+</button>
+
+
+</body>
+</html>
