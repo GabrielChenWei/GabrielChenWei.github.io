@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="http://www.besthomecaremn.com/wp-content/uploads/2016/03/dollar-coin-money.svg" type="image/gif" sizes="16x16">
+</head>
+
+
+<body onload="funcRedirect()">
+
+<script>
+function funcRedirect() {
+var d = new Date();
+var strPreFillDate = funcFormatDate (d);
+var strUrlHeader = "https://docs.google.com/forms/d/e/1FAIpQLSdBX8UiPRUHv932X7kvfbqcljNtNTCpoK-YLN7l5g3eyvXj6Q/viewform?entry.1379969656&entry.1366524738&entry.502899290=Wallet&entry.1289262166&entry.45229934=SGD&entry.1452987373=Food+and+Drink&entry.1287927074&entry.1651815816=SGD&entry.186697791&entry.1591329492=";
+var strCompleteUrl = strUrlHeader + strPreFillDate;
+
+location.replace(strCompleteUrl);
+}
+
+function funcFormatDate(date) {
+// 2018-09-23
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+</script>
+
+</body>
+</html> 
