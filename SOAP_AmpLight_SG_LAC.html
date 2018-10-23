@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>SOAP JavaScript Client Test</title>
+  <script type="text/javascript">
+  function soap() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://emea.amplight.philips.com/AmplightAPI/AmplightWebService?wsdl', true);
+     // build SOAP request
+     var sr =
+       '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"' +
+       'xmlns:v2="http://schemas.amplightapi.amplight.lighting.philips.com/ControlSystem/v2.0">' +
+       '<soapenv:Header/>' +
+         '<soapenv:Body>' +
+		   '<v2:BoxInfo>' +
+		     '<v2:userinfo>' +
+               '<v2:userid>gabriellac</v2:userid>' +
+               '<v2:password>123456789</v2:password>' +
+             '</v2:userinfo>' +
+             '<v2:nodeid>3049210</v2:nodeid>' +
+           '</v2:BoxInfo>' +
+         '</soapenv:Body>' +
+       '</soapenv:Envelope>';
+
+      xmlhttp.onreadystatechange = function () {
+        //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("demoP").innerHTML = xmlhttp.responseText;
+						//alert('done. use firebug/console to see network response');
+        //}
+      }
+      
+      //xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+      xmlhttp.send(sr);
+      // send request
+      // ...
+    }
+  </script>
+</head>
+<body>
+  <form name="Demo" action="" method="post">
+    <div>
+      <input type="button" value="Soap" onclick="soap();" />
+    </div>
+  </form>
+	<p id="demoP"></p>
+</body>
+</html> <!-- typo -->
