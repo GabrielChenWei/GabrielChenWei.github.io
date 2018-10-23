@@ -20,11 +20,15 @@
            '</v2:BoxInfo>' +
          '</soapenv:Body>' +
        '</soapenv:Envelope>';
-
-      xmlhttp.onreadystatechange = function () {
+        
+      //specify request headers
+      xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
+      xmlhttp.setRequestHeader('SOAPAction', '"urn:http://thesecretserver.com/Authenticate"';);
+      
+       xmlhttp.onreadystatechange = function () {
         //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("demoP").innerHTML = xmlhttp.responseText;
-						//alert('done. use firebug/console to see network response');
+	   //alert('done. use firebug/console to see network response');
         //}
       }
       
