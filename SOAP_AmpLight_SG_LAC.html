@@ -4,7 +4,10 @@
   <script type="text/javascript">
   function soap() {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService", true, "gabriellac", "123456789");
+    var url = "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService";
+    var proxyurl = "https://cors-anywhere.herokuapp.com/";
+    var bypassurl = proxyurl + proxyurl;
+    xmlhttp.open("POST", bypassurl, true, "gabriellac", "123456789");
      // build SOAP request
      var sr =
        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"' +
