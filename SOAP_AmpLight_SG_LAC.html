@@ -26,10 +26,10 @@
       xmlhttp.setRequestHeader('Authorization','Basic ' + "Z2FicmllbGxhYzoxMjM0NTY3ODk=");
       
        xmlhttp.onreadystatechange = function () {
-        //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("demoP").innerHTML = xmlhttp.responseText;
-	   //alert('done. use firebug/console to see network response');
-        //}
+	    alert('done. use firebug/console to see network response');
+        }
       }
       
       //xmlhttp.setRequestHeader('Content-Type', 'text/xml');
