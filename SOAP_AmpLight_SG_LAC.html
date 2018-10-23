@@ -27,7 +27,9 @@
       
        xmlhttp.onreadystatechange = function () {
         //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("demoP").innerHTML = xmlhttp.responseText;
+            var response = xmlhttp.responseText;
+	    document.getElementById("demoP").innerHTML = response
+	    console.log("I am working: " + response);
 	    alert('done. use firebug/console to see network response');
         //}
       }
