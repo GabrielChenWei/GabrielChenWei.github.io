@@ -5,9 +5,9 @@
   function soap() {
     var xmlhttp = new XMLHttpRequest();
     var url = "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService";
-    var proxyurl = "https://cors-anywhere.herokuapp.com/";
-    var bypassurl = proxyurl + proxyurl;
-    xmlhttp.open("POST", bypassurl, true, "gabriellac", "123456789");
+    //var proxyurl = "https://cors-anywhere.herokuapp.com/";
+    //var bypassurl = proxyurl + proxyurl;
+    xmlhttp.open("POST", url, true, "gabriellac", "123456789");
      // build SOAP request
      var sr =
        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"' +
@@ -27,10 +27,12 @@
       //specify request headers
       xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
       xmlhttp.setRequestHeader('Authorization','Basic ' + btoa("gabriellac"+":"+"123456789"));
+      xmlhttp.setRequestHeader(Access-Control-Allow-Origin: *);
       
        xmlhttp.onreadystatechange = function () {
         //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var response = xmlhttp.responseText;
+            console.log(xmlhttp.status);
+	    var response = xmlhttp.responseText;
 	    document.getElementById("demoP").innerHTML = response;
 	    console.log("I am working: " + response);
 	    alert('done. use firebug/console to see network response');
