@@ -6,6 +6,7 @@
     var xmlhttp = new XMLHttpRequest();
     var url = "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService";
     var proxyurl = "https://cors-anywhere.herokuapp.com/";
+	//Source: https://github.com/Rob--W/cors-anywhere/
     var bypassurl = proxyurl + url;
     xmlhttp.open("POST", bypassurl, true, "gabriellac", "123456789");
     //xmlhttp.open("POST", url, true, "gabriellac", "123456789");
@@ -30,17 +31,37 @@
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       
        xmlhttp.onreadystatechange = function () {
-        //if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log(xmlhttp.status);
-	    var response = xmlhttp.responseText;
-	    document.getElementById("demoP").innerHTML = response;
-	    console.log("I am working: " + response);
-	    alert('done. use firebug/console to see network response');
-        //}
+        var intReadyState = xmlhttp.readyState;
+		var intStatus = xmlhttp.status;
+		
+		console.log("xmlhttp.readyState == " + intReadyState);
+		console.log("xmlhttp.status == " + intStatus);
+		
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			document.getElementById("progress").innerHTML = "Success: ";
+			var response = xmlhttp.responseText;
+			console.log("I am working: " + response);
+			var parser = new DOMParser();
+			var xmlDoc = parser.parseFromString(response,"text/xml");
+			var boxID = xmlDoc.getElementsByTagName("boxID")[0].childNodes[0].nodeValue;
+			var boxName  = xmlDoc.getElementsByTagName("boxName")[0].childNodes[0].nodeValue;
+			var phoneNo = xmlDoc.getElementsByTagName("phoneNo")[0].childNodes[0].nodeValue;
+			var serialNo = xmlDoc.getElementsByTagName("serialNo")[0].childNodes[0].nodeValue;
+			response = "boxID: " + boxID + "<br>" +
+						"boxName: " + boxName + "<br>" +
+						"phoneNo: " + phoneNo + "<br>" +
+						"serialNo: " + serialNo + "<br>";
+	    //alert("done. use firebug/console to see network response");
+        } else {
+			response = "Failed to retrieve data, xmlhttp.readyState ==" + intReadyState + "; xmlhttp.status == " + intStatus;
+			//alert("Failed to retrieve data, xmlhttp.readyState ==" + intReadyState + "; xmlhttp.status == " + intStatus);
+		}
+		document.getElementById("demoP").innerHTML = response;
       }
       
       //xmlhttp.setRequestHeader('Content-Type', 'text/xml');
       xmlhttp.send(sr);
+	  document.getElementById("demoP").innerHTML = "I have sent: " + sr;
       console.log("I have sent: " + sr);
       // send request
       // ...
@@ -48,11 +69,10 @@
   </script>
 </head>
 <body>
-  <form name="Demo" action="" method="post">
-    <div>
-      <input type="button" value="Soap" onclick="soap();" />
-    </div>
-  </form>
+	<p> Please note as a proxy was used to overcome CORS issue, it takes around 1 minute to retrieve data if success. At the same time, the request may fail, please re-try to click the buton again if you see the failure message. </p>
+    <input type="button" value="Soap:GetBoxUnderNode" onclick="soap();" />
+	<p> Progress: </p>
+	<p id="progress"></p>
 	<p id="demoP"></p>
 </body>
-</html> <!-- typo -->
+</html>
