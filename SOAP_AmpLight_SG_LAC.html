@@ -3,14 +3,14 @@
   <title>SOAP JavaScript Client Test</title>
   <script type="text/javascript">
   
-  function GetBoxUnderNode() {
+  function GetBoxUnderNode(strUsername, strPassword, intNodeId) {
     var xmlhttp = new XMLHttpRequest();
     var url = "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService";
     var proxyurl = "https://cors-anywhere.herokuapp.com/";
 	//Source: https://github.com/Rob--W/cors-anywhere/
     var bypassurl = proxyurl + url;
-	xmlhttp.open("POST", bypassurl, true, "gabriellac", "123456789");
-    //xmlhttp.open("POST", url, true, "gabriellac", "123456789");
+	xmlhttp.open("POST", bypassurl, true, strUsername, strPassword);
+    //xmlhttp.open("POST", url, true, strUsername, strPassword);
      // build SOAP request
      var sr =
        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://schemas.amplightapi.amplight.lighting.philips.com/ControlSystem/v2.0">' +
@@ -18,17 +18,17 @@
          '<soapenv:Body>' +
 		   '<v2:BoxInfo>' +
 		     '<v2:userinfo>' +
-               '<v2:userid>gabriellac</v2:userid>' +
-               '<v2:password>123456789</v2:password>' +
+               '<v2:userid>'+ strUsername +'</v2:userid>' +
+               '<v2:password>'+ strPassword +'</v2:password>' +
              '</v2:userinfo>' +
-             '<v2:nodeid>3049210</v2:nodeid>' +
+             '<v2:nodeid>'+ intNodeId +'</v2:nodeid>' +
            '</v2:BoxInfo>' +
          '</soapenv:Body>' +
        '</soapenv:Envelope>';
         
       //specify request headers
       xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
-      xmlhttp.setRequestHeader('Authorization','Basic ' + btoa("gabriellac"+":"+"123456789"));
+      xmlhttp.setRequestHeader('Authorization','Basic ' + btoa(strUsername+":"+strPassword));
       xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
       
        xmlhttp.onreadystatechange = function () {
@@ -39,7 +39,7 @@
 		console.log("xmlhttp.status == " + intStatus);
 		
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			document.getElementById("progress").innerHTML = "Success: ";
+			//document.getElementById("progress").innerHTML = "Success: ";
 			var response = xmlhttp.responseText;
 			console.log("I am working: " + response);
 			var parser = new DOMParser();
@@ -48,10 +48,11 @@
 			var boxName  = xmlDoc.getElementsByTagName("boxName")[0].childNodes[0].nodeValue;
 			var phoneNo = xmlDoc.getElementsByTagName("phoneNo")[0].childNodes[0].nodeValue;
 			var serialNo = xmlDoc.getElementsByTagName("serialNo")[0].childNodes[0].nodeValue;
-			response = "boxID: " + boxID + "<br>" +
-						"boxName: " + boxName + "<br>" +
-						"phoneNo: " + phoneNo + "<br>" +
-						"serialNo: " + serialNo + "<br>";
+			response = "Success: " + "<br/>" +
+						"boxID: " + boxID + "<br/>" +
+						"boxName: " + boxName + "<br/>" +
+						"phoneNo: " + phoneNo + "<br/>" +
+						"serialNo: " + serialNo + "<br/>";
 	    //alert("done. use firebug/console to see network response");
         } else {
 			response = "Failed to retrieve data, xmlhttp.readyState ==" + intReadyState + "; xmlhttp.status == " + intStatus;
@@ -69,14 +70,14 @@
     }
 	
 	//////////////////////////////////////////////////////////////////////////////////////////// 
-	function SetControlCommand(commandId) {
+	function SetControlCommand(strUsername, strPassword, intNodeId, intCommandId) {
     var xmlhttp = new XMLHttpRequest();
     var url = "https://emea.amplight.philips.com/AmplightAPI/AmplightWebService";
     var proxyurl = "https://cors-anywhere.herokuapp.com/";
 	//Source: https://github.com/Rob--W/cors-anywhere/
     var bypassurl = proxyurl + url;
-    xmlhttp.open("POST", bypassurl, true, "gabriellac", "123456789");
-    //xmlhttp.open("POST", url, true, "gabriellac", "123456789");
+    xmlhttp.open("POST", bypassurl, true, strUsername, strPassword);
+    //xmlhttp.open("POST", url, true, strUsername, strPassword);
      // build SOAP request
      var sr =
 		'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://schemas.amplightapi.amplight.lighting.philips.com/ControlSystem/v2.0">' +
@@ -84,11 +85,11 @@
 		   '<soapenv:Body>' +
 			  '<v2:ControlCommandInfo>' +
 				 '<v2:userinfo>' +
-					'<v2:userid>gabriellac</v2:userid>' +
-					'<v2:password>123456789</v2:password>' +
+					'<v2:userid>'+ strUsername +'</v2:userid>' +
+					'<v2:password>'+ strPassword +'</v2:password>' +
 				 '</v2:userinfo>' +
-				 '<v2:commandid>' + commandId + '</v2:commandid>' +
-				 '<v2:nodeid>3049210</v2:nodeid>' +
+				 '<v2:commandid>' + intCommandId + '</v2:commandid>' +
+				 '<v2:nodeid>'+ intNodeId +'</v2:nodeid>' +
 			  '</v2:ControlCommandInfo>' +
 		   '</soapenv:Body>' +
 		'</soapenv:Envelope>';
@@ -106,17 +107,17 @@
 		console.log("xmlhttp.status == " + intStatus);
 		
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			document.getElementById("progress").innerHTML = "Success: ";
+			//document.getElementById("progress").innerHTML = "Success: ";
 			var response = xmlhttp.responseText;
 			console.log("I am working: " + response);
 			var parser = new DOMParser();
 			var xmlDoc = parser.parseFromString(response,"text/xml");
 			var ns2Status = xmlDoc.getElementsByTagName("ns2:Status")[0].childNodes[0].nodeValue;
 			if (ns2Status == "0") {
-				if (commandId == 1) {
+				if (intCommandId == 1) {
 					response = "Success: Light turned ON.";
 				} 
-				if (commandId == 2) {
+				if (intCommandId == 2) {
 					response = "Success: Light turned OFF.";
 				}
 			} else {
@@ -143,9 +144,9 @@
 </head>
 <body>
 	<p> Please note as a proxy was used to overcome CORS issue, it takes around 1 minute to retrieve data if success. At the same time, the request may fail, please re-try to click the buton again if you see the failure message. </p>
-    <input type="button" value="Soap:GetBoxUnderNode" onclick="GetBoxUnderNode();" />
-	<input type="button" value="Soap:SetControlCommand:ON" onclick="SetControlCommand(1);" />
-	<input type="button" value="Soap:SetControlCommand:OFF" onclick="SetControlCommand(2);" />
+    <input type="button" value="Soap:GetBoxUnderNode" onclick="GetBoxUnderNode('gabriellac', '123456789', '3049210');" />
+	<input type="button" value="Soap:SetControlCommand:ON" onclick="SetControlCommand('gabriellac', '123456789', '3049210', 1);" />
+	<input type="button" value="Soap:SetControlCommand:OFF" onclick="SetControlCommand('gabriellac', '123456789', '3049210', 2);" />
 	<p> Progress: </p>
 	<p id="progress"></p>
 	<p id="demoP"></p>
