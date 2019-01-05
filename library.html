@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="icon" href="https://www.shareicon.net/download/2016/03/03/319314_read.ico" type="image/gif" sizes="16x16">
-
+<link rel="icon" href="https://www.shareicon.net/download/2016/03/03/319314_read.ico" type="image/gif" sizes="16x16">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
 <style>
 /******* Main page background settings *********/
 body {
@@ -46,7 +46,47 @@ details[open] summary {
     margin-bottom: .5em;
 }
 /******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+  font-size: 24px;
+}
 
+#_biggify, #_reset, #_smallify {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+	margin: 2px 4px;
+	*/
+    display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 90%; 
+	
+}
+#_userPanel {
+  position: fixed;
+  bottom: 0px;
+  /*
+  top: 0px;
+  */
+  border: 3px solid #73AD21;
+
+  background-color: powderblue;
+  right: 0px;
+  width: 80px;
+}
+
+/******* changeFontSizeUserPanel element *********/
 
 /***************************************** list element template *****************************************
 
@@ -68,6 +108,13 @@ details[open] summary {
 </head>
   
 <body>
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
 <h2>Library webpage list</h2><ul>
 <!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
 
@@ -637,6 +684,26 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 </ul>  
+</div>
 
+<script>
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '24px')
+})
+</script>
 </body>
 </html>
