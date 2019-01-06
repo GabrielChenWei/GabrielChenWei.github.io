@@ -75,7 +75,7 @@ details[open] summary {
 }
 #_userPanel {
   position: fixed;
-  bottom: 0px;
+  bottom: 0.1em;
   /*
   top: 0px;
   */
@@ -86,20 +86,35 @@ details[open] summary {
   width: 80px;
 }
 
+#_userInput {
+  position: fixed;
+  top: 1em;
+  left: 14em;
+  font-size: 1.2em;
+  width: 20em;
+  border: 2px solid red;
+  border-radius: 0.5em;
+  /*
+  bottom: 0px;
+  border: 3px solid #73AD21;
+
+  background-color: powderblue;
+  width: 80px;
+  */
+}
 /******* changeFontSizeUserPanel element *********/
 
 /***************************************** list element template *****************************************
 
 <!---------------------------------------------------------->
-  <li>
-    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
-      (04-Sep-2018)(tag) text to be display </a></summary>
+  <li id = "_primaryli">
+    <a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a>
       <ul>
         <li>Source:          NA</li>
         <li>Post date:       NA</li>
         <li>Collected date:  NA</li>
       </ul> 
-    </details>
   </li>
 <!---------------------------------------------------------->
 
@@ -115,10 +130,12 @@ details[open] summary {
 </div>
 
 <div class=container>
-<h2>Library webpage list</h2><ul>
+<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter...">
+<h2>Library webpage list</h2><ul id="_mainUL">
 <!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/SHHK-Sophia-school-registration/THK Tour Guide Training Materials 2019-LR.pdf" target="_blank">
       (04-Jan-2019)(SHHK)(Sophia baby) THK Tour Guide Training Materials 2019-LR.pdf </a></summary>
       <ul>
@@ -130,7 +147,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ChangeFontSizeUserPanel/" target="_blank">
       (HTML) Change Font Size User Panel fixed at bottom right</a></summary>
       <ul>
@@ -142,7 +159,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->  
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/java-7-android-sams-teach-yourself-in-24-hours" target="_blank">
       (Java)(HTML version)java-7-android-sams-teach-yourself-in-24-hours</a></summary>
       <ul>
@@ -154,7 +171,7 @@ details[open] summary {
   </li>
 <!----------------------------------------------------------> 
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/java-7-android-sams-teach-yourself-in-24-hours.pdf" target="_blank">
       (Java)java-7-android-sams-teach-yourself-in-24-hours.pdf</a></summary>
       <ul>
@@ -166,7 +183,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/Head First Java.pdf" target="_blank">
       (Java) Head First Java.pdf (722 pages, PDF Drive) </a></summary>
       <ul>
@@ -178,7 +195,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/JavaTutorial.pdf" target="_blank">
       (Java)JavaTutorial.pdf (317 pages, TutorialsPoint)</a></summary>
       <ul>
@@ -190,7 +207,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Kid study materials" target="_blank">
       (01-Oct-2018)(~Sophia baby~)(~Lydia baby~) Kid study materials </a></summary>
       <ul>
@@ -202,7 +219,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/How_to_change_iTunes_backup_location" target="_blank">
       (04-Sep-2018) How to change iTunes backup location </a></summary>
       <ul>
@@ -215,7 +232,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ABB/1SCC302009C0201.pdf" 
                          target="_blank">
       (17-Aug-2018)(ABB)(Selector Switch)(Cam Switch) All Product catalog </a></summary>
@@ -228,7 +245,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary>
       <img src="https://farm2.staticflickr.com/1812/30219799468_c0dfcfd99f_o.png" 
            alt="(ABB)(Selector Switch)(Cam Switch) OC25G04MNGN00NU2" width="40" height="40">
@@ -247,7 +264,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Omron/zen_ds_e_5_2_csm106.pdf" target="_blank">
       (17-Aug-2018)(Omron)(Timer) ZEN 10C1AR-A-V2 catalog </a></summary>
       <ul>
@@ -261,7 +278,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Omron/(17-Aug-2018)(OMRON)_Safety_Limit_Switch_D4N_catalog.pdf" target="_blank">
       (17-Aug-2018)(OMRON)_Safety_Limit_Switch_D4N_catalog.pdf </a></summary>
       <ul>
@@ -273,7 +290,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ForEX/tradingstrategy.pdf" target="_blank">
       (ForEX) tradingstrategy.pdf</a></summary>
       <ul>
@@ -285,7 +302,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ForEX/外汇投资初学者入门外汇基础外汇交易指南.pdf" target="_blank">
       (ForEX) 外汇投资初学者入门外汇基础外汇交易指南.pdf</a></summary>
       <ul>
@@ -297,7 +314,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ForEX/外汇投资学堂教程.chm" target="_blank">
       (ForEX) 外汇投资学堂教程.chm</a></summary>
       <ul>
@@ -309,7 +326,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ForEX/外汇投资指南.pdf" target="_blank">
       (ForEX) 外汇投资指南.pdf</a></summary>
       <ul>
@@ -321,7 +338,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/ForEX/如何成为卓越的外汇交易者.chm" target="_blank">
       (ForEX) 如何成为卓越的外汇交易者.chm</a></summary>
       <ul>
@@ -333,7 +350,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/C_sharp/C sharp 5.0 for dummies (preview version).pdf" target="_blank">
       (C_sharp) C sharp 5.0 for dummies (preview version).pdf</a></summary>
       <ul>
@@ -345,7 +362,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/C_sharp/C sharp programming (tutorials point).pdf" target="_blank">
       (C_sharp) C sharp programming (tutorials point).pdf</a></summary>
       <ul>
@@ -357,7 +374,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/C_sharp/Visual_C_2012_How_to_Program.pdf" target="_blank">
       (C_sharp) Visual_C_2012_How_to_Program.pdf</a></summary>
       <ul>
@@ -369,7 +386,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/C_sharp/WPF (tutorials point).pdf" target="_blank">
       (C_sharp) WPF (tutorials point).pdf</a></summary>
       <ul>
@@ -381,7 +398,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Excel_VBA/Excel VBA Programming For Dummies, 3rd Edition.pdf" target="_blank">
       (Excel)(VBA) Excel VBA Programming For Dummies, 3rd Edition.pdf</a></summary>
       <ul>
@@ -393,7 +410,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Arduino/Introduction to Arduino.pdf" target="_blank">
       (Arduino) Introduction to Arduino.pdf </a></summary>
       <ul>
@@ -406,7 +423,7 @@ details[open] summary {
 <!---------------------------------------------------------->
 
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/MS_Visio/Visio 2010 Developer Training 03 - Programming with the Visio Object Model.docx" target="_blank">
       (MS_Visio) Visio 2010 Developer Training 03 - Programming with the Visio Object Model.docx </a></summary>
       <ul>
@@ -419,7 +436,7 @@ details[open] summary {
 <!---------------------------------------------------------->
 
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/MS_Visio/Microsoft Visio 2013 Step By Step.pdf" target="_blank">
       (MS_Visio) Microsoft Visio 2013 Step By Step.pdf </a></summary>
       <ul>
@@ -432,7 +449,7 @@ details[open] summary {
 <!---------------------------------------------------------->
 
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/MS_Visio/Microsoft Office Visio 2007 for DUMmIES.pdf" target="_blank">
       (MS_Visio) Microsoft Office Visio 2007 for DUMmIES.pdf </a></summary>
       <ul>
@@ -444,7 +461,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Database/A Gentle Introduction to Relational and Object Oriented Databases.pdf" target="_blank">
       (Database) A Gentle Introduction to Relational and Object Oriented Databases.pdf </a></summary>
       <ul>
@@ -456,7 +473,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/How to Make a Program Run at Startup on Any Computer.html" target="_blank">
       How to Make a Program Run at Startup on Any Computer</a></summary>
       <ul>
@@ -466,7 +483,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/How to reverse FN keys without pressing Fn to use F1 - F12 - IdeaPad Z510.html" target="_blank">
       How to reverse FN keys without pressing Fn to use F1 - F12 - IdeaPad Z510</a></summary>
       <ul>
@@ -479,7 +496,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/dynamic_video_width" target="_blank">
       Responsive webpage design: Dynamic video width cross different devices</a></summary>
       <ul>
@@ -491,7 +508,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/JD" target="_blank">
       JD HTML version (example of "A+, A, A- to change web font size")</a></summary>
       <ul>
@@ -503,7 +520,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/ABB/2CSC446011B0202.pdf" target="_blank">
       (Sep-2013) ABB Modular sockets catalog </a></summary>
       <ul>
@@ -515,7 +532,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/RS_PRO/RS_PRO_Catalogue_APAC_2018.pdf" target="_blank">
       (31-Jul-2018) RS_PRO_Catalogue_APAC_2018 (464 pages)</a></summary>
       <ul>
@@ -527,7 +544,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/slide_show_sample" target="_blank">
       Slide Show html example</a></summary>
       <ul>
@@ -539,7 +556,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/PHP/PHP_Advanced_Tutorial.pdf" target="_blank">
       PHP_Advanced_Tutorial.pdf</a></summary>
       <ul>
@@ -551,7 +568,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/PHP/PHP_MySQL_Tutorial.pdf" target="_blank">
       PHP_MySQL_Tutorial.pdf</a></summary>
       <ul>
@@ -563,7 +580,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/using_foreign_mobile_number_register_BaiDu_account" target="_blank">
       (Knowledge) How to use foreign mobile number register BaiDu account 如何用境外手机号注册百度账号</a></summary>
       <ul>
@@ -575,7 +592,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/register_multiple_BaiDu_account_with_one_mobile_number" target="_blank">
       (Knowledge) How to register multiple BaiDu account with one mobile number 如何用一个手机号注册多个百度账号账号</a></summary>
       <ul>
@@ -587,7 +604,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Synology_NAS_CloudStation_work_with_BaiduYun" target="_blank">
       (01-Sep-2014) Synology_NAS_CloudStation_work_with_BaiduYun 让NAS与百度云联姻，群晖Cloud Sync体验</a></summary>
       <ul>
@@ -599,7 +616,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Build_a_Search_Engine_with_NodeJS_and_Elasticsearch" target="_blank">
       (27-Sep-2016) Build a Search Engine with Node.js and Elasticsearch</a></summary>
       <ul>
@@ -611,7 +628,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/head_first_servlets_and_jsp_2nd_edition.pdf" target="_blank">
       (Java)head_first_servlets_and_jsp_2nd_edition.pdf</a></summary>
       <ul>
@@ -623,7 +640,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Java/Mc_Graw_Hill_-_SCJP_Sun_Certified_Programmer_for_Java_6_Exam_310-065_(2008)(2).pdf" target="_blank">
       (Java)Mc_Graw_Hill_-_SCJP_Sun_Certified_Programmer_for_Java_6_Exam_310-065_(2008)(2).pdf</a></summary>
       <ul>
@@ -635,7 +652,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Windows_Automation/AutoItv3_-_Your_Quick_guide.pdf" target="_blank">
       (Windows Automation) AutoItv3 - Your Quick guide.pdf</a></summary>
       <ul>
@@ -647,7 +664,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Webpage/HTML5_(tutorials_point).pdf" target="_blank">
       (Webpage) HTML5 (tutorials point).pdf</a></summary>
       <ul>
@@ -659,7 +676,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Webpage/CSS_(tutorials_point).pdf" target="_blank">
       (Webpage) CSS (tutorials point).pdf</a></summary>
       <ul>
@@ -671,7 +688,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/Webpage/Javascript_(tutorials_point).pdf" target="_blank">
       (Webpage) Javascript (tutorials point).pdf</a></summary>
       <ul>
@@ -683,7 +700,7 @@ details[open] summary {
   </li>
 <!---------------------------------------------------------->
 <!---------------------------------------------------------->
-  <li>
+  <li id = "_primaryli">
     <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/SPA_(Single_Page_web_Application)/Single page web applications.pdf" target="_blank">
       (SPA) Single page web applications.pdf</a></summary>
       <ul>
@@ -693,11 +710,40 @@ details[open] summary {
       </ul> 
     </details>
   </li>
-<!---------------------------------------------------------->
+
+
+
 </ul>  
 </div>
 
 <script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+
+/************* font size change script *************/
 $('#_biggify').on('click', function() {
   var fontSize = $('.container').css('font-size');
   var newFontSize = parseInt(fontSize)+5;
@@ -715,6 +761,7 @@ $('#_smallify').on('click', function() {
 $('#_reset').on('click', function() {
   $('.container').css('font-size', '16px')
 })
+/************* font size change script *************/
 </script>
 </body>
 </html>
