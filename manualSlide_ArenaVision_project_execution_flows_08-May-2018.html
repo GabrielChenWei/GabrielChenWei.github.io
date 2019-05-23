@@ -8,13 +8,38 @@
 	display:block;
 	margin: auto;
 	width: 100%;
-	
+}
 
+.btn {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  //border: 3px solid #73AD21;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: lightblue;
+  border-radius: 8px;
+  opacity:0.3;
+}
+
+.btn:hover {
+  //background-color: LightSkyBlue;
+  opacity:1;
+}
+.btnLeft {
+  left: 150px;
+}
+.btnRight {
+  right: 150px;
 }
 </style>
+
+
+
 <body>
 
 <div class="w3-content w3-display-container">
+
    <img class="mySlides" src="	https://farm1.staticflickr.com/973/41923413542_1c3635ec2d_o.jpg	">
   <img class="mySlides" src="	https://farm1.staticflickr.com/976/41967605851_8aca265aaf_o.jpg	">
   <img class="mySlides" src="	https://farm1.staticflickr.com/832/41249146734_0ffb2c9d1b_o.jpg	">
@@ -182,10 +207,10 @@
 
 
 
-  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-</div>
 
+</div>
+  <button class="btn btnLeft" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn btnRight" onclick="plusDivs(1)">&#10095;</button>
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
