@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<title>(Manual) How to configure meter in AmpWeb to work with CityTouch Cabinet 13-Jul-2019.pptx</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {
+	display:block;
+	margin: auto;
+	width: 100%;
+}
+.btn {
+  //position: absolute;
+  //top: 50%;
+  position: fixed;
+  bottom: 10%;
+  width: 50px;
+  //border: 3px solid #73AD21;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: lightblue;
+  border-radius: 8px;
+  opacity:0.3;
+}
+.btn:hover {
+  //background-color: LightSkyBlue;
+  opacity:1;
+}
+.btnLeft {
+  left: 20px;
+}
+.btnRight {
+  right: 20px;
+}
+</style>
+
+
+
+<body>
+
+<div class="w3-content w3-display-container">
+
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide1.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide2.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide3.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide4.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide5.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide6.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide7.PNG">
+	<img class="mySlides" src="	http://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/Philips/imageForWeb/Manual_How_to_soft_reboot_a_fix_IP_Segment_Controller_use_Putty_10-Oct-2019/Slide8.PNG">
+
+
+
+
+</div>
+  <button class="btn btnLeft" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="btn btnRight" onclick="plusDivs(1)">&#10095;</button>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+</body>
+</html>
