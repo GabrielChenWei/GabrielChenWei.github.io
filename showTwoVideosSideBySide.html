@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+  body {
+	background-color: white;
+  }
+  
+  video {
+	display: block;
+	margin: auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+	#wrapper { 
+		width: 100%; 
+		height: auto; 
+		margin: 0 auto;
+		//margin-left: 2%;
+	} 
+	#home1 { 
+		width: 25%; 
+		height: 680; 
+		float: left; 
+		margin-right: 1%;
+	} 
+	
+	#leftTitle {
+		width: 25%; 
+		height: 1em; 
+		float: left; 
+		margin-right: 1%;
+		font-weight: bold;
+	}
+	
+	#home2 { 
+		width: 70%; 
+		height: auto; 
+		float: left; 
+	}
+	
+	#rightTitle {
+		width: 70%; 
+		height: 1em; 
+		float: left; 
+		font-weight: bold;
+	}
+	
+	.clear{
+		clear: both;
+	}
+
+	@media (max-width:767px) {
+		#wrapper{
+			width: 100%;
+			height: auto;
+		}
+		#home1 {
+			width: 100%;
+			height: auto;
+			float: none;
+		}
+		#home2 {
+			width: 100%;
+			height: auto;
+			float: none;
+		}
+	}
+</style>
+
+<div id="wrapper"> 
+	<p id="leftTitle">GCC On/Off, site video</p>
+	<p id="rightTitle">GCC On/Off, screen recording</p>
+<div>
+
+<div id="wrapper"> 
+	<video id="home1" width="auto" height="680" controls autoplay="autoplay">
+	  <source src="3_GccOnOff.MOV
+	" type="video/mp4">
+	  Your browser does not support the video tag.
+	</video>
+	
+	<video id="home2" controls autoplay="autoplay">
+	  <source src="LFRS GCC ON OFF lights- Google Chrome 2020-04-03 12-11-54.mp4
+	" type="video/mp4">
+	  Your browser does not support the video tag.
+	</video>
+    <div class="clear"></div> 
+</div>
+</body>
+</html>
