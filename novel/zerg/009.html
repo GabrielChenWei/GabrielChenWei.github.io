@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第九章 好与坏</h2><hr/>
+<p class = "firstLineIndent">“为什么会这样？虽然也不能说每种单细胞生物就必须有‘眼点’这个感光细胞器，但也不至于全部都没有吧……”</p>
+<p class = "firstLineIndent">随后，霍古还注意到，单细胞生物中，同样也没有叶绿体或者叶绿素这类需要‘光’参与反应的东西。</p>
+<p class = "firstLineIndent">“难道说，我一开始就想错了？”</p>
+<p class = "firstLineIndent">“有没有可能外部环境确实是没有‘光’，所以这些单细胞生物也就没有进化出与‘光’有关联的细胞器。”</p>
+<p class = "firstLineIndent">从单细胞生物的情况，霍古反推出这样一个结论。</p>
+<p class = "firstLineIndent">生命和环境存在着相互影响的关系，如果一开始就没有生命，那地球就会逐渐演变成一颗荒芜的星球。</p>
+<p class = "firstLineIndent">而周遭的环境，也决定了生物所能够发展的形态，影响着它们的进化。</p>
+<p class = "firstLineIndent">太阳这样一个能量源，生物应该是说什么都不可能放过的，哪怕一开始没有与‘光’有关的细胞器，也会想方设法进化出来。</p>
+<p class = "firstLineIndent">不过，霍古并不着急下结论，它想了想，还是决定继续再多进行几次大规模捕获微生物的行动。</p>
+<p class = "firstLineIndent">“只是这样就下结论的话有些太武断，这只是第一次的捕获，再来几次试试，如果还是没有，那应该可以确定，我目前所处的位置，不是深不见底的深海，就是没有任何光照的地下暗湖。”</p>
+<p class = "firstLineIndent">将那些不活的单细胞生物用微量酶给肢解掉细胞膜和细胞壁，再将内部的细胞器与基因片段给牵引进空腔表层细胞后的那些内细胞中，用连接蛋白固定在细胞膜内壁上。</p>
+<p class = "firstLineIndent">一时间，霍古居然有了一夜暴富的错觉。</p>
+<p class = "firstLineIndent">不过一想到，可能存在的多细胞生物，它的这份兴奋感也就迅速冷却。</p>
+<p class = "firstLineIndent">霍古非常清楚，目前的多细胞集群虽然面对众多微生物而言是无敌的存在，可一旦对手换成多细胞生物，那就脆弱得犹如刚出生的婴儿。</p>
+<p class = "firstLineIndent">可以阻挡噬菌体的细胞壁在宏观生物看来，比纸张还要薄。</p>
+<p class = "firstLineIndent">能够分解细胞壁的酶，对于宏观生物而言，毫无杀伤力。</p>
+<p class = "firstLineIndent">宏观生物那可以轻松撕碎表皮组织的尖牙利爪，以现在的的单细胞集群看来，就相当于非洲土著看那些大国的核武器。</p>
+<p class = "firstLineIndent">“还不够…想要不再受到生命威胁，还有相当长的路要走。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">霍古一边告诫提醒自己目前的处境，一边指挥细胞们进行张嘴行为。</p>
+<p class = "firstLineIndent">在微生物看来犹如黑洞般的血盆大口缓缓开启，在流的推动下，霍古的单细胞集群向前推进，无数的微生物和蛋白质、氨基酸等物质就这么在无可察觉的情况下，被包裹进死亡之地。</p>
+<p class = "firstLineIndent">用酶灭杀掉那些已经毫无价值的病毒，延展出连接蛋白，大量捕获微生物，在进行肢解，小心地把微生物们的基因和细胞器给提取出来。</p>
+<p class = "firstLineIndent">有了两次的成功，第三次变得更加熟练，张合嘴巴的次数增多，霍古和集群内的细胞们的指令配合更加协调，不再如之前的那样机械。</p>
+<p class = "firstLineIndent">在进行和上百次之后，嘴巴的张合在霍古看来，似乎已经与正常宏观生物无异。</p>
+<p class = "firstLineIndent">这是个好消息，但同样也有坏消息。</p>
+<p class = "firstLineIndent">事情的起因就是之前霍古捕获到的那个具有疑似线粒体的单细胞生物，这个单细胞生物是以硫进行生命活动的硫细菌。</p>
+<p class = "firstLineIndent">硫细菌，霍古并不陌生，它曾在取样的火山岩块中，用电子显微镜，看到过这类单细胞生物。</p>
+<p class = "firstLineIndent">这种生物普遍都分布有硫磺存在的水域，就像它们的名字那样，它们离不开硫元素。</p>
+<p class = "firstLineIndent">就算是在当初的人类时期，硫细菌也没有灭绝，主要集中分布在活火山或者温泉附近，即便是一百度的沸水中也能生存。</p>
+<p class = "firstLineIndent">既然捕获到了这样的生物，那就可以由此反推出，附近必然存在着一个大面积稳定存在的硫元素环境。</p>
+<p class = "firstLineIndent">“我只求那个地方不是活火山。”</p>
+<p class = "firstLineIndent">霍古心底发怵，哪怕火山没有爆发，只是冒着浓烟。</p>
+<p class = "firstLineIndent">糟糕的物质随着烟尘在大气中与雨水混合，这样的结果要么是酸雨，要么是碱雨，一场大雨下来，水质环境瞬间就是一个大变样。</p>
+<p class = "firstLineIndent">还有那些岩浆，在没有眼睛观察四周的情况下，岩浆对霍古和单细胞集群来说也是极为危险，容颜会让周围的液体沸腾，在这种高温环境下，组合成一个整体的细胞们没几秒就会全部死绝，或者说，被煮熟。</p>
+<p class = "firstLineIndent">没办法，目前单细胞们组成的这个多细胞生物实在是太过简陋，甚至连温感系统都没有，霍古只能通过细胞集群内的蛋白质变化来间接观察水温。</p>
+<p class = "firstLineIndent">如果说，宏观生物的尖牙利爪对于现在的单细胞集群相当于大国级别的核武器，那活火山就相当于太阳，霍古现在能做的就只有敬畏，一旦火山爆发，以集群目前的行动速度，那是必死无疑。</p>
+<p class = "firstLineIndent">“只有失去了，才知道那些东西的珍惜啊……”</p>
+<p class = "firstLineIndent">霍古无比的想念自己曾经的眼睛，还有人类世界能够达到两倍音速的国际民航客机。</p>
+<p class = "firstLineIndent">将杂念清除，现在没有那么多的时间给它浪费，那些隐藏在黑暗中的威胁可不会等它准备好。</p>
+<p class = "firstLineIndent">目前可以确定的有两点。</p>
+<p class = "firstLineIndent">第一，从捕获到的单细胞生物中，可以确定，周遭是一个完全黑暗的环境，所以没有任何一个单细胞生物进化出与‘光’相关的细胞器。</p>
+<p class = "firstLineIndent">第二，附近存在一处硫元素密集的未知区域。</p>
+<p class = "firstLineIndent">“秉承着面对最糟糕的情况，假设附近存在着这样一座活火山……”</p>
+<p class = "firstLineIndent">霍古的分析戛然而止，并不是它不想在推演下去，而是它思维宕机了。</p>
+<p class = "firstLineIndent">在绝对的力量面前，这些只不过是徒劳的挣扎。</p>
+<p class = "firstLineIndent">“……果然还是需要眼睛。”</p>
+<p class = "firstLineIndent">一个念头就这样出现在霍古的思绪中——既然找不到有关于‘光’的细胞器，那为什么不索性独立自主的制造出一双‘眼睛’？</p>
+<p class = "firstLineIndent">这个念头刚一出现，就好似疯涨的野草，转瞬之间就将霍古的思绪给占据，无论如何都挥之不去。</p>
+<p class = "firstLineIndent">“没错，我完全可以自己设计出一套视觉系统，比那些单细胞生物的‘眼点’更加精良，性能高超的视觉系统。”</p>
+<p class = "firstLineIndent">“标准的话，就拿人的视觉来作为标准。”</p>
+
+<a href="008.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="010.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

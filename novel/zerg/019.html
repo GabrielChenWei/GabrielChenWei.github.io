@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第十九章 灾</h2><hr/>
+<p class = "firstLineIndent">以指数级增长细胞集群们，在数量上很快就打到了一个相当可观的数值——四百多个单位个体。</p>
+<p class = "firstLineIndent">由于外形发生了改观，加入感知区域的细胞集群，从长颈瓷瓶状改变为葫芦状，霍古干脆的称呼它们为‘葫’。</p>
+<p class = "firstLineIndent">“十号葫，尽量保持位置不发生变动。”</p>
+<p class = "firstLineIndent">“一百三十一号葫，你偏航了，调整仰角，向右斜上方位移九米，尽快回到你本来该呆的位置。”</p>
+<p class = "firstLineIndent">“三百六十八号葫，立即降低航速，保持队型。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">霍古不厌其烦的着重强调自己的指令，随着指令传达距离的增长，某个并不明显的问题也凸显出来。</p>
+<p class = "firstLineIndent">虽然可以利用中继的方式，将指令传达到更远的地方，可这样传达的指令，存在着延时，最远短的个体，总要隔上好一会才能接受到由它发出的指令。</p>
+<p class = "firstLineIndent">为此，霍古需要每过一会，就要对某个葫进行一次位置校正，以维持整个集体阵型，在现在这种复杂多变的环境里，延时问题可是非常麻烦。</p>
+<p class = "firstLineIndent">目前，霍古并没有什么太好的办法解决这个问题，毕竟，那个造成它现在这种状态的核心秘密具体是什么，它还没弄清楚，自然也谈不上更高效的利用。</p>
+<p class = "firstLineIndent">“数量还不够多……”</p>
+<p class = "firstLineIndent">“我这样是不是太冒进了一点？”</p>
+<p class = "firstLineIndent">从庞杂指令工作中稍微挤出一点思考能力的霍古如此的想着，延时问题虽然暂时没有一个很好的解决方案，但只要数量足够庞大，覆盖面积足够宽广，整体阵型的容错性会增加，指令延时造成的问题就可以被掩盖掉。</p>
+<p class = "firstLineIndent">霍古开始考虑要不要先放缓往前探索碱性水域的进度，拓展葫群的水域覆盖面积。</p>
+<p class = "firstLineIndent">就在此时，数百双时刻警戒环境变化的眼睛，敏锐地捕捉到附近水域出现的细微异状。</p>
+<p class = "firstLineIndent">一眼望去，一条‘白线’出现在葫群视野的最远端，好似天际线般的东西。</p>
+<p class = "firstLineIndent">霍古当即利用阵型中，距离那条‘白线’最近的葫进行观测。</p>
+<p class = "firstLineIndent">视觉系统在接收到来自霍古的指令后，玻璃体立即调整凹凸程度，眼睛转动，紧紧锁定远处的‘白线’。</p>
+<p class = "firstLineIndent">在玻璃体的放大下，‘白线’变成了‘篱笆’，就好比是由棉花构建起来，只存在于童话故事里，在那乡村小径温柔和风之中摇曳的藩篱。</p>
+<p class = "firstLineIndent">紧接着，霍古又注意到的整个葫群的异常状况，细胞膜、细胞质、细胞器，乃至是细胞壁，都在发生着细微的震动。</p>
+<p class = "firstLineIndent">“该不会是……”</p>
+<p class = "firstLineIndent">极度不祥的预感醍醐灌顶般笼罩在心头，某种相当糟糕的推测浮现在霍古的思绪中，让它感到一阵胆寒。</p>
+<p class = "firstLineIndent">“八号到五号集群注意！有一股急流正在袭来！流向左后方，调整航向，全鳍展开，缓冲准备！”</p>
+<p class = "firstLineIndent">指令下达后没多久，整个葫群随即遵照指令作出相应改变。</p>
+<p class = "firstLineIndent">也许是感受到霍古本身的焦虑，亦或是通过霍古本身预感到危机的降临，求生欲望给予的帮助，葫群的紧急调整总算是在那股可以预见的灾难到来前完成。</p>
+<p class = "firstLineIndent">然而，这不是什么好值得庆幸的事情，仅仅只是倒了一场血霉后的一点小小心理安慰。</p>
+<p class = "firstLineIndent">并没有过去多长时间，就在葫群完成紧急调整的一小段时间后，那令霍古胆寒的危险已经越过视野尽头来到附近。</p>
+<p class = "firstLineIndent">此时，那已经不是一道‘篱笆’，而是一堵‘墙’。</p>
+<p class = "firstLineIndent">时间，在这一刻就像是被按动了缓速播放的按钮，霍古还是人类时就曾听人说过，当临近死亡时，思维会加速，相对来说，主观对时间的感觉也会放慢，至少人类是这样。</p>
+<p class = "firstLineIndent">注视着那堵就在不远处的墙，能够让人深深领略到了‘渺小’这个词汇的含义，往上直通海面，左边望去，一直延伸到眼睛玻璃体凹凸极限的视野末端，依旧看不到墙的尽头，往右边望去亦是同样。</p>
+<p class = "firstLineIndent">好似站在世界的尽头，和世界边缘耸立的壁垒面对面——霍古此时此刻对所见到事物最为直观的感受。</p>
+<p class = "firstLineIndent">透过白墙上那些涌动的白色浪花，以及考虑到海洋的液体环境，很容易就能判断出构成这堵宏伟巨墙的真正面目——巨型海啸。</p>
+<p class = "firstLineIndent">在这片海域的某处，一个暂不清楚的爆发点，一口气对释放出极为庞大的动能，在海洋这种液体环境中以‘波’的形式辐射，也就是现在葫群所面对的巨型海啸。</p>
+<p class = "firstLineIndent">席卷而来的白墙转瞬即至，直接将整个如同蝼蚁的葫群给裹挟，继续奔流向远方。</p>
+<p class = "firstLineIndent">“稳住！一定要稳住！”</p>
+<p class = "firstLineIndent">霍古知道这是徒劳的叫喊，在这样的伟力面前，霍古它们这种集群不过是个微不足道的笑话，鳍的引流终归是有个极限程度。</p>
+<p class = "firstLineIndent">可有些事情，即便知道徒劳也要去做，这种时候，哪怕是一点奇迹，都比什么奇迹都不发生要来的强不知多少倍。</p>
+<p class = "firstLineIndent">在被裹进海啸后，周围的景物都转变为浮光掠影，这主要是因为，作为眼睛载体的葫一直在遭受海啸中乱流拨弄翻滚导致的情况。</p>
+<p class = "firstLineIndent">目前，还能保证良好能力的，大概就只剩下对葫内部的内视，被翻卷的涌浪给裹挟后，葫的数量也从四百再次跌回到两位数，并不是死亡，而是被甩出极远的距离，失去了联系。</p>
+<p class = "firstLineIndent">而这，还不是结束，屋漏偏逢连夜雨，有些时候倒霉起来，就算是喝凉水都有可能塞牙缝。</p>
+<p class = "firstLineIndent">某种物体以极快的速度，仅剩葫群中的某个个体旁边掠过，一道相当于葫本身长度三分之一的口子被划拉出来。</p>
+<p class = "firstLineIndent">“什么鬼？！”</p>
+<p class = "firstLineIndent">霍古惊骇交加，它想要知道那是什么，可是却无能为力，作为外界探测手段的视觉，现在和装饰摆设没区别。</p>
+<p class = "firstLineIndent">再一次的，感受到了那种深深的无力感。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">作者：想看更多虫族是怎样炼成的相关小说，请访问：宅阅读(ZHAIYUEDU.TOP)</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">相同的情况还在继续，最先那个被划拉出三分之一长口子的葫，反而是整个集群里受到损伤最轻的葫。</p>
+<p class = "firstLineIndent">葫群遭受的更多是洞穿损伤，不下数十个葫被那些物体给打成筛子，霍古所寄宿的葫也同样如此。</p>
+<p class = "firstLineIndent">壁细胞的防线被瓦解，数量庞大的攻击型微生物大举对目前这处水域最顶端的猎食者发去进攻。</p>
+<p class = "firstLineIndent">局势进一步向更糟糕的发展。</p>
+
+
+<a href="018.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="020.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第四章 手术</h2><hr/>
+<p class = "firstLineIndent">首先，是先解旋，将那一团乱麻的内核给解开。</p>
+<p class = "firstLineIndent">很快，单细胞的DNA链就这样毫无保留的呈现在霍古的面前。</p>
+<p class = "firstLineIndent">接下来是‘截取’，将那部分表达噬菌体的基因链给裁剪出来，这是个相当精细的活计，尤其是对于现在连手脚都没有的霍古来讲。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">小心翼翼地控制酶的输出限制性内切酶，以确保不伤及基因链的其它部分，同时，依靠指令遥控着单细胞，利用细胞质的流动，将限制酶给限定在需要切除的基因片段上。</p>
+<p class = "firstLineIndent">这种行为，无异于在用唾液写字，而且还是在水面上写。</p>
+<p class = "firstLineIndent">“糟糕！”</p>
+<p class = "firstLineIndent">随着霍古懊恼情绪的出现，操作失误的限制酶，一路横切，其他的基因片段也跟着迎来裁减，这个单细胞的内核没过一会便缩水了将近一半的体量，直到限制酶的耗尽。</p>
+<p class = "firstLineIndent">随后，在单细胞本能分泌的连接酶中，这些零零碎碎的基因片段相互接合，再一次组合成完好的基因链。</p>
+<p class = "firstLineIndent">不过霍古清楚，这条大变样的基因链已经不可能再复制出原有的单细胞。</p>
+<p class = "firstLineIndent">霍古又重新在单细胞集群内选定新的细胞作为‘手术’对象。</p>
+<p class = "firstLineIndent">刚才的失败并没有在信心上给予霍古多少打击，它从不认为自己是个天才，甚至还觉得自己比一般人笨上一些，只不过看的书比别人多一点。</p>
+<p class = "firstLineIndent">手术重新开始。</p>
+<p class = "firstLineIndent">这一次，吸取前一次的教训，霍古更加小心地使用那些单细胞内的限制酶，大幅度削减了限制酶的用量，大部分注意力都放在细胞质的运动上。</p>
+<p class = "firstLineIndent">让细胞质的流动，引导那些限制酶，将指定的基因片段给裁剪出来，同时，在裁剪完后，正好消耗殆尽。</p>
+<p class = "firstLineIndent">失败……</p>
+<p class = "firstLineIndent">失败……</p>
+<p class = "firstLineIndent">失败……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">失败……</p>
+<p class = "firstLineIndent">成功！</p>
+<p class = "firstLineIndent">“非常好。”</p>
+<p class = "firstLineIndent">就像霍古坚信的那样，它成功了，在损失了将近快要过百的细胞后，那段噬菌体的基因片段被裁剪出来。</p>
+<p class = "firstLineIndent">再下来的步骤是连接，这部分就比较简单了，霍古遥控着细胞，利用细胞质的流动，把那段表达噬菌体的基因片段给限制在一定区域。</p>
+<p class = "firstLineIndent">然后，依靠连接酶，让手术后被分成两段的DNA重新合二为一，形成一条全新的基因链。</p>
+<p class = "firstLineIndent">“开始分裂”</p>
+<p class = "firstLineIndent">霍古这样下指挥着，这个经历了手术成功的复制体细胞开始逐步分裂出新个体。</p>
+<p class = "firstLineIndent">很快，单细胞集群的新个体出现了，不过，这个新个体还是出现了一些霍古始料未及的状况。</p>
+<p class = "firstLineIndent">那就是‘细胞壁’。</p>
+<p class = "firstLineIndent">复制体细胞外部裹着一层外壳，这个外壳和细胞膜相比，显得更加坚固一些，且有着一定的弹性，可以给予保护细胞充分的成长空间。</p>
+<p class = "firstLineIndent">“这……”</p>
+<p class = "firstLineIndent">“为什么？”</p>
+<p class = "firstLineIndent">霍古想了一下，不是很确信的想。</p>
+<p class = "firstLineIndent">“难道是因为，那段残缺的噬菌体基因表达的结果？”</p>
+<p class = "firstLineIndent">那个手术并没有彻底裁剪完噬菌体的基因，霍古只是切除了之前了解到的那部分表达毒性噬菌体的基因片段。</p>
+<p class = "firstLineIndent">反正，残缺的基因表达也是残缺的不全，不可能再转录出噬菌体。</p>
+<p class = "firstLineIndent">为了完美切除而冒着再次出现毒性噬菌体的可能？</p>
+<p class = "firstLineIndent">当时霍古想了想，还是算了，它又不是完美主义者，没必要去作那种死。</p>
+<p class = "firstLineIndent">没想到会出现这样的情况……</p>
+<p class = "firstLineIndent">细胞壁是一定要有的，因为细胞壁的主要作用就是保护细胞。</p>
+<p class = "firstLineIndent">简单点理解就是布衣刁民穿上了钢甲，防御力和以前，根本不能同日而语。</p>
+<p class = "firstLineIndent">本来，霍古是打算在解决了噬菌体的事情后，就开始着手细胞壁的制造，但是现在……</p>
+<p class = "firstLineIndent">霍古陷入了纠结。</p>
+<p class = "firstLineIndent">也不是说它不喜欢这样的惊喜，但是，这毕竟是‘意外’得来的细胞壁，能不能达到它想要的要求，还真不好说。</p>
+<p class = "firstLineIndent">“决定了，先观察一阵子。”</p>
+<p class = "firstLineIndent">霍古这样打定主意，注意力转移到其他单细胞上，开始手术。</p>
+<p class = "firstLineIndent">有了第一次成功的案例，自然就会有第二次、第三次，又过了一段时间，霍古已经熟能生巧，将剪切基因片段的成功率，稳定在百分之八十以上。</p>
+<p class = "firstLineIndent">这期间，霍古想到了一个破除掉蛋白质结构体连接的方法，那就是依靠分裂，在两个建立连接的单细胞之间，制造出新的复制体，将旧的单细胞给挤掉。</p>
+<p class = "firstLineIndent">这就有些类似忒修斯之船的原理，在不影响正常思维的情况下，逐步地将那些老旧的单细胞给替换掉。</p>
+<p class = "firstLineIndent">这么想着的霍古，确实是这样做了。</p>
+<p class = "firstLineIndent">随着最后一个感染的单细胞被替换掉，危机感消失，取而代之的是一种无比的安心感，毕竟，能够威胁到它的东西，已经暂时没有了。</p>
+<p class = "firstLineIndent">收拾好心情，霍古可没忘记自己现在的思维载体，不过是一群微不足道的单细胞集群，是比食物链最底层的植物，还要更加低层次的生命体。</p>
+<p class = "firstLineIndent">霍古想到了还是人类的时候，它有至少一亿种方式，抹杀掉现在的单细胞集群，思绪飘到这里，它便不寒而栗。</p>
+<p class = "firstLineIndent">“太脆弱了，我还需要继续优化这些单细胞才行。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">确立目标的霍古，开始分析那些意外得到的‘惊喜’，如果这些细胞壁的效果不理想，那它就有必要再进行手术，彻底的把噬菌体的基因片段给祛除，然后重新搭建能够满足需求的细胞壁。</p>
+<p class = "firstLineIndent">第一个需求是适当的透过性，如果通透性太好，能起到的保护作用也就微乎其微，如果通透性太差，能够得到外界的物质会变少，细胞就会逐渐走向衰亡。</p>
+<p class = "firstLineIndent">第二个需求是适当的柔韧性，细胞壁不能太硬也不能太软，还必需有一定的延展性，太硬了会限制细胞本身的成长，太软了又起不到缓冲保护作用，不能延展的话，可塑性也就非常差，这不利于在如今这种环境下相互抱团。</p>
+<p class = "firstLineIndent">第三个需求是也是霍古目前最急需的，那就是能够防御那些黑暗中潜藏的噬菌体、攻击性细菌、真菌的袭击。</p>
+<p class = "firstLineIndent">第一、第二的需求都很容易测试，只需要把一个单细胞单独安置在最外围即可，剩下的工作就只是观察，看看作为实验对象的单细胞有无变化，变化达到什么程度。</p>
+<p class = "firstLineIndent">真正的难点是第三个。</p>
+
+<a href="003.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="005.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

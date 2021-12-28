@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第十五章 思考</h2><hr/>
+<p class = "firstLineIndent">“看来并不是蛋白质。”</p>
+<p class = "firstLineIndent">细胞并没有依照霍古的指令，分裂新个体，这就意味着，答案是第二种。</p>
+<p class = "firstLineIndent">“既然不是蛋白质，那应该也和氨基酸没什么关系。”</p>
+<p class = "firstLineIndent">氨基酸是蛋白质的最小组成单位，无数的氨基酸组成多肽，多肽通过反复的折叠与扭曲，形成立体结构的蛋白质。</p>
+<p class = "firstLineIndent">那么会是什么东西，让我现在保持思维以及人类时的记忆？</p>
+<p class = "firstLineIndent">本以为是最有可能的蛋白质，如今被证伪，霍古逻辑走进了死角，它决定重新再梳理一遍。</p>
+<p class = "firstLineIndent">“嗯……无论是互联网还是人脑，亦或是电脑，它们都是共同，那就是有着数量庞大的计算单元作为基础，这个研究方向应该是没错。”</p>
+<p class = "firstLineIndent">“我的情况，应该也是这样，有着数量庞大的细胞作为计算单元作为基础，而它们之间的联系，应该也是普遍性的……”</p>
+<p class = "firstLineIndent">“人脑的话，是以神经突触来构建联系，这显然，并不适用于现在的我，目前这个只是一整个细胞集群，它们并没有类似神经突触那样的物理连接，刚才的实验也证明了，细胞之间的联系和蛋白质没有任何关联。”</p>
+<p class = "firstLineIndent">霍古所要探究的核心问题逐渐清晰起来。</p>
+<p class = "firstLineIndent">“没错，就是那个‘联系’，细胞们到底是依靠什么作为媒介构建起了联系，以此形成一个庞大的网络？”</p>
+<p class = "firstLineIndent">霍古注意力投放到整个细胞集群上，试图通过这种宏观方式，发现那个细胞间的‘媒介’。</p>
+<p class = "firstLineIndent">结果还是什么也没发现，即便是它现在能够将所有细胞由里到外的一览无遗。</p>
+<p class = "firstLineIndent">“总不可能是像互联网那样，依靠电磁波来构建计算单元间的联系吧？”</p>
+<p class = "firstLineIndent">“不可能，虽说我不是专门研究计算机领域，可就我知道的那点皮毛知识，这个猜测就站不住脚。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">原因无他，外部干扰太多，而由细胞构建的生命场，实在是太过微弱，微弱到海水中发生的化合反应所形成的能量释放，就能破坏这种微弱到极点的生命场……</p>
+<p class = "firstLineIndent">霍古的思绪猛然停顿，它敏锐的抓住了思绪海内那瞬间的灵光一闪。</p>
+<p class = "firstLineIndent">“……等等，这个貌似说得通。”</p>
+<p class = "firstLineIndent">“因为外部干扰太强，所以这种联系只能作用于细胞内部，这也就能解释，为什么需要两个细胞贴合在一起，我的指令才能够生效。”</p>
+<p class = "firstLineIndent">细胞内部的环境是十分稳定的，假若也和细胞膜外部环境那样的话，内核的基因就没办法稳定存在，所以细胞内部必须十分稳定。</p>
+<p class = "firstLineIndent">而在这样稳定的环境里，那一直被干扰的生命场也就很好的扩展生效。</p>
+<p class = "firstLineIndent">于是，就有了现在这个生命网络！</p>
+<p class = "firstLineIndent">为了印证自己的猜想，霍古决定再来进行一次新的实验。</p>
+<p class = "firstLineIndent">细胞集群最外层的壁细胞开始分裂，然后是内细胞，再接着是壁细胞，构建出一个小型空腔。</p>
+<p class = "firstLineIndent">将这个空腔内注满纯净水，霍古把单个细胞给投放进去。</p>
+<p class = "firstLineIndent">这个细胞有这一条鞭毛，和最原始的细胞膜，以及DNA内核，除此之外，什么都没有，这是霍古为了确保实验不出差错故意为之。</p>
+<p class = "firstLineIndent">“现在，遵照我的指令，开始围绕整个空腔圆周运动，但是不能碰到空腔内壁。”</p>
+<p class = "firstLineIndent">果不其然，那个置于空腔内一直静止不动的细胞开始摆动鞭毛，遵照霍古的指令行动，甚至如臂使指，丝毫不差的以霍古思维中设想的轨迹，环绕空腔内壁游动，没有触碰空腔内壁哪怕一下。</p>
+<p class = "firstLineIndent">在如同蝌蚪般地游动一会后，作为实验的细胞停了下来，尾部的鞭毛不再有任何动作。</p>
+<p class = "firstLineIndent">这种情况，霍古倒并不感到意外，鞭毛的运动，是需要裂解氨基酸，目前实验细胞所处的空腔，仅仅只有水，获取不到氨基酸的实验细胞，自然就只能无奈停下鞭毛，这和火箭推进器燃料耗尽是一个道理。</p>
+<p class = "firstLineIndent">“那么‘场源’呢？既然是依靠场，那应该有一个生成场的源头才对。”</p>
+<p class = "firstLineIndent">想了想，霍古决定使用排除法。</p>
+<p class = "firstLineIndent">细胞膜和细胞质被霍古优先给剔除掉，因为它可以指令细胞解旋和转录DNA，这不是掌控细胞膜或者细胞质就拥有的能力。</p>
+<p class = "firstLineIndent">更可以说，答案一开始就显而易见，场源就‘藏’在内核那一团乱麻的DNA双链中。</p>
+<p class = "firstLineIndent">“……我这样，是不是太慎重了一点？”</p>
+<p class = "firstLineIndent">这样自我吐槽一番后，霍古继续将精力投注到实验细胞上。</p>
+<p class = "firstLineIndent">实验空腔内壁的壁细胞缝隙间，陆陆续续的有蛋白质从中挤出，加入到纯净水中。</p>
+<p class = "firstLineIndent">随着时间的推移，空腔内的水变得极度富营养化，实验细胞的尾部鞭毛再次摆动起来，环绕空腔内壁圆周运动。</p>
+<p class = "firstLineIndent">考虑到可能存在的危险性，霍古将实验空腔和消化腔建立起联系，依靠一个阀门将两个空腔隔开。</p>
+<p class = "firstLineIndent">待一切准备就绪后，霍古对实验细胞下达新的指令。</p>
+<p class = "firstLineIndent">“部分解旋，转录DNA，制造新个体。”</p>
+<p class = "firstLineIndent">实验细胞开始复制出新个体，因为是部分转录，材料收集的时间和复制新个体的过程所需要的时间，非常的短。</p>
+<p class = "firstLineIndent">很快，霍古就看到了新生的细胞个体。</p>
+<p class = "firstLineIndent">这个新个体同样也有着一条鞭毛，不过可能是由于部分转录DNA所导致的原因，相比起原来的母体，新个体的体型，直接缩水到母体的二十分之一。</p>
+<p class = "firstLineIndent">“你，以不接触空腔内壁为前提，围绕整个空腔做圆周运动。”霍古对新形成的细胞个体下达指令。</p>
+<p class = "firstLineIndent">然而，这个新生的个体并没有遵照霍古的意愿行动，而是漫无目的在空腔内四处游荡，与此前霍古接触到的那些微生物并没什么区别。</p>
+<p class = "firstLineIndent">会出现这种情况的原因只有一个，这个复制出来的细胞个体，内核里面并没有‘场源’，所以不会遵从霍古的指令。</p>
+<p class = "firstLineIndent">霍古并不感到意外，这在它的预料之中，一团乱麻的基因链中，一次成功找到场源的概率就相当于第一次买彩票就中了百万大奖。</p>
+<p class = "firstLineIndent">同样，它也不感到苦恼，它现在最不缺的，就是时间。</p>
+<p class = "firstLineIndent">“看来并不是这段DNA，需要将转录的DNA再往前延伸一些，扩张复制范围。”</p>
+<p class = "firstLineIndent">思量好下一段要转录的DNA，霍古给原来的实验细胞下达转录指令。</p>
+<p class = "firstLineIndent">“复制新个体，部分转录。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">重复性的实验一遍又一遍的进行着，空腔内复制个体的细胞数量也从原来的个位数，增长到了数都数不清的程度。</p>
+<p class = "firstLineIndent">终于，它发现了！</p>
+<p class = "firstLineIndent">在不知道重复转录多少次DNA后，霍古终于能够控制实验细胞转录出来的新个体，这也意味着，它找到了那个神秘的场源。</p>
+<p class = "firstLineIndent">“怎么会…居然是这种物质？！”</p>
+
+<a href="014.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="016.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

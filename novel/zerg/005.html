@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第五章 毒性噬菌体</h2><hr/>
+<p class = "firstLineIndent">从恢复思维开始，霍古就处于劣势，因为单细胞集群并没有‘视觉’，非常被动。</p>
+<p class = "firstLineIndent">只有当那些外来细胞与单细胞集群发生接触时，霍古才能够获悉到对方的存在。</p>
+<p class = "firstLineIndent">如果是当初的人类躯体还好，即便没有视觉，也可以通过皮肤的神经网络，感受液体流动的方向，来判断周遭存在的物体。</p>
+<p class = "firstLineIndent">可问题是，霍古目前所寄宿的单细胞集群实在太过简陋，所以这种事情也同样难以办到。</p>
+<p class = "firstLineIndent">要抵御那些外在的威胁，霍古就只能退而求其次的实行被动防御，而这个被动防御的关键，就在于细胞壁。</p>
+<p class = "firstLineIndent">“噬菌体的主要攻击方式就是感染，紧接着鸠占鹊巢，在寄生细胞内，大量复制自己的子体，在达到一定数量后，以各种方式，由内而外的破坏细胞膜和细胞壁……”</p>
+<p class = "firstLineIndent">“所以……防御这种敌人的关键就在于，最开始的感染阶段，只要破坏了这个环节，那些家伙就暂时拿我没辙。”</p>
+<p class = "firstLineIndent">于是，一个问题就这样摆在霍古面前——它该以何种手段破坏噬菌体的感染阶段？</p>
+<p class = "firstLineIndent">能防御噬菌体的关键就在于细胞壁，只不过，这只是霍古大略的想法，具体细节是什么样，还没想好。</p>
+<p class = "firstLineIndent">“当初的那个温和型噬菌体是以注射的形式，绕过负责防御的细胞膜，将自己的基因植入到单细胞内……”</p>
+<p class = "firstLineIndent">“如果细胞壁足够厚，缝隙足够小，只容许小分子团物质进出，嗯，这样的话，就能很好的起到防御作用。”</p>
+<p class = "firstLineIndent">有了一个大致的方向，在补充细节方面就快了很多，霍古并没有耗费多少精力，就将细胞壁的出行给敲定。</p>
+<p class = "firstLineIndent">忽然，霍古想到了什么。</p>
+<p class = "firstLineIndent">“等等！如果是像一些流感病毒那样，有意破坏自己的蛋白质外壳，直接输送基因片段，绕过细胞壁的小分子空隙的话……”</p>
+<p class = "firstLineIndent">“只有专攻型，效果才能发挥到最大，要是在让细胞壁兼顾筛选的功能，那保护作用就……”</p>
+<p class = "firstLineIndent">霍古的注意逐渐转移到细胞膜的位置。</p>
+<p class = "firstLineIndent">“筛选功能就交给细胞膜来完成好了，防御的工作就交给细胞壁来完成。”</p>
+<p class = "firstLineIndent">“如果细胞壁能被突破，那细胞膜的防御也不会起到太大作用，毕竟‘兼顾型’的终究比不上‘专攻型’发挥的效果大。”</p>
+<p class = "firstLineIndent">为了更好地进行比较，霍古将基因链内那部分噬菌体蛋白质空壳的基因给解旋复制。</p>
+<p class = "firstLineIndent">不多一会，那个噬菌体蛋白质空壳就呈现在霍古的面前。</p>
+<p class = "firstLineIndent">“这个……”</p>
+<p class = "firstLineIndent">当看到噬菌体的蛋白质空壳时，霍古犯难了。</p>
+<p class = "firstLineIndent">有了实物上的对比，它这才发现，噬菌体非常小，如果说，作为寄宿体的单细胞是栋高楼大厦的话，那噬菌体就是人或者一只宠物狗的体型。</p>
+<p class = "firstLineIndent">这确实和它想的出入性很大。</p>
+<p class = "firstLineIndent">“也就是说，细胞壁的开口要设计到只能通过单个小分子的程度，才能起到阻拦噬菌体的作用？”</p>
+<p class = "firstLineIndent">就在此时，又有一个意外来客，与单细胞集群相遇。</p>
+<p class = "firstLineIndent">正如霍古担心的那样，微生物界的杀手，是一个噬菌体，而这次，上天不打算再继续眷顾霍古和这个单细胞集群。</p>
+<p class = "firstLineIndent">在基因片段侵入最外围单细胞之后，噬菌体立刻宣布了对这个寄生细胞的主权，疯狂的转录自己的基因，制造大量的噬菌体基因和那些蛋白质外壳。</p>
+<p class = "firstLineIndent">很显然，这是一个毒性噬菌体。</p>
+<p class = "firstLineIndent">“该死！”</p>
+<p class = "firstLineIndent">霍古差点没破口大骂，寄生的是有着蛋白质结构体连接的单细胞，这就意味着，不可能再像上次那样立即和整个细胞集群分离。</p>
+<p class = "firstLineIndent">不敢再过多犹豫，霍古立即指挥细胞进行分裂，分离被感染的单细胞。</p>
+<p class = "firstLineIndent">进行分裂的并不是和被寄生细胞直接对接的单细胞，而是以那个寄生细胞为中心，整个区域边缘的细胞。</p>
+<p class = "firstLineIndent">这么做是为了以防万一，单细胞集群内个体分离的速度就是单细胞复制的速度，如果单细胞自我复制速度赶不上这群噬菌体破开寄生细胞的速度，那么让对接的细胞进行分裂隔离不过是无意义的行为。</p>
+<p class = "firstLineIndent">分离失败的结果就是，将会有大面积，甚至是整个单细胞集群会受到感染。</p>
+<p class = "firstLineIndent">霍古冒不起这种风险。</p>
+<p class = "firstLineIndent">事态的发展，正如霍古担心的那样，甚至更加糟糕，那些毒性噬菌体已经破开了寄生细胞的细胞膜，对其他细胞进行感染，速度超乎想象的快。</p>
+<p class = "firstLineIndent">此时，进行单细胞的解旋分裂，才不过进行到一半而已。</p>
+<p class = "firstLineIndent">霍古的一颗心悬了起来，注意力集中到那些在进行分裂的细胞上。</p>
+<p class = "firstLineIndent">以往那些在他看来，分裂速度还算可以的单细胞，现在却好似慢到了龟速。</p>
+<p class = "firstLineIndent">“快点…快点…快点……”</p>
+<p class = "firstLineIndent">注意力反复在细胞和噬菌体之间移动，霍古不知不觉已经魔怔般在对那些进行分裂的单细胞在念叨催促。</p>
+<p class = "firstLineIndent">时间就这么一分一秒的过去。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">也不知道是这种碎碎念般的催促真的起到了一定程度的效果，还是仅仅是刚刚好的巧合，正在进行分裂的单细胞，单细胞率先完成了分裂，将整块单细胞区域给分离抛弃在茫茫的黑暗中，避免毒性噬菌体的第二次大规模感染。</p>
+<p class = "firstLineIndent">“不能再让这种事情发生，必须要尽快把细胞壁调试完成。”</p>
+<p class = "firstLineIndent">经历了这场毒性噬菌体危机的霍古，心有余悸的同时，更加迫切的想要完成能够抵御噬菌体的细胞壁。</p>
+<p class = "firstLineIndent">在补充完单细胞集群缺失部分的细胞后，霍古开始着手细胞壁的制作。</p>
+<p class = "firstLineIndent">细胞壁的厚度并不是问题，只要重复多次细胞壁的制造，就能形成叠加效果，以此来增加细胞壁的厚度。</p>
+<p class = "firstLineIndent">现在困扰霍古的问题是细胞壁的透过性问题，这个意外得到的细胞壁，与物质交互的隧道，可以容纳几个噬菌体进出。</p>
+<p class = "firstLineIndent">很显然，这个隧道太大了，这个意外得到的细胞壁面对那些噬菌体，起不到任何抵御作用。</p>
+<p class = "firstLineIndent">如果是单个还好，只要不进入隧道，能够抵御，可如果是面对集群式的噬菌体，那有噬菌体进入这个隧道的情况，几乎是必然会出现。</p>
+<p class = "firstLineIndent">“必须要想个办法，把这个隧道给缩小。”</p>
+
+
+<a href="004.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="006.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

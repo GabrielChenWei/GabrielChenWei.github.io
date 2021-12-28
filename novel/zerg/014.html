@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第十四章 他乡</h2><hr/>
+<p class = "firstLineIndent">头好晕……</p>
+<p class = "firstLineIndent">刚才发生了什么事情？</p>
+<p class = "firstLineIndent">我是谁来着？</p>
+<p class = "firstLineIndent">要准备做什么？</p>
+<p class = "firstLineIndent">霍古努力的回忆着……</p>
+<p class = "firstLineIndent">水面的白花浪涛一滚接着一滚，长颈瓷瓶状的细胞集群在浪涛中翻滚，飘荡。</p>
+<p class = "firstLineIndent">海浪并不是霍古出现头晕症状的罪魁祸首，它清楚这一点。</p>
+<p class = "firstLineIndent">这种昏昏沉沉的状态不知道持续了多久，霍古才逐渐恢复正常的思维水平，同时，也记忆起水面之上的情况。</p>
+<p class = "firstLineIndent">接连不断下着的滂沱大雨，橘红色的天空，闪电不时从乌云中探出将昏暗撕裂，火山喷涌的红莲业火与咧咧狂风带起的巨浪针锋相对……</p>
+<p class = "firstLineIndent">这些都是霍古在水面上看到的场景。</p>
+<p class = "firstLineIndent">而最关键的一点，二氧化碳的浓度简直爆表，毫无防备的细胞们，被这些突如其来涌入细胞内的二氧化碳与水结合形成碳酸，严重影响了各个细胞的正常运作。</p>
+<p class = "firstLineIndent">这就是让霍古陷入刚才那种昏沉状态的根本原因。</p>
+<p class = "firstLineIndent">但这次的冒险并不是毫无收获，只是这样简单地瞟上一眼，霍古就得到了一个相当有用的信息。</p>
+<p class = "firstLineIndent">这个信息过于冲击，以致于霍古的思维停顿了良久，这才回转过神。</p>
+<p class = "firstLineIndent">“看来我现在是在一个陌生的上星球。”</p>
+<p class = "firstLineIndent">在那种浓度的二氧化碳环境，如果人类真的存在，绝对会在不超过半小时的时间里窒息而亡。</p>
+<p class = "firstLineIndent">霍古回忆起刚才惊鸿一瞥时看到的火山。</p>
+<p class = "firstLineIndent">“这附近的火山貌似太过活跃了一点，水底有一群火山，现在在水面上，也能看到那么多活跃的火山。”</p>
+<p class = "firstLineIndent">“从海底上来的过程中，也一直都没能看到多细胞生物，哪怕是结构最简单的藻类都没有……”</p>
+<p class = "firstLineIndent">“再结合大气里面那浓度爆表的二氧化碳以及橘红色的天空，搞不好，这个陌生的星球，还处在相当早期的‘雨海代时期’。”</p>
+<p class = "firstLineIndent">这一切都是霍古将这个星球假定为与地球类似环境得出的结论，毕竟这个星球和地球一样，都存在着液态水组成的海洋，且它也没有更多类型的星球模板可供参考。</p>
+<p class = "firstLineIndent">行星的雨海代时期，也是星球海洋形成的阶段，行星内的高温，将存在于地层内部的水分给蒸发，水蒸气被引力束缚，形成浓密的积雨云，以雨水的形式回归地面，接着再次被蒸发，不断如此的循环往复，整个行星就像是个巨大沸腾的锅炉。</p>
+<p class = "firstLineIndent">如果行星水量足够充沛，这场大雨甚至能持续长达千万年之久。</p>
+<p class = "firstLineIndent">长颈瓷瓶状的细胞集群向下滑行了一段距离，远离喧嚣的水面。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“雨海代……没想到我居然能有幸亲身经历这种历史性的大事件。”</p>
+<p class = "firstLineIndent">在得知自己目前所处情况有了更加深刻的认识后，霍古不仅没有因为身处他乡感到沮丧，甚至还隐隐的有点兴奋。</p>
+<p class = "firstLineIndent">对于一个考古学家，尤其是专注于外星球生物领域的考古学家，有什么能比亲眼见证历史性事件，更加能让它感到兴奋？</p>
+<p class = "firstLineIndent">正因为有雨海代时期形成的海洋，才会有生命诞生，至少地球是这样。</p>
+<p class = "firstLineIndent">“决定了，就先定一个小目标——布置一个全球性的视野网络，将这个星球的每一个角落都尽收眼底。”</p>
+<p class = "firstLineIndent">求知欲和兴奋感的相互叠加催促着霍古做出这样的决定，以致于产生如此具有野心的想法。</p>
+<p class = "firstLineIndent">如果还是人类时，确实只是痴心妄想，毕竟个人的力量终究是有限。</p>
+<p class = "firstLineIndent">可现在却不同，霍古是一个集体，而不是单独个体，它有数以万计听从指令的细胞们，别看这股力量似乎非常渺小，可哪怕是蝼蚁，只要给足够的时间，就算是地球这样庞大质量的天体，都可以搬走。</p>
+<p class = "firstLineIndent">当然，前提是有这样一条能够给蝼蚁转移天体质量的星路。</p>
+<p class = "firstLineIndent">“不过，火山该怎么办？”</p>
+<p class = "firstLineIndent">霍古想到了那些喷吐着火舌山峦，它们的出现是因为行星内部的压力过大，转而以热能的形式，释放内核能量。</p>
+<p class = "firstLineIndent">温度高达1200摄氏度的液态熔岩，足以让任何蛋白质失去原有的活性。</p>
+<p class = "firstLineIndent">“……全球覆盖式观察网的计划可以暂时搁置，等待这个星球进入冷却阶段，嗯，反正我等得起。”</p>
+<p class = "firstLineIndent">在人类文明的中世纪时期的欧洲，曾经有人提出这样一个问题：如果船上的木头被逐渐替换，直到所有的木头都不是原来的木头，那这艘船还是原来的那艘船吗？</p>
+<p class = "firstLineIndent">这就是著名的‘特修斯之船’悖论。</p>
+<p class = "firstLineIndent">现在，霍古就是那艘船，它得到了古往今来，那些帝王们最为渴望的能力——‘长生不死’。</p>
+<p class = "firstLineIndent">只要保证细胞的基数不低于某个阀值，它就能维持现在这样的思维，只要物质不出现匮乏或者一口气细胞们全部死光，它就能永远的活着。</p>
+<p class = "firstLineIndent">忽然，霍古的思绪稍稍一动。</p>
+<p class = "firstLineIndent">“我的能力到底来源于何处？”</p>
+<p class = "firstLineIndent">只有在细胞与整个集体贴合的时候，指令才会有效——这是霍古在恢复思维后没多久，就清楚的事情。</p>
+<p class = "firstLineIndent">也就是说，霍古的‘指令’只存在于微观层面，而且是原子或者分子级别，一旦超过，指令信息的递送就无法完成，亦或者存在延迟。</p>
+<p class = "firstLineIndent">“那么问题就来了……”</p>
+<p class = "firstLineIndent">“假如不保持贴合状态，但还是一个整体的话，那我的指令还会如此前那样生效吗？”</p>
+<p class = "firstLineIndent">实践是检验真理的唯一标准——这是霍古一直信奉的人生信条。</p>
+<p class = "firstLineIndent">疑问的出现，霍古立即开始着手试验。</p>
+<p class = "firstLineIndent">新的细胞被分裂出来，这是之前未经过特化的原始单细胞。</p>
+<p class = "firstLineIndent">这一次与以往不太一样，新生的细胞并没有主动和细胞集群贴合，它们之间的联系，全部都依靠着三根短短的连接蛋白。</p>
+<p class = "firstLineIndent">“转录连接蛋白，延长连接蛋白的长度。”</p>
+<p class = "firstLineIndent">在霍古的指令下，那三根连接蛋白逐渐的被加长，而那个作为试验用细胞，也在水流的作用下，缓慢拉远和细胞集群间的距离。</p>
+<p class = "firstLineIndent">在完成加长的工作后，霍古下达了新指令。</p>
+<p class = "firstLineIndent">“转录DNA，开始分裂新个体。”</p>
+<p class = "firstLineIndent">如果开始复制自身，那就说明，指令有效。</p>
+<p class = "firstLineIndent">如果没有，那么就意味着，指令的信息传输媒介并不是蛋白质。</p>
+<p class = "firstLineIndent">“接下来，就让我看看到底是什么样的结果……”</p>
+
+<a href="013.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="015.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

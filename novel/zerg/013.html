@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第十三章 游</h2><hr/>
+<p class = "firstLineIndent">随着远离水底，细胞集群四围的怪石逐渐稀疏，而作为喷射媒介的水，此时也逐渐喷射殆尽。</p>
+<p class = "firstLineIndent">这个时候，就需要利用惯性，将储水空腔填满水。</p>
+<p class = "firstLineIndent">“开启进水阀……嗯？！”</p>
+<p class = "firstLineIndent">出乎霍古预料的事情发生了。</p>
+<p class = "firstLineIndent">进水管道居然在吸收了一会水后，就贴合在了一起形成堵塞，完全不能再引导水流。</p>
+<p class = "firstLineIndent">这样的意外，直接导致了喷射式推进无法继续进行，细胞集群的速度也逐渐减缓。</p>
+<p class = "firstLineIndent">而随着速度的下降，进水口的贴合又重新回到之前那种管道分开的状态。</p>
+<p class = "firstLineIndent">“伯努利原理……”</p>
+<p class = "firstLineIndent">“我怎么把这个给忘了。”</p>
+<p class = "firstLineIndent">观看完管道变化整个过程的霍古，这才反应过来问题出在哪里。</p>
+<p class = "firstLineIndent">伯努利原理是流体力学中一种仅适用于粘度可以忽略、不可被压缩的理想流体的基础定律。</p>
+<p class = "firstLineIndent">即，流速越快，压强越小。</p>
+<p class = "firstLineIndent">这种定律在一些小实验中，就能很容易的轻松表现出来，比如，往两张纸片间吹起，纸片就会贴合在一起。</p>
+<p class = "firstLineIndent">之所以会贴合是因为压强，往纸片之间吹气，让空气流动中间压强变小，于是纸片就贴合在了一起。</p>
+<p class = "firstLineIndent">同样的情况也发生在了进水管道内，只不过，导致压强减小的不是空气的流动，而是水流。</p>
+<p class = "firstLineIndent">“这个进水口看来是不能用了……”</p>
+<p class = "firstLineIndent">想要避免管道的贴合，就需要将管道壁加厚，以结构来对抗压强……</p>
+<p class = "firstLineIndent">“可这样一来，无意义的重量也会增加……”</p>
+<p class = "firstLineIndent">为了保证速度，如何高效率利用质量成了霍古首要注意的事情。</p>
+<p class = "firstLineIndent">如果本来就有一个连接外部，能将水给引进细胞集群的通道就好了……</p>
+<p class = "firstLineIndent">“等等，这不就有一个么？”</p>
+<p class = "firstLineIndent">处在纠结中的霍古的注意力锁定在了与嘴相连，被分隔成六小份的空腔消化腔。</p>
+<p class = "firstLineIndent">霍古惊喜之余，带着一点的懊恼喃喃自语。</p>
+<p class = "firstLineIndent">“我怎么早没想到呢？”</p>
+<p class = "firstLineIndent">调试进入了尾声，霍古将细胞集群的进水口给重新封堵，储水空腔转而与消化腔相连接。</p>
+<p class = "firstLineIndent">然后，通过六个小阀门，将六个小型消化腔和储水大空腔分隔开来。</p>
+<p class = "firstLineIndent">消化腔的表层下，霍古又添加了肌细胞，如此，就可以实现将水给排挤到储水空腔的过程。</p>
+<p class = "firstLineIndent">当消化腔将水中的微生物全部都给消化殆尽后，就会将水给推进储水空腔作为喷射媒介，同时，快速行进也能方便快速捕捞微生物。</p>
+<p class = "firstLineIndent">调试完毕，霍古再次起航。</p>
+<p class = "firstLineIndent">这次的航线和之前垂直往上并不一样，是斜向上滑行。</p>
+<p class = "firstLineIndent">之前霍古是为了能够快速摆脱火山危险地段不得已的行为。</p>
+<p class = "firstLineIndent">实际上，像它那样垂直上游的行为非常危险，一个不好，就可能因为细胞集群内部和外部水域的水压不同，而整体爆掉。</p>
+<p class = "firstLineIndent">随着高度的攀升，霍古的视野也在逐渐的放大，水电一颗颗好似星辰般的亮点以及扶摇直上的烟柱，充分的向它介绍了，这处水域底部到底有多少座处在活跃状态的火山。</p>
+<p class = "firstLineIndent">“我的老天……”</p>
+<p class = "firstLineIndent">“这个地方的水，就算没达到沸水，也差不多该有个七八十度了吧？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">高度继续上升，碍于水的浑浊，渐渐的，霍古只能看到零星的亮点，再后来，彻底什么都看不见，周围一片漆黑，什么都没有。</p>
+<p class = "firstLineIndent">失去了火山带来的微光，霍古什么都看不见。</p>
+<p class = "firstLineIndent">“还好，幸亏我一早就想到有这种可能，做了第二手准备。”</p>
+<p class = "firstLineIndent">霍古暗自庆幸着自己的先见之明，它的视角再次变得不一样，整个世界就仿佛被纵横交错的细线所分割，那些是磁感线。</p>
+<p class = "firstLineIndent">而给霍古带来这种能力的东西，正是每一个细胞内潜藏着极小一部分的四氧化三铁，俗称‘磁铁’。</p>
+<p class = "firstLineIndent">然而，接下来的情况，却完全出乎了霍古的预料。</p>
+<p class = "firstLineIndent">磁感线像是抽风般的抖个不停，逐渐发生着变化，霍古满是不可思议的注视着这一切。</p>
+<p class = "firstLineIndent">同样还是有着纵横交错的磁感线，可是和之前的布局完全不同了。</p>
+<p class = "firstLineIndent">良久，霍古这才憋出一句话。</p>
+<p class = "firstLineIndent">“……这破地方到底是哪里？”</p>
+<p class = "firstLineIndent">磁场紊乱，霍古迅速总结现象，得出这么个结论，同时也意味着，磁感应在这个地方，已经形同废物。</p>
+<p class = "firstLineIndent">因为磁感应霍古有着百分百的把握，毕竟只是简单地指南针原理，当时，它并没有想着去测试。</p>
+<p class = "firstLineIndent">于是，直到现在才发现，它所处的地方，磁场是紊乱的。</p>
+<p class = "firstLineIndent">“这个地方终究是在水里，只要保持方向往上移动总归是没错的……吧？”</p>
+<p class = "firstLineIndent">话是这么说没错，可霍古总能隐隐感觉到一股不知来源于何处的不安感。</p>
+<p class = "firstLineIndent">权当是自己从火山脱险后的心理作用，打定主意的霍古继续往上滑行。</p>
+<p class = "firstLineIndent">有了消化腔作为接力，喷射式推进有了长久的续航能力，只要水中的微生物不断绝，保证蛋白质和氨基酸的充足，细胞集群这样的推进方式连续移动几天都没问题。</p>
+<p class = "firstLineIndent">往上滑行了不知道多久，也不知道多远，毕竟没有参照物，或者计时机器之类的东西，很多事情，霍古也不能给出个准确情况。</p>
+<p class = "firstLineIndent">此刻，周围还是什么都没有，不过变化已经尤为明显，不再那近乎完全漆黑的黑暗，已经有了一定程度的能见度，而且霍古还能通过纤毛，感受到流的变化。</p>
+<p class = "firstLineIndent">水逐渐呈现中性，对嗜酸细菌来说简直就是末日，对霍古而言却不是什么问题，只要适当对细胞膜做出一定程度的调节，就可比避免细胞膜失活的情况。</p>
+<p class = "firstLineIndent">“上面一定是个很‘热闹’的地方，或许我该小心一点……”</p>
+<p class = "firstLineIndent">越向上面滑行，霍古越能感觉到动静非常大，之前的水流是流水潺潺，甚至是根本无流，而现在，却是汹涌澎湃。</p>
+<p class = "firstLineIndent">依靠着鳍的变动，霍古十分小心地驾驭着流，说什么它也要去瞄一眼上面的情况，为了满足好奇而冒险是它一贯的做法。</p>
+<p class = "firstLineIndent">如果不是当初身为人类时，已经是一把老骨头，它说什么都要亲自登上火箭，跑去火星基地，亲眼看看那些人形骸骨。</p>
+<p class = "firstLineIndent">借势而起，力上加力，两股骇浪相交之际，细胞集群从力量的爆发点一鼓作气冲破了水面！</p>
+
+<a href="012.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="014.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

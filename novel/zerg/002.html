@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2>第二章 贴合</h2><hr/>
+<p class = "firstLineIndent">再次分裂——这就是生命体在呼唤无果后的下一个行动目的。</p>
+<p class = "firstLineIndent">应付着黑暗中那些四处涌动澎湃磅礴的力量，单细胞尽量稳定自己的形体，让其能够保持一个相对稳定的状态。</p>
+<p class = "firstLineIndent">分裂再次开始。</p>
+<p class = "firstLineIndent">重复着之前那样的过程，在这不知时间的黑暗中，生命体的自我复制很快就达到最后阶段。</p>
+<p class = "firstLineIndent">那种枷锁解开的感觉再次涌现出来，甚至，生命体能感觉到，四周漆黑的世界都在变得不一样。</p>
+<p class = "firstLineIndent">当分离外膜彻底形成之时，两个单细胞开始逐渐分离，枷锁随之出现，缓缓上锁。</p>
+<p class = "firstLineIndent">轻松地感觉正缓慢消失，取而代之的是难以言表的凝滞感，生命体不想接受这样的事情，它还想要继续保持这样。</p>
+<p class = "firstLineIndent">“……别走。”</p>
+<p class = "firstLineIndent">生命体这样本能的呼唤着。</p>
+<p class = "firstLineIndent">理应是不会有什么反应的，但这个世界奇奇怪怪的事情就是这么多。</p>
+<p class = "firstLineIndent">还未彻底彻底与母体分开的子体，主动和生命体贴合在一起，那些涌动的力量，在子体适当改变形状后，成了与生命体贴合的力量。</p>
+<p class = "firstLineIndent">“好开心……”</p>
+<p class = "firstLineIndent">“……‘开心’是什么？”</p>
+<p class = "firstLineIndent">一如既往的是它无法解答的问题。</p>
+<p class = "firstLineIndent">生命体将注意力转移到自己身上，这时它忽然发现，它能‘看’到的东西变多了。</p>
+<p class = "firstLineIndent">最初，它只能依靠感觉‘看’到一个点。</p>
+<p class = "firstLineIndent">然后，再被那个噬菌体袭击后，可以看到的东西从点拓展到自己的整个身体。</p>
+<p class = "firstLineIndent">现在，漆黑世界内的视野再次得到拓展，它可以看到那个紧贴着自己的子体，整个内部情况。</p>
+<p class = "firstLineIndent">没错，这是改变，和之前一样的改变。</p>
+<p class = "firstLineIndent">生命体为此感到欣喜，它不明白为什么要欣喜，但它本能是这样感觉的，所以，它遵从着这种本能。</p>
+<p class = "firstLineIndent">“还想要更多……更多的改变……”</p>
+<p class = "firstLineIndent">这是欲望，生命体在不知不觉中学会了‘欲望’。</p>
+<p class = "firstLineIndent">而在这欲望的驱使下，它想要继续自我复制。</p>
+<p class = "firstLineIndent">自我复制的材料并不稀缺，黑暗中到处都是，每次被力量裹挟运动的时候，生命体总能撞到一堆这样的东西。</p>
+<p class = "firstLineIndent">在紧贴着母体的复制体帮助下，生命体很快收集齐了需要的材料。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“更多……更多……”</p>
+<p class = "firstLineIndent">在生命体愉悦的生物电流中，新的分裂开始。</p>
+<p class = "firstLineIndent">在黑暗世界中相互抱团的成员，一下子又增加了两个，子体也在生命体的指挥下，进行了自我复制。</p>
+<p class = "firstLineIndent">随之而来的是双倍解开‘枷锁’的冲击感。</p>
+<p class = "firstLineIndent">“好多…好棒……”</p>
+<p class = "firstLineIndent">享受着这种全面升级的感觉，‘枷锁’的解开，伴随而来的是更多更加新鲜的东西，相比起还是单独一个细胞时，那种朦朦胧胧的感觉，一切似乎都在逐步变得条理清晰。</p>
+<p class = "firstLineIndent">随之而来的是更大的渴望，驱使着生命体行动。</p>
+<p class = "firstLineIndent">只是四个个体的紧贴就可以感受到现在这样的层次，那么，更多复制个体团成一团的话会怎么样呢？</p>
+<p class = "firstLineIndent">生命体迫不及待的开始自我复制的行为。</p>
+<p class = "firstLineIndent">四个逐渐分裂成八个，伴随涌现而出的，是无尽的新鲜感，还有思维清晰后的舒坦，还有其他数不尽，难以表述的感觉。</p>
+<p class = "firstLineIndent">这些感觉，让生命体深深地为之着迷，食髓知味，欲罢不能。</p>
+<p class = "firstLineIndent">但遗憾的是，这些感觉并没能持续多久。</p>
+<p class = "firstLineIndent">一股螺旋运作的力量，将八个抱成团的细胞给裹挟，本就脆弱无比的单细胞聚合体，当即便迎来解体的命运。</p>
+<p class = "firstLineIndent">“不要！”</p>
+<p class = "firstLineIndent">生命体抗拒着，可那只是徒劳的无用功，任凭它如何变换外形，都无法忤逆那股黑暗中涌现的力量。</p>
+<p class = "firstLineIndent">它的四周，再一次只剩下它一个个体，漫无目的的飘荡着。</p>
+<p class = "firstLineIndent">从天堂落进地狱。</p>
+<p class = "firstLineIndent">“…难受…”</p>
+<p class = "firstLineIndent">尝试过与七个子体抱成团的生命体，再一次感受单个个体时的处境，只是更加的难受与困苦，它不想在这种处境下待哪怕一刻钟。</p>
+<p class = "firstLineIndent">复制行动继续，相比起之前，如今这种渴望愈发的强烈。</p>
+<p class = "firstLineIndent">当新的子体出现，在享受这思维变清晰的同时，生命体也才后知后觉的意识到，那个温和型噬菌体的空壳还牢牢地附着在它的外部，并没有如其他子体那般被突如其来的力量给甩开。</p>
+<p class = "firstLineIndent">“为什么没有被分开？”</p>
+<p class = "firstLineIndent">抱着这样的疑问，生命体开始观察这个噬菌体的空壳。</p>
+<p class = "firstLineIndent">“由蛋白质构成的六条支架状尾部与细胞膜对接，形成一个整体，由此，保证外部力量难以将其分离。”</p>
+<p class = "firstLineIndent">“‘蛋白质’是什么？”</p>
+<p class = "firstLineIndent">“‘细胞膜’又是啥？”</p>
+<p class = "firstLineIndent">这是生命体下意识地得到的答案，它也不明白，为什么自己只是观察着，就能得到这样通透的答案。</p>
+<p class = "firstLineIndent">和之前一样，这种情况它想不明白。</p>
+<p class = "firstLineIndent">放弃追寻这样没有头尾的疑问，生命体开始注意收集材料，既然问题已经得到解答，那就只剩下行动。</p>
+<p class = "firstLineIndent">关键点是那六条具有连接功能的尾部，得益于那特殊的视角，生命体很容易就可以看清楚那六条支架状尾部的大分子结构。</p>
+<p class = "firstLineIndent">将收集到的材料，安置在细胞质中。</p>
+<p class = "firstLineIndent">一团乱麻的内核开始部分解旋，小部分小部分的实验性尝试，寻找着那段隐藏在基因链中的噬菌体基因链。</p>
+<p class = "firstLineIndent">在历经了不知道多少次尝试后，生命体终于找到了它想要的那部分，也就是噬菌体组装尾部的基因蓝图。</p>
+<p class = "firstLineIndent">基因链开始发挥出它应用的作用，单链将那些在细胞质内处于游离状态的大分子团给捕捉，用以补全自己。</p>
+<p class = "firstLineIndent">很快，细胞质内的大分子团消耗一空，取而代之的是数十条和噬菌体尾部相同的蛋白质结构体。</p>
+<p class = "firstLineIndent">这些结构体和那个噬菌体的尾部，用着相同的功能。</p>
+<p class = "firstLineIndent">即，能够和接触到的细胞外膜形成一个整体。</p>
+<p class = "firstLineIndent">制作完成的生命体迫不及待的将这些蛋白质结构体，从细胞质运送到细胞外膜。</p>
+<p class = "firstLineIndent">支架状的蛋白质结构体，从细胞膜的缝隙中很自然的伸出，与紧贴着自己母体的复制体外膜形成一个整体。</p>
+<p class = "firstLineIndent">紧随其后的，是陆陆续续的多根蛋白质结构体，两个单细胞的连接变得愈发牢不可破，那些无处不在涌动的力量，已经不再是能够将它们分离的威胁，反而是能让它们更快移动的助力。</p>
+
+
+
+
+
+
+<a href="001.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="003.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

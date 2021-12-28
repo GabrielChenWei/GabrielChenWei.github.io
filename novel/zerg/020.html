@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第二十章 省</h2><hr/>
+<p class = "firstLineIndent">被这个狂猛浪潮给裹挟了多长时间，霍古并不清楚，因为没有计时的工具或者方法，但是就他的主观感觉而言，已经过去了非常长的时间。</p>
+<p class = "firstLineIndent">期间，葫群中的个体，在搅动的强流中，被扩大伤口，直至如碎纸般被整体撕裂。</p>
+<p class = "firstLineIndent">这一切，霍古都无能为力，它自己现在都自身难保，原本寄宿的那个葫，沿着伤口被撕裂肢解成二十一块大小不一的肉块。</p>
+<p class = "firstLineIndent">当浪潮渐渐归于平静，霍古反应过来时，又再一次回到了最初的那种一穷二白的状态，各种意义上的净身出户。</p>
+<p class = "firstLineIndent">“好险…再差一…点…正…常逻辑…思维就…没办法…保证……”</p>
+<p class = "firstLineIndent">此时，霍古并没有对刚才亲身遭遇的事情抱有多大的恐惧感，只因为它现在维持最正常的思维，已经是相当勉强。</p>
+<p class = "firstLineIndent">层层叠叠的思维枷锁，让它的反应都变得迟钝。</p>
+<p class = "firstLineIndent">当务之急是快点恢复到原来的状态。</p>
+<p class = "firstLineIndent">“…必须…尽快…增殖……”</p>
+<p class = "firstLineIndent">接到指令的内细胞们，立即展开氨基酸蛋白质的收集工作，开始扩张数量，恢复工作紧锣密鼓的进行着。</p>
+<p class = "firstLineIndent">当然，这个过程并不是一帆风顺，在内细胞的数量增长到原来的碎片体积的四倍时，新的不速之客降临了。</p>
+<p class = "firstLineIndent">那是一群长梭状的微细菌，摆动着尾部的鞭毛，透过细胞内的眼点锁定目标，径直冲向正在扩张数量的内细胞群落。</p>
+<p class = "firstLineIndent">这些微细菌的首部有着一根尖刺，它们正是凭借着这件武器，在这片水域中无往不利，一举拿下食物链顶端的宝座。</p>
+<p class = "firstLineIndent">尖刺十分轻易地将内细胞的细胞膜给穿透，微细菌们随即鼓动起自己内部的细胞质，将蛋白质裂解酶透过尖刺内的小径注射进内细胞。</p>
+<p class = "firstLineIndent">被完成注射的内细胞，立即衰竭，失去生命活性，肢解成数份大块蛋白质结构体。</p>
+<p class = "firstLineIndent">由于没有眼睛，当霍古注意到这些不速之客时，最外层的那一批被注射的内细胞，已经全部死亡。</p>
+<p class = "firstLineIndent">而那些微细菌，还意犹未尽的准备进攻临近的内细胞。</p>
+<p class = "firstLineIndent">“你们这是在找死！”</p>
+<p class = "firstLineIndent">长时间专研对细胞支配的霍古，早已经有一套自成体系的操纵方法，如今的它和当初刚接触细胞的它，可是完全不能同日而语。</p>
+<p class = "firstLineIndent">在微细菌们忙碌着进攻的时候，霍古给另一侧未被攻击的内细胞下达‘增殖’指令。</p>
+<p class = "firstLineIndent">内细胞群落的形状发生改变，被攻击的那个部位逐渐往内陷，其他未被攻击的部位则在增殖指令中凸起，渐渐形成一个空腔，把那些微细菌给包裹于空腔内。</p>
+<p class = "firstLineIndent">“释放裂解酶。”</p>
+<p class = "firstLineIndent">在指令下达的后一秒，朝向于空腔的内细胞纷纷调整细胞膜，释放大量的裂解酶，很快，酶便充斥空腔的整个空间。</p>
+<p class = "firstLineIndent">此时，那些微细菌终于意识到不对劲，它们选择了逃跑。</p>
+<p class = "firstLineIndent">一只只灵巧的微细菌，摆动着尾部的鞭毛，在酶低浓度区域茫然的游动着，似乎是在搜寻着逃跑的路径，亦像是在躲避着那些酶的伤害。</p>
+<p class = "firstLineIndent">但这些都徒劳无用，因为这个空腔是全封闭式，早在这个空腔形成的那一刻，它们就已经必死无疑。</p>
+<p class = "firstLineIndent">和这些微细菌一同陪葬的，还有空腔内侧壁上的内细胞，以牺牲一部分内细胞为代价，霍古也收获大量各类型蛋白质和氨基酸。</p>
+<p class = "firstLineIndent">随着时间一步步推进，所需要的生物材料终于收集齐全。</p>
+<p class = "firstLineIndent">最先恢复的是嘴，然后是喷射式推进器官。</p>
+<p class = "firstLineIndent">有了这两个部件的配合，霍古收集生物材料的速度得到进一步的提升。</p>
+<p class = "firstLineIndent">不过，霍古没敢全速推进，主要是没有眼睛，这就好比马路上开车蒙着眼睛，要不是霍古知道自己身处在大洋，障碍物几乎没有，它还真不敢这么干。</p>
+<p class = "firstLineIndent">在材料收集足够后，用于观察外部的眼睛，也被霍古给补上，紧接着感知空腔的恢复。</p>
+<p class = "firstLineIndent">整个过程并没有耗费多长时间，霍古不过是重新再走一遍之前走过的路，省略掉了那些绞尽脑汁的过程。</p>
+<p class = "firstLineIndent">在彻底恢复到全盛姿态后，在复制其它葫个体的同时，霍古也在分心做着另外一件事——总结和反思。</p>
+<p class = "firstLineIndent">霍古重来不害怕失败，只要还有从头再来的机会，失败反而是一种帮助，正是这种作风，才让它还是人类时，在考古领域也算是能说得上话的人。</p>
+<p class = "firstLineIndent">“首先是反思。”</p>
+<p class = "firstLineIndent">“太脆弱了，壁细胞的防御能力真的太脆弱了……”</p>
+<p class = "firstLineIndent">“虽然面对微生物能够起到强有力的防御，但是那仅仅只局限在微观，说到底，那不过只是一层薄薄的细胞，在宏观层面上，恐怕比豆腐脑还要脆弱。”</p>
+<p class = "firstLineIndent">“还有就是喷射式推进器官，虽说爆发力是可以，但持久力却不行，这一次面对那个狂潮没有选择逃跑，而是摆好防冲击阵型，就是因为持久力不达标，以目前的机动能力根本逃不掉。”</p>
+<p class = "firstLineIndent">霍古想起之前面对的那股浪潮，懊恼不已，如果它能再沉下心设计一款更高效的推进方式，也不至于让自己置身于险地。</p>
+<p class = "firstLineIndent">“接着是，下意识忽略掉的‘自满’情绪，明明知道在宏观层面上比婴儿还脆弱，却只认为冥古宙没有多细胞生物，所以下意识会忽略来自这方面的威胁……”</p>
+<p class = "firstLineIndent">霍古的思绪中，闪过那些给不明物体给洞穿的葫，同时，再一次想起堪称恐怖的浪潮，这一次，它有了恐惧。</p>
+<p class = "firstLineIndent">“这样不行，绝对不能再有下次，这一次侥幸活了下来，下一次可就说不准，就算下一次也有同样的转机，下下次也同样说不准。”</p>
+<p class = "firstLineIndent">“最后是总结……”</p>
+<p class = "firstLineIndent">到了这里，霍古停顿下来，陷入沉思。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“我从一开始，就被迷惑了……”</p>
+<p class = "firstLineIndent">“我本来就凌驾在那些微生物之上，是宏观生物，不论是当初作为人类的我，还是现在的我，倒不如说，有思想的我打败无思想的微生物，本身就是理所当然，没什么好值得自豪的事情。”</p>
+<p class = "firstLineIndent">“微生物从来都不是我最大的威胁……”</p>
+<p class = "firstLineIndent">“我真正的对手应该是，这个世界，这个时代……”</p>
+<p class = "firstLineIndent">“这个还处在冥古宙时期的星球！”</p>
+
+
+<a href="019.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="021.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
