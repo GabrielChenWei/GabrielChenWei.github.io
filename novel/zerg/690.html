@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百九十章 莽与潮的心思</h2><hr/>
+<p class = "firstLineIndent">“他们的语言复杂度很高，看来不借助天机破译，短时间里是没办法进行沟通。”</p>
+<p class = "firstLineIndent">利用瑟琳语诱使星球土著说话，从而获取到对方的语言文本，再经过简单的分析后采集者们确认，这种土著语言的复杂程度并不是它们单靠自己脑子能够破译的语言。</p>
+<p class = "firstLineIndent">“那接下来怎么办？”</p>
+<p class = "firstLineIndent">“先把根茎展开，搜寻那个被毁灭文明的痕迹，至于翻译语言的事情，等天机巨构孕育完成后再考虑。”</p>
+<p class = "firstLineIndent">采集者彼此通过生命场交流信息，但这对外表现则是沉默，潮军这边心理压力很大，好比公司员工面对高层领导，高层领导越不说话，下层的员工感觉到的压力就越大，潮军和采集者之间当然没有上下级关系，但他们和‘天兽’有上下级的关系，‘天兽’是‘天’派下来帮助他们，也可以变相的理解‘天兽’是‘天’在地面上的代行者。</p>
+<p class = "firstLineIndent">潮军主要是担心自己一个不小心把‘天’给惹怒，毕竟他们谁都不了解‘天’是怎么想的，会不会因为他们没有回应‘天兽’的话语而认为他们潮军对‘天’不敬。</p>
+<p class = "firstLineIndent">真如果那样发展，潮军殿上怕连死的心都有了。</p>
+<p class = "firstLineIndent">就在潮军内部进行着紧急磋商，商讨该怎么回应天兽话语之际，采集者这边已经交流完了，向着潮军利益性的挥了挥触手，十几只个体用獠肢挖掘地面，钻入地底。</p>
+<p class = "firstLineIndent">一阵沙尘飞扬过后，地上留下一个个漆黑幽邃的深坑，留下一群潮军在大眼瞪小眼，不知道该怎么办。</p>
+<p class = "firstLineIndent">在原地驻留了一段时间，直到地上的深洞不再传出挖掘声，潮军这才确定天兽们是已经离开，而不是出于其他的什么目的。</p>
+<p class = "firstLineIndent">“智、智师，这些天兽为什么倔地潜入地下？不是应该回天上去吗？”</p>
+<p class = "firstLineIndent">潮军殿上因为天兽挖掘地面离开的行为，对天兽能如此迅速在地上挖掘一个深洞感到惊讶的同时也感到深深的疑惑。</p>
+<p class = "firstLineIndent">按照潮军殿上的想法，天兽从天上来，回去的时候应该也是飞回去才对，哪有倔地离开的道理。</p>
+<p class = "firstLineIndent">在潮军殿上的印象里，军中对‘天’最为了解的就是智师，早在战前就已经预言过天会帮潮军，如今因为天兽的出现，潮军殿上更是对智师信赖有加，潜意识里已经把自己的这位智师当作是半个神仙那种层次。</p>
+<p class = "firstLineIndent">总之，不懂的话，问智师就对了。</p>
+<p class = "firstLineIndent">“应该是受天之命，留在地上继续为我军效力，刚才天兽说的那些天语，想来应该是告知我们天的旨意，我们殿上乃是受天眷顾之人。”潮军智师回答。</p>
+<p class = "firstLineIndent">智师的理解和自家的殿上差不多，也认为天兽要回去的话应该是飞回去，但现在天兽们全都钻入了地下消失无踪，这显然是非常不符合逻辑。</p>
+<p class = "firstLineIndent">但这世上的一切都是符合逻辑，看似不符合逻辑的事情，只是有隐藏的内在逻辑，潮军智师联想到了天兽倔地前说的那些听起来极为晦涩的‘天语’，以及潮军虽然得胜却仍然与莽军有着极大战力差距的事实，很自然的就脑补出来——天把天兽派下来是为了帮助潮军战胜莽军，而现在潮与莽之争还未结束，天兽自然也就不会回到天上去，而之前的那些天语就是在告知他们这件事。</p>
+<p class = "firstLineIndent">智师这么说了，潮军也就信了，连以前那些质疑智师的将领也信了，没办法，谁让智师是军中最了解‘天’的那个人，十几只天兽闪电般的降临，打败莽军后再闪电般的离开，智师没被当成神明降世那样供奉起来已经是潮军的人很有理智。</p>
+<p class = "firstLineIndent">“上天眷顾……连天都帮我们，这下子莽军必败无疑。”</p>
+<p class = "firstLineIndent">潮军殿上喃喃自语，凝望着莽军溃败逃跑的方向，眼神比以往更多了几分凌厉。</p>
+<p class = "firstLineIndent">溃逃的莽军回到了营地，营地的防御设施让莽军多了几分安全感，但却无法消除采集者所给予的恐惧，恐惧的阴霾仍然是笼罩着这部分莽军，其中也包括莽军的殿上，他亲眼见证了‘被天指派’的‘天兽们’，是如何以摧枯拉朽的方式屠杀他们。</p>
+<p class = "firstLineIndent">“那些究竟是什么东西？！真的是天兽不成？”</p>
+<p class = "firstLineIndent">逃出生天但仍然惊魂未定的莽军殿上向自己身边的智师询问。</p>
+<p class = "firstLineIndent">智师是军中知识底蕴最多的人，横向对比就相当于地球古代的军师，负责军队中的计策谋略。</p>
+<p class = "firstLineIndent">一般智师是没办法回答莽军殿上的问题，他们连‘外星人’的概念，更不知道自己所处的世界是颗星球，星球之外更有成千上亿的星球。</p>
+<p class = "firstLineIndent">从天上掉下来的天珠里钻出来的生物，也就只能是‘天兽’了，而且正好与密报中信息相对应，这更增加了天兽之说的可信度。</p>
+<p class = "firstLineIndent">但莽军的智师不是一般人，见识也不是寻常智师能够比拟，莽军殿上的问题，莽军智师已经有了自己的答案。</p>
+<p class = "firstLineIndent">“殿上请冷静，那些邪物绝对只是潮军装神弄鬼的把戏，天地不仁以万物为虫蝼，怎么可能为了区区一个潮军而有所异动。”</p>
+<p class = "firstLineIndent">“若真是天之意，我军绝无可能逼迫潮军到这番田地，潮军更无可能中我军之计。”</p>
+<p class = "firstLineIndent">在冷兵器时代，文明个体的认知受物理上的局限，对世界的认识仅仅局限在自身视野所及，和同类视野所及的范围内，由此局限延伸出了牛鬼蛇神这些东西，还有天圆地方的世界观。</p>
+<p class = "firstLineIndent">莽军智师受教育的程度更高，对‘天’的认识更加深刻。</p>
+<p class = "firstLineIndent">天和神是划等号的，神代表着一切，是存在于冥冥之中的未知，无法用语言直接描述出来，只能意会。</p>
+<p class = "firstLineIndent">像这样的存在，真的在帮助潮军，潮军根本不可能会被他们围追堵截到现在这个样子，昌凉之战莽军不可能以弱胜强打赢潮军扭转局势，甚至一开始潮军就不可能会输。</p>
+<p class = "firstLineIndent">种种理由，都让莽军智师无法认同，那些从天而降，将莽军杀得大败溃逃的怪物会是‘天兽’。</p>
+<p class = "firstLineIndent">“那些天兽又该如何解释？它们从天上降下，战场上所向睥睨，如入无人之境，一副杀神之态。”</p>
+<p class = "firstLineIndent">莽军殿上反问，他现在迫切的需要一个解释，一个能压下他内心恐惧的解释，如果真的是天在帮助潮军，那他立马投降，如果是假的，那他就相当于得到了一颗定心丸，也能够稳定军心。</p>
+<p class = "firstLineIndent">就心理上讲，莽军殿上倾向于后者，他的内心希望‘天兽’是假的，莽军现在优势仍在，就这么投降他自然是不可能心服。</p>
+<p class = "firstLineIndent">可问题是，‘天珠降临’实在是没办法解释，无论怎么想，莽军殿上都只能往‘天兽’上推。</p>
+<p class = "firstLineIndent">“自天而下并不是难事，殿上请跟我来，我带您看一样东西。”</p>
+<p class = "firstLineIndent"></p>
+
+<h2>第六百九十一章 飞灯</h2><hr/>
+<p class = "firstLineIndent">智师示意自己的殿上跟随他，二者步行到了军营内的一处空旷地带，这处空旷地带边缘一圈，堆积着大量从原来地方转移到此处的粮草。</p>
+<p class = "firstLineIndent">莽军殿上的视线定在了这些粮草上，只因为它们的体积很大，整体占据的面积不小，是最为显眼的一堆。</p>
+<p class = "firstLineIndent">但莽军殿上很快意识到自己想错了，看到智师引导他走向空旷地带的中央而非边缘，说明智师接下来要给他看的东西和这些紧急转移到这里的粮草并没有关系。</p>
+<p class = "firstLineIndent">中央堆放着很多杂物，多是木制的搬运推车，要做到短时间内迅速转移粮草当然不可能只靠人力，那样不现实，所以需要用到工具。</p>
+<p class = "firstLineIndent">在莽军殿上疑惑的目光下，智师从扎堆摆放的木制搬运推车中十分费劲的拖出一个同样是木制的东西。</p>
+<p class = "firstLineIndent">是一个木框，体积相当于四个木制搬运推车，木框呈立方体，有四个铁制的棍子竖直向上延伸，并在上方交错衔接，形成一个整体，最顶端摆放着一个碗状的金属结构。</p>
+<p class = "firstLineIndent">“这就是我带您看的东西，飞灯。”</p>
+<p class = "firstLineIndent">莽军智师向自家殿上介绍起自己费劲拖出来的东西。</p>
+<p class = "firstLineIndent">“飞灯？”</p>
+<p class = "firstLineIndent">莽军殿上怪异的打量着面前的这个东西，怎么也看不出这个东西的用途是什么，感觉就只是一普普通通的木框，而‘飞灯’这个词他也是第一次听说。</p>
+<p class = "firstLineIndent">但莽军殿上也不傻，听到‘飞灯’这个名字，结合自家智师之前的话语，他很容易想到这个东西和飞天有关，于是他又绕了几圈，仔细的观察。</p>
+<p class = "firstLineIndent">不过最终的结果是仍然什么也看不出来，要说飞天的话，这个木框也没有可供飞行的翅膀，莽军殿上很难想象这个东西能够飞天，如果不是自家智师而是其他人，莽军殿上甚至会恼羞成怒，认为那人在欺骗他。</p>
+<p class = "firstLineIndent">“这东西能飞？”莽军殿上半信半疑的看向自己的智师。</p>
+<p class = "firstLineIndent">“可以飞，但现在还不行，就像它的名字那样，需要变成了燃灯，才能飞。”</p>
+<p class = "firstLineIndent">智师笃定的回答，可换来的却是莽军殿上的质疑，哪怕他对自己的智师无比信任，可对方说的话实在是太过挑战他的常识。</p>
+<p class = "firstLineIndent">“飞天？这怎么可能，这只是个普通的木框，我出生到现在从未见过有什么木框能上天，伯陶，你跟我这么久应该了解，我最讨厌受人蒙骗，你要想清楚后果。”莽军殿上的言语中带着不善的意味，甚至连智师的名字都直呼出来。</p>
+<p class = "firstLineIndent">莽军殿上身居高位，最讨厌的就是被自己的手下愚弄，在他看来这种手下就是不安分的人，往小了说喜欢自作聪明，往大了说就是不听他的，随时都可能威胁到他，因此这种人莽军殿上是见一个处死一个。</p>
+<p class = "firstLineIndent">智师跟了他很久，为他立下了不少功，碍于情面，莽军殿上是不舍得处死智师，所以才有这番警告。</p>
+<p class = "firstLineIndent">莽军殿上认为，智师是想通过欺骗他以平衡他在见到天兽后的恐惧，是出于好意的谎言，但即便是这样他也是会感到厌恶。</p>
+<p class = "firstLineIndent">这有些想当然的成分在里面，但主要也是因为莽军殿上的认知中‘飞天’是属于神的能力的关系，按照他的想法，凡人怎么能上天呢？凡人又不是神。</p>
+<p class = "firstLineIndent">“殿上不要着急，这个木框只是一部分，还需要搭配上这个用三张大鼓的皮制成一个半圆球套，半圆球套下方放上一团火盆，盆中盛满燃油，只要点燃火盆，人坐在木框里就可以飞天。”</p>
+<p class = "firstLineIndent">“我说的是句句属实，如果不信，殿上可以和我一起亲身尝试，用事实来说话，如果我欺骗您，您就惩治我，我绝没有任何怨言。”</p>
+<p class = "firstLineIndent">看着如此认真的智师，莽军殿上不禁心有疑惑，难道凡人真的能飞天不成？以智师的聪明才智，应该不可能不知道他最讨厌什么样的人。</p>
+<p class = "firstLineIndent">犹豫了一会，莽军殿上答应下来。</p>
+<p class = "firstLineIndent">“……行，我倒要看看这飞灯是怎么飞起来的。”</p>
+<p class = "firstLineIndent">言罢，莽军殿上已经开始盘算怎么惩处智师，他虽然应答下来，那也不过是出于对智师的信任，他主观上还是不相信一个连翅膀都没有的木框可以飞天。</p>
+<p class = "firstLineIndent">智师忙碌起来，他把半球套和木框系固好，然后还有火盆与燃油，接着再在木框的边缘绑上一圈的沙袋。</p>
+<p class = "firstLineIndent">沙袋都挺重的，一旁看着智师忙碌的莽军殿上能够清晰的听到对方粗重的喘息。</p>
+<p class = "firstLineIndent">做好一切，智师也没着急点火向莽军殿上证明这个东西能飞，而是反复几遍的检查所有细节。</p>
+<p class = "firstLineIndent">大概过了几个小时后，智师这才邀请莽军殿上进入到木框内。</p>
+<p class = "firstLineIndent">木框内的空间可以容纳下四人，莽军殿上和智师进入其中也不觉得拥挤。</p>
+<p class = "firstLineIndent">智师点燃了他们上方的火盆，身处木框内的莽军殿上可以看到上方的火光。</p>
+<p class = "firstLineIndent">随着时间的推移，莽军殿上看到那由三张大鼓皮制成的半圆球套居然慢慢的鼓胀起来，最后完全的膨胀丰满。</p>
+<p class = "firstLineIndent">然后，他看到智师解下了绑扎在木框上的所有沙袋，莽军殿上感觉到一股上升带来的轻微后坐力，他惊异的看着木框外面越来越远的地面，说不出话来。</p>
+<p class = "firstLineIndent">良久的呆愣之后，莽军殿上这才惊异无比的回转过头看向智师连眼神都变了，声音带着些许颤抖。</p>
+<p class = "firstLineIndent">“这……这还真飞起来了？！”</p>
+<p class = "firstLineIndent">地上的兵卒们惊奇的打量着越升越高的飞灯，莽军殿上可以看到地上的兵卒、将领对着飞灯指指点点，叽叽喳喳的讨论着什么，有些远，他听不清楚。</p>
+<p class = "firstLineIndent">如今距离地面大概有五六十米左右，高度不算很高，但莽军殿上已经害怕了，他是第一次飞天，这种双脚离地的事情除了冲击他的生理外，还冲击着他的心理，最初的惊异感退去后，剩下的就只有害怕。</p>
+<p class = "firstLineIndent">“智师，现在我们要怎么下去？”</p>
+<p class = "firstLineIndent">莽军殿上向智师询问，就像他理解不了没有翅膀的木框怎么飞天，现在怎么下降他也理解不了。</p>
+<p class = "firstLineIndent">“下去很简单，把火弄小，飞灯自然就会下降。”</p>
+<p class = "firstLineIndent">言罢，智师伸手到上方的火盆旁，火盆一侧有个旋转阀，随着智师的转动，火盆上方的喷口收缩，喷口收缩导致释放的火焰下降。</p>
+<p class = "firstLineIndent">随着半球套内的热空气逐渐消散，飞灯的高度也在慢慢降低。</p>
+
+<h2>第六百九十二章 暗中观察</h2><hr/>
+<p class = "firstLineIndent">刚一着陆，莽军殿上就迫不及待的离开木框踩在地上，想要感受地面带给他的踏实感，他以前从未有过一次像如今这样想要脚踩在地上。</p>
+<p class = "firstLineIndent">不过没站稳，一个踉跄，莽军殿上摔倒。</p>
+<p class = "firstLineIndent">“殿上，小心？！”</p>
+<p class = "firstLineIndent">智师眼疾手快的扶住了莽军殿上，同时担忧的询问。</p>
+<p class = "firstLineIndent">“您这是怎么了？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“有些心悸，我平生第一次飞起来，这不会触怒到天吗？”</p>
+<p class = "firstLineIndent">莽军殿上示意智师不必为他担心，他站稳后目光汇聚到着陆的飞灯上。</p>
+<p class = "firstLineIndent">“不会，天地不仁，不会在乎我们这些虫蝼。”</p>
+<p class = "firstLineIndent">智师笃定的回复，他向莽军殿上说明着自己对潮军那边‘天兽降临’的猜测。</p>
+<p class = "firstLineIndent">“潮军那边恐怕比这更大更多的飞灯，他们把邪物搬到天上，交战的时候投下来，就成了我们看到的天兽降临，这是潮军的计策，一来可以震慑我军使军心动荡，二来又能振奋士气让手下兵卒都以为潮军受天庇护。”</p>
+<p class = "firstLineIndent">“更致命的是，如果不是有内应及时报信，潮军强攻我军必然得胜，粮草被毁，军心动荡，再加上天兽降临，必然会导致军心彻底丧失。”</p>
+<p class = "firstLineIndent">亲身感受过飞天，莽军殿上自然是相信自己的智师，而且这在他看来更加的合情合理，如果真的是‘天’站在潮军那边，他们莽军又怎么可能和潮军打到现在？</p>
+<p class = "firstLineIndent">“哼！该死的潮军，连我都差点都信了！”</p>
+<p class = "firstLineIndent">最厌恶被人蒙骗的莽军殿上怒火中烧，而且还是被潮军这样的敌人给蒙骗，叠加之下更加的气愤。</p>
+<p class = "firstLineIndent">莽军殿上也知道无能狂怒不能给他带来什么，发泄一会后冷静下来，开始思考起潮军的事情，虽说‘天兽降临’被证实是潮军欺骗他们的计谋，但假扮天兽的‘邪物’，实力是实打实的强，上至猛将，下至兵卒，无人能敌，用恐怖已经不足以形容他看到的那些东西，唯一的办法就是用人海战术堆死。</p>
+<p class = "firstLineIndent">莽军殿上将自己的忧虑告知智师。</p>
+<p class = "firstLineIndent">“哪怕是假的，可邪物的威力还是实打实，每一只都有如此恐怖的战力，我军要将它们诛杀恐怕要付出不小的伤亡，而且它们出现在战场上，必然会给莽军士气带来沉重打击，智师有什么好计策吗？”</p>
+<p class = "firstLineIndent">“计策没有，邪祟之物是能与天抗衡的逆天术，不是人力能够与之匹敌。”</p>
+<p class = "firstLineIndent">智师回答，但他随后又补充。</p>
+<p class = "firstLineIndent">“但是殿上别担心，虽然无计可施，但有一法可以解决现在的问题。”</p>
+<p class = "firstLineIndent">“什么方法？”</p>
+<p class = "firstLineIndent">本来因为智师的前一句而失望，被智师后一句又勾起了希望，莽军殿上迫不及待地问。</p>
+<p class = "firstLineIndent">“请顺天宗帮助我军。”</p>
+<p class = "firstLineIndent">“顺天宗是我曾经加入的宗派，修习怪邪异术，但是讲究的是顺应天自然为，一般不会轻易使用异术，也不会去插手人事变化，只有当滥用怪邪异术胡作非为的人出现时，他们才会行动，现在正是这样的情况，潮军那边有人滥用怪邪异术，制造邪物搅乱人事。”</p>
+<p class = "firstLineIndent">“智师你也会用这种怪邪异术？”</p>
+<p class = "firstLineIndent">虽然第一次听说‘怪邪异术’、‘顺天宗’这些，但莽军殿上敏锐的注意到了智师话语中的信息，智师既然加入过这个修习怪邪异术的顺天宗，那就说明他的这个智师也是会使用‘怪邪异术’。</p>
+<p class = "firstLineIndent">闻言，智师表现出很明显的尴尬之意。</p>
+<p class = "firstLineIndent">“呃……我学艺不精，只是懂一点外在的东西，飞灯就是由此而来。”</p>
+<p class = "firstLineIndent">“总之，潮军使用邪祟之物搅乱人事，只要将事情告知，顺天宗绝不会放任不管，殿上不必太过担心潮军那些邪祟之物，只要专心对付潮军即可。”</p>
+<p class = "firstLineIndent">经由自己的智师讲解，莽军殿上心中的一块大石头总算是落下。</p>
+<p class = "firstLineIndent">军情紧急，在简单的休息一会后，天都还没亮，莽军智师就准备了远行用的骑兽和几名兵卒随从准备动身离开，前往他之前告知莽军殿上的顺天宗。</p>
+<p class = "firstLineIndent">离开前，莽军智师叮嘱给他送行的殿上。</p>
+<p class = "firstLineIndent">“殿上，我将回顺天宗将事情告知，这段时间一定不要与潮军展开决战，凡人再多也不可能打赢邪祟，那只会让我军重创，所以要以城池为依托，以守为主，尽量避免正面同潮军交战，导致折损。”</p>
+<p class = "firstLineIndent">“嗯，我记住了。”</p>
+<p class = "firstLineIndent">莽军殿上和智师不知道，此时此刻，某个角落里正有一只突触眼，正眨巴着眼睛观察着他们。</p>
+<p class = "firstLineIndent">突触眼的主人正是采集者们，顺着突触眼往下延伸大概五百米左右的距离，就是一条根茎，根茎分出很多分岔，也就是分出许许多多的突触眼探到地面上各个不起眼的角落观察地面上的一切。</p>
+<p class = "firstLineIndent">这样的监控暂时还未覆盖全球，因为地表上有土著文明，为了避免他们被采集者们闹出的动静吓死，采集者们是以尽可能不被土著注意到异常为前提在全球扩张根茎。</p>
+<p class = "firstLineIndent">生命场中的交流信息此起彼伏。</p>
+<p class = "firstLineIndent">“我观察了一下，这颗星球上的文明，技术水平处在冷兵器阶段。”</p>
+<p class = "firstLineIndent">“技术水平很低，还不懂得对机械的运用。”</p>
+<p class = "firstLineIndent">“不，机械运用已经有了雏形。”</p>
+<p class = "firstLineIndent">“咦？只是冷兵器阶段就造出了内燃机？或者是蒸汽动力？”</p>
+<p class = "firstLineIndent">遭到反驳的个体很是意外，因为冷兵器阶段的文明一般开发出这种技术都会联动式的开发出其他利用内能的武器，比如火炮、火枪这类，冷兵器也就理所当然会被淘汰，或者在淘汰的过程中。</p>
+<p class = "firstLineIndent">只是到目前为止，采集者们并没有观察到有热兵器取代冷兵器的迹象。</p>
+<p class = "firstLineIndent">“不是内燃机，是其他的能量源。”</p>
+<p class = "firstLineIndent">有个体反驳，并将一根突触眼监控到的视觉信息递送到频道内。</p>
+<p class = "firstLineIndent">在视觉信息中，看到的是一条河，河上有许多正在转动不停的水车，这些水车配有齿轮，通过齿轮的咬合将水车的旋转动能转移到距离河边有段距离的房屋内，房屋里是一个个脸盆大小的锤子，不断地叮当敲打，驱动锤子反复敲打的正是源于水车的动能，锻造者并不需要耗费气力，只要在一旁不断反转被敲打的金属即可。</p>
+<p class = "firstLineIndent">除了让大锤子不断敲打辅助冶炼，还有农田的灌溉，利用动能将水一桶桶的运到高塔上，水再从高塔流向农田，一座高塔就可以负责多个农田的灌溉。</p>
+<p class = "firstLineIndent">“水力机械，通过流水的动能驱动机械运转灌溉农田，还有冶炼锻造，很有新意的设计思路。”</p>
+<p class = "firstLineIndent">“确实，即便不会运用电能传递能量，那就直接使用动能转动能的方式传递能量，通过对齿轮和传送带的运用实现机械能传递，印象深刻的设计。”</p>
+<p class = "firstLineIndent">“很有趣，可惜对我们没什么大用。”</p>
+<p class = "firstLineIndent">其他个体想了想，皆是认同。</p>
+<p class = "firstLineIndent">“确实如此。”</p>
+
+<h2>第六百九十三章 顺天宗</h2><hr/>
+<p class = "firstLineIndent">“智师，这种荒郊野岭的地方真的会有人住吗？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">离开莽军的莽军智师一行人，走走停停，骑着坐骑远行了数千里的距离，来到了一处很偏僻，远离主道的荒山地带，如果不是他们脚下还有一条踩踏出来的土路，智师的随行者们毫不怀疑自己身处在某个无名的野外。</p>
+<p class = "firstLineIndent">看着土路两侧有些深邃的密林，不禁引人心底发悚，担心可能会有猛兽窜出袭击他们，跟随智师的随行者们有些惴惴不安的询问领队的智师。</p>
+<p class = "firstLineIndent">智师骑着坐骑走在前面，对周围的一切景物漠不关心，一副气定神闲的样子。</p>
+<p class = "firstLineIndent">“顺天宗讲究顺应大势，一切顺其自然，不以人力去改变，无为而不争，但有人就有争斗，心就容易乱，没有人烟的荒郊是远离凡人争斗的绝佳地方，很适合培养无为心性。”智师回答安抚跟随者。</p>
+<p class = "firstLineIndent">“那智师您加入我们莽军，宗门不会指责吗？”</p>
+<p class = "firstLineIndent">听到智师讲解的随从问出心中的不解，作为随行者，他们虽然不是直到全部，但还是知道一部分关于顺天宗的事情，顺天宗是不会干涉人事，而智师作为顺天宗的一员却加入了莽军，更是作为智师给莽军出谋划策，很显然就和描述中的‘无为’不相符。</p>
+<p class = "firstLineIndent">跟随者倒也不是出于恶意，只是好奇而有此询问。</p>
+<p class = "firstLineIndent">智师只是简单看了询问的跟随者一眼，便收回视线，平淡的回道。</p>
+<p class = "firstLineIndent">“我没有天赋，心性也没法和无为契合，只能离开宗门另外寻找出路，这次如果不是邪祟作乱，我一生都不会回来。”</p>
+<p class = "firstLineIndent">莽军智师他们继续沿着土路前进一段时间，翻过数座山坡后，他们的前方有人已经在那里等待他们。</p>
+<p class = "firstLineIndent">“尊长，我在这里等候多时了。”</p>
+<p class = "firstLineIndent">智师从坐骑上下来，其他的跟随者也一同下了坐骑。</p>
+<p class = "firstLineIndent">“宗门让你来的？”莽军智师问。</p>
+<p class = "firstLineIndent">“是，宗门知道尊长你必会来到这里，就让我在这里等待你们。”</p>
+<p class = "firstLineIndent">后方的跟随者彼此对视了一眼，心中的些许担忧放了下来，因为智师不久前的话，他们猜测智师是因为犯了什么过错，被驱逐出顺天宗，如果是那样，按照以往的经验，他们这趟拜访有可能会被刁难。</p>
+<p class = "firstLineIndent">在见到顺天宗的人对智师表现的如此尊敬，可以确定并不是他们想的那样。</p>
+<p class = "firstLineIndent">“请跟我来。”</p>
+<p class = "firstLineIndent">顺天宗的人对智师和跟随者们说了一声，便在前面带路。</p>
+<p class = "firstLineIndent">路上，智师不再如此前那般云淡风轻，几次开口，没出声又闭上，似乎是非常犹豫。</p>
+<p class = "firstLineIndent">最后，似乎终于是下定了决心，莽军智师询问在前面引路的接待者。</p>
+<p class = "firstLineIndent">“你为什么称呼我为尊长？我已经不算宗门的人了。”</p>
+<p class = "firstLineIndent">莽军智师还记得，尊长是顺天宗内小辈对长辈的敬称，对顺天宗外的人，哪怕对方是非常年长的长辈，叫‘尊长’也是不符合礼仪。</p>
+<p class = "firstLineIndent">“您加入宗门的时间要早于我，即便离开宗门也是我的长辈，当得起尊长称呼，请尊长您不要见怪。”</p>
+<p class = "firstLineIndent">接待者似乎没搞清楚莽军智师的问题，没头没尾的简单应答，而莽军智师也在这之后流露出些许异样。</p>
+<p class = "firstLineIndent">“宗门近况怎样？宗主的身体好些了吗？”</p>
+<p class = "firstLineIndent">莽军智师关切地向接待者询问，接待者回应。</p>
+<p class = "firstLineIndent">“已经好了很多，多亏了有尊长您叫人送来的药，现在身体基本痊愈，只是需要更多的时间疗养，毕竟宗主他老人家年岁已经很大，不比我们这些年轻人。”</p>
+<p class = "firstLineIndent">土路一直延伸到一个茅草屋前，看起来非常的简陋，屋顶都破了很多个洞。</p>
+<p class = "firstLineIndent">接待者在一个拐角直接走出了土路，并叮嘱莽军智师的跟随者。</p>
+<p class = "firstLineIndent">“大家要跟紧我，这片林子是守护林，是为了防止外人打搅宗门而布置，没有指引的话会被困在里面永远也走不出来，一定要跟紧我。”</p>
+<p class = "firstLineIndent">经由这么一说，跟随者都顿时紧绷起神经，因为这涉及到他们自身的安全。</p>
+<p class = "firstLineIndent">随着深入到林子内部，迷雾渐起，逐渐变成只能看到几米远的浓雾，跟随者们都很小心的紧跟前面的人。</p>
+<p class = "firstLineIndent">不知道走了多远，跟随者们只感觉自己眼前突然间豁然开朗，迷雾散尽，林子也走到了尽头。</p>
+<p class = "firstLineIndent">入目的是一片繁华之景，远处的高山有层层叠叠的梯田，山上有流水流下，农舍林立，青烟袅袅，近处是一座座住宅，井然有序的排列，还有一个大湖，远方山上的流水汇聚到湖里，湖上可以看到零星的木舟。</p>
+<p class = "firstLineIndent">“这，这树林后面居然隐藏着这样一座城镇？！”</p>
+<p class = "firstLineIndent">虽说早在出发前，跟随者就知道他们要前往一个名叫顺天宗的地方，可眼前这个顺天宗和他们所想的那个‘顺天宗’相差甚远。</p>
+<p class = "firstLineIndent">注意到随行者们惊讶的莽军智师，给予了肯定的答复。</p>
+<p class = "firstLineIndent">“这里就是顺天宗。”</p>
+<p class = "firstLineIndent">在莽军智师他们离开林子没多久，一群孩童变向他们跑来，彼此的嬉闹声隔着很远都能听得见。</p>
+<p class = "firstLineIndent">“快看！是外人！是宗门外面的外来者！”</p>
+<p class = "firstLineIndent">智师向跟随者们看去，并吩咐。</p>
+<p class = "firstLineIndent">“你们把我们带的那些东西分给他们。”</p>
+<p class = "firstLineIndent">“哦，好的。”</p>
+<p class = "firstLineIndent">跟随者们后知后觉得反应过来，并忙碌起来。</p>
+<p class = "firstLineIndent">“孩子们，我从外面给你们带了些礼物，找他们两个去要吧。”</p>
+<p class = "firstLineIndent">“什么？有礼物？好诶！”</p>
+<p class = "firstLineIndent">智师对跑来的孩童们高呼，孩童们愣了愣，随后加快了脚步，生怕落在其他人的后面，围着跟随者们打转。</p>
+<p class = "firstLineIndent">“都别急，一人一个，谁都有份……”有跟随者道。</p>
+<p class = "firstLineIndent">莽军智师看着嬉闹的孩童们，久久不能将目光移开，直到接待者呼唤他，他这才回过神来。</p>
+<p class = "firstLineIndent">“尊长，请随我来，这边走。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“嗯。”</p>
+<p class = "firstLineIndent">由接待者引路，他们走向了城镇中那座最高大的建筑，外观上看起来像是一座阁楼，共计五十多层，结构上像是人造建筑与自然植物沟通组合而成，不显丝毫突兀，反而给人一种奇妙的和谐感。</p>
+<p class = "firstLineIndent">在接待者的引路下，莽军智师见到了他的故人。</p>
+<p class = "firstLineIndent">“伯陶，你来了。”</p>
+<p class = "firstLineIndent">“恩雍尊长，好久不见。”</p>
+<p class = "firstLineIndent">莽军智师恭敬的朝对方行一礼，就像之前接待者朝他行礼那样。</p>
+<p class = "firstLineIndent">恩雍尊长示意莽军智师不必这样拘谨，为了缓解气氛，恩雍尊长还开起了玩笑。</p>
+<p class = "firstLineIndent">“宗主身体不佳，现在经不起外人打扰，所以就由我来和你会面，这不和礼仪希望你不要见怪。”</p>
+
+<h2>第六百九十四章 土著的疑惑</h2><hr/>
+<p class = "firstLineIndent">“不，我没关系，说来说去我这个‘外人’也只不过是一层身份而已。”莽军智师回道。</p>
+<p class = "firstLineIndent">不过寒暄归寒暄，潮军的事情仍然是横在莽军智师心里的一根刺，时间拖得越长，莽军那边就越危险，所以莽军智师很快切入正题。</p>
+<p class = "firstLineIndent">“恩雍尊长，您知道我这次来的目的吧？”莽军智师问。</p>
+<p class = "firstLineIndent">“嗯，你送的信件宗门的人都看了，有人在战场上滥用怪邪异术，虽说你已经脱离宗门，和宗门再没有关系，但有人滥用怪邪异术，这件事上宗门不会不管。”</p>
+<p class = "firstLineIndent">这么说着，恩雍尊长朝着侧间开口。</p>
+<p class = "firstLineIndent">“枭，你和伯陶去莽军那边，帮助他们处理掉潮军内滥用怪邪异术之人。”</p>
+<p class = "firstLineIndent">从侧间中走出一人，分别朝着恩雍尊长和莽军智师分别行了一礼，对恩雍尊长的话作出回应。</p>
+<p class = "firstLineIndent">“是，遵照宗门的安排。”</p>
+<p class = "firstLineIndent">“伯陶，枭是宗门年轻一辈最杰出的人，到了莽军那边还需要你多多关照。”</p>
+<p class = "firstLineIndent">恩雍尊长又将目光落回到莽军智师身上，莽军智师爽快地回道。</p>
+<p class = "firstLineIndent">“恩雍尊长请放心。”</p>
+<p class = "firstLineIndent">隐蔽的角落里，采集者们在暗中观察，顺天宗的迷雾根本没办法迷惑采集者，在莽军智师他们慢吞吞朝着顺天宗前进的时候，采集者们的根茎早就已经拓展并占据了这个地方，消无声息的布置下能监控到每个角落的隐蔽监视网络。</p>
+<p class = "firstLineIndent">“这些外星人在说什么，好想知道啊……”</p>
+<p class = "firstLineIndent">“巨构那边催过了吗？”</p>
+<p class = "firstLineIndent">“催过了，它们说孕育反物质巨构、星轨需要物质资源，天机巨构的孕育要滞后。”个体回答，“只有两颗行星的恒星系统物质资源太少不容易发展，再加上二号星上存在冷兵器阶段的外星文明，因此我们不能在二号星上大张旗鼓的开采资源，建设速率根本不可能快的起来，除非能无中生有。”</p>
+<p class = "firstLineIndent">经由同族这么一提醒，采集者想到了另外的问题。</p>
+<p class = "firstLineIndent">“说起资源，临近恒星系统有族群的殖民恒星系统，有向它们那边递送，跨恒星运输物质资源的求助信息吗？”</p>
+<p class = "firstLineIndent">“递送了，按照时间的话，大概还需要再等十年左右。”</p>
+<p class = "firstLineIndent">“这个时间太久了，我提议，干脆更改建设计划，天机巨构的孕育取消，改为在一号星的地下建立一个天机系统，演算性能虽然不比巨构，但破译语言的工作还是能够应付。”</p>
+<p class = "firstLineIndent">采集者在频道内向所有个体提交议案，经过层层思考之后，提案得到认同。</p>
+<p class = "firstLineIndent">“是个合适的提议。”个体回应。</p>
+<p class = "firstLineIndent">在莽军智师离开阁楼去到外面，恩雍尊长走到隔间，隔间里正有一个年迈的老者躺在摇椅上，从背后延伸出来的两根柱状眼不像年轻个体那样皮肤紧致，满是皱纹层层叠叠。</p>
+<p class = "firstLineIndent">老者开口。</p>
+<p class = "firstLineIndent">“恩雍，伯陶走了？”</p>
+<p class = "firstLineIndent">“是，不过还没走远，宗主您真的不去看一下？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">恩雍尊长反问，但换来的是宗主无声的回答。</p>
+<p class = "firstLineIndent">“您还在为那时把‘伯陶’剥离出宗族簿的事情过意不去？”</p>
+<p class = "firstLineIndent">“那是伯陶自己主动向您请愿，无论是谁都没有想要责怪您的意思。”恩雍一边回忆着往昔，一边劝道，虽然他知道这样希望也不大。</p>
+<p class = "firstLineIndent">“……伯陶是为了救我，是我害得他不能再继续修习怪邪异术，到头来还要把他剔除出宗族簿，心中有愧。”宗主道。</p>
+<p class = "firstLineIndent">“您更重要，换作是我也是一样，顺天宗还需要您来支撑。”恩雍很认真的回答。</p>
+<p class = "firstLineIndent">“不说这些，人事里出现的邪祟之物调查清楚了吗？是三宗里的谁？还是无师自通的野路？”宗主问。</p>
+<p class = "firstLineIndent">怪邪异术并不是没人教就不会出现，如果是那样，那怪邪异术一开始就不可能存在，实际上即便没人引导，怪邪异术是可以在一些特殊的时候，被一些特别有天赋的人自行领悟出来。</p>
+<p class = "firstLineIndent">这种自行领悟修习怪邪异术的人，顺天宗他们称作‘野路’，意思就是像山中的土路，本来没有，被人硬生生踩踏出来。</p>
+<p class = "firstLineIndent">除了自行领悟外，还有另外的两个宗门，顺天宗并非一家独大，在怪邪异术方面只能算是三强之一。</p>
+<p class = "firstLineIndent">“没查清楚原因，派人去天兽降临的战场看过，没有痕迹。”恩雍尊长向宗主报告手下勘测现场的结果。</p>
+<p class = "firstLineIndent">“没有痕迹就说明不是野路，那就是另外两宗里出来的人。”宗主作出定论。</p>
+<p class = "firstLineIndent">野路是自行领悟，因此在很多方面是没办法和三宗媲美，分辨野路和三宗之人的区别很简单，只要通过痕迹就能判断，有痕迹就是野路，没痕迹就是三宗里的人。</p>
+<p class = "firstLineIndent">“这个……不好说。”</p>
+<p class = "firstLineIndent">对于宗主的定论，恩雍尊长欲言又止。</p>
+<p class = "firstLineIndent">宗主也注意到，随即便问。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“怎么了？”</p>
+<p class = "firstLineIndent">“派的人到那里查看现场时，另外两宗的人也在那里，确定了不是出自另外两宗。”恩雍尊长回道。</p>
+<p class = "firstLineIndent">“能保证他们有人不说谎吗？”</p>
+<p class = "firstLineIndent">“为了证明无关，三宗互相用了异术印证，没有谁说谎。”恩雍尊长回答。</p>
+<p class = "firstLineIndent">没有痕迹也还有蛛丝马迹，只不过这种蛛丝马迹只有三宗自己才能看得出来，比如各自使用怪邪异术需要的条件，还有使用的限制，再或者适用范围的局限性等。</p>
+<p class = "firstLineIndent">三宗交流过后，得到了一个惊异的答案——制造出‘天兽降临’的既不是野路，也不是三宗。</p>
+<p class = "firstLineIndent">那么问题就来了，谁都不是的话，那又是谁在搞鬼？</p>
+<p class = "firstLineIndent">“哦？这就奇怪了……”</p>
+<p class = "firstLineIndent">对一切都表现很平淡的宗主，因为这一信息而流露出明显的惊讶。</p>
+<p class = "firstLineIndent">宗主陷入了深深的思考当中，喃喃自语。</p>
+<p class = "firstLineIndent">“邪祟之物……自天上来……”</p>
+<p class = "firstLineIndent">房间沉寂了好一会，恩雍尊长仍然是保持着原样，等待宗主作出判断。</p>
+<p class = "firstLineIndent">良久，宗主给恩雍尊长下令。</p>
+<p class = "firstLineIndent">“恩雍，你们从战场上带回来不少尸体，对吧？用那些当祭品，去安排请神祭祀，从伟大之尊那里获得答案。”</p>
+<p class = "firstLineIndent">恩雍尊长因为这道命令明显惊愕了一下，“宗主，您是发现什么了吗？”</p>
+<p class = "firstLineIndent">请神祭祀是需要人当祭品，所以一般情况下，顺天宗是绝不会用这种方式去获取情报，除非事关重大，有不得不获取的情报，才会去进行请神祭祀。</p>
+<p class = "firstLineIndent">‘天兽降临’按照恩雍尊长的推测，只不过是怪邪异术被人滥用导致，用请神祭祀来获取情报，实在是有些小题大做。</p>
+<p class = "firstLineIndent">“不，只是预感很不好，‘天兽降临’应该是关系到什么我们还不知道的大事。”宗主幽幽的回答，视线移到的窗外。</p>
+
+<h2>第六百九十五章 二号星遗迹</h2><hr/>
+<p class = "firstLineIndent">根须呈网络状在星球地底蔓延，地表的观察探索是次要，扩张蔓延是主要，因为两者相辅相成，扩张可以让搜寻工作事半功倍，且获取物质资源也离不开根茎扩张，采集者们需要孕育天机来演算破译星球土著的语言。</p>
+<p class = "firstLineIndent">正是基于扩张为主的原因，采集者们这才后知后觉的在已经覆盖地底，距离顺天宗四十多公里的地方，有了一些新的发现。</p>
+<p class = "firstLineIndent">“发现一个非自然建筑。”</p>
+<p class = "firstLineIndent">“星球上有冷兵器文明，虽然工业技术不行，但已经有能力建造建筑，非自然建筑很常见。”</p>
+<p class = "firstLineIndent">“呃……信息简短了，这个非自然建筑的技术水平很明显不是地表上的土著文明建造，他们还没有这样的材料学，顺带测了下外壁的原子半衰期，建筑存在了五千年。”</p>
+<p class = "firstLineIndent">这么答复的个体，重复详细的解释，并将自己的视觉信息递送上来。</p>
+<p class = "firstLineIndent">视觉信息中，竖直的岩壁上可以依稀看到一个建筑的轮廓，这个轮廓只有一半，另外的一半被埋没在岩壁的岩层里，都不需要进行原子半衰期的检测，旁观者一眼就能看得出来这个建筑非常古老。</p>
+<p class = "firstLineIndent">这个轮廓上面贴着很多红黄相间的条状物，建筑的正门上更是贴满了这种东西。</p>
+<p class = "firstLineIndent">这些条状物和纸张相似，红的部分是纸张，黄的部分是上面的文字，给观察者的感觉就像是把纸张浸没在红色染料内，然后用金墨汁在上面撰写文字。</p>
+<p class = "firstLineIndent">条状物很醒目，整个暴露在岩壁外的建筑都贴满了这种东西，想不注意到都很难，采集者们很自然的就将注意力转移到了这上面。</p>
+<p class = "firstLineIndent">“这个建筑的门为什么贴着东西？”</p>
+<p class = "firstLineIndent">“我知道这个东西，瑟琳人那边也有，好像叫做‘封条’来着，你们看，一般封条上都会写着一些文字，这上面也有。”</p>
+<p class = "firstLineIndent">很快有个体表明了自己对这些条状物的理解，而且理由还很充分。</p>
+<p class = "firstLineIndent">其他采集者个体在族群的遗传记忆中回忆，以了解瑟琳人文明中封条的概念。</p>
+<p class = "firstLineIndent">“哦——原来如此。”</p>
+<p class = "firstLineIndent">“长见识了。”</p>
+<p class = "firstLineIndent">当然，也有一些个体觉得是无用信息，也就没有进行回忆，直接向同族询问，只了解大致概念。</p>
+<p class = "firstLineIndent">“封条的用途是什么？”个体问。</p>
+<p class = "firstLineIndent">之前提出想法的个体回复，“在瑟琳人那边，通常贴在即将拆掉的建筑上，由于建筑即将要拆进去很危险，所以要贴上封条，起到提醒、警告的作用。”</p>
+<p class = "firstLineIndent">“所以这个建筑也是要被拆的？当地土著要拆了这个建筑。”</p>
+<p class = "firstLineIndent">“可这些封条里，存在时间最长的貌似已经有几百年了，当地土著计划拆掉这个建筑计划了几百年都没拆掉？”</p>
+<p class = "firstLineIndent">有采集者个体提出质疑，疑似封条的东西非常多，有些非常新，像是最近贴上去，有些则非常旧，经过原子半衰期的测定，存在时间最长的条状物是大约四百年前贴上去的。</p>
+<p class = "firstLineIndent">这本身很不可思议，因为在大气环境里，会受到气流的侵蚀，再坚硬的岩石都会被风化，纵然建筑的一部分会提供一些掩护，但不能做到全方位保护，持续存在时间长达四百年没有脱落、腐蚀殆尽，足以说明这些疑似的封条东西异常性，本土文明的材料技术可没有达到这种高度。</p>
+<p class = "firstLineIndent">不过，由于先入为主的关系，采集者们更多的是关注起这个建筑的拆除问题上，然后整个都被带偏了。</p>
+<p class = "firstLineIndent">“这种情况在瑟琳人那边貌似也有，叫‘钉子户’来着……”</p>
+<p class = "firstLineIndent">“钉子户是什么？”</p>
+<p class = "firstLineIndent">“就是形容一些人像被叫做钉子的加固零件那样固定在原地，瑟琳人那边拆除建筑通常来说都是为了推倒旧建筑，在原来的位置重新盖上新的建筑，为此原来居住在那里的瑟琳人就要搬迁走，但总会有那么一些瑟琳人因为这样那样的原因不愿意离开自己的居住地，钉子户说的就是这些人。”</p>
+<p class = "firstLineIndent">“这说明虽然这是那个被毁灭文明的遗迹，但这里面是有土著居住。”</p>
+<p class = "firstLineIndent">“探索还是要继续，根须拓展的时候不要闹出大动静，只要不被发现那就没问题，出了意外的话就抹除土著个体，避免我们的信息外散扩大影响。”</p>
+<p class = "firstLineIndent">“同意。”</p>
+<p class = "firstLineIndent">如果有抹除记忆的方法，采集者们会更倾向于使用记忆抹除的方法来消除影响，毕竟土著都是启迪思想的科研资源，虽说土著很多，可采集者们不会闲自己族群的资源多。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">作者有话要说：精品小说都在这连载呢：宅阅读（ZHAIYUEDU.TOP）</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">但遗憾的是，采集者们还没有细致的了解这个星球土著的大脑结构，在知道星球土著大脑中，哪部分是记忆储存区域前，只能采取抹除处理。</p>
+<p class = "firstLineIndent">找了遗迹的一个不起眼的角落，根须利用化学配位性，蚀刻出一个可供根须钻入的通道入侵建筑内部。</p>
+<p class = "firstLineIndent">遗迹内很黑，并不像是有人居住的迹象，贴着墙角根须一路探寻。</p>
+<p class = "firstLineIndent">探寻了半天时间，没找到什么关于被毁灭文明的线索，只找到个疑似打斗的痕迹，这些痕迹相对于建筑本身，算是很新的痕迹，是几百年前留下，越是深入，建筑通道内的墙壁上逐渐会出现一些黝黑的区块，经过提取成分分析，这些黝黑区块的成分与当地土著的血液成分相同，从痕迹的残留上看，应该是飞溅到墙壁上。</p>
+<p class = "firstLineIndent">“不像是有人居住的地方，反而像是死斗场。”</p>
+<p class = "firstLineIndent">“注意，有声音。”</p>
+<p class = "firstLineIndent">继续深入一段距离后，漆黑的建筑通道内隐约间可以听见什么声音。</p>
+<p class = "firstLineIndent">“看来是有土著住在这里，都注意点，别把动静闹大，引起土著的注意。”</p>
+<p class = "firstLineIndent">“了解。”</p>
+<p class = "firstLineIndent">有声音就说明建筑内有土著，痕迹都是几百年前留下，不能说明现在没有土著居住，就算建筑内伸手不见五指，不能像采集者这样通过红外线波频观察物体的土著根本看不见建筑内的任何东西也不能说明什么，谁也不能保证这个建筑内的居住者是不是个有怪癖的土著。</p>
+<p class = "firstLineIndent">根须的探索还在继续，采集者们默默的将根须更换上与墙壁相同的保护色，加上纤细的体积，纵使在可见光谱照明下，不仔细看都发现不了。</p>
+<p class = "firstLineIndent">“咦？奇怪，为什么感觉声音没有增大？”</p>
+<p class = "firstLineIndent">起初采集者们没感觉到有什么异样，可随着继续深入，理应由于和发声者距离的拉近，而让模糊的声音放大，但事实却并非如此，声音没有增大始终保持着模糊状态，似乎一直都和采集者们蔓延的根须保持一定距离。</p>
+
+<h2>第六百九十六章 释放</h2><hr/>
+<p class = "firstLineIndent">“会不会是发现我们了？”</p>
+<p class = "firstLineIndent">有个体提出自己的猜想，无论出声者是基于什么样的理由而发出声音，都不会有意识的和采集者们蔓延的根须保持距离，只有在发现了那些贴着墙角蔓延，用保护色与墙体融为一体的根须后，发声者才能做到刻意保持距离。</p>
+<p class = "firstLineIndent">“不可能吧…我们明明隐藏的很好，星球土著的视觉系统没理由能看到我们，声音方面就算是听觉敏锐的瑟琳人也注意不到，建筑内的居住者更没理由知道”</p>
+<p class = "firstLineIndent">“只能这么解释了，不然还能是什么原因？”</p>
+<p class = "firstLineIndent">提出猜测的个体反问，它想不出还能是什么原因，才会让发声者在对它们毫不知情的情况还仍然保持距离，生物体不过是更加高级的机械，只有在获取到外界信息的情况下才会针对性的采取行动。</p>
+<p class = "firstLineIndent">如果一个生物无法获取外界的一切信息，自然也就不会针对性的采取行动。</p>
+<p class = "firstLineIndent">前思后想之下，采集者们只能认定，发声者用采集者们尚不了解的方式，发现了贴着墙角正在蔓延的根须。</p>
+<p class = "firstLineIndent">“被发现了，那该怎么处理？”</p>
+<p class = "firstLineIndent">这是头一回被人发现，根茎在二号星上扩张蔓延到现在，无论是什么样的土著，都没有能力发现隐藏在角落监视他们的根茎。</p>
+<p class = "firstLineIndent">正因为是第一次，有的采集者不免表现出慌乱的情绪。</p>
+<p class = "firstLineIndent">这种慌乱很快就被仍然镇定的采集者平息。</p>
+<p class = "firstLineIndent">“按照事先计划好的那样，抹除掉，不能让建筑内的个体将我们的信息泄露，那会扩大影响范围，再想处理就会变得麻烦起来。”</p>
+<p class = "firstLineIndent">“这个遗迹建筑有后门吗？”</p>
+<p class = "firstLineIndent">打定抹除土著想法的采集者，随即便优先思考起封锁的事情，不能让建筑里这个知道它们存在的土著把根茎的事情告知其他的同类。</p>
+<p class = "firstLineIndent">它们现在还不知道发声者的长相，且由于物种的不同，除了雌雄性别、明显生理特征外，与这个外星智慧物种接触时间尚短的采集者们，分辨不出同性之间土著的区别，遗迹里的发声者若真的成功逃走并混在土著文明里，纵使采集者有全球监控网络，也找不到对方。</p>
+<p class = "firstLineIndent">“这个遗迹建筑只有一个出入口，发声者没有另外的渠道能够逃跑。”</p>
+<p class = "firstLineIndent">周围的地底早已经被根茎覆盖并布设下监控网络，在询问个体的问题刚一出来就得到了答案，遗迹唯一的出入口被采集者们根须占据着，除非出声者会穿墙术，不然出声者绝对跑不掉。</p>
+<p class = "firstLineIndent">知晓这一信息的采集者们，开始不再掩饰根须的存在，加速扩张蔓延的速度。</p>
+<p class = "firstLineIndent">这个时候发现也已经无所谓，建筑外的土著不知道建筑内发生的事情，建筑内的土著已经发现采集者，所以没有隐藏的意义。</p>
+<p class = "firstLineIndent">放开顾忌，肆无忌惮扩张的根须很快就占据了整个建筑，绝大部分的地方都被占据，但这些地方都是空空如也，什么也没有。</p>
+<p class = "firstLineIndent">剩余下来还没有被根须占据的是一个密闭的房间，根据房间外面的体积推算，内部的面积恐怕相当于五个足球场那么大，房间的门非常厚重，上面贴满了之前采集者们在建筑外面看到，疑似封条的长条物，房间的外壁上也贴着很多，只不过没有房间门上面的密集。</p>
+<p class = "firstLineIndent">厚重的门上是一把把大锁，大概有十六个，大锁呈长条立方，半立方米的体积，每把大锁大约有一千公斤。</p>
+<p class = "firstLineIndent">除了这些外，房间的门和外壁有着和遗迹内其他地方截然不同的纹路，其他地方的墙、门就只是普通的墙和门，可这个房间不同，上面好似雕刻着文字，这种文字与现如今发现的土著文字并不相符，是出自另外一个语系。</p>
+<p class = "firstLineIndent">“只剩下这里了。”</p>
+<p class = "firstLineIndent">“外面的这些文字不是那个被毁灭文明的文字，也不是土著文字，是另外完全陌生的语言。”</p>
+<p class = "firstLineIndent">“是第三个智慧物种？”</p>
+<p class = "firstLineIndent">“不能百分百保证，由于地域隔阂，同一个智慧物种也可以发展出多个语系，尤其是冷兵器阶段的文明，星球很大而文明的交通又不发达，信息交流少作为起因，极有可能衍生出多种语系。”</p>
+<p class = "firstLineIndent">“总之先记录下来，然后再进入到房间里抹除里面的土著。”</p>
+<p class = "firstLineIndent">处在房间外的根须，能够接收到来自那个特殊房间里传出来的声音，依旧是很模糊，好像还是保持着很远的距离。</p>
+<p class = "firstLineIndent">这显然不符合声音的传播，采集者们也注意到异常，可也解释不了这种现象，只能选择暂时滞后，把该处理的事情都处理好再慢慢研究。</p>
+<p class = "firstLineIndent">采集者们看了眼厚重且被一把把大锁封锁的大门，默默的选择距离自己较近距离的房间墙壁，通过根须施展化学配位性，利用配位性在墙壁上蚀刻出一个可供根须钻入的蛀洞——有墙壁走谁还走正门。</p>
+<p class = "firstLineIndent">“进来了。”</p>
+<p class = "firstLineIndent">第一只进入到房间里的采集者，立即对房间内部的环境进行观察。</p>
+<p class = "firstLineIndent">内壁上写满了和外壁同一语系的文字，同样也是贴满了长条物，但这些并不是最吸引采集者注意力的地方。</p>
+<p class = "firstLineIndent">最吸引采集者注意力的是房间的正中央，在这个房间内部面积相当于五个足球场大小的正中央，摆放着一个大石头，大石头被大量的绳索、锁链绑扎系固，每根锁链、绳子都相当于人类胳膊粗细。</p>
+<p class = "firstLineIndent">还有就是那股莫名的模糊声音，在房间外时，采集者们本以为进入到房间内，就会找到那个发声者，可在在进入到房间后，次声波、超声波、红外线、紫外线等等观测手段，能用上的全部用上，就是找不到发声者。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">甚至找不到声源，模糊声音在房间内后就不是定向出声，而是三百六十度立体环绕音，发声者就仿若是隐身起来还化身万千，围着采集者们打转。</p>
+<p class = "firstLineIndent">总而言之，很邪门。</p>
+<p class = "firstLineIndent">“星球土著什么时候掌握了这种技术？”</p>
+<p class = "firstLineIndent">这样的情况令很多采集者个体感到惊异，因为根须渗透进了墙壁内部，并没有找到‘化身万千’的根源所在，也没有导线这些东西，如果与那个特殊房间拉开一定距离后，声音从立体环绕音重新变成由远及近的定向音。</p>
+<p class = "firstLineIndent">根须无孔不入，无隙不钻，采集者们甚至已经放弃了发声者是生物的想法，用尽一切手段寻找。</p>
+<p class = "firstLineIndent">可搜寻的结果仍然是无果，没有办法的采集者们只能将问题搁置，优先处理现阶段有能力快速解决的事情。</p>
+<p class = "firstLineIndent">“声源未知，但可以确定不是星球土著，处理行动取消。”</p>
+<p class = "firstLineIndent">某种意义上讲，对采集者来说也算是好消息，至少它们不用忍痛将一个可以给族群提供思想的科研资源处理掉。</p>
+<p class = "firstLineIndent">如今遗迹内只剩下特殊房间中央的大石头还没被探索，凑近观察的采集者们发现，这是一尊大型雕塑，是一堆星球土著混杂在一起的怪异雕塑。</p>
+<p class = "firstLineIndent">“这遗迹太过空旷，应该是被星球土著多次探索过，遗迹里的东西都被搬空了，找不到什么有用的东西。”</p>
+<p class = "firstLineIndent">“勘测这尊雕塑后，去附近土著那边搜寻一下信息，人为痕迹很多，应该会有与这座遗迹相关的信息记录才对。”</p>
+<p class = "firstLineIndent">一边交流着信息，一条根须卷曲起来，用自己尖细的首部，刺入雕塑内部获取雕塑成分信息。</p>
+<p class = "firstLineIndent">而也就在这一刻，异变发生了。</p>
+<p class = "firstLineIndent">桀——！</p>
+<p class = "firstLineIndent">轰鸣的咆哮，岩石碎片飞溅，雕塑活了过来。</p>
+
+<h2>第六百九十七章 摁在地上摩擦</h2><hr/>
+<p class = "firstLineIndent">采集者：？？？</p>
+<p class = "firstLineIndent">突如其来的情况令采集者们措手不及，雕塑在提取成分样本前是经过X射线等间接手段测量过，反馈的信息是雕塑仅仅只是普通雕塑，除了外观被人为的雕琢成奇怪的模样，就只是一块很普通的石头。</p>
+<p class = "firstLineIndent">获取样品成分只不过是按照惯例才去做。</p>
+<p class = "firstLineIndent">“什么情况？”</p>
+<p class = "firstLineIndent">房间内数以亿计的根须惊愕的观察着正中央的某物，浑身用‘扭曲’二字来描述并不过分。</p>
+<p class = "firstLineIndent">主体是一坨液体，之所以称作‘一坨’，是因为它并不像液体那样散开，犹如一个放大版，会蠕动的水珠，这‘水珠’的表面犹如沸腾一般，有很多土著的手从这沸腾液面中伸出，不断地舞动，好似溺水者在寻求可以救命的稻草。</p>
+<p class = "firstLineIndent">莫名的声音放大并清晰起来，像是星球土著在极度惊恐时发出的求救，又像是在被重刑虐待时发出的惨叫，再或者就是各种其他支离破碎的怨言。</p>
+<p class = "firstLineIndent">最离奇的是，采集者们发现光线的照明距离被削减了，无论是红外线，还是紫外线，亦或者可见光，在跑出一米后就会急剧的减弱能级直至消失无踪。</p>
+<p class = "firstLineIndent">这个房间内的某物似乎是通过这种方式遏制观察者获取它的信息，当然，也可能是自身的特性，这点上采集者们无从确认。</p>
+<p class = "firstLineIndent">不过这并不意味着采集者们毫无办法，要知道这个世上的粒子并不仅仅只有光子，经过复杂的调整，根须释放出质子束、中子束来进行‘照明’，这些非光子在撞击到实体物质后也会反弹回来，从而达到与光子照明相同的效果。</p>
+<p class = "firstLineIndent">除此之外，采集者们还有声波探测，就像蝙蝠利用超声波来侦测环境，只要大脑能够处理那些反馈回来的声波信息，以此作为‘视觉’观察目标是没有任何问题。</p>
+<p class = "firstLineIndent">扭曲物这种对信息获取的限制，也就仅仅只是针对星球土著那些观测手段有限的生命个体才有效。</p>
+<p class = "firstLineIndent">桀——！</p>
+<p class = "firstLineIndent">扭曲物发出怪异的咆哮，它似乎掌握着某种侦测根须的手段，直扑最近的根须，并将其淹没，那只采集者支配的根须在与扭曲物接触后就十分突兀的断开了联系。</p>
+<p class = "firstLineIndent">摧毁了一条根须后，就又冲向下一条，看起来非常的凶悍。</p>
+<p class = "firstLineIndent">但也就只是看起来很凶悍，根须对于采集者而言好比是人类的头发，是身体的一部分，但属于无关紧要的部分，损坏了还可以再长，由于结构简单的关系，重新孕育恢复也就分分钟的事情。</p>
+<p class = "firstLineIndent">这样的生物结构设计是因为采集者们在考虑到星际探索过程中会遭遇的未知危险。</p>
+<p class = "firstLineIndent">未知危险的会有什么它们不知道，但宇宙那么大，肯定会发生这种事情，如果在星际探索过程中就这样由于这样那样的意外而死亡，无法继续为族群奉献，在采集者们看来是非常悲哀的事情。</p>
+<p class = "firstLineIndent">因此采集者们决定学习它们的至高意志，把自己的思维主体留在探索区域的外面，仅用小部分深入到探索区域进行勘测活动。</p>
+<p class = "firstLineIndent">现在派上用场了，任凭扭曲物怎么杀，房间内盯着扭曲物的根须就是源源不绝。</p>
+<p class = "firstLineIndent">“这是什么生物？”</p>
+<p class = "firstLineIndent">生命场频道内，采集者们交流各自的看法，但都没有哪个个体能说出个所以然来，扭曲物在生命结构上就显得非常怪异，根本就不像是本土星球上的物种。</p>
+<p class = "firstLineIndent">不确定的事情暂时搁置，采集者们总结已经确定的事情。</p>
+<p class = "firstLineIndent">“从没有根须的残骸可以判断，根须是被这个未知生物破坏并吞噬。”</p>
+<p class = "firstLineIndent">“声音的源头也是来自于这个生物。”</p>
+<p class = "firstLineIndent">在扭曲物从雕塑转变成活物之时，找不到声源的莫名声音强度上升，这就说明这莫名的声音与这个扭曲物有着直接关系，基本可以确定扭曲物就是采集者们之前准备采取处理的那个未知发声者。</p>
+<p class = "firstLineIndent">现在也坐实了对方能够发现它们，根须正在被对方针对性的破坏，所以采集者们决定把之前终止下来的处理行动继续进行下去。</p>
+<p class = "firstLineIndent">“动静太大，会把附近的土著都吸引过来，我们应该让它快点闭嘴。”</p>
+<p class = "firstLineIndent">“赞同。”</p>
+<p class = "firstLineIndent">不想把影响扩大的采集者们决定处理掉现在这个不知道是不是智慧物种的未知生物，大量的根须开始由守转攻，扭曲物也注意到了这一细节，不知是不是因为被扭曲物视作‘猎物’的根须敢于反抗而被激怒。</p>
+<p class = "firstLineIndent">扭曲物表现出更加强烈的攻击性。</p>
+<p class = "firstLineIndent">桀——！</p>
+<p class = "firstLineIndent">一边以怪异的声音嘶吼，一边不断的与根须接触，用采集者们尚不了解的方式破坏并吞噬根须，房间内回荡着扭曲物所发出的莫名声音同时，还多出了骇人的咀嚼声。</p>
+<p class = "firstLineIndent">由于吞噬的关系，扭曲物的体积在不知不觉间膨胀了不少，对此，采集者们倒并不焦急，这种情况对它们来说只能算是小场面，在经过几次简单的试探性接触后，采集者对扭曲物有了一个基本掌握，它们调动了更多的根须与扭曲物接触，犹如洪水决堤一般，扭曲物猝不及防之下，瞬间就被根须海洋给淹没。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">这次扭曲物完全没办法在继续像之前那般吞噬根须，数量庞大的根须反过来将其束缚住。</p>
+<p class = "firstLineIndent">扭曲物并非是流体，只是形似流体，表面遍布着厘米大小的口器，通过这些口器对根须完成撕咬啃食，这是采集者们通过数次试探得到的结果，掌握了敌人的基本信息后，它们以更加庞大的数量进行碾压。</p>
+<p class = "firstLineIndent">既然是通过啃食，那只要不让那些厘米口器闭合不就没有威力了？强韧特化过的根须一股脑的挤进口器里，并分叉向外掰，扭曲物全身上下的口器都是如此，在庞大的数量面前，任凭扭曲物如何挣扎都无济于事，好似翻不出五指山的孙猴子。</p>
+<p class = "firstLineIndent">“捕获完成……咦？”</p>
+<p class = "firstLineIndent">以为事情已经结束的采集者个体，还没松懈下来，就因为扭曲物下一步的行动而又忙碌起来。</p>
+<p class = "firstLineIndent">只见，扭曲物外放的莫名声音音量陡然间提升一倍有余，那些不断在其表面摇摆的土著手臂，竟然挣脱了扭曲物，变成一个个单纯有着星球土著外貌轮廓的东西。</p>
+
+<h2>第六百九十八章 惊慌的顺天宗</h2><hr/>
+<p class = "firstLineIndent">在挣脱后的第一时间，这些不知道究竟是什么的东西就开始朝着房间的大门跑去。</p>
+<p class = "firstLineIndent">这个时候就充分显现出采集者们考古从来不走正门的优越性，房间的正门并没有被打开过，原来是什么样，现在还是什么样，原封不动，这些从扭曲物身上分离出来的东西，只能徒劳的在房间里打转，寻找出路，或者一次次的冲击着它们自认为可以冲破的地方。</p>
+<p class = "firstLineIndent">同时，采集者们还注意到，从扭曲物身上分离出来的这些东西，并没有与房间内壁、大门内侧有实质物理上的接触，像是有什么屏障隔在中间，但采集者们支配的根须却没有感觉到异样。</p>
+<p class = "firstLineIndent">“抓住它们！”</p>
+<p class = "firstLineIndent">时间比较紧，容不得采集者们思考过多，抽出一部分的根须，转而朝着房间里那些自扭曲物身上分离下来，四处打转的东西进行抓捕。</p>
+<p class = "firstLineIndent">这次采集者们学乖了，根须把目标个裹得严严实实，严丝合缝，缝隙缩小到原子尺度，整个物体就是一个宏观分子。</p>
+<p class = "firstLineIndent">见此情形，扭曲物分离出来的东西似乎想要重新再聚集起来，但早已注意这点的采集者们根本不给其任何机会，大约耗时二十分钟左右，战斗结束。</p>
+<p class = "firstLineIndent">“有跑出去的吗？”</p>
+<p class = "firstLineIndent">战后检查的个体询问，因为战斗时非常混乱，不能排除会不会有漏网之鱼。</p>
+<p class = "firstLineIndent">扭曲物的正体是什么采集者们还没搞清楚，但就扭曲物所表现出的智能性，假若它会与土著正常交流，跑到土著文明那边大肆宣扬采集者们的存在，那无疑就是很糟糕，所以任何一个分离出来的东西都不能遗漏，有遗漏就要立刻进行抹除。</p>
+<p class = "firstLineIndent">“没有，抓捕很成功，不过动静太大，已经有土著往遗迹这边来了。”</p>
+<p class = "firstLineIndent">在询问的下一秒就得到了回复，周围的环境早就被采集者们不下的天罗地网全面性监控，别说一个星球土著体积的未知生物，就是一只蚂蚁体积的生物，只要在监控范围里，采集者们也有能力迅速发现并锁定。</p>
+<p class = "firstLineIndent">在确认没有遗漏后，出于对星球土著们的保护，采集者们决定撤离。</p>
+<p class = "firstLineIndent">“那我们也是时候该离开，大家动作快点，别被发现了。”</p>
+<p class = "firstLineIndent">“该伪装的都伪装好，来时是什么样，我们离开时也是什么样。”</p>
+<p class = "firstLineIndent">大量的根须开始争分夺秒的忙碌，修复刚才因为和扭曲物争斗而留下来的战斗痕迹，所幸修复起来并不困难，采集者们有原先特殊房间内的环境记录，不是单纯的消除战斗痕迹，而是将房间百分百的还原，一些原本就存在于房间里的痕迹不会被消除甚至会被复原，仅仅只消除采集者们与扭曲物战斗的残留痕迹。</p>
+<p class = "firstLineIndent">在房间的正中央，重新竖立起一尊雕塑，利用分子工艺做到的百分百还原，至少扭曲物雕塑与这个仿制雕塑摆在一起，采集者们没办法区分出来。</p>
+<p class = "firstLineIndent">做完一切后，根须犹如退去的潮水，开始回缩，这是为了不留下痕迹，如果只是图省事直接抛弃掉这些根须，会留下残骸，势必会引起土著的注意，那样一来将遗迹内重新给伪装成无事发生一般也就没意义了。</p>
+<p class = "firstLineIndent">距离遗迹四十多公里的顺天宗，恩雍正在着手准备请神祭祀的祭品和仪式用品。</p>
+<p class = "firstLineIndent">指挥宗内人手的恩雍，调配人员指挥工作非常复杂，以致于恩雍从仪式准备的开始就没有闲下来过，一连几天没有休息。</p>
+<p class = "firstLineIndent">虽然辛苦，但恩雍基本已经习惯，仪式的主持者就是需要这样，不然错过了最佳时间的话，仪式的进行就又要被推迟。</p>
+<p class = "firstLineIndent">就在仪式筹备工作完成，恩雍打算小睡休息一下的时候，上天好似与他作对一般，又给他带来了新的问题。</p>
+<p class = "firstLineIndent">“恩雍尊长！大事不好了！古迹的封印被破坏！恶质被释放！”</p>
+<p class = "firstLineIndent">宗内的人跑向恩雍，一边跑一边惊恐的叫喊。</p>
+<p class = "firstLineIndent">听闻叫喊中的信息，坐在椅子上想简单休息一下的恩雍猛然间起身。</p>
+<p class = "firstLineIndent">“你说什么？！”</p>
+<p class = "firstLineIndent">消息传得很快，古迹封印被破坏的事情迅速传遍整个顺天宗，恩雍组织起人手，向着距离顺天宗四十多公里的古迹进发。</p>
+<p class = "firstLineIndent">“都快点！第一重的封印被破坏，光靠外面二重、三重的咒符封印挡不住恶质多长时间！必须赶在恶质逃出古迹以前重新将它封印！”</p>
+<p class = "firstLineIndent">顺天宗的人穿行在树林间，好似灵活的猿猴，不，猿猴也没有他们这样迅速和敏捷，在二号星上专门作为坐骑的骑兽，在地面上全力奔跑速度才能与其媲美。</p>
+<p class = "firstLineIndent">穿行在最前面的，自然是能力仅次于宗主的恩雍尊长，此刻的他心急如焚，时不时的最催促宗内的跟随者们加快。</p>
+<p class = "firstLineIndent">除了恩雍这个尊长外，还有其他顺天宗的尊长也在队伍中，其中一个尊长询问众人。</p>
+<p class = "firstLineIndent">“上次负责检查封印的是谁？”</p>
+<p class = "firstLineIndent">“尊长，是我，我以天名义起誓，我检查的时候没有异常，就几天前的事情，每一个地方我都检查过一遍，封印非常牢固，根本没有松动的迹象。”</p>
+<p class = "firstLineIndent">顺天宗尊长询问的的目的是为了确定古迹内封印的情况，这次封印被破坏究竟是外来者入侵，还是古迹内封印老化导致的破封。</p>
+<p class = "firstLineIndent">前者的话，他们除了要小心恶质，还必须要小心外来者，后者则只需要注意恶质即可。</p>
+<p class = "firstLineIndent">回答的人也很清楚尊长询问的目的，以天作担保，保证自己检查封印期间的时候，封印处在完好状态。</p>
+<p class = "firstLineIndent">对顺天宗乃至修习怪邪异术的人来说，天是不能拿来开玩笑的，天和神划等号，拿天开玩笑就是在拿神开玩笑，他们相信，敢于这么做的人往往都不得好死。</p>
+<p class = "firstLineIndent">“那就只有一种解释了，有不知死活的混蛋潜入古迹里破坏了封印。”恩雍的语气隐隐带着不善的意味，同时心底在一遍遍的咒骂将恶质释放的家伙。</p>
+<p class = "firstLineIndent">在他看来，敢于闯进古迹里释放恶质的人，无非就是想得到恶质的力量，自认为掌握了某种方式可以利用恶质为自己所用。</p>
+<p class = "firstLineIndent">在穿行的队伍中，有人觉得这件事中充满着疑点。</p>
+
+<h2>第六百九十九章 该在的都在</h2><hr/>
+<p class = "firstLineIndent">“可这可能吗？古迹外面可是集合全宗上下之力，布置了迷阵，不知道正确的路径，就算是另外两宗想要靠近古迹都是非常困难。”</p>
+<p class = "firstLineIndent">古迹周围没有直通的路径，有的只是辽阔的树海，这树海是顺天宗在数百年前种出来的，为的就是断绝外来者接近古迹，在这数百年的岁月里，顺天宗一代又一代的人不断加固树海屏障，在里面布置下大量迷阵、幻阵、杀阵，让那里成为一片死亡绝地，贸然进入者绝对十死无生。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">哪怕是与顺天宗并列的另外两个宗门，想要进入其中也是九死一生。</p>
+<p class = "firstLineIndent">基于这些理由，最值得怀疑的可能也就剩下‘宗门内部出了内鬼’，在宗内地位较高者，基本都清楚怎么安全出入古迹。</p>
+<p class = "firstLineIndent">这么做是为了以防万一哪天发生了意外，顺天宗绝大部分有能力者突然死亡，少部分有能力者又因为不知道靠近古迹的安全路线，导致无法维护封印。</p>
+<p class = "firstLineIndent">“会不会是……”</p>
+<p class = "firstLineIndent">队伍里那人话还没说完，就被一个脾气暴躁的尊长打算这种猜测。</p>
+<p class = "firstLineIndent">“不可能！宗门里谁会蠢到把恶质放出来？找死吗？现在这种时候不要疑神疑鬼！自乱阵脚还怎么对付恶质！”</p>
+<p class = "firstLineIndent">顺天宗的人是笔直着前进，速度也很快，纵然有着四十多公里的距离，他们也在一天时间里跑完了。</p>
+<p class = "firstLineIndent">到了古迹前，不少人已经累得不行，但还是勉强自己没有倒下，第一时间关注起古迹的情况。</p>
+<p class = "firstLineIndent">令他们意外的是，古迹居然还保持着原样。</p>
+<p class = "firstLineIndent">“第三重咒符封印没有损坏，情况还不算太糟糕。”</p>
+<p class = "firstLineIndent">第三重咒符封印的目的是为了起到阻碍恶质逃跑的作用，恶质可以冲破第三重咒符封印，但这需要花一些时间。</p>
+<p class = "firstLineIndent">顺天宗的人在看到第三重咒符封印完好无损的时候，心一下子放了大半。</p>
+<p class = "firstLineIndent">这道封印效果不强，但一下子说明了很多问题，首先是他们最担心的‘外来者释放恶质’或者‘有内鬼释放恶质’这种可能，第三重咒符封印的完好说明了事实并不是他们猜测的那样。</p>
+<p class = "firstLineIndent">通常来讲，如果是外来者或者叛徒想要释放恶质，那就应该会从外部清理掉封印，不然如果内部最核心的第一重封印被破坏，顺天宗这边第一时间就会知道，全宗的精锐会赶来，被第二、第三重咒符封印绊住脚的恶质，又会再次被封印起来，叛徒或者外来者的图谋会功亏一篑。</p>
+<p class = "firstLineIndent">“你们两个留守在外面，其他所有人跟我进去。”</p>
+<p class = "firstLineIndent">为了保险起见，恩雍吩咐两人在外面把守，作为应对突发情况的后援力量，其他人则是深入到古迹中去查探情况。</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">跨过封锁古迹通道的第三重咒符封印，顺天宗的人步入到古迹内，一边小心戒备，一边深入古迹。</p>
+<p class = "firstLineIndent">就这样，他们以不疾不徐的速度靠近了那个曾经被采集者们光顾过的特殊房间前。</p>
+<p class = "firstLineIndent">在看到特殊房间正门上没有被破坏的大锁，本来戒备异常，随时准备与恶质展开一场激烈战斗的恩雍一行人，全都惊讶了起来。</p>
+<p class = "firstLineIndent">“第二重咒符封印居然也没坏……”</p>
+<p class = "firstLineIndent">从第一重核心封印被破坏后，顺天宗的人花了一天的时间在赶路上，这样长的时间，恶质完全有能力冲破第二重咒符封印。</p>
+<p class = "firstLineIndent">可如今，本以为会被恶质毁坏的第二重咒符封印，居然完好无损！</p>
+<p class = "firstLineIndent">这时，顺天宗的人还注意到了另外的一个异常，按理来说，即便恶质没有冲破第二重咒符封印，也不会放弃冲击，只有冲破第二、第三重咒符封印，恶质才能到外面去。</p>
+<p class = "firstLineIndent">可是现在却没有任何动静，以往的古怪声音也荡然无存，一切的一切都显得那么正常，正常的让他们感觉诡异。</p>
+<p class = "firstLineIndent">“怎么回事？为什么会这么安静？”</p>
+<p class = "firstLineIndent">顺天宗的人彼此对视，互相之间商讨了一小会，但都给不出一个合理的解释。</p>
+<p class = "firstLineIndent">最终，恩雍做出了一个决定。</p>
+<p class = "firstLineIndent">“打开看看，我们进到里面去。”恩雍坚定的对众人道。</p>
+<p class = "firstLineIndent">“这……”</p>
+<p class = "firstLineIndent">顺天宗的其他人纷纷用愕然的目光看向他，因为他的这个决定震惊得久久不能言语。</p>
+<p class = "firstLineIndent">现在的情况是，恶质在里面虽然冲破了第一重核心封印，却没有冲击第二重咒符封印，局面还处在可控状态。</p>
+<p class = "firstLineIndent">那么打开第二重咒符封印会发生什么？里面的恶质会不会冲出来？</p>
+<p class = "firstLineIndent">更多的人是倾向于不打开，这让恩雍很恼火。</p>
+<p class = "firstLineIndent">“警报不会出错，里面的一重的封印已经被解开！就算恶质现在还没冲击第二重咒符封印，以后也会，咒符封印根本不可能挡住它！必须重新封印起来！快打开！”</p>
+<p class = "firstLineIndent">谁也说服不了谁，虽然队伍是恩雍带领，可队伍中和恩雍平级的人也有不少，所以恩雍哪怕是宗门内地位较高者，队伍里也没有绝对的话语权。</p>
+<p class = "firstLineIndent">“恩雍，要不请示一下宗主？这种事情应该由宗主做决定。”队伍里不希望看到矛盾升级的尊长提议。</p>
+<p class = "firstLineIndent">恩雍想了想，认同了这一提议，队伍里其他的人也认同。</p>
+<p class = "firstLineIndent">顺天宗的人驻守暂时在第二重咒符封印外面，以动物传递信件的方式，把信息递送回顺天宗，请宗主做决定。</p>
+<p class = "firstLineIndent">最终的决定是倾向于恩雍那边，打开第二重咒符封印，确认房间内部的情况，如果看到恶质，第一时间进行封印处理。</p>
+<p class = "firstLineIndent">队伍里不少人还是有些微辞，但宗主做的决定没人会不服，准备好一切后，怀着谨慎戒备的心态，恩雍等人打开了厚重的正门。</p>
+<p class = "firstLineIndent">当他们看到房间内的情况时，顺天宗的人直感觉上天在拿他们开玩笑。</p>
+<p class = "firstLineIndent">可不是开玩笑吗？里面的一切都完好无损，中央的封印石还在那里，被他们视作灾难的恶质也不见踪影。</p>
+<p class = "firstLineIndent">“第一重的封印还在？？？”</p>
+<p class = "firstLineIndent">“不是被破坏了吗？”</p>
+<p class = "firstLineIndent">“这是怎么回事……”</p>
+<p class = "firstLineIndent">除了问号就是问号，明明宗门内的警报告诉他们，古迹内的第一重核心封印已经被破坏，所以他们才会来到这里，但是现在这是什么情况？一切都完好无损？</p>
+
+
+
+<a href="680.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="700.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

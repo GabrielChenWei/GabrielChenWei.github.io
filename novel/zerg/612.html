@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百一十二章 阉割的文明</h2><hr/>
+<p class = "firstLineIndent">多姆人高层会议</p>
+<p class = "firstLineIndent">“这样下去不是办法，我们太被动了，应该主动出击！”</p>
+<p class = "firstLineIndent">会议上的一个多姆人情绪焦躁的郑重声明，引得会议上的其他人纷纷将目光投向发言者那边。</p>
+<p class = "firstLineIndent">“可是我们根本不知道这个击败邦国的异星势力究竟需要些什么。”另一个多姆人无奈地回答，“是像资人那样喜欢收集稀有金属？还是向贝多人那样热爱艺术创作？或者像瓦特人那样专精于工业？亦或者是喜欢像蝼异人那样的廉价劳动力？”</p>
+<p class = "firstLineIndent">针对这一问题，发言者直言道。</p>
+<p class = "firstLineIndent">“那就去试探，总好过什么也不做，必须让这个异星势力意识到我们多姆邦存在的价值，这样才能保证他们不会伤害我们，而不是寄托在对方虚无缥缈的仁慈上，我们都清楚，那是最靠不住的东西。”</p>
+<p class = "firstLineIndent">采集者它们这方的无欲无求令多姆人非常的不安，没有需求也就没有负担，没有顾忌，意味着对方会不会毁灭多姆人，纯粹看心情。</p>
+<p class = "firstLineIndent">而‘心情’谁又能说得准呢？</p>
+<p class = "firstLineIndent">有了需求后便有了利益捆绑，这种捆绑越是牢固，多姆人就越安全。</p>
+<p class = "firstLineIndent">但现在的问题是，多姆人找不到采集者和副官的需求点，这让他们很是犯难。</p>
+<p class = "firstLineIndent">试探的想法已经提出，便引起了会议上一众多姆人精英的讨论，这种私底下的讨论持续了一段时间后，有一名多姆人起身发言。</p>
+<p class = "firstLineIndent">“试探是必要的，但要尽可能地隐蔽，不能激起这个恒星系统新主人们的反感。”</p>
+<p class = "firstLineIndent">这段发言得到了在场多姆人的一致认同，算是敲定了方向。</p>
+<p class = "firstLineIndent">不过，发言者要说的话还未结束，他继续开口。</p>
+<p class = "firstLineIndent">“另外，我并不觉得有必要着急表态，急于求成的站队反而会让我们非常危险。”</p>
+<p class = "firstLineIndent">因为这段话，本来还私底下交头接耳窃窃私语的会议，陡然间陷入了诡异的寂静当中，空气仿若凝固了一般。</p>
+<p class = "firstLineIndent">“这话怎么说？”有人问。</p>
+<p class = "firstLineIndent">发言者回答，“那股异星势力确实是打败了邦国的舰队，可邦国不可能会轻易的放弃，我们这里作为邦国里中流砥柱的工业星之一，这和最下等的农业星不一样，星球上可还有着大批的工厂，邦国一定会反攻回来。”</p>
+<p class = "firstLineIndent">“一旦邦国反攻回来，且把这股异星势力给赶走，那我们可就麻烦了。”</p>
+<p class = "firstLineIndent">多姆人对采集者这方并不了解，而邦国那边有什么军事底牌多姆人也不清楚，可以说两边都是抓瞎，过早站队风险太大了。</p>
+<p class = "firstLineIndent">“那你的意思是……”</p>
+<p class = "firstLineIndent">“静观其变，对于现在的新主人，该奉承还是要奉承，有什么要求也都满足，只要不提前表态就行，一旦表态了就意味着我们将毫无保留的站在邦国的对立面，太危险了。”</p>
+<p class = "firstLineIndent">发言者的想法在会议上得到一致多姆人精英的肯定——能打赢一场战役不算什么，打赢一场战争才算是真正的胜利者，而他们只需要站在胜利者那边就足够了，最好的方式就是两头下注，反正总有一方会赢。</p>
+<p class = "firstLineIndent">“有道理，战争会一直打下去，最后的赢家才值得我们去表明忠诚……”</p>
+<p class = "firstLineIndent">“说的没错……”</p>
+<p class = "firstLineIndent">在会议上讨论的多姆人没有意识到，在他们开会的这个大厅的墙上，存在着一个一毫米直径的孔洞，这个孔洞内的生物体，一次不差的将多姆人开会时的发言通过生命场传递到采集者们布置在星球上的信息网络里。</p>
+<p class = "firstLineIndent">除了这种负责监视多姆人高层的生命体，在整个多姆人母星城市的大街小巷里，都多出了一种芝麻大小，可以飞行的黑色虫子。</p>
+<p class = "firstLineIndent">多姆人对这一切无所察觉，因为小虫子在星球上并不缺乏，像垃圾堆、城市下水道、公共厕所等这些地方，都是吸引作为星球生态链中分解者的小虫子栖息。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">因此，采集者们很轻易的就在整个星球上所有的多姆人城市明目张胆的完成监视网络的布置。</p>
+<p class = "firstLineIndent">按照原定好的计划，这些虫子不动声色地穿行于多姆人的建筑间，寻找类似报纸这种官方的公告信息载体，同时，它们也会留意每一名多姆人所说的每一句话语，从中甄别出有用的神圣沃姆邦国相关信息。</p>
+<p class = "firstLineIndent">本来，采集者们是想顺带着搜寻这个星球上的图书馆，神圣沃姆邦国的时空瞬移技术实在是令它们垂涎，哪怕只是一种模糊的概念也行，只要能知道基本的原理，采集者们自信集群能够在不久之后复刻出来。</p>
+<p class = "firstLineIndent">这就是一个拥有健全科技树文明的底气。</p>
+<p class = "firstLineIndent">但遗憾的是，采集者们并未找到类似图书馆这种知识信息记录的储藏建筑，反倒是各类化工厂很多。</p>
+<p class = "firstLineIndent">起先采集者们只是以为多姆人藏得很深，一段时间后终于确定，多姆人的母星上并不存在知识储藏的地方，地上、地下、天上都没有，社会结构非常简单，工人以及领导工人的统治阶级。</p>
+<p class = "firstLineIndent">并不存在商人，就连艺术创作者，全球也仅有个位数，而且藏得很深，极少人才知道他们的存在。</p>
+<p class = "firstLineIndent">基于多姆人简单的社会结构，城市设计结构也很简单，城市中心是政权的统治中枢，所以那是一座非常高大的高塔建筑，高塔向外辐射就是一片低矮的房屋，给人的视觉落差很大，好比一只蚂蚁站在一只大象旁边的那种感觉。</p>
+<p class = "firstLineIndent">而在更外围的一圈，就是工厂，工厂的类型很多，大体就是分为两类，重工业工厂和轻工业工厂。</p>
+<p class = "firstLineIndent">轻工业的工厂靠近城市内圈，重工业工厂靠近城市外圈，这些工厂都是通过烧煤驱动蒸汽来运作，照明设施也是使用煤油灯，没有用电的机械。</p>
+<p class = "firstLineIndent">造成这样社会结构的原因，采集者们凭借着覆盖全球的情报网络，花了将近一个月的时间才总算查明——在这个星球上，书籍是违禁品，谁拥有谁就犯法要被处以死刑，同样的，像商人、艺术家这些职业，也是犯法的职业，多姆人社会里就只有两种合法职业，管理者以及工人，他们就是多姆人社会的全部内容。</p>
+<p class = "firstLineIndent">很多多姆人，甚至都不知道‘书籍’这种东西。</p>
+
+
+<a href="611.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="613.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

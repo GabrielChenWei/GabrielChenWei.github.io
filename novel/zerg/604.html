@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百零四章 无所不用其极</h2><hr/>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">在战争影视中，战争的形象被固化为士兵的冲锋陷阵、大炮轰鸣、枪林弹雨、核弹爆炸等等，可事实上并非如此。</p>
+<p class = "firstLineIndent">战争是一种游戏，无所不用其极的游戏，在这个游戏里没有规则就是唯一且最大的规则，只要能获取到最终胜利，参与者就可以使用任何手段。</p>
+<p class = "firstLineIndent">这就是战争。</p>
+<p class = "firstLineIndent">采集者们并没有想过同新帝国的舰队正面硬杠。</p>
+<p class = "firstLineIndent">一来那与它们的任务内容不相符，它们到达这里的目的并非是来杀人。</p>
+<p class = "firstLineIndent">二来就是硬碰硬的方式，太过费时费力，好比导弹兵摁个按钮就能发射核弹夷平一座城市，非要亲自下场把一座城市所有人砍光，那样子可太蠢了。</p>
+<p class = "firstLineIndent">在确认新帝国舰队开拔起航后，采集者们就通过大功率雷达，确认新帝国舰队的航向，然后用电磁炮投射出许许多多的肉质炮弹。</p>
+<p class = "firstLineIndent">这些肉质炮弹在发射后分裂成许许多多的小肉块，每一个的体积也就拳头大小，这也导致新帝国舰队的雷达没能捕捉到它们，体积太小了，而且动能也不大，自动被AI判定为无害。</p>
+<p class = "firstLineIndent">在成功同新帝国战舰外层装甲接触后，这些小肉块就利用化学配位性，在外层装甲上侵蚀出相当于两根头发丝那么细的孔洞，然后改变基因，演化为一种细丝状生物体从孔洞内入侵新帝国的战舰。</p>
+<p class = "firstLineIndent">再有就是，新帝国是脱胎于旧帝国，他们之间的技术、设计思路等只存在着极大的共同，早就对瑟琳人设计思路与理念了如指掌采集者们，很轻松的就规避掉各种战舰内的监控，并没费多大事就找到战舰内的大食堂。</p>
+<p class = "firstLineIndent">最后就是趁着瑟琳人厨师烹饪的时候，神不知鬼不觉的混进食物内。</p>
+<p class = "firstLineIndent">这些丝状的采集者被瑟琳人吃进肚子里后，采集者们凭借着对瑟琳人身体结构的了解，在不触动到瑟琳人各项神经组织的时候，悄无声息的掌控了他们的身体。</p>
+<p class = "firstLineIndent">当新帝国舰队内最后一个瑟琳人被采集者夺取身体掌控权，实质上新帝国舰队就已经输了，后续选择打还是不打根本没有意义。</p>
+<p class = "firstLineIndent">这场战争参与者采集者与新帝国，战损比0:0，最终胜利者采集者。</p>
+<p class = "firstLineIndent">女皇幽幽地从昏睡中苏醒过来，看到的便是一只采集者在自己面前，视线越过这只采集者，她观察环境，发现自己仍然身处于舰桥，满地都是躺倒着的瑟琳人。</p>
+<p class = "firstLineIndent">空气中并没有嗅到血腥味，这让女皇安心不少，最起码这些阿米巴的怪物还没有大开杀戒。</p>
+<p class = "firstLineIndent">此刻她整坐靠在一个角落里，除了眼睛以及面部外，包括头颅转动都办不到，身体仿佛成了其他人的东西。</p>
+<p class = "firstLineIndent">不用过多思考，女皇已经猜到是采集者搞的鬼，联系此前的战败，她隐约猜到了这样的原因。</p>
+<p class = "firstLineIndent">“你好啊，女皇陛下。”</p>
+<p class = "firstLineIndent">“你怎么知道……我？”</p>
+<p class = "firstLineIndent">女皇视线聚焦到采集者身上，同时不忘用余光警惕周围的情况。</p>
+<p class = "firstLineIndent">“问其他人。”采集者用触手指了指那些躺倒在地上的瑟琳人，很自然地回答女皇的问题，“用你们一贯用的手法，分化一批、拉拢一批、打压一批，简单告诉他们我们接受俘虏，不肯配合者，自己连同其家人一律杀死。”</p>
+<p class = "firstLineIndent">“即便他们都对你们新帝国非常忠诚，可他们不能确定其他人是不是也是如此忠诚，只要分不同时间段唤醒他们，彼此互相怀疑，自然会老老实实回答我们的问题。”</p>
+<p class = "firstLineIndent">“你们……”</p>
+<p class = "firstLineIndent">女皇不禁瞪大双目，很是吃惊的凝视着自己面前的采集者，这只采集者的一言一行，完全刷新了她的三观。</p>
+<p class = "firstLineIndent">在女皇的印象当中，阿米巴的怪物脑子都不行，智商很低，根据帝国种子内记载的情报，它们应该只会无脑莽，不断的增值个体，依靠庞大的群体才能实现强大战斗力。</p>
+<p class = "firstLineIndent">可现在她看到了什么？一个采集者居然在告诉她，它是如何轻易地玩弄人心和人性，把自己想要知道的情报通过审讯的方式从被俘虏的帝国战士嘴里抠出来！</p>
+<p class = "firstLineIndent">“不必如此惊讶，这些是我们从帝国那里学到的小技巧。”</p>
+<p class = "firstLineIndent">“除了这种小技巧，这次作战我们也是采用了从帝国那边学到的渗透内爆这种战术思想，还别说，挺好用的。”</p>
+<p class = "firstLineIndent">“你们比演习的帝国舰队差远了，既然知道我们的存在，那就应该事先准备好生命场探测器，这么轻易就被我们潜入进战舰内，你们是我们遇到过最弱的瑟琳人舰队。”</p>
+<p class = "firstLineIndent">采集者直言不讳地说明着新帝国舰队的傲慢和无知，尽管新帝国已经全力以赴，但在采集者们看来，他们表现的这样不设防，是在轻视整个集群。</p>
+<p class = "firstLineIndent">“……你们把我唤醒过来，就是为了羞辱我吗？”女皇问。</p>
+<p class = "firstLineIndent">“这个倒不是，我们只是想告诉你一件事。”采集者回答。</p>
+<p class = "firstLineIndent">“什么事？”</p>
+<p class = "firstLineIndent">女皇隐隐有股不安的预感，她随即想到了自己不安的来源于何处，开始暗自祈祷，阿米巴怪物想要告知自己的事情不要同自己想的一样。</p>
+<p class = "firstLineIndent">可惜，事与愿违。</p>
+<p class = "firstLineIndent">“其实你们这样大张旗鼓的进攻只不过是个幌子，目的是将我们所有的注意力都吸引到你们这边，让一艘飞船逃离这个恒星系统，对不对？”</p>
+<p class = "firstLineIndent">“……”女皇没有回答，但这样的沉默不语，其实就已经是答案。</p>
+<p class = "firstLineIndent">这位掌控新帝国的女皇内心乱糟糟的，心中暗骂那些泄露情报的叛徒，同时发誓，如果还有机会，一定要杀光这些苟且偷生的叛徒。</p>
+<p class = "firstLineIndent">采集者看出了女皇的想法，很贴心的回答。</p>
+<p class = "firstLineIndent">“其实没有谁告诉我们你的计划，你的保密工作做得很好，只不过我们一开始就已经猜到，毕竟有先例。”</p>
+<p class = "firstLineIndent">打不过就逃，很简单的想法，采集者们自己的实力它们相信瑟琳人一定非常清楚，同时也相信，瑟琳人一定会想方设法的逃出这个恒星系统，就像起始恒星当初帝国投放出种子那样，在这点上采集者们一直都有关注。</p>
+<p class = "firstLineIndent">实际情况确实如采集者们所预料的那样，新帝国也投放出属于他们的种子，而且由于工业能力不达标，新帝国没办法做到旧帝国的那种程度，意图逃出恒星系统的只不过是一艘大型移民飞船，凭借着反物质推进，几只跃进生物很轻松的就拦截下那艘移民飞船。</p>
+<p class = "firstLineIndent">败的彻彻底底，毫无还手之力——女皇惆怅的深叹口气。</p>
+<p class = "firstLineIndent">“如今我们战败了，你们究竟想怎么样？是想让我这个反抗者更加痛苦的死去吗？”</p>
+<p class = "firstLineIndent">“你们怎么这么死脑筋，我们要杀你们的话，有必要这么麻烦吗？恕我直言，你们弱的离谱，根本不够作我们的对手，明不明白？不要给我们这个集群增加工作难度。”</p>
+<p class = "firstLineIndent">“……”</p>
+
+
+<a href="603.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="605.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

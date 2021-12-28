@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第五百七十章 我们接受俘虏</h2><hr/>
+<p class = "firstLineIndent">采集者们分工明确，各自奔向了任务中的目标星体，有的是仅剩下轨道残骸廖无人烟的行星，有的则是卡特人母星索里，还有的是太空中侥幸躲过奇点爆发的六号太空城。</p>
+<p class = "firstLineIndent">很快，六号太空城的雷达在跃进生物仍处于很远距离的时候便捕获到它们的位置，或者说采集者们根本就没打算隐藏自己。</p>
+<p class = "firstLineIndent">“雷达侦测到二十个不明放射源，并且正在高速接近我们！预计半个自转轮就会抵达我们这里！”</p>
+<p class = "firstLineIndent">雷达员神情紧张的汇报着自己的观测，他们是已经知道大舰队的湮灭，毁灭的过程也从索里那边完整的获知到。</p>
+<p class = "firstLineIndent">六号太空城的所有人谁都清楚，他们没有赢的可能，继大舰队之后，他们也将会步上后尘。</p>
+<p class = "firstLineIndent">“终于轮到我们了吗……”太空城的司令官看着雷达上显示的信息，喃喃自语了一会，似乎是在感慨，随后便下令，“让武器系统上线！我们将代表卡特人太空舰队，与阿米巴文明作最后的殊死一搏！”</p>
+<p class = "firstLineIndent">六号太空城中的各项武器，从各个闸门内延展出来，卡特人建造这种太空建筑时，考虑的便是战争运用，太空城即是一座太空城市，也同时是一座太空要塞，武装到牙齿，拥有多个核反应堆供能，拥有远超一支千艘数量舰队的火力，装甲更是进行了多种结构化设计，在已有的材料基础上，进一步的提升整体结构强度。</p>
+<p class = "firstLineIndent">由于不需要考虑推进移动这点，吨位可以肆意的放大，连带着反应堆的体量，有能力搭载更大更多的镭射激光、电磁炮类武器，可以说是一只太空中极为难对付的钢铁怪兽。</p>
+<p class = "firstLineIndent">可是如今，这样的战力根本不能给予太空城内的卡特人任何安全感，因为他们面对的敌人，是比这个太空怪兽还要恐怖一亿倍还要多的超级大恐怖。</p>
+<p class = "firstLineIndent">仅是一瞬间的功夫，就将恒星系统内将九成以上的军事力量扫荡干净。</p>
+<p class = "firstLineIndent">城内所有的卡特人，都是下了必死的决心。</p>
+<p class = "firstLineIndent">就在司令官将决战的命令颁布后没过多久，一条来自阿米巴方向的无线电信息被六号太空城接收到。</p>
+<p class = "firstLineIndent">“接收到未知信号，信号来源方向为不明放射源！”雷达员紧张地汇报。</p>
+<p class = "firstLineIndent">“翻译！”司令官道。</p>
+<p class = "firstLineIndent">翻译起来并不难，早已知晓摩尔斯电码破译方法的卡特人，很快便将采集者们递送的信息给解读出来，显示屏上显示出非常简短的一行字。</p>
+<p class = "firstLineIndent">【投降，或者被迫投降。】</p>
+<p class = "firstLineIndent">太空城的指挥室内一片寂静，有人甚至揉了揉眼睛，以为是自己眼花看错了，他们在无线电破译前的时候，曾设想过各种内容，可是却没有一个有想到，这居然是阿米巴文明给他们的劝降信息！</p>
+<p class = "firstLineIndent">“司，司令？”</p>
+<p class = "firstLineIndent">下属的声音带着些颤抖，但已经足够让六号太空城的司令官从惊讶中回过神来。</p>
+<p class = "firstLineIndent">不少人因为这句劝降动起了私心，没人不想活着，可对手外星文明，对方会怎么对待卡特人根本不知道，按照科幻作品中的表现，往往是赶尽杀绝的居多，因此没有卡特人会认为，阿米巴会对他们施以善意，更没人会认为阿米巴会接受投降。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">现在，情况不一样了，阿米巴的这句劝降就好比在蓄满水的大坝上倔了个窟窿，大坝决堤只是早晚的事情，傻子才会去想打一场明知会输的战争，说不定连收尸的人都没有。</p>
+<p class = "firstLineIndent">随后，又是一段无线电信息被六号太空城接收到，同样是源自于还未抵达的阿米巴。</p>
+<p class = "firstLineIndent">在征得六号太空城司令官的同意后，这段无线电信息也被翻译了出来。</p>
+<p class = "firstLineIndent">【败局已定，没有争斗的意义了，想死的人可以去自杀，不要拉上其他想活下去的卡特人，我们这边愿意接受俘虏。】</p>
+<p class = "firstLineIndent">原本还将信将疑的卡特人，纷纷用热切的目光看向自己的上司，司令官能从他们的目光中看到同一种想法——答应阿米巴，我们还想活下去。</p>
+<p class = "firstLineIndent">这样的情况，司令官自己也非常明白，如果选择不答应，恐怕他会被杀死，想要求生的人在死亡面前，是什么都能做得出来，什么种族荣辱，家国责任，在如今的这个时刻，统统都是虚假的东西。</p>
+<p class = "firstLineIndent">指挥室内的气氛很沉闷，所有人都在等待着上司的命令。</p>
+<p class = "firstLineIndent">最终，司令官下达了命令</p>
+<p class = "firstLineIndent">“回信阿米巴……”</p>
+<p class = "firstLineIndent">“我们投降。”</p>
+<p class = "firstLineIndent">双方进行了沟通，选定****离开太空城，进行受降仪式——这主要是太空城单方面提出来，他们实在是想看看，将他们打败的阿米巴人究竟长得什么样子。</p>
+<p class = "firstLineIndent">顺带着，也能看看阿米巴的战舰长的是什么样子，或许对卡特人文明的未来有所帮助——当然，这只是或许。</p>
+<p class = "firstLineIndent">“这就是阿米巴的战舰吗？和那些科幻作品中的不大一样，看着好丑，我想阿米巴文明的设计师一定不知道什么叫做美学。”</p>
+<p class = "firstLineIndent">从六号太空城中出来三名卡特人，分别是副司令、总工程师、以及通讯员。</p>
+<p class = "firstLineIndent">“喂，说话注意点，如果被阿米巴听到，激怒了他们该怎么办？我可不想死。”</p>
+<p class = "firstLineIndent">通讯员瞪了总工程师一眼。</p>
+<p class = "firstLineIndent">副司令穿着太空服，来到跃进生物一侧延展的平台上，环顾四周，并没有看到他们想看的阿米巴人，在等待了一会后，他用自己太空服上的通讯仪器发送无线电信息。</p>
+<p class = "firstLineIndent">“我是第六太空城的副司令，代表六号太空城前来进行投降，请问阿米巴的代表在哪？”</p>
+<p class = "firstLineIndent">“我一直都在你们面前。”</p>
+<p class = "firstLineIndent">“我们看不到你，能让我们看到吗？”</p>
+<p class = "firstLineIndent">错以为阿米巴人是完全透明的生物，副司令诚恳的询问。</p>
+<p class = "firstLineIndent">不过，换来的是对方意外的反问。</p>
+<p class = "firstLineIndent">“我这么大的体型你们看不到？你们卡特人的视觉系统这么糟糕吗？”</p>
+<p class = "firstLineIndent">“呃……”副司令明显愣了一下，随后他便迅速整合信息，明白过来，不可思议的看着跃进生物，喃喃自语中倒吸一口凉气。</p>
+<p class = "firstLineIndent">“该不会……”</p>
+<p class = "firstLineIndent">“这个样子，你们应该能够理解了吧？”</p>
+<p class = "firstLineIndent">跃进生物的一侧迅速地长出一个肉瘤，肉瘤很快转变为一个卡特人的躯体，不过这个卡特人的身后有着一根肉质管子连接着，而且外观上也极不符合卡特人的审美，非常的辣眼睛。</p>
+<p class = "firstLineIndent">简单点形容就是，有着貂蝉的身材却长着一个李逵的脑袋。</p>
+<p class = "firstLineIndent">这对卡特人来说，是极其震撼的一幕。</p>
+<p class = "firstLineIndent">“你们，你们究竟是什么？”</p>
+<p class = "firstLineIndent">总工程师忍不住发出质问，吓得一旁呃通讯员忍不住拉了拉他的胳膊，赶忙提醒。</p>
+<p class = "firstLineIndent">“喂！注意用词！”</p>
+<p class = "firstLineIndent">采集者倒也不介意这个，这种反应它们早就习惯了，外星人总是这样，看到一些不了解的东西就一惊一乍。</p>
+<p class = "firstLineIndent">“我们没有固定的外观，躯体就如同你们的衣服，在很早的以前，我们便能够对基因进行干涉修改，基于这样的能力发展起自己的文明。”</p>
+<p class = "firstLineIndent">受降仪式进行的很快，是三个六号太空城的卡特人代表想快点结束，因为采集者转换出来的那个‘卡特人’实在是辣眼睛。</p>
+<p class = "firstLineIndent">他们甚至忍不住在想，这会不会是阿米巴的代表在故意恶心他们？</p>
+<p class = "firstLineIndent">在受降仪式即将结束的时候，副司令询问采集者。</p>
+<p class = "firstLineIndent">“最后我想知道，你们打算怎么处置我们这些战败者？”</p>
+<p class = "firstLineIndent">这是代表六号太空城全体卡特人发出的询问，当然，因为是无条件投降，所以哪怕阿米巴给出的处置方式极其过分，太空城中的卡特人也必须接受。</p>
+<p class = "firstLineIndent">“你们过去怎么在自己母星上生活就怎么生活，我们不打算干涉。”采集者回答。</p>
+<p class = "firstLineIndent">“那你们阿米巴的目的是什么？”</p>
+<p class = "firstLineIndent">“控制这个恒星系统，将你们文明收归为我们的附庸文明。”</p>
+
+
+
+<a href="569.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="571.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

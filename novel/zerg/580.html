@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第五百八十章 恒星资源开发任务（3）</h2><hr/>
+<p class = "firstLineIndent">“你想制造超新星爆发？”</p>
+<p class = "firstLineIndent">即便是神经如此大条的采集者们，也是第一时间觉得提出这个方案的个体，精神有些不正常。</p>
+<p class = "firstLineIndent">“不不不，我们可以利用磁场，将被黑洞引力捕获的恒星物质给偏转，这样黑洞的质量就不会持续不断的增加。”</p>
+<p class = "firstLineIndent">方案的提出者急忙说明自己的想法，按照它的构思，黑洞因为公转的离心力，始终不与恒星直接接触，但黑洞的引力却可以将恒星中的物质给拉扯出来，这种情况在宇宙中是很常见的天文现象。</p>
+<p class = "firstLineIndent">甚至可以说，采集者们通过远程观测到的绝大部分黑洞，都是‘它们’正在进食恒星而显露出踪迹，不然就黑洞这样的‘黑’实在是很难在宇宙背景中发现。</p>
+<p class = "firstLineIndent">“黑洞奇点爆发了怎么办？”有个体提出质疑。</p>
+<p class = "firstLineIndent">“不用担心奇点爆发，黑洞的质量与寿命成正比，质量越大寿命越长，只要黑洞能达到恒星级别的质量，蒸发到无法维持自身形态的时间，起码需要以亿年为单位。”</p>
+<p class = "firstLineIndent">关于这个问题，方案的提出者早就想好了应对方式，亿年尺度的时间，完全足够采集者们做任何事，哪怕那个时候族群还是没有能力应付奇点爆发，也完全足够族群撤离到相当远的地方。</p>
+<p class = "firstLineIndent">“那黑洞的质量从什么地方获取？”又有个体问。</p>
+<p class = "firstLineIndent">“从恒星那里获取，它的质量是现成的，我们只需要负责制造出这样一个黑洞，让它以一个椭圆轨道围绕着恒星运动，近日点的时候，会大量吸取恒星物质，远日点的时候则不会，由此可以在一定程度上实现对黑洞吸取物质的控制。”</p>
+<p class = "firstLineIndent">“可随着黑洞质量的增加，这个轨道会越来越小。”</p>
+<p class = "firstLineIndent">有个体担忧黑洞会失控，随着黑洞吞噬物质的增多，其本身的质量也会增加，如果在近日点一次性吞噬大量的恒星物质，且黑洞距离恒星又比较近，极有可能会就这样坠落进恒星内部。</p>
+<p class = "firstLineIndent">“所以我才说，只是一定程度上的控制，这还需要结合另外的一部分，那就是在黑洞外面制造出一圈类似恒星球一样的构造，因为黑洞体积小，因此就不需要建造大尺度的结构，微观尺度的电磁力可以发挥出作用。”</p>
+<p class = "firstLineIndent">方案的提出者说明着自己的想法，这也是它方案中最为重要的一个部分，那就是恒星物质的磁偏转装置，这样的装置会包裹住黑洞，使黑洞不再有机会吞噬到物质，被磁偏转的恒星物质，会导入到另外一个装置内降温降速，等温度和速度下降后，这些恒星物质就会成为可供族群使用的物质。</p>
+<p class = "firstLineIndent">这就是它灵光一现，思考出来直接开采恒星中物质的方法！</p>
+<p class = "firstLineIndent">“这可行吗？”</p>
+<p class = "firstLineIndent">很多采集者们都迷茫了，因为这个方案中涉及到黑洞这个玩意，光是听起来就觉得不怎么靠谱，毕竟黑洞给采集者们的第一印象往往是——看到以后躲远点。</p>
+<p class = "firstLineIndent">“完全不可行。”有反驳者站了出来。</p>
+<p class = "firstLineIndent">“还是回到了原来的那个问题上，自转的同时进行翻滚运动，会造成球体的撕裂，在黑洞强大引力的作用下，这样的撕裂效应只会比恒星上的更加明显。”</p>
+<p class = "firstLineIndent">针对这个问题，方案提出者说明着自己的的想法，它也想到了球体撕裂这一问题，因此便打算以另外一种形状来应对黑洞的引力问题。</p>
+<p class = "firstLineIndent">“我们可以通过三棱锥体的结构性，把引力给分散掉，这样就没问题了。”</p>
+<p class = "firstLineIndent">因此结构小，电磁力的作用也就变得明显了，利用从材料中的电磁力，把黑洞引力分摊成三股力，并转移到离心力强的部位用于承担，而非是直接依靠离心力薄弱的部位对抗黑洞引力。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“不用球体结构，而采用三棱锥？”</p>
+<p class = "firstLineIndent">质疑者有些懵了，按照物理模型，三棱锥可不是什么适合用于星体建设中的结构，方案提出者应该还不至于蠢到犯这样的错误，它觉得还是有必要问清楚，以免自己理解错了。</p>
+<p class = "firstLineIndent">果然，方案的提出者重新说明自己想表达的东西，并非是什么三棱锥结构，而是32面体结构。</p>
+<p class = "firstLineIndent">“不，我是打算采用32面体的结构，圆球体的大体结构仍然是受力最均匀的状态，但自转导致的局部受力不均现象，则需要通过其他方式来弥补，我想到的方法就是将这种结构所受到的力分散开，分担到其他受力更强的区域……”</p>
+<p class = "firstLineIndent">这样的结构，32面体的‘棱’会分摊到‘面’的力，只要巧妙的利用这一点，就可以实现将黑洞引力分摊，并转移到离心力足够强的部位。</p>
+<p class = "firstLineIndent">然而，即便是如此，还是有个体反对。</p>
+<p class = "firstLineIndent">“我反对！”</p>
+<p class = "firstLineIndent">“为什么？”方案提出者问。</p>
+<p class = "firstLineIndent">反对者说明着它反对的理由。</p>
+<p class = "firstLineIndent">“风险太大了，黑洞这样极端的天体，其本身的质量与密度极其恐怖，在建造的过程中，只要它的运行轨道值发生哪怕一个千分点的误差，都可能使其坠落进恒星，引发极其恐怖的灾难，而且在轨道控制上，我们是很难控制吸取大量物质的黑洞该怎样运动，因为质量太大了，想要推动这样的星体所需要的能量超乎想象。”</p>
+<p class = "firstLineIndent">“每一个环节都太理想了，我们不可能完全避免掉意外，你的方案容错性太低，并不适用于实际。”</p>
+<p class = "firstLineIndent">被其他个体就这样随随便便的反对掉，方案提出者自然能是不可能服气，最起码目前它的方案是最接近任务目标的方案，反对者既然提出反对意见，那起码得给出一个能够顶替掉它这个方案的更完美方案出来。</p>
+<p class = "firstLineIndent">“那你有更好的办法？”方案提出者问。</p>
+<p class = "firstLineIndent">“有的。”反对者回答。</p>
+<p class = "firstLineIndent">“是什么？”</p>
+<p class = "firstLineIndent">“仍然是与你相同的引力吸取物质的方法，不过，我不用黑洞。”</p>
+<p class = "firstLineIndent">反对者的这个信息引得其他采集者们很是费解。</p>
+<p class = "firstLineIndent">“不用黑洞用什么？用其他的星体吗？那样的话更难控制，黑洞起码体积足够小，其他星体会因为体积的原因，导致结构不得不放大，而强度下降，如果是中子星的话，那与黑洞其实并没有什么太大不同，而且制造起来也不像黑洞那样容易。”</p>
+<p class = "firstLineIndent">反对者回答，“不不不，也不用中子星，那个也太极端了，我打算用的是——引力环。”</p>
+
+
+
+<a href="579.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="581.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

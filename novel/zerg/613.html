@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百一十三章 情报汇总报告</h2><hr/>
+<p class = "firstLineIndent">作为使者之一的瑟琳人副官通过远程通讯工具，向新帝国舰队高层以及采集者那边进行汇报工作。</p>
+<p class = "firstLineIndent">“目前针对神圣沃姆邦国信息汇报……”</p>
+<p class = "firstLineIndent">副官开始组织语言，将汇总好的情报说明出来。</p>
+<p class = "firstLineIndent">“神圣沃姆邦国，一个恶意文明，具有高度的侵略性，会无差别的攻击任何他们接触到的文明。”</p>
+<p class = "firstLineIndent">“但凡向神圣沃姆邦国归降并纳入辖下的文明，会被进行阉割处置，不被允许拥有太空战舰，以及相应的工业设施。”</p>
+<p class = "firstLineIndent">“被阉割过后的文明，不被允许也无法发展起舰队，科技方面同样如此，投降后的文明是神圣沃姆邦国体系中最低下的奴隶，邦没有进入到太空的权利，永远都只能在星球地表上。”</p>
+<p class = "firstLineIndent">“向归降神圣沃姆邦国的文明会被故意改造成离开邦国就活不下去的样子，它们要么只有工业，要么只有农业，要么就是一个大兵营，这种被阉割过后的文明就被称作‘邦’。”</p>
+<p class = "firstLineIndent">“如此一来，这些归降于神圣沃姆邦国的文明就不再具备反叛的能力，即使舰队不出动，背叛的结果也只有饿死，或者在一段时间后退化到原始社会，就算集体叛乱，它们也没有太空运输能力，即使有也无法通过神圣沃姆邦国的舰队，所组成的封锁线。”</p>
+<p class = "firstLineIndent">副官话语顿了顿，讲述完‘邦’的成因与用意，他开始讲述邦与神圣沃姆邦国之间的关系，以及神圣沃姆邦国是如何从邦中抽取到可以为他们所用的资源。</p>
+<p class = "firstLineIndent">“神圣沃姆邦国并不需要这些邦的忠诚，他们只需要这些邦在臣服和死亡之间作出一个选择，绝大多数的邦出于理性思维，为了生存都会选择后者。”</p>
+<p class = "firstLineIndent">“神圣沃姆邦国很少与辖下的邦正面接触，他们不会直接统治这些异星种族，邦与神圣沃姆邦国工业体系接轨的方式是贸易，神圣沃姆邦国对归降文明中的个体而言是非常遥远且陌生。”</p>
+<p class = "firstLineIndent">“神圣沃姆邦国会根据每个邦的生产力，给予他们刚好辛勤工作才能换到足够的必需品，这样的交换名为‘贸易’却读作‘奴役’，因为这并非是平等，神圣沃姆邦国一方可以任意操纵贸易品价格，辖下的邦没有任何选择权。”</p>
+<p class = "firstLineIndent">“每当邦因贸易问题而堆积的内部矛盾积累到一定程度爆发时，归降文明中的个体只会冲击文明中的统治政权，因为那才是它们实际接触到的，神圣沃姆邦国对它们实在太过遥远，基本矛盾不会转嫁到神圣沃姆邦国那边。”</p>
+<p class = "firstLineIndent">“神圣沃姆邦国也不会去试图介入，因为无论邦内部的统治政权无论更换成谁，对他们而言都没差别。”</p>
+<p class = "firstLineIndent">“即便邦内部的统治政权垮台，新的政权也只能选择与神圣沃姆邦国重新达成‘贸易’，邦国处于幕后，辖下邦内的平凡个体基本不会注意到真正的祸根，而这些平凡个体中少数的聪明人，在绝对的实力差面前，要么选择认清现实放弃抵抗，要么不甘压迫奋起反抗，最后因孤掌难鸣，被残酷的镇压下去。”</p>
+<p class = "firstLineIndent">“以上，便是根据现有从多姆人那里收集到的所有信息进行的汇总报告。”</p>
+<p class = "firstLineIndent">情报总结汇报结束，通讯另一端的采集者和新帝国高层都处于沉默的思考着。</p>
+<p class = "firstLineIndent">良久之后，由新帝国高层首先询问。</p>
+<p class = "firstLineIndent">“辛苦你了，那有关于神圣沃姆邦国军事力量的情报呢？”</p>
+<p class = "firstLineIndent">副官随即便作出应答，“神圣沃姆邦国对辖下邦的信息封锁很严格，我们所消灭的那些敌人便是多姆人知道的全部。”</p>
+<p class = "firstLineIndent">基于目前的情报，神圣沃姆邦国的文明体系中，他们是没必要给邦递送过多的军事信息，因为这些邦不是文明成员，而是文明财产，是奴隶。</p>
+<p class = "firstLineIndent">敬畏来源于未知，维持一种半神秘性的姿态，更加的有利于统治这些邦，如果一个邦太过于清楚神圣沃姆邦国的真正实力，就可以与自己进行对比，从而丧失敬畏心，会触动神圣沃姆邦国的统治基础。</p>
+<p class = "firstLineIndent">因此，每个邦只会知道它们所处的那个恒星系统内，邦国拥有着什么样的军事力量，其他被统治的恒星系统，则一概不知。</p>
+<p class = "firstLineIndent">采集者这方打算从多姆人这里获取神圣沃姆邦国总体战力的思路从一开始就不可能行得通。</p>
+<p class = "firstLineIndent">在新帝国高层询问结束，另一边的采集者随后询问副官。</p>
+<p class = "firstLineIndent">“神圣沃姆邦国所拥有辖下的‘邦’数量为多少？”</p>
+<p class = "firstLineIndent">“数量未知，但从目前收集的情报来看，至少不低于两位数。”副官汇报道。</p>
+<p class = "firstLineIndent">“嗯。”</p>
+<p class = "firstLineIndent">采集者点点头，没在询问其他。</p>
+<p class = "firstLineIndent">在副官与那名新帝国高层讨论其他事情的时候，采集者将信息递送到距离最近的同族那里，再藉由同族作为中转站，递送到整个族群。</p>
+<p class = "firstLineIndent">这些信息在经过层层递送后，穿过了门，到了新帝国的恒星系统最外侧柯伊伯带，被处于这个位置的一个小型生物分支群给接收到。</p>
+<p class = "firstLineIndent">这个小型生物分支群同一时间延展自己的不透光薄膜，共同组成一面面积相当于三个地球视面积的平面，恒星的光芒在一个方向上被完全的遮蔽。</p>
+<p class = "firstLineIndent">这些生物体翻转自己的不透光薄膜，从某一方向上，恒星因为它们这个群体性的行为而开始闪烁不定，而且只是在特定方向上才能观察到这种闪烁不定。</p>
+<p class = "firstLineIndent">采集者们的信息便是以这样的方式递送到恒星系统之外，距离光年级尺度的其他同族那里。</p>
+<p class = "firstLineIndent">【于任务目标恒星系统中发现名为‘门’的人造物，初步推定为‘虫洞’，在门后确认新发现文明，该文明为恶意文明且拥有无法解析的高端技术，有能力对我方个体造成有效杀伤，危险等级为三，申请更大规模的族群力量介入进来，请求族群对其进行针对性的战略部署……】</p>
+<p class = "firstLineIndent">【确认存在复数外星种族，数量初步推定为两位数，正在深入调查……】</p>
+<p class = "firstLineIndent">【……门后恒星系统坐标尚未查明，疑似与辉文明相关联，当前不具备决定性证据证明这点，该条仅限于猜测。】</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">恒星之外，群星闪烁。</p>
+
+
+
+<a href="612.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="614.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

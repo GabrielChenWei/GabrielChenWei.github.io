@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百零八章 战术战略的确定</h2><hr/>
+<p class = "firstLineIndent">作战会议室内，采集者与新帝国的指挥官们聚在一起商讨作战事宜。</p>
+<p class = "firstLineIndent">采集者们那方多是沉默，看着新帝国的指挥官们给它们讲解战略，这个恒星系统毕竟是新帝国的主场，他们要比才抵达没多久的采集者们更加的了解战场环境。</p>
+<p class = "firstLineIndent">“我们已经将对方派遣过门的舰队消灭，可以继续趁胜追击，穿过门到另一端，向神圣沃姆邦国发起进攻。”</p>
+<p class = "firstLineIndent">一名指挥官在三维投影前比划，投影随着那名指挥官的比划而随之变动。</p>
+<p class = "firstLineIndent">“神圣沃姆邦国在门的两端都驻防有多个太空要塞，要穿过门就先要夺取或者摧毁这些太空要塞。”</p>
+<p class = "firstLineIndent">投影中的门围绕着一圈人造建筑，由于门的质量已经达到了红矮星级别，这些人造建筑只需要达到一定的速度便可以不再需要外力，稳定的围绕在门的周围。</p>
+<p class = "firstLineIndent">“我们需要尽可能的拉近作战，不宜使用远程类武器，门一旦被流弹击中，立刻就会启动应敌机制，后果会很严重。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“有多严重？”</p>
+<p class = "firstLineIndent">关于门反击机制的事情，采集者们有些上心起来，对于这个问题，新帝国这边似乎颇为忌惮。</p>
+<p class = "firstLineIndent">听闻采集者这番询问，指挥官很笃定的给出答案。</p>
+<p class = "firstLineIndent">“我们会全军覆没。”</p>
+<p class = "firstLineIndent">针对这个回答，采集者的生命场频道内乱作一团，各种想法层出不穷。</p>
+<p class = "firstLineIndent">询问的采集者沉默了一小会，向新帝国那方表达意向。</p>
+<p class = "firstLineIndent">“……请把关于门这部分的情报内容交予我们，我们需要对门重新进行战略评估。”</p>
+<p class = "firstLineIndent">“很抱歉，我们这里也没有相关的信息。”</p>
+<p class = "firstLineIndent">新帝国那边交头接耳，私下交流一番后，纷纷向采集者们说明原因。</p>
+<p class = "firstLineIndent">“在一次神圣沃姆邦国的决策失误中，我们将他们穿过门的所有战舰都消灭殆尽，随即便展开对门的夺取作战，向着驻扎在门附近的驻守军发起进攻。”</p>
+<p class = "firstLineIndent">“毫无防备的神圣沃姆邦国驻守军处在极端的劣势中，就在这一切战略进程按照我们预想中的展开之际，负责进攻的新帝国舰队，突然之间集体失去了联系，新帝国也由此遭到重创，重新变为劣势。”</p>
+<p class = "firstLineIndent">“那你们是如何确定是门攻击了新帝国舰队？”采集者问。</p>
+<p class = "firstLineIndent">“神圣沃姆邦国的驻守军毫无招架之力，战场上除了门以外，找不到第三者。”</p>
+<p class = "firstLineIndent">“最初我们也仅只是怀疑，而后面，派遣出去调查舰队覆灭原因的科研船以生命为代价，告诉了我们攻击者是谁。”</p>
+<p class = "firstLineIndent">“很遗憾，科研船同样也没有留下任何关于门攻击手段的信息内容。”</p>
+<p class = "firstLineIndent">新帝国这边的回答，让采集们对于这个问题的重视程度有上升了一个层次。</p>
+<p class = "firstLineIndent">很显然，新帝国的科研船是确定了攻击者是门，只不过为了让新帝国相信他们的判断，而冒险使用攻击门的方式来证明。</p>
+<p class = "firstLineIndent">但这种试探有一个前提，那就是试探者必须安全，如果不安全，那傻子才回去试探，纯粹是闲自己活得太久。</p>
+<p class = "firstLineIndent">也就是说，那艘科研船自认为自己安全，然后才试探门的反击机制，结果招来了灭顶之灾，这是唯一的解释。</p>
+<p class = "firstLineIndent">可问题是，既然科研船是有着十足的准备，也准备对门的反击机制进行信息记录，却没有任何信息被新帝国接收，这就很耐人寻味了。</p>
+<p class = "firstLineIndent">种种迹象都在表达着一种答案，这个答案即使是采集者们也会感到些许压力——光速打击！</p>
+<p class = "firstLineIndent">只有光速打击，才能让雷达和记录仪变成瞎子、聋子。</p>
+<p class = "firstLineIndent">“有从那艘科研船的残骸中调查出什么吗？”采集者询问细节。</p>
+<p class = "firstLineIndent">新帝国的指挥官回答，“科研船碎的很彻底，最大的一块碎片也只与我们的眼睛一般大，很难想象当初的科研船究竟遭到了什么样的攻击。”</p>
+<p class = "firstLineIndent">这样的答案很明显不是激光这种攻击能打的出来，更像是一种动能打击，采集者们在频道内简单的使用物理模型模拟了一下后，确定了这个事实。</p>
+<p class = "firstLineIndent">不过这倒不算是太过难为采集者们的问题。</p>
+<p class = "firstLineIndent">反击机制是有一个范畴限定，如果说只要触碰到门就算攻击的话，那毫无疑问，门会首先把恒星给打爆，因为恒星释放的粒子流每时每刻都在撞击门，尽管由于距离原因粒子的数量很稀薄，但这不等于没有。</p>
+<p class = "firstLineIndent">这个界限同样不局限在生物上，否则门会将一切敢于注视到它的人都统统消灭，因为光子也是实体，眼睛的工作原理是通过光子的反射接收到被反射物体的信息。</p>
+<p class = "firstLineIndent">撞击与触碰本质上是相同，只不过两者携带的动能不同，因而造成的效果也不同——想到这些的采集者认为，门之所以会攻击，主要是因为它有一个阈值，一旦超过这个阈值就会被判定为攻击。</p>
+<p class = "firstLineIndent">忽然，又有一只采集者发起询问。</p>
+<p class = "firstLineIndent">“我有个问题，如果敌方飞船爆炸，散射的碎片命中了门，那门反击的对象会是谁？”</p>
+<p class = "firstLineIndent">“……不知道，我们不曾尝试过，门可能会反击攻击的发起者也可能不会，自从那次对门的夺取作战失败后，我们就再也没有机会重来。”</p>
+<p class = "firstLineIndent">新帝国那边尽皆无奈摇头，他们对于门的研究并不能算是多么深入，一直被神圣沃姆邦国压着打，那样的资源和机会去研究门的奥秘。</p>
+<p class = "firstLineIndent">“我们不建议你们冒险以强攻的方式夺取，作为阿米巴生物的你们，可以使用此前击败舰队的方法，通过潜入，无声无息的把驻守要塞逐一拔除。”</p>
+<p class = "firstLineIndent">他们的想法就是希望采集者对那些驻守要塞也来一次潜入战术，以尽可能小的动静消灭掉所有驻守要塞内的敌人。</p>
+<p class = "firstLineIndent">“你们以为我们的那种战术是那么容易的事情吗？”</p>
+<p class = "firstLineIndent">“我们对神圣沃姆邦国一无所知，现在我们掌握着他们的情报要远高于他们掌握我们的情报，这样的优势如果乱用战术，优势就会被浪费掉。”</p>
+<p class = "firstLineIndent">采集者们鄙视的扫了一眼对面的新帝国指挥官们，在战术思想上，他们太过稚嫩了，它们敢于使用那种战术，是因为它们对瑟琳人非常了解，可神圣沃姆邦国方面，采集者们了解的并不深，很容易导致失败。</p>
+<p class = "firstLineIndent">关于作战方面，它们有自己的想法，没必要使用成功率偏低的战术。</p>
+<p class = "firstLineIndent">“战斗讲究的就是一个突然性，突然到对手无力招架，无法防御，一击即溃，最好是在他们反应过来前就成为定局。”</p>
+<p class = "firstLineIndent">“门的反击机制问题很容易解决，只要不爆炸且没有流弹，不就没问题了？”</p>
+
+
+<a href="607.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="609.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百二十二章 机甲与战舰</h2><hr/>
+<p class = "firstLineIndent">“这星图看起来好怪啊……”</p>
+<p class = "firstLineIndent">跃进生物用触手不断的变换调整一张面积大约是40张A4纸大小的纸质星图角度，因为它总觉的自己拿反了。</p>
+<p class = "firstLineIndent">“有什么问题吗？”</p>
+<p class = "firstLineIndent">临近的跃进生物从身侧延伸出一根突触，突触的末端长着一只眼睛，凑到纸质星图的旁边。</p>
+<p class = "firstLineIndent">“你看，这上面的恒星坐标。”</p>
+<p class = "firstLineIndent">采集者驱使触手点了点星图上的那一颗颗星辰。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“有什么问题吗？”</p>
+<p class = "firstLineIndent">“问题大了，我找了半天都没找到与之相对应的星体，搞不好我们拿到的是一份假星图，神圣沃姆邦国用来迷惑我们。”</p>
+<p class = "firstLineIndent">采集者的质疑被同族给否定了。</p>
+<p class = "firstLineIndent">“这个可能性很小，为了确定星图的准确程度，星球上的同族收集了该星球上所有的星图，每张都有些差异，但差异性并不大。”</p>
+<p class = "firstLineIndent">“这还不止是在一颗星球上收集。”</p>
+<p class = "firstLineIndent">言罢，同族伸出触手，向质询的采集者讨要那张纸质星图。</p>
+<p class = "firstLineIndent">“给我看看。”</p>
+<p class = "firstLineIndent">“诺。”</p>
+<p class = "firstLineIndent">接过星图，开始端详。</p>
+<p class = "firstLineIndent">星图的描绘非常简陋，这是纸质星图原产地星球上描绘最详尽，信息内容最丰富的星图，可在采集者们眼里仍然是非常简陋。</p>
+<p class = "firstLineIndent">星图是以一个个恒星系统作为基本单元，每个恒星系统以简易俯瞰的视角将其记录在星图上，该恒星系统内有几个恒星几个行星都有记录，不过像诸如行星与恒星之间的间距，恒星的具体质量参数等是没有的，正因如此，在采集者们眼里，神圣沃姆邦国的星图非常简陋。</p>
+<p class = "firstLineIndent">有个体想出将神圣沃姆邦国的星图与它们族群的星图进行对照，于是便有了刚才跃进生物将星图翻来覆去的一幕。</p>
+<p class = "firstLineIndent">“这不是很容易对照吗？”</p>
+<p class = "firstLineIndent">触手点了点纸质星图上的一个恒星系统坐标。</p>
+<p class = "firstLineIndent">“这里，就是我们当前的恒星系统位置。”</p>
+<p class = "firstLineIndent">之前质询的个体摆了摆触手，解释。</p>
+<p class = "firstLineIndent">“我知道这个，我对比过了，可旁边的呢？距离我们最近的恒星系统，2光年，这是个双恒星系统，可这上面记录的是一个单恒星系统。”</p>
+<p class = "firstLineIndent">因为找不到对应匹配的恒星系统，质询的个体才会犯难起来。</p>
+<p class = "firstLineIndent">然而，同族却否定了它话语里，‘最近’这个概念。</p>
+<p class = "firstLineIndent">“不，那个恒星系统不是最近的。”</p>
+<p class = "firstLineIndent">“不是最近？”</p>
+<p class = "firstLineIndent">质询的个体愣了愣，只见同族用触手指了指一座门的方向。</p>
+<p class = "firstLineIndent">“距离这个恒星系统最近的是门后的恒星。”</p>
+<p class = "firstLineIndent">“神圣沃姆邦国的星图上，记录的全都是拥有门的恒星系统，他们通过门完成跨恒星航行。”</p>
+<p class = "firstLineIndent">寻思一番，质询个体举一反三的的反问起来。</p>
+<p class = "firstLineIndent">“……那是不是就能百分之百的肯定，神圣沃姆邦国没有其他手段实现跨恒星远航？那种疑似与灵域相关的瞬移技术，并不能做到跨恒星。”</p>
+<p class = "firstLineIndent">“应该是这样…嗯？有情况！全体戒备！”</p>
+<p class = "firstLineIndent">交流的信息才进行一半，跃进生物的观测雷达就捕捉到从一座门那边，冲出来了许许多多的战舰。</p>
+<p class = "firstLineIndent">这些战舰很快便与负责驻守的新帝国舰队展开交火。</p>
+<p class = "firstLineIndent">这是一场突袭战，好在新帝国舰队早已时刻戒备着，很快就进入到作战状态。</p>
+<p class = "firstLineIndent">新帝国舰队是没办法阻拦神圣沃姆邦国的舰队群过门，源源不断的战舰过门后投放出大量机甲，展开的机甲群犹如乌云一般。</p>
+<p class = "firstLineIndent">数量庞大的自主舰群，朝着敌方舰队发起冲锋，新帝国战舰从远程辅以伽马射线炮进行火力支援。</p>
+<p class = "firstLineIndent">从整体上看，是守株待兔的新帝国这方占据优势，可在交手之后，结果却是相反，新帝国的舰队被压着打。</p>
+<p class = "firstLineIndent">自主舰凭借着庞大的数量，强势冲锋摧毁了不少的敌方战舰，可问题是，神圣沃姆邦国舰队的主要力量就不在战舰上，战舰只是个托运平台，真正的战斗力是那些可以瞬移的机甲，而这些机甲，自主舰想要攻击到实在是太难了。</p>
+<p class = "firstLineIndent">自主舰的威力是通过加速自身，与目标物发生碰撞才能发挥，高速意味着高惯性，自主舰速度越高越难作出进行蛇皮走位，毕竟不是谁都像跃进生物那样，用正反物质湮灭来作为动力。</p>
+<p class = "firstLineIndent">“后撤！”</p>
+<p class = "firstLineIndent">新帝国的舰队司令下达命令。</p>
+<p class = "firstLineIndent">“可司令，上级的命令是死守……”</p>
+<p class = "firstLineIndent">“闭嘴！我说后撤！服从命令！”</p>
+<p class = "firstLineIndent">舰队司令瞪了一眼向自己进言的下属，舰队依照司令的指示，拉大与门之间的距离。</p>
+<p class = "firstLineIndent">不过，他们与神圣沃姆邦国的那些战舰距离却并没有拉开，神圣沃姆邦国的战舰也拥有瞬移的能力，他们推进器技术确实很糟糕，仍然采用落后的化学推进，但他们拥有瞬移技术，这就很好的弥补掉了战舰航速不足的问题，即便新帝国的战舰航速比神圣沃姆邦国的的战舰高，也根本甩不掉这些敌舰，反过来落入低航速劣势。</p>
+<p class = "firstLineIndent">许许多多的机甲借助瞬移的手段，轻而易举的就入侵了新帝国战舰的内部，一艘艘的战舰化作星空中的烟火，绚烂夺目。</p>
+<p class = "firstLineIndent">当然，这种战法很快就被新帝国的战舰内部措施给遏制住，大量的纳米机械充斥着整艘战舰，从外面入侵到战舰内部的机甲如果不能及时逃出去，没几分钟就被肢解干净。</p>
+<p class = "firstLineIndent">新帝国战舰的近防火力全开，与旧帝国那边不同，因为常年与神圣沃姆邦国交战，新帝国的战舰侧重于近防。</p>
+<p class = "firstLineIndent">新帝国战舰以往的近防武器都是用电磁机枪这样的实弹类，借助子弹运动轨迹的难以捕捉以遏制机甲的瞬移能力。</p>
+<p class = "firstLineIndent">如今都换成了激光类近防，因为要守卫门，不能让流弹集中门，激发门的反击机制。</p>
+<p class = "firstLineIndent">舰队司令现在的策略，也是为了避免门的反击机制，和神圣沃姆邦国打交道这么久，没有专门对付机甲大军的手段，新帝国早就被攻陷了。</p>
+<p class = "firstLineIndent">“差不多了……”</p>
+<p class = "firstLineIndent">“炸！”</p>
+<p class = "firstLineIndent">随着一声令下，那些还在与机甲大军纠缠，却怎么也没办法攻击到瞬移机甲的自主舰，全体炸裂，大量子弹体积的碎片四散开来，数以亿计的数量在宏观尺度上看，蔚为壮观，好似一朵正在盛开的花朵。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">这对于机甲大军而言是极其有效果的杀伤手段，躲不掉，哪怕瞬移了也只是短距离瞬移，只要没能一下子瞬移到很远的距离就都得死。</p>
+<p class = "firstLineIndent">碎片的飞散是完全随机，体积又很小，机甲根本没办法依靠瞬移全部躲开，更不敢随便瞬移，搞不好瞬移完成的下一刻，一枚碎片直接贴脸击穿仅有碳钢强度的机甲。</p>
+<p class = "firstLineIndent">机甲大军转瞬间死伤过半，新帝国的战舰趁此机会用伽马射线炮远程狙击，伤亡数量进一步的提升。</p>
+<p class = "firstLineIndent">还有不少机甲存活下来，这些机甲的驾驶者都是神圣沃姆邦国那边的精英机师，依靠敏锐的洞察力和强大的近战技术与光武器，把来袭的飞散碎片给摧毁汽化，这才堪堪保住自己的小命。</p>
+<p class = "firstLineIndent">就在新帝国舰队司令考虑下一步战术时，令他始料未及的事情发生了。</p>
+<p class = "firstLineIndent">这些机甲没有继续朝新帝国的战舰发起猛攻，放任战舰与机甲大军拉开距离，搭乘着剩余下来还未被摧毁的战舰，重新退回到门后。</p>
+
+
+
+<a href="621.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="623.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

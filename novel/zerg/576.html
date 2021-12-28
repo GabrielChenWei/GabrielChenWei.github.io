@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第五百七十六章 古迹中的残言（下）</h2><hr/>
+<p class = "firstLineIndent">【片段十四：这一代的凯特人文明中，发生了瘟疫，这种疾病来自于一种被冰层封困的远古病毒，随着凯特人文明工业技术的发展，导致南北两极冰川大面积的消融，将这些冰川封印起来的远古病毒释放——试验所在经过讨论之后，决定不插手，由凯特人自己去对抗病毒，只在凯特人危在旦夕的时候，再进行介入，我们对凯特人非常有信心。】</p>
+<p class = "firstLineIndent">【片段十五：我们意料错了，能力并不能说明什么，个体的自私破坏了文明整体抵御病毒的最佳时机，那些伤病患者故意隐瞒病情，生怕被同胞们视为异类，可这也导致了病毒进一步的扩散，如今这个时候，凯特人所有的政府机构都全部陷入瘫痪状态，这些政府机构并未重视病毒，而当病毒酿成恶果后，又自认为事情已经不可挽回，开始自暴自弃，这出乎了我们的预料，也出乎了灵域的计算，等再死一些凯特人，就到我们介入的时候了。】</p>
+<p class = "firstLineIndent">【片段十六：凯特人似乎管试验所介入的调控手段叫做群体免疫，这下可麻烦了，如果他们自认为这样就能对疾病高枕无忧的话，那这个文明岂不是不会再关心疾病方面的技术？这样的结果可不是我们想要的，试验所的全体人员在经过讨论后决定，下一次的瘟疫发生时，凯特人人口要降到三位数，试验所才会进行介入。】</p>
+<p class = "firstLineIndent">【片段十七：凯特人因为这次的病毒危机，导致人口锐减，进而导致技术、经济、文化的大面积倒退，所长对此表示很担忧，试验所里的其他人也是差不多，不过在我看来并不是这样，这只是暂时的倒退，凯特人很快就会重新恢复过来。】</p>
+<p class = "firstLineIndent">【片段十八：事实正如我所料的那样，凯特人从疾病的阴霾中恢复过来，我一下子成了试验所里的焦点，不过还不等我们高兴多久，另一件令我们担忧的事情出现了，那就是核武器的制造——上一代的凯特人文明就是因为核大战而走向毁灭，这一代的凯特人有很大概率可能会重蹈覆辙，在商议过后，试验所最终决定，提前介入，在一切都不至于演变成不可挽回之前，做好准备——我们试着用一些流言信息，引导凯特人的考古学者将上一代凯特人文明的遗迹发掘出来，以此让这代的凯特人获悉到核大战的恐怖，事实正如我们所料的那样，整个凯特人社会开始呼吁消除核弹。】</p>
+<p class = "firstLineIndent">【片段十九：核大战还是爆发了，凯特人的决策层大脑都塞的是什么？整个文明都毁灭了，对他们来说有好处吗？正因为这些白痴，我们试验所不得不启用最不想采用的决定，进行物理上的介入，这次介入的代价是要给全球范围内的每个凯特人进行记忆修改——这庞大的工作量，我都快忙吐了。】</p>
+<p class = "firstLineIndent">【片段二十：我被所长训了一顿，因为我擅自把上次打算进行核大战的凯特人决策层，物理上的抹除掉了，用他们的克隆人顶替掉本尊在凯特人社会里空缺的位置，因为这种擅自行动，所长大发雷霆，让我禁足房间里一年的时间面壁——讲道理，我这样的行为有错吗？把一群没脑子的蠢货给踢走，换上一群脑子好的优秀克隆人工作，那些凯特人感谢我还来不及，导致上代凯特人文明毁灭的核大战将会是过去式——绝对不是因为给我过高工作量的私人报复，我的出发点是非常正义的！】</p>
+<p class = "firstLineIndent">【片段二十一：凯特人开始向宇宙探索了，他们每个国家通力合作，在宇宙中建设太空站，发射火箭，探测器从母星轨道拓展到其他行星轨道，我想，随着凯特人技术的进步，需要我们试验所介入的事情会越来越少，我也终于能有时间去和亲爱的洁伶好好聊会天。】</p>
+<p class = "firstLineIndent">【片段二十二：我从洁伶那里知道，河系中现在文明的数量越来越多，她告诉我，随着实验进行到最终阶段，河系中的每个星球上都会存在着文明，不止是行星，还有小行星、恒星、类星体、黑洞等等，这些星球上或者附近都会存在着文明，说实话，我有点被吓到了，忍不住问了她上次的那个问题，这个实验的最终目的是什么？——洁伶很明白的告诉我，她也不知道，不过有可能会危及到我们文明本身，希望我能做好准备——我想这一定是她在戏弄我，已经触及到宇宙顶端层次，还拥有近乎无所不能无所不知的灵域，我们文明能有什么危险？依我看，最关心的问题还是在试验结束后，该怎么处理河系内数量过剩的文明，按照凯恩特的想法，干脆就让他们自己打架，适者生存，宇宙中亘古不变的法则。】</p>
+<p class = "firstLineIndent">【片段二十三：最近发生了些奇怪的事情，凯特人的死亡率在飙升，他们的死因各不相同，有的是走在路上被掉落物砸死，有些是被车撞死，有些是因为小病拖成大病，大病有拖成绝症，最终病死，种类繁多，这些倒还合情合理，最令我感到怪异的是，居然还有凯特人因为喝水而被呛死，我用灵域进行了探查，确实没有外界干扰的因素在里面，这些难道都是偶然吗？】</p>
+<p class = "firstLineIndent">【片段二十四：针对莫名飙升的死亡率，所长打算使用灵域介入进来，把那些高出来的‘偶然’给剔除掉，让凯特人恢复到正常的死亡率，先稳住凯特人的情况，在深入调查这种莫名现象的起因。】</p>
+<p class = "firstLineIndent">【片段二十五：从洁伶那里我知道了，原来不止是凯特人的死亡率在飙升，其他试验所的实验文明死亡率也在莫名飙升，当我问起此事时，所长居然表现出我以前从未见过的兴奋情绪，这难道就是文明级实验最终在等待的结果？我莫名的感到不安，这种不安我很熟悉，是很早以前就存在于我的潜意识当中，如今的我终于意识到不安来源于何处。】</p>
+<p class = "firstLineIndent">【片段二十六：我找到了原因，可是我说服不了整个文明的人停止这个实验，他们自认为依靠着灵域，高端的技术，就能够与其抗衡，殊不知他们忘记了，这些东西都是别人给予他们的，我已经看到了辉的陌路，毁灭于我们的傲慢中，我必须趁早带着洁伶还有文明火种离开，在它动手之前……】</p>
+<p class = "firstLineIndent">【片段二十七：别了，DGF-8834号试验所，很高兴能在你这里任职。】</p>
+
+
+
+
+<a href="575.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="577.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

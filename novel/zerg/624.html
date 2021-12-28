@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第六百二十四章 没有最低只有更低</h2><hr/>
+<p class = "firstLineIndent">跃进生物们的战斗视角遵照集群率领者的指示切换到热成像，能清晰地看到一个大光球，那是这个恒星系统内的恒星，还有一些光芒弱于恒星的发光球体，但这些发光球体的亮度分布并不均匀，一面要比另一面更亮眼，这些是行星，恒星光照带来的热量会让它们朝阳面地表的温度整体升高，近距离的地表上不明显，可在远距离的热成像观测中，却是清晰可见。</p>
+<p class = "firstLineIndent">除了这些外，采集者们还看到了一群比行星更小的光点，它们间距不大且分布散乱，好似夏夜里半空中游弋的萤火虫。</p>
+<p class = "firstLineIndent">这些是敌人确定无疑，采集者们锁定住了敌人。</p>
+<p class = "firstLineIndent">敌人对于采集者们更换视角这件事还浑然未知，他们朝着采集者们这边，通过闪现瞬移的方式靠近，拉近与跃进生物集群之间的距离。</p>
+<p class = "firstLineIndent">在普通视角下，那只巨大无比的恒星系统级怪物，也在动作着，无数的触手在舞动，随便一条触手的粗细都相当于土星的直径，许许多多的眼睛和血盆大口，狰狞可怖，背景星空完全被怪物庞大的体量遮蔽，正常视角下，采集者们仅能看到百分之十五的星空。</p>
+<p class = "firstLineIndent">它摆动着触手，意图将采集者们用触手包裹，任意拿捏，宛若那不可名状支配群星的无名神祇，诸天万物皆为尘埃浮云，血盆大口徐徐张开，那里面便是地狱的最底层，最为无尽深邃的黑渊。</p>
+<p class = "firstLineIndent">它就这么直挺挺的朝着采集者们靠近、压来、包裹……跃进生物集群成了怪物的瓮中之鳖，砧板鱼肉。</p>
+<p class = "firstLineIndent">红外视角下，被采集者们所谓目标的光点释放出了许许多多更小的光点，数量要比作为目标的光点数量更多，而与此同时，采集者们这边也进行炮击每一枚作为目标的光点在刚刚完成一次瞬移之后，便被采集者们伽马射线炮‘近距离’击穿——这个近距离是相对于采集者们所使用的伽马射线炮威力而言。</p>
+<p class = "firstLineIndent">仅是两轮齐射的时间里，恒星系统级别的怪物转瞬之间便土崩瓦解，支离破碎，消散于无形当中。</p>
+<p class = "firstLineIndent">由于生物雷达又能重新发挥效用，采集者们立刻捕捉并分析敌人所投放出，在热成像中的大量小光点，这些光点的速度并不快，至少没有达到亚光速的级别，因此采集者们两轮齐射过后，这些小光点仍然还在奔向采集者们的路途上。</p>
+<p class = "firstLineIndent">凭采集者们的机动性，轻而易举的便躲过这些在热成像里的小光点，并对其进行捕获分析，确定碳钢为主材料，镀上一层铬的实心弹。</p>
+<p class = "firstLineIndent">光只是这样，还不足以让采集者们感觉意外，毕竟宇宙里的火炮武器在过去阿米巴也是用过的，排出命中率很低这点，虽然动能火炮原始但很有效，宇宙中的作战平台因为相对较高的速度，动能炮弹的威力会倍增。</p>
+<p class = "firstLineIndent">在采集者们勘测敌军单位残骸获取信息后，集体完全是傻了眼。</p>
+<p class = "firstLineIndent">“铁船？里面居然是木制的？这些战舰的设计师脑子没问题吧？”有个体忍不住质疑起来。</p>
+<p class = "firstLineIndent">原来在勘测敌军单位残骸后，采集者们，发现这些敌军战舰的内部结构是木铁复合的结构，外面是一层厚度半米的铁板，然后就是木板，船骨架也是木铁复合，主龙骨是一条长长的铁柱，旁龙骨是两根粗长的木柱，横向的肋板也分为两种，铁制与木制，其中木制肋板占据多数，铁制肋板为少数。</p>
+<p class = "firstLineIndent">这样的船舶在采集者看来就和纸糊的没什么两样，很难想象居然有人敢用这样的设计应用太空战舰上。</p>
+<p class = "firstLineIndent">知道这些的采集者们无一例外地感到非常惊讶。</p>
+<p class = "firstLineIndent">采集者们原本以为，之前与神圣沃姆邦国交战的战舰技术水平已经足够低下，万万不曾想到，还有比这更加低下的战舰设计。</p>
+<p class = "firstLineIndent">形象一点的比喻来描述采集者们当前的状况，就好比非洲土著开着用破木板拼接起来的破木筏当作战舰，同采集者们这边的满编航母舰队展开了一场海上大战。</p>
+<p class = "firstLineIndent">有那么一瞬间，采集者们感觉不到胜利的喜悦，有的是许多储备反物质在战斗里被浪费的痛心。</p>
+<p class = "firstLineIndent">随后，它们又勘测了那些太空要塞的残骸，心更痛了。</p>
+<p class = "firstLineIndent">“那些太空要塞也是这样，比原先攻击的太空要塞差太多，只是外面有着一层铁板，内在基本混凝土和木头进行填充。”</p>
+<p class = "firstLineIndent">这种太空要塞远不如采集者们此前遇到的太空要塞，防御性太差了，如果说此前采集者们进攻的神圣沃姆邦国驻守的太空要塞是纸糊的东西，那现如今破坏的这些太空要塞就是豆腐制品，都不用什么亚光速炮弹，一块速度够快质量够大的陨石就能直接打散架。</p>
+<p class = "firstLineIndent">明明是用普通的反物质炸弹就能清理掉整个太空要塞，而它们却用了黑洞炸弹，还是用了这么多枚，采集者们越想越觉得它们这场胜利赢得很亏。</p>
+<p class = "firstLineIndent">“难道我们此前战斗的那些军事力量就是神圣沃姆邦国的最精锐力量？”</p>
+<p class = "firstLineIndent">有采集者们因为此时的所见所谓而冒出这样的想法，集群率领者倒不着急下结论，它让指派个体去分别获取战舰内部乘员生命体信息以及内部的文字信息。</p>
+<p class = "firstLineIndent">“这是新的种族。”</p>
+<p class = "firstLineIndent">勘测结束的采集者回报，这是一种半动物半植物的生物体，有些类似共生关系，植物负责勾连动物体内的许多神经体，让动物的思维可以变得更加灵敏，而动物的生物体则会将一些养分供给到寄生在自己的植物那里维持生命。</p>
+<p class = "firstLineIndent">从思维上看，是动物在起主导思想，但植物的作用同样也不可或缺，大概就是脑子和心脏那种感觉，植物与动物这两部分结合到一起，才能算是一个完整的‘人’。</p>
+<p class = "firstLineIndent">这样的生命形态令采集者很感兴趣，之前的亏本感好上了许多。</p>
+<p class = "firstLineIndent">“恒星系统内并没有宜居星球，他们来自其他地方。”</p>
+<p class = "firstLineIndent">采集者用生物雷达扫描整个恒星系统，并没有发现什么宜居星球，由此断定这些陌生的外星人来自其他恒星系统。</p>
+<p class = "firstLineIndent">除此之外，采集者们还注意到，这些外星人内部的文字内容与神圣沃姆邦国所使用的文字是不同的。</p>
+<p class = "firstLineIndent">“这些战舰内使用的文字好像不是神圣沃姆邦国的通用文字。”</p>
+<p class = "firstLineIndent">“这说明了什么呢？”</p>
+<p class = "firstLineIndent">“说明这些外星人的母文明文化氛围很浓厚，没有被神圣沃姆邦国给同化？”</p>
+<p class = "firstLineIndent">“应该不对吧……”</p>
+<p class = "firstLineIndent">讨论一番后，采集者们决定继续扩张，集群率领者下令。</p>
+<p class = "firstLineIndent">“按照原定的计划继续扩张，如今获得的情报太少，猜测也仅能停留在猜测阶段。”</p>
+<p class = "firstLineIndent">“不过要更谨慎一些，刚才敌人制造的那种虚假投影我们迄今为止都不曾遭遇过，难保后面不会有其他怪异的手段。”</p>
+<p class = "firstLineIndent">“说的没错。”</p>
+<p class = "firstLineIndent">一众采集者皆认同这一想法，并将这场战斗的内容详细汇报到族群那边。</p>
+
+
+<a href="623.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="625.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

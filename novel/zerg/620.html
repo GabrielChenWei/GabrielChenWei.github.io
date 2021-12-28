@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百二十章 弱的有些假</h2><hr/>
+<p class = "firstLineIndent">一群采集者锚泊在神圣沃姆邦国的星港残骸，到处都是飘散的碎片、补给、尸体，厚实的装甲崩裂扭曲，宏大雄伟的钢铁巨兽早已被不知道什么力量给撕得粉碎。</p>
+<p class = "firstLineIndent">虽说这里已经是一片废墟，到处都是乱飞且速度很快的碎片，但对拥有质子晶格体的采集者们来说，确实是一个不错的落脚点，这座星港的残骸可以作为采集者们维持生命的补给来使用。</p>
+<p class = "firstLineIndent">它们的观测器官时刻都在锁定着门的方向，提防可能会穿过门敌方舰队。</p>
+<p class = "firstLineIndent">“我们还不出发吗？”</p>
+<p class = "firstLineIndent">有一个个体有些等不住，便不解的询问自己的同族们。</p>
+<p class = "firstLineIndent">“笨，我们现在的战略资源不足，要等族群的后勤队。”</p>
+<p class = "firstLineIndent">“尤其是反物质，消耗太多了。”</p>
+<p class = "firstLineIndent">询问的个体有些委屈，它只是不理解为什么集群要在这里等待。</p>
+<p class = "firstLineIndent">“可我们的战略资源明明还很充裕啊……”</p>
+<p class = "firstLineIndent">“空余下来的这些战略资源，是为了应对突发情况，把战略资源全部打光，敌人反扑又该怎么办？拿什么打？”集群率领者反问。</p>
+<p class = "firstLineIndent">“不是有新帝国的舰队顶替我们作为防守力量？”</p>
+<p class = "firstLineIndent">采集者们这一路来可谓是高歌猛进，驻守军在它们的突袭下根本不堪一击，往往是一个照面就被杀绝了，敌人连它们的面都不曾见过。</p>
+<p class = "firstLineIndent">修曼所服役舰队的那次，是为了获取神圣沃姆邦国更多有用的情报，才主动现身。</p>
+<p class = "firstLineIndent">正因为敌人表现得如此弱小，采集者才觉得没必要这样谨慎。</p>
+<p class = "firstLineIndent">但它的这种想法，并不能得到集群率领者的认同。</p>
+<p class = "firstLineIndent">“万一呢？万一没守住怎么办？意志教过我们，凡是要做好最坏的打算。”</p>
+<p class = "firstLineIndent">“这样啊……”</p>
+<p class = "firstLineIndent">采集者想了想，也不再想反驳，既然是意志教过的，那终归是没错，毕竟意志总是正确的。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“抱歉，我们来迟了。”</p>
+<p class = "firstLineIndent">携带着补给的后勤队，从一端的门中抵达采集者们驻留的恒星系统。</p>
+<p class = "firstLineIndent">这些亚光速生物与跃进生物构建连接通道，把自己体内的补给过渡进对方的体内。</p>
+<p class = "firstLineIndent">在补给的同时，有采集者询问后勤队的同族。</p>
+<p class = "firstLineIndent">“引力环那边的建设进度到什么程度了？”</p>
+<p class = "firstLineIndent">“我们离开时还在加紧赶工，金属氢资源数量仍然不够，处于囤积阶段，搭建引力环需要再等上一段时间。”</p>
+<p class = "firstLineIndent">后勤队的采集者回答，随后反问。</p>
+<p class = "firstLineIndent">“你们的进度呢？”</p>
+<p class = "firstLineIndent">“因为门的特殊性，我们的进度很快，总共已经摧毁了58座恒星系统里的敌人，占领恒星系统37座，剩余那部分打下来的恒星系统则作为前线的战略纵深。”集群率领者回答。</p>
+<p class = "firstLineIndent">“有遭遇到什么强敌吗？”</p>
+<p class = "firstLineIndent">后勤队的采集者又问，它们必须问的详细，因为这些是要带回去给其他集群的的信息，那边的采集者会根据信息采取相应的行动。</p>
+<p class = "firstLineIndent">“没有，很轻松。”集群率领者回答。</p>
+<p class = "firstLineIndent">“敌人很弱？”</p>
+<p class = "firstLineIndent">后勤队的采集者们很是意外，因为从上报族群情报来看，敌人是非常强大，其他恒星系统的集群都对与神圣沃姆邦国交战的前线很是担忧。</p>
+<p class = "firstLineIndent">万万没想到，事实却与它们想的出入这样大。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“倒也不能说很弱。”</p>
+<p class = "firstLineIndent">一只跃进生物回答，随后又是一只跃进生物解答。</p>
+<p class = "firstLineIndent">“敌人杀伤力不弱，虽然材料学等技术我们处于碾压地位，但瞬移和光武器这两种技术，将他们本来的技术劣势给扳平了，甚至我们是处于较为劣势的那一方。”</p>
+<p class = "firstLineIndent">“我们是劣势的那一方？不理解。”</p>
+<p class = "firstLineIndent">后勤队的采集者满头问号，我们是劣势？然后对手又很弱？这不是很矛盾吗？既然我们是劣势，那应该被压着打才对，一直打胜仗是什么情况？</p>
+<p class = "firstLineIndent">见后勤队的同族们没理解，集群率领者解释。</p>
+<p class = "firstLineIndent">“打个比方，帝国的母舰级你们还记得吗？”</p>
+<p class = "firstLineIndent">“记得。”</p>
+<p class = "firstLineIndent">后勤队的采集者们回答。</p>
+<p class = "firstLineIndent">“如果要攻击母舰级，是不是要先破坏掉母舰级的装甲？”</p>
+<p class = "firstLineIndent">“是这样没错。”</p>
+<p class = "firstLineIndent">集群率领者循序善诱，以反问的方式深入到话题核心当中。</p>
+<p class = "firstLineIndent">“那么拥有瞬移技术的话，只需要通过一个瞬移绕过母舰级装甲的防御，不就可以进行内部的破坏了吗？”</p>
+<p class = "firstLineIndent">“呃……”</p>
+<p class = "firstLineIndent">后勤队的采集者们愣了愣，发现拥有瞬移技术后，确实是可以实现一些相当可怕的作战模式，如果族群应用了瞬移技术，恐怕装甲就成为过去式了。</p>
+<p class = "firstLineIndent">“瞬移配合上那种连质子晶格体都可以破坏的发光近战武器，新帝国那边能撑这么久真是奇迹。”</p>
+<p class = "firstLineIndent">有跃进生物不禁感叹起来，毕竟新帝国是那样的弱，居然还没被神圣沃姆邦国给灭掉或者打败。</p>
+<p class = "firstLineIndent">“那按理来说，我们应该不可能这样容易取胜才对，为什么？”</p>
+<p class = "firstLineIndent">后勤队的采集者们不理解这种情况，对此集群率领者表达了自己的看法。</p>
+<p class = "firstLineIndent">“不知道，或许是因为敌人的决策层没什么脑子也说不定。”</p>
+<p class = "firstLineIndent">“战争要获得胜利，往往是离不开情报，可是打了这么久，也没见他们有情报获取的行为……”</p>
+<p class = "firstLineIndent">跃进生物们有考虑到敌人会因为它们的攻击方式采取针对性的防御，因此，尤为的注意自身情报的泄露，警惕着被针对性防御，往往开战前会专门制定数十套反制方案。</p>
+<p class = "firstLineIndent">然而，一路过来，采集者们都没用过这些方案，一直都是突袭，然后毁灭，敌人在它们的进攻下根本不堪一击。</p>
+<p class = "firstLineIndent">这种胜利甚至让采集者觉得很虚假，是敌人故意放出来的圈套。</p>
+<p class = "firstLineIndent">“会不会有诈？”</p>
+<p class = "firstLineIndent">后勤队的采集者也很自然的便想到了这点。</p>
+<p class = "firstLineIndent">“不确定，所以我们才刻意留出一些恒星系统作为缓冲地带没有占据，没敢继续推进，扩大战果。”</p>
+<p class = "firstLineIndent">要不是因为担心是圈套，集群率领者恨不得再多打下几个恒星系统，这些可都是实打实的物质资源，而且各个恒星系统之间还是没有过长延时的实现物质上的流通。</p>
+<p class = "firstLineIndent">沟通完该沟通的信息，后勤队也将补给都输送完，向跃进生物们询问。</p>
+<p class = "firstLineIndent">“有什么要我带回去的信息吗？”</p>
+<p class = "firstLineIndent">被这样一问，集群率领者思考一番，便答。</p>
+<p class = "firstLineIndent">“下次光带反物质就够了，其他战略资源可以在新帝国所在的恒星系统里加工出来，要学会节省载重。”</p>
+<p class = "firstLineIndent">“了解。”</p>
+<p class = "firstLineIndent">像诸如黑洞炸弹、亚光速炮弹等都是需要反物质作为原料，而新帝国所在的恒星系统内，反物质巨构数量并不多，因此集群率领者才会提议这个。</p>
+<p class = "firstLineIndent">集群率领者又想到一件事，嘱咐。</p>
+<p class = "firstLineIndent">“还有，你回去以后记得催一催它们，有了引力环，我们也就没这样多的顾忌了。”</p>
+<p class = "firstLineIndent">“诶？又催啊？”</p>
+<p class = "firstLineIndent">“怎么了？”集群率领者问。</p>
+<p class = "firstLineIndent">“之前已经有同族催过它们，那边也在加快速度……”</p>
+<p class = "firstLineIndent">还未说话就被集群率领者给打断。</p>
+<p class = "firstLineIndent">“那就再催，能提升就提升，这没冲突。”</p>
+<p class = "firstLineIndent">“哦。”</p>
+
+
+<a href="619.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="621.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

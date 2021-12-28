@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第六百零三章 你们这届不行</h2><hr/>
+<p class = "firstLineIndent">广播频道内，女皇慷慨激昂的且极其庄严的进行着演讲。</p>
+<p class = "firstLineIndent">“这是背水一战，勇士们！”</p>
+<p class = "firstLineIndent">“我明确的告诉你们，我们没有任何活路，对手是已经具备恒星际航行能力的旧帝国死敌，阿米巴文明！它们是一群吞噬一切的怪物！”</p>
+<p class = "firstLineIndent">“它们毁灭了旧帝国，而今又来到这里，为的就是斩草除根不留后患！让帝国彻底从宇宙中绝迹！”</p>
+<p class = "firstLineIndent">“诚然，我们仍然无法与旧帝国比肩，但至少也要让阿米巴文明知道，我们绝非是胆怯的懦夫！纵使终将迎来终结，那也必然是以轰轰烈烈的方式结束！给那群怪物们留下不可磨灭的烙印！”</p>
+<p class = "firstLineIndent">“以牙还牙！以血还血！”</p>
+<p class = "firstLineIndent">内容并不算好，女皇很明确地说明了当前的情况，但也正是这样连一线生机都没有的绝境，反倒激发了瑟琳人内心的凶性——既然要灭亡，为什么不给那群要毁灭自己的阿米巴文明一记重创？作为一名战士又怎么能甘心于瑟瑟发抖的躲在星球上，眼睁睁看着亲人、朋友连同自己一起毁灭呢？</p>
+<p class = "firstLineIndent">这关乎到作为一名战士的尊严，带着悲壮的情绪，瑟琳人军队中的士气反而高昂起来，长时间进行战争的他们，根本不害怕战死沙场这样的结局，反倒对他们而言，这是一种独属于军人的荣耀。</p>
+<p class = "firstLineIndent">演讲结束，重新退居幕后的女皇询问凑到近前的下属。</p>
+<p class = "firstLineIndent">“有多少人选择退出？”</p>
+<p class = "firstLineIndent">“4234人，要不要……”</p>
+<p class = "firstLineIndent">并非是所有军人都不惜命，每个军人都是独立的个体，不可能所有瑟琳人的价值观都相同，在一些人看来，在灭亡前陪伴自己家人到最后，也未尝不是一个最好的选择。</p>
+<p class = "firstLineIndent">所以，他们暗中选择逃出军队。</p>
+<p class = "firstLineIndent">这样的选择，早就被女皇等新帝国高层预料到，下属的意思是在询问女皇，是否需要将这些逃跑者依法处置？</p>
+<p class = "firstLineIndent">女皇微微摇头，深叹口气，神色非常没落。</p>
+<p class = "firstLineIndent">“不用，结果都一样，这是一场没有胜利的战争。”</p>
+<p class = "firstLineIndent">“开除他们的军籍，让他们留在安瑟拉上陪伴自己的家人到最后一刻，这是个人的选择。”</p>
+<p class = "firstLineIndent">女皇不想这样强人所难，尽管帝国一项律法从严，但这已经是最后一次，稍微宽容一下也未尝不可。</p>
+<p class = "firstLineIndent">相比起这件事，另一件事更为重要，女皇把目光聚焦到下属身上，嘱咐。</p>
+<p class = "firstLineIndent">“我指派给你去完成的秘密任务一定要做好，不要让我们的牺牲白白浪费掉。”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">下属犹豫了一下，欲言又止，止又欲言，一番天人交战后，他询问。</p>
+<p class = "firstLineIndent">“您真的要御驾亲征吗？要不……”</p>
+<p class = "firstLineIndent">话还未说完，女皇打断了他。</p>
+<p class = "firstLineIndent">“我只是个无用之人，本应领导新帝国走向繁荣昌盛，最终却没能做到，没能尽好作为一个女皇的责任，我有愧于初代女皇，是个不配活着得罪人。”</p>
+<p class = "firstLineIndent">女皇责任是领导新帝国走向繁荣昌盛，但她这个继任者却没能做到，哪怕这是因为不可控的外力而非个人能力的失职，最终责任也仍然是尽归于她。</p>
+<p class = "firstLineIndent">多大的权利就要承受多大的责任！如果做不到，那就不配称为女皇！</p>
+<p class = "firstLineIndent">“这不是您的错，如果不是那些异族一直在阻挠我们发展，一直发动进攻，新帝国现如今也不至于发展如此缓慢，如果……”</p>
+<p class = "firstLineIndent">“好了，不必再说，‘如果’若是有用的话，帝国也不至于面临现在这般的窘境，现实是现实，不要把它和幻想挂钩。”女皇道。</p>
+<p class = "firstLineIndent">“去吧，新帝国的毁灭并不意味着火种的断绝，我们的仇，将由你们来报。”</p>
+<p class = "firstLineIndent">下属怔怔的看了女皇好一会，郑重地行了一个军礼。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">作者有话要说：发现一个好网站，都在这连载：宅阅读（ZHAIYUEDU．TOP）</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“遵命！”</p>
+<p class = "firstLineIndent">大量的战舰开拔起航，它们组成浩浩荡荡的大型舰队，向着采集者们不久前交战的位置航去，杀气腾腾。</p>
+<p class = "firstLineIndent">数量共计十万有余，其中作战战舰数量为一万，剩余九万为运输船，负责补给。</p>
+<p class = "firstLineIndent">没有母舰级的情况下，新帝国只能采用这样的方式来实现跨行星级别的作战。</p>
+<p class = "firstLineIndent">这一切，采集者们都看在眼里，无论是广播还是舰队的开拔，动静可谓是非常大，它们没办法注意不到。</p>
+<p class = "firstLineIndent">一艘战舰舰桥内，操作员进行着例行记录。</p>
+<p class = "firstLineIndent">“航向靶定，预计抵达目的地时间，63个安瑟拉日……”</p>
+<p class = "firstLineIndent">“康德，该换班了。”</p>
+<p class = "firstLineIndent">身后的金属门打开，同事朝着正在进行例行记录的康德打招呼。</p>
+<p class = "firstLineIndent">康德朝对方友好的点点头，把操作权交给对方。</p>
+<p class = "firstLineIndent">“交给你了。”</p>
+<p class = "firstLineIndent">随后，康德去了战舰中的大食堂，然而他却不知道，战争已经悄无声息的打响了。</p>
+<p class = "firstLineIndent">一些非常渺小的东西，混着食物进入到瑟琳人的胃部。</p>
+<p class = "firstLineIndent">生命场频道内，是此起彼伏的信息交流。</p>
+<p class = "firstLineIndent">“好轻松就潜入进来，他们一点防备都没有。”</p>
+<p class = "firstLineIndent">“我已经到达预定位置了。”</p>
+<p class = "firstLineIndent">“干得好，我也到达预定位置了，再等一会，其他同族抵达，我们就一同开始行动。”</p>
+<p class = "firstLineIndent">“了解。”</p>
+<p class = "firstLineIndent">这些潜入进瑟琳人体内的小东西，在瑟琳人胃部钻入非常小的小孔，然后一路爬到瑟琳人的脑颅内。</p>
+<p class = "firstLineIndent">在宏观上，刚刚离开食堂的康德感觉到了些许异样。</p>
+<p class = "firstLineIndent">“奇怪……为什么我会觉得有些头晕？”</p>
+<p class = "firstLineIndent">“是太累了吗？”</p>
+<p class = "firstLineIndent">因为只是一小会的功夫就恢复正常，因此康德也没想太多，战舰内的其他瑟琳人亦是如此，殊不知，这已经是败局注定的征兆。</p>
+<p class = "firstLineIndent">新帝国的舰队航行到了目的地，而迎接他们的仅是一只跃进生物，其他的跃进生物都不曾出来迎战。</p>
+<p class = "firstLineIndent">“重复询问，瑟琳人，你们真的打算与我们进行战争吗？”</p>
+<p class = "firstLineIndent">这个跃进生物不断地向外释放无线电信号，发出这样的询问。</p>
+<p class = "firstLineIndent">新帝国的舰队也在进行回应。</p>
+<p class = "firstLineIndent">“你们以为这样的谎言可以欺骗我们吗？不要妄想拖延时间，我们绝不会允许你们在这个恒星系统内站稳脚跟！立刻离开这个恒星系统！”</p>
+<p class = "firstLineIndent">“重复询问，瑟琳人，你们真的打算与我们进行战争吗？”</p>
+<p class = "firstLineIndent">“立刻离开这个恒星系统，这是最后的警告！”</p>
+<p class = "firstLineIndent">“重复询问，瑟琳人，你们真的打算与我们进行战争吗？”</p>
+<p class = "firstLineIndent">跃进生物一直在重复同样的问题，这让新帝国这边的瑟琳人耐心彻底的被消磨殆尽，由权利最高的女皇亲自下达命令。</p>
+<p class = "firstLineIndent">“开火！将它们驱逐！”</p>
+<p class = "firstLineIndent">伽马射线激光释放出来，虽然不如采集者们的威力大，不过威力也仍然是不容小觑。</p>
+<p class = "firstLineIndent">好在采集者有质子晶格体，高能射线的防御力没有达到百分之百，也达到了百分之九十以上的程度。</p>
+<p class = "firstLineIndent">在新帝国舰队选择主动开火之后，该跃进生物改变了无线电中的信息。</p>
+<p class = "firstLineIndent">“支配行动开始进行。”</p>
+<p class = "firstLineIndent">随后，恐怖的事情发生了，女皇愕然地看到，一艘艘的战舰先后停止了开火，犹如漂浮在宇宙中的金属棺材一般，自己周围的下属在主动关闭掉操作系统后，倒地不起。</p>
+<p class = "firstLineIndent">“发，发生什么事了……呃…头晕……”</p>
+<p class = "firstLineIndent">还没想明白是怎么回事的女皇，只觉得自己一阵头晕目眩。</p>
+<p class = "firstLineIndent">“该死，它们究竟做了什么……”</p>
+<p class = "firstLineIndent">“不，我不能睡……”</p>
+<p class = "firstLineIndent">女皇靠着意志力咬牙坚持着，可是，这种昏睡欲望越来越强大，视线已经越来越模糊，好比带上老花镜那样，什么都看不清。</p>
+<p class = "firstLineIndent">“给我清醒一点…快清醒一点啊……”</p>
+<p class = "firstLineIndent">“你好麻烦，要睡就快点睡，这样挣扎做什么？”</p>
+<p class = "firstLineIndent">陡然间，一个很无奈地声音出现在女皇的脑海中，令她愕然不已。</p>
+<p class = "firstLineIndent">“谁在说……”</p>
+<p class = "firstLineIndent">噗通！</p>
+<p class = "firstLineIndent">话还未说完，女皇倒下了，意志终究没能战胜物质。</p>
+
+
+
+<a href="602.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="604.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

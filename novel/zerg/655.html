@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百五十五章 干扰机制（上）</h2><hr/>
+<p class = "firstLineIndent">明明能够毫无阻碍的感知到灵域的存在，也是完全按照以往的行为去做，可就是没办法利用灵域，不，应该说灵域因为莫名的原因，不再对他们起反应了。</p>
+<p class = "firstLineIndent">这是前所未有的事情，灵域不再能够使用！</p>
+<p class = "firstLineIndent">机师们因为这件事而抓狂。</p>
+<p class = "firstLineIndent">灵域可以说是决定了他们自身价值的东西，越是强大技术的机师，越不能接受这样的情况，因为对他们来说，灵域可就是一切，灵域让机师拥有了强大的力量，也正是这股强大的力量让机师这个职介拥有了在神圣沃姆邦国内如今财富、地位、权利等。</p>
+<p class = "firstLineIndent">现在，这个力量消失了，就好比资本家的钱全部都失去价值，基督徒被他们的主彻底抛弃，四维生物进入到三维是那种狭隘与窒息的感觉。</p>
+<p class = "firstLineIndent">这些参与采集者们实验，神圣沃姆邦国的机师们，发自内心的感到绝望。</p>
+<p class = "firstLineIndent">“这……算是成功了？”</p>
+<p class = "firstLineIndent">“再确认一下。”</p>
+<p class = "firstLineIndent">“赞同。”</p>
+<p class = "firstLineIndent">采集者们在频道内讨论，为了避免这些机师在耍滑头，它们决定测试一下。</p>
+<p class = "firstLineIndent">怎么测试呢？当然是用言语刺激这些参与实验的机师。</p>
+<p class = "firstLineIndent">“你们到底听到没有？我们赶时间想知道实验结果。”</p>
+<p class = "firstLineIndent">“快点用跳跃到太空要塞外面去。”</p>
+<p class = "firstLineIndent">“我们数三下，超过时限就是你们不配合实验，你们所属的星球就会被毁灭。”</p>
+<p class = "firstLineIndent">“补充，即便在三下范围内，最后跳跃的那个人所属的星球会毁灭。”</p>
+<p class = "firstLineIndent">采集者们用神圣沃姆邦国的语言有一句没一句的催促，神圣沃姆邦国的这些机师们根本不敢怀疑它们是否有在说谎，因为它们是真的有这样的能力可以毁灭这些机师们所想守护的星球，而且特别轻松就能办到。</p>
+<p class = "firstLineIndent">“你们……！”</p>
+<p class = "firstLineIndent">“1…2…”</p>
+<p class = "firstLineIndent">采集者们开始不管不顾的报数字。</p>
+<p class = "firstLineIndent">纵然咬牙切齿，但为了自己的星球，机师们只能竭尽所能的尝试使用灵域跳跃，以求能尽快瞬移到太空要塞之外。</p>
+<p class = "firstLineIndent">然而他们一遍遍的呼吁着灵域，灵域依旧是一潭死水，似乎完全无视了他们的呼唤，没有丝毫反应。</p>
+<p class = "firstLineIndent">没有反应，灵域跳跃自然是用不了。</p>
+<p class = "firstLineIndent">数三下也就几秒钟的事情，眼看着距离采集者们给出的时限越来越近，而灵域这边仍旧是无法使用，终于有机师开始自暴自弃。</p>
+<p class = "firstLineIndent">“我……我要杀了你们！”</p>
+<p class = "firstLineIndent">既然自己的星球被毁灭的事实已经无法避免，那最起码也要杀死眼前这些怪物，用它们的鲜血告慰那些即将被它们屠戮的无辜者。</p>
+<p class = "firstLineIndent">几架机甲冲向采集者，由于灵域无法正常使用，不仅瞬移无法使用，连质子晶格体都能破坏光剑自然也是无法正常用出来，机甲抽出的是与机甲配套的冷兵器朝采集者挥砍。</p>
+<p class = "firstLineIndent">庞大的机甲挥舞着兵器就像是一个成年人拿着冷兵器挥砍一群老鼠，体型的差异让旁观者的感觉就是采集者这方毫无胜算，命悬一线。</p>
+<p class = "firstLineIndent">然而，事实结果并非如此。</p>
+<p class = "firstLineIndent">挥舞武器的机甲将手中的武器重重地砸在地板上，以至于地面像是正在发生一场地震，令人牙齿发酸的金属碰撞声转眼间传遍整个房间。</p>
+<p class = "firstLineIndent">可采集者们却无一损伤，失去灵域瞬移加持的机甲，动作在它们眼中是那样的缓慢，近战能力远不比瑟琳人的地面作战体，数只采集者踩着砸在地上的冷兵器，敏捷的跳到机甲的身上。</p>
+<p class = "firstLineIndent">地面上的采集者绕过武器，用锋利的单分子刃把这些攻击它们的机甲退步给轻松砍断，机甲犹如失去支柱的大厦，理所当然的纷纷倒下。</p>
+<p class = "firstLineIndent">采集者们用它们那锋利的獠肢暴力的扒开机甲的座舱，内在的机师被它们用单分子刃乱刀砍死，这时的机甲像极了一个被人开膛破肚的活人，倒在地上不停地抽搐挣扎，凄厉的惨叫声久久回荡。</p>
+<p class = "firstLineIndent">那些还未冲向采集者们的机师，个个都是噤若寒蝉，心底的凉意从脚底直冲向脑门，尤其是在见识到采集者们现场给他们，表演如何破坏机甲并杀死里面的驾驶员后。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">一只采集者走向呆愣住的他们，机甲都纷纷下意识的后退几步，仿若是看到了什么绝世邪物，两者之间的体型差异之巨大，让这一幕显得极为荒诞与滑稽。</p>
+<p class = "firstLineIndent">采集者并没有攻击他们，因为这些机甲没有攻击它们，采集者们自然不会采取反制行动，至于之前说的‘规定时间内不使用灵域跳跃就毁掉他们的星球’，其实也就只是为了刺激这些机师别耍滑头试图蒙骗它们干扰实验结果而已。</p>
+<p class = "firstLineIndent">为了让现在这些还活着的机师安分点，采集者似告诫又似警告的对机师们讲话。</p>
+<p class = "firstLineIndent">“用不了灵域，你们连这样姿态的我们都打不过，无能又弱小，这就是现在的你们。”</p>
+<p class = "firstLineIndent">“不要随便试图挑战我们，无知的傲慢是对自己生命的漠视。”</p>
+<p class = "firstLineIndent">初这边，采集者们在获取着关于涟漪巨构的各项物理运动数据，当太空要塞内机师的测试出现结果时，采集者们皆是欢欣鼓舞，这意味着当涟漪巨构投入实用时，它们再也不必像前线那样被动。</p>
+<p class = "firstLineIndent">敌人会被它们拉到光速以下，丧失灵域的使用，敌人的作战能力必然会遭到重大打击，而只要战斗在光速以下，采集者们有的是方法让协调会感到难受。</p>
+<p class = "firstLineIndent">“下一步该怎么办？”</p>
+<p class = "firstLineIndent">采集者中有个体迫不及待地向初询问。</p>
+<p class = "firstLineIndent">初想了想，示意自己的同族们暂时先不要着急。</p>
+<p class = "firstLineIndent">“把那些机师分别带到距离涟漪巨构不同程度远的地方，还需要测试一下时空涟漪的有效影响范围，这样才能够保证不出意外。”</p>
+<p class = "firstLineIndent">“明白了。”</p>
+<p class = "firstLineIndent">采集者们皆是感到赞同，正所谓磨刀不误砍柴工，它们现在对涟漪巨构还了解不全面，况且对协调会作战单位的影响究竟能达到什么程度也不好说，毕竟神圣沃姆邦国远比拟不了协调会这种门世界内的至尊。</p>
+<p class = "firstLineIndent">涟漪巨构呃开发成果，是令采集者们倍感欣喜的，但同时，采集者们也是非常困惑，涟漪巨构为什么可以影响到灵域发挥效果？</p>
+<p class = "firstLineIndent">“为什么涟漪巨构能够影响神圣沃姆邦国这些人使用灵域？”有个体向初询问。</p>
+<p class = "firstLineIndent">“因为灵域仅仅只是一种人造物，而不是‘神’。”初解释。</p>
+<p class = "firstLineIndent">“虽然辉文明让它做到了近似全知全能的效果，不过，它始终是跳不出一个框架，即灵域不可能在不获取到信息的前提下行动。”</p>
+
+
+<a href="654.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="656.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

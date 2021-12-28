@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百三十八章 八个阶层（2）</h2><hr/>
+<p class = "firstLineIndent">“第二阶级的是受保者，这种文化程度仍然还是原始土著，但比较特殊，它已经被门世界内的某个势力构成实质上的支配，但并未进行吞并，并不比第一阶级的强上多少，但最起码更加的文明了一些，而且有着一个或多个势力在背后做依靠，神圣沃姆邦国辖下的那些邦，就是属于这第二阶级。”</p>
+<p class = "firstLineIndent">第二阶级是在门内最常见的最底层，由于星际行商贸易网络，门世界里的第一阶级原始土著都已经被全部发现，出于各种各样的理由它们都会被门世界里高阶级的国度或者势力攻击，有的被吞并成为高阶级的一部分，而有的则是出于各种原因被留下来，这些也就是第二阶级。</p>
+<p class = "firstLineIndent">这种一般都会有一个初级的星际市场，治安因为有高阶层的国度或者势力维持，行商们也就可以放心的过来进行贸易，通常是贸易矿产原料、奴隶、轻工业产品等，这些是摆在明面上，私底下还会交易一些违禁品、情报交易。</p>
+<p class = "firstLineIndent">说完门世界里的最底层阶级，诺曼开始说更上一层的阶级。</p>
+<p class = "firstLineIndent">“第三阶级被称作军阀，这种强弱浮动很大，但哪怕是最弱的军阀，手里也是会掌握着一支可供随时调遣指挥的舰队，这些就是在门世界内拥有一定话语权的势力。”</p>
+<p class = "firstLineIndent">“等等，你说强弱浮动很大？描述一下。”</p>
+<p class = "firstLineIndent">采集者突然插进了话头，打断了正在叙述的诺曼，关于强弱浮动很大，采集者们想要知道最强能强到什么层次，若有能弱到一个什么下限，这个是必须要了解清楚，不然以后要与其交战怎么办？啥也不知道可是非常被动。</p>
+<p class = "firstLineIndent">诺曼想了想，组织了一下语言开始讲述。</p>
+<p class = "firstLineIndent">“军阀的构成很复杂，他们是基于各种各样的原因得到了一支或多支舰队，因此军阀舰队的强弱并不是绝对，我曾经见过一个非常强大的军阀，靠着从至尊那里入手的几艘战舰，配合其他普通战舰组成一支舰队，压迫着周边的几个国度俯首称臣，建立起了自己的统治霸权，可以说得上是一段传奇史诗。”</p>
+<p class = "firstLineIndent">采集者们整理了诺曼的描述后，大致理解了第三阶级是个什么情况——通过反叛，或者贸易，甚至是自行建造，任何途径都不局限，只要拥有一支或一支以上的太空舰队，就能被归类到第三阶级，哪怕是用破烂拼起来的破烂船，只要组成舰队，那也算是第三阶级。</p>
+<p class = "firstLineIndent">由于获取战舰的途径繁多，各种阶级出产的战舰差距又是极其巨大，以致于三阶军阀的上限与下限也是非常巨大，强的可以打败高阶级，弱的连原始土著也不见得能赢。</p>
+<p class = "firstLineIndent">因此采集者们意识到，门世界内这个等级划分，并不是衡量强弱的绝对标准，只是比较具有参考价值。</p>
+<p class = "firstLineIndent">“第四阶级叫做领主，这种的就已经是一个国度，拥有自己的疆域资源、人才、独立开发的科技、舰队这些，伊纳里煌国、神圣沃姆邦国就属于这一阶级。”</p>
+<p class = "firstLineIndent">所谓的领主就像它的名字那样，一定内领土里的主人，这种说的就是那些拥有自己主权的国度。</p>
+<p class = "firstLineIndent">第四阶级在门世界内普遍都拥有一定的话语权，不像第三阶级那样，需要拥有足够的的武力才能拥有一定话语权，而且军事实力相同的情况下，军阀的话语权都不比国度高，造成这样的原因就在于国度天然的就比军阀更具优势，例如人才培养、人口基数、军事、资源等等，这些是军阀所不具备，还有战争潜力，国度拥有完整的工业体系，完全可以使用暴兵流方式把军阀堆死。</p>
+<p class = "firstLineIndent">“第五阶级是依附于第六阶级，一般称作仆从、附庸、协同，它们的情况和第二阶级的受保者有些相似，共同点都是有着一个强有力的后盾，虽然单个附庸、仆从、协同并不一定比第四阶级的领主强上多少，但第五阶级是第六阶级利益纠结体的一部分，牵一发而动全身，第五阶级的介入极有可能联动到第六阶级的介入。”</p>
+<p class = "firstLineIndent">第五阶级就是某个第四阶级的国度加入到了某一个大型团体中，不管这种这种加入的方式是什么，附庸也好，臣服也罢，甚至是多个第四阶级的联盟。</p>
+<p class = "firstLineIndent">第五阶级天然的要比第四阶级要强，但这种强不是军事实力上的强，而是第五阶级必然会牵扯到第六阶级的介入，而第六阶级必然都拥有远强于第四阶级的武装力量，在门世界内，能对抗第六阶级的只有第六阶级，低阶级是绝不可能越级反杀。</p>
+<p class = "firstLineIndent">“第六阶级是霸权，基于各种各样的原因，吞并也好，联合也罢，让门世界内诸多领主不得不拜服的强大势力就是霸权。”</p>
+<p class = "firstLineIndent">诺曼说明的同时，害怕采集者有其他方面的误会，便加以补充。</p>
+<p class = "firstLineIndent">“当然，这不是说第六阶级的攻击性很强，除了高度集权的特殊个例，绝大多数的第六阶级都是采用联合成员制，每一个领主相当于个体，而第六阶级则相当于一个组织。”</p>
+<p class = "firstLineIndent">第六阶级的攻击性一般取决于团体组合的形式，像诸如附庸、仆从这类组合起来的第六阶级，就用有很强的征服欲，这种第六阶级的权利会高度集中在某一个人手里，为了满足这个人的野心而运作，高效而又恐怖。</p>
+<p class = "firstLineIndent">不过这种一般很难形成，因为单个国度拥有着完备的军工体系，除非是绝对性的战力差距，否则很难让第四阶级的国度放弃自己的主权选择屈服。</p>
+<p class = "firstLineIndent">相对来说，合作类型的第六阶级就是普遍存在，基于理智考量，合作共赢要比单枪匹马更有益处，而且武力方面也会更加的有安全感，采用的是联邦合作制度，每一个加入的第四阶级在第四阶级里都拥有一定的话语权。</p>
+<p class = "firstLineIndent">这两种不同形式的第六阶级，塑造了如今复杂的门世界整体环境。</p>
+<p class = "firstLineIndent">讲述完第六阶级的诺曼，毫不停歇的继续讲述，终于是讲述到了采集者们最开始问的那个问题——至尊是什么。</p>
+
+
+<a href="637.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="639.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

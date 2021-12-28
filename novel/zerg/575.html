@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第五百七十五章 古迹中的残言（上）</h2><hr/>
+<p class = "firstLineIndent">采集者们在墙壁上发现的文字信息，很快被以无线电波的方式递送到刚建成后不久的天机巨构那里。</p>
+<p class = "firstLineIndent">因为拥有着辉文明的语言母本，辉文明语言的破译难度，已经下降了不止一个层次，繁多的辉文明文字被转译成采集者们能够理解的信息。</p>
+<p class = "firstLineIndent">【片段一：试验所的艾玛和凯恩特结为了伴侣，他们在灵域中向所有同胞起誓缔结两人间的契约，真是令我既羡慕又嫉妒啊……该死，我也想要一个伴侣，可为什么就没人看上我呢？因为我个性太阴沉了吗？】</p>
+<p class = "firstLineIndent">【片段二：所长责骂了艾玛和凯恩特这对刚缔结契约不久的伴侣，要求他们不要在进行实验任务的时候沉浸在二人世界中，看到这些的我，内心不知为何会产生出些许的喜悦之情，莫非我很乐意看到情侣受难？是因为嫉妒吗？或许我应该尽快找到一位属于我的伴侣，这样的心理状态并不健康。】</p>
+<p class = "firstLineIndent">【片段三：这次所长暴跳如雷，因为凯恩特把一个数值给调错了，这导致这颗实验星球上将会出现长达五百年时间的特大暴雨，不知道这会不会影响到这颗星球上的生命诞生，我们的实验这步如果出了问题，那我们将不得不从来。】</p>
+<p class = "firstLineIndent">【片段四：失误操作的结果并没有太糟，只是星球上形成海洋的水位偏高，这让大家松了一口气，在第一只单细胞体生物在海洋中孕育出来时，所长总算是没有再提把凯恩特剔除出试验所的话。】</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">【片段五：我不得不承认我是一个幸运星，连我自己都不得不佩服自己的运气，在我负责的那部分实验里，星球上很顺利的演化出生物种类繁多且生态结构复杂的生态圈并没有发生什么意外，并且在遨游灵域时还结交到一位很适合作为伴侣的异性，她叫洁伶，我们聊得很投机，在分别时洁伶对我发出邀请，等我这边的实验结束后，可以去她负责的试验所，我这才知道，她居然是一位所长。】</p>
+<p class = "firstLineIndent">【片段六：一切正如我们实验计划中的那样，一个智慧物种在一个恰当的时间，恰当的地点，遭遇到了恰当的事情，由此‘觉醒’了智慧，灵域给出的计算结果没有误差，大家都非常欣喜若狂，智慧生物组建起社会性后，就是一个文明的诞生，经过一番讨论后，大家决定将这个物种的名字命名为‘凯特人’，因为他们起源于凯恩特的一次操作失误，不过就他本人来说，对此意见很大，可惜这是无意义的抗争，在这件事上，连他最亲密的伴侣艾玛都背叛了他。】</p>
+<p class = "firstLineIndent">【片段七：最近总有种不安的感觉，可我说不清楚到底是什么因素导致的不安，我询问了灵域，可是以往近乎全知全能的灵域，也没能给出答案，我试着向灵域申请了一次私人催眠，从潜意识中得到了一个令我费解的结果——逃，我的潜意识里为什么会有这种想法？是有人给我下了心理暗示吗？】</p>
+<p class = "firstLineIndent">【片段八：今天，凯特人点燃了文明的火种，形成了早期的原始部落社会形态，同时也在这天，所长郑重的向我们声明，我们的这个实验具备极大的危险性，如果有疑虑者，可以申请离开——真是奇怪的言论，我无法理解，创造文明究竟危险在哪里，难不成所长是担心，这些凯特人会在发展起科技后，威胁到我们试验所的生命安全？感觉有些牵强，哪怕凯特人的技术发展呈指数级增长，想达到威胁我们生命安全的程度，没有个十几万年是不可能的，毕竟我们可是有灵域。】</p>
+<p class = "firstLineIndent">【片段九：我们有意的在凯特人社会中散布一则谣言，谣言经过多番流传后逐渐改变，经过改变的流言引发了凯特人中的一起小事件，在这个小事件后凯特人开始兴建城邦，看来是要进行国家的建设，看来所长的理论并没有错，只要在恰当的时间，恰当的地点，发生一件恰当的事情，再加上一段让事件效果发酵时间，就能够让一个文明出现质的飞跃，可是为什么所长在发现这个条理论后，笑容越来越少？是我的错觉吗？】</p>
+<p class = "firstLineIndent">【片段十：各个试验所都在进行文明演化实验，我以前以为每个实验文明都差不多，最近我才知道，并不是这样，各种类型的文明都有，比如有些试验所尝试将微械的控制元件与碳基基因链契合到一起，这样就有可能演化出一种能够支配细胞的网络型生命体，再比如细化某种初始植物的细胞结构，让它们提早的便具备拥有更高智慧的潜力，这样的智慧生物最终演化出的文明令人期待……】</p>
+<p class = "firstLineIndent">【片段十一：洁伶找到了我，她很悲伤，因为她所缔造的文明毁灭了，毁灭于一场全球性的流感，洁伶他们没有介入，眼睁睁的看着那个文明毁灭，我试着安慰她，她却告诉了我一件只有所长才知道的事情，目前缔造文明，仅仅只是文明级实验的第一阶段，实验文明毁灭的试验所将会进入到第二阶段，他们将会有权利介入到实验文明当中，依靠我们文明的力量避免这些实验文明走向毁灭，我很好奇，便问她，那这场文明级实验的最终目的是什么？洁伶只是沉默了，没有回答我。】</p>
+<p class = "firstLineIndent">【片段十二：凯特人文明灭绝了，他们将技术发展到核裂变层次，然后各国发动核战争，使整个文明走向末路，我不知道该说什么，我现在的心情很复杂，既有悲伤，又有解脱，我并不愧疚，在核大战爆发以前，就曾尝试着钻规则的空子，用一点点的谣言信息试图引发思想上的改变，如今是这样的结果，我只能说我尽力了，我保存了凯特人的基因种子，准备用于第二阶段的实验，这次有我们试验所介入，他们应该不会再毁灭了。】</p>
+<p class = "firstLineIndent">【片段十三：凯特人文明的种子被播撒出去，他们一如上一代文明那样聪明，迅速地在陌生的自然环境中掌握技能，重燃文明的火种，可我不知为何，总觉得会发生些什么事情，这第二阶段不会这样的平静。】</p>
+
+
+
+<a href="574.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="576.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

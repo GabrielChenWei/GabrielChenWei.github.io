@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六百四十五章 新帝国的退出</h2><hr/>
+<p class = "firstLineIndent">采集者与协调会之间的较量进入到一个僵持的阶段，由于渗透战略的实行，协调会疲于应付那些攻打下来内肆虐的母舰生物集群，导致协调会在战略上的推进无限趋近于缓慢，甚至是停滞。</p>
+<p class = "firstLineIndent">很显然，协调会注意到了这个问题，他们也针对采集者们的战略采取反制。</p>
+<p class = "firstLineIndent">一部分的协调会作战体从战斗序列中脱离出来，把守在伊纳里煌国作为交通枢纽的恒星系统内，这样就可以将伊纳里煌国分割成许多个战区，然后逐个战区的清理那些杀之不尽的母舰生物集群。</p>
+<p class = "firstLineIndent">等清理完毕后，协调会的战略推进又会恢复到之前那样的势如破竹，采集者们与协调会之间的战斗力差距太大了。</p>
+<p class = "firstLineIndent">不过，相比起协调会这边逐渐增加的压力，另一件事反而更让采集者们感到不高兴。</p>
+<p class = "firstLineIndent">“你说新帝国决定退出这场战争？”采集者反问。</p>
+<p class = "firstLineIndent">“是的。”</p>
+<p class = "firstLineIndent">通讯另一端的新帝国将军面无表情的点着头，瑟琳人所表现出的平静与因为不满情绪而用獠肢划拉着地面的采集者形成鲜明对比。</p>
+<p class = "firstLineIndent">“在这个时候？”</p>
+<p class = "firstLineIndent">采集者再次问道，语气中隐隐夹带着些许不善的意味。</p>
+<p class = "firstLineIndent">听闻此种带有警告意味的反问，通讯对面的瑟琳人这才有所动容，事实上，新帝国是没想到采集者们会因为他们的这种选择反应这么激烈。</p>
+<p class = "firstLineIndent">“非常抱歉，但是新帝国不能白白的让将士们送死，以我们帝国如今的技术水平，完全不能够继续给贵方再提供帮助。”</p>
+<p class = "firstLineIndent">“就你们瑟琳人的生命很宝贵吗？”</p>
+<p class = "firstLineIndent">“不，我们与阿米巴不同，本来与神圣沃姆邦国的战争就已经精疲力竭，如今面对协调会的进攻，让我们的内部出现了难以压制的恐慌。”</p>
+<p class = "firstLineIndent">其实说白了，就是新帝国已经不看好采集者们能够赢得这场战争的胜利，为了新帝国能够继续存续下去，瑟琳人决定做出一些行动。</p>
+<p class = "firstLineIndent">新帝国内部确实是由于协调会的恐怖武力而出现内部原因，不过，如果仅仅只是这样的话，根本不足以让新帝国作出改变，其根本原因就在于新帝国的高层不看好后续战争里，阿米巴一方能够赢得胜利。</p>
+<p class = "firstLineIndent">不说文明尺度，单说国家尺度，忠诚、友谊这类东西是非常无力，只有利益才是永恒，新帝国如果继续与阿米巴捆绑在一辆战车上，当阿米巴战败之时，他们新帝国必然是会受到牵连，像原先神圣沃姆邦国要求成为下属邦国倒还好，就怕敌人连同整颗母星一起将新帝国给毁灭。</p>
+<p class = "firstLineIndent">那是关系到千千万万名瑟琳人的生死！他们必须要慎重对待！</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">如果现在退出，或许在以后战败的时候，门世界内那些国度不会对新帝国赶尽杀绝。</p>
+<p class = "firstLineIndent">况且，新帝国确实已经无能为力，他们的舰队确实在面对协调会作战单位时，显得非常的无力，瑟琳人的战舰主攻武器是射线类，而协调会恰恰是百分百免疫这种攻击，至于爆音、自主舰这类武器，面对可以瞬移的敌人根本就打不中，瑟琳人的恐惧不是没有理由，这场战争他们只能听天由命。</p>
+<p class = "firstLineIndent">如果最终阿米巴赢了，新帝国问题也不大，毕竟在战争中他们已经出力了，也有伤亡和损失——说白了就是想两头下注。</p>
+<p class = "firstLineIndent">即便最终阿米巴战败，而门世界内的那些国度也一定要置新帝国于死地，新帝国也有选择，提前退出战争的他们有足够的物质资源投放出一批种子继续延续帝国的血脉。</p>
+<p class = "firstLineIndent">“你们新帝国害怕了？”</p>
+<p class = "firstLineIndent">采集者略带讥讽语气的反问，虽然没有从采集者的外观上看不出任何表情，但在通讯那一端的新帝国将军却恍惚间能感觉采集者正以非常鄙夷的目光注视着他以及他身后的新帝国。</p>
+<p class = "firstLineIndent">以新帝国的视角看来，这么做无可厚非，毕竟他们很弱小，只能以弱者的方式谋求生存，但在采集者们这方看来，新帝国的这种做法令它们感到非常不爽。</p>
+<p class = "firstLineIndent">虽说阿米巴是出于其它的目的而进攻门世界内的国度，可名义上是为了给新帝国出头，现在新帝国主动退出战争，让采集者们感觉族群是帮了一群白眼狼。</p>
+<p class = "firstLineIndent">“请阿米巴方面能够理解。”</p>
+<p class = "firstLineIndent">新帝国将军很郑重的朝采集者，深深行了一礼，这名新帝国将军保持着行礼动作，彼此间陷入沉寂。</p>
+<p class = "firstLineIndent">良久，采集者还是答应了对方。</p>
+<p class = "firstLineIndent">“想退出就退出吧，为了生存无可厚非……”</p>
+<p class = "firstLineIndent">“感谢理解。”</p>
+<p class = "firstLineIndent">通讯那端的新帝国将军喜出望外，本来作为军人在这样公共外交的场合，应该始终保持一丝不苟的状态，却罕见的因为情绪波动而展露出笑容。</p>
+<p class = "firstLineIndent">然而，这名新帝国将军的笑容没过多久，就因为采集者后一句话而僵住。</p>
+<p class = "firstLineIndent">“不过，有一点我要特别提醒你们……”采集者顿了顿，继续道“退出了，就别再做多余的事情，明白吗？”</p>
+<p class = "firstLineIndent">“是，是的，我们很清楚……”</p>
+<p class = "firstLineIndent">新帝国将军因为恐惧而心跳加速，采集者那句话是代表着阿米巴在对新帝国发出警告——为了生存而避战它们认同，但如果为了生存想拿阿米巴当投名状，它们第一个就会灭了新帝国，不要怀疑它们是否拥有这样的能力。</p>
+<p class = "firstLineIndent">这样的警告是必要的，谁也无法保证新帝国会不会在后续作战中，阿米巴处于战争不利时临战倒戈，天知道他们为了生存会做到什么程度？腹背受敌的事情采集者们可不想面对，太麻烦了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">战争持续了五年的时间，随着战场上协调会作战单位数量的数不攀升，采集者们在武力不足方面的劣势越发的明显起来，巧妇难无米之炊，再好的战略思想面对碾压性的武力也是只能徒劳，面对一个个驻守着协调会作战单位的恒星系统，母舰生物集群很难在像以往那样搅风搅雨。</p>
+<p class = "firstLineIndent">这样的局面让它们不禁萌生出外交和谈的想法。</p>
+<p class = "firstLineIndent">本来采集者们就有与协调会外交的想法，但考虑到外交主动权，所以一直在等待着协调会主动联系它们，通过消耗战消磨对方的耐心促使对方主动提出谈判。</p>
+<p class = "firstLineIndent">但现在看来，它们已经不适合继续等待下去了。</p>
+<p class = "firstLineIndent">就在它们集体通过主动联系这一决定之时，有新的势力联系上它们。</p>
+<p class = "firstLineIndent">那是一艘飞船，但是却类似横放着的十字架。</p>
+<p class = "firstLineIndent">通过无线电，采集者们率先发起询问。</p>
+<p class = "firstLineIndent">“你们是谁？”</p>
+<p class = "firstLineIndent">“我们是放牧人，知道了你们的事情，来解救你们。”</p>
+
+
+<a href="644.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="646.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
