@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>《虫族是怎样炼成的》作者：政泓</h2><hr/>
+
+<p class = "firstLineIndent">文案：</p>
+<p class = "firstLineIndent">在这个黎明的时代，我们苏醒了。</p>
+<p class = "firstLineIndent">意志用无数双眼睛研究了我们的家园世界，以及周围的环境，我们行如一体，为蜂群建造庇护所，发展工业，研究新科技，利用大地上的各种资源。</p>
+<p class = "firstLineIndent">很快，我们将遍及整个世界。</p>
+<p class = "firstLineIndent">少量的自主蜂群被创造出来，作为独立自主的个体被加入蜂群。</p>
+<p class = "firstLineIndent">这些更为强大的蜂群拥有有限的自由意志，但是它们仍对最高意志无比的服从，就像其他工具蜂群一样。</p>
+<p class = "firstLineIndent">随着我们完全主宰了行星，意志开始注意起环绕在其他轨道上的那些世界，最聪明的自主蜂群设计了新的旅行方式，使我们拥有了跨越星球间遥远距离的能力。</p>
+<p class = "firstLineIndent">我们虫群会很快更加繁荣昌盛。</p>
+<p class = "firstLineIndent">作者自定义标签 技术流</p>
+
+<ul>
+
+<li>	<a href="	932.html	">	第九百三十二章 往事已矣	</a> 	</li>
+<li>	<a href="	931.html	">	第九百三十一章 人类啊人类	</a> 	</li>
+<li>	<a href="	930.html	">	第九百三十章 来自地球的声音	</a> 	</li>
+<li>	<a href="	929.html	">	第九百二十九章 离开的宇宙文明	</a> 	</li>
+<li>	<a href="	928.html	">	第九百二十八章 拿实力说话	</a> 	</li>
+<li>	<a href="	927.html	">	第九百二十七章 靶文明N17	</a> 	</li>
+<li>	<a href="	926.html	">	第九百二十六章 复活文明	</a> 	</li>
+<li>	<a href="	925.html	">	第九百二十五章 灵域之死	</a> 	</li>
+<li>	<a href="	924.html	">	第九百二十四章 脱困与落幕	</a> 	</li>
+<li>	<a href="	923.html	">	第九百二十三章 无穷无尽大岁月	</a> 	</li>
+<li>	<a href="	922.html	">	第九百二十二章 活成辉的样子	</a> 	</li>
+<li>	<a href="	921.html	">	第九百二十一章 一瞬即是永恒	</a> 	</li>
+<li>	<a href="	920.html	">	第九百二十章 曼帝国的战略方向	</a> 	</li>
+<li>	<a href="	919.html	">	第九百一十九章 前进还是停下	</a> 	</li>
+<li>	<a href="	918.html	">	第九百一十八章 曼文明	</a> 	</li>
+<li>	<a href="	917.html	">	第九百一十七章 袭扰掠夺式游击	</a> 	</li>
+<li>	<a href="	916.html	">	第九百一十六章 新的对手	</a> 	</li>
+<li>	<a href="	915.html	">	第九百一十五章 只要我们齐心……	</a> 	</li>
+<li>	<a href="	914.html	">	第九百一十四章 自求多福	</a> 	</li>
+<li>	<a href="	913.html	">	第九百一十三章 我是为了活命！	</a> 	</li>
+<li>	<a href="	912.html	">	第九百一十二章 黑洞为砖	</a> 	</li>
+<li>	<a href="	911.html	">	第九百一十一章 攻击和防御原则（2）	</a> 	</li>
+<li>	<a href="	910.html	">	第九百一十章 攻击和防御原则（1）	</a> 	</li>
+<li>	<a href="	909.html	">	第九百零九章 收入囊中	</a> 	</li>
+<li>	<a href="	908.html	">	第九百零八章 告辞！	</a> 	</li>
+<li>	<a href="	907.html	">	第九百零七章 微风的吹拂	</a> 	</li>
+<li>	<a href="	906.html	">	第九百零六章 基本法	</a> 	</li>
+<li>	<a href="	905.html	">	第九百零五章 到哪都一样	</a> 	</li>
+<li>	<a href="	904.html	">	第九百零四章 神啊，你抛弃我们了吗？	</a> 	</li>
+<li>	<a href="	903.html	">	第九百零三章 一直在模仿	</a> 	</li>
+<li>	<a href="	902.html	">	第九百零二章 时代一直在变	</a> 	</li>
+<li>	<a href="	901.html	">	第九百零一章 我埋伏了你的埋伏	</a> 	</li>
+<li>	<a href="	900.html	">	第九百章 诸天的不朽	</a> 	</li>
+<li>	<a href="	899.html	">	第八百九十九章 被封锁的秘密	</a> 	</li>
+<li>	<a href="	898.html	">	第八百九十八章 情报先行	</a> 	</li>
+<li>	<a href="	897.html	">	第八百九十七章 虫道网络	</a> 	</li>
+<li>	<a href="	896.html	">	第八百九十六章 虫洞通讯	</a> 	</li>
+<li>	<a href="	895.html	">	第八百九十五章 舒心一笑	</a> 	</li>
+<li>	<a href="	894.html	">	第八百九十四章 诸天万界	</a> 	</li>
+<li>	<a href="	893.html	">	第八百九十三章 伟大之神的怒火	</a> 	</li>
+<li>	<a href="	892.html	">	第八百九十二章 智熄的死亡	</a> 	</li>
+<li>	<a href="	891.html	">	第八百九十一章 好奇害死猫	</a> 	</li>
+<li>	<a href="	890.html	">	第八百九十章 棒旋星系	</a> 	</li>
+<li>	<a href="	889.html	">	第八百八十九章 死寂转生	</a> 	</li>
+<li>	<a href="	888.html	">	第八百八十八章 十万年期限	</a> 	</li>
+<li>	<a href="	887.html	">	第八百八十七章 与主的外交	</a> 	</li>
+<li>	<a href="	886.html	">	第八百八十六章 灵域谋划	</a> 	</li>
+<li>	<a href="	885.html	">	第八百八十五章 你说我就信？	</a> 	</li>
+<li>	<a href="	884.html	">	第八百八十四章 关闭修正机关	</a> 	</li>
+<li>	<a href="	883.html	">	第八百八十三章 眨眼即千年	</a> 	</li>
+<li>	<a href="	882.html	">	第八百八十二章 星系核战役	</a> 	</li>
+<li>	<a href="	881.html	">	第八百八十一章 来互相伤害吧！	</a> 	</li>
+<li>	<a href="	880.html	">	第八百八十章 超巨星质量生物	</a> 	</li>
+<li>	<a href="	879.html	">	第八百七十九章 双方的弱点	</a> 	</li>
+<li>	<a href="	878.html	">	第八百七十八章 不愧是思	</a> 	</li>
+<li>	<a href="	877.html	">	第八百七十七章 思的回归	</a> 	</li>
+<li>	<a href="	876.html	">	第八百七十六章 引力波雷达微型化	</a> 	</li>
+<li>	<a href="	875.html	">	第八百七十五章 外面很凶险	</a> 	</li>
+<li>	<a href="	874.html	">	第八百七十四章 光之网	</a> 	</li>
+<li>	<a href="	873.html	">	第八百七十三章 摧毁奇星枢纽	</a> 	</li>
+<li>	<a href="	872.html	">	第八百七十二章 不要小看它们	</a> 	</li>
+<li>	<a href="	871.html	">	第八百七十一章 超光速负物质导弹	</a> 	</li>
+<li>	<a href="	870.html	">	第八百七十章 规则为壁	</a> 	</li>
+<li>	<a href="	869.html	">	第八百六十九章 世界囚笼	</a> 	</li>
+<li>	<a href="	868.html	">	第八百六十八章 启明星的修复	</a> 	</li>
+<li>	<a href="	867.html	">	第八百六十七章 隐瞒的情报	</a> 	</li>
+<li>	<a href="	866.html	">	第八百六十六章 再遇揭秘者	</a> 	</li>
+<li>	<a href="	865.html	">	第八百六十五章 面壁的虫豸	</a> 	</li>
+<li>	<a href="	864.html	">	第八百六十四章 背叛者们！	</a> 	</li>
+<li>	<a href="	863.html	">	第八百六十三章 永续之怒	</a> 	</li>
+<li>	<a href="	862.html	">	第八百六十二章 壮大的继任者	</a> 	</li>
+<li>	<a href="	861.html	">	第八百六十一章 继任者们	</a> 	</li>
+<li>	<a href="	860.html	">	第八百六十章 伪造指令	</a> 	</li>
+<li>	<a href="	859.html	">	第八百五十九章 传播然后死亡	</a> 	</li>
+<li>	<a href="	858.html	">	第八百五十八章 毁灭的起始	</a> 	</li>
+<li>	<a href="	857.html	">	第八百五十七章 第四域	</a> 	</li>
+<li>	<a href="	856.html	">	第八百五十六章 吹牛不要钱	</a> 	</li>
+<li>	<a href="	855.html	">	第八百五十五章 ‘负’计划	</a> 	</li>
+<li>	<a href="	854.html	">	第八百五十四章 它为什么馋你？	</a> 	</li>
+<li>	<a href="	853.html	">	第八百五十三章 凭空出现	</a> 	</li>
+<li>	<a href="	852.html	">	第八百五十二章 毁灭信徒	</a> 	</li>
+<li>	<a href="	851.html	">	第八百五十一章 不喜欢被捅刀子	</a> 	</li>
+<li>	<a href="	850.html	">	第八百五十章 启明星是啥？	</a> 	</li>
+<li>	<a href="	849.html	">	第八百四十九章 不屈的俘虏	</a> 	</li>
+<li>	<a href="	848.html	">	第八百四十八章 宁为玉碎不为瓦全	</a> 	</li>
+<li>	<a href="	847.html	">	第八百四十七章 胜利就在前方！	</a> 	</li>
+<li>	<a href="	846.html	">	第八百四十六章 强势对垒	</a> 	</li>
+<li>	<a href="	845.html	">	第八百四十五章 世界兴衰在此一战！	</a> 	</li>
+<li>	<a href="	844.html	">	第八百四十四章 要战便战	</a> 	</li>
+<li>	<a href="	843.html	">	第八百四十三章 主体易手	</a> 	</li>
+<li>	<a href="	842.html	">	第八百四十二章 为族为己	</a> 	</li>
+<li>	<a href="	841.html	">	第八百四十一章 病毒体寄生	</a> 	</li>
+<li>	<a href="	840.html	">	第八百四十章 恐慌反制	</a> 	</li>
+<li>	<a href="	839.html	">	第八百三十九章 颜色改变	</a> 	</li>
+<li>	<a href="	838.html	">	第八百三十八章 三十二个战场	</a> 	</li>
+<li>	<a href="	837.html	">	第八百三十七章 大战役的启动	</a> 	</li>
+<li>	<a href="	836.html	">	第八百三十六章 远方集群的会师	</a> 	</li>
+<li>	<a href="	835.html	">	第八百三十五章 走开！不要啊！	</a> 	</li>
+<li>	<a href="	834.html	">	第八百三十四章 原来极限在这	</a> 	</li>
+<li>	<a href="	833.html	">	第八百三十三章 我们祈愿……	</a> 	</li>
+<li>	<a href="	832.html	">	第八百三十二章 新的目标	</a> 	</li>
+<li>	<a href="	831.html	">	第八百三十一章 恐慌的科纳克	</a> 	</li>
+<li>	<a href="	830.html	">	第八百三十章 没谁比我们更懂毁灭	</a> 	</li>
+<li>	<a href="	829.html	">	第八百二十九章 毁灭的化身	</a> 	</li>
+<li>	<a href="	828.html	">	第八百二十八章 各显神通	</a> 	</li>
+<li>	<a href="	827.html	">	第八百二十七章 战鼓齐鸣	</a> 	</li>
+<li>	<a href="	826.html	">	第八百二十六章 你的英勇毫无意义	</a> 	</li>
+<li>	<a href="	825.html	">	第八百二十五章 杀不如抓	</a> 	</li>
+<li>	<a href="	824.html	">	第八百二十四章 希望交予你们	</a> 	</li>
+<li>	<a href="	823.html	">	第八百二十三章 群星上下	</a> 	</li>
+<li>	<a href="	822.html	">	第八百二十二章 明智的全选	</a> 	</li>
+<li>	<a href="	821.html	">	第八百二十一章 生存的答案	</a> 	</li>
+<li>	<a href="	820.html	">	第八百二十章 互相接触	</a> 	</li>
+<li>	<a href="	819.html	">	第八百一十九章 德萨人	</a> 	</li>
+<li>	<a href="	818.html	">	第八百一十八章 百亿集群过河系	</a> 	</li>
+<li>	<a href="	817.html	">	第八百一十七章 吞星噬地	</a> 	</li>
+<li>	<a href="	816.html	">	第八百一十六章 吞星巨构	</a> 	</li>
+<li>	<a href="	815.html	">	第八百一十五章 长条引力环	</a> 	</li>
+<li>	<a href="	814.html	">	第八百一十四章 水到渠成	</a> 	</li>
+<li>	<a href="	813.html	">	第八百一十三章 稀释的科特	</a> 	</li>
+<li>	<a href="	812.html	">	第八百一十二章 割裂的文明	</a> 	</li>
+<li>	<a href="	811.html	">	第八百一十一章 谁愿意当附庸	</a> 	</li>
+<li>	<a href="	810.html	">	第八百一十章 恐怖的实力	</a> 	</li>
+<li>	<a href="	809.html	">	第八百零九章 文明的领袖	</a> 	</li>
+<li>	<a href="	808.html	">	第八百零八章 四大势力会议	</a> 	</li>
+<li>	<a href="	807.html	">	第八百零七章 达利人文明	</a> 	</li>
+<li>	<a href="	806.html	">	第八百零六章 错位信息差	</a> 	</li>
+<li>	<a href="	805.html	">	第八百零五章 工业实力的恢复	</a> 	</li>
+<li>	<a href="	804.html	">	第八百零四章 超光速巨构的构建	</a> 	</li>
+<li>	<a href="	803.html	">	第八百零三章 不成熟的想法	</a> 	</li>
+<li>	<a href="	802.html	">	第八百零二章 亲手抛掉	</a> 	</li>
+<li>	<a href="	801.html	">	第八百零一章 请给我们一个生存的机会	</a> 	</li>
+<li>	<a href="	800.html	">	第八百章 说什么来什么	</a> 	</li>
+<li>	<a href="	799.html	">	第七百九十九章 监听员	</a> 	</li>
+<li>	<a href="	798.html	">	第七百九十八章 生生不息	</a> 	</li>
+<li>	<a href="	797.html	">	第七百九十七章 大毁灭的降临	</a> 	</li>
+<li>	<a href="	796.html	">	第七百九十六章 我们摆平它	</a> 	</li>
+<li>	<a href="	795.html	">	第七百九十五章 交易达成	</a> 	</li>
+<li>	<a href="	794.html	">	第七百九十四章 骚动的第七阶层们	</a> 	</li>
+<li>	<a href="	793.html	">	第七百九十三章 打不过就逃	</a> 	</li>
+<li>	<a href="	792.html	">	第七百九十二章 无条件投降	</a> 	</li>
+<li>	<a href="	791.html	">	第七百九十一章 飞升任务（下）	</a> 	</li>
+<li>	<a href="	790.html	">	第七百九十章 飞升任务（上）	</a> 	</li>
+<li>	<a href="	789.html	">	第七百八十九章 预言者	</a> 	</li>
+<li>	<a href="	788.html	">	第七百八十八章 遭殃的虫族	</a> 	</li>
+<li>	<a href="	787.html	">	第七百八十七章 信使生物	</a> 	</li>
+<li>	<a href="	786.html	">	第七百八十六章 简直像魔法一样	</a> 	</li>
+<li>	<a href="	785.html	">	第七百八十五章 超光速实验（下）	</a> 	</li>
+<li>	<a href="	784.html	">	第七百八十四章 超光速实验（中）	</a> 	</li>
+<li>	<a href="	783.html	">	第七百八十三章 超光速实验（上）	</a> 	</li>
+<li>	<a href="	782.html	">	第七百八十二章 时空告诉物质如何运动	</a> 	</li>
+<li>	<a href="	781.html	">	第七百八十一章 历史性的时刻	</a> 	</li>
+<li>	<a href="	780.html	">	第七百八十章 第七阶层、灵域、门世界（下）	</a> 	</li>
+<li>	<a href="	779.html	">	第七百七十九章 第七阶层、灵域、门世界（上）	</a> 	</li>
+<li>	<a href="	778.html	">	第七百七十八章 一切都是偶然	</a> 	</li>
+<li>	<a href="	777.html	">	第七百七十七章 果先于因	</a> 	</li>
+<li>	<a href="	776.html	">	第七百七十六章 命中注定	</a> 	</li>
+<li>	<a href="	775.html	">	第七百七十五章 文明凌驾于物质	</a> 	</li>
+<li>	<a href="	774.html	">	第七百七十四章 概率性分布	</a> 	</li>
+<li>	<a href="	773.html	">	第七百七十三章 25号宇宙实验	</a> 	</li>
+<li>	<a href="	772.html	">	第七百七十二章 闯入者的毁灭	</a> 	</li>
+<li>	<a href="	771.html	">	第七百七十一章 折中的办法	</a> 	</li>
+<li>	<a href="	770.html	">	第七百七十章 我们谈一谈	</a> 	</li>
+<li>	<a href="	769.html	">	第七百六十九章 小卡片	</a> 	</li>
+<li>	<a href="	768.html	">	第七百六十八章 星门探索	</a> 	</li>
+<li>	<a href="	767.html	">	第七百六十七章 罗盘的灾难	</a> 	</li>
+<li>	<a href="	766.html	">	第七百六十六章 悄无声息的布局	</a> 	</li>
+<li>	<a href="	765.html	">	第七百六十五章 寄生获取情报	</a> 	</li>
+<li>	<a href="	764.html	">	第七百六十四章 潜伏式入侵	</a> 	</li>
+<li>	<a href="	763.html	">	第七百六十三章 祸水东移	</a> 	</li>
+<li>	<a href="	762.html	">	第七百六十二章 抢滩夺取	</a> 	</li>
+<li>	<a href="	761.html	">	第七百六十一章 请求远方炮火支援	</a> 	</li>
+<li>	<a href="	760.html	">	第七百六十章 我们需要更多利维坦	</a> 	</li>
+<li>	<a href="	759.html	">	第七百五十九章 这怎么可能	</a> 	</li>
+<li>	<a href="	758.html	">	第七百五十八章 采集者的进攻	</a> 	</li>
+<li>	<a href="	757.html	">	第七百五十七章 屈服的虫子	</a> 	</li>
+<li>	<a href="	756.html	">	第七百五十六章 都没了	</a> 	</li>
+<li>	<a href="	755.html	">	第七百五十五章 虫族吞噬一切	</a> 	</li>
+<li>	<a href="	754.html	">	第七百五十四章 生命在于抽奖	</a> 	</li>
+<li>	<a href="	753.html	">	第七百五十三章 异变的起源	</a> 	</li>
+<li>	<a href="	752.html	">	第七百五十二章 感谢你们的配合	</a> 	</li>
+<li>	<a href="	751.html	">	第七百五十一章 不过是奢望	</a> 	</li>
+<li>	<a href="	750.html	">	第七百五十章 毕竟我们是虫族……	</a> 	</li>
+<li>	<a href="	749.html	">	第七百四十九章 无可争议的碾压	</a> 	</li>
+<li>	<a href="	748.html	">	第七百四十八章 两边的初始交锋	</a> 	</li>
+<li>	<a href="	747.html	">	第七百四十七章 ‘那个’	</a> 	</li>
+<li>	<a href="	746.html	">	第七百四十六章 最终只能靠莽	</a> 	</li>
+<li>	<a href="	745.html	">	第七百四十五章 灵域实验所的探索	</a> 	</li>
+<li>	<a href="	744.html	">	第七百四十四章 克斯人的小心思	</a> 	</li>
+<li>	<a href="	743.html	">	第七百四十三章 克斯人的试探	</a> 	</li>
+<li>	<a href="	742.html	">	第七百四十二章 隐藏实验所的位置	</a> 	</li>
+<li>	<a href="	741.html	">	第七百四十一章 搜寻线索	</a> 	</li>
+<li>	<a href="	740.html	">	第七百四十章 当狗真幸福	</a> 	</li>
+<li>	<a href="	739.html	">	第七百三十九章 阳光真明媚~	</a> 	</li>
+<li>	<a href="	738.html	">	第七百三十八章 希望你们不要后悔	</a> 	</li>
+<li>	<a href="	737.html	">	第七百三十七章 来自采集者的信息	</a> 	</li>
+<li>	<a href="	736.html	">	第七百三十六章 什么叫虫海	</a> 	</li>
+<li>	<a href="	735.html	">	第七百三十五章 不甘的虫族	</a> 	</li>
+<li>	<a href="	734.html	">	第七百三十四章 恐怖的肆虐	</a> 	</li>
+<li>	<a href="	733.html	">	第七百三十三章 现实很残酷	</a> 	</li>
+<li>	<a href="	732.html	">	第七百三十二章 王者的君临	</a> 	</li>
+<li>	<a href="	731.html	">	第七百三十一章 联系媒介	</a> 	</li>
+<li>	<a href="	730.html	">	第七百三十章 既强又弱	</a> 	</li>
+<li>	<a href="	729.html	">	第七百二十九章 克斯人城市	</a> 	</li>
+<li>	<a href="	728.html	">	第七百二十八章 这就是传说中的……	</a> 	</li>
+<li>	<a href="	727.html	">	第七百二十七章 生物兵器	</a> 	</li>
+<li>	<a href="	726.html	">	第七百二十六章 克斯人	</a> 	</li>
+<li>	<a href="	725.html	">	第七百二十五章 成功入侵	</a> 	</li>
+<li>	<a href="	724.html	">	第七百二十四章 分析情报信息	</a> 	</li>
+<li>	<a href="	723.html	">	第七百二十三章 间谍个体	</a> 	</li>
+<li>	<a href="	722.html	">	第七百二十二章 远方的求救	</a> 	</li>
+<li>	<a href="	721.html	">	第七百二十一章 联合舰队最后记录	</a> 	</li>
+<li>	<a href="	720.html	">	第七百二十章 克隆人灭绝之谜	</a> 	</li>
+<li>	<a href="	719.html	">	第七百一十九章 克隆人黎明	</a> 	</li>
+<li>	<a href="	718.html	">	第七百一十八章 贪婪的起源	</a> 	</li>
+<li>	<a href="	717.html	">	第七百一十七章 第四个坐标	</a> 	</li>
+<li>	<a href="	716.html	">	第七百一十六章 新的文本	</a> 	</li>
+<li>	<a href="	715.html	">	第七百一十五章 深入遗迹环	</a> 	</li>
+<li>	<a href="	714.html	">	第七百一十四章 柏杜文明	</a> 	</li>
+<li>	<a href="	713.html	">	第七百一十三章 物质巨构	</a> 	</li>
+<li>	<a href="	712.html	">	第七百一十二章 拨乱反正	</a> 	</li>
+<li>	<a href="	711.html	">	第七百一十一章 谈一谈	</a> 	</li>
+<li>	<a href="	710.html	">	第七百一十章 我是采集者，不叫前辈	</a> 	</li>
+<li>	<a href="	709.html	">	第七百零九章 阿米巴前辈	</a> 	</li>
+<li>	<a href="	708.html	">	第七百零八章 不可战胜	</a> 	</li>
+<li>	<a href="	707.html	">	第七百零七章 现身	</a> 	</li>
+<li>	<a href="	706.html	">	第七百零六章 您的外挂已上线	</a> 	</li>
+<li>	<a href="	705.html	">	第七百零五章 必败的潮军	</a> 	</li>
+<li>	<a href="	704.html	">	第七百零四章 风萧萧兮	</a> 	</li>
+<li>	<a href="	703.html	">	第七百零三章 莽军的大势	</a> 	</li>
+<li>	<a href="	702.html	">	第七百零二章 天纵奇才？	</a> 	</li>
+<li>	<a href="	701.html	">	第七百零一章 不复存在	</a> 	</li>
+<li>	<a href="	700.html	">	第七百章 扭曲物的正体	</a> 	</li>
+<li>	<a href="	699.html	">	第六百九十九章 该在的都在	</a> 	</li>
+<li>	<a href="	698.html	">	第六百九十八章 惊慌的顺天宗	</a> 	</li>
+<li>	<a href="	697.html	">	第六百九十七章 摁在地上摩擦	</a> 	</li>
+<li>	<a href="	696.html	">	第六百九十六章 释放	</a> 	</li>
+<li>	<a href="	695.html	">	第六百九十五章 二号星遗迹	</a> 	</li>
+<li>	<a href="	694.html	">	第六百九十四章 土著的疑惑	</a> 	</li>
+<li>	<a href="	693.html	">	第六百九十三章 顺天宗	</a> 	</li>
+<li>	<a href="	692.html	">	第六百九十二章 暗中观察	</a> 	</li>
+<li>	<a href="	691.html	">	第六百九十一章 飞灯	</a> 	</li>
+<li>	<a href="	690.html	">	第六百九十章 莽与潮的心思	</a> 	</li>
+<li>	<a href="	689.html	">	第六百八十九章 假亦真时真亦假	</a> 	</li>
+<li>	<a href="	688.html	">	第六百八十八章 天兽与邪物	</a> 	</li>
+<li>	<a href="	687.html	">	第六百八十七章 天降之物	</a> 	</li>
+<li>	<a href="	686.html	">	第六百八十六章 恐怖如斯	</a> 	</li>
+<li>	<a href="	685.html	">	第六百八十五章 天下大‘势’	</a> 	</li>
+<li>	<a href="	684.html	">	第六百八十四章 冷兵器的土著	</a> 	</li>
+<li>	<a href="	683.html	">	第六百八十三章 被屠杀的要塞	</a> 	</li>
+<li>	<a href="	682.html	">	第六百八十二章 漫天黄沙之星	</a> 	</li>
+<li>	<a href="	681.html	">	第六百八十一章 智慧与知性	</a> 	</li>
+<li>	<a href="	680.html	">	第六百八十章 探索的集群	</a> 	</li>
+<li>	<a href="	679.html	">	第六百七十九章 被毁灭的文明	</a> 	</li>
+<li>	<a href="	678.html	">	第六百七十八章 全都要	</a> 	</li>
+<li>	<a href="	677.html	">	第六百七十七章 医疗信息分析	</a> 	</li>
+<li>	<a href="	676.html	">	第六百七十六章 自杀的辉人	</a> 	</li>
+<li>	<a href="	675.html	">	第六百七十五章 ‘忒修斯之船’维护法	</a> 	</li>
+<li>	<a href="	674.html	">	第六百七十四章 这不科学	</a> 	</li>
+<li>	<a href="	673.html	">	第六百七十三章 负物质	</a> 	</li>
+<li>	<a href="	672.html	">	第六百七十二章 倦缩的区域	</a> 	</li>
+<li>	<a href="	671.html	">	第六百七十一章 时间的洗礼	</a> 	</li>
+<li>	<a href="	670.html	">	第六百七十章 白色星球上的古迹	</a> 	</li>
+<li>	<a href="	669.html	">	第六百六十九章 第四维	</a> 	</li>
+<li>	<a href="	668.html	">	第六百六十八章 高维时空	</a> 	</li>
+<li>	<a href="	667.html	">	第六百六十七章 血淋淋的数据	</a> 	</li>
+<li>	<a href="	666.html	">	第六百六十六章 固态脑	</a> 	</li>
+<li>	<a href="	665.html	">	第六百六十五章 暂时的停止	</a> 	</li>
+<li>	<a href="	664.html	">	第六百六十四章 灵域之物	</a> 	</li>
+<li>	<a href="	663.html	">	第六百六十三章 封印	</a> 	</li>
+<li>	<a href="	662.html	">	第六百六十二章 议会上的提议	</a> 	</li>
+<li>	<a href="	661.html	">	第六百六十一章 强打强败	</a> 	</li>
+<li>	<a href="	660.html	">	第六百六十章 审讯信息	</a> 	</li>
+<li>	<a href="	659.html	">	第六百五十九章 败者食尘	</a> 	</li>
+<li>	<a href="	658.html	">	第六百五十八章 协调会作战单位们	</a> 	</li>
+<li>	<a href="	657.html	">	第六百五十七章 计划落空？	</a> 	</li>
+<li>	<a href="	656.html	">	第六百五十六章 干扰机制（下）	</a> 	</li>
+<li>	<a href="	655.html	">	第六百五十五章 干扰机制（上）	</a> 	</li>
+<li>	<a href="	654.html	">	第六百五十四章 涟漪巨构	</a> 	</li>
+<li>	<a href="	653.html	">	第六百五十三章 引力波巨构	</a> 	</li>
+<li>	<a href="	652.html	">	第六百五十二章 自我牺牲奉献	</a> 	</li>
+<li>	<a href="	651.html	">	第六百五十一章 初的愤怒	</a> 	</li>
+<li>	<a href="	650.html	">	第六百五十章 你们有选择权	</a> 	</li>
+<li>	<a href="	649.html	">	第六百四十九章 权力的游戏（下）	</a> 	</li>
+<li>	<a href="	648.html	">	第六百四十八章 权力的游戏（上）	</a> 	</li>
+<li>	<a href="	647.html	">	第六百四十七章 算盘打得叮当响	</a> 	</li>
+<li>	<a href="	646.html	">	第六百四十六章 唯一的活路	</a> 	</li>
+<li>	<a href="	645.html	">	第六百四十五章 新帝国的退出	</a> 	</li>
+<li>	<a href="	644.html	">	第六百四十四章 渗透战略	</a> 	</li>
+<li>	<a href="	643.html	">	第六百四十四章 殖民恒星失守	</a> 	</li>
+<li>	<a href="	642.html	">	第六百四十二章 生死角逐时刻	</a> 	</li>
+<li>	<a href="	641.html	">	第六百四十一章 踢到铁板	</a> 	</li>
+<li>	<a href="	640.html	">	第六百四十章 八个阶层（4）	</a> 	</li>
+<li>	<a href="	639.html	">	第六百三十九章 八个阶层（3）	</a> 	</li>
+<li>	<a href="	638.html	">	第六百三十八章 八个阶层（2）	</a> 	</li>
+<li>	<a href="	637.html	">	第六百三十七章 八个阶层（1）	</a> 	</li>
+<li>	<a href="	636.html	">	第六百三十六章 新帝国的残骸	</a> 	</li>
+<li>	<a href="	635.html	">	第六百三十五章 至尊	</a> 	</li>
+<li>	<a href="	634.html	">	第六百三十四章 门世界	</a> 	</li>
+<li>	<a href="	633.html	">	第六百三十三章 狼狈不堪的两国	</a> 	</li>
+<li>	<a href="	632.html	">	第六百三十二章 人心之私	</a> 	</li>
+<li>	<a href="	631.html	">	第六百三十一章 坑中自有坑中手	</a> 	</li>
+<li>	<a href="	630.html	">	第六百三十章 胜机以现	</a> 	</li>
+<li>	<a href="	629.html	">	第六百二十九章 胜券在握	</a> 	</li>
+<li>	<a href="	628.html	">	第六百二十八章 恶劣的战场环境	</a> 	</li>
+<li>	<a href="	627.html	">	第六百二十七章 该装蠢时要装蠢	</a> 	</li>
+<li>	<a href="	626.html	">	第六百二十六章 大胆的想法	</a> 	</li>
+<li>	<a href="	625.html	">	第六百二十五章 伊纳里煌国	</a> 	</li>
+<li>	<a href="	624.html	">	第六百二十四章 没有最低只有更低	</a> 	</li>
+<li>	<a href="	623.html	">	第六百二十三章 巨大的‘怪物’	</a> 	</li>
+<li>	<a href="	622.html	">	第六百二十二章 机甲与战舰	</a> 	</li>
+<li>	<a href="	621.html	">	第六百二十一章 重订战略方针	</a> 	</li>
+<li>	<a href="	620.html	">	第六百二十章 弱的有些假	</a> 	</li>
+<li>	<a href="	619.html	">	第六百一十九章 一定要相信我	</a> 	</li>
+<li>	<a href="	618.html	">	第六百一十八章 什么叫开采恒星资源？	</a> 	</li>
+<li>	<a href="	617.html	">	第六百一十七章 俘虏	</a> 	</li>
+<li>	<a href="	616.html	">	第六百一十六章 心中一片冰凉	</a> 	</li>
+<li>	<a href="	615.html	">	第六百一十五章 我们冲！	</a> 	</li>
+<li>	<a href="	614.html	">	第六百一十四章 我们发达的机会来了	</a> 	</li>
+<li>	<a href="	613.html	">	第六百一十三章 情报汇总报告	</a> 	</li>
+<li>	<a href="	612.html	">	第六百一十二章 阉割的文明	</a> 	</li>
+<li>	<a href="	611.html	">	第六百一十一章 成功潜伏	</a> 	</li>
+<li>	<a href="	610.html	">	第六百一十章 初步夺取	</a> 	</li>
+<li>	<a href="	609.html	">	第六百零九章 星辰之门	</a> 	</li>
+<li>	<a href="	608.html	">	第六百零八章 战术战略的确定	</a> 	</li>
+<li>	<a href="	607.html	">	第六百零七章 神圣沃姆邦国	</a> 	</li>
+<li>	<a href="	606.html	">	第六百零六章 出乎预料的落后	</a> 	</li>
+<li>	<a href="	605.html	">	第六百零五章 我们超乎你的想象	</a> 	</li>
+<li>	<a href="	604.html	">	第六百零四章 无所不用其极	</a> 	</li>
+<li>	<a href="	603.html	">	第六百零三章 你们这届不行	</a> 	</li>
+<li>	<a href="	602.html	">	第六百零二章 怪异的敌军残骸	</a> 	</li>
+<li>	<a href="	601.html	">	第六百零一章 千星闪耀之时	</a> 	</li>
+<li>	<a href="	600.html	">	第六百章 任务前的跳板	</a> 	</li>
+<li>	<a href="	599.html	">	第五百九十九章 归来的跃进生物们	</a> 	</li>
+<li>	<a href="	598.html	">	第五百九十八章 该是啥样还是啥样	</a> 	</li>
+<li>	<a href="	597.html	">	第五百九十七章 傲慢的代价	</a> 	</li>
+<li>	<a href="	596.html	">	第五百九十六章 崛起的狼烟	</a> 	</li>
+<li>	<a href="	595.html	">	第五百九十五章 思维电池	</a> 	</li>
+<li>	<a href="	594.html	">	第五百九十四章 奥德加文明β	</a> 	</li>
+<li>	<a href="	593.html	">	第五百九十三章 次代的新生	</a> 	</li>
+<li>	<a href="	592.html	">	第五百九十二章 初代的末路	</a> 	</li>
+<li>	<a href="	591.html	">	第五百九十一章 奥德加文明	</a> 	</li>
+<li>	<a href="	590.html	">	第五百九十章 七十万年的老古董	</a> 	</li>
+<li>	<a href="	589.html	">	第五百八十九章 等离子母舰	</a> 	</li>
+<li>	<a href="	588.html	">	第五百八十八章 搜寻未知信号源	</a> 	</li>
+<li>	<a href="	587.html	">	第五百八十七章 陌生的外来信号	</a> 	</li>
+<li>	<a href="	586.html	">	第五百八十六章 我将记录下这一切	</a> 	</li>
+<li>	<a href="	585.html	">	第五百八十五章 恒星资源开发任务（8）	</a> 	</li>
+<li>	<a href="	584.html	">	第五百八十四章 恒星资源开发任务（7）	</a> 	</li>
+<li>	<a href="	583.html	">	第五百八十三章 恒星资源开发任务（6）	</a> 	</li>
+<li>	<a href="	582.html	">	第五百八十二章 恒星资源开发任务（5）	</a> 	</li>
+<li>	<a href="	581.html	">	第五百八十一章 恒星资源开发任务（4）	</a> 	</li>
+<li>	<a href="	580.html	">	第五百八十章 恒星资源开发任务（3）	</a> 	</li>
+<li>	<a href="	579.html	">	第五百七十九章 恒星资源开发任务（2）	</a> 	</li>
+<li>	<a href="	578.html	">	第五百七十八章 恒星资源开发任务（1）	</a> 	</li>
+<li>	<a href="	577.html	">	第五百七十七章 残言的分析	</a> 	</li>
+<li>	<a href="	576.html	">	第五百七十六章 古迹中的残言（下）	</a> 	</li>
+<li>	<a href="	575.html	">	第五百七十五章 古迹中的残言（上）	</a> 	</li>
+<li>	<a href="	574.html	">	第五百七十四章 辉文明古迹探索	</a> 	</li>
+<li>	<a href="	573.html	">	第五百七十三章 索里上的考古	</a> 	</li>
+<li>	<a href="	572.html	">	第五百七十二章 帮不上忙	</a> 	</li>
+<li>	<a href="	571.html	">	第五百七十一章 群体的正义	</a> 	</li>
+<li>	<a href="	570.html	">	第五百七十章 我们接受俘虏	</a> 	</li>
+<li>	<a href="	569.html	">	第五百六十九章 绝望的惨败	</a> 	</li>
+<li>	<a href="	568.html	">	第五百六十八章 二十万手办（下）	</a> 	</li>
+<li>	<a href="	567.html	">	第五百六十七章 二十万手办（中）	</a> 	</li>
+<li>	<a href="	023.html	">	.	</a> 	</li>
+<li>	<a href="	022.html	">	.	</a> 	</li>
+<li>	<a href="	021.html	">	.	</a> 	</li>
+<li>	<a href="	020.html	">	第二十章 省	</a> 	</li>
+<li>	<a href="	019.html	">	第十九章 灾	</a> 	</li>
+<li>	<a href="	018.html	">	第十八章 扩展	</a> 	</li>
+<li>	<a href="	017.html	">	第十七章 盐类	</a> 	</li>
+<li>	<a href="	016.html	">	第十六章 绿宝石	</a> 	</li>
+<li>	<a href="	015.html	">	第十五章 思考	</a> 	</li>
+<li>	<a href="	014.html	">	第十四章 他乡	</a> 	</li>
+<li>	<a href="	013.html	">	第十三章 游	</a> 	</li>
+<li>	<a href="	012.html	">	第十二章 喷	</a> 	</li>
+<li>	<a href="	011.html	">	第十一章 流	</a> 	</li>
+<li>	<a href="	010.html	">	第十章 瞳	</a> 	</li>
+<li>	<a href="	009.html	">	第九章 好与坏	</a> 	</li>
+<li>	<a href="	008.html	">	第八章 多细胞	</a> 	</li>
+<li>	<a href="	007.html	">	第七章 设计	</a> 	</li>
+<li>	<a href="	006.html	">	第六章 困兽则噬（修）	</a> 	</li>
+<li>	<a href="	005.html	">	第五章 毒性噬菌体	</a> 	</li>
+<li>	<a href="	004.html	">	第四章 手术	</a> 	</li>
+<li>	<a href="	003.html	">	第三章 脑	</a> 	</li>
+<li>	<a href="	002.html	">	第二章 贴合	</a> 	</li>
+<li>	<a href="	001.html	">	第一章 孢子	</a> 	</li>
+<li>	<a href="	000.html	">	序章	</a> 	</li>
+
+
+
+
+
+	
+
+</ul>
+
+
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
