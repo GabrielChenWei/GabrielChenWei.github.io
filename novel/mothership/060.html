@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第六十章 猎物</h2>
+<p class = "firstLineIndent">“老大，你说老板为什么这么喜欢抢别人家的船啊？”老三边说边将一个小狼机器人放入海水中。</p>
+<p class = "firstLineIndent">机器人一入水，双脚顿时变形成小型的螺旋桨超前冲去，没一会儿就“吧嗒”一声贴上了不远处的一艘万吨货轮，然后化为一滩银色液态金属像油漆一样贴在了船底，开始缓缓蚕食船底外壳。</p>
+<p class = "firstLineIndent">这艘轮船是巴拿马号，你猜的没错，也是日耀旗下的轮船，今天短暂停泊在夏城港口，然后很不幸地被聂云盯上了。</p>
+<p class = "firstLineIndent">“谁知道呢，也许是老板的个人爱好？走吧，去下一个目标！今天可是还有两艘呢！”</p>
+<p class = "firstLineIndent">快艇发出一阵轰鸣离开了港口，谁也没去注意这样一个不起眼的小快艇，毕竟它在一艘巨轮面前，实在太渺小了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云饱餐一顿后向楚氏母女告别，离开了别墅小区。</p>
+<p class = "firstLineIndent">楚凤看了看身边依然注视着聂云背影的女儿，叹了口气。</p>
+<p class = "firstLineIndent">“唉，聂云虽然是个很不错的小伙子，不过他太神秘了，你要是想和他在一起，可要考虑清楚，以后过得可能就不会是平静的生活了。”</p>
+<p class = "firstLineIndent">“妈，你……你说什么呢！谁要和他在一起了！”楚潇潇满脸羞红嗔怪了一句。</p>
+<p class = "firstLineIndent">“你这模样，也就聂云那个傻小子看不出来！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云出了别墅区之后，伸手打了辆出租车，他没发现的是，在他上车之后，不远处有一名巡警立刻打开对讲机。</p>
+<p class = "firstLineIndent">“报告！在海景花园别墅区外发现目标，目标刚刚乘坐一辆出租车往滨江路驶去，车牌号XXXXX！”</p>
+<p class = "firstLineIndent">“收到！跟上目标，但不要与对方接触！随时报告目标动向！”对讲机里传来命令。</p>
+<p class = "firstLineIndent">“明白！”</p>
+<p class = "firstLineIndent">随着通话结束，那名巡警发动汽车远远跟上了前面的出租车。</p>
+<p class = "firstLineIndent">绕过了几个街区，聂云看了眼前方的后视镜，嘴里嘀咕了一句，“连跟踪也这么不专业！就不知道换辆民用车吗？真是！”</p>
+<p class = "firstLineIndent">在前方一处十分偏僻的海岸边下了车，聂云散步一般慢悠悠地走上一处向海中突出的山崖峭壁，山崖十分陡峭，高约百米左右，站在崖边往下看去，崖下就是碧波万顷，海浪拍打在崖壁上，碎裂成无数浪花，发出阵阵轰鸣。</p>
+<p class = "firstLineIndent">而另一边，刘国东一收到发现目标的消息，立刻马不停蹄地赶了过来，下车后正好看到聂云走到崖边，正看着远方似乎在欣赏风景。</p>
+<p class = "firstLineIndent">他眉头挑了挑，紧了紧腰间的配枪，然后带着两名随行的警员走向聂云，准备同他交涉。</p>
+<p class = "firstLineIndent">可离着还有数十米的时候，聂云似有所感一般缓缓转身看向三人。</p>
+<p class = "firstLineIndent">刘国东一楞，他分明看到聂云的嘴角勾了勾，随后在三人惊愕的目光中，聂云突然曲膝向后纵身一跃，竟直接从山崖上跃了下去！</p>
+<p class = "firstLineIndent">在三人看不到的地方，聂云身上的衣服一阵蠕动变幻，片刻后就化为一套全覆式战甲包裹住聂云全身，下一刻“噗通”一声扎入了海面，溅起一朵小小的浪花便消失在大海中。</p>
+<p class = "firstLineIndent">刘国东三人从震惊中反应过来，立刻跑到崖边向下张望，可哪里还有聂云的影子。</p>
+<p class = "firstLineIndent">三人顿时面面相觑。</p>
+<p class = "firstLineIndent">就算我们是警察，你也不用一言不合就跳海吧？呃不对，我们连一言都还没有呢！你至少回来让我说句开场白啊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云潜入海底不久，很快腰间一紧，被一条银色绳索拉向不远处待命中的海狼号，船身上一个闸门打开，吞入聂云后再次关闭，随后海狼号启动，开始缓缓向着远处航行。</p>
+<p class = "firstLineIndent">“哗啦啦！”聂云所在的隔水舱底部打开几个排水口，舱内的海水飞速下降，很快便尽数消失。</p>
+<p class = "firstLineIndent">战甲一阵变幻，聂云恢复了原来的模样，随后旁边的舱门打开，聂云缓缓走了进去。</p>
+<p class = "firstLineIndent">“真麻烦！明明已经很低调了！”聂云嘀咕了一句。</p>
+<p class = "firstLineIndent">他猜到可能是刀疤的事情引起了警方的注意，不过这件事对他来说，也仅仅只是麻烦而已，很快就被他抛在脑后。</p>
+<p class = "firstLineIndent">来到舰长室，聂云感应了一下目标的位置，控制海狼号开始加速，前往接收自己的猎物。</p>
+<p class = "firstLineIndent">嗯，这里没有口误，的确是接收！</p>
+<p class = "firstLineIndent">他赶到目标位置的时候，那艘巴拿马号正静静的悬浮在海面下300米左右的位置，就像是一条流浪狗，被世界遗忘在了这空旷的角落。</p>
+<p class = "firstLineIndent">海狼号上伸出一条牵引绳，遛狗一般拖了巴拿马号就走，很快就消失在这片海域。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">时间回到一个小时前，巴拿马号舰桥。</p>
+<p class = "firstLineIndent">“报告船长，我船已进入公海海域，海面能见度良好，巴拿马号整体航行平稳，仪器设备一切正常！”大副汇报道。</p>
+<p class = "firstLineIndent">“嗯，很好！保持目前航向继续行驶！”</p>
+<p class = "firstLineIndent">“是船长！对了，船长，这里就是水瓶号失踪的海域，集团这两天还下发了一份文件，要求我们提高警惕，如有异常，立刻求救。”</p>
+<p class = "firstLineIndent">“哈哈！你也相信这里有幽灵船吗？就算有，它难不成大白天还敢出来？我看呐，是水瓶号自己出了事故，怕集团追责，这才扯了个什么幽灵船出来！</p>
+<p class = "firstLineIndent">我从十八岁开始走船，几十年来这种传说听了不知道多少，可哪次是真的？它要是真来了，我倒要好好见识一番呢！</p>
+<p class = "firstLineIndent">大副闻言也笑了笑，点头赞同船长的说法。</p>
+<p class = "firstLineIndent">就在这时，控制室突然警铃大作，同时对讲机里传来一名船员惊慌的呼喊。</p>
+<p class = "firstLineIndent">“船长！不好了，船……船漏水了！”</p>
+<p class = "firstLineIndent">“嗯？”船长闻言霍的站起来，紧张道：“怎么回事，哪个位置漏水？”</p>
+<p class = "firstLineIndent">“是船底舱5号区域漏水，水量很大，维修组已经去看过，有一个接近半米左右的大洞，紧急封堵已经来不及了！”</p>
+<p class = "firstLineIndent">“什么！快！立刻让人退出5号区域，然后马上关上隔离门！封闭5号与4、6号区域的连接位置！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">现代船只大都有布置众多的隔离门，如果一个位置漏水，可以立刻封闭漏水区域，避免船只因大量进水而沉没，是一种近现代才发展起来的防沉措施。</p>
+<p class = "firstLineIndent">命令下达后，船长和大副都是紧张的等待最新情况。</p>
+<p class = "firstLineIndent">三分钟后！</p>
+<p class = "firstLineIndent">“船长，5……5号区域已经封闭！”话筒里传来船员的声音，不知为何带上了一点哭腔。</p>
+<p class = "firstLineIndent">“那就好，那就好啊！”船长闻言顿时松了口气。</p>
+<p class = "firstLineIndent">可还没等他这口气出完，那名船员的声音却再次响起。</p>
+<p class = "firstLineIndent">“不……不是！5号位置是封闭了，可……可4号和6号区域也开始漏水了！”</p>
+<p class = "firstLineIndent">“什么！”控制室里的人立刻目瞪口呆。</p>
+<p class = "firstLineIndent">一个区域出现意外漏水还能理解，同时三个是什么情况？</p>
+<p class = "firstLineIndent">“你确定没在开玩笑？”</p>
+<p class = "firstLineIndent">“船长，千真万确！现在4号和6号区域都在进水，情况和5号区域一模一样！”</p>
+<p class = "firstLineIndent">“这……”船长大脑有些当机了。</p>
+<p class = "firstLineIndent">他根本顾不上思考为什么会同时出现三处破损，此时心中只剩下一个念头——船要沉了！</p>
+<p class = "firstLineIndent">作为船长，他对自己的船了如指掌。</p>
+<p class = "firstLineIndent">底舱一共只有5个隔离区域，一下子漏了三个，就算剩下两个没事，也已经阻止不了巴拿马号即将沉没的事实了！</p>
+<p class = "firstLineIndent">“船……船长，现在怎么办？”大副也慌了。</p>
+<p class = "firstLineIndent">“你们确定破损无法做紧急修复吗？”船长深吸一口气，最后向维修组确认。</p>
+<p class = "firstLineIndent">“十分确定！破损太大，根本封堵不上啊！”那船员语气焦急。</p>
+<p class = "firstLineIndent">“唉！立刻发出求救信号！”许久，船长长长叹了口气道，然后眼神痛苦地打开全船广播。</p>
+<p class = "firstLineIndent">“我命令！全员弃船……”</p>
+<p class = "firstLineIndent">半个小时后，满是船员的救生艇上，所有人都看着远处缓缓沉没的巴拿马号，眼神中满是劫后余生和难以置信。</p>
+<p class = "firstLineIndent">为什么呢？究竟是为什么呢？所有人心中都是这样的疑惑。</p>
+<p class = "firstLineIndent">好好的船怎么说沉就沉了呢？</p>
+<p class = "firstLineIndent">那么大的破洞，怎么可能毫无征兆就出现了？这附近是深海，根本不可能触礁啊！还一次就是三个，简直是匪夷所思！</p>
+<p class = "firstLineIndent">“为什么呢……”船长也是一样的不可思议，魔怔了一般一直喃喃着。</p>
+<p class = "firstLineIndent">就在船长发出无尽的疑问时，已经沉没到深海的巴拿马号上，三个破洞诡异地被银白色液态金属封堵，就此不再下沉，悬浮在海下300米的位置，等待着新主人的接收……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">而在巴拿马号沉没的同时，在不远的区域也发生着同样的事情，两艘同属日耀集团的千吨级货船宣告离奇沉没，船上船员弃船，无一伤亡。</p>
+<p class = "firstLineIndent">而不久后，聂云身后拖着一大两小三艘战利品，慢悠悠地驶入了自己的秘密基地……</p>
+
+<h2>第六十一章 微博</h2>
+<p class = "firstLineIndent">随着海狼号和聂云的回归，基地中再次忙碌起来。</p>
+<p class = "firstLineIndent">考虑到和楚氏集团铁矿换钢铁的计划，聂云花了半天的时间，将现有普通材料制作的小狼机器人规模增加到3万台，几乎耗光了基地中近来搜集的各类库存资源。</p>
+<p class = "firstLineIndent">随后，这些小狼机器人在勘测到的三个海底铁矿富集区开始日夜不停地开采铁矿石，然后就地堆放，等待聂云派船接收。</p>
+<p class = "firstLineIndent">三座海底铁矿都属于极易开采的露天矿，按照现在的效率，一天时间基本能够开采近3万吨的铁矿石。</p>
+<p class = "firstLineIndent">为了方便能源供给，他还从基地向这三个地点铺设了电缆，小狼机器人可以就地补充能源。</p>
+<p class = "firstLineIndent">从上方看去，这片海底矿区已经被密密麻麻的采矿机器人所占据，开采矿石产生的噪音让附近的鱼群纷纷惊慌失措地逃窜。</p>
+<p class = "firstLineIndent">人类的工业化脚步第一次到达如此深层的海洋之下，大规模介入的科技力量开始征服这片平静了千万年的海底世界！</p>
+<p class = "firstLineIndent">等矿区采集工作步入正轨后，在聂云的命令下，所有的机械虫又开始继续吞噬水瓶号。</p>
+<p class = "firstLineIndent">海底基地。</p>
+<p class = "firstLineIndent">水瓶号如今只剩下一半的残破躯体，看起来十分凄惨，而在它的旁边，巴拿马号和另外两艘较小的千吨级货轮正在等待接受与水瓶号同样的命运。</p>
+<p class = "firstLineIndent">无数机械虫正在上面不断啃噬船身和船上的货物，每时每刻，机械虫的数量都在快速地增长。</p>
+<p class = "firstLineIndent">才一天多的功夫，如今机械虫的数量已经增长到8000吨，离万吨级只有一步之遥。按照机械虫的数量上升特性，时间越往后，族群越大，其吞噬和增长速度就会越来越快！</p>
+<p class = "firstLineIndent">而随着机械虫数量的进一步扩大，聂云已经开始着手对海狼号进行下一步的升级改造。</p>
+<p class = "firstLineIndent">海狼号如今依然是千吨级的船只，他虽然对一些航行中存在缺陷的细节和外形进行了一些微调，但整体架构和体积仍旧没有太大变化。</p>
+<p class = "firstLineIndent">他最近正在搜索一些船舶设计方面的知识，按照他的计划，下一步准备打造一艘万吨级的超级海狼号。</p>
+<p class = "firstLineIndent">在设想中，超级海狼号不仅要能够潜航，具备海陆空三栖作战能力，同时可以适应多种恶劣环境，还需要具备强大的生产制造能力。</p>
+<p class = "firstLineIndent">在未来，它将是一艘无所不能的多功能超级母舰！</p>
+<p class = "firstLineIndent">这样的舰船设计可以说在人类历史上从未出现过，毕竟地球有史以来还从未有过机械虫这种神奇的建造材料。</p>
+<p class = "firstLineIndent">作为第一个吃螃蟹的人，聂云也只能是博采众家所长，取其精华，从零开始开始自行设计。</p>
+<p class = "firstLineIndent">当然，以现在聂云的知识储备还有很多的细节缺失，但是等到两个订单上的货物抵达，吞噬掉那些武器设备，超级海狼号就有了实现的可能！</p>
+<p class = "firstLineIndent">对新的海狼号，聂云充满了期待！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">夏城。</p>
+<p class = "firstLineIndent">当天下午，日耀集团旗下三艘货轮几乎同时沉没的消息经过一段时间的发酵后很快传出，这么大的事情，涉及人员众多，日耀集团就算想捂也捂不住。</p>
+<p class = "firstLineIndent">事件很快便被媒体曝光，然后立刻引起了轩然大波！</p>
+<p class = "firstLineIndent">日耀集团三天内共计四艘船，一艘疑似被幽灵船劫持，三艘莫名其妙在同一海域诡异沉没，这让众多媒体惊愕万分的同时，八卦之火也开始熊熊燃烧。</p>
+<p class = "firstLineIndent">“幽灵海域”！这是媒体对这一海域的新称呼。</p>
+<p class = "firstLineIndent">一艘船被幽灵船劫持，或许是噱头！三艘船同时沉没，或许是巧合！但是这四艘船如果都是一个集团旗下的呢？如果都是发生在同一海域呢？那事情就大条了啊！</p>
+<p class = "firstLineIndent">“被诅咒的日耀”！这个词高频的出现在媒体报道中。</p>
+<p class = "firstLineIndent">有一家八卦媒体甚至公开宣称日耀集团受到了该片海域中的幽灵船的诅咒，所有通行的所属船只都会受到幽灵船的攻击。</p>
+<p class = "firstLineIndent">一时间，日耀集团声誉大跌，远洋业务几乎立刻停滞，没有一家企业敢再让这么倒霉的日耀集团接手自己的运输任务。</p>
+<p class = "firstLineIndent">当然，某种程度来说他们也是名声大噪，至少有七八家八卦杂志社的记者正围在日耀集团总部门口，想要探听“日耀与幽灵船之间不得不说的故事！”</p>
+<p class = "firstLineIndent">受此影响，日耀集团股价在今天早上稍稍回升之后再次跌停！外界一片唱衰之声！</p>
+<p class = "firstLineIndent">日耀集团总部。</p>
+<p class = "firstLineIndent">“这到底是怎么回事，我需要一个解释！董事会需要一个解释！”韩祥生再无淡定从容的样子，对着副总一阵咆哮。</p>
+<p class = "firstLineIndent">韩奕听闻情况，已经赶了过来，此时站在旁边，脸色也十分难看。</p>
+<p class = "firstLineIndent">“韩董，这……我们真的不清楚具体的原因啊！三艘船的船长说法完全相同，船底莫名其妙出现数处破损，经判断再无可能抢修，这才全员弃船。</p>
+<p class = "firstLineIndent">至于发生这种事情的原因，他们也毫无头绪……会不会真的是……”</p>
+<p class = "firstLineIndent">“放屁！这世界上怎么会有幽灵船莫名其妙就盯上我们，肯定是人为的！</p>
+<p class = "firstLineIndent">查！派专业的调查团队前往沉船区查个水落石出！给我仔细检查破口的痕迹，只要有证据说明这是人为的，就能够挽回一些日耀的声誉！”</p>
+<p class = "firstLineIndent">“韩董，事件发生后我就第一时间派遣集团的调查团前往沉船海域调查了，想来很快就会有消息传回来！”副总话音刚落，他的电话就响了。</p>
+<p class = "firstLineIndent">他拿起电话一看，是调查团的领队！他立刻向韩祥生请示了一下，这才接起电话。</p>
+<p class = "firstLineIndent">“喂！你们调查团到达沉船区了吗？现在调查的情况怎么样？”副总一接起电话就立刻问道。</p>
+<p class = "firstLineIndent">“嗯？你说什么？再给我说一遍！？”副总听了对面的几句话，却立刻脸色一变，难以置信地向对方再次确认。</p>
+<p class = "firstLineIndent">又听了一阵，副总脸色有些苍白地挂断电话，看向韩祥生。</p>
+<p class = "firstLineIndent">“什么情况！快说！”韩祥生看到他的样子，立刻就有了不好的预感。</p>
+<p class = "firstLineIndent">“韩董，那几艘船……它……它们消失了！”副总结结巴巴道。</p>
+<p class = "firstLineIndent">“消失了？！”韩家父子瞪大眼睛不可置信地重复了一句。</p>
+<p class = "firstLineIndent">“什么叫消失了？怎么消失的？！”韩祥生脸色阴沉地问道。</p>
+<p class = "firstLineIndent">“沉没的三艘船，全都……全都不见了！调查团在船只沉没的海域周边都找遍了，没有沉船的任何痕迹……”</p>
+<p class = "firstLineIndent">三人面面相觑。</p>
+<p class = "firstLineIndent">韩祥生脸色发白地跌坐在真皮座椅上，久久无法回神。</p>
+<p class = "firstLineIndent">“怎么会这样，会不会是被人给打捞走了？”韩奕不甘心地追问。</p>
+<p class = "firstLineIndent">“韩少，不说两艘千吨级的货船，巴拿马号可是满载的万吨级货轮，船只沉没时船员都在场，附近根本没有可疑船只，就算有，这么短的时间也是不可能完成打捞作业的！”副总苦笑道。</p>
+<p class = "firstLineIndent">“这……”哪怕韩奕是无神论者，此时心中也不由得一阵发毛，不敢再深想下去。</p>
+<p class = "firstLineIndent">“对了！快！立刻封锁消息！不能让这个消息被媒体知道！”韩祥生像是想起什么，立刻站起来急急地吩咐道。</p>
+<p class = "firstLineIndent">可惜已经有些晚了。</p>
+<p class = "firstLineIndent">公关部的负责人突然匆匆跑进来道：“韩董，不好了，楼下来了好多记者，都在追问沉船是否离奇消失了？”</p>
+<p class = "firstLineIndent">“什么？！”韩家父子对视一眼，脸色灰败。</p>
+<p class = "firstLineIndent">无疑，诡异消失的沉船将更加坐实幽灵船的存在，而他们，将被死死扣上“被诅咒的日耀”这样的帽子！</p>
+<p class = "firstLineIndent">今天，绝对是日耀的灾难日！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云闲来无事逛互联网的时候，才发现上面铺天盖地都是关于“幽灵船事件”的报道。</p>
+<p class = "firstLineIndent">他自己也是吓了一跳，瞬间被广大群众的丰富想象力所折服，然后他想了想，坏坏一笑，看热闹不嫌事儿大地发了条微博……</p>
+<p class = "firstLineIndent">下午四点左右，一条毫不起眼的微博被吃瓜群众迅速顶起，转发量很快突破百万次！</p>
+<p class = "firstLineIndent">博主名字是“（生气的）船长”，相对网络上各种奇葩的名字来说实在是很普通。然而</p>
+<p class = "firstLineIndent">各种海洋生物和斑驳的光影无一不说明这张照片拍摄于海底。</p>
+<p class = "firstLineIndent">照片中，一大两小三艘货轮就静静地躺在沉积上万年的泥沙中，船体外表还很干净，明显刚刚沉没不久。</p>
+<p class = "firstLineIndent">而最大的那艘沉船船头位置，“巴拿马号”几个醒目的大字赫然在列！</p>
+<p class = "firstLineIndent">在媒体铺天盖地的报道下，大家对这艘船可不算陌生。</p>
+<p class = "firstLineIndent">“靠，我看到了什么！是那三艘消失的沉船啊！谁来告诉我这不是真的！”</p>
+<p class = "firstLineIndent">“微博惊现幽灵船船长！骗你是小狗！”</p>
+<p class = "firstLineIndent">“经专家鉴定，该图非合成，有图有真相！”</p>
+<p class = "firstLineIndent">“老婆！快出来看幽灵！”</p>
+<p class = "firstLineIndent">“幽灵船长为什么是（生气的）？”</p>
+<p class = "firstLineIndent">“这还用问，肯定是日耀集团惹恼了船长大大啊！不然人家能盯着他们一家的船揍吗？”</p>
+<p class = "firstLineIndent">“问一句，船长大大还招船员吗？我是立志要成为海贼王的男人！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">一开始，评论还算正常，然后很正常的，楼开始歪了……</p>
+<p class = "firstLineIndent">“这位幽灵船长大人，我需要提醒你，根据我国刑法，以暴力、胁迫或者其他方法抢劫公私财物的，处3年以上10年以下有期徒刑，并处罚金！”</p>
+<p class = "firstLineIndent">“楼上没毛病，首先，我们需要先建一座能关得住幽灵的监狱，然后，为了方便幽灵船长大人上缴罚金，我们还要知道幽灵币兑软妹币的汇率。”</p>
+<p class = "firstLineIndent">“嗯，楼上的方案合情合理，我表示赞同！身为茅山第567代传人，捉鬼专家，我个人建议可以使用高压电网限制对方的人生自由！”</p>
+<p class = "firstLineIndent">“噗，你们是想笑死哥然后继承哥的遗产吗？”</p>
+<p class = "firstLineIndent">……</p>
+
+<h2>第六十二章 比如说心脏</h2>
+<p class = "firstLineIndent">会玩微博的幽灵船长在网上引出了一大堆不正经的段子手时，有人终于正经地发现了异常。</p>
+<p class = "firstLineIndent">“你们有谁看了微博博主的个人主页吗？来个人告诉我是我眼花了？”</p>
+<p class = "firstLineIndent">这样一条很不起眼的评论引起了一些人的注意，然后点开了（生气的）船长微博主页。</p>
+<p class = "firstLineIndent">在资料栏一条条看下去。</p>
+<p class = "firstLineIndent">（生气的）船长（VIP认证账号）</p>
+<p class = "firstLineIndent">关注：；粉丝：</p>
+<p class = "firstLineIndent">位置：地球，幽灵海域</p>
+<p class = "firstLineIndent">生日：1352年2月6日</p>
+<p class = "firstLineIndent">简介：我要我的心脏……</p>
+<p class = "firstLineIndent">人物标签：船长</p>
+<p class = "firstLineIndent">他的关注（1）：日耀集团（VIP认证账号）</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“我去！这个主页是怎么回事？微博官方神通广大啊！幽灵船长都能给认证咯？！跪求他的联系方式！”</p>
+<p class = "firstLineIndent">“粉丝瞬间上百万啊！他绝对是窜的最快的大V，不过那个位置怎么回事？还有地球这个选项吗？我是不是注册了一个假微博？”</p>
+<p class = "firstLineIndent">“你们关注点都错了吧，没看到吗，他唯一的关注——日耀集团啊！日耀集团，你被幽灵船长关注了，求你的心理阴影面积？”</p>
+<p class = "firstLineIndent">“铜球！”</p>
+<p class = "firstLineIndent">“十万吨铜球！”</p>
+<p class = "firstLineIndent">“他要他的心脏？日耀集团莫非是偷了幽灵船长的心脏？咦，这个剧情似曾相识啊？！”</p>
+<p class = "firstLineIndent">“日耀集团，这你就不对了，人家幽灵船长没招你惹你，地球在他的统治下也和平了上百年，你这样偷走别人家的心脏主动挑起事端，会引发世界大战的知不知道？”</p>
+<p class = "firstLineIndent">“唉，你们还没发现吗，看他的出生日期，这才是重点中的重点！”</p>
+<p class = "firstLineIndent">“1352年？楼上大惊小怪，哪一个幽灵不是数百年的老妖怪！一点都不稀奇好吧！”</p>
+<p class = "firstLineIndent">“是1352年2月6日，也就是说，今天是幽灵船长大人的……生日？”</p>
+<p class = "firstLineIndent">“生快船长大人！哈皮波斯得图尤~”</p>
+<p class = "firstLineIndent">“船长大人生快！”</p>
+<p class = "firstLineIndent">“不对，你们算算看，船长大人今年几岁了？”</p>
+<p class = "firstLineIndent">“卧槽！666！”</p>
+<p class = "firstLineIndent">“楼上，人家是让你算船长几岁，不是让你喊666！”</p>
+<p class = "firstLineIndent">“2018-1352=？你自己算！”</p>
+<p class = "firstLineIndent">“卧槽！666！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">微博上惊现幽灵船长的消息长了翅膀一般飞速传遍了夏城市，然后是兔子国，接着往国外蔓延。</p>
+<p class = "firstLineIndent">媒体疯了一般争相报道这件事，然而，有人却已经炸锅了！</p>
+<p class = "firstLineIndent">微博总部。</p>
+<p class = "firstLineIndent">“首席技术官，这到底是怎么回事？为什么这个账号是已认证状态，是你认证的还是我认证的？！”微博总裁对着首席技术官咆哮道。</p>
+<p class = "firstLineIndent">“总裁，我们整个技术团队在得到消息的第一时间已经展开技术排查，发现我们的后台数据有被黑客篡改过的痕迹！”</p>
+<p class = "firstLineIndent">“黑客篡改？！那怎么还不立刻恢复数据，修复漏洞？”</p>
+<p class = "firstLineIndent">“这……我们试过了，但是恢复数据后，只要一连接网络，便会迅速被对方再次篡改，就算删除账号都没有用！对方的黑客能力超出我们的想象，我们完全不是对手！”技术官满头大汗。</p>
+<p class = "firstLineIndent">“什么？你是说我们一个技术部门全部出手都还无法防御对方的黑客进攻？”</p>
+<p class = "firstLineIndent">“的……的确是这样！”技术官有些羞愧道。</p>
+<p class = "firstLineIndent">“对方难道是一个顶尖黑客团队？”总裁难以置信地问，自己的技术部门可以说是兔子国顶尖的一批IT人才了，连他们都完全不是对手，莫非是国外的黑客团体？可是一个账号数据值得他们费这么大工夫？</p>
+<p class = "firstLineIndent">“不！不是！”技术官十分肯定地摇摇头。</p>
+<p class = "firstLineIndent">“对方出手时的统一协调性绝对不是多人互相配合所能达到的效果，我很肯定，对方一定是一个人！</p>
+<p class = "firstLineIndent">而且似乎……似乎对方的学习速度十分惊人！</p>
+<p class = "firstLineIndent">刚开始对方的黑客技术还有些稚嫩，犯了很多新手才会犯的低级错误，那时我们还能和对方有来有往互相攻击，但短短三四次交锋之后……我们就再也不是对手！”</p>
+<p class = "firstLineIndent">“嘶！”总裁倒抽一口凉气，怎么可能有这种学习速度？</p>
+<p class = "firstLineIndent">“你觉得会有这种人存在？”总裁迟疑着问出这句话。</p>
+<p class = "firstLineIndent">“人类应该不可能达到这种程度，如果是幻想中的人工智能也许可以做到这种程度，所以虽然很不可思议，但我宁肯相信他真的是一只幽灵……”</p>
+<p class = "firstLineIndent">总裁：“……”</p>
+<p class = "firstLineIndent">这时候外面一名员工跑了进来。</p>
+<p class = "firstLineIndent">“总裁，有很多媒体打电话过来，要求我们对‘（生气的）船长’这个账号做出解释，我们该怎么回复？”</p>
+<p class = "firstLineIndent">总裁沉吟了许久，这才抬头吩咐道：“让公司官网发布一条公告，就说这个账号是技术故障，我们并没有认证过其‘本人’，但鉴于社会上的巨大关注度，对其数据暂时不做修改！”</p>
+<p class = "firstLineIndent">“好的总裁！”</p>
+<p class = "firstLineIndent">总裁和技术官两人互相对视一眼，都从对方眼中看出无奈，现在这种处理方式已经成为他们唯一的选择……</p>
+<p class = "firstLineIndent">秘密基地。</p>
+<p class = "firstLineIndent">聂云睁开眼，“哦，这么快就放弃了吗？我还想多学点东西呢，真没劲！下次找个更强一点的对手吧！</p>
+<p class = "firstLineIndent">话说很多秘密实验室不是也有连接外部网络吗？里面可是有很多非公开的机密技术资料，对我也很有用啊！以我现在的水平，下一次找一家去试试看能不能偷……咳咳！共享一点技术出来！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">韩家。</p>
+<p class = "firstLineIndent">“今天下午四点，微博上一张沉船照片引发社会的巨大关注，名为‘（生气的）船长’的神秘博主……”</p>
+<p class = "firstLineIndent">韩家父子看着电视上铺天盖地报道的新闻，脸色都十分难看！</p>
+<p class = "firstLineIndent">“人为的！这一定是人为的！有人想要用这种方式来打击我们日耀集团！”韩奕气急败坏道。</p>
+<p class = "firstLineIndent">韩祥生虽然脸色也很难看，但是很快便冷静下来，他冷笑道：“对方不管与我们日耀有什么仇怨，不过他这么做不过是弄巧成拙！倒是帮了我们一把！”</p>
+<p class = "firstLineIndent">“哦，爸，您有什么高见？”韩奕闻言赶紧出口询问。</p>
+<p class = "firstLineIndent">“哼！他以为让一个虚构的幽灵船长跳出来就能让我们日耀受到更大的声誉打击，其实是在引火烧身罢了。</p>
+<p class = "firstLineIndent">我们怎么说也是国内的大型企业，水瓶号失踪在公海，国家海巡顶多是例行调查，不会太过重视，但现在事情闹得全国皆知，你说，政府还会坐视不管吗？</p>
+<p class = "firstLineIndent">如果任由对方劫掠国内企业的船只，谁还敢出海贸易，国家威严何在？所以国家一定会出手！甚至直接派遣军方调查此事！</p>
+<p class = "firstLineIndent">到时候，就算对方再狡猾，藏得再深，还能和国家势力相抗衡吗？而且幽灵海域位于南海以东，这一片本来就是多国之间的敏感海域，就连其他国家说不定也会闻风而动！</p>
+<p class = "firstLineIndent">他们将幽灵船长打造的越逼真！各个势力对它的兴趣只会越大，到时候就算我们不出手，它也会被人打出原型！</p>
+<p class = "firstLineIndent">四艘货船那么庞大的体积，不可能一点蛛丝马迹都没有，以国家的力量，就不信抓不住他的尾巴！</p>
+<p class = "firstLineIndent">哼！对方这真是下了一招臭棋！”</p>
+<p class = "firstLineIndent">“对啊！我怎么就没想到，对方这是搬起石头砸自己的脚！”韩奕眼睛一亮。</p>
+<p class = "firstLineIndent">“嗯，所以现在，我们只需要做好危机公关，摆出一副受害者的模样就可以了，等事情调查清楚之后，我们日耀就能博取社会的广泛同情，集团甚至会因此而受益！”</p>
+<p class = "firstLineIndent">“嗯，我明白了！”韩奕终于露出如释重负的表情。</p>
+<p class = "firstLineIndent">“对了，还有件事……”韩祥生欲言又止。</p>
+<p class = "firstLineIndent">“爸，您吩咐！”</p>
+<p class = "firstLineIndent">“那个……你悄悄去集团内部调查一下，看看我们是不是有人拿了什么不该拿的东西！”</p>
+<p class = "firstLineIndent">“嗯？什么东西？”韩奕脸上满是疑惑。</p>
+<p class = "firstLineIndent">“咳咳！就比如说心脏什么的……”</p>
+<p class = "firstLineIndent">韩奕：“……”</p>
+
+<h2>第六十三章 和太阳肩并肩</h2>
+<p class = "firstLineIndent">作为对手，幽灵船长事件自然很快传到楚氏耳中。</p>
+<p class = "firstLineIndent">楚凤和楚潇潇完全是以一种看奇幻剧的心情在关注事件的发展，全程都充满了惊奇。</p>
+<p class = "firstLineIndent">“呃！我怎么觉得这事处处透着古怪，日耀集团这是得罪什么人了啊？”楚潇潇目瞪口呆，随后心中隐隐有种熟悉感，这种让人完全摸不着头脑的行事风格似曾相识。</p>
+<p class = "firstLineIndent">“你是不是在想，会不会是聂云和他身后的势力？”楚凤很快察觉楚潇潇的心思。</p>
+<p class = "firstLineIndent">“嗯，隐约是有这样的想法，不过如果是他，他又是怎么做到的？”楚潇潇皱眉，聂云那个家伙向来不按常理出牌，如果是他做的，楚潇潇一点也不会惊讶。</p>
+<p class = "firstLineIndent">“对方这么做，倒还真像是在帮楚氏，至少现在，我们是最大的受益者之一！</p>
+<p class = "firstLineIndent">不过那位神秘的‘幽灵船长’敢把动静闹这么大，不是决策失误就是有着绝对的把握根本不惧怕任何势力的窥探。这么一闹，接下来一段时间幽灵海域估计不会平静了！</p>
+<p class = "firstLineIndent">你找个机会和聂云联系一下，不管是不是他，提醒一下总没错！”楚凤经验更丰富，自然能够看出更多的东西。</p>
+<p class = "firstLineIndent">“嗯，我知道，不过不管怎么说，如今日耀集团业务量急剧萎缩，正是我们抢占市场的好机会！”楚潇潇道。</p>
+<p class = "firstLineIndent">“嗯，不错，这件事我已经安排下去了，另外，他们如今的股价收到重挫，其中也有相当的操作空间！敢动我们楚氏的外脑筋，我要让他们知道，我们也不是吃素的！”楚凤眼中露出寒光。</p>
+<p class = "firstLineIndent">“对了，聂云那边的铁矿石交易什么时候可以开始？”楚凤又问。</p>
+<p class = "firstLineIndent">“他说后天就能过去接收第一批十万吨货物。”</p>
+<p class = "firstLineIndent">“这么快？”</p>
+<p class = "firstLineIndent">“嗯，他那里应该是还有不少的库存。”</p>
+<p class = "firstLineIndent">“好，我会立刻和军方联系，争取尽快将这笔交易特批下来，我们会选择国内最大的钢铁企业‘宝武钢铁集团’作为突破口打开市场，以低于市场价一成的价格给他们提供货物，相信很快，就会有其他的企业找上门来合作！”</p>
+<p class = "firstLineIndent">聂云虽然说铁矿价格可以按照市场价一半出货，但是具体的商业行为自然不可能这么简单粗暴，低于一成的价格就已经能够统治市场，接下来就看聂云那边的出货量了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">很快，军方就收到了来自楚氏集团的特批申请。</p>
+<p class = "firstLineIndent">由于核燃料贸易和先前方教授的提醒，军方对楚氏是相当重视，申请直接就送到了胡军长的办公桌上。</p>
+<p class = "firstLineIndent">“什么？以低于市场价一成不限量提供优质铁矿？楚氏集团哪里来的那么多铁矿？”胡军长看到这份申请时有些惊讶。</p>
+<p class = "firstLineIndent">“据情报部门估计，货物来源应该是对方背后的势力，据调查，楚氏名下并没有什么大型矿山。”旁边站着的一名手下汇报道。</p>
+<p class = "firstLineIndent">“嗯，的确，不过货物没有产地证明？他们背后的势力还真是藏得够深的，做事这么小心！不过这件事对我们国内的钢铁企业大有好处，不管对方是什么目的，先将这块肥肉吃下去再说！”</p>
+<p class = "firstLineIndent">胡军长虽然对这件事的真实性还有些怀疑，不过有了上次核燃料的事情，他对于对方的能量也是不敢小觑，对方也不可能没事跑来消遣自己，心中已经信了七八分。</p>
+<p class = "firstLineIndent">胡军长当即拿起红头电话拨出了一个号码。</p>
+<p class = "firstLineIndent">“喂！胡军长，什么事？”</p>
+<p class = "firstLineIndent">“首长好！我这里有个情况要汇报一下，是关于楚氏及他背后的势力，事情是这样的……”</p>
+<p class = "firstLineIndent">许久之后，胡司令挂断电话，对手下人吩咐道：“首长已经同意，并且十分重视，立刻联系宝武钢铁集团的人，将情况和他们说明，让他们派出协商团队与楚氏对接！”</p>
+<p class = "firstLineIndent">“是！军长！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">魔都宝武钢铁集团总部。</p>
+<p class = "firstLineIndent">“你说什么？低于市场价格一成不限量供应铁矿？你确认没在和我开玩笑？”集团总经理听到手下的汇报，难以置信道。</p>
+<p class = "firstLineIndent">“总经理，上面已经下发了正式文件，让我们务必重视这次与楚氏的合作，想来应该不会有假。”手下也是一脸的不可思议。</p>
+<p class = "firstLineIndent">“莫非是国内和南美几个国家达成了合作？可为什么会是楚氏集团？他们根本就不是行业内的啊？”总经理心里暗自琢磨。</p>
+<p class = "firstLineIndent">全世界大量出口铁矿的国家就那么几个，除了袋鼠国也就南美几个国家，但是袋鼠国相比，南美的供应量就小巫见大巫了。</p>
+<p class = "firstLineIndent">“不管怎么说，先按照指示和楚氏接触一下，看看具体的情况！如果货是真的，有多少给我吃多少！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">秘密基地。</p>
+<p class = "firstLineIndent">聂云随手搅动了“幽灵船长”的风波之后，立刻将外界的一切抛诸脑后。</p>
+<p class = "firstLineIndent">至于会找来国家势力的调查什么的聂云根本就不在意，以海狼号如今的能力，如果打不过一心想躲，地球上还没有那一艘舰艇能够对它造成威胁。</p>
+<p class = "firstLineIndent">聂云可以很嚣张的说，海面以下，就是海狼号统治的天下！</p>
+<p class = "firstLineIndent">不说其他，单以潜航深度而言，就没有那一艘潜艇能够抓到海狼号。</p>
+<p class = "firstLineIndent">再说了，聂云还没傻到在自家门口搞事情，我家的基地在南海以南，和南海以东的幽灵海域根本就天南地北，你们调查你们的，和我有关系吗？</p>
+<p class = "firstLineIndent">此刻的聂云，心思完全被基地即将面临的一个新难题所占据——能源危机！</p>
+<p class = "firstLineIndent">基地所在的这座无人岛面积本就不大，就算铺满了能源搜集装置，同时供应三个矿区的作业和近万吨的机械虫活动，如今也已经有些捉襟见肘。</p>
+<p class = "firstLineIndent">“看来是时候进行能源升级了！”</p>
+<p class = "firstLineIndent">聂云心中其实早就已经有了些想法！他依然将目光投向目前最高效的能源技术——核能上！</p>
+<p class = "firstLineIndent">先前提到过，人类目前开发核能的途径有两条。</p>
+<p class = "firstLineIndent">一是重元素的裂变，如铀，二是轻元素的聚变，如氘、氚。</p>
+<p class = "firstLineIndent">氘和氚都是氢的同位素，在超高温、高压条件下，它们的原子核可以互相碰撞而聚合成一种较重的原子核——氦核，同时释放巨大的能量，这就是聚变核技术的基本原理。</p>
+<p class = "firstLineIndent">其实，人们每天都可以看见这种核聚变现象——那就是太阳！</p>
+<p class = "firstLineIndent">太阳保持高温热辐射的基本原理就是其内部每时每刻都在进行着剧烈的核聚变现象，而且这种聚变已经稳定持续了上亿年。</p>
+<p class = "firstLineIndent">“我日！原来你就是这么发光发热的！决定了，下一阶段能源技术就是你了！我可是要和太阳肩并肩的男人！”</p>
+
+<h2>第六十四章 最持久</h2>
+<p class = "firstLineIndent">氘、氚的提取并不困难，海水中就蕴含了大量的氘、氚元素，就算是以人类目前的技术，想要提取也并非难事，更不用说机械虫在手的聂云了。</p>
+<p class = "firstLineIndent">因为海洋中充沛的氘、氚资源，加上聚变后的产物为完全无污染的氦，所以核聚变也被认为是地球未来发展的主要能源技术！</p>
+<p class = "firstLineIndent">然而核聚变环境要求瞬间上亿度的高温，以及难以想象的高压环境，就算以目前最前沿的技术，正常情况下也还无法做到。</p>
+<p class = "firstLineIndent">而唯一利用了核聚变原理制造的核武器——氢弹！便是先利用裂变反应制造高温高压的聚变环境，从而达到引发聚变反应地效果，这就是所谓的——原子弹引爆机。</p>
+<p class = "firstLineIndent">然而，引爆氢弹容易，但是要想让聚变反应在可控条件下持续供能，那就不是一件简单的事情了。</p>
+<p class = "firstLineIndent">目前世界上的几个核大国几乎都在研究如何进行稳定核聚变，这项技术涉及物理学、材料学、机械学、工程学等等几乎所有基础学科的最尖端科技，聚集了一批最顶尖的人才，然而技术壁垒在目前为止依然牢牢挡住人类发展的脚步。</p>
+<p class = "firstLineIndent">氘-氚的核聚变反应，技术的主要难点有两个，一是如何制造稳定的高温高压环境，二是如何约束聚变中的超高温等离子体。</p>
+<p class = "firstLineIndent">不过，有机械虫在手的聂云，在汲取了大量的基础物理学知识之后，终于有了一个超大胆的想法。</p>
+<p class = "firstLineIndent">当天夜里12点，在机械虫数量正式突破万吨级之后，聂云乘坐海狼号带上所有的机械虫抵达离基地数百海里以外的预定实验地点。</p>
+<p class = "firstLineIndent">这里是一处偏离商贸航线的小岛礁，附近上千平方公里内没有大型岛屿，不会有人来打扰聂云，可以让他安静地进行自己的实验。</p>
+<p class = "firstLineIndent">机械虫很快便将这处只有十来平方米的小岛礁进行了初步的平整，形成了一个圆形小平台，聂云乘坐海狼号在数海里外的深海3000米处遥控指挥。</p>
+<p class = "firstLineIndent">没办法，这玩意儿聂云也没什么把握，所以留够了安全距离。</p>
+<p class = "firstLineIndent">此时天空中乌云密布，隐隐有雷声传来，似乎有一场海上暴风即将来临。</p>
+<p class = "firstLineIndent">聂云半躺在宽大的船长椅上，闭目全力控制平台上的机械虫。</p>
+<p class = "firstLineIndent">被平整后的圆形小平台中心上，竖立着三根上尖下宽的银白色支架，支架尖端并拢，形成一个标准的三角椎体。</p>
+<p class = "firstLineIndent">而支架尖端位置，稳稳地放置着一颗婴儿拳头大小的足球状透明多面体小球，在小球正中心，悬浮着一颗十分细小的金属小颗粒，里面装着的是提纯过后的氘-氚混合物。</p>
+<p class = "firstLineIndent">小球内部是真空的，并且在聂云的设计下，这个全部由机械虫构成的透明多面体小球本身是一个超强的磁约束体。</p>
+<p class = "firstLineIndent">电流通过三根支架传递到小球上，提供磁约束的能源。</p>
+<p class = "firstLineIndent">初步准备工作完成，在聂云的控制下，平台四周突兀地长出了数百根银白色尖刺，密密麻麻的尖端均匀分布着齐齐对准了小球。</p>
+<p class = "firstLineIndent">聂云深吸一口气——实验开始！</p>
+<p class = "firstLineIndent">只见第一根尖刺顶端突然一亮，一道极细的高能激光从尖端猛然射出，瞬间刺入透明小球，然后在小球内部经过多次折射，形成繁复的反射光路后最终抵达中心位置，照射在金属小颗粒上。</p>
+<p class = "firstLineIndent">“呼！激光射线光路计算准确，下一步，开始！”聂云心里默念。</p>
+<p class = "firstLineIndent">在第一道激光实验成功后，紧接着，所有的激光尖刺依次放射出同样的高能激光光束，无数道激光按照设计好的光路，齐齐汇聚在中心位置。</p>
+<p class = "firstLineIndent">瞬间，透明小球中心位置发出刺目的亮光，刺破黑暗，照亮了周围数百米的海域。</p>
+<p class = "firstLineIndent">而中心位置的金属小颗粒几乎瞬间便被高温蒸发，无数道高能激光立刻聚焦在暴露出的氘-氚混合物上。</p>
+<p class = "firstLineIndent">“滋~”就像是点燃了一颗小太阳，中心处的氘-氚混合物在激光制造的超高温和超强光压下瞬间被点燃，化为一颗小小的刺目火球，缓缓膨胀到一颗米粒大小便被死死约束在中心位置。</p>
+<p class = "firstLineIndent">几乎瞬间，超强的热辐射照射在透明小球内壁，机械虫不愧是高等文明的造物，透明球体即便在数百万度的辐射高温下，依然毫无变形迹象，很好地维持着本身的结构稳定。</p>
+<p class = "firstLineIndent">这些热辐射一部分折射出小球，化为强大的光能照亮了数海里的海域。</p>
+<p class = "firstLineIndent">而大部分的热辐射则立刻被机械虫化为超强的电能，通过三根支架导入平台，平台下连接着的近万吨的机械虫将这些电能尽数吸取，储存在体内。</p>
+<p class = "firstLineIndent">“滋滋~”强大的电流溢出，平台上金字塔状的支架和小球外部瞬间出现无数道电蛇，缠绕住了整个平台。</p>
+<p class = "firstLineIndent">天空中隐藏在层层乌云中的阵阵雷声似乎受到了刺激一般，轰鸣更甚，雷光阵阵。</p>
+<p class = "firstLineIndent">终于，“轰隆！”一道雷电如银蛇般从云层中轰然落下，准确击中尖端的小球，顿时平台上雷蛇乱舞，景象骇人！宛如雷神降世！</p>
+<p class = "firstLineIndent">从上空看下去，数海里的范围变幻成白昼，以平台为中心，海水温度骤然上升，附近的鱼群纷纷逃窜，犹如世界末日！</p>
+<p class = "firstLineIndent">而随着燃料的消耗，被约束在中心处的核聚变等离子体正在以微小的速度缓慢地萎缩着。</p>
+<p class = "firstLineIndent">聂云此刻满头大汗，小心翼翼地控制着进行下一步操作。</p>
+<p class = "firstLineIndent">只见透明小球内壁上，缓缓伸出四根尖刺，呈三角锥状对准了中心的等离子体，然后齐齐喷射出均匀的氘-氚细微颗粒，补充核聚变的消耗。</p>
+<p class = "firstLineIndent">终于，在消耗和供给维持在平衡状态后，等离子体的大小不再变化，持续稳定地提供海量的能量。</p>
+<p class = "firstLineIndent">此时密密麻麻的激光尖刺早已被聂云撤下，随后透明球体缓缓变幻颜色，最终化为一颗银白色金属球体，带着不时窜出的电蛇静静地被放置在金字塔顶端。</p>
+<p class = "firstLineIndent">失去了光源，被刺破的黑暗重新降临这片海域。</p>
+<p class = "firstLineIndent">“呼……”感受着银色小球上传输而来的磅礴能源，聂云终于长长的出了口气！</p>
+<p class = "firstLineIndent">他脸上浮现惊喜的神色，透过遥远的距离，眼神炽热地看着那颗似乎毫不起眼的金属小球，那将会是他今后的能源心脏！</p>
+<p class = "firstLineIndent">核聚变技术——到手！</p>
+<p class = "firstLineIndent">“核动力啊！没想到真的能做到……以后，老子就是最持久的男人了……”</p>
+<p class = "firstLineIndent">机械虫：“……”（无耻！）</p>
+
+<h2>第六十五章 公主殿下</h2>
+<p class = "firstLineIndent">成功获得核聚变技术的聂云回到基地后，立刻对基地的能源供给系统做了一次升级改造。</p>
+<p class = "firstLineIndent">他在海底建立了一座核聚变能源供给站，半球形的海底堡垒内部放置着核聚变能源核心，无数的电缆连接四面八方，源源不断的电能传输向整个基地和三个矿区。</p>
+<p class = "firstLineIndent">获得了近乎无尽的能源供给之后，机械虫和矿区机器人再无后顾之忧，马力全开！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">时间又过了两天，四艘船终于被机械虫吞噬殆尽，机械虫的数量也增长到1万8000吨。</p>
+<p class = "firstLineIndent">聂云站在基地岛屿的一处高崖上，俯视着不远处海面上一字排开的18艘银光闪闪的千吨级海狼号，眼中露出满意的神色。</p>
+<p class = "firstLineIndent">“拼命二人组”此刻站在聂云身后，看着这只充满了力量与科技感的舰队有些失神。</p>
+<p class = "firstLineIndent">他们还记得刚来时，基地里只有一艘海狼号，但是强大的潜航能力和诡异的变形功能已经让他们大呼黑科技。</p>
+<p class = "firstLineIndent">然而才刚过了一周，这数量就暴增到了18艘！他们终于知道聂云为什么要到处去抢船了，这是在暴兵啊！</p>
+<p class = "firstLineIndent">以现在聂云麾下的武力值，击败一个小国恐怕都绰绰有余了。</p>
+<p class = "firstLineIndent">“你们说，这是什么？”聂云意气风发地指着</p>
+<p class = "firstLineIndent">站在他身后的老大脑子机灵，立刻谄媚的拍马屁道：“这自然是老板的无敌舰队！”</p>
+<p class = "firstLineIndent">“无敌？不不不，离无敌，它还缺了一样东西！”聂云抬起一根手指摇了摇。</p>
+<p class = "firstLineIndent">“缺了什么？”老大疑惑地问。</p>
+<p class = "firstLineIndent">“缺了不败的战绩！”聂云眼中尽是自信。</p>
+<p class = "firstLineIndent">有了这样一支舰队，没有向世人展现他的强大，如何能称为无敌？</p>
+<p class = "firstLineIndent">“老板，那我们什么时候出去统治地球？”老三听聂云的意思，似乎是要搞事啊！顿时唯恐天下不乱地兴奋道。</p>
+<p class = "firstLineIndent">他的骨子里，本就流淌着拳击手好战的血液。</p>
+<p class = "firstLineIndent">没想到聂云不置可否地摇了摇头，“统治地球？不，我有更好的主意！”</p>
+<p class = "firstLineIndent">两人闻言一愣，刚想问是什么主意，这时候聂云的电话响了起来。</p>
+<p class = "firstLineIndent">“喂，潇潇。”聂云毫不避讳两兄弟，自顾自接起电话。</p>
+<p class = "firstLineIndent">两人听到“潇潇”两个字，顿时一愣，这名字听得好耳熟啊？</p>
+<p class = "firstLineIndent">“聂云，军方已经把货物全都准备好了，现在已经在港口装船，还有你让我们采购的那批……呃，办公用品，国内能采购到的也已经都采购了，你可以来接货了！”</p>
+<p class = "firstLineIndent">“哦，这么快？”聂云有些意外。</p>
+<p class = "firstLineIndent">不得不说，聂云低估了这个近50亿大单的分量。</p>
+<p class = "firstLineIndent">胡军长接到楚氏集团提供的军火订单后，一边震惊于对方的胃口之大，一边兴奋地命令手下的军工企业和军区后勤部立刻开始准备货物。</p>
+<p class = "firstLineIndent">要知道他们军区拿到那一公斤的核燃料之后，可不是免费分配给各大机构的，走的可是公账！</p>
+<p class = "firstLineIndent">各大研究机构和核电站想拿到核燃料，付给他们军区的可是真金白银！</p>
+<p class = "firstLineIndent">平时这东西买都买不到，现在花了不到平时一半的价格就能买到高品质的浓缩铀，所有机构几乎都是抢着送钱过来找军区要货！</p>
+<p class = "firstLineIndent">而军区收到钱之后，又拿着这些钱去自家开的军工企业下订单，不仅刺激了军工企业的产能，连自己都从中赚了一笔，胡军长能不兴奋吗？</p>
+<p class = "firstLineIndent">命令下达后不久，所有收到通知的机构都被这个突然冒出来的大额订单砸晕了。</p>
+<p class = "firstLineIndent">没有采购团来访，没有意向协议，没有一点点防备，也没有一丝顾虑，你就这样出现，在我的世界里，带给我惊喜……</p>
+<p class = "firstLineIndent">咳咳，好吧，歌我们下次再唱，总之，所有机构都被这个消息惊呆了，他们纷纷猜测这莫非是中东那些不差钱的土豪跑兔子国来消费了？</p>
+<p class = "firstLineIndent">可他们不是一向都喜欢买米国的高价货吗？</p>
+<p class = "firstLineIndent">就因为这个原因，国内的军工企业还时常吐槽，他们吸引不到这些土豪的唯一原因就是定价不够高。</p>
+<p class = "firstLineIndent">对于这些豪的没人性的家伙来说，只买贵的，不买对的，绝对不是一句空话！</p>
+<p class = "firstLineIndent">但是怀着好奇心打听买家是谁的人，全都被一句“军事机密”统统挡了回去，让他们很是惋惜失去了一个结交大主顾的机会。</p>
+<p class = "firstLineIndent">军区所属的后勤部也是和过节了一样，那些退役装备放着碍事不说，还需要定期保养，早就让他们苦不堪言，现在有个冤大头连二手货都要，他们怎么能不兴奋。</p>
+<p class = "firstLineIndent">动力满满的军方机构那真是将顾客当上帝，短短几天时间就准备好了所有的货物，似乎生怕这笔订单飞了似得，以最快速度运到与楚氏约定的码头。</p>
+<p class = "firstLineIndent">“你现在可是东南军区的大主顾，他们能不上心吗？”楚潇潇笑着道。</p>
+<p class = "firstLineIndent">聂云正愁机械虫接下来只能啃矿石呢，没想到一大波装备就又来了，顿时心情大好。</p>
+<p class = "firstLineIndent">“太好了，回头我一定给他们五星好评！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">你当这是送外卖呢？！</p>
+<p class = "firstLineIndent">“对了，你们的铁矿准备好了吗？楚氏集团已经和国内的宝武钢铁集团达成长期合作协议，这笔交易也可以开始进行了。”</p>
+<p class = "firstLineIndent">“是嘛？楚氏的效率还真是高！没问题，第一批货十万吨铁矿早就准备好了，你们只要给我一个港口地址，到时候我负责送货上门！”</p>
+<p class = "firstLineIndent">“嗯，好！还有件事儿……幽灵船长的事你知道吗？”楚潇潇犹豫了一下说道。</p>
+<p class = "firstLineIndent">“哦，略有耳闻，怎么啦？”聂云自然装傻。</p>
+<p class = "firstLineIndent">“嗯……没什么，就是事情闹得挺大的，很多势力肯定会跑过去调查，最近那片幽灵海域可能会不太平，你要是出海的话绕着点！”楚潇潇意有所指。</p>
+<p class = "firstLineIndent">“哦，我知道了。”聂云一愣，然后笑着道。</p>
+<p class = "firstLineIndent">他自然是听出了楚潇潇话里的提醒，暗道一声女人的直觉真可怕！不过这种出门在外有人关心的感觉……还不赖！</p>
+<p class = "firstLineIndent">挂断电话，聂云回头，看到两兄弟脸色十分古怪，满脸的冷汗。</p>
+<p class = "firstLineIndent">“你们都听到了！”聂云板着脸挑了挑眉。</p>
+<p class = "firstLineIndent">“咕咚！”兄弟两咽了口唾沫。</p>
+<p class = "firstLineIndent">虽然电话那头的声音听不到，不过刚刚从聂云嘴里说出的“潇潇”“楚氏”两个词就已经让他们的心提到了嗓子眼。</p>
+<p class = "firstLineIndent">听两人对话的语气，那关系显然非同一般啊！</p>
+<p class = "firstLineIndent">老大擦擦汗，小心翼翼问道：“老……老板，不知道……楚潇潇小姐是您……”</p>
+<p class = "firstLineIndent">“他是我妹妹！”聂云冷笑地看着他们，打破了他们最后一丝侥幸。</p>
+<p class = "firstLineIndent">兄弟两当即傻眼。</p>
+<p class = "firstLineIndent">卧槽！是外星人的妹妹你早说啊！</p>
+<p class = "firstLineIndent">我们要是知道自己绑的是外星公主！打死我们，我们也不敢继续在地球上瞎嘚瑟啊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">三个小时后。</p>
+<p class = "firstLineIndent">楚氏集团旗下的一艘万吨货轮满载货物停在约定的交易地点，身边还跟着两艘护卫舰，一艘隶属军方，另一艘是C82A型护卫舰，也是采购订单中的唯一一艘战舰。</p>
+<p class = "firstLineIndent">除此之外，就是靠在货轮旁显得格格不入的破旧小渔船了。</p>
+<p class = "firstLineIndent">这次托了军方负责护送的福，楚潇潇终于被楚凤允许跟着一起过来，不过她还是安排叶敏带了整整一小队12人的保镖团随行护送。</p>
+<p class = "firstLineIndent">除了楚氏集团的人，为了表示重视，胡军长这次也是亲自来到交易现场，准备见见方教授口中十分低调神秘的聂云。</p>
+<p class = "firstLineIndent">众人在货轮上一见面，楚潇潇，叶敏和胡军长便齐齐愣住了。</p>
+<p class = "firstLineIndent">聂云这次终于不再是一个人过来，身后还跟着两个像是保镖的人，不过这两人穿着打扮十分古怪。</p>
+<p class = "firstLineIndent">黑色铠甲，头部的全覆式面罩挡住了面容，浑身通体泛着黑色金属光泽，这是……机械战警spy？</p>
+<p class = "firstLineIndent">所有人看着他们全都眼神古怪。</p>
+<p class = "firstLineIndent">“聂云，这是……”楚潇潇疑惑地刚想问出口。</p>
+<p class = "firstLineIndent">话还没说完，那两个古怪的“保镖”突然上前几步，“啪”地单膝跪地，“参见公主殿下！”</p>
+<p class = "firstLineIndent">“呃……”楚潇潇目瞪口呆。</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">叶敏：“……”</p>
+
+<h2>第六十六章 你不服</h2>
+<p class = "firstLineIndent">“咳咳！那什么，手底下的人就是喜欢开玩笑，呵呵！”聂云有些尴尬的对众人笑笑。</p>
+<p class = "firstLineIndent">这对笨蛋！不过自己似乎玩笑开过头了，该怎么告诉这两熊孩子自己不是外星人这个残酷的事实呢……</p>
+<p class = "firstLineIndent">“真是开玩笑？”一旁的胡军长心里却开始犯嘀咕了。</p>
+<p class = "firstLineIndent">他看了眼此刻已经站在聂云身后，但依然不时对楚潇潇表现出恭敬之态的两名神秘人。</p>
+<p class = "firstLineIndent">公主殿下？莫非这位楚氏的大小姐还是某个国王的私生女？</p>
+<p class = "firstLineIndent">是了！一定是这样！</p>
+<p class = "firstLineIndent">怪不得！怪不得据说她两次被绑架都被神秘的势力离奇地救了下来！</p>
+<p class = "firstLineIndent">怪不得聂云背后的势力会找到楚氏集团让她们当自己的代言人！</p>
+<p class = "firstLineIndent">怪不得这个叫聂云的之前敢说出只要楚潇潇同意，价值上百亿的核燃料白送都可以这样的话！</p>
+<p class = "firstLineIndent">原来楚潇潇是公主啊！</p>
+<p class = "firstLineIndent">看样子还是他们势力内部地位非常崇高的实权公主！</p>
+<p class = "firstLineIndent">这样的话一切就都说得通了！</p>
+<p class = "firstLineIndent">仿佛迷雾中出现了一道曙光！原来——这就是真相啊！</p>
+<p class = "firstLineIndent">胡军长眼中射出看透一切的睿智光芒！</p>
+<p class = "firstLineIndent">就在这时，胡军长身边的护卫队长耳麦中传来来自那艘军方护卫舰的通讯，他听完脸色顿时一变，汗唰的一下就下来了！赶紧凑到胡军长耳边低声耳语了一阵。</p>
+<p class = "firstLineIndent">胡军长脸色顿时也是一变，护卫队长汇报了一个让人震惊的情况。</p>
+<p class = "firstLineIndent">随行护卫舰上的声呐雷达发现了对面海底潜伏着整整18艘潜艇，呈半包围态势将几艘船围在中心。</p>
+<p class = "firstLineIndent">胡军长此刻心中简直是委屈地只想哭。</p>
+<p class = "firstLineIndent">我们就是来交个货，虽然开了艘军舰，可绝对没打算黑吃黑啊！你们用得着这么大阵仗？！等等？你们的核燃料早就交给我们了，我们就算想黑吃黑，可能吃啥！？</p>
+<p class = "firstLineIndent">18艘潜艇什么概念？兔子国举国上下加起来潜艇有多少艘？算上核潜艇都只有73艘！而且还要分班倒，执勤中的刚刚过一半！</p>
+<p class = "firstLineIndent">你就是来取个货竟然就派了18艘潜艇！</p>
+<p class = "firstLineIndent">这就好比我只是来送个快递，你他么居然出动了一个装甲师护送，快递小哥表示我都吓尿了好吗！</p>
+<p class = "firstLineIndent">等等！情况不对！</p>
+<p class = "firstLineIndent">胡军长终于从这个让人震惊的消息中冷静下来，他发觉这没道理啊！对方完全没必要这么做。</p>
+<p class = "firstLineIndent">不管是交易的过程还是对方的态度，胡军长都能感觉到对方是很有诚意与兔子国合作的，今天这个情况绝对不是对方想和自己撕破脸！</p>
+<p class = "firstLineIndent">那么真相就只有一个了——对方这是在炫耀武力！</p>
+<p class = "firstLineIndent">除了这个，胡军长想不出来对方要这么做的理由。</p>
+<p class = "firstLineIndent">想想也不难理解，与国家做生意，是普通小门小户扛得住的吗？实力相当可以做交易，实力悬殊那必然是弱势者受剥削！</p>
+<p class = "firstLineIndent">虽然首长已经说过，暂时不去打探对方的底细，可是没听首长说吗？暂时啊！是暂时！</p>
+<p class = "firstLineIndent">等摸清了你的底细，只要机会合适，兔子国是绝对不会介意动用强硬手段来谋取更大的好处！</p>
+<p class = "firstLineIndent">国家与国家之间，没有永恒的朋友，也没有永恒的敌人，只有永恒的利益！一句话道清了国家之间相处的本质，这无关对错，只是立场使然！</p>
+<p class = "firstLineIndent">想明白一切的胡军长心中稍安，只是疑惑更甚了，能够随随便便出动这种军力的，世界上只有少数的几个国家，可想来想去，这里面也没什么国家是实行君主制的啊？</p>
+<p class = "firstLineIndent">莫非是鹰国？可是人家的皇室早就是个象征意义，就算楚潇潇是女王，也不可能调动这么多军力啊！</p>
+<p class = "firstLineIndent">再说楚潇潇明显是典型的东方面孔，也根本没有东西方混血儿的外貌特质。</p>
+<p class = "firstLineIndent">想不通，实在是想不通！</p>
+<p class = "firstLineIndent">胡军长想的脑仁有些疼。</p>
+<p class = "firstLineIndent">看到对面军方几人的动静，聂云嘴角勾了勾。</p>
+<p class = "firstLineIndent">胡军长这次倒是想的没错，聂云摆出这么大阵仗，的确也是想要展示一下肌肉，向兔子国传递一个讯号。</p>
+<p class = "firstLineIndent">看到没有，老子的胳膊腿可不细，不是你想揍就能揍，要是咱两开撸，只能是一地鸡毛，最后鸡飞蛋打，对谁都没好处！</p>
+<p class = "firstLineIndent">聂云毕竟是兔子国的人，国内还有他的熟人，他可不希望和自家人起什么冲突，所以这种武力威慑还是很有必要的！</p>
+<p class = "firstLineIndent">“胡军长，我来给你介绍一下，这位就是聂云，别看他开的船破，不过只是为人比较低调罢了。”</p>
+<p class = "firstLineIndent">楚潇潇没有发觉场上怪异的气氛，她主动向胡军长介绍聂云，似乎是怕聂云在谈话中吃亏，还故意替他加了顶高帽。</p>
+<p class = "firstLineIndent">“呵呵！这位聂小兄弟……还真是很低调啊……”胡军长眼角抽了抽。</p>
+<p class = "firstLineIndent">18艘潜艇都开过来了，这还叫低调？你低调个毛线啊！</p>
+<p class = "firstLineIndent">“哪里哪里！胡军长，久仰久仰！我就是替我朋友跑跑腿，还要多谢胡军长这次交易帮了不少忙！”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">听到聂云的话里带着善意，胡军长这才脸色稍缓，也客气道：“哪里，贵方的货物也是我国急需的，大家都是互惠互利，我们希望这种关系能够持续稳定地进行下去！”</p>
+<p class = "firstLineIndent">“当然！只要胡军长想要维持这种关系，那它就是这种关系！”聂云笑着道，却话中有话。</p>
+<p class = "firstLineIndent">“当然，我们是十分有诚意的！”胡军长当即表态。</p>
+<p class = "firstLineIndent">“哈哈！”</p>
+<p class = "firstLineIndent">“哈哈！”</p>
+<p class = "firstLineIndent">两人同时大笑，双手也握在一起，一副相谈甚欢的样子。</p>
+<p class = "firstLineIndent">楚潇潇疑惑地看着这两人，怎么感觉两人的对话有些古怪，似乎有我不知道的内容掺杂在里面？</p>
+<p class = "firstLineIndent">两人客套了几句之后，胡军长奇怪地看了眼聂云身后铁塔般站立的两只机械战警。</p>
+<p class = "firstLineIndent">“对了，这两位，这身装备倒是有些……清新脱俗，不知道是出自哪位大师的手笔？”胡军长试探道。</p>
+<p class = "firstLineIndent">“哦，这是我无聊时随手所做，实在是当不得胡军长‘大师’的夸奖，哈哈！”聂云对胡军长的“赞美”十分受用，嘴里谦虚，不过脸上的得意要不要那么明显？</p>
+<p class = "firstLineIndent">“呃……”胡军长瞬间被这家伙的脸皮反震了一下，我是实在挑不出夸奖的词，这才用了“清新脱俗”，果然还是应该直白一点吗……</p>
+<p class = "firstLineIndent">“哼！银样镴枪头，中看不中用！”胡军长身边的护卫队长此刻却突然插话了。</p>
+<p class = "firstLineIndent">似乎是因为对面的军力压了自己这边一大截，他迫切想要为胡军长抢回一点主动权，所以故意刺激对方。</p>
+<p class = "firstLineIndent">“小刀，不得无礼！”胡军长假装训诫了对方一句，却并没有对他的话发表什么意见，这意思很明显了——老夫不记名投一张赞成票！</p>
+<p class = "firstLineIndent">作为军中的老兵，两人都能够看得出来，这套装备毫无辅助驱动装置，就是个金属铠甲，从重量来看，也不属于重型装备，绝对无法防弹，看着唬人，在实战中也就能当个靶子！</p>
+<p class = "firstLineIndent">“你不服？！”老三带着丝金属音道。</p>
+<p class = "firstLineIndent">“不服咋的！”那护卫队长梗起脖子。</p>
+<p class = "firstLineIndent">“不服来战！”</p>
+<p class = "firstLineIndent">“战就战！”</p>
+<p class = "firstLineIndent">两人三言两语很草率地就定下了这场战斗。</p>
+<p class = "firstLineIndent">当然了，这种事情是十分冲动且不理智的，很容易酿成流血冲突，所以电视机前的小朋友请勿模仿！</p>
+<p class = "firstLineIndent">旁边的楚潇潇还没反应过来呢，冲突就骤然发生了，简直是一点心理准备都没有！</p>
+<p class = "firstLineIndent">怎么领导聊得好好地，手下人这就先要打起来了？你们就不给管管？</p>
+<p class = "firstLineIndent">她看向聂云和胡军长，两人却很默契地没有对此发表任何看法，只是笑呵呵地看着手下的两人开始热身。</p>
+<p class = "firstLineIndent">这是什么情况？</p>
+<p class = "firstLineIndent">莫非男人的友谊就是要拳拳到肉？</p>
+
+<h2>第六十七章 消失了</h2>
+<p class = "firstLineIndent">两人很快热身结束，在甲板上面对面盯着对方。</p>
+<p class = "firstLineIndent">胡军长对自己手下的小刀十分自信，能当上一区军长的护卫队长，他的履历可谓相当剽悍。</p>
+<p class = "firstLineIndent">兔子国猎鹰特种部队前队长，三年全军大比冠军兵王，还曾参加黎巴嫩维和部队，有过多年实战经验。</p>
+<p class = "firstLineIndent">用一句十分流行的话总结就是“等闲七八条大汉没法近身！”</p>
+<p class = "firstLineIndent">“别以为穿着一身乌龟壳我就奈何不了你，就算不用枪，我也能打的你满地找牙！”小刀满是自信道。</p>
+<p class = "firstLineIndent">“我劝你还是用枪试试。”</p>
+<p class = "firstLineIndent">“哼！狂妄！”小刀以为老三这话是指自己肯定打不过他，顿时眼神一冷。</p>
+<p class = "firstLineIndent">他不再说话，上前就是一记炮拳！</p>
+<p class = "firstLineIndent">老三看了看，没躲，呃……反正也躲不开……</p>
+<p class = "firstLineIndent">虽然勇者之心战甲防护几乎无敌，不过几十斤的重量可不是开玩笑，身体的灵活性肯定是受到了影响。</p>
+<p class = "firstLineIndent">别说闪躲，以对方的身手看，的确是比自己高明，自己出拳都是白搭，根本打不中对方，老三很干脆的“放弃抵抗”。</p>
+<p class = "firstLineIndent">我不是战士，我是坦克！</p>
+<p class = "firstLineIndent">“砰！”重拳击打在老三胸口，人家连晃都没晃。</p>
+<p class = "firstLineIndent">“噼里啪啦！”又是一阵狂风骤雨一般的打击，小刀专找薄弱处下手，脖子、膝盖、肋下！不过毫无用处，老三动也不动。</p>
+<p class = "firstLineIndent">不过小刀倒是没有太意外，这种铠甲普通冷兵器都不破防，又怎么会被人力所伤？</p>
+<p class = "firstLineIndent">不过……小刀眼中精光一闪，他一个闪身到了老三身后，一手按住了他的肩膀，一手抓住了他的胳膊。</p>
+<p class = "firstLineIndent">“哼，今天我就让你见识一下军中擒拿的厉害！”</p>
+<p class = "firstLineIndent">我拧！</p>
+<p class = "firstLineIndent">呃……场上有了片刻的安静……</p>
+<p class = "firstLineIndent">“哦，忘了告诉你了，这战甲有反关节技的设计……”老大戏谑的声音从旁边传来。</p>
+<p class = "firstLineIndent">小刀讪讪地松开手退后几步，关节技没用的话就算自己拔刀相向似乎也破不了防，当下就尴尬了……</p>
+<p class = "firstLineIndent">“我早说了，你还是用枪试试，别说我是用装备在欺负你，因为……我这就是用装备在欺负你！嘿嘿！”</p>
+<p class = "firstLineIndent">小刀闻言瞬间就炸毛了，“你还真以为你这玩意儿能防弹？！如果能用枪，你早趴下了！”</p>
+<p class = "firstLineIndent">“嘿嘿，别说我看不起你，给你三次机会，朝我开三枪，能伤了我算你本事！”</p>
+<p class = "firstLineIndent">“什么？！”这话让军方的人全都愣住了，对方这是在找死？</p>
+<p class = "firstLineIndent">“好了！枪炮无眼，伤了人怎么办，小刀，住手吧！”胡军长这时发话了。</p>
+<p class = "firstLineIndent">与聂云的合作还处在蜜月期，实在犯不着为了争口气就和对方闹僵，万一打死了对方的护卫，双方的关系肯定会出现裂纹，这是他不想看到的！</p>
+<p class = "firstLineIndent">“嗯，胡军长说的有道理，阿三，别在那儿瞎得瑟，仗着自己的战甲就到处欺负人！”</p>
+<p class = "firstLineIndent">胡军长和小刀听到聂云的话都是嘴角抽了抽，什么叫欺负人？这场战斗顶多也就算个平局！我看最得瑟的是你吧！</p>
+<p class = "firstLineIndent">“是，老板！这位兄弟，我错了，我不该欺负你！”</p>
+<p class = "firstLineIndent">小刀额头青筋跳了跳，我忍！</p>
+<p class = "firstLineIndent">“作为赔罪，我自罚三枪好了！”</p>
+<p class = "firstLineIndent">下一刻，所有人就被老三的话惊呆了！自罚三枪？我应该是听错了吧？还有这样自罚的？</p>
+<p class = "firstLineIndent">然而还没等众人反应过来呢，老三就从腰间拔出一把54，对着自己胸口就是“砰砰砰”连开三枪。</p>
+<p class = "firstLineIndent">完事后没事人一样慢悠悠走回聂云身后站定。</p>
+<p class = "firstLineIndent">众人震惊地看着活蹦乱跳的老三，再看看老三的胸口，连个白印都没有！</p>
+<p class = "firstLineIndent">“嘶！”</p>
+<p class = "firstLineIndent">包括楚氏集团的人在内，所有人都是难以置信地倒抽一口凉气。</p>
+<p class = "firstLineIndent">这真他么能防弹啊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云三人带着船和货物离开了，留下一地的眼球！</p>
+<p class = "firstLineIndent">军方护卫舰舰桥。</p>
+<p class = "firstLineIndent">“小刀，你怎么看对方身上的护甲？”胡军长一脸严肃道。</p>
+<p class = "firstLineIndent">“军长，我……看不出来！明明重量很轻，却有着重型装甲一般的防御力，这简直是让人难以理解！”</p>
+<p class = "firstLineIndent">小刀情绪有些低落，刚刚的战斗他明显是输了，不用枪你奈何不了人家，可双方若是都用枪，那趴下的肯定也是自己！</p>
+<p class = "firstLineIndent">“那身战甲肯定有古怪，对方肯定掌握了我们所不知道的防弹技术！这证明对方的势力至少在科研能力上十分强大！</p>
+<p class = "firstLineIndent">不过也不必太过担心，这种东西目前应该是无法量产的，要么是造价太高，要么是只能在实验室小规模制造，否则这么强悍的防具早就有消息传出来了！”</p>
+<p class = "firstLineIndent">“嗯！”小刀赞同的点点头，这东西如果大量装备军队，小型武器就可以宣告退出历史舞台了！</p>
+<p class = "firstLineIndent">胡军长低头沉思。</p>
+<p class = "firstLineIndent">聂云这次给了他们一个下马威，不过总的看起来，他倒是没有恶意，仅仅只是想展示一下武力，证明有和兔子国平等交易的资格！</p>
+<p class = "firstLineIndent">不管怎么说，这件事还是要尽快汇报首长，看看上面的态度再说吧！</p>
+<p class = "firstLineIndent">“对了，军事卫星监控进行的如何了？”</p>
+<p class = "firstLineIndent">“军长，一切都很顺利，我们已经死死盯住对方了！”</p>
+<p class = "firstLineIndent">“嗯，就算不能摸清他们的来历，至少要知道他们的老巢嘛！呵呵！”胡军长眼中闪过精光。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老板，我表现的怎么样？”老三有些兴奋的问。</p>
+<p class = "firstLineIndent">“嗯，不错，冲动鲁莽，嚣张欠扁，你这是本色演出，我给你五颗星！”</p>
+<p class = "firstLineIndent">老三：“……”</p>
+<p class = "firstLineIndent">聂云自然不是吃饱了撑的瞎显摆，自己越是神秘，展现的实力越强，对方就会越安分！</p>
+<p class = "firstLineIndent">现在看来，威慑的效果还不错！</p>
+<p class = "firstLineIndent">“老板，这个不是回基地的方向啊？我们这是去哪儿？”老大看了看太阳，疑惑地问。</p>
+<p class = "firstLineIndent">“嗯，就是稍微绕个圈！”聂云微微笑了笑。</p>
+<p class = "firstLineIndent">他抬头看向天空，目光深邃，似乎透过千万里之遥，与一双无形的眼睛对视。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“什么，对方消失了？”胡军长难以置信道。</p>
+<p class = "firstLineIndent">小刀同样一脸困惑。“是的，卫星一直在监视他们，不过被一片雨云遮挡了十数分钟后，目标就从监控下消失了！”</p>
+<p class = "firstLineIndent">卫星监视虽然犀利，可十分依赖良好的天气和视野。</p>
+<p class = "firstLineIndent">“附近没有什么岛屿之类的？会不会是躲进去了？”</p>
+<p class = "firstLineIndent">“没有，方圆近百公里都是茫茫大海！</p>
+<p class = "firstLineIndent">“这……那他们的航行方向如何？”</p>
+<p class = "firstLineIndent">“往东海方向！不过既然对方有反侦察意识，我怕这也是个假象！”</p>
+<p class = "firstLineIndent">“嗯……这个势力，真是越来越神秘了！”胡军长皱眉喃喃道。</p>
+<p class = "firstLineIndent">他们自然想不到，将船弄沉然后“遛沉船”这种事，是聂云的传统节目……</p>
+
+<h2>第六十八章 配合测试</h2>
+<p class = "firstLineIndent">潜航回到基地后，聂云立刻指挥机械虫开始吞噬货轮上近万吨的货物与那艘护卫舰。</p>
+<p class = "firstLineIndent">以如今的机械虫数量来说，完成这个工作大概只需要一天时间，在这个过程中，聂云也并没有闲着。</p>
+<p class = "firstLineIndent">机械虫每吞噬一样物品，聂云便会立刻同步解析其构造以及设计原理，将这些物品所应用的科技尽数吸收，存储在机械虫体内。</p>
+<p class = "firstLineIndent">机械虫的复制解析能力聂云已经尝试过千百次，早就轻车熟路，不过他这次并非单纯地复制吸收这些科技，而是着手开始进行优化。</p>
+<p class = "firstLineIndent">优化主要有两方面，一是机械虫化！二是技术整合！</p>
+<p class = "firstLineIndent">普通材料和机械虫材料构造的设备完全是两个概念。</p>
+<p class = "firstLineIndent">机械虫作为一种超级材料，本身就已经具备了引发第四次工业革命的能力。</p>
+<p class = "firstLineIndent">首先，它作为一种材料的同时，还兼具能量存储特性，因此大部分小功率电池及电源部件直接可以被取消。</p>
+<p class = "firstLineIndent">比如说，一部智能手机，如果完全用机械虫材料替代，取消了占比较大的电池部件，那么它还能够再轻薄50%以上！</p>
+<p class = "firstLineIndent">并且电池续航能力理论上来说接近无限，因为在能源消耗的同时，机械虫依然可以源源不断地自动从外界获得能量，其补充速度甚至比消耗速度还要快。</p>
+<p class = "firstLineIndent">其次，它是热能和电能的超导体，并且可以将二者直接作为能源吸收。</p>
+<p class = "firstLineIndent">依然以手机作为例子，普通智能手机的电池容量大概在3000~4000毫安，然而实际上，从开始使用直至电池耗尽，用于芯片运算及屏幕显示的有效能源只占了其中的10%左右，大量的能源在电路传输的过程中就以电阻热的形式被浪费掉了。</p>
+<p class = "firstLineIndent">同时手机中甚至需要额外的部件和能源用于专门的散热，以防止芯片过热。</p>
+<p class = "firstLineIndent">而机械虫的能源利用率基本在99%以上！</p>
+<p class = "firstLineIndent">你能够想象一台完全不发热的手机吗？</p>
+<p class = "firstLineIndent">它的耗电将直接下降90%，同时可以省去散热机构所占用的大量空间！于是，该手机再次轻薄20%！</p>
+<p class = "firstLineIndent">再者，机械虫本身作为一种信息存储介质，根本不需要SD卡、内存、外存等存储设备——轻薄+10%。</p>
+<p class = "firstLineIndent">最后，机械虫拥有的皮米（纳米的千分之一）级加工工艺，让组装材料及集成电路所需空间再次削减50%！</p>
+<p class = "firstLineIndent">于是经过聂云的精心设计改良，世界上30部最尖端的智能手机设计理念+机械虫=未来手机！</p>
+<p class = "firstLineIndent">出现在聂云手中的，是一块巴掌大小，只有1毫米厚度的黑色晶体板！</p>
+<p class = "firstLineIndent">他在晶体板表面轻轻一触，波纹一般的涟漪荡漾过后，一副高清画质的海狼号背景图片呈现在眼前，上面的程序图标与普通智能手机别无二致！</p>
+<p class = "firstLineIndent">“科技改变生活！”聂云打量着自己的杰作，啧啧称奇，这东西不管怎么看，都已经是绝对的未来科技了！</p>
+<p class = "firstLineIndent">如果将这东西卖出去，全世界都会为之疯狂！他毫不怀疑这点。</p>
+<p class = "firstLineIndent">得到第一项成果的聂云浑身充满了动力，一项接着一项开始攀升自己的科技树！</p>
+<p class = "firstLineIndent">“嗯？军方的显示技术还真是落后，居然还在用外设屏幕？！改用一体式晶体板，这样设备占据的空间可以缩小到原来的30%！”</p>
+<p class = "firstLineIndent">“这套发射平台火控系统还有不少冗余，采用最新的语言程序，反应速度应该能够提升20%！”</p>
+<p class = "firstLineIndent">“枭龙战斗机的雷达系统似乎因为飞机载重限制，功率不是很高啊？嗯……换成舰载大功率雷达！只需要缩减一下舰载雷达的体积并且加大能源供应，对机械虫来说不是难事！”</p>
+<p class = "firstLineIndent">“哦，这套军用陀螺仪和水平仪的设计十分精妙，可以用在无人机的改良上！”</p>
+<p class = "firstLineIndent">“坦克的柴油动力虽然马力强大，不过噪声太大，呆在里面实在是有点吵，影响战斗的心情，改成大功率电动机，特斯拉的电动机技术正好可以用上！不过这样最高出力还是有些弱了，那就双轮驱动改六轮驱动！质不足量来凑！”</p>
+<p class = "firstLineIndent">“这个关键部件的电磁扰动屏蔽方法不够完美，我之前在相关的技术论坛看到过一个设想中的解决方法，倒是可以在这里尝试一下！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云半躺着紧闭双眼，脑海中却在飞速地解析优化每一项被吸收的科技，由于巨大的计算量，他的额头开始隐隐发烫。</p>
+<p class = "firstLineIndent">而作为运算主体的机械虫们，虽然外表看上去没什么异常，不过其能源消耗正飞速上升，若非聂云刚刚得到了核聚变能源，恐怕还真支持不了如此巨大的消耗！</p>
+<p class = "firstLineIndent">其实这个过程中，聂云并没有创造出新的技术，说白了只是取长补短，资源整合！</p>
+<p class = "firstLineIndent">你的电路板设计精妙，我就拿来用！你的发动机出力更大，我就拿来用！你的逻辑程序更为合理，我就拿来用！</p>
+<p class = "firstLineIndent">将拿来主义发挥到极致，就出现了如此的科技奇迹！</p>
+<p class = "firstLineIndent">人类数千年文明的发展诞生了浩如烟海的科技结晶，而聂云正在将这些散落于世界各地的精华一一拾起，然后经过筛选、融合，化为一颗最为璀璨的科技明珠！</p>
+<p class = "firstLineIndent">他并不是看的更远，而是因为站在了巨人的肩膀！整个地球，都是他的后勤基地，整个人类的智慧，都在为我所用！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">基地码头。</p>
+<p class = "firstLineIndent">两兄弟正一人拿着一根鱼竿，坐在岸边钓鱼。</p>
+<p class = "firstLineIndent">“哈~老大，老板都在里面呆了两天了，怎么还不出来啊！”老三有些无聊地打了个哈欠。</p>
+<p class = "firstLineIndent">“没看所有的船都不见了吗？我猜老板应该是有什么大动作！”</p>
+<p class = "firstLineIndent">“哦，是什么大动作啊？”</p>
+<p class = "firstLineIndent">老大刚想回答，身后突然传来咳嗽声。</p>
+<p class = "firstLineIndent">“咳咳！”</p>
+<p class = "firstLineIndent">两人转头看去，就见聂云笑眯眯看着两人。</p>
+<p class = "firstLineIndent">“老板好！”“老板，您终于出来了！”</p>
+<p class = "firstLineIndent">“嗯，我这边的事情已经算是告一段落，接下来有件任务交给你们！”</p>
+<p class = "firstLineIndent">“老板您吩咐！”兄弟两一听有任务，一脸的兴奋。</p>
+<p class = "firstLineIndent">任务代表奖励，尝到甜头的两人已经沉迷于任务无法自拔了。</p>
+<p class = "firstLineIndent">“也没什么，就是有一些设备刚刚设计出来，需要你们配合测试一下。”聂云笑着对两人道。</p>
+<p class = "firstLineIndent">配合测试？！</p>
+<p class = "firstLineIndent">两兄弟齐齐退后一步。</p>
+<p class = "firstLineIndent">“老……老板，一定要去吗？”老三忐忑地问道。</p>
+<p class = "firstLineIndent">“你说呢？”</p>
+<p class = "firstLineIndent">兄弟两对视一眼，毅然决然地取出一瓶药倒了两颗直接塞进嘴里。</p>
+<p class = "firstLineIndent">“你们吃的什么？”聂云奇怪道。</p>
+<p class = "firstLineIndent">“晕车药！”</p>
+<p class = "firstLineIndent">聂云：“……”。</p>
+
+<h2>第六十九章 压舱物</h2>
+<p class = "firstLineIndent">“老板，这就是要测试的装备？”老三此时已经穿上了战甲，一脸兴奋地道。</p>
+<p class = "firstLineIndent">展现在两人面前的，是两架银色梭型飞行器，流线型机身，优美的线条浑然天成，通体没有看到一丝机械铆接的痕迹，犹如一次冲压成型的艺术品。</p>
+<p class = "firstLineIndent">“这是我刚刚设计的战斗飞行器，命名为‘银梭’！”</p>
+<p class = "firstLineIndent">“银梭”长只有3米左右，采用单发涡轮增压发动机，没有普通战斗机的战斗部件，看起来更像是一架普通的飞行器。</p>
+<p class = "firstLineIndent">“老板，这是战斗飞行器？那它都有什么武器啊？”老大一脸痴迷地看着这台充满了科幻气息的飞行器问道。</p>
+<p class = "firstLineIndent">鹰击长空，翱翔蓝天，是每个男人的浪漫！</p>
+<p class = "firstLineIndent">“你们也看到了，它的体积只有普通战斗机的一半不到，不过普通战斗机该有的功能它都有，而且额外具备了多种高科技辅助系统！</p>
+<p class = "firstLineIndent">而它的进攻武器只有一种，那就是机头位置的高斯机枪！”</p>
+<p class = "firstLineIndent">高斯枪械的原理是以枪膛内的线圈产生的高强电磁力发射磁针，威力巨大，能穿透重型装甲。</p>
+<p class = "firstLineIndent">用同样的原理制作出的还有着名的电磁炮，不过两者存在少许差异。</p>
+<p class = "firstLineIndent">简单来说高斯武器更适合小型化的武器，而电磁炮更适用于大威力武器设备。</p>
+<p class = "firstLineIndent">目前世界上这两种武器尚且还处在实验室验证阶段，主要的技术难点在于材料限制和笨重的电池组。</p>
+<p class = "firstLineIndent">目前制造出来的实验武器，因为极慢的射速与超高的能耗完全无法被投入实战。</p>
+<p class = "firstLineIndent">然而对于机械虫而言，这两个技术难点却正好是它的强项。</p>
+<p class = "firstLineIndent">尽管如此，机械虫本身的储能有限，依然无法单独供给武器级别的能量消耗，因此聂云特地对核聚变核心进行了小型化。</p>
+<p class = "firstLineIndent">核聚变技术上并没有什么突破，只是利用机械虫的超高加工精度制作了小号的核聚变核心而已。</p>
+<p class = "firstLineIndent">银梭内部核心位置，安装着一颗弹珠大小的核聚变核心，理论上可供给银梭全力战斗一个星期。</p>
+<p class = "firstLineIndent">聂云此时已经真正做到了核动力的普及化！</p>
+<p class = "firstLineIndent">“哦，好厉害！”两兄弟一脸的不明觉厉！对高斯武器明显没什么概念。</p>
+<p class = "firstLineIndent">“咦，老板，怎么我看不到驾驶舱的透明舱盖？”老大疑惑的问。</p>
+<p class = "firstLineIndent">虽然没开过战斗机，不过没吃过猪肉还没见过猪跑吗？战斗机的外观照片又不是什么机密。</p>
+<p class = "firstLineIndent">可银梭通体银白金属色，完全没有玻璃制品。</p>
+<p class = "firstLineIndent">“哦，银梭不需要那种东西！”聂云眯起眼睛笑道。</p>
+<p class = "firstLineIndent">“莫非是360度全景成像？”老大更兴奋了，这妥妥的外星黑科技啊！</p>
+<p class = "firstLineIndent">“唔……这么说也不算错，一会儿你们体验一下就知道了。”</p>
+<p class = "firstLineIndent">“可是老板，我们顶多只有C1驾照，从来没开过飞机啊？”老大兴奋过后，想起一个大问题。</p>
+<p class = "firstLineIndent">哪个飞行员驾驶飞机前不得经过长年累月的训练，你让一个菜鸟上来就开飞机？未免有些异想天开吧？</p>
+<p class = "firstLineIndent">“放心，这个是自动驾驶，绝对的傻瓜式操作！”聂云的话让两人再无一丝顾虑，立刻拍胸脯保证一定完成测试任务。</p>
+<p class = "firstLineIndent">“嗯，行动之前，我先给你们的战甲做个升级！”聂云话音刚落，两人身上的战甲就一阵银光流转。</p>
+<p class = "firstLineIndent">片刻之后，两人互相打量对方，发现除了后背多出一个鼓起的小背包，就是腰带的外观有了些许变化，多出了一个圆形的小凹槽。</p>
+<p class = "firstLineIndent">聂云随后取出两颗银色弹珠模样的核聚变核心，直接嵌入他们的腰带凹槽。</p>
+<p class = "firstLineIndent">“滋～”一声轻微的电流声响过后，两人感觉自己的战甲似乎发生了什么变化。</p>
+<p class = "firstLineIndent">“光学迷彩启动！”</p>
+<p class = "firstLineIndent">随着聂云的命令，两具战甲同时一阵变幻，在两人惊愕的目光中缓缓消失，最后只能在身体晃动的时候看到一个极为模糊的虚影。</p>
+<p class = "firstLineIndent">“这……这是隐身！”看到这一幕，两人哪里还不明白战甲升级之后的能力，顿时大喜。</p>
+<p class = "firstLineIndent">传说中的隐身啊！</p>
+<p class = "firstLineIndent">有了它，今后逛澡堂我根本就不需要看门上的小人是穿裤子还是穿裙子！男人梦寐以求天堂般的能力啊有没有！</p>
+<p class = "firstLineIndent">“不算真正的隐身，只不过是结合了仿生学、柔性屏技术、等离子屏蔽技术开发的光学迷彩，靠的近了还是会暴露！</p>
+<p class = "firstLineIndent">银梭也同样具备这样的隐身系统！对红外线探测和雷达波也有很好的屏蔽效果。”</p>
+<p class = "firstLineIndent">将战甲和战机表面做成柔性屏？也就只有机械虫这种黑科技材料能做到了。</p>
+<p class = "firstLineIndent">不过对两兄弟而言，这种技术已经是超出了他们的想象。</p>
+<p class = "firstLineIndent">“老板，我们什么时候出发？”老三已经有些迫不及了。</p>
+<p class = "firstLineIndent">聂云笑了笑，然后控制机械臂将两架银梭缓缓旋转调整位置，最后机头尖端直刺蓝天，呈垂直角度立在那里。</p>
+<p class = "firstLineIndent">银梭的设计能够在无跑道的情况下垂直起降，过程类似火箭升空。</p>
+<p class = "firstLineIndent">“嗯，你们现在站到这个平台上”聂云指着机腹下的两个圆形平台。</p>
+<p class = "firstLineIndent">两人有些疑惑，莫非入口在机腹？不过还是依言站了上去。</p>
+<p class = "firstLineIndent">刚站定，“咔嗒”一声，机腹上就伸出四道锁扣扣住了两人的腰腹部位，将两人牢牢固定。</p>
+<p class = "firstLineIndent">“呃，老板，这是？”两人心中一惊，立刻感觉情况有些不对，这怎么看也不像是登机前的动作吧？</p>
+<p class = "firstLineIndent">“哦，放心，这锁扣很结实，银梭原本设计中就有挂弹飞行的功能，绝对安全可靠！”</p>
+<p class = "firstLineIndent">挂……挂弹飞行！？</p>
+<p class = "firstLineIndent">两兄弟傻眼了，怎么和说好的不一样啊？</p>
+<p class = "firstLineIndent">“老……老板，你不是要我们测试银梭吗？我们不驾驶还怎么测试？”老大还想着尽量抢救一下自己。</p>
+<p class = "firstLineIndent">“谁说你们要驾驶银梭？你们主要是要测试战甲，对银梭来说顶多是个压舱物，银梭是无人机，需要什么驾驶员？”</p>
+<p class = "firstLineIndent">无人机……压舱物……</p>
+<p class = "firstLineIndent">两人：“……”</p>
+<p class = "firstLineIndent">原来自动驾驶真的是自动驾驶，字面意思啊！</p>
+<p class = "firstLineIndent">两人心中已经是欲哭无泪，我们果然还是高估了老板的节操！图样图森破了啊！</p>
+<p class = "firstLineIndent">“那么，一路顺风～”聂云笑着挥挥手。</p>
+<p class = "firstLineIndent">“嗡！”两架银梭的发动机发出一阵轻微的轰鸣，银梭底部喷射出幽蓝色火焰，在大地的轻微晃动中，银梭带着两人缓缓升空。</p>
+<p class = "firstLineIndent">“原来，真的是360度全景啊……我猜到了过程，却依然没有猜中结局……”风中，传来老大幽幽的叹息……</p>
+
+<a href="050.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="070.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

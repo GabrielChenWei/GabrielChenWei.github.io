@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第十章 幽灵船</h2>
+<p class = "firstLineIndent">“你怎么在这儿？”楚潇潇终于反应过来，难以置信道。</p>
+<p class = "firstLineIndent">“比起这个问题，我觉得我们还是先离开这儿比较好，你觉得呢？”聂云眨了眨眼睛，笑道。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“沉船”边，老大小心翼翼靠近，手电扫了扫，没有发现什么异常，他喊了一声：“老三！你在吗？”</p>
+<p class = "firstLineIndent">死一般的沉寂。</p>
+<p class = "firstLineIndent">“老三，在的话喊一声！”他又喊了一声，依然是一样的毫无反应。</p>
+<p class = "firstLineIndent">老大暗骂一声，唯一的一部卫星电话在老三身上，这里也根本没有手机信号，只能进去探索了！</p>
+<p class = "firstLineIndent">他右手持枪，身体微蹲，小心翼翼地走进沉船。</p>
+<p class = "firstLineIndent">然而就在这时，远处的一声枪响吓了他一跳。</p>
+<p class = "firstLineIndent">他心中一惊，往船沿走了两步向帐篷那里看去，没有见到老二的身影，他顿时心里大急，不知道到底发生了什么事。</p>
+<p class = "firstLineIndent">他回头看看黑洞洞的船舱，再看看帐篷的方向，心里有了决定。</p>
+<p class = "firstLineIndent">“该死！”老大边骂边往帐篷那边赶去。</p>
+<p class = "firstLineIndent">不过才走到半路，让老大怒火中烧的一幕便出现了。</p>
+<p class = "firstLineIndent">“突突突！”有人发动了他们的快艇！</p>
+<p class = "firstLineIndent">然后在老大睚眦欲裂的目光中，快艇飞快倒退着退入海中，打了个转便快速远去。</p>
+<p class = "firstLineIndent">“老二！你这个二五仔！”老大简直快气炸了！</p>
+<p class = "firstLineIndent">在他想来，肯定是老二趁机将楚潇潇带走，准备独吞那1000万，日防夜防，家贼难防啊！</p>
+<p class = "firstLineIndent">当他跑到帐篷处的时候，快艇已经驶出百来米，超出手枪射程之外了。</p>
+<p class = "firstLineIndent">“混蛋！老二，别犯在老子手里，终有一天我要将你大卸八块！”老大怒吼着咆哮道。</p>
+<p class = "firstLineIndent">正骂着，突然鼻子里闻到一股海风带来的血腥味，他顿时一愣，向旁边看去，在那里，强光灯光线照射到的边缘，露出了一双户外靴的影子。</p>
+<p class = "firstLineIndent">老大感觉那靴子的模样有些熟悉，手电的光线照射过去，顿时看见了一具血泊中的尸体，不是老二还是谁！</p>
+<p class = "firstLineIndent">“这是……怎么回事？”老大彻底懵了。他猛地转头看向快艇的方向，开船的不是老二！</p>
+<p class = "firstLineIndent">莫非……</p>
+<p class = "firstLineIndent">老大心中发寒，脑海中浮现的是老三那张憨厚的脸。</p>
+<p class = "firstLineIndent">故意发出响声引我过去，然后潜回来干掉老二，再带着楚潇潇开船逃跑！这样周密的计划是那个忠心耿耿，木讷无比的老三能够想出来的？</p>
+<p class = "firstLineIndent">“老三，没想到隐藏的最深的，竟然会是你啊！”</p>
+<p class = "firstLineIndent">一时之间，老大心中悲从中来，被最信任的人背叛，让他顿时有些心灰意冷，多年的兄弟情义，难道还比不过区区1000万？</p>
+<p class = "firstLineIndent">他瘫坐在地，呆呆看着黑暗的海面，只觉得一动也不想动。</p>
+<p class = "firstLineIndent">过了许久之后，旁边的黑暗中突然响起一阵脚步声。</p>
+<p class = "firstLineIndent">老大僵硬地扭过头，然后就看见老三走出黑暗，露出一张带着惊喜的大脸，他一手拉着裤子，一手捂着脑袋，看起来模样有些滑稽，却让老大怎么也笑不出来，他的脑子现在是完全糊涂了。</p>
+<p class = "firstLineIndent">这是……什么情况？</p>
+<p class = "firstLineIndent">老三看到老大，却像是看见亲人一般，惊喜道，“老大！终于见到你了，我和你说，我刚刚似乎做了个很可怕的梦！梦里有条幽灵船，船上的船锚，它……”</p>
+<p class = "firstLineIndent">老三话还没说完，便被老大一把抱住，哽咽道：“老三！真是太好了！原来不是你！不是你啊！”</p>
+<p class = "firstLineIndent">老三顿时迷糊了，然后突然意识到现在的状态，被抱住的身体顿时是鸡皮疙瘩浑身直冒，他一把推开自己的老大，两手死死拉住裤腰，颤声道：“老大，我……我不是那种人……”</p>
+<p class = "firstLineIndent">老大顿时黑线直冒……</p>
+<p class = "firstLineIndent">不久后，两兄弟将自己的遭遇一说，品味出不对来。</p>
+<p class = "firstLineIndent">“走，我们去那艘船上看看！”老大恶狠狠拿起手枪说道。</p>
+<p class = "firstLineIndent">两人走到原来“沉船”的位置，然而让他们再次目瞪口呆的是，这里哪里还有什么“沉船”，空荡荡的连根毛都没有。</p>
+<p class = "firstLineIndent">“老……老大，你……你说我们会不会是，遇到幽……幽灵船了……”老三哆哆嗦嗦把话说完。</p>
+<p class = "firstLineIndent">“别说傻话了！幽灵能开枪干掉老二？”</p>
+<p class = "firstLineIndent">“可幽灵把我敲晕了啊！我现在头上的包都还没消。对了，我醒来发现自己的裤腰带扣子都崩飞了，老大你说，我……我不会是被幽灵……”</p>
+<p class = "firstLineIndent">“蹦！”老大给了老三一个脑瓜子，“哪个幽灵瞎了眼能看上你这个傻大个！”</p>
+<p class = "firstLineIndent">其实老大心里也有些发毛，立刻转身快步离开这片鬼地方。</p>
+<p class = "firstLineIndent">“说不定是女幽灵呢？其实老子的本钱还是很雄厚的……唉，老大等等我！”老三嘀咕一句，然后赶紧跟上，他可不想一个人留在这儿。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">黑暗中，传来兄弟两的谈话。</p>
+<p class = "firstLineIndent">“老大，我们还在这里等雇主吗？没了船，我们没办法离开啊。”</p>
+<p class = "firstLineIndent">“蹦！”又是个脑瓜子。</p>
+<p class = "firstLineIndent">“你傻啊！人都没了，万一留下来被雇主那帮人直接泄愤灭口，我们找谁喊冤去！”</p>
+<p class = "firstLineIndent">“那……那我们怎么办啊！”</p>
+<p class = "firstLineIndent">“先回去拿东西，往小岛深处躲，等他们人走了，再想办法求救，搭条船回大陆！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">不久后，一艘中型快艇再次光临这处沙滩。</p>
+<p class = "firstLineIndent">一个面目阴鹫的中年男人下船后皱着眉头，“怎么回事，还没找到会面地点，踩点的人究竟怎么做事的！”</p>
+<p class = "firstLineIndent">手下中有一人满头大汗，“锋哥，之前这里明明有条沉船，我前两天刚刚来过！可……可不知道怎么回事沉船消失了，而且这里发现了一具尸体，是‘拼命三郎’中的老二，胸口中弹，已经死了！”</p>
+<p class = "firstLineIndent">“死了？联系上另外两人没有？”锋哥的眉头皱的更紧了，浑身开始透出一股杀气。</p>
+<p class = "firstLineIndent">那名手下紧张道：“回锋哥，一直联系不上，我猜会不会是……窝里斗？”</p>
+<p class = "firstLineIndent">锋哥冷哼了一声，“哼！这帮废物，乌合之众！果然还是找专业的雇佣兵更稳妥！走！”</p>
+<p class = "firstLineIndent">一行人跟在锋哥身后准备上船，突然锋哥停住脚步，斜着眼看向先前汇报的那名手下，“谁……让你上船了？”</p>
+<p class = "firstLineIndent">锋哥说完也不逗留，转身离开。</p>
+<p class = "firstLineIndent">那手下大急，“锋哥，再给我一次……”</p>
+<p class = "firstLineIndent">“砰！”旁边一人已经掏出手枪，一声枪响过后，那人的话再也没办法出口。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">沙滩不远处的一块岩石后，老三擦了擦脑门上的汗，后怕道：“还是老大聪明，这伙人真是杀人不眨眼啊，险些就被灭口了！”</p>
+<p class = "firstLineIndent">老大脸色阴沉地看着快艇离去，犹如看着1000万就这么飞走……</p>
+
+<h2>第十一章 我的船到了</h2>
+<p class = "firstLineIndent">离小岛不远的海面上，一艘快艇缓缓减慢了速度，关闭了发动机，在海面上浮浮沉沉，随波逐流。</p>
+<p class = "firstLineIndent">随着发动机的关闭，快艇上陷入黑暗，因为怕被那伙接头的神秘雇主发现行踪，船上并没有开灯，只有聂云手中的手电发出微弱的光。</p>
+<p class = "firstLineIndent">楚潇潇不禁有些害怕，她现在只想快点回到大陆，回到文明的社会。</p>
+<p class = "firstLineIndent">“我们停在这里做什么？”楚潇潇看着正打着手电在搜检战利品的聂云问道，此时她身上已经披了一件夹克，遮住了春光，这自然也属于聂云的战利品。</p>
+<p class = "firstLineIndent">“等我的船！”聂云随口答道，这时他从顺来的背包中找出几罐罐头，顿时欣喜道：“太棒了，正好饿了！”</p>
+<p class = "firstLineIndent">楚潇潇有些惊喜地问：“等你的船？你还有同伴？”</p>
+<p class = "firstLineIndent">聂云没回答，他坐到船头撬开罐头盖子，欣喜地发现是酱牛肉，急急往嘴里塞了一大块，边吃边含糊道：“泥药补药？”</p>
+<p class = "firstLineIndent">刚刚控制机械虫，消耗了大量能量，此时又没有太阳充能，腹中早已饥饿难耐。</p>
+<p class = "firstLineIndent">楚潇潇被聂云的吃相刺激，这才感觉已经有好久没吃东西了，的确也是饿了。</p>
+<p class = "firstLineIndent">她坐到聂云身边，聂云给她也开了一罐，两人就这么默默吃着。</p>
+<p class = "firstLineIndent">不久后，船头堆起了七八个空罐头，聂云打了个饱嗝，楚潇潇投来古怪的目光，这家伙是几天没吃饭了啊！</p>
+<p class = "firstLineIndent">“你还没说，你为什么会在这里呢？”楚潇潇眼见聂云眯着眼睛在那儿消食，忍不住开口问。</p>
+<p class = "firstLineIndent">“我如果说是我和我兄弟在那里野餐，结果你们就自己找上门来了，你信不信？”</p>
+<p class = "firstLineIndent">“我不信！”楚潇潇翻了个白眼，和你兄弟到那种无人岛野餐，你是野人，还是你兄弟是野人？</p>
+<p class = "firstLineIndent">“那不就结了！”聂云知道说实话也没人信，干脆不解释。</p>
+<p class = "firstLineIndent">“喂……那个……还没谢谢你，救了我！”楚潇潇出言道谢，不过似乎有些不习惯，说的很不自然。</p>
+<p class = "firstLineIndent">“我不叫喂！我叫聂云！”</p>
+<p class = "firstLineIndent">“哦哦，我叫楚潇潇！”楚潇潇这才意识到两人竟然还不知道对方的名字，连忙道。</p>
+<p class = "firstLineIndent">“嗯，我记住了。”</p>
+<p class = "firstLineIndent">聂云说完，两人又陷入沉默。</p>
+<p class = "firstLineIndent">楚潇潇抱着双膝看着漆黑的海面，突然想起刚刚聂云开枪的那一幕。</p>
+<p class = "firstLineIndent">似乎，是为了不让自己看见那人的样子，才故意让他退到自己看不见的地方？</p>
+<p class = "firstLineIndent">就因为聂云这样的做法，让楚潇潇第一次见到杀人的心理冲击降到了最低，几乎没什么感觉，反而因为对那人的恶感，觉得那家伙死有余辜。</p>
+<p class = "firstLineIndent">那家伙的义子……似乎……挺温柔的。</p>
+<p class = "firstLineIndent">“聂云，能……和我说说他的事情吗？”楚潇潇轻声开口。</p>
+<p class = "firstLineIndent">聂云一愣，不由得看向楚潇潇，正好对上她明亮的眸子。</p>
+<p class = "firstLineIndent">“咳咳！”聂云有些脸红地避开她的视线，然后仰躺着，双手枕在脑后，看着天空中的繁星。</p>
+<p class = "firstLineIndent">“老爹啊，他这人是周边有名的酒鬼，整天把自己喝的醉醺醺的，喝醉了倒也不发酒疯，就坐在海狼号船头看着海面发呆。</p>
+<p class = "firstLineIndent">他这人又懒惰又邋遢，从记事起，我就是他船上的水手、修理工、渔民、厨师！他则只是船长！哈哈！</p>
+<p class = "firstLineIndent">除此之外，他还十分恶趣味，老是喜欢捉弄我，让我在大家面前出糗，有一次我气的狠了，拿着菜刀追了他一条街，啊哈哈！</p>
+<p class = "firstLineIndent">不过这家伙都是刀子嘴豆腐心，有什么好东西，他总是先想到我，从来不会对我发火。</p>
+<p class = "firstLineIndent">我记得有一次我生病，发了高烧，镇子里的医生正好不在，他背着我翻了三座山，走了四个钟头，带我去了城里的急诊，让我捡回一条命。</p>
+<p class = "firstLineIndent">我很感激他，他给了我海狼号，一个安稳的窝，教我如何生存，如何做人。</p>
+<p class = "firstLineIndent">我看得出来，老爹活得挺不开心的，不过他从没和我说过他以前的事，嘛，反正我对老男人的青春史也不感兴趣。哈哈……”</p>
+<p class = "firstLineIndent">聂云絮絮叨叨地说着，楚潇潇静静地听着，第一次对那个男人有了清晰的印象，而不再是想象。</p>
+<p class = "firstLineIndent">聂云说完，看向身边的楚潇潇。</p>
+<p class = "firstLineIndent">她微微扭过脸，许久后轻轻说了一句：“我去了，上了炷香。”</p>
+<p class = "firstLineIndent">聂云眯起眼，露出笑容，喃喃着，“是吗，这样就好……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">大概又过了十几分钟，“哗啦啦”黑暗中突兀地传来一阵水花的响动，似乎有什么东西在靠近。</p>
+<p class = "firstLineIndent">楚潇潇被这阵动静惊动，有些奇怪的问：“你有没有听到什么动静？”</p>
+<p class = "firstLineIndent">聂云站起来伸了个懒腰，指着旁边道：“嗯，是我的船到了！”</p>
+<p class = "firstLineIndent">楚潇潇看向他所指的方向，暗淡的星光下，黑暗的海面上，静悄悄地滑出了一艘破旧的渔船，缓缓停在快艇旁边。</p>
+
+<h2>第十二章 放生</h2>
+<p class = "firstLineIndent">“这……这……”楚潇潇睁大了双眼，对面的渔船上黑漆漆一片，没有马达声，是靠风帆移动的，但却根本不像是有人在操纵，活脱脱就像是一艘幽灵船。</p>
+<p class = "firstLineIndent">“哦，你知道的，现在社会发展这么迅速，最近不是有那个什么自动驾驶汽车嘛，我的海狼号差不多就是这个类型。”聂云稍微解释了一句，然后提着包跳上了海狼号。</p>
+<p class = "firstLineIndent">“自动驾驶？！”楚潇潇扫了一眼海狼号的船帆，翻了个白眼。</p>
+<p class = "firstLineIndent">麻烦能不能先装个电动的发动机？</p>
+<p class = "firstLineIndent">跳上海狼号的聂云向楚潇潇伸出手，楚潇潇愣了一下，才反应过来把手放上去。</p>
+<p class = "firstLineIndent">聂云拉着楚潇潇上了海狼号，她的手冰冷柔软，聂云心中一荡，楚潇潇上船后脸色微微有些红，装作四下打量海狼号，走开两步。</p>
+<p class = "firstLineIndent">“真的没人啊！”海狼号就那么大，一目了然，楚潇潇惊奇的发现真的没人，莫非真是自动驾驶？太扯了吧？</p>
+<p class = "firstLineIndent">她自然不会看见，那面看似破旧的风帆偶尔闪过的银光。</p>
+<p class = "firstLineIndent">这也是聂云今天“父子交流”后的新发现，不管多远的距离，他都能控制机械虫们听从指令，如臂使指！这让远距离操控海狼号的可能性变成了现实！</p>
+<p class = "firstLineIndent">“唉，等等，不对啊，我昨天来的时候，这艘船龙骨都断了吧？怎么今天还能出海？”</p>
+<p class = "firstLineIndent">楚潇潇突然想起来一件事，四处找了找，哪里还有什么破洞。</p>
+<p class = "firstLineIndent">“咳咳！昨晚我就去修好了，其实海狼号受损没那么严重，看着夸张而已！”</p>
+<p class = "firstLineIndent">“修好了？就算不严重，一个晚上能修成这样？”</p>
+<p class = "firstLineIndent">楚潇潇对于造船业虽然不是很了解，但是基本常识还是有的，就海狼号昨天的那个大洞，没有一天的功夫连甲板都别想补上。</p>
+<p class = "firstLineIndent">“我有个朋友，造航母的，知道吧！”聂云给了楚潇潇一个自己体会的眼神，转身就走。</p>
+<p class = "firstLineIndent">造航母的？人家造航母的能给你修一条破渔船，做的还是木匠活？！</p>
+<p class = "firstLineIndent">楚潇潇觉得这家伙越来越神秘了。</p>
+<p class = "firstLineIndent">聂云趁楚潇潇不注意，往快艇上丢了一个银白色球体，然后转头对楚潇潇道：“好了，我们启程返航，大概天亮就能回到南湾了！</p>
+<p class = "firstLineIndent">这里有一个卫星电话，我不会用，你给你家打个电话吧，让人去码头接你。</p>
+<p class = "firstLineIndent">对了，这件事我不想被人知道，你知道的，这很麻烦。”聂云递过卫星电话挠挠头道。</p>
+<p class = "firstLineIndent">楚潇潇接过电话看着他，“你还是不愿意和我们一起生活吗？”</p>
+<p class = "firstLineIndent">“啊，我一个人习惯了，还有海狼号，我不能抛下它！”</p>
+<p class = "firstLineIndent">楚潇潇点点头，然后走到一边拨出了一个电话号码。</p>
+<p class = "firstLineIndent">“喂，哪位？”对面传来一个温柔的女人声音，似乎有些疲惫。</p>
+<p class = "firstLineIndent">“喂，妈，是我！”</p>
+<p class = "firstLineIndent">“潇潇？你是潇潇！？”那女人似乎有些激动，像是打翻了什么东西。过了一会儿才道：“潇潇，你现在怎么样，放心，妈一定救你出来，你和绑匪说，只要不伤害你，要多少钱我都给！”</p>
+<p class = "firstLineIndent">“妈你别激动，我身边没有绑匪，我被……被人救了，现在很安全。”</p>
+<p class = "firstLineIndent">“什么？”对面似乎愣了好久，然后突然声音换成了一个男声。</p>
+<p class = "firstLineIndent">“你好楚小姐，我是夏市公安局局长刘国东，请问你现在在哪儿，怎么被救的，不要着急，慢慢说。”</p>
+<p class = "firstLineIndent">楚潇潇看了一眼对面的聂云，道：“你不需要知道我在哪里，怎么被救的，明天早上，我会打这个电话通知你们我在哪儿，让我妈派人过来接我就好了。”</p>
+<p class = "firstLineIndent">“这……”</p>
+<p class = "firstLineIndent">对方话还没说完，楚潇潇直接挂断了电话。</p>
+<p class = "firstLineIndent">“喂喂，市公安局的局长啊，你这么说话小心人家给你穿小鞋。”聂云啧舌道，倒是看见了楚潇潇霸道强势的一面，或许，这才是真正的楚潇潇吧。</p>
+<p class = "firstLineIndent">海鹰镇隶属夏市，市公安局长那么大的官儿，聂云见都没见过，楚潇潇竟然这么不给人家面子。</p>
+<p class = "firstLineIndent">“他给我穿小鞋？发生了这样的事情，他应该庆幸我被你救了，否则他的仕途生涯也就到此为止了！我们不追究他的责任他就该烧高香了！”楚潇潇话语中透出强大的自信。</p>
+<p class = "firstLineIndent">“对了，你干嘛拉着后面那条快艇？”她刚刚打电话的时候，聂云已经将快艇绑到了海狼号后面，这时正拖着它航行。</p>
+<p class = "firstLineIndent">“九成新，转手能卖不少钱呢！”聂云露出一副守财奴的笑脸。</p>
+<p class = "firstLineIndent">楚潇潇翻了个白眼，然后打了个哈欠。</p>
+<p class = "firstLineIndent">她这段时间担惊受怕，昨晚根本就没怎么睡，此时已经是十分疲倦。</p>
+<p class = "firstLineIndent">“去船舱里睡一觉吧，明天到了我叫你！”聂云道。</p>
+<p class = "firstLineIndent">楚潇潇点点头，刚向船舱走了两步，突然停下，扭头眨着大眼睛问了一句：“门有锁吗？”</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">“放心，我对未成年少女不感兴趣，你比舒云阿姨差远了！”聂云黑着脸不屑道。</p>
+<p class = "firstLineIndent">楚潇潇狠狠白了他一眼，暗暗将舒云阿姨这个名字记下。</p>
+<p class = "firstLineIndent">然后突然恶作剧心大起，她脱下外面的夹克，双手高举伸了个懒腰，露出洁白光滑的腋下。</p>
+<p class = "firstLineIndent">“啊，真是好累啊，这海上怎么也这么闷热，好想洗澡！”</p>
+<p class = "firstLineIndent">楚潇潇原本连衣裙的左边肩带早就被撕扯下来，此时耷拉在手臂上，半边的白色低胸内衣就那么展露在聂云眼前，一片春光直接晃花了他的眼睛。</p>
+<p class = "firstLineIndent">“咕咚！”清晰的吞咽口水的声音响起，楚潇潇得意地转身，扭着小屁股进了船舱。</p>
+<p class = "firstLineIndent">门刚关上，楚潇潇便捂着胸口背靠在舱门上。“呜~我在做什么啊！笨蛋！”</p>
+<p class = "firstLineIndent">她脸色通红，实在是想不出来刚刚怎么就一时鬼迷了心窍做出那么大胆的举动。</p>
+<p class = "firstLineIndent">船舱外，聂云暗骂一句小妖精，过了许久才平息了不争气的小兄弟的怒火。</p>
+<p class = "firstLineIndent">他走到船尾，那里传来一阵沙沙声，机械虫们正在大快朵颐。</p>
+<p class = "firstLineIndent">“拼命三郎”的快艇上足足准备了几十公升的汽油，正好便宜了聂云，不愁今晚的能源不足了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">第二天清晨，醒来的楚潇潇愕然看着身后空空如也的海面，“快艇呢？”</p>
+<p class = "firstLineIndent">“哦，昨晚我想了想，其实一艘破快艇也值不了几个钱，于是我就把它放生了！”聂云很认真地道。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">谁昨晚说它九成新，能卖不少钱？</p>
+<p class = "firstLineIndent">还有，放生快艇是个什么放生？！</p>
+
+<h2>第十三章 人枪合一</h2>
+<p class = "firstLineIndent">早上7点，南湾码头。</p>
+<p class = "firstLineIndent">此时已经陆陆续续有渔民开船出海，平静了一个晚上的海面重新恢复了人气和生机。</p>
+<p class = "firstLineIndent">离码头不远处的一座仓库前，一位穿着职业套装的中年妇人正在焦急地来回踱步，身后还跟着四名保镖，正警惕地打量四周。</p>
+<p class = "firstLineIndent">虽然岁月在妇人脸上刻下了些许鱼尾纹，可依稀可以看出年轻时是如何貌美，她便是楚氏集团董事长楚凤。</p>
+<p class = "firstLineIndent">“妈！”一声少女的呼唤让楚凤身子一僵。</p>
+<p class = "firstLineIndent">她转头望去，只见自己失踪了两天的女儿穿着件夹克，俏生生地站在不远处的拐角，阳光下，少女笑颜如花，除了头发有些散乱，看起来并没有任何不妥。</p>
+<p class = "firstLineIndent">楚凤快跑两步，紧紧将楚潇潇抱在怀里。“潇潇，你吓死妈妈了，怎么样，有没有伤着？”</p>
+<p class = "firstLineIndent">与此同时，四名保镖呈四角形将母女两护在中心，而周围呼啦啦驶出好几辆警车和几十号警察，将这片区域团团围住。</p>
+<p class = "firstLineIndent">这边的动静让周围的渔民都十分惊诧，纷纷看过来，不知道这么大阵仗是发生了什么事情。</p>
+<p class = "firstLineIndent">楚潇潇翻了个白眼，都说了没有匪徒了。</p>
+<p class = "firstLineIndent">这时警察中走出一个全副武装，穿着防弹衣的方脸中年人，“你好，楚小姐，我是刘国东，请问你是怎么脱身的，那些匪徒呢？”</p>
+<p class = "firstLineIndent">“我都说了，有人救了我，那些匪徒被我们甩掉了。”楚潇潇没好气道。</p>
+<p class = "firstLineIndent">“楚小姐，还请你配合，将详细情况告诉我，我们怀疑，绑架你的是附近有名的亡命徒‘拼命三郎’，他们手上很可能有枪械，十分危险，或许你被救也是他们为了达到目的的手段之一，还请……”</p>
+<p class = "firstLineIndent">“妈，我想回家了……”楚潇潇直接躲入楚凤的怀里撒娇道。</p>
+<p class = "firstLineIndent">“好好，我们不问了，马上回家，回家！”楚凤瞪了眼刘国东，对方不敢再吱声。</p>
+<p class = "firstLineIndent">楚潇潇趴在楚凤的怀里，眼睛却看向不远处的海面，那里，有一艘破旧的渔船正扬帆出海……</p>
+<p class = "firstLineIndent">—————我是邪恶的分割线————————</p>
+<p class = "firstLineIndent">“喂，老爸，你看，那边是不是海狼号？”秃子站在船头远眺，指着远处的一艘渔船道。</p>
+<p class = "firstLineIndent">刘叔放下手中的缆绳过去一看，“看着还真挺像，不过怎么可能，龙骨都断了，别说航行了，在水面能不沉都容易，应该只是有些相似吧。</p>
+<p class = "firstLineIndent">唉，也不知道聂云这小子去哪儿了，这小子就是不让人省心！”</p>
+<p class = "firstLineIndent">“放心啦老爸，那家伙比海猴子都精明，不会出事儿的！”</p>
+<p class = "firstLineIndent">“嗯，希望吧！”</p>
+<p class = "firstLineIndent">—————我是邪恶的分割线————————</p>
+<p class = "firstLineIndent">“啊，小的们！都动起来！一日之计在于晨，生命在于运动！该晒太阳的晒太阳，该做保养的做保养，都别闲着！那边那堆新来的，都动起来，去！把桅杆吃了！</p>
+<p class = "firstLineIndent">注意啊，吃多少补多少，别给弄断了！”</p>
+<p class = "firstLineIndent">海狼号上，聂云吆喝着指挥机械虫们执行“海狼号补完计划”！</p>
+<p class = "firstLineIndent">送走了楚大小姐，聂云终于可以肆无忌惮对海狼号进行改造强化，昨晚机械虫们吃掉了那艘快艇，可是大大的扩张了一把族群，数量直接翻了三倍，现在几乎都能够将海狼号的骨架直接填满了！</p>
+<p class = "firstLineIndent">早上吃早饭的时候，他突发奇想，既然机械虫能够变幻成几乎所有的物质，那若是用机械虫代替海狼号所有的材料呢？</p>
+<p class = "firstLineIndent">他大致试验过，机械虫组合成的物品强度极高，应该不下于特种合金，甚至还要超出。</p>
+<p class = "firstLineIndent">一艘全部都用特种合金建造的渔船！想想都让聂云浑身激动地发颤啊！</p>
+<p class = "firstLineIndent">至于为什么是渔船？聂云表示自己是个光荣的渔民，难道真让他去建一艘航母吗？</p>
+<p class = "firstLineIndent">海狼号已经驶离近海，往更远的远海驶去，这里没有船只，可以让机械虫们自由发挥。</p>
+<p class = "firstLineIndent">此时机械虫们已经变回了银白色，随着融合之后日子一天天过去，聂云和机械虫们的联系似乎正在逐渐增强，现在都能通过机械虫观察周边环境了。</p>
+<p class = "firstLineIndent">现在他可以感知到，机械虫维持这种原生状态，它们吸收能量的效率是最高的，变化颜色会对他们的工作效率造成影响。</p>
+<p class = "firstLineIndent">所以如果有船只经过，便会发现海面上一艘银光闪闪，充满了土豪银味道的渔船。</p>
+<p class = "firstLineIndent">无尽的光和热带来充沛的能源，至少以当前机械虫们的工作状态来说，这些能源已经足够，倒是不用聂云再花钱买燃料了。</p>
+<p class = "firstLineIndent">机械虫们不知疲惫地不断将海狼号的主体完成“机械虫化”改造，每当有一个部件被吃掉，机械虫就利用自身重新构建一个部件替换，如果用一句武侠小说中的话来说，海狼号正在“脱胎换骨”！</p>
+<p class = "firstLineIndent">聂云也没闲着，他正在消化战利品，昨晚获得的瑞士军刀和两把手枪已经被机械虫啃食殆尽。</p>
+<p class = "firstLineIndent">聂云刚刚试了试军刀，强度翻了不止一倍，加上他亲自指挥机械虫，改良了锋锐度，现在可谓是削铁如泥，堪称神兵利器！</p>
+<p class = "firstLineIndent">更让聂云惊喜的是，从老二和老三身上搜来的手枪经过强化，握在手上的时候突然就有了种血肉相连的感觉，和昨天第一次开枪时想射脑袋却射中胸口的生疏感完全不同。</p>
+<p class = "firstLineIndent">他闭上眼睛将意识与手中的机械虫相连，神奇的一幕出现了！</p>
+<p class = "firstLineIndent">他仿佛能够清晰地感应到手上手枪的内部构造，细微到每一处纹理。</p>
+<p class = "firstLineIndent">“喀啦！”聂云依旧闭着眼，给手枪上了膛，打开保险，他能够感应到，随着他的动作，子弹滑入枪膛，前方再无阻碍。</p>
+<p class = "firstLineIndent">“砰！”他朝着海面随意地开了一枪。</p>
+<p class = "firstLineIndent">撞针击打在子弹底部，引燃子弹内部的易燃纸，子弹底部爆炸，推动弹头，旋转着将枪膛擦出一道火花，呼啸而出！</p>
+<p class = "firstLineIndent">“呼！”聂云睁开眼，内心无比震撼，竟然……能做到这种地步，这不就是传说中的人枪合一？</p>
+<p class = "firstLineIndent">自从融合后，他现在的记忆力和理解能力也在飙升，细细感受了一下刚才子弹飞出的弹道和自己的姿势，他举枪瞄准了桅杆上的缆绳。</p>
+<p class = "firstLineIndent">“砰！”又是一枪，这一枪……自然是打飞了。</p>
+<p class = "firstLineIndent">“砰！”第二枪！“哧！”子弹与缆绳相撞，擦出一道耀眼的火花，跳弹飞向天空。</p>
+<p class = "firstLineIndent">而那缆绳竟然毫发无损，只留下一道划痕，立刻就被机械虫重新复原，再也看不出痕迹。</p>
+<p class = "firstLineIndent">“爽！”聂云欣喜地摸摸枪身。然后嘀咕了一句，“就是这枪没点效果，有点美中不足啊！”</p>
+<p class = "firstLineIndent">“吧嗒！”缆绳在刚刚被击中的位置直接断裂，整面船帆哗啦一声掉了下来。</p>
+<p class = "firstLineIndent">聂云看着这一幕，满意点头，吹了吹枪口，很骚包地转了两圈枪花，然后手枪突然变幻为一圈手环套在了聂云手上。</p>
+<p class = "firstLineIndent">只要愿意，他随时能够用这圈手环变幻出手枪。</p>
+<p class = "firstLineIndent">他吹着口哨继续摆弄战利品，身后，缆绳和船帆艰难地爬到桅杆上，重新和断裂处连在一起。</p>
+<p class = "firstLineIndent">机械虫：“……”（这主人真难伺候！）</p>
+
+<h2>第十四章 我执</h2>
+<p class = "firstLineIndent">聂云摆弄着那部卫星电话，因为海上很少有信号，加上聂云的朋友也不多，因此他连手机都没有。</p>
+<p class = "firstLineIndent">不得不说，聂云从前就像是生活在七十年代的渔民，基本是与世隔绝的，像这么“单纯”的渔民已经可以放入博物馆供人参观了！</p>
+<p class = "firstLineIndent">“这么精密的东西，里面非金属的材料也很多，吃掉会不会变不回来啊？”聂云有些纠结地看着卫星电话，这玩意儿据说要一两万一台，聂云不得不慎重，不，应该说是小心翼翼！</p>
+<p class = "firstLineIndent">不过最终，聂云还是决定吃掉它！</p>
+<p class = "firstLineIndent">三分钟过后，聂云手上拿着一台银光闪闪的卫星电话，“这玩意儿似乎就不用充电了？每天让机械虫晒晒太阳就行？话说回来，我现在不仅是枪械大师，应该还能冒充一下电子机械大师了吧？”</p>
+<p class = "firstLineIndent">通过与机械虫的联系，他惊愕的发现，自己连卫星电话的构造都弄懂了，他的大脑构造已经脱离了普通人的范畴，和电脑恐怕有的一拼！</p>
+<p class = "firstLineIndent">“连小学都没上完的本大爷，越来越不像人了啊！”聂云很嘚瑟地感概一句。</p>
+<p class = "firstLineIndent">就在这时，电话突然响了起来，吓了聂云一跳，看了看来电，然后他熟练的接通了电话。</p>
+<p class = "firstLineIndent">“喂！聂云”是楚潇潇的声音。</p>
+<p class = "firstLineIndent">“咦！怎么是你？”聂云愕然道。</p>
+<p class = "firstLineIndent">“笨蛋，我记下号码了啊！还有，你这号码都快欠费了，我给这个号码冲了一万电话费，一年内你不用担心话费不够用了！”楚潇潇很大气地道。</p>
+<p class = "firstLineIndent">一万！？这败家娘们！</p>
+<p class = "firstLineIndent">若是让楚潇潇知道他现在的想法，估计得拿菜刀追他一条街。</p>
+<p class = "firstLineIndent">“哦，那真是谢谢了，其实我平时不用电话……”聂云话没说完，就被打断了。</p>
+<p class = "firstLineIndent">“那枚古币卖不卖了？”</p>
+<p class = "firstLineIndent">“卖卖！行行，我其实觉得吧，需要经常和你联系，还是有必要弄个电话的。”聂云捏了把汗。</p>
+<p class = "firstLineIndent">楚潇潇临行前，聂云托她帮忙鉴定一下那枚捡来的古币，若是不值钱，就送给楚潇潇了，若是值钱，就请她帮忙卖掉。</p>
+<p class = "firstLineIndent">这话自然是惹来楚潇潇的一个卫生球，有这么对女孩子说话的吗，不值钱才送给我！</p>
+<p class = "firstLineIndent">“这还差不多，我到家了，那枚银币我也让人拿去鉴定了，有消息就告诉你，你……你现在在哪儿？”</p>
+<p class = "firstLineIndent">聂云挠挠头，看看四周，脑门有点汗，飘着飘着不知道到哪儿了，“咳咳，打渔呢，今儿收获不错！”</p>
+<p class = "firstLineIndent">他随口扯谎。</p>
+<p class = "firstLineIndent">“打渔……”楚潇潇似乎出现了短暂的无语。</p>
+<p class = "firstLineIndent">“我说，你难道就想打一辈子渔？”</p>
+<p class = "firstLineIndent">“打渔没什么不好的啊？”聂云坐在船头晃着脚丫，和美女闲聊，他倒也乐的享受。</p>
+<p class = "firstLineIndent">“你就没想过做出一番事业？”楚潇潇怒其不争。</p>
+<p class = "firstLineIndent">“当然有啊！我可是一个有梦想的人！”</p>
+<p class = "firstLineIndent">“哦，你的梦想是什么？”</p>
+<p class = "firstLineIndent">“当然是当一个最伟大的渔民！”</p>
+<p class = "firstLineIndent">“你……算了，你自己看着办吧！我才懒得管你！”楚潇潇气呼呼地挂断电话。</p>
+<p class = "firstLineIndent">聂云莫名其妙地收起电话，不知道那位大小姐发什么脾气。</p>
+<p class = "firstLineIndent">“城里人真奇怪！”聂云转过头，看向身后，那里，差不多一半的船体已经是银光闪闪。</p>
+<p class = "firstLineIndent">“哎呀，兄弟，看来古董路线是走不成了，咱还是与时俱进，向着新时代迈进吧！”聂云拍了拍海狼号的甲板。</p>
+<p class = "firstLineIndent">“不过今天的吃水怎么有些深？”聂云奇怪的看着正舔着脚丫子的海面，平时他坐在船头，可没这种泡脚的待遇。</p>
+<p class = "firstLineIndent">“卧槽！”聂云愣了一下才反应过来，这是超重了！</p>
+<p class = "firstLineIndent">的确，海狼号原本只是木制结构的渔船，天生的船体设计摆在那里，你想把它弄成全合金化的渔船，只能说是想多了！</p>
+<p class = "firstLineIndent">“这……看来海狼号补完计划似乎存在一个巨大的漏洞，这可咋整？”聂云有点傻眼了。</p>
+<p class = "firstLineIndent">书到用时方恨少啊！小学水平果然还是个渣渣！</p>
+<p class = "firstLineIndent">聂云沉思良久，首先，机械虫的人手是绝对还要继续扩张的！人多力量大，现在明显人还不够多，力不够大！怎么出奇迹？！</p>
+<p class = "firstLineIndent">没有计划生育的发展中心绝对不容动摇！</p>
+<p class = "firstLineIndent">那么只有扩张了，聂云最终总结出两套方案。</p>
+<p class = "firstLineIndent">一、吞掉其他大吨位的船只，进行整体化升级！</p>
+<p class = "firstLineIndent">二、制造放大版海狼号！</p>
+<p class = "firstLineIndent">“兄弟？你说，如果要整容，你是选择改头换面，还是选择丰臀**？”</p>
+<p class = "firstLineIndent">“沙沙！”机械虫毫无自觉地继续卖命工作。</p>
+<p class = "firstLineIndent">“嗯，果然吗，是男人都喜欢大尺寸！”聂云了然的点点头！</p>
+<p class = "firstLineIndent">机械虫：“……”（→_→）</p>
+<p class = "firstLineIndent">半个小时后，累的气喘吁吁的聂云看着东一坨，西一坨的海狼号，船身倾斜，一边的甲板都快接触到海面了，似乎随时就会翻船。</p>
+<p class = "firstLineIndent">“呼……呼……娘的！这……这小学文化果然上不了台面，兄弟，不是我不帮你，实在是有些尺寸天生的!</p>
+<p class = "firstLineIndent">我执，是痛苦的根源，放下才是解脱！”聂云双手合十，犹如高僧。</p>
+<p class = "firstLineIndent">至此——“金刚狼”计划宣告破产！</p>
+
+<h2>第十五章 是多少碗牛肉面</h2>
+<p class = "firstLineIndent">让机械虫将海狼号变回原貌，聂云托着腮帮子思考起海狼号的未来。</p>
+<p class = "firstLineIndent">“去哪里找大船呢？最好是废弃的，这么想来，沉船似乎是不错的选择，可比较大的沉船都基本被回收了，哪里轮得到我下手。”</p>
+<p class = "firstLineIndent">突然，聂云灵光一闪，有一个地方，有大量的沉船啊！</p>
+<p class = "firstLineIndent">兔子国南海海域曾经是亚洲古代贸易的枢纽，从欧洲、非洲经好望角的远洋贸易船只，从东南亚、美洲往粤省、闽省的贸易船只，据统计，靠近兔子国南海海域的古沉船不少于2000艘。</p>
+<p class = "firstLineIndent">近年来，兔子国加大了对这些古沉船的打捞力度，出土了一大批的瓷器古玩等珍稀国宝，但仍然有许多沉船埋葬在深海的泥沙中，被历史遗忘。</p>
+<p class = "firstLineIndent">南海南澳海域，就是这样一片远近闻名的沉船区域！这里曾经打捞过多艘明清年代的瓷器商船，总体价值无法估量。</p>
+<p class = "firstLineIndent">聂云开着海狼号来到这片充满了宝藏的海域，因为这里来往船只较多，海狼号已经变回了破破烂烂的样子。</p>
+<p class = "firstLineIndent">接着聂云就有些犯难了，这片海域虽然应该有不少的沉船，但是都在深海，自己怎么才能将机械虫丢上去呢？</p>
+<p class = "firstLineIndent">苦思冥想之后，聂云突然看到倚在船沿的钓鱼竿，顿时一个大胆的想法涌上心头。</p>
+<p class = "firstLineIndent">他拿过钓鱼竿，鱼竿顶端的鱼钩根据聂云的心意一阵变幻，变成了一颗银白色的实心小球。</p>
+<p class = "firstLineIndent">“去吧！”聂云用力一甩，小球带着钓线远远飞到十数米外，“噗通”一声落入海面，激起一朵小小的水花。</p>
+<p class = "firstLineIndent">沉重的小球带着一根细长的银色钓线渐渐沉入深海，不时有鱼群好奇地绕着它欢快的转圈。</p>
+<p class = "firstLineIndent">最终，小球沉到海底，激起一小朵泥沙。</p>
+<p class = "firstLineIndent">然后小球突然长出了六只细长的蜘蛛腿，犹如一只小蜘蛛一般在深海海底开始了搜索。</p>
+<p class = "firstLineIndent">不过一只机械虫小蜘蛛的效率实在是太低了，聂云皱了皱眉，“小的们！前方需要支援，后备队，给我上！”</p>
+<p class = "firstLineIndent">随着聂云的命令，海狼号上的一些器物化为一滩滩银白色的液态物，顺着钓竿和细长钓线涌入深海。</p>
+<p class = "firstLineIndent">而深海下，那只原本的小蜘蛛开始疯狂的分裂，一变二，二变四，四变八，不多时，海底到处都是这种小蜘蛛的身影。</p>
+<p class = "firstLineIndent">不少海底生物被这些新来的家伙吓得到处乱窜，海面下，发生了一起不大不小的骚动。</p>
+<p class = "firstLineIndent">成千上万的小蜘蛛在海底疯狂的寻找，聂云将钓竿固定在船上，然后闭着眼睛晒太阳，补充失去的体力。</p>
+<p class = "firstLineIndent">随着海底的搜索范围越来越大，海狼号上的桅杆不见了，船帆不见了，船锚不见了，最后除了一些必要的骨架，海狼号变成了光秃秃的一艘白板船。</p>
+<p class = "firstLineIndent">而海底的人手充足了之后，果然效率大大提升，没过十几分钟，机械虫们有了第一个发现。</p>
+<p class = "firstLineIndent">聂云睁开眼，喜色一闪而过。</p>
+<p class = "firstLineIndent">这是单桅帆船，大小和海狼号差不多，看模样应该是九十年代的老家伙，聂云发动周围的机械虫进去搜索，其他地区的则继续扩大搜索范围。</p>
+<p class = "firstLineIndent">“嗯，收获不错，虽然是木制的，不过里面有不少的铁家伙，船锚、铁皮，足够孩儿们饱餐一顿了，不过这个构造不符合要求，只是道开胃菜，继续找！挖地三尺也要把大家伙给我找出来！”</p>
+<p class = "firstLineIndent">虽说机械虫数量不少，不过海底面积何其巨大，直到一个小时后，机械虫们才又传来找到目标的讯息。</p>
+<p class = "firstLineIndent">聂云稍微一感应，顿时嘴巴张的老大，最后忍不住爆出一句粗口，“卧槽！”</p>
+<p class = "firstLineIndent">出现在聂云面前的，是一艘古代欧洲风格的三桅帆船，船体呈70度斜角栽在万年的泥沙中，只露出一小部分船体，周围还布满了珊瑚礁，若非机械虫们地毯式搜索，还真不容易发现！</p>
+<p class = "firstLineIndent">历经数百年，船身上到处都布满了海藻，不时的有一些海洋生物进进出出，显然是在里面安了窝。船的一侧破了几处大洞，想来就是沉没的原因。</p>
+<p class = "firstLineIndent">这些不是重点，重点是，这竟然是一艘古代战舰！</p>
+<p class = "firstLineIndent">船体侧面那一排洞开的炮口，有一些炮口中甚至还能看到布满铜绿的古代火炮，数百年时光过去了，那些黑洞洞的炮口依然挺立在那里，似在诉说往昔的峥嵘岁月。</p>
+<p class = "firstLineIndent">聂云咽了口唾沫，这至少得是千吨级别的大船，而且更重要的是，里面的火炮可以提供数量可观的铁！</p>
+<p class = "firstLineIndent">这还有什么可说的，召集弟兄们，给我狠狠的吃！吃干净为止！</p>
+<p class = "firstLineIndent">无数银光闪闪的机械虫蜂拥而来！</p>
+<p class = "firstLineIndent">海面上，一艘光秃秃的船架子就那么飘在海面上，船上比较显眼的只有两样东西，一个人，和一把钓竿。</p>
+<p class = "firstLineIndent">这古怪的组合吸引了不少路过的船只，甚至有人还特地靠近过来，甲板上一名水手向着这边高喊：“嗨，兄弟，是不是遇难了，需要帮忙吗？”</p>
+<p class = "firstLineIndent">聂云回以最诚挚的感谢。“不用啦！谢谢兄弟！我在钓大鱼！足足有一千吨，得花点功夫！”</p>
+<p class = "firstLineIndent">那一船的人最后带着看疯子的目光离开了这片海域。</p>
+<p class = "firstLineIndent">日升日落，直到第二天中午，机械虫们终于将船上的铁质物件全部啃食殆尽，数量翻了十倍多，聂云感觉现在控制起机械虫来已经有点费劲了，至少太阳能已经不足以让他维持高强度作业，时不时还需要大吃一顿补充体力。</p>
+<p class = "firstLineIndent">而机械虫的能源再次耗尽，他不得不让小弟们暂停作业，分散摊开在海面上吸收正午的猛烈阳光充能，远远望去，一片银光闪闪，不靠近倒会以为是海面的反光，所以倒是不担心被人发现。</p>
+<p class = "firstLineIndent">就在这时，楚潇潇的电话又来了。</p>
+<p class = "firstLineIndent">“喂，聂云，你的那枚古银币鉴定出来了！”楚潇潇的语气中似乎带着些怪异。</p>
+<p class = "firstLineIndent">“嗯，怎么样？”聂云漫不经心地说着，然后“哧溜”吃了一大口泡面。他实在是饿得狠了。</p>
+<p class = "firstLineIndent">“鉴定的结果说，你那枚银币，至少值1000万。”</p>
+<p class = "firstLineIndent">“嗯，嗯？噗！”聂云先是漫不经心嗯了一声，然后突然反应过来嗯？了一声，接着直接将嘴里的面喷了出去，差点呛进鼻子。</p>
+<p class = "firstLineIndent">“咳咳！咳咳！”他剧烈的咳嗽了好久。</p>
+<p class = "firstLineIndent">“你……你说多少？！”</p>
+<p class = "firstLineIndent">“1000万，软妹币！至少！”楚潇潇没好气地道，出息！</p>
+<p class = "firstLineIndent">“啥！？就那一枚破钱币，值1000万？喂喂，我说你不会是想要报答我救命之恩故意这么说的吧？”聂云怀疑道。</p>
+<p class = "firstLineIndent">“我才没那么无聊！到时候把鉴定书给你看都没问题，你这家伙，倒是会走狗屎运！</p>
+<p class = "firstLineIndent">这枚银币叫双龙寿字币，银币正面两侧所铸的一对蝙蝠图案寓意吉祥，因为蝙蝠的“蝠”字与“福”字谐音，在币面上铸造蝙蝠图案，意在取“蝠”、“福”两字谐音。</p>
+<p class = "firstLineIndent">再与背面的“寿”字相对应，寓意“福寿双全”，是广东省造币局为纪念慈禧六十寿辰而铸，数量稀少，市面上已经很多年没有见过了。</p>
+<p class = "firstLineIndent">这种银币十年前的市场价格为129万，现在估价1000万起。”</p>
+<p class = "firstLineIndent">“也就是说，我这枚银币真的值1000万？”聂云有些傻乎乎的问。</p>
+<p class = "firstLineIndent">对面的楚潇潇翻了个白眼，得，前面的话都白说了！</p>
+<p class = "firstLineIndent">“是！它值1000万！而且是起拍价。”</p>
+<p class = "firstLineIndent">“嗯……”</p>
+<p class = "firstLineIndent">“喂，怎么了，怎么不说话了？”</p>
+<p class = "firstLineIndent">“没，我就是在想，1000万是多少碗牛肉面。”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+
+<h2>第十六章 新海狼号</h2>
+<p class = "firstLineIndent">“聂云，能不能有点出息，你就算拿这一千万放银行吃利息，都能天天吃上牛肉面！”楚潇潇明显是被聂云气到了。</p>
+<p class = "firstLineIndent">“好，那就放银行！”聂云立马同意这个投资方案。</p>
+<p class = "firstLineIndent">“嘟嘟！”对面传来电话挂断的声音。</p>
+<p class = "firstLineIndent">十分钟后……</p>
+<p class = "firstLineIndent">“咳咳，潇潇，别生气嘛，刚刚我是开玩笑的。”聂云有些谄媚地笑着，没办法啊，钱还没到手，要是对面一气之下给自己弄来几百万份牛肉面，那自己找谁哭去啊！</p>
+<p class = "firstLineIndent">“哼！”对面显然还没消气。</p>
+<p class = "firstLineIndent">“对了，潇潇，如果我想用这钱买一条大型渔船……”</p>
+<p class = "firstLineIndent">“嘟嘟！”</p>
+<p class = "firstLineIndent">聂云看着又被挂断的电话，脑门顿时一阵黑线，买渔船怎么啦？我又不是要买海盗船！</p>
+<p class = "firstLineIndent">不过谁让钱在人家手里呢，我忍！</p>
+<p class = "firstLineIndent">聂云也是考虑到自己虽然现在找到了一条大船，不过如果按照那船的样式改造海狼号，恐怕第二天就得被全世界通缉，罪名就是走私军火罪！</p>
+<p class = "firstLineIndent">而且造出来后还没有船证，相当于黑户，还是行不通！</p>
+<p class = "firstLineIndent">船证这东西和汽车行驶证一样，你要是没有，抓住了可不是罚款那么简单，直接扣船算是轻的。</p>
+<p class = "firstLineIndent">莫非你还能说：“哎呀，警察同志，不好意思，今天出门急，忘了带船证了！”</p>
+<p class = "firstLineIndent">一句话，没船证，你连码头都靠不了岸！</p>
+<p class = "firstLineIndent">想来想去，最方便的还是买条大船，经得起检查！</p>
+<p class = "firstLineIndent">十分钟后……</p>
+<p class = "firstLineIndent">“那个，潇潇啊，不知道我如果要买船，你有什么建议啊？”聂云小心翼翼说完，然后稍稍放了心，对面至少没再挂电话。</p>
+<p class = "firstLineIndent">“嗯！你准备买什么样的船啊！”楚潇潇忍着笑意，故意一副生气的语气道。</p>
+<p class = "firstLineIndent">“听您的，您让买什么，咱就买什么！”聂云这回很上道。</p>
+<p class = "firstLineIndent">“嗯！具体有什么要求，说来听听！”楚潇潇总算是放过了他。</p>
+<p class = "firstLineIndent">“这个嘛，最好是千吨级往上的全钢制二手船，我认识一个朋友，哦对，就是那个造航母的，他可以用很低的价格帮我翻新改装。</p>
+<p class = "firstLineIndent">然后最好先进一些，电子器材齐全一些，什么全球定位，声呐雷达，海水净化，甭客气，统统装上，其他就没什么要求了。”</p>
+<p class = "firstLineIndent">聂云最终还是决定与时俱进，往电气化的道路大踏步前进！</p>
+<p class = "firstLineIndent">“嗯，我记下了，我帮你打听打听，不过操控大型船只需要招募不少船员，我们集团认识不少猎头公司，需要帮你找些水手吗？”</p>
+<p class = "firstLineIndent">“咳咳，这个就不必了，我认识的水手很多，就不用麻烦了。”聂云赶紧道，开玩笑，海狼号秘密这么多，怎么可能让别人上船。</p>
+<p class = "firstLineIndent">“那好吧，不过我帮了你这么多忙，你……怎么感谢我？”楚潇潇有些羞涩道。</p>
+<p class = "firstLineIndent">“卖了那枚银币，买船剩下的钱，都归你！”聂云很大气地一挥手道。</p>
+<p class = "firstLineIndent">“嘟嘟！”</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">我这是又说错什么了？</p>
+<p class = "firstLineIndent">机械虫：“……”（傻缺主人！）</p>
+<p class = "firstLineIndent">就在聂云决定买船的第二天晚上深夜十二点，南海南澳海域。</p>
+<p class = "firstLineIndent">“咕咚咕咚！”平静的海面上泛起大片大片的气泡，海面下的一片阴影越来越来大，似乎有一头海底凶兽，即将破浪而出！</p>
+<p class = "firstLineIndent">不远处，光秃秃的海狼号上，聂云双手擎着钓竿，钓线正飞速地自动收起。</p>
+<p class = "firstLineIndent">“出来吧！新海狼号！”聂云猛地一拉钓竿怒吼一声。</p>
+<p class = "firstLineIndent">“轰隆！”沾满了海草的船头刺破海面，一艘庞然大物带着数百年岁月的痕迹重现世间！</p>
+<p class = "firstLineIndent">“轰！”船头重重砸在海面，激起数米高的浪花，激起大范围的风浪，聂云脚下的海狼号晃动不已。</p>
+<p class = "firstLineIndent">“哈哈哈！哈哈哈！吼吼！”聂云死死抓住船头，浑身湿透，却在风浪中裂开嘴狂笑嘶吼。</p>
+<p class = "firstLineIndent">他喜欢这种感觉！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海面渐渐平静下来，聂云驾驶海狼号靠上了还在不断排水的新海狼号。</p>
+<p class = "firstLineIndent">这艘被他命名为新海狼号的破旧战舰约有百米长，高二十多米，宽十数米，海狼号在他面前就像是壮汉跟前的婴儿。</p>
+<p class = "firstLineIndent">此时船上的几个大洞已经被机械虫修补好，补丁一般的银白色甚是显眼！</p>
+<p class = "firstLineIndent">两侧各有二十五门炮口，分为上下两层，此时全都被机械虫封堵上，有些地方还有少许海水被不断排出。</p>
+<p class = "firstLineIndent">这艘战舰自然不可能是聂云钓上来的，其实方法很简单，利用机械虫挖走泥沙，然后做出无数个小型的气球，将船舱内的海水大量排出，船体自然就上浮了。</p>
+<p class = "firstLineIndent">不过在这之前，机械虫也对船体做了一次强化，否则腐烂地木料根本难以承受这样的浮力就会直接断裂，好在海底沉船不少，倒是不缺原料。</p>
+<p class = "firstLineIndent">沿着机械虫搭起的绳梯，聂云登上了这艘古老的战舰。</p>
+<p class = "firstLineIndent">机械虫构成的各种工具还在不停地清理船体，或是修补强化破损，吃掉了五十多门火炮后，机械虫的数量大增，如今都能填满海狼号了，不过分布在新海狼号这里，仍然显得有些空旷了。</p>
+<p class = "firstLineIndent">“人还不够多，力量不够大啊！”聂云看着不断卖命工作的机械虫们，露出了资本家的嘴脸。</p>
+<p class = "firstLineIndent">随后，海狼号被机械虫们直接分解，然后加入修补新海狼号的大军中。</p>
+<p class = "firstLineIndent">看着海面上完全消失的海狼号，聂云在胸口不伦不类地划了一个十字。</p>
+<p class = "firstLineIndent">“兄弟，从今以后，孩儿们与你同在！海狼号与新海狼号合二为一，不分彼此，吾赐汝名——海狼号！”</p>
+<p class = "firstLineIndent">机械虫：“……”（有啥区别？！）</p>
+<p class = "firstLineIndent">热火朝天工作的机械虫似乎当机一般瞬间顿了顿，这才重新恢复工作。</p>
+<p class = "firstLineIndent">从现在起，只要聂云需要，机械虫很快就能重新组合成为一艘完整的海狼号，全合金化的渔船海狼号，某种意义上来说的确已经实现！当然，前提得是它不沉……</p>
+<p class = "firstLineIndent">不过男人嘛！果然还是喜欢大尺寸！</p>
+<p class = "firstLineIndent">聂云美滋滋地去参观他的新座驾了，而机械虫们，则任劳任怨地操控船帆，往更远的远海驶去……</p>
+
+<h2>第十七章 日耀集团</h2>
+<p class = "firstLineIndent">夏城，帝豪大厦顶层。</p>
+<p class = "firstLineIndent">“少爷，对不起，行动失败了，楚潇潇已经回到楚氏集团，而且周围的安保级别上升了不止一个层级，我们想要再下手，恐怕普通手段已经无法成功。”先前霸气凌然的锋哥此时恭敬无比地站在一名青年面前。</p>
+<p class = "firstLineIndent">对面的青年面目十分英俊，此时翘着二郎腿慵懒地坐在沙发上，手中还晃荡着一杯红酒，搂着一名面目妖娆的女人上下其手，逗得她咯咯直笑。</p>
+<p class = "firstLineIndent">“怎么回事？阿锋，你办事我一向放心，不过这次，你让我很失望啊！”青年眉头微微一皱，手上动作微微一顿。</p>
+<p class = "firstLineIndent">这名青年是日耀集团董事长韩祥生的独子韩弈。</p>
+<p class = "firstLineIndent">锋哥头上微微见汗，飞速抬头看了眼自家少爷的脸色，低头道：“抱歉少爷，这次是个意外，我们雇佣的‘拼命三郎’原本已经得手，可是他们内部窝里反，似乎又有神秘人物救走了目标……”</p>
+<p class = "firstLineIndent">“不用和我说这些，我不管你请的是‘拼命三郎’还是‘窝囊废三郎’，我不看过程，只看结果！”</p>
+<p class = "firstLineIndent">“是，是少爷！”锋哥不敢再说话。</p>
+<p class = "firstLineIndent">“接下来你打算怎么做？”韩奕看着手中晃动的鲜红酒业，眯着眼问道。</p>
+<p class = "firstLineIndent">“回少爷，现在的情况看来，国内的这些普通黑道是不顶用了，我倒是认识一伙安南雇佣兵的首领，不过费用会高些，而且可能动静会有些大。”</p>
+<p class = "firstLineIndent">“那就去做，钱不是问题，动静闹得再大，明面上的手尾，日耀集团都会找人摆平，你只要保证，暗中的手脚弄干净就好！”</p>
+<p class = "firstLineIndent">“是，少爷！阿锋明白了！”</p>
+<p class = "firstLineIndent">“嗯，现在楚氏集团已经将触手伸进远洋贸易，这可是我们的蛋糕，拜她们所赐，日耀集团今年的财报可不怎么好看！</p>
+<p class = "firstLineIndent">每一天，我们损失的都是惊人的利润，所以这件事必须尽快搞定，若是再失败，后果你知道的！”</p>
+<p class = "firstLineIndent">“是，属下明白，这次我会亲自出马，保证不会让少爷失望！”锋哥躬身道。</p>
+<p class = "firstLineIndent">“嗯，对了，人要给我毫发无损的抓住，事后本少爷还要去会会我们这位商业天才呢，哈哈哈！”韩奕想起楚潇潇那精致的容颜，眼中露出一丝淫邪。</p>
+<p class = "firstLineIndent">“呵呵，没问题，少爷尽管放心！”锋哥一副了然的神色邪笑道。</p>
+<p class = "firstLineIndent">韩奕想到楚潇潇，又看看怀里的小明星，顿时有些提不起兴致，和那种女人比起来，这些都是庸脂俗粉。</p>
+<p class = "firstLineIndent">“嗯，好好做事，我韩家不会亏待功臣，这个小明星我也玩腻了，赏给你了！”</p>
+<p class = "firstLineIndent">韩奕怀中的女人一听到这话，浑身一僵，抬头惊恐地看着韩奕。</p>
+<p class = "firstLineIndent">锋哥看着那女人修长的大腿和饱满的胸脯，咽了口口水大喜道：“谢谢少爷！”</p>
+<p class = "firstLineIndent">没过多久，隔壁房间中响起女人的尖叫……</p>
+<p class = "firstLineIndent">日耀集团，是横跨粤、闽、苏数省的庞大集团，主营远洋运输和东南亚钢铁贸易，是从建国开始便成立至今的巨无霸。</p>
+<p class = "firstLineIndent">其所有者韩家更是夏城实力排名第一的世家，在政商两界甚至是黑白两道都有盘根错节的庞大关系网。</p>
+<p class = "firstLineIndent">然而，作为老牌势力，楚氏集团这个新兴势力的崛起已然触动了日耀集团的核心利益，但让日耀无奈的是，楚凤手腕高超，加之还有一个商业天才一般的女儿，玩传统商战，日耀竟然被打的抬不起头，市场份额一再萎缩。</p>
+<p class = "firstLineIndent">也因此，韩奕的行为得到了韩祥生乃至整个韩家的默许。</p>
+<p class = "firstLineIndent">明枪易躲，暗箭难防！既然明着斗不过，那就来阴的，韩家这种事自然也做过不少。</p>
+<p class = "firstLineIndent">另一边，楚氏集团集团办公楼。</p>
+<p class = "firstLineIndent">楚凤看着坐在对面沙发上拿着pad浏览资料的楚潇潇，眼中露出疑惑的神色。</p>
+<p class = "firstLineIndent">“潇潇，你一回来，便又是卖古董，又是找船只，这种小事交给楚凤不着痕迹旁敲侧击。</p>
+<p class = "firstLineIndent">楚潇潇回来后，只对警方说了被救的大致经过，对于究竟是谁救了她，只字不提，让刘国东这个公安局长很是抓狂，可又不能逼着这位大小姐说实话，最后只能发了通缉令缉捕“拼命三郎”了事。</p>
+<p class = "firstLineIndent">楚凤这个做母亲的却从楚潇潇反常的举动看出些端倪。</p>
+<p class = "firstLineIndent">“没事，就是帮一个朋友的忙。”</p>
+<p class = "firstLineIndent">“什么朋友？莫非是这次救了你的人？”楚凤心中一动。</p>
+<p class = "firstLineIndent">“嗯……是！”楚潇潇想了想，还是没打算瞒着她母亲，母女两相依为命，没有什么秘密不能说。</p>
+<p class = "firstLineIndent">于是，楚潇潇将聂云如何救了她的事情告诉了楚凤。</p>
+<p class = "firstLineIndent">“你是说，是那家伙的义子救了你？”楚凤瞪大眼睛，难以置信。</p>
+<p class = "firstLineIndent">“嗯！”</p>
+<p class = "firstLineIndent">“可那个小伙子不是只是个渔民吗？”</p>
+<p class = "firstLineIndent">“我也觉得奇怪，那小子身上有不少秘密，而且运气似乎也很好，那枚银币就是他托我卖的！”</p>
+<p class = "firstLineIndent">“嗯，这么说来，这次我让你去接他，虽说让你陷入险境，却也是因为他脱离了险境，这还真是一饮一啄。”楚凤苦笑了下。</p>
+<p class = "firstLineIndent">“是呀，世事难料。”楚潇潇笑道。</p>
+<p class = "firstLineIndent">“虽然这次你平安归来，不过事情也不会就这么算了，那幕后黑手还逍遥法外，楚氏自然也不会放过他们！”楚凤说着，浑身上下透露出一股凌然的气势。</p>
+<p class = "firstLineIndent">凭借一己之力白手起家，又岂是易于之辈。</p>
+<p class = "firstLineIndent">“究竟是什么人要绑架我？有眉目了吗？”</p>
+<p class = "firstLineIndent">“哼，猜也知道，有人急了，用这种下三滥的手段，我们最近动了谁的蛋糕，谁就最有嫌疑！其中，日耀集团的嫌疑是最大的。”</p>
+<p class = "firstLineIndent">“嗯，我也这么想，那就将集团中心往日耀集团那边再倾斜一下，我回去做几份策划，他们的市场份额还有侵吞的空间，敢动歪脑筋，那就得准备付出相应的代价！”楚潇潇露出小虎牙，恶狠狠道。</p>
+<p class = "firstLineIndent">“嗯，你身边的保安级别需要再往上提一提，我会聘请国内最顶尖的安保公司24小时不间断保护你！”</p>
+<p class = "firstLineIndent">“嗯，妈您自己也要注意！”</p>
+<p class = "firstLineIndent">“对了妈，我……想问你件事。”楚潇潇眼中露出一丝复杂的神色。</p>
+<p class = "firstLineIndent">“什么事？”</p>
+<p class = "firstLineIndent">“那个人的事，能……和我说说吗？”</p>
+<p class = "firstLineIndent">楚凤一愣，看着楚潇潇，她从小就痛恨抛弃她们母女的那人，从来不会主动提起，甚至是相当反感，今天怎么？</p>
+<p class = "firstLineIndent">“好吧，也是时候告诉你了。”</p>
+<p class = "firstLineIndent">楚凤眼中露出一丝回忆的神色，“他呀……”</p>
+
+<h2>第十八章 基地</h2>
+<p class = "firstLineIndent">南澳海域以南近百海里的一座无人岛上。</p>
+<p class = "firstLineIndent">这里远离主要贸易航线和港口，因此基本没什么船会来光顾这种鸟不拉屎的地方。</p>
+<p class = "firstLineIndent">岛上有一处凹陷进去的区域，两侧被山崖峭壁环抱，只要不是特意接近小岛的船只，根本发现不了这里别有洞天，聂云和新海狼号此时就藏在这里。</p>
+<p class = "firstLineIndent">聂云站在岸边的一座珊瑚礁上，扶额看着面前趴窝的新海狼号。</p>
+<p class = "firstLineIndent">没错，聂云的新座驾海狼号，离重见天日还没满24小时，没来得及向世人展现雄壮的身躯，便光荣地触礁了……</p>
+<p class = "firstLineIndent">机械虫们正在清理插入海狼号腹部的礁石，并重新将大洞修补起来，排出海水。</p>
+<p class = "firstLineIndent">“唉，所以说，做船不能太浪！偏要搞什么暗夜行军，你看，果然玩崩了吧！”聂云一脸都怪你地看着海狼号。</p>
+<p class = "firstLineIndent">海狼号：“……”（我想回去再躺几百年……）</p>
+<p class = "firstLineIndent">登上新海狼号，此时船体表面的杂物已经被清理干净，大部分的区域焕然一新，甲板变得光可照人。</p>
+<p class = "firstLineIndent">一个角落，还堆砌着机械虫搜集来的废旧木材和各种垃圾，这是它们的原材料仓库。</p>
+<p class = "firstLineIndent">聂云满意地点点头，他打算将海狼号重新修复强化一遍，然后再用机械虫逐步进行替代，完成机械虫化改造。</p>
+<p class = "firstLineIndent">毕竟目前机械虫虽然数量不少，可是比起庞大的新海狼号来说，却显得有些微不足道，恐怕就算将机械虫全填进去，连龙骨也都没办法完全替换。</p>
+<p class = "firstLineIndent">同时这样做也不会占用太多机械虫用来构建物质，可以充分解放机械虫的工作效率。</p>
+<p class = "firstLineIndent">机械虫：“……”（万恶的资本家！）</p>
+<p class = "firstLineIndent">除了船上不停工作的机械虫，以海狼号为中心，密密麻麻的机械虫小蜘蛛们正分布在这一片礁石周围，清理着海底的礁石，同时搜集海底一切可利用的材料。</p>
+<p class = "firstLineIndent">自从发明了机械虫小蜘蛛这种新的探索方式，聂云发现原材料不再是限制机械虫数量的主要因素，海底的资源远超所有人想象。</p>
+<p class = "firstLineIndent">人类无数年的发展和远洋贸易，让整片海洋都充满了人造垃圾和废弃物，但这些东西对机械虫来说，却是惠而不费的原材料。</p>
+<p class = "firstLineIndent">现在制约机械虫发展的，反而是能源问题。</p>
+<p class = "firstLineIndent">机械虫毕竟不是专业的能源搜集器，就算是吸收太阳能，也无法保证全天候24小时不间断的作业和自我增殖，所以现在，机械虫们只能不时地停下来恢复能源。</p>
+<p class = "firstLineIndent">聂云有些郁闷，就像是一家工厂主，明明自家的工厂每时每刻都能产出让人垂涎的利润，却不能让工人三班倒，这种残酷的现实让他十分苦恼。</p>
+<p class = "firstLineIndent">机械虫：“……”（我们要虫权！）</p>
+<p class = "firstLineIndent">而这还只是聂云的烦恼之一，除了能源问题，保密性问题也随之提上案头。</p>
+<p class = "firstLineIndent">鉴于聂云对大尺寸无比坚定的信仰（大雾~），海狼号势必越来越大，之前以一条小渔船的状态那自然不必担心，可若像是如今近百米的尺寸，想要不引人注意那就不太可能了，况且这个世界可是有无处不在的卫星的。</p>
+<p class = "firstLineIndent">若是新海狼号现在的模样被发现，第二天新闻头版头条必定是“西班牙古战舰重现世间，疑似海盗出没，多国前往剿灭！”</p>
+<p class = "firstLineIndent">海狼号上秘密太过惊人，聂云必须要加强保密工作，他可不想被抓去切片。</p>
+<p class = "firstLineIndent">要解决这个问题，其实也很简单——有一个基地就行了！</p>
+<p class = "firstLineIndent">只要有一个隐秘的基地，那么机械虫平日里的工作就有了固定的产所，由游击战变为阵地战，效率可以得到很大的提高。</p>
+<p class = "firstLineIndent">如果需要出面，让一部分机械虫组装出旧版的海狼号渔船模样出行便可，这样很多事就不用畏首畏尾了。</p>
+<p class = "firstLineIndent">总之一句话，建立根据地，扩大机械虫族群，是势不可挡的发展趋势！是暗搓搓猥琐发育的必然选择！</p>
+<p class = "firstLineIndent">聂云此时命令机械虫清理周边的礁石，除了想要清理航道方便海狼号进出外，也是想尝试在这里建立一个秘密基地。</p>
+<p class = "firstLineIndent">“秘密基地什么的，听着就很带感啊！”聂云有些激动。</p>
+<p class = "firstLineIndent">呃，说了这么多，你确定你不是为了好玩？！</p>
+<p class = "firstLineIndent">“咕~”这时候，聂云的肚子“又”响了起来。</p>
+<p class = "firstLineIndent">“又来了……唉！你们工作卖力，老子也不轻松啊，这都是今天第几次了……”聂云有些无奈。</p>
+<p class = "firstLineIndent">随着机械虫数量的不断攀升，他控制机械虫所需要消耗的体力也是水涨船高，太阳能已经是入不敷出。</p>
+<p class = "firstLineIndent">幸好，他刚刚发现一种神奇的充能方式，否则恐怕食物危机便将是聂云要面临的最大问题！</p>
+<p class = "firstLineIndent">他走到一堆烧的正旺的火堆前，不停有机械虫搬来搜集的干柴添加进去作为燃料，现在这里已经被银白色的机械虫团团围住，这是机械虫们的能量补充场所之一，手段虽然原始了一些，不过聊胜于无。</p>
+<p class = "firstLineIndent">看到老大过来，机械虫们让开一条道路，聂云毫不犹豫地伸出手，直接探入燃烧的火焰中。</p>
+<p class = "firstLineIndent">神奇的一幕发生了，火焰舔舐着聂云的手掌，聂云却似乎毫无所觉一般，还露出一副满足的舒爽神色，火焰中的手掌不时有银光流转，将热能悉数转化，补充聂云的体能。</p>
+<p class = "firstLineIndent">这是聂云偶然发现的新技能，至于为什么自己一个人类也能用热能充能，连生物学都没学过的聂云表示，这个问题对于一个小学生水平的人来说能够解答出来的概率无限趋近于零……</p>
+<p class = "firstLineIndent">“现在真的是和机械虫越来越像了，人家是儿子像老子，我却是老子像儿子，反着来！也不知道我要是喝汽油，有没有一样的效果？”聂云摸着下巴思索。</p>
+<p class = "firstLineIndent">不过最终他还是摇摇头，赶紧将这种完成“自焚标准动作”的想法抛出脑海。</p>
+
+<h2>第十九章 打炮</h2>
+<p class = "firstLineIndent">过了十几分钟，聂云感觉浑身又是能量满满，这才缩回手结束充能。</p>
+<p class = "firstLineIndent">转头看向挂在主桅杆上的一兜螃蟹章鱼之类的海鲜，这是新海狼号浮上来的时候，躲在船里来不及逃跑的倒霉蛋，等聂云接管了船只，它们就变成了新海狼号的第一批俘虏。</p>
+<p class = "firstLineIndent">“这些够我吃很长时间了，嗯！后勤保障十分充足！接下来，让我巡视一下我的宝贝儿吧！”</p>
+<p class = "firstLineIndent">昨晚又是寻找隐蔽的藏身地，又是倒霉地触礁，忙的脚不沾地，聂云还来不及参观一下他的新座驾。</p>
+<p class = "firstLineIndent">新生的海狼号是一艘西班牙风格的大三角帆船，共分为三层，分别是甲板层、中间层和底层。</p>
+<p class = "firstLineIndent">总计51门火炮，两侧各25门，分布在甲板层和中间层，船首布置了一门，不过现在这些火炮已经悉数被机械虫化为自身的养料，所以只剩下孤零零的炮位。</p>
+<p class = "firstLineIndent">甲板层上建有尾楼，在尾楼最高处的顶层便是舰长室，这里视野极佳，而且舰长室前面一点就是船舵的位置。</p>
+<p class = "firstLineIndent">看得出来，这艘西班牙风格的战舰有着明显的贵族风格，舰长室建造的十分宽敞，内部依稀可见豪华的装饰，不过如今已经是腐烂不堪。</p>
+<p class = "firstLineIndent">先前机械虫忙着清理船体表面的杂物和修复破损，除了吃掉了几十门火炮，对船体内部倒是还来不及清理。</p>
+<p class = "firstLineIndent">聂云随手指挥机械虫将舰长室内所有的东西吃掉后尽量还原。</p>
+<p class = "firstLineIndent">“嗯，这里不错，以后我就住这儿了！对了，把旁边的几间房间也给打通，做成大套房，反正全船就我一个，不用考虑空间问题！</p>
+<p class = "firstLineIndent">小的们抓紧清理，晚上我就要住进来！”聂云看着宽敞的舰长室，心中的满足感简直就要爆棚。</p>
+<p class = "firstLineIndent">谁能想到昨天自己还是住在一间狭窄的渔船船舱里，今天就直接换成了总统套房！</p>
+<p class = "firstLineIndent">这时候机械虫发来一道讯息，聂云心中一动，转头看向舰长室的床榻。</p>
+<p class = "firstLineIndent">木制的床榻主体已经腐烂塌陷，随着机械虫的不断清理，里面居然露出一个木匣子，匣子不大，只有两个巴掌大小，此时部分位置已经腐烂破损，里面露出一缕金光。</p>
+<p class = "firstLineIndent">聂云眼睛一亮！</p>
+<p class = "firstLineIndent">他上前打开木匣，虽然看样子木匣原本是有锁的，钥匙也不知道在哪个骷髅身上，不过这时候木匣已经是一副中了十香软经散的鸟样，聂云稍一用力，便直接掰断了锁头，打开了匣子。</p>
+<p class = "firstLineIndent">顿时，一阵金光晃花了聂云的眼睛。</p>
+<p class = "firstLineIndent">“金……金币@@”聂云的眼睛已经被满匣子的金币占据，眼里再也容不得其他东西。</p>
+<p class = "firstLineIndent">这估计是那个死鬼舰长的小金库了吧？真是好人呐！</p>
+<p class = "firstLineIndent">我一枚银币就能卖1000万，这近百枚金币能值多少？！能买多少条船？！</p>
+<p class = "firstLineIndent">卧槽，我老爹的儿子要发了！</p>
+<p class = "firstLineIndent">聂云脑海里只剩下这个念头。</p>
+<p class = "firstLineIndent">他开始幻想海狼号带领身后数百艘大型渔船渔猎太平洋的景象了！自己离最伟大的渔民似乎更近一步了！</p>
+<p class = "firstLineIndent">擦了擦嘴角的口水，他小心翼翼将这些金币倒入机械虫新组合的一个金属匣子内，然后命令机械虫给匣子上了整整九道锁！</p>
+<p class = "firstLineIndent">“记住，没我的命令，不论是谁，也绝对不许打开匣子！这里装的可是我一整只舰队，绝对！绝对不容有失！”聂云严肃地对匣子道。</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+<p class = "firstLineIndent">—————我是邪恶的分割线————————</p>
+<p class = "firstLineIndent">第一站就大有收获的聂云几乎是飘着进入下一个参观地点的。</p>
+<p class = "firstLineIndent">“啦啦啦，啦啦啦，天是那么蓝，云是那么白，大海哦！你就是个大宝藏！”</p>
+<p class = "firstLineIndent">“哦！看呐看呐，这么多可爱的炮弹，简直是太迷人了……呃……”兴奋中唱着咏叹调的聂云随手打开一道舱门，然后像是被掐住了脖子一般哽住了。</p>
+<p class = "firstLineIndent">他脑门上瞬间布满冷汗！</p>
+<p class = "firstLineIndent">出现在他眼前的是堆放的密密麻麻的一箱箱黑火药炮弹……</p>
+<p class = "firstLineIndent">乌黑发亮的炮弹经历百年的时光洗礼，威慑力也照样没有丝毫减弱，至少，聂云已经被吓住了。</p>
+<p class = "firstLineIndent">“快……快……快把这些炮弹搬出去！不不！慢……慢点搬，绝对不能磕了碰了，一个不好咱爷俩就得交代在这儿了！”聂云嘴唇都发白了，哆哆嗦嗦语无伦次地命令道。</p>
+<p class = "firstLineIndent">就算是爆炸威力不如现代火药的黑火药，这么多的数量，万一不小心引爆了，也足以把海狼号和它的船长炸上天。</p>
+<p class = "firstLineIndent">足足一个小时后，机械虫们才将这处弹药库的所有炮弹都搬到了海岸上，离着海狼号远远的堆成一座小山包。</p>
+<p class = "firstLineIndent">“嘘！还好我发现的早，谁知道这几百年的变质老古董会不会爆炸，昨天简直是坐在炸药桶上啊，吓死宝宝了！”</p>
+<p class = "firstLineIndent">一场虚惊过后，聂云开始远远地观察这些炮弹来。</p>
+<p class = "firstLineIndent">刚刚他被吓得心惊胆战，根本没仔细看，其实有一大部分的炮弹是实心铁弹，只有三成左右的是带引线捻的黑火药开花弹，约有上百枚。</p>
+<p class = "firstLineIndent">这些古代炮弹都呈圆形，后来到了近代炮弹才逐渐改为圆尖圆柱体，为是的增加发射时炮管中的气密性。</p>
+<p class = "firstLineIndent">最早的爆炸性炮弹，都是燃烧延时引信，内装黑火药，或燃烧剂，聂云眼前的这些就是那个时代的经典开花弹。</p>
+<p class = "firstLineIndent">这么远的距离已经足够安全，就算炮弹爆炸聂云也不担心受到波及，于是命令机械虫直接将这些炮弹分解重铸。</p>
+<p class = "firstLineIndent">随后他命令机械虫将一颗开花弹远远搬离炮弹群，在一处空旷的地方直接点燃引信。</p>
+<p class = "firstLineIndent">大约三秒钟过后，“轰隆”一声巨响，方圆5米左右的区域烟尘弥漫，杀伤力不比手榴弹差多少。</p>
+<p class = "firstLineIndent">“嗯，威力还不赖嘛！”聂云摸着下巴啧啧道。</p>
+<p class = "firstLineIndent">然后他兴奋的命令机械虫组合出一架火炮，银白色的炮身在阳光下熠熠生辉，狰狞而凶残！毫无疑问，这是战争的艺术品！</p>
+<p class = "firstLineIndent">至于他想干嘛，不问可知，打炮是所有男人的浪漫，聂云自然也不例外！</p>
+<p class = "firstLineIndent">瞄准了不远处的一处山崖，装弹，点火！</p>
+<p class = "firstLineIndent">当然，这些都是聂云远距离操作，他对自己的小命可是很看重的。</p>
+<p class = "firstLineIndent">“轰隆”一声炮响过后，炮弹呼啸着飞出，数秒之后，山崖下的海面爆开一团水柱！</p>
+<p class = "firstLineIndent">“呃，这距离，太尴尬了吧……”</p>
+
+
+<a href="000.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="020.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

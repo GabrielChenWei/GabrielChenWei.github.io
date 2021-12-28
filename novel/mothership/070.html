@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第七十章 无懈可击</h2>
+<p class = "firstLineIndent">幽灵海域。</p>
+<p class = "firstLineIndent">幽灵船长事件过后，果然如同预料的那般，周边的几个国家纷纷派遣了调查团队前来探查。</p>
+<p class = "firstLineIndent">有些是科研船，有些直接就派遣了军舰，甚至有些民间灵异爱好者社团都过来凑热闹，这片公海海域这两天可谓是彻底热闹了起来。</p>
+<p class = "firstLineIndent">此时，两艘隶属不同势力的船只不期而遇，巧的是船上的人还互相认识！</p>
+<p class = "firstLineIndent">“嗨哥们儿，今儿遇到幽灵了吗？”</p>
+<p class = "firstLineIndent">“没呢，兴许这两天周末人家休息了？”</p>
+<p class = "firstLineIndent">“幽灵还有休息日的吗？”</p>
+<p class = "firstLineIndent">“你又不是幽灵，怎么知道没有？”</p>
+<p class = "firstLineIndent">“也有道理，唉，听说了吗？日耀集团今天有艘船会经过哦！”</p>
+<p class = "firstLineIndent">“什么，就是那个唯一被幽灵船长关注的日耀集团？”</p>
+<p class = "firstLineIndent">“对，就是那个倒霉蛋！据说兔子国的军舰已经随船护送了，他们倒是聪明，只需要守株待兔就行，如果幽灵船长真的存在，这次肯定会继续出手！”</p>
+<p class = "firstLineIndent">“对啊！我怎么没想到这个方法，日耀集团的船就是最好的诱饵啊！他们的航线弄清楚了吗？”</p>
+<p class = "firstLineIndent">“日耀集团早就将航线主动公布出来了，他们现在巴不得所有的调查船都去给他们充当护卫呢！”</p>
+<p class = "firstLineIndent">“原来如此，他们倒是打得好算盘！那还等什么，同去啊！晚了可就没有好位置了！”</p>
+<p class = "firstLineIndent">情况也确实如同他们所想，当他们找到日耀集团的货轮时，七八艘船已经将它层层围在中心，其中有军舰也有科考船，竟是组成了一支小型舰队。</p>
+<p class = "firstLineIndent">很显然，他们来的有些晚，“贵宾座”已经没了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">日耀集团总部。</p>
+<p class = "firstLineIndent">“爸，您这手实在是高明，不仅免费拉来了一大批护卫，还能引蛇出洞！若是那伙装神弄鬼的家伙还敢出现，众目睽睽之下绝对无所遁形！</p>
+<p class = "firstLineIndent">若是它不出现，对我们日耀集团来说也同样是个好消息，至少可以挽回一些颜面和声誉！”</p>
+<p class = "firstLineIndent">听到韩奕的话，韩祥生却并没有太高兴的样子，依然眉头紧锁。</p>
+<p class = "firstLineIndent">“这几天我们日耀的股价一直在下跌，连公司用来救市的资金也被套了进去，我们若是不能尽快解决幽灵船长的事情，让外界恢复对我们的信心，日耀的底子会一天天被慢慢掏空，我这也是不得已的手段！</p>
+<p class = "firstLineIndent">希望，那幽灵船长真的能够现身，让我们彻底解决这个祸患吧！”</p>
+<p class = "firstLineIndent">“嗯，对了爸，这两天股价的波动是不是有些不太正常？按理来说我们都已经出手护盘了，不应该还跌成这样吧？”韩奕倒也不是个真的草包，很快品出不同寻常来。</p>
+<p class = "firstLineIndent">“嗯，据我估计，有人在落井下石啊！”韩祥生眼中闪过厉芒。</p>
+<p class = "firstLineIndent">“是楚氏？！”韩奕很快明白过来，两家的恩怨几乎是摆在台面上了，楚氏这个时候推波助澜很正常，她们不出手才是怪事。</p>
+<p class = "firstLineIndent">“嗯，应该是她们，甚至我还隐隐有些猜测，这次的幽灵事件，会不会也是楚氏在后面搞的鬼。”</p>
+<p class = "firstLineIndent">“不会吧？她们怎么可能有这种手段？这不是一家普通企业能够做到的吧？”韩奕明显不赞同韩祥生的推断。</p>
+<p class = "firstLineIndent">他虽然对幽灵船长恨之入骨，可也对他的手段十分忌惮，未知总让人恐惧，他实在无法想象小小的楚氏能够拥有这样的力量。</p>
+<p class = "firstLineIndent">“我结合手中得到的信息，她们的嫌疑最大！你忘了楚潇潇两次离奇被救的事情了？我仔细推敲了一下，会不会是楚潇潇意外掌握了什么能够让幽灵船长忌惮的东西，让他不得不听从楚氏的命令，不仅出手救了她，还对我们日耀出手？”</p>
+<p class = "firstLineIndent">“爸，您是说……”</p>
+<p class = "firstLineIndent">“没错，就是幽灵船长的心脏！”</p>
+<p class = "firstLineIndent">韩奕：“……”</p>
+<p class = "firstLineIndent">老人家能不能不要这么迷信！我可是坚定的无神论者！</p>
+<p class = "firstLineIndent">韩祥生却没理会自己儿子脸上古怪的表情。他自顾自分析道：“前不久有传言说楚潇潇拍卖了一批古金币，这事你应该听说过吧？”</p>
+<p class = "firstLineIndent">“嗯，的确有所耳闻！”韩奕皱眉思索，开始认真起来。</p>
+<p class = "firstLineIndent">他这种富家子弟，自然少不了玩些古董字画彰显一下逼格，对收藏圈子里的传言自然也并非一无所知，不过先前他也就是当无稽之谈听。</p>
+<p class = "firstLineIndent">“因为这批数量不小的古金币，先前还有小道消息说楚潇潇是得到了一个海上宝藏，空穴来风，未必无因啊！</p>
+<p class = "firstLineIndent">我在想，会不会楚潇潇在第一次被绑架时，真的意外得到了一个宝藏，只不过宝藏中除了古金币，还有其他的东西，比如……一颗心脏？！”</p>
+<p class = "firstLineIndent">韩奕闻言立刻在脑海中脑补了楚潇潇被三个绑匪绑架至孤岛，然后众人意外发现宝藏，经过一系列尔虞我诈、窝里反、杀人夺宝、美人计等等惊心动魄的斗智斗勇，最终楚潇潇成为了笑到最后的人，并且获得了宝藏中的神秘心脏，释放出了被封印数百年的幽灵船长！</p>
+<p class = "firstLineIndent">卧槽，这剧情似乎没毛病啊！三观极正！</p>
+<p class = "firstLineIndent">“爸您的意思是，不管是两次绑架行动失败，还是针对我们日耀的行动，都是她们用船长的心脏威胁了幽灵船长？而这颗心脏就是幽灵船长的弱点？”</p>
+<p class = "firstLineIndent">尽管韩奕依然不太相信幽灵的存在，不过随着蛛丝马迹串联在一起，韩奕愕然发现似乎这就是最合理的解释！</p>
+<p class = "firstLineIndent">“没错！幽灵船长在微博中所写的‘我要我的心脏’，会不会并不是向我们索要心脏，而是隐晦的告诉别人，其实是因为有人掌握着他的心脏，而他做的这些只不过是为了拿回他的心脏而已？”</p>
+<p class = "firstLineIndent">“嗯……这样的话所有的事情似乎都可以说通了！现在想来，从绑架楚潇潇开始，古怪的事情才层出不穷！对了，还有那个聂云……”</p>
+<p class = "firstLineIndent">韩奕突然想到了聂云诡异的能力，刀疤身上发生的事情，同样也无法用常理解释！</p>
+<p class = "firstLineIndent">“嗯，不错，我之所以会这么推测，另外一个很重要的原因就是这个同样神秘的聂云！</p>
+<p class = "firstLineIndent">按照你的说法，楚潇潇在刚刚被绑架的情况下依然还要出海去见这个看似身份普通的渔民，随后你的雇佣兵全灭，会不会这个聂云，就是幽灵船长或者他的手下呢？而那些雇佣兵则是正好撞上了枪口！”</p>
+<p class = "firstLineIndent">“这……的确，很有这个可能，以那个聂云的诡异手段，的确是相当有可能全灭那伙雇佣兵！”</p>
+<p class = "firstLineIndent">“另外，我们在楚氏集团的卧底前段时间不是汇报说，她们有一次出动了几乎楚氏所有的安保力量去护送一样宝物吗？</p>
+<p class = "firstLineIndent">什么样的宝物需要楚氏如此重视？如果是幽灵船长的心脏呢？”</p>
+<p class = "firstLineIndent">韩奕：“……”</p>
+<p class = "firstLineIndent">随着韩祥生的环环相扣的分析，韩奕唯物主义的信仰开始出现动摇，随后崩塌！</p>
+<p class = "firstLineIndent">实在是这套推断太他么无懈可击了啊！</p>
+
+<h2>第七十一章 等离子隐身</h2>
+<p class = "firstLineIndent">两架银梭升高百米后，启动了光学迷彩，在一阵光影变幻后，突兀地失去了踪影。</p>
+<p class = "firstLineIndent">聂云拿出一部军用望远镜仔细观察，碧蓝的天空中，只能看见一道透明的幻影带着一点微不可查的淡蓝尾焰缓缓调整飞行姿态，然后以极快的加速度向远处飞驰，很快消失在聂云的视野中。</p>
+<p class = "firstLineIndent">“嗯，视觉欺骗效果很不错，接下来就看看银梭的雷达隐身能力如何了！”</p>
+<p class = "firstLineIndent">机械虫虽然属于超级材料，可本身依然会反射雷达波，自然状态下无法做到雷达隐身，在先前的水瓶号行动中就曾被普通民用雷达所发现。</p>
+<p class = "firstLineIndent">而隐身技术几乎是第四代战机和第五代战机的分水岭。</p>
+<p class = "firstLineIndent">历史上，米国在海湾战争中首次使用了隐身战机技术，使得敌方雷达和防空火力几乎成了摆设，那场面用吊打来形容一点也不为过！</p>
+<p class = "firstLineIndent">抛开实战性不提，对于目前的聂云来说，战略隐蔽也是不得不考虑的优先序列！</p>
+<p class = "firstLineIndent">因此他才花费大力气开发了机械虫隐形装置。</p>
+<p class = "firstLineIndent">不同于米国采用的优化飞机外形及隐形涂层技术，聂云选择了尚在理论研究阶段的等离子隐形护罩技术！</p>
+<p class = "firstLineIndent">等离子体是继固体、液体、气体之后的第四种特质形态，因而也被称为物质第四态。</p>
+<p class = "firstLineIndent">等离子体之所以具有隐形功能是因为它对各种波束具有折射、反射与吸收作用，同样的反射截面积下可使雷达反射效应降为原来的1%以下。</p>
+<p class = "firstLineIndent">但缺点是耗能巨大，并且开启等离子罩的同时还会影响机体通讯。</p>
+<p class = "firstLineIndent">不过能源对银梭来说并不是什么问题。而机械虫与聂云之间的联系，至今为止还并未发现任何可以阻断或者干扰的方法。</p>
+<p class = "firstLineIndent">且多数情况下，银梭会按照聂云编写的智能程序行动，只需要下达任务目标，并不需要过多干涉。</p>
+<p class = "firstLineIndent">聂云这次的测试，便是希望验证银梭的各项机体功能以及智能程序的适用性以便做出进一步优化。</p>
+<p class = "firstLineIndent">此刻的高空中，银梭的头部尖端位置正持续制造等离子体，借助气流吹遍全机，使整架机体被包裹在等离子罩中。</p>
+<p class = "firstLineIndent">机腹下的两人经过初期的忐忑后，发现银梭的飞行姿态十分平稳，速度虽然很快，可并没有想象中的“地狱大回环”、“极限俯冲”、“地球上投”等等考验神经极限的惊险实验项目。</p>
+<p class = "firstLineIndent">他们渐渐也放下心来，在战甲的保护下，狂暴的气流丝毫没有影响到两个人，银梭不断刺穿云层，脚下就是无垠的碧蓝大海，这种宛如飞鸟的美妙体验让两人倍感新奇。</p>
+<p class = "firstLineIndent">“老大，我从来没想过自己能在高空中极速飞行，这感觉实在是太棒了！”老三的声音带着兴奋透过头盔通讯器传到老大耳中。</p>
+<p class = "firstLineIndent">“唔，虽然我也很兴奋，不过心里还是隐隐有些不安……”</p>
+<p class = "firstLineIndent">“老板这次的飞行实验看起来似乎挺正常的，应该不会有什么问题吧？”想起上次的实验，老三心中也有些反毛。</p>
+<p class = "firstLineIndent">“希望是吧……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“爸，如果楚氏真的掌握了幽灵船长这种超自然的力量，那我们还怎么和对方对抗？”韩奕忧虑道。</p>
+<p class = "firstLineIndent">“没错，不过这既是一次危机，也是一次机遇！”韩祥生眼中精光一闪。</p>
+<p class = "firstLineIndent">“嗯？这话怎么说？”韩奕不解。</p>
+<p class = "firstLineIndent">“你想想，既然楚氏能够用心脏控制幽灵船长，那我们……为什么不行！？”韩祥生的语气充满了诱惑。</p>
+<p class = "firstLineIndent">韩奕眼睛一亮，是啊！谁掌握了幽灵船长的心脏，谁就能得到幽灵船长的力量，这种诱惑几乎没什么人能够抵挡！</p>
+<p class = "firstLineIndent">若自己能够用幽灵船长控制全世界的航道，那日耀最终成为世界的无冕之王也不是不可能啊！</p>
+<p class = "firstLineIndent">然而兴奋过后他转而一想，迟疑着道：“可我们根本就不知道幽灵船长的心脏被楚氏藏在哪里啊？</p>
+<p class = "firstLineIndent">更何况两次绑架都被幽灵船长轻松化解，现在她们又有了防备，就算再针对她们本人动手，有幽灵船长在，我怕还是去多少死多少啊？”</p>
+<p class = "firstLineIndent">“嗯，不错，为了麻痹楚氏，我们暂时不能对楚氏母女动手，以免再次激怒她们。</p>
+<p class = "firstLineIndent">如今她们通过封锁航道这种手段打击我们日耀，我怀疑有两种可能，一是幽灵船长的能力只能在海上使用，二是她们不想暴露幽灵船长更多的能力，想用这种方式慢慢拖垮日耀！</p>
+<p class = "firstLineIndent">如果是一还好说，可若是二，那么我们再激怒她们，天知道她们会不会直接让幽灵船长直接出手对付我们本人！</p>
+<p class = "firstLineIndent">不过不对她们动手不意味着我们就没办法找到心脏！”</p>
+<p class = "firstLineIndent">“爸，您有什么办法？”韩奕急问。</p>
+<p class = "firstLineIndent">“你说幽灵船长被人用心脏威胁，能甘心吗？我们何不找‘它’合作呢？想来如果是幽灵船长自己，应该能够提供一些自己心脏的线索吧？”</p>
+<p class = "firstLineIndent">“嗯……您是说那个聂云？”</p>
+<p class = "firstLineIndent">“不错，不管他是幽灵船长本人，还是它的手下，联系到他，就很有可能能够联系到幽灵船长！”</p>
+<p class = "firstLineIndent">“这样做，会不会太冒险了一点，若是对方是和楚氏一伙儿的，知道我们掌握了他们这个惊人的秘密，想要直接杀人灭口怎么办？”</p>
+<p class = "firstLineIndent">“那就多做几道防火墙！先前那个聂云不是也没发现刀疤是我们派去的人吗？这个险值得冒！”</p>
+<p class = "firstLineIndent">“嗯……好！我立刻就安排人联系这个聂云！”韩奕最终还是选择相信自己父亲的判断！</p>
+
+<h2>第七十二章 猎场</h2>
+<p class = "firstLineIndent">幽灵海域。</p>
+<p class = "firstLineIndent">所有的调查船只已经组成了一支由十二艘舰艇组成的混编舰队缓缓前进。</p>
+<p class = "firstLineIndent">被围在核心处如同众星拱月一般的日耀旗下所属货轮亚利桑那号控制室。</p>
+<p class = "firstLineIndent">“大家都提高警惕，密切注意一切异常，我们已经接近事故频发区域，给我瞪大眼睛，发现任何情况立刻汇报！”一名中年微胖的船长脸色严肃道。</p>
+<p class = "firstLineIndent">“是！”控制室内响起众人的回应。</p>
+<p class = "firstLineIndent">船长口中的“事故频发”众人都知道是什么意思，集团前后已经有4艘货轮在这里或失踪或沉没，对于日耀集团旗下的船只而言，这里是不祥之地！</p>
+<p class = "firstLineIndent">若非日耀花费了十倍的酬劳，而且几次幽灵事件都没有出现伤亡，否则打死他们也不愿意到这里来，明眼人都看得出来，他们就是来充当诱饵的！</p>
+<p class = "firstLineIndent">看到控制室内各个船员紧张的神色，船长开口劝慰，“大家也不必过于担心，看看你们的四周！这里有兔子国、霓虹国、南棒国三国军舰，还有众多国家的科考船，我们绝对很安全！”</p>
+<p class = "firstLineIndent">“船长，这些军舰是厉害，不过他们的武器对幽灵会有用吗？”大副忐忑道。</p>
+<p class = "firstLineIndent">大炮打幽灵？听着很带感，不过能量系不吃物理攻击难道不是常识？</p>
+<p class = "firstLineIndent">“不用担心！我们这么多人，它敢不敢出现还是两说，况且就算武器对幽灵船长无效，我们还有最后的一个撒手锏！”船长一脸认真。</p>
+<p class = "firstLineIndent">“什么？”所有人闻言精神一振。</p>
+<p class = "firstLineIndent">“我在船上准备了足足四艘救援艇！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">亚利桑那号身边，三艘军舰鹤立鸡群一般将亚利桑那号围在中心，它们分别是兔子国江凯级护卫舰，南棒国浦项级轻型护卫舰，霓虹国村雨级驱逐舰。</p>
+<p class = "firstLineIndent">除了霓虹派出了了4000吨级的驱逐舰，其余两艘都是3000吨以下的护卫舰。</p>
+<p class = "firstLineIndent">幽灵海域地处三国之间的中心地带，这个位置的商船接二连三地出事，对于任何一个国家来说都是必须重视的问题，</p>
+<p class = "firstLineIndent">而由于幽灵船长在微博的高调现身，以及四艘货轮上发生的离奇现象，更是引来了三国的高度关注。</p>
+<p class = "firstLineIndent">他们国内的情报机构甚至还怀疑这是某个国家在实验秘密武器，所以附近的国家立刻派出军舰进行调查。</p>
+<p class = "firstLineIndent">霓虹国更是为了彰显在本区域的海军优势，特地派出了一艘驱逐舰！与另外两国别苗头的意味十分明显。</p>
+<p class = "firstLineIndent">兔子国虽然地大物博，不过以目前的海面舰艇和远洋作战能力来说，依然与霓虹国存在一些差距，更不用说霓虹国身后还站着一位米国爸爸。</p>
+<p class = "firstLineIndent">相对于自家商船被劫必须出面的兔子国和宣示地区事务地位的霓虹国，南棒子国就纯属凑热闹打酱油，顺便再来看看幽灵船长有没有可能是自己失落在外的祖先，争取一下文化遗产什么的。</p>
+<p class = "firstLineIndent">除了三国之外，7艘来自印尼、马来、安南等多国科研船也带着不同的目的来到这处近来被传的沸沸扬扬的幽灵海域。</p>
+<p class = "firstLineIndent">剩下的一艘乃是来自世界各地的灵异爱好者组成的临时调查团！其中还有一部分是幽灵船长的粉丝。</p>
+<p class = "firstLineIndent">而随着这支成分复杂的“幽灵调查特遣舰队”逐渐深入幽灵海域，所有人都立刻提高了注意力，雷达，声纳和各种稀奇古怪的灵异探测器纷纷以最大功率开启，密切注意着周边的动静。</p>
+<p class = "firstLineIndent">然而，所有的仪器设备都没有察觉到，在他们头顶的上千米高空，两架透明状银梭浮光掠影一般飞速接近了这支舰队。</p>
+<p class = "firstLineIndent">与此同时，机腹下两兄弟的头盔内置通讯器突然响了起来。</p>
+<p class = "firstLineIndent">“滴！你有新的任务！请注意查收！</p>
+<p class = "firstLineIndent">任务名称：渔猎！</p>
+<p class = "firstLineIndent">任务说明：一群大鱼闯入了主人家的猎场，主人家十分心动！迫不及待想要喝上鲜美的鱼汤！</p>
+<p class = "firstLineIndent">你的任务是指挥银梭捕捉目标猎物，最低捕捉目标数量要求：3！</p>
+<p class = "firstLineIndent">捕捉方式：别犹豫，弄沉它！</p>
+<p class = "firstLineIndent">任务失败惩罚：你懂的！</p>
+<p class = "firstLineIndent">任务奖励：IQ充值卡！</p>
+<p class = "firstLineIndent">任务提示：猎物越是完整，评价越高！”</p>
+<p class = "firstLineIndent">两人有些糊涂了，大鱼？什么东西？</p>
+<p class = "firstLineIndent">IQ充值卡又是什么东西？应该不是字面意思吧？莫非是某种宇宙通用货币？</p>
+<p class = "firstLineIndent">正在两人对任务一头雾水之际，银梭突然一个俯冲，飞速穿过两人脚下的一片云层，抵达海面上空，两人终于看到聂云所谓的大鱼！</p>
+<p class = "firstLineIndent">“卧槽！是……是军舰！”老大忍不住爆了粗口！</p>
+<p class = "firstLineIndent">然后两人的头盔面罩上突然出现了几个红色准星，对准了下方的小型舰队，旁边还有目标的星级说明。</p>
+<p class = "firstLineIndent">江凯级护卫舰：三星大鱼</p>
+<p class = "firstLineIndent">浦项级轻型护卫舰：三星大鱼</p>
+<p class = "firstLineIndent">村雨级驱逐舰：四星大鱼</p>
+<p class = "firstLineIndent">亚利桑那号货轮：三星大鱼</p>
+<p class = "firstLineIndent">普通科研船×7：两星小鱼</p>
+<p class = "firstLineIndent">普通客船：一星虾米</p>
+<p class = "firstLineIndent">这……这是让我们捕捉船只？其中三艘还他么是军舰！</p>
+<p class = "firstLineIndent">就凭我们两个人和两架无人机？</p>
+<p class = "firstLineIndent">兄弟两此刻的内心是崩溃的……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海底基地。</p>
+<p class = "firstLineIndent">聂云站在一处巨大的落地玻璃窗前，面前的是一艘正在逐步成型的巨大舰体，庞大的身躯几乎占据了整座海底基地！</p>
+<p class = "firstLineIndent">舰体上，不少地方的机械虫依然在不断蠕动变化，显然聂云正在进行设计改造。</p>
+<p class = "firstLineIndent">他百忙之中抽出了一丝意念感应着银梭发回的讯息，嘴角不由勾了勾，“开始了吗！”</p>
+<p class = "firstLineIndent">至此，聂云的计划也浮现出水面！</p>
+<p class = "firstLineIndent">不论是以幽灵船长的名义高调出现在微博中，或者是特意选择了同一海域对日耀集团的船只下手，这一切只为了一个目的——抛砖引玉！</p>
+<p class = "firstLineIndent">他制造了一个幽灵海域的假象，最终吸引了各国势力前来调查，然后，这里不仅将成为聂云的军火来源，还能够通过捕获目标的过程进行实战，检验自己武器的实用性，可谓是一石二鸟！</p>
+<p class = "firstLineIndent">聂云十分清楚，目前他能够按照正常手段获取的技术和装备已经基本陆续到手，剩下的最为精华的那部分作为各国的核心科技，就不是用常规手段能够获取的了。</p>
+<p class = "firstLineIndent">但为了完美的海狼号，这些科技是必须的！</p>
+<p class = "firstLineIndent">因此聂云决定……制造一个诱饵！</p>
+<p class = "firstLineIndent">到世界各地一步步获取想要得到的技术，凭借机械虫的能力也并非难事，但哪里有这样广撒网的效率来的高？</p>
+<p class = "firstLineIndent">这片幽灵海域，在今后很长的时间内，注定将成为聂云的猎场！</p>
+
+<h2>第七十三章 陨石</h2>
+<p class = "firstLineIndent">不提兄弟两人对任务多么震惊，银梭还是迅速抵达了海面上的舰队上空。</p>
+<p class = "firstLineIndent">没有给他们思考的机会，银梭的锁扣突然松开，两兄弟被投弹般向着</p>
+<p class = "firstLineIndent">“啊……”完全没有心理准备，瞬间自由落体的两人在半空中发出一阵惨叫。</p>
+<p class = "firstLineIndent">就在这时，“咔嗒！”一声，两人背后的小鼓包突然弹出了一对两米长的银色金属翼。</p>
+<p class = "firstLineIndent">秉承了聂云的风格，金属翼完全傻瓜式操作，两人只感觉浑身被猛的一拉，在两人还没有搞清楚状况时便让他们重新恢复了稳定的飞行姿态。</p>
+<p class = "firstLineIndent">惊魂未定的两兄弟这才稍稍松了口气。</p>
+<p class = "firstLineIndent">然后他们发现自己正在舰队上方缓缓盘旋，而更上方的高空，两架银梭同样在跟随两人做盘旋机动。</p>
+<p class = "firstLineIndent">“哇，酷！老大，原来这战甲升级后还有飞行背包啊！”</p>
+<p class = "firstLineIndent">“呼……还好装备够给力，任务还有完成的希望。</p>
+<p class = "firstLineIndent">一公里，老板这隐形技术实在是太夸张了！</p>
+<p class = "firstLineIndent">咦！这个飞行背包似乎是通过视线聚焦控制的？好厉害！”</p>
+<p class = "firstLineIndent">头盔面罩的显示屏上面给出了简短的飞行翼使用说明。</p>
+<p class = "firstLineIndent">老大将视线对准了不远处的老三，头盔上的视线感应器采集他的瞳孔特征，随后金属翼的几处骨架尾部喷射出微弱气流，老大的身体便向老三的位置移动了过去。</p>
+<p class = "firstLineIndent">过程简单易懂，两人很快就熟悉了飞行背包的操作方式。</p>
+<p class = "firstLineIndent">“老大，我们现在怎么办？”老三苦着脸道。</p>
+<p class = "firstLineIndent">“还能怎么做！除了完成任务，我们还有的选吗？原因你懂的！”</p>
+<p class = "firstLineIndent">“呃……是这样没错，可我们就两个人，怎么弄沉至少三条船啊？”</p>
+<p class = "firstLineIndent">“任务上说了，我们可以指挥银梭，再不行，我们还能凭着战甲突击进去直接弄沉它们！我们手里的可是外星武器！几艘军舰算什么，富贵险中求，干吖的！”老大红着眼说道，看样子是要拼命了！</p>
+<p class = "firstLineIndent">“好，老大我听你的，那接下来我们该怎么做？”老三也是兴奋起来。</p>
+<p class = "firstLineIndent">两人本就不是善类，别看被聂云的手段驯的服服帖帖，骨子里却有着强烈的冒险因子，否则也不会有“拼命三郎”这样的外号。</p>
+<p class = "firstLineIndent">这种人天生就是危险分子！犯的事儿越大他们越兴奋！</p>
+<p class = "firstLineIndent">这次可是和多国军舰干架，用法学家的话说，他们已经脱离了普通刑法的层次，往更高的反人类级别升华。</p>
+<p class = "firstLineIndent">“先看看银梭的攻击武器！”老大沉吟道。</p>
+<p class = "firstLineIndent">头盔中带有语音识别功能，智能程序判断出老大的意图，耳中传来头盔的提示声，“请确认是否开启银梭武器系统？”</p>
+<p class = "firstLineIndent">“确认！”老大愣了一下立刻反应过来。</p>
+<p class = "firstLineIndent">“银梭武器系统开启！可根据语音命令或射击手势发动攻击！”</p>
+<p class = "firstLineIndent">随着提示，只见两人的面罩显示器上，除了任务目标的标识外，又出现了一个淡红色光圈，带着十字准星，时刻跟随着两人的视线不断移动！</p>
+<p class = "firstLineIndent">老三收到提示，也同样开启了与自己联动的那架银梭的武器系统。</p>
+<p class = "firstLineIndent">“看起来这似乎是个瞄准器，不如找个目标试试效果？”老大道。</p>
+<p class = "firstLineIndent">“好！那我们找哪个目标动手？”老三一听顿时兴奋起来。</p>
+<p class = "firstLineIndent">老大在几个任务目标中一扫，很自然的就将视线放在了最大的那艘军舰上。</p>
+<p class = "firstLineIndent">“瞄准那个大块头，就是那艘唯一的四星大鱼！”</p>
+<p class = "firstLineIndent">“好，老大，第一发让我来！”老三立刻将目光聚焦在村雨级驱逐舰上，头盔显示屏启动望远镜功能，自动将他的对焦目标放大。</p>
+<p class = "firstLineIndent">老三稍微扫了一眼，自然是完全看不懂军舰上复杂的舰体布置，因此他直接将目标放在了船头甲板的中心位置。</p>
+<p class = "firstLineIndent">视线聚焦，准星对准目标。</p>
+<p class = "firstLineIndent">“锁定！”随着老三的命令，一架银梭立刻调整飞行姿态，呈俯冲姿态渐渐将机头对准了目标！</p>
+<p class = "firstLineIndent">而与此同时，在老三的视线中，屏幕上出现了一个淡黄色光圈，并渐渐与红色准星重合。</p>
+<p class = "firstLineIndent">“锁定完毕！”提示响起。</p>
+<p class = "firstLineIndent">“攻击！”老三带着兴奋喊道。</p>
+<p class = "firstLineIndent">“嗖”银梭机首位置，一个微不可查的射孔发射出一道流光，带着与空气剧烈摩擦的恐怖呼啸，犹如流星一般坠落而下，瞬间撞在目标甲板。</p>
+<p class = "firstLineIndent">“轰！”一声巨响，村雨级驱逐舰船体一震，从甲板到船底瞬间被击穿，露出一个二十公分左右的破洞，冒着一股焦臭味，威力骇人！</p>
+<p class = "firstLineIndent">银梭上的高斯机枪采用机械虫强化版8钢芯磁针，由于突破了常温超导体和散热问题，发射后磁针初速度可达8倍音速，有效射程5公里，射速可达每分钟60发。</p>
+<p class = "firstLineIndent">相比传统武器，电磁武器的弹丸速度快，精度高，射程远，威力大。</p>
+<p class = "firstLineIndent">带有巨大动能的弹丸通过直接撞击目标将其击穿，同时极高的飞行速度可以减少炮弹的飞行时间，使炮弹不宜受到干扰，保证了超高的精度。</p>
+<p class = "firstLineIndent">特别是电磁武器的高穿透特性，对重装甲目标也有很强的杀伤力！</p>
+<p class = "firstLineIndent">另外由于炮弹体积小，重量轻，电磁武器系统的携弹量极大，银梭最大负荷载弹量可达一千发！</p>
+<p class = "firstLineIndent">两兄弟瞪大着眼睛看着这一幕，不禁有些失望。</p>
+<p class = "firstLineIndent">“靠！才在甲板打出一个小洞，这样的威力根本就打不沉他们啊！这武器的威力未免太小了吧！”老三抱怨道。</p>
+<p class = "firstLineIndent">“呃，这威力似乎的确不大啊……”老大也有些失望。</p>
+<p class = "firstLineIndent">身处高空的他们只能看到甲板处的破损，并不知道这一发子弹已经击穿了整艘军舰！</p>
+<p class = "firstLineIndent">而此刻，船上的霓虹国军人已经炸锅了！</p>
+<p class = "firstLineIndent">舰桥位置，一名留着八字胡的舰长正在大声咆哮。</p>
+<p class = "firstLineIndent">“怎么回事？这是什么声音？</p>
+<p class = "firstLineIndent">我们受到攻击了吗？为什么一点预兆都没有？</p>
+<p class = "firstLineIndent">快，汇总损失情况，立刻查明原因！”</p>
+<p class = "firstLineIndent">很快，有部下通过通讯汇报情况。</p>
+<p class = "firstLineIndent">“舰长阁下！舰体疑似被不明高速坠落物击穿，目前攻击来源不明，船体损失不大，只不过船底轻微漏水，目前维修组正在全力抢修，预计十分钟后能够暂时修复破损！”</p>
+<p class = "firstLineIndent">听到损失不大，舰长稍稍松了口气。</p>
+<p class = "firstLineIndent">“攻击来源不明？雷达没有发现异常吗？”他疑惑道。</p>
+<p class = "firstLineIndent">“没有发现任何可疑目标，只能判断袭击是自上而下！不过攻击发生的同时，有人看到有一道火光坠落，一闪而逝！”</p>
+<p class = "firstLineIndent">“什么？你难道要告诉我，我们是倒霉到被一颗陨石砸中了？！”</p>
+<p class = "firstLineIndent">“阁……阁下！虽然很不可思议，不过这恐怕是唯一的可能！而且幸运的是，这颗陨石体积不大！”</p>
+<p class = "firstLineIndent">舰长：“……”</p>
+
+<h2>第七十四章 略懂</h2>
+<p class = "firstLineIndent">与此同时，旁边离村雨级驱逐舰稍近的几艘船只也有人目击到了那一闪而逝的流光。</p>
+<p class = "firstLineIndent">“那边是怎么啦？我刚刚听到一声巨响？”</p>
+<p class = "firstLineIndent">“好像是什么东西掉下来了？”</p>
+<p class = "firstLineIndent">“是导弹？可是没有爆炸声啊？”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">议论纷纷中，有人拿起望远镜观察。</p>
+<p class = "firstLineIndent">所有船只为了更靠近亚利桑那号，以便观察可能发生的灵异事件，因此距离本就相隔不远，此刻可以清楚地看到船上的情况。</p>
+<p class = "firstLineIndent">“船上甲板被击穿了一个洞，有一处不算大的破损，没有爆炸痕迹，似乎是撞击造成的？”观察者道。</p>
+<p class = "firstLineIndent">“撞击？什么东西的撞击有这么大威力？”</p>
+<p class = "firstLineIndent">“会不会是幽灵船长？”有人立刻联想道。</p>
+<p class = "firstLineIndent">“不会吧？他们不是只关注了日耀集团吗？怎么会无缘无故对霓虹国军舰出手？”</p>
+<p class = "firstLineIndent">“说不定他把我们都当成和日耀一伙儿的了？我们这样航行，你说看着像不像是它的护卫舰啊……”</p>
+<p class = "firstLineIndent">“呃，你这么说似乎也有道理……”</p>
+<p class = "firstLineIndent">“可是我们的所有探测器都没有反应，而且攻击来自天空？幽灵船难不成还会飞不成？”</p>
+<p class = "firstLineIndent">“会飞的幽灵船很奇怪吗？幽灵不是都能飞？”</p>
+<p class = "firstLineIndent">“这……你说的好有道理……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">获悉情况后，原本就处在最高警戒状态的亚利桑那号船长立刻紧张起来，马上命令船员按照预定的方案开始行动，以防不测。</p>
+<p class = "firstLineIndent">而另外两艘军舰上的两国军人，在提高警惕预防可能攻击的同时，心里却是快笑抽了。</p>
+<p class = "firstLineIndent">因为历史原因，两国原本就对霓虹国不感冒，这次对方派出的驱逐舰又隐隐压了两国一头，这时候看到对方倒霉，哪里还有不幸灾乐祸的道理。</p>
+<p class = "firstLineIndent">至于怀疑是幽灵船长搞的鬼？作为军人，他们压根儿不相信那是真的！</p>
+<p class = "firstLineIndent">“不管怎么说，让大家提高警惕！进入次级战备状态！顺便给霓虹国军舰发个通讯，问一问需不需要援助，毕竟都是国际友人嘛！呵呵！”两国军舰不约而同采取了相似的应对。</p>
+<p class = "firstLineIndent">霓虹国舰长收到两国发来的“慰问”，心中有一千句p不知道该怎么说！</p>
+<p class = "firstLineIndent">而这时，高空中的兄弟两人正商量着如何用银梭“令人失望”的火力完成任务目标。</p>
+<p class = "firstLineIndent">“老大，不如我们冲下去直接干掉船上的所有人，然后炸沉它们！”老三一脸凶悍道。</p>
+<p class = "firstLineIndent">自从实验过了“勇者之心”战甲的超强防护力，老三原本就冲动无畏的性格更是得到了“勇气光环”的buff加成。</p>
+<p class = "firstLineIndent">此时在他看来，只要让自己登舰，失去了军舰最犀利的炮火威胁，也就再无人能够阻止自己超神！</p>
+<p class = "firstLineIndent">“怎么炸沉它？”</p>
+<p class = "firstLineIndent">“军舰上不是有弹药库吗？悄悄潜入后直接引爆不就行了！”</p>
+<p class = "firstLineIndent">“咦！没想到你还是动过脑子的嘛！”老大有些意外的看着老三，顿时对他有些刮目相看！</p>
+<p class = "firstLineIndent">“哪有，老大你实在是太过奖了，哈哈！”</p>
+<p class = "firstLineIndent">老大刚想说对你这种傻大个，能想到这种方法绝对是铁树开花！结果老三接下来的话让他直接把这句话憋了回去。</p>
+<p class = "firstLineIndent">“主要是头盔显示上面的‘作战攻略’里写着呢！”老三憨憨地笑道。</p>
+<p class = "firstLineIndent">老大：“……”</p>
+<p class = "firstLineIndent">他看着操作界面旁边写着“作战攻略”的一个锦囊图标，嘴角抽了抽。</p>
+<p class = "firstLineIndent">暗骂自己粗心，然后赶紧点开一看。</p>
+<p class = "firstLineIndent">“幽灵海域作战攻略全篇：</p>
+<p class = "firstLineIndent">1.单刀直入！银梭在手，沉船我有！</p>
+<p class = "firstLineIndent">2.爆炸艺术！你难道不知道世界上最快弄沉军舰的办法就是引爆弹药库？偷偷的进去，打枪的不要！爆炸就是艺术，艺术就是这么简单！</p>
+<p class = "firstLineIndent">3.借刀杀人，你需要先找到一个传说中的USB接口！</p>
+<p class = "firstLineIndent">以上！</p>
+<p class = "firstLineIndent">该攻略最终解释权归老板所有，如有误伤，概不负责！”</p>
+<p class = "firstLineIndent">老大看着最后那行字，心里不安的跳了跳。</p>
+<p class = "firstLineIndent">“这三条……呃，‘攻略’，除了第二条能勉强看懂外，其余两条看起来都不是很明白啊？”老大无语道。</p>
+<p class = "firstLineIndent">“嗯，所以我才选择了第二条！”老三得意道。</p>
+<p class = "firstLineIndent">“……好吧，看起来这个计划是最安全的，那我们就执行第二套攻略吧！虽然银梭的武器弱的可以，不过倒是还能用来做掩护。”</p>
+<p class = "firstLineIndent">“好，我就喜欢艺术！”老三咧嘴笑道。</p>
+<p class = "firstLineIndent">两人计划已定，立刻操纵飞行翼向下俯冲。</p>
+<p class = "firstLineIndent">没过多久，霓虹国军舰船尾甲板处，“咚！”“咚！”两声金属撞击声过后，两道模糊的透明身影成功登上了战舰。</p>
+<p class = "firstLineIndent">随后空气中响起一阵机械传动声，两人身后的飞行翼重新收回背包。</p>
+<p class = "firstLineIndent">“老大，这里似乎没人？”空气中传来老三的声音。</p>
+<p class = "firstLineIndent">“废话，他们都被我们刚刚那发攻击吸引到前甲板了，这里有人才怪！走，现在正是潜入的好时机！”</p>
+<p class = "firstLineIndent">随后，“踏踏……”一阵轻微的脚步声响起，一直延伸向舰桥入口。</p>
+<p class = "firstLineIndent">然而，两人来到入口不远处的时候，发现这里正有两个霓虹国军人在说话。</p>
+<p class = "firstLineIndent">“成田君，刚刚的破口你也看到了，作为武器学专家，不知道你有什么看法？”</p>
+<p class = "firstLineIndent">“舰长阁下，这应该是一种高速物体撞击过后的损伤，和正在实验中的电磁动能武器十分相似。</p>
+<p class = "firstLineIndent">不过攻击是从上至下，角度近乎垂直，这种威力的电磁武器，体积和能耗都相当巨大，不可能搭载在飞行器上，就连地基武器，目前也还没有一个国家将其完成实用化！</p>
+<p class = "firstLineIndent">况且雷达也根本没有发现异常。</p>
+<p class = "firstLineIndent">所以，我更倾向于这是一颗体积不大的高密度陨石，或者是外太空坠落物！只不过这种情况下，正好砸中我们的概率大概不到千万分之一……”</p>
+<p class = "firstLineIndent">舰长：“……”</p>
+<p class = "firstLineIndent">他刚刚收到了来自两国的“慰问”，心情自然是相当糟糕，等听完了专家的解释，脸色更黑！</p>
+<p class = "firstLineIndent">真他么流年不利！这么低的概率都能被我们碰上！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老大，这两人叽叽咕咕的说什么呢？”</p>
+<p class = "firstLineIndent">“我怎么知道，霓虹语我倒是略懂一二，不过刚刚仔细听了一下，发现他们的对话用的都是很高深的词汇，我一个也没听懂，说不定是在说什么机密！”</p>
+<p class = "firstLineIndent">“靠，老大你居然还会霓虹语，不愧是清华的高材生啊！”</p>
+<p class = "firstLineIndent">“唉！怎么说话呢！你才是高材生，你全家都高材生，我是正儿八经的学渣，你再这么说我可要告你诽谤哦！”老大小心翼翼看了看显示器，似乎生怕某人听到两人的对话。</p>
+<p class = "firstLineIndent">这正式员工就天天“你懂得”了，要是不小心又给降成实习工，那还不得直接“咔嚓”一声当花肥啊！</p>
+<p class = "firstLineIndent">“哦，知道了老大，那老大你都会哪些霓虹语啊？”</p>
+<p class = "firstLineIndent">“亚美爹，一库，哈那西贴，哈次卡西……”</p>
+<p class = "firstLineIndent">老三：“……”</p>
+
+<h2>第七十五章 那么问题来了</h2>
+<p class = "firstLineIndent">“他们这么堵着门，我们进不去啊怎么办？”老三道。</p>
+<p class = "firstLineIndent">光学迷彩虽然强大，但靠近了还是能看到一道透明的模糊身影，有暴露的风险。</p>
+<p class = "firstLineIndent">两人等了一会儿，见这两人似乎是聊上了瘾，丝毫没有挪窝的意思。</p>
+<p class = "firstLineIndent">“哼！再给它来一发，把人吸引过去！”</p>
+<p class = "firstLineIndent">于是……</p>
+<p class = "firstLineIndent">“轰！”又是一声巨响，金属碰撞的轰鸣震的人耳朵生疼。</p>
+<p class = "firstLineIndent">“什么情况！”正在分析攻击来源的舰长和武器专家都被吓了一跳！</p>
+<p class = "firstLineIndent">他们循着声源看过去，只见船体左侧甲板上，一个二十公分左右的破口正冒着青烟，这形状让人看着眼熟。</p>
+<p class = "firstLineIndent">隔着不远处，还有一个霓虹国军官正捂着耳朵踉踉跄跄站起来，明显是在刚刚的袭击中被震伤了。</p>
+<p class = "firstLineIndent">“发生了……什么？”舰长有些不可置信的瞪大眼睛看着这一幕，等了一会儿见四周没有任何异常，这才同武器专家齐齐上前查看情况。</p>
+<p class = "firstLineIndent">就在所有人被再一次的袭击吸引了全部注意力的时候，两道模糊的身影悄悄潜入了舰桥入口。</p>
+<p class = "firstLineIndent">“报……报告舰长！船体左侧再次被不明攻击击中，情况和刚刚一摸一样，而且这次的攻击路线距离弹药库只有三米！</p>
+<p class = "firstLineIndent">目前维修组已经出发前往紧急排查安全隐患并修补船底漏洞！”有一名海军士兵急匆匆跑过来向舰长汇报情况。</p>
+<p class = "firstLineIndent">“什么！”虽然心里有了猜测，可是听到这个回答，他依然是有些接受不能啊！</p>
+<p class = "firstLineIndent">“依然没有检测到敌人在哪儿？”</p>
+<p class = "firstLineIndent">“报告舰长，完全没有任何敌人的踪影！”</p>
+<p class = "firstLineIndent">舰长：“……”</p>
+<p class = "firstLineIndent">这个时候，仔细查看了受损区域的武器专家走了过来。</p>
+<p class = "firstLineIndent">“舰长阁下，我刚刚查看过，的确同第一次的情况一摸一样！连撞击物体的大小和体积都差不多。</p>
+<p class = "firstLineIndent">战舰的顶层甲板没有侧舷那样强的防护力，就算有，恐怕也很难阻挡住这样的高速撞击！”</p>
+<p class = "firstLineIndent">“……那你认为这次是什么原因？”</p>
+<p class = "firstLineIndent">“根据现在的情况来看，我觉得我们正处于一处陨石多发地带！</p>
+<p class = "firstLineIndent">我有个大胆的猜测！那就是这一带的地球磁场受到了不明原因的影响，会将飞向地球的固定大小的高密度金属陨石吸引到这个区域！”武器专家像是有了什么重大发现一般一脸兴奋道。</p>
+<p class = "firstLineIndent">“……那你说说看，为什么别的船只屁事没有，就我们连续遭到撞击？！”舰长斜眼看着他淡淡道。</p>
+<p class = "firstLineIndent">“这……我想，或许是因为我们的目标比较大，更容易牵引这种未知磁场，不过据我估算，我们连续两次遭到这种撞击的概率不到……”武器专家完全没有发现自家舰长越来越黑的脸色，自顾自分析着。</p>
+<p class = "firstLineIndent">不过他话还没说完呢。</p>
+<p class = "firstLineIndent">“八嘎！”“啪！”</p>
+<p class = "firstLineIndent">脑门上青筋暴起的舰长实在是忍不住，直接给了这家伙一个大耳刮子！</p>
+<p class = "firstLineIndent">被一个耳光抽晕的武器专家完全不明所以的看着对面已经快爆炸的舰长，眼神很是无辜。</p>
+<p class = "firstLineIndent">“去你妹的磁场啊！去你妹的陨石啊！没看见旁边还有艘万吨巨轮吗？！我们目标能有人家大吗？侬脑子瓦特啦？四不四傻？！”</p>
+<p class = "firstLineIndent">舰长对他一顿破口大骂！然后气冲冲往控制室快步走去。</p>
+<p class = "firstLineIndent">这种情况如果他还认为是意外，那他这个舰长就太蠢了！</p>
+<p class = "firstLineIndent">回到控制室的舰长立刻下达了一连串的命令。</p>
+<p class = "firstLineIndent">“我命令，全舰立刻进入一级战备状态！这不是演习，重复一遍，这不是演习！</p>
+<p class = "firstLineIndent">另外，立刻联络军用卫星，彻底搜索这片海域的空中区域，寻找可能的敌机踪影，对方很可能具备了雷达隐身能力且拥有实用化的电磁动能武器！</p>
+<p class = "firstLineIndent">再向军部说明我们遇到的情况，请求参谋部策略支援！”</p>
+<p class = "firstLineIndent">“是，舰长！”随着众人纷纷应是，整艘船上的人顿时忙碌起来。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在霓虹国军舰发觉自己遭遇不明攻击时，周围其余的调查船只和军舰也都察觉情况不对。</p>
+<p class = "firstLineIndent">一次是陨石，不可能两次都是陨石吧？</p>
+<p class = "firstLineIndent">亚利桑那号船长更紧张了，连军舰都敢下手，还有啥是幽灵船长不敢干的？</p>
+<p class = "firstLineIndent">另外两艘军舰也也是提高了警戒等级，当然，没忘了再次通过公共频道发送一条“慰问”信息。</p>
+<p class = "firstLineIndent">相对南棒国毫不掩饰充满了幸灾乐祸的语气，兔子国就显得“含蓄”得多。</p>
+<p class = "firstLineIndent">他们发送的信息内容大致是这样的：我们对贵方再次遭受的损失表示同情和慰问，对贵舰所受苦难感同身受，并将对贵方进行力所能及的国际人道主义援助，如需登舰救援服务，请直接按1，我们将竭诚为您服务！</p>
+<p class = "firstLineIndent">霓虹国舰长看到这两条信息时，气的差点吐血，登舰救援？你想的倒是美！谁知道你们过来是救援还是刺探军情的！</p>
+<p class = "firstLineIndent">他当即命令回复了两份完全相同，措辞强硬的信息。</p>
+<p class = "firstLineIndent">“我们损失轻微，完全不需要救援，请贵方务必克制，与我们保持安全距离，否则出现不必要的误会，产生的一切后果由贵方负责！”</p>
+<p class = "firstLineIndent">说白了这意思就是，“我就是上火流了点鼻血，屁事儿没有，你千万别过来，过来小心我挠你一脸！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在这支调查舰队因为两次针对霓虹国战舰的攻击而骚动起来时，在那艘倒霉的战舰内部，靠控制室不远处的一个角落。</p>
+<p class = "firstLineIndent">“老大，弹药库怎么走啊？”</p>
+<p class = "firstLineIndent">“……要不你上攻略上找找？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">就在这时，转角传来一阵脚步声，兄弟两立刻噤声，保持身体不动，让光学迷彩的效果维持最佳状态。</p>
+<p class = "firstLineIndent">两个身穿军装的船员带着工具箱急匆匆经过，看起来似乎是维修兵。</p>
+<p class = "firstLineIndent">等毫无所觉的两人经过后，老大的声音再次响起。</p>
+<p class = "firstLineIndent">“走！跟着他们！”</p>
+<p class = "firstLineIndent">尾随着两个维修兵，当两人来到一处挂着严禁烟火标志的舱室外时，正好碰到另外两名维修兵从舱室里走出来，一幅如释重负的样子。</p>
+<p class = "firstLineIndent">“小野君，情况怎么样了？”刚刚到达的两人中的一个急急问到。</p>
+<p class = "firstLineIndent">“放心吧，只是擦过危险区域，没有什么隐患！情况已经汇报上去了！”</p>
+<p class = "firstLineIndent">“呼，那就好！吓死我们了！”</p>
+<p class = "firstLineIndent">等到四人边聊边慢慢走远，角落里的两人这才来到舱室前。</p>
+<p class = "firstLineIndent">“老大，这里是什么地方啊？”</p>
+<p class = "firstLineIndent">“没看见那严禁烟火的标志吗？我们运气不错，这里肯定就是弹药库了！”</p>
+<p class = "firstLineIndent">“是吗？那还等什么？我们赶紧进去炸了它啊！”老三兴奋道。</p>
+<p class = "firstLineIndent">两人打开舱门走了进去，入眼果然是大量的机炮弹药和鱼雷。</p>
+<p class = "firstLineIndent">“老大，真是弹药库啊！这简直是太简单了！不愧是老板给的攻略，哈哈！我们赶紧给它炸了吧！”</p>
+<p class = "firstLineIndent">“嗯，比我预想的要顺利！夜长梦多，我们现在就动手炸了它！”老大也是笑着点点头。</p>
+<p class = "firstLineIndent">随后两人陷入有些诡异的沉默，过了许久。</p>
+<p class = "firstLineIndent">“老大，你怎么不动手？”</p>
+<p class = "firstLineIndent">“老三，我在等你动手啊？”</p>
+<p class = "firstLineIndent">两人：“……”</p>
+<p class = "firstLineIndent">那么问题来了，拿什么炸呢？</p>
+<p class = "firstLineIndent">两人可不是专业爆破手，不说专业知识了，连根引线都他么没带啊！</p>
+<p class = "firstLineIndent">“攻略里没写怎么炸了它吗？”老大有些抓狂道。</p>
+<p class = "firstLineIndent">“呃，似乎真的没有……”老三也是傻眼了。</p>
+<p class = "firstLineIndent">老大想到攻略最底下的那行“概不负责”，顿时哀叹一声，这攻略也太不负责了吧？典型的管杀不管埋啊！</p>
+<p class = "firstLineIndent">“你带了什么点火装备了吗？”老大抱着最后的一丝希望问道。</p>
+<p class = "firstLineIndent">“唔……打火机算不算？”</p>
+<p class = "firstLineIndent">老大：“……”</p>
+
+<h2>第七十六章 失踪</h2>
+<p class = "firstLineIndent">“我原本以为今天就是去测试装备的，哪里能想到突然就被挂弹飞行投放到这里啊，身上连把手枪都没带！要是有个定时炸弹就好了。”老三苦着脸道。</p>
+<p class = "firstLineIndent">“我身上倒是带了把枪，可总不能给这里的弹药来几发吧……”</p>
+<p class = "firstLineIndent">“可是老大，你说为啥老板让我们来出任务也不先说明一下，而且连点武器都不给啊？”</p>
+<p class = "firstLineIndent">“你出发前没听老板讲吗？我们顶多算银梭的压舱物，主要是来测试战甲的，老板要是给我们一堆强力武器，那还测试个屁啊！”</p>
+<p class = "firstLineIndent">“哦，好像是这样，这战甲的确已经强的过分了。”</p>
+<p class = "firstLineIndent">确实如此，以勇者之心战甲的科技代差，若是他们拥有一些武器，上船后直接横扫，以一人对一舰，花点时间也并非做不到。</p>
+<p class = "firstLineIndent">“另外你不觉得奇怪吗？虽然听不懂这些霓虹人在说些什么，不过看样子这条船上的人都十分慌乱，警报还响个不停，刚刚过去的维修兵也是满脸紧张，似乎银梭的攻击不像我们想的那么弱啊？”老大分析道。</p>
+<p class = "firstLineIndent">“嗯，我也觉得这些人有些大惊小怪了点。”</p>
+<p class = "firstLineIndent">“嗯……你还记得攻略一吗？”</p>
+<p class = "firstLineIndent">“老大你是说单刀直入？介绍是‘银梭在手，沉船我有’？”</p>
+<p class = "firstLineIndent">“没错，我现在觉得，老板是不是想告诉我们，单凭银梭，就能击沉战舰？或许这种高斯武器就是外表看起来不明显，但是内部受创很严重的那种？”</p>
+<p class = "firstLineIndent">“银梭的攻击有那么厉害？要不，我们先给这个弹药库来一下试试？”老三提议。</p>
+<p class = "firstLineIndent">“嗯，银梭有目标锁定功能，先给这里丢个标记，记下这里的位置，等到达安全距离再说！”</p>
+<p class = "firstLineIndent">“好！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">对于自家战舰被潜入毫无所觉的舰长此刻有点抓瞎。</p>
+<p class = "firstLineIndent">军事侦察卫星并没有发现敌机，甚至霓虹军部认为事态严重，还申请了米国的侦查援助，对该空域进行了地毯式搜索，但是结果依然一无所获。</p>
+<p class = "firstLineIndent">袭击者就像是一个空中幽灵，完全无迹可寻。</p>
+<p class = "firstLineIndent">这让舰长完全无法理解。</p>
+<p class = "firstLineIndent">村雨级的对空搜索雷达是先进的有源相控阵雷达，在同级战舰中的空中锁敌能力十分优异。</p>
+<p class = "firstLineIndent">然而却完全没有发现敌机的踪影，恐怕就连世界上最先进的隐形战机也做不到一点踪迹不露，至少攻击的瞬间也会在雷达上露个脸！</p>
+<p class = "firstLineIndent">现在不仅是舰载雷达毫无反应，连卫星也侦查无果，情况太过诡异了些。</p>
+<p class = "firstLineIndent">“莫非真是什么见鬼的地球磁场？也太他么扯淡了吧？”舰长现在心里有些没底了，主要是实在是找不到其他解释啊！</p>
+<p class = "firstLineIndent">不过还好，一堆坏消息里也有一个好消息，军部参谋部鉴于幽灵海域的怪异事态，决定派遣两架F-15J和一架E-767预警机前来支援，不久后就能抵达这片空域。</p>
+<p class = "firstLineIndent">F-15J是当今世界上比较先进的多用途战斗机之一，也是霓虹国现役的主力战机。其最大航速可达2.5马赫，最大航程达4600公里，具备对空、对地多种攻击能力。</p>
+<p class = "firstLineIndent">而E-767预警机在作战飞行高度上能精确探测320公里外的目标，对高空目标的探测距离达600公里，可同时跟踪数百个空中目标，并且还具备空中加油能力，是世界上最先进的预警机之一。</p>
+<p class = "firstLineIndent">这二者也是霓虹国空军的王牌组合，也证明了军部对这件事的重视程度，这让舰长心下稍安。</p>
+<p class = "firstLineIndent">他走出控制室，准备前往底舱视察一下船体修复情况，而他的副官被他留在控制室代为指挥并随时保持与军部的联系。</p>
+<p class = "firstLineIndent">这位舰长还是很有大将风范，就算碰到如此棘手的情况，也不曾在部</p>
+<p class = "firstLineIndent">此刻他的步履也是虽快不急，充满了从容，不过刚刚转过一个拐角，“砰！”“呃？”</p>
+<p class = "firstLineIndent">舰长只觉得迎面撞上了一堵坚硬的金属墙，鼻子顿时受到重击，仰天栽倒。</p>
+<p class = "firstLineIndent">“唔！”当他捂着鼻子坐起身忍痛看向面前时，空荡荡的却哪里有什么墙壁。</p>
+<p class = "firstLineIndent">“不对啊，过道上怎么可能有什么墙壁？！”舰长心下疑惑，而且他刚刚明明听到对面有一个声音传来。</p>
+<p class = "firstLineIndent">他再次仔细打量自己的面前，眼珠子却越瞪越大。</p>
+<p class = "firstLineIndent">因为他看到眼前有一个淡淡的透明身影正静静的飘在自己面前，离自己还不到一米！</p>
+<p class = "firstLineIndent">“幽……幽灵？！”舰长瞬间亡魂大冒，原来幽灵海域真的他么存在幽灵啊！</p>
+<p class = "firstLineIndent">然后下一刻，他感觉脖子上一痛，双眼一翻，很干脆的晕了过去。</p>
+<p class = "firstLineIndent">“呃，老大，这家伙咋办？”</p>
+<p class = "firstLineIndent">“你还有脸问我，刚刚走路怎么不小心点！”老大没好气地瞪了身边的空气一眼。</p>
+<p class = "firstLineIndent">“这不能怪我啊，谁知道这家伙走路和飘似的，不仅没声儿，还他么贼快，我刚想躲就被撞上了！”</p>
+<p class = "firstLineIndent">“把他丢在这儿，船上的人很快就会发现异常，走！先把他搬到旁边那个房间藏起来！”老大四下一扫，发现了不远处的一个舱室。</p>
+<p class = "firstLineIndent">“好！”</p>
+<p class = "firstLineIndent">然后舰长诡异地漂浮了起来，被挪到了那个舱室门前。</p>
+<p class = "firstLineIndent">门被打开，舰长缓缓飘了进去，随后缓缓关上。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">控制室。</p>
+<p class = "firstLineIndent">“嗨！属下明白，一定会配合好空军部队彻底搜索这一海域！请军部放心！”副官立正后放下通讯器。</p>
+<p class = "firstLineIndent">然后对旁边的通讯员吩咐，“空军支援已经出发，预计二十分钟后抵达我们这里，立刻通知舰长阁下，请务必尽快回到控制室坐镇！”</p>
+<p class = "firstLineIndent">“嗨！”</p>
+<p class = "firstLineIndent">过了一会儿，旁边的通讯兵奇怪的开口道：“副官阁下，舰长没有回应。”</p>
+<p class = "firstLineIndent">“什么？多试几次，或许是维修现场噪音太大。”副官皱眉。</p>
+<p class = "firstLineIndent">“已经试过很多次了，依然没有反应。”</p>
+<p class = "firstLineIndent">“嗯？那就联络底舱的维修组，通过他们联系舰长！”</p>
+<p class = "firstLineIndent">又过了一会儿，“副……副官阁下，舰长他没有在底舱，维修组的人说根本没有看到舰长。”</p>
+<p class = "firstLineIndent">“嗯？！”副官这回惊讶了，没有在底舱，也没有接通讯，这是什么情况？</p>
+<p class = "firstLineIndent">“你继续联络舰长，警卫官，立刻派人手往底舱搜索，找到舰长后立刻通知我！”</p>
+<p class = "firstLineIndent">“嗨！”</p>
+<p class = "firstLineIndent">然而过了十分钟，警卫官回报，已经搜索了所有的通道和舱室，连卫生间都找过了，依然没有发现舰长。</p>
+<p class = "firstLineIndent">“这……”副官彻底傻眼了，一个大活人还能凭空消失不成？</p>
+<p class = "firstLineIndent">“副官阁下，这一切，会不会是幽灵……”旁边有人小声道。</p>
+<p class = "firstLineIndent">太诡异了，一切实在是太诡异了，先是两次遭受未知的“陨石”攻击，然后现在连舰长都消失了，他们又身处神秘无比的幽灵海域，实在是不能怪他们多想。</p>
+
+<h2>第七十七章 刚烈</h2>
+<p class = "firstLineIndent">“老大，我们现在怎么办啊？”老三有些苦恼地道。</p>
+<p class = "firstLineIndent">两人原本打算将那个倒霉蛋丢在里面之后就尽快离开这片区域，以免被弹药库的爆炸波及。</p>
+<p class = "firstLineIndent">可没想到刚出门不久，就被一大波搜索自家舰长的士兵给逼了回来。</p>
+<p class = "firstLineIndent">听着门外嘈杂的响动，似乎整艘船上的人都沸腾起来。</p>
+<p class = "firstLineIndent">“都是你惹的事，那个倒霉蛋明显穿着和其他人不一样，肯定是个高级军官，这下子捅了马蜂窝了！”</p>
+<p class = "firstLineIndent">“呃，那要不我们现在直接给弹药库来一发，世界就清净了？”老三提议。</p>
+<p class = "firstLineIndent">“你傻啊，这里离弹药库也就十来米，谁知道爆炸威力怎么样，万一战甲挡不住呢！”</p>
+<p class = "firstLineIndent">“那我们直接杀出去！有战甲保护，他们伤不到我们！”</p>
+<p class = "firstLineIndent">“我们就一把小手枪，人家站在我们面前，子弹都不够一人赏一颗的，然后你用拳头吗？谁知道船上有没有重武器？”老大没好气瞪了他一眼。</p>
+<p class = "firstLineIndent">“那怎么都不行，我们就坐在这儿等他们搜过来吗？”</p>
+<p class = "firstLineIndent">老大打量了这间舱室一眼，想要找找有什么窗户之类的可以跳海出去。</p>
+<p class = "firstLineIndent">不过军舰可不是游艇，可不会照顾你欣赏风景的需要，很显然，这间舱室只有一个出口。</p>
+<p class = "firstLineIndent">不过他倒是有了点别的收获。</p>
+<p class = "firstLineIndent">这里看上去是一间机房，摆放着十数台一人高的主机，密密麻麻的线路蜘蛛网一般铺设开去，倒霉的舰长就被扔在一个机柜的后面。</p>
+<p class = "firstLineIndent">老大走到舱室中央的一台主机前，看着上面的一个接口，眼神有些古怪，“你说，这个会不会就是攻略三里面那个USB接口？”</p>
+<p class = "firstLineIndent">老三走过去看了看，摸着脑袋，“看着像是吧，不过怎么算传说中的？”</p>
+<p class = "firstLineIndent">“我要是知道，那还能叫传说中的吗？试试不就知道了。”</p>
+<p class = "firstLineIndent">“那我们怎么试？”</p>
+<p class = "firstLineIndent">“咳咳！”老大的表情有些纠结，酝酿了许久的情绪，这才开口。</p>
+<p class = "firstLineIndent">“万能的老板啊，我们已经找到了USB接口，请告诉我们接下来该怎么行动？”</p>
+<p class = "firstLineIndent">老三：“……”</p>
+<p class = "firstLineIndent">就在老三想要吐槽时，头盔通讯器中突然响起提示。</p>
+<p class = "firstLineIndent">“滴！恭喜你们！找到了传说中奇迹的的USB接口！接下来，就是见证奇迹的时刻！”</p>
+<p class = "firstLineIndent">提示音刚落，从老大的臂甲处突然延伸出一条数据线，直接插入了接口。</p>
+<p class = "firstLineIndent">然后两人就看到室内所有的主机提示灯疯狂地开始闪烁。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">与此同时，远在千里之外忙碌的聂云突然一愣，然后眼光一闪，微微笑了起来，“这两个家伙做的还不赖嘛，那么，来看看我们的新玩具吧！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">村雨级战舰控制室中，正当所有人都在为失踪的舰长和即将到来的空中支援焦头烂额时，所有的显示器上突然同时画面一闪，出现了一个尖耳骷髅加上两根交叉骨头的海盗标志。</p>
+<p class = "firstLineIndent">诡异的骷髅头嘴巴一张一合，低沉的金属音通过外设扩音设备传遍了全舰。</p>
+<p class = "firstLineIndent">“你们感受到死亡了吗？”（霓虹语）</p>
+<p class = "firstLineIndent">室内一片寂静……</p>
+<p class = "firstLineIndent">所有人都被这诡异的情况弄懵了，他们看着屏幕上那只诡异的骷髅标志，寒毛倒竖！</p>
+<p class = "firstLineIndent">“幽……幽灵船长！”有人忍不住恐惧道，这四个字瞬间让所有人心中一跳！</p>
+<p class = "firstLineIndent">“这是怎么回事！”反应过来的副官怒吼道。</p>
+<p class = "firstLineIndent">“长官！有人入侵了我们的舰载系统！”旁边一个控制台的电子兵一边噼里啪啦敲打着键盘，一边满头大汗说道。</p>
+<p class = "firstLineIndent">就在这时，旁边的一名船员突然尖叫起来，“舰……舰炮在自己移动！不……不好了，1号导弹弹仓也自己打开了！我们的火控系统被人入侵了！”</p>
+<p class = "firstLineIndent">“什么？！”所有人大惊失色。</p>
+<p class = "firstLineIndent">尽管已经有了一丝预感，但火控系统被人控制就说明了他们的舰载主机已经全面沦陷。</p>
+<p class = "firstLineIndent">不管他是幽灵船长还是其他的什么见鬼的海盗船长，他们都意识到——自己麻烦大了！</p>
+<p class = "firstLineIndent">与此同时，几名还身处甲板的士兵愕然发现自家的战舰舰炮正在缓缓转动，似乎已经进入击发状态。</p>
+<p class = "firstLineIndent">“快！电子对抗小组，你们在干什么，快给我夺回战舰主系统的控制权！”副官吼道。</p>
+<p class = "firstLineIndent">“我……我们正在这么做！可是对方的手段很诡异，我们完全做不到！”</p>
+<p class = "firstLineIndent">“手段诡异，什么意思？！”副官听出不对来，急急问道。</p>
+<p class = "firstLineIndent">“我们尝试用普通电子对抗手段夺回系统控制权，但是对方的技术十分强大，我们失败了！</p>
+<p class = "firstLineIndent">最后我们不得不手动切断了电源供应，可是系统主机它……它依然在工作！！”电子兵的语气中带着一丝难以置信。</p>
+<p class = "firstLineIndent">“什么？！”所有人目瞪口呆。</p>
+<p class = "firstLineIndent">切断电源后主机依然在工作？你确定今天不是愚人节？</p>
+<p class = "firstLineIndent">幽灵船长！！</p>
+<p class = "firstLineIndent">所有人心中再无一丝怀疑，这种事情，除了幽灵，谁还能做到？</p>
+<p class = "firstLineIndent">“给我立刻前往主机房查看情况，必要时给我炸了它！”副官很快从震惊中回过神来，立刻发狠道。</p>
+<p class = "firstLineIndent">“来……来不及了！它已经锁定了目标，进入发射临界状态了！”</p>
+<p class = "firstLineIndent">“什么？它的目标是什么？”副官急问。</p>
+<p class = "firstLineIndent">“是……是南棒国浦项级！”</p>
+<p class = "firstLineIndent">副官闻言脑中嗡鸣一声，彻底凌乱了！</p>
+<p class = "firstLineIndent">霓虹国军舰公然攻击南棒国军舰！这是什么罪名？一个不好，这就是严重的国际纠纷！</p>
+<p class = "firstLineIndent">最后两国会不会打起来他不知道，但是自己这个主官肯定逃不过被送上军事法庭的命运！</p>
+<p class = "firstLineIndent">他此时脑海中就一个念头：要阻止它！</p>
+<p class = "firstLineIndent">可是还没等他下达命令，“轰轰轰！”高射速舰炮特有的轰鸣传来，像是直接击在了副官的心坎。</p>
+<p class = "firstLineIndent">他脸色一白，腿一软，直接跌坐在靠椅上。</p>
+<p class = "firstLineIndent">完了！这是他此刻唯一的想法。</p>
+<p class = "firstLineIndent">而在控制室外，舰炮的轰鸣还在持续，浓重的硝烟味充斥了这片海域，所有霓虹国的船员都楞楞地看着这一幕，眼中充满了惊愕。</p>
+<p class = "firstLineIndent">与此同时，不远处的南棒国浦项级正美滋滋航行在蓝天白云下，顺便因死对头的霉运而幸灾乐祸呢，突然就被舰炮兜头喷了个满脸开花！心里那叫一个难以置信！</p>
+<p class = "firstLineIndent">只见战舰表面直接被炮火覆盖，从船头扫到船尾，再从船尾扫到船头。</p>
+<p class = "firstLineIndent">虽然这种舰炮本是为了对付小型轻甲目标而准备的，威力不大，可是毁容效果十分显着，浦项级的表面立刻坑坑洼洼布满了弹坑。</p>
+<p class = "firstLineIndent">所幸全船已经进入战备状态，甲板上没有滞留人员，暂时没有出现伤亡，但是那船体的震动让所有南棒国军人心惊胆战！</p>
+<p class = "firstLineIndent">南棒国舰长直接被打蒙了，心中简直是委屈到不行。</p>
+<p class = "firstLineIndent">我没做什么天怒人怨的事情吧？就是发了两份简讯，虽然我承认，语气稍微显得不那么具有同情心，可你也没必要直接动手吧？！</p>
+<p class = "firstLineIndent">早知道你这么刚烈，我能这么嘴贱？！</p>
+
+<h2>第七十八章 借刀杀人</h2>
+<p class = "firstLineIndent">正在被攻击的战舰上。</p>
+<p class = "firstLineIndent">“舰长，我们现在怎么办？”有船员问道。</p>
+<p class = "firstLineIndent">“立刻机动躲避攻击，同时用舰炮还击！</p>
+<p class = "firstLineIndent">另外，通讯员给我联系霓虹国战舰，这是想要不宣而战，挑起两国战争吗！？”舰长怒气冲冲道。</p>
+<p class = "firstLineIndent">他的命令很快被执行，随着南棒国战舰上的舰炮轰鸣，霓虹国军舰立刻同样被南棒国的舰炮炮火覆盖。</p>
+<p class = "firstLineIndent">双方隔着不到300米的距离疯狂用舰炮对射，两艘战舰身上不断冒出大片的火光，很快就变得面目全非！</p>
+<p class = "firstLineIndent">周围混编舰队的其余船只全都愣愣的看着突然二话不说就开片儿的两艘战舰，一个个全是黑人问号脸！</p>
+<p class = "firstLineIndent">谁能告诉我这是什么情况？咋好好的就打起来了？</p>
+<p class = "firstLineIndent">而兔子国舰长则是一脑门儿冷汗，他清楚地看到霓虹战舰率先开火，然后南棒不得不还击的全过程。</p>
+<p class = "firstLineIndent">心中暗暗猜测南棒们到底说了什么风凉话，竟惹的对方一言不合就直接动手，他瞬间在脑海中脑补了一下双方的对话。</p>
+<p class = "firstLineIndent">“你丫倒霉了吧？哇哈哈哈！”</p>
+<p class = "firstLineIndent">“告诉你别得瑟，我就是出门踩狗屎了，再得瑟我拿这只狗屎脚踹你哦！”</p>
+<p class = "firstLineIndent">“我得瑟碍着你了？诶，我就得瑟了，你有本事踹我啊！”</p>
+<p class = "firstLineIndent">“哇呀呀，气煞我也！你以为我不敢吗！阿达！”</p>
+<p class = "firstLineIndent">“哎哟，你还真敢踹！我和你拼了！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">擦擦脑门儿上的汗，他万分庆幸自家礼仪之邦的传统美德，用词比较“委婉”！</p>
+<p class = "firstLineIndent">感慨一句，然后他立刻命令通讯员给两舰发去讯息，呼吁双方保持克制，在友好和平的前提下解决争端！</p>
+<p class = "firstLineIndent">当然，场面话要说，他动作也不慢，兔子国战舰飞也似得脱离了双方交战区。</p>
+<p class = "firstLineIndent">看到兔子国明哲保身的行为，周围的其余调查船这才惊醒过来，纷纷做鸟兽散，这片海域瞬间只剩下了三艘船。</p>
+<p class = "firstLineIndent">亚利桑那号船长此刻都快哭了！</p>
+<p class = "firstLineIndent">他倒是想跑，可吨位在那儿摆着，论起转向变速，哪里能和其余船只相比，只能费劲的挪动庞大的身躯，想要尽量远离这两杀红眼的疯子。</p>
+<p class = "firstLineIndent">两艘战舰原本就是将它半包围在内，此刻双方炮火几乎是贴着亚利桑那号的脸在互相对射，船上的船员吓得是心惊胆战。</p>
+<p class = "firstLineIndent">有人告诉我们会遇到幽灵船长，可没人告诉我们会遇到海战啊！</p>
+<p class = "firstLineIndent">早知道，给我们二十倍的钱，我们也绝对不来！</p>
+<p class = "firstLineIndent">幽灵船长要船，可这是要命啊……</p>
+<p class = "firstLineIndent">就在周围众人带着不同的心情强势围观时，发生了又一个更让人震惊的事情。</p>
+<p class = "firstLineIndent">“舰……舰长，我舰被对方火控雷达锁定，对方出现进一步攻击意图！！”南棒战舰方的雷达兵惊呼</p>
+<p class = "firstLineIndent">“什么？！”舰长直接就懵了。</p>
+<p class = "firstLineIndent">用舰炮已经是在玩火了，而需要用到火控雷达锁定的武器，护卫舰级别也就鱼雷和导弹了。</p>
+<p class = "firstLineIndent">以这两种武器的威力，任何一种都足以致命！对方这是铁了心想击沉自己啊！</p>
+<p class = "firstLineIndent">“给我打开所有的武器系统，锁定对方，若对方动用大威力武器，不用请示，给我直接全力击沉它！”舰长红着眼吼道！</p>
+<p class = "firstLineIndent">他十分清楚，这个时候要克制，绝不能第一个发动致命攻击，就算己方被击沉，也要让南棒国在这场冲突中占据道义制高点！</p>
+<p class = "firstLineIndent">率先不宣而战！率先动用致命级别的武器！目击者这么多，霓虹国将百口莫辩！</p>
+<p class = "firstLineIndent">作为军人，他不缺少为国牺牲的勇气！</p>
+<p class = "firstLineIndent">不过，能不牺牲还是活着比较好，他继续命令，“全员躲避到战舰左舷！同时通知国内这里的情况，请求支援！”</p>
+<p class = "firstLineIndent">南棒国战舰位于霓虹战舰左侧同向航行，所以最可能遭受攻击的就是战舰右舷！</p>
+<p class = "firstLineIndent">因为距离很近，基本没有规避或拦截导弹的可能，他在做最坏的打算！</p>
+<p class = "firstLineIndent">命令下达没多久，霓虹国战舰上的导弹巢就在所有人无比震惊的目光下喷射出一股烟雾，一枚细长的舰对舰导弹腾空而起！</p>
+<p class = "firstLineIndent">跳跃出弹巢的导弹弹出战舰后稍稍调整了方向，便直冲不远处的南棒国战舰。</p>
+<p class = "firstLineIndent">与此同时，南棒国的战舰上，枪炮长一丝不苟地执行了舰长的命令，见到对方导弹出巢，二话不说同样发动了攻击。</p>
+<p class = "firstLineIndent">也是一枚对舰导弹冲天而起，射向霓虹国战舰。</p>
+<p class = "firstLineIndent">这种距离下，说什么规避拦截已经是毫无意义，在周围的一地眼球中，两枚导弹几乎同时命中对方。</p>
+<p class = "firstLineIndent">“轰隆！”“轰隆！”</p>
+<p class = "firstLineIndent">两声巨响之后，各自在对方身上开出了一个大洞，中弹处冒出滚滚浓烟，顿时两败俱伤！</p>
+<p class = "firstLineIndent">这次可就不是刚刚那样不痛不痒的炮击了，两艘战舰以肉眼可见的速度开始倾斜，然后随着大量进水缓缓下沉。</p>
+<p class = "firstLineIndent">村雨级战舰中。</p>
+<p class = "firstLineIndent">“副官阁下，我们的左舷遭到重创，用不了三十分钟就会完全沉没！”有士兵满头大汗急道。</p>
+<p class = "firstLineIndent">刚刚所有人眼睁睁地看着这一切发生，却对此毫无办法！就像是有一双无形的手，提线木偶一般操纵着他们的战舰，而他们就像是一群场外的看客。</p>
+<p class = "firstLineIndent">副官有些绝望地瘫坐在椅子上，眼神涣散。</p>
+<p class = "firstLineIndent">“命令，全员弃舰……”副官有气无力道。</p>
+<p class = "firstLineIndent">“对了，系统主机去检查过了吗？为什么电源都断掉了，它还能继续工作？”副官现在念念不忘的只有这件事！</p>
+<p class = "firstLineIndent">“副官阁下，已经派人过去了，应该很快就会有消息传来！”</p>
+<p class = "firstLineIndent">三分钟后，通讯器里传来汇报。</p>
+<p class = "firstLineIndent">“阁下，我们在机房发现主机已经断电关闭，没有任何异常，另外还发现了昏迷的舰长阁下！”</p>
+<p class = "firstLineIndent">“什么……”副官目瞪口呆。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">兔子国舰长呆呆地看着两舰缓缓沉没的一幕，完全不知道该摆出什么样的表情，他已经没有心思去幸灾乐祸，彻底被这样神展开的局势弄懵了。</p>
+<p class = "firstLineIndent">虽然看到南棒国和霓虹国掐架，心里有些恶意的暗爽，不过这件事处处透着诡异，让他十分不安。</p>
+<p class = "firstLineIndent">两艘战舰周围，陆续有几艘充气救生艇载着两国的幸存者逃离了沉船旋涡区。</p>
+<p class = "firstLineIndent">所有人都没有发现，村雨级上，两道透明的人影趁着混乱悄无声息地潜入了大海，随后背后的背包喷射出一道气流，推动着他们飞速接近了亚利桑那号。</p>
+<p class = "firstLineIndent">两兄弟此刻对老板的能力是崇拜的五体投地。</p>
+<p class = "firstLineIndent">他们的确见证了一个奇迹，真的只用了一个USB接口就完成了奇迹一般的借刀杀人之计！</p>
+
+<h2>第七十九章 跳槽</h2>
+<p class = "firstLineIndent">就在所有人看着两艘缓缓沉没的战舰不知所措时，天空中传来一阵呼啸。</p>
+<p class = "firstLineIndent">两架灰蓝色F-15J战机从千米高空极速掠过了这片海域。</p>
+<p class = "firstLineIndent">而更高的空域中，一架预警机速度稍慢，也正全力赶往此处，霓虹国的空中支援小队终于姗姗来迟！</p>
+<p class = "firstLineIndent">“蓝隼空军支援小队呼叫村雨086，我们已经抵达指定坐标上空，请回答！”</p>
+<p class = "firstLineIndent">“蓝隼空军支援小队再次呼叫村雨086，我们已经抵达指定坐标上空，请回答！”</p>
+<p class = "firstLineIndent">两名抵达目的地的战机飞行员立刻尝试联系友军战舰。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">许久过后，通讯中依然一片沉默！</p>
+<p class = "firstLineIndent">他们自然不知道，直到全员弃舰，村雨级战舰上的人也没能夺回自家战舰的控制权，其中自然包括通讯系统！</p>
+<p class = "firstLineIndent">因此他们根本无法上报这里的情况，或者作出任何回应。</p>
+<p class = "firstLineIndent">预警机上的霓虹国最高指挥官见到这种情况，结合先前友舰被袭击的情报，心中顿时一惊，立刻察觉事情有些不对，当即马上下达了命令。</p>
+<p class = "firstLineIndent">“让蓝隼小队保持战斗队形，低空侦查目标海域，寻找村雨086！提醒他们警惕可能存在的敌人！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">命令传达到战斗机小队，高空中的两机立刻一前一后转了个弯，降低了飞行速度和高度，开始低空侦查。</p>
+<p class = "firstLineIndent">不久后，通过战机上的航拍图像，预警机指挥中心终于明白了现在的情况，所有人都楞楞地看着那两艘正在冒着浓烟缓缓沉没的战舰。</p>
+<p class = "firstLineIndent">其中一艘他们中的大部分人都不陌生，正是他们前来支援的对象——村雨级战舰！</p>
+<p class = "firstLineIndent">指挥官震惊地看着画面上看上去被蹂躏的十分凄惨的村雨号，一脸不可思议！</p>
+<p class = "firstLineIndent">怎么不久前还在呼叫救援，表示受损轻微，情况稳定，而现在就直接沉没中了呢？</p>
+<p class = "firstLineIndent">另一艘情况差不多的，似乎是南棒国的战舰？这又是什么情况？</p>
+<p class = "firstLineIndent">莫非是兔子国出其不意痛下杀手？</p>
+<p class = "firstLineIndent">这是他所能想到的唯一一种可能性，毕竟这附近，也就兔子国护卫舰有可能做到出其不意之下短时间内击沉两艘战舰！</p>
+<p class = "firstLineIndent">可周围目击者这么多，兔子国怎么敢公然这么干？！这么做对他们有什么好处？</p>
+<p class = "firstLineIndent">若不是，难道是之前村雨级战舰回报的神秘袭击者？</p>
+<p class = "firstLineIndent">“立刻通知军部我们遇到的情况，并申请派出救援船只搜索我方幸存者！”指挥官命令道。</p>
+<p class = "firstLineIndent">“另外，最大功率开启雷达，寻找这片空域中可能的敌人！</p>
+<p class = "firstLineIndent">然后通知蓝隼小队，立刻脱离低空区域，警惕兔子国战舰的同时，彻底搜索附近空域，寻找可疑飞行器！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">两架战机上的飞行员一收到命令，立刻爬升高度全力戒备！</p>
+<p class = "firstLineIndent">而就在它们迅速爬升的时候，聂云通过附近的银梭同样察觉到了它们的存在，心中惊喜一闪而过。</p>
+<p class = "firstLineIndent">“原本想钓几只大鱼，没想到还有额外惊喜！”</p>
+<p class = "firstLineIndent">他立刻操控银梭，开始新一轮的狩猎！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“蓝隼02，这里是蓝隼01，护卫我的右侧，保持双机队形，以这里为圆心，开始螺旋飞行搜索本区域！”</p>
+<p class = "firstLineIndent">“蓝隼02收到！”</p>
+<p class = "firstLineIndent">就在两架战机开始保持队形展开搜索时，一道幽灵一般的透明身影飞速掠过两架战机之间的空域，带起的气流让两架战机的机身都微微晃动了一下。</p>
+<p class = "firstLineIndent">“刚……刚刚那是什么？是我眼花了吗？”蓝隼01的飞行员愕然道。</p>
+<p class = "firstLineIndent">“不！我刚刚也看到了，好……好像是一个透明的影子！速度好快！至少3马赫！”蓝隼02喊道。</p>
+<p class = "firstLineIndent">“为什么雷达完全没反应！它是隐形的吗？！”</p>
+<p class = "firstLineIndent">“嗖！”就在这时，又一道魅影掠过蓝隼01左侧。</p>
+<p class = "firstLineIndent">“呲！”一声轻响，蓝隼01战机的左翼直接被切下一块。</p>
+<p class = "firstLineIndent">越是精密的武器，越是容不得一点差错，尽管左翼缺损不大，但战机的飞行姿态依然立刻失衡，开始摇晃着脱离队形，往下坠落！</p>
+<p class = "firstLineIndent">“蓝隼01，发生了什么事？”僚机惊呼一声。</p>
+<p class = "firstLineIndent">“我的左翼被不明飞行器攻击了！我无法控制平衡！”蓝隼01的飞行员惊恐地喊道。</p>
+<p class = "firstLineIndent">“什么？”</p>
+<p class = "firstLineIndent">正当他们震惊时，“嗖！”不远处的空中突然凭空窜出一道火红色流光，眨眼间便准确命中了蓝隼02的右翼中心位置，“嚓！”地开出一个大洞。</p>
+<p class = "firstLineIndent">等飞行员反应过来时，只能看到不时有零件从破口中被劲风带飞，整个右翼顿时显得岌岌可危，机身也剧烈晃动起来！</p>
+<p class = "firstLineIndent">蓝隼02的飞行员眼见遭受如此诡异的攻击，登时亡魂大冒。</p>
+<p class = "firstLineIndent">“我是蓝隼02，同样受到不明攻击，右翼被重创！目测无法安全返回基地，请求迫降！”</p>
+<p class = "firstLineIndent">两名飞行员充满惊慌的通讯内容一字不落地被预警机上的指挥中心听到。</p>
+<p class = "firstLineIndent">所有人都脸色发白，雷达没有丝毫反应，连身躯都是透明的，他们心中关于幽灵海域的传闻立刻涌上心头。</p>
+<p class = "firstLineIndent">“难……难道真是幽灵？”指挥官彻底懵了。</p>
+<p class = "firstLineIndent">不过他很快察觉现在不是考虑这个问题的时候，拿起通讯器喊道：“允许你们在确定无法挽救时选择迫降，必要时可以主动弹射逃离！”</p>
+<p class = "firstLineIndent">于是，包括兔子国护卫舰在内的所有船只船员，全都站在甲板上呆呆地看着上空的两架霓虹战机匆匆而来，然后没多久便匆匆而落，摇摇晃晃地迫降在海面上，激起漫天的水花和碎片！</p>
+<p class = "firstLineIndent">同时天空中还出现了两朵伞花，上面两名满头雾水的飞行员正紧张地看着四周，生怕那道魅影继续攻击他们。</p>
+<p class = "firstLineIndent">所幸，银梭对他们没有丝毫兴趣！他们的担心并没有发生。</p>
+<p class = "firstLineIndent">也有人再次看到了攻击战机的那道迅捷无比的流光，但依然没有人看到袭击者！</p>
+<p class = "firstLineIndent">幽灵船长！所有人心中同时浮现一个名字！</p>
+<p class = "firstLineIndent">而眼见这一幕，亚利桑那号船长十分干脆的命令所有船员登上救生艇，直接弃船跑路。</p>
+<p class = "firstLineIndent">看看周围诡异的情况，这不是幽灵船长的手笔还能是什么？</p>
+<p class = "firstLineIndent">再看看幽灵船长的作风，连军舰战机都一个个撸了下去，还有啥是人家不敢干的？</p>
+<p class = "firstLineIndent">连疑似自己的“护卫者”都是这个下场，日耀集团这个唯一被幽灵船长所关注的倒霉蛋又凭什么能幸免？</p>
+<p class = "firstLineIndent">凭自己吨位吗，别逗了！那只会让你更加醒目！</p>
+<p class = "firstLineIndent">所以当兄弟两人潜入亚利桑那号时，它便已经人去楼空！让他们还很是惊愕了一番，不过白捡的任务目标，他们又怎么会嫌弃。</p>
+<p class = "firstLineIndent">两人十分轻松地手动打开船上的大型通海阀，船只大量进水之下，很快就缓缓沉没。</p>
+<p class = "firstLineIndent">看到诡异沉没的亚利桑那号，它的船长顿时对自己的英明决定庆幸不已！</p>
+<p class = "firstLineIndent">“你妹，这工作太高危了！这次大难不死，老子明天就跳槽，再也不呆日耀了！”惊魂未定的亚利桑那号船长心中打定主意！</p>
+<p class = "firstLineIndent">一个小时后，数艘经过了隐形改造的海狼号接上两兄弟，然后拖着三艘战利品和两架战机的残骸主体，悄无声息地消失在深海中……</p>
+
+
+<a href="060.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="080.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

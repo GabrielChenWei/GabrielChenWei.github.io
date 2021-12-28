@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第五十章 文武双全方教授</h2>
+<p class = "firstLineIndent">深夜12点，外界对今晚发生的水瓶号货轮事件还一无所知。</p>
+<p class = "firstLineIndent">楚氏集团大厦顶楼停机坪，正静静地停泊着一架军用直升机。</p>
+<p class = "firstLineIndent">而楚凤的总裁办公室，也已经被几名全副武装的士兵布防警戒，连保安们都被赶了出去。</p>
+<p class = "firstLineIndent">“楚董，潇潇小姐，叶队长，我来给几位介绍一下，这位是东南军区的胡军长！我的大学同学！”方教授向两人介绍道。</p>
+<p class = "firstLineIndent">胡军长是个典型的军人硬汉，留着络腮胡，脸庞方正，看上去很是正派。</p>
+<p class = "firstLineIndent">“楚董！老方说贵公司能够提供长期稳定的高浓缩铀，这是真的吗？”胡军长对几女点点头打过招呼，然后有些急迫地问。</p>
+<p class = "firstLineIndent">在他的辖区，就有好几座核电站，还有军区直属的研究院，对铀的需求一直是军方头疼的问题，国家下拨的那些资源仅够维持现状，日子过得是紧巴巴的。</p>
+<p class = "firstLineIndent">楚氏母女对视一眼，楚凤开口道：“胡将军，确实如此！第一批货方老之前也鉴定过，他的话应该能够证明我们的确有这个渠道。”</p>
+<p class = "firstLineIndent">“货我鉴定过，品质绝对超乎你的想象！”老方拍着胸脯保证。</p>
+<p class = "firstLineIndent">对他的专业性，胡军长自然是信得过的。</p>
+<p class = "firstLineIndent">“我能问一下这些货的来源吗？袋鼠国？还是枫叶国的官方势力？”胡军长军人性格，话说的很直白。</p>
+<p class = "firstLineIndent">的确，有实力进行铀矿开采和高度浓缩提纯的，必然是势力庞大的国家级军工企业。而世界上能够大量出口核资源的也就那么两三个国家。</p>
+<p class = "firstLineIndent">“很抱歉，胡军长，我们也只是供货商的代言人，具体的货物来源我们楚氏也毫不知情。”</p>
+<p class = "firstLineIndent">胡军长了然的点点头，这种事情自然是越少人知道越好。</p>
+<p class = "firstLineIndent">“那请问你们和供货商的关系是？”</p>
+<p class = "firstLineIndent">“嗯……我们与供货商并没有直接联系过！他们只是通过一个代理人全权委托我们接手这笔交易。”楚凤迟疑了一下，如此说道。</p>
+<p class = "firstLineIndent">“好！那这笔买卖我们东南军区接下了！”胡军长大手一挥。</p>
+<p class = "firstLineIndent">原本他就没指望能从对方嘴里得到什么有用的信息，这种级别的势力既然找了国内一家小集团当代言人，那就是不想将事情摆在明面上，只要对自己有利，那管它究竟是为什么呢？</p>
+<p class = "firstLineIndent">“不知道这价格？”胡军长接着皱了皱眉。</p>
+<p class = "firstLineIndent">军方的经费也十分紧张，可这东西算是重资产，没几十个亿下不来，一时间他倒是有些犯难了。</p>
+<p class = "firstLineIndent">“供货方说了，他们不要现金，只需要提供一些货物以物易物。这一公斤的高浓缩铀作价50亿软妹币，只需要提供等值的货物即可！”</p>
+<p class = "firstLineIndent">“哦，什么货物？”胡军长心里默默计算了一下，这个价格很公道！甚至说，定的太低了！</p>
+<p class = "firstLineIndent">国家每年从袋鼠国进口的核资源均价基本是这个价格的两倍，而且还尽是一些低品位矿。</p>
+<p class = "firstLineIndent">这些货哪怕自己不用，转手卖出去，这里面的利润也高的惊人，对方的诚意很足啊！</p>
+<p class = "firstLineIndent">“一些高科技产品，军工产品，哪怕是二手的，对方都要！”</p>
+<p class = "firstLineIndent">“嗯？”胡军长皱眉，换军工产品？这可涉及到国家安全。</p>
+<p class = "firstLineIndent">旁边的楚潇潇这时候开口道：“供货商除了核燃料买卖，还在做一些军火生意。</p>
+<p class = "firstLineIndent">但是胡军长可以放心，这些东西都属于出口国外的商品，绝不会在国内流通。</p>
+<p class = "firstLineIndent">也不会要求军方提供机密级别的武器装备，只需要按照正常的军火外销流程，并对买方资料保密即可。</p>
+<p class = "firstLineIndent">另外，就算是退役装备，我们也会按照全新装备的价格购买！以后的交易也会按照这个标准执行。”</p>
+<p class = "firstLineIndent">“哦！”胡军长眼睛一亮。</p>
+<p class = "firstLineIndent">他们军区好几个军工企业可正愁打不开海外销路呢，而且库房里还积压着许多换装下来的二手装备，每年都要付出一笔不菲的维护保养费用，如果能够谈成这笔生意，倒还真是两全其美！</p>
+<p class = "firstLineIndent">至于这些军火出口到国外具体是去祸祸那个国家，那这就不在胡军长的考虑范围之内了，你见过那个国际军火商挑买家的？</p>
+<p class = "firstLineIndent">“如果胡军长同意，那么可以回去拟一份能够出售的货物清单，我们会从中挑选出需要的货物进行交易！”楚潇潇见对方意动，立刻趁热打铁。</p>
+<p class = "firstLineIndent">“好，我回去立刻让人讨论一套交易方案出来！”胡军长对此也十分满意，当即答应下来。</p>
+<p class = "firstLineIndent">“另外，胡将军，不知道能不能为楚氏办理一个军工企业资质？这样以后很多交易会方便许多，我们在海关的进出口资质也有些问题，您看……”楚凤很适时地提出己方的一些需求。</p>
+<p class = "firstLineIndent">“这些都是小问题，我会为你们搞定！”胡军长很爽快的答应下来。</p>
+<p class = "firstLineIndent">对一条稳定的核燃料供应渠道来说，这些的确算是小问题，不管是对东南军区，还是对整个国家！</p>
+<p class = "firstLineIndent">这么大的事，胡军长自然是要上报的，以国家层面解决这种问题，可谓是杀鸡用牛刀了。</p>
+<p class = "firstLineIndent">两女大喜，这样楚氏面临的困境可谓一下子解决一大半，甚至有了军工企业这层身份，在国内可以说是横着走了。</p>
+<p class = "firstLineIndent">双方协商完毕，皆大欢喜，气氛那是相当融洽。</p>
+<p class = "firstLineIndent">胡军长和方教授离开前，楚氏很大方地表示这次的货可以先交给军方。</p>
+<p class = "firstLineIndent">没办法啊，这东西就算放进保险柜也不安全啊，总让人提心吊胆。</p>
+<p class = "firstLineIndent">至于对方的信用问题，有国家背书，那还有什么好担心的，再说几十亿价值的货，相对一条稳定的供货渠道，孰轻孰重还用说吗？</p>
+<p class = "firstLineIndent">胡军长和方教授自然是双手赞同，这东西越早到手越放心啊！</p>
+<p class = "firstLineIndent">方教授当即抓过桌上的保温杯，想了想，又拿起旁边的“蓝天超市”，将保温杯装了进去。</p>
+<p class = "firstLineIndent">“走吧，老胡！”方教授喜滋滋地招呼胡军长。</p>
+<p class = "firstLineIndent">这生意谈成了，自己不仅立了大功，而且顺带还能给研究院弄些核燃料回去做科研，国家的表彰那也是少不了的，他觉得今天跑这一趟简直是太值了！</p>
+<p class = "firstLineIndent">“唉，等等，东西呢？”胡军长拉住就要出门的方教授疑惑道。</p>
+<p class = "firstLineIndent">方教授提起袋子示意了一下，“这不就是嘛！”</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">他眼角抽了抽，“这……这就是货？”</p>
+<p class = "firstLineIndent">“你这就有所不知了吧，这是伪装！我不说，谁能知道里面装的竟是那种东西？”</p>
+<p class = "firstLineIndent">一直站在两女身后的叶敏眉头挑了挑，这话怎么听着这么耳熟？</p>
+<p class = "firstLineIndent">胡军长也是一愣，想了想还真是，他进来半天了，可哪里会想到桌上的一个普通保温杯里装着的就是核燃料？实在是太出人意料！</p>
+<p class = "firstLineIndent">“原来如此，没想到老方你一个科研工作者，竟然还深谙虚虚实实的兵法之道，几日不见，文武双全了啊！”</p>
+<p class = "firstLineIndent">“哪里哪里！老胡你过奖了！不敢当，不敢当啊！哈哈！”</p>
+<p class = "firstLineIndent">叶敏：“……”</p>
+<p class = "firstLineIndent">谁说科研工作者脸皮都薄的？</p>
+
+<h2>第五十一章 黄金和黑铁</h2>
+<p class = "firstLineIndent">秘密基地码头。</p>
+<p class = "firstLineIndent">刚刚被打劫来的水瓶号此时表面覆盖着一层银白色金属，部分位置已经开始出现缺损。</p>
+<p class = "firstLineIndent">聂云看着正在吞噬水瓶号的机械虫满意地点点头。</p>
+<p class = "firstLineIndent">短短几天的发展，机械虫的数量已经突破3000吨。</p>
+<p class = "firstLineIndent">根据聂云这两天专门统计的数据，消耗的钢铁和新增机械虫的比例大概在2:1左右，也就是说，差不多2吨的钢铁能够新增近一吨的机械虫。</p>
+<p class = "firstLineIndent">这次有了水瓶号和上面近万吨钢材，想来吞噬之后机械虫就可以正式迈入万吨级。</p>
+<p class = "firstLineIndent">海底基地已经基本建成，海底机器人的采集范围也发展到方圆数百公里，聂云的机械虫军团正在吹气球一样飞速膨胀。</p>
+<p class = "firstLineIndent">而在他的身后，与这朝气蓬勃的发展势头十分不相称的是，两个穿着机械战警的人形生物正四仰八叉瘫在地上。</p>
+<p class = "firstLineIndent">两人的全覆式面罩已经被打开，眼睛里还在转着蚊香圈，脸上撞得是鼻青脸肿，还沾满了呕吐的秽物，恶臭难闻。</p>
+<p class = "firstLineIndent">聂云转过身，看着这对难兄难弟，眼中闪过笑意。</p>
+<p class = "firstLineIndent">念头一动，从海里突然窜出一根银白色消防水管，对着两人就是一阵冲刷，将两人浑身上下冲了个干干净净。</p>
+<p class = "firstLineIndent">“啊！”被海水一刺激，两人终于清醒了一些，捂着脑袋呻吟着摇摇晃晃站了起来。</p>
+<p class = "firstLineIndent">旁边又出现一台大功率鼓风机，对着两人就是一阵呼啸，片刻之后，两名干干爽爽的优秀员工便又重新站在聂云面前，呃……就是发型稍微有个性了一点。</p>
+<p class = "firstLineIndent">“嗯！两位辛苦了！组织上会记住你们的功劳的！”聂云很和蔼地对两人予以肯定。</p>
+<p class = "firstLineIndent">“应……应该的！为老板服务！”两兄弟尽管浑身骨头像是散了架一般，还是挺直了腰板大声道。</p>
+<p class = "firstLineIndent">“嗯，很好！打水漂……咳咳！我是说抗击打实验十分顺利，搜集的数据也很完美。</p>
+<p class = "firstLineIndent">你们也看到了，在那样的速度下撞击海面，承受的力道不下于数十公斤的重锤不断轰击，尽管如此，你们也仅仅只是受了点皮外伤，连伤筋动骨都谈不上。</p>
+<p class = "firstLineIndent">理论上来说，就算是被炮弹近距离命中，你们顶多也就是断几根骨头！我想你们现在应该能够明白‘勇者之心’战甲的强大之处了吧？”</p>
+<p class = "firstLineIndent">“嗯嗯！”两兄弟小鸡啄米点头。</p>
+<p class = "firstLineIndent">何止是强大，简直是太强大了啊！昨晚被那么折腾竟然没死，这就是最好的证明啊！</p>
+<p class = "firstLineIndent">单挑一个机械师或许还做不到，不过那些特警飞虎队什么的，他们已经不放在眼里了。</p>
+<p class = "firstLineIndent">这要是穿着它去抢银行，那还不跟玩似得？站着人家都打不动啊！</p>
+<p class = "firstLineIndent">他们已经开始幻想着有朝一日在条子群中杀个七进七出的威猛样子，那是何等的扬眉吐气？</p>
+<p class = "firstLineIndent">两兄弟觉得只要“勇气之心”战甲在身，似乎就真的获得了无尽的勇气一般，那胆气是蹭蹭蹭地往上涨啊！下次别说是劫巨轮，就是劫军舰他们也敢啊！</p>
+<p class = "firstLineIndent">聂云看两人兴奋的满脸通红的样子，嘴角勾了勾。</p>
+<p class = "firstLineIndent">昨晚的实验，除了验证一下“勇者之心”战甲的实用性，同时也是向两人展示它的强悍属性，给他们一个心理暗示——有战甲在身，他们就是无敌的！</p>
+<p class = "firstLineIndent">这样今后坑……咳咳！是让两人执行任务的时候，他们便能够悍不畏死地勇往直前。</p>
+<p class = "firstLineIndent">从这个角度上说，也算是让他们拥有了一颗“勇者之心”！</p>
+<p class = "firstLineIndent">他需要的是冲锋陷阵的猛将，可不是畏畏缩缩的盗匪，对两人的调教，算是聂云目前的消遣之一。</p>
+<p class = "firstLineIndent">不过，既要给他们对力量的自信，同时也要让他们清醒的意识到什么才是真正的力量！</p>
+<p class = "firstLineIndent">“阿三，听说你之前是地下拳击手？”聂云突然笑着问。</p>
+<p class = "firstLineIndent">“是啊老板，嘿嘿！不是我吹，当时我在我们那一片，可是人称‘单挑王’！”老三摸着脑袋嘿嘿笑道。</p>
+<p class = "firstLineIndent">“嗯，很好，那我给你一个新任务！”</p>
+<p class = "firstLineIndent">他的话音刚落，两兄弟身边突然出现了一个小狼机器人。</p>
+<p class = "firstLineIndent">“滴！新任务发布。</p>
+<p class = "firstLineIndent">任务目标：击败Boss！</p>
+<p class = "firstLineIndent">任务说明：不限人数，不限方式，用一切手段打倒你们面前的Boss！</p>
+<p class = "firstLineIndent">任务奖励：一千万软妹币！</p>
+<p class = "firstLineIndent">任务失败惩罚：无！”</p>
+<p class = "firstLineIndent">两兄弟一听任务奖励是一千万软妹币，眼珠子都亮了。</p>
+<p class = "firstLineIndent">不限手段和方式，也就是说，穿着“勇者之心”也是可以的啊！</p>
+<p class = "firstLineIndent">更重要的是，任务失败惩罚还不是“你懂得”！</p>
+<p class = "firstLineIndent">这还有什么可说的，这任务就是白送！干他吖！</p>
+<p class = "firstLineIndent">“老板！Boss在哪儿？就是史前巨兽，我也有绝对信心打倒它！”老三已经等不及跃跃欲试了。</p>
+<p class = "firstLineIndent">聂云没说话，只是活动了一下手脚，然后往旁边空旷处走了两步，最后笑眯眯地伸出手指对着老三勾了勾。</p>
+<p class = "firstLineIndent">两人傻眼了。</p>
+<p class = "firstLineIndent">“老……老板！您不会说Boss就是您自己吧？”</p>
+<p class = "firstLineIndent">“当然！放马过来，一千万哦！”聂云裂嘴笑道。</p>
+<p class = "firstLineIndent">两人对视一眼，老三犹豫了一下，最终还是上前一步，满脸凝重地左臂前抬，右臂靠后，做了一个拳击手的战斗姿态。</p>
+<p class = "firstLineIndent">老大考虑了一下，退后两步，显然是想让战斗力更强的老三先去试探一下Boss的水平再决定如何加入战斗。</p>
+<p class = "firstLineIndent">聂云只是松松垮垮地背着手站着，在老三眼中，聂云浑身都是破绽。但越是如此，老三脸色越是凝重。</p>
+<p class = "firstLineIndent">老三不是那种精细的人，不会去思考聂云为什么如此自大，他果断出手，一个标准的右臂冲拳，速度很快，力道很猛！</p>
+<p class = "firstLineIndent">可聂云只是稍稍侧身，拳头堪堪贴着聂云的胸口滑了过去，Miss！</p>
+<p class = "firstLineIndent">老三眼神一凝！好快的速度！好精准的判断！</p>
+<p class = "firstLineIndent">聂云闪避后并没有出手攻击，依然背着手站在原地。</p>
+<p class = "firstLineIndent">老三不在考虑其他，连续出拳，左勾拳右勾拳，膝撞肘击，完全放弃了防御全力进攻。</p>
+<p class = "firstLineIndent">然而“Miss”“Miss”“Miss”的字样不断从聂云头顶飘过，无一命中！</p>
+<p class = "firstLineIndent">聂云仅靠小范围腾挪就完全闪避了老三迅疾如雷的连续攻击，连位置都没有挪动几步。</p>
+<p class = "firstLineIndent">“呼呼……”老三有些气喘地放弃了无谓的进攻。老大看这个情况，并没有上前帮手，他算是看出来了，两人的身手何止差了一个档次，就算加上他也是白搭。</p>
+<p class = "firstLineIndent">“老……老板！你的速度实在太快了！我……我不是你的对手！”老三喘着气道。</p>
+<p class = "firstLineIndent">“我并不是速度比你快，只是反应超出你们太多，你在我眼里，慢如蜗牛！”</p>
+<p class = "firstLineIndent">大脑的反应速度和大脑的计算能力是呈正相关的，拥有整个机械虫军团作为外置大脑的聂云，计算力已经得到千万倍的提升，相应的，反应速度也是水涨船高。</p>
+<p class = "firstLineIndent">理论上来说，如果不是身体素质跟不上自己的大脑，他能够用0.1S画出一幅清明上河图！</p>
+<p class = "firstLineIndent">“可是老板，我们穿着战甲，就算能够闪避老三的攻击，可我们站着让您打，您也破不了防啊？这样是不是算平局？平局的话……是不是赢一半？”老大这时候贼兮兮插嘴道。</p>
+<p class = "firstLineIndent">“嘿！你算得倒是精明，不过我答应了，平局赢一半！”聂云很大方地说道。</p>
+<p class = "firstLineIndent">“噢耶！”两人欢呼起来，打一架就拿到500万，这买卖做的太值了啊！</p>
+<p class = "firstLineIndent">然而下一刻，他们的欢呼戛然而止。</p>
+<p class = "firstLineIndent">“可是，谁说……这场战斗是平局了？”聂云戏谑道。</p>
+<p class = "firstLineIndent">同时，他右手平伸而出，银色的液态机械虫如龙卷一般将聂云的手臂卷入，然后蔓延全身。</p>
+<p class = "firstLineIndent">下一刻，两人面前的聂云已经着装完毕，一套款式和他们身上战甲一模一样的黄金战甲将聂云包裹，他整个人就像是一具金甲战神一般，带给两人莫大的压迫感。</p>
+<p class = "firstLineIndent">“这……这是！”两人齐齐退后一步。</p>
+<p class = "firstLineIndent">“你们难道认为，我会是那种没有装备的‘野生Boss’？嘿嘿！”金色面罩下，传来聂云的冷笑。</p>
+<p class = "firstLineIndent">“等……等等！可就算是您装备了勇者之心战甲，它也没办法增幅肉体力量啊？您依然破不了我们的防御！”老大脑筋活，立刻反应过来。</p>
+<p class = "firstLineIndent">是啊！拿拳头砸和戴上金属手套砸，效果没区别啊！老三反应过来也是松了口气。</p>
+<p class = "firstLineIndent">“你们穿上不行，不代表我穿上不行哦！”</p>
+<p class = "firstLineIndent">聂云话音刚落，下一刻，他便脚下一瞪，瞬间踩出一个大坑，身体闪电般来到两人面前。</p>
+<p class = "firstLineIndent">“砰砰”两声，双拳在两人毫无反应之际便同时砸在两人小腹，“勇者之心”战甲中拳位置泛起诡异的涟漪，可是最终没能抗下千斤巨力，战甲以肉眼可见的速度变形，然后“嗖嗖！”两声，两人已经如炮弹一般被击飞了出去。</p>
+<p class = "firstLineIndent">“轰隆！”两人的身体砸在数十米外的山崖壁上，顿时碎石乱飞，砸出两个大坑。</p>
+<p class = "firstLineIndent">好半晌，两人艰难地从碎石中将自己拔了出来，捂着腹部脸色惨白，五脏六腑像是搅在一起一般。</p>
+<p class = "firstLineIndent">“老……老板！您的战甲明明和我们的构造一模一样，可为什么您的战甲能够增幅力量？！”老大捂着小腹难以置信道。</p>
+<p class = "firstLineIndent">聂云双手抱胸，抬起头淡淡道，“很简单，因为我是黄金，而你们不过是黑铁！”</p>
+<p class = "firstLineIndent">老大：“……”</p>
+<p class = "firstLineIndent">老三：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+
+<h2>第五十二章 密语</h2>
+<p class = "firstLineIndent">“咳咳！老板，您是说这套黄金战甲和我们的不一样？”老大想尽量用正常一点的思维来解读老板这句话。</p>
+<p class = "firstLineIndent">然而下一刻他的希望破灭。</p>
+<p class = "firstLineIndent">聂云抬起手指摇了摇，“不不不，战甲除了颜色，其他的没有任何区别，只是因为我能够自如地控制它，而你们不行罢了！</p>
+<p class = "firstLineIndent">理论上来说，只要我接管控制了你们身上的战甲，你们就会变成我的提线木偶，照样能够爆发出我这样的速度和力量！”</p>
+<p class = "firstLineIndent">闻言，两兄弟对视一眼，苦笑不已。</p>
+<p class = "firstLineIndent">合着这个任务根本就是没法完成的啊！怪不得，怪不得任务惩罚不是“你懂得”！我们果然还是太天真了啊！</p>
+<p class = "firstLineIndent">聂云嘴角一翘，要的就是这种效果，老板都能被你们打败了，那你们的尾巴岂不是要翘到天上去了？</p>
+<p class = "firstLineIndent">驭下之道，恩威并施！</p>
+<p class = "firstLineIndent">两兄弟挣扎了几下没能爬起来，聂云刚刚那一下可是实打实的，他们已经全身脱力了。</p>
+<p class = "firstLineIndent">聂云看着两人的样子，却满意地点点头，丝毫没有把他们打成这样的愧疚。</p>
+<p class = "firstLineIndent">“现在，让我来告诉你们这套战甲的第二个功能！”</p>
+<p class = "firstLineIndent">两人闻言一愣，接着就感觉身体四处似乎被十几根细长的针扎入，微微刺痛。</p>
+<p class = "firstLineIndent">“这……这是什么？！”两人大惊失色。</p>
+<p class = "firstLineIndent">任谁被瞬间打了十几针，恐怕都没法淡定。</p>
+<p class = "firstLineIndent">然而片刻过后，他们就感觉浑身传来一阵酥麻的感觉，痛苦瞬间减轻了不少，连先前撞击造成的淤青和挫伤似乎都有所好转。</p>
+<p class = "firstLineIndent">半分钟后，他们体内的针被战甲缩回，两个人就像是获得了新生一般，抖抖身上的碎石竟然直接就站了起来。</p>
+<p class = "firstLineIndent">两人不可思议地活动了一下身体，竟完全没有受过伤的感觉。</p>
+<p class = "firstLineIndent">“这……这是？！”两人眼中皆露出震惊。</p>
+<p class = "firstLineIndent">“你们猜的没错，这就是失传已久的金！针！刺！穴！”聂云一字一顿，说的煞有介事。</p>
+<p class = "firstLineIndent">两人：“……”</p>
+<p class = "firstLineIndent">我们什么时候就猜了啊！还有，谁会去猜这么玄乎的东西啊！</p>
+<p class = "firstLineIndent">“你们看到了，有了它，普通的伤势随时都能治愈，只要不是被砍掉脑袋或者刺穿心脏，你们就是不死的！</p>
+<p class = "firstLineIndent">别人或许能够一下打掉你10滴血，但是你的秒回速度是100血，你们知道这意味着什么吗？”</p>
+<p class = "firstLineIndent">两兄弟刚想回答，聂云却没给他们这个机会，话语不停道：“没错，这意味着你们就是打不死的小强！”</p>
+<p class = "firstLineIndent">两人：“……”</p>
+<p class = "firstLineIndent">能不能容我们换一个上档次一点的比喻？比如吸血鬼什么的这种听起来拉风一点的？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">事情自然没有聂云说的那么玄乎，所谓的“金针刺穴”，实际上是聂云学习了互联网上海量知识之后，灵感激发，将机械虫的能力首次应用到了另一个崭新的领域——生物医疗领域！</p>
+<p class = "firstLineIndent">爱因斯坦说过，“未来科学无非是继续向宏观世界和微观世界进军。”</p>
+<p class = "firstLineIndent">而在微观侧的科学技术中，纳米机器人领域一直被认为是真正的史诗级别科技革新！</p>
+<p class = "firstLineIndent">早在1959年，诺贝尔奖得主、理论物理学家理查德-费曼率先提出纳米技术的设想，他在一次题目为《在物质底层有大量的空间》的演讲中提出：“人类会将纳米级微型机器人用于医疗！”</p>
+<p class = "firstLineIndent">想象一下，数以百万的微观机器人听从程序指挥，在人体内自由移动，它们能够使用分子甚至单个原子作为零件，在非常细小的空间构建物质或者改变细胞结构！</p>
+<p class = "firstLineIndent">这意味着，人类将能够利用这些微观机器人治愈癌症！</p>
+<p class = "firstLineIndent">这还意味着，人类的寿命可以持续数百年！</p>
+<p class = "firstLineIndent">伤口将在数秒内愈合，所有的病毒也无法对人体造成伤害！任何疾病将不复存在！</p>
+<p class = "firstLineIndent">换句话说——微观机器人能够“治愈整个世界”！</p>
+<p class = "firstLineIndent">然而，微观机器人的前途是光明的，但是道路依然曲折，尽管进入21世纪后，生命科学蓬勃发展，纳米技术与生物医学结合而形成的纳米生物学渐渐受到重视，但是离成功制造出这样的纳米机器人仍然有着不短的距离。</p>
+<p class = "firstLineIndent">但机械虫的存在让聂云瞬间打破了这一技术壁垒。</p>
+<p class = "firstLineIndent">论体积，机械虫是比纳米机器人更微小的存在！</p>
+<p class = "firstLineIndent">论操控性，聂云对机械虫的掌控如臂使指！</p>
+<p class = "firstLineIndent">论两者能力高低，这还用论？</p>
+<p class = "firstLineIndent">于是，微观机器人医疗技术，很自然地被聂云正式攻破！而且未来的发展势必比纳米机器人更为远大！</p>
+<p class = "firstLineIndent">尽管聂云还未对生物学进行深入的研究，因此离延长人类寿命这种技术还有一定的距离，不过就目前而言，解决一些肌肉、皮肤、骨骼的伤势，他还是能够轻松办到的。</p>
+<p class = "firstLineIndent">就算是骨断筋折，对他来说亦不过是片刻便可治愈！</p>
+<p class = "firstLineIndent">肿瘤和癌症就更简单了，癌细胞统统干掉就好，管杀不管埋！</p>
+<p class = "firstLineIndent">换言之，从现在开始，请叫他聂神医！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老板，这么说，从现在开始，我们就有两个杀手锏了？”</p>
+<p class = "firstLineIndent">老大的身体恢复后终于能够好好消化一下聂云刚刚话中的信息。他稍稍想了想便反应过来道。</p>
+<p class = "firstLineIndent">聂云心中暗暗对老大敏捷的思维点了个赞。</p>
+<p class = "firstLineIndent">“没错，你很聪明，除了强大的治疗能力，我刚刚已经给你们指明了另一个杀手锏！”</p>
+<p class = "firstLineIndent">“还有什么杀手锏？我怎么听不明白？”老三摸摸脑袋疑惑道。</p>
+<p class = "firstLineIndent">“笨蛋，老板刚刚说，只要老板亲自控制战甲，我们也能发挥出老板刚刚那样的速度和力量！</p>
+<p class = "firstLineIndent">这就是说，只要遇到对付不了的敌人，我们完全可以呼叫支援啊！”</p>
+<p class = "firstLineIndent">聂云笑着点点头，老三这才反应过来，“对啊！我怎么就没想到！这岂不是说，我们既有无敌的防御，还有强悍的攻击力？”</p>
+<p class = "firstLineIndent">“老板，那我们怎么才能在战斗中联系到您请求支援啊？”老大问。</p>
+<p class = "firstLineIndent">“很简单，我已经在你们的战甲中植入了一段密语，只要你们喊出这段密语，战甲就能自动通知我，我的意志就会降临！”</p>
+<p class = "firstLineIndent">“哦，那是什么密语？”</p>
+<p class = "firstLineIndent">聂云咳嗽了一下，清了清嗓子，脸色郑重。</p>
+<p class = "firstLineIndent">“万能的老板啊！请赐予我力量吧！”</p>
+<p class = "firstLineIndent">老大：“……”</p>
+<p class = "firstLineIndent">老三：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+
+<h2>第五十三章 恶意</h2>
+<p class = "firstLineIndent">东南军区司令部。</p>
+<p class = "firstLineIndent">“是！是首长！我一定竭尽全力，完成组织交给我的任务！请首长放心！”</p>
+<p class = "firstLineIndent">胡军长放下手中的红机电话，这才长长地出了一口气。</p>
+<p class = "firstLineIndent">“老胡，怎么样，首长同意了吗？”一旁的方教授有些急切地问。</p>
+<p class = "firstLineIndent">“嗯，首长已经同意这次的交易，并且叮嘱我们一定要好好维护好这条渠道，暂时不要做出试探对方底细的行为，一切以得到核资源为第一优先！我们东南军区拥有对此事的自主权！”</p>
+<p class = "firstLineIndent">“好！真是太好了！”方教授有些兴奋。</p>
+<p class = "firstLineIndent">“嗯，不仅如此，他们的订单还能激活我们的几家军工企业，并且消耗掉我们一大批替换下来的退役装备，这对我们来说，也是大大地有利可图啊！老方，这次你可是立了一大功了！”</p>
+<p class = "firstLineIndent">“嘿嘿，运气，都是运气！唉对了，我可要提醒你，对楚氏集团，你可得仔细应对，这条渠道能不能做成，能做成什么样，八九成要靠她们！”</p>
+<p class = "firstLineIndent">“嗯？楚氏集团有那么重要？还八九成？一个代言人能有多大的决策权，最终还不是他们背后的势力说了算！”胡军长有些不以为然。</p>
+<p class = "firstLineIndent">楚氏在他看来，不过是一个对方摆在台面上的代理罢了，就像很多明星代言人，广告怎么拍，还不是得看导演？</p>
+<p class = "firstLineIndent">“哼哼！之前的交易我可是全程在场，你知道接头的那人是怎么说的吗？”方教授卖了个关子。</p>
+<p class = "firstLineIndent">“怎么说？”</p>
+<p class = "firstLineIndent">“他说，楚潇潇的话就是他的话，就算把这些货全送人了，他也没意见！”</p>
+<p class = "firstLineIndent">“嘶！他真这么说？”胡军长瞪大眼睛，几十亿的东西，说送就送？</p>
+<p class = "firstLineIndent">“那还能有假，而且我看接头那人，分明年纪不大，只是个少年，却行事神秘，十分低调，开的还是一艘破渔船！</p>
+<p class = "firstLineIndent">虽然楚氏说他只是供货商的代言人，但我看着却不像，瞧他那说话的语气，随意的态度，就好像他就是这些货的所有者一般，拥有随意处置的权利！”方教授人老成精，眼光老辣！</p>
+<p class = "firstLineIndent">“嘶！古怪！确实古怪，国外的国家势力，为什么会找一个我们国家的人做中间人，还给他那么大的自主权？想不通啊！”</p>
+<p class = "firstLineIndent">“你想那么多没用，先把第一笔单子做下来，如果对方后续真的还能提供货物，你管他是为什么呢！等合作稳定了，再找机会查查对方的底细就好了！”</p>
+<p class = "firstLineIndent">“嗯，说的也是，我这就让手底下的人列出一份交易清单交给楚氏！对楚氏的要求，我也会尽快安排解决！”</p>
+<p class = "firstLineIndent">“嗯，那就好！嘿嘿，老胡啊，你看，我帮你这么大忙，还立了这么大功劳，是不是得意思意思啊？”</p>
+<p class = "firstLineIndent">“嗯，你想要什么？”</p>
+<p class = "firstLineIndent">“我们研究院要5克高浓缩铀！”</p>
+<p class = "firstLineIndent">“嗯……这个要求倒也不算过分，行！到时候分配的时候，我会交代下去的！”</p>
+<p class = "firstLineIndent">“好！老胡你够意思！那就这么说定了！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">楚潇潇十分惬意地睡到了日上三竿，是的，今天她又逃课了。</p>
+<p class = "firstLineIndent">穿着睡衣，她打着哈欠来到客厅，就见楚凤正坐在沙发上看财经新闻，她很嘚瑟地打了个招呼，“妈，早啊！”</p>
+<p class = "firstLineIndent">楚凤看她这幅样子，无奈的翻了个白眼，愿赌服输，她算是管不了这丫头了！</p>
+<p class = "firstLineIndent">楚潇潇得意的坐到楚凤身边，拿起桌上的一个苹果啃了起来。</p>
+<p class = "firstLineIndent">“本台最新收到的消息，昨夜十一点左右，日耀集团旗下一艘万吨级货轮水瓶号在我省东部公海海域失踪，所幸没有人员伤亡，所有船员已被救援船只收容。</p>
+<p class = "firstLineIndent">目前事件发生的原因正在进一步调查中，受此影响，日耀集团股价在今日开盘后跌停，据估计，日耀集团此次事故中的损失将超过10亿软妹币……”</p>
+<p class = "firstLineIndent">电视上突然播报了一则新闻，然后画面一转，一艘海上救援船上，医护人员正在对几名船员检查伤势。</p>
+<p class = "firstLineIndent">其中有一名身穿白色船长服的人明显受到了什么惊吓，不停地说着胡话。</p>
+<p class = "firstLineIndent">“幽……幽灵船！是幽灵船！还有牛头马面！它是来接牛头马面回家的！他们根本就不是旅客！对了！我收的不是钱！是冥币！它们……它们也都消失不见了……”</p>
+<p class = "firstLineIndent">“呃……”楚潇潇嘴里还咬着一小块苹果，都忘记了咀嚼，小嘴张成O型。</p>
+<p class = "firstLineIndent">母女两目瞪口呆看着这一幕。</p>
+<p class = "firstLineIndent">两人对望一眼，然后齐齐噗嗤笑了出来。</p>
+<p class = "firstLineIndent">有什么比一大清早就看见仇人倒霉更让人开心的吗？</p>
+<p class = "firstLineIndent">有！那就是他更倒霉的时候！</p>
+<p class = "firstLineIndent">“妈，你说这日耀集团是不是坏事做多了，他怎么就能这么倒霉呢，咯咯！”</p>
+<p class = "firstLineIndent">楚凤笑了一会儿，然后正了正脸色，“虽然这对他们是个不小的打击，但他们家大业大，却还算不上伤筋动骨。</p>
+<p class = "firstLineIndent">不过这件事倒是奇怪了，幽灵船？船没了，可人都没事，这件事似乎有些古怪！”</p>
+<p class = "firstLineIndent">楚潇潇闻言心里突然一动。</p>
+<p class = "firstLineIndent">会不会是那个家伙？</p>
+<p class = "firstLineIndent">应该不会吧？他怎么可能办到？难不成又叫来了军舰？</p>
+<p class = "firstLineIndent">可是上次打击雇佣兵就算了，这次可是劫了一艘国内的货轮，哪个海军敢帮他做这种事？应该不太可能吧！</p>
+<p class = "firstLineIndent">那究竟是怎么回事呢？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">日曜集团大厦。</p>
+<p class = "firstLineIndent">“砰！”韩祥生的手重重拍在桌子上。</p>
+<p class = "firstLineIndent">“这到底是怎么回事！为什么水瓶号会无缘无故失踪！”</p>
+<p class = "firstLineIndent">他的身前，正站着日耀的副总裁。</p>
+<p class = "firstLineIndent">“董事长，事情还在调查，根据船员们的说法，很……很可能是遇到了‘幽灵船’！”中年的秃顶副总有些不确定地道。</p>
+<p class = "firstLineIndent">“放屁！这种话你也信？给我深入调查，一定要把这件事查清楚！海巡那边怎么说？”</p>
+<p class = "firstLineIndent">“他们说由于案发地点在公海，他们只能尽量在那一带搜索，但是不保证结果。”</p>
+<p class = "firstLineIndent">“哼！继续盯着，一有结果立刻汇报！这次水瓶号失踪，我们的损失怎么样？”</p>
+<p class = "firstLineIndent">“报告董事长，船只和货物的损失在5亿左右，另外集团股价大跌，让我们的市值蒸发了近5亿。除此之外，船上的上万吨钢铁无法及时交货，按照合约，我们需要赔偿买方一大笔违约金，而且这件事对我们的声誉也造成了一定的影响！”</p>
+<p class = "firstLineIndent">“立刻让公关部门紧急辟谣，恢复市场信心，必要时，可以投入资金稳定股价！买方那边，该怎么赔就怎么赔，挽回声誉！”</p>
+<p class = "firstLineIndent">“是，董事长！”</p>
+<p class = "firstLineIndent">副总出门退了下去。</p>
+<p class = "firstLineIndent">韩祥生正皱眉思索这件事的后续影响，这时候，电话响了起来。</p>
+<p class = "firstLineIndent">他接过来一看，神色一动，是闽省海关关长！</p>
+<p class = "firstLineIndent">“喂！吴关长您好！”</p>
+<p class = "firstLineIndent">“老韩啊！你这次可是捅了大篓子了！”吴关长一上来就是这么一句，把韩祥生吓了一跳。</p>
+<p class = "firstLineIndent">“吴关长，怎么回事？”他急问。</p>
+<p class = "firstLineIndent">“今天，上头让我立刻放开对楚氏集团的进出口资质限制，并且今后，只要是楚氏集团的业务，海关必须予以全力配合，不得有任何刁难！”</p>
+<p class = "firstLineIndent">“什么！”韩祥生惊呆了。</p>
+<p class = "firstLineIndent">吴关长已经是闽省海关的一把手，这再上头……</p>
+<p class = "firstLineIndent">“吴关长，知道是谁下的命令吗？”他小心翼翼地问。</p>
+<p class = "firstLineIndent">“这件事上头也并没有明说，不过似乎和军方有些关系！”</p>
+<p class = "firstLineIndent">军方！楚氏果然和军方有关联！韩祥生心中哀叹，真是怕什么来什么！</p>
+<p class = "firstLineIndent">“老韩啊，为了这事儿，我可是被上头训责了一顿，接下来你还是小心行事吧，这件事我不会再插手了！”</p>
+<p class = "firstLineIndent">挂掉电话，韩祥生眉头紧皱。</p>
+<p class = "firstLineIndent">水瓶号的事情还没平息，楚氏集团背后竟又出现军方的势力，真是一波未平一波又起！</p>
+<p class = "firstLineIndent">他心中隐隐有些不安，似乎有一双充满了恶意的眼睛正在背后盯着日耀……</p>
+
+<h2>第五十四章 中风</h2>
+<p class = "firstLineIndent">军方的效率很高，对交易也十分迫切，于是第二天，聂云就收到了楚潇潇打来的电话。</p>
+<p class = "firstLineIndent">“喂，聂云，你的货我们已经找到买家了，是兔子国东南军区，他们发了一份货物清单，你可以过来挑选你们需要的购买，我被我妈禁足了，要不你……你来我家一趟？正好，我妈也想见见你！”</p>
+<p class = "firstLineIndent">“嗯？到你家？不是发份电子邮件就可以了吗？”聂云傻乎乎问了一句，还要跑过去，效率多低啊！</p>
+<p class = "firstLineIndent">“问题是……你有邮箱吗？”楚潇潇的语气冷了下来。</p>
+<p class = "firstLineIndent">呃，这是被鄙视了吗？也难怪，若是以前，还处在八十年代渔民生活状态下的聂云，是绝对不可能有邮箱这么“先进”的东西的。</p>
+<p class = "firstLineIndent">“我……”聂云刚想说有，不过幸好，察觉到周围骤降的温度，他立刻改口，“没有……好吧，那我去一趟，你把你们家地址告诉我！”</p>
+<p class = "firstLineIndent">“嗯！”不知道是不是聂云的错觉，随着这个嗯字出口，瞬间春回大地。</p>
+<p class = "firstLineIndent">挂了电话，聂云挠挠头，想了想，顺手给“拼命二郎”布置了个任务，便乘坐海狼号出海了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海鹰镇南湾码头渔货市场。</p>
+<p class = "firstLineIndent">“哟呵！老刘，你们今天收获不错啊！这条马鲛得有七八公斤了吧？好家伙！”</p>
+<p class = "firstLineIndent">刘叔依然习惯性地叼着他的烟斗，闻言大笑道：“哈哈！这是我家那小子的收获，我老啦，可捞不动啦！”</p>
+<p class = "firstLineIndent">“好小子！成，这条鱼我给你算100，算是恭喜你后继有人，连其他的加起来一共370！”</p>
+<p class = "firstLineIndent">“好，就这么办，成交！”</p>
+<p class = "firstLineIndent">买卖做成，刘叔正准备接钱呢，突然肩膀被人一推，踉跄了两步差点摔倒。</p>
+<p class = "firstLineIndent">接着那钱便被旁边伸过来的一只手直接抢了过去。</p>
+<p class = "firstLineIndent">刘叔转头对那人怒目而视，却发现那人脸上一刀狰狞的刀疤，顿时怒火一滞。</p>
+<p class = "firstLineIndent">这人外号“刀疤”，是这一片的混混头子，简单来说，就是收保护费的黑涩会。</p>
+<p class = "firstLineIndent">码头，特别是这种偏僻的小码头，向来是鱼龙混杂，滋生黑暗的区域，南湾自然也不例外。</p>
+<p class = "firstLineIndent">刀疤不仅手下有几十号弟兄，而且为人心狠手辣。</p>
+<p class = "firstLineIndent">刘叔听说前不久，隔街的一人，就因为与刀疤发生口角，招惹到了他，第二天就被打残，最后不得不黯然离开这里，几乎所有在这里讨生活的渔民都不愿惹上这种人。</p>
+<p class = "firstLineIndent">“刀疤，你这是什么意思？这个月的保护费我可是交了的！”刘叔强压住怒火问道。</p>
+<p class = "firstLineIndent">“嘿嘿！不巧，这个月的保护费又涨了，加上你这些啊！马马虎虎刚刚够！”刀疤裂开嘴，露出满口黄牙，拍着手上的几张钞票阴笑道。</p>
+<p class = "firstLineIndent">周围的人见此情形，包括刚刚的店老板，都远远围观不敢上前，眼中大多是敢怒不敢言。</p>
+<p class = "firstLineIndent">“你！”刘叔目中喷火，不过想想自家的小子，还是愤愤地暗骂一声晦气，转身欲走。</p>
+<p class = "firstLineIndent">“等等！”刀疤却叫住了刘叔。</p>
+<p class = "firstLineIndent">刘叔停下脚步，看向刀疤。</p>
+<p class = "firstLineIndent">刀疤眯起眼睛，“听说聂云那小子和你们家的关系走的很近？”</p>
+<p class = "firstLineIndent">刘叔闻言一愣，聂云？</p>
+<p class = "firstLineIndent">“是又如何？”</p>
+<p class = "firstLineIndent">“很好，我有点事情找他商量商量，你知道他在哪儿吗？”</p>
+<p class = "firstLineIndent">“嗯？”刘叔一惊，听刀疤的语气，明显是不怀好意啊！</p>
+<p class = "firstLineIndent">刘叔面色变幻，最后还是陪着笑道，“刀疤，聂云他还只是个孩子，如果有什么得罪的地方，我替他……”</p>
+<p class = "firstLineIndent">刘叔话还没说完，刀疤便眼色一冷，“我他么让你废话了吗？你只需要告诉我，他！在！哪！儿！”。</p>
+<p class = "firstLineIndent">旁边一个小弟很有眼力地上前直接就一拳打在刘叔的脸上。“老家伙！刀疤哥让你废话了吗！”</p>
+<p class = "firstLineIndent">刘叔毕竟年纪大了，被一拳打得跌倒在地，嘴角溢血，烟斗也飞了出去，落在不远处直接摔成两节。</p>
+<p class = "firstLineIndent">“咳咳！”刘叔倒在地上咳嗽了两声，一时却是爬不起来了。</p>
+<p class = "firstLineIndent">“爸！”不远处传来一个少年惊怒交加的声音。</p>
+<p class = "firstLineIndent">只见一个秃顶少年飞快奔来，却正是刘叔的儿子刘小牛！</p>
+<p class = "firstLineIndent">他来到刘叔身边，检查了一下刘叔的伤势，见自己父亲嘴角流血的样子，眼珠子都红了，立刻就要扑过去和刀疤他们拼命。</p>
+<p class = "firstLineIndent">可手臂上一紧，转头一看，却是刘叔死死拉住他，对他摇了摇头。</p>
+<p class = "firstLineIndent">“老家伙，别说我不给你机会，说出聂云那个小子的下落，否则……”</p>
+<p class = "firstLineIndent">“否则怎样？”人群中突然传出一个冰冷的声音。</p>
+<p class = "firstLineIndent">众人一愣，便看到一个少年分开人群走了出来。</p>
+<p class = "firstLineIndent">“聂云！”刘家父子惊呼。</p>
+<p class = "firstLineIndent">刀疤闻言眼睛一亮，“你就是聂云？”</p>
+<p class = "firstLineIndent">刘叔却是急了，他挣扎着想要坐起来，口中喊到：“刀疤，你想干什么！他还是个孩子！”</p>
+<p class = "firstLineIndent">聂云看了看刘叔脸上的伤，然后见到不远处地上被摔成两半的烟斗，眼睛微微眯了起来。</p>
+<p class = "firstLineIndent">他上前两步，旁若无人地捡起两截破碎的烟斗，很仔细的擦干净上面沾染的灰尘，然后走到刘叔身边。</p>
+<p class = "firstLineIndent">其他人看不到的是，聂云握着烟斗的手，有隐晦的银光一闪而过。</p>
+<p class = "firstLineIndent">“刘叔，别激动，烟斗拿好，我有分寸！”聂云将烟斗塞进刘叔手里。</p>
+<p class = "firstLineIndent">刘叔急了，刚想说话，突然表情一怔，低头看向手中的烟斗。</p>
+<p class = "firstLineIndent">只见原本摔成两半的烟斗此时正完好无损地躺在自己的手心，哪里还有一点破损的痕迹。</p>
+<p class = "firstLineIndent">“这……”刘叔当场愣住了。</p>
+<p class = "firstLineIndent">聂云此时已经来到刀疤一行人面前，“你找我？”</p>
+<p class = "firstLineIndent">“呵，你小子倒是有种，我有点事问你，和我们走一趟吧！”刀疤看了两眼聂云，冷笑道。</p>
+<p class = "firstLineIndent">“好！”聂云答应的很爽快。</p>
+<p class = "firstLineIndent">“嗯？”这倒是出乎刀疤的预料，想不到聂云这么配合，他原先还想等聂云反抗，好当场给他一个下马威。</p>
+<p class = "firstLineIndent">“那就走吧！”</p>
+<p class = "firstLineIndent">“等等，你还没回答我的问题呢？”</p>
+<p class = "firstLineIndent">“嗯？什么问题？”刀疤微微皱眉。</p>
+<p class = "firstLineIndent">“你刚刚让刘叔说出我的下落，否则你就怎样？”</p>
+<p class = "firstLineIndent">刀疤看着面前这个脸色淡然的少年，不知为何竟从他身上感受到一种危险的感觉。</p>
+<p class = "firstLineIndent">他微微眯起眼，对手下使了个眼色，七八人当即将聂云半包围起来。</p>
+<p class = "firstLineIndent">“嘿！若不说，自然是打残了！小子，我讨厌别人废话，看来需要先告诉你我刀疤的规矩，给我送他点见面礼！”</p>
+<p class = "firstLineIndent">刀疤的手下登时狞笑着围上来。</p>
+<p class = "firstLineIndent">“聂云，我来帮你！”秃子不知何时竟来到聂云身边，虽然眼中有几分紧张，但依然勇敢的站了出来。</p>
+<p class = "firstLineIndent">聂云看了眼秃子笑了笑。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">一分钟后。</p>
+<p class = "firstLineIndent">所有人看着满地哀嚎的刀疤手下们，眼中露出无比的愕然。包括全程几乎就在打酱油的秃子也是一个表情。</p>
+<p class = "firstLineIndent">靠！我们刚刚看到了什么？武林高手啊！</p>
+<p class = "firstLineIndent">刘叔疑惑地看着场上毫发无损的聂云，才几天不见，这个自己看着长大的孩子却变得自己都要认不出来了。</p>
+<p class = "firstLineIndent">踢到铁板了！刀疤脸上浮现冷汗。</p>
+<p class = "firstLineIndent">“小……小兄弟，我觉得，这里面可能有些误会，其实我们就是找你问个问题，没……没有恶意的。”刀疤退后一步，挤出一个笑容道。</p>
+<p class = "firstLineIndent">聂云缓缓朝他走去，“是嘛？那现在，这误会可是闹大了！”</p>
+<p class = "firstLineIndent">刀疤眼见聂云走到他身前，突然眼中凶光一闪，竟从怀里掏出一把匕首，朝着聂云当胸刺下！</p>
+<p class = "firstLineIndent">“聂云小心！”刘家父子惊呼！</p>
+<p class = "firstLineIndent">聂云只是随意转了个身，让过匕首，眨眼便到了刀疤身后，一手按上了他的肩膀。</p>
+<p class = "firstLineIndent">刀疤刚想转身挥砍，肩膀突然像是被针扎了一下，接着手臂一麻，竟直接失去知觉。</p>
+<p class = "firstLineIndent">“铛啷”匕首掉落，刀疤的右手也软啪啪地垂在身侧。</p>
+<p class = "firstLineIndent">刀疤惊恐地努力想抬起右手，可不论如何努力，都无法做到这样一个简单的动作，似乎这只手根本就不存在一般！</p>
+<p class = "firstLineIndent">“你……你对我做了什么！”刀疤惊恐地对聂云吼道。</p>
+<p class = "firstLineIndent">“很明显啊，你中风了！”聂云一脸惋惜地看着他。</p>
+<p class = "firstLineIndent">“中……中风！？”所有人全都愕然。</p>
+
+<h2>第五十五章 舍身</h2>
+<p class = "firstLineIndent">中风，的确有可能引起偏瘫，不过刀疤自然不是真的中风了。</p>
+<p class = "firstLineIndent">原因很简单，微观机器人即然可以用来做无创手术，治愈几乎任何疾病，自然也能用来伤人于无形！</p>
+<p class = "firstLineIndent">聂云对刀疤做的事情其实也很简单，只是将他手臂上的主干神经切断，大脑神经信号无法传递到手臂上，这条手臂自然是废了。</p>
+<p class = "firstLineIndent">没有血肉横飞，没有骨断筋折，但是这种神经性损伤比起骨肉受创更为狠辣！</p>
+<p class = "firstLineIndent">以目前的医疗条件，根本无法治愈这种神经断裂，就算找最好的医生也于事无补，除非聂云大发慈悲为刀疤接回神经，否则很快，刀疤的手臂就会因为长期没有锻炼慢慢萎缩，比直接残废还要凄惨。</p>
+<p class = "firstLineIndent">你不是很喜欢打残别人吗？那就也尝尝残废的滋味吧！</p>
+<p class = "firstLineIndent">聂云向来就不是个好脾气的人，特别是刘叔对他来说，与亲人无异，刀疤这是在动聂云的逆鳞！</p>
+<p class = "firstLineIndent">“你……你说什么！我怎么可能好好的就中风了！”刀疤恐惧地叫道。</p>
+<p class = "firstLineIndent">这诡异的一幕实在是让他没法不恐惧，聂云现在在他眼中已经和恶魔无异。</p>
+<p class = "firstLineIndent">“谁知道呢，也许是你昨天海风吹多了？”聂云摊摊手无奈道。</p>
+<p class = "firstLineIndent">啥？海风吹多了就中风了？</p>
+<p class = "firstLineIndent">围观的众人眼神古怪，却看的十分解气，众人之前是害怕遭到报复，所以敢怒不敢言，此时见刀疤倒霉，心中大是快慰，有些人看向聂云的眼神都带着崇拜了！</p>
+<p class = "firstLineIndent">聂云不再管一脸惊恐呆滞的刀疤，走到一群倒地的刀疤狗腿们面前。</p>
+<p class = "firstLineIndent">此时他们虽然爬不起来，可还是纷纷避瘟神一般挪动着身体远离聂云，眼神中尽是恐惧，连哀嚎呼痛声都不敢再发出，深怕引来聂云的注意。</p>
+<p class = "firstLineIndent">“你说说你们，啊！做混混就做混混，混口饭吃我可以不怪你们，可连老人家都打，还有没有人性？</p>
+<p class = "firstLineIndent">更别说那只烟斗可是刘婶留给刘叔的东西！说吧，刚刚是谁动的手？”</p>
+<p class = "firstLineIndent">场面顿时一静，然后所有人都齐齐看向一个小弟，那小弟满脸惊恐，“不……不，我不是故意的，我……是，是刀疤让我干的！不关我的事啊！”</p>
+<p class = "firstLineIndent">然而聂云并没有听他的理由，等他转身的时候，那名小弟的右手也是软趴趴地耷拉在肩膀上，正捂着手臂哀嚎痛哭。</p>
+<p class = "firstLineIndent">聂云并没有同情这种人，转过身摊摊手叹息了一句，“看看，又中风了一个，身体不好还要出来混，真是不懂得爱惜自己！”</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">聂云转头看向刀疤。</p>
+<p class = "firstLineIndent">刀疤恐惧地退了好几步，他现在哪里看不出来，自己的手臂就是被这少年弄废的，而且从少年冰冷的眼神中，他隐隐有种感觉，自己的手臂恐怕是别想在复原了！</p>
+<p class = "firstLineIndent">“噗通！”刀疤向聂云直接跪了下来，鼻涕眼泪齐下，“聂大哥！聂老大！求您放了我吧！我只是受人之托要把你带回去问个话而已，真没有打算对你动手啊！”</p>
+<p class = "firstLineIndent">“哦，那是谁让你来的？”聂云双手抱胸看着他。</p>
+<p class = "firstLineIndent">“我……我也不知道他是谁！两天前一个神秘人给我打了十万软妹币，然后说事成之后还会再给我十万，我发誓，说的句句都是真话！”</p>
+<p class = "firstLineIndent">“哦，还挺聪明，知道做隔离墙！”聂云冷笑。</p>
+<p class = "firstLineIndent">不过就算猜也能猜到，自己最近很安分，除了参与了楚氏和日耀集团的斗争外，很低调的在猥琐发育，能做这事儿的，除了日耀集团还能有谁？</p>
+<p class = "firstLineIndent">你说证据？老子做事还需要那玩意儿？</p>
+<p class = "firstLineIndent">不过他们是怎么知道我的存在的呢？</p>
+<p class = "firstLineIndent">楚氏那边不可能泄露，自己也从未出现在他们面前过，这事情倒是有点奇怪！</p>
+<p class = "firstLineIndent">然而，这对他来说也仅仅只是麻烦罢了，聂云现在压根儿就没把日耀集团放在眼里，既然他们又来找死，那就让他们死的更难看一点吧！</p>
+<p class = "firstLineIndent">韩奕若是知道仅仅因为自己的一次试探，就将韩家从十七层地狱推到了十八层，不知道会作何感想？</p>
+<p class = "firstLineIndent">“以后这一片，由我罩着了，如果让我知道谁敢在这里欺行霸市，收保护费，我不介意让他们再吹吹海风！”</p>
+<p class = "firstLineIndent">吹海风？混混们愣了一下才反应过来，连连点头答应，挣扎着连滚带爬逃走了，只有刀疤犹豫着小心地开口问道：“聂老大，那我这手……”</p>
+<p class = "firstLineIndent">“嗯？你看……我像是会治中风的老中医吗？”聂云眯起眼看向他。</p>
+<p class = "firstLineIndent">“不……不！我走，马上走！”刀疤惶恐地扭头便走，不过当他转过身之后，脸上却是一片怨毒之色。</p>
+<p class = "firstLineIndent">聂云！这事儿……没完！</p>
+<p class = "firstLineIndent">聂云看着刀疤离开的身影，嘴角勾起一抹冷笑。</p>
+<p class = "firstLineIndent">所有人都没有注意到，在刀疤的后衣领，有一点微不可查的银光一闪而逝……</p>
+<p class = "firstLineIndent">“云小子？是你吗？”这时，刘叔在秃子的搀扶下上前两步，有些迟疑着问。</p>
+<p class = "firstLineIndent">“刘叔，要不要我把裤子脱了，让你看看我屁股上的胎记，哈哈！”聂云哈哈笑着走过来扶住刘叔的另一边胳膊。</p>
+<p class = "firstLineIndent">“臭小子，这么大了还没个正形！”刘叔闻言也笑了起来，聂云还是那个云小子！</p>
+<p class = "firstLineIndent">“走！刘叔，我们回码头，您这伤可是有损您威猛的形象，得处理一下，另外我还有件东西给你们看。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后，刘家渔船。</p>
+<p class = "firstLineIndent">“咦？我怎么感觉这伤口一下就不疼了，你这是鸡蛋吗？灵丹妙药都没这么快吧？”刘叔愕然摸摸自己的嘴角，那里别说破口了，连乌青都没了！</p>
+<p class = "firstLineIndent">聂云收起热敷鸡蛋笑了笑，“我就说您是老当益壮，一点小伤而已，您这恢复速度可够快的！”</p>
+<p class = "firstLineIndent">刘叔翻了个白眼，不过也没深究，他看得出来，聂云这次回来，身上的秘密可不少。</p>
+<p class = "firstLineIndent">“聂云，你这家伙失踪了几天，怎么回来就变成武林高手了？是不是流落荒岛，然后得了什么武功秘籍了啊！</p>
+<p class = "firstLineIndent">哇塞！刚刚他们七八个人，却连你的衣角都碰不到，太他么帅了！</p>
+<p class = "firstLineIndent">还有还有，刚刚那种让别人胳膊动不了的是不是传说中的点穴手？原来这点穴还能光点胳膊的啊！唉，能不能教教我？拜师也行啊！”</p>
+<p class = "firstLineIndent">秃子一脸谄媚地凑过来喋喋不休，哪里记得两人除了是死党，还是死对头。</p>
+<p class = "firstLineIndent">“你想学啊？不过我这功夫，你没法学，你多了样东西！”</p>
+<p class = "firstLineIndent">嗯？多了样东西？怎么台词好像有点不对啊？秃子疑惑了。</p>
+<p class = "firstLineIndent">师傅挑徒弟不都是要么差点根骨，要么差点诚心，我怎么还多了点东西呢？</p>
+<p class = "firstLineIndent">等等！莫非欲练此功……</p>
+<p class = "firstLineIndent">秃子瞬间想到小说中描写的一个可能，满脸惊恐地往后退，直到贴到墙角这才哆哆嗦嗦指着聂云。</p>
+<p class = "firstLineIndent">“你……你……你不会是自己宫了吧？！”</p>
+<p class = "firstLineIndent">聂云听得差点一口老血喷出去。</p>
+<p class = "firstLineIndent">你才宫了，你全家都宫了！</p>
+<p class = "firstLineIndent">呃，不过这话不能当着刘叔的面说出来，算了，我忍！</p>
+<p class = "firstLineIndent">他翻了个白眼，懒得去搭理他，转头对刘叔道：“刘叔，来，我给你们看样东西。”</p>
+<p class = "firstLineIndent">说着起身往甲板外走去。</p>
+<p class = "firstLineIndent">刘家父子疑惑的跟着他出去，举目四望，码头上除了来来往往的船只，就是一望无垠的大海了。</p>
+<p class = "firstLineIndent">“云小子，你要给我们看什么？东西呢？”刘叔疑惑道。</p>
+<p class = "firstLineIndent">“喏，不就在你们面前吗？”聂云朝旁边指了指。</p>
+<p class = "firstLineIndent">“嗯？”两父子朝那边看了看，除了一艘停泊在他们渔船边的大货轮，就没有其他东西了啊？</p>
+<p class = "firstLineIndent">“聂云你是说这艘船？”刘叔反应过来问。</p>
+<p class = "firstLineIndent">南湾属于小码头，最多也就能停泊千吨级的大船，他们旁边这艘就属于那种。</p>
+<p class = "firstLineIndent">因为海鹰镇货流原本就不大，所以平时这里也很难见到这样的大船，此时在一众渔船中，显得有些鹤立鸡群。</p>
+<p class = "firstLineIndent">刘叔看向那艘货轮时，眼神还带着一丝向往。</p>
+<p class = "firstLineIndent">“嗯，它是成江号，从今往后，这就是刘叔您的船了！”聂云笑嘻嘻地递过来一份船只转让协议，聂云已经签了名，所有材料都很齐全，只要刘叔在上面签了字，这艘船以后就属于他了。</p>
+<p class = "firstLineIndent">这自然是聂云命令机械虫用普通材料制造的新成江号，这次回来原本就想将它送给刘家父子。</p>
+<p class = "firstLineIndent">“什么？这……你……”刘叔震惊的说不出话来。</p>
+<p class = "firstLineIndent">“放心刘叔，这船不是偷的也不是抢的，是我买的！</p>
+<p class = "firstLineIndent">我知道您最大的愿望就是能有一艘大船，这艘成江号是两用船，想打渔了，就捞两网，累了，就走走货运。以后我可能会很少回来，有小牛他在一边帮手，我就能放心啦！</p>
+<p class = "firstLineIndent">唉，别忙着拒绝，您照顾我这么多年，就不许我孝敬您一回？您要是还认我这个云小子，就痛快收下！”</p>
+<p class = "firstLineIndent">刘叔张了张嘴，看到聂云坚定的眼神，最后眼睛有些湿润地哈哈笑道：“刘叔是那么矫情的人吗？你云小子就是我半个儿子，儿子孝敬老子东西，老子怎么有不收的道理！”</p>
+<p class = "firstLineIndent">聂云裂开嘴，跟着笑了起来……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云缓缓走出了码头，阳光照射在他略显黝黑的皮肤上，细看竟然有种莹莹的光泽。</p>
+<p class = "firstLineIndent">他停下脚步，低头看向自己的手，神奇的一幕出现了！</p>
+<p class = "firstLineIndent">他的手竟缓缓变得银白，最后通体化为一只白银之手，泛着金属的光泽，诡异至极！</p>
+<p class = "firstLineIndent">聂云摇头笑笑，随着与机械虫更加深入的融合，聂云本身也已经开始机械虫化，此时的他，已经完全不能被称为人类了！</p>
+<p class = "firstLineIndent">刚刚他对小牛说的也并非假话，欲练此功，先得舍身啊！</p>
+<p class = "firstLineIndent">舍弃了人类之躯，才能蜕变成他这样的生命体！</p>
+<p class = "firstLineIndent">将手恢复原状，聂云转过头看向刘家渔船，那里，刘家父子还在甲板伫立看着自己这边，聂云眼眶有些湿润地挥挥手，然后毅然转身大步离去，留下一个昂然的背影。</p>
+<p class = "firstLineIndent">“老爸，聂云这是要去哪儿？”</p>
+<p class = "firstLineIndent">“小牛，云小子已经是个男子汉了，他有自己的一片天地要去闯！放手让他去吧！迟早，你也会有这样的一天！”刘叔眼睛也有些湿润，却也有欣慰。</p>
+<p class = "firstLineIndent">刘小牛看着聂云的背影，不知为何，生出一股向往……</p>
+
+<h2>第五十六章 称呼</h2>
+<p class = "firstLineIndent">海鹰镇郊外一处废弃厂房中。</p>
+<p class = "firstLineIndent">“刀疤哥，怎……怎么办啊！我们这手要是恢复不了，这下半辈子就要成残废了啊！”那个被聂云同样废掉了一只手的小弟哭丧着脸对一脸阴沉的刀疤道。</p>
+<p class = "firstLineIndent">周围是或惶恐，或庆幸，或愤恨的狗腿们。</p>
+<p class = "firstLineIndent">他们刚刚去找了镇里的大夫，可以这种小地方的镇医院水平，连他们是神经受创都查不出来，更别提治疗了，无功而返的刀疤和那名小弟立刻陷入恐惧之中。</p>
+<p class = "firstLineIndent">“闭嘴！”刀疤此时也是惊慌不已，聂云的诡异手段让他心有余悸，可是他是个狠角色，自然不甘心下半辈子成为残废。</p>
+<p class = "firstLineIndent">“哼！镇子医院不行，我们就去市里医院，市里还不行，我们就去省里！如果还不行，哼！不是还有刘家那两人在吗！大不了拼了，把他们劫持做人质，不信那聂云不给我们医治！”刀疤脸上凶光一闪，脸上的刀疤越发狰狞。</p>
+<p class = "firstLineIndent">“啊！那不是还要招惹那个人，不……不好吧？”</p>
+<p class = "firstLineIndent">“怕什么！他再能打，也不过是一个人，这次出去的匆忙，连家伙都没带，他再厉害，能躲得过子弹吗！”</p>
+<p class = "firstLineIndent">“刀疤哥说的对！我们不能就这么算了！否则以后怎么在这一片混？”有人不愿放弃趴在渔民身上吸血的惬意日子，出口赞同。</p>
+<p class = "firstLineIndent">其他人也都点点头，跌落到谷底的士气终于重新恢复了一些。</p>
+<p class = "firstLineIndent">刀疤满意的看着这一幕，只要自己还有手下这些人，还有枪，就还有和聂云斗下去的本钱！</p>
+<p class = "firstLineIndent">然而，就在他开始考虑如何对刘家父子下手时，后脖子传来一股针扎一般的微微刺痛，接着整个人软软的瘫倒在地。</p>
+<p class = "firstLineIndent">“咦？刀疤哥，你怎么啦？”周围的小弟注意到异常，纷纷起身惊呼。</p>
+<p class = "firstLineIndent">“我……我这是怎么啦？我动不了了！这……这究竟是怎么回事？”</p>
+<p class = "firstLineIndent">刀疤现在只有一个脑袋能动，完全失去了对身体的控制，就像身体完全不存在一般。</p>
+<p class = "firstLineIndent">熟悉的感觉，熟悉的针扎一般的微微刺痛……</p>
+<p class = "firstLineIndent">他终于再次想起曾经被聂云支配的恐惧！</p>
+<p class = "firstLineIndent">“是……是那个人！他……他在我身上做了手脚！”刀疤惊恐地喊着。</p>
+<p class = "firstLineIndent">“快快！快去拿了家伙，把刘家那两人给我绑过来！快去！”刀疤立刻明白，这是他活下去的唯一希望，立刻尖叫命令，然而……</p>
+<p class = "firstLineIndent">“那……那家伙是魔鬼！他……他会妖术！”一众小弟们带着无比恐惧的眼神纷纷远离刀疤，就像是他身上有什么瘟疫一般。</p>
+<p class = "firstLineIndent">终于，第一个小弟承受不住这种压力，转身就跑出废弃厂房，其他人也都立刻做鸟兽散，生怕在这里多呆一刻，便会被那个魔鬼盯上。</p>
+<p class = "firstLineIndent">“不，你们不要走，我们还有机会的！不要……不，不要丢下我，来个人，帮帮我啊，不……”</p>
+<p class = "firstLineIndent">无边的恐惧无助淹没了刀疤！</p>
+<p class = "firstLineIndent">空荡荡的废弃厂房中，只剩下刀疤绝望的哀嚎……</p>
+<p class = "firstLineIndent">一只银色小蜘蛛从刀疤后脖处悄无声息地爬出，“哒哒哒”踩着细密的小碎步离开了这里……</p>
+<p class = "firstLineIndent">不久后，离厂房不远的马路边，聂云伸手打了辆出租车，上车前，一只银色小蜘蛛爬上了聂云的鞋子，然后诡异地融合了进去，随后这只脚也缩进出租车，随着车门“砰”的一声关上，出租车扬长而去……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">厦城市公安局。</p>
+<p class = "firstLineIndent">“你说什么？目标出现了！”刘国东一下站了起来！</p>
+<p class = "firstLineIndent">“是的局长，两个小时前，我们在南湾的线人发来消息，聂云出现，但是……发生了一些事情之后，目标消失！”</p>
+<p class = "firstLineIndent">“嗯？发生了什么事？”刘国东听出了手下的欲言又止。</p>
+<p class = "firstLineIndent">“是这样的，在聂云刚刚到达南湾时，有一伙儿当地的混混，由一个叫刀疤的领头，不知为何要带走聂云……”</p>
+<p class = "firstLineIndent">“什么！？”刘国东惊讶片刻，立刻脸色发黑。</p>
+<p class = "firstLineIndent">“聂云的事情，局里还有谁知道？”他刑侦经验丰富，稍稍一想便知消息泄露了。</p>
+<p class = "firstLineIndent">“除了我和局长您，我还汇报了副局长！”手下老老实实交代。</p>
+<p class = "firstLineIndent">“哼！马国良！”刘国东冷哼一声。对这里面的弯弯绕，哪里还想不明白！</p>
+<p class = "firstLineIndent">“你继续说！你说目标消失，是被那些人带走了？”</p>
+<p class = "firstLineIndent">“不……不是。”手下那人脸色有些古怪，稍稍斟酌了用词这才开口。</p>
+<p class = "firstLineIndent">“目标以一人之力将八九名混混全部打倒，疑似还弄残了两个，之后不久，便自己离开了码头！”</p>
+<p class = "firstLineIndent">什么？刘国东差点要以为自己听错了！</p>
+<p class = "firstLineIndent">一人之力？八九名混混？还弄残了俩？！你确定他不是李小龙？</p>
+<p class = "firstLineIndent">“等等，你说疑似弄残？什么意思？”刘国东皱眉问。</p>
+<p class = "firstLineIndent">“据目击者称，目标身手极高，几乎是毫发无损地解决了那些混混，并且还用了一种类似点穴的功夫，让刀疤和他的一名小弟右臂瘫软，疑似被废！”手下汇报的时候，语气中也带着难以掩饰的震惊。</p>
+<p class = "firstLineIndent">啥？点穴？你确定不是在写小说？</p>
+<p class = "firstLineIndent">“看来这个叫聂云的少年，不简单啊……”刘国东手指敲击桌面，眉头深锁。</p>
+<p class = "firstLineIndent">原本以为只是个线索，没想到似乎抓了条大鱼？</p>
+<p class = "firstLineIndent">“立刻请当地派出所，找到那些混混，获得他们的口供！我要详细的经过，还有，问出是谁让他们去找的聂云！</p>
+<p class = "firstLineIndent">另外，让南湾区域周边的警力配合，寻找聂云！找到后就以伤人罪名把他带回局里协助调查！告诉大家，尽量不要与对方发生冲突，按照高度危险目标对待！”</p>
+<p class = "firstLineIndent">“是，局长！”</p>
+<p class = "firstLineIndent">等手下领命出去，刘国东却还在思考这件事。</p>
+<p class = "firstLineIndent">“聂云……”</p>
+<p class = "firstLineIndent">他有种感觉，楚氏的案子，十有八九，他是一个关键人物！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">厦城，海景花园别墅区。</p>
+<p class = "firstLineIndent">“叮咚！”</p>
+<p class = "firstLineIndent">楚潇潇一听到门铃，立刻用最快的速度对着镜子看了看自己，尽管她一个小时内已经看过好几次。</p>
+<p class = "firstLineIndent">确认今天的自己十分完美，她才快走两步来到门口开门。</p>
+<p class = "firstLineIndent">楚凤好笑的看着这一幕，心中哀叹女大不中留了！</p>
+<p class = "firstLineIndent">“咔嗒！”门被打开，门口站着的果然是聂云，依然是那副牛仔裤和小背心的打扮，土土的让人连吐槽的欲望都没有，谁能看出来这家伙还是个亿万富翁？</p>
+<p class = "firstLineIndent">不过楚潇潇对聂云的我行我素早已习惯，也不在意，淡淡说了一句“来啦？进来吧！”</p>
+<p class = "firstLineIndent">然后高傲的仰起白皙的脖子，犹如一只等待人欣赏的白天鹅。</p>
+<p class = "firstLineIndent">聂云瞟了一眼，然后忍不住又瞟了一眼，然后再一眼……</p>
+<p class = "firstLineIndent">今天的楚潇潇一身粉色公主裙，耳朵上戴着水滴状的蓝色水晶耳环，清丽的容颜被衬托得越发娇艳，短裙下露出一双修长笔直的白皙大腿，晃得聂云有些眼花。</p>
+<p class = "firstLineIndent">楚潇潇看到聂云的眼神，不由嘴角一勾，露出胜利的微笑！</p>
+<p class = "firstLineIndent">聂云进了门，迎面走来一个中年妇人，眉眼与楚潇潇有些像，正看着他上下打量。</p>
+<p class = "firstLineIndent">眼神里有探寻，有好奇，还有一种丈母娘看女婿的审视。</p>
+<p class = "firstLineIndent">“聂云，这是我妈！”楚潇潇介绍道。</p>
+<p class = "firstLineIndent">聂云看着楚凤，嘴唇张了张，一时间竟不知该如何称呼了。</p>
+<p class = "firstLineIndent">叫伯母？</p>
+<p class = "firstLineIndent">听潇潇说老爹是跳窗下车，应该还没离婚，自己管老爹叫老爹，不能管老爹老婆叫伯母吧？这多不尊重人！</p>
+<p class = "firstLineIndent">“呃，妈！”</p>
+<p class = "firstLineIndent">场面有了瞬间的凝固。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">楚凤：“……”</p>
+
+<h2>第五十七章 傻瓜式操作</h2>
+<p class = "firstLineIndent">客厅中，三人坐在沙发上，气氛有些尴尬。</p>
+<p class = "firstLineIndent">聂云龇着牙捂着腰间的软肉，那里估计被楚潇潇掐紫了。</p>
+<p class = "firstLineIndent">“咳咳！”楚凤咳嗽了两声，率先打破了古怪的氛围。</p>
+<p class = "firstLineIndent">“他走之前给我写了封信，你的事情我都听他在信里说了，原本是想接你过来生活，不过现在看起来，你有自己的路要走，阿姨尊重你的选择！”楚凤看着聂云，眼中流露出一丝伤感。</p>
+<p class = "firstLineIndent">“嗯，谢谢楚……阿姨！我很感激你们的好意，不过我现在的确是抽不开身。”</p>
+<p class = "firstLineIndent">“抽不开身吗？嗯……我明白，不过为那种势力做事，你自己一定要注意自身的安全，国家之间的利益是没有人情可言的！”</p>
+<p class = "firstLineIndent">聂云一愣，然后反应过来，应该是核燃料的事情，让楚凤她们误以为自己是特工一类的职业，背后还有一个庞大的势力，而自己也是因此才无法脱离“组织”。</p>
+<p class = "firstLineIndent">这误会可闹大了！</p>
+<p class = "firstLineIndent">不过听出她话语中的关心，转头看了眼楚潇潇，见她也是一脸担心的样子，聂云心里有些温暖。</p>
+<p class = "firstLineIndent">“嗯，谢谢阿姨关心，其实你们大可不必担心，那里不像你们想象的那样，我很安全，我保证！”</p>
+<p class = "firstLineIndent">看到聂云不像说谎的样子，两人这才稍稍放心。</p>
+<p class = "firstLineIndent">“嗯，好吧，阿姨有些啰嗦了，这都中午了，我去做饭，你们先聊！”楚凤不经意瞥了眼楚潇潇，让后者脸颊微红。</p>
+<p class = "firstLineIndent">等楚凤的身影消失在厨房门口，客厅中只剩两个人，气氛顿时有些暧昧了。</p>
+<p class = "firstLineIndent">聂云看向楚潇潇。</p>
+<p class = "firstLineIndent">“聂云你还真是好运气，我妈可不经常下厨，那水平可是五星级的！连我平时都难得吃上一回！”楚潇潇装作很自然的找了个话茬。</p>
+<p class = "firstLineIndent">“嗯，看得出阿姨对我很好！”聂云点点头。</p>
+<p class = "firstLineIndent">“知道就好！”</p>
+<p class = "firstLineIndent">“潇潇。”聂云稍稍挪近了一点，眼神有些期待地看着她。</p>
+<p class = "firstLineIndent">“嗯？什……什么？”楚潇潇脸色微红地避开他的目光。</p>
+<p class = "firstLineIndent">聂云坐的有些近，她几乎都能闻到对方传来的男子气息。</p>
+<p class = "firstLineIndent">他想对自己说什么？如果是表白，我该怎么答应他？</p>
+<p class = "firstLineIndent">呃……这么想未免太没出息了，会不会太快了点？</p>
+<p class = "firstLineIndent">“清单呢？”聂云一脸期待。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">她眼角抽了抽，果然指望这家伙走言情路线是有些想多了！</p>
+<p class = "firstLineIndent">她气呼呼将旁边的一台平板电脑塞给他，冷冷道：“里面就是军方给的货物清单，你自己看！”</p>
+<p class = "firstLineIndent">说完双手抱胸扭过头不再理他。</p>
+<p class = "firstLineIndent">聂云有些奇怪的摸摸脑袋，不知道楚潇潇这是突然发的哪门子脾气。</p>
+<p class = "firstLineIndent">女人真是一种让人难以琢磨的生物！莫非是因为自己现在不是“人”的原因？</p>
+<p class = "firstLineIndent">机械虫：“……”（不，这是你单身十八年的原因！）</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云拿起手中的平板，用看的实在是太慢，被机械虫养叼了的聂云很不习惯这种低效率的操作。</p>
+<p class = "firstLineIndent">他假装从口袋中取出一个银色U盘，插入平板的外接端口。</p>
+<p class = "firstLineIndent">U盘内的机械虫立刻化为一道银色丝线沿着平板的内部电路飞快向存储硬件蔓延。</p>
+<p class = "firstLineIndent">楚潇潇原本都等着聂云开口问自己怎么操作呢，她可是记得聂云当时连卫星电话都不会用，没想到这家伙竟取出一个U盘接上了平板。</p>
+<p class = "firstLineIndent">“你还会用这东西？”楚潇潇顿时惊奇了。</p>
+<p class = "firstLineIndent">“呃，这个……我这两天报了个班突击学习了一下，其实也不难！”聂云随便找了个理由。</p>
+<p class = "firstLineIndent">你一个连电话都不会用的小白用两天就学会操作平板了？</p>
+<p class = "firstLineIndent">“什么班这么厉害？”她疑惑地问。</p>
+<p class = "firstLineIndent">“嗯……蓝翔！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">这时机械虫传来讯息，搞定！聂云的意识开始浏览清单。</p>
+<p class = "firstLineIndent">“啧啧，杀器！大杀器啊！</p>
+<p class = "firstLineIndent">虽说是对外销售型的设备武器，性能肯定是被阉割过，不过若不是军方认定我背后有一个国家级的势力，恐怕也不可能轻易将这些东西卖给我！这还真是歪打正着！”</p>
+<p class = "firstLineIndent">聂云兴奋地开始挑选自己需要的货物。</p>
+<p class = "firstLineIndent">“卫士2火箭炮，射程480千米，目前世界上射程最远的火箭炮，单枚火箭弹杀伤半径可达450米，100枚连带移动发射平台售价2000万软妹币，每一枚火箭弹售价10万软妹币！</p>
+<p class = "firstLineIndent">啧啧，便宜！买三套！正好加强一下我的远程攻击能力。”</p>
+<p class = "firstLineIndent">“C82A型护卫舰，集防空、反舰、反潜于一身，单舰综合作战能力突出，售价2亿8000万！</p>
+<p class = "firstLineIndent">好，就冲你是清单里唯一的军舰，我也得买了你啊！”</p>
+<p class = "firstLineIndent">“C802型反舰导弹（飞鱼），可以超音速超低空掠海飞行，隐蔽性强，突防能力优越，命中率极高，售价500万一枚！</p>
+<p class = "firstLineIndent">唔……以后海狼号可能会受到反舰导弹攻击，可以买回来借鉴借鉴，提升一下海狼号的反反舰导弹能力！先来10枚！”</p>
+<p class = "firstLineIndent">“FC1枭龙战斗机，全天候、单发、轻型多用途战斗机，兔子国唯一外售型三代战机，售价1亿2000万。</p>
+<p class = "firstLineIndent">嗯，这倒是提醒我了，我方空军力量薄弱啊！要是碰到空军岂不是只能挨打？虽然也能潜海，不过当缩头乌龟可不是最伟大的渔民应该做的事情，买！来三架！”</p>
+<p class = "firstLineIndent">“VT4型主战坦克，整体式动力舱、复合反应装甲、125毫米火力炮、猎歼式火控系统及舒适的操作环境，售价6000万！</p>
+<p class = "firstLineIndent">这是要让我组建海军陆战队的节奏啊，必须买！”</p>
+<p class = "firstLineIndent">除了这些大型的武器装备，还有军用雷达、数字化单兵作战系统、小型无人侦察机、各种枪械火炮等等小型装备。</p>
+<p class = "firstLineIndent">最后聂云一个不落的将清单上的东西一网打尽，直到把50亿花了个精光。</p>
+<p class = "firstLineIndent">其实实际上他只需要每样买下一套，就能够在吞噬后复制出无数套，而且得到的还是加强版！不过这又不是试菜，你每样就尝个鲜别人不会起疑吗？</p>
+<p class = "firstLineIndent">为了更逼真地伪装成军火商，聂云还是多买了一些，就当买废铁给机械虫当点心了！</p>
+<p class = "firstLineIndent">没办法，有核燃料就是这么任性！</p>
+<p class = "firstLineIndent">将自己挑选好的购物清单存入平板的存储单元中，聂云又拟了一份清单，这是他打算采购的一部分非军工品，涵盖了世界上最顶尖的一批科技结晶，他准备这次让楚氏一起代为购买。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">楚潇潇看着聂云整整一分钟动也没动。</p>
+<p class = "firstLineIndent">“你在干嘛？”</p>
+<p class = "firstLineIndent">“下单买东西啊！”</p>
+<p class = "firstLineIndent">“可你连屏幕都没打开……”</p>
+<p class = "firstLineIndent">“哦，这个是高科技U盘，傻瓜式操作，自动下单软件知道吧，交给它就行了！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">我怎么感觉自己才是个土包子！</p>
+<p class = "firstLineIndent">这又不是网购，哪来的自动下单软件！</p>
+<p class = "firstLineIndent">还有，合着你去学了两天，就只学了个插U盘么！</p>
+<p class = "firstLineIndent">槽点太多，我竟一时不知从何吐起……</p>
+
+<h2>第五十八章 砍一半</h2>
+<p class = "firstLineIndent">“唔，已经好了，按照里面的要求买就行了！”聂云拔出U盘，将平板递回给楚潇潇。</p>
+<p class = "firstLineIndent">“这……这就选完了？”楚潇潇愣愣的接过平板。</p>
+<p class = "firstLineIndent">那清单上数百件货物这么快就选完了？两分钟有没有？难道真有自动下单软件？可我连清单文件在哪儿都还没说啊！</p>
+<p class = "firstLineIndent">她用满是怀疑的目光看了眼一脸满意的聂云，然后打开了平板。</p>
+<p class = "firstLineIndent">点开桌面的一个文件，楚潇潇的小嘴越张越大。</p>
+<p class = "firstLineIndent">原本密密麻麻几百项货物后面，已经整整齐齐写明了购买数量，连金额都已经算好了，总计49亿五千万！</p>
+<p class = "firstLineIndent">“这……这下单软件那里买的？”</p>
+<p class = "firstLineIndent">“组织内部专用，非卖品！”聂云扯虎皮了，咱现在是有组织的人！</p>
+<p class = "firstLineIndent">楚潇潇依然是一副难以置信的模样，现在电子科技真这么发达了？</p>
+<p class = "firstLineIndent">她暂时压下心中的疑惑，看着清单中聂云挑选的货物后挑了挑眉，“你这是将所有的货物几乎都买了个遍？你们组织有那么大的出货量？原本我们还准备用一部分现金代替呢！”</p>
+<p class = "firstLineIndent">“放心，我身后的组织远超你想象，多少的货都没问题！”开玩笑，只要我没让停，机械虫能把整个地球吃掉！</p>
+<p class = "firstLineIndent">“好，我会尽快给那边下单，那剩下的五千万我会用现金的方式打到你账上。”</p>
+<p class = "firstLineIndent">“不，那个是你们的佣金！”</p>
+<p class = "firstLineIndent">“啊！？”</p>
+<p class = "firstLineIndent">“反正是组织的钱，肥水不流外人田嘛！”聂云见楚潇潇想出口拒绝，马上扯了个谎，他现在发现，有组织很不错唉！</p>
+<p class = "firstLineIndent">楚潇潇听到“肥水不流外人田”，脸色有些红地白了眼聂云，没再反对，点头轻轻“嗯”了一声。</p>
+<p class = "firstLineIndent">“对了，旁边还有一个清单，是我准备让你们帮我代买的一些高科技产品。”</p>
+<p class = "firstLineIndent">“嗯？”楚潇潇疑惑地打开界面上的一个新文件。</p>
+<p class = "firstLineIndent">“2018年全球排行前20智能手机，包括华为、苹果、三星……</p>
+<p class = "firstLineIndent">排行前十超算芯片、大疆Spark无人机、保时捷918 Spyder、特斯拉 Model X、雷诺重卡、VR眼镜、3D打印机、柔性显示屏、苹果Watch、微软Surface Book、AirPods无线耳机……”</p>
+<p class = "firstLineIndent">楚潇潇看了一部分的清单，就疑惑地抬起头，“你要这些高科技产品做什么？”</p>
+<p class = "firstLineIndent">这清单中几乎涵盖了目前全世界在售的所有高科技产品，可以说是地球科技的精华所在。</p>
+<p class = "firstLineIndent">聂云的目的，自然是为了吸收这些科技精华化为己用，只要聂云得到了实体产品，就相当于得到了整套设计图纸和设计理念。</p>
+<p class = "firstLineIndent">技术保护措施？呵呵，对于机械虫而言，不存在的……</p>
+<p class = "firstLineIndent">在可以预见的未来，聂云将整合整个地球的巅峰科技，加上机械虫本身强悍的加工生产能力和远远超出的材料性能，海狼号将成为名副其实的世界工厂！</p>
+<p class = "firstLineIndent">只有世界上最巅峰的奇迹之舟，才配得上最伟大的渔民，才能够让聂云无所顾忌地——渔猎天下！</p>
+<p class = "firstLineIndent">这就是聂云的野心！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“哦，这个……你知道的，我们组织新成立了兔子国分部，所以需要一些办公设备，要用就用最好的嘛，反正不是花我的钱！”聂云说的理直气壮。</p>
+<p class = "firstLineIndent">“可每样采购一套又是为什么？你们这个分部难道只有一个人吗？”楚潇潇怀疑的看着他。</p>
+<p class = "firstLineIndent">“咳咳！现在都进入共享经济时代了，我们部门也是与时俱进，节约资源，提高利用率嘛！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">这家伙身上秘密太多，楚潇潇当下也就不去费脑筋深究了，迟早有让你说实话的一天！</p>
+<p class = "firstLineIndent">“行，这些都很容易买到，量也不大，不过有些东西需要海外采购，时间可能会有些长，大概一个月之内吧，我们会把货备齐。”</p>
+<p class = "firstLineIndent">“好，那钱就从下次的核燃料中抵扣吧！对了，他们下次什么时候要货？要多少？”</p>
+<p class = "firstLineIndent">楚潇潇疑惑的看了他一眼，听聂云的语气，似乎这东西还真是要多少有多少。</p>
+<p class = "firstLineIndent">“这个军方倒是还没说，一公斤的核燃料就足够东南军区消化一段时间了，估计不会马上就要吧？”楚潇潇有些不确定地道。</p>
+<p class = "firstLineIndent">“哦，这样啊！”聂云有些失望，尝到甜头的他已经爱上这种交易，这和抢东西没区别嘛！</p>
+<p class = "firstLineIndent">彼之珍宝，我之敝履！这就是科技改变生活！</p>
+<p class = "firstLineIndent">“对了，你们楚氏既然也做贸易，有没有想要进口的货物啊？”聂云瞬间想到楚氏，这也是一个大主顾啊！</p>
+<p class = "firstLineIndent">“嗯，我们目前在供应商方面……的确也有些需要，不过不可能是核燃料这种东西啦！”</p>
+<p class = "firstLineIndent">“没关系啊，我们还提供其他货物啊！”</p>
+<p class = "firstLineIndent">楚潇潇愕然，“嗯？你们还有其他货物？”</p>
+<p class = "firstLineIndent">“嗯，我想想……铁矿你们需要吗？我想要卖出铁矿，然后买入大量钢铁！”</p>
+<p class = "firstLineIndent">“铁矿？你们有渠道提供铁矿？”</p>
+<p class = "firstLineIndent">聂云点点头，之前采集的海底矿藏中，由于机械虫对钢铁的需求，海底铁矿是聂云的采集重点之一，现在已经堆满了聂云的海底基地。</p>
+<p class = "firstLineIndent">这些铁矿中含有大量的其他杂质，机械虫的吞噬效率只有直接吞噬钢铁的十分之一，还需要浪费额外能源进行矿石分解，一直让聂云不太满意。</p>
+<p class = "firstLineIndent">而打劫了一艘装满钢铁的水瓶号之后，机械虫有了更加高效的吞噬对象，于是这些矿石就暂时堆积了起来，被聂云列为后备资源。</p>
+<p class = "firstLineIndent">小狼机器人还在一刻不停的采集中，如今都已经快要爆仓，聂云正为此事头疼。</p>
+<p class = "firstLineIndent">如果能用这些铁矿石换回已经精炼过的钢铁，那机械虫就能专心于复制增殖，何乐而不为？</p>
+<p class = "firstLineIndent">“我们楚氏其实最近想要进军的一大重心就是钢铁贸易，这占据了兔子国对外贸易的极大比重，主要就是铁矿石进口和钢铁出口。</p>
+<p class = "firstLineIndent">但是这个行业被很多老牌企业垄断了优质的供应渠道，我们很难打入市场，如果你能提供稳定的铁矿石供应渠道，我们肯定是十分乐意采购的！就是不知道你能提供多大的量？”</p>
+<p class = "firstLineIndent">“我还是那句话，我们组织提供货物，向来是要多少有多少！”聂云说的十分霸气！坐拥四海的男人就是这么有底气！</p>
+<p class = "firstLineIndent">楚潇潇经过核燃料的事情之后，对聂云的话是毫无怀疑了，当下眼睛一亮。</p>
+<p class = "firstLineIndent">“不知道价格怎么样？”</p>
+<p class = "firstLineIndent">“市场价砍一半！”反正不要钱，就当薄利多销了！</p>
+<p class = "firstLineIndent">楚潇潇瞪大了眼睛，还能这么定价的？！</p>
+
+<h2>第五十九章 忌惮</h2>
+<p class = "firstLineIndent">聂云说的很随意，但是楚潇潇作为商业天才，可是知道聂云这句话的分量的。</p>
+<p class = "firstLineIndent">楚氏既然想要与日耀集团在钢铁贸易行业展开竞争，集团的情报部门自然早就对这一行业做了详细的调查。</p>
+<p class = "firstLineIndent">目前兔子国是全世界第一钢铁生产大国，产量占据了世界钢铁总产量的一半左右，而由于国内铁矿资源匮乏，每年都要从国外进口巨量的铁矿石原料，其中80%以上来自袋鼠国！</p>
+<p class = "firstLineIndent">作为铁矿第一出口国的袋鼠国，依靠着垄断铁矿资源每年从兔子国赚取惊人的利润，让国内的钢铁生产企业十分被动，大量的利润被原材料商攫取。</p>
+<p class = "firstLineIndent">如果能够以如此低的价格冲击兔子国市场，将会打破袋鼠国的铁矿垄断地位，对兔子国来说，绝对是堪称战略性的胜利！</p>
+<p class = "firstLineIndent">更别提聂云还需求大量的钢铁！</p>
+<p class = "firstLineIndent">由于经济放缓，如今国内大量生产过剩的钢铁每年都要大量倾销到国外。</p>
+<p class = "firstLineIndent">2017年，全世界50%的反倾销调查是针对兔子国的出口钢铁！这让兔子国在国际上十分尴尬。</p>
+<p class = "firstLineIndent">如果能够不限量的进行这种买入铁矿卖出钢铁的贸易，就能够同时解决兔子国国内的两大问题，意义非凡！</p>
+<p class = "firstLineIndent">当然，楚潇潇现在对聂云的贸易体量还无法确定，因此无法评估影响，但光是价格一项，就让她立刻意识到这中间的惊人价值。</p>
+<p class = "firstLineIndent">“你确定按照市场价的一半出售？这恐怕连开采成本都不够吧？”楚潇潇坐正身体很认真地问。</p>
+<p class = "firstLineIndent">开采成本？我有那东西吗？</p>
+<p class = "firstLineIndent">“你放心，我什么时候说过大话？”</p>
+<p class = "firstLineIndent">楚潇潇想了想，还真没有，上次你说要卖核燃料，二话不说就是一保温瓶！</p>
+<p class = "firstLineIndent">相对那种东西来说，铁矿石对聂云的组织应该只能算是“小生意”吧？</p>
+<p class = "firstLineIndent">“不过这些铁矿没有产地证明，没问题吗。”聂云道。</p>
+<p class = "firstLineIndent">从某种意义上说，没有其他国家的出口证明，这些就属于走私品！</p>
+<p class = "firstLineIndent">“这个没问题，我们现在是军工企业，可以通过军方让政府特批！这种对兔子国大有好处的事情，他们巴不得你给的货越多越好！”</p>
+<p class = "firstLineIndent">两人花了不到半个小时，不仅将给军方的订单敲定，还又定下了另一笔大单，效率不可谓不高。</p>
+<p class = "firstLineIndent">当楚凤喊两人吃饭时，听楚潇潇说了事情经过之后，她也是呆愣了许久。</p>
+<p class = "firstLineIndent">困扰楚氏的两个问题，一个是海关进出口资质，一个是供应商问题，没想到聂云竟然用了两笔交易就给轻松解决了。</p>
+<p class = "firstLineIndent">若是聂云的铁矿和钢铁订单真的如他所说上不封顶，那么国内那些供应商不用招呼，就会对楚氏趋之若鹜！很快，楚氏就能成为国内所有钢铁企业的香饽饽。</p>
+<p class = "firstLineIndent">而相对楚潇潇，楚凤的经验更加丰富，眼光也更加老辣。</p>
+<p class = "firstLineIndent">钢铁这种东西是基础建设的核心材料，聂云用几乎一半的价格向兔子国倾销铁矿，将导致兔子国基建成本的大幅降低！</p>
+<p class = "firstLineIndent">相当于降低了国内几乎所有企业的生产成本，这将提升国内产品在国际中的市场竞争力，对国家的经济拉动作用是立竿见影的！</p>
+<p class = "firstLineIndent">这么大量的廉价铁矿究竟是从哪里开采的？聂云和他身后的组织在楚凤眼中越发神秘了……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">夏城市公安局。</p>
+<p class = "firstLineIndent">“局长！刀疤等人的口供拿到了！不过……”汇报的手下欲言又止。</p>
+<p class = "firstLineIndent">“说！”刘国东皱眉。</p>
+<p class = "firstLineIndent">“事情的大体经过和之前的情报并没有太大出入，另外据刀疤的手下交代，是一个神秘人预付了十万给刀疤，让他抓住聂云逼问一些事情，答应事成之后付剩下的十万。</p>
+<p class = "firstLineIndent">至于神秘人的身份，对方很小心，连刀疤都不知道！”</p>
+<p class = "firstLineIndent">“哼！藏头露尾！”刘国东心里对神秘人的背后势力已经有了猜测。</p>
+<p class = "firstLineIndent">有如此财力和动机的，除了日耀集团还能有谁！</p>
+<p class = "firstLineIndent">“另外，不久前疑似伤残的刀疤和那名混混去了镇上的医院，那里的医生却对此束手无策。</p>
+<p class = "firstLineIndent">没有任何外伤，他们的右臂却都失去了知觉，镇医院连问题出在哪里都查不出来，十分古怪，随后，又发生了一件更加诡异的事情！”</p>
+<p class = "firstLineIndent">“什么事？”刘国东来了兴致，对聂云的手段，他也是十分好奇。</p>
+<p class = "firstLineIndent">“刀疤和他的手下们回到他们的据点之后不久，刀疤竟离奇地全身瘫痪，症状和高位截瘫十分相似！现在刀疤整个人已经痴傻了，嘴里还在不断叫着——‘恶魔’！”</p>
+<p class = "firstLineIndent">“嘶！”刘国东瞪大眼睛倒抽一口凉气。</p>
+<p class = "firstLineIndent">恶魔吗？如果真是那个聂云做的，那这种手段的确称得上一句恶魔！</p>
+<p class = "firstLineIndent">“高位截瘫？！你确定他身上没有受过什么外伤或者重击？”</p>
+<p class = "firstLineIndent">“已经让专业的医师看过，绝对没错！”</p>
+<p class = "firstLineIndent">“那聂云当时在什么地方？”</p>
+<p class = "firstLineIndent">“虽然不清楚他当时在哪里，但是那处据点中的混混足有十来个人，没有一个人看到聂云出现过，他有绝对的不在场证明！”</p>
+<p class = "firstLineIndent">“这……”刘国东觉得自己今天一天听到的消息足够让他惊讶一年！</p>
+<p class = "firstLineIndent">他低头想了想，立刻吩咐道：“目标看来比我们想象的危险，拥有未知的手段，马上通知下去，正在寻找聂云的警员，找到目标后不要擅自行动，立刻通知我，绝对不要和对方发生冲突！”</p>
+<p class = "firstLineIndent">“是！局长！那……副局长那边？”</p>
+<p class = "firstLineIndent">“哼！不用去管他，恐怕他们也已经收到消息，正头疼着呢！”刘国东笑的有些幸灾乐祸。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“什么？你说你找的人被废了？”</p>
+<p class = "firstLineIndent">韩奕这两天被韩祥生禁足在家，原本就心情不好，此刻又听到一个坏消息，让他更加烦躁了。</p>
+<p class = "firstLineIndent">“怎么回事，对方背后的势力出手了？”</p>
+<p class = "firstLineIndent">“不，并没有，只是……事情有些诡异……”</p>
+<p class = "firstLineIndent">那名手下当即将打听到的事情一五一十说了出来，韩奕越听眉头皱的越紧。</p>
+<p class = "firstLineIndent">“你是说，他就一个人，就把那刀疤废了，而且还吓的他精神失常了？”</p>
+<p class = "firstLineIndent">“是的少爷，千真万确，我已经找了好几个人反复确认过，并且这个过程中，我们还发现似乎警方那边也在调查这件事。”</p>
+<p class = "firstLineIndent">“你有没有暴露身份，留下什么尾巴？”韩奕隐隐有些不安。</p>
+<p class = "firstLineIndent">“绝对没有，我一直是电话联系那个刀疤的，他连我的面都没有见过！”</p>
+<p class = "firstLineIndent">“嗯，这件事就到此为止，不要再去碰那个聂云！”</p>
+<p class = "firstLineIndent">面对能伤人于无形的聂云，韩奕的确是有些忌惮了，在还没有摸清楚对方的虚实之前，他是不敢再出手了。</p>
+<p class = "firstLineIndent">挥退了手下，韩奕坐在沙发上眉头紧皱，“聂云……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">刀疤事件搅动的风云完全没有影响到聂云，至少……没影响到他的食欲。</p>
+<p class = "firstLineIndent">“呜呜，阿依，侬坐得史载泰皓齿乐！”聂云嘴里塞满了菜肴，含糊不清地对楚凤道。</p>
+<p class = "firstLineIndent">“呵呵，好吃就多吃点，阿姨做了很多，来，再来一碗！”楚凤笑着给聂云又盛了一碗。</p>
+<p class = "firstLineIndent">“妈，你怎么尽给他夹菜盛饭，到底谁是亲生的！”楚潇潇有些吃醋了。</p>
+<p class = "firstLineIndent">“你要是能吃的像人家这么香，我也给你夹！”楚凤瞪了眼楚潇潇。</p>
+<p class = "firstLineIndent">楚潇潇闻言无语地看着聂云旁边已经堆得老高的菜碟，要不是楚凤紧急又做了几个菜，这满满一桌子还不够聂云一个人吃的！</p>
+<p class = "firstLineIndent">“饭桶！”楚潇潇小声嘀咕一句，筷子刚要伸向自己面前菜碟中仅剩的一块红烧肉，它唰的一下就不见了。</p>
+<p class = "firstLineIndent">楚潇潇脑门上蹦出一个井字！</p>
+<p class = "firstLineIndent">聂云咽下嘴里的红烧肉，他舔舔嘴唇在餐桌上扫了扫。</p>
+<p class = "firstLineIndent">“唉潇潇，帮我把那边那盘狮子头递过来一下！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+
+
+<a href="040.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="060.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
