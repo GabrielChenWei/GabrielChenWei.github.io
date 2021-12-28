@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第七百四十章 当狗真幸福</h2><hr/>
+<p class = "firstLineIndent">因为长时间日光照射，导致防护罩内部恒定气温升高的关系，数百名克斯人因为持续高温环境而生病，数人因为处理不及时而死亡。</p>
+<p class = "firstLineIndent">看着病房中那些还在接受治疗的克斯人，克斯人高层的每一人内心都是无比的沉重。</p>
+<p class = "firstLineIndent">如果不答应阿米巴的要求，那么躺在病床上的克斯人数量会放上好几百、好几千倍，这是为了种族和文明的延续所做出的无奈选择。</p>
+<p class = "firstLineIndent">然而答应了阿米巴要求意味着整个克斯人种族都将沦为另外一个种族奴隶，他们这批克斯人高层会被后世的同胞所唾弃，正是因为他们这些人的选择，克斯人文明以后都将活在其他文明的阴影下。</p>
+<p class = "firstLineIndent">在与采集者商谈的时候，每一名克斯人高层都是绝望的，他们从来没有像这样感觉人生一片灰暗。</p>
+<p class = "firstLineIndent">不过他们这样的想法并没有持续多久……</p>
+<p class = "firstLineIndent">在和采集者那边谈妥后，克斯人主动断开了壁垒的能量供给，失去能量供给的壁垒逐渐消失，壁垒内外的空气开始流通，爽朗的清风扑面而来，冲刷这个因为连日照射而干燥的城市。</p>
+<p class = "firstLineIndent">克斯人的底层平民们，欢呼的从用来躲避高温的地下室跑到大街上，贪婪地呼吸着从防护罩外面涌进来清凉潮湿的空气。</p>
+<p class = "firstLineIndent">采集者们接受克斯人的请求，给克斯人的城市制造了一场覆盖整个城市的人工降雨，天降甘霖滋润了这片干涸已久的区域。</p>
+<p class = "firstLineIndent">摇星上被根茎占领的区域尽数退还给克斯人，退去的根茎后，露出下方那被调整过后的肥沃土地。</p>
+<p class = "firstLineIndent">虫族喜欢使用腐蚀性虫液作为远程攻击手段，这给它们的敌人造成杀伤的同时，也会大面积的污染土地，是土地变得不再适合星球本土生物的生存，只是和虫族。</p>
+<p class = "firstLineIndent">除了腐蚀性虫液外，虫族尸体及其体液，同样具有很强的污染性。</p>
+<p class = "firstLineIndent">自从虫族到达摇星后，可以说连本土星球的微生物都灭绝的快差不多了。</p>
+<p class = "firstLineIndent">本来，克斯人的高层还在因为土地的事情而犯难，土地的污染不能够解决的话，那重建家园只能是痴人说梦，可虫族的污染又那是那么容易就能够解决的问题？那需要庞大的人力、物力，还有时间，在全球范围内的进行地质、水质的整改。</p>
+<p class = "firstLineIndent">这需要的工程量将会超过克斯人历史上的任何一个工程项目，如果没有大决心和大毅力是不可能完成。</p>
+<p class = "firstLineIndent">克斯人高层们怎么也没想到，采集者作为宗主文明居然会不声不响的给他们送了这样一个大礼，整地的问题不需要他们再操心，只需要重建家园即可。</p>
+<p class = "firstLineIndent">然后是一系列的资源拨款，为了给克斯人经济复苏，虽然这些资源对采集者来说连九牛一毛都算不上，不过克斯人可不清楚这些，他们从上到下都对采集者感恩戴德。</p>
+<p class = "firstLineIndent">至于原先谈判中提到的那什么文明的尊严，已经被他们抛到九霄云外了，利益面前什么都是虚的。</p>
+<p class = "firstLineIndent">就像当初外交协商时采集者问的那样——尊严能当饭吃吗？</p>
+<p class = "firstLineIndent">处理完克斯人的事情，采集者们一分为三，一部分对恒星系统开始殖民建设工程，在与克斯人的协商中，他们拥有自己母星的归属权，而除此之外，恒星系统内剩余的所有天体，都归属于阿米巴。</p>
+<p class = "firstLineIndent">克斯人政府是不想同意的，可是没得选，萝卜加大棒的外交策略下，采集者们很轻松就让克斯人服软了。</p>
+<p class = "firstLineIndent">另一部分是对克斯人母星上辉文明遗迹进行探索，找寻对族群有价值的信息。</p>
+<p class = "firstLineIndent">最后那一部分，则是对克斯人文明信息的文化、思维逻辑的汲取，通过与克斯人的交流更加深入的了解他们。</p>
+<p class = "firstLineIndent">新思维的碰撞更加容易产生技术爆炸的火花，这是采集者们一直坚信的，哪怕它们接触到一百个外星文明里，只与一个外星文明的思想碰撞而产生技术爆炸，对整个族群来说都是赚的。</p>
+<p class = "firstLineIndent">分为三个方面并行行动的采集者们，最轻松的就是与克斯人展开文化交流的那一批，同时也是数量最少的一批，数量最多的那批则是开采恒星系统资源进行殖民建设的那一批，但要说最辛苦，任务难度最高，就要属对辉文明遗迹进行考古那些采集者。</p>
+<p class = "firstLineIndent">一名克斯人的高层，满脸克斯人文明特有的谄媚姿态，一边给采集者们引路，一边不停的给讲解与辉文明遗迹相关的事情。</p>
+<p class = "firstLineIndent">原来，克斯人这座城市是很早就存在，具体是什么时间建立起来已经无从考据，专家学者有的说是五千年前，有的说是一万三千年前，更有的夸张的说是距今一亿年前。</p>
+<p class = "firstLineIndent">采集者们后来看到的防护罩内部的城市，是克斯人在旧城的基础上重新推倒翻修起来，包围城市的那两座城墙，因为体积太大而没有拆除，为避免过于老旧导致坍塌事故，克斯人在城墙的表面进行加固处理。</p>
+<p class = "firstLineIndent">在整个建筑群中，就克斯人城市最中心的建筑最为特殊，那座建筑不是推倒重来，而是在旧建筑的基础上从外面加固，盖一座更加庞大坚固的新建筑。</p>
+<p class = "firstLineIndent">采集者们所发现的辉文明防护罩生成装置，其实就是这个旧建筑的尖顶。</p>
+<p class = "firstLineIndent">随后，采集者们询问了旧建筑的由来。</p>
+<p class = "firstLineIndent">旧建筑的制造者是克斯人有史记载以来的第一个王朝，这个王朝就生活在防护罩内部，当外敌来袭时，就会启动防护罩，将敌人隔绝在外。</p>
+<p class = "firstLineIndent">而防护罩的启动方法，被作为王室的传承仪式，口口相传下去，一直到一次政变过后遗失，王朝被外敌毁灭。</p>
+<p class = "firstLineIndent">不过，防护罩生成装置的使用并不算复杂，在更换了三代王朝后，终于有克斯人发现了只要通上电，就能让防护罩产生。</p>
+<p class = "firstLineIndent">唯一让古代克斯人遗憾的是，他们并没有掌握稳定发电的方法，因此防护罩通常情况下都处在关闭状态，没办法像如今的克斯人那样利用反应堆产生的电流，稳定产生几十年都不消散的防护罩。</p>
+<p class = "firstLineIndent">克斯人高层还想向采集者们介绍防护罩与他们克斯人的关系。</p>
+<p class = "firstLineIndent">某种意义上来说，克斯人的历史也能理解为是围绕着防护罩展开，防护罩的能力太强了，即便在古代没有稳定产出电能的方法，防护罩也仍然是一个令人头皮发麻的大杀器，正面抗衡绝对是找死。</p>
+<p class = "firstLineIndent">防护罩守护下的这片区域易手，在克斯人的历史上基本都是从内部突破，比如策反军队政变、煽动内部起义、再或者间谍破坏掉防护罩的供电导线等等。</p>
+<p class = "firstLineIndent">真要说起来，那也可以称得上是一段荡气回肠、可歌可泣的文明战争史诗。</p>
+<p class = "firstLineIndent">不过，采集者没那个心情听这些，它们可不是来这里旅游的，在它们知道旧建筑的制造者并不是辉文明后，就没什么兴趣再听下去了。</p>
+<p class = "firstLineIndent">“还有多远？你们怎么就不舍得造一条笔直的路线？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">采集者的空间位置感很好，它们行进了这么远，其实就是在走一条蛇形路线，弯弯绕绕的根本没走多远。</p>
+<p class = "firstLineIndent">“这都是为了安全，大家勿见怪。”</p>
+<p class = "firstLineIndent">引路的克斯人高层有些尴尬的回应。</p>
+<p class = "firstLineIndent">要知道，虫族入侵之后，防护罩的存在直接和整个文明挂钩，为了保证不发生什么意外，比如冒出某些失心疯的克斯人破坏防护罩通电导线这种蠢事。</p>
+<p class = "firstLineIndent">于是在修建这座旧建筑之上的新建筑时，克斯人政府的设计理念就是，要多丧心病狂就有多丧心病狂。</p>
+
+<h2>第七百四十一章 搜寻线索</h2><hr/>
+<p class = "firstLineIndent">防护罩生成装置，外观呈方尖碑状，黑灰色金属光泽。</p>
+<p class = "firstLineIndent">不过，虽然看起来像是某种金属制成，但经过采集者们的探测后确认，其实和金属没什么关系，材质是一种耐腐蚀的炭纤维，因为特殊的原子排列结构，强度比一般的碳钢还要硬上一些，而且更轻。</p>
+<p class = "firstLineIndent">要说有什么缺点，也就是耐热性不怎么好。</p>
+<p class = "firstLineIndent">比较遗憾的是，这种材料对采集者来说没什么用，因为它们自己开发的碳纤维各方面性能都更好。</p>
+<p class = "firstLineIndent">在防护罩生成装置的底座部分，是一条条连接的导线，连接到专门的接口上。</p>
+<p class = "firstLineIndent">随后，采集者们利用自身生命体的特殊性，利用根须蚀刻出一条单分子大小的微型隧道，获悉防护罩生成装置的内部结构。</p>
+<p class = "firstLineIndent">辉文明留下的这个防护罩生成装置并没有多么复杂，内部是一套能自动调整电压的回路系统，而电流的最终流向，是一个与灵域相关的奇异物。</p>
+<p class = "firstLineIndent">当特定电压的电流注入奇异物后，就会产生采集者们所看到的防护罩。</p>
+<p class = "firstLineIndent">采集者们尝试过改变电压，结果是奇异物不会有任何反应，防护罩也没有产生，也没有多余的热量出现，感觉就像是能量在凭空消失。</p>
+<p class = "firstLineIndent">“应该是流向了灵域那边。”有个体作出猜测。</p>
+<p class = "firstLineIndent">随后又有个体作出补充“就能耗来看，我认为这些流入的电流只是一个触发机制。”</p>
+<p class = "firstLineIndent">“才流入这样能级的电流，就算把这些电流的所有电子都正反物质湮灭，释放的能量连炸毁这座克斯人都做不到，更别说生成防护罩。”</p>
+<p class = "firstLineIndent">采集者们你一言我一语的通过生命场交流讨论，而没有生命场的克斯人高层，只是在一旁观望，有些踌躇不安，因为以他的视角看来，房间里太安静了，采集者这些外星人的脾性他也没摸透。</p>
+<p class = "firstLineIndent">就在克斯人高层考虑要不要说些什么烘托一下气氛的时候，有采集者向他询问。</p>
+<p class = "firstLineIndent">“我记得你说过，这个‘壁垒’只是旧建筑的尖顶。”</p>
+<p class = "firstLineIndent">“是的。”</p>
+<p class = "firstLineIndent">克斯人高层立即回道。</p>
+<p class = "firstLineIndent">“那麻烦你带我们看看那座旧建筑。”</p>
+<p class = "firstLineIndent">“明白，请跟我来，往这边走。”</p>
+<p class = "firstLineIndent">答应下采集者请求的克斯人高层，一边示意采集者们跟随，一边在前面引路。</p>
+<p class = "firstLineIndent">离开防护罩生成装置存在的那个房间，采集者们顺着克斯人设计的通道往下走，走到建筑的下一层区域。</p>
+<p class = "firstLineIndent">从这里的新旧建筑之间的连接通道，采集者们进入到被新建筑包裹的旧建筑内部。</p>
+<p class = "firstLineIndent">进入到旧建筑里，画风一下子就变了，不再有之前那种崭新的感觉，一切都看起来很古旧，墙壁从人工合成的高强度碳纤维板，变成了充满时间流逝痕迹的石墙。</p>
+<p class = "firstLineIndent">虽然采集者不怎么对克斯人高层之前说的那个防护罩初代拥有者，有史记载的第一个克斯人王朝感兴趣。</p>
+<p class = "firstLineIndent">但是因为找寻辉文明实验所的线索，它们还是要求克斯人高层带领它们参观旧建筑的同时，一边讲解。</p>
+<p class = "firstLineIndent">旧建筑对克斯人或许充满了神秘感，克斯人高层讲的很起劲，不过这是文化习俗的加成缘故，就像外星人看到贞子没什么感觉一样，在采集者眼中，旧建筑就是一个存在时间比较久并比新建筑体积更小的破烂房子。</p>
+<p class = "firstLineIndent">和新建筑一样，旧建筑也有很多层，在一些地方存在着古文字，这些文字被雕刻在墙壁上。</p>
+<p class = "firstLineIndent">然而采集者正眼都懒得多看一下，因为这些是克斯人的文字，而非是辉文明文字。</p>
+<p class = "firstLineIndent">采集者们与带路的克斯人高层，就这样一直走到了旧建筑的最下层。</p>
+<p class = "firstLineIndent">“这里是最下层，在过去，这里是祭祀神明的祭坛，每隔一段时间，就会进行历史上臭名昭著活人祭祀。”</p>
+<p class = "firstLineIndent">“那些被选作祭品的奴隶，会被铁链束缚在这个圆台上，祭司就会拿着特制的短刃，在奴隶身上多个地方打开放血口，让奴隶体内的血液流尽……”</p>
+<p class = "firstLineIndent">采集者它们停在一处圆台前，听着克斯人高层给它们讲解旧建筑内各种东西的历史。</p>
+<p class = "firstLineIndent">“我记得你之前说过，那个时候的克斯人已经会利用齿轮、轴承来实现机械技术，甚至利用这种机械技术制造出电，那个时候的科学虽然不能和你们现在比，可应该也不至于会愚昧至此，为什么他们还会相信献祭这种事情？”采集者问。</p>
+<p class = "firstLineIndent">防护罩生成装置要启动就需要通电，而克斯人所记载的第一个王朝就会利用机械做功，将奴隶体内的生物能转变为电能，因此能够使用防护罩生成装置。</p>
+<p class = "firstLineIndent">按道理，掌握这样的技术层次，不应该对人文地理有一个较为充分的认识吗？为什么还会有献祭仪式？</p>
+<p class = "firstLineIndent">“因为……献祭祭品所祭祀的神明，是真的存在。”克斯人高层情绪有些复杂的回答，他继续补充，“以前我们认为，那个王朝崇拜的神是‘天空’，是照亮苍穹的‘日’，可在后来新发现的一些文献告诉我们，那个王朝崇拜的神并不是自然现象所扭曲成形的自然神，而是一个叫做‘灵域’的地方。”</p>
+<p class = "firstLineIndent">“灵域在我们经过多次实验后被证实确实存在，我们也有幸与里面的生命接触，得到伪装色这种运用灵域的技术……怎么了？”</p>
+<p class = "firstLineIndent">讲解入神的克斯人高层，正起劲的时候，忽然注意到所有采集者都在看着他，吓了他一跳。</p>
+<p class = "firstLineIndent">“如果你们文明想在这个宇宙里存在的更久，最好还是别过分深入对灵域的研究。”</p>
+<p class = "firstLineIndent">闻言，克斯人高层愣了愣，惊疑不定的反问。</p>
+<p class = "firstLineIndent">“这是警告？”</p>
+<p class = "firstLineIndent">“不，这是忠告，希望你能将我们的提醒告诉其他的克斯人，这直接关系到你们文明的安全。”其中一只个体作答。</p>
+<p class = "firstLineIndent">线索似乎就这样断了，因为采集者们都到了旧建筑的最底部，结果仍然是没什么关于辉文明的发现，倒是意外的获悉了灵域的事情。</p>
+<p class = "firstLineIndent">“接下来该怎么办？启动掘地三尺计划？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">所谓的掘地三尺计划，就是利用根茎对克斯人母星进行全球地下探索，掘地三尺也要把辉文明实验所找出来。</p>
+<p class = "firstLineIndent">考虑到其中所耗费的资源与时间，这是作为最后的方案，如果来防护罩生成装置这边没有线索，就采用笨方法来解决。</p>
+<p class = "firstLineIndent">“不，没必要那么做，我已经找到切入点了。”</p>
+<p class = "firstLineIndent">“切入点找到了？在哪？”</p>
+<p class = "firstLineIndent">其他采集者尽皆感到意外，明明克斯人高层从头到尾都没讲过一件关于辉文明的事情。</p>
+<p class = "firstLineIndent">“就是旧建筑的尖顶，你们难道没发现吗？”</p>
+<p class = "firstLineIndent">“尖顶所使用的材料是碳纤维，而下面的旧建筑使用的材料却是存在时间已经很久的岩石块，难道你们不觉得很违和？”</p>
+
+<h2>第七百四十二章 隐藏实验所的位置</h2><hr/>
+<p class = "firstLineIndent">采集者们又重新走回到最开始那个摆放防护罩生成装置的房间。</p>
+<p class = "firstLineIndent">“这防护罩生成装置有什么不对劲的地方吗？”</p>
+<p class = "firstLineIndent">“应该没有问题吧？我们之前都进行了分子级的检查。”</p>
+<p class = "firstLineIndent">生命场内，有采集者询问提议上来的同族。</p>
+<p class = "firstLineIndent">“有问题，而且这个问题之前都被我们下意识的给忽略了。”</p>
+<p class = "firstLineIndent">要求同族们再回到防护罩生成装置这里的采集者倒也不急于解释，而是示意同族观察四周，“你们看一下周围，对比新建筑和旧建筑两者之间的差别，有觉得哪里不对劲吗？”</p>
+<p class = "firstLineIndent">“呃……有什么不对劲吗？看不出来。”</p>
+<p class = "firstLineIndent">观察四周的采集者并没有觉得存在什么地方不对劲。</p>
+<p class = "firstLineIndent">“你们的洞察能力有待提高啊……”</p>
+<p class = "firstLineIndent">授意同族观察四周的采集者吐槽了一下，便解释起来。</p>
+<p class = "firstLineIndent">“新建筑的设计，防护罩生成装置是被层层保护起来，可旧建筑的设计，却是把防护罩生成装置作为建筑物的尖顶。”</p>
+<p class = "firstLineIndent">“按理来说这是不应该，即便在克斯人古代时期，防护罩生成装置也拥有极为崇高的地位，这种东西应该被严密保护起来，安置于旧建筑最上方作为尖顶的意义是什么？当避雷针吗？”</p>
+<p class = "firstLineIndent">辉文明的防护罩生成装置放在克斯人古代可是神器，神器的背后就是神明，把神器放在外面风吹雨打，可不就相当于把神明的象征放在外面风吹雨打吗？这可是大不敬啊！</p>
+<p class = "firstLineIndent">而且防护罩生成装置也并不是没有损坏，上面雕刻的文字已经模糊不清，古代的旧建筑制造者究竟是哪来的勇气敢这样对待神器？</p>
+<p class = "firstLineIndent">这讲不通啊！</p>
+<p class = "firstLineIndent">采集者对防护罩生成装置的分析还在继续，在生命场里，它侃侃而谈。</p>
+<p class = "firstLineIndent">“将防护罩生成装置特意安置在旧建筑的尖顶，肯定是存在特殊的意义在里面……”</p>
+<p class = "firstLineIndent">“首先肯定不是为了方便防护罩的生成，新建筑把防护罩生成装置团团包围，仍然是毫无阻碍的持续生成防护罩几十年的时间没有异状。”</p>
+<p class = "firstLineIndent">克斯人已经用行动证明过，物理意义上的阻隔，并不能干扰防护罩生成装置的正常发挥，如此一来，防护罩生成装置这种本该妥善封存起来的‘宝物’，放置在外面就显得令人无法理解。</p>
+<p class = "firstLineIndent">既不是因为会影响发挥，又同时与信仰相违背，是对‘神明’大不敬的行为，不管怎么看，古代克斯人都是在做一件很反常的事情。</p>
+<p class = "firstLineIndent">想不明白问题的采集者决定直接询问答案，“那又是为什么呢？”</p>
+<p class = "firstLineIndent">“我一开始以为，古代克斯人信奉的神是和德安特人一样，都是把‘天’、‘恒星’这类奉为神明，以此来解释古代克斯人将防护罩生成装置安置在顶端。”</p>
+<p class = "firstLineIndent">“不过在刚才的讲解里，我知道了古代克斯人知晓灵域，信奉灵域的事实，防护罩生成装置会被如此安置，就只剩下一种解释。”</p>
+<p class = "firstLineIndent">“辉文明的防护罩生成装置，它就应该被放在建筑顶端。”</p>
+<p class = "firstLineIndent">其他采集者呆了一下，愣是没听懂同族分析的结论，什么叫它应该放在建筑物顶端？</p>
+<p class = "firstLineIndent">“……没听懂。”</p>
+<p class = "firstLineIndent">重新组织了语言，对防护罩生成装置已有猜测的采集者给同族们解释。</p>
+<p class = "firstLineIndent">“就是说，防护罩生成装置原本就是摆放在某个建筑物的顶端，并作为那个建筑物的尖顶，古代克斯人在看到后，就会先入为主的认定，防护罩生成装置就应该摆放在顶端。”</p>
+<p class = "firstLineIndent">这回采集者们听明白了，古代克斯人偶然间遇见到一个建筑物，从那个建筑物的顶端获取到了防护罩生成装置。</p>
+<p class = "firstLineIndent">因为防护罩生成装置原本是在建筑物的顶端，所以在古代克斯人得到防护罩生成装置后，就先入为主的认定防护罩生成装置就应该安置在建筑物顶端，所以设计成了旧建筑最上方的尖端。</p>
+<p class = "firstLineIndent">如此一来，那个防护罩生成装置原本摆放的建筑真面目，答案呼之欲出……</p>
+<p class = "firstLineIndent">“也就是说，那个最初将防护罩生成装置作为坚定地建筑，是辉文明的实验所？！”</p>
+<p class = "firstLineIndent">采集者们兴奋了，因为线索又重新出现。</p>
+<p class = "firstLineIndent">不过，它们还没高兴多久，有想到了另外的一个问题。</p>
+<p class = "firstLineIndent">“可辉文明的实验所究竟在哪呢？”</p>
+<p class = "firstLineIndent">关于这个问题，对防护罩提出猜测的采集者，早已经有了头绪。</p>
+<p class = "firstLineIndent">“我们的根茎曾经占据了除防护罩外的所有地方，每一寸土地都被覆盖过，但始终都是一无所获，虽然不排除辉文明实验所在地底深处的可能性，可如果那样的话，古代克斯人根本不可能有机会获得辉文明的防护罩生成装置。”</p>
+<p class = "firstLineIndent">“所以我有个大胆的假设——实验所就在防护罩区域内，而古代的克斯人也是在见识过辉文明实验所后，才修建起了旧建筑，并效仿辉文明遗迹，将防护罩生成装置摆在顶端。”</p>
+<p class = "firstLineIndent">“如果我猜想没错的话，通向辉文明实验所的通道应该在这里……”</p>
+<p class = "firstLineIndent">只有辉文明的遗迹在非常容易被发现的地方，古代克斯人才有机会见识到辉文明的实验所。</p>
+<p class = "firstLineIndent">要知道，古代克斯人可没有现如今克斯人的技术层次高，更没有各种方便的交通工具，如果辉文明实验所真的藏在地下很深的地方，那古代克斯人又是凭什么见识到辉文明的实验所？总不能人人都会钻地术吧？</p>
+<p class = "firstLineIndent">基于这样的分析，采集者便想到了一种可能——辉文明的实验所就近在眼前！</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">触手伸展出来，长度拉伸并分叉成很多条，好似一条条蛇类那样的行动。</p>
+<p class = "firstLineIndent">采集者的触手贴着方尖碑状的防护罩生成装置，轻抚的同时，沿着方尖碑逐渐向下方移动。</p>
+<p class = "firstLineIndent">“找到了！这里就是通道！”</p>
+<p class = "firstLineIndent">触手一路延伸，最终在一众采集者以及克斯人高层不可思议的目光下，采集者的触手钻入到防护罩生成装置与地面的夹角里，就好像那个地方存在着裂缝一般。</p>
+<p class = "firstLineIndent">可事实上，那里根本没有缝隙，这点旁观的克斯人高层最为清楚，为了保证防护罩生成装置的安全，安置房间里的地面就像是金属焊接那样，通过冶炼法与防护罩生成装置是融为一体，至少在分子尺度上是一体。</p>
+<p class = "firstLineIndent">深入触手在度过了短暂的黑暗后，发现自己置身在一个非常特殊的地方，这个特殊的地方采集者们在熟悉不过。</p>
+<p class = "firstLineIndent">这个地方就是灵域！</p>
+<p class = "firstLineIndent">而在灵域中，与采集者延伸触手最近的是一栋建筑，同样也令采集者很熟悉，那是辉文明实验所的建筑。</p>
+<p class = "firstLineIndent">实验所的顶端缺失了，采集者的触手正是从顶端缺失的进入到灵域内。</p>
+<p class = "firstLineIndent">“实验所在灵域里！”</p>
+
+<h2>第七百四十三章 克斯人的试探</h2><hr/>
+<p class = "firstLineIndent">“你们有什么事吗？”</p>
+<p class = "firstLineIndent">采集者接待了克斯人政府的使者。</p>
+<p class = "firstLineIndent">对于今天这些拜访者，采集者并没有表现出外交礼仪中的热情，而是很冷淡。</p>
+<p class = "firstLineIndent">即便采集者没有进行信息的获取，也多少能猜出今天这些代表克斯人政府的拜访者，拜访的目的。</p>
+<p class = "firstLineIndent">“其实，我们是想来与您商讨关于那个灵域通道的事情。”</p>
+<p class = "firstLineIndent">为首的克斯人单刀直入，说明他们此行的来意。</p>
+<p class = "firstLineIndent">果然不出采集者所料，正是为了前不久从防护罩生成装置那里发现的灵域通道而来。</p>
+<p class = "firstLineIndent">克斯人也研究灵域，并从灵域中获益过，现在发现这样一个灵域通道，诱惑力无疑是非常巨大。</p>
+<p class = "firstLineIndent">“没得谈，请回吧。”</p>
+<p class = "firstLineIndent">采集者想都没想就给出答复，态度很冷淡。</p>
+<p class = "firstLineIndent">听闻采集者这样回答，另外一个一同前来的克斯人情绪就显得很是激动，大义凛然的质问起采集者。</p>
+<p class = "firstLineIndent">“你们怎么能这么霸道？那可是我们克斯人代代相传的历史遗产！你们有什么权利禁止我们去探寻历史的真相？”</p>
+<p class = "firstLineIndent">采集者有些怪异的扫了眼质问它的克斯人，虽然防护罩生成装置，克斯人文明拥有了很长的时间，可要说到真正的所有者，那只能是辉文明。</p>
+<p class = "firstLineIndent">如果按照克斯人这种捡到就是其所有者的逻辑，那它们采集者捡到了克斯人文明，岂不就是克斯人文明的所有者？</p>
+<p class = "firstLineIndent">由于逻辑过于奇葩和无耻，采集者都懒得吐槽。</p>
+<p class = "firstLineIndent">随后它又隐晦的瞄了眼为首的那个克斯人，随即便明白过来这些克斯人在唱双簧，一个唱白脸，一个唱黑脸。</p>
+<p class = "firstLineIndent">这是一种试探，是克斯人政府在对采集者底线的试探。</p>
+<p class = "firstLineIndent">“灵域可不是什么有益的东西，那是会招来文明毁灭的灾难，你们接触的太少，见识的也太少，对危险根本一无所知。”</p>
+<p class = "firstLineIndent">想了想，采集者给出自己认为比较合适的回答。</p>
+<p class = "firstLineIndent">这番话有保护克斯人文明的成分在里面，但这是次要，虽说克斯人文明对采集者来说是稀有的科研资源，可这种科研资源并非是不可或缺。</p>
+<p class = "firstLineIndent">采集者不让克斯人接触灵域通道的主要原因，是它们不想克斯人对灵域里的实验所造成什么损坏。</p>
+<p class = "firstLineIndent">克斯人没了也就没了，宇宙那么大，又不是只有一个外星文明，可辉文明的实验所却不是这样，辉文明已经亡了，八亿年的时间被自然侵蚀，鬼知道还剩下多少。</p>
+<p class = "firstLineIndent">然而，克斯人那边似乎并不准备放弃的样子，那个质问采集者克斯人，依旧在不依不饶、理直气壮对采集者指责。</p>
+<p class = "firstLineIndent">“不管怎么说，那也是我们母星上出土的东西！这种事情于情于理，我们都有参与探索的权利！你们不能剥夺！母星的主权是属于我们克斯人，就算你们是宗主文明，也不该如此蛮横霸道！”</p>
+<p class = "firstLineIndent">的确，按照主权划分资源而言，灵域通道的所有权归克斯人所有，采集者强行霸占是属于侵犯克斯人主权的行为。</p>
+<p class = "firstLineIndent">道理上讲得通……不过也只是道理上讲得通而已。</p>
+<p class = "firstLineIndent">克斯人没指望阻止采集者探索灵域，也没指望得到灵域通道的控制权，仅仅只是想从中分一杯羹。</p>
+<p class = "firstLineIndent">其实以克斯人政府的角度看来，这件事应该很容易就能说通。</p>
+<p class = "firstLineIndent">可采集者的角度却并非如此，它们是哪怕一杯羹也不想和克斯人分，灵域里的灵尊已经够麻烦的了，再加上克斯人不就是增加它们的工作量吗？况且灵域也不是好东西，如果因为灵域而导致克斯人灭亡，到头来损失的还是采集者。</p>
+<p class = "firstLineIndent">太不划算了！</p>
+<p class = "firstLineIndent">见克斯人那一副不肯放弃的态度，采集者思考了一下后，决定施压，便回答。</p>
+<p class = "firstLineIndent">“按你的意思，是不是只要现在脚下这颗行星不复存在，没有了所谓的主权概念，你们也就不会再执着灵域的事情？”</p>
+<p class = "firstLineIndent">在场的克斯人皆是呼吸一滞，心脏骤顿，这是赤裸裸的武力威胁！</p>
+<p class = "firstLineIndent">采集者用话语提醒了在场的克斯人，道理这东西只是让行动变得更加合理，武力才是决定话语权的根本，它们是强大的宗主文明，而他们只是弱小的附庸文明。</p>
+<p class = "firstLineIndent">“你……！”</p>
+<p class = "firstLineIndent">“够了！”</p>
+<p class = "firstLineIndent">那个唱黑脸质问采集者的克斯人还打算在叫嚣些什么，但话还没说完，就被旁边的为首的克斯人给喝住。</p>
+<p class = "firstLineIndent">随后，为首的克斯人给几名一同前来的护卫下令。</p>
+<p class = "firstLineIndent">“你们把他给我带出去，接下来我有事情要和阿米巴的使者单独谈。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">采集者和为首的克斯人，就这样目送着那个质问采集者的克斯人被守卫带出房间。</p>
+<p class = "firstLineIndent">一套玩弄思维的把戏……</p>
+<p class = "firstLineIndent">采集者看出来，这又是克斯人的一招套路，作为来拜访宗主文明使者的人选，绝不可能是没经过精挑细选，不然让一个庸才来进行外交，说错话该怎么办？</p>
+<p class = "firstLineIndent">既然是精挑细选出来的人，却还是表现出那样的姿态，就只能说明是在故意这么做。</p>
+<p class = "firstLineIndent">就采集者看来，目的有三，第一是为了配合为首的克斯人唱双簧，反衬为首克斯人的‘友善’。</p>
+<p class = "firstLineIndent">第二是为了试探采集者的外交容忍底线，以方便日后与采集者进行政治外交时不踩到雷区。</p>
+<p class = "firstLineIndent">第三是为了让采集者对个人挑起厌恶情绪，然后再由为首的克斯人出面解决，这样一来就仿佛克斯人政府在主动卖人情给采集者，不保证采集者会因为这个人情给予什么恩赐，最起码会提升些许好感度。</p>
+<p class = "firstLineIndent">尤其是在采集者刚才放狠话的时候，第三点可以有效的缓和两边的矛盾，相当于克斯人政府在向采集者表明自己是弱者，愿意臣服的姿态。</p>
+<p class = "firstLineIndent">早已看穿一切的采集者并没有当面点出来，只是静静的看着克斯人给它作出的表演。</p>
+<p class = "firstLineIndent">“非常抱歉，让您看笑话了，我不该带他过来。”</p>
+<p class = "firstLineIndent">房间内留下来的克斯人代表，首先开口就是向采集者道歉，言语中满是歉意和真诚，如果换作是还不曾与瑟琳人接触的采集者，怕是已经被套路进去了。</p>
+<p class = "firstLineIndent">外交就是这样，充满着语言陷阱和思维陷阱，负责外交的采集者对此也早已习惯。</p>
+<p class = "firstLineIndent">它懒得和克斯人扯其他的事情，作为宗主文明，在外交上它有绝对的主导权，想问什么就问什么。</p>
+
+<h2>第七百四十四章 克斯人的小心思</h2><hr/>
+<p class = "firstLineIndent">“你们不是已经和灵域接触过了吗？为什么还要执着我们现在找到的这个灵域通道？”</p>
+<p class = "firstLineIndent">“是这样的，虽然我们克斯人中有一些具有天赋的人能和灵域沟通，但能沟通和进入灵域的仅限于他们，寻常克斯人没能力接触到灵域，也没机会和灵域中的生物沟通。”</p>
+<p class = "firstLineIndent">克斯人代表如实的作出解释，回答采集者的问题。</p>
+<p class = "firstLineIndent">被采集者刚才那样一吓，克斯人代表可不敢再耍什么花招，那可是在拿整个文明的生死在开玩笑。</p>
+<p class = "firstLineIndent">毕竟他们克斯人连虫族的打不赢，又怎么可能打赢比虫族更加强大的阿米巴呢？</p>
+<p class = "firstLineIndent">“所以你们希望凭借我们找到的那个灵域通道，大范围的和灵域那边接触？”采集者求证性的反问。</p>
+<p class = "firstLineIndent">“高层认为这样更符合利益，失去了恒星系统其他天体资源，我们克斯人需要另谋出路，还请阿米巴方面能够谅解。”克斯人代表回答。</p>
+<p class = "firstLineIndent">通过之前的试探，采集者的表现让克斯人代表明白了阿米巴对于灵域的重视程度，以及态度。</p>
+<p class = "firstLineIndent">隐隐猜测，灵域中的生物和阿米巴是敌对关系。</p>
+<p class = "firstLineIndent">如果真是那样，那搞不好阿米巴会视自己为需要清除的不安分因素，可能会制造意外暗杀这种事情，所以这个锅不能由他自己来扛，克斯人代表心里打着自己的小算盘。</p>
+<p class = "firstLineIndent">一群人的话，阿米巴即便会有所行动，手段应该也会更加温和一些。</p>
+<p class = "firstLineIndent">采集者不知道克斯人代表心里打着的小算盘，它毕竟不是读心大师，克斯人的微动作语言，由于接触的时间尚短，采集者们也不可能立刻总结出来。</p>
+<p class = "firstLineIndent">见克斯人代表如此坦诚，它也就不再把刚才试探的事情太放在心上，重新恢复告诫的口吻，“说白了还是野心，可惜你们根本不知道自己所渴望接触的是什么。”</p>
+<p class = "firstLineIndent">克斯人政府考虑到恒星系统除母星外的所有天体都归属于阿米巴，而文明的发展又离不开物质，于是就盯上了灵域这个在他们眼里的‘异界’，甚至如果环境适宜生存的话，他们会考虑进行大规模殖民运动。</p>
+<p class = "firstLineIndent">采集者通过生命场联系了房间内隐藏的同族，随后房间内降下一块屏幕，屏幕中投影出一片陌生的宇宙环境，正中央是一颗恒星，除此之外没有其他的星体。</p>
+<p class = "firstLineIndent">克斯人代表看到恒星环绕着一圈环状物，起初他以为是一圈小行星带，可当屏幕放大后，他发现自己错了，那居然是一个破损的环形人造物！？</p>
+<p class = "firstLineIndent">工业奇迹——克斯人代表脑海里浮现出这样一个词汇。</p>
+<p class = "firstLineIndent">关于环绕恒星的人造物，克斯人文明也是有所构思，甚至是写成了科幻小说，但科学界普遍认为，这种巨大的恒星尺度人造物，是不可能存在。</p>
+<p class = "firstLineIndent">原因很简单，制造成本以及建材强度，比如戴森球，那所需要的物质量掏空十多个恒星系统中除恒星外的所有物质都远远不够，然后就是结构强度，电磁力材料在卫星尺度就已经接近强度极限，到了行星尺度，用煮烂的面条来形容其强度也并不过分，如果不是如此，那宇宙中的星球不仅会有球体，更会有立方体、三角体等等各种规则和不规则的结构。</p>
+<p class = "firstLineIndent">这不该是不现实的东西，可现在他看到了什么，一个损坏掉的恒星环！——克斯人代表露出极度震惊之色。</p>
+<p class = "firstLineIndent">采集者看到克斯人代表久久不言，便主动打开话茬，介绍起恒星环的来历。</p>
+<p class = "firstLineIndent">“知道这是什么吗？”</p>
+<p class = "firstLineIndent">“这是一个因为灵域而毁灭的文明，他们的工业水平已经可以制造出恒星尺度的建筑，殖民了多个恒星系统，曾经将你们打得只能龟缩壁垒内的虫族，面对这个文明也只有被摁在地上摩擦的份。”</p>
+<p class = "firstLineIndent">能制造恒星环的文明，其工业实力自然是不必多说，可克斯人代表还是有些不敢相信，不是不相信采集者所展示，而是不相信灵域有这样的实力，能够毁灭这样一个建造了恒星环的文明。</p>
+<p class = "firstLineIndent">灵域在克斯人这里所展现出来的东西，无非就是欺骗虫族所有感官的伪装色，除此之外就是诸如读心这样无杀伤的能力。</p>
+<p class = "firstLineIndent">没能直观接触到灵域，克斯人代表根本不清楚灵域是个什么情况，灵尊在他眼里也只是个有些能力的异界土著。</p>
+<p class = "firstLineIndent">看到克斯人代表一副不可置信的模样，采集者懒得再做什么解释，有些事情说多了对方也不一定会信。</p>
+<p class = "firstLineIndent">反正它们的外交态度就是，灵域内的实验所只能由它们来探索，克斯人没有参与进来的必要。</p>
+<p class = "firstLineIndent">另外一边，除了最开始的根须探索，获悉到灵域那边的实验所存在后，采集者们就封锁了防护罩生成装置周围数百公里范围的区域，克斯人全部被驱逐离开。</p>
+<p class = "firstLineIndent">给了相应的补偿，被强制迁移的克斯人里多数都不反对，少数那些反对的也掀不起什么浪花，直接打晕带走。</p>
+<p class = "firstLineIndent">清场之后，采集者们就一直在为进入灵域内探索做物资准备，以及行动计划的讨论。</p>
+<p class = "firstLineIndent">对采集者而言，灵域唯一的麻烦就是灵尊，此外就是灵域中孕育出来的其他妖魔鬼怪，这些必然会给他们对实验所的探索造成严重阻碍。</p>
+<p class = "firstLineIndent">“遗迹在灵域里，大家有什么好的想法吗？我们只要到灵域里，灵尊没过多久就会找上门。”</p>
+<p class = "firstLineIndent">灵尊，采集者倒是不怕，可它们进入到灵域里不是为了战斗，而是为了探索实验所，这样一来就很麻烦了。</p>
+<p class = "firstLineIndent">“要不让克斯人来探索？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">有个体提出让克斯人代替他们进行探索，可很快就被其他同族否决了这个馊主意。</p>
+<p class = "firstLineIndent">“我信不过他们的能力，他们太信任灵域了。”</p>
+<p class = "firstLineIndent">灵域内部危机四伏，就克斯人这种单兵近战都打不赢虫族生物体，无论是生理还是心理，各方面都被碾压的智慧物种，进入灵域没几分钟就会被杀死或者精神失常。</p>
+<p class = "firstLineIndent">商讨一番过后，采集者们最终拍板作出决定，以‘快’为行动方针，迅速的进入灵域探索实验所，然后迅速的将探索到的东西都搬出灵域，赶在灵尊到来以前完成一切。</p>
+
+<h2>第七百四十五章 灵域实验所的探索</h2><hr/>
+<p class = "firstLineIndent">在一切准备就绪后，采集者们延伸出来的根茎，顺着防护罩生成装置下方那毫无缝隙的地方，进入到了灵域中。</p>
+<p class = "firstLineIndent">进入口是在实验所的尖顶部分，那里的缺失是进入的通道口。</p>
+<p class = "firstLineIndent">根茎刚一进入，就感受到了迎面而来的微风，风中带着些许腥味，实验所在一片大草原上，而距离大草原不远的地方，是一条海岸线，蔚蓝的大海就在不远的距离，波光粼粼的海面泛起一朵朵雪白浪花。</p>
+<p class = "firstLineIndent">如此别样的美景，令人看了心旷神怡，可采集者们却不敢放松警惕心，它们始终的清楚，这个地方是灵域，一个很要命的世界。</p>
+<p class = "firstLineIndent">采集者们可不想深入探索灵域，它们此行的目的只为探索，在它们根茎下方的辉文明实验所。</p>
+<p class = "firstLineIndent">“分头行动，你们负责那边，我们负责这边，动作要快，一小时内结束。”</p>
+<p class = "firstLineIndent">“了解。”</p>
+<p class = "firstLineIndent">简单的通过生命场沟通好后，采集者们的根茎利用化学配位性，从实验所正上方直接进入到实验所内部探索。</p>
+<p class = "firstLineIndent">每经过一条岔路，或者某个房间，根茎群中就会分出一条或者数条，对其进行探索，剩余下来的根茎群继续深入探索实验所的其他地方。</p>
+<p class = "firstLineIndent">采集者们的行动，是迅速的，行动方针的制定，也是有意义的，才过了十多分钟的时间，采集者们就完成了对实验所每一个区域的探索。</p>
+<p class = "firstLineIndent">就像在新帝国恒星系统内，发现的那座被冰封的实验所一样，这个辉文明实验所内部也存在着一个负物质区域，并且与之前采集者们所发现的负物质区域如出一辙。</p>
+<p class = "firstLineIndent">而相比较在新帝国恒星系统发现的实验所，这个新发现，在灵域中的实验所要更显完整，很多机械都还能够继续运转。</p>
+<p class = "firstLineIndent">采集者们找到了一些机器人，这些机器人同样也还能够正常启动。</p>
+<p class = "firstLineIndent">距离辉文明的毁灭时间是什么时候？是八亿年！在灵域中的辉文明实验所，居然扛住了时间的磨砺！</p>
+<p class = "firstLineIndent">“辉文明遗迹保存的很完好，完整度比目前发现最完整的辉文明实验所还要高，真是意外的惊喜！”</p>
+<p class = "firstLineIndent">本来采集者们并没有指望实验所里还剩下多少完好的东西，毕竟找过的所有实验所，基本都是破破烂烂，稍微好点的起码还能留下一具空壳，内部的机械期间就别指望了。</p>
+<p class = "firstLineIndent">可是灵域中的实验所不一样，实验所内部的机械器件都基本完好。</p>
+<p class = "firstLineIndent">想想辉文明都是什么技术层次，只要把实验所里的这些机械器件全部带回去，并且全部研究明白，那必然是能为阿米巴带来长足的技术进步。</p>
+<p class = "firstLineIndent">更别说，完好的机械内必然是封存着大量辉文明的实验信息，采集者们终于不必再为了探寻辉文明毁灭的真相而到处在宇宙里寻找实验所。</p>
+<p class = "firstLineIndent">“为什么这座遗迹可以延续八亿年的时间？”</p>
+<p class = "firstLineIndent">“……可能是因为灵域一直在维护？”</p>
+<p class = "firstLineIndent">“或许是这样。”</p>
+<p class = "firstLineIndent">在时空没有被影响的情况下，只能是这种可能，不然没办法解释辉文明的这座实验所如何能延续八亿年的时间。</p>
+<p class = "firstLineIndent">在搜寻的过程中，采集者们发现，虽然实验所大体保存完好，可是内部却没有辉人，不仅没有辉人，在实验所的负物质区域，也没有其他生物体存在，没有尸体，也没有堆积尘埃，非常的干净。</p>
+<p class = "firstLineIndent">这与采集者们在新帝国恒星系统中发现的实验所内，负物质区域里存在大量非辉人生命体的情况相反。</p>
+<p class = "firstLineIndent">负物质区域是利用负物质加速时间的效果，制造的治疗区域，在这个区域里的时间流速要比正常时空更加的快。</p>
+<p class = "firstLineIndent">也就是说，进入到区域内治疗的生物体，无论是使用何种技术治疗，只要有效果，以正常时空来看，都会很快被治愈。</p>
+<p class = "firstLineIndent">就新帝国恒星系统那里发现的实验所，以及收集到的种种情报来看，辉文明的实验肯定伴随着其他文明物种的大量死伤。</p>
+<p class = "firstLineIndent">可为什么这座实验所内的负物质区域里没有像新帝国恒星系统那边的实验所一样，安置其他文明物种进行治愈呢？</p>
+<p class = "firstLineIndent">难道是在实验所被转移到灵域内以前，负物质区域内的生命体都被辉人给转移了？</p>
+<p class = "firstLineIndent">这样的问题可以得到解答，只要采集者们调取实验所里的全部信息记录，肯定能够明白究竟为什么会这样。</p>
+<p class = "firstLineIndent">不过，负责导出实验所内部信息记录的采集者们，还没有完成全部导出，并不能浏览这些信息。</p>
+<p class = "firstLineIndent">就在采集者们因为灵域中的实验所而忙碌之时，有一个采集者忽然注意到了一个问题。</p>
+<p class = "firstLineIndent">那个采集者在生命场频道内告知同族们自己的疑问，“既然这座实验所内部的机械还在正常运作，那是不是说明，内部的防御机制也在正常运作？”</p>
+<p class = "firstLineIndent">进行探索的采集者们集体愣了一下。</p>
+<p class = "firstLineIndent">随后，似乎就像是在响应这个疑问一般，有采集者在频道内警报。</p>
+<p class = "firstLineIndent">“失联！我延伸的根须失联了！”</p>
+<p class = "firstLineIndent">“失联了多少根？”</p>
+<p class = "firstLineIndent">“全部！”</p>
+<p class = "firstLineIndent">根茎被毁的采集者回答，但询问的个体想要了解的是更加具体的情况。</p>
+<p class = "firstLineIndent">“究竟怎么回事？详细说明一下情况。”</p>
+<p class = "firstLineIndent">冷静下来，根茎全部被毁的采集者说明细节。</p>
+<p class = "firstLineIndent">“就在刚才，我准备把实验所里的辉文明机械都带出来，刚把一台机械的电源切断，才一瞬间的时间里，所有的根须和我的联系就都切断了。”</p>
+<p class = "firstLineIndent">辉文明的机械可是个好东西，时间有限，采集者们自然是不可能慢慢研究这些机械都是什么原理，所以就想着全部打包带走，带到它们的主场再慢慢研究。</p>
+<p class = "firstLineIndent">已经有复数的采集者调遣自己的根茎赶往事发地点，获取攻击根茎的敌人情报。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">可随后，它们也失去了与根茎的联系，不仅仅是它们，实验所内越来越多的采集者都失去了与自己根茎的联系。</p>
+<p class = "firstLineIndent">从反馈的神经元信号来看，根茎应该是被破坏了。</p>
+<p class = "firstLineIndent">不过，在庞大的数量下，尽管敌人的手段雷厉风行，迅猛无比，还是被采集者们获悉到少许信息。</p>
+<p class = "firstLineIndent">【检测到外来入侵者，自防御机制启动，内部清扫程序开始，请各部门成员有序进入休息间休息】</p>
+
+<h2>第七百四十六章 最终只能靠莽</h2><hr/>
+<p class = "firstLineIndent">正如之前某只采集者担忧的那样，实验所的防御机制仍然在正常运行。</p>
+<p class = "firstLineIndent">根茎被切断，对采集者来说就好比手臂被切断，算不上是致命伤，顶多算是被驱逐出了实验所。</p>
+<p class = "firstLineIndent">实验所外部的根茎并没有遭到防御机制的攻击。</p>
+<p class = "firstLineIndent">防御机制启动的原因，采集者们推测应该是机械的能源供给被切断所致，这个应该就是触发机制。</p>
+<p class = "firstLineIndent">之前那切断机械电源，准备将辉文明机械搬走，同时也是第一个根茎被毁的采集者，向同族们道歉。</p>
+<p class = "firstLineIndent">“对不起，都是我的错……”</p>
+<p class = "firstLineIndent">族群给出的任何处罚它都接受，本来它是想自杀，可是自杀不能解决问题，它自己的价值远远抵不上这次失误给族群造成的损失。</p>
+<p class = "firstLineIndent">要知道，它们这次所面对的是一个怎样的财富，实验所内辉文明的造物都保存完好，如果能将其中的技术理解并消化，那族群的技术发展必然是飞跃式的大步迈进，死一万亿个采集者都换不来的无价之宝。</p>
+<p class = "firstLineIndent">还有实验所内部的各种信息资料、知识，让采集者拿全部的附属文明来交换，采集者都愿意。</p>
+<p class = "firstLineIndent">“不怪你，其实我也正准备调用部分根茎，搬些辉文明的机械回来。”</p>
+<p class = "firstLineIndent">其他个体并没有过多责怪，因为那只采集者只是最先行动的个体，同一时间，实验所里有多个采集者都打算把辉文明遗留下来的机械都搬回去。</p>
+<p class = "firstLineIndent">事先，采集者们并没有想到防御机制这一层，毕竟破坏了实验所的外壁，防御机制都没启动，它们那时候以为实验所的防御机制损坏亦或者存在故障无法正常运行。</p>
+<p class = "firstLineIndent">当务之急不是谁对谁错，那样毫无意义只是在浪费时间，时间拖下去，等灵尊到了就麻烦了。</p>
+<p class = "firstLineIndent">在灵域里，和灵尊交战的胜率是百分之百为零，一点机会都不可能有。</p>
+<p class = "firstLineIndent">“接下来该怎么办？”</p>
+<p class = "firstLineIndent">“里面的情况我们都了解的差不多，连内部地图都有绘制，我们强冲实验所的自防御机制，把能带走的都带走。”</p>
+<p class = "firstLineIndent">“赞同，现在不抓紧机会，下次进来可能就是一个灵尊守在这里了。”</p>
+<p class = "firstLineIndent">做好决定的采集者调用自己的根茎，以各个角度从外部强冲实验所内部，想要赶在被实验所防御机制破坏掉以前，把实验所里的东西能搬走的都搬走。</p>
+<p class = "firstLineIndent">不得不说，采集者们的蛮干想法很有效，在根茎庞大数量的压制下，还真的让不少根茎顺利的突破实验所外层防护，深入到实验所内部，将一些东西带了出来。</p>
+<p class = "firstLineIndent">但这种行为，也让实验所的防御机制有了新的反应。</p>
+<p class = "firstLineIndent">【清扫难度评估调整，由一阶提升至三阶，采用三阶处理措施，连接主灵域系统……】</p>
+<p class = "firstLineIndent">就在采集者们以为可以按照这种节奏，把实验所里的东西尽数搬空时。</p>
+<p class = "firstLineIndent">仅仅只是瞬息间的功夫，入侵到实验所内的根茎就被莫名的攻击给清空了。</p>
+<p class = "firstLineIndent">攻击是什么采集者没看到，它们就看到自己指挥的根茎突然之间就爆裂，散落成比纳米机械还要细小的颗粒。</p>
+<p class = "firstLineIndent">“什么情况，刚才发生了什么？”</p>
+<p class = "firstLineIndent">有些采集者还没反应过来，因为一切都太过突然了。</p>
+<p class = "firstLineIndent">“都别愣着！加大力度！”</p>
+<p class = "firstLineIndent">那些反应过来的采集者，则是呼唤同族，以更加乱来的手段展开入侵，现在已经是骑虎难下了。</p>
+<p class = "firstLineIndent">采集者们使尽了浑身解数，以无所不用其极的手段和实验所的防御机制斗智斗勇。</p>
+<p class = "firstLineIndent">虽然辉文明实验所的防御机制很厉害，采集者们看了半天都没看明白究竟是个什么原理发动的攻击，但这并不妨碍它们拼着根茎的损耗，同实验所硬碰硬。</p>
+<p class = "firstLineIndent">实验所的防御机制等级因为采集者们而一升再升。</p>
+<p class = "firstLineIndent">【清扫难度评估调整，由三阶提升至十二阶，采用十二阶处理措施……】</p>
+<p class = "firstLineIndent">“搜刮！别管是什么东西，能带走的都带走！”</p>
+<p class = "firstLineIndent">【清扫难度评估调整，由十二阶提升至八十一阶，采用……】</p>
+<p class = "firstLineIndent">“都给我用反物质！不能停！”</p>
+<p class = "firstLineIndent">激战烈度越来越强，到了最后，采集者们甚至不得不用上自己携带的反物质来跟实验所的防御机制对抗。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">时间一分一秒的在流逝，可采集者们能从实验所里带出的东西却越来越少，实验所的防御机制仿佛没有尽头一般的在提升，入侵难度几何式的往上攀升，许许多多的根茎在下一秒就成了比纳米还要更细小的灰渣。</p>
+<p class = "firstLineIndent">眼看任务时限将近，心怀焦虑的采集者决定破釜沉舟，多只采集者抵达实验所的外部，然后演化热射线器官，意图从外部将实验所切开。</p>
+<p class = "firstLineIndent">实验所的防御机制不会干涉到外部，采集者们正是想利用这点，从外部切割实验所无关紧要的部分，在分割成多个小块后获取实验所内部的东西。</p>
+<p class = "firstLineIndent">然而就在它们准备动手之际，变故发生了……</p>
+<p class = "firstLineIndent">嘭！</p>
+<p class = "firstLineIndent">苍穹之上传来一声闷响，一道口子被撕开，从裂缝之内显现出一只眼睛，直勾勾的窥视着采集者们所在的实验所。</p>
+<p class = "firstLineIndent">“灵尊？！”</p>
+<p class = "firstLineIndent">采集者们一眼就辨认出了对方的正体。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">这是不曾接触过的灵尊，但采集者们却能感觉到对方的敌意，就仿佛在直接用语言告诉它们——你们该死。</p>
+<p class = "firstLineIndent">“反物质呢？我的反物质呢？”</p>
+<p class = "firstLineIndent">准备给灵尊来一份见面礼的采集者愕然的在自己身体里寻找封装反物质的容器。</p>
+<p class = "firstLineIndent">另外的同族提醒它，“刚才和实验所里的防御机制正面硬碰硬的时候用光了，大家都一样。”</p>
+<p class = "firstLineIndent">没了反物质，那该怎么拖住灵尊给同族撤离争取时间？</p>
+<p class = "firstLineIndent">生死存亡是小事，可还有一些从实验所里搜刮出来的东西需要它们带回到灵域之外，这些东西对族群有益，族群需要这些东西。</p>
+<p class = "firstLineIndent">这个问题很快便不再困扰采集者，因为它从同族那里又获取到了新信息。</p>
+<p class = "firstLineIndent">“通道被切断了！我们被困在灵域里！”</p>
+<p class = "firstLineIndent">采集者们进入到灵域的通道，就是实验所顶端的缺口，那个缺口可以理解为是一个时空错位的节点，实际上并没有缺口，只是实验所顶端的那部分留在了灵域外，没有整个都搬到灵域之中。</p>
+
+<h2>第七百四十七章 ‘那个’</h2><hr/>
+<p class = "firstLineIndent">实验所的顶端还是一个整体。</p>
+<p class = "firstLineIndent">可现在不是，通道被切断，防护罩生成装置与实验所的联系断开，从此物理意义上的再无联系。</p>
+<p class = "firstLineIndent">“怎么办？”</p>
+<p class = "firstLineIndent">“辉文明的实验所很强，说不定实验所的防御机制能够抵御得住灵尊，我们依托实验所来抵御灵尊。”</p>
+<p class = "firstLineIndent">“只能这样了。”</p>
+<p class = "firstLineIndent">可惜，这些采集者的想法还是太过天真。</p>
+<p class = "firstLineIndent">实验所周围的一切开始发生莫名的时空扭曲，就像是一股磅礴的伟力正在将这个范围里的一切，包括时空都揉搓到一起，压缩到最极点。</p>
+<p class = "firstLineIndent">随后，一切都仿若是镜花水月般的破碎，一望无尽的翠绿草原，辽阔无垠的碧蓝海洋，无边无际的苍穹之顶，统统消失。</p>
+<p class = "firstLineIndent">显露出来的是那虚假之后的真实面貌——混沌。</p>
+<p class = "firstLineIndent">与灵域真实面貌一同显露出来的，还有灵尊。</p>
+<p class = "firstLineIndent">无形无貌，一团漆黑，似气、似液、似固，令人捉摸不透，唯一可以明确定义且让人看到第一眼就难以遗忘的，便是那布满血丝的巨大眼睛。</p>
+<p class = "firstLineIndent">灵尊消灭了入侵到灵域里的采集者，可是……一切却还不算结束。</p>
+<p class = "firstLineIndent">整个灵域仿若是凝实了一般，陡然间的不再运动，乱流也好，破碎也罢，一切的一切都突然之间停滞，时间变得不再具有意义，即便是在灵域内无所不能的灵尊也不例外。</p>
+<p class = "firstLineIndent">灵尊知道，它激怒了‘那个’，它犯下了不可饶恕的罪责，就在刚刚，‘那个’在指责它——看看你都做了些什么！</p>
+<p class = "firstLineIndent">它需要给出一个合理的解释……</p>
+<p class = "firstLineIndent">合适的理由可以挽救……</p>
+<p class = "firstLineIndent">只需要……</p>
+<p class = "firstLineIndent">……不，不再需要解释了，一切毫无意义可言。</p>
+<p class = "firstLineIndent">多舛的命运已然注定，在‘那个’的注视下，结果只有唯一，毫无变量可言。</p>
+<p class = "firstLineIndent">【汝，该死】</p>
+<p class = "firstLineIndent">言定一切，消逝者理当消失，灵尊不复存在。</p>
+<p class = "firstLineIndent">乱流在协奏，悠久的咏诵飘渺不定，仿若久远之初便已存在的古老。</p>
+<p class = "firstLineIndent">【复苏】</p>
+<p class = "firstLineIndent">灵域之内一切恢复，包括那被毁坏的辉文明实验所，破碎的梦幻泡影，一切就如最初那个样子，唯有逝者已矣，采集者如此，灵尊亦是如此。</p>
+<p class = "firstLineIndent">恍惚间，一声惆怅的哀叹，飘荡在灵域之中……</p>
+<p class = "firstLineIndent">那些及时撤回的采集者们，对防护罩生成装置进行了各种尝试，期望把断开的通道重新连接起来。</p>
+<p class = "firstLineIndent">然而，一次次的无果失败告诉采集者们，通向灵域的通道没办法重新构建起来。</p>
+<p class = "firstLineIndent">采集者确实还有其他手段进入灵域，可是那种方式的进入，并不能到达实验所的位置，甚至还有召来灵尊的风险。</p>
+<p class = "firstLineIndent">“失败了，那么多机械，信息记录都没带出来……”</p>
+<p class = "firstLineIndent">采集者中有很多个体感觉很遗憾，不是遗憾那些还未离开灵域的同族，而是为辉文明实验所里那些还未带出的东西而遗憾。</p>
+<p class = "firstLineIndent">“那个该死的灵尊，比预估的时间来的还早，赶着去死吗？明明我们就差一点……生气！”</p>
+<p class = "firstLineIndent">“至少带出来了一些，同族的牺牲不是毫无作用。”</p>
+<p class = "firstLineIndent">沮丧不能为族群带来任何东西，所以采集者们很快收拾好自己的情绪，看着那些从灵域里带出来的东西，至少它们这次，也并非是一无所获……</p>
+<p class = "firstLineIndent">在此后的一段时间里，克斯人母恒星系统里的采集者们，全身心的投入到恒星系统殖民的建设当中。</p>
+<p class = "firstLineIndent">恒星系统内，巨构生物的数量开始变多起来。</p>
+<p class = "firstLineIndent">就这样正常发展了二十年的时间，虫族来了。</p>
+<p class = "firstLineIndent">虫族的生物群来的很突然，靠着排气反推提供的原始推力，以一个不算很快的速度不断靠近目标恒星，花了十七多年的时间，才终于靠近是恒星系统最外圈那颗气态行星的公转轨道，真是漫长的旅程。</p>
+<p class = "firstLineIndent">不是虫族不想直接进入到恒星系统里，而是做不到，它们不管怎么定位坐标恒星系统内，都没办法进入。</p>
+<p class = "firstLineIndent">于是只能采用折中的办法，把灵域跳跃的坐标和恒星拉开，一点点的测试，在完成跳跃后，通过常规航行手段进入到恒星系统里。</p>
+<p class = "firstLineIndent">想法很美好，现实却很残酷，虫族的太空生物群，推进方式靠的是气推，气推的比冲很低，这导致虫族太空生物群耗尽所有气体后的最终速度并不高。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">而由于距离恒星过远，恒星引力的加速度也不能给虫族生物群提速多少，因此就只能这样慢吞吞的靠近恒星。</p>
+<p class = "firstLineIndent">结束了漫长的生物休眠，虫族遥望着它们漫长旅途的终点，虽然搞不清楚是什么原因导致没办法直接跳到目标恒星系统里，但这并不能阻碍虫族的征伐。</p>
+<p class = "firstLineIndent">就在这个恒星系统里，存在着虫族的敌人，他们击败了虫族的一支生物群，以致于那个生物群释放出求援信号，向虫族其他分支生物群求取力量。</p>
+<p class = "firstLineIndent">这一次，敌人没可能再赢，因为他们将要面对的，是一支比原来那支规模大上千倍的虫族大型生物群，他们的结局只有一个。</p>
+<p class = "firstLineIndent">虫族的指挥阶层陆陆续续的开始从休眠中苏醒，它们运转起自己那因刚苏醒有些迟钝的生物脑，开始为虫族接下来的进攻制定战略计划。</p>
+<p class = "firstLineIndent">那些最大尺寸能达到母舰级的大型生物体，释放出雷达脉冲，扫描恒星系统内的大体环境，以及距离最近那颗行星的详细信息。</p>
+<p class = "firstLineIndent">不知道是不是因为休眠过久导致的感官能力下降，某个虫族指挥阶层借助大型生物的视觉观测恒星方向，居然发现了一个个微小的黑斑。</p>
+<p class = "firstLineIndent">就在虫族的那个指挥阶层犹豫该不该上报时，生物群攻击的指令提前下达了。</p>
+<p class = "firstLineIndent">它们发现了一个敌人的大型单位，体型比它们生物群中最大的生物体还要庞大几倍。</p>
+<p class = "firstLineIndent">按照以往的经验，这必然是敌人相当重要的一个太空据点，攻占这里，用行动告诉恒星系统内那些虫族的敌人，虫群来了！</p>
+<p class = "firstLineIndent">此时此刻，远离恒星的降温巨构一改了往日得悠闲，有些懵逼的看着不知道从哪里冒出来的生物群，正直冲向它。</p>
+<p class = "firstLineIndent">缓过神来后，立即开始给同族发出警报。</p>
+<p class = "firstLineIndent">“攻击！我正在遭受攻击！一大群敌人从恒星系统来入侵！运输单位不要靠近，让战斗单位过来！”</p>
+
+<h2>第七百四十八章 两边的初始交锋</h2><hr/>
+<p class = "firstLineIndent">虫族的生物群对具体它们最近的敌方大型太空单位发动了进攻，大量的酸液炮弹和离子浆，以及被当作炮弹的寄生虫、孢子等。</p>
+<p class = "firstLineIndent">种类五花八门，但攻击投送的方式过于单一，基本可以变相的将全部都理解为实弹类打击。</p>
+<p class = "firstLineIndent">在太空里，由于尺度的关系，实弹类的攻击基本都存在着较为严重的延时。</p>
+<p class = "firstLineIndent">而这就给了采集者的生物雷达，发挥的空间，以光速向外扩散的大功率雷达波，与虫族生物群释放的实弹攻击相遇，然后部分雷达波和实弹接触，再以光速返回到发射源，由此获悉每一个虫族释放的实弹位置。</p>
+<p class = "firstLineIndent">然后，降温巨构利用临时孕育出来的大型热射线激光炮，将虫族释放的所有实弹攻击全部汽化蒸发。</p>
+<p class = "firstLineIndent">虫族不知道降温巨构释放了激光，但它们有热源感应能力，可以看到降温巨构上出现热源信号后，它们所释放的实弹上也会相应的提高热源信号，直到与降温巨构上的热源信号相一致。</p>
+<p class = "firstLineIndent">此时，虫族的指挥阶层第一次感觉虫族的攻击方式存在很大的不足。</p>
+<p class = "firstLineIndent">以前都是通过灵域跳跃，直接拉近与敌方太空单位之间的距离，凭借着虫族生物体悍不畏死的狠劲，把敌人全部吞噬。</p>
+<p class = "firstLineIndent">可现在不一样了，尺度太大，而灵域跳跃又不知道是什么原因不能使用，虫族生物群只能像现在这样慢吞吞的靠近敌人的大型太空单位，而释放的实弹攻击，也需要飞很长时间才能打到敌人。</p>
+<p class = "firstLineIndent">这个时间太久了，久到敌人能及时的完成疏散、动员、战斗资源调配，并做好对它们突袭的应对准备。</p>
+<p class = "firstLineIndent">就好比冷兵器时代的精锐跑进了热兵器时代的战场面对敌方的重火力机枪。</p>
+<p class = "firstLineIndent">交战前还没有什么感觉，但在交战后，尤其是敌人使用一种尚不明确的攻击清理掉它们的炮弹后，虫族的指挥阶层非常的无所适从，一股有劲没处使的感觉。</p>
+<p class = "firstLineIndent">被封禁了灵域的使用，新的战场模式让没有心理准备的虫族指挥阶层有些慌，降温巨构那边同样很慌。</p>
+<p class = "firstLineIndent">“你们快点过来啊，我这边撑不了多久。”降温巨构催促着恒星系统内其他的同族。</p>
+<p class = "firstLineIndent">虫族的袭击太突然了，以不快的速度慢吞吞的靠近恒星，这种方式的太空位移，正好是采集者们的雷达盲区。</p>
+<p class = "firstLineIndent">谁也不可能料想到，真的会有敌人采用这样的进攻方式。</p>
+<p class = "firstLineIndent">以虫族生物群的航速，花个几万年的时间才能跑完一光年的距离，而恒星系统与恒星系统之间的距离，少说也有数光年的尺度。</p>
+<p class = "firstLineIndent">距离小于光年的两个恒星系统不是没有，但基本存在时间都不长，彼此的引力会破坏天体系统，要么合二为一，成为一个同一系统，要么恒星之间发生大碰撞，两个系统一起土崩瓦解，抛飞出一些天体，剩余的恒星残渣重新孕育成新的恒星系统。</p>
+<p class = "firstLineIndent">总之，以虫族生物群那样的航速进行跨恒星系统的大远征，在采集者看来是不可能的事情，除非敌人整个决策层都没脑子。</p>
+<p class = "firstLineIndent">虫族利用灵域，跳跃到了涟漪巨构引力波影响较弱的地方，然后以正常的物质移动低速进入恒星系统，是采集者们怎么也没曾想到的入侵方式。</p>
+<p class = "firstLineIndent">因为不曾料想过，降温巨构这里也就没有被分配到过战略资源，现在与虫族的战斗，能够运用的资源中勉强能称作战略资源的就是，大量还在降温的等离子氦以及冷却氦气和一丁点的反物质，这一丁点来自于往返的运输生物携带的燃料。</p>
+<p class = "firstLineIndent">好在情况并不算太过糟糕，氦气是可以利用的物质资源。</p>
+<p class = "firstLineIndent">制作一个晶体管，晶体管内部注入氦氖混合气体，激光工作物质是氖，起受激辐射作用，氦为辅助气体，起传递能量作用。</p>
+<p class = "firstLineIndent">能量的来源是那些还正在冷却等离子氦，等离子氦降温为氦气的这一过程，可以用来产出电能。</p>
+<p class = "firstLineIndent">在充入电流后，便有了后来虫族所看到的，大型热激光摧毁实弹攻势的一幕。</p>
+<p class = "firstLineIndent">虫族在见识到它们的攻击被化解后，释放出了更多的实弹类攻击，而受限于资源，降温巨构没办法孕育更多大型热射线炮的情况下只能疲于应付那些来袭的实弹攻击，偶尔抽出手来反击一下虫族生物群。</p>
+<p class = "firstLineIndent">虫族指挥阶层明白了它们现在的处境，失去灵域的它们就像是被打落了一个次元，宇宙的大尺度空间是制约它们百分之九十九武力的势垒。</p>
+<p class = "firstLineIndent">想要击败眼前的敌人，只能通过拉近距离的方式。</p>
+<p class = "firstLineIndent">为了防御降温巨构偶尔会攻击过来的热射线攻击，许许多多的小型生物从大型生物体内涌出，小型生物轮班在大型生物体的周围运动位移，构建起一层活体防护罩。</p>
+<p class = "firstLineIndent">热射线激光命中活体防护罩的外层，组成活体防护罩的部分小型生物会因高温而死亡，但因为宇宙的真空环境，温度会被留在那些死亡的小型生物尸骸里，作为母体的大型生物和其他小型生物，不会有任何危险。</p>
+<p class = "firstLineIndent">双方进入了一种你来我往的僵持阶段，一时间谁也奈何不了对方。</p>
+<p class = "firstLineIndent">不过，这样的情况并不会维持多久，虫族那边在不断靠近降温巨构，只要距离拉得足够近，它们的很多攻击就可以发挥出应有的威力，那个时候就可以让敌人充分领略到虫群的恐怖。</p>
+<p class = "firstLineIndent">降温巨构那边则更加简单，它在不断的催促战斗类的同族快点行动。</p>
+<p class = "firstLineIndent">这样的战斗持续了一天半，距离的拉近变相的削弱了激光防空的火力，零星的虫族攻击开始穿过激光防御网。</p>
+<p class = "firstLineIndent">寄生虫、孢子这些活体作战单位，在登陆到降温巨构上后，就被上面探出来的根茎给尽数抹杀，问题不大，酸液炮弹这类也可以通过化学手段防御下来，唯一比较麻烦的就是离子浆，这东西降温巨构没有太好的办法防御，威力也不小。</p>
+<p class = "firstLineIndent">离子浆破坏降温巨构的热射线激光，变相的又削弱了激光防御网，两者相辅相成，降温巨构的败势越来越明显。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">就在这危急时刻，一串无线电信息传到降温巨构那里。</p>
+<p class = "firstLineIndent">“正在向你靠近，我们已经能看到你了。”</p>
+<p class = "firstLineIndent">“看到我有什么用！能帮我拦截一些攻击吗？我这边快撑不住了！”</p>
+<p class = "firstLineIndent">降温巨构继续在催促……</p>
+
+<h2>第七百四十九章 无可争议的碾压</h2><hr/>
+<p class = "firstLineIndent">虫族拥有生物无线电技术，可以释放和接收无线电信息，既可以利用常规无线电进行通信，也可以释放高频无线电脉冲来作为雷达波探测环境。</p>
+<p class = "firstLineIndent">由于尚不清楚的原因，灵域无法正常使用，虫族指挥阶层只能通过无线电通讯来进行战术交流、指挥作战等操作。</p>
+<p class = "firstLineIndent">眼下它们即将攻下敌人的一处超大型太空设施，这处太空设施是它们迄今为止见过最大的非自然造物。</p>
+<p class = "firstLineIndent">这处超大型太空设施的火力很猛烈，可并非是无法解决的问题。</p>
+<p class = "firstLineIndent">按敌方造物的体量，以虫族指挥阶层过往的经验，这里面一定会有非常丰富的生物质，除此之外还会有水、有机纤维等各种各样的物质资源。</p>
+<p class = "firstLineIndent">就在虫族的指挥阶层都因为即将攻下的敌方太空设施，商讨物资补给以及后续战略的时候，虫群接收到了一股股无线电脉冲。</p>
+<p class = "firstLineIndent">无线电来源并非是正在与它们交战的大型太空设施，无线电信号源在其他方向。</p>
+<p class = "firstLineIndent">这些无线电脉冲频率很高，释放的也非常频繁，虫族指挥阶层不难判断出这是什么，因为它们也在用，这是雷达波。</p>
+<p class = "firstLineIndent">循着雷达波释放过来的方向，借助可见光波段，虫族生物群中的大型生物体捕捉到了远方模糊的一个点。</p>
+<p class = "firstLineIndent">随后，虫族生物群中，拥有堪比母舰级体量的大型生物，也释放出大功率雷达波，获取远方目标的信息。</p>
+<p class = "firstLineIndent">然后得知，远方的并不是一个点，而是一群正在高速移动的物体。</p>
+<p class = "firstLineIndent">借助红外微波视角，可以判断出这些高速移动的物体温度很高，由此便可以把陨石群这种可能排除掉。</p>
+<p class = "firstLineIndent">是过来增援的敌方舰队——虫族指挥阶层对己方雷达侦测到的物体群作出判断。</p>
+<p class = "firstLineIndent">虫群的实弹类攻击虽然可以攻击到那么远，但由于尺度过大，命中率会直线下降，敌方舰队如果同样是使用实弹类攻击，那也是同样的情况。</p>
+<p class = "firstLineIndent">思考再三后，虫族指挥阶层发射出大量的炮弹，这些炮弹是活的，是一个个小型生物，利用生物体的智能性，弥补掉大尺度上实弹类攻击命中率低下的短板。</p>
+<p class = "firstLineIndent">作为炮弹的小型生物会在靠近敌方舰队后主动攻击，甚至是登陆到敌人战舰上实行登陆作战。</p>
+<p class = "firstLineIndent">虫族指挥阶层不指望这样的战略能够全灭敌人的战舰，毕竟对方是曾经将一支虫族生物群消灭的强劲敌人。</p>
+<p class = "firstLineIndent">但即便只是给敌人舰队造成一些损失，对虫族来说也是赚了。</p>
+<p class = "firstLineIndent">跃进生物这边，大功率雷达波一波波的在释放，远方的虫族生物群就像是近在眼前一般，熟悉大尺度作战的它们并不会像虫族指挥阶层那样感觉到不适应。</p>
+<p class = "firstLineIndent">当虫族对它们发射出大量生物炮弹，还没飞出多远，就被采集者们给获知，并精确的捕捉每一枚生物炮弹的位置。</p>
+<p class = "firstLineIndent">这全都归功于反物质反应堆，庞大的能量作为基础，允许跃进生物们不要钱似的胡乱释放大功率雷达波，精准度远不是虫族的生物雷达能够比拟。</p>
+<p class = "firstLineIndent">而且，跃进生物们不仅知道这些生物炮弹的精确位置，更是清楚来袭的这些生物炮弹都是活体的事情。</p>
+<p class = "firstLineIndent">没办法，谁让这些活体炮弹始终向外释放无线电，正常炮弹不断释放无线电有什么用？无线电要么作为雷达波，要么作为通讯波，无论是前者还是后者，都在说明这些炮弹是具备自主能动性。</p>
+<p class = "firstLineIndent">考虑到虫族并不发展集成电路技术，跃进生物们很自然的就能推断出炮弹全部是活体的事实。</p>
+<p class = "firstLineIndent">对于这些活体炮弹，跃进生物们并不感到忧心，甚至连防御的考虑都没有，活体炮弹的速度很快，可这个‘快’，在大尺度上实在是太慢了。</p>
+<p class = "firstLineIndent">活体炮弹需要慢悠悠的飞好几天的时间，才能到跃进生物这边，这还是跃进生物主动高速靠近虫族生物群作为前提——炮弹还没它们跑得快。</p>
+<p class = "firstLineIndent">“好原始的作战方式，我们都已经淘汰很久了。”</p>
+<p class = "firstLineIndent">“这是技术不足带来的局限性。”有采集者作出较为客观的判断。</p>
+<p class = "firstLineIndent">虫族指挥阶层怎么也不会想到，跃进生物集群凭借着它们的这一波攻势，已经把虫族生物群的技术了解的七七八八。</p>
+<p class = "firstLineIndent">“这个距离差不多了，我们可以回击……”</p>
+<p class = "firstLineIndent">集群率领者通过一次次的雷达回波，精确的把握住它们与虫族生物群之间的距离，在进入到四个天文单位的距离后，它给自己率领的跃进生物集群下令。</p>
+<p class = "firstLineIndent">“全员就位！齐射准备！开始索敌！”</p>
+<p class = "firstLineIndent">一只只跃进生物偏转身躯，将用来发射亚光速炮弹的电磁炮对准远方的虫族生物群。</p>
+<p class = "firstLineIndent">不过，这次它们却并不打算发射亚光速炮弹，或者伽马射线炮。</p>
+<p class = "firstLineIndent">电磁炮的口径开始调整，肉体的不断蠕动下，口径慢慢变小，而在这个过程中，大功率雷达波不断扫描虫族生物群的位置。</p>
+<p class = "firstLineIndent">并且与其他同族通过无线电构建的信息流通渠道，实现多点定位坐标，让精准度进一步的提升。</p>
+<p class = "firstLineIndent">“发射！”</p>
+<p class = "firstLineIndent">随着集群率领者的指令下达，跃进生物体内的反物质反应堆加大电流的释放，电磁炮的内圈磁环不断升压，形成功率强劲的电场。</p>
+<p class = "firstLineIndent">每一枚炮弹都有拳头粗，内部装载十公斤反物质的小型炮弹进入磁轨，在强劲电场的作用下不断加速，以极高的速度从电磁炮内弹射而出，共计四千多发。</p>
+<p class = "firstLineIndent">这些小型炮弹在被电磁炮加速，飞出一段距离后，尾部用来加速的反物质开始与正物质进行湮灭反应，进一步的将小型炮弹提升至光速的百分之九十以上。</p>
+<p class = "firstLineIndent">虫族生物群中，接二连三的有大型生物体莫名的发生大爆炸，巨大的威力将这些生物体炸成好几段。</p>
+<p class = "firstLineIndent">虫族的指挥阶层知道它们遭遇了敌人的攻击，可完全看不懂原理。</p>
+<p class = "firstLineIndent">在它们的视角来看，敌方舰队也发射了很多炮弹。</p>
+<p class = "firstLineIndent">可随后在一阵强烈的电磁波释放后，这些炮弹突然从生物雷达里消失不见，接着就是生物群里一只只大型生物开始莫名的在承受不知为什么会出现的大爆炸。</p>
+<p class = "firstLineIndent">这个时候，哪怕是再愚蠢的虫族指挥阶层也看得出来，它们与敌人根本不在一个量级上，这不是依靠数量能够弥补的差距，它们无视灵域无法正常使用，贸然来进攻这个恒星系统，是一个完全错误的决定！</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">逃！必须要将这样恐怖敌人的信息传递回虫族！</p>
+<p class = "firstLineIndent">虫族指挥阶层这样做出决断。</p>
+
+
+
+<a href="730.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="750.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

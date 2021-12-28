@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第七百六十章 我们需要更多利维坦</h2><hr/>
+<p class = "firstLineIndent">虫族的军事力量主要集中在三个存在星门的恒星系统。</p>
+<p class = "firstLineIndent">因为虫族发现，敌人似乎并没有和它们一样，能够利用灵域瞬移，所以直接放弃了夺回那些失守的‘神逐之地’，转而集中固守存在星门的恒星系统。</p>
+<p class = "firstLineIndent">以避免敌人借着星门，入侵虫族在门世界中的疆域。</p>
+<p class = "firstLineIndent">一旦被敌人入侵，那对虫族的力量将会是一次沉重的打击，文明的战斗力和生产力直接挂钩，生产力越高，文明实力相对也就越强。</p>
+<p class = "firstLineIndent">而生产力是离不开物质作为载体，总是需要存在着这样一个发挥生产力的地方，在人类社会中，这种地方叫做工厂，而在虫族里，则叫做虫巢。</p>
+<p class = "firstLineIndent">也就是说，巢穴星球的数量与虫族的文明实力挂钩，如果被敌人全部毁掉，虫族的生产力也就被瓦解了。</p>
+<p class = "firstLineIndent">所以，虫族绝对不能让敌人从它们手里夺得星门的支配权！星门后面就是虫族的经营许久的腹地！</p>
+<p class = "firstLineIndent">一批批的利维坦从还未被采集者们攻击的‘神逐之地’以及门世界内的虫族疆域，通过灵域进入到这几个前线恒星，与跨越光年距离而来的跃进生物交战。</p>
+<p class = "firstLineIndent">可以使用灵域的利维坦，通过跳跃抹平了大尺度作战的劣势，不至于像克斯人母恒星系统内那样被吊打。</p>
+<p class = "firstLineIndent">数量上和利维坦差不多持平的跃进生物集群，没能在虫族那边讨到什么好处，一番苦战下来，只是抢夺下外围的柯伊伯带陨石群。</p>
+<p class = "firstLineIndent">不过，攻下虫族的这三个拥有星门的恒星系统，只是时间问题，跃进生物集群源源不断的从族群其他的恒星系统赶过来。</p>
+<p class = "firstLineIndent">附近的恒星系统也开始了殖民建设，一旦建设完成，恒星物质得到大规模的开采，将会有更多的跃进生物携带着反物质进入战场。</p>
+<p class = "firstLineIndent">这些虫族是不知道的，目前僵持的状况让它们觉得已经稳住了局势，交战这么久的时间，它们基本也已经知道了敌人只是一个不会使用灵域的种族。</p>
+<p class = "firstLineIndent">虽然非常厉害，但厉害的有限，无法使用灵域的敌人没办法将全部的军事力量集中于第一点上，这在它们看来就是软肋。</p>
+<p class = "firstLineIndent">于是，虫族的主宰给虫族下达命令。</p>
+<p class = "firstLineIndent">“继续向其他神逐之地扩张，找到更多事宜的世界，改造成巢穴星球。”</p>
+<p class = "firstLineIndent">是的，现在无法实现数量碾压，那就扩大巢穴星球的数量，生产更多的利维坦来实现数量碾压，这就是虫族的想法。</p>
+<p class = "firstLineIndent">“主宰，是不是应该向放牧人汇报一下？”</p>
+<p class = "firstLineIndent">“……这个不需要。”</p>
+<p class = "firstLineIndent">主宰思考了一会后，给出了否定的答复。</p>
+<p class = "firstLineIndent">虫族是个很有野心的种族，它们可不会甘于成为其他文明的奴仆，向神逐之地扩张虫族势力，壮大虫群，就是为了有一天能够超越门世界里的第七阶层，然后把他们全部吞噬。</p>
+<p class = "firstLineIndent">所以，虫族向神逐之地扩张的事情，不曾给放牧人说明过，甚至还有意的隐藏扩张的行为。</p>
+<p class = "firstLineIndent">现在把这些事情告知放牧人，主宰拿不准这个目前压在它们上面的第七阶层，会怎么想，这是主宰的顾虑。</p>
+<p class = "firstLineIndent">如果第七阶层认为虫族有被彻底消灭掉的必要，虫族连反抗的能力都没有，现在的它们还远远不够强大。</p>
+<p class = "firstLineIndent">战争就这样持续了二十多年，交战烈度最高，存在着星门的三座恒星系统，到处飘散着残骸。</p>
+<p class = "firstLineIndent">虫族的利维坦、阿米巴的跃进生物，双方都有，主要是利维坦的残骸居多，且较为完整，跃进生物为了避免被虫族俘虏，导致基因的泄露，在反物质消耗到一个临界点时，它们会使用反物质自爆，利用伽马射线摧毁掉自己的全部基因，顺带杀伤敌人。</p>
+<p class = "firstLineIndent">所以打了这么长时间，虫族都没能有机会获取到敌人的基因。</p>
+<p class = "firstLineIndent">不过，虫族也没考虑过去获取跃进生物的基因，这主要是因为跃进生物的外观一点都不像是生物，外表没有肉感反而看起来充满金属质感，不了解具体情况下，怎么看都不会觉得像是能和基因、生物沾边的东西。</p>
+<p class = "firstLineIndent">“怎么回事？为什么我们劣势越来越明显了？”</p>
+<p class = "firstLineIndent">交战了这么久，虫族找到了在很多神逐之地找到了很多的行星，并将其改造为能够产出利维坦的巢穴星球。</p>
+<p class = "firstLineIndent">经过二十多年的发展，虫族的生产力已经超过了以前，按照常理，它们本应该靠着数量反推敌人。</p>
+<p class = "firstLineIndent">可事实上，在三个恒星战场上，虫族仅仅只是能做到持平数量，还隐隐又被反超的架势，这样的情况，主宰已经搞不懂了。</p>
+<p class = "firstLineIndent">二十多年的时间，三颗恒星周围的很多恒星系统，都被采集者们完成殖民，虽然没有建造恒星环，但建造了复数的物质巨构，恒星的物质被开采出来用于生产。</p>
+<p class = "firstLineIndent">在物质的开采上，是采集者们更胜一筹。</p>
+<p class = "firstLineIndent">虫族这段时间的确开发了很多星球，就占领的恒星系统，它们超过了阿米巴所占领的数量，在宏观上看，它们的疆域比阿米巴整体的还要大上两倍。</p>
+<p class = "firstLineIndent">可是虫族实在是太挑剔了，一个恒星系统里，恒星占据了整个系统的百分之九十以上的物质量，就拿地球和太阳来举例，它们之间的实际比例就是芝麻与篮球，要多少粒芝麻才能够与一个篮球相当？</p>
+<p class = "firstLineIndent">行星就只是恒星形成之初留下的残渣而已。</p>
+<p class = "firstLineIndent">而且就算只是行星，虫族也不是什么行星都能开采，首先不能距离恒星太远，太远就太冷了，星球的低温环境会把虫族生物体给冻成冰渣，更别谈什么物质开采了。</p>
+<p class = "firstLineIndent">其次就是不能距离恒星太近，太空里散热本来就是一件很麻烦的事情，更别提行星大气还自带热滞留功能，太阳系里金星的地表温度就恒定在五百度左右，短时间呆一下没问题，可长时间处在那样的环境里，对虫族来讲太致命了。</p>
+<p class = "firstLineIndent">至于气态星球，这种可没办法改造为巢穴星球，内部的环境比一般的类地星球环境还要恶劣数十倍。</p>
+<p class = "firstLineIndent">也就是说，虫族对恒星系统物质的开采，仅限于一个温度适合的恒星宜居带内的实体星球，除此之外的行星，它们会无视掉。</p>
+<p class = "firstLineIndent">相比较起采集者，挑剔的有些过分。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“战力不足，我们需要更多的利维坦。”</p>
+<p class = "firstLineIndent">来自其他脑虫的汇报，让主宰从最初的懵逼中反应过来，虫族还需要它来作出决断。</p>
+<p class = "firstLineIndent">“继续扩张下去，在神逐之地里找到更多的世界进行改造，虫族需要更多的巢穴。”</p>
+<p class = "firstLineIndent">思量再三后，主宰最终还是下达了继续扩张的命令，没办法，除了数量，虫族还有什么呢？</p>
+
+<h2>第七百六十一章 请求远方炮火支援</h2><hr/>
+<p class = "firstLineIndent">虫族和阿米巴之间的战斗主要集中在三个存在着星门的恒星系统内，这里便是它们的前线战场，虫族固守的阵地。</p>
+<p class = "firstLineIndent">在这处前线战场中，战斗烈度随着时间的推移不断递增，从最初的一小撮，到后来的大规模集团战，再到将战线从一颗行星延伸到另外一颗行星那样尺度的战场。</p>
+<p class = "firstLineIndent">这三座恒星系统内，到处都是飘散的残骸，这些残骸随着恒星一同公转起来，远远看去，恒星就像是围了一圈类似土星环那样的天体结构。</p>
+<p class = "firstLineIndent">若是被哪个土著文明的天文学者观测到，估计会死掉不知道多少脑细胞。</p>
+<p class = "firstLineIndent">虫族与阿米巴之间的战斗中，采集者这边最先开始沉不住气。</p>
+<p class = "firstLineIndent">现在的情况与原本它们计划的出入有些大，不应该像这样僵持这么长的时间还毫无进展，族群投入的物质量可是越来越高了。</p>
+<p class = "firstLineIndent">一向节俭的采集者看到它们自己因为这个恒星系统内的战斗浪费了族群这么多的物质资源，心里别提有多痛了。</p>
+<p class = "firstLineIndent">三个恒星系统的其中之一，仅能抢夺到柯伊伯带的采集者们中，有个体对于现状提出了自己的想法。</p>
+<p class = "firstLineIndent">“这样僵持下去太浪费时间，附近虫族的其他恒星系统可是早就已经被攻陷下来，我们这边还毫无进展。”</p>
+<p class = "firstLineIndent">“你有什么想法？”负责主导战场的集群率领者问。</p>
+<p class = "firstLineIndent">“诱使虫族的太空力量聚集在恒星系统里，然后使用黑洞炸弹引发超新星爆发，一瞬间清空虫族的绝大部分太空力量。”</p>
+<p class = "firstLineIndent">提议者提出了一个极为疯狂的作战方案，这个方案的疯狂程度夸张到即便是采集者们这样的粗神经也接受不了。</p>
+<p class = "firstLineIndent">“反对，超新星爆发是灾难性的。”</p>
+<p class = "firstLineIndent">“没错，我们夺取这个恒星系统的目的是为了获得对门的支配，再次打通进入门世界的通道。”</p>
+<p class = "firstLineIndent">“而且搞不好，那样的行为会触发门的反击机制。”</p>
+<p class = "firstLineIndent">“还有就是，超新星爆发抛射的高温等离子云，会把附近数十光年给笼罩起来，族群就不得不因此放弃一些已经殖民的恒星系统，太得不偿失。”</p>
+<p class = "firstLineIndent">采集者们并不畏惧引爆恒星带来的后果，它们抗拒的主要原因是，如果真的这么做了，族群得不到什么好处。</p>
+<p class = "firstLineIndent">虽然虫族恒星系统内的太空力量确实被一口气清空，但这么做的后果，必然是会将它们想要夺取的星门波及在内，它们不能保证星门会不会因此而损坏，毕竟那可是超新星爆发，宇宙里极具威力的天文现象，这其中的能量甚至能把时空像破烂麻袋那样撕裂。</p>
+<p class = "firstLineIndent">估计提议的采集者已经和虫族杀疯了，所以才会不计后果的提出这样乱来的想法。</p>
+<p class = "firstLineIndent">经由同族的提醒后，提议者也反应过来自己的想法过于疯狂无脑，冷静下来。</p>
+<p class = "firstLineIndent">但摆在采集者们面前的问题依然还在，那就是它们正在进攻的这个恒星系统久攻不下的事实。</p>
+<p class = "firstLineIndent">“可这样下去也不是办法，闪击作战可以说非常失败，我们没能做到在不让虫族反应过来的前提下，迅速的抢夺恒星系统的控制权。”</p>
+<p class = "firstLineIndent">对比其他同族早已经攻下来并架设起涟漪巨构的恒星系统，说不糟心是不可能的，这样的情况不就在说明，它们对族群而言不过是一群废物吗？</p>
+<p class = "firstLineIndent">不过，主持作战的集群率领者，对此并没有感到焦虑，它也确实因为提议者所说的事情苦恼过一阵子。</p>
+<p class = "firstLineIndent">但它最近已经不苦恼了，因为它从其他恒星的同族那里得到了新消息。</p>
+<p class = "firstLineIndent">“这个不必太过担心，解决的办法已经在路上了。”集群率领者轻松的给予答复。</p>
+<p class = "firstLineIndent">“在路上？”</p>
+<p class = "firstLineIndent">其他因此苦恼的采集者皆是一愣，这其中也包括之前提议的采集者。</p>
+<p class = "firstLineIndent">集群率领者眺望着恒星方向，“对，现在我们要做的就是给这个恒星系统内的虫族作最后的劝降，让还想活命的留下来，送不想活下了去的去死。”</p>
+<p class = "firstLineIndent">虽然作战还没有实施，‘办法’还在路上，但集群率领者可以百分百的确定，一旦‘办法’到来，这个恒星系统内所有的虫族都不可能活下来。</p>
+<p class = "firstLineIndent">所以，集群率领者要给虫族作劝降公告，让族群再多一个像虫族这样附庸文明，未尝不是一件好事。</p>
+<p class = "firstLineIndent">大功率无线电信息释放出来，以光速向着恒星系统内传递，使用的语言是采集者们从虫族智慧个体记忆中破译的虫族独有语言。</p>
+<p class = "firstLineIndent">“虫族，我们是阿米巴，放弃无谓的抵抗，我们允许你们活下来。”</p>
+<p class = "firstLineIndent">“放弃吧……”</p>
+<p class = "firstLineIndent">“我们无穷无尽，而你们却在不断在消亡。”</p>
+<p class = "firstLineIndent">采集者们以为只是给恒星系统内的虫族进行劝降，可它们却不知道，这个恒星系统内集结了虫族的精锐，集合了虫族全部军事力量的三分之一。</p>
+<p class = "firstLineIndent">所以，采集者的劝降理所当然的传递到了虫族主宰那里。</p>
+<p class = "firstLineIndent">虫族主宰震怒，它们虫族什么时候被如此轻视过？它们被门世界的第七阶层碾压也就罢了，一个连灵域都不会用的种族也敢如此嚣张？</p>
+<p class = "firstLineIndent">“阿米巴，你们终究会沦为虫群的食物，被我们吞噬殆尽，时间会证明一切。”</p>
+<p class = "firstLineIndent">很快，采集者们的大功率无线电再次作出回应。</p>
+<p class = "firstLineIndent">“过度的自信会招来毁灭。”</p>
+<p class = "firstLineIndent">虫族主宰依旧坚持认为它们不会输，反而觉得赢面很大，这个自称‘阿米巴’的物种就算在数量上追上它们又怎样？神逐之地那么大，可以被改造为巢穴星球的行星那么多，而敌人能使用的物质资源却非常有限，更远地方的敌人，则因为无法使用灵域而没办法迅速的将力量投射过来。</p>
+<p class = "firstLineIndent">不过是一群无法使用灵域，区区的食物罢了！</p>
+<p class = "firstLineIndent">“无法使用灵域的你们脆弱而又可怜，你们的优势不过是依仗着最初的偷袭，现在虫群已经做好准备，越来越多的世界被改造为巢穴世界，更多的利维坦正在涌入战场。”</p>
+<p class = "firstLineIndent">“你们……最终会被虫群淹没。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“虫群吞噬一切！”</p>
+<p class = "firstLineIndent">读取到最后一段信息的采集者们有点想吐槽——你们明明有那么多的物质团没办法开采，哪来的勇气敢说自己能吞噬‘一切’的？</p>
+<p class = "firstLineIndent">“谈不拢，虫族感觉自己优势很大。”采集者道。</p>
+<p class = "firstLineIndent">“很快就不大了，剩下的工作就是维持战线和耐心等待，就像虫族说的那样，时间会证明一切。”</p>
+<p class = "firstLineIndent">处于柯伊伯带的集群率领者凝视着恒星方向。</p>
+<p class = "firstLineIndent">时间一晃又过去了五年，在这五年后的某一天，这个让采集者们久攻不下的恒星系统，陡然间被光芒所吞没。</p>
+<p class = "firstLineIndent">这股光芒的亮度超越了一切，宇宙变成了黑色的背景板，诸天星辰的光芒被更强的光所掩盖。</p>
+<p class = "firstLineIndent">恒星的光芒也不复存在，看不到一缕。</p>
+<p class = "firstLineIndent">整个世界在这刹那间，只存在着一种光芒，那就是这股莫名出现在恒星系统内，由大量正反物质湮灭所释放的伽马射线暴。</p>
+<p class = "firstLineIndent">“真壮观……”</p>
+<p class = "firstLineIndent">“白茫茫一片，什么都看不到了……”</p>
+<p class = "firstLineIndent">很多采集者感觉自己观测器官要废掉，要知道它们可是处在柯伊伯带！</p>
+<p class = "firstLineIndent">眺望着远方耀眼夺目的伽马射线暴，集群率领者在频道内给同族们介绍。</p>
+<p class = "firstLineIndent">“我管这叫‘跨光年覆盖性打击’。”</p>
+
+<h2>第七百六十二章 抢滩夺取</h2><hr/>
+<p class = "firstLineIndent">恒星系统内，那遮蔽恒星的末日光芒整整持续了一年多的时间。</p>
+<p class = "firstLineIndent">整个恒星系统就这样淹没在伽马光线构成的光之海中，别说在恒星系统内固守的虫族，即便是拥有质子晶格体的跃进生物，也不能保证自己能长时间存在于其中。</p>
+<p class = "firstLineIndent">在光芒散尽后，显露出来的那些余下的实体行星，全部成了熔岩体，被持续一年多时间的光之海浸没，热堆积让这些星球整体温度升高到了当初它们成型时的早期阶段。</p>
+<p class = "firstLineIndent">气态星球的质量少了很多，体积也缩水了将近三分之一，高能伽马的光压不断吹拂下，大量的气态物质被吹向恒星系统之外。</p>
+<p class = "firstLineIndent">面对如此残酷之力，恒星系统内的虫族就更不用说了。</p>
+<p class = "firstLineIndent">全灭。</p>
+<p class = "firstLineIndent">跨光年覆盖性打击，顾名思义，就是横跨以‘光年’为单位的范围性高能打击，而这次打击的范围，就是囊括最外圈行星轨道在内，对整个恒星系统的大范围打击。</p>
+<p class = "firstLineIndent">实施的方法并不复杂，甚至可以说很简单，只需要用到‘星轨’即可实现这种高能战略打击。</p>
+<p class = "firstLineIndent">星轨可不仅仅只是加速跃进生物的一个平台，它同样也能作为一门巨型电磁炮来使用，能够一口气加速复数的跃进生物，给复数的超大型炮弹加速到亚光速根本没有什么技术难度，甚至还更容易一些。</p>
+<p class = "firstLineIndent">这样的大规模物质投送能力，给跨光年尺度的范围性打击提供了基础。</p>
+<p class = "firstLineIndent">背靠恒星这个巨大物质源兼能量源，采集者们可以产出巨量的反物质，再把这些反物质改造为反物质炸弹，让星轨持续性的进行光年级投送。</p>
+<p class = "firstLineIndent">因为有着前线采集者提供的详细天体信息，殖民恒星的采集者可以做到精确估算，发射出去的反物质炸弹群在抵达目标恒星内的空旷地带后，就会自行湮灭携带的正物质，释放出伽马射线对周围进行范围性高能打击。</p>
+<p class = "firstLineIndent">虫族千不该万不该就是眼睁睁看着采集者将它们固守恒星周围，其他的恒星系统都给殖民，以致于让采集者在这附近环境里拥有了如此强大的工业实力。</p>
+<p class = "firstLineIndent">复数的殖民恒星持续性的释放反物质炸弹群，由伽马射线构成的‘光之海’便由此成型，将整个恒星系统淹没长达一年多的时间。</p>
+<p class = "firstLineIndent">至于星门那边，也不用担心会触发门的反击机制。</p>
+<p class = "firstLineIndent">星门的中子简并态装甲，本身就对射线类的攻击有着极强的削弱性，再加上门处在恒星系统的外缘地带，抵达门那里的伽马射线都被距离给削弱了不少的威力。</p>
+<p class = "firstLineIndent">门自然不会触发反击机制。</p>
+<p class = "firstLineIndent">在跨光年覆盖性打击结束后，早已准备好的跃进生物，从柯伊伯带起航，争先恐后的朝着恒星系统涌入。</p>
+<p class = "firstLineIndent">第一时间开始孕育引力环，打算构建涟漪巨构。</p>
+<p class = "firstLineIndent">这是一开始就计划好的，通过覆盖性打击清空恒星系统内的敌人，然后突入到恒星系统内孕育涟漪巨构。</p>
+<p class = "firstLineIndent">等涟漪巨构孕育完成并投入使用，敌人的反攻也就宣告破灭。</p>
+<p class = "firstLineIndent">除了孕育引力环的跃进生物，剩余的跃进生物守护在四周，以防止敌人阻挠，干扰涟漪巨构的建成。</p>
+<p class = "firstLineIndent">因为虫族抵抗防线被一口气清空的关系，采集者们入侵如入无人之境，跃进生物从各个方向涌入恒星系统并站稳脚跟，铺设阵地。</p>
+<p class = "firstLineIndent">恒星系统内的熔岩星球不是问题，早已料想好情况的采集者们早就从其他恒星系统运来了冷却用的大量固态氦，熔岩星球对采集者们来说，也就只是比较烫‘嘴’罢了。</p>
+<p class = "firstLineIndent">长达一年时间的伽马射线覆盖性打击，虫族似乎还没反应过来，采集者们完全侵占恒星系统后，都没有继续通过灵域让生物体进入到恒星系统内，抵抗采集者们的入侵。</p>
+<p class = "firstLineIndent">就这样保持了大概半年的时间，虫族似乎才反应过来，派遣生物体群想要夺回恒星系统的控制权。</p>
+<p class = "firstLineIndent">不过，这个时候再想夺回已经是难上加难，早就在防备虫族的跃进生物集群，围绕还在建设当中的涟漪巨构布设防线。</p>
+<p class = "firstLineIndent">虫族的生物群只能出现在恒星系统较为空旷的地带，每颗行星和巨构附近被跃进生物集中布防，虫族生物群刚从灵域里冒头没多久，就会被伽马射线抹杀。</p>
+<p class = "firstLineIndent">恒星近轨布设上了聚焦阵列，这让虫族想要依靠大规模的生物群冲击跃进生物防线的进攻方式宣告破产，只要把恒星粒子流聚焦到虫群大规模集结的地方，虽然不能保证百分百的全歼，可消灭虫群百分之五十以上的数量却很容易。</p>
+<p class = "firstLineIndent">高度集中化的虫群带来强大战斗力的同时，也带来了严重的弊端，很容易被高能攻击范围性杀伤。</p>
+<p class = "firstLineIndent">虫族的进攻是各个方面，除了通过灵域跳跃进恒星系统，也有虫群途径星门，准备以此方式进攻采集者。</p>
+<p class = "firstLineIndent">不过，这样的方式也不过是徒劳的在送死，聚集在星门附近驻守的跃进生物，释放出一道道伽马射线杀伤虫族的利维坦。</p>
+<p class = "firstLineIndent">不得不说，伽马射线杀伤虫族的利维坦效果真的好，自带物质穿透性以及基因破坏效果，虫族的高强度生物甲壳形同虚设。</p>
+<p class = "firstLineIndent">就凭虫族甲壳内部那简易的重核物质防辐射层，根本难以抵御采集者高密度的伽马射线攻势，不管通过星门跑过来多少只利维坦都是死路一条，更何况因为堪比母舰级体积的关系，一次性过门的利维坦数量远不足以供采集者们屠杀。</p>
+<p class = "firstLineIndent">由于这个前线恒星还在建设阶段，不能进行生产，战略补给物资是源源不断的从其他恒星系统跨光年运送过来，所以从恒星系统内向外看，看到的星辰数量要远胜于实际存在于宇宙背景当中的星辰。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">本文下载自宅阅读(ZHAIYUEDU.TOP)欢迎访问。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">战斗再次进入僵持阶段，这期间里虫族不断地调整基因应用各种生物体投入到战斗中，但伽马射线之下众生平等，任其千变万化，伽马穿透破之。</p>
+<p class = "firstLineIndent">要想抵御伽马射线的只能依靠原子内部的原子核，通过质子、中子构成的物质团来抵御，所以重核物质要比轻核物质对伽马射线更具遮蔽效果，这无关乎材料的强度性。</p>
+<p class = "firstLineIndent">因此，虫族质量小的生物体，不管再怎么变化基因，都会被伽马射线碾压，而虫族质量大的生物体，采集者们也有另外一套应对办法。</p>
+<p class = "firstLineIndent">虫族也不缺乏战略脑洞，交战期间，它们还曾直接把一颗巢穴星球用灵域跳跃转移到恒星系统内，打算依托这颗巢穴星球作为前沿阵地，在采集者们的防线上撕开一道口子。</p>
+<p class = "firstLineIndent">想法很美好，也很奇妙，采集者们都不曾料想到。</p>
+<p class = "firstLineIndent">但是并没什么卵用，这颗巢穴星球在出现后没多久，就被一枚亚光速的黑洞炸弹给坍缩成了一颗花生体积的黑洞，在几年后彻底蒸发，以伽马射线爆发的形式完成自我终结。</p>
+<p class = "firstLineIndent">在涟漪巨构完成之后，宣告着虫族彻底的无法夺回这个失守的恒星系统。</p>
+
+<h2>第七百六十三章 祸水东移</h2><hr/>
+<p class = "firstLineIndent">虫族主宰现在心情很不好，不，应该说糟糕透顶。</p>
+<p class = "firstLineIndent">就在不久前，虫族一个着重要夺回的恒星系统，没办法再通过灵域跳跃进入，虫族虽然还可以继续使用星门进入恒星系统，但这已经没有意义，根本就是在送死而已。</p>
+<p class = "firstLineIndent">那个恒星系通内不知道为什么不能再使用灵域，无法使用灵域的虫族面对敌人只有被屠杀的份。</p>
+<p class = "firstLineIndent">也就是说，虫族彻底的失去了反攻回失守恒星系统的能力！</p>
+<p class = "firstLineIndent">虫族主宰回忆着整个失败的过程。</p>
+<p class = "firstLineIndent">在那次敌人的劝降公告结束后，主宰警觉了起来，通常情况下都没怎么接收过敌人的劝降，敌人为什么会偏偏在这种时候劝降它们？</p>
+<p class = "firstLineIndent">敌人在柯伊伯带集结着一批太空军事力量的事情，主宰是知道的，因为尺度过大而难以防守被采集者们夺取控制权。</p>
+<p class = "firstLineIndent">认为在那里集结的敌人会对虫族发起总攻的主宰，改变了兵力分配，将更多地利维坦布置在了恒星系统内。</p>
+<p class = "firstLineIndent">这样，只要拥有足够雄厚的兵力作为基础，即便不清楚敌人在图谋什么，也能做到以不变应万变。</p>
+<p class = "firstLineIndent">然后……</p>
+<p class = "firstLineIndent">然后主宰就不知道发生了什么，它只能通过虫族网络确定，整个恒星系统里的虫族生物群，突然间就集体死亡了，死亡原因未知，只能确定那些驻守的虫族生物群死的很快。</p>
+<p class = "firstLineIndent">当时的主宰虽然因为敌人这种恐怖的攻击一阵惊骇，却也没有乱了阵脚，它想到敌人必然会在此之后攻入已经没有虫群驻守的恒星系统。</p>
+<p class = "firstLineIndent">所以，当即便派遣其他恒星系统的虫群通过灵域跳跃再次进入恒星系统。</p>
+<p class = "firstLineIndent">于是这些虫群便一头栽进了伽马射线构成的光海中，连一秒都没到就集体死亡，而主宰只能在这短暂的时间里，借助虫群的视角看到白茫茫的一片。</p>
+<p class = "firstLineIndent">完全搞不清楚恒星系统里究竟发生了什么。</p>
+<p class = "firstLineIndent">往后的半年时间里，主宰持续性的派遣虫群跳跃进恒星系统里，这些虫群无一例外的都集体死亡，死亡的还非常迅速，甚至将巢穴星球转移进去都没撑过几秒。</p>
+<p class = "firstLineIndent">主宰，或者说虫族，这个时候彻底懵了。</p>
+<p class = "firstLineIndent">确认不管派遣多少虫群进入到恒星系统都无济于事后，主宰将兵力分配到了另外两个着重防守的恒星系统。</p>
+<p class = "firstLineIndent">正在遭到采集者跨光年覆盖性打击的恒星系统，它们已经没有能力再管，至少在覆盖性打击期间如此。</p>
+<p class = "firstLineIndent">而当虫族注意到恒星系统的环境恢复正常后，已经为时已晚，敌人在恒星系统内站稳脚跟，并早就做好针对入侵虫群的防御。</p>
+<p class = "firstLineIndent">主宰试过集结大规模的虫群，一次性的从恒星系统多个区域展开进攻。</p>
+<p class = "firstLineIndent">然而，敌人聚焦了恒星的光芒，大规模的杀伤高密度分布的虫群，被恒星聚焦严重削减数量的虫群，反过来被敌人的数量给淹没。</p>
+<p class = "firstLineIndent">不过，即便是这样的劣势，主宰也没有放弃进攻的打算，虫族在神逐之地的巢穴星球越来越多，产出的利维坦数量也在倍增，僵持也就只是暂时，等有了更多的巢穴星球，虫族就可以集结更大规模的利维坦群进攻！</p>
+<p class = "firstLineIndent">它们还没有输！</p>
+<p class = "firstLineIndent">打着这样的主意，主宰最近却发现，虫群没办法如以往那样，直接通过灵域跳跃进入到恒星系统里，这种情况与最初上报，那个叫克斯人文明的母恒星情况一致。</p>
+<p class = "firstLineIndent">虫族这时才反应过来，它们的敌人是谁，也同样清楚了它们已经彻底失去夺回失守恒星的事实。</p>
+<p class = "firstLineIndent">现在已经悔之晚矣。</p>
+<p class = "firstLineIndent">“接下来该怎么办？主宰。”</p>
+<p class = "firstLineIndent">脑虫们已经想不出有什么更好的方法解决面前的困境。</p>
+<p class = "firstLineIndent">虽然虫族现在物质资源还非常充裕，有很多的神逐之地中的星球可以让虫族扩张，构建巢穴世界。</p>
+<p class = "firstLineIndent">敌人因为无法使用灵域的关系，暂时还威胁不到虫族绝大部分的疆域。</p>
+<p class = "firstLineIndent">可问题是，它们也不能就这样放着不管，敌人确确实实的在蚕食着虫族的恒星系统，怎么能就这么算了呢？</p>
+<p class = "firstLineIndent">神逐之地、门世界的疆域先后失守且无法再夺回，可以预见以后会失守的更多，万一哪天虫族扩张神逐之地到了尽头，难不成要眼睁睁看着敌人把虫族彻底蚕食殆尽？</p>
+<p class = "firstLineIndent">被脑虫询问的主宰陷入思考，敌人的情况比它们想象中的要离谱的多，任凭它们如何变化基因，制造出新的兵种，敌人都可以不费吹灰之力的将其摧毁。</p>
+<p class = "firstLineIndent">它们无往不利的变异进化、虫群数量，在敌人面前宛若一个浮云，如果不是因为虫族能够使用灵域，连和敌人对攻的能力都没有，尽管主宰不想承认，但这就是事实。</p>
+<p class = "firstLineIndent">按照主宰用门世界内的等级标准进行估算，光一个失守的前线恒星系统里的敌人实力就绝对碾压门世界所有第六阶层的联合。</p>
+<p class = "firstLineIndent">这样的一个敌人，在主宰的记忆中，恐怕只有那些神秘且恐怖的第七阶层才能够对付……</p>
+<p class = "firstLineIndent">“……没错，让他们来对付这个强敌不就好了？”</p>
+<p class = "firstLineIndent">灵光一现，一个不错的想法出现在主宰的杂乱的思绪中。</p>
+<p class = "firstLineIndent">敌人的强大毫无疑问，虫族无论如何改变基因都无法与其抗衡，这样的情况，虫族也就只是在门世界的第七阶层那里看到过。</p>
+<p class = "firstLineIndent">既然如此，那就索性将敌人往门世界中引导，让第七阶层来对付这个强大的对手。</p>
+<p class = "firstLineIndent">无论怎么样，虫族都没损失，即便门世界里的全部疆域都被敌人夺取，虫族大不了放弃门世界，还可以在神逐之地继续扩张疆域，反正敌人没办法使用灵域，情况不会比现在更糟糕。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">如果门世界内的第七阶层能够消灭这个敌人，那虫族可就赚大了。</p>
+<p class = "firstLineIndent">思量许久，主宰决定祸水东移，把敌人给引导进门世界，于是给现在还在固守两个存在星门的恒星系统内虫群下令，全部撤出，跳跃到还未被敌人进攻的恒星系统。</p>
+<p class = "firstLineIndent">而为了将敌人引导进门世界，主宰又给星门另一端的虫群下令，让它们每隔一段时间，就通过星门对另一端的敌人进行骚扰式进攻。</p>
+<p class = "firstLineIndent">因为是骚扰式进攻，所以虫族也不需要安排大规模的虫群，门世界里的利维坦主力陆陆续续的开始撤离到神逐之地的虫族疆域内，只留下一些小型生物群和巢穴世界装一下样子，以免敌人起疑心。</p>
+<p class = "firstLineIndent">而主宰这样努力的结果，就是敌人真的朝着门世界开始扩张。</p>
+<p class = "firstLineIndent">可惜主宰不知道，其实采集者们本就打算再次进入门世界，对门世界进行扩张，虫族做不做这样的引诱都一样。</p>
+
+<h2>第七百六十四章 潜伏式入侵</h2><hr/>
+<p class = "firstLineIndent">星门变化，一支跃进生物集群穿过虫洞，抵达星门的另一端。</p>
+<p class = "firstLineIndent">虫族的生物群早已恭候多时，立刻与其展开交火，以自己的生命来履行主宰所赋予的使命。</p>
+<p class = "firstLineIndent">伽马射线的攻势下，这些虫族小型生物群只是一个照面，就被轻易地消灭殆尽。</p>
+<p class = "firstLineIndent">跃进生物集群冲势未减分毫，笔直朝着恒星继续进发，而与被消灭虫群的还有一股股无线电信息，撰写的内容是虫族的语言，虫族指挥阶层不需要任何翻译就能够理解。</p>
+<p class = "firstLineIndent">“恒星系统内的所有虫族智慧个体注意！这是第一次，也是唯一一次的劝降广播！我们在此通知恒星系统内的所有智慧虫族，投降者不杀，不降者毁灭！”</p>
+<p class = "firstLineIndent">无线电信息以光速扩散，在跃进生物集群抵达恒星近处前，便迅速扩散覆盖至整个恒星系统。</p>
+<p class = "firstLineIndent">这样的劝降得不到任何回音，直到跃进生物集群抵达事先预定好的位置，虫族也没有作出反应，虫族那边始终保持着无线电静默。</p>
+<p class = "firstLineIndent">无视在采集者们看来就是默认性的拒绝，于是正如劝降广播说的那样，它们只公告一次，在抵达预定好的位置后，采集者们按照事先就计划好的流程，第一时间赏赐了一枚黑洞炸弹给恒星系统内的那颗巢穴星球。</p>
+<p class = "firstLineIndent">黑洞炸弹的生效只是一瞬间的事情，巢穴星球的一侧爆发出极为耀眼的光芒，随后在光芒散尽，巢穴星球不复存在，上面的一切也都不复存在。</p>
+<p class = "firstLineIndent">成为了一颗小质量的黑洞，在未来的数年后，它的质量会彻底蒸发殆尽。</p>
+<p class = "firstLineIndent">反物质有所消耗的跃进生物集群选择留下来对这个抢夺下控制权没多久的恒星系统进行殖民建设。</p>
+<p class = "firstLineIndent">不过这并不意味着采集者们的攻势会暂时性的停滞，来自后方的跃进生物集群渡过星门，途径抢夺下来的恒星系统，继续对虫族门世界内的疆域发起进攻。</p>
+<p class = "firstLineIndent">进攻非常顺利，顺利到让采集者们感觉不太对劲，门世界内这些虫族疆域，感觉就像是在象征性的反抗一下，根本没有竭尽全力，对比此前的交战，那种战力上的落差感觉非常明显。</p>
+<p class = "firstLineIndent">“会不会有诈？”有采集者提出自己的担忧。</p>
+<p class = "firstLineIndent">“不需要有所顾虑，巨大的技术代差下，虫族如果还保持着原本的技术，任何计策都无可挽回它们的败局。”集群率领者给担忧的个体答复。</p>
+<p class = "firstLineIndent">但不怕一万就怕万一，概率上只要不彻底为零的可能性就有可能发生，为了以防万一，集群率领者指挥刚刚竣工的星轨，将一只跃进生物派遣到临近的恒星系统，也就是没有星门的‘神逐之地’进行殖民建设。</p>
+<p class = "firstLineIndent">每一个被攻下来的门世界恒星系统都是如此。</p>
+<p class = "firstLineIndent">因为虫族的不抵抗行为，采集者们比战略计划中的时间还要更快的完成了对虫族门世界所有疆域的主权夺取。</p>
+<p class = "firstLineIndent">这之后，采集者们停下了继续在门世界内扩张的步伐。</p>
+<p class = "firstLineIndent">上一次在门世界进攻中，除神圣沃姆邦国外，连伊纳里煌国一起暴打，是因为采集者们对神圣沃姆邦国所支配疆域的不了解。</p>
+<p class = "firstLineIndent">如果没有攻击伊纳里煌国的话，那协调会不会参与进来，后续的战斗烈度也不会升级到那种程度，更不会发生星门被封锁的事情。</p>
+<p class = "firstLineIndent">当然，这并不意味着采集者们不会继续对门世界内进行扩张，只是这次它们打算换一种方式扩张，以免再有类似协调会那样的第七阶层把星门封锁，让它们继续满河系的到处找存在星门的恒星系统。</p>
+<p class = "firstLineIndent">天知道那数千亿颗恒星里，哪些恒星系统里存在星门！</p>
+<p class = "firstLineIndent">被攻下来的虫族疆域，采集者们的抓紧时间殖民建设，优先构建起涟漪巨构。</p>
+<p class = "firstLineIndent">采集者们派遣拳头大小的微小个体，伪装成普通的陨石通过星门。</p>
+<p class = "firstLineIndent">星门另外一端，与虫族疆域接壤的第五阶层星门驻守军，观察到了星门的异动，但在确认通过星门的只是一颗如此小体积的陨石后，就又重新放下了戒备心。</p>
+<p class = "firstLineIndent">门世界那么大，偶然间通过星门的陨石记录也并不是没有，只能算是比较罕见的情况。</p>
+<p class = "firstLineIndent">正如采集者们对门世界内国度、势力了解的那样，他们喜欢依托着星门建立一个驻守点，星门的独特性对防守方有着天然的优势。</p>
+<p class = "firstLineIndent">微小个体选择一座就近的太空要塞，对其进行入侵。</p>
+<p class = "firstLineIndent">入侵很简单，让陨石自然的靠近太空要塞，与表面接触的时候附着在要塞的外表面。</p>
+<p class = "firstLineIndent">只有拳头体积的陨石，在太空的大尺度下连单细胞都算不上，更别说太空要塞为了追求防御性，体积被造的非常庞大，星门的驻守军实在是没有什么能力发现这样一点小异常。</p>
+<p class = "firstLineIndent">依靠反物质反应堆产出的电能打底，利用化学配位性蚀刻太空要塞的外装甲。</p>
+<p class = "firstLineIndent">外装甲很厚实，足足有三百米厚，在外装甲上打通一条细长的隧道可是费了采集者一番功夫。</p>
+<p class = "firstLineIndent">要塞的这些外装甲是挂载式，外装甲的下面是一根根减震弹簧，用来减弱来自外部的破坏冲击。</p>
+<p class = "firstLineIndent">从这里就可以看出，采集者目前探索的门世界国度，技术水平上要比神圣沃姆邦国要更高，至少建筑水平如此。</p>
+<p class = "firstLineIndent">毕竟当初神圣沃姆邦国的太空要塞，就是一个单纯的太空金属盒，无非就是外壳比较厚实，还加装上了很多火炮。</p>
+<p class = "firstLineIndent">穿过减震用的弹簧层，采集者接触到底部的内装甲，好在内装甲并不算厚实，远没有达到外装甲的三百米，采集者花了一小段时间便入侵到要塞内部。</p>
+<p class = "firstLineIndent">蚀刻的口子相当于一枚硬币，将自己身体演化成长条状的采集者钻出，然后重新利用化学配位进行组合，让墙面重新一体化。</p>
+<p class = "firstLineIndent">如此一来，除非这个要塞内的智慧生物特意跑到外装甲和内装甲之间的弹簧夹层寻找那一个硬币大小的孔洞，否则还真不可能察觉到有什么不对。</p>
+<p class = "firstLineIndent">采集者入侵的位置比较空旷，它的视野内是成片的机械体，这些整齐排列的机械体中间，是来来往往很多数量的智慧生物。</p>
+<p class = "firstLineIndent">之所以采集者没有被发现，是因为它的体积太小了，而这里的环境也太过于昏暗的关系。</p>
+<p class = "firstLineIndent">将自己演化成扁平状，并改变自己的生物保护色，与周围的环境融为一体。</p>
+<p class = "firstLineIndent">随后，移动到一处疑似通风管道的地方，钻入其中。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">采集者要去寻找一个落单的智慧生物。</p>
+
+<h2>第七百六十五章 寄生获取情报</h2><hr/>
+<p class = "firstLineIndent">生物需要休息，因为并不是所有生物都能做到像采集者们这样，可以支配自己身体的脑细胞修复调节。</p>
+<p class = "firstLineIndent">当然，如果那个生物没长脑子的话，那永远都不休息也是可能的，比如植物这种，只要有光、无机物、水，光合作用就可以一直持续下去。</p>
+<p class = "firstLineIndent">房间内有一名智慧生物在熟睡，这也就是采集者入侵进来后的目标。</p>
+<p class = "firstLineIndent">房间不大，似乎为了节省空间的关系，供要塞内智慧生物休息的房间才只有六平方米，像诸如衣柜、存放盒这些东西，都是内嵌与墙壁中，房间里的桌子是翻盖式设计，不用时可以竖贴在墙壁上。</p>
+<p class = "firstLineIndent">可以说，在不改造生物躯体为前提，有限的技术条件下，空间得到了最大的利用。</p>
+<p class = "firstLineIndent">这个智慧生物并不是像人类那样平躺着睡觉，而是倒掉在房间顶部，所以他们是以竖直的姿势在休息，他们‘床’的面积只有一平方米。</p>
+<p class = "firstLineIndent">没错，这间才不过六平方米的房间，还是一间多人寝，从‘床’的数量来看，居住在房间里的智慧生物有四个。</p>
+<p class = "firstLineIndent">另外三个还没有回到房间里，采集者决定抓紧时机。</p>
+<p class = "firstLineIndent">可能是为了节省空间的关系，房间的高度并不算高，智慧生物倒掉过来后，头顶距离地面也才只有一米的距离，这也省的采集者特意去爬墙。</p>
+<p class = "firstLineIndent">采集者演化自己的躯体，延伸出一根犹如头发丝般纤细的触须，朝着智慧生物的头部伸去。</p>
+<p class = "firstLineIndent">触须的尖端达到了单分子的级别，在刺入智慧生物的浅层头皮后，采集者对这个智慧生物的神经感知有了一个基本的了解。</p>
+<p class = "firstLineIndent">然后围绕着该智慧生物的神经纤维释放一种可以麻痹神经纤维的化学物质，以保证不会因为神经信号的刺激让这个智慧生物苏醒过来。</p>
+<p class = "firstLineIndent">接着，采集者的触须继续深入，把这个智慧生物的整个头部神经网络都给麻痹，其中也包括大脑与身体其他不会的神经纤维。</p>
+<p class = "firstLineIndent">可以说，这个智慧生物即便这个时候醒过来，也已经是一个彻底瘫痪，不再具有行动能力的废人。</p>
+<p class = "firstLineIndent">然而这还并不算是结束，采集者做的这些只是要为接下来要做的事情做铺垫。</p>
+<p class = "firstLineIndent">因为彻底瘫痪了头部的神经纤维网络，大脑因此不会得到来自外部的感知信号，从而彻底的断绝所有感知能力。</p>
+<p class = "firstLineIndent">做完这一切的采集者打开智慧生物的嘴巴，从口部钻入这个智慧生物的体内，然后在这个智慧生物的大脑附近安置好自己的固态脑。</p>
+<p class = "firstLineIndent">从固态脑延伸出来的触须，对宿主大脑与身体的神经网络实行物理意义上的支配。</p>
+<p class = "firstLineIndent">最后，采集者一点点的祛除掉对神经纤维的麻痹。</p>
+<p class = "firstLineIndent">整个过程，被寄生的智慧生物都保持着熟睡状态，不曾醒过来。</p>
+<p class = "firstLineIndent">一段时间后，房间内的其他居住者陆陆续续回到房内，一副疲惫姿态的将自己倒吊起来休息，谁也不曾注意到，这个房间里已经混入了一个有别于他们的异类。</p>
+<p class = "firstLineIndent">隐藏好自己的采集者并没有闲着，它临近的一个细胞，对细胞的基因进行读取。</p>
+<p class = "firstLineIndent">掌握基因语言的采集者，与那些单纯只会剪切粘贴和到处找生物获取基因的文明不同，对它们来讲，基因编码就只是一种语言，就像是中国人不会去费心费力的查字典，只为了讲好一句中文。</p>
+<p class = "firstLineIndent">至少碳基基因语言对采集者是如此。</p>
+<p class = "firstLineIndent">这种智慧生物拥有六条腿，站姿远远看去就像是穿了裙子似的。</p>
+<p class = "firstLineIndent">拥有一双手，不过这双手内在没有骨骼，靠着强健的肌肉和韧带来支撑触手，通过卷曲物体来实现对实物的拿和放。</p>
+<p class = "firstLineIndent">头部曾棱形，没有毛发，顶部很尖，从口腔的牙齿以及胃袋内的食物残渣判断，这些智慧生物的主食偏向于有机蛋白类，对植物纤维类摄取很少。</p>
+<p class = "firstLineIndent">这种生物拥有两个心脏，这导致他们可以让自己的血压升高到一个单心脏生物无法齐集的程度。</p>
+<p class = "firstLineIndent">也就是说，这些智慧生物在过于紧张的时候，就会实现一个类似子弹时间般的效果。</p>
+<p class = "firstLineIndent">不过，两个心脏的生物结构，也代表着生物能的消耗会比单心脏生物更快，这些智慧生物并不持久。</p>
+<p class = "firstLineIndent">读取着宿主的基因，对这个智慧物种的生命形态有了个基本的了解，采集者想到了之前看到的那些机械体，外观上与这些智慧物种非常近似……</p>
+<p class = "firstLineIndent">嗯，好吧，看来攻击方式也是机甲——采集者根据以往的经验作出判断。</p>
+<p class = "firstLineIndent">采集者的存在并不会影响到宿主，这样做不仅毫无意义，还可能暴露自己的事情，采集者精神失常了才会去做。</p>
+<p class = "firstLineIndent">同时为了避免宿主生病而前往治疗地方，采集者会通过改变生物激素，主动帮助宿主调节身体状况，让宿主身体始终保持在健康状态。</p>
+<p class = "firstLineIndent">当然，这种健康不是免费的，采集者的潜伏是为了给集群搜集情报。</p>
+<p class = "firstLineIndent">采集者不需要冒险去其他地方获取信息，宿主的记忆体内就有丰富的信息，不过因为采集者没有足够的演算力，所以做不到对宿主记忆的破译。</p>
+<p class = "firstLineIndent">能够无视种群不同的直接读取信息，就相当于一个盗贼什么都不做就能先知先觉的知道保险柜的密码，是属于神技，采集者可做不到。</p>
+<p class = "firstLineIndent">但，如果只是单纯的获取信息不破译记忆的话，对采集者来讲非常简单。</p>
+<p class = "firstLineIndent">在获取宿主的信息之后，每当宿主驾驶机甲外出巡逻时，采集者就会趁机外散编译成无线电的宿主记忆信息。</p>
+<p class = "firstLineIndent">这些信息会被星门附近的一颗同样篮球体积的‘陨石’给接收，作为中转点，定向朝着星门中的虫洞继续传递信息。</p>
+<p class = "firstLineIndent">门后的采集者接收到这些宿主的记忆信息后，导入天机巨构内对记忆信息进行破译，很轻松就能读取这些记忆。</p>
+<p class = "firstLineIndent">“这是一个比神圣沃姆邦国还要强大的门世界内势力……”</p>
+<p class = "firstLineIndent">“第六阶层格纳瑞尔贸易联盟，以及辖下的第五阶层维隆统合团……”</p>
+<p class = "firstLineIndent">“主体仍然是使用机甲作战，对集群的军事威胁性并不大。”</p>
+<p class = "firstLineIndent">“但他们疆域比神圣沃姆邦国大上很多倍，贸然开战没办法短时间内清掉，如果他们再把第七阶层引导过来封禁星门，我们就又会被排除在门世界之外……”</p>
+<p class = "firstLineIndent">“有什么好办法吗？”</p>
+<p class = "firstLineIndent">“办法当然有，不过需要悄无声息的夺下临近的恒星系统的支配权。”</p>
+
+<h2>第七百六十六章 悄无声息的布局</h2><hr/>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">通过无线电的交流，潜伏在维隆统合团所属军事要塞内的采集者，通过外散孢子的方式，悄无声息的让整座要塞的内的维隆人被采集者们寄生。</p>
+<p class = "firstLineIndent">神不知鬼不觉的夺取下庞大军事要塞的控制权。</p>
+<p class = "firstLineIndent">然后又通过物资转移的方式，先后对周围几座军事要塞进行孢子寄生。</p>
+<p class = "firstLineIndent">因为有了此前对维隆人军事要塞结构的了解，后续采集者们的孢子寄生就变得更加的容易简单，只要往通风口一钻，孢子就会飘到要塞的每个角落。</p>
+<p class = "firstLineIndent">再然后就是对派送物资补给的维隆人进行寄生，通过这些维隆人的转移，对恒星系统内其他几座星门附近的驻守军进行孢子寄生。</p>
+<p class = "firstLineIndent">对此，维隆人一无所知，因为根本没有任何异状被他们察觉到，采集者们很小心，甚至连无线电沟通的次数都很少，功率也低，而且每次沟通用的无线电所使用的频段，都是非常谨慎的作出选择。</p>
+<p class = "firstLineIndent">而维隆人要塞中的军官高层，出于自身享受的原因，会偶尔到恒星系统内的辖下星球活动一阵子，毕竟一直都住在太空要塞内，就算生理上能够保证没有问题，心理上恐怕也不会太好。</p>
+<p class = "firstLineIndent">这样一来，这些维隆人就会把采集者们的孢子带到星球上，然后采集者们就会对行星上的所有智慧个体进行孢子寄生。</p>
+<p class = "firstLineIndent">一切都是在悄无声息中进行……</p>
+<p class = "firstLineIndent">大概过了五六年左右的时间，维隆统合团与虫族疆域接壤的恒星系统支配权彻底易手到采集者这边，采集者们只需要释放一串无线电波，就可以解除星门另一端恒星系统内，全部维隆人的军事武装。</p>
+<p class = "firstLineIndent">武器再怎么厉害，说到底都是需要操作者，如果操作者一开始就被控制，武器再好也是白搭。</p>
+<p class = "firstLineIndent">完成这一切后，跃进生物集群堂而皇之的便通过了星门，进入到维隆统合团的疆域内。</p>
+<p class = "firstLineIndent">军事要塞内的维隆人，对于星门过门产生的异状，始终保持着视若无睹的状态。</p>
+<p class = "firstLineIndent">他们的视觉感官已经被寄生的采集者调整，以他们的视角看来，星门根本没有异状，也就没有物体通过星门，一如往常那般。</p>
+<p class = "firstLineIndent">木已成舟，采集者们可以实行它们的下一步战略计划。</p>
+<p class = "firstLineIndent">它们挑选一艘维隆人的贸易船，对这艘贸易船进行内部改造，加装上一个反物质反应堆，和一门可折叠的电磁轨道炮。</p>
+<p class = "firstLineIndent">贸易船的外表没有改变，只是内部结构有所变化。</p>
+<p class = "firstLineIndent">通过对贸易船船长以及船员的记忆修改，让他们认为‘最近一段时间易船经过升级，所以内部和过去相比有所变化’，从而避免他们察觉到异常。</p>
+<p class = "firstLineIndent">除此之外，采集者们没有对这些维隆人作过多的干涉，无论是贸易船的贸易也好，还是贸易路线，采集者们都不曾对其作出干涉，全部都是维隆人自己作出的决定。</p>
+<p class = "firstLineIndent">贸易船就这样把一船的采集者寄生体还有那门电磁炮无声无息的顺利带过星门。</p>
+<p class = "firstLineIndent">过了星门的要塞安检，贸易船便开始朝着另外一座星门开始跳跃。</p>
+<p class = "firstLineIndent">不过，这艘贸易船并不是一次性跳跃到下一座星门附近，而是跳跃到了一处恒星系统内的空旷地带。</p>
+<p class = "firstLineIndent">因为采集者们对船员大脑作出干涉，让他们错误性的判断恒星系统的位置，所以跳到了恒星系统空旷地带。</p>
+<p class = "firstLineIndent">这个时候，采集者们屏蔽掉贸易船上船员以及船长的全部认知，让他们处在半休眠的无意识状态。</p>
+<p class = "firstLineIndent">隐藏在贸易船内部的折叠电磁炮展露在贸易船外部，由反物质反应堆进行供能，将一只缩小版的亚光速生物作为炮弹，朝着其他恒星系统发射出去。</p>
+<p class = "firstLineIndent">当这只缩小版的亚光速生物飞过恒星的柯伊伯带后，就会湮灭自己所携带的反物质，因为距离的关系，湮灭释放的伽马射线不会引起注意。</p>
+<p class = "firstLineIndent">它会继续加速到亚光速，前往临近的神逐之地，在那里进行族群的殖民建设任务。</p>
+<p class = "firstLineIndent">做完这一切，电磁炮重新收回到贸易船内部，反物质反应堆也终止产能，一切恢复正常后，采集者们唤醒贸易船上的船长和船员。</p>
+<p class = "firstLineIndent">对于船长和船员来讲，他们只会感觉自己刚刚发了一下呆，并不会察觉到自己已经无意识了一段不久的时间，所有计时的仪器，采集者们都通过干扰视觉来掩饰过去。</p>
+<p class = "firstLineIndent">在贸易船与其他地方接触时，采集者们会终止视觉干扰，船长和船员只会觉得是自己记错了时间，而不会想到其他。</p>
+<p class = "firstLineIndent">而对于贸易船没有直接跳跃到星门附近，而是在恒星系统空旷地带停顿一下的事情，采集者们通过记忆编写，让贸易船上的船员和船长认为是船上的指向罗盘出了问题。</p>
+<p class = "firstLineIndent">当然，为了假戏真多，采集者们还真的故意把贸易船上的罗盘整出了问题，这样一来，即便其他没有被它们寄生的维隆人看到罗盘，也不会察觉到有什么不对劲。</p>
+<p class = "firstLineIndent">贸易船就这样顺利的通过一座又一座的星门，穿行在维隆统合团的疆域内，每到一个全新的恒星系统，贸易船都会向邻近的恒星系统发射一只小型的亚光速生物。</p>
+<p class = "firstLineIndent">不仅仅这一艘贸易船如此，被采集者们寄生的其他贸易船，也在每到一个恒星系统后，于空旷地带，没有引起任何注意的情况下用电磁炮发射小型亚光速生物。</p>
+<p class = "firstLineIndent">通过贸易船，采集者们不禁到达了维隆统合团疆域的每个恒星系统，更是到了同属一个第六阶层的其他第五阶层疆域。</p>
+<p class = "firstLineIndent">看着返回贸易船上的采集者们进行的汇报，虫族疆域内的采集者们只感觉到喜悦。</p>
+<p class = "firstLineIndent">“一切都非常顺利，没有引起任何智慧个体的注意，计划在稳步的实施。”</p>
+<p class = "firstLineIndent">“只要完成了战略计划，整个门世界都将败倒在族群之下。”</p>
+<p class = "firstLineIndent">“族群将不会再顾忌星门的封锁，协调会的方法对我们不再管用。”</p>
+<p class = "firstLineIndent">“我们会把门世界收归于族群所有……”</p>
+<p class = "firstLineIndent">“真是期待啊……”</p>
+<p class = "firstLineIndent">虫族疆域内的跃进生物集群正在一批批的被孕育，各种战略资源也在积累，当它们的战略布局彻底完成，整个门世界内的所有势力、国度，都将因阿米巴而感到无尽的恐惧。</p>
+
+<h2>第七百六十七章 罗盘的灾难</h2><hr/>
+<p class = "firstLineIndent">一艘正在朝着星门慢慢行驶靠近的贸易船，近距离的跳跃并不能做到百分百的安全，所以在跳跃到距离星门足够近的距离后，贸易船是靠着常规动力航行通过星门。</p>
+<p class = "firstLineIndent">在此期间，贸易船会接到来自驻守要塞的安全检查，驻防军会派几个代表登船检查，检查主要是搭载的货物。</p>
+<p class = "firstLineIndent">一般来讲，这个时候是贸易船最忙碌的阶段之一，除此以外，另外一个忙碌的时间段就是通过星门后的安全检查，这种双向关卡，让维隆统合团的太空治安能够得到有效的治理，确保不会冒出什么太空海贼这类玩意。</p>
+<p class = "firstLineIndent">然而，不知道为什么，船长突然在这个忙碌的时间点召集所有船员到会议厅集合。</p>
+<p class = "firstLineIndent">在会议厅的讲席上，船长很郑重的看着各位到场的船员，开始自说自话起来。</p>
+<p class = "firstLineIndent">“我想，大家都很好奇，在这个时间点里忽然被我召集过来，是为什么……”</p>
+<p class = "firstLineIndent">“在回答这个问题以前，我想给各位看一样东西。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">这样说着，船长揭开了旁边被黑布遮盖的物体。</p>
+<p class = "firstLineIndent">当这个物体的面貌呈现在一众船员面前时，更是令他们感到一阵错愕。</p>
+<p class = "firstLineIndent">本以为是什么稀世珍宝的东西，却万万那没想到居然是一个指引罗盘，罗盘虽然昂贵，但也不至于被像珍宝那样对待。</p>
+<p class = "firstLineIndent">船员们看着船长那一副非常严肃的面容，郑重其事的对他们开口。</p>
+<p class = "firstLineIndent">“没错，这是一个指向罗盘，专门用来指引贸易船进行跳跃。”</p>
+<p class = "firstLineIndent">“正如你们看到的那样，我又买了一个新的指向罗盘，为了买这个新的指向罗盘，我可是又垫了不少钱进去。”</p>
+<p class = "firstLineIndent">一边说着，船长的目光犹如刀子般从船员们身上扫过，并警告起来。</p>
+<p class = "firstLineIndent">“我在这里郑重地警告在场各位，如果你们再因为什么乱七八糟的原因把指向罗盘给搞坏了，别跟我谈什么意不意外，我也不管贸易船有没有靠港，第一时间就把那个罪魁祸首给踢下船……”</p>
+<p class = "firstLineIndent">“都听明白了吗！”</p>
+<p class = "firstLineIndent">船长越说越激动，回忆起自己这趟出航贸易以来，罗盘总是因为各种意外而发生损坏，以致于他不得不自掏腰包，把自己的钱垫进去，在贸易船靠港后购买罗盘。</p>
+<p class = "firstLineIndent">最开始罗盘的损坏只是无伤大雅，虽然指引罗盘价格昂贵，但那也只是相对于船员，对于船长来讲，指引罗盘的价格也就相当于他的一件奢侈品。</p>
+<p class = "firstLineIndent">一般贸易船的船长，连这样价格的指引罗盘都懒得替换，但他与其他吝啬鬼不同，他是非常敬业的。</p>
+<p class = "firstLineIndent">哪曾想到，后面新买的指引罗盘刚到手使用没多久，就因为这样那样的原因而无法正常使用。</p>
+<p class = "firstLineIndent">以致于坚持完美主义的船长不得不到新的港口购置指引罗盘，先后陷入了轮回，贸易船就像是被未知的力量给诅咒了一般。</p>
+<p class = "firstLineIndent">积少成多后，饶是非常富裕的船长也感觉到非常肉痛。</p>
+<p class = "firstLineIndent">船长发誓这是他购买的最后一个指引罗盘，这次如果再有哪个蠢货意外的把指引罗盘给损坏，他就把坏掉的罗盘和那个蠢货一起踹出贸易船！</p>
+<p class = "firstLineIndent">啪！</p>
+<p class = "firstLineIndent">因为船长无意识挥舞的触手，重重的砸在了指引罗盘上，好巧不巧的把罗盘打翻在地，砸了个七零八落。</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">在场一片寂静，船员们先是集体盯着地上碎裂的指引罗盘，然后又呆愣愣的看向了思维宕机，动作完全静止的船长。</p>
+<p class = "firstLineIndent">也不知道是谁开口打破了沉寂，只听到有船员叫唤了船长一声。</p>
+<p class = "firstLineIndent">“……船长？”</p>
+<p class = "firstLineIndent">“不——！我的钱啊！”</p>
+<p class = "firstLineIndent">回过神来的船长跪在地上的指引罗盘前，发出了歇斯底里的惨叫。</p>
+<p class = "firstLineIndent">他现在恨不得把自己的手给剁了……</p>
+<p class = "firstLineIndent">无论是船员还是船长，此时都没有意识到，刚才的那番动作，其实是采集者在暗中作梗，船长之所以会越想越气，是因为大脑内采集者调整了生物激素的比例，所以船长比往常更加容易暴躁。</p>
+<p class = "firstLineIndent">而打翻指引罗盘，同样也是寄生在船长大脑内的采集者在搞鬼，在船长无意识的挥舞触手的时候，采集者伪装成大脑的生物电信号，给肢体递送了一串简短的肢体指令。</p>
+<p class = "firstLineIndent">触手就这样顺势的将船长身旁的指引罗盘给打翻在地。</p>
+<p class = "firstLineIndent">而关键是，这些事情落到在场维隆人的眼里，都是正常的情况，就连船长本人都没有怀疑自己的行为不正常。</p>
+<p class = "firstLineIndent">不过，话又说回来，其实也不算这些维隆人太粗心，毕竟谁会没事怀疑自己是不是有问题，如果不是切实的有采集者让肢体违反他们大脑的指令行动，恐怕这些维隆人做梦都察觉不到自己被寄生这件事。</p>
+<p class = "firstLineIndent">生命场内，各个维隆人体内的采集者通过这种方式构建起频道，交流信息。</p>
+<p class = "firstLineIndent">“这个船长真是个奇葩，指引罗盘坏了就坏了，不就是横渡恒星系统繁琐了点吗？又不是没了罗盘就不能跳跃，非要用完好的指引罗盘。”</p>
+<p class = "firstLineIndent">对于这个维隆人船长的奇葩行为，采集者们愤愤不平。</p>
+<p class = "firstLineIndent">采集者们需要贸易船在恒星系统空旷处停滞一段时间，将亚光速个体发射到临近恒星系统，所以指引罗盘这种直接引导贸易船从一个星门跳到恒星系统内另一个星门的工具，自然是不能正常工作。</p>
+<p class = "firstLineIndent">其实哪有什么意外，维隆人的这些‘意外’不过是采集者们临时编撰的虚假记忆，只是维隆人角度看起来是意外罢了。</p>
+<p class = "firstLineIndent">其他贸易船的船长，都是懒得自掏腰包购置新的罗盘，等到回到出发地上报商会，让商会补贴新的罗盘，唯独这个船长非常奇葩，或者过分敬业。</p>
+<p class = "firstLineIndent">“亏死他，这都第二十七个了，就知道给我们制造麻烦。”</p>
+<p class = "firstLineIndent">“动静别太明显，如果我们被发现了，就不得不把这艘贸易船的维隆人全部杀光。”</p>
+<p class = "firstLineIndent">采集者们潜伏了如此之长时间，虽然遇到各种各样行为的智慧生物宿主，但都基本还算计划顺利，如今这个奇葩船长也不例外。</p>
+<p class = "firstLineIndent">通过无线电的扩散，再经由贸易船留下来的那些伪装成陨石的微小个体作为中转，贸易船的情报很快传递到虫族的疆域内。</p>
+<p class = "firstLineIndent">传递信息的不仅仅只有一艘贸易船，这些情报数据传递回虫族疆域内后，被那里的采集者们统合到星图上，一目了然的就能看出它们如今对门世界的扩张进度。</p>
+<p class = "firstLineIndent">“一切都还算是顺利，目前已经扩张到维隆统合团相接壤的其他第五阶层的疆域，这都多亏了第六阶层的贸易航线，我们可以神不知鬼不觉的扩散到其他第五阶层那边。”</p>
+
+<h2>第七百六十八章 星门探索</h2><hr/>
+<p class = "firstLineIndent">门世界各大势力、国度之间，对疆域边境都有严密的军事封锁，为的就是避免临近的国度、势力对己方的渗透，通常情况下，一个国度、势力的贸易船，想要前往临近的国度、势力，就需要通过自己那方的统治政权事先通报，获取到要前往的国度、势力的许可，然后才可以前往，否则大概率一过星门就被临近的国度、势力认为是入侵者，直接武力伺候。</p>
+<p class = "firstLineIndent">但是第五阶层的维隆统合团，与邻近的第五阶层都属于同一势力，是第六阶层格纳瑞尔贸易联盟的一部分，为了加强商业往来，它们之间没有这样的繁琐手续，这也就加快了采集者们计划的进度。</p>
+<p class = "firstLineIndent">“虽然很顺利，但这绝不是能够掉以轻心的理由，如今距离战略计划的最终实现还有很长一段距离要走，大家一定要沉住气，不然这段时间的努力可就前功尽弃了。”有采集者提醒自己的同族们。</p>
+<p class = "firstLineIndent">计划是有效的，战略也是强大的，但实施起来却也是困难的，用如履薄冰来形容再恰当不过，任何一个环节上的失误都必须迅速作好信息上的封锁，不能让门世界内的国度、势力意识到它们打算做什么。</p>
+<p class = "firstLineIndent">从虫族的记忆那里得到的情报，借助灵域来探查被寄生的智慧生物其实非常简单，连早已经灭亡的神圣沃姆邦国都掌握这样的能力。</p>
+<p class = "firstLineIndent">如今采集者们之所以还没被发现，只是因为门世界内的国度、势力还不曾意识到采集者们采用这样的方式展开入侵，并且还针对整个门世界铺设了这么大的一个战略计划。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“明白，我会通知大家。”负责通讯的个体在生命场频道内应答一声，随后又想起了什么，求证性的反问同族“对了，我前段时间接到远方同族的信息，探索要开始了？”</p>
+<p class = "firstLineIndent">“没错，要开始了，对星门内部的探索。”</p>
+<p class = "firstLineIndent">从同族那里得到肯定的答复后，询问的采集者继续追着反问，言语中尽是担忧。</p>
+<p class = "firstLineIndent">“风险太高了，这样做值得吗？”</p>
+<p class = "firstLineIndent">采集者所说的事情是对星门的探索，星门作为辉文明流传至今的人工智能造物，内在必然是有着类似计算机一样的终端处理器。</p>
+<p class = "firstLineIndent">而且就门世界的情况看来，星门在过去必然是作为辉文明的主要工具之一。</p>
+<p class = "firstLineIndent">也就是说，还在运作的正常星门内残留的信息，必然是非常丰富、全面，采集者们很可能借此解开辉文明毁灭的原因。</p>
+<p class = "firstLineIndent">但这又引申出另外的问题，那就是星门的智能会不会因为它们对内在信息的获取，而作出什么其他的反应，比如敌对。</p>
+<p class = "firstLineIndent">如果是那样的话，那采集者们可就遇到麻烦了，甚至有一定概率可能会影响到目前在事实的门世界计划。</p>
+<p class = "firstLineIndent">这不得不让询问的采集者感到担忧。</p>
+<p class = "firstLineIndent">对此，有集群率领者给予了解释。</p>
+<p class = "firstLineIndent">“辉文明的事情为最高优先级，这是无上至高的意志所定下的事情，我们需要解开辉文明毁灭的原因，如果是某种未知的敌人，族群可以提前做好防范，如果是某种原因或者机制，族群就可以提前规避风险。”</p>
+<p class = "firstLineIndent">“像辉文明那样的文明都能被毁灭，你觉得族群会安全吗？”</p>
+<p class = "firstLineIndent">采集者们不知道辉文明是怎么毁灭的，实验导致的灾难太过笼统了，如果辉文明实验导致的灾难，只是某种现象倒还好办，采集者们可以事先就知道这是个坑，也就不会再往里面跳。</p>
+<p class = "firstLineIndent">可如果这个实验灾难是生成了一个生物呢？这个生物能毁灭辉文明，毁灭阿米巴难道就很困难吗？</p>
+<p class = "firstLineIndent">从辉文明留下的记录来看，那个实验最终导致的灾难是连宇宙中最强文明都会感到力不从心。</p>
+<p class = "firstLineIndent">采集者们不确定那个记录信息的灵域设计者是不是在吹牛，毕竟吹牛不犯法，而且人也已经死了八亿年的时间，可没有任何依据的情况下，它们只能抱着将信将疑的态度。</p>
+<p class = "firstLineIndent">权衡了两边的情况后，询问的采集者理解了族群的选择。</p>
+<p class = "firstLineIndent">“……你说的有道理，相比起这个，门世界里的一切都算不上什么。”</p>
+<p class = "firstLineIndent">门世界没了又怎样？整个河系还有那么多的恒星系统，这其中也有很多尚未被采集者们发现接触的文明，更别说河系之外的其他河系。</p>
+<p class = "firstLineIndent">相比之下，族群如果没了，那就是真的没了，辉文明那么高的科技都留不下文明的火种，说实话，采集者不觉的它们在遇到和辉文明相同情况后，还有机会让族群留下火种。</p>
+<p class = "firstLineIndent">眺望着幽邃的星空，漫天尽是星云与恒星，集群率领者喃喃自语。</p>
+<p class = "firstLineIndent">“希望同族们可以给我们带来好消息，就像如今的战略计划那样顺利……”</p>
+<p class = "firstLineIndent">对星门的探索是在神圣沃姆邦国的门世界疆域内进行，采集者们挑选一个拥有多座星门的恒星系统中一座作为探索对象。</p>
+<p class = "firstLineIndent">这样即便出现了意外，星门关闭封死，采集者们也能通过其他星门保证与其他恒星系统的联系。</p>
+<p class = "firstLineIndent">相当于一颗红矮星质量的星门，质量无疑是非常庞大，因此采集者们也不需要什么吸附设备，就能与其接触。</p>
+<p class = "firstLineIndent">为了在星门上正常的活动，采集者们特意设计了一种抗压性很强的流体形态生物，除了固态脑以外没有坚硬的地方，但在必要的时候，可以通过角质硬化来让自己的一部分变得坚硬。</p>
+<p class = "firstLineIndent">“整个就是一大号的原子核，不禁能保持中子简并的状态，辉文明还把它捏成了星门的形状，这样的技术真的太强了。”</p>
+<p class = "firstLineIndent">越是深入研究星门，采集者们就越是能感觉到辉文明那鬼斧神工般的技艺。</p>
+<p class = "firstLineIndent">如果只是制造中子简并态其实并不难，采集者们也能做到，利用黑洞炸弹坍缩一颗恒星成中子星，也相当于制造出中子简并态材料，只不过利用是个问题。</p>
+<p class = "firstLineIndent">而辉文明不仅能够利用，还能够把这种材料像橡皮泥那样揉成圆筒状，采集者们想象不出他们是怎么做到的。</p>
+<p class = "firstLineIndent">“探索了这么久，基本可以确定整个星门都是密封的状态，以族群的技术，想要破开并不算难，可以使用黑洞炸弹……”</p>
+<p class = "firstLineIndent">采集者们是打算进行物理性上的对接，这样就可以绕过星门的程序，让探索变得更加安全，但比较遗憾的是，星门并没有缝隙可以供采集者们钻进去。</p>
+<p class = "firstLineIndent">而过去无往不利的化学配位性蚀刻，面对中子简并态材料，也只能徒劳哀叹。</p>
+<p class = "firstLineIndent">个体还未说完，就遭到了集体的指责。</p>
+<p class = "firstLineIndent">“乱来！”</p>
+<p class = "firstLineIndent">“用黑洞炸弹的话，整个星门都会坍缩成一个黑洞！”</p>
+<p class = "firstLineIndent">“瞎出主意！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">最终，采集者们放弃了尝试物理进行内部硬件对接的方式。</p>
+<p class = "firstLineIndent">“物理对接上没办法，我们只能从程序上入手，该带的都带齐了吗？”</p>
+<p class = "firstLineIndent">“都带来了。”</p>
+<p class = "firstLineIndent">“那我们去星门的终端位置。”</p>
+
+<h2>第七百六十九章 小卡片</h2><hr/>
+<p class = "firstLineIndent">星门存在一个外部处理终端，当初新帝国就是通过这个外部处理终端，激活了一座处在休眠状态的星门。</p>
+<p class = "firstLineIndent">外部处理终端的操作平台，被设计在圆筒状星门的内壁上，这个设计的非常隐蔽，尤其是在星门被激活之后，有虫洞作为遮挡，而且需要进行一番复杂操作，隐藏起来的外部处理终端平台才会展露出来。</p>
+<p class = "firstLineIndent">即便是瑟琳人，也是偶然中才发现。</p>
+<p class = "firstLineIndent">中子简并态可以理解为是一个完整的原子核，而这个原子核不显电性，也就不会外散电磁力，尽管构成中子的夸克显电性，可由于夸克紧闭的关系，单个夸克永远都不可能出现在这个宇宙当中。</p>
+<p class = "firstLineIndent">因此归属于四大基本力中电磁力范畴的摩擦力，也就几乎不存在。</p>
+<p class = "firstLineIndent">采集者们可以通过‘溜冰’的方式，几乎不费什么力的就能一路滑到圆筒状结构的内壁，且由于星门红矮星级别的质量，它们不用担心自己会因此抛飞到宇宙里。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">达到红矮星质量的物体自然是不可能小，星门的体量非常庞大，即便只是这样匀速直线的滑行，也花了采集者们七八天的时间。</p>
+<p class = "firstLineIndent">逆向的喷射物质流，进行匀减速运动，当采集者们抵达目的地的时刻，速度正好降低至趋近于零。</p>
+<p class = "firstLineIndent">此刻，采集者们的正上方就是一片被扭曲的星空，呈圆球状，看起来就像是一枚无比巨大的琉璃艺术品。</p>
+<p class = "firstLineIndent">不过，采集者们可没有什么艺术细胞，对于自己头顶上的奇观异象，并没有过多的注意，它们开始对下方的平面进行操作，好让平台展露出来。</p>
+<p class = "firstLineIndent">按照瑟琳人给出的方法，星门的外部处理终端平台开始呈现出来。</p>
+<p class = "firstLineIndent">它们下方的中子简并态就像是液体一般，慢慢的开始变化，犹如镜面的平面上显露出一个凸起状物。</p>
+<p class = "firstLineIndent">凸起状物随后投影出一片虚像。</p>
+<p class = "firstLineIndent">那是一个操作界面，界面也不复杂，完全是傻瓜式，可能辉文明是为了照顾辉人中可能存在的智障而如此设计。</p>
+<p class = "firstLineIndent">就两个按键，用辉文明文字分别写着‘开’和‘关’。</p>
+<p class = "firstLineIndent">简单联系一下星门本身就很容易明白用意，这是启动和关闭星门，当初的新帝国，就是在探索星门的过程中，有人手贱按下了开启的按键，这才让星门和门世界重新联系。</p>
+<p class = "firstLineIndent">不过，无论是开启，还是关闭，都不是采集者们想要的选择。</p>
+<p class = "firstLineIndent">“把那个给我。”</p>
+<p class = "firstLineIndent">比较靠近投影的采集者朝同族伸出自己的突触。</p>
+<p class = "firstLineIndent">同族会意，从带过来的东西里拿出了一张很小的卡片，大小与一张银行卡近似。</p>
+<p class = "firstLineIndent">这张卡片伸到投影的光幕中，光幕随即产生一圈圈的涟漪波动。</p>
+<p class = "firstLineIndent">投影开始拉伸、弯曲，进而变成一个圆球罩子，将采集者们包裹在内。</p>
+<p class = "firstLineIndent">以采集者们的视角，透过圆球向外看，可以看到逐渐被改变的景色，当一切稳定之后，显露出来的便是灵域之景。</p>
+<p class = "firstLineIndent">此时此刻，采集者们处在一种叠加状态，它们既身处在星门，也身处在灵域，两边的事物都能够正常的看到它们。</p>
+<p class = "firstLineIndent">迷雾涌动，混沌拨开，深邃的混乱当中睁开一只只的眼睛，盯着进入到灵域之内的采集者。</p>
+<p class = "firstLineIndent">这些都是灵尊，自那些眼睛里所涌现出来的恶意，采集者们再熟悉不过。</p>
+<p class = "firstLineIndent">但是这次与以往不同，没有灵尊主动袭击采集者们，它们只是远远的观望，犹如饿狼看到了食物，却始终不敢主动迈进扑食。</p>
+<p class = "firstLineIndent">它们会有此反常的行为是有原因的。</p>
+<p class = "firstLineIndent">灵域当中不仅仅只有灵尊，更会随机性的孕育许多畸形的不稳定生命体，它们的寿命很短暂，攻击性也非常强，最主要的是它们的智慧性并不高。</p>
+<p class = "firstLineIndent">这些灵域生命注意到了采集者们，便毫不犹豫的发起了进攻。</p>
+<p class = "firstLineIndent">就在它们靠近采集者们一段距离后，异变发生了。</p>
+<p class = "firstLineIndent">一股无形的力量在这些灵域生命身上生效，灵域生命只是以肉眼可见的速度迅速腐朽，化作满天的迷雾重新与灵域的环境融为一体。</p>
+<p class = "firstLineIndent">整个过程行云流水，甚至给旁观者的感觉就是本该如此，灵域生命理应被腐朽，然后重新回归灵域。</p>
+<p class = "firstLineIndent">采集者们并不是以自己的身份进入到灵域，而是以辉文明个体的身份进入。</p>
+<p class = "firstLineIndent">那张小卡片，是从那座隐藏在灵域当中的实验所里得到的物品，有些类似于身份卡的一种东西，在辉文明还存在的时候，这种小卡片是类似手机那样，每个辉人都日常携带的随身必备物品。</p>
+<p class = "firstLineIndent">小卡片本身没什么能力，只是一个辉人的身份证明。</p>
+<p class = "firstLineIndent">但哪怕只是辉文明中最为普通平凡的个体，在灵域中都是极为尊贵。</p>
+<p class = "firstLineIndent">因为辉文明是灵域的缔造者，灵域要服务于辉文明，这是灵域存在的意义，也是它诞生的目的。</p>
+<p class = "firstLineIndent">所以，这一次，灵尊只敢远远地观望进入灵域的采集者们，连向它们搭话的举动都不敢有。</p>
+<p class = "firstLineIndent">简单的扫了几眼躲藏在幽邃之下的无数灵眸，采集者们便十分淡定的选择无视。</p>
+<p class = "firstLineIndent">这并非是它们第一次来到这里，已经来了数次，对卡片的使用已经积累了一定的经验，也清楚了灵域的一些机制，比如，星门和灵域是存在着连接，而星门的一些能力是星门本身配合上灵域才发挥效用，有点类似云计算搭配上微型终端的那种感觉。</p>
+<p class = "firstLineIndent">“指引我们进入更深层次。”</p>
+<p class = "firstLineIndent">采集者朝着一个方向，对着不知道是谁在讲话中。</p>
+<p class = "firstLineIndent">在那之后，混乱的灵域因采集者的这番话语起了反应，它们置身的圆球突然间开始朝着某个方向高速移动。</p>
+<p class = "firstLineIndent">不，也不能说是移动，采集者们感觉不到加速带来的反动量。</p>
+<p class = "firstLineIndent">应该说平移，或者……整个灵域都在因它们而运动。</p>
+<p class = "firstLineIndent">很快，采集者们置身的圆球径直冲出了灵域的混沌，冲入了一片空旷当中。</p>
+<p class = "firstLineIndent">这是两个平面夹层之间，它们的目的地是前方，而灵域的那片混沌则在后方，两个平面延伸到无穷远的黑暗当中。</p>
+<p class = "firstLineIndent">抵达的目的地是一个平面，有清楚的上和下、左和右，周遭的环境是无数立体几何物体，类似于采集者们之前身处的无边混沌，只不过这个平面是由无数的几何体堆砌而成，上方则是采集者们刚刚进入灵域时的那片无边的混沌。</p>
+<p class = "firstLineIndent">无边的混沌只不过是灵域的一部分，甚至可以说仅是占据很少一部分的浅层，采集者们所来到的这里，是灵域的深层次。</p>
+<p class = "firstLineIndent">当然，还有更深层次，但这需要解决一些麻烦才可以继续深入。</p>
+<p class = "firstLineIndent">“上一次就是探索到这里就被拦住。”</p>
+<p class = "firstLineIndent">“外部硬件的路走不通，只能试着和它谈一谈……”</p>
+<p class = "firstLineIndent">就在采集者们彼此商议之时，忽然间一段充满敌意的信息凭空出现在它们的思维中。</p>
+<p class = "firstLineIndent">【滚出这里！冒牌货们！】</p>
+
+
+<a href="750.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="770.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

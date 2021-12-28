@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第九百一十章 攻击和防御原则（1）</h2><hr/>
+<p class = "firstLineIndent">漫漫无尽的一片纯白空间，没有任何参照物，有的只有白，白，以及白……</p>
+<p class = "firstLineIndent">置身于其中，分不清东南西北，也可以说没有东南西北。</p>
+<p class = "firstLineIndent">在这样空无一物的地方待久了，哪怕是个精神正常的人也会发疯。</p>
+<p class = "firstLineIndent">所幸，霍古还有着暝陪伴，这使得它不至于太过枯燥，连个说话的人都没有。</p>
+<p class = "firstLineIndent">已经成为完整状态奇星枢纽的暝，任何光谱都看不见，只能通过引力波或者物质实体参照，才能够获悉它的存在。</p>
+<p class = "firstLineIndent">然而，这片一无所有的纯白空间，没有任何参照物，根本无法观测到暝的存在。</p>
+<p class = "firstLineIndent">霍古则被暝保护在其中，同样不会显露出身形，所以，这片空间里，一眼望去什么都没有，被关押的霍古与暝同样也看不到。</p>
+<p class = "firstLineIndent">“暝，我们被关在这个地方多久了？”</p>
+<p class = "firstLineIndent">霍古扫了眼暝之外的那片纯白之景，生物性的时间的感知已经彻底错乱。</p>
+<p class = "firstLineIndent">在这片没有太阳，没有月亮，甚至连个参照物都没有的地方，对生物的影响是非常强的，尤其是对时间上的感知。</p>
+<p class = "firstLineIndent">虽然这样的问题，可以通过内置的原子钟解决，可霍古并不想这么做。</p>
+<p class = "firstLineIndent">这样做总给他一种死亡倒计时，结束以后就奔赴刑场的感觉。</p>
+<p class = "firstLineIndent">尽管谁胜谁负还不好说，但灵域如果允许它们离开现在这个地方，很大可能就是安排它们两个去死的时候。</p>
+<p class = "firstLineIndent">所以，记录时间的事情，霍古让暝来做，算是它作为人类的一点矫情吧……</p>
+<p class = "firstLineIndent">【不是很久，两百多年而已。】</p>
+<p class = "firstLineIndent">“我原先还以为，我们被强制留在灵域里，即便不被杀死，也必然受尽折磨，没想到真的就只是关着。”</p>
+<p class = "firstLineIndent">“不，也不能说是关着，毕竟这里这么大，这样的‘牢房’有与没有其实并无差别，最多只算是回不去。”</p>
+<p class = "firstLineIndent">最开始，霍古已经做好了心理准备，比如堕入神话中的十八层地狱最底层，经历无数遍上到山下油锅等等。</p>
+<p class = "firstLineIndent">结果后来发现，的确就只是关着，连灵尊、灵域生物都看不见。</p>
+<p class = "firstLineIndent">现在的霍古大概能理解，恐惧深渊之主当初为什么急于想吃它，跟最初接触时的那种气定神闲智珠在握截然相反，合着就是知道再不把它早点吃，以后就再没有机会了。</p>
+<p class = "firstLineIndent">灵域之主不允许吃，哪个灵尊敢反抗？哪个有能力反抗？主的话在灵域里可就是规则。</p>
+<p class = "firstLineIndent">【按照这个逻辑，霍古你最开始从地球到这边，不也是被‘关着’吗？】</p>
+<p class = "firstLineIndent">“地球啊……唉。”</p>
+<p class = "firstLineIndent">暝提到了地球，霍古内心不由得失落，心中的五味杂谈，思绪一下子浮现出许许多多的疑问。</p>
+<p class = "firstLineIndent">地球还好吗？</p>
+<p class = "firstLineIndent">还是那颗蓝色的星球吗？</p>
+<p class = "firstLineIndent">人类呢？</p>
+<p class = "firstLineIndent">人类文明还在不在？</p>
+<p class = "firstLineIndent">现在是不是已经离开地球殖民宇宙？</p>
+<p class = "firstLineIndent">如今的的人类文明达到什么层次？</p>
+<p class = "firstLineIndent">按照我经历的时间，人类应该已经达到宇宙文明的层次了吧？</p>
+<p class = "firstLineIndent">如果我回去，他们会敌视我吗？</p>
+<p class = "firstLineIndent">亦或者人类已经全部灭绝？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">思考着许许多多得不到答案的问题后，霍古将这些都抛出脑海。</p>
+<p class = "firstLineIndent">唯一还留存在霍古思绪当中的，就只剩下‘宇宙文明’这一小段。</p>
+<p class = "firstLineIndent">在关押的这段时间里，暝告诉了霍古宇宙中的那些凌驾于辉之上的古老文明。</p>
+<p class = "firstLineIndent">越是了解，越是心惊不已。</p>
+<p class = "firstLineIndent">“暝，上一次你和我说的，宇宙文明的攻击与防御原则，再和我讲讲吧。”</p>
+<p class = "firstLineIndent">【好哒。】</p>
+<p class = "firstLineIndent">【嗯……从头讲起吗？】</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">最好看的小说尽在宅阅读：ZHAIYUEDU。TOP</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“对，上次听着感觉有点绕，希望这次能更简单一点。”霍古道。</p>
+<p class = "firstLineIndent">【好吧。】</p>
+<p class = "firstLineIndent">暝寻思了一会，在思考好该如何简单讲解之后，它开始讲述攻击和防御原则。</p>
+<p class = "firstLineIndent">【在了解攻击和防御原则以前，需要先了解一个概念，那就是——科学技术的本质是什么？】</p>
+<p class = "firstLineIndent">“是一种方法，利用宇宙规则的方法。”</p>
+<p class = "firstLineIndent">科学是一套对宇宙规则系统性的总结，而科技则是在此基础上的利用，这并不难理解，比如——我们知道物体落下会伴随着撞击，下落物体质量越大，撞击力度也越大，于是我们利用这种现象，搬起石头砸核桃，这种过程，就是对宇宙现象的利用，对规则的运用。</p>
+<p class = "firstLineIndent">生命从诞生开始，天生就会运用宇宙规则，一切生命都是如此，这是它们必然存在的本能。</p>
+<p class = "firstLineIndent">【正确，就是方法，科学技术的本质就是在运用宇宙规则，哪怕是结构最简单的单细胞生物，它们从出生就在使用着宇宙的规则。】</p>
+<p class = "firstLineIndent">【了解到科技的基本概念后，就又可以引申出一个问题——‘攻击’和‘防御’的科技究竟是什么？】</p>
+<p class = "firstLineIndent">这个问题很笼统，值得令人深思。</p>
+<p class = "firstLineIndent">攻击嘛，很简单，只要能伤害到敌人，那不就是攻击了吗？</p>
+<p class = "firstLineIndent">而要杀死一个人，手段不是多种多样吗？毒杀、利器歌喉、辐射物病变、溺死、吊杀等等，更进一步延伸的话，可以说任何能杀人的科技都可以算是攻击范畴的科技。</p>
+<p class = "firstLineIndent">那反过来，防御呢？</p>
+<p class = "firstLineIndent">这太笼统了，防御是针对攻击的，跟攻击科技相反目的的科技都算是‘防御’，从来就没有什么百分百防御下一切攻击的完美防御，所以，如果攻击性的科技是所有科技的话，防御性科技也会是所有科技。</p>
+<p class = "firstLineIndent">关键是看使用者怎么运用科技。</p>
+<p class = "firstLineIndent">基于这样的思考，霍古回答了暝的问题。</p>
+<p class = "firstLineIndent">“……一切科技都可以用来攻击，也同样能够用来防御，不同情况不同结果，没有绝对性。”</p>
+<p class = "firstLineIndent">【是的，没有绝对性，但规律性呢？攻击和防御的规律。】</p>
+<p class = "firstLineIndent">“规律……”</p>
+<p class = "firstLineIndent">经由暝这样一提，霍古陷入了深思。</p>
+<p class = "firstLineIndent">【我们要深度的剖析攻击和防御，可以通过辩证的方式来看待。】</p>
+<p class = "firstLineIndent">【首先，防御能够独立存在吗？】</p>
+<p class = "firstLineIndent">“不行，防御是针对攻击，攻击不存在，防御从何谈起？”</p>
+<p class = "firstLineIndent">好比一堵城墙，在战争时期，它可用来阻挡敌人的进攻，也就是起到防御作用，可在和平时期呢？它就只是一堵挡人去路的墙壁，这个时候，它的‘防御’是没有意义的，因为没有人‘攻击’。</p>
+<p class = "firstLineIndent">因此，谈论防御的时候，首先要谈论的就是攻击，有了攻击，才能有防御。</p>
+<p class = "firstLineIndent">哪怕谈论城墙的防御性，那最起码得先搞清楚敌人的攻击方式才行，不然敌人用导弹从上方垂直攻击，这种情况能说城墙防御性很高吗？显然并不行。</p>
+<p class = "firstLineIndent">【是的，防御无法从二者中独立出来存在。】</p>
+<p class = "firstLineIndent">PS：祝大家元旦快乐ヽ（￣▽￣）</p>
+
+<h2>第九百一十一章 攻击和防御原则（2）</h2><hr/>
+<p class = "firstLineIndent">【但攻击不一样，攻击可以从二者中独立出来存在，没有防御也有攻击，可没有攻击就没有防御。】</p>
+<p class = "firstLineIndent">【二者的关系犹如光与影，没有影，光可以存在，可光若不存在，影同样也就不存在，所以，攻击和防御看似是相对的概念，犹如正负物质那样似乎能够彼此中和，可其实，它们同属在一条宇宙的规则上。】</p>
+<p class = "firstLineIndent">“也就是说，防御原则，其实是建立在攻击原则的基础上作出的进一步延伸，只要理解其中的一者，另外一者就必然能够理解。”</p>
+<p class = "firstLineIndent">【是这样的。】</p>
+<p class = "firstLineIndent">【想要理解防御原则，就必须从攻击原则出发，可攻击是什么呢？】</p>
+<p class = "firstLineIndent">暝的问题并不难回答，说白了就是‘打人’，拿石头丢是打人，拿导弹丢同样也是打人，二者差异无非就是威力罢了。</p>
+<p class = "firstLineIndent">“攻击是一种生物行为，与地面行走，天空飞行，水中游泳，并不区别。”</p>
+<p class = "firstLineIndent">只有生物才会有攻击，这是生物专属的特权，非生物是不会具备攻击的能力，哪怕太阳系的太阳要突然超新星爆炸毁灭全人类，那也是自然里的‘天灾’，不是‘攻击’。</p>
+<p class = "firstLineIndent">【没错，攻击就是一种行为，更准确的来讲，是一个过程，小到地表上的原始生物互丢石头，大到宇宙文明的大尺度战争，都跳不出这个框架。】</p>
+<p class = "firstLineIndent">【而这个框架，就是我们所说的‘攻击原则’。】</p>
+<p class = "firstLineIndent">攻击是行为，并且具备着规律性，这个规律性总结之后，便是攻击原则。</p>
+<p class = "firstLineIndent">“能讲得更具体点吗？还是太模糊了。”</p>
+<p class = "firstLineIndent">【那么，换种说法，如果霍古你要攻击敌人，你必须要进行哪些步骤？】</p>
+<p class = "firstLineIndent">霍古思考着，“嗯……首先是获取敌人的相关情报，诸如掌握的技术，整体实力的强弱，还有薄弱点以及位置信息之类，然后基于各种信息制定针对性的战略部署，短时间内以突袭战略一举击溃，这是最保险高效的战斗模式……”</p>
+<p class = "firstLineIndent">【这是群体战，个体战斗呢？】</p>
+<p class = "firstLineIndent">“单打独斗的话，看战场环境……”</p>
+<p class = "firstLineIndent">暝打断了霍古的回答，它换种方式要求。</p>
+<p class = "firstLineIndent">【不不不，不是那样，要把各种过程都更加简洁化些，这样方便理解。】</p>
+<p class = "firstLineIndent">“那就是收集对方的情报，知道对方的弱点，然后一波突袭对方的弱点，把对方给宰了……”</p>
+<p class = "firstLineIndent">综合来看，个体和集体的战斗，其实差异并不是特别大，都有着很明显的共同性。</p>
+<p class = "firstLineIndent">和敌人战斗，那肯定是要想着该这么击败敌人，而要思考怎么击败敌人，那肯定要知道敌人的擅长的地方和不擅长的地方，最起码得做到扬长避短，重击要害。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">【理解了吧？攻击行为必须经历的第一个过程，那就是收集敌人的情报，一点情报都没有的话，是绝对无法进行攻击行为。】</p>
+<p class = "firstLineIndent">“嗯……那如果是那种祈愿型的因果律武器呢？”</p>
+<p class = "firstLineIndent">霍古假设存在了一种武器，只要使用这种武器，就不需要经历任何过程的消灭掉任何的敌人。</p>
+<p class = "firstLineIndent">毫无疑问，这种武器说是终极武器都不为过，不需要锁定，不需要理清其中的因果关系，无视任何障碍、屏障。</p>
+<p class = "firstLineIndent">但是，哪怕是这种武器，也同样没办法跳出攻击原则的框架。</p>
+<p class = "firstLineIndent">【那最起码使用者得‘告诉’因果律武器，谁是它应该消灭的目标吧？这难道不是信息吗？连目标是什么都不知道，再厉害的武器该如何发动攻击？】</p>
+<p class = "firstLineIndent">【攻击原则很好理解，就是获取信息，利用信息，然后发动攻击，这三个步骤。】</p>
+<p class = "firstLineIndent">暝所言的攻击原则三步骤，听起来高大上，其实是哪怕石器时代的原始人都能明白的道理。</p>
+<p class = "firstLineIndent">原始人拿石头丢人，首先肯定是要看清楚敌人在什么位置，是不是他要拿石头丢的对象，这就是获取信息。</p>
+<p class = "firstLineIndent">然后就是瞄准，没办法，不瞄准打不中，丢了也没意义，这一过程就是在利用获取到的敌人位置信息。</p>
+<p class = "firstLineIndent">最后就是发动攻击，这更好理解，原始人把石头丢出去了。</p>
+<p class = "firstLineIndent">宇宙的规则是简单的，它就是这种东西，当你理解后只会奇怪，当初自己怎么就没发现它。</p>
+<p class = "firstLineIndent">“那么防御原则呢？”</p>
+<p class = "firstLineIndent">【防御原则就是建立在攻击原则的基础上。】</p>
+<p class = "firstLineIndent">【防御的本质是什么？敌人要攻击我，我不想受伤，所以通过各种手段阻止对方的攻击伤害到我，这就是防御。】</p>
+<p class = "firstLineIndent">【由此就可以理解，防御就是阻止攻击行为的目的达成。】</p>
+<p class = "firstLineIndent">“怎么阻止？攻击只是行为，任何知识都可以用来攻击。”霍古问。</p>
+<p class = "firstLineIndent">【是这样没错，防御没有全面性，只具有针对性，针对一种攻击的防御，对于另外一种攻击可能就几乎没有防御性，正因如此，攻击总是会大于防御，因为主导权在攻击那边。】</p>
+<p class = "firstLineIndent">【但是，攻击是需要过程的，在这三个步骤被打破的情况下，攻击行为便无法达成，由此就可以达成防御。】</p>
+<p class = "firstLineIndent">第一个环节，如果获取不到敌人的丝毫信息，攻击自然无从谈起——哪怕是丢石头也要知道要丢的人在什么地方，眼睛一闭就乱丢打中人的概率能有多大？</p>
+<p class = "firstLineIndent">第二个环节，虽然获取到信息，但不足以利用这些信息达成攻击目的——丢石头砸人，光知道个名字有什么用，好歹得知道对方的样子，对方站在哪里。</p>
+<p class = "firstLineIndent">第三个环节，攻击发动失败——还没来得及丢出石头就被人敲了闷棍，手里的石头自然丢不出去。</p>
+<p class = "firstLineIndent">【这就是针对‘攻击原则’所延伸出来的‘防御原则’。】</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">此时，超光速状态下的暝和思，都获知了暝留存在信息当中的攻击和防御原则。</p>
+<p class = "firstLineIndent">“……攻击和防御的原则，与其说是一种宇宙规则，不如说是一种战略思想，保持安静，阻止其他文明获取我们的信息，就是最大的安全。”</p>
+<p class = "firstLineIndent">永续坦言自己的想法，而思，则是思考着攻击和防御原则的漏洞。</p>
+<p class = "firstLineIndent">攻击原则倒没什么问题，但防御原则却并不能做到百分百的全面性防御，好比一堵城墙，它水平上很厚实，可竖直上方却毫无招架能力。</p>
+<p class = "firstLineIndent">“防御原则有缺点，例如第三方战斗的余波，这在定义中属于‘意外’，并不属于‘攻击’的范畴，因此防御原则对于这种打击模式毫无防御能力。”</p>
+<p class = "firstLineIndent">互为敌人的使用范围性武器倒不是什么太大的问题，这在防御原则的范畴里，怕就怕是范围杀伤的余波，人在家中坐，祸从天降来的那一类。</p>
+<p class = "firstLineIndent">面对这种情况，防御原则无效，因为在定义中不算是‘攻击’。</p>
+<p class = "firstLineIndent">“确实不能算是攻击，因为发动攻击者对第三方没有怀有消灭对方的恶意，甚至根本不知道第三方的存在。”</p>
+<p class = "firstLineIndent">“但对于战斗参与者而言，这是很有用的，利用规则进行防御，比任何护盾、屏障都有用，因为这能让敌人干脆连攻击都办不到。”</p>
+<p class = "firstLineIndent">永续看得很透，它早就清楚两个原则的优劣在什么地方，这点问题并不算什么，既然能利用规则攻击和防御。</p>
+<p class = "firstLineIndent">那利用规则‘防灾’也是没有任何问题，甚至因为没人针对，反而更好办。</p>
+<p class = "firstLineIndent">除了了解攻击和防御原则，思和永续两个还了解到了宇宙文明。</p>
+<p class = "firstLineIndent">回忆着暝信息中说描述的宇宙文明，思感觉到深深的无力。</p>
+<p class = "firstLineIndent">“宇宙文明就是这样，利用宇宙规则进行攻防，不断地拉伸自己的时空加速时间，不断压缩敌人的时空减缓时间。”</p>
+<p class = "firstLineIndent">“在宇宙文明社会里，并不以科技层次作为唯一的实力评估标准，那只占很小的一部分，决定文明实力强弱的指标是那个文明的创造力，攻防原则只是基础里的基础，就像数学里的加减乘除。”</p>
+<p class = "firstLineIndent">“面对他们，族群可能连怎么败的都不知道……”</p>
+<p class = "firstLineIndent">很显然，思的自信心受到了极大的打击，它本以为族群已经足够接触到巅峰，哪怕没有位及巅峰，也距离巅峰不远。</p>
+<p class = "firstLineIndent">现在看来，差的太远了，人家玩的是规则，它们玩的是物质。</p>
+<p class = "firstLineIndent">“不要泄气，至少我们现在已经了解到，追赶上只是时间问题，只是加速时间而已，我们又不是做不到。”</p>
+<p class = "firstLineIndent">永续反而更加自信，丝毫没有受到打击的迹象，在知晓了通过拉伸时空加速自己文明时间流逝的操作后，它已经迫不及待的想要让族群试一试。</p>
+<p class = "firstLineIndent">思回答，“暝没有在修正机关的打击时期告诉我们这些，是希望我们能自己想到，由此测试出我们的创造力程度，可……我们并没有想到，是暝告知我们的。”</p>
+<p class = "firstLineIndent">科技是可以被研究和开发，这里面需要的只是时间上的累积，可对于能够加速自己时间流逝的宇宙文明而言，那是一秒钟就能够堆砌起来的东西。</p>
+<p class = "firstLineIndent">所以，创造力是宇宙文明评估力量的标准，同样的时间加速下，看谁发展的技术能力更强，看谁更加快速的找出对方的缺陷，看谁最先达成攻击实施条件。</p>
+<p class = "firstLineIndent">至于原本技术就很高的文明差距，这在宇宙文明之间的确算是一种优势，可却并非是无法追平的优势。</p>
+<p class = "firstLineIndent">达到那种层次的文明，对宇宙的知识早就已经融会贯通贯通，他们什么样的理论没有见识过，什么样的知识没有验证过，他们早就能够自己编织规则。</p>
+<p class = "firstLineIndent">如果战斗的足够激烈，足够疯狂，甚至会互相编织出一套各自的世界观彼此倾轧。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“我们并不聪明，这点不是早就众所周知的事情吗？族群还有数量，一个个体的创造力不行，就一群个体的创造力来填补，这没什么问题。”永续反问。</p>
+<p class = "firstLineIndent">“个体不行就数量来补？”</p>
+<p class = "firstLineIndent">思愣了愣，受到打击的它没想到这点。</p>
+<p class = "firstLineIndent">创造力并非无法量化，在无穷的数量下，任何可能的想法都可以涌现。</p>
+<p class = "firstLineIndent">永续笃定的回复，“没错，族群不就是一直这样过来的吗？更何况，我们也不一定是最笨的那个。”</p>
+<p class = "firstLineIndent">“你说得对。”</p>
+<p class = "firstLineIndent">它们的话题再次回到了灵域上，这是它们眼下要对付的敌人。</p>
+<p class = "firstLineIndent">永续道，“既然我们已经知道了攻防原则，那可以试着运用到和灵域的战略中，我们不也已经知道它的弱点了么？”</p>
+<p class = "firstLineIndent">“黑洞为砖，呵……”</p>
+<p class = "firstLineIndent">PS：祝大家元旦快乐ヽ（￣▽￣）</p>
+
+
+<h2>第九百一十二章 黑洞为砖</h2><hr/>
+<p class = "firstLineIndent">黑洞为砖，顾名思义，就是拿黑洞当砖头来盖建筑。</p>
+<p class = "firstLineIndent">灵域就是这样的一个由黑洞作为基础建材构建而成的巨尺度建筑。</p>
+<p class = "firstLineIndent">首先，灵域的存在是涉及到时空的结构，通俗点理解就是把时空给改造成可用的‘物品’。</p>
+<p class = "firstLineIndent">那么……问题就来了，该怎么做呢？</p>
+<p class = "firstLineIndent">把时空比作一张纸，要把这张纸折叠成其他形状，那最起码要达成哪些条件？</p>
+<p class = "firstLineIndent">答案是两个，纸片向上弯折的力，以及反方向的力。</p>
+<p class = "firstLineIndent">时空也是如此，只需要两个改造量便足够，那么有将时空弯曲的两个量吗？</p>
+<p class = "firstLineIndent">答案是有，万有引力以及万有斥力。</p>
+<p class = "firstLineIndent">有了这两种力，灵域的构成便有了基础，时空就如同橡皮泥一般可以任意的揉成各种形状。</p>
+<p class = "firstLineIndent">但，光有用于扭曲的力还不行，还需要进行维持两种力的布置，时空本身并不能如橡皮泥那样定型，橡皮泥的定型本质上是电磁力在持续性的维持。</p>
+<p class = "firstLineIndent">因此，若不想改造加工过的时空结构，在加工完成后散开，就必须进行固定化处理，也就是万有引力、万有斥力的持续性存在。</p>
+<p class = "firstLineIndent">什么东西可以既能产生万有引力，也能产生万有斥力？</p>
+<p class = "firstLineIndent">没错，就是黑洞，由于需要黑洞制造出持续性的引力和斥力，灵域的基础构建单元便是黑洞。</p>
+<p class = "firstLineIndent">说白了就是一堆黑洞按照特殊的布局形成的阵列，和拿二极管拼出计算机一个道理，只不过灵域要比计算机更为的复杂一些。</p>
+<p class = "firstLineIndent">黑洞不仅仅承担着维持灵域的作用，还是其维持在高维度的支撑柱。</p>
+<p class = "firstLineIndent">当初，灵域的设计者因为灵域内部物质‘输入’和‘输出’的问题，并不能采用全封闭的办法，让灵域彻底的脱离宇宙。</p>
+<p class = "firstLineIndent">所以，灵域在主宇宙中是有实际物质接触节点。</p>
+<p class = "firstLineIndent">形象点理解，要把一个物体稳稳的固定在高空，应该怎么做？</p>
+<p class = "firstLineIndent">很简单，绑在一根柱子上，而那根柱子，就是物体相对于下方的物质接触节点，柱子替代了物体与地面接触。</p>
+<p class = "firstLineIndent">换作宇宙也是同样，灵域被固定在高维，若把宇宙的三维空间看作是一个平面的话，灵域就像是被几根‘柱子’架在这个平面的上方。</p>
+<p class = "firstLineIndent">也就是说，把这些‘柱子’都砍断，灵域就会跌落回继任者们所待的时空环境里，继任者们可以对其实施攻击。</p>
+<p class = "firstLineIndent">至于这些‘柱子’是什么……其实非常的显眼，而且特别大，有些直径都能达到几万光年。</p>
+<p class = "firstLineIndent">对，就是星系核！</p>
+<p class = "firstLineIndent">辉文明曾经统治的数百河系的星系核，就是架构灵域，使其维持在高维度不跌落的‘支撑柱’！</p>
+<p class = "firstLineIndent">在知晓了灵域的奥秘之后，思以前困扰的诸多问题都得到了解答，比如灵域之中错乱的时空观。</p>
+<p class = "firstLineIndent">“难怪灵域里的时空是错乱的，因为里面流窜的正负物质所产生的时空场……”</p>
+<p class = "firstLineIndent">“我们应该派遣超巨星质量生物，让它们携带大量的牵引生物，把虫洞运送到各个河系，这样，我们就可以对灵域动手了。”</p>
+<p class = "firstLineIndent">永续准备指派超巨星质量生物，将它们快速部署到那数百个河系中去，把这些河系都占领，然后再统一对星系核实施总攻。</p>
+<p class = "firstLineIndent">摧毁所有的星系核后，灵域就会从高纬度跌落，那时候继任者们就可以物理性的把失去高维时空掩护的灵域给拆掉，把它们的至高意志还有暝给救出来。</p>
+<p class = "firstLineIndent">“不能太明显，灵域如果提早发现，族群在战略上就会很被动，到时候就又是当初修正机关的那种情况。”</p>
+<p class = "firstLineIndent">思提醒，它并不希望和灵域的战斗演变成修正机关的那种样子。</p>
+<p class = "firstLineIndent">那一次可以说是极为的侥幸，如果没有暝，没有意志，思无法确定族群还能不能像如今这样延续下去。</p>
+<p class = "firstLineIndent">“这次不会与那次一样的，因为我们知道了宇宙级文明的战斗方式，在能力上，我们已经达到了那个层次，这就是蛹文明的定义，在能力上虽然达到，但还不曾看透。”</p>
+<p class = "firstLineIndent">“但你也要清楚，我们现在仍然是蛹文明，即便我们知道了很多，但还不够多。”</p>
+<p class = "firstLineIndent">思郑重地告诫永续，它现在比较担忧的是永续自信心过度膨胀，把对手看得太低太弱。</p>
+<p class = "firstLineIndent">思和永续相继脱离超光速，各自回到族群的岗位上。</p>
+<p class = "firstLineIndent">至于它们在超光速状态下谈论的战略计划，并没有公布到族群之中，整个计划只有永续和思知道。</p>
+<p class = "firstLineIndent">得益于阿米巴的内部信任，即便通过生命场的接触，知道永续和思在有意向它们隐瞒些什么，继任者们也遵从着它们安排的任务。</p>
+<p class = "firstLineIndent">往其他河系扩张的计划不变，变更的是扩张的数量，原本是集体前往下一个河系，然后凭借庞大规模的数量，以及突袭战略，抹杀掉整个河系的土著文明，从而实现对陌生河系的快速占领。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">但现在改为将现有的超巨星质量生物分为数百份，对应数百个河系，将它们指派到这些河系中去。</p>
+<p class = "firstLineIndent">为了演戏演的足够到位，思和永续还在战略计划的公布时进行过激烈的争论。</p>
+<p class = "firstLineIndent">最终以永续这个激进派的战略思想占据‘上风’，完成战略计划的变更。</p>
+<p class = "firstLineIndent">一只只超巨星质量生物完工后边准备开拔起航，它们组成庞大规模的集群，携带着大量的牵引生物。</p>
+<p class = "firstLineIndent">这些牵引生物都牵引着微型虫洞，它们被超巨星质量生物带到各个河系后，会分散到河系的各个地方，然后从永续这边注入大量负质量，构建跨河系的虫洞，这样一来，阿米巴就不需要超巨星质量生物苦逼的跨河系搬运其他阿米巴生物。</p>
+<p class = "firstLineIndent">这是摆在明面上的计划，是由‘激进’的永续灵光一现想出来的好主意。</p>
+<p class = "firstLineIndent">不管灵域之主信不信，反正永续自己已经信了。</p>
+<p class = "firstLineIndent">“记得要隐蔽，别刚到达目的地，就被那里的土著文明给针对了。”</p>
+<p class = "firstLineIndent">永续提醒一众超巨星质量生物。</p>
+<p class = "firstLineIndent">“了解，隐藏是优先项。”</p>
+<p class = "firstLineIndent">“必要时清除掉所有知情者。”</p>
+<p class = "firstLineIndent">永续赞许的递送了出发的信息，一支支的超巨星质量生物在爆闪的光芒中消失无踪，宛若从不曾存在过一般。</p>
+<p class = "firstLineIndent">数百个河系，数不尽的种族，他们的命运在这一刻，被固定下来！</p>
+
+
+<h2>第九百一十三章 我是为了活命！</h2><hr/>
+<p class = "firstLineIndent">快点行动起来……</p>
+<p class = "firstLineIndent">一片荒漠之上，遮天蔽日的沙尘暴持续的刮着。</p>
+<p class = "firstLineIndent">一位旅者无比艰难的在沙尘风暴里迈步前行，步履蹒跚，摇摇晃晃。</p>
+<p class = "firstLineIndent">呼啸的沙尘中，协奏出模糊的低语。</p>
+<p class = "firstLineIndent">亦或者那并非低语，而是某种怪物的嘶吼。</p>
+<p class = "firstLineIndent">来到这里……</p>
+<p class = "firstLineIndent">旅者越是向前行进，感受到的风暴就越加狂暴，而那怪异的声音也越渐明显。</p>
+<p class = "firstLineIndent">直到旅者再也无法单凭自己的体力对抗那狂暴的风沙，不得不停驻下步伐，旅者抬头看去，只见那风沙之中，若隐若现的显露出一座城市的阴影。</p>
+<p class = "firstLineIndent">仿佛感受到来自旅者的目光，风沙越发的风烈狂暴，犹如刀子般将旅者的皮肤割出道道血痕。</p>
+<p class = "firstLineIndent">轰鸣之声随着风沙越加的明显，某种看不见东西正在接近，旅者胆寒的不断倒退，好似想要逃走。</p>
+<p class = "firstLineIndent">这里是你的宿命…你的未来…注定如此……</p>
+<p class = "firstLineIndent">现在…行动起来。</p>
+<p class = "firstLineIndent">到.我.这.里！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“啊——！”</p>
+<p class = "firstLineIndent">斯格特从噩梦中惊醒，他精神憔悴的环顾周遭，确认自己是身处于自家的卧室，而非某处叫不上地名的荒漠后，总算是冷静下来。</p>
+<p class = "firstLineIndent">“哈……哈……”</p>
+<p class = "firstLineIndent">惊恐使他的皮肤泛白，直到平复了心情许久后，才恢复到原来正常的青紫色。</p>
+<p class = "firstLineIndent">斯格特是一个侦探，在一次进行委托人任务的过程中，他接触到了一些不该接触的东西，从此噩梦缠身，并且都是同一个梦境。</p>
+<p class = "firstLineIndent">一片荒沙，漫天刮着沙尘暴，一座城市，还有不知从何而来的低语……</p>
+<p class = "firstLineIndent">“不能再这样下去了。”</p>
+<p class = "firstLineIndent">斯格特去洗了把脸，看着镜子里面容憔悴的自己，他下定了决心要和他的噩梦做一个了断。</p>
+<p class = "firstLineIndent">他拿起相框，相框里是他的孩子。</p>
+<p class = "firstLineIndent">“彼得……”</p>
+<p class = "firstLineIndent">喃喃自语了一会，斯格特将相框放在桌子上的一个怪异的阵图上。</p>
+<p class = "firstLineIndent">这是斯格特在数次的险境里，偶然知晓的图案，尽管不知道这种阵图的原理，这种阵图并不具备防护性，但却能够让那些躲藏着的东西感到厌恶而远离。</p>
+<p class = "firstLineIndent">斯格特以前是不觉得有灵魂的存在，但是现在，他感觉这样做会让自己孩子的灵魂远离那些黑暗里的东西。</p>
+<p class = "firstLineIndent">对着相框告别了自己的孩子，斯格特带上该带的各类东西，毅然决然的离开，他要去找到噩梦的源头，然后根除掉。</p>
+<p class = "firstLineIndent">要么成，要么死。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">漫漫群星间，继任者们组成的庞大集群抵达目的地河系。</p>
+<p class = "firstLineIndent">它们没有急于进入河系，而是停留在河系的外部，不断收集观测到的信息，充实拓展星图。</p>
+<p class = "firstLineIndent">“这里，还有这里，非常的空旷，很适合作为虫洞的开启地。”</p>
+<p class = "firstLineIndent">继任者们从星图中标注出许多空旷的地带，这些地方没有行星，也没有恒星，更没有极端天体和星云，相当的接近绝对真空环境。</p>
+<p class = "firstLineIndent">在这种质量体极度稀薄的地带，是最适合继任者们布置虫洞。</p>
+<p class = "firstLineIndent">虫洞会因为引力而坍塌，尽管继任者们能够依靠着负质量来对抗引力带来的坍塌，但不管怎么说，虫洞被影响的因素自然是越少越好，尤其是这种跨越河系的虫洞。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“距离比较远，信息有延迟，还需要再推算一遍，确定这些地方当前的空间坐标。”</p>
+<p class = "firstLineIndent">有个体提醒，河系的尺度很大，通过光谱信息得到的只能是很早以前的延迟信息，还需要经过一番计算，推算出这些坐标当前时间点真正的位置。</p>
+<p class = "firstLineIndent">集群率领者同意了，它发布指令。</p>
+<p class = "firstLineIndent">“优先派遣超光速生物探查一遍，牵引生物牵引的虫洞是有限的，不能未知的变数影响到虫洞的安全。”</p>
+<p class = "firstLineIndent">变数指的自然就是河系的本土文明、灵域怪物，以及其他能够影响到族群展开虫洞的因素，这点继任者们都很清楚。</p>
+<p class = "firstLineIndent">“了解！”</p>
+<p class = "firstLineIndent">一群超光速生物被指派出发，直奔向河系中各个空旷区域。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">经过了许多的波折，耗时数年的时间，斯格特终于踏上了那片一直存在于他噩梦里的荒漠。</p>
+<p class = "firstLineIndent">这段时间，他经历了很多，有被怪物追杀过，有被邪教徒下咒过，更有直面难以理解的东西……</p>
+<p class = "firstLineIndent">通过从各个渠道的情报碎片，斯格特终于了解到了世界的真相。</p>
+<p class = "firstLineIndent">神是存在的，它们是在那古老的时代中统治着世界，奴役着所有的一切。</p>
+<p class = "firstLineIndent">它们就是过去岁月中，早已经被遗忘的古老支配者。</p>
+<p class = "firstLineIndent">斯格特也调查清楚了，他的噩梦来自于其中的一位古老神祇，黄沙教的风沙之蛇‘思合’，用黄沙教的说法，他就是神祇看重的神选之子，注定要被献祭。</p>
+<p class = "firstLineIndent">而袭击他的多数邪教徒，便是来自黄沙教。</p>
+<p class = "firstLineIndent">如今了解一切的斯格特，要去前往邪神思格所沉睡的风沙之都‘耶梦拉’，跟这个邪神来个了断。</p>
+<p class = "firstLineIndent">这段时间里，噩梦越加的频繁起来，甚至走在路上都能堕入噩梦，斯格特与其说是打算和邪神做个了断，倒不如说是，想拉着邪神思合同归于尽。</p>
+<p class = "firstLineIndent">思合所居住的那片荒漠并不存在地上，而在地下，就是传说中的地底世界。</p>
+<p class = "firstLineIndent">踏上这片陌生而又熟悉的地下荒漠，斯格特正欲朝着耶梦拉的方向行进，却没有料到被人从身后突然袭击。</p>
+<p class = "firstLineIndent">当是斯格特从昏昏沉沉中醒过来时，他发现自己已经被扒光衣物，绑缚在一个木架上，木架地面上一个诡异阵图的正中心。</p>
+<p class = "firstLineIndent">“神选之子，你醒了。”</p>
+<p class = "firstLineIndent">一个戴面具的邪教徒走到近前。</p>
+<p class = "firstLineIndent">木架上的斯格特脸色很糟糕，黄沙教应该早就被他联合政府一同捣毁，如今却出现在这里，还袭击了他。</p>
+<p class = "firstLineIndent">“这一切都是陷阱，是你们布置好的？”</p>
+<p class = "firstLineIndent">“没错，这片神之荒漠，没有神选者的引路，我们这些凡人无法到达，一切都是为了让你将我们带到这里。”</p>
+<p class = "firstLineIndent">戴面具的邪教徒回应。</p>
+<p class = "firstLineIndent">“我的噩梦也是你们搞的鬼？”</p>
+<p class = "firstLineIndent">“不，是神选择了你。”</p>
+<p class = "firstLineIndent">邪教徒摇摇头，手握着一柄怪异的匕首，朝斯格特捅去，他的血液播撒到下上的阵图上，那一圈围绕着阵图的邪教徒们，低声开始呢喃祈祷。</p>
+<p class = "firstLineIndent">伴随着祈祷的，还有躁动起来的风沙。</p>
+<p class = "firstLineIndent">呼啸之间，无形的东西正在凝聚，那正是过去被遗忘的古老神祇风沙之蛇‘思合’！</p>
+<p class = "firstLineIndent">“伟大的思合啊！降临吧！”</p>
+<p class = "firstLineIndent">“群星已然到达正确的位置！让这个世界的轮回再次重启吧！”</p>
+<p class = "firstLineIndent">“风沙！风沙！赐予我等救赎！”</p>
+<p class = "firstLineIndent">风沙之蛇在凝聚，可却带着无可比拟的怒火。</p>
+<p class = "firstLineIndent">“降临？救赎？轮回？”</p>
+<p class = "firstLineIndent">“愚蠢的凡人！我所做的一切都是为了活命啊！”</p>
+<p class = "firstLineIndent">彻底显出身形的风沙之蛇，扭动着自己庞大的躯体，准备撕开通向灵域的通道。</p>
+<p class = "firstLineIndent">但通道再被撕开的一刹那，有陡然间的崩塌了。</p>
+<p class = "firstLineIndent">“不——！太晚了！一切都太晚了！”</p>
+<p class = "firstLineIndent">风沙之蛇发出绝望的嘶鸣。</p>
+<p class = "firstLineIndent">为了虫洞的安全，以免灵域里的生物跑出来搞事情，继任者们在这片区域布置上了涟漪巨构……</p>
+
+
+<h2>第九百一十四章 自求多福</h2><hr/>
+<p class = "firstLineIndent">风沙之蛇进入灵域失败后，便毫不犹豫的破开上方的地表，挣脱星球引力，向着那深空逃窜而去。</p>
+<p class = "firstLineIndent">它从灵尊那里得知，涟漪巨构是存在着范围限制，只要它跑出范围，那就可以逃入灵域里。</p>
+<p class = "firstLineIndent">但是，前提是继任者们发现不了它的存在。</p>
+<p class = "firstLineIndent">灵域的使用被涟漪巨构封锁，风沙之蛇没办法利用灵域超光速，连维持自身形态都极为勉强。</p>
+<p class = "firstLineIndent">风沙之蛇在宇宙中移动，靠的是不断向自己后方抛洒自己身体构成的沙子，通过反作用来位移。</p>
+<p class = "firstLineIndent">这种方法超不了光速，在几天后被继任者们的大功率雷达所捕获。</p>
+<p class = "firstLineIndent">尤其是风沙之蛇留下的沙子，它们排成了一条长线，雷达回波中极为明显。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“发现异物！”</p>
+<p class = "firstLineIndent">数只超光速生物当即便出发前往，在突兀发生的爆闪中消失在原地。</p>
+<p class = "firstLineIndent">几只超光速很轻易的就追上了无法进行超光速的风沙之蛇。</p>
+<p class = "firstLineIndent">“一团气流？”</p>
+<p class = "firstLineIndent">正当继任者们还疑惑之际，见到超光速生物们抵达释放出来的光芒，风沙之蛇惊慌四措的转向逃跑，这使得继任者们确信对方是个具备主观能动性的活物。</p>
+<p class = "firstLineIndent">伽马激光释放，不管是什么玩意，总之先照一照，打一打，再说。</p>
+<p class = "firstLineIndent">“啊——！”</p>
+<p class = "firstLineIndent">思合痛苦的卷曲着自己绵长的风沙之躯，心中的畏惧更多了几分。</p>
+<p class = "firstLineIndent">在看到了伽马射线的成果后，超光速生物们有了自己的推断。</p>
+<p class = "firstLineIndent">“是灵域生物。”</p>
+<p class = "firstLineIndent">“永续料想的没错，族群对河系的扩张过程里，肯定会有灵域里的东西跑出来搞鬼，我们宰了它。”</p>
+<p class = "firstLineIndent">“嗯！”</p>
+<p class = "firstLineIndent">确定是灵域生物后，继任者们的杀意不再有所保留。</p>
+<p class = "firstLineIndent">永续说过，灵域可能会在它们扩张的过程里搞破坏，所以要特别警戒。</p>
+<p class = "firstLineIndent">先在灵域生物真的出现了，说明一定是想搞破坏，给族群添堵。</p>
+<p class = "firstLineIndent">因此更加值得它们下杀手。</p>
+<p class = "firstLineIndent">也不知道是不是风沙之蛇会读心术，亦或者单纯的为了活命而在求饶，在数发伽马射线的试探攻击过后，风沙之蛇直接停了下来，向超光速生物们求饶。</p>
+<p class = "firstLineIndent">“别，别杀我！求求你们别杀我！”</p>
+<p class = "firstLineIndent">这一手操作把继任者们搞得有些懵，怕死的灵域生物，几只继任者还真没怎么见过。</p>
+<p class = "firstLineIndent">“灵域生物会怕死吗？”</p>
+<p class = "firstLineIndent">“貌似……没有吧？”</p>
+<p class = "firstLineIndent">“也就是说，这不是灵域生物，而是其他近似的东西？”</p>
+<p class = "firstLineIndent">就在继任者们犹豫着是该直接杀掉，还是先搞清楚是怎么回事再杀掉时，风沙之蛇思合的求饶更加的积极起来。</p>
+<p class = "firstLineIndent">“我，我没有敌意，恳请阿米巴给我个活下去的机会！”</p>
+<p class = "firstLineIndent">这时，继任者们终于注意到了对方的语言，它们之所以能听懂对方在说什么，是因为对方所说的语言它们早就破译过，是来自前一个河系的语言。</p>
+<p class = "firstLineIndent">“上一个河系的修行者语言。”</p>
+<p class = "firstLineIndent">“是古语法，看来应该不是最近的时间段里离开的。”</p>
+<p class = "firstLineIndent">类比的话，大概就相当于现代汉语和古代汉语的差别。</p>
+<p class = "firstLineIndent">而正是这样的差别，勾起了继任者们的兴趣。</p>
+<p class = "firstLineIndent">“你为什么会知道我们？”</p>
+<p class = "firstLineIndent">继任者用相同的语法回复对方。</p>
+<p class = "firstLineIndent">“是魔神告诉了我一切，你们毁灭了修行者，毁灭了诸神，将诸天万界屠戮殆尽……”</p>
+<p class = "firstLineIndent">瑟瑟发抖的风沙之蛇一股脑的把自己知道的都说出来。</p>
+<p class = "firstLineIndent">“你是从那边过来的？是从那场河系战役中苟活下来的个体？”</p>
+<p class = "firstLineIndent">这……是在说我是漏网之鱼吗？——风沙之蛇的惊恐促使它赶忙解释起来。</p>
+<p class = "firstLineIndent">“不，不不不！几位千万不要误会，我是憎恨着那些修行者、诸神！阿米巴族能够出手将他们屠戮殆尽，在我看来那真是再好不过的事情！”</p>
+<p class = "firstLineIndent">“我们曾经是侍奉魔神的魔神一脉，那些修行者、诸神与我们有着血海深仇！那些家伙，曾经屠戮我们，逼得我们不得不逃离诸天万界，我们无时无刻不想着反攻回去！”</p>
+<p class = "firstLineIndent">其实并没有什么血海深仇，那段岁月太过古老，古老到没有谁想要去追究，侥幸苟活下来的魔神一脉逃到了又一个‘诸天万界’，在这里扎根发展。</p>
+<p class = "firstLineIndent">继任者们彼此间交换了一下各自的想法后，决定让这个灵域生物活下来，当前河系它们初来乍到，还很陌生，有一个本地生物提供情报可以让它们省去很多麻烦。</p>
+<p class = "firstLineIndent">“看你这么配合，那我们就给你个机会。”</p>
+<p class = "firstLineIndent">“向族群展现出你足够的价值，让族群有理由让你活下去。”</p>
+<p class = "firstLineIndent">“好的，万分感谢！”</p>
+<p class = "firstLineIndent">风沙之蛇松口气的同时，非常谄媚的回应。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">某个星球之上，位于这个星球大陆板块的最高点，存在着一座宏伟的大理石宫殿。</p>
+<p class = "firstLineIndent">大理石宫殿的周围被常年的积雪覆盖，但神奇的是，宫殿本身却不曾沾染上积雪，并且温度也是常态，而非冰寒。</p>
+<p class = "firstLineIndent">宫殿之内，身着镶金长袍的生物在火盆前跪伏祷告。</p>
+<p class = "firstLineIndent">“神啊，您为何如此躁动不安？”</p>
+<p class = "firstLineIndent">“毁灭来了……”</p>
+<p class = "firstLineIndent">抖动的火焰中，不知为何浮现出微不可查的低语。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“毁灭？”</p>
+<p class = "firstLineIndent">祷告之人心提了起来，神可从来不曾用过‘毁灭’这样的词汇，能让神如此说，那必然是前所未有的大危机，当下祷告之人以更加虔诚的口吻祈求。</p>
+<p class = "firstLineIndent">“神啊，请您回应我等，你神谕之中的‘毁灭’究竟是什么？”</p>
+<p class = "firstLineIndent">“是‘阿米巴’。”</p>
+<p class = "firstLineIndent">神回应了，可祷告之人却听懵了。</p>
+<p class = "firstLineIndent">什么鬼？‘阿米巴’是个啥？人？物？还是指某种灾害？</p>
+<p class = "firstLineIndent">“阿米巴？还请您能给出更清晰的提示。”</p>
+<p class = "firstLineIndent">祷告之人再次祈祷，哪怕冒着冒犯神明的危险，他也必须为了天下苍生，获知‘阿米巴’是指什么。</p>
+<p class = "firstLineIndent">神，似乎被触怒了。</p>
+<p class = "firstLineIndent">一幕幕的幻象浮现于祷告之人的眼前，他看到了毁灭，无数的光与暗在碰撞，无数的世界毁于一旦。</p>
+<p class = "firstLineIndent">“它们是毁灭，它们是灾难，它们是残暴，它们是支配，它们是吞噬，一切的一切都将随着它们的到来而消逝，你所熟悉的一切都会不复存在，神也好，魔也罢，不会有谁能活下去，这便是阿米巴。”</p>
+<p class = "firstLineIndent">“如此恐怖的大灾难降临，恳请您明示出我等生存下去的出路。”</p>
+<p class = "firstLineIndent">祈祷之人颤抖的恳求神明，但得到的却是他始料未及的答复。</p>
+<p class = "firstLineIndent">“没有出路，死路一条。”</p>
+<p class = "firstLineIndent">“啊这……”</p>
+<p class = "firstLineIndent">从来不曾有过这样的神谕。</p>
+<p class = "firstLineIndent">无所不能的神，怕了。</p>
+<p class = "firstLineIndent">随后，无论祈祷之人如何祷告，无论他多么虔诚，神都不再回应，似乎从不曾存在过一般。</p>
+
+
+<h2>第九百一十五章 只要我们齐心……</h2><hr/>
+<p class = "firstLineIndent">“哈哈哈！看来我来的不是时候！被神抛弃的神庭！”</p>
+<p class = "firstLineIndent">一个声音突兀的在大殿内响起，祷告之人循着声音方向看去，一个身着黑袍之人正不知何时矗立在不远处。</p>
+<p class = "firstLineIndent">对方依靠着大殿柱子，显得悠然自得。</p>
+<p class = "firstLineIndent">祷告之人目光一凝，喝出了来者的身份。</p>
+<p class = "firstLineIndent">“魔族！”</p>
+<p class = "firstLineIndent">“大胆！此地不是你这种渣滓能够来的地方！神殿近卫！给本教宗拿下他！擅闯神庭重地，妄议主神，该死至极！”</p>
+<p class = "firstLineIndent">教宗的怒喝回荡在大殿之内，从暗处飞蹿出许许多多身着银白盔甲的战士，他们手持着经过神明力量洗礼过的利刃，将闯入大殿内的魔族团团包围。</p>
+<p class = "firstLineIndent">“别这样激动，被神抛弃掉的宫殿，你们究竟哪来的胆子敢在称这里叫做‘神庭重地’？神呢？”</p>
+<p class = "firstLineIndent">被利刃包围的魔族不显惊慌，反而还出言调侃。</p>
+<p class = "firstLineIndent">这无疑是在火上浇油，正因为神的抛弃而焦躁不已的教宗，杀心更加的浓重。</p>
+<p class = "firstLineIndent">“你……找死！”</p>
+<p class = "firstLineIndent">教宗直接运起自己的神之秘术，誓要把这个魔族击毙。</p>
+<p class = "firstLineIndent">双方战作一团，教宗的实力终究是教宗级别，在配合神殿近卫的合击，招招致命，魔族在战斗中只有招架之力。</p>
+<p class = "firstLineIndent">不过，魔族嘴上还是说的悠然自得。</p>
+<p class = "firstLineIndent">“教宗，伤了和气可不好，毕竟我这次来可是想向你们寻求合作。”</p>
+<p class = "firstLineIndent">“合作？可笑！我等神庭岂会和你们这些魔族渣滓为伍！”</p>
+<p class = "firstLineIndent">双方在战斗中交谈，不多时，这个潜入神殿的魔族便被教宗协同一干神殿近卫，将其擒拿。</p>
+<p class = "firstLineIndent">被擒住的魔族不显惊慌，镇定自若的反问。</p>
+<p class = "firstLineIndent">“如果教宗你这样决定的话，那么你们种族又该如何活过那名为‘阿米巴’的大灾难？还是说现在就干脆一起自杀？”</p>
+<p class = "firstLineIndent">“庇护尔等魔族的魔呢？”教宗也是反问。</p>
+<p class = "firstLineIndent">神庭有神庇护，魔族同样也有魔的庇护，双方早已经彼此攻伐了不知道多少个年头。</p>
+<p class = "firstLineIndent">双方早已经因常年的神战而结下化不开的血海深仇，如若不是教宗还有事情想从这个魔族那里知道，直接就是将对方击杀。</p>
+<p class = "firstLineIndent">被教宗这般反问，魔族原本轻松的姿态逐渐转变为失望和鄙夷——过去他们一族居然是信奉这样这样的胆小鬼……</p>
+<p class = "firstLineIndent">“像你们的神那样，魔也走了，比你们的神走的更加干脆，它很胆小，除了留下一段‘阿米巴’外什么都没和我们细说。”</p>
+<p class = "firstLineIndent">“这次到达此地，其实是想代表我族，皈依到神的怀抱，没想到……”</p>
+<p class = "firstLineIndent">没想到连神也一样啊！</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">教宗呆了呆，虽然多少能够猜到一点，可真的直面事实时，他还是不能接受，原本他还想着能否从魔那里得到依靠……</p>
+<p class = "firstLineIndent">想起魔族之前的一席话，教宗的希望保留下一丝，没有彻底的陷入绝望。</p>
+<p class = "firstLineIndent">“神走了，魔跑了，你凭什么觉得我等只是合作就能渡过难关？”</p>
+<p class = "firstLineIndent">魔族傲然挺胸的回答，“那总不能坐以待毙，难道要现在就干脆自杀，一了百了？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“我们魔族可没打算就这样被窝囊的灭亡，哪怕要死，也要死得轰轰烈烈！”</p>
+<p class = "firstLineIndent">魔族知道赢不了阿米巴，可他们却也不想坐以待毙着等死或者干脆提前自杀，哪怕要死，也是战死！</p>
+<p class = "firstLineIndent">说不定神和魔都害怕的东西，可以被他们所击败呢？联合世界上所有的力量，说不定就可以办的到！</p>
+<p class = "firstLineIndent">魔族是这样想的，可教宗不这样想，因为他从神那里，了解到阿米巴的更多，清楚的知道哪怕全世界加在一起，放在阿米巴面前都显得微不足道。</p>
+<p class = "firstLineIndent">可他也不甘心，没办法接受自己种族会被毁灭的事情，经由魔族提出的合作概念，激起了教宗其他的想法。</p>
+<p class = "firstLineIndent">“……你说得对，合作才有一线生机。”</p>
+<p class = "firstLineIndent">“不过，本教宗话说在前面，尔等魔族想轰轰烈烈的被灭亡，别拉上我等，我等是打算在这场大灾难下夺得那一线生机。”</p>
+<p class = "firstLineIndent">教宗没打算如魔族所想的那样和阿米巴硬碰硬，那是根本不可能办到的事情。</p>
+<p class = "firstLineIndent">魔族的根本想法也是延续自己的种族，见教宗这般胸有成竹，便想知道对方的办法。</p>
+<p class = "firstLineIndent">“一线生机？你打算怎么做？”</p>
+<p class = "firstLineIndent">“神与魔都能跑，我等自然也能。”</p>
+<p class = "firstLineIndent">没错，打不过就逃，这就是教宗的想法，打不过那就逃，逃到世界之外的其他地方。</p>
+<p class = "firstLineIndent">不过，想要做到这种事情，仅凭他们神庭加上整个种族的力量也还是远远不够，若是能够再加上魔族以及其他异族的力量，或许可以办到。</p>
+<p class = "firstLineIndent">魔族一愣，没听懂教宗所指的事情。</p>
+<p class = "firstLineIndent">“逃去哪？地底？”</p>
+<p class = "firstLineIndent">宇宙的概念还没有普及，大气层都没有人探索过，教宗之所以知道宇宙，那是因为从神那里获悉阿米巴过程中了解到的事情。</p>
+<p class = "firstLineIndent">“不，那里也避不开阿米巴的毁灭，世界会被吞噬，地底也不例外。”教宗坦言。</p>
+<p class = "firstLineIndent">“从神那里，本教宗知道了很多，了解何谓‘阿米巴’的灾难，那非人力可抗衡，世界都会因此泯灭。”</p>
+<p class = "firstLineIndent">“唯有逃走，逃出世界，才能求得那一线生机。”</p>
+<p class = "firstLineIndent">“逃亡之路，我等神庭会指出来，尔等魔族若想活下去，便要听从我等，唯有齐心协力才能谋求生机。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">从风沙之蛇那里得到了较为详细的河系情报，虽然仍然存在误差，不过比继任者们单靠观测宇宙光谱来获悉情报要准确得多。</p>
+<p class = "firstLineIndent">一支继任者集群到达河系的一处空旷地带。</p>
+<p class = "firstLineIndent">“让我看看星图……”</p>
+<p class = "firstLineIndent">“嗯，没错，是这里了。”</p>
+<p class = "firstLineIndent">“把虫洞放下，其他个体巡逻周围，布置下涟漪巨构。”</p>
+<p class = "firstLineIndent">集群率领者有条不紊的下达指令，集群的其他个体则各自尽好自己的职责。</p>
+<p class = "firstLineIndent">没过多长时间，巡逻的超光速生物便发回信息。</p>
+<p class = "firstLineIndent">“距离虫洞位置两光年左右的地方发现一个土著文明。”</p>
+<p class = "firstLineIndent">“技术层次达到什么程度？是否会对族群的计划构成影响？”集群率领者问。</p>
+<p class = "firstLineIndent">“没问题，只是一个刚刚发展到太空阶段的文明，嗯……不过有些怪。”</p>
+<p class = "firstLineIndent">超光速生物那欲言又止的模糊信息激起了集群率领者的不耐。</p>
+<p class = "firstLineIndent">“说明清楚，不要给我递送这样的模糊信息，我很忙，不想也没那个心情陪你玩猜谜的游戏。”</p>
+<p class = "firstLineIndent">遭到集群率领者这般责难后，超光速生物当即回答。</p>
+<p class = "firstLineIndent">“这个文明似乎很心急，第一次构建的太空飞船，体量居然能达到与瑟琳人的战列舰相当，规模大得让我觉有些诧异。”</p>
+<p class = "firstLineIndent">“估计是个材料学为主攻方向的文明。”</p>
+<p class = "firstLineIndent">因为并没有观测到河系中还有其他的太空载具，怎么看都不像是一个踏足宇宙很长时间的文明，所以超光速生物认为这个文明刚达到踏足宇宙技术层次。</p>
+<p class = "firstLineIndent">可问题，对方的太空船有些大过头了。</p>
+<p class = "firstLineIndent">倒也不是说太空船不能达到瑟琳人的战列舰那种尺寸，只是考虑到对方刚踏足宇宙的阶段，拥有这样尺寸的太空船就比较离奇。</p>
+<p class = "firstLineIndent">一来是没必要建造，二来是建造难度对于这个阶段的文明过高，除非是主攻材料学方面的技术。</p>
+<p class = "firstLineIndent">寻思了一会，集群率领者给出指示。</p>
+<p class = "firstLineIndent">“为以防万一，你们靠近看看，我不希望看到有什么变数发生。”</p>
+<p class = "firstLineIndent">如果能够影响到虫洞的‘变数’，灭掉是毫无疑问的选择，可若是一个普通的土著文明呢？</p>
+<p class = "firstLineIndent">“如果是一般的土著文明，我们是灭掉，还是留着？”</p>
+<p class = "firstLineIndent">“看他们的技术，如果是深入运用灵域的种族，没必要留着，这种文明对族群来讲不具备作为科研资源的价值，整天就知道神神叨叨，而且收下后，灵域还可以借助他们这些使用者，获取到族群的信息。”</p>
+<p class = "firstLineIndent">“懂了。”</p>
+<p class = "firstLineIndent">继任者们这边刚有所决定，但它们的存在已经给行星上正在筹备逃亡的土著们，构成了巨大的影响。</p>
+<p class = "firstLineIndent">涟漪巨构们的运行，完全呈现出混乱态的时空涟漪，影响着灵域使用者们对灵域的使用，巨构们间隔数光天，涟漪以光速扩散，在一个月的时间里完成对周遭数光年范围的遮蔽。</p>
+<p class = "firstLineIndent">“教宗！教宗！出大事了！”</p>
+<p class = "firstLineIndent">“发生了什么事？”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“神之力…神之力失效了！”</p>
+
+
+<h2>第九百一十六章 新的对手</h2><hr/>
+<p class = "firstLineIndent">对于依托着灵域发展起科技树的文明而言，失去了灵域的使用，就等于失去了一切。</p>
+<p class = "firstLineIndent">神庭团结自己母星上一切能够团结的力量，众志成城，通过发挥灵域的力量，在短短半年内肝出一艘体量不下于瑟琳人战列舰的太空方舟。</p>
+<p class = "firstLineIndent">也是通过灵域，神庭以及其他异族可以轻易的做到对抗地心引力，往返地面和宇宙方舟之间。</p>
+<p class = "firstLineIndent">然而，正当他们即将开拔远航之际，他们愕然的发现，灵域…也就是他们的‘神之力’莫名的失效了。</p>
+<p class = "firstLineIndent">由于材料学并不怎么样，这艘太空方舟百分之九十的强度都是依赖着灵域来维持，而如今，灵域失效了，那后果可想而知。</p>
+<p class = "firstLineIndent">巨大结构的应力是光凭木制龙骨的强度所无法承受，自灵域无法使用的差一刻起，太空方舟就在逐步的，缓慢的，开始散架。</p>
+<p class = "firstLineIndent">大量的空气从宇宙方舟崩裂出来的间隙跑到宇宙里，许许多多的搭乘者因窒息而在痛苦的挣扎中迈向死亡。</p>
+<p class = "firstLineIndent">太空方舟的动力源也是依赖着灵域，灵域无法使用后，方舟的动力也宣告失效，只能随着原本运动的惯性，不断拉开和母星的距离。</p>
+<p class = "firstLineIndent">什么是噩梦，这就是噩梦。</p>
+<p class = "firstLineIndent">神之力彻底失效，仿若从不存在一样，这一刻的他们失去了一切，别说什么信仰，连认知观都在崩塌。</p>
+<p class = "firstLineIndent">方舟搭乘者里，许许多多曾经能够凭自身往返宇宙和地面的‘强者’，失去理性的跳出方舟，试图冲回母星。</p>
+<p class = "firstLineIndent">结果就是在真空环境里被榨干体内的气体，肉体的余温让体内失压的水分迅速蒸发，尸体很快在表层凝结出一层冰霜。</p>
+<p class = "firstLineIndent">宇宙方舟在自己的航线上拖出一条长长的轨迹，由尸体和残骸碎片所构成。</p>
+<p class = "firstLineIndent">“这就是阿米巴吗？这就是令神魔畏惧，落荒而逃的阿米巴？”</p>
+<p class = "firstLineIndent">教宗看着悬窗外的无边宇宙，飞散的尸体与残骸，不知作何表达的喃喃自语。</p>
+<p class = "firstLineIndent">突兀的，距离宇宙方舟数万公里的地方爆发出一阵刺眼的光芒，犹如一颗陡然出现的恒星那般，令教宗无法直视。</p>
+<p class = "firstLineIndent">木制的外壳无法提供足够的防护性，在很短的时间里，教宗的意识迅速模糊，直至彻底成为无法思考的尸体。</p>
+<p class = "firstLineIndent">光芒散尽，继任者们调查的时候，全船上下无人生还。</p>
+<p class = "firstLineIndent">对继任者们而言，这种感觉还是比较微妙的，就好比你提刀准备去砍人，结果目标先于你自己上吊死了……</p>
+<p class = "firstLineIndent">经过简单的调查取证，继任者们并不难逆向推导出宇宙方舟内搭乘者们死亡的原因。</p>
+<p class = "firstLineIndent">“这……应该算是我们杀得吧？”</p>
+<p class = "firstLineIndent">“任务的目的是给虫洞清除可能存在的‘变数’，这应该算是完成了任务。”</p>
+<p class = "firstLineIndent">连动手都省了，超光速生物们朝着临近的行星投放出数颗肉块形态的同族后，便准备离开回防虫洞。</p>
+<p class = "firstLineIndent">正当它们准备进入超光速之际，其中一个个体叫住了它们。</p>
+<p class = "firstLineIndent">“等等，这些智慧生物死亡的时间还不算太久，大脑里应该能解读出一些信息。”</p>
+<p class = "firstLineIndent">“连跨行星航行都做不到，这些生物的脑子里能有什么有价值的信息？”</p>
+<p class = "firstLineIndent">其他超光速生物并不觉得从宇宙方舟里那群已经死亡的土著身上，能够搞到什么有价值的情报。</p>
+<p class = "firstLineIndent">但个体的想法已经坚定下来。</p>
+<p class = "firstLineIndent">“别这么武断，信息的收集很有必要，了解一下也不费什么事。”</p>
+<p class = "firstLineIndent">说到底还是为了族群，而且浪费不了多少时间，超光速生物们便将宇宙方舟搭乘者的大脑都物理性的读取下来，转变为数字信号，通过虫道网络传回后方的天机巨构分析解读。</p>
+<p class = "firstLineIndent">从这些信息中，继任者们了解到了魔与神这两个势力。</p>
+<p class = "firstLineIndent">这并非仅是星球上的势力，而是河系级别的大势力，其他星球上也同样能发现他们的踪迹。</p>
+<p class = "firstLineIndent">经过一番调查后，永续很快得到了来自同族的信息。</p>
+<p class = "firstLineIndent">“神魔是到达这个河系的魔神一脉。”</p>
+<p class = "firstLineIndent">“当初抵达这个河系的魔神一脉，在经历漫长的时间更迭后，分裂为两个阵营，一个是神，另一个是魔。”</p>
+<p class = "firstLineIndent">“族群的事情被灵尊散布出去，神魔因此都被吓跑了。”</p>
+<p class = "firstLineIndent">恐怕神魔的名称也是来源于他们对灵尊的称谓……</p>
+<p class = "firstLineIndent">回想着那条被它们俘虏的风沙之蛇，永续刚燃起的兴致顿时消散无踪。</p>
+<p class = "firstLineIndent">“无须过分关注这些小角色，在武力方面是我们占据优势，各位专心做好族群分配的任务。”</p>
+<p class = "firstLineIndent">打得过的自然不会逃，会逃的自然打不过，这个河系已成定局，永续不再那么关注。</p>
+<p class = "firstLineIndent">“都两个河系了，也没有见到一个技术层次足够高的文明。”</p>
+<p class = "firstLineIndent">“灵域的影响很深入，尤其是对早期智慧生命来讲，对自然的崇拜会诞生出‘神’，对‘神’的祈祷会招引来灵域。”思回答。</p>
+<p class = "firstLineIndent">永续不服，“明明族群的母河系里，就有很多不信奉灵域的文明……”</p>
+<p class = "firstLineIndent">说到后面，永续自己止住了话头，它仔细回忆，发现母河系那边貌似也是大多数文明使用灵域。</p>
+<p class = "firstLineIndent">正当永续胡思乱想之际，一段来自其他河系的信息引起了它的注意。</p>
+<p class = "firstLineIndent">开始它并不怎么放在心上，直到完整的看完后，它这才惊异起来。</p>
+<p class = "firstLineIndent">“嗯？河系的整体环境危险？需要警戒？”</p>
+<p class = "firstLineIndent">不怪永续是这种反应，连续两个河系都是弱渣，突然遇到个强劲的阻力，就显得异常稀奇。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">继任者们通过给虫洞注入大量负物质，将其扩充，一支支超光速生物集群全副武装的进入其中，进行跨河系的兵力支援。</p>
+<p class = "firstLineIndent">这些超光速生物在虫洞内航行了一个多月的时间，刚脱出虫洞，就看到虫洞口附近，敌人正在与驻守的超光速生物交战。</p>
+<p class = "firstLineIndent">超光速生物们立即前去支援同族，加入到战斗中。</p>
+<p class = "firstLineIndent">敌人显然没有料到会突然冒出这样一堆援军，吃了被突袭的亏，全军覆没。</p>
+<p class = "firstLineIndent">为了尽快了解战局，支援的超光速生物中有个体询问这边的同族。</p>
+<p class = "firstLineIndent">“这是第几波攻击？”</p>
+<p class = "firstLineIndent">“第431波，不过这并不是主力，对方惯用试探获取信息的战术。”</p>
+<p class = "firstLineIndent">“损失情况汇报一下。”</p>
+<p class = "firstLineIndent">“三只超巨星质量生物战损，581巨构生物战损，其中降温巨构战损……”</p>
+<p class = "firstLineIndent">“咦？怎么没有超光速生物战损？”</p>
+<p class = "firstLineIndent">超光速生物注意到，全部战损都是巨构生物，超光速生物一只都没有。</p>
+<p class = "firstLineIndent">“机动性太高，对方武器很难打中。”</p>
+<p class = "firstLineIndent">“他们似乎惯用跳帮战，但这种战术被我们克制，因此，在发现这点后，他们对我们的主要战术变更为突袭为主，炮击为辅，一般攻击的都是巨构生物这种大靶子。”被询问的继任者回答。</p>
+<p class = "firstLineIndent">“技术层次怎么样？”</p>
+<p class = "firstLineIndent">“科技和灵域的混合，通过灵域实现了超光速位移，也能够通过反物质加速至亚光速，不容易对付，涟漪巨构能干扰他们灵域跳跃的使用，但他们仍然能通过科技手段对我们给予杀伤性攻击。”</p>
+<p class = "firstLineIndent">超光速生物寻思了一下，又问。</p>
+<p class = "firstLineIndent">“科技比我们高？”</p>
+<p class = "firstLineIndent">“无法确信，目前的情报严重不足，不过对方已经大规模的使用反物质这点是可以确信无疑。”</p>
+<p class = "firstLineIndent">“有针对性的作战计划吗？”</p>
+<p class = "firstLineIndent">“暂时还没，战略需要专门针对弱点制定，为此我们抓捕了不少的俘虏。”</p>
+
+
+<h2>第九百一十七章 袭扰掠夺式游击</h2><hr/>
+<p class = "firstLineIndent">得到大量援军的继任者，继任者们便采取袭扰掠夺的方式的策略，有些类似游击战，突袭敌人防御空虚的恒星系统，尽最大可能掠夺物质，优先摧毁存在人口的行星以及太空建筑，破坏敌人的工业、民用设施。</p>
+<p class = "firstLineIndent">敌人舰队必然要因此回防，他们会继续对袭扰掠夺的继任者们采取突袭和炮击的战术，所以，哪怕袭扰掠夺的继任者们在见到敌人舰队后就毫不犹豫的集体进入超光速逃逸，也必然要付出一些代价。</p>
+<p class = "firstLineIndent">代价不是问题，只要别超过袭扰掠夺时开采的物质量，继任者集群就不算亏。</p>
+<p class = "firstLineIndent">若是敌人的舰队离开之前被掠夺物质的恒星系统，继任者们就可能会去而复返，重新回到之前被袭扰过的恒星系统中继续采集物质资源。</p>
+<p class = "firstLineIndent">如果恒星系统内的敌人人口没有被灭杀干净，敌人舰队又回防，继任者集群便继续逃逸，若是已经灭杀干净，敌人舰队就不会再次得到求援的信息，物质开采的安全度会上升。</p>
+<p class = "firstLineIndent">不过，进攻的继任者们也并不一定必然会去而复返，这主要是看它们的心情。</p>
+<p class = "firstLineIndent">这种策略的背后，还隐藏着另外的一套战略目的，那就是分散敌人舰队的力量。</p>
+<p class = "firstLineIndent">敌人是本河系文明，掌握着大量的物质资源以及太空力量，并且同样具备超光速能力，物理科技达到泛用反物质的地步，灵域和科技混合搭配的模式。</p>
+<p class = "firstLineIndent">可以说非常的棘手，纵然继任者们掌握着涟漪巨构这种能够阻碍灵域生效的利器，面对这种敌人也没法抢到什么优势。</p>
+<p class = "firstLineIndent">没法使用灵域，人家也还可以使用科技啊。</p>
+<p class = "firstLineIndent">由于虫洞展开而不得不放弃机动性的继任者们，与其硬碰硬吃上了大亏，付出不小的损失。</p>
+<p class = "firstLineIndent">然而，在继任者的袭扰掠夺战略下，敌人舰队不得不分散到河系的其他地方。</p>
+<p class = "firstLineIndent">敌人没得选，他们必须回防。</p>
+<p class = "firstLineIndent">哪怕不考虑什么救助普通人的人道主义，但最起码要考虑后勤吧？</p>
+<p class = "firstLineIndent">战争不可能不考虑后勤，不然反物质该从哪来？</p>
+<p class = "firstLineIndent">损失的战舰、战士该去哪里得到补充？</p>
+<p class = "firstLineIndent">舰队集体的食物又该怎么办？</p>
+<p class = "firstLineIndent">这些问题导致了敌人舰队必然要回防救援，不回防的话，他们的后勤就会不断的被进攻的继任者破坏。</p>
+<p class = "firstLineIndent">一旦回防遭遇上，继任者们就会逃走，可能去而复返也可能进攻其他恒星系统，主动权完全在继任者这边。</p>
+<p class = "firstLineIndent">为了保护后勤，敌人就必须付出比继任者集群进攻数量十倍甚至百倍的舰队数量，才能够稳住。</p>
+<p class = "firstLineIndent">那么这些舰队从何而来？</p>
+<p class = "firstLineIndent">当然是从进攻虫洞的主力舰队从抽调，于是虫洞那边的战场压力就会骤然减弱很多。</p>
+<p class = "firstLineIndent">某个恒星系统内，这些外观样式犹如哥特教堂的战舰刚刚抵达，便看到继任者集群超光速逃逸留下的光芒。</p>
+<p class = "firstLineIndent">毫无疑问，他们扑了个空，更别提什么突袭战术，而这也已经不是第一次了。</p>
+<p class = "firstLineIndent">“气死我啦！”</p>
+<p class = "firstLineIndent">“一遍遍的，一遍遍，没完没了的攻击！这些该死的异形！”</p>
+<p class = "firstLineIndent">脑门上钉着钉子样式金属的舰队司令，愤怒难平的锤了席位的金属扶手，砸出了一个拳头凹坑。</p>
+<p class = "firstLineIndent">然而愤怒并没什么卵用，他的怒火并不能超光速落到已经逃逸的继任者集群身上，只能这样无能的狂怒。</p>
+<p class = "firstLineIndent">一番发泄过后，舰队司令的视线落在了恒星系统内的其他行星上。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">只需要短短数月的时间，继任者那套‘生物火箭加根茎扩展’的扩张方式就能够完成一整颗行星的占领。</p>
+<p class = "firstLineIndent">看到那原本应该呈现一片五彩斑斓之景的行星，如今覆盖上一层黑褐色的地衣，舰队司令的面色更加阴沉。</p>
+<p class = "firstLineIndent">除了这个他们种族居住的星球外，恒星系统内其他无法居住的星球也是如此。</p>
+<p class = "firstLineIndent">这些无法居住的星球都能够利用占领，宛若吞噬一切的怪物，多么可怕的种族啊……</p>
+<p class = "firstLineIndent">“这些星球已经没救了，允许执行毁灭指令！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">得到命令的舰队投放出向这些星球投放出很小的物体，这些物体接触到行星的地表后引发剧烈的大爆炸，从灵域中引导出来的超高能量直接轰击地核本身。</p>
+<p class = "firstLineIndent">内能骤增的星核呈现出不稳定的态势，最终导致整颗星球的炸裂，由内而外连带着星球上的继任者们一同毁灭，即便继任者们钻入再深的地底也没用。</p>
+<p class = "firstLineIndent">固态星球被炸成碎片，气态星球被炸成星云，这样的惨状让舰队司令那被继任者们搞得一团乱麻的心情好上了些许。</p>
+<p class = "firstLineIndent">或许是他感觉，阿米巴屠杀了一整颗星球的人口，他现在再数倍的屠杀回去，心理上有了些许平衡。</p>
+<p class = "firstLineIndent">“下一个求援信息是哪里？”</p>
+<p class = "firstLineIndent">“是螺旋星云的泰特工业星！”</p>
+<p class = "firstLineIndent">“出发！不能让那些该死的异形摧毁一颗帝国的工业星！”</p>
+<p class = "firstLineIndent">骤然色变的舰队司令当即指挥舰队灵域跳跃，赶往求援地点。</p>
+<p class = "firstLineIndent">在舰队消失后的数小时后，这片满目疮痍的恒星系统，再次被继任者们光顾。</p>
+<p class = "firstLineIndent">“破坏的好严重啊……”</p>
+<p class = "firstLineIndent">“敌人具备着摧毁行星的技术，但应该不是引发超新星的黑洞炸弹。”</p>
+<p class = "firstLineIndent">“不排除他们不具备这样的技术，毕竟他们能够大规模的使用反物质，制造起来应该不算太难。”</p>
+<p class = "firstLineIndent">“优先执行物质上的开采，这些破碎的固态行星，让开采难度下降了很多。”</p>
+<p class = "firstLineIndent">继任者们重新对恒星系统完成侵占，它们的工业设施就是同样可以一起超光速的巨构生物们，只要有足够的可加工物质，可以说根本不需要担心后勤的问题，走到哪里，哪里就是工业后勤重地。</p>
+<p class = "firstLineIndent">继任者的集群数量不会因为战斗而不断的损失，反而会越打越多，只要有足够的充裕的物质资源，这点是敌人所料想不到的，他们更不知道阿米巴和大毁灭的那场灭绝河系的大战役。</p>
+<p class = "firstLineIndent">若是有所了解，恐怕就会不顾一切的集合摧毁继任者们的跨河系虫洞。</p>
+<p class = "firstLineIndent">不过，这并没什么用处，最多会起到拖延永续它们河系扩张进度的效果。</p>
+<p class = "firstLineIndent">毕竟，虫洞要多少有多少，损失完了还可以让超巨星质量生物再继续运，制造成本继任者承受的起。</p>
+<p class = "firstLineIndent">而敌人这边，后勤被打烂可就真的被打烂，虽说他们确实有移动式的工业堡垒，但原料开采终究是要到行星上获取，亦或者小行星带，总不能凭空变出来一堆物质出来。</p>
+<p class = "firstLineIndent">所以，哪怕敌人孤注一掷的摧毁阿米巴的跨河系虫洞，其实也毫无意义。</p>
+
+
+<h2>第九百一十八章 曼文明</h2><hr/>
+<p class = "firstLineIndent">通过从俘虏记忆中收集到的情报，继任者们对他们当前交战的河系本土文明有了一个大致性的了解。</p>
+<p class = "firstLineIndent">这是一个生命机构近似人类的种族所发展而成的文明，同样有五官、四肢、五根手指脚趾这些，不过他们并不是人类，骨架是人类的两倍，内在有两个强有力的心脏，皮肤偏向于灰白且粗糙，没有毛发，面容类似于哈利波特里的伏地魔，自称‘曼族’。</p>
+<p class = "firstLineIndent">这是一个完成了河系占领的河系级尺度文明，当前继任者们所遭遇，还活着的文明中，层次最高的外星文明。</p>
+<p class = "firstLineIndent">曼族在还未向宇宙发展探索的时期便发现了灵域的存在。</p>
+<p class = "firstLineIndent">不过，就如瑟琳人一样，也诞生了一位类似帝尊的强大伟人，凭一己之力阻止了曼族对灵域的深入研究，并封禁灵域，使得曼族转而发展起物理科学。</p>
+<p class = "firstLineIndent">因为灵域技术的开发火苗被熄灭，科学的光辉照耀曼族，整个曼文明蓬勃发展，技术爆发，向宇宙殖民。</p>
+<p class = "firstLineIndent">疆域因此不断地扩大，从一个星球到遍及整个母恒星系统。</p>
+<p class = "firstLineIndent">随着对宇宙的深入研究，曼族了解到了河系，知道了他们的母恒星系统不过是其中的沧海一粟，而母河系相对于整个宇宙来讲，同样也是渺小如尘埃。</p>
+<p class = "firstLineIndent">曼族想继续扩张就必须解决恒星巨大尺度的问题。</p>
+<p class = "firstLineIndent">一如当初的采集者们，通过巨大环状结构的电磁加速，达到亚光速实现恒星间的远航，曼族也是这样发展起来，通过电磁轨道将整艘飞船加速到亚光速，然后再通过飞船船首不断喷吐出等离子体来进行航行上的减速。</p>
+<p class = "firstLineIndent">而由于飞船运动的关系，等离子体排放减速的同时，还能够充当一面竖在飞船前方的等离子防护罩，避免星际原子、太空陨石对高速运动的飞船构成威胁。</p>
+<p class = "firstLineIndent">可，在拓展到一定程度后，曼族发现，光只是掌握光速航行还远远不够。</p>
+<p class = "firstLineIndent">不是什么种族都能够做到像阿米巴这样毫无私心，临近的恒星系统之间倒也就罢了，毕竟信息的传递只是延迟几年，那些十几光年，数十光年，乃至上百光年，数千、数万光年的殖民地，信息的传递是极端性的被延迟。</p>
+<p class = "firstLineIndent">因此诞生出了很多的土皇帝，曼文明整体发生割裂，出现了许许多多的统治政权，政治局势有些类似地球上的分封制，很多统治政权只是名义上听从首都那边的调遣。</p>
+<p class = "firstLineIndent">光年尺度的信息延迟，形成无比坚固的猜疑链，黑暗森林的条件达成，这直接导致文明内战的爆发。</p>
+<p class = "firstLineIndent">解决的唯一办法，就是发展出超光速技术，使信息的传递能达到光速以上，这样才能保证文明整体的向心力。</p>
+<p class = "firstLineIndent">可超光速技术的开发岂是那么容易的事情。</p>
+<p class = "firstLineIndent">采集者们能够开发出利用负质量的超光速，那是因为有辉文明遗留下来的实物，以及通过对泽树文明的研究，对时空有了全新的认知才开发出来。</p>
+<p class = "firstLineIndent">而曼文明，由于文明整体割裂的关系，而导致了波及整个河系的内乱，很大一部分资源需要垫付到战争当中。</p>
+<p class = "firstLineIndent">研究新式的武器，和武器相对的防御，战略思维这些成为曼文明科研领域的主流，更别提耗费巨资去探索什么不知道存不存在的微观粒子。</p>
+<p class = "firstLineIndent">有那种资源多造几支舰队，多造一些奇观武器不香吗？</p>
+<p class = "firstLineIndent">在那之后，更是发生了机械叛乱，具体原因已经无从得知，只能确定曼族制造的机器人反叛了他们的制造者。</p>
+<p class = "firstLineIndent">那场战斗直接把整个曼文明给打得四分五裂，无数的殖民地不断的在失落、衰亡，尤其是那些需要其他农业、矿产星球供给的工业星。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">没矿倒也无所谓，可问题是他们需要粮食，人不吃饭就会死，不得已之下工业星上爆发出了人吃人的战争，而更在那之后由于互食同类而爆发瘟疫，矿产星球也是差不多的情况，这些过度专精的星球逐渐走向末路。</p>
+<p class = "firstLineIndent">在这样的环境中，某个曼族政权启用了对灵域的研究，也就是如今的曼帝国。</p>
+<p class = "firstLineIndent">掌握了灵域跳跃这种超光速技术，曼帝国迅速的壮大自己。</p>
+<p class = "firstLineIndent">即使遭遇其他统治政权的抵抗，哪怕武器弱于对方超光速技术也完全能吊打他们的光速技术。</p>
+<p class = "firstLineIndent">二者根本不在一个档次上，其他统治政权的舰队要跑数年才能到达临近的恒星系统，曼帝国只需要花几分钟甚至是几秒钟的时间就能完成这样的航行。</p>
+<p class = "firstLineIndent">曼帝国由此完成了整个曼文明的河系大一统。</p>
+<p class = "firstLineIndent">一般来讲，这就是一个童话故事的结尾了，曼文明的整体晋升到了更高层阶，但其实不然。</p>
+<p class = "firstLineIndent">行政问题就不谈，统治一个河系的行政工作量是极为恐怖，说堆起来有一座楼那么高都是说少。</p>
+<p class = "firstLineIndent">人口问题成为了曼帝国的心腹大患。</p>
+<p class = "firstLineIndent">倒不是说人口遍及整个河系，曼帝国做不到供给他们食物。</p>
+<p class = "firstLineIndent">主要的原因是曼帝国没办法控制他们的想法，刁民吃饱了就想着要造反，哪怕绝大多数的刁民没想过要造反，只是少部分，而敢于去实践更是少部分中的少部分，但放在河系这种直径有十多万光年的尺度，曼帝国面临的地方叛乱可以说是每天都有在发生。</p>
+<p class = "firstLineIndent">其中最严重的，就是那种借助灵尊力量的刁民们，每次都给帝国造成不小的损失。</p>
+<p class = "firstLineIndent">倒不是说无法接受，这些损失放在帝国整体视角看来只能算是九牛一毛，一两颗星球被全灭也无伤大雅，可问题是损失会叠加，损失积少成多后变成了一笔不小的数目，曼帝国每年都要填进去很多资源。</p>
+<p class = "firstLineIndent">初次以外就是外敌，也可以说是流浪文明。</p>
+<p class = "firstLineIndent">这些流浪文明多数是被曼帝国侵略的本土河系文明，因为遭到帝国的袭击而不得不如同游牧民族那样在河系中居无定所的流浪。</p>
+<p class = "firstLineIndent">流浪文明得到曼帝国暗中的叛乱势力援助，技术上并不比曼帝国有多么巨大的鸿沟，尤其是对灵域的使用。</p>
+<p class = "firstLineIndent">或许是这样做是为了分散曼帝国注意力，亦或者出于别的什么目的。</p>
+<p class = "firstLineIndent">这些流浪文明没到一个曼帝国的殖民星，就会开始大肆搜刮资源，然后投放病毒之类的低成本高杀伤武器，给帝国构成很大的损失。</p>
+<p class = "firstLineIndent">偶尔还会有一些比较重要的星球、军事设施会被流浪文明的克隆人武装占领。</p>
+<p class = "firstLineIndent">这样东一榔头西一榔头的打游击战，每年都能让曼帝国损失很多。</p>
+<p class = "firstLineIndent">还有就是机械叛乱残余下来的全自动舰队，平时潜伏起来，只要曼帝国稍不注意让它们找到一处扎根之地，就可能再次死灰复燃，成为席卷河系的灾难。</p>
+<p class = "firstLineIndent">当初继任者们抵达河系，被曼帝国如此针对，并且集结大批舰队进攻，就是这个原因，他们把继任者和机械叛乱残余下来的舰队搞混了。</p>
+
+
+<h2>第九百一十九章 前进还是停下</h2><hr/>
+<p class = "firstLineIndent">阿米巴中，主要负责分析工作的个体们，探讨着新发现的曼文明。</p>
+<p class = "firstLineIndent">毫无疑问，曼文明是族群发现外星人中，科技层次最高的文明，对反物质的应用普及化，可以进行大规模的亚光速远航，并且能够借助灵域实现超光速位移。</p>
+<p class = "firstLineIndent">研究价值很高。</p>
+<p class = "firstLineIndent">继任者们主要研究的方向，不是曼帝国实力怎么样，科技实力怎么样，这些事情重要，但不是最重要。</p>
+<p class = "firstLineIndent">继任者们更关心曼帝国为什么没有在占据整个河系后，继续的扩张到其他河系。</p>
+<p class = "firstLineIndent">是灵域位移去不了其他的河系吗？</p>
+<p class = "firstLineIndent">当然不是，不然魔神一脉就不可能从一个河系跑到另一个河系苟活。</p>
+<p class = "firstLineIndent">曼帝国无法扩张的原因，来源于他们自身。</p>
+<p class = "firstLineIndent">排除那些杂七杂八的外部和内部敌人，经过继任者们分析，曼帝国最大的敌人，其实是他们自身。</p>
+<p class = "firstLineIndent">“曼文明已经达到了他们的极限，纵使解决了超光速通讯的问题，一个河系的尺度，已经让他们支配起来相当吃力。”</p>
+<p class = "firstLineIndent">曼文明不是不知道河系外面还有其他河系，而是没有那样的心力再继续扩张出去。</p>
+<p class = "firstLineIndent">扩张就必然导致文明的割裂，曾经发生在河系中的文明内战必然会再次重现，而且由于人口数量更多，必然会更加的混乱，战斗的烈度更加的恐怖。</p>
+<p class = "firstLineIndent">基于种种考虑，曼帝国没有资源、精力、意愿扩张到其他河系。</p>
+<p class = "firstLineIndent">然而，文明的发展犹如逆水行舟不进则退，这是基于熵增定律得出的结论，一个固定系统中的熵总是会不断积累，直至这个系统崩溃。</p>
+<p class = "firstLineIndent">文明停止了发展，系统就此被固定下来无法改变，自然而然就会走向崩溃。</p>
+<p class = "firstLineIndent">这时，有个体想到了其他的事情上面。</p>
+<p class = "firstLineIndent">“这……算不算是一种压制吗？”</p>
+<p class = "firstLineIndent">“对什么的压制？”</p>
+<p class = "firstLineIndent">“文明的压制，曼文明达到了他们种族的极限，要想解决就必须做出改变，对种族自身的改变。”</p>
+<p class = "firstLineIndent">其他的继任者呆了呆，并没有多少个体能够理解表达者的想法。</p>
+<p class = "firstLineIndent">它们反问，“像我们这样打破肉体的桎梏？”</p>
+<p class = "firstLineIndent">“差不多，但也不对。”</p>
+<p class = "firstLineIndent">“不对？”</p>
+<p class = "firstLineIndent">其他继任者更不理解了。</p>
+<p class = "firstLineIndent">表达者组织了一下语言，抽丝剥茧的表述自己的想法。</p>
+<p class = "firstLineIndent">“我的意思是，‘曼族’必须变成‘非曼族’，才能够解决如今面临的问题。”</p>
+<p class = "firstLineIndent">“在浏览俘虏记忆的时候，我发现了一个很有意思的事情，曼帝国内部有一个专门的机构，叫审判厅，除了处理隐藏在曼帝国内部的敌人外，还负责肃清基因突变的个体。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“哪怕那个基因突变的个体没有犯过错误，甚至做了正确的事情，也会被他们视作应该肃清目标。”</p>
+<p class = "firstLineIndent">这个存在于曼帝国内部的审判厅是引起表达者想法的根源，让它意识到，文明自身的自律性和进步性之间的矛盾。</p>
+<p class = "firstLineIndent">自律性，即为维持自身的固有属性，说白了就是一个物种想要活下去，而为此想尽一切方法维持自己的存在。</p>
+<p class = "firstLineIndent">进步性就是文明的发展，文明不可能固定不变。</p>
+<p class = "firstLineIndent">“从宏观角度上看，这种做法保证了文明的统一，曼族没有因为漫长的岁月自然演变成许许多多其他的智慧物种。”</p>
+<p class = "firstLineIndent">“但也同样，他们也被限制住了。”</p>
+<p class = "firstLineIndent">“没有什么种族是全能且完美的，宇宙里的任何种族都有他们存在的物理局限，当他们发展到极限后，要想让文明继续进步，就必须变更种族成为其他的智慧物种。”</p>
+<p class = "firstLineIndent">“但，这样的做法和种族集体主动灭绝自身并无区别。”</p>
+<p class = "firstLineIndent">是的，这就是曼帝国的矛盾所在，哪怕没有诸多的外部、内部的匆匆敌人，曼帝国也会随着时间推移逐步走向深渊。</p>
+<p class = "firstLineIndent">其实就只是一个很简单的问题——要‘文明留存’还是要‘种族留存’？</p>
+<p class = "firstLineIndent">“生物是物质性的，物质改变了，生物也必然改变，哪怕继承了未改变前的记忆信息也是如此。”</p>
+<p class = "firstLineIndent">好比机械改造，把一个人脑子里的一切都复刻到机器人的计算机里，是不是就可以理解为，同一个人变成了‘两个’？</p>
+<p class = "firstLineIndent">再把生物体的那个人物理抹杀，仅留存在机器人，‘我’由此完成转移。</p>
+<p class = "firstLineIndent">所以，这个机器人究竟是新生的独立个体，还是被杀掉的那个人？</p>
+<p class = "firstLineIndent">继任者不在乎这些伦理认知的玩意，族群怎么壮大它们就这么做，但曼族却不行。</p>
+<p class = "firstLineIndent">“族群可以接受这点，所以采集者成为了历史，继任者接手了阿米巴，继续大步前行，可曼族接受不了，因此只能静静的等待着自身的腐朽。”</p>
+<p class = "firstLineIndent">或许要想达到宇宙级文明那种程度，所需要的门槛并不仅仅只是超光速技术，还有很多隐性，没有被加入到宇宙级文明衡量标准中的门槛。</p>
+<p class = "firstLineIndent">这个时候，有个体提出一个想法。</p>
+<p class = "firstLineIndent">“我们改变他们，是否就能够引导出一个适合用于替补族群的文明？”</p>
+<p class = "firstLineIndent">曼文明的科技层次并不低，阻碍他们前进的是他们自己，所以继任者想着，如果推一把的话，帮曼文明完成蜕变的这一步，或许就可以得到一个不弱于族群的文明也说不定。</p>
+<p class = "firstLineIndent">这个想法一经提出就引起族群内部的高度关注。</p>
+<p class = "firstLineIndent">最后由永续拍板。</p>
+<p class = "firstLineIndent">“值得尝试。”</p>
+<p class = "firstLineIndent">想法得到了认可，继任者们便开始行动。</p>
+<p class = "firstLineIndent">行动的计划并不复杂，既然曼族无法接受种族改变，那阿米巴就帮他们把种族给改变，让‘曼族’成为历史。</p>
+<p class = "firstLineIndent">某个恒星系统的行星近轨上，刚刚抵达的继任者集群，围绕着行星进行公转，大量粉末抛洒向星球。</p>
+<p class = "firstLineIndent">“散布下去，动作快点，赶在追击舰队到来前。”</p>
+<p class = "firstLineIndent">时间并没有过去多长，继任者集群环绕行星五周后，就有曼帝国的舰队赶到。</p>
+<p class = "firstLineIndent">“他们来了！集体进入超光速！”</p>
+<p class = "firstLineIndent">伴随着集群率领者的命令，整支继任者集群进入到超光速。</p>
+<p class = "firstLineIndent">“玛德！又让这些外星渣滓溜掉！”</p>
+<p class = "firstLineIndent">看着继任者们留下的超光速闪光，舰队司令不甘心的谩骂一句。</p>
+<p class = "firstLineIndent">随后，有下属向他报告。</p>
+<p class = "firstLineIndent">“司令，你快看！地面上……”</p>
+<p class = "firstLineIndent">画面被调出来，地面之上，无数的曼族人在绝望的哀鸣，他们变得扭曲，自身膨胀的肉瘤将他们禁锢，并改造他们的躯体，从最底层的基因开始，可以看到有些抱着孩子的妇女被肉块连为一体，畸形而又诡异。</p>
+<p class = "firstLineIndent">继任者们播撒的生物孢子，随着气流可以散步到星球的每一个角落，可以说无孔不入，无人能逃。</p>
+<p class = "firstLineIndent">如此惨状看得舰队中的帝国将士们一阵胆寒，头皮发麻。</p>
+<p class = "firstLineIndent">“司令，我们该怎么做？”</p>
+<p class = "firstLineIndent">沉默了一下，舰队司令压制住自己的怒火，下达了他不想下达的命令。</p>
+<p class = "firstLineIndent">“执行毁灭指令，结束他们的痛苦吧……”</p>
+<p class = "firstLineIndent">“是！”</p>
+
+
+
+<a href="900.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="920.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

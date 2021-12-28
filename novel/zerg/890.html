@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第八百九十章 棒旋星系</h2><hr/>
+<p class = "firstLineIndent">棒旋星系，顾名思义，中心是棒形状，长棒的两边有旋形的臂向外伸展大约三分之二旋转形成漩涡。</p>
+<p class = "firstLineIndent">这个河系比继任者们起始的母河系要小上一些，直径大约在九万到十一万光年之间，平均厚度则是两千多光年，大约拥有两千亿颗恒星。</p>
+<p class = "firstLineIndent">而这两千亿颗恒星，被一群来自临近河系的生物体给盯上了。</p>
+<p class = "firstLineIndent">成片成片的光芒突兀的在距离棒旋星系大约两百光年的位置出现，乍一看就好似棒旋星系边缘凭空多出了许许多多的恒星。</p>
+<p class = "firstLineIndent">伴随这些‘恒星’出现的，还有以光速扩散的引力波，若是有距离过近的行星，甚至会被这样的引力撕扯破碎。</p>
+<p class = "firstLineIndent">光芒散尽，显露出一个个恒星尺寸的巨大结构。</p>
+<p class = "firstLineIndent">“远航结束，可以实施计划，行动起来。”</p>
+<p class = "firstLineIndent">以永续所在的那个超巨星质量生物为中心，释放出信使生物，以超光速将信息传递到数千个超巨星质量生物那里，这些超巨星质量生物纷纷在选定好目的地后，进入到超光速。</p>
+<p class = "firstLineIndent">针对棒旋星系的入侵计划并不复杂，事实上，继任者们并没有花多长的时间就完成了讨论。</p>
+<p class = "firstLineIndent">将棒旋星系划分为数千个相等的区域，数千只超巨星质量生物每只负责一片区域，利用超光速隐蔽自己，不断散播增殖继任者个体，最终让负责的那片区域所有质量都能为族群所用。</p>
+<p class = "firstLineIndent">这样就能让族群最快速的整合这个棒旋星系的物质资源。</p>
+<p class = "firstLineIndent">计划很简陋，倒也不是继任者们在偷懒，只是由于光速的限制，棒旋星系的很多情报是不到那里无法获取，所以只能进行概略性的计划，针对各区域的计划只能由负责那片区域的继任者们自己制定。</p>
+<p class = "firstLineIndent">至于阻挠者嘛……</p>
+<p class = "firstLineIndent">继任者们的方针是隐蔽自己，采取同修正机关交战的移动集群模式，依托超光速躲避棒旋星系内可能存在的强大文明，避免与对方正面冲突。</p>
+<p class = "firstLineIndent">面对不怀好意的敌人主动招惹，继任者并不缺乏反击的果决，只是那样会严重耽误继任者们的物质采集计划，若是被拖入胶着战，那更是得不偿失。</p>
+<p class = "firstLineIndent">继任者们可没有忘记族群的目标是什么，它们活着可不是为了好勇斗狠，活着是为了族群能够永远不断变强且延续下去。</p>
+<p class = "firstLineIndent">所以，再三思量后，由永续拍板决策，干脆连沟通都断绝掉，遇到陌生的太空飞船，集群毫不犹豫的立即躲避到超光速状态中，以免耽误时间。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">分头行动的超巨星质量生物，在很短的时间里便抵达了，自己负责那片区域中的某颗恒星系统。</p>
+<p class = "firstLineIndent">把握好距离，驻留在距离恒星系统一光天的位置，但超巨星质量生物对恒星系统的影响仍然是极为强烈，虽然不至于直接撕裂行星，却也会改变行星的公转轨道，柯伊伯带由于超巨星质量生物的出现而崩溃，恒星风也被搅乱的天翻地覆。</p>
+<p class = "firstLineIndent">超巨星质量生物也清楚自己的影响，在抵达的那一刻就释放出信使生物，让信使生物以超光速进入恒星系统用超功率的雷达波，扫描恒星系统内的环境。</p>
+<p class = "firstLineIndent">“雷达波扫描该恒星系统……”</p>
+<p class = "firstLineIndent">“确认没有文明存在。”</p>
+<p class = "firstLineIndent">根据恒星系统行星的数量指派出同等数量的超光速生物，每只超光速生物负责一颗星球的物质采集。</p>
+<p class = "firstLineIndent">然后再借由行星的物质资源开采恒星的物质资源。</p>
+<p class = "firstLineIndent">“你们负责这个恒星系统的资源采集，我去其他恒星。”</p>
+<p class = "firstLineIndent">超巨星质量生物如此下令，被指派任务的继任者们回应。</p>
+<p class = "firstLineIndent">“了解。”</p>
+<p class = "firstLineIndent">以超巨星质量生物的超光速，眨眼之间就带领着继任者们抵达了又一个新的恒星系统，并重复指派信使生物进入恒星系统，释放出超功率雷达波扫描环境。</p>
+<p class = "firstLineIndent">确认恒星系统内，没有文明，并且行星资源稀少后，超巨星质量生物运载的物质巨构以及降温巨构被指派出来，还有几只作为护卫的超光速生物。</p>
+<p class = "firstLineIndent">“这个恒星系统的行星资源稀少，你们多分配一个物质巨构和复数降温巨构，记住原定计划的原则。”</p>
+<p class = "firstLineIndent">“不接触，不交流，不理会，不能耽搁族群计划的时间。”</p>
+<p class = "firstLineIndent">超巨星质量生物重复提醒族群的行动原则，被指派出来的这些继任者纷纷应允。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“记住了。”</p>
+<p class = "firstLineIndent">“嗯，那我出发了。”</p>
+<p class = "firstLineIndent">一声告别，堪比恒星系统的巨大结构突兀的消失在太空，远遁向全新的目的地。</p>
+<p class = "firstLineIndent">不断的重复扫描恒星系统环境以及指派出个体，就这样一晃过去了二十多年的时间，完全足够一个人类婴儿成长到成年的时间，继任者们终于接触到了这个河系的本土文明。</p>
+<p class = "firstLineIndent">“让我看看，这是第几个恒星系统……”</p>
+<p class = "firstLineIndent">“这是第123个恒星系统。”继任者提醒同族。</p>
+<p class = "firstLineIndent">“123万？距离两亿还差很多……咦？雷达波扫描到这个恒星系统中存在高速移动的物体，而且朝着信使生物靠近。”</p>
+<p class = "firstLineIndent">信使生物带回恒星系统扫描的环境信息，同时也带回了关于恒星系统内，存在外星文明的情报。</p>
+<p class = "firstLineIndent">从雷达波的反馈可以看出，对方的载具非常的小，但移动速度并不算高，至少没有达到超光速。</p>
+<p class = "firstLineIndent">“不接触，不交流，不理会，遵循原定计划原则，这个恒星系统就先放弃了。”</p>
+<p class = "firstLineIndent">根据行动原则，超巨星质量生物远遁虚空，根本没有与这个外星文明接触的打算。</p>
+<p class = "firstLineIndent">此时此刻，恒星系统中，一个有着章鱼头，浑身绿皮，背上长着六对蝙蝠翼的智慧生物，他完全不依靠任何器械、工具的屹立于虚空之中，满是疑惑的打量周遭，似乎是在寻找那个引起他注意的信使生物。</p>
+<p class = "firstLineIndent">而在两天后，它同样再次跑到了超巨星质量生物原先存在过的地方，但同样是一无所获，因为信息的传播存在光速上限，他所接收到的信息是超巨星质量生物两天前留下的。</p>
+<p class = "firstLineIndent">超光速状态下，继任者们在因为刚才发现的河系本土文明，探讨各自的想法。</p>
+<p class = "firstLineIndent">“刚才的应该就是这个河系中的文明，终于观测到了。”</p>
+<p class = "firstLineIndent">“那个恒星系统的坐标划入黑名单，等将区域里的恒星系统资源都采集的差不多了，再考虑开采那里的物质资源。”</p>
+<p class = "firstLineIndent">“不过之前并没有从那个恒星系统观测到电磁波，难道说他们整个文明都不用电磁波？”</p>
+<p class = "firstLineIndent">“或许有更好的选择，所以淘汰掉了电磁波的使用。”</p>
+<p class = "firstLineIndent">“这么看来，科技实力应该很高，不过没有解锁超光速，对族群威胁度还不够高。”</p>
+
+<h2>第八百九十一章 好奇害死猫</h2><hr/>
+<p class = "firstLineIndent">信使生物从恒星系统中回归，同时为超巨星质量生物带会那个恒星系统的环境信息。</p>
+<p class = "firstLineIndent">“这是第326万个恒星系统，内部存在文明，我们可以离开了。”</p>
+<p class = "firstLineIndent">存在文明的恒星系统不能开采物质资源，这是继任者们进入这个河系以前就制定好的隐匿方针。</p>
+<p class = "firstLineIndent">所以，超巨星质量生物在回收信使生物后，便立即进入超光速，遁入无边无尽的虚空之中。</p>
+<p class = "firstLineIndent">恒星系统的信息会被导入星图标记起来，以供以后使用。</p>
+<p class = "firstLineIndent">但这样的统计，却让很多不容易注意到的问题变得明显化。</p>
+<p class = "firstLineIndent">“共计发现了一百多万个存在文明痕迹的恒星系统，密集程度有些不太正常，如果说是一个跨恒星系统殖民的恒星际文明的话，不至于连超光速或者亚光速技术都没有啊？”</p>
+<p class = "firstLineIndent">统计的继任者说出了它很早就在酝酿的问题。</p>
+<p class = "firstLineIndent">三百万个恒星系统中，有一百多万个恒星系统存在着文明痕迹，很显然，存在文明的恒星系统数量过多。</p>
+<p class = "firstLineIndent">不过这却也并非不能解释，比如存在着疆域跨恒星的文明。</p>
+<p class = "firstLineIndent">这些恒星系统没有星门，恒星系统内的文明也没有掌握亚光速或者超光速的技术，否则信使生物的侦测活动必然会遭到不小的阻挠。</p>
+<p class = "firstLineIndent">异状无论好坏，都是值得继任者们注意，并且也是它们不希望看到，因为那样就有可能会影响到族群整体的计划。</p>
+<p class = "firstLineIndent">继任者们进行了各种大胆的假设。</p>
+<p class = "firstLineIndent">“说不定是类似族群这样，可以保证绝对的忠诚，因此文明整体哪怕延伸了一百多万颗恒星的疆域，也不出现分裂，只要确保文明不会分裂，无视时间成本，用化学推进同样能够跨恒星殖民。”</p>
+<p class = "firstLineIndent">“亦或者他们以前掌握超光速或亚光速技术，后来由于某种原因技术退步，如今每个恒星系统是各过各的。”</p>
+<p class = "firstLineIndent">众说纷纭，各有各的道理，这让某些继任者的好奇心暴涨。</p>
+<p class = "firstLineIndent">“好想一探究竟，看看是怎么回事啊。”</p>
+<p class = "firstLineIndent">讨论戛然而止，等那只的继任者反应过来时，它已经成为了同族视线的汇聚点，一些个体默默的让武器上线。</p>
+<p class = "firstLineIndent">“想都别想，你敢这么做，我就第一个宰了你，因为你这样会搅乱族群的整体计划，与背叛别无二致。”</p>
+<p class = "firstLineIndent">“赞同。”</p>
+<p class = "firstLineIndent">继任者连忙解释，它可不想因为这种事情被当做叛徒被同族们给宰了，那样岂不是死得太过毫无价值？</p>
+<p class = "firstLineIndent">“我就说说而已，没真打算做的……”</p>
+<p class = "firstLineIndent">“我们也只是说说啊！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">那你们倒是把敌意和武器给收起来吗！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">一座漂浮于恒星近轨，上下为两个四棱锥底部合在一起的八面体建筑，整体由黄金构筑而成。</p>
+<p class = "firstLineIndent">建筑整体由巨石为砖搭建，阶梯型的斜面与金字塔一致，每块大砖上都刻录着许许多多的文字，密密麻麻整齐的排列，给整个建筑增添了不小的神秘感。</p>
+<p class = "firstLineIndent">建筑的内部是液态水，恒星光照通过折射镜，照亮整个建筑的内部。</p>
+<p class = "firstLineIndent">而这之中，最大的折射镜，它所折射的恒星光直入建筑的最中心腹地，一处大厅正中心的体积并不比摩天大楼小多少的宝座上。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">巨大的黄金宝座因光辉的洒下，显得更加神圣高贵，而宝座上雕刻的扭曲触手和章鱼头却又给人一种诡异的阴森，神圣与阴森的结合并不冲突且恰到好处，给予旁人一种应当如此的感觉。</p>
+<p class = "firstLineIndent">黄金宝座之下，许许多多章鱼头的智慧生物，无比恭敬的向宝座之上的王者汇报。</p>
+<p class = "firstLineIndent">“未知之物搅动虚空，散布怪异的雷之韵律，越来越多的世界周围发现未知之物留下的足迹，每当我们意图接近，未知之物便会消失无踪，它表现的太过神秘。”</p>
+<p class = "firstLineIndent">“不朽的约亚之王啊，这是否是某种灾难降临的前兆？我们是否应该提早做些什么准备？”</p>
+<p class = "firstLineIndent">王座之上约亚之王静静聆听完臣子们的汇报，目光落向一旁。</p>
+<p class = "firstLineIndent">“恩科莱、恩娜，出列。”</p>
+<p class = "firstLineIndent">“听候您的调遣！”</p>
+<p class = "firstLineIndent">伴随着幽幽的声音从王者那里传出，站于两侧的章鱼头人中，各自走出一人，从外观差异的对比上可以看出是一男一女。</p>
+<p class = "firstLineIndent">“去，找出异变的源头，本王想知晓，那未知之物是什么，是敌人，还是宝物。”</p>
+<p class = "firstLineIndent">“遵从您的意志！”</p>
+<p class = "firstLineIndent">离开大厅，被王者指派任务的恩科莱被另一人叫住。</p>
+<p class = "firstLineIndent">“恩科莱，你有什么好办法？未知之物行踪不定，藏匿于无穷世界之间，我还未想到该如何寻找。”恩娜问。</p>
+<p class = "firstLineIndent">恩科莱抖动了一下章鱼头的触须，摊开手掌，显现出一副宏伟的星图，并且将未知之物出现过的地方进行标记。</p>
+<p class = "firstLineIndent">“不着急，未知之物虽然行踪不定，但却存在着自有的规律。”</p>
+<p class = "firstLineIndent">“曾被未知之物打搅过的世界都不会再次被未知之物打搅，不断的有新的世界因未知之物的到来而惊动，这说明，未知之物只会去它从未到达过的地方。”</p>
+<p class = "firstLineIndent">“神国大世界中，还有一部分没有被未知之物到访过，我们盘踞在那里等待，必然会等到未知之物的到来。”</p>
+<p class = "firstLineIndent">分析的头头是道，事实上，在上报以前，恩科莱就更早的从其他渠道打听到消息，并且想好该怎么找到未知之物。</p>
+<p class = "firstLineIndent">“原来如此，你如王一般具有智慧。”</p>
+<p class = "firstLineIndent">“感谢赞誉。”</p>
+<p class = "firstLineIndent">二人来到一处石台上静立，随后身体逐渐虚化，直至彻底消失。</p>
+<p class = "firstLineIndent">不多时，便到达了他们要去往的遥远之地。</p>
+<p class = "firstLineIndent">入目的是一片荒原之地，石台下方是数以亿计，对二人渺小如蝼蚁般的生物在辛勤的搬运着各种东西。</p>
+<p class = "firstLineIndent">这些生物在看到二人从石台出现后，便开始膜拜起来。</p>
+<p class = "firstLineIndent">出于礼仪，二人没有走下石台，落座于专门的休息地，毫无负担的抓起还在膜拜他们的生物进食。</p>
+<p class = "firstLineIndent">看着同类就这样怪叫着被吞噬，那些生物不但惊慌，也更没有逃跑的意愿，反而更加狂热虔诚的膜拜。</p>
+<p class = "firstLineIndent">不多时，远方传来呼啸声，降落时掀起的狂爆气流，把那些渺小如蝼蚁的生物掀得人仰马翻，距离近的甚至直接被气流高速运动形成的气刃给撕碎。</p>
+<p class = "firstLineIndent">来者朝恩科莱他们行了一礼。</p>
+<p class = "firstLineIndent">“恭迎两位的到来。”</p>
+<p class = "firstLineIndent">“世界之主，你这里有发现过怪异的雷之韵律吗？”恩娜问。</p>
+<p class = "firstLineIndent">“没有发现过。”</p>
+<p class = "firstLineIndent">世界之主的答复让恩科莱松口气，如果未知之物已经到访过，那他们就需要赶去其他地方。</p>
+<p class = "firstLineIndent">“那就好，王交予了任务，我们要在这里驻留一段时间。”恩克莱道。</p>
+<p class = "firstLineIndent">世界之主应下，并热情的邀请他们进驻他在这个世界修筑起来的宫殿休息。</p>
+<p class = "firstLineIndent">恩科莱他们在世界中呆了一段时间后，便离开世界，到达世界外的虚空，隐藏在那里等待着未知之物的到达。</p>
+<p class = "firstLineIndent">等待了差不多一年的时间，恩科莱他们终于等到了他们一直在等的任务目标。</p>
+<p class = "firstLineIndent">“是那怪异的雷之韵律！”</p>
+<p class = "firstLineIndent">“追上去！”</p>
+<p class = "firstLineIndent">从藏身地冲出，冲向雷之韵律的源头，不过，由于速度没有达到光速，信使生物很快便注意到了朝自己快速靠近的二人。</p>
+<p class = "firstLineIndent">信使生物需要通过电磁波的扫描恒星系统的环境，而恒星系统又很大，电磁波一来一回花个半小时都算少的。</p>
+<p class = "firstLineIndent">侦测恒星系统的环境需要时间，不过，这却也并不意味着，信使生物会停在原地，任由恩科莱他们捕获。</p>
+<p class = "firstLineIndent">短距离的超光速位移，信使生物直接从恒星系统的一边迅速跑到了另一边。</p>
+<p class = "firstLineIndent">“消失了？！”</p>
+<p class = "firstLineIndent">恩科莱惊愕不已，他们本以为能够抓住信使生物，哪想到会这样突兀的消失物种。</p>
+<p class = "firstLineIndent">“是藏身之术吗？”</p>
+<p class = "firstLineIndent">“不是，感觉不到异动，是真的消失了。”</p>
+<p class = "firstLineIndent">“等等，它在那边！”</p>
+<p class = "firstLineIndent">恩娜提醒同伴，自己率先追了出去。</p>
+<p class = "firstLineIndent">可惜，哪怕两人早就有了准备，并且提前站点，主场也是他们的，可谓占尽了天时地利人和，却败在了速度上，每次他们就快要追上的时候，信使生物都是一个超光速，放风筝放了半小时。</p>
+<p class = "firstLineIndent">这期间，恩科莱想过分头行动，两边包抄，但这没有用，才两个人的包围圈要怎么才能全方位360度无死角的困住信使生物？</p>
+<p class = "firstLineIndent">况且能拦截信使生物超光速的只能是针对时空的扭曲，物质性的拦截根本就是在找死。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">当信使生物彻底的收集完恒星系统的环境信息后，恩科莱他们再也找不到信使生物的踪影，这让他们恨得咬牙切齿。</p>
+<p class = "firstLineIndent">“接下来怎么办？”</p>
+<p class = "firstLineIndent">“到周围找一找，界域之外，必然会有那未知之物在驻留。”恩科莱道。</p>
+<p class = "firstLineIndent">“嗯！”</p>
+<p class = "firstLineIndent">距离恒星系统三光天左右距离的超巨星质量生物，成功回收信使生物。</p>
+<p class = "firstLineIndent">“有外星文明追击？”</p>
+<p class = "firstLineIndent">继任者们感到意外，要知道，之前虽然也有追击，但做不到这种，信使生物并不需要做什么机动就可以在对方赶来以前离开，这次的很明显是提早就有了准备。</p>
+<p class = "firstLineIndent">“没有超越光速，却还能追到这么近，看来是提早站点，有备而来。”</p>
+<p class = "firstLineIndent">“奇怪，明明在移动上都超不了光速，为什么能做到信息传递超光速？按理说，他们应该会因为光速壁垒而出现信息差。”</p>
+<p class = "firstLineIndent">继任者中，有个体注意到不对劲，它们明明速度高于光速，按理说之前到达过的那些恒星系统，并不能够将信息传递过来，光速壁垒限制了信息的传播，因此也更不该提早就做好准备。</p>
+<p class = "firstLineIndent">除非对方掌握超光速的信息传递手段。</p>
+<p class = "firstLineIndent">光速限制的是信息的传递，也就是说，只要能打破信息传递的光速限制，无论是让物质超光速还是让信息超光速其实本质都不变。</p>
+<p class = "firstLineIndent">如果只是基于某种原因导致文明技术退步，所以只能做到信息超光速而无法做到物质超光速，这点还好说，但继任者们就怕是另一种……</p>
+<p class = "firstLineIndent">“之前我们知道的，会不会都是这个文明的伪装？他们一直在有意欺骗我们？”</p>
+<p class = "firstLineIndent">“不排除这种可能。”</p>
+<p class = "firstLineIndent">“危险警戒的级别需要调高，集群不能置身于危险。”</p>
+<p class = "firstLineIndent">超巨星质量生物打断了它们的讨论，没有任何依据的瞎猜是毫无意义的。</p>
+<p class = "firstLineIndent">“不，太过着急了，我们需要先搞清楚情况。”</p>
+<p class = "firstLineIndent">“正好有两个俘虏送上门。”</p>
+<p class = "firstLineIndent">继任者的行动原则是不接触，不交流，不理会，但……死掉的生物只能算是一坨毫无生机的死物，不在此列。</p>
+
+<h2>第八百九十二章 智熄的死亡</h2><hr/>
+<p class = "firstLineIndent">三光天是极为遥远的距离，哪怕是以光速行进，也是需要花上三天的时间。</p>
+<p class = "firstLineIndent">以光速以下的速度跑完这样的路程，时间也就更加的漫长，若是光速的十分之一，就需要一个月，若是百分之一，则需要将近一年，若是千分之一，大约就要十年左右……</p>
+<p class = "firstLineIndent">所以，继任者们应对前来追击它们的追击者，行动起来显得不慌不忙，甚至可以说是悠哉。</p>
+<p class = "firstLineIndent">数只超光速生物慢悠悠的出发，以超光速抵达恩科莱他们数光秒的地方，不断的诱使对方追击它们。</p>
+<p class = "firstLineIndent">追击者不知道通过什么方法，扭曲了光线，很难单纯通过光照看到他们的身影，不过，这对于继任者而言并非太严重的问题，追击者自身会散发出热量，而热量就是一个红外发射源，在配合空旷的宇宙环境，简直就像是黑夜里的火烛，瞎子才看不见。</p>
+<p class = "firstLineIndent">除了红外微波，超光速生物们还有引力波，甚至是高频电磁波雷达，都可以捕捉到他们精确的位置。</p>
+<p class = "firstLineIndent">对自身力量充满自信的恩科莱两人，根本不觉得继任者是在故意诱导他们行进，自认为自己隐藏的非常完美，不断的追击超光速生物。</p>
+<p class = "firstLineIndent">恩科莱他们就这样追击了很长时间，隐藏追击的枯燥让耐性并不怎么好的恩娜最先焦躁起来。</p>
+<p class = "firstLineIndent">“恩科莱，这样追击下去也不是办法，你有没有什么好方法抓到一个未知之物？”</p>
+<p class = "firstLineIndent">恩科莱定神凝视着数光秒位置的超光速生物好一会，回绝了恩娜的提议。</p>
+<p class = "firstLineIndent">“太远了，我们无法保证一定能够抓到一个。”</p>
+<p class = "firstLineIndent">“这些未知之物似乎是要前往某个地方，保持追击，不要被丢下，或许能够找到这些未知之物的源头。”</p>
+<p class = "firstLineIndent">追击继续，恩科莱他们终于逐渐看到了远方的一个渺小的身影。</p>
+<p class = "firstLineIndent">“那是什么？那个难道就是这些未知之物的源头？”</p>
+<p class = "firstLineIndent">恩科莱看到了远方的异物，由于近大远小的原理，超巨星质量生物在恩科莱看来只是砂砾般渺小的物体。</p>
+<p class = "firstLineIndent">没有像继任者的生物雷达，单靠视觉能力，恩科莱他们没办法确定距离，也就无法推算出他们眼中超巨星质量生物的真实大小。</p>
+<p class = "firstLineIndent">看到远方的异物，恩科莱二人确定了未知之物的来源，把追击的矛头转向了远方的异物，全力的朝那边靠近。</p>
+<p class = "firstLineIndent">然而，自认为距离异物不远的他们，就这样保持着最高速行进了很长时间，都不见自己有靠近那个存在于虚空中的异物。</p>
+<p class = "firstLineIndent">望山跑死马——虽然恩科莱他们不知道这句话，但却能直观的产生出这种感受。</p>
+<p class = "firstLineIndent">“怎么回事？难道那个物体也在远离我们？”</p>
+<p class = "firstLineIndent">恩科莱有些搞不懂现在是什么情况，这与他们最开始所想的出入有些太大了，本打算就这样依仗着隐身，暗中靠近异物，哪想到行进了这么长的时间都没有接近半点。</p>
+<p class = "firstLineIndent">这不得不让恩科莱怀疑他们已经被未知之物给发现了。</p>
+<p class = "firstLineIndent">“不对，如果那个物体在远离我们，那我们之前所追踪，与我们速度相同的未知之物，理应很难接近那里。”</p>
+<p class = "firstLineIndent">“如果我们被发现了，那未知之物应该不可能像现在这样平静才对。”</p>
+<p class = "firstLineIndent">“那这究竟是怎么回事？”</p>
+<p class = "firstLineIndent">恩科莱反问，这一问，一下子把恩娜给问住了，她也想不通现在的情况是怎么回事。</p>
+<p class = "firstLineIndent">“这个……”</p>
+<p class = "firstLineIndent">难以理解的情况让恩科莱他们倍感疑惑与焦躁，行进的速度没有放缓半分。</p>
+<p class = "firstLineIndent">不过，他们二人没有察觉到，他们早就已经在不知不觉间沦陷进了未知之物们的陷阱当中。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">作者：想看更多虫族是怎样炼成的相关小说，请访问：宅阅读(ZHAIYUEDU．TOP)</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“差不多了。”</p>
+<p class = "firstLineIndent">“允许执行，递送信号。”</p>
+<p class = "firstLineIndent">一段无线电从超光速生物那里释放出来，无线电信息花了数秒的时间，掠过恩科莱他们的位置，恩科莱他们霎时间感觉到浑身一阵抽搐，强大的电流自体内爆发冲击他们的大脑，无法承受这种突然袭击的恩科莱二人随即昏厥过去。</p>
+<p class = "firstLineIndent">超光速生物们在诱导可不止是单纯的诱导，在这一过程中，它们偷偷地释放出微观个体，这些个体伪装成星际尘埃，附着在恩科莱他们的表层。</p>
+<p class = "firstLineIndent">本以为是两艘飞船的微观个体，万万没有想到要入侵的物体居然是两个生物，好在问题不大，通过生物体自身的孔洞，潜入生物体的内部，然后进行布置。</p>
+<p class = "firstLineIndent">随着超光速生物传递出的俘虏指令，潜入生物体内部的微观个体利用生物体自身生物能所转化的电流，冲击生物体的大脑，致使对方昏厥。</p>
+<p class = "firstLineIndent">“回收，动作要快，赶在那个文明察觉到以前。”</p>
+<p class = "firstLineIndent">后续赶来的存储巨构将恩科莱他们装入体内，往超巨星质量生物那里搬运。</p>
+<p class = "firstLineIndent">不多时，恩科莱他们就被继任者们分别安置在相隔很远的两处研究台上，通过对大脑的刺激让二人中的恩娜率先苏醒。</p>
+<p class = "firstLineIndent">“这里是哪里？”</p>
+<p class = "firstLineIndent">“我这是怎么了？”</p>
+<p class = "firstLineIndent">“你们是谁？”</p>
+<p class = "firstLineIndent">并没有开口，这些询问的信息是直接涌入周围继任者们的大脑。</p>
+<p class = "firstLineIndent">“是灵域？”</p>
+<p class = "firstLineIndent">“糟糕！快点让涟漪巨构运行起来，光靠物理手段很可能困不住他们！”</p>
+<p class = "firstLineIndent">继任者们认出了俘虏直接将信息传递到它们大脑中的手段。</p>
+<p class = "firstLineIndent">“你们……嗯？”</p>
+<p class = "firstLineIndent">正欲起身的恩娜，这才注意到自己的身体被约束在一个平台上，平台由很坚固的银白色金属构成，无论她如何奋力挣扎，都无法破坏金属平台的约束。</p>
+<p class = "firstLineIndent">“你们怎么敢……你们这么敢囚禁一位伟大之神？”</p>
+<p class = "firstLineIndent">“你们这群低贱凡物！”</p>
+<p class = "firstLineIndent">恩娜愤怒了，被如此囚禁的她感觉到无比的屈辱。</p>
+<p class = "firstLineIndent">恩娜动用起她的神之力，金属平台被破坏，神之力灌注周身，狂暴化的恩娜根本不管继任者们构建出来那七扭八拐迷宫般的隧道，找准一个方向直接对墙体暴力突破，将一堵堵厚实的墙壁砸穿。</p>
+<p class = "firstLineIndent">根茎群试图进行阻拦，不过都被恩娜完全不符合能量守恒般的怪力给撕碎。</p>
+<p class = "firstLineIndent">一路砸穿，数小时后，恩娜终于到了墙体的尽头。</p>
+<p class = "firstLineIndent">大量的气体被真空吸纳，恩娜混杂于其中，一起脱离飘远。</p>
+<p class = "firstLineIndent">这时她才打量起周围，她离开的那里是一个平面，非常非常巨大的平面，至少她看不到这个平面的边缘，上下左右都看不见尽头。</p>
+<p class = "firstLineIndent">而在虚空之中，也并非完全的空旷，恩娜看到很多体积非常庞大的物体，密密麻麻的占据了她几乎三分之一的视野。</p>
+<p class = "firstLineIndent">目光在巨构生物中游离，恩娜最终将目光落到了那个由许多圆环构成的巨大物体上。</p>
+<p class = "firstLineIndent">不知道为什么，恩娜在看到这个巨大物体后，一股不知从何而来的巨大恐惧感涌现出来，就仿若是看到了天敌一般。</p>
+<p class = "firstLineIndent">天敌？伟大之神从来就没有天敌这种东西……</p>
+<p class = "firstLineIndent">正当恩娜将自己荒谬的想法挥散，准备去寻找自己失散的同伴之时。</p>
+<p class = "firstLineIndent">忽然感觉呼吸受阻，而后才后知后觉的注意到，不知道什么时候起，她的神之力就无法使用了。</p>
+<p class = "firstLineIndent">“不！这不可能！”</p>
+<p class = "firstLineIndent">失去了神之力，恩娜清楚自己无法再在虚空中存活，她努力的挣扎着想要回到之前的巨大平面内，可惜无济于事，四下没有借力的地方，任何挣扎的动作都无法抵消她远离平面的惯性力。</p>
+<p class = "firstLineIndent">最终，恩娜只能怔怔的盯着平面上那个自己打破的洞口，死不瞑目。</p>
+<p class = "firstLineIndent">超光速生物们姗姗来迟的赶到，并非是它们不能提早赶到，只是不想和这个俘虏正面冲突，万一打坏的话岂不是得不偿失？</p>
+<p class = "firstLineIndent">回收俘虏的继任者们，并没有恢复俘虏的生命活动，只是把刚刚死亡尸体内部，仍然还保持活性的大脑摘除保存。</p>
+<p class = "firstLineIndent">“俘虏死了。”</p>
+<p class = "firstLineIndent">“没关系，还剩下一个。”</p>
+<p class = "firstLineIndent">“这回得做好防范灵域使用的准备。”</p>
+
+<h2>第八百九十三章 伟大之神的怒火</h2><hr/>
+<p class = "firstLineIndent">恩科莱感觉自己的脑子昏昏沉沉，无论是视觉还是听觉，甚至是触觉，各种感知器官的感知能力极端性的模糊，犹如酒醉一般。</p>
+<p class = "firstLineIndent">这种变化让恩科莱很疑惑，它可是伟大之神，根本没有喝醉酒这种事情，它只听说过一些世界中的凡物有这种异状。</p>
+<p class = "firstLineIndent">恩科莱不知道，或许以前不曾有能让他酒醉的东西，但现在有了。</p>
+<p class = "firstLineIndent">说到底，恩科莱终究是一个生物，而继任者们会针对他的生理情况，设计出一种特殊的化合物。</p>
+<p class = "firstLineIndent">在这种继任者们专门调制出来的化学物质作用下，恩科莱的大脑并不能正常性的处理来自身体的各种生物信息，只会感觉被迷乱身心般的飘飘然。</p>
+<p class = "firstLineIndent">朦朦胧胧间，恩科莱似乎听到了些什么声音。</p>
+<p class = "firstLineIndent">“涟漪巨构怎么样？”</p>
+<p class = "firstLineIndent">“运作正常。”</p>
+<p class = "firstLineIndent">“多运行几个，这个俘虏看起来要比刚才的那个要壮不少，说不定干扰灵域的难度会高一些。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“……我不记得体格壮可以对灵域的使用有增幅作用啊？”</p>
+<p class = "firstLineIndent">“这叫‘以防万一’懂不懂？这叫‘小心驶得万年船’懂不懂？这些可都是意志说过的至高真理，叫你去安排一下就赶快去。”</p>
+<p class = "firstLineIndent">“哦……”</p>
+<p class = "firstLineIndent">听不懂语言，但恩科莱可以确定对方是在说话，而且很大可能是在说关于他的事情。</p>
+<p class = "firstLineIndent">一股强烈的随意席卷而来。恩科莱的大脑再也无法承受，整个人彻底沉睡下去。</p>
+<p class = "firstLineIndent">不知过了多久，恩科莱终于苏醒过来，并且恢复精神。</p>
+<p class = "firstLineIndent">恩科莱很快注意到，自己被囚禁在一个金属平台上，他的四肢被金属环给固定束缚，动弹不得。</p>
+<p class = "firstLineIndent">恩科莱试着动用神之力，可是不知道为什么，他的神之力好似消失了一般，根本没有生效，金属平台牢牢的囚禁着他的身体，任凭他如何挣扎都没用。</p>
+<p class = "firstLineIndent">你们是谁？</p>
+<p class = "firstLineIndent">一群凡物的你们怎么敢囚禁一位伟大之神？</p>
+<p class = "firstLineIndent">现在放开束缚，我会仁慈的宽恕你们，只吞噬你们一半的数量……</p>
+<p class = "firstLineIndent">恩科莱释放出自己的神谕，想要命令这群囚禁他的凡物解开自己的束缚，他相信他的宽容会让这些冒犯伟大之神的凡物们感恩戴德。</p>
+<p class = "firstLineIndent">然而，恩科莱下意识地遗忘了一件事，那就是他的神之力不能用，神谕同样也就没什么用。</p>
+<p class = "firstLineIndent">在继任者这边看来，恩科莱这个章鱼头人，醒来之后除了看它们一眼外，就呆呆的什么话都不说，宛若患上自闭症的可怜人。</p>
+<p class = "firstLineIndent">“他怎么不说话？是不是被吓傻了？”有继任者问。</p>
+<p class = "firstLineIndent">“他不说话就难办了，没有语言记录，天机巨构那边没法破译。”</p>
+<p class = "firstLineIndent">它们可还等着这个外星俘虏开口，好进行破译工作，什么话都不说，连个语言文本都没有，难道要靠凭空臆想来破译不成？</p>
+<p class = "firstLineIndent">“怎么让他说话？”</p>
+<p class = "firstLineIndent">继任者们苦恼了，不过好在这种苦恼并未持续多久，有采集者复活转生成的继任者想到了一个好点子。</p>
+<p class = "firstLineIndent">“这个很简单。”</p>
+<p class = "firstLineIndent">继任者跳到了金属平台上，单分子刃充能，直接扎入俘虏的一条臂膀。</p>
+<p class = "firstLineIndent">“啊——！”</p>
+<p class = "firstLineIndent">毫无心理防备，全然没有料想到自己周围这群低贱的凡物居然敢如此冒犯自己这个伟大之神。</p>
+<p class = "firstLineIndent">更别提继任者为了增大痛苦，故意在獠肢上增添了不少的倒刺，当獠肢拔出之际，不少碎肉跟着一起被勾出来。</p>
+<p class = "firstLineIndent">突如其来的剧烈疼痛迫使恩科莱歇斯底里的叫出声，剧烈挣扎。</p>
+<p class = "firstLineIndent">“记录一下，这是痛觉刺激过大时的嚎叫。”</p>
+<p class = "firstLineIndent">“连接上他的神经组织，尝试更多的神经信号刺激……”</p>
+<p class = "firstLineIndent">已经明悟过来的继任者们，顿时知晓自己应该怎么做，安排一些特化自己躯体的同族连接上俘虏躯体的神经，只要给予更多的复杂性的痛苦，它们就可以得到对方的语言。</p>
+<p class = "firstLineIndent">这种行为在恩科莱眼中就两个字——恐怖！</p>
+<p class = "firstLineIndent">“不！住手！你们这群该死的凡物！你们这是在亵渎神明！”</p>
+<p class = "firstLineIndent">这回不再是想高高在上的给凡物下达神谕，巨大的痛苦迫使恩科莱放下高傲，屈辱的以声音的方式喊话。</p>
+<p class = "firstLineIndent">奈何……语言不通！</p>
+<p class = "firstLineIndent">恩科莱不知道他叫嚣的越厉害，继任者们就越会这么做，因为它们的目的就是要优势俘虏说话，然后破译语言。</p>
+<p class = "firstLineIndent">巨大的痛苦并不仅仅只是痛感而已，连接上神经纤维，继任者可以设计性的制造出瘙痒、寒冷、燥热等等刺激反应。</p>
+<p class = "firstLineIndent">上一秒还忽冷忽热，下一秒就感觉万蚁噬身，再或者被丢进刀山火海一般。</p>
+<p class = "firstLineIndent">恩科莱真真切切的体会到了什么叫生不如死。</p>
+<p class = "firstLineIndent">然而，高傲的伟大之神不可能放下姿态，卑躬屈膝的去祈求一堆凡物放过自己，在恩科莱看来，自己和凡物同样用声音进行交流，已经是把姿态放到最低限度。</p>
+<p class = "firstLineIndent">“神之怒火你们无法承受！你们最好现在立刻放开我，我会给予你们最后一丝丝的怜悯，允许你们保留下自己的血脉！”</p>
+<p class = "firstLineIndent">恩科莱愤恨的咆哮，可惜继任者们听不懂他的怪叫，变本加厉的继续刺激他的神经，施加更大的痛苦，甚至尝试给他的大脑制造一个个可怕的幻觉。</p>
+<p class = "firstLineIndent">一套组合拳下来，恩科莱已经想要自杀了，可就在他以类似人类咬舌自尽那种不借助肢体完成自杀的方式进行自杀。</p>
+<p class = "firstLineIndent">继任者们很快又把他给救活，毕竟只是修补伤口而已，又不是什么高端的技术。</p>
+<p class = "firstLineIndent">“该死的凡物们！你们彻底的激怒我！你们永远都不会得到诸神的宽恕！永远！听到了吗！”</p>
+<p class = "firstLineIndent">发疯似的咒骂，恩科莱的恨意已经淹没了自己的理智。</p>
+<p class = "firstLineIndent">身为伟大之神，如今却如此屈辱的受一群凡物的折磨，求生不得求死不能。</p>
+<p class = "firstLineIndent">“宽恕是什么？是可以吃的东西吗？”</p>
+<p class = "firstLineIndent">听到继任者说与自己相同的语言，恩科莱也不深究其中的因果，只当是这群凡物终于因为自己的恨意胆怯。</p>
+<p class = "firstLineIndent">“凡物，我命令你们立刻放开伟大之神，神的怒火是你们无法承受的！”</p>
+<p class = "firstLineIndent">“伟大之神？那是谁？”继任者疑惑的反问。</p>
+<p class = "firstLineIndent">在它们印象里，只抓了两个，一个已经死了，嗯，难道说另外一个俘虏的名字叫‘伟大之神’？</p>
+<p class = "firstLineIndent">“是我！伟大之神指的是我！作为神，我命令你们放开我！”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">恩科莱气急败坏的剧烈挣扎，要不是被束缚在金属平台上，估计能当场把询问的继任者给活撕了。</p>
+<p class = "firstLineIndent">“可是你的怒火我们承受不了，放开你的话，我们该怎么办？”</p>
+<p class = "firstLineIndent">“当然是承受神的怒火！”</p>
+<p class = "firstLineIndent">早就已经恨意滔天的恩科莱想都没想便如此回答，凡物承受神的怒火，这是天经地义理所当然的事情，因此更无需多作思考。</p>
+<p class = "firstLineIndent">“那我们为什么要放开呢？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">恩科莱语塞了。</p>
+
+<h2>第八百九十四章 诸天万界</h2><hr/>
+<p class = "firstLineIndent">努力压制自己的情绪，彻底认清楚现实的恩科莱暗暗发誓，如果自己能够脱困，一定要让眼前这些不知死活的凡物求生不得求死不能，表面上的语气变得柔和，带有诱惑性的口吻劝诱他周围继任者们。</p>
+<p class = "firstLineIndent">“凡物，只要你们愿意放开我，我会封你们为我的专属祭司，想象一下，万千世界可供你们支配，拥有享用不尽的财富，玄奥无比的神术对你们来讲唾手可得……”</p>
+<p class = "firstLineIndent">继任者们彼此交谈起来，恩科莱眼见自己的劝诱很有效果，不由得更加卖力的诱惑继任者。</p>
+<p class = "firstLineIndent">不过，如果他能够听懂继任者们的内容，估计会想给自以为是的自己一巴掌。</p>
+<p class = "firstLineIndent">“处理的怎么样了？”</p>
+<p class = "firstLineIndent">“多亏了他的配合，已经完成对大脑信息的破译，可以杀掉了。”</p>
+<p class = "firstLineIndent">直接读取大脑的信息比较复杂，这需要解码，为了能够解码，继任者才会在语言破译后，继续和俘虏扯皮。</p>
+<p class = "firstLineIndent">既然大脑信息已经完成解码，那也就没必要再继续交谈下去。</p>
+<p class = "firstLineIndent">“伟大之神的许诺是……”</p>
+<p class = "firstLineIndent">带有麻痹效果的化合物在俘虏的体内生效，带有诱惑性的语言无比突兀的戛然而止，大脑在以不破坏活性为前提下，被直接摘除出来，直接读取内部信息。</p>
+<p class = "firstLineIndent">恩科莱他们来自一个叫‘约亚’的种族，章鱼头，近似人类的身躯，背后六对蝙蝠翼，是水陆两栖生物，不过主要生活在水体中，偶尔会在陆地上活动。</p>
+<p class = "firstLineIndent">每个种族都有自己独有的一套对世界，对宇宙的认知模型，约亚族自然也不例外。</p>
+<p class = "firstLineIndent">他们把整个河系叫做诸天万界，每一颗行星就是一个世界，每一个恒星系统就是一个界域，恒星则是界域的界核等等。</p>
+<p class = "firstLineIndent">约亚族自封为神，会到达那些荒芜的星球进行开拓，并在星球上播撒生命，诱使智慧物种诞生。</p>
+<p class = "firstLineIndent">不过这一切并非是出于好意，而是出于利益，他们需要这些智慧物种信仰自己，献祭自己，以此来巩固他们的神位。</p>
+<p class = "firstLineIndent">在诸天万界中，除了约亚族外，还有其他许许多多类似的种族，他们与约亚族类似，放牧种族，掠夺种族，自封为神。</p>
+<p class = "firstLineIndent">那些被作为所有物圈养在世界中的凡物们，统一的将他们称作‘诸神’。</p>
+<p class = "firstLineIndent">当然，也并非全部都是如此，在靠近星系核的区域，盘踞着一些其他与约亚族一样，利用灵域的种族，他们并不自封为神，而是自称‘修行者’。</p>
+<p class = "firstLineIndent">修行者与诸神之间并不和谐，修行者比诸神更加古老，并且自认正统，歧视诸神，在过去，诸神的势力与修行者的势力相比根本不值一提。</p>
+<p class = "firstLineIndent">不过如今，随着在大量世界中圈养自己的凡物眷属，诸神的力量开始与修行者并驾齐驱，超过只是早晚的问题。</p>
+<p class = "firstLineIndent">“诸天万界……”</p>
+<p class = "firstLineIndent">继任者们分析从俘虏脑子里挖掘出来的各种情报。</p>
+<p class = "firstLineIndent">分析得差不多后，继任者们惊异的发现，这个河系中其实并没有它们传统认知当中的那种星际文明，没有飞船，智慧物种存在，但都局限在冷兵器阶段，热兵器有但泛用性并不广，并且也不是单纯的利用化学能，是结合了约亚族编撰的神学所发展起来。</p>
+<p class = "firstLineIndent">基于约亚族编撰神学发展起来的科技对约亚族没有任何威胁，这些热兵器在约亚族面前只需要一个想法，就能够使其失效，就犹如真正的神明否决掉化学能，这是继任者们解读俘虏记忆时知道的事情。</p>
+<p class = "firstLineIndent">至于修行者那边，继任者们不清楚，两颗大脑都是来自‘诸神’，没有来自‘修行者’的大脑可供解读。</p>
+<p class = "firstLineIndent">但即便如此，继任者们也可以近乎百分百的确定，这个河系中并不存在像它们这样单纯依靠物质发展起来的文明。</p>
+<p class = "firstLineIndent">“河系中没有文明，无论是修行者还是诸神，都不会允许文明诞生，至少在这样的大环境下，真正的科学是不会出现。”</p>
+<p class = "firstLineIndent">“也不能这样说，科学是方法，严格意义上讲，诸神、修行者所使用的的力量也是科学，只不过这种科学是建立在灵域的基础上。”</p>
+<p class = "firstLineIndent">有个体持否定态度，因为当前河系中的一切，仍旧是基于客观事实发展形成，遵循着客观的规律，只是看起来比较魔幻。</p>
+<p class = "firstLineIndent">“同样是使用灵域，为什么母河系那边却没有类似这种？”有个体不解的问。</p>
+<p class = "firstLineIndent">这个问题并不难回答，很快就有个体给出解释。</p>
+<p class = "firstLineIndent">“因为有修正机关的压制，那个东西盘踞在母河系，哪个第七阶层敢自封为神？敢这样大范围的播种生命，占领星球？这样一意孤行的第七阶层都灭亡了。”</p>
+<p class = "firstLineIndent">“这倒也是。”</p>
+<p class = "firstLineIndent">“我更好奇诸神和修行者的具体实力，是否会对族群构成危险。”</p>
+<p class = "firstLineIndent">统领集体的集群率领者打断了同族们的扯淡，把话题的焦点牵引到更加值得它们集体关注的地方。</p>
+<p class = "firstLineIndent">“这个嘛……约亚族将力量层次分为四个阶级，由强到弱依次是，唯一、不朽、伟大、参悟，根据我们俘虏到的两个约亚族，是伟大级，也就是它们自己说的伟大之神。”</p>
+<p class = "firstLineIndent">“把这两个伟大之神的实力对比母河系中第七阶层的力量，就能很容易的对当前河系中，这前两个阶级的实力有个直观性的了解。”</p>
+<p class = "firstLineIndent">唯一、不朽、伟大、参悟，四个级别，每一个都是凡与神的天壤之别。</p>
+<p class = "firstLineIndent">参悟级，是给眷属划分，约亚族那么大的疆域，当然不可能事事亲为，于是就会在圈养的眷属中挑选一些代言人，给予他们一些力量来帮助自己统治世界。</p>
+<p class = "firstLineIndent">约亚族中正常来讲不会有人沦落到这一级别，只有那些犯下大罪，受到约亚之王制裁的人才会降级到参悟。</p>
+<p class = "firstLineIndent">伟大级，就是约亚族普遍的力量层次，个体一出生就有这样的力量，可以依靠灵域安然无恙的屹立在虚空中，并且可以任意移动，在星球上呼风唤雨、振山撼地、划江成陆、翻江搅海等等。</p>
+<p class = "firstLineIndent">后两个级别还有待考证，目前只能确定约亚族拥有一个不朽级的个体作为统治者。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">继任者们谈到伟大级的力量，有个体表达自己的看法。</p>
+<p class = "firstLineIndent">“两个俘虏大概相当于第七阶层的作战体，不过感觉还要更弱一些，这两个伟大之神没有瞬移能力，也没有那种可以当光炮释放的光剑，俘虏在脱困战斗中只表现出了不同寻常的怪力，这种第七阶层的作战单位也有表现过。”</p>
+<p class = "firstLineIndent">是骡子是马，在遛完后都清楚了，两个约亚族对上两个第七阶层的作战单位，百分百是要被屠杀，至少在它们看来是如此。</p>
+<p class = "firstLineIndent">“那不是比第七阶层还弱很多？这不对吧？约亚族又没有修正机关压制发展，为什么会比被压制发展的第七阶层弱？”</p>
+<p class = "firstLineIndent">“……或许修正机关在某种意义上讲，还起到了一点鞭策的作用？”</p>
+<p class = "firstLineIndent">集群率领者打断了它们，“没必要纠结这些，既然已经搞清楚状况，就没必要理会这些诸神，专心完成族**予的任务。”</p>
+<p class = "firstLineIndent">此时此刻，在遥远的某颗恒星系统中，恒星近轨的八面体建筑中，那坐于黄金宝座上的约亚之王震怒不已。</p>
+<p class = "firstLineIndent">约亚之王感知到了自己派遣出发的恩科莱、恩娜二人都已经先后陨落，而且死后连尸体都不曾残留，以致于他无法定位。</p>
+<p class = "firstLineIndent">漫长的岁月，已经很久没有人敢像现在这样挑衅他，挑衅神国大世界。</p>
+<p class = "firstLineIndent">“神侍莫格，出列。”</p>
+<p class = "firstLineIndent">“听候您的调遣！”</p>
+<p class = "firstLineIndent">一名体格比恩科莱还要壮实的约亚人站了出来，一身的银灰色铠甲，彰显出穿戴者的勇武。</p>
+<p class = "firstLineIndent">“有未知的东西在侵扰神国，派遣出发的恩科莱、恩娜两人，都已经死亡。”</p>
+<p class = "firstLineIndent">“死亡？！敌人是谁？难道是中央诸天那边，那些以‘正统’自居的修行者？”</p>
+<p class = "firstLineIndent">听闻约亚之王的话语，恭敬行礼的莫格明显一愣，随即意识到了事情的严重性，如今的大局势，诸神联合彼此不会内斗，会搞出这种事情的对象就只剩下修行者一方。</p>
+<p class = "firstLineIndent">若真的是修行者一方所为，就将是非常严重的后果，这意味着一场波及诸天万界的‘神战’即将开始。</p>
+<p class = "firstLineIndent">想到‘神战’的可怕，神侍莫格不由得心中一凛。</p>
+<p class = "firstLineIndent">黄金宝座之上，约亚之王抖动的触须中，传出幽幽地声音。</p>
+<p class = "firstLineIndent">“还不确定，所以本王希望你能去搞清楚对方的真面目。”</p>
+<p class = "firstLineIndent">“本王赐予你神令，必要时可以调动附近的神军协助你作战。”</p>
+<p class = "firstLineIndent">约亚之王把一枚有卡车那么大的金色令牌交给莫格，然后道，“去吧，找出那些敢于侵扰神国的敌人，能杀则杀，不能杀也要把消息带回来。”</p>
+<p class = "firstLineIndent">“遵从您的意志！”</p>
+<p class = "firstLineIndent">得到约亚之王给予的任务，莫格并不多做停留，起身离开，查找恩科莱、恩娜他们死亡的原因。</p>
+
+<h2>第八百九十五章 舒心一笑</h2><hr/>
+<p class = "firstLineIndent">“还剩下十分之六的恒星数量，解决掉剩余的这部分，然后就是约亚族盘踞的那些恒星系统，整个区域的物质采集计划就可以彻底完成，我们应该会是最快完成计划的那一批。”</p>
+<p class = "firstLineIndent">超巨星质量生物看了看它们扩张的进度，想着它们会不会是第一个完成自己负责区域的那一批。</p>
+<p class = "firstLineIndent">然而，才刚有这样的想法，同族就给它泼了一盆冷水。</p>
+<p class = "firstLineIndent">“我觉得有必要提醒你一下，刚才有其他区域的同族派遣信使生物过来传递消息，已经有同族在几十年前就完成了整片区域的扩张，所以我们并不会是最快。”</p>
+<p class = "firstLineIndent">“啥？这怎么可能，我们可是抓紧了每一分每一秒，为什么会落后这么多？”</p>
+<p class = "firstLineIndent">超巨星质量生物不信，它可没有偷懒，行动也没有遭遇什么太过浪费时间的阻碍，就算有差距，那也不可能被其他区域的同族们赶超这么多。</p>
+<p class = "firstLineIndent">“这个主要还是方法的问题，那边的同族不像我们这样，要让超巨星质量生物到各个恒星系统附近行动。”</p>
+<p class = "firstLineIndent">说着，继任者将那份信使生物送来的信息递送给超巨星质量生物。</p>
+<p class = "firstLineIndent">“它们把自己负责的那片区域继续划分成许多份，超巨星质量生物每进入一个小区域，就会通过观测手段了解小区域内恒星系统的概略情况。”</p>
+<p class = "firstLineIndent">“如果行星数量足够，便只派出超光速生物，如果行星数量不够就加派物质巨构和降温巨构，超巨星质量生物并不需要针对每个恒星系统进行高精度的侦测。”</p>
+<p class = "firstLineIndent">“每次超光速之后，它们都可以通过这样的方式，一次性的对周围复数的恒星系统进行扩张，比我们这样一颗颗恒星系统的抵达、侦测、扩张要简单很多。”</p>
+<p class = "firstLineIndent">尽管超巨星质量生物的超光速很快，可诸如侦测恒星系统环境、繁琐的一个个恒星系统的抵达、针对恒星系统行星数量多寡的不同分配，这些环节上都会浪费时间，一个两个恒星系统还看不出来明显差距。</p>
+<p class = "firstLineIndent">可数量增多以后，效果就明显了。</p>
+<p class = "firstLineIndent">“我觉得我们有必要改变一下模式，提升一下效率。”</p>
+<p class = "firstLineIndent">个体提议，像提升效率这种提议，自然是没有哪个继任者会提出异议。</p>
+<p class = "firstLineIndent">继任者们的扩张速度开始有显著性的提升。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“你说怪事？”</p>
+<p class = "firstLineIndent">莫格并未和恩科莱他们想到一块，他奔走各个不同的世界，打算从诸多世界之主那里寻求突破口——他觉得，除非是根本不存在的事物，否则必然会留下可供追寻的线索。</p>
+<p class = "firstLineIndent">这样的想法，如果恩科莱他们还活着，肯定嗤之以鼻。</p>
+<p class = "firstLineIndent">但结果，还真被他给蒙对了，从一个世界之主那里，莫格获知到了临近界域的异样。</p>
+<p class = "firstLineIndent">“是的，临近界域似乎出现了某种异状，听祭司们说，是看不见每隔一个纪元就能遮挡住界核一部分的留下阴影的世界。”</p>
+<p class = "firstLineIndent">“因为这件事，以致于他们惊慌四措的跑来问我是不是要降下神罚。”</p>
+<p class = "firstLineIndent">世界之主回忆着前段时间的事情，那时，自己的那些祭司们惊慌四措的样子，搞得他也是一头雾水。</p>
+<p class = "firstLineIndent">而这件事，是在未知之物光顾过以后发生的，很难不让人觉得它们之间没有联系，因此，世界之主加入了自己的猜测，告知莫格。</p>
+<p class = "firstLineIndent">“这是在未知之物离开后发生的，我在想，这二者是否存在着某种关联。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“我已知晓，现在就动身去看看，如果猜测证实，王会记住你的功劳，世界之主。”</p>
+<p class = "firstLineIndent">“不不不，能为神侍效劳，能为王的任务效劳，我是乐意至极。”</p>
+<p class = "firstLineIndent">交谈结束，莫格动身离开世界，屹立于虚空之中，拿出了从约亚之王那里获得的金令，向虚空召唤。</p>
+<p class = "firstLineIndent">“神军召集！”</p>
+<p class = "firstLineIndent">虚空撕裂，一个个平台从中脱离，数以亿计的约亚族战士站于平台之上，肃杀之气转瞬之间淹没这片界域。</p>
+<p class = "firstLineIndent">“喝！”</p>
+<p class = "firstLineIndent">莫格满意的看着气势汹汹的神军，自己踏上一个平台，用金令遥遥指向临近的界域。</p>
+<p class = "firstLineIndent">“出发！弗洛界域！”</p>
+<p class = "firstLineIndent">“喝！”</p>
+<p class = "firstLineIndent">一个个平台重新进入裂隙，这方界域再次恢复了平静。</p>
+<p class = "firstLineIndent">此时此刻，那个恒星系统中的继任者们还在忙碌着资源的开采。</p>
+<p class = "firstLineIndent">“动作快点！我们这里缺降温的固态氦！”</p>
+<p class = "firstLineIndent">“反物质！反物质！急需！”</p>
+<p class = "firstLineIndent">“快金属氢运过来！却构建材料！”</p>
+<p class = "firstLineIndent">“来了！来了！马上到！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">无线电此起彼伏，有条不紊，秩序中带着繁忙，这就是开采资源的继任者们。</p>
+<p class = "firstLineIndent">恒星近轨，虚空突兀的被撕裂，一个个平台从裂隙中穿过。</p>
+<p class = "firstLineIndent">“神军听令！诛杀敌人！”</p>
+<p class = "firstLineIndent">“喝！”</p>
+<p class = "firstLineIndent">在巨构生物们还有继任者们懵逼的注视下，约亚族的神军对恒星近轨的物质巨构发起了攻击。</p>
+<p class = "firstLineIndent">“敌袭！入侵！”</p>
+<p class = "firstLineIndent">“敌人使用的是灵域！我们的涟漪巨构呢？快用涟漪巨构！”</p>
+<p class = "firstLineIndent">“跟资源采集没关系，所以没构建！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">约亚族的神军可不管继任者们有没有准备好，恒星周围的物质巨构们被追着打，整个恒星系统内物质采集序列都被打乱。</p>
+<p class = "firstLineIndent">不过，由于没有超光速，约亚族的神军并不能追上物质巨构，追着打也只是单纯意义上的追责打，对物质巨构而言几乎可以视作没有杀伤性。</p>
+<p class = "firstLineIndent">正当战斗的超光速生物们准备把这些来捣乱的约亚族一锅端掉之时，却遭到了集群率领者的阻止。</p>
+<p class = "firstLineIndent">“还傻等什么？计划原则你们忘了？”</p>
+<p class = "firstLineIndent">“可我们又不是打不过。”</p>
+<p class = "firstLineIndent">“这是打不打得过的问题吗？”集群率领者反问。</p>
+<p class = "firstLineIndent">“全体进入超光速！坐标……”</p>
+<p class = "firstLineIndent">恒星系统内的继任者们集体进入超光速，这在约亚族的眼中，就是凭空性的消失，于是彻底没了目标。</p>
+<p class = "firstLineIndent">眼见自己率领的神军，在这次突袭下居然没有获得什么战果，让敌人逃掉，莫格不由得冷哼。</p>
+<p class = "firstLineIndent">“哼！居然让他们逃了！”</p>
+<p class = "firstLineIndent">“神军听令！回程！”</p>
+<p class = "firstLineIndent">不想在这片蛮荒界域多待的莫格给神军下令。</p>
+<p class = "firstLineIndent">“喝！”</p>
+<p class = "firstLineIndent">回到之前离开的界域，神侍莫格一边享用着供奉，一边陷入深沉的思考。</p>
+<p class = "firstLineIndent">“那些究竟是什么东西？”</p>
+<p class = "firstLineIndent">“那些与修行者不同，也不像是诸神中的任何一支……”</p>
+<p class = "firstLineIndent">这次的战斗，可以说让莫格是送了口气，因为他可以确定未知之物并非是来自修行者，神战不会因此爆发。</p>
+<p class = "firstLineIndent">作为战士，莫格当然不可能怯战，可神战的爆发有可能会威胁到整个约亚族，这不能不让他担忧，所以，神战能不爆发是最好不过。</p>
+<p class = "firstLineIndent">“不管怎么样，还是应当立即将消息告知王，消除王的猜忌，以免引发神战。”</p>
+<p class = "firstLineIndent">“幸亏只是一堆对神国毫无威胁的东西，而不是修行者。”</p>
+<p class = "firstLineIndent">神侍很舒心的笑了，因神战而焦虑的他终于能够放开对神战的担忧。</p>
+<p class = "firstLineIndent">虽然还没有搞清楚那些未知之物是什么，但从那些未知之物在遇见他们就立即逃跑这点上看，神侍并不觉得未知之物能给神国造成多么大的威胁。</p>
+<p class = "firstLineIndent">退一步说，就算有威胁，难道还有能毁天灭地，波及诸天万界的神战，对约亚族更具威胁性吗？</p>
+
+<h2>第八百九十六章 虫洞通讯</h2><hr/>
+<p class = "firstLineIndent">思还有永续它们负责的区域，已经完成了对恒星系统的部署。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">类似约亚族那片区域的情况，永续它们也遭遇到诸神中的一个种族，这个种族盘踞着数百万个恒星系统，也同样是永续它们剩余下来，负责区域内未曾进行部署的恒星系统。</p>
+<p class = "firstLineIndent">剩余下来的这些恒星系统，永续它们当然不可能轻易放弃，毕竟那是数百万的量级，百万颗恒星的质量可不是一个小数目。</p>
+<p class = "firstLineIndent">但如果贸然的夺取这数百万个恒星系统，永续它们担忧会像当初的门世界那样，打趴一个又冒出一个，没完没了，族群可没那么多时间用来浪费，意志只给它们争取到了十万年的时间。</p>
+<p class = "firstLineIndent">要夺恒星系统，没问题。</p>
+<p class = "firstLineIndent">但要悄无声息、要迅如光速、要在目标还未反应过来是怎么回事以前直接性的消亡，并且不走漏任何风声。</p>
+<p class = "firstLineIndent">因此，永续它们在部署完成后，便开始潜藏集群，暗中收集关于负责区域内诸神种族的情报。</p>
+<p class = "firstLineIndent">“美洛族，平均体型在八十五米，并无固定外观，物质主体是由一个眼珠以及一根神经纤维的结构，通过使用灵域，终生驾驭着一团等离子体作为外壳，用以保护美洛族脆弱的物质主体……”</p>
+<p class = "firstLineIndent">永续浏览着从同族那里获得，关于它们负责这个区域里，诸神种族的相关情报。</p>
+<p class = "firstLineIndent">“……根据对眼珠的结构解析，内部是复杂的神经矩阵，由此可以判断，眼珠既是视觉器官，也是一个承载思维的大脑……”</p>
+<p class = "firstLineIndent">“……如果使用涟漪巨构，族群并不需要任何打击手段就能让美洛族自灭，失去灵域使用的美洛族会因为自身周围支配的等离子体暴走而死亡……”</p>
+<p class = "firstLineIndent">“评价，从来没见过这么弱小的智慧生物……”</p>
+<p class = "firstLineIndent">浏览完情报，永续呆了呆，“确实，族群从暝起航开始，直到现在，我都从来没见过这么弱的智慧物种。”</p>
+<p class = "firstLineIndent">并非是轻视，而是单纯看到未曾见过和料想到的事物，所表现出的惊叹，对方可不是灵域生物，能成长到如此畸形脆弱的模样完全是过度依赖灵域导致的结果，算是给继任者们的知识库更新了一下。</p>
+<p class = "firstLineIndent">思提醒“那是在我们看来，对于那些被圈养起来的智慧物种而言，美洛族强大的形同自然天灾。”</p>
+<p class = "firstLineIndent">闻言，永续沉思了一下。</p>
+<p class = "firstLineIndent">“这个河系的大环境，别说诞生可以替补族群的文明，连寻常的文明都很难孕育出来，也就是说，这个河系的价值就只剩下物质了。”</p>
+<p class = "firstLineIndent">“或许我们可以更加肆无忌惮一点？”</p>
+<p class = "firstLineIndent">永续的提议，思干脆性的拒绝了，它这样冒进的行为，在思看来太过冒险，虽然有价值，但不足以让族群打乱目前的计划。</p>
+<p class = "firstLineIndent">“还是算了，他们会反抗，还是以如今的方式最为稳妥。”</p>
+<p class = "firstLineIndent">永续想了想，也不反对，确实目前的方式对族群最为稳妥。</p>
+<p class = "firstLineIndent">不过，经由思这么一提，永续想到了除诸神外的另外一个河系内的大势力。</p>
+<p class = "firstLineIndent">“但是我们对修行者还不了解。”</p>
+<p class = "firstLineIndent">原本的计划就是先把没有人占领的恒星系统给占据，然后收集河系中各文明的情报，对族群有价值的就留下，没价值的就一口气瞬间毁灭。</p>
+<p class = "firstLineIndent">不必详尽的了解，但起码得有一个概略性的了解，由此才能评估对方的价值是否为族群所用。</p>
+<p class = "firstLineIndent">“这点我也注意到了，那边回来的信使生物说，它们遭遇了一些麻烦，正在被追杀，导致整体进度很缓慢。”</p>
+<p class = "firstLineIndent">“那些修行者能力在诸神之上？”</p>
+<p class = "firstLineIndent">永续大感意外，由于诸神种族的关系，不可避免的让永续升起轻视这个河系内各种族的想法。</p>
+<p class = "firstLineIndent">没办法，同样是用灵域，诸神种族比第七阶层弱上了太多。</p>
+<p class = "firstLineIndent">“修行者似乎掌握着类似第七阶层的那种大尺度瞬移，他们的机动性是诸神所不能比的，所幸，修行者的数量稀少，在逃窜的过程里，它们灭杀了不少，现在压力减轻了很多。”</p>
+<p class = "firstLineIndent">听了思的回答，永续不再纠结这件事上，既然那边的同族可以应付，族群就没必要因为它们而改变部署。</p>
+<p class = "firstLineIndent">等其他区域的问题彻底解决，空余出的力量再去增援那边的同族也不迟。</p>
+<p class = "firstLineIndent">倒是这件事，让永续想到了另一件事。</p>
+<p class = "firstLineIndent">“对了，思，难道就没有其他高效的通讯方式？单纯依靠现在的信使生物作为超光速通讯手段，不可能满足族群未来的需求。”</p>
+<p class = "firstLineIndent">“我就知道你会提这个，已经有了成品。”</p>
+<p class = "firstLineIndent">言罢，思向永续展露出一个物体，这个物体很小，有成年人巴掌那么大，那是一根很细的圆环，圆环的中央则是一个米粒大小的黑球。</p>
+<p class = "firstLineIndent">“这是什么？”永续问。</p>
+<p class = "firstLineIndent">思拿出的这个东西，结构很简陋，正因为如此简陋以致于永续一下子没能联想到超光速通讯上。</p>
+<p class = "firstLineIndent">“一看就知道了，引力环。”思理所当然地回答。</p>
+<p class = "firstLineIndent">“不，我是说这个环中央的那个黑色的小球，别跟我说这是个微型黑洞。”</p>
+<p class = "firstLineIndent">永续的目光落在圆环的中心，犹如细丝的圆环能够保持刚性强度，并不难让永续推测出是极端小化的引力环。</p>
+<p class = "firstLineIndent">但引力环中央的小黑球，永续看不懂。</p>
+<p class = "firstLineIndent">思讲解，“说它是黑洞，有点正确，但又不对。”</p>
+<p class = "firstLineIndent">“小球是个微型虫洞，虫洞可以绕过光速壁垒实现‘超光速’。”</p>
+<p class = "firstLineIndent">“虫洞是成对出现，利用这一点，就可以制造出两个可以点对点通讯的移动终端。”</p>
+<p class = "firstLineIndent">永续好奇，“你是怎么做到让虫洞维持在这么小的体积？”</p>
+<p class = "firstLineIndent">“关键还是负质量，万有斥力的时空场让难度降低了很多。”</p>
+<p class = "firstLineIndent">“万有斥力……所以外面才需要有一个引力环……”永续若有所悟。</p>
+<p class = "firstLineIndent">这样一来逻辑就通了，虫洞需要负质量来维持，所以外面就套着个引力环制取负物质来填充其中。</p>
+<p class = "firstLineIndent">“这将会是能引发族群再次变革的新技术，信使生物的最大问题还是延时，并且各个集群需要了解彼此的位置和动向，不然信使生物点对点的传递信息根本不可行，如今，这个问题总算是能够得到解决。”</p>
+<p class = "firstLineIndent">永续因为思拿出的成果而喜悦，因为这个技术成果可以解决族群中很多问题，随着族群活动尺度的增大，通讯技术的提升是必要且迫切的。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“别高兴的太早，有利就有弊，虽然并不像破坏你的好心情，但我还是要提醒你，虫洞的连接不仅仅只是单纯的信息，更具有物理传递的特性。”</p>
+<p class = "firstLineIndent">思阻止了永续的喜悦，作为开发者，它有必要讲清楚技术中的利弊，思可不想因为自己的技术导致族群陷入危机。</p>
+<p class = "firstLineIndent">“如果将来族群也掌握负质量技术，并且俘获族群的某一支集群得到微型虫洞，就可以通过给微型虫洞加入大量的负质量，扩大虫洞，顺着一个个虫洞来摧毁掉整个族群，其中的严重性我希望你能清晰的了解。”</p>
+<p class = "firstLineIndent">“……没办法解决？”永续问。</p>
+<p class = "firstLineIndent">“可以通过给虫洞通入正质量，利用正质量的时空场是虫洞坍缩，由此达成切断虫洞的目的，但……这仍旧不能根本性的解决这个问题，如果集群来不及切断虫洞，族群就不得不面临被一锅端的危险。”</p>
+<p class = "firstLineIndent">“而且这还不是我最担心的，我最担心的是类似当初伪造指令的情况，这种打击手段的辐射速度完全取决于文明整体的信息通讯上限，虫洞通讯的使用，必然会有这样的风险在其中。”</p>
+<p class = "firstLineIndent">经过思的讲解，永续的兴奋逐渐冷却，不过对于新通讯技术的普及和应用，永续并未有多动摇。</p>
+<p class = "firstLineIndent">“即使知道，族群也不能够放弃，这样的通讯是族群继续向前迈进所必须的技术。”</p>
+<p class = "firstLineIndent">永续安慰思，“别这么担忧，有些时候就需要果断一点，意志说过，什么事情都瞻前顾后的话那就不用发展了，办法是想出来的，集合万千同族的智慧在辅以时间加持，总能找出解决这些风险的办法。”</p>
+<p class = "firstLineIndent">“……你说得对。”</p>
+
+<h2>第八百九十七章 虫道网络</h2><hr/>
+<p class = "firstLineIndent">“永续？”</p>
+<p class = "firstLineIndent">正在制取可用虫洞的继任者们，注意到了永续的到来。</p>
+<p class = "firstLineIndent">永续回答，“我好奇虫洞通讯的制造，所以来到这里看看。”</p>
+<p class = "firstLineIndent">“顺带，想要你们给我科普一下虫洞通讯的制造原理。”</p>
+<p class = "firstLineIndent">“没问题。”</p>
+<p class = "firstLineIndent">虚空之中，一个巨大的引力环，几支全副武装的超光速生物驻守在周围。</p>
+<p class = "firstLineIndent">这个是巨大的引力环结构，就是继任者们制取可用虫洞的工具，引力环将大量负质量从能层制取出来的，然后引导汇聚到中心。</p>
+<p class = "firstLineIndent">一边制造可用虫洞，继任者一边向永续讲解。</p>
+<p class = "firstLineIndent">“虫洞并不需要制造，时空每时每刻都在自然性的生成虫洞，只不过它们都太小，比夸克还要小很多倍，并且存在的时间也并不长，只是刚刚形成的一瞬间就坍塌掉，因此很难对宏观构成影响。”</p>
+<p class = "firstLineIndent">“而负质量的时空场可以阻止虫洞的坍塌，这就为制造可利用虫洞提供了基础。”</p>
+<p class = "firstLineIndent">继任者讲解的同时，一个虫洞在圆环的中心成型，体积很小，只相当于人类指甲盖百分之一的体积，人类肉眼不可能看不见。</p>
+<p class = "firstLineIndent">……不过，也就只是人类肉眼看不到而已，继任者们可不是。</p>
+<p class = "firstLineIndent">联通两地的虫洞，必然会外散红外微波，不是它自身释放的辐射，而是它联通另一端的宇宙背景微波，不同区域的宇宙背景微波会有差异，通过对红外微波的观测，继任者们很容易就发现了虫洞。</p>
+<p class = "firstLineIndent">虫洞在成型的第十秒后，继任者们主动灌注正质量，将这个虫洞破坏掉。</p>
+<p class = "firstLineIndent">对此，永续感到疑惑不解，便询问，继任者回答。</p>
+<p class = "firstLineIndent">“通过负质量扩充并维持的虫洞并非是全部都可以利用，因为这些虫洞都是自然生成，从这里连接到宇宙的尽头都有可能，而虫洞通讯需要捕获到虫洞的两端，所以我们会在虫洞成型后，发射一段伪装成无序杂波的无线电信号，然后等待十秒。”</p>
+<p class = "firstLineIndent">“十秒以内，如果能接收到那段伪装成杂波的无线电信号，就说明虫洞的另一端距离我们在十光秒的范围内，循着信号源就可以捕获到虫洞的另一端。”</p>
+<p class = "firstLineIndent">“为什么是等待十秒？光分的话，对已经掌握超光速的我们而言距离也算很近。”</p>
+<p class = "firstLineIndent">永续还是不太明白为什么继任者会执着于十秒的限制，这并不是效率最高的方式，如果以光分作为限制，范围可以扩大很多，效率也会因此而提升。</p>
+<p class = "firstLineIndent">面对疑问，继任者解释。</p>
+<p class = "firstLineIndent">“我们不制造虫洞，只是维持和或扩大虫洞，不使虫洞坍缩掉，虫洞连接的另一端完全随机，这是一个潜在的威胁因素，如果虫洞的另一端存在着对族群威胁极大的未知恐怖，我们维持并扩大虫洞的行为就是在背叛。”</p>
+<p class = "firstLineIndent">“为了最大可能的削减隐患，便有了十秒的规定，我们情愿浪费的物质资源多一点，制取耗费更多的时间，也不能让危险系数提升。”</p>
+<p class = "firstLineIndent">为了避免把虫洞开到宇宙级恶意文明那边，所以有了十秒的限制，虽然这种可能性很低，但并不能杜绝掉这种可能性的存在。</p>
+<p class = "firstLineIndent">只要那个宇宙级恶意文明技术层次足够高，并且想要毁灭阿米巴，让虫洞维持分钟级的开启时间是极为的危险。</p>
+<p class = "firstLineIndent">彻底理解的永续赞许的看了几眼继任者们。</p>
+<p class = "firstLineIndent">“原来如此，是我没考虑全面，你们做得很对。”</p>
+<p class = "firstLineIndent">想了想，永续又询问了另外的一个问题，这也是它来这里观摩可用虫洞制造的另一个目的。</p>
+<p class = "firstLineIndent">永续坦言，“……我还有个问题，如果把虫洞通讯扩大到母河系中那些星门尺寸，维持起来有难度吗？还需要哪些技术才能办到？”</p>
+<p class = "firstLineIndent">“这个没太大的难度，也就只是牵引虫洞和对负质量把控的问题……”</p>
+<p class = "firstLineIndent">继任者们回复的话语渐熄，颇为惊异的看向永续。</p>
+<p class = "firstLineIndent">“永续，难道你是打算让虫洞通讯，不仅承担信息沟通的任务，还要承担物质联通的任务？”</p>
+<p class = "firstLineIndent">永续大大方方的承认，它向继任者们说明自己的构思。</p>
+<p class = "firstLineIndent">“这正是我的想法，一个可以携带并且可以控制大小规模的虫洞，怎么能只是单纯的用来通讯？当实现了物质性的联通后，各个集群就会融汇成一个集体，不再呈现出割裂的情况，每个集群的物质资源都可以共享。”</p>
+<p class = "firstLineIndent">“如果某个集群陷入绝境，整个族群都可以凭借着携带的虫洞，提供集体性的支援，一直以来，整个族群都因为巨大尺度的壁垒而无法像在暝上那样集合整个族群力量去做事情，如今有了虫洞通讯，这个困扰我已久的问题终于能够得到解决。”</p>
+<p class = "firstLineIndent">“不对，不应该叫虫洞通讯，名字应该改一下，叫‘虫道网络’怎么样？”</p>
+<p class = "firstLineIndent">永续在来之前，连自己的这个新构思的名称都想好了。</p>
+<p class = "firstLineIndent">“我们并不打算纠结名字，但这么做的话其中的危险性，永续你清楚吗？”</p>
+<p class = "firstLineIndent">注意到这样做的隐患，虽然不想泼永续冷水，但为了族群的未来，继任者们还是这么做了。</p>
+<p class = "firstLineIndent">“我知道，虫洞有可能被敌人反过来利用，对族群整体构成严重威胁，尤其是在物理性的联通构建后。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“但我们也必须要清楚，能够击败我们的敌人会很强大，如果敌人掌握着比族群更加成熟的虫洞技术，哪怕是加以防范的虫洞通讯，也无法百分百保证敌人不能利用，只是把族群的敌人假想成同族群一个层次是不行的。”</p>
+<p class = "firstLineIndent">听闻永续的回答，继任者们彼此交流了一下各自的想法后，不得不承认永续说的没错，只要敌人实力强大于族群中的某一支集群，能够做到瞬间袭杀某支集群，俘获虫洞通讯，并且拥有足够成熟的虫洞技术。</p>
+<p class = "firstLineIndent">纵然虫洞通讯被限制成只能进行信息通讯，也无法阻止敌人的顺藤摸瓜。</p>
+<p class = "firstLineIndent">不能物理性的穿过虫洞，只能传递信息？</p>
+<p class = "firstLineIndent">改一下不就好了？</p>
+<p class = "firstLineIndent">“明白了。”</p>
+<p class = "firstLineIndent">想通的继任者们决定试着在这方面努力一下，尝试物理性的让虫洞联通，让永续的‘虫道网络’的构想成为现实。</p>
+<p class = "firstLineIndent">永续花还未说话，它继续向继任者们表明自己的想法。</p>
+<p class = "firstLineIndent">“而且，如果完成了物理性的联通，我所构想的一种打击手段也就能够实现。”</p>
+<p class = "firstLineIndent">“打击手段？”</p>
+<p class = "firstLineIndent">继任者们微微一怔，它们没想到这里面还有打击手段。</p>
+<p class = "firstLineIndent">“修正机关曾经使用过，把虫洞作为‘炮口’，针对目标进行高能打击，基于这个基础，我就在想，能不能把一个恒星包裹起来作为炮弹，闭环的时空结构作为炮膛，而虫洞作为这门时空大炮的炮口，由信使生物那样小体积的个体牵引。”</p>
+<p class = "firstLineIndent">“由此，也就不需要再携带什么反物质、黑洞炸弹，信使生物只需要牵引小型虫洞，并锁定目标，然后将发射指令通过虫洞传递到闭环时空，让后方的个体们扩大虫洞，引发超新星爆发。”</p>
+<p class = "firstLineIndent">“闭环时空只有虫洞这一个出口，无论光如何运动最终都必然会朝着虫洞口宣泄……”</p>
+<p class = "firstLineIndent">顺着永续的思路往下推导，继任者们彻底性的明白了永续想要说明的事情，虫洞技术的应用，可不仅仅只是它们想的通讯，甚至还囊括了军事、内部资源流通等领域。</p>
+<p class = "firstLineIndent">尤其是军事，按照永续的想法，一只信使生物发挥出的威力，就足够匹敌一支集群，甚至还要在这之上。</p>
+<p class = "firstLineIndent">集群的后勤可以被耗光，牵引虫洞的信使生物，可以源源不断的从虫洞中获取后勤补给，资源在某种意义上讲，说是无穷无尽也不为过。</p>
+<p class = "firstLineIndent">还有永续构想的打击手段，继任者们一时间不知道该说什么好。</p>
+<p class = "firstLineIndent">“这……威力是不是过剩了？”</p>
+<p class = "firstLineIndent">超新星爆发汇聚到一个小范围后释放，一发炮击横贯几十光年恐怕都不是问题！</p>
+<p class = "firstLineIndent">更主要的是，这不是实体炮击，而是光束类打击手段。</p>
+<p class = "firstLineIndent">“打击手段从来都不嫌多。”永续回答。</p>
+
+<h2>第八百九十八章 情报先行</h2><hr/>
+<p class = "firstLineIndent">超光速生物抵达一个恒星系统的外围，距离柯伊伯带三光分左右。</p>
+<p class = "firstLineIndent">“下一次超光速，我们就会到达目的地。”</p>
+<p class = "firstLineIndent">“交给你的任务，记住了吗？在复述一遍。”</p>
+<p class = "firstLineIndent">闻言，超光速生物体内的其他部位传递出生命场信息。</p>
+<p class = "firstLineIndent">“潜入星球中，更进一步的了解诸神种族，了解整个河系本土种族的势力分布情况，将这些情报收集汇总后传递回族群，帮助族群悄无声息的吞噬掉他们。”</p>
+<p class = "firstLineIndent">“很好，出发吧。”</p>
+<p class = "firstLineIndent">获悉答复的超光速生物进入到超光速状态，周围光景一阵扭曲，眨眼的时间里，它们便已经到达了目的地的附近。</p>
+<p class = "firstLineIndent">一颗拥有复杂生态圈，外观近似地球，拥有广袤大陆和碧蓝海洋的星球。</p>
+<p class = "firstLineIndent">到达目的地附近的超光速生物，仔细地观察自己周围情况。</p>
+<p class = "firstLineIndent">等了一小会后，发现并无异状，敌人并没有赶来袭击它。</p>
+<p class = "firstLineIndent">确认没有危险后，超光速生物开始朝着行星靠近，它需要更进一步的对敌人星球进行试探，以此来决定计划的走向。</p>
+<p class = "firstLineIndent">当它拉近到同行星将近到一千多公里的时候，敌人这才终于有所反应。</p>
+<p class = "firstLineIndent">“停下！”</p>
+<p class = "firstLineIndent">从星球下方朝着超光速生物飞上来的智慧生物，身披深灰色铠甲，独腿，拥有三只眼睛和一对上弯的獠牙，四条粗壮的手臂，三根指头，利爪非常的锋利，看得出来这是一名战士，并且对超光速生物抱有敌意，手中的冷兵器要要对准超光速生物，迸射出一道光束。</p>
+<p class = "firstLineIndent">没有受伤，观测到智慧生物的出现后，超光速生物就密切的关注对方的微动作，然后提前采取机动规避。</p>
+<p class = "firstLineIndent">“反应的比想象中的要慢，对于他们的个体实力评估看来还要再下降一些。”</p>
+<p class = "firstLineIndent">超光速生物如此评价，然后采取反击，给予朝它攻击的敌人一击致命的伽马射线束，来袭者以肉眼可见的速度变成一具干尸。</p>
+<p class = "firstLineIndent">或许是因为超光速生物杀死拦截者的关系，在拦截者成为干尸后，陆陆续续的有类似的战士从地面朝着超光速生物的方向飞来，并发动类似的光束攻击。</p>
+<p class = "firstLineIndent">超光速生物也对来袭的其它敌人实施反击，许许多多的光斑亮起，太空中漂浮着大量的干尸。</p>
+<p class = "firstLineIndent">除了伽马射线外，还有大量的实体弹头被倾泻出来，触不及防的敌人被弹头洞穿，死于非命。</p>
+<p class = "firstLineIndent">“入侵者！杀！”</p>
+<p class = "firstLineIndent">两边激烈酣战，基本都是敌人被超光速生物一面倒的屠杀，敌人释放的那些光束威力并不大，至少还达不到击穿质子晶格体的程度，看起来和第七阶层的光剑很像，但二者根本不在一个可以比较的层次上。</p>
+<p class = "firstLineIndent">不过，背靠后方，敌人拥有远远不断的兵源，单靠超光速生物的火力，只能镇压一时，却不能长时间持续镇压，毕竟它携带的反物质等战略资源是有限的。</p>
+<p class = "firstLineIndent">超光速生物并没有多待太久，屠杀一会收集战场数据后，便超光速脱离战场。</p>
+<p class = "firstLineIndent">这一幕，在旁人和交战的敌人看来，就是他们顽强抵抗逼走了敌人，幸存下来的战士们欢呼不已，为自己英勇搏得的胜利而庆贺。</p>
+<p class = "firstLineIndent">然而，他们这些守护星球的战士却不曾注意到，那些实体弹头中，隐藏着一枚很特殊的弹头。</p>
+<p class = "firstLineIndent">弹头在命中敌人的时候发生爆炸，残片中有一块硬币体积的微小残片包裹着微观个体，朝着星球地表坠落。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">由于引力加速的效应，势能转动能导致微小残片的速度不断升高，直到达到某个阈值后与空气阻力达成平衡，不再提速匀速下坠。</p>
+<p class = "firstLineIndent">“桀——！”</p>
+<p class = "firstLineIndent">微小残片落入一片树林，好巧不巧的径直砸中了一只地面生物的头颅，并且砸穿。</p>
+<p class = "firstLineIndent">被引力加速到极高速度小碎片穿透力并不亚于重狙发射的穿甲弹，对于微小残片而言，生物坚固的头骨就好似由豆腐构成，毫无强度可言。</p>
+<p class = "firstLineIndent">“桀…桀…桀……”</p>
+<p class = "firstLineIndent">生物一颤一颤的抽搐着，它已经死亡，大脑被破坏自然不可能还活着，只是由于神经网络的残留信号而驱动身体。</p>
+<p class = "firstLineIndent">从残片中延伸出触须，搜刮周围的物质为己用，让微观个体的体积能够放大一些。</p>
+<p class = "firstLineIndent">在熟悉了自己所处的环境后，微观个体迅速的占据该生物的大脑位置，并且对接神经纤维，重新恢复身体机能。</p>
+<p class = "firstLineIndent">“我的运气真好，它的运气真差。”</p>
+<p class = "firstLineIndent">继任者不无遗憾的感叹一句，能被它从一千多公里的高空，径直下坠砸中头颅，该说是这个生物倒了八辈子霉，还是该说继任者的运气好的有些逆天呢？</p>
+<p class = "firstLineIndent">潜入计划优先，不再胡思乱想的继任者操纵的新获得的躯体在树林中穿梭。</p>
+<p class = "firstLineIndent">“四肢的运动不怎么习惯，如果是六肢就好了……”</p>
+<p class = "firstLineIndent">“咦？有智慧物种。”</p>
+<p class = "firstLineIndent">奔行过程中，本就打算寻找智慧物种的继任者，很快便发现了一群正在激烈战斗的智慧生物。</p>
+<p class = "firstLineIndent">这些智慧生物的外貌正是和此前外层空间中，与超光速生物激战的那些战士外貌相同，可以看出二者是同一种族。</p>
+<p class = "firstLineIndent">此刻，这些智慧生物正在交战的敌人，是与继任者目前躯体同一种族的生物。</p>
+<p class = "firstLineIndent">“我是不是应该改个名字叫‘幸运星’比较好呢？才刚登陆没到半天，就让潜入计划进行到这一步。”</p>
+<p class = "firstLineIndent">悄无声息的靠近这批智慧生物，贴着地面躲避起来，生物体与地面接触的那部分，有触手延伸出来，挖掘地底，然后在他们附近的几棵树上，悄悄的打开类似花瓣的口，把孢子云雾抛洒出来。</p>
+<p class = "firstLineIndent">“小心！”</p>
+<p class = "firstLineIndent">“注意它的毒液！”</p>
+<p class = "firstLineIndent">战士们同四肢着地的猛兽酣战，猛兽的深绿色唾液滴落在地，发出“呲呲……”的声音，地面被腐蚀出密密麻麻的黑点，看着就让密集恐惧症患者想自杀。</p>
+<p class = "firstLineIndent">“祭司，你的神术好了没有？我们这边快挡不住了！”</p>
+<p class = "firstLineIndent">交战中，主要负责硬碰硬的战士朝后方高喊。</p>
+<p class = "firstLineIndent">此时，只见那与其他战士衣着显著不同的智慧生物，口语呢喃的言颂着从神祇那获得的力量。</p>
+<p class = "firstLineIndent">“……恩泽万物之神，奈伏特罗奥的注视……智慧罗门众生相，不朽王座之王庇佑永恒……”</p>
+<p class = "firstLineIndent">“……吾等在此祈愿，灭杀眼前的卑微凡物！”</p>
+<p class = "firstLineIndent">“桀——！桀！”</p>
+<p class = "firstLineIndent">猛兽激烈的挣扎，它感觉自己就像是万蚁噬身在地上打滚，拼命的想要将身上的‘蚁虫’给清除掉，但这么做无济于事，很快它就莫名其妙的死亡了。</p>
+<p class = "firstLineIndent">见此，那些和猛**战的人嘟松了口气，颓然的坐下来。</p>
+<p class = "firstLineIndent">“终于，终于赢了……”</p>
+<p class = "firstLineIndent">“别放松警惕！荒林中的丛林蛮兽不只有一只，都给我起来！”</p>
+<p class = "firstLineIndent">之前为首，正面和猛兽硬碰硬的人高喊。</p>
+<p class = "firstLineIndent">“战士长，我们腿软……”</p>
+<p class = "firstLineIndent">刚才的战斗可以要了不少人的命，他们这些人能活下来，真的是万幸，劫后余生的幸存，只是腿软已经算是很好了。</p>
+<p class = "firstLineIndent">没理会下属的牢骚，战士长询问祭祀。</p>
+<p class = "firstLineIndent">“祭司，我们要采集的植株足够了吗？队伍中的战士已经不多，想要再继续深入荒林只能先回去补充战士数量。”</p>
+<p class = "firstLineIndent">“足够了，没必要再深入。”祭祀回答。</p>
+<p class = "firstLineIndent">“我们可以回去了。”</p>
+<p class = "firstLineIndent">战士长和祭祀在交谈，却没有注意到空气中，隐含着一种特殊的孢子。</p>
+<p class = "firstLineIndent">“……什么怪味道。”</p>
+<p class = "firstLineIndent">嗅觉比较灵敏的战士察觉到了空气中的气味有了细微的不同。</p>
+<p class = "firstLineIndent">不过，由于是在野外，并且刚刚杀死掉一只生物，气味会有所改变也很正常，所以察觉到气味有细微不同的那名战士也就没多想。</p>
+<p class = "firstLineIndent">“都愣着干什么？想在荒林里和蛮兽过夜吗？快跟上！”战士长催促。</p>
+<p class = "firstLineIndent">就这样，继任者不声不响的，利用散播孢子，寄生掌控了这批它刚遇见不久的本土智慧物种。</p>
+<p class = "firstLineIndent">这批智慧物种回到城镇里，一间类似酒馆这样的社交场所，刚刚从野兽那里劫后余生的某一战士卸去伪装，化身说书人开始给社交场所里的其他同行吹牛。</p>
+<p class = "firstLineIndent">“靠！真的是丛林蛮兽！你们居然真的狩猎到一只丛林蛮兽！太强了！”</p>
+<p class = "firstLineIndent">“那是，我跟你们说，在和丛林蛮**手那时候，手握利刃的我心剑合一，霎时间便使出了一招究极……”</p>
+<p class = "firstLineIndent">人头攒动，丛林蛮兽是极端的危险，那不是一支战士队能够对抗的敌人。</p>
+<p class = "firstLineIndent">强大的力量，尖锐的夹爪，敏捷的速度等等，简直就是优点的聚合体，而其中最麻烦棘手的就要属丛林蛮兽体液的强大腐蚀性。</p>
+<p class = "firstLineIndent">众所周知，冷兵器是免不了要肉搏，而肉搏的过程必然是血肉飞溅，带有强大腐蚀性的蛮兽体液自然会给敌人带来严重伤害。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">除了提前布置陷阱外，没有什么太好的办法能够正面战斗杀死丛林蛮兽。</p>
+<p class = "firstLineIndent">“借过一下，借过一下，里面的人是我们队伍的。”</p>
+<p class = "firstLineIndent">一个娇柔的声音闯入吵闹的环境中。</p>
+<p class = "firstLineIndent">注意到来者，还在讲述自己对战丛林蛮兽英勇事迹的战士，顿时流露出不耐烦之色。</p>
+<p class = "firstLineIndent">“珂伦，你怎么来了？”</p>
+<p class = "firstLineIndent">“我可跟你说，现在我正在宣讲决战丛林蛮兽时的传奇事迹，你要没什么事就赶紧离开，别来破坏别人的好事。”</p>
+<p class = "firstLineIndent">带着警告的口吻，完全就是一副赶人的姿态。</p>
+<p class = "firstLineIndent">不过，珂伦却也并未表现出有不满的情绪。</p>
+<p class = "firstLineIndent">“是吗？那……汉顿你是不打算要自己的那份佣金是吗？既然这样，那我去和战士长说一声，让他划给我好了。”</p>
+<p class = "firstLineIndent">“啥？佣金？！”</p>
+<p class = "firstLineIndent">汉顿愣了愣，又惊又怒的咆哮。</p>
+<p class = "firstLineIndent">“靠！臭婊子，我告诉你！你要是敢把我那份卖命钱给独吞，我现在就把你给生吞活剥了！”</p>
+<p class = "firstLineIndent">面对威胁，珂伦无所谓的摆摆手，已经走到了门口。</p>
+<p class = "firstLineIndent">“听不见，听不见，战士长早就对你这样老是不见踪影感到不满，所以他让我带话给你，人不到就相当于默认不想要，所以啊……我还故意放慢脚步来通知你，嘻嘻。”</p>
+<p class = "firstLineIndent">听到这个的汉顿，哪还敢继续留下来吹牛，拨开人群便往外疾跑。</p>
+<p class = "firstLineIndent">“我……该死！我就知道你这家伙一肚子坏水！”</p>
+<p class = "firstLineIndent">“各位，失陪了，下次再聊。”</p>
+<p class = "firstLineIndent">夜幕降临，所有人都休息，唯有那支正面杀死丛林蛮兽的战士队在行动。</p>
+<p class = "firstLineIndent">严格意义上讲，不是这支战士队在行动，他们也在休息熟睡，是寄生在他们体内的继任者们在行动。</p>
+<p class = "firstLineIndent">继任者们悄无声息的潜入到各处水源附近，然后将寄生孢子投放进去。</p>
+<p class = "firstLineIndent">没过几天，整个城镇都被继任者们完成寄生，除了这座城镇外，其他城镇也是在发生类似的情况。</p>
+<p class = "firstLineIndent">除了城镇，还有农村、树林，海洋等等，能寄生的生物，继任者们全都不会放过。</p>
+<p class = "firstLineIndent">“四通八达的情报网很快就能遍布整颗星球。”</p>
+<p class = "firstLineIndent">“让我看看你们这颗星球上都隐藏着哪些秘密……”</p>
+
+<h2>第八百九十九章 被封锁的秘密</h2><hr/>
+<p class = "firstLineIndent">星球本土智慧物种的技术水平落后，虽然他们能飞，交通上好过地球古代的人类，但与发展出飞行器时期的人类交通是没办法相比。</p>
+<p class = "firstLineIndent">肉体始终是肉体，飞行过久终究会出现劳累，而机械不知道劳累。</p>
+<p class = "firstLineIndent">即使是配合上继任者们寄生本土生物后，暗中的行动，寄生整颗星球也还是花了继任者们几年的时间。</p>
+<p class = "firstLineIndent">这段时间里，最艰难的阶段就莫过于寄生支配这颗星球的世界之主。</p>
+<p class = "firstLineIndent">美洛族就只有一个眼珠，同时也是大脑的器官，它不需要吃东西，由于过度而依赖灵域，连食物供给、维持生命活动都是借助灵域来完成。</p>
+<p class = "firstLineIndent">继任者们一直以来通过进食寄生的渠道被封死。</p>
+<p class = "firstLineIndent">好在灵域没有让这个世界之主连实体都消除掉，继任者们借助自然风的吹拂，让微观个体搭乘自然风靠近目标，最终与目标直接接触。</p>
+<p class = "firstLineIndent">物理性的接触后，剩下的就是渗透性的寄生。</p>
+<p class = "firstLineIndent">“全球性寄生完成。”</p>
+<p class = "firstLineIndent">个体与个体之间收集的情报通过生命场传递汇总。</p>
+<p class = "firstLineIndent">星球上的美洛族和眷属种族，因为其本身的技术水平落后，根本无法察觉到继任者们使用的生命场网络。</p>
+<p class = "firstLineIndent">网络之中，各种情报此起彼伏的传递，在这诸多秘密情报里，最多的就是关于世界之主的情报。</p>
+<p class = "firstLineIndent">“根据收集到的情报，这是美洛族的一处边缘星球，该星球的世界之主原本是美洛族里极有天赋的个体，但不知道是出于什么原因，灵域的使用能力始终无法进步……”</p>
+<p class = "firstLineIndent">“什么能力就分配到什么样的位置，这也是种保护，灵域使用能力无法进步的个体就被下放到这个星球上为自己种族开荒……”</p>
+<p class = "firstLineIndent">“也就是播撒生命种子，改造大气环境，引导物种觉醒智慧，成为他们美洛族的眷属种族……”</p>
+<p class = "firstLineIndent">“我们所看到的，遍及星球上那种单腿四臂的智慧生物，就是美洛族的众多眷属种族之一……”</p>
+<p class = "firstLineIndent">作为这颗星球世界之主的美洛族，是高高在上的，是禁止讨论的对象。</p>
+<p class = "firstLineIndent">神怎么能随意的被议论呢？</p>
+<p class = "firstLineIndent">所以，关于星球上世界之主的事情，就成为了本星球上最大的秘密。</p>
+<p class = "firstLineIndent">本来，这样的秘密会随着时间的推移，会彻底的成为只有世界之主自己才知晓的秘密，但没想到，那些知道秘密的眷属偷偷的以传承的方式，把秘密的碎片留存下来，一代传给一代，只有在收集所有的碎片后，才能够知晓秘密。</p>
+<p class = "firstLineIndent">秘密就以这样的方式，逃过世界之主的封锁，被继任者们获悉。</p>
+<p class = "firstLineIndent">世界之主的视作耻辱的秘密，在继任者们看来并无用处，因此它们也不会特意关注，它们主要的注意力都集中到了另一个不起眼的事情上。</p>
+<p class = "firstLineIndent">“这个叫做莫斯人的眷属种族定期会给世界之主进行祭祀，我有些好奇，难道这样可以增强对灵域的使用吗？”</p>
+<p class = "firstLineIndent">“应该可以，不然美洛族为什么要费心思做这种事情？”</p>
+<p class = "firstLineIndent">有因就有果，这是理所当然，如果不是眷属种族能够给美洛族带来极大的好处，美洛族脑子出问题了才集体大规模的培养智慧物种。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">但这又引申出了另外的一个问题。</p>
+<p class = "firstLineIndent">“可据我们的了解，灵域应该不会有所谓‘信仰’的影响吧？信徒的多寡和灵域的使用权限有什么直接关系吗？向灵尊献祭不是看血肉的多寡吗？”</p>
+<p class = "firstLineIndent">这样的问题，没有哪只继任者能够回答的上来，灵域是辉人的造物，虽然由于在漫长岁月中发生的各种事情，阴差阳错的变成了很诡异的东西。</p>
+<p class = "firstLineIndent">但本质应该是不会轻易变化。</p>
+<p class = "firstLineIndent">然而，如今它们看到的却是一个截然不同的情况，与‘支付代价’相违背的灵域体系。</p>
+<p class = "firstLineIndent">这说明了什么呢？灵域的新变化吗？</p>
+<p class = "firstLineIndent">鬼知道。</p>
+<p class = "firstLineIndent">“要不找灵尊问问？”</p>
+<p class = "firstLineIndent">有个体尝试性的说出自己的想法。</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">继任者们集体愣了愣，沉默了好一会后，才回答。</p>
+<p class = "firstLineIndent">“值得一试。”</p>
+<p class = "firstLineIndent">通过无线电，将情报从星球传递到宇宙里，宇宙中的继任者知晓了星球上同族们收集的情报以及疑问，开始着手准备灵域仪式。</p>
+<p class = "firstLineIndent">灵域仪式是从瑟琳人那里知晓，在支付足够的代价后，一团淡紫色的火焰在仪式中心莫名的燃起。</p>
+<p class = "firstLineIndent">“祭品已经献上，疑问已然递出，无名之沉思，解开我们的疑问。”主持灵域仪式的继任者质询。</p>
+<p class = "firstLineIndent">【拙劣的模仿者。】</p>
+<p class = "firstLineIndent">简短的无线电信息陡然从火焰中释放出来。</p>
+<p class = "firstLineIndent">不过，信息过分的简短，继任者们无法理解具体指的是什么。</p>
+<p class = "firstLineIndent">“什么意思？”</p>
+<p class = "firstLineIndent">“讲清楚一点，我们不想猜谜。”</p>
+<p class = "firstLineIndent">一些继任者因为灵尊这种惜字如金且装神弄鬼的姿态很不满。</p>
+<p class = "firstLineIndent">“灵尊，我们可是支付了足够的代价，解答我们的疑问是你的义务，存在的意义，你如果敢耍花招不好好尽责，我们就去找主谈谈你的情况。”</p>
+<p class = "firstLineIndent">【……】</p>
+<p class = "firstLineIndent">【一群智慧物种妄图通过物质替换的方式，将自己转化为灵域中的生物，你们目前看到的就是它们这漫长岁月中努力的成果，种族发生改变，不必向我们支付代价的使用灵域，且因为是宇宙中土生土长的生物，在主的判定中不算做灵域生物，也就不会将它们收束在灵域里。】</p>
+<p class = "firstLineIndent">这回无名之沉思不再是惜字如金。</p>
+<p class = "firstLineIndent">听闻无名之沉思的解释，继任者们终于理解了它之前所说的‘模仿者’是怎么回事。</p>
+<p class = "firstLineIndent">“不必支付代价？这……那不就是和你们一样了？”</p>
+<p class = "firstLineIndent">【这是第二个问题，请支付足够的代价。】</p>
+<p class = "firstLineIndent">“给你，快说。”</p>
+<p class = "firstLineIndent">从不缺乏血肉的继任者们毫不犹豫的继续支付了代价。</p>
+<p class = "firstLineIndent">【并不算完全一样，他们有自己的极限，贫弱的躯体仍然约束着他们更进一步的使用灵域，过度的使用无异于自杀……】</p>
+<p class = "firstLineIndent">“不对！你刚才说过，他们妄图通过物质替换的方式成为灵域生物！”</p>
+<p class = "firstLineIndent">有继任者打断了无名之沉思的讲解，对其中逻辑无法自洽的地方提出质疑。</p>
+<p class = "firstLineIndent">“从理论上讲，也就意味着有种族能够与你们灵尊一模一样！都是依仗着灵域不死不灭，都能够任意的使用灵域。”</p>
+<p class = "firstLineIndent">“所以，你说什么过度使用无异于自杀，是在欺骗我们！”</p>
+<p class = "firstLineIndent">【没有欺骗，你说的那部分智慧生物，由于和我们相似度过高，主把他们都判定成灵域生物，拉入灵域无法离开，剩余在河系中的那些残余，都是过度使用灵域就相当于自杀的个体。】</p>
+<p class = "firstLineIndent">在继任者们通过灵域仪式与无名之沉思进行沟通的那一刻，河系中的各个角落，那些潜藏着的不朽之王们纷纷惊疑不定的将视线投向广袤的星空。</p>
+<p class = "firstLineIndent">“魔神？不可能。”</p>
+<p class = "firstLineIndent">“是谁在召唤魔神？”</p>
+<p class = "firstLineIndent">“魔神之法的传承居然还不曾断绝？”</p>
+
+
+
+<a href="880.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="900.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

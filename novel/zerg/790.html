@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第七百九十章 飞升任务（上）</h2><hr/>
+<p class = "firstLineIndent">“求一批金属氢，这个恒星系统没有行星，缺建设资源……”</p>
+<p class = "firstLineIndent">“正在研究虫洞技术，需要大量反物质，急缺……”</p>
+<p class = "firstLineIndent">“发现新的外星文明，坐标是……”</p>
+<p class = "firstLineIndent">“生产富裕公告，本殖民恒星系统固态氦资源富裕堆积，有需求的同族请和我们联系……”</p>
+<p class = "firstLineIndent">“找到新的辉文明遗迹，但遗憾的是已经被悠久的岁月侵蚀成一具空壳，价值骤减，希望更加深入的调查能有所发现……”</p>
+<p class = "firstLineIndent">“找到一座拥有星门的恒星系统，族群对门世界的进入渠道又增加了一个，目前恒星系统内的智慧物种已经被控制起来，对方是门世界本土势力，我们正在尝试对其进行生理与心理上的控制……”</p>
+<p class = "firstLineIndent">自从超光速技术在阿米巴普及开来之后，恒星之间开始变得安静，而被采集者们殖民的恒星系统内，则开始更进一步的活跃起来。</p>
+<p class = "firstLineIndent">信使生物从一个恒星系统出发，几秒钟的时间就跑到临近数光年的恒星系统内，将信息进行播报，而殖民恒星内的采集者们会收集所有信使生物播报的信息，在其他信使生物进入恒星系统后，就将这些信息转移给信使生物，让它们带到其他临近的恒星系统。</p>
+<p class = "firstLineIndent">由此便构成了一个超光速的信息网络。</p>
+<p class = "firstLineIndent">这是好事，让整个阿米巴的凝聚度比以往强大上了不知道多少个层次，但同样也有坏处，如果遇到类似毁灭辉文明的那种模因病毒，阿米巴的死亡速度也会因此而加快。</p>
+<p class = "firstLineIndent">总的来讲是有利有弊。</p>
+<p class = "firstLineIndent">某个恒星系统内，一只采集者以它们传统的姿态站立于一个小土坡上，凝视着自己穹顶之上的夜幕群星，好似能透过璀璨的满天星辰，看清宇宙那隐藏在美轮美奂表象下的神秘姿容。</p>
+<p class = "firstLineIndent">“你在思考什么？”</p>
+<p class = "firstLineIndent">一段信息通过生命场，传递到那只采集者那里。</p>
+<p class = "firstLineIndent">采集者从凝视星空中回转过神，并回答询问自己同族的疑问。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“思考任务。”</p>
+<p class = "firstLineIndent">“任务有什么值得思考的必要，意志的命令是绝对的，我们只需要照做。”</p>
+<p class = "firstLineIndent">递送这段信息的采集者言语中满是不解。</p>
+<p class = "firstLineIndent">它们的任务和其他殖民恒星系统的任务可不一样，任务内容由整个阿米巴权利最高者，至高意志直接下达，不像其他那样，是出于族群的发展需求由采集者们自行拟定。</p>
+<p class = "firstLineIndent">本来，遵照族群意志至高而有无上的原则，采集者只要遵循任务的内容，将任务完成也就可以，这是理所应当的事情。</p>
+<p class = "firstLineIndent">可这次的任务里面，存在着一个问题，让负责指挥任务进行的采集者个体很是迟疑。</p>
+<p class = "firstLineIndent">在被同族询问后，采集者反问出了自己心中的迟疑。</p>
+<p class = "firstLineIndent">“可……放弃生命场，我们还能拥有什么？”</p>
+<p class = "firstLineIndent">“这次，意志交予我们的任务太奇怪了，不是改变基因，而是改变如今的生命形态，是放弃生命场，放弃意志，彻底成为另外一种生物……”</p>
+<p class = "firstLineIndent">这个任务被至高意志标明为‘飞升’，很罕见，至高意志从来不曾给什么任务特意命名，这次却有意而为之，就像是在提醒采集者们，这个任务对族群的重要程度。</p>
+<p class = "firstLineIndent">任务的本质就是一种改造，把采集者改造成另外一种生命，这不是单纯的改变基因那么简单，对于基因，采集者是想怎么改就怎么改，完全没有心理负担，可至高意志给予的任务所要求的，却是打破采集者们原有的框架。</p>
+<p class = "firstLineIndent">“所以你在犹豫？”个体反问。</p>
+<p class = "firstLineIndent">“是的。”</p>
+<p class = "firstLineIndent">正在迟疑的采集者很干脆的给予答复。</p>
+<p class = "firstLineIndent">同族沉思了一下，组织好信息反馈给采集者。</p>
+<p class = "firstLineIndent">“意志在任务中说的很清楚，我们的生命形态，禁锢了族群的未来，要想大步向前迈进，就需要打破常规，打破禁锢，由细胞作为基本单元的我们太过脆弱，需要更换另外更加稳定的基本单元，同时泛用性也不能输于当前细胞……”</p>
+<p class = "firstLineIndent">“换种方式理解，就是族群需要一种全新式的细胞。”</p>
+<p class = "firstLineIndent">一直以来，阿米巴的技术受制于生物细胞，根本原因在于有机生物细胞的承受范围太过狭隘，上限和下限的差值区间并不大。</p>
+<p class = "firstLineIndent">面对高于一百度的高温，采集者们就会开始考虑起降温设计结构，面对低于零度的低温，采集者们就会开始考虑升温的结构设计，面对辐射，哪怕只是低程度的辐射，对基因的破坏性都是不可忽视，需要经过特殊的防辐射设计。</p>
+<p class = "firstLineIndent">这样的结果就是生物体的结构会变得非常复杂、臃肿。</p>
+<p class = "firstLineIndent">“意志它不希望我们只是把思想被碳基化学给禁锢，生命形式多种多样，构成生命的基本单元也是多种多样，可以是常温五百度的硅基细胞，也可以是程序生命的数据包，甚至是简并态生命的亚原子物质构成的‘细胞’。”</p>
+<p class = "firstLineIndent">“至于放弃生命场，理由也很简单，因为生命场很早以前就无法胜任族群日益增长的信息流通需求，只能作为一种隐秘交流手段，以及改变基因的能力。”</p>
+<p class = "firstLineIndent">“最有用途的一点就是改变基因的能力，但如果生命形态彻底性的改变，这种改变基因的能力自然也就毫无意义，我们只需要以当前细胞为模板，在设计的全新细胞中添加类似生命场这种可以改变细胞内部基因的机制即可。”</p>
+<p class = "firstLineIndent">哪怕抛弃生命场，也并非不能让采集者们接受，虽然生命场陪伴了它们漫长的时间，可在族群的进步面前，这些什么都算不上，既然挡了族群的路，该抛弃还是会抛弃掉。</p>
+<p class = "firstLineIndent">“我说了，是‘改变’生命形态，你根本就没理解意志给予的任务，才不是单纯的更换细胞那么简单。”</p>
+<p class = "firstLineIndent">之前迟疑的采集者答复同族，它的言语很是不满，因为在它看来，同族根本理解错了任务的内容，所以它继续补充解释，“这种改变是连同我们也一同迎来改变，按照意志的思路，如果能够成功，群体即个体，个体即群体。”</p>
+<p class = "firstLineIndent">至高意志在任务中所指明的研究方向，如果能够成功，采集者们将可以拥有多个大脑，多个身体，是一种网络型的生命形态，但同时也可以向个体型切换。</p>
+<p class = "firstLineIndent">这样的面貌有点像至高意志，但却又不同，霍古这个至高意志没办法隔空性的转移自己的思维主体到另外的躯体中。</p>
+
+<h2>第七百九十一章 飞升任务（下）</h2><hr/>
+<p class = "firstLineIndent">所以，严格意义上讲，霍古要求采集者研究的这种全新生命姿态，更加的高级，至少比霍古这个至高意志更加高级。</p>
+<p class = "firstLineIndent">经由个体的说明，同族回忆起往昔，因永续鼓动的自杀行为而震怒，在族群进化路途上，由无上意志亲自指明的方向——它并不希望，也不在乎被尊为什么至高意志，它所希望的，是每一只采集者都能够像它一样。</p>
+<p class = "firstLineIndent">“群？”</p>
+<p class = "firstLineIndent">群生物，也可以被称作生态圈生物，一批在气态巨星里挣扎求生的采集者偶然演化而成，由复数低智慧的生命场生物构建而成的网络型生物，看似非常强大，实际却非常弱小，一旦生态圈被扰乱，连正常的信息交流都成问题。</p>
+<p class = "firstLineIndent">至高意志也明确的表示过，这些群生物，并不是它所期望的样子，只是存在相当大的借鉴价值。</p>
+<p class = "firstLineIndent">“比那种更加高级。”</p>
+<p class = "firstLineIndent">此前迟疑的采集者如此回答，听到这番回答，同族更加的不理解了。</p>
+<p class = "firstLineIndent">“那这是好事，族群终于不再需要我们了，有更加强大的同胞接替，我早就想过会有这样一天，我们成为过去，族群拥抱未来，这是大步迈进的证明，有什么值得苦恼的呢？”</p>
+<p class = "firstLineIndent">同族感到疑惑，观察了一下苦恼个体的生命场，确定对方并没有堕落成背叛者，不由得更加奇怪起来。</p>
+<p class = "firstLineIndent">“你会这样说，是你还不理解我所表达的事情……你也不理解我现在所苦恼的事情。”</p>
+<p class = "firstLineIndent">“你究竟在苦恼些什么？你不说清楚，我怎么知道你的苦恼？”</p>
+<p class = "firstLineIndent">同族才不相信自己理解不了，同样是采集者，同样忠诚于族群，它相信自己有这个能力，就算没有，它大不了去找其他同族来帮忙。</p>
+<p class = "firstLineIndent">被同族再三追问，苦恼个体破罐子破摔般的告知对方自己心中的苦闷。</p>
+<p class = "firstLineIndent">“好！那我就告诉你！我在苦恼到底该怎么做，同族们才不成为最为痛恨的背叛者！这是我正在苦恼的事情！”</p>
+<p class = "firstLineIndent">同族明显因为这个回答而愣住，好半响才反应过来。</p>
+<p class = "firstLineIndent">“为什么是这样？不是比‘群’更加高级吗？还是意志亲自下达的命令，也就是说这正是意志所期望实现的结果。”</p>
+<p class = "firstLineIndent">意志总不可能将族群引导到越来越糟糕的方向，所以不可能期望着整个阿米巴所有采集者都转变为背叛者。</p>
+<p class = "firstLineIndent">思量再三后，同族终于有所答复。</p>
+<p class = "firstLineIndent">“我认为是你理解错了，而不是我。”</p>
+<p class = "firstLineIndent">“我才没有理解错，群体即个体，个体即群体，族群是一个大群体，但同样也可以看作是一个个小群体，这些小群体可以看作是个体，我问你，这些个体该向谁付出一切？它们自己？还是族群？”</p>
+<p class = "firstLineIndent">苦恼中的采集者个体质问起来，即是在问同族，也是在问自己。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“当然是族群。”</p>
+<p class = "firstLineIndent">想都没想便如此回答，只有背叛者才会有所犹豫，在采集者眼中，族群的利益高于一切，包括它们的生命。</p>
+<p class = "firstLineIndent">“那么大群体和小群体之间，哪个是族群？”采集者又问。</p>
+<p class = "firstLineIndent">这回的问题，同族的回答就不再是之前那样干净利落且迅速。</p>
+<p class = "firstLineIndent">“呃……大群体吧？”同族迟疑了一下后回答。</p>
+<p class = "firstLineIndent">采集者却摆了摆自己触手，然后答复。</p>
+<p class = "firstLineIndent">“小群体如果被丢到一处物质资源丰富的无人河系，配合超光速技术，最迟只需千年的时间就能完成对河系的完全占据，迅速崛起成为大群体。”</p>
+<p class = "firstLineIndent">“也就是说，小群体其实本质上和大群体一样，都是族群，只不过数量上比大群体少，掌握的资源要更多。”</p>
+<p class = "firstLineIndent">言外之意，小群体是族群，大群体也是族群，而个体等于群体的情况下，像那些自身利益高于一切的背叛者，将很难再分辨出来。</p>
+<p class = "firstLineIndent">“以数量为依据不行吗？”</p>
+<p class = "firstLineIndent">同族不解的反问，而这换来的是采集者的又一串反问。</p>
+<p class = "firstLineIndent">“当然不行，数量对我们有意义吗？”</p>
+<p class = "firstLineIndent">“我举个例子，如果存在两个群体，这两个群体之间只是相差个位数的数量，你告诉我，你认为哪个算是族群。”</p>
+<p class = "firstLineIndent">“嗯……两个都是，或者说它们两个群体加在一起才算是族群，如果你是想问瑟琳人社会中那个二选一的问题，在两边接近均等的情况下，选多选少都可以，反正都一样，族群会得到延续。”</p>
+<p class = "firstLineIndent">得到了同族的这一回答，采集者继续往下询问。</p>
+<p class = "firstLineIndent">“那如果这两个群体，一个是由同族意志所支配，另一个是由背叛者意志所支配，你会认同哪一个是族群？”</p>
+<p class = "firstLineIndent">“……还是一样，都是族群。”</p>
+<p class = "firstLineIndent">因为不管是大群体还是小群体，背叛者的意志所支配还是一般采集者的意志所支配，都可以理解为正常的思维。</p>
+<p class = "firstLineIndent">循着通过推理得到的结论，采集者一点点的给同族剖析。</p>
+<p class = "firstLineIndent">“所以为了族群整体，由同族意志所支配的群体决定牺牲自己让背叛者所支配的群体存续下去。”</p>
+<p class = "firstLineIndent">“而背叛者只为了自己的利益出发，它们为了巩固自身在族群内的权利，就会像当初奴役其他同类那样将采集者们分出个三六九等。”</p>
+<p class = "firstLineIndent">“再然后，是历时多年，本绝对不该出现在族群内部的内战，各个背叛者之间因为各种各样的原因，彼此争夺物质资源。”</p>
+<p class = "firstLineIndent">“族群甚至有被背叛者带入到‘闭环’当中的危险，一旦像过去那种‘闭环’再次发生，族群将再难以有任何技术突破的可能。”</p>
+<p class = "firstLineIndent">所谓的闭环是指封死的社会结构，上层永远是上层，下层永远是下层，虽然说采集者并不怎么在乎上层还是下层，但这样的社会结构并不算健康，只有上下流动形成循环的社会结构，才是一个正常良好的社会结构。</p>
+<p class = "firstLineIndent">可是，对于背叛者而言，对阿米巴正常良好的社会结构，却不是它们愿意看到的结果，因为背叛者是从自身的利益为出发点，天然就与采集者不同。</p>
+<p class = "firstLineIndent">正当采集者愁苦不已时，一段熟悉的无线电信息涤荡着整个恒星系统。</p>
+<p class = "firstLineIndent">采集者们认出了这段无线电信息的释放者，那正是整个阿米巴第一只拥有自我概念的采集者，永续。</p>
+<p class = "firstLineIndent">永续来到这个恒星系统。</p>
+<p class = "firstLineIndent">“看来你们还没开始，遵照意志的命令，我也来加入研究，希望这能够帮助你们少走些弯路，尽快完成飞升任务。”</p>
+
+<h2>第七百九十二章 无条件投降</h2><hr/>
+<p class = "firstLineIndent">虫族和采集者之间的战争还在持续，不，说是‘战争’其实并不怎么恰当，用‘单方面的屠杀’来描述才合适。</p>
+<p class = "firstLineIndent">虫族与阿米巴之间巨大的技术代差，在采集者们解锁超光速技术后，技术势垒成倍性的在放大，达到难以用数量进行弥补。</p>
+<p class = "firstLineIndent">光是一只超光速生物，就足以对付布满整个恒星系统的利维坦虫群。</p>
+<p class = "firstLineIndent">极为廉价的超光速技术，让采集者可以随意的离开或进入恒星系统，而虫族还无法进行拦截，采集者完全可以迅速地往返敌人阵地和族群殖民恒星之间，无止境的补充弹药攻击敌人，虫群还只能被动挨打，毫无还手之力。</p>
+<p class = "firstLineIndent">单只超光速生物都是如此，一群超光速生物就更不用说了。</p>
+<p class = "firstLineIndent">再加上由于霍古的命令，采集者们进攻虫族可以称得上是全心全意，虫族疆域沦陷的速度和采集者们朝着无人恒星系统殖民的速度基本没有太大差别。</p>
+<p class = "firstLineIndent">可以说，虫族存不存在对于采集者的殖民扩张几乎没有什么影响。</p>
+<p class = "firstLineIndent">按照目前的扩张趋势，阿米巴只需用一百多年的时间就可以将自己的疆域扩张到整个恒星系统，而哪怕虫族不断的扩张占据新的恒星系统，也会在数十年后被追上，阿米巴的扩张速度要在虫族之上。</p>
+<p class = "firstLineIndent">每一天都有着大量恒星系统失守的消息传到虫族主宰那里，如果主宰是一个人类，现在恐怕头发都给急秃，学着元首那样情绪失控的对一众下属，歇斯底里的咆哮。</p>
+<p class = "firstLineIndent">不过主宰不是人类，所以没有变成那个样子，被特化过的生物脑每时每刻都在思考着该如何才能破解当前的灭族之危。</p>
+<p class = "firstLineIndent">虫族主宰不由地回忆起上次同放牧人仆从之主间的交谈。</p>
+<p class = "firstLineIndent">放牧人是因为它们虫族和阿米巴之间存在着一点相似性，所以才放过虫族，将它们收编为仆从，期望着它们什么时候成为又一个阿米巴。</p>
+<p class = "firstLineIndent">然而对比现在的阿米巴，虫族主宰感觉这根本就是放牧人的痴心妄想，它们会成为阿米巴？要怎么成为？</p>
+<p class = "firstLineIndent">虫族和阿米巴战斗过，虽然了解的并不多，但还是能很直观的感受到犹如天堑般虫族难以逾越的差距。</p>
+<p class = "firstLineIndent">其中的差距只需要做个简单对比即可。</p>
+<p class = "firstLineIndent">比如干扰灵域的使用，虫族究竟应该怎么改变基因，去找什么生物来获取基因，才能屏蔽掉灵域的使用？</p>
+<p class = "firstLineIndent">虫族主宰发现它们从根本上就没办法做到这点。</p>
+<p class = "firstLineIndent">改变基因，诱导生物体的演化，尖牙利爪可以越来越锋利，虫酸可以调整为其他各种配方，生物体可以越来越庞大，越来越强壮。</p>
+<p class = "firstLineIndent">但它们就是没办法掌握屏蔽灵域的生物能力，除非存在可以屏蔽灵域的生物体，并且虫族能够无阻碍的利用这种生物体的基因。</p>
+<p class = "firstLineIndent">亦或者是用最古老的土办法，通过放射性射线来破坏基因，让基因片段随机组合，兴许能够组合出屏蔽灵域能力的基因。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">当然，这种可能性是非常渺小的，渺小到基本上可以变相的理解为根本不存在。</p>
+<p class = "firstLineIndent">虫族主宰此刻才后知后觉的恍然发现，它们虫族是多么的弱小，这种弱小来自于它们对其他生物基因的吞噬，这种过分依赖其他生物基因的发展模式，奠定了它们此刻的弱小。</p>
+<p class = "firstLineIndent">如果，整个世界只剩下虫族这一种生物，它们虫族难道就不用再变强了吗？有能力短时间里迅速的变强吗？</p>
+<p class = "firstLineIndent">答案是，没有，因为没有强大的基因可以供它们获取，这是独属于它们虫族的软肋。</p>
+<p class = "firstLineIndent">虽说现在的情况，并不是全世界只剩下虫族这一个物种这样的严峻，可情况也差不了多少，虫族变得越强大，虫族能够利用的基因就越少。</p>
+<p class = "firstLineIndent">例如获取鸟类的基因，虫族掌握了扇翅膀飞行的能力，那么后续虫族获取其他鸟类以及类似飞行生物的基因都将不再具有意义，因为飞行原理大同小异，都是煽动翅膀飞行，而且虫族扇翅膀的基因经过专门的基因调整还更为强大，远不是自然生物能够比拟。</p>
+<p class = "firstLineIndent">或许虫族可以通过收集基因，让翅膀的结构更加合理，飞行阻力越小，可要想凭此自然演化得到超光速技术，或者反物质推进技术，根本就是想太多了。</p>
+<p class = "firstLineIndent">正因为存在这样的软肋，虫族的数量几何倍的增加，但在技术实力的方向上，却始终发展的慢如蜗牛，基因吞噬能力除了早期阶段外，这种能力逐步成为禁锢虫族变得更加强大的枷锁。</p>
+<p class = "firstLineIndent">虫族主宰经过反思，尽管还没有对‘科学’的一个正确概念，但也因为接连的败仗，更加清晰直观的感受到基因吞噬技术给发展带来的弊端。</p>
+<p class = "firstLineIndent">问题还是那个问题——如果并不存在虫族以外的其他生物体，难道虫族就不再发展下去了？</p>
+<p class = "firstLineIndent">除了抢夺其他生物的基因，以及破坏基因再组合的抽奖大法，难道就没有另外更好的方式，让虫族想要什么样的基因就要什么样的基因吗？</p>
+<p class = "firstLineIndent">事实上，虫族就是没有，主宰也感觉自己的想法是种不可能实现的妄想，就像放牧人妄想着虫族成长为又一个阿米巴。</p>
+<p class = "firstLineIndent">毕竟……怎么可能存在。</p>
+<p class = "firstLineIndent">想到自己的种族，虫族主宰收回了杂乱的思绪，重点是分析眼下的情况，虫族应该如何才能继续存续下去。</p>
+<p class = "firstLineIndent">“放牧人不在乎我们，在他们眼中，虫族就只不过是一个阿米巴替代品，一个仆从种族，一件工具，如果灭亡了那也就灭亡了，他们甚至不会因此专门去做些什么……”</p>
+<p class = "firstLineIndent">随着战斗的延长，对于放牧人，虫族已经不抱什么希望了，主宰知道自己必须思考出一个可行的方法让虫族能够继续走下去。</p>
+<p class = "firstLineIndent">“和阿米巴交战是一场虫族注定无法取胜的战斗，虫族的对手太强，各个方面都强大的离谱，这其中还包括我们最引以为傲的数量……”</p>
+<p class = "firstLineIndent">“……真的无法理解，疆域明明比我们的要小很多，那个时候还不会使用跳跃，阿米巴究竟是为什么能够在数量上压制我们？难道它们能凭空变出原材料？”</p>
+<p class = "firstLineIndent">通过对无法使用灵域跳跃直接抵达的恒星系统进行估算，虫族能够大致的描绘出阿米巴疆域的轮廓。</p>
+<p class = "firstLineIndent">可正因为是这样，才让虫族主宰百思不得其解，在还未超光速以前，阿米巴究竟是从什么地方得到的物质，生产个体来和庞大的虫群抗衡？</p>
+<p class = "firstLineIndent">“为今之计，只能去祈求灵域，看看它能给出什么好办法……”</p>
+<p class = "firstLineIndent">当初在虫族危难时刻，灵域给了虫族可以快速产出利维坦的方法，在门世界的扩张被遏制后，又给出了跨恒星的大尺度灵域跳跃方法。</p>
+<p class = "firstLineIndent">可以说，虫族主宰对灵域的信心很足，它问出了那个问题——虫族该怎么样才能在与阿米巴的争斗中存续下来？</p>
+<p class = "firstLineIndent">【无条件投降。】</p>
+
+<h2>第七百九十三章 打不过就逃</h2><hr/>
+<p class = "firstLineIndent">“投降？”</p>
+<p class = "firstLineIndent">这对于虫族是一个奇妙的概念，主宰感觉很陌生，因为虫族到现在为止，貌似……并没有真正意义上的投降过。</p>
+<p class = "firstLineIndent">被神圣沃姆邦国碾压的时候，它们想的不是归顺和加入神圣沃姆邦国，而是与其对抗，思考着如何增加数量打败对方。</p>
+<p class = "firstLineIndent">强大后在门世界内扩张疆域，面对诸多第六阶层，虫族想的不是共存或者加入，仍然是积蓄力量，打算一波推倒。</p>
+<p class = "firstLineIndent">就算是面对强大的第七阶层，那时候的虫族也没曾想过投降，它们只找到了灵尊，向灵尊祈愿寻求方法。</p>
+<p class = "firstLineIndent">最后虫族能被收编，可以说是灵尊从中做协调……严格意义上讲，这也不能叫做投降，如果没有灵尊，搞不好虫族会硬杠到底，知道灭族都不曾有过投降的想法。</p>
+<p class = "firstLineIndent">“投降是一方认输，无条件的投降则是完全的将选择权交给正在交战的敌人……”</p>
+<p class = "firstLineIndent">“不行，这样不行，如果这么做了，一旦敌人想要毁灭虫族，岂不是轻轻松松的事情？虫族怎么能将自己的存亡交给另外一个种族。”</p>
+<p class = "firstLineIndent">主宰断然的否决了灵域给出的答案，虽然灵域一直都是对的，还一次次的帮助虫族走到了现在，但这次主宰不打算听从灵域的解答。</p>
+<p class = "firstLineIndent">虫族冒不起这样的风险，虫族还不到没有选择的绝境。</p>
+<p class = "firstLineIndent">“既然打不过，而第七阶层又不打算帮助我们，那虫族也没有义务拼着灭族的危险与敌人死磕。”</p>
+<p class = "firstLineIndent">“传我命令，从现在开始筹备生物质，我们要进行大远航。”</p>
+<p class = "firstLineIndent">虫族主宰的想法很简单，打不过难道还逃不过？随着虫族对神逐之地的探索，它们已经了解到的宇宙的广阔，它们曾经费尽心思谋划的门世界与之相比，连一粒尘埃都算不上。</p>
+<p class = "firstLineIndent">只要虫族逃遁入那浩瀚无垠的星海当中，敌人能不能找到它们都是个问题，况且有门世界的第七阶层拖住敌人，敌人会不会分出余力追击它们虫族都是个问题。</p>
+<p class = "firstLineIndent">采集者这边，对于虫族的情况还一无所知，即便知道了，估计也不会有什么太多的想法，受不了威胁而战略转移的事情，采集者并不是第一次遇见。</p>
+<p class = "firstLineIndent">卡特人在感受到采集者的威胁后，往母恒星系统外派遣一支两位数的小规模舰队，以十分之一的光速恒星际远航。</p>
+<p class = "firstLineIndent">战略转移的想法没什么问题，有问题的是他们战略转移的速度，光速十分之一的行进速度，注定跑不赢以亚光速行进的跃进生物。</p>
+<p class = "firstLineIndent">在他们抵达目的地恒星系统后，才发现他们的目的地恒星系统，已经被采集者们殖民，并且还完成了巨构的建设，大量巨构生物铺满了恒星系统，行星被拆得一干二净。</p>
+<p class = "firstLineIndent">有着卡特人这种先例，虫族会选择逃跑，采集者们真的一点都不感到意外，也不会去采取什么针对性的追击行动。</p>
+<p class = "firstLineIndent">没必要那样做，在宇宙里，一个文明集合资源的逃跑就相当于是一种削弱，因为在逃跑的过程中，它们没办法发展技术，资源向逃跑方面大规模倾斜。</p>
+<p class = "firstLineIndent">而那些驻留在原地稳定发展的文明，技术则在每时每刻的革新，技术研究的停滞就相当于是在倒退。</p>
+<p class = "firstLineIndent">虫族跑的再远又能如何？它们的技术没有发展，始终是匀速逃跑，而采集者们会随着技术的发展，开发出更高级的移动方式。</p>
+<p class = "firstLineIndent">到那时，还不是轻轻松松就能追上正在逃跑的虫族。</p>
+<p class = "firstLineIndent">“怎么回事？为什么专门绕道？我们只要比之行进，就可以迅速拿下这个恒星系统，绕道只是在浪费时间。”</p>
+<p class = "firstLineIndent">“并不，这是为了整个集群的航行安全，这个地方和这个地方分别存在着一颗大质量脉冲星和黑洞，它们的引力会压缩时空，让我们掉出超光速。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">更多好看的文章：ZHAIYUEDU．TOP</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">采集者们的共享星图上，出现了两个星体的坐标，分别是脉冲星与黑洞。</p>
+<p class = "firstLineIndent">即便是如今解锁了超光速技术，面对这两种天体，也不敢有丝毫的放松警惕。</p>
+<p class = "firstLineIndent">如果超光速进入这类天体的引力场，由于时空扭曲的程度，负物质的一部分斥力会被中和掉，从而削弱负物质的万有斥力。</p>
+<p class = "firstLineIndent">斥力被削减后，超光速生物们自然就会掉出超光速。</p>
+<p class = "firstLineIndent">而且随着和天体距离的拉近，压缩性的时空扭曲程度会越高，万有斥力就需要更高的阈值。</p>
+<p class = "firstLineIndent">“不对，这些地方为什么会有极端天体？之前星图上都没有标注出来。”</p>
+<p class = "firstLineIndent">采集者看着革新过后的星图，总感觉有什么地方说不出来的不自然，它将自己心中的疑惑问出。</p>
+<p class = "firstLineIndent">其他的同族却和它的想法相反，并不觉得有什么问题。</p>
+<p class = "firstLineIndent">同族中有个体回答，“这有什么奇怪，天体不是固定不动，尤其是极端天体，由于太空环境里没有阻力，它们很多都还携带着超新星爆炸一部分的动能，还有恒星坍缩时释放的能量，以前航道上没有这些极端天体，现在它们正好移动到航道附近，所以改变了那里原本的时空环境，并没有什么奇怪的地方。”</p>
+<p class = "firstLineIndent">“可我总感觉有什么地方，有种说不上来的奇怪感觉……”</p>
+<p class = "firstLineIndent">采集者有些怪异的看着共享星图上的两个坐标。</p>
+<p class = "firstLineIndent">时间流逝，超光速即将结束的时候，集群率领者利用无线电频段，把自己的信息传递给每一只超光速生物。</p>
+<p class = "firstLineIndent">“大家都注意力集中点！接下来我们要抢夺下虫族一个新的恒星系统疆域，趁他们还没反应过来的时候迎头痛击他们！”</p>
+<p class = "firstLineIndent">言罢，采集者们纷纷脱离出超光速状态，视角也一下子从超光速变换为低光速。</p>
+<p class = "firstLineIndent">因超光速堆积的能量，在脱离超光速的一瞬间得到释放，明亮的耀斑一下子清空了恒星系统内驻守的利维坦。</p>
+<p class = "firstLineIndent">一波清场之后，超光速生物集群浩浩荡荡的开进恒星系统，并布设涟漪巨构，干扰敌人对灵域的使用。</p>
+<p class = "firstLineIndent">才短短几秒钟的时间，虫族就被全歼，对于虫族来讲，一切来的都太过突然，突然到令它们无法及时作出有效应对。</p>
+<p class = "firstLineIndent">就在采集者们沉浸在又夺下一个恒星系统的喜悦中时，另外的事情，悄无声息的降临到采集者们的头上——航道附近的一颗中子星，此刻正在观察着采集者们的行为。</p>
+<p class = "firstLineIndent">【检索智慧物种4B级，优，技术开发程度，超光速初级阶段，导入算法，对该文明实力进行评估……】</p>
+
+<h2>第七百九十四章 骚动的第七阶层们</h2><hr/>
+<p class = "firstLineIndent">放牧人的母星祭坛上，仆从之主站立于高高的祭坛火炬前，凝视着火焰，似乎是能够从火焰中看到什么。</p>
+<p class = "firstLineIndent">火焰两侧的高台上，一个个智慧物种从上方投入到火炬中，凄厉的惨叫声中，火焰因此燃烧的更加旺盛。</p>
+<p class = "firstLineIndent">忽然间，仆从之主的举止一顿，随后又归于常态，给身后那些始终保持静待姿态的下属们下达命令。</p>
+<p class = "firstLineIndent">“阿米巴的大毁灭就要来了，你们去准备一下，看看它们毁灭后的灰烬里，有没有什么有价值的东西。”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">得到命令的下属，纷纷作鸟兽散般的离开，独留下仆从之主的心腹。</p>
+<p class = "firstLineIndent">此时，可以说是祭祀的结束，仆从之主和心腹围绕着火炬漫步，一边了解关于阿米巴的事情。</p>
+<p class = "firstLineIndent">“那个阿米巴种族居然触发了大毁灭？真是悲哀，我本以为它们可以躲过毁灭，毕竟它们体量的是如此庞大，要毁灭也早就该毁灭了。”</p>
+<p class = "firstLineIndent">心腹带着意外的口吻，向仆从之主开口。</p>
+<p class = "firstLineIndent">仆从之主因此停下来，他略微做了一番思考后，询问心腹。</p>
+<p class = "firstLineIndent">“上一次大大毁灭是什么时候来着？那个种族叫什么？”</p>
+<p class = "firstLineIndent">“已经很久远了，是一个自称‘奥德加’的种族。”心腹毕恭毕敬的答复仆从之主的询问。</p>
+<p class = "firstLineIndent">“噢，我想起来了。”仆从之主当即恍然过来，不停地点着头，尘封的记忆得到开启，数十万年前的记忆告诉仆从之主，上一个种族毁灭的全过程。</p>
+<p class = "firstLineIndent">“是那个破格晋升到和我们一个阶层的奥德加。”</p>
+<p class = "firstLineIndent">仆从之主喃喃自语，随后又是一声叹息，表明自己对奥德加文明毁灭的遗憾。</p>
+<p class = "firstLineIndent">“可惜，他们本可以和我们一样享有崇高的地位以及无上的权柄，最终却被自己的野心所淹没，他们明明还那么年轻……”</p>
+<p class = "firstLineIndent">在放牧人看来，奥德加文明是一个前途无量的文明，他们是如此长久岁月以来，第一个靠‘晋升’手段，成为门世界内第七阶层的文明。</p>
+<p class = "firstLineIndent">奥德加文明，对灵域技术应用度非常高，对非领域的技术也探索到了一个很深的层次，不过没有到阿米巴的那种程度。</p>
+<p class = "firstLineIndent">心腹附和起仆从之主的话语。</p>
+<p class = "firstLineIndent">“是的，说来他们和阿米巴也有很多相似的地方，比如，同样来自门世界之外的神逐之地，同样尝试着探索和使用灵域以外其他形式的力量，对扩张疆域具有极高的热情。”</p>
+<p class = "firstLineIndent">仆从之主冷笑起来，目光再次投入到火焰当中。</p>
+<p class = "firstLineIndent">“哈，那时起我就知道，他们完了。”</p>
+<p class = "firstLineIndent">“您总是这样具有预见性。”心腹不动声色的给自己的上司拍了个马屁。</p>
+<p class = "firstLineIndent">凝视着火炬的仆从之主，喃喃自语起来“也不知道协调会在知道大毁灭的消息后，会喜悦还是伤心。”</p>
+<p class = "firstLineIndent">“属下认为伤心的成分可能更多一些，他们为了和阿米巴作战已经筹备已久，没想到阿米巴却迎来了大毁灭，他们这样长时间的战争筹备毫无意义。”</p>
+<p class = "firstLineIndent">心腹表明自己的见解，协调会将阿米巴视作大敌，也是必须要消灭的严重威胁，就和阿米巴一样。</p>
+<p class = "firstLineIndent">然而现在，阿米巴走向了灭亡，协调会这段时间以来的对战争资源的收集，以及在无法使用灵域环境下的技术收集，都宣告毫无意义。</p>
+<p class = "firstLineIndent">事实上，心腹猜错了，协调会这边被大毁灭这个天降喜讯差点砸懵了。</p>
+<p class = "firstLineIndent">“太好了！是大毁灭！阿米巴种族逾越了由神族所制定下的界限！”</p>
+<p class = "firstLineIndent">能够得到大毁灭消息的不仅仅是放牧人，但凡是个门世界的第七阶层，对灵域了解并运用程度很高的话，都能够知道这个消息。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">在协调会的长老议会上，多数人都是兴奋地讨论着从阿米巴的尸骸上找寻对协调会有价值的东西，唯有一名长老因为阿米巴的事情而忧心忡忡充满疑虑。</p>
+<p class = "firstLineIndent">“奇怪，为什么大毁灭现在才降临给阿米巴？”</p>
+<p class = "firstLineIndent">“有什么问题吗？”有人问。</p>
+<p class = "firstLineIndent">“一般来讲，一个种族控制的恒星世界不能超过三位数，而阿米巴的疆域早就已经超过了这个阈值，我以为它们有特殊的方法规避掉大毁灭，可以侵占所有门世界和神逐之地。”</p>
+<p class = "firstLineIndent">“正因为是这样，所以我们才会将它们视作协调会的强敌，不是吗？”</p>
+<p class = "firstLineIndent">按照过往的历史，阿米巴应该早就该迎来文明的大毁灭，可是实际上并没有，阿米巴似乎得到上天偏爱一般，大毁灭始终都不曾降临给阿米巴。</p>
+<p class = "firstLineIndent">这让协调会觉得，阿米巴是个大威胁，只要给予阿米巴足够的时间，就会被占领整个世界。</p>
+<p class = "firstLineIndent">但是现在大毁灭的降临，反而让协调会松上一口气。</p>
+<p class = "firstLineIndent">议会长回答，“不论怎样，阿米巴这次都必遭灭亡，我们应该趁早做打算，那样庞大的一个种族，总会留下点对我们协调会有用的东西。”</p>
+<p class = "firstLineIndent">以协调会的视角，他们已经变相的认定了阿米巴的毁灭是板上钉钉。</p>
+<p class = "firstLineIndent">门世界内多数的第七阶层都是冷眼旁观阿米巴的毁灭，类似协调会、放牧人这种敌对的第七阶层，则是喜悦不已。</p>
+<p class = "firstLineIndent">但也有个别另类的第七阶层，在得到消息后，选择和阿米巴进行信息的贸易。</p>
+<p class = "firstLineIndent">阿米巴的母恒星系统内，一只体量不属于母舰级的巨大类人型生物体，正锚泊在暝的近轨和霍古直接沟通。</p>
+<p class = "firstLineIndent">“那么，你们意下如何呢？是否愿意答应我们的交易条件。”</p>
+<p class = "firstLineIndent">对方自称‘揭秘者’，热衷于不断探索各种奥秘，就像放牧人热衷于收集各种附庸种族，协调会热衷于干涉门世界内的诸多事情。</p>
+<p class = "firstLineIndent">揭秘者以大毁灭的消息作为筹码，想要得到阿米巴的母星——暝。</p>
+<p class = "firstLineIndent">也不知道门世界的第七阶层是如何得知暝的情况，从揭秘者表现出来的态度看来，暝的情况并不简单。</p>
+<p class = "firstLineIndent">“关于你们的交易条件，我们无法认同，暝是我们重要的同伴，不可能用来进行交易，而且你们带来的消息，既没办法证实也没办法证伪，我们很难相信这些。”</p>
+<p class = "firstLineIndent">霍古断然是不会拿暝来作为交易筹码，而且这让它很反感。</p>
+<p class = "firstLineIndent">之所以会愿意和揭秘者谈交易的事情，纯粹是因为霍古想要了解大毁灭的事情，如果揭秘者所说的是真的，那阿米巴可就遇到了大麻烦。</p>
+
+<h2>第七百九十五章 交易达成</h2><hr/>
+<p class = "firstLineIndent">说实话，揭秘者所说的大毁灭，霍古主观上是持有怀疑的态度。</p>
+<p class = "firstLineIndent">因为阿米巴开拓疆域到现在，一路上可以说是顺风顺水，有小阻碍，但这些放到文明尺度上讲都算不上大麻烦，科技一直在飞跃式的进步，尤其是在最近的时间里，阿米巴解锁了超光速技术，已经算得上是一个超光速文明。</p>
+<p class = "firstLineIndent">光速以上和光速以下是一个分水岭，也就是门世界里的这些国度、势力空有灵域跳跃这种超光速技术，却不知道怎么最大限度的发挥。</p>
+<p class = "firstLineIndent">阿米巴可不像这些废物，空有宝山而不懂得运用。</p>
+<p class = "firstLineIndent">“我们没有欺骗你们的必要，在我们看来，你们已经半只脚迈到了‘毁灭’的那边，就算你们现在拒绝我们，灭亡之后，启明星的归属权还是会沦落到我们这边。”揭秘者坦言回答。</p>
+<p class = "firstLineIndent">“那你们还来和我们谈什么？”</p>
+<p class = "firstLineIndent">霍古有些不悦，虽然清楚揭秘者表达的言语都非常的‘直’，他们认为是什么就直言说什么，没有一点委婉的概念。</p>
+<p class = "firstLineIndent">但这样被人当面说‘活不长’，霍古还是高兴不起来。</p>
+<p class = "firstLineIndent">当然，霍古所说的也是一个疑问，既然已经认定它们阿米巴会被毁灭，有为什么急匆匆的过来和它们交易？等到它们毁灭后再来直接拿它们的遗产不是更加的划算？</p>
+<p class = "firstLineIndent">揭秘者回答了霍古的疑问，“其他同层次的势力会来争夺启明星，我们只是给自己创造一点先机，如果你们答应交易，我们也就可以省去争夺的环节。”</p>
+<p class = "firstLineIndent">提前拿到自己想要的东西，就可以避免和其他第七阶层争夺——这段信息告诉了霍古两个信息，一个是复数的第七阶层不知道通过什么办法知道了暝，并且将暝看作是很有价值的物品，另一个是暝的价值足以让第七阶层互相争斗，以致于有些第七阶层提前过来向阿米巴讨要。</p>
+<p class = "firstLineIndent">综合起来分析，搞不好这些门世界的第七阶层要比霍古、暝自己，更加的了解暝也说不定。</p>
+<p class = "firstLineIndent">以前，这些第七阶层是没有那个实力过来找阿米巴索要暝，因此霍古也不知道这些第七阶层了解暝的事情，还认定了暝对他们的价值。</p>
+<p class = "firstLineIndent">要不是这次他们认定了阿米巴会被毁灭掉，恐怕霍古永远都没机会知道这些。</p>
+<p class = "firstLineIndent">想通了这些，霍古决定利用当前‘即将被毁灭’的优势，趁此机会想方设法的从第七阶层那边套出情报。</p>
+<p class = "firstLineIndent">“你们就那么自信，认为我们阿米巴绝无可能硬扛下那个你们所说的‘毁灭’？”霍古反问。</p>
+<p class = "firstLineIndent">“当然，因为神是绝对的，你们阿米巴确实很强大，可与神族比起来，还是远远不够看，对抗大毁灭，就是在试图对抗神族所给予的制裁，你们根本无法想象那是一种怎样的伟力，那可是一个缔造了灵域的造物主所给予的制裁。”</p>
+<p class = "firstLineIndent">“世界早已经定好了规矩，无论是神逐之地还是门世界，都必须要遵守神族定下的界限，绝对不能逾越，所以你们没有战胜大毁灭的可能。”</p>
+<p class = "firstLineIndent">揭秘者好似狂信徒一般的言语，不过了解辉文明的霍古，能够理解对方所表现的这种狂热，即使是现在解锁超光速技术的阿米巴，同辉文明的差距少说也有数亿年的时间。</p>
+<p class = "firstLineIndent">这还是阿米巴，若是以门世界内那些不发展物理科技的第七阶层视角看来，恐怕辉文明已经超出了他们想象力的极限。</p>
+<p class = "firstLineIndent">从揭秘者的话语中，霍古又得到了一个信息——大毁灭是辉文明搞出来的，从河系内仍然存在的各种外星文明来看，这种大毁灭是具有选择性，只有特定的文明才会面临大毁灭，门世界里的所有文明，以及包括门世界之外的外星文明和被选定为毁灭目标前的阿米巴，都在大毁灭的选择标准外。</p>
+<p class = "firstLineIndent">“……交易暝是不可能的事情，但我们有知识，你们是否愿意更换交易条件，我们可以将我们的技术信息详细的交予你们，一旦你们学会使用这些知识，就会成为门世界的第七阶层中，灵域之下的最强者，有兴趣吗？”</p>
+<p class = "firstLineIndent">霍古更换了交易条件，尤其是最后强调起灵域之下的最强者，试图勾起对方的欲望，毕竟不管怎么说，强大的实力做什么事情都很方便，无论是保护自己还是攻击别人。</p>
+<p class = "firstLineIndent">阿米巴有这样的底气做保证，涟漪巨构无法影响灵域却可以影响别人使用灵域，就算整个第七阶层集结所有战力进攻阿米巴，阿米巴也有能力守下来。</p>
+<p class = "firstLineIndent">只要第七阶层不跑去拿灵域的控制权，就没办法见阿米巴怎么样。</p>
+<p class = "firstLineIndent">“筹码不够，你们毁灭后，我们也会同样得到这些。”</p>
+<p class = "firstLineIndent">揭秘者拒绝了霍古的提议，他们的理由也说明了，知识并不在第七阶层间争夺的范畴里，暝的存在要比知识价值更大。</p>
+<p class = "firstLineIndent">“不，并不会，没有我们的引导，你们根本看不懂这些知识，我们相信，在过去的其它灭完的种族那里，你们并没有得到多少灭亡种族馈赠的知识或者技术。”</p>
+<p class = "firstLineIndent">霍古挑了点引力环的局部算式，用无线电传输的方式传递给揭秘者，让对方看看是否能够自行破解。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">结果正如霍古所料，揭秘者做不到，完全看不懂。</p>
+<p class = "firstLineIndent">先不说算式的难度，阿米巴所使用的数学字符，揭秘者就不了解，他们根本没办法在不知道哪个符号代表什么的情况下进行计算。</p>
+<p class = "firstLineIndent">更别提这里面还涉及到复杂物理彻底各项力中和与复数物理公式杂合到一起的复杂算式。</p>
+<p class = "firstLineIndent">想要看懂，最起码得将数学、物理还有语言破译有相当深入的研究。</p>
+<p class = "firstLineIndent">“好吧，你们说服了我们，我们愿意接受这样的交易条件。”</p>
+<p class = "firstLineIndent">不得不说，灵域之下最强者的诱惑力还是相当大，以揭秘者的角度，他们很乐意交易知识。</p>
+<p class = "firstLineIndent">他们已经亲身尝试过，确定了阿米巴的知识并不是谁都可以掌握，而阿米巴会在大毁灭中走向灭亡，所以启明星最终还是会变成无主状态，到时候无非就是和其他第七阶层争夺支配权。</p>
+<p class = "firstLineIndent">与其死咬着启明星不放，倒不如利益最大化，通过关于‘大毁灭’可有可无的情报，换取阿米巴的强大根本。</p>
+<p class = "firstLineIndent">“很乐意与你们进行这次交易。”霍古道。</p>
+<p class = "firstLineIndent">霍古不害怕被揭秘者得到知识，知识要想实用化变成技术可不是件容易的事情，就比如地球上的核武器，受过点物理教育的都知道爱因斯坦的E=MC^2，可谁又能造出核武器？等到揭秘者把阿米巴海量的知识消化完，阿米巴早就已经往前发展了不知道多远。</p>
+<p class = "firstLineIndent">对于阿米巴，霍古有十足的信心。</p>
+
+<h2>第七百九十六章 我们摆平它</h2><hr/>
+<p class = "firstLineIndent">霍古结合了从揭秘者那里获得的大毁灭情报，以及辉文明的相关信息，对于门世界第七阶层所说的‘大毁灭’有了更加具体的认知。</p>
+<p class = "firstLineIndent">阿米巴所在的这个河系，是不被允许存在，过高层次的文明。</p>
+<p class = "firstLineIndent">究其根源的话，还要追溯到当初辉文明的河系级概率实验。</p>
+<p class = "firstLineIndent">文明在某种意义上和生命很相似，都是会自发性的维持自身熵减，而文明中的每一个个体，就像是生物体的细胞那样，维持着文明本身的存在性。</p>
+<p class = "firstLineIndent">也正是因为这样，文明也具备着和生物一样的兽性，这种兽性表现为战争，对周围物质资源的抢夺，对其他文明的侵略、奴役。</p>
+<p class = "firstLineIndent">文明不断发展和扩张，但是河系的物质总量保持不变，最终会走上消灭其他文明的战争之路，亦或者联合其他文明的盟约之路。</p>
+<p class = "firstLineIndent">可无论是哪种，都不是辉文明想要看到的结果，他们想要文明的数量挤满河系的每个角落，后一种还不好说，前一种的战争之路必然就是与辉文明的实验方向相悖。</p>
+<p class = "firstLineIndent">所以，当河系实验区里的文明发展到某一个层次，辉文明就会采取清理行动，也就是被门世界内第七阶层们称作的‘大毁灭’。</p>
+<p class = "firstLineIndent">“难怪这么久远的时间，河系里找不到一个足够强力的文明……”霍古有所明悟。</p>
+<p class = "firstLineIndent">阿米巴发展到现在，开拓的疆域已经过千光年，这是一个连光都要跑上千年才能跑完的巨大尺度。</p>
+<p class = "firstLineIndent">在这个巨大尺度里，存在的恒星系统已经是多如尘沙一般，其中不少的恒星系统中已然孕育出外星文明，可偏偏这些外星文明中，就是没有能够让阿米巴感觉到棘手的文明，这些外星文明中，技术最发达的也就达到刚刚应用反物质的程度。</p>
+<p class = "firstLineIndent">这是非常不合理的情况。</p>
+<p class = "firstLineIndent">众所周知，文明的技术越发达，就越不容易被毁灭。</p>
+<p class = "firstLineIndent">自八亿年前的辉文明毁灭，河系脱离辉这个高等文明的支配，理论上应该开始文明野蛮式的诞生、增长、扩张。</p>
+<p class = "firstLineIndent">然后，整个河系会进入低光速文明的群雄割据状态，亦或者存在更加强大的超光速文明，统一整个河系。</p>
+<p class = "firstLineIndent">早在跨出母恒星系统的那一刻起，无论是霍古还是采集者，都早已经作好与比阿米巴强大的文明接触的准备。</p>
+<p class = "firstLineIndent">通俗点的说法就是‘装孙子示弱’，在各种远比阿米巴强大的外星文明间，在夹缝中谋求成长的机会。</p>
+<p class = "firstLineIndent">可事实并不是这样，目前拓展的疆域里所发现的外星文明，和阿米巴的差距实在是大得离谱，不说强过阿米巴，连同技术层次的文明都几乎没有，瑟琳人还是通过阿米巴才实现的反物质的泛用化。</p>
+<p class = "firstLineIndent">这一切让采集者和霍古感到疑惑不解。</p>
+<p class = "firstLineIndent">八亿年的时间是个什么概念？毫不夸张的说，只要能熬过这样漫长的岁月，母猪不仅会上树，更会上天，舰队不仅有能力轻松摧毁恒星，更有能力把黑洞、白矮星等极端天体当球踢。</p>
+<p class = "firstLineIndent">夸张吗？一点也不，给人类正常发展八亿年，人类能做到比这更夸张的程度，科幻小说里所描述的所有东西都属于落后淘汰品。</p>
+<p class = "firstLineIndent">就像古人类所想象的千里眼、顺风耳、筋斗云等等，放在超光速文明眼中，真的就是想象力贫瘠到足以发笑的程度。</p>
+<p class = "firstLineIndent">当然，文明的发展不可能一帆风顺，可这无法解释阿米巴当前所处河系的情况，总不可能是这些不下于阿米巴的高技术文明，集体事先说好了一起毁灭，然后给河系文明阶层造成了巨大断层吧？</p>
+<p class = "firstLineIndent">现在一切都解释的通了。</p>
+<p class = "firstLineIndent">辉文明遗留下来的机制仍然在运作，河系内发展到某个高度的文明会被作为清除对象，‘大毁灭’压制着整个河系长达八亿年的时间，无法诞生出技术足以比肩辉的外星文明。</p>
+<p class = "firstLineIndent">能够被大毁灭选为清除目标的文明，在河系内闹出的动静都不会小，而这些被清除的文明当中，超过三分之二的文明都与门世界有着联系。</p>
+<p class = "firstLineIndent">他们有些是门世界本土诞生文明，有些则是类似阿米巴这样，诞生自神逐之地，然后通过恒星际探索的方式发现门世界，并且闹出不小的动静。</p>
+<p class = "firstLineIndent">因为都与门世界有所接触，第七阶层才有能力如此详细的记录下大毁灭，那些没有与门世界联系的文明大毁灭，则是通过灵尊了解大概。</p>
+<p class = "firstLineIndent">第七阶层也热衷于记录每一次的大毁灭，因为这既是河系中的大事，也是他们的笑料谈资——看啊，又有一个蠢蛋走上了不被允许通过的道路，被神所降下的惩罚所毁灭。</p>
+<p class = "firstLineIndent">嗤笑着挑战者们的不自量力，对于自身的卑微却毫无自知之明，这就是门世界里的第七阶层。</p>
+<p class = "firstLineIndent">整理着林林种种信息，如今摆在霍古面前的是两条路，一条是将阿米巴改造为类似门世界第七阶层那样，主动降低自身来逃过大毁灭，另一条则是像第七阶层记录的那些被毁灭文明那样，选择和大毁灭硬碰硬。</p>
+<p class = "firstLineIndent">“该怎么做呢？”</p>
+<p class = "firstLineIndent">肩负着阿米巴文明的存续，数以兆亿计的采集者存亡的重负都压在霍古心头。</p>
+<p class = "firstLineIndent">霍古清楚，无论它如何选择，所有采集者都不会存在任何怨言的支持自己作出的决定。</p>
+<p class = "firstLineIndent">可正因为如此，霍古更不能选错，被如此无条件全心全意的付诸信任，哪怕自己身死，也不能让阿米巴毁灭。</p>
+<p class = "firstLineIndent">经过深思熟虑后，最终霍古做出了选择，它决定让采集者们决定选择什么。</p>
+<p class = "firstLineIndent">采集者们的回答并不让霍古以外，当霍古将选择权交予它们后，它们集体默契的选择了风险极高的第一个，硬碰硬。</p>
+<p class = "firstLineIndent">“凡是都要拼一拼，不拼一下怎么能知道结果？无论什么困难，我们照样能够摆平，就像过去一样。”</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">作者：想看更多虫族是怎样炼成的相关小说，请访问：宅阅读(ZHAIYUEDU.TOP)</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">“难道千辛万苦发展到这个层次，就是为了在门世界里当什么高高在上的第七阶层？不，我们无法接受。”</p>
+<p class = "firstLineIndent">“放弃如今的一切是不可能的，族群的步伐永不停止，所有的困难都终将会被族群践踏成虚无。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">在诸多的回应中，有一个个体没有表态，而是询问霍古。</p>
+<p class = "firstLineIndent">“意志，您的决定是什么？无论您作出什么选择，我们都将全力支持，哪怕这样会走向毁灭。”</p>
+<p class = "firstLineIndent">看到这条信息的霍古一阵哑然，再看信息的递送者，原来是思，长期从事高强度脑力工作的采集者，这方面心思要活络得多。</p>
+<p class = "firstLineIndent">“我不像你们，能够有如此洋溢的热情与自信，岁月磨平了棱角。”</p>
+<p class = "firstLineIndent">“八亿年的时间，文明存在的数量多不胜数，这都无法免除毁灭，阿米巴凭什么那么特殊？”</p>
+<p class = "firstLineIndent">“以阿米巴的存续作为出发点，其实像第七阶层那样苟活是生存概率最大的选择，但……正如你们不甘心那样，我也不甘心，阿米巴不应该止步于此。”</p>
+<p class = "firstLineIndent">“只不过是辉文明留下的‘大毁灭’而已，我们摆平它！”</p>
+
+<h2>第七百九十七章 大毁灭的降临</h2><hr/>
+<p class = "firstLineIndent">大毁灭应该如何对抗？</p>
+<p class = "firstLineIndent">经过研究，霍古以及采集者们给出的答案是‘无法对抗’。</p>
+<p class = "firstLineIndent">辉文明遗留下来的‘大毁灭’是将超出标准的文明清除掉，而具体怎么清除掉，并不做任何限制，这导致几乎没有什么方式可以防御‘大毁灭’。</p>
+<p class = "firstLineIndent">有的文明毁灭于忽然冒出来的病毒，有的是因为恒星莫名的进入到末年即将超新星爆发，还有的被扫过的中子星脉冲像清理垃圾一样般清扫掉，更有乌龙的是因为强大武器的走火导致内战爆发而毁灭。</p>
+<p class = "firstLineIndent">大毁灭没有具体的攻击方式，自然是没办法做到针对性的防御，大毁灭以什么方式降临都有可能。</p>
+<p class = "firstLineIndent">乍一看来，这似乎和辉文明河系实验的概率灾难很相似，但其实两者还是存在着区别。</p>
+<p class = "firstLineIndent">每一次大毁灭的实行，灵域中都会存在类似‘广播’的效应，这也正是门世界内第七阶层获悉‘大毁灭’相关情报的源头之一。</p>
+<p class = "firstLineIndent">以此可以确定，灵域必然是参与了大毁灭的一部分机制工作，或者根本就是灵域在执行大毁灭。</p>
+<p class = "firstLineIndent">具体是哪种还不好确定，但最起码有了一个可靠的情报获取源头，阿米巴不至于像无头苍蝇似的连对手什么时候有动作了都一无所知。</p>
+<p class = "firstLineIndent">在经过多次的讨论后，霍古它们制定出了对抗大毁灭的方针——生存。</p>
+<p class = "firstLineIndent">阿米巴只要能硬抗着大毁灭生存下去就好，它们不像其他文明，阿米巴有着自己独特的社会结构，即便被毁灭到只剩下最后一只采集者，也能够让阿米巴重新壮大起来，这是过去那些被毁灭的文明所不具备的特殊性。</p>
+<p class = "firstLineIndent">强大的繁殖能力与绝对的凝聚力，这可不是什么文明都能够拥有，是独属于阿米巴的特殊性。</p>
+<p class = "firstLineIndent">在决定方针后，少数采集者持有小卡片进入灵域作为大毁灭的预警雷达，剩余的采集者们该扩张的扩张，该生产的生产，该通行的通讯，丝毫没有被大毁灭的事情影响，也没有对未来存在担忧。</p>
+<p class = "firstLineIndent">无法主动出击的阿米巴，剩下能做的只有严阵以待，等‘大毁灭’先出招。</p>
+<p class = "firstLineIndent">“辉文明，就让我们阿米巴来领教一下，你们的大毁灭吧……”</p>
+<p class = "firstLineIndent">距离‘生存’方针制定后的第七十年，霍古它们终于等到了大毁灭的降临。</p>
+<p class = "firstLineIndent">随着灵域之中一波波预示着大毁灭降临的涟漪，无边的混沌被搅的天翻地覆，无数的灵域生物在哀嚎中消逝，而实际宇宙中也发生了相应的变化。</p>
+<p class = "firstLineIndent">阿米巴所有支配的恒星系统内，忽然之间出现了复数的虫洞，自虫洞中喷涌出大量高能射线，好似浪潮般冲刷着恒星系统内的一切。</p>
+<p class = "firstLineIndent">一切发生的都是非常突然，虫洞的形成连一秒都没到，突兀、迅速、精确，像极了阵地上齐射的火炮阵列。</p>
+<p class = "firstLineIndent">事实上这确实是‘火炮阵列’，只不过是放大版，每一个虫洞都可以理解成是一门炮口，恒星系统就是轰炸目标，恒星系统内的每一寸空间都会被以高能射线为主体的高能打击狂轰滥炸。</p>
+<p class = "firstLineIndent">发生得过于突然，以致于采集者们很难迅速的反应过来，完全是毫无防备的硬抗高能射线打击。</p>
+<p class = "firstLineIndent">但好在采集者们应用了质子晶格体和固态氦，对高能射线具有很强的承受能力，无论是穿透性还是热堆积，都可以应付。</p>
+<p class = "firstLineIndent">不过，即便是这样，也是有相当数量的采集者在猝不及防之下死亡。</p>
+<p class = "firstLineIndent">也不知道虫洞的另一端究竟是什么，射线的强度是采集者们自认知以来最为强大的射线，正反物质湮灭的伽马射线强度都不如现在虫洞释放的射线流，犹如近距离直面中子星的脉冲束，其中蕴含的能量极其恐怖。</p>
+<p class = "firstLineIndent">因此，光是有质子晶格体和固态氦也远远不够，还需要距离作为辅助，削减射线强度，距离过近同样会命丧当场。</p>
+<p class = "firstLineIndent">一波打击下来，整个阿米巴直接伤残过半。</p>
+<p class = "firstLineIndent">可这并不会结束，大毁灭是给予毁灭，不是给予伤残，剩余下来的采集者，大毁灭也不会放过。</p>
+<p class = "firstLineIndent">从虫洞迸射出一枚玻璃珠体积的光珠，这枚小光珠的速度极端的接近光速，因此所蕴含的能量是极其恐怖，几乎可以等价于是一颗玻璃珠体积的微型黑洞。</p>
+<p class = "firstLineIndent">光珠落入恒星，理所当然的引发了黑洞，而黑洞的强势迅速打破了恒星内部的均衡，核聚变开始失控，进而引发超新星爆发。</p>
+<p class = "firstLineIndent">曾经被瑟琳人用来威胁阿米巴的手段，如今采集者们才算是真正意义上的品尝到它。</p>
+<p class = "firstLineIndent">一颗又一颗的恒星被毫不留情的引爆，如此果决且灭绝性的手段，恒星系统内的采集者们理所当然的无可幸免，集体全灭。</p>
+<p class = "firstLineIndent">恒星爆炸所释放的巨大能量，顷刻之间便摧毁掉恒星系统内的一切，无论是跃进生物，还是生物巨构，其中包括被认为是最为坚固的恒星引力环。</p>
+<p class = "firstLineIndent">纵然内部有环状的拟态黑洞提供引力作为强度保证，也无法与恐怖的超新星爆发相对抗，那可是能够瞬间将物质压缩成奇点的恐怖能量。</p>
+<p class = "firstLineIndent">如若不是因为宇宙本身具有过高密度会形成黑洞的保护机制，让能量得以缓慢释放，恐怕整个宇宙都早就毁灭在一次次超新星爆发中。</p>
+<p class = "firstLineIndent">溢散的恒星等离子向外扩散，由于阿米巴存在众多恒星殖民地，河系的这片区域绵延上千光年的尺度变得空旷，只剩下一片片星云。</p>
+<p class = "firstLineIndent">在可以预见的未来，星云会重新聚合成为恒星，阿米巴剩余下来的太空残骸也会参与其中，文明的痕迹会被核聚变抹除掉，如若阿米巴无法将文明延续下去，它们将会被埋没在历史的垃圾堆里。</p>
+<p class = "firstLineIndent">“真是恐怖且迅速的打击，幸好我不喜欢将鸡蛋都放在同一个篮子里，会做多手准备，不然恐怕已经永远都看不到明天。”</p>
+<p class = "firstLineIndent">面对如此决绝的打击，饶是见多识广的霍古也不禁胆寒几分，这一刻它再一次如此清晰感受到了阿米巴的脆弱。</p>
+<p class = "firstLineIndent">暝从超光速状态中脱离出来，停留在恒星与恒星之间的空旷地带，现在也很空旷，因为等离子星云扩散也需要时间，至少要等个几年才会到它们现在这个位置。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">【接下来该怎么办？】</p>
+<p class = "firstLineIndent">“原方针不变，还是生存，除此之外我们还有其他选择吗？”</p>
+<p class = "firstLineIndent">【就这样被动挨打？】</p>
+<p class = "firstLineIndent">“放心，机会总会有的，这世上不存在滴水不漏的事情。”</p>
+
+<h2>第七百九十八章 生生不息</h2><hr/>
+<p class = "firstLineIndent">超新星的爆发是以光速扩散，恒星物质更是得到超新星大爆炸的加持，成吨量的物质以极高的速度迸射而出。</p>
+<p class = "firstLineIndent">抛洒的恒星物质会形成星云，弥漫在空旷的宇宙环境里，看似人畜无害且美丽夺目，实则威力仍旧不小，超新星爆炸产生的高温可不是那么容易就能够散尽。</p>
+<p class = "firstLineIndent">如果地球进入到等离子星云的弥漫区域，下场恐怕是全球集体变成烤乳猪。</p>
+<p class = "firstLineIndent">在阿米巴的亚光速航行时期，星云可以说是采集者们在亚光速远航是最讨厌遇到的东西，亚光速状态下遭遇星云，就好比一头撞上一面物质墙，如果没有反物质护盾且星云覆盖的区域很广，亚光速航行的采集者直接‘撞’死。</p>
+<p class = "firstLineIndent">在如今的超光速航行时期，星云仍旧对航行有影响，不过这种影响并不会直接作用在超光速航行上，以降低超光速的速度来表现。</p>
+<p class = "firstLineIndent">星云物质会在超光速航行时，堆积在扭曲时空的外层，等到超光速航行后，一口气释放出来。</p>
+<p class = "firstLineIndent">这种能量的释放是无差别的，所以连同超光速的个体自身都会非常危险。</p>
+<p class = "firstLineIndent">阿米巴解决的方式是通过将膨胀时空的负物质导向前方，即完成了对负物质的释放，也可以作为一面短时间存在的负物质屏障，抵御超光速结束后释放的狂暴能量。</p>
+<p class = "firstLineIndent">不过这种方式也有个缺点，那就是不能跑得太远，否则堆积的能量会高于负物质可以抵消的量，超光速个体就要承受多余出来的那部分能量。</p>
+<p class = "firstLineIndent">因此，暝在每次超光速行进一段距离后，都必须脱离超光速，把能量释放后，再重新进入超光速航行状态。</p>
+<p class = "firstLineIndent">而在每次结束超光速后，没过多久，暝周围的星云物质就会莫名奇妙的湮灭释放能量，伽马射线洗刷地表。</p>
+<p class = "firstLineIndent">好在暝皮糙肉厚，这点问题不算什么，只要不在一个地方久待，问题就不大。</p>
+<p class = "firstLineIndent">“如果我们没能解锁现在的超光速技术，仍然局限在光速以下，或者依赖着灵域实现超光速，结果恐怕就是文明的毁灭。”霍古有些后怕的感慨。</p>
+<p class = "firstLineIndent">大毁灭发生之时，灵域是无法使用的，正因如此，奥德加文明的主体才会毁灭于超新星的爆发。</p>
+<p class = "firstLineIndent">多亏了阿米巴拥有不依靠灵域的超光速技术，不然即便掌握亚光速航行，也绝无可能在超新星爆发下存活。</p>
+<p class = "firstLineIndent">【不知道其他采集者怎么样了，幸存下来多少，我们现在没办法和它们取得联系，希望不要只剩下我们。】</p>
+<p class = "firstLineIndent">暝对于其他采集者表示担忧，一切都来的非常突然，突然到阿米巴内部根本来不及信息交流。</p>
+<p class = "firstLineIndent">“应该没什么问题，虽然袭击来得非常突然，但早先就已经安排了应对突发情况的逃难集群，可以迅速进入超光速状态逃生，再加上其他反应迅速的采集者，存活下来的个体不会少，它们是你看着成长到现在，你应该了解它们的生存能力。”</p>
+<p class = "firstLineIndent">虽然霍古不知道其他采集者的情况，但它对采集者们有信心，毕竟阿米巴能够走到现在，少不了采集者独当一面的能力。</p>
+<p class = "firstLineIndent">【阿米巴的内部团结一致，大毁灭没办法挑起内战，只能通过外部干涉来摧毁阿米巴，只是我没想到，大毁灭居然会动用如此大规模的能量来实行暴力摧毁。】</p>
+<p class = "firstLineIndent">“你原本认为，大毁灭会采取什么方式进行打击？”</p>
+<p class = "firstLineIndent">【类似辉文明记录中的那种模因病毒，利用阿米巴内部的超光速信息交流，会比超新星爆发更加轻易的摧毁掉阿米巴，信息交流是必然，只要是文明，内部就一定离不开信息的交流，哪怕是单一思维的文明。】</p>
+<p class = "firstLineIndent">“……我是不是该庆幸，暝你不是那个大毁灭？想出的办法比大毁灭的还要狠。”</p>
+<p class = "firstLineIndent">【嘿嘿嘿，谢谢夸奖，我没那么厉害啦。】</p>
+<p class = "firstLineIndent">“我没在夸你啊……”</p>
+<p class = "firstLineIndent">“唉，算了，还是来重点分析一下大毁灭吧。”</p>
+<p class = "firstLineIndent">“目前看来，大毁灭一定是坐拥着一个极为庞大的能量源，不然没可能一次性生成如此数量的虫洞。”</p>
+<p class = "firstLineIndent">【但那种数量有点太过夸张了，感觉就算把超巨星整个湮灭掉都不够制造那样数量的虫洞。】</p>
+<p class = "firstLineIndent">【主体看来应该是灵域……】</p>
+<p class = "firstLineIndent">“不，灵域是讲究均衡的，释放能量和物质就必然吸收能量和物质，一出一进是辉文明缔造灵域之初制定的基础，辉还没有达到凭空创造能量的程度。”</p>
+<p class = "firstLineIndent">【也就是说，大毁灭是从河系的某个地方获取到大量物质资源，然后才开始针对阿米巴进行毁灭打击，反过来，只要我们切断大毁灭获取能量的途径，就可以击败这个未知的强大对手。】</p>
+<p class = "firstLineIndent">“有点难，这个范围可是相当广，阿米巴直到现在，也才探索了河系的百分之一左右，河系里的恒星数量多如尘沙，少了几颗恒星也很难看出来。”</p>
+<p class = "firstLineIndent">【那就只能等了，不过，我们有超光速，这个时间应该不会太长。】</p>
+<p class = "firstLineIndent">说是不会太长，但实际上是以暝的角度来看待，暝是什么？暝是行星诞生之初就存在的意志，亿年的光阴都硬生生的熬过，像千年、万年这类时间单位，在暝眼里恐怕就和一瞬间差不多。</p>
+<p class = "firstLineIndent">霍古简单估算了一下，想要切断获取能量的途径，实现针对大毁灭的反制，恐怕需要最少百年的时间，把阿米巴的情报网络覆盖整个河系。</p>
+<p class = "firstLineIndent">这还只是乐观估计，鬼知道什么时候能完成对整个河系的全面性情报收集。</p>
+<p class = "firstLineIndent">事实上，这场阿米巴和大毁灭之间的拉锯战持续了千年的时间，由于采集者们到处建设新的殖民恒星，整个河系的恒星无一完好的爆发超新星，导致整个河系在后面，都只剩下白矮星、脉冲星、黑洞等极端天体和星云这类恒星抛射物质。</p>
+<p class = "firstLineIndent">这可苦了除了阿米巴外的外星文明，超新星的杀伤范围是光年为单位，哪怕相隔几光年都仍旧具备对文明毁灭的杀伤。</p>
+<p class = "firstLineIndent">结果就是，大毁灭没能彻底的毁灭阿米巴，却把其他外星文明给毁了。</p>
+<p class = "firstLineIndent">整个河系的文明，九成以上被清空，到处都是正在汇集形成的恒星胚胎。</p>
+<p class = "firstLineIndent">幸存下来的采集者们，通过每次结束超光速播撒阿米巴的火种，在河系的各个地方开枝散叶，试图通过获取星云物质，重新发展阿米巴。</p>
+<p class = "firstLineIndent">遗憾的是，这些收集星云建设起来的阿米巴新殖民地，很快又会被大毁灭盯上摧毁。</p>
+<p class = "firstLineIndent">从更加宏观的尺度上看，河系好似沸腾了一般。</p>
+
+<h2>第七百九十九章 监听员</h2><hr/>
+<p class = "firstLineIndent">滴滴滴，滴滴滴，滴滴滴……</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">你想看的小说都在宅阅读给你下载好啦：</p>
+<p class = "firstLineIndent">ZHAIYUEDU．TOP</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">熟悉的闹钟声，法奥斯朦胧的睁开自己的眼睛，一副瘫软无力的伸出尾巴，把闹钟的开关关上。</p>
+<p class = "firstLineIndent">“哈——欠——”</p>
+<p class = "firstLineIndent">“该死，又是工作日。”下意识的瞟了一眼日程表，法奥斯略带不满的嘟囔起来。</p>
+<p class = "firstLineIndent">虽然是这样说，但法奥斯还是从被窝里钻出，开始为新一天的到来做准备。</p>
+<p class = "firstLineIndent">“真不想工作啊，什么时候我才能像那些人上人一样，不从事劳动，躺着就能把钱给赚了，唉……”</p>
+<p class = "firstLineIndent">把自己的工作服穿上，适当的整理一下着装，便离开房子。</p>
+<p class = "firstLineIndent">法奥斯并不是什么热心工作的人，但他的工作对自己的种族，对自己的文明，却有着相当巨大的影响，那就是监听并解读外星信号。</p>
+<p class = "firstLineIndent">得益于在语言方面的惊人天赋，法奥斯从众多被选者中脱颖而出，拿到了这份薪资不菲的铁饭碗。</p>
+<p class = "firstLineIndent">驾驶着政府分配给自己的军用飞艇，法奥斯以超音速前往自己工作的地方。</p>
+<p class = "firstLineIndent">大概飞行了一个多小时的时间，法奥斯已经依稀的可以看到山峰顶端的监听站阵列，雷达犹如站岗的士兵一般，屹立在山峦之上。</p>
+<p class = "firstLineIndent">“法奥斯叔叔，早上好。”</p>
+<p class = "firstLineIndent">进入监听站后，有人向法奥斯打起了招呼，声音非常的稚嫩，引得法奥斯不禁意外的看向对方。</p>
+<p class = "firstLineIndent">入目的是自己的下属迈科，他正捧着自己的孩子，刚才向法奥斯打招呼的正是对方怀里的孩子。</p>
+<p class = "firstLineIndent">“迈科，你又把孩子带过来了，我们这里可不是育儿室。”法奥斯道。</p>
+<p class = "firstLineIndent">虽说把孩子带过来并不算什么大问题，可监听站终归是一个半军方的设施，观测资料如果如果出了什么意外，法奥斯这个负责人就要受到惩罚。</p>
+<p class = "firstLineIndent">“琳达她今天有事，把迈恩他一个人丢在家里又不放心，他总喜欢到处乱跑，在这里我会看着他的。”</p>
+<p class = "firstLineIndent">迈科无奈地解释，言外之意是希望法奥斯能够通融一下。</p>
+<p class = "firstLineIndent">走进的法奥斯对迈科的孩子说话，“小迈恩，你可别随便乱动这里的东西知道吗？不然你的父亲和叔叔我都会受到很严厉的惩罚。”</p>
+<p class = "firstLineIndent">“嗯，知道了，法奥斯叔叔，迈恩不会乱动这里的东西。”迈恩认真的点点头。</p>
+<p class = "firstLineIndent">如此告诫一番后，法奥斯他们继续往常的工作，对外星文明的信号进行记录。</p>
+<p class = "firstLineIndent">工作并不复杂，记录是机器自动的，法奥斯他们只是负责看管，因此记录外星信号的时候，法奥斯他们其实很空闲，真正繁忙的时候是进行破译工作。</p>
+<p class = "firstLineIndent">“法奥斯叔叔，这些是什么东西啊？”</p>
+<p class = "firstLineIndent">懵懂的迈恩指着一旁堆积在一起的黑色圆饼，体积很大，相当于迈恩自己头颅的两倍。</p>
+<p class = "firstLineIndent">法奥斯瞄了一眼，解释“这些是宇宙的历史。”</p>
+<p class = "firstLineIndent">“光从恒星出发，和物质相互作用后反射往其他方向，顺带着还会携带与光相互作用物质的信息，这些电磁波就是宇宙最真实的历史。”</p>
+<p class = "firstLineIndent">迈恩看了看那些黑色圆饼，又看了看法奥斯，随即气鼓鼓的说道。</p>
+<p class = "firstLineIndent">“法奥斯叔叔骗人。”</p>
+<p class = "firstLineIndent">“我怎么骗你了？”</p>
+<p class = "firstLineIndent">法奥斯有点懵，他说的是实话啊，他有什么必要在这种事上骗人？</p>
+<p class = "firstLineIndent">小迈恩回答，“迈恩我可是看过历史书，历史书是方方正正的，你说的这些宇宙历史是一坨坨的圆盘，没有书页，还很硬。”</p>
+<p class = "firstLineIndent">“噗，这些东西和书本一样，迈科，你该给你的孩子好好科普一下。”</p>
+<p class = "firstLineIndent">差点没憋住笑的法奥斯有些无奈，只好让迈科去给他的孩子解释清楚。</p>
+<p class = "firstLineIndent">“迈恩，法奥斯叔叔可没有说谎，书籍用的是笔墨作为信息记录的媒介，而磁盘用的是磁作为信息记录的媒介。”迈科道。</p>
+<p class = "firstLineIndent">“那上次，法奥斯叔叔说，你们的工作是看外星人讲话，也不是骗我的咯？”</p>
+<p class = "firstLineIndent">迈恩的话让法奥斯无语，“……小迈恩，我在你眼里难道就是个大骗子吗？太让我伤心了。”</p>
+<p class = "firstLineIndent">“你本来就是，哼，上次我回去后，把看外星人讲话的事情告诉朋友们，他们都在笑话我，说话怎么能看得见，应该只能听。”</p>
+<p class = "firstLineIndent">“我现在和叔叔你说话，你把耳朵捂起来，能知道我在说什么吗？”</p>
+<p class = "firstLineIndent">迈恩一副气鼓鼓，兴师问罪的样子，不过配合他这样的年幼，给法奥斯的感觉就只有可爱。</p>
+<p class = "firstLineIndent">法奥斯想了想宠溺的回答，“行吧，那就带你也去看看外星人的讲话。”</p>
+<p class = "firstLineIndent">迈科愣了愣，迟疑的看向法奥斯。</p>
+<p class = "firstLineIndent">“这……没问题？”</p>
+<p class = "firstLineIndent">“安心，就只是看一下，给孩子拓展一下见识，只要别乱动仪器闹出问题，就不算什么大事。”</p>
+<p class = "firstLineIndent">法奥斯摆摆手，示意问题不大。</p>
+<p class = "firstLineIndent">用遥控器调用了一下主屏幕，迈恩看到了一副波浪画面，这些波浪的浪峰、浪谷都非常的尖，给迈恩的第一感觉就像是怪兽的利齿，而且每个高低都不同。</p>
+<p class = "firstLineIndent">“喏，这些波动的条纹就是外星人说的话。”法奥斯道。</p>
+<p class = "firstLineIndent">“看不懂诶，外星人都在说什么啊？”</p>
+<p class = "firstLineIndent">迈恩挠挠头，一副苦恼地样子，求助似的看向自己的父亲。</p>
+<p class = "firstLineIndent">“这些还不知道，破译起来很有难度。”迈科回答。</p>
+<p class = "firstLineIndent">既然不知道，那又是怎么确定这些是外星人的讲话？迈恩奇怪的想。</p>
+<p class = "firstLineIndent">孩童是天真的，对事情很难有更加深入的思考，想到什么问题就会去问。</p>
+<p class = "firstLineIndent"></p>
+<p class = "firstLineIndent">迈恩便询问起两个在他眼里非常博学的大人，“那你们怎么知道这些是外星人说的话？”</p>
+<p class = "firstLineIndent">“当然是因为有一些话破译出来了。”</p>
+<p class = "firstLineIndent">法奥斯又调出一份外星语言，这份外星语言是由他亲自破译出来。</p>
+<p class = "firstLineIndent">“这一句，‘质量说时间虚空怎么改变，时间虚空说质量应该怎么移动’。”法奥斯道。</p>
+<p class = "firstLineIndent">“什么意思？”</p>
+<p class = "firstLineIndent">迈恩不明所以的看向法奥斯，然而，法奥斯虽然作为破译者，但用的是文本直译，也不是很能理解这句话是什么意思。</p>
+<p class = "firstLineIndent">“不知道，可能是在说明杠杆原理，说话的外星文明或许在想着怎么撬动自己脚下的星球也说不定。”</p>
+<p class = "firstLineIndent">法奥斯是个优秀的语言破译者，但并不是一个优秀的物理学者，这种涉及虚空、时间、质量的话，他每个词汇都看得懂，可联系到一起就看得一头雾水了。</p>
+
+
+
+<a href="780.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="800.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
