@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
+<link rel="icon" href="https://www.shareicon.net/download/2016/03/03/319314_read.ico" type="image/gif" sizes="16x16">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<style>
+/******* Main page background settings *********/
+body {
+background: Moccasin; /* For browsers that do not support gradients */
+background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+  margin: 1em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+  font-size: 16px;
+}
+#_biggify, #_reset, #_smallify {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+	margin: 2px 4px;
+	*/
+    display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 90%; 
+	
+}
+#_userPanel {
+  position: fixed;
+  bottom: 0.1em;
+  /*
+  top: 0px;
+  */
+  border: 3px solid #73AD21;
+  background-color: powderblue;
+  right: 0px;
+  width: 80px;
+}
+#_userInput {
+  position: fixed;
+  top: 1em;
+  left: 14em;
+  font-size: 1.2em;
+  width: 20em;
+  border: 2px solid red;
+  border-radius: 0.5em;
+  /*
+  bottom: 0px;
+  border: 3px solid #73AD21;
+  background-color: powderblue;
+  width: 80px;
+  */
+}
+/******* changeFontSizeUserPanel element *********/
+/***************************************** list element template *****************************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+      {title} </a></summary>
+      <ul>
+        <li>Source:          </li>
+        <li>Post date:       </li>
+        <li>Collected date:  </li>
+      </ul> 
+    </details>
+  </li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+      {(Mov){folderName}} </a></summary>
+      <ul>
+        <li>Source:   spankbang.com       </li>
+        <li>Post date:  19-Nov-2000     </li>
+        <li>Collected date: 10-Oct-2021 </li>
+      </ul> 
+    </details>
+  </li>
+<!---------------------------------------------------------->
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body>
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class="container">
+<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter...">
+<h2>novel collection list</h2><ul id="_mainUL">
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+
+
+
+
+********************************************
+
+<!---------------------------------------------------------->
+  <li id="_primaryli">
+    <details><summary><a href="./mothership/index.html" target="_blank">
+      超级母舰 作者：空长青 </a></summary>
+      <ul>
+        <li>Source:          </li>
+        <li>Post date:       </li>
+        <li>Collected date: 28-Dec-2021 </li>
+      </ul> 
+    </details>
+  </li>
+<!---------------------------------------------------------->
+<!---------------------------------------------------------->
+  <li id="_primaryli">
+    <details><summary><a href="./zerg/index.html" target="_blank">
+      虫族是怎样炼成的 作者：政泓 </a></summary>
+      <ul>
+        <li>Source:          </li>
+        <li>Post date:       </li>
+        <li>Collected date: 24-Dec-2021 </li>
+      </ul> 
+    </details>
+  </li>
+<!---------------------------------------------------------->
+
+
+
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>  
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+/************* font size change script *************/
+</script>
+
+</body>
