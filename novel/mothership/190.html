@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第一百九十章 阴影</h2>
+<p class = "firstLineIndent">秘密基地实验室。</p>
+<p class = "firstLineIndent">“这……简直不可思议！这份地球气象数据的精度比我见过的最高精度还要多出两个级数！”</p>
+<p class = "firstLineIndent">“咦？这份太阳耀斑活动记录不像是地球轨道能够观测到的数据啊？观测距离是不是太近了点？”</p>
+<p class = "firstLineIndent">“这份……火星轨道运行报告？！这张照片……我靠！这不是nasa的好奇号火星探测器吗？！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">于老一边查看智脑刚刚对他开放的海狼号观测数据，一边不断发出惊呼。</p>
+<p class = "firstLineIndent">他现在可以百分百肯定，聂云除了海狼号，还在太阳系各个位置布置了大量的探测器，按照估计，至少有上百个，而且最远的已经到达了火星！</p>
+<p class = "firstLineIndent">这究竟是怎么做到的？难道这就是sos组织为了对抗外星人而做的准备之一？</p>
+<p class = "firstLineIndent">要知道以普通探测器的速度，从地球抵达火星，要近一年的时间！就算聂云的科技超前，按照于老估计这个时间也至少需要几个月到半年。</p>
+<p class = "firstLineIndent">当然，于老并不知道聂云有一种技术叫做“实心弹变形技术”，他的探测器布置速度因为这个技术那是相当魔性！完全节约了加速需要的大量时间。</p>
+<p class = "firstLineIndent">至于减速时间……聂云表示直接找个星体撞上去就好，这叫“硬着陆减速技术”！</p>
+<p class = "firstLineIndent">正因为机械虫可随意变形的能力，聂云的太空战略布局速度，就像是开了挂一般完全不科学！</p>
+<p class = "firstLineIndent">正因如此，在于老的常识性认知中，聂云应该从很早以前就开始布局太阳系侦查网？而他为什么要在太阳系内布置这么多探测器，于老大致也能够猜到。</p>
+<p class = "firstLineIndent">“不愧是神奇的老板！强大的sos！”于老震惊过后便是兴奋。</p>
+<p class = "firstLineIndent">这么多探测器意味着，太阳系就像是一个解开面纱的美女，自己能够360度无死角的进行围观！</p>
+<p class = "firstLineIndent">e……</p>
+<p class = "firstLineIndent">就在这时，智脑代号的声音突然传来，打断了一脸陶醉的于老。</p>
+<p class = "firstLineIndent">“于老，你的同僚已经上船，将于一个半小时后抵达基地，接下来本机会安排他们进行基因逆流手术！请问是否需要帮你接通通讯？”</p>
+<p class = "firstLineIndent">于老先是一愣，接着嘴角一勾，终于来了吗？</p>
+<p class = "firstLineIndent">他想了想，稍稍调整了一下自己面前通讯器的摄像头角度，这才道，“接通吧！”</p>
+<p class = "firstLineIndent">“嘀！”通讯光屏亮起，里面显示的是一间银白色的金属房间，而房间内，是一张张于老十分熟悉的脸孔。</p>
+<p class = "firstLineIndent">“哈哈！老梁，老周，还有各位，你们都来啦，真是好久不见啊！”于老十分开心地笑道。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“这……这简直不科学！如此巨大的潜艇，外壳竟然连一点焊接迹象都没有，难道是一次冲压成型的？这种超大型钢板的一体化加工工艺……闻所未闻呐！</p>
+<p class = "firstLineIndent">还有这航迹，这尾流，这消声……完美！太完美了！”</p>
+<p class = "firstLineIndent">那个坐在轮椅上的酒糟鼻老者一看到那艘银色的潜艇，便双眼放光再也挪不开目光，苍白的脸色都泛起潮红。</p>
+<p class = "firstLineIndent">这人是国内著名的机械动力学专家梁光。</p>
+<p class = "firstLineIndent">“喂喂！老梁，可悠着点，你可是有心脏病的！再这么激动，你的过世新闻明晚七点就得重播一遍了！”旁边的那名老者不由得提醒道。</p>
+<p class = "firstLineIndent">这名老者是国内生物学专家周动，在场这些人虽然专业领域不同，但同为国内的顶尖科学家，很多团体性的科研活动或者学术会议中也会经常碰面，对彼此并不陌生。</p>
+<p class = "firstLineIndent">梁光闻言翻了个白眼，不过好歹是强迫自己冷静了下来，可目光依旧一眨不眨地盯着潜艇看个不停。</p>
+<p class = "firstLineIndent">很快，静静停泊下来的潜艇侧面打开一条双车道，引起一阵惊呼。</p>
+<p class = "firstLineIndent">“好了，大家有序上船，跟着我的小红旗……”老大吆喝着组织“老年人旅游团”进入潜艇。</p>
+<p class = "firstLineIndent">不久后，好奇宝宝一般四处张望的科学家们被带到潜艇中的一处金属房间中，房间内有十五个古怪的银色生物仓，随后大家感觉脚下微微一震，潜艇已经开始启航。</p>
+<p class = "firstLineIndent">所有人不明所以地看向那些十分惹眼的生物仓，这是什么？潜艇软卧？服务也太好了点吧？</p>
+<p class = "firstLineIndent">就在他们疑惑时，“嘀！”的一声，众人面前出现了一个悬空光屏，上面出现一张陌生的中年男子的面孔。</p>
+<p class = "firstLineIndent">“哈哈！老梁，老周，还有各位，你们都来啦，真是好久不见啊！”那中年男子笑着向他们打招呼。</p>
+<p class = "firstLineIndent">梁光和周动等人一愣，自己认识这家伙？</p>
+<p class = "firstLineIndent">返老还童这种事太匪夷所思，为了保密需要，胡军长也并没有提前透露给这些科学家，因此对于于老现在的状态，他们并不知情。</p>
+<p class = "firstLineIndent">“你是……”梁光疑惑道。</p>
+<p class = "firstLineIndent">“呵呵！记不记得当年酒泉的航天研究所，我们为了一个轨道动力调整参数吵了整整3个小时？”</p>
+<p class = "firstLineIndent">梁光先是愣了片刻，随后慢慢睁大了眼睛，“你……你是老于？！”</p>
+<p class = "firstLineIndent">“不错，是我！”光屏上的于老笑着点点头。</p>
+<p class = "firstLineIndent">“什么？！这……什么情况？”</p>
+<p class = "firstLineIndent">“天呐！真的假的？”</p>
+<p class = "firstLineIndent">“这就是延长寿命的方法么？没想到竟然会是这样……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">众人一片惊呼，所有人都被吓到了！</p>
+<p class = "firstLineIndent">你们先前告诉我们可以延长寿命，可没说效果这么凶残的啊！</p>
+<p class = "firstLineIndent">“各位……这就是不可思议的基因逆流技术，而且我可以保证，实际的效果会比你们现在看到的还要好！</p>
+<p class = "firstLineIndent">你们很快，也会如同我一般，重获新生……”于老用一种带着诱惑的语气说道。</p>
+<p class = "firstLineIndent">众人闻言齐齐安静了一下，接着所有人的呼吸都粗重起来……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老大，我总觉得哪里有些不对劲？”老三看着显示手术中的十五个生物仓摸着后脑勺疑惑道。</p>
+<p class = "firstLineIndent">“嗯……我也有这种感觉，节奏快了点，总觉得少了什么关键的……哦对了！刚刚有说要调整的年龄吗？”</p>
+<p class = "firstLineIndent">“呃，似乎……没有吧？”</p>
+<p class = "firstLineIndent">两兄弟：“……”</p>
+<p class = "firstLineIndent">回想起刚刚视频通讯挂断前于老那意味深长的神秘笑容，两兄弟心中一颤……</p>
+<p class = "firstLineIndent">“那个，会不会是忘了，我们要不要提醒一下？”老三迟疑道。</p>
+<p class = "firstLineIndent">“笨啊！这种事用得着我们提醒，于老就是个搞传销拉皮条的，你忘了手术是谁做的了？如果没有老板的默许……”</p>
+<p class = "firstLineIndent">两人顿时用同情的目光看向那十五个生物仓，那里……仿佛有两个黑暗的阴影正笼罩着他们，发出“桀桀”的阴险怪笑……</p>
+
+<h2>第一百九十一章 贯通</h2>
+<p class = "firstLineIndent">一个小时后，梁光缓缓睁开了双眼。</p>
+<p class = "firstLineIndent">“噗通……噗通……”强劲有力的心跳声传入他的耳膜，同时也震撼着他的心神……</p>
+<p class = "firstLineIndent">这是……我的心脏？！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“哈哈，我的老朋友们！见到你们真高兴，特别是……见到年轻时候的你们！”于老看着面前一群恢复青春的老朋友，笑容别提有多灿烂了。</p>
+<p class = "firstLineIndent">“老……老于！这就是你所谓的实际效果会比我们看到的要好？！”周动脑门儿上蹦出一个青筋。</p>
+<p class = "firstLineIndent">十五个少年身体大叔脸的怪人齐齐面无表情地看着于老，那画面，压迫感十足！</p>
+<p class = "firstLineIndent">“呵呵！当然是啊，你看，恢复的年龄超乎你们的想象对吧，不是中年，而是少年啊！第二次青葱岁月啊！</p>
+<p class = "firstLineIndent">怎么样？意外不意外，惊喜不惊喜？”面对众人质问的目光，于老一脸坦然地笑道。</p>
+<p class = "firstLineIndent">“呵！是么！那么请问为什么不提前告诉我们？为什么视频中我们只能看到你的脸，你还说不是故意的？！”梁光目光不善地盯着他们。</p>
+<p class = "firstLineIndent">“可你们也没问呐，再说了，就算你们提前知道有这个小小的副作用，难道你们就不接受手术了？”</p>
+<p class = "firstLineIndent">于老这话让众人都沉默了一下，的确，就算知道，他们也无法拒绝重获新生的诱惑！不过总觉得哪里不太对劲……这个副作用难道他么就一定要有？</p>
+<p class = "firstLineIndent">“放心吧，这只是一个小小的技术问题，老板说了，很快就能找到解决的方案，到时候再变回来就好了嘛！</p>
+<p class = "firstLineIndent">难道说……都七老八十的人了，还在乎这么点脸面？连一副皮囊都看不透？</p>
+<p class = "firstLineIndent">我当时看到自己的样子时，那可是连眉头都没皱一下，现在的年轻人呐……”于老叹息着摇摇头。</p>
+<p class = "firstLineIndent">“这……老于，我们没那个意思，就是太过震惊罢了……”这下其他人倒被说的有些不好意思了。</p>
+<p class = "firstLineIndent">于老在这些人里面辈分最高，连他都变成了这副样子，那自己还有什么好抱怨的。</p>
+<p class = "firstLineIndent">大多数人渐渐打消了对于老的怀疑，然而梁光和周动眼中依然有些狐疑，他们对于老了解地多一些，这家伙可不像表面上那么老实。</p>
+<p class = "firstLineIndent">于老避开这两人目光，咳嗽了一声。“咳咳！好了，我想大家刚到这里，肯定有很多疑问，不过现在，我先带你们去看点好东西……”</p>
+<p class = "firstLineIndent">他神秘一笑，然后转身走进隔壁的一间实验室。</p>
+<p class = "firstLineIndent">众人对视一眼，有些疑惑地跟了进去，不久之后，从里面就传来了阵阵惊呼。</p>
+<p class = "firstLineIndent">“这……这是幽灵船长的隐身科技？！”</p>
+<p class = "firstLineIndent">“激光武器改进设计图？”</p>
+<p class = "firstLineIndent">“嗯？海狼号战舰模型？天呐！核聚变推进器开发计划？！”</p>
+<p class = "firstLineIndent">“人体dna图谱详解？大脑神经信号提取技术？虚拟现实技术初探？老梁你快掐我一把我应该是出现幻觉了！”</p>
+<p class = "firstLineIndent">“滚，没空理你！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">不出所料的，一众科学家很快迷失在幽灵船长的黑科技海洋中，然后就见于老悄悄从里面走了出来，然后轻轻地带上门。</p>
+<p class = "firstLineIndent">“唉！单纯真好啊……”他带着一脸无敌的寂寞背着手缓缓离开，身影很快便消失在幽深的通道中……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海狼号内。</p>
+<p class = "firstLineIndent">聂云正在思考如何侦查两个拉格朗日点，就在这时。</p>
+<p class = "firstLineIndent">“舰长阁下，增援部队再有三分钟便可登陆月球！”代号突然汇报道。</p>
+<p class = "firstLineIndent">“嗯，我知道了！”聂云点点头，随后意念转动间，已经来到月球地底世界。</p>
+<p class = "firstLineIndent">只见被八道管路包围的正中心处，此刻一台崭新的激光炮被安放在那里，炮口垂直向上，直指正上方的垂直矿井！</p>
+<p class = "firstLineIndent">这是聂云这段时间制造出来的激光炮，专门用来打通矿井。</p>
+<p class = "firstLineIndent">根据侦测的结果，这个矿井在离月面5公里位置便被土层掩埋，想要打通矿井，必须贯通这段土层。</p>
+<p class = "firstLineIndent">但是大威力的动能武器或者爆炸性武器很容易引起矿井塌方，挖掘速度又有些太慢，于是聂云决定直接用激光炮将矿井熔穿！</p>
+<p class = "firstLineIndent">若是以前，聂云现有的激光炮技术恐怕还做不到这种地步，不过地底的收获，让这个方案有了尝试的可能。</p>
+<p class = "firstLineIndent">他所用的这门激光炮，规格与海狼号的激光主炮完全一致，只不过由于这里的机械虫材料只有200公斤，因此聂云还就地取材，用了许多强化过后的普通材料，只是在核心的关键部位使用了机械虫。</p>
+<p class = "firstLineIndent">而这门激光炮的材料虽然不如海狼号上那门，不过使用的能源却已经更新换代！</p>
+<p class = "firstLineIndent">从这个基地内残留的能源中枢处，聂云获得了珍贵的能源水晶的能量提取技术，并且已经将这个技术彻底消化。</p>
+<p class = "firstLineIndent">此刻激光炮内部的能源供应位置，安放的正是一枚巴掌大小的能源水晶！</p>
+<p class = "firstLineIndent">“准备就绪，方向校准无误！发射！”</p>
+<p class = "firstLineIndent">随着聂云的命令，内部的能源水晶开始汹涌出澎湃的能量，“嗡！”激光炮内部微微亮起红光。</p>
+<p class = "firstLineIndent">然后下一个瞬间，红色的高能激光束直刺穹顶，瞬间没入幽深的矿井！</p>
+<p class = "firstLineIndent">几乎瞬间，激光束便命中离月球地面5公里的堵塞土层，大片大片的岩浆激射！激光迅速在土层内熔出一个大洞并不断深入！</p>
+<p class = "firstLineIndent">激光炮依然还在持续不断的喷射着高能激光束，刺目的光线照亮了这座采矿主基地！</p>
+<p class = "firstLineIndent">然而激光炮内部的某些部件已经开始发红发热，一些普通材料开始承受不住这样巨大的输出功率！</p>
+<p class = "firstLineIndent">时间慢慢过去，30s之后……</p>
+<p class = "firstLineIndent">在离月面东厂基地以西大概30公里的一处月面环形坑内，突然出现了一个5米左右的红色发亮区域，然后土层微微隆起，从裂缝处冒出红光。</p>
+<p class = "firstLineIndent">下一个瞬间，一道刺目的红色激光束喷射而出，刺向幽深的宇宙，然后很快缓缓消散！</p>
+<p class = "firstLineIndent">激光消散后，月面留下了一个5米直径的大坑，大坑周围的边缘位置被融化，红色的岩浆开始在太空环境下快速冷却。</p>
+<p class = "firstLineIndent">而此刻地下世界中，那架激光炮已经彻底损毁，许多部件已经融化变形，正冒着高温的雾气，不过，它的使命已经完成！</p>
+<p class = "firstLineIndent">矿井……成功贯通！</p>
+<p class = "firstLineIndent">埋藏于月心封闭了三万年的地底世界此刻重新与宇宙连为一体！</p>
+
+<h2>第一百九十二章 嫁妆</h2>
+<p class = "firstLineIndent">就在月球地底世界的矿井打通后，抵达月球环绕轨道的原型机们也在环绕月球半周后向着月面俯冲而下。</p>
+<p class = "firstLineIndent">“轰轰轰……”连续的轰然震动中，七尊巨大的人形雕像急速坠落，以数公里一台的间隔，在东厂基地与矿井出口之间的30公里连线上砸出七条烟柱。</p>
+<p class = "firstLineIndent">其中一台原型机的落点……正是矿井出口附近！</p>
+<p class = "firstLineIndent">这些机械虫落地后立刻分散开来，按照东厂炼钢基地的发展模式，建造小型机器人生产线和炼钢设备，每一个落点处都将建立一座分基地！</p>
+<p class = "firstLineIndent">而矿井出口处的机械虫，除了分出一半建造基地外，另一半则涌入那处矿井，开始顺着打开的豁口疏通平整矿井，同时……增兵地底世界！</p>
+<p class = "firstLineIndent">在聂云的规划中，东厂基地将与矿井出口连成一片，以这条连接线为中心向周围扩张，完成东厂基地的扩建计划！</p>
+<p class = "firstLineIndent">这将是聂云明面上的月球基地，而地底世界的那处采矿主基地，将被聂云改造成为能源水晶采矿基地和秘密隐藏力量！</p>
+<p class = "firstLineIndent">面对实力未知的外星人，聂云甚至已经做好了外星人一旦抱有明显敌意，并且具备碾压性质的科技实力，那么便全员撤离地月系的最坏打算，而这个地底基地，便是聂云战略撤退后反攻的桥头堡。</p>
+<p class = "firstLineIndent">至于战略撤退后地球的安危，聂云倒是不怎么担心。</p>
+<p class = "firstLineIndent">以外星人以往的行事来看，至少短时间内，他们并不想毁灭地球或者人类，否则早就可以动手。</p>
+<p class = "firstLineIndent">连还未走出地球的人类都可以毁灭自己上千次，一个拥有星际航行能力的高级文明，攻击手段不可能连人类都不如吧？</p>
+<p class = "firstLineIndent">而在这种情况下，如果明知不是对手，还要死守着地球，那就太愚蠢了，聂云现在缺少的，不是资源，而是时间！</p>
+<p class = "firstLineIndent">当然，这只是聂云的最坏打算，地球和人类可是聂云的根本，不到万不得已，他也绝不会选择什么君子报仇，十年不晚！</p>
+<p class = "firstLineIndent">月球基地的建造工作在迅速展开，而地底世界的机械虫也没闲着，它们开始吞噬拆除主基地内的蚂蚁机器人生产线，然后在原有厂房的基础上建造聂云自己的小型机器人生产线。</p>
+<p class = "firstLineIndent">这种蚂蚁机器人的生产线核心部件和控制程序虽然都已经缺失，但是留存下来的机械部件，依然让聂云反推还原了一小部分制造工艺，消化后择优融入了自己机器人生产线中，预计能够使生产效率提高10左右。</p>
+<p class = "firstLineIndent">另外一个收获便是对方的机器人电池技术！</p>
+<p class = "firstLineIndent">他们采用的是一种蜂窝状的高密度能源电池，一人高的蚂蚁机器人，使用一个小背包大小的电池插件，满功率下能够连续工作3天时间，比聂云现有电池组的能量密度高了5倍左右！</p>
+<p class = "firstLineIndent">目前聂云已经开始着手升级自己旗下所有基地中的机器人生产线，并对现有的小型机器人进行电池升级和局部微调，按照保守估计，升级后的机器人工作效率，能够提升10以上，续航时间更是大大延长。</p>
+<p class = "firstLineIndent">还有便是那个破损严重被遗弃在仓库中的报废球形矿车，聂云已经将其彻底解析了一遍。</p>
+<p class = "firstLineIndent">经过分析，这应该是一具远程操作的无人矿车，以先进的自动化程序配合少量人工介入完成操控。</p>
+<p class = "firstLineIndent">虽然这个球形矿车内一半以上的空间是被用来当做货箱运输矿石，而且核心部件也被回收，但是依然让聂云收获满满。</p>
+<p class = "firstLineIndent">首先是大量的开采记录，日记一般的记录资料终于让聂云解析出了外星人的大量语言规律。</p>
+<p class = "firstLineIndent">最终，聂云获得了外星人语言压缩包+1！</p>
+<p class = "firstLineIndent">这是一种完全陌生的语言体系，由大量的点和线构成文字，有点类似二维码和条形码的结合体。</p>
+<p class = "firstLineIndent">这种文字有些十分简单，只需要一两个点线便可以构成一个字，而有些则十分复杂，就像是在看一个二维码。</p>
+<p class = "firstLineIndent">聂云猜测，这种外星人的眼部神经应该特别发达，能够如同扫描仪一般快速辨别这些复杂图案，又或者，他们也是利用了外部增设的扫描仪？</p>
+<p class = "firstLineIndent">可惜这其中对于外星人社会和科技方面的描述几乎为零，连外星人长什么样都没有一张完整图片。</p>
+<p class = "firstLineIndent">除了语言资料，矿车上损坏的推进器也给了聂云一个惊喜。</p>
+<p class = "firstLineIndent">这种球形矿车使用的也是等离子推进器，但是制造技术远超地球，其推力和比冲比聂云现在使用的要高一倍左右。</p>
+<p class = "firstLineIndent">这台推进器老化严重，而且似乎发生过撞击，有一个巨大的破口，但是主体结构还很完整，这点损坏对聂云的解析工作完全没有影响。</p>
+<p class = "firstLineIndent">聂云此时已经在根据这台推进器上的技术优化升级自己的推进系统。</p>
+<p class = "firstLineIndent">除了这些收获外，矿井打通后，聂云还从地下世界送上来机械虫这段时间“吃土”所获得的所有能源水晶。</p>
+<p class = "firstLineIndent">一共3枚拳头大小的能源结晶，2枚被聂云送上海狼号，一枚则被切成薄片留在了月球基地，准备进行能源水晶的相关科研工作。</p>
+<p class = "firstLineIndent">这玩意儿可比核弹危险多了，能量密度高的吓人，要是在地球或者海狼号上研究，这过程中不小心弄出什么世纪大爆炸，那聂云绝对会被自己蠢哭！</p>
+<p class = "firstLineIndent">而在月球就不用担心了，炸坏了也不心疼。</p>
+<p class = "firstLineIndent">月球：“……”（）</p>
+<p class = "firstLineIndent">除此之外，采矿主基地中较为完整的能源中枢带给聂云的收获更大！</p>
+<p class = "firstLineIndent">除了能源水晶的能量提取方式外，外星人的能源输送线路也给了聂云相当大的启发，聂云已经在开始着手进行海狼号能源线路的全面升级改造工作，改造后海狼号的整体能量输出功率预计能够在原有基础上提升30！</p>
+<p class = "firstLineIndent">除此之外，聂云还为海狼号添加了一套能源水晶供能系统，必要的时候能够与现有的核聚变能源系统进行无缝衔接。</p>
+<p class = "firstLineIndent">虽然目前开采的能源水晶少的可怜，还没有达到能够日常使用能源水晶作为主要能源的地步，不过就以被送到海狼号上的两枚能源水晶而言……</p>
+<p class = "firstLineIndent">唔……大概可以支撑海狼号暴力输出2分钟？</p>
+<p class = "firstLineIndent">聂云已经将这种能源水晶当成了爆发式的杀手锏！</p>
+<p class = "firstLineIndent">就这样，月球遗迹中的收获正在慢慢化为聂云的实力，为sos带来蜕变……</p>
+<p class = "firstLineIndent">“唔……总的来说，月球的嫁妆，我还算满意……”聂云嘿嘿笑着。</p>
+<p class = "firstLineIndent">月球：“……”</p>
+
+<h2>第一百九十三章 我想生个女儿</h2>
+<p class = "firstLineIndent">地球轨道。</p>
+<p class = "firstLineIndent">海狼号的主炮口缓缓打开，悄无声息间射出了一枚只有1000g的高速弹丸，随后它再次缓缓调整姿态，旋转了大约120度后射出了第二枚！</p>
+<p class = "firstLineIndent">这两枚小型机械虫弹丸经过主炮加速，以2000公里每秒的初速度分别向着l4、l5两个拉格朗日点飞去。</p>
+<p class = "firstLineIndent">由于两点的公转运动，它们预计将在约10个小时后，先后到达两个目标点。</p>
+<p class = "firstLineIndent">不管那里是否真的存在外星人的探测器，聂云这次都做的异常小心。</p>
+<p class = "firstLineIndent">为了做到尽量隐蔽，他并没有动用推进器加速两枚弹丸，变化异常的速度或者轨道都会增加暴露的几率。</p>
+<p class = "firstLineIndent">另外他还给这两枚弹丸的外形也做了伪装，从外面看上去就像是一枚灰扑扑，坑坑洼洼的微型小行星。</p>
+<p class = "firstLineIndent">于此同时，聂云动用了包括海狼号以及渐渐散布于整个太阳系的“鹰眼侦察兵”和“太空间谍”在内的所有己方观察设备，全方位地对l4、l5两个拉格朗日点进行远距离侦测。</p>
+<p class = "firstLineIndent">结果不出意外的，光学、热成像、无线电等所有探测方式均没有发现任何异常。</p>
+<p class = "firstLineIndent">聂云倒也没失望，如果真这么简单，那他倒是要对“b星人”失望了。不过原本他也没打算用常规方式找出这只小老鼠。</p>
+<p class = "firstLineIndent">“就看这一网，是不是真的能捞到什么有趣的东西了！”聂云看着光屏上渐渐远去的两个小点喃喃道。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“快看，那是什么？！”</p>
+<p class = "firstLineIndent">通讯中传来的惊呼声让正在全神操作采矿设备的史密斯抬头看向远方的天空，只见那里，有一道冲天而起的红色光柱正在缓缓消散。</p>
+<p class = "firstLineIndent">随后过了不久……“轰轰轰！”一连七次轻微的震动感从那个方向传来。</p>
+<p class = "firstLineIndent">“那里发生了什么？陨石撞击？”大卫走到史密斯身边惊疑不定道。</p>
+<p class = "firstLineIndent">“不清楚，不过刚刚的红色光柱……这不像是陨石撞击！我有种感觉，肯定又是幽灵船长搞出来的！月球最近真是发生不少离奇的事情……”史密斯道。</p>
+<p class = "firstLineIndent">“离奇？我们都附身在一群机器人身上，还跑到了月球背面，还能有比这更离奇的？”大卫苦笑道。</p>
+<p class = "firstLineIndent">“是啊……想想还真是像做梦一样！不过很快，这个梦就该醒了！”史密斯笑着看向正干的热火朝天的一众部下们。</p>
+<p class = "firstLineIndent">这两天经过他们辛勤的挖矿劳动，一共赚取了超过2000无限币，并且全部兑换成了各种开采设备。</p>
+<p class = "firstLineIndent">虽然它们并不是专业的采矿人员，不过兑换出来的开采设备基本都是傻瓜式操作，只需要很少的人工介入便可以完成操作，因此效率正在以肉眼可见的速度提升，现在他们一天时间就可以赚取超过500点无限币。</p>
+<p class = "firstLineIndent">虽然平均下来每个人每天赚取的还不到5点，不过他们显然已经看到这种采矿模式的惊人发展潜力。</p>
+<p class = "firstLineIndent">高度自动化的采掘方式，一个人就能够管理一大片的矿区，再往后，这个效率还可以滚雪球一般扩大，所以他们对回家都十分有信心，当然，前提是那个代号？？？的无限币真的管用。</p>
+<p class = "firstLineIndent">不过我怎么觉得这帮家伙干的比昨天还卖力？史密斯心中有些疑惑。</p>
+<p class = "firstLineIndent">“中校，有件事不知道该不该说……”大卫这时突然欲言又止。</p>
+<p class = "firstLineIndent">“什么事？”史密斯问道。</p>
+<p class = "firstLineIndent">“最近有人用自己手头的无限币尝试性的兑换了1美金，然后他收到了自己的银行转账提示……”</p>
+<p class = "firstLineIndent">“什么？”史密斯呆了呆，然后兴奋起来，“这是好事啊，这说明我们的确并不是来到什么异世界！我们和地球还存在联系！哈哈！”</p>
+<p class = "firstLineIndent">“是这样没错，不过，正因如此，随着无限币的作用越来越被肯定，今天发生了一件事情……你还记得那个智脑给出的无限币兑换列表中，有一个愿望类的选项吧？”</p>
+<p class = "firstLineIndent">【愿望类：说出你的愿望！（按劳收费）】</p>
+<p class = "firstLineIndent">“嗯？的确是有这个东西，不过我上次试着许愿要干掉幽灵船长，那个智脑居然给我开价（∞-1）点无限币！</p>
+<p class = "firstLineIndent">尼妹当我没学过数学吗！？特么（∞-1）就不是∞啦？”</p>
+<p class = "firstLineIndent">（∞：无限符号）</p>
+<p class = "firstLineIndent">大卫：“……”</p>
+<p class = "firstLineIndent">喂喂，是什么让你觉得幽灵船长制造出来的智脑会蠢到发行一种货币然后让别人用自己发行的货币收买自己去干掉制造自己的主人啊……</p>
+<p class = "firstLineIndent">“咳咳！中校，你记得中士马蒂亚吧？”大卫严肃道。</p>
+<p class = "firstLineIndent">“当然，佛罗里达号上所有人的名字我都记得！这个小伙子在佛罗里达号服役已经有3年了吧，是个棒小伙儿！你问这个干嘛？”</p>
+<p class = "firstLineIndent">“那中校应该听说过，他有一个因为车祸双目失明的妹妹……”</p>
+<p class = "firstLineIndent">“嗯！我知道，是叫……爱丽丝！</p>
+<p class = "firstLineIndent">马蒂亚那小子可不止一次在大家面前吹嘘过他的妹妹有多可爱懂事，有一次我还托我妻子去医院看望她了，听我妻子说，那是个天使一样的女孩儿，可惜……诶？等等，你什么意思？”史密斯说到一半反应过来，惊讶道。</p>
+<p class = "firstLineIndent">“是的中校！马蒂亚许愿了，愿望是让自己的妹妹重获光明！”大卫认真道。</p>
+<p class = "firstLineIndent">“然后呢？”</p>
+<p class = "firstLineIndent">“智脑给出的价格是……10000无限币！”</p>
+<p class = "firstLineIndent">“什么？！”史密斯愕然。</p>
+<p class = "firstLineIndent">不是惊讶于价格太高，而是……太低了啊！</p>
+<p class = "firstLineIndent">史密斯大致算过，一个人如果按照他们这样的效率开采资源换取无限币，扣除各种损耗，大概3个月之后就能赚到10000点！</p>
+<p class = "firstLineIndent">也就是说，只需要挖3个月矿就能换取宝贝妹妹重获光明？</p>
+<p class = "firstLineIndent">卧槽！那你帮我算算需要挖几个月能直接换个妹妹？</p>
+<p class = "firstLineIndent">有这种好事情全世界恐怕只会剩下一种职业，那就是矿工啊！</p>
+<p class = "firstLineIndent">然后立刻，史密斯就反应过来，他转头看向埋头苦干的部下们……</p>
+<p class = "firstLineIndent">尼妹！怪不得今天这么卖命！</p>
+<p class = "firstLineIndent">不过这玩意儿如果真管用……</p>
+<p class = "firstLineIndent">“咳咳！智脑，我希望生一个女儿，需要多少无限币？”</p>
+<p class = "firstLineIndent">这是他和妻子的共同愿望，可惜多年来都未能实现，秉着试试看又不会少块肉的想法，他许愿道。</p>
+<p class = "firstLineIndent">“嘀！计算完毕，根据你的愿望，需要先对你进行变性手术，然后进行dna筛选和人工受精，再从十月怀胎到坐月子调养，本机一条龙全程服务，套餐只需998！只需998！”</p>
+<p class = "firstLineIndent">史密斯：“……”</p>
+<p class = "firstLineIndent">998尼妹啊！这许愿机是被掉包了吧？快给我好好听人说话然后报出10000这样的正常数值啊！</p>
+<p class = "firstLineIndent">难道是因为我之前许的愿望所以被针对了？一定是的吧？！</p>
+
+<h2>第一百九十四章 24小时</h2>
+<p class = "firstLineIndent">海狼号内。</p>
+<p class = "firstLineIndent">时间一点点过去，两枚弹丸离拉格朗日点已经越来越近，与此同时，聂云也在密切关注两处拉格朗日点的变化。</p>
+<p class = "firstLineIndent">“舰长阁下，已经到达预定坐标！”代号这时汇报道。</p>
+<p class = "firstLineIndent">“嗯！那么……开始撒网！”随着聂云的命令，两枚弹丸上出现了变化。</p>
+<p class = "firstLineIndent">它们灰扑扑的岩石外表上突然迅速长出了头发丝粗细的一根根黑色丝线，这些丝线就像吐丝一般不停地冒出、伸展，很快，这两块岩石就变成了一团黑色毛球。</p>
+<p class = "firstLineIndent">毛球上的丝线还在不断伸长，一米、十米、一百米……</p>
+<p class = "firstLineIndent">而伸长中的丝线再次分叉，形成两条更细的丝线继续扩张……</p>
+<p class = "firstLineIndent">三分钟后，这块岩石状的弹丸已经完全消失，取而代之的，是一张肉眼不可见的巨大网状物。</p>
+<p class = "firstLineIndent">这张圆形巨网由一根根坚韧的细微丝线构成，网眼仅有半米不到，此刻展开后的直径足有5公里，而且还在不断扩张中。</p>
+<p class = "firstLineIndent">这种丝线是一种由机械虫构成的片状结构新材料，形象地说它是只有原子级厚度的二维材料，这种结构类似材料学“黑金”——石墨烯！</p>
+<p class = "firstLineIndent">石墨烯（graphene）是一种由碳原子以sp2杂化轨道组成六角型呈蜂巢晶格的单层二维碳纳米材料。</p>
+<p class = "firstLineIndent">它被现代材料领域比喻为“黑金”，因为它是已知强度最高的材料之一，发丝一样细的丝线便能拉起一台三脚架钢琴！</p>
+<p class = "firstLineIndent">它还是已知的世上最薄、最坚硬的纳米材料，它的硬度是钢的200倍，质量比钢轻6倍，而且还可以大角度弯折。</p>
+<p class = "firstLineIndent">拥有类似结构的机械虫材料性能远超石墨烯，它能够做到在这种丝线直径接近原子的尺度下，这张巨网依然拥有让人惊叹的坚韧性！</p>
+<p class = "firstLineIndent">没错，聂云用来捕捉外星人探测器的方式十分原始，而且很渔民……那就是撒网！</p>
+<p class = "firstLineIndent">他的想法很简单，既然“魔法侧”的搜索手段无效，那就改用物理侧，撒网可是我的老本行！</p>
+<p class = "firstLineIndent">就算你能隐身，能毫无能量波动，但是难不成你还能遁入虚空？</p>
+<p class = "firstLineIndent">如果连人家的一颗探测器都能用这种顶级的空间魔法，那聂云还是别想着玩对抗了，早点洗洗睡，赶紧想办法逃出银河系才是正理！</p>
+<p class = "firstLineIndent">而现在，这张聂云精心编织的巨网，正笼罩向那条可能存在的大鱼……</p>
+<p class = "firstLineIndent">半个小时过后，其中一张巨网终于接近l4拉格朗日点，此时巨网的面积已经扩张到30公里！</p>
+<p class = "firstLineIndent">双方间距5000公里……3000公里……1000公里……接触！</p>
+<p class = "firstLineIndent">远在海狼号的聂云眉头一动，眼中喜色一闪……找到你了！</p>
+<p class = "firstLineIndent">拉格朗日点l4位置。</p>
+<p class = "firstLineIndent">虚空中那张不可见的巨网某个部位像是被什么东西撞上了一般猛然凹陷了一下，随后恢复了原状。</p>
+<p class = "firstLineIndent">这一异状立刻被聂云所捕捉到，并且确定了异常发生的坐标点，而在先前的光学观测中，那里……空无一物！</p>
+<p class = "firstLineIndent">聂云欣喜之下立刻将所有的探测仪器对准了这个坐标，虽然l4位置的光线传到地球需要整整7分钟，但是先前发射的“太空间谍”中恰好有一枚距离l4点相当近。</p>
+<p class = "firstLineIndent">通过它的光学侦测，聂云很快看到了近乎实时的画面。</p>
+<p class = "firstLineIndent">只见在那个被聂云感应到异常的坐标位置，在巨网经过后又过了2s，空无一物的虚空中突兀地闪现出一道蓝色电弧！</p>
+<p class = "firstLineIndent">在接连闪现的几次弧光过后，这处虚空中突然缓缓浮现一枚直径约有3米的黑色球形物体。</p>
+<p class = "firstLineIndent">这枚黑色球体通体泛着金属光泽，并且从球体上的6个方向延伸出分布均匀的6根天线，不过此刻它的状态看上去不太好。</p>
+<p class = "firstLineIndent">“滋滋~”在它身上，出现了几道细不可查的裂缝，时不时从裂缝中泄露出一道道蓝色电光。</p>
+<p class = "firstLineIndent">就在聂云有些期待的目光中，裂缝越来越大，最终就像是被切了好几刀一般，缓缓分解为四五块切面十分光滑的碎块！</p>
+<p class = "firstLineIndent">听说过传说中杀人于无形的盘龙丝吗？</p>
+<p class = "firstLineIndent">没错，这张巨网不但是一个定位工具，而且还是一种攻击手段！原子级的盘龙丝！</p>
+<p class = "firstLineIndent">聂云的高强度机械虫丝在接近2000公里每秒的超高相对速度下，削金断玉不要太简单！别说是外星人探测器，就算是倚天剑屠龙刀，切碎了都不带声儿的！</p>
+<p class = "firstLineIndent">而此刻，干掉了心腹大患的聂云所不知道的是……</p>
+<p class = "firstLineIndent">“滋滋……警报！警报！遭受未知攻击！滋滋……损伤检测……检测完毕，判定修复可能……滋滋……无法修复……”</p>
+<p class = "firstLineIndent">“滋滋……判断攻击方向……来自地球……预设条件达成！清除计划秘钥（上）启动……滋滋……黑匣子情报压缩包紧急传输……”</p>
+<p class = "firstLineIndent">随后，这枚探测器内部的电光渐渐熄灭，静静地成为了宇宙中的漂浮物</p>
+<p class = "firstLineIndent">“呼……总算结束了，还好这伙外星人的科技水平并没有超出我们的理解范畴……”聂云长长地松了口气。</p>
+<p class = "firstLineIndent">这枚探测器就像是一根刺，让聂云如鲠在喉，这回总算是把这根刺拔掉了！聂云只感觉浑身轻松。</p>
+<p class = "firstLineIndent">不过就当他刚想控制巨网返回，并对外星探测器残骸进行回收作业时，他整个人却猛地一愣。</p>
+<p class = "firstLineIndent">“这……这是？！”聂云愕然转头看向眼前光屏中的l5点！</p>
+<p class = "firstLineIndent">因为在那里……机械虫巨网竟然也有了发现！</p>
+<p class = "firstLineIndent">在聂云的感应中，l5点的巨网也传回了异常信息。</p>
+<p class = "firstLineIndent">很快聂云眼前的超大光屏浮现一个画面，与先前发生的画面几乎一模一样，只不过这次出现的是一个多边形不规则的探测器，此刻也已经同l4点的那个一样，成为一堆太空垃圾。</p>
+<p class = "firstLineIndent">“尼妹！原来是两个！”</p>
+<p class = "firstLineIndent">聂云愕然之后这才反应过来，似乎存在两个探测器也很正常？谁也没规定人家只能放一个啊？！惯性思维害死人呐！</p>
+<p class = "firstLineIndent">不提多一个更保险的问题，另外在圣典的记载中，这群外星人出现时似乎总是成双入对，多次用到了“双生”这个词。</p>
+<p class = "firstLineIndent">而从这两个探测器的外形上来看，这帮外星人应该是分属两个不同的势力，虽然一起行动，但是却有着明显的差异性特征！</p>
+<p class = "firstLineIndent">就在聂云暗自庆幸的时候……</p>
+<p class = "firstLineIndent">“滋滋……预设条件达成！清除计划秘钥（下）启动！”</p>
+<p class = "firstLineIndent">这一刻，两道隐秘的波动几乎瞬间抵达地球，地球上一个黑暗幽深的所在，亮起了一道红芒……</p>
+<p class = "firstLineIndent">“24小时倒计时开始……”</p>
+
+<h2>第一百九十五章 假期</h2>
+<p class = "firstLineIndent">解决了心腹大患的聂云伸了个懒腰。</p>
+<p class = "firstLineIndent">“呜~搞定！看样子的确就是个被动探测器，虽然隐身能力极强，不过连一点攻击或者防御的武器都没有，有点小失望呢！”</p>
+<p class = "firstLineIndent">这倒也十分正常，搞间谍侦查，自然是越隐蔽越好，装武器就有点画蛇添足了。</p>
+<p class = "firstLineIndent">“不过……外星朋友们，太小看对手可不好哦！那么接下来，野餐时间到啦！”</p>
+<p class = "firstLineIndent">此刻两张巨网已经在完成任务后快速缩回，组合成两艘微型银梭，然后开始减速返回准备接收战利品，按照估计，它们将在20个小时后回到拉格朗日点。</p>
+<p class = "firstLineIndent">好在这两点位置都是引力稳定点，探测器残骸并不会被引力拉扯四散，这给聂云的回收工作带来了便利。</p>
+<p class = "firstLineIndent">他原本也想过按照“偷菜”的模式悄悄侵占这两枚探测器，这样得到的好处更多，但操作上却有些困难。</p>
+<p class = "firstLineIndent">拉格朗日点周围没有什么天体可以提供“硬着陆减速技术”的施展对象，而从海狼号到目的地整整7光分的距离，不提减速到与探测器相对静止所需要花费的以月来计算的时间，这个变速过程中推进器散发的热辐射也会让弹丸显得十分异常，增加暴露的几率。</p>
+<p class = "firstLineIndent">而使用原子刃一般的杀伤方式，能够将对探测器的结构损伤降到最低，对聂云的解析工作来说这点小创口完全没有影响。</p>
+<p class = "firstLineIndent">更重要的是，未知是最可怕的敌人，最快速的击毁对方，才能让对方完全没有施展手段的机会，因此聂云才采用了这种瞬间让对方丧失战斗力的微创击毁方式！</p>
+<p class = "firstLineIndent">还好，一击必杀，击毁计划进行的很顺利。</p>
+<p class = "firstLineIndent">“舰长阁下，有您的通讯，来自潇潇小姐。”这时代号突然对聂云道。</p>
+<p class = "firstLineIndent">“嗯！接进来吧。”</p>
+<p class = "firstLineIndent">“喂！潇潇。”</p>
+<p class = "firstLineIndent">“聂云，新闻发布会你看了吗？”楚潇潇的语气有些古怪。</p>
+<p class = "firstLineIndent">“发布会？哦，我看了啊！”聂云说着飞速扫了眼记录资讯，将发布会的实况转播以10000倍速快进播放。</p>
+<p class = "firstLineIndent">然后……嗯，那两家伙干的还不赖嘛！</p>
+<p class = "firstLineIndent">不过楚潇潇显然不这么想。</p>
+<p class = "firstLineIndent">“我说，你们组织就不能派点靠谱的人来吗……”楚潇潇捂着额头。</p>
+<p class = "firstLineIndent">“知不知道现在除了种花家，其他的世界各大主流媒体都在黑亚特兰蒂斯公司，有说你们傲慢无礼，妄自尊大的，还有说你们哗众取宠，无中生有的，这次新闻发布会简直起了反效果！”</p>
+<p class = "firstLineIndent">“嗯，我知道，这是有人在背后推波助澜，就算你正儿八经地将自己包装起来，这种事也无法避免，不过安心啦，这种小事不用在意！”聂云满不在乎道。</p>
+<p class = "firstLineIndent">推波助澜的，除了因亚特兰蒂斯廉价铁矿利益受损的资本集团外，还有一些别有用心的财团势力，对现在的聂云而言，这些人只不过是螳臂当车。</p>
+<p class = "firstLineIndent">阻挡历史潮流的，终将被滚滚而来的历史的车轮碾平……</p>
+<p class = "firstLineIndent">“这还是小事？那在你眼里什么才是大事？！”楚潇潇试探着道。</p>
+<p class = "firstLineIndent">“嗯……比如拯救地球，对抗邪恶的外星人之类的？”聂云歪歪头认真道。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">她觉得自己的试探似乎从来就没成功过，相比拯救地球什么的，那个造航母的朋友还靠谱多了好么……</p>
+<p class = "firstLineIndent">“好吧，就算这是小事，不过我有件事不明白，你们为什么要开这个发布会，这不像你们组织以往低调的作风啊？”楚潇潇不解道。</p>
+<p class = "firstLineIndent">“唔……也没什么，一方面我们的动静越来越大，的确已经到了瞒不下去的地步，这里面的利益你应该知道有多大，单凭目前的楚氏扛不住这样的压力！所以亚特兰蒂斯必须站出来。”</p>
+<p class = "firstLineIndent">楚潇潇听完心中一暖，聂云这是在为楚氏考虑吗？</p>
+<p class = "firstLineIndent">“另一方面，将全世界的注意力集中到亚特兰蒂斯上原本就是我们的战略规划！这次发布会其实就是在打广告！</p>
+<p class = "firstLineIndent">我们组织以前低调那只是时机未到，不过现在嘛，呵呵！我们已经不惧任何挑战！”聂云霸气道。</p>
+<p class = "firstLineIndent">开玩笑，月球都在我的淫威之下瑟瑟发抖，自己是看在老乡的面子上才没欺负地球菌！</p>
+<p class = "firstLineIndent">所以说，地球的和平来之不易，应该要好好珍惜，如果那个不开眼，我不介意给地球也开个瓢……</p>
+<p class = "firstLineIndent">地球：“……”（〒▽〒）</p>
+<p class = "firstLineIndent">楚潇潇听到聂云的话倒是没有觉得他这是自大，反而若有所思。“聂云，你有没有发现……你现在似乎，越来越……有气势了？”</p>
+<p class = "firstLineIndent">从第一次见聂云，那就是个普普通通的渔民小子，第二次是在荒岛，他在黑夜中开的那一枪，楚潇潇至今记忆深刻。</p>
+<p class = "firstLineIndent">此后便一发不可收拾，他所做的事情，越来越超出普通人的理解范畴，而或许连聂云自己都没发现，他自己的气质变化有多大。</p>
+<p class = "firstLineIndent">究竟是什么样的组织，才能让人在短时间就有这样的变化？楚潇潇对聂云的组织越发好奇了。</p>
+<p class = "firstLineIndent">“哦？有吗？哈哈！你这么说我会不好意思啦，这么冷不丁夸我，真是的……”聂云摸着脑袋进入了羞涩模式。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">果然刚刚那都是我的错觉吗？</p>
+<p class = "firstLineIndent">这时聂云悄悄看了眼楚凤的手机定位，然后咳嗽了两声。</p>
+<p class = "firstLineIndent">“咳咳！对了潇潇，我刚忙完手头的事情，今天正好有时间，你在家吗？我去你家找你吧，这么久不见，我有点想念阿姨做的饭菜了，哈哈！”</p>
+<p class = "firstLineIndent">“唔……我在家，不过我妈她去首都出差了，恐怕今天回不来……”楚潇潇说着说着突然心跳有些加速。</p>
+<p class = "firstLineIndent">“哦！这样啊……真是不凑巧呢。”聂云一脸“惋惜”，然后话锋一转，“不过难得的假期，而且潇潇你的手艺也不错啊，上次的海鲜锅很美味呢……”</p>
+<p class = "firstLineIndent">楚潇潇哪里还听不出来聂云的意思，当下红着脸，“咳咳！是吗，那……本小姐就勉为其难，给你再做一次吧！”</p>
+<p class = "firstLineIndent">“好！那就这么说定了，我现在就过去！”聂云兴奋道。</p>
+<p class = "firstLineIndent">“现在？可是……”</p>
+<p class = "firstLineIndent">“可是什么？难道你现在不方便？”聂云疑惑道。</p>
+<p class = "firstLineIndent">“那倒不是，只是……你确定你今天方便？”楚潇潇脸色古怪。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”(/▽＼)</p>
+<p class = "firstLineIndent">（倒计时：23：30：00）</p>
+
+<h2>第一百九十六章 探亲</h2>
+<p class = "firstLineIndent">挂断通讯，聂云站起身，“代号，这里就交给你啦，难得清闲，没什么大事就别打扰我了！”</p>
+<p class = "firstLineIndent">“好的，请放心舰长阁下，祝您假期愉快！”代号很是尽忠职守地保证道。</p>
+<p class = "firstLineIndent">聂云挥挥手，刚出舰长室，便看见一只小小的身影正迈着小短腿在通道内四处乱窜，瞪着溜圆的眼睛好奇的打量四周的一切。</p>
+<p class = "firstLineIndent">通过这两天的观察，聂云发现这个小家伙似乎有点多动症，一副完全闲不下来的样子，这段时间已经将海狼号逛了个遍，但依然乐此不疲。</p>
+<p class = "firstLineIndent">难道长着八条腿的，命中注定都是旅行家？</p>
+<p class = "firstLineIndent">“哟，小章鱼，想不想回家探个亲？”聂云突然坏笑道。</p>
+<p class = "firstLineIndent">“噗？”听到聂云的声音，小章鱼回过头看着他。</p>
+<p class = "firstLineIndent">回家探亲？难道是打算放生我？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">地球轨道上的海狼号舰体腹部，突然向下坠落了一个小点。</p>
+<p class = "firstLineIndent">身穿战甲的聂云脚踩着一块3米左右的银色滑板，在他的肩膀位置，还固定着一颗透明的水晶球，里面露出小章鱼满是惊恐的表情。</p>
+<p class = "firstLineIndent">“噗噗！”小章鱼慌乱地叫着，坠落和失重带来的双重刺激让它的身体都颤抖起来。</p>
+<p class = "firstLineIndent">“果然天空才是旅行家的浪漫啊！让我带你领略这世上最壮美的冲浪，你很快就会爱上它的！哈哈哈……”</p>
+<p class = "firstLineIndent">聂云大笑着，眼中满是兴奋，他脚下一踩，滑板喷蓝色尾焰一吐，带着聂云和小章鱼加速俯冲向那个渐渐充满了整个视野的蔚蓝色星球。</p>
+<p class = "firstLineIndent">在高速运动中与大气的剧烈摩擦下，滑板下方形成一层赤红色高压气墙，滑板和聂云如同燃烧起来一般，很快化为一道流星落入大气层……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">夏城海景花园别墅区。</p>
+<p class = "firstLineIndent">楚潇潇一边看着菜谱，一边有些笨拙地加着佐料。</p>
+<p class = "firstLineIndent">“葱、姜、蒜……对了，酱油我刚刚放了没？唔……还有料酒……”</p>
+<p class = "firstLineIndent">“轰！”外面远处传来的一声轰隆巨响吓了专心做菜的楚潇潇一跳，她手上一抖，料酒顿时洒了大半进去，锅中的煮水咕咚咚还在不停冒气，厨房里顿时酒香四溢。</p>
+<p class = "firstLineIndent">“怎么回事？这是什么声音？”楚潇潇放下手中的厨具和调料往外走，想出去看看情况。</p>
+<p class = "firstLineIndent">可还没走到门口，“叮咚！”门铃突然响了起来。</p>
+<p class = "firstLineIndent">“嗯？这个时间？会是谁？”楚潇潇有些疑惑地想着。</p>
+<p class = "firstLineIndent">这四周都有保镖和特种部队的人保护，能靠近的肯定都是验明过身份的，所以楚潇潇也不担心是什么危险人物，过去开了门，然后就看到一身沙滩裤花衬衫打扮的聂云正笑吟吟地站在门口，手上还拉着个银色行李箱。</p>
+<p class = "firstLineIndent">“聂……聂云？！你……你怎么这么快？”楚潇潇惊讶地看着他。</p>
+<p class = "firstLineIndent">离两人结束通话才过了不到半个小时，要知道夏城可是出了名的堵，半个小时差不多也就能走个30公里，连市区都走不完。</p>
+<p class = "firstLineIndent">“哦，其实我刚刚就在附近来着！”聂云看着楚潇潇笑道。</p>
+<p class = "firstLineIndent">楚潇潇今天一身家居服，清丽的容颜不施粉黛，浑身上下洋溢着青春的气息。她此刻身上套着一条围裙，显然刚刚是在厨房忙活。</p>
+<p class = "firstLineIndent">这种打扮的楚潇潇与往日大小姐的模样截然不同，让聂云不由得多看了两眼。</p>
+<p class = "firstLineIndent">“咳咳！进来吧，对了，你这一身打扮是怎么回事？”楚潇潇被看的有些脸红，往旁边让了让道。</p>
+<p class = "firstLineIndent">“这个？沙滩装啊，我刚刚玩滑板冲浪来着，可刺激了！下次有机会我带你一起玩！”</p>
+<p class = "firstLineIndent">冲浪？这附近有什么冲浪的场地？我怎么不知道？还有，现在可都要入秋了，你不冷的吗？</p>
+<p class = "firstLineIndent">楚潇潇有些疑惑地将聂云让进门，不过聂云走到一半突然想起什么，“咳咳！那什么，能不能先把金属探测器关了？”</p>
+<p class = "firstLineIndent">自己现在虽然是生物体状态，可手上的行李箱可是机械虫制品。</p>
+<p class = "firstLineIndent">楚潇潇有些无语地翻了个白眼，这次又是什么？加强版护心镜？</p>
+<p class = "firstLineIndent">不过她也没有多问，只是在门后的墙壁上操作了一下，然后转头上下打量聂云，穿的很清凉，除了那个行李箱没有什么显眼的东西。</p>
+<p class = "firstLineIndent">不过很快，她便发现聂云胸口的衬衫口袋里有一团鼓鼓囊囊的东西，刚刚竟然还动了动。</p>
+<p class = "firstLineIndent">“呃……你口袋里装了什么东西？怎么还会动？”</p>
+<p class = "firstLineIndent">“你说这个啊……”聂云笑着从口袋里掏出一个黑色圆球，摊开手掌递到楚潇潇面前。</p>
+<p class = "firstLineIndent">楚潇潇奇怪的看着那只古怪的小东西，怎么眼神看起来有些空洞？一副被玩坏了的样子？</p>
+<p class = "firstLineIndent">“这是什么东西？”楚潇潇问道。</p>
+<p class = "firstLineIndent">“这是我从海里抓的变异品种，还挺好玩就养在身边了，你看，弹性超好的！”聂云说着将小章鱼的脸往两边扯出好几十公分，然后松手，小章鱼的脸很q的弹了弹，然后恢复原状。</p>
+<p class = "firstLineIndent">“咦？真的啊，它不咬人的吧，好可爱，给我玩玩！”楚潇潇看着小章鱼双眼放光，然后接过来放在手中揉捏起来。</p>
+<p class = "firstLineIndent">两人说着已经来到客厅，楚潇潇爱不释手地把玩小章鱼，对聂云的语气都热情了许多。</p>
+<p class = "firstLineIndent">聂云嘿嘿坏笑，果然互联网上的攻略十分正确啊！佩戴一只可爱的宠物，效果：可使人物魅力+10！</p>
+<p class = "firstLineIndent">不枉我特地带小章鱼过来……</p>
+<p class = "firstLineIndent">小章鱼此时恢复了一点精神，顶着被捏的变形的小脸十分哀怨地看着聂云，你带我回地球，就是特么为了拿我泡妹子？</p>
+<p class = "firstLineIndent">说好的探亲呢？说好的放生呢？</p>
+<p class = "firstLineIndent">“哦！糟糕，关顾着说话了，我的锅！”楚潇潇这时突然惊叫一声，然后飞奔着进入厨房，火急火燎的也没忘了将小章鱼塞进自己的围裙衣兜中。</p>
+<p class = "firstLineIndent">不久后，楚潇潇带着厚厚的手套端着一个冒着热气的砂锅出来，将它放在了餐桌上。</p>
+<p class = "firstLineIndent">“嘻嘻！还好时间刚刚好！这回我可是信心十足呢！味道绝对比上次还要好！”楚潇潇自信满满地对聂云道。</p>
+<p class = "firstLineIndent">小章鱼被锅中散发出来的浓浓酒香吸引着爬出围裙兜，蹦上餐桌咽了口口水，好香啊……似乎很好吃的样子……</p>
+<p class = "firstLineIndent">然后就在小章鱼有些期待的目光中，楚潇潇打开了锅盖，一阵热气消散后，小章鱼看清了里面的东西。</p>
+<p class = "firstLineIndent">嗯……十分眼熟！</p>
+<p class = "firstLineIndent">“铛铛铛铛！楚潇潇特制……章鱼海鲜锅！”楚潇潇得意地介绍着。</p>
+<p class = "firstLineIndent">小章鱼：“……”</p>
+<p class = "firstLineIndent">这就是带我回来探亲的意思？！</p>
+
+<h2>第一百九十七章 卡拉星</h2>
+<p class = "firstLineIndent">比邻星是南门二（半人马座α）的第三颗星，它是离太阳系最近的一颗恒星，两者相隔422光年，也就是超过40万亿公里！</p>
+<p class = "firstLineIndent">比邻星是一颗红矮星，表面温度只有4000摄氏度，颜色偏红。而在比邻星系中，系内第一行星外观看上去十分惹眼。</p>
+<p class = "firstLineIndent">它离比邻星很近，是地球的约13倍大小，从太空俯视下去这是一个一半赤红，一半充满绿意，生机焕然的生命星球。</p>
+<p class = "firstLineIndent">这颗星球10天就能绕比邻星公转一周，而有趣的是，它的自转周期只比10天稍微快了那么一点点。</p>
+<p class = "firstLineIndent">就是这样一种奇特的现象，使得它的其中一半长期暴露在恒星的照射中，这一半星球表面温度奇高，到处充满了岩浆！</p>
+<p class = "firstLineIndent">而该星球独特的大气和水循环系统，却使另一半星球处在十分适宜生命繁衍的气候条件下，环境比之普通的生命星球更加得天独厚！</p>
+<p class = "firstLineIndent">这个生态系统似乎是将其中一面的生命力转移到了另一面，一半成为生命的禁区，然而另一半却是生命的理想摇篮！</p>
+<p class = "firstLineIndent">而由于星球自转比公转稍快，两者的分界线其实是在不断移动的，每隔300地球日左右，这个星球就会转动半圈，使得生命半球转向另一个半面，接受来自恒星的炙烤。这也导致了，生存于星球上的生命必须不断的迁徙，才能始终处在生命的一面。</p>
+<p class = "firstLineIndent">而此刻在生命半球的核心位置，存在着一座庞大的移动都市，准确来说，是一座建造在移动巨树上的庞大城市！</p>
+<p class = "firstLineIndent">这颗巨树枝叶茂密，高达数十公里，遮天蔽日，而各处枝桠和树干上，建造着无数线条优美的树洞和木质建筑，灯火通明！</p>
+<p class = "firstLineIndent">奇特的是，这颗巨树的数百粗壮根须并不在地下，而是位于地上。</p>
+<p class = "firstLineIndent">每一刻都有十数根近百米粗细的根须有生命一般灵活地拔地而起，然后深深刺入位于巨树前方的土壤中，随后绷紧收缩，拉动巨树缓缓前进。</p>
+<p class = "firstLineIndent">无数根须就这样不断拔起，向前刺入，就像是巨树的数百条腿在井然有序地向前挪动，发出一阵“轰，轰，轰……”十分有节奏的轰鸣。</p>
+<p class = "firstLineIndent">巨树的移动速度虽然不慢，但是十分平稳，在上面的建筑几乎完全感觉不到震动。</p>
+<p class = "firstLineIndent">而如果有人仔细观察，就会惊讶地发现，这颗巨树的移动速度与星球界线的移动速度是完全一致的！</p>
+<p class = "firstLineIndent">这种树叫做卡拉萝，是这颗行星上神奇生态系统自然孕育的奇特生命，它永远在迁徙，追寻着生命的足迹，永不停歇！</p>
+<p class = "firstLineIndent">而它一旦停止自己的脚步，也就意味着，它的生命走到了尽头。</p>
+<p class = "firstLineIndent">然后它会在原地静静等待，观看一生只有一次的……旭日东升的美景！在壮美的朝阳中化为一团烈焰……</p>
+<p class = "firstLineIndent">正是依附于这种奇特的生命存在，才孕育出了这个星球的智慧文明，怀着感恩的心，这个星球的智慧生命将自己的星球命名为——卡拉星！</p>
+<p class = "firstLineIndent">卡拉星人拥有着唯一的政权，卡拉王国！而这颗年龄近千年的卡拉萝古树，便是卡拉王国的王城！</p>
+<p class = "firstLineIndent">在王城古树的顶端，修建着一座宏伟的巨型木质城堡，建筑风格有些类似塔楼。</p>
+<p class = "firstLineIndent">这种看似木质一样的建筑材料却比钢铁还要坚硬，上面还生长着一些绿色的植被，让整座城堡看上去充满了自然的美感，设计风格与古树的环境完美的融合在一起，宛如一件艺术品般，优美的让人惊叹。</p>
+<p class = "firstLineIndent">城堡中心的一座高塔之上的宫殿中。</p>
+<p class = "firstLineIndent">这里是王国议事厅，高大的天顶和庄严肃穆的装饰风格，诉说着一个千年王国的历史底蕴。</p>
+<p class = "firstLineIndent">“父王，请允许我加入此次出征，赶往第二行星作战，这是王室的责任，我已经做好了同两位哥哥一般战死沙场的准备，请父王恩准！”</p>
+<p class = "firstLineIndent">说话的是一名少女，她有着尖尖的耳朵和淡绿色的皮肤，外貌和人类传说中的精灵十分相似。</p>
+<p class = "firstLineIndent">此刻少女正单膝跪地，一双深邃的湖绿色眼睛中透露出满是坚定的目光。</p>
+<p class = "firstLineIndent">高坐于王座之上的，是一名中年男子，头戴青藤编织而成的王冠，只是此刻的面容憔悴，眼中充满了血丝。</p>
+<p class = "firstLineIndent">“萝丝，我明白你此刻的心情，但你现在是皇室唯一的血脉，你想让我亲手断送卡拉王国数千年的传承吗？”国王脸上满是痛苦道。</p>
+<p class = "firstLineIndent">“可是第二行星已经濒临陷落，那是我们最后的屏障，它一旦失陷，我们就只剩下两颗卫星，到时候卡拉星也会陷入战火，卡拉王国同样逃脱不了灭亡的命运，那样倒不如战死在国门之外！</p>
+<p class = "firstLineIndent">双子星的敌人武力虽强，但他们的增兵速度却受到虫洞的限制，只要我们一鼓作气击败他们的先头部队……”名为萝丝的少女劝说着，然而话没说完，便被国王打断。</p>
+<p class = "firstLineIndent">“好了！不用再说了，由我代表王室前往第二行星已经足够了，这个国门……还轮不到你来守！</p>
+<p class = "firstLineIndent">从今天起，你就是卡拉王国的摄政王，如果到了那个时刻……坚守卡拉王城吧……”国王疲惫地挥挥手。</p>
+<p class = "firstLineIndent">“可是父王……”</p>
+<p class = "firstLineIndent">“这是父亲的请求！我能够把王国的最后一道防线……交给你吗？”国王眼神慈祥地看着自己的女儿，但语气却无比郑重道。</p>
+<p class = "firstLineIndent">“是！父王！”少女眼含热泪，哽咽着答应。</p>
+<p class = "firstLineIndent">不久后，少女从宫殿中走出，站在高塔上的一处天台，转身满脸哀伤地最后看了眼高大的宫殿。</p>
+<p class = "firstLineIndent">随后她身上的服饰一阵蠕动变化，形成一套浅绿色泽，散发着微光的殖装覆盖了少女的全身。</p>
+<p class = "firstLineIndent">这是卡拉星的独特生物科技——殖装装甲。</p>
+<p class = "firstLineIndent">少女转身跃下高塔，背后喷射出一道粒子流组成的绿色羽翼，带着少女飞向远处的高塔，天空中落下一滴水滴，那是少女的眼泪……</p>
+<p class = "firstLineIndent">而在比邻星第三行星轨道上，两艘近一公里左右的庞大战舰正缓缓加速，离开第三行星，往星系内飞行。</p>
+<p class = "firstLineIndent">而他们身后的第三行星，已经满目疮痍……</p>
+<p class = "firstLineIndent">这两艘战舰并不是同一样式，其中一艘呈碟形，而另一艘则是雪茄型。</p>
+<p class = "firstLineIndent">然而相同的是，两艘战舰上，同样都刻着一个十分显眼的符号，这个符号正是……b！</p>
+
+<h2>第一百九十八章 动物世界</h2>
+<p class = "firstLineIndent">在两艘战舰之间，此刻正有隐秘的波动传递着信息，进行着交流。</p>
+<p class = "firstLineIndent">“伊莎尔，按照《双子星联合开拓条例》轮流占领的原则，这次卡拉星文明及其本土星球将归属我族，你们可以在星系内任选一颗行星开发。</p>
+<p class = "firstLineIndent">现在卡拉星已经败亡在即，我觉得你们应该提前做出选择，这样便于我们提前做出下一步的星系开发规划，以免出现不必要的混乱。”</p>
+<p class = "firstLineIndent">“呵呵，古斯塔夫，这么着急做什么，第二行星和卡拉星都还没有打下来，现在说这个是不是有点早？”</p>
+<p class = "firstLineIndent">“卡拉星的主力舰队已经被我们消灭，一个连“行星防御圈”都不健全的文明，单凭地面部队，如何能够阻挡我们的开拓舰队，在我眼里，结局已经注定！”</p>
+<p class = "firstLineIndent">“话不能说的太早，他们的生物科技挺有趣的不是吗？而且抵抗也相当顽强，登陆战中可是连你的亲卫队都出现损伤了吧？”伊沙尔语气有些调侃。</p>
+<p class = "firstLineIndent">“哼！不过是一群躲在乌龟壳中的臭虫，虫子多了总会被咬一口。”古斯塔夫不屑道。</p>
+<p class = "firstLineIndent">“呵呵！不管怎么说，一个文明最后的垂死挣扎可不能小看，我觉得我们应该要休整一段时间，这段时间机器人部队的消耗可是有点多，第三行星已经在建立生产基地，我觉得现在步步为营更稳健些。”</p>
+<p class = "firstLineIndent">“够了伊莎尔，别以为我不知道你在想什么，你们羽族在上一个星系中获得了足够的好处，实力已经超过我们海族，你们自然希望这种状况持续下去！”古斯塔夫冷笑道。</p>
+<p class = "firstLineIndent">“啧啧！古斯塔夫，这可是破坏团结的思想，如果被联合议会知道了，你这个开拓军团的先锋官也少不了得挨顿斥责。”</p>
+<p class = "firstLineIndent">“团结？你们羽族近来的态度可不像是想要维持团结的样子，收起你那虚伪的一套，卡拉星系必须尽快拿下，再过不久虫洞便能够再次使用，我们海族会再派一艘开拓舰过来。</p>
+<p class = "firstLineIndent">如果你执意不配合，我们海族可以独自攻下卡拉星，不过等大型量子通讯基站建造完毕，我会将这里的事情一五一十上报联合议会，到时候是谁受斥责就不好说了！”</p>
+<p class = "firstLineIndent">“古斯塔夫你还是那么急脾气，我只说稍微休整一下，又没说过不配合，你太敏感啦！”</p>
+<p class = "firstLineIndent">“哼！希望如此！”古斯塔夫冷哼一声，然后突然道：“双子星文明的开拓脚步已经抵达附近星域，这周围除了卡拉星文明外，只有一个太阳系地球文明列在我们的待开拓名单上。</p>
+<p class = "firstLineIndent">如何？你们羽族确定要将它纳入版图了吗？”</p>
+<p class = "firstLineIndent">“唉！其实我们更倾向于拿下西面的伍尔夫文明，不过那可是块难啃的硬骨头。</p>
+<p class = "firstLineIndent">太阳系虽然有一颗宜居星，不过距离太远，而且连接到附近星域的只有一条小型虫洞，只允许护卫舰级别的战舰通过，对没有超光速航行技术的我们来说，开发和移民难度不小。</p>
+<p class = "firstLineIndent">更何况地球文明只是个连本土星球都没能突破的土著文明，就算征服了也只是那些考古学家和文明演变学家们的科考对象罢了，鸡肋啊……”伊莎尔无奈道。</p>
+<p class = "firstLineIndent">“呵呵！我倒是看过地球文明的研究报告，这个种族虽然历史很短，不过科技发展速度倒是不慢，潜力还是有的，作为奴隶种族说不定会有意外惊喜哦！</p>
+<p class = "firstLineIndent">况且伍尔夫文明可是个发展了上万年的老牌文明，现在的实力可不比我们双子星文明差多少，现在拿下他们肯定是伤筋动骨！联合议会也不会赞成的。”古斯塔夫好像十分贴心地为海族分析着利弊，语气中怂恿的意思却再明显不过。</p>
+<p class = "firstLineIndent">“嗯，所以我们等我们羽族选择了地球文明，然后由你们海族选择伍尔夫文明对吧？古斯塔夫，你依然还是直白的那么可爱啊……”伊莎尔语气戏谑。</p>
+<p class = "firstLineIndent">“娘希匹！我最讨厌的就是你们羽族摆出一副高傲看不起人的嘴脸，看出来又咋样，你们羽族还有的选吗？这叫阳谋！”</p>
+<p class = "firstLineIndent">“好吧，古斯塔夫，我喜欢你的直白，不过一切还是要等卡拉星的战斗尘埃落定，议会才会启动下一个开拓目标的最终表决程序，说不定到时候我们还能发现比地球和伍尔夫更好的选择呢？”</p>
+<p class = "firstLineIndent">“你不会有那个机会的！副官，给我全速前进！”</p>
+<p class = "firstLineIndent">“是！古斯塔夫大人！”</p>
+<p class = "firstLineIndent">通讯到此结束，而其中那艘雪茄型战舰猛地加速超第二行星飞去。</p>
+<p class = "firstLineIndent">“脾气还是那么急，那么卡拉星人，你们可千万要争点气啊……”另一艘飞船中的伊莎尔微笑着……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">楚氏别墅。</p>
+<p class = "firstLineIndent">“哇！你看八条吃的多香啊，它看样子很喜欢我做的东西，哈哈！这么机灵的小动物我还是第一次见到！”</p>
+<p class = "firstLineIndent">八条，是楚潇潇刚刚给小章鱼起的名字，因为它有八条腿，简单好记，对此小章鱼表示了抗议，自己又不是麻将。</p>
+<p class = "firstLineIndent">在它的想法中，像“风行者怒章”这样霸气的名字才符合小章鱼的伟大旅行家的身份，再不济“章则天”“章子鱼”这样威武中带着文艺范儿和小清新的也勉强可以接受。</p>
+<p class = "firstLineIndent">只不过就在小章鱼拼命摇头表示自己誓死不从，坚决捍卫自己的命名权时，聂云轻飘飘一句话就让它哑火了。</p>
+<p class = "firstLineIndent">“要么叫‘八条’，要么叫‘明天见’，你选哪个？”</p>
+<p class = "firstLineIndent">于是，小章鱼很老实的选择了八条。</p>
+<p class = "firstLineIndent">而此刻，聂云则是一头黑线地看着小章鱼抱着一根章鱼腿在那儿啃得不亦乐乎，心中简直是万马奔腾。</p>
+<p class = "firstLineIndent">喂喂！你在干嘛啊八条，不会是受的刺激过大被玩坏黑化了？那可是章鱼腿啊！你特么怎么能吃它呢？！</p>
+<p class = "firstLineIndent">“噗噗！”小章鱼八条百忙之中还对着聂云哼哼了两声，一副你少见多怪的模样。</p>
+<p class = "firstLineIndent">聂云顿时一愣，然后赶紧上网查了一下。</p>
+<p class = "firstLineIndent">随后，聂云：“……”</p>
+<p class = "firstLineIndent">章鱼，头足纲软体海洋生物，触手拥有极强的再生能力，冬眠时常常以自己的脚为食……</p>
+<p class = "firstLineIndent">简单来说，这真的是一种可以自己吃自己的奇特生物……这么看起来，小章鱼吃点章鱼腿似乎也没什么……</p>
+<p class = "firstLineIndent">果然，愚蠢的人类还是应该多看点动物世界的……</p>
+
+<h2>第一百九十九章 有点咸</h2>
+<p class = "firstLineIndent">一边感慨章鱼真是一种神奇的生物，聂云一边夹起一口菜放进嘴里，然后……</p>
+<p class = "firstLineIndent">“噗！咳咳……”聂云直接把菜吐了出来，被齁的忍不住咳嗽连连。</p>
+<p class = "firstLineIndent">试过喂自己袋盐吗？聂云现在就是这感觉。</p>
+<p class = "firstLineIndent">“你怎么啦？”楚潇潇惊讶地转头看他。</p>
+<p class = "firstLineIndent">“这……这菜？”聂云一脸忧桑地指着自己面前海鲜锅，他这才发现里面全是还未溶解的盐粒。</p>
+<p class = "firstLineIndent">又来这招？难道自己今天又哪里得罪这位大小姐了？没印象啊？</p>
+<p class = "firstLineIndent">“嗯？可你上次不就是喜欢这种口味吗？我还特地给你单独盛了一碗，把家里剩下的盐全倒进去了。”楚潇潇一脸无辜看着他。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">这算自己坑自己么？</p>
+<p class = "firstLineIndent">“怎么，不合口味？”楚潇潇不由失落道。</p>
+<p class = "firstLineIndent">“没有！怎么会呢，是太好吃了所以我整个人都惊呆了好么！啊哈哈……”</p>
+<p class = "firstLineIndent">才怪啊！这种盐分度只要是碳基生命都不会合口味的啊！普通人恐怕早就氯化钠中毒了好么……</p>
+<p class = "firstLineIndent">幸好，这种事聂云表示已经见怪不怪。</p>
+<p class = "firstLineIndent">在楚潇潇期待的目光中，他无奈的发动“五感封闭术”，切断了味蕾神经，然后嘴角带着微笑，一脸淡定地一口一口吃完了碗里的饭菜。</p>
+<p class = "firstLineIndent">不行……必须要找个机会解释一下，其实我的口味和普通人类一样啊……</p>
+<p class = "firstLineIndent">“对了聂云，我高中快毕业了，接下来就要去念大学了……”楚潇潇一边戳着八条的脑袋，一边看似不经意的道。</p>
+<p class = "firstLineIndent">“哦，你想去哪个大学？”聂云愣了一下。</p>
+<p class = "firstLineIndent">“唔……我妈想让我去国外常青藤念大学，不过我想呆在夏城，其实夏城大学也很不错啊，离家又近，你觉得呢？”楚潇潇瞥了聂云一眼。</p>
+<p class = "firstLineIndent">她虽然不知道聂云的组织在哪里，不过似乎离夏城很近的样子，她担心如果自己跑到地球的另一面，到时候就很难再见到聂云了。</p>
+<p class = "firstLineIndent">“嗯……你打算念什么专业？”聂云问道。</p>
+<p class = "firstLineIndent">“应该是国际金融吧……”</p>
+<p class = "firstLineIndent">“那大学毕业之后呢？有什么想要做的事情吗？”</p>
+<p class = "firstLineIndent">“唔……想要做的事？应该是帮我妈管理好楚氏，然后让楚氏成为世界上最厉害的公司！”楚潇潇说话间眼中带着一丝希冀。</p>
+<p class = "firstLineIndent">“这样吗……其实亚特兰蒂斯现在已经入股楚氏，两者本就是一体的，那么……直接来当亚特兰蒂斯的ceo怎么样？”聂云突然抛出一个提议。</p>
+<p class = "firstLineIndent">“哈？”楚潇潇闻言愕然抬头看着聂云。</p>
+<p class = "firstLineIndent">“你在说什么啊？我刚刚才要高中毕业诶！就算我有过管理楚氏的一丁点经验，不过哪家公司会直接聘用一个刚毕业的大学生当ceo啊？”</p>
+<p class = "firstLineIndent">“所以，现在你看到了啊，只要你点头，亚特兰蒂斯就可以全权交给你经营！”</p>
+<p class = "firstLineIndent">“我怎么听你这意思，亚特兰蒂斯公司合着你一个人说了算啊，让我当就能当了？”楚潇潇狐疑地看着聂云。</p>
+<p class = "firstLineIndent">要知道单凭海底采矿技术可是聂云的组织所有的，就凭这一项技术，外界对亚特兰蒂斯的估值就已经超过300亿美金。</p>
+<p class = "firstLineIndent">这样一家公司就凭聂云一句话说给ceo就给了？这组织还是你开的不成？</p>
+<p class = "firstLineIndent">组织长老会呢？重要成员举手表决呢？正常流程不该是这样的啊……</p>
+<p class = "firstLineIndent">“咳咳！还没来得及告诉你，我刚刚升官儿了。”然后他假装从沙滩裤的口袋里掏了掏，掏出一张工作牌挂在了脖子上。</p>
+<p class = "firstLineIndent">楚潇潇定睛一看，只见牌子上写着“sos组织亚洲分部负责人聂云”。</p>
+<p class = "firstLineIndent">她愕然看向聂云，有没有搞错，你才刚成年好不好！</p>
+<p class = "firstLineIndent">这什么sos的奇葩组织名字暂时不说，可哪个秘密组织的什么地区负责人不是满脸鹰鹫的中年鹰钩鼻，或者是整天双手托着下巴躲在阴暗地下室装深沉的山羊胡眼镜男？</p>
+<p class = "firstLineIndent">你这样一身沙滩裤，基础人设差太多了好么！</p>
+<p class = "firstLineIndent">“你亲生父亲找到你了？他是你们组织的这个？”楚潇潇不由竖起一根大拇指悄悄问道。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">“我像是那种靠关系往上爬的人吗？这完全就是能力太出众，才华无法被掩盖好么！”聂云翻了个白眼道。</p>
+<p class = "firstLineIndent">“好吧好吧，就算你成了这个负责人，就能随便任命ceo了？这也太儿戏了吧。”</p>
+<p class = "firstLineIndent">“咳咳！我们老板疑人不用，用人不疑！你知道的，我一向都很崇拜他这点……所以对我而言也是，我相信你的能力！”聂云耸耸肩。</p>
+<p class = "firstLineIndent">“呃……你这么相信我我是很感动啦……不过我胜任不了的，而且我还要上大学的……”楚潇潇</p>
+<p class = "firstLineIndent">“你可以边上大学边工作啊，而且，我们组织内部还有一些教育资源，绝对比大学的那些教授们强多了！</p>
+<p class = "firstLineIndent">以后你就会知道，知识的学习是最不花时间的，经验才是！”聂云神秘笑道。</p>
+<p class = "firstLineIndent">同时他心中暗自嘀咕，到时候找胡军长再要些金融方面的老司机给潇潇当家教好了……</p>
+<p class = "firstLineIndent">“那如果这样……我这样算不算加入你们组织？我们就是同事？不……应该说你还是我上司？”</p>
+<p class = "firstLineIndent">“唔……你这么理解也不是不可以！”</p>
+<p class = "firstLineIndent">“那……我原则上倒是没什么意见，不过你这可是趁我妈不在挖我们楚氏的墙角，你打算拿什么酬劳打动我？”</p>
+<p class = "firstLineIndent">“亚特兰蒂斯30的股份怎么样？要不50？不能再低了！”聂云大手一挥。</p>
+<p class = "firstLineIndent">“喂，你这样真的好吗？哪有人这么给ceo股份的！”楚潇潇一脸无语。</p>
+<p class = "firstLineIndent">“肥水不流外人田嘛，你懂得！”聂云眨眨眼睛。</p>
+<p class = "firstLineIndent">喂喂，这么明目张胆侵吞组织的资产，我为你们老板的用人不疑感到十分担心啊！</p>
+<p class = "firstLineIndent">楚潇潇翻了个白眼，然后装出一副低头思考的样子，其实心中已经有些意动了。</p>
+<p class = "firstLineIndent">“如果这个不够，那么这个怎么样？”聂云说着突然坏笑着上前一步，搂住楚潇潇的腰一把将她楼了过来。</p>
+<p class = "firstLineIndent">然后在楚潇潇瞪大的眼睛中，低头吻了下去。</p>
+<p class = "firstLineIndent">良久，两人唇分。</p>
+<p class = "firstLineIndent">聂云坏笑着问：“你觉得，这个报酬怎么样？”</p>
+<p class = "firstLineIndent">楚潇潇羞红了脸，“唔……有点咸……”</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+
+
+
+</br></br>
+<a href="180.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="200.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

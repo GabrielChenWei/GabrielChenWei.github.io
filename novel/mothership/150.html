@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第一百五十章 数据库</h2>
+<p class = "firstLineIndent">“叶队长，里面那人是谁？还从没见有人和楚家母女关系这么好。”特种兵队长问一旁外出巡逻的叶敏。</p>
+<p class = "firstLineIndent">“他呀，算是潇潇的哥哥吧。”</p>
+<p class = "firstLineIndent">“哦……”这名小队长露出了然的神色，这种豪门私生子实在是太常见了，估计是楚潇潇的父亲在外面的风流债，不过能相处这么好的倒是少见。</p>
+<p class = "firstLineIndent">叶敏自然不知道这名小队长的想法，对于聂云这个人，她是十分好奇的，从她第一次见到这个少年，他就带着一种神秘光环。</p>
+<p class = "firstLineIndent">虽然她对内幕了解的不是很清楚，但楚氏最近的一系列动作背后都有这个少年若有若无的影子。</p>
+<p class = "firstLineIndent">前不久楚氏母女商讨楚氏集团的股东变更时她就在旁边，据说是楚氏向聂云借了一笔钱，然后不知怎么就变成入股，持股比例50！</p>
+<p class = "firstLineIndent">楚氏这么大的集团，他竟然不声不响就成为和楚凤平起平坐的大股东！老娘都很想去抱大腿啊！</p>
+<p class = "firstLineIndent">就在叶敏暗自猜测聂云此时的身家时，楚家的大门突然打开，楚家母女将聂云送了出来。</p>
+<p class = "firstLineIndent">“楚阿姨，谢谢你们今晚的招待！”聂云转身道。</p>
+<p class = "firstLineIndent">“别说谢，有空常来玩，对了，你们两是不是闹别扭了？”楚凤看了看楚潇潇脸上满是哀怨的表情道。</p>
+<p class = "firstLineIndent">“咳咳！没有的事，我们聊得很好，对了潇潇，一会儿我有件礼物送给你。”聂云咳嗽两声看着楚潇潇道。</p>
+<p class = "firstLineIndent">“礼物？什么礼物？”楚潇潇被礼物二字吸引了注意力，这根木头还会送礼物？</p>
+<p class = "firstLineIndent">“一会儿你就知道了，那我走了！”聂云挥挥手告别的楚家母女，走出了别墅的外门。</p>
+<p class = "firstLineIndent">送走聂云的楚潇潇和楚凤刚想进屋，楚潇潇的电话就响了起来。</p>
+<p class = "firstLineIndent">“嗯？聂云？”楚潇潇拿起电话看了看来电显示疑惑道，不是刚走？难道落东西了？</p>
+<p class = "firstLineIndent">“喂？”她接起电话。</p>
+<p class = "firstLineIndent">“潇潇，东西送到了，就在门口，你让人去搬一下吧，可能会有些沉。”话筒里传来聂云的声音。</p>
+<p class = "firstLineIndent">“啊？你这前脚才走，后脚东西就送到了？”楚潇潇愕然。</p>
+<p class = "firstLineIndent">“嗯，是啊！现在的快递公司速度真是凶残！”</p>
+<p class = "firstLineIndent">对着电话那边的聂云翻了个白眼，楚潇潇快走两步打开别墅的铁门，果然看到黑暗中有个人形的物体。</p>
+<p class = "firstLineIndent">“嗯？这是什么？”楚凤、叶敏和几名特种兵也跟着楚潇潇过来。</p>
+<p class = "firstLineIndent">有人帮着把门口的照明灯打开，众人这才看清那是什么东西。</p>
+<p class = "firstLineIndent">然后……</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">楚凤：“……”</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">“聂……聂云，这就是你说的礼物？”楚潇潇强忍着吐槽的欲望抽着嘴角道。</p>
+<p class = "firstLineIndent">“是啊！把这个摆院子里，能辟邪镇宅！这可是我花了大力气请得道高僧开过光的，绝对灵验！”</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+<p class = "firstLineIndent">她看了看面前那座摆着思考者造型的银色金属雕像，这种东西找得道高僧开光我也就忍了，毕竟时代的潮流就是东西结合！</p>
+<p class = "firstLineIndent">可你妹的这雕像的脸和你长得一模一样是什么鬼？！找高僧给自己的等比雕像开光这种事到底需要多虔诚的信仰才会做啊魂淡！？</p>
+<p class = "firstLineIndent">还镇宅辟邪，这件事本身就很邪门好不好！</p>
+<p class = "firstLineIndent">“那……那你至少穿件衣服啊……”楚潇潇红着脸看了看雕像赤裸的健美上身。</p>
+<p class = "firstLineIndent">楚凤：“……”</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">喂喂！大小姐，这才不是重点好么！</p>
+<p class = "firstLineIndent">楚凤捂着脸让人把雕像搬到院子正中，撇开和聂云一模一样这个槽点不提，这座雕像的做工还真是让楚凤有些惊艳。</p>
+<p class = "firstLineIndent">每一个纹理都处理地精细入微，刻画入骨，若不是雕像浑身的金属色泽，简直能够以假乱真！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">近地轨道，海狼号舰长室。</p>
+<p class = "firstLineIndent">挂断电话的聂云命令还在楚家上空盘旋的银梭空载返回基地，然后抬头看着浩瀚的星空。</p>
+<p class = "firstLineIndent">此刻整个舰长室已经切换到了全景模式，四周的墙壁、地面等等统统消失，映射出外界的景象。</p>
+<p class = "firstLineIndent">聂云站在房间中央，就像是漂浮在离地三万五千公里的高空，脚下就是蔚蓝的星球，抬头是无垠的宇宙，这种感觉十分奇妙。</p>
+<p class = "firstLineIndent">“智脑！”聂云突然对着空旷的房间道，而随着聂云的这句话，聂云身边突然浮现一个由光点构成的光团。</p>
+<p class = "firstLineIndent">“舰长阁下！”光团发出一阵甜美的女声。</p>
+<p class = "firstLineIndent">从楚潇潇那里获得小狼和小海之后，聂云便开始了对智能程序的不断编程和优化，虽然到目前为止，依然没有诞生具备自我意识的人工智能，但程序却越来越智能，到海狼号建造完毕时，它已经足以担任聂云的助手。</p>
+<p class = "firstLineIndent">聂云对机械虫的控制是有极限的，越是庞大的机械虫群体，越是复杂的命令，就需要消耗聂云越多的心力！</p>
+<p class = "firstLineIndent">就比如如今的海狼号，若是让聂云全面控制诸如引擎、能源、武器系统、侦查设备等等海狼号上的无数仪器和机械，那么会占用他许多的心神！</p>
+<p class = "firstLineIndent">顾此失彼之下对其它机械虫的控制能力就会被削弱。</p>
+<p class = "firstLineIndent">所以此刻聂云其实是通过控制海狼号的控制中枢来掌控整艘海狼号，而控制中枢的核心，便是这个“智脑”！</p>
+<p class = "firstLineIndent">以这种方式，聂云达成了通过控制少部分机械虫放大控制大量机械虫的目的！</p>
+<p class = "firstLineIndent">而这个智脑，就相当于聂云的信号放大器。</p>
+<p class = "firstLineIndent">“汇报优先序列命令执行情况！”聂云聂云坐在舰长椅上道。</p>
+<p class = "firstLineIndent">“是！舰长！智脑系统与海狼号舰体目前契合度985，重力参数修正完毕，地球地质地貌三维影像绘制进度45，全球气候监控模型开发进度30，20光年内星图绘制进度5……”</p>
+<p class = "firstLineIndent">“嗯！进度还算不错！”聂云满意的点点头，有了智脑，海狼号的操控就轻松多了。</p>
+<p class = "firstLineIndent">“哦对了！我记得还没有给你起名字吧？老是智脑智脑的，辨识度很低啊！我给你起个名字吧！”</p>
+<p class = "firstLineIndent">智脑：“……”</p>
+<p class = "firstLineIndent">“舰长阁下，我搜索了数据库，请命名时务必参考以下选项：红后、天网、矩阵……以简单明了为佳，谢绝凸显鲜明个性！其中名字中带‘大小’、‘数字’或者‘方向’的，是禁止事项！”</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">你搜索了数据库？是我取名的历史数据库吗？这种浓浓的防备心理应该是我的错觉吧？</p>
+
+<h2>第一百五十一章 游戏内测</h2>
+<p class = "firstLineIndent">“老板好！”二毛站的笔直向聂云问好。</p>
+<p class = "firstLineIndent">“老板好……”他身边的兄弟两却是一副无精打采的样子，脸色苍白、满脸虚汗的样子就像是被放进滚筒洗衣机离滚了好几遍的样子。</p>
+<p class = "firstLineIndent">“滋滋……”这时室内的灯光突然闪了闪。</p>
+<p class = "firstLineIndent">“呃……老板，从刚刚开始，舰内的电力就感觉不太稳定啊，是不是海狼号出了什么故障？”二毛抬头疑惑道。</p>
+<p class = "firstLineIndent">“这个……或许是吧，咳咳！对了，你们的宇宙适航性体验进行的怎么样？”聂云赶紧转移了话题。</p>
+<p class = "firstLineIndent">他能说就因为刚刚他给智脑取了一个名字就导致智脑当机，好容易才重启？好尴尬啊！</p>
+<p class = "firstLineIndent">“糟透了……我们两一开始进入海狼号的失重区域就头晕，恶心，呕吐……虽然这些不良反应正在缓慢好转，不过体验感什么的……差评……”老三无力道。</p>
+<p class = "firstLineIndent">“报告老板，我虽然方向感有些错乱，但没有出现其它不适！”二毛回答。</p>
+<p class = "firstLineIndent">“唔……这应该是人体的平衡系统正在适应无重力环境，情况还算不错！那么强化人看来已经能够很好的适应宇宙环境了，是个好消息！”</p>
+<p class = "firstLineIndent">“老板，您这么重视这个适航性，是有什么原因吗？”老大问出了心中的问题。</p>
+<p class = "firstLineIndent">“呵呵！以后你们就知道了，既然你们已经适应的差不多了，那么现在就为你们开始强化吧！”聂云说完，从地面上升起两个椭圆形的卧式实验舱。</p>
+<p class = "firstLineIndent">两人闻言对视一眼，然后带着一丝忐忑按照聂云的指示躺到了实验舱中，很快，实验舱的透明舱盖闭合，随着银色的液态机械虫注入，慢慢淹没了两人。</p>
+<p class = "firstLineIndent">在微观层面，机械虫开始对两兄弟进行细胞层次的强化手术……</p>
+<p class = "firstLineIndent">二毛看看正在接受强化的两人，眼中有些羡慕，失去记忆的他对于失去记忆这件事并没有什么反感，毕竟这只是技术性的小失误，相比得到的好处来说，他认为是赚了的！</p>
+<p class = "firstLineIndent">对了！提到技术性的小失误，二毛突然像是想起些什么。</p>
+<p class = "firstLineIndent">“老板，基地里的那些米军俘虏您打算怎么处理？不知道为什么，内心一股莫名的情绪让我总觉得有必要问一下。”</p>
+<p class = "firstLineIndent">“咳咳！好问题，这一定是对公司事务的责任心和使命感驱使你提出这个问题，你的态度值得赞赏！”聂云咳嗽两声有些尴尬道。</p>
+<p class = "firstLineIndent">“是这样？”二毛歪着脑袋仔细回忆，总觉得有某段十分刻骨铭心的记忆萦绕在意识深处，让他有些触景生情。</p>
+<p class = "firstLineIndent">“绝对是的！那个……放心，虽然基地没人，不过一切都在按照计划进行！”</p>
+<p class = "firstLineIndent">“哦！可是那些人有什么用？这些人人数太多，个人觉得为了保护我方的信息不外泄，还是全部处理掉比较好！”二毛一脸天真道。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">总觉得sos团里有你这样一个团员，邪恶指数在蹭蹭蹭地往上涨啊！这种人用好了是个人才，用不好也绝对会是个人物啊！</p>
+<p class = "firstLineIndent">“咳咳！这些人我还有用，而且信息什么的，他们得不到的，呵呵……”</p>
+<p class = "firstLineIndent">“嗯？老板打算用他们做什么？”</p>
+<p class = "firstLineIndent">“唔……算是参加一次游戏内测吧！”</p>
+<p class = "firstLineIndent">“游戏？内测？”二毛一脸的不解。</p>
+<p class = "firstLineIndent">从偷菜种蘑菇之后，老板又要开始不务正业了？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">地球秘密基地内。</p>
+<p class = "firstLineIndent">一个占地数百平米的大型房间内，佛罗里达号103名被敲晕的官兵此刻正集体被安置在103个封闭式生物舱中，他们的头上全都戴着一个黑色的金属头盔，只露出鼻子以下的部分。</p>
+<p class = "firstLineIndent">在房间中央，还摆放着一台巨大的超级计算机，通过密密麻麻的线路同103个生物仓相连。</p>
+<p class = "firstLineIndent">这时，佛罗里达号艇长史密斯的眼皮突然抖动了一下。</p>
+<p class = "firstLineIndent">“实验者大脑活动持续上升，判断意识恢复中，神经链接开始！脑电波同步调频开始！编号匹配中……”</p>
+<p class = "firstLineIndent">史密斯睁开眼，映入眼前的，是一片浩瀚的星空，周围的光线有些暗。</p>
+<p class = "firstLineIndent">“唔……是在野外吗？”他缓缓坐起身，肢体动作有些僵硬，或许是躺太久的缘故？不！不对！</p>
+<p class = "firstLineIndent">他突然意识到自己的状态绝对不对！不管是视线还是肢体都不是原来身体的感觉！</p>
+<p class = "firstLineIndent">抬起手，看着那泛着金属光泽的手臂，低下头，嗯，下半身也是！</p>
+<p class = "firstLineIndent">史密斯彻底陷入了完全理解不能的懵逼状态。</p>
+<p class = "firstLineIndent">我……我变成了一个机器人？</p>
+<p class = "firstLineIndent">难道我死了？然后穿越了？而且还他么穿的是一个机器人？！</p>
+<p class = "firstLineIndent">“编号001，契合度80，参数调整中……”突然，史密斯的脑海中传来这样一个声音。</p>
+<p class = "firstLineIndent">啥？契合度？参数调整？莫非自己穿的不仅是一个机器人，还是被控制的那种？！</p>
+<p class = "firstLineIndent">然后他就感觉自己的视线慢慢变得清晰，僵硬的肢体也越来越灵活，操作体验感顿时提升！</p>
+<p class = "firstLineIndent">不对！这不是重点，重点是现在这到底是什么情况！</p>
+<p class = "firstLineIndent">突然，他感觉身后有动静传来，他转身看去，这才发现他的背后是一间银色的封闭式半圆形金属房间，一条传送带从他的位置一直延伸到房间的一个金属门前。</p>
+<p class = "firstLineIndent">此时这个金属门打开，从里面送出来一个机器人后又再次关闭，而机器人则被通过传送带一直送到史密斯的面前，史密斯才反应过来，赶紧往旁边让了两步。</p>
+<p class = "firstLineIndent">这个机器人“噗通”一下落在了地上，史密斯看着那个和自己手脚等特征一模一样的机器人，总算明白自己是怎么躺这儿的了！</p>
+<p class = "firstLineIndent">这是一个人形机器人，流线型光滑的合金外壳，黑白红相间的涂装，脑袋两侧是两耳下宽上尖的接收天线，从审美观来说，这个机器人很……可爱？</p>
+<p class = "firstLineIndent">等等！这和当时围攻佛罗里达号的那种古怪机器人很相似啊？莫非我被俘虏后被抽出了灵魂变成了它们中的一员？！</p>
+<p class = "firstLineIndent">这时，史密斯眼前的这个机器人抽动了两下手脚缓缓睁开了眼睛，嗯，大大的眼睛还挺萌！</p>
+<p class = "firstLineIndent">这个刚刚苏醒的机器人显然也搞不清楚状况，看着眼前的史密斯愣了许久，或许脑海中也听到了那个神秘的声音？</p>
+<p class = "firstLineIndent">“hello！你会说英语吗？”史密斯傻傻地对着它说了一句。</p>
+<p class = "firstLineIndent">“yes，我会！”没想到对面的机器人竟然真的听懂了，有些愣愣的点点头道。</p>
+<p class = "firstLineIndent">史密斯：“……”</p>
+<p class = "firstLineIndent">这句话，竟然他么还是新泽西口音！</p>
+
+<h2>第一百五十二章 不忘初心</h2>
+<p class = "firstLineIndent">从大脑芯片的研发开始，聂云就在人脑神经技术的道路上越走越远，得益于“聂云模型”，人体大脑的研究工作可谓是进展神速！</p>
+<p class = "firstLineIndent">从手下三人的内嵌式的辅助大脑芯片上，聂云同样获得了大量的脑神经数据，神经信号如何输出、如何输入，大脑的应激性反应，以及如何通过外部刺激让大脑形成丰富的五感。</p>
+<p class = "firstLineIndent">这些前置技术的突破让聂云终于有能力开发出人类想象中梦幻般的科技——虚拟实境！</p>
+<p class = "firstLineIndent">理论上来说，只要时间足够，聂云可以构建完善出一个完整的虚拟世界，然后让人在里面撒着欢的作死。</p>
+<p class = "firstLineIndent">不过这种事情对聂云来说毫无意义，他研究这项科技可不是为了让人类在虚拟世界中醉生梦死，换句话来讲，这样一点gdp增长点都不会有！</p>
+<p class = "firstLineIndent">所以聂云用这项前置技术开发了另一个s级技能——群体降临术！</p>
+<p class = "firstLineIndent">虽然叫的很霸气，其实说白了就是通过神经信号接驳进行超远程控制。</p>
+<p class = "firstLineIndent">这种超远程控制涉及两项核心技术，第一就是虚拟实境，第二是意识信号的传输！</p>
+<p class = "firstLineIndent">其中意识信号的传输并非通过传统的通讯手段来实现，而是利用了机械虫内部的特殊沟通机制！</p>
+<p class = "firstLineIndent">机械虫除了本身强大的计算能力和材料性能，其实还蕴含着一项十分高端的黑科技，那就是机械虫与机械虫之间的无延迟通讯！</p>
+<p class = "firstLineIndent">在地球上时，聂云便能够随心所欲，毫无延迟的控制月球上的机械虫进行建设行动，正是依赖于机械虫的这种能力。</p>
+<p class = "firstLineIndent">这种能力看起来有点类似“量子通讯”，聂云也曾经因此研究过量子通讯的工作原理和相关科技文献，并且大胆猜测机械虫之间的内部通讯是否就是神奇的“量子通讯”。</p>
+<p class = "firstLineIndent">首先我们要知道什么是量子通讯。</p>
+<p class = "firstLineIndent">在量子力学中，当几个粒子在一定条件下彼此相互作用后，各个粒子单独的特性被综合成为一个整体特性，彼此之间产生了有序联动的状态，便是著名的量子纠缠理论！</p>
+<p class = "firstLineIndent">简单的举个栗子！</p>
+<p class = "firstLineIndent">有几个小伙伴偶然碰到了一起，然后小伙伴们之间突然发现互相很聊得来，王八对绿豆，一下子看对眼了！于是便相约去做游戏，玩的正是跷跷板！</p>
+<p class = "firstLineIndent">于是你上我就下，你下我就上！这就是小伙伴们之间纯洁而又简单的羁绊，也就是——量子纠缠！</p>
+<p class = "firstLineIndent">正是通过“跷跷板”的这种有序联动，量子纠缠才能够被用于超远距通讯，也正因为“跷跷板”的这种同步联动特性，量子通讯才能够一定程度上实现“伪超光速通讯”。</p>
+<p class = "firstLineIndent">之所以称为“伪超光速”，是因为量子通讯其实本质上来讲并没有违反在相对论中对于信息传递所设定的光速极限！</p>
+<p class = "firstLineIndent">毕竟对于“跷跷板”这种系统的同步装置来说，距离是没有意义的！只要“跷跷板”够长，牛郎和织女都可以隔着银河玩上上下下的游戏！</p>
+<p class = "firstLineIndent">不过这里就出现一个问题了，“跷跷板”真的能够无穷远吗？这就涉及到量子通讯的一个常识性的误区，那就是量子纠缠状态的有效距离！</p>
+<p class = "firstLineIndent">2017年6月16日，兔子的量子科学实验卫星墨子号成功发射，走在整个世界之前首次将两个量子纠缠光子分开超过1200公里后，并且观测到二者依然保持量子纠缠状态。</p>
+<p class = "firstLineIndent">这个实验证明了，量子通讯的距离，至少在1200公里以上！</p>
+<p class = "firstLineIndent">但是到现在为止，也并没有人能够证明，纠缠的量子在1光年以上的距离依然能够继续保持纠缠状态！</p>
+<p class = "firstLineIndent">正是由于和量子通讯的相似性，让聂云有一个猜测，是否机械虫这个群体本身，就是通过一个庞大的量子纠缠群来实现同步通讯和控制的？</p>
+<p class = "firstLineIndent">或许在每一个机械虫内部的核心区域，就有一个纠缠状态的光子？</p>
+<p class = "firstLineIndent">由于涉及到机械虫，因此研究量子通讯，成为聂云计划中下一阶段的科研重点，这也是他想要成立科研部门的原因之一，毕竟对于理论性的科学研究，是需要某种天赋的。</p>
+<p class = "firstLineIndent">世界上很多开创性的研究成果，靠的都是日积月累的知识积累，和关键时刻突如其来的灵感！</p>
+<p class = "firstLineIndent">聂云拥有庞大的积累，真正的站在了巨人的肩膀上，但是关于灵感，呃……应该也是有的……比如……</p>
+<p class = "firstLineIndent">咳咳！我们还是来说说远程控制吧！</p>
+<p class = "firstLineIndent">正是有了机械虫的这种通讯能力，通过神经信号的超远程控制才成为可能！</p>
+<p class = "firstLineIndent">聂云选择了103名被俘米军作为这次试验的实验者，或者叫“内测玩家”！</p>
+<p class = "firstLineIndent">而他们降临的机械，聂云则选择了优化改造后的普通材料的迷你机器人，除了一片微小的“同步芯片”外，其余都由普通材料打造，最大程度节省机械虫占用。</p>
+<p class = "firstLineIndent">在楚潇潇送给聂云一对迷你机器人之后，聂云就在他们身上倾注了许多的心力，到现在，这种型号的小型机器人不仅拥有了十分智能化的操控系统，而且在制造材料、机械构造设计、关节灵活性、设备集成化等方面经过了聂云的不断优化，性能蹭蹭蹭的往上涨！</p>
+<p class = "firstLineIndent">可以说，在性价比和综合适用性方面，目前为止还没有什么机械设备能够这种小型机器人相比。</p>
+<p class = "firstLineIndent">而聂云之所以选择这种机器人，还有三点原因。</p>
+<p class = "firstLineIndent">首先，它们是人形，对于人形生物来说，这是最容易上手、契合度最高的操控形态！</p>
+<p class = "firstLineIndent">其次，小型化的机器人恰恰具备大规模制造条件，一个真人大小的机器人可以制作十个小型机器人，但是从未来的实用性来说，一个真人大小的机器人绝对比不过十个小型机器人。</p>
+<p class = "firstLineIndent">用有限的资源最有效地爆兵海，才是王道啊！</p>
+<p class = "firstLineIndent">最后一个原因：它们很可爱！嗯！这个很重要！</p>
+<p class = "firstLineIndent">聂云已经能够想象自己挥手前指，无数小狼蜂拥淹没敌人的场景了。只不过，似乎在小尺寸的不归路上越走越远了……</p>
+<p class = "firstLineIndent">这和自己的初衷完全背道而驰！一想起来聂云心中就有种淡淡的忧桑！</p>
+<p class = "firstLineIndent">说好的威猛水手……没了……</p>
+<p class = "firstLineIndent">说好的莺莺燕燕……也没了……</p>
+<p class = "firstLineIndent">“如果上天再给我一次机会，我希望能够……不忘初心！”聂云心中长叹！</p>
+
+<h2>第一百五十三章 代号</h2>
+<p class = "firstLineIndent">此刻，史密斯和其他的实验者，正是意识被投放到了刚刚制造出来的迷你机器人中。</p>
+<p class = "firstLineIndent">“英语？你会说英语？！”那个机器人一咕噜站起来，兴奋道。</p>
+<p class = "firstLineIndent">史密斯也挺兴奋，这算是老乡见老乡？诶？等等，怎么这个声音还挺熟悉的？</p>
+<p class = "firstLineIndent">他刚刚才发现，两人的对话并不是通过“说”，因为完全没有声音传出，更像是通过某种心灵感应的方式“听”到了对方的声音。</p>
+<p class = "firstLineIndent">“等等！你是新泽西……人类？”史密斯试探着问道。</p>
+<p class = "firstLineIndent">“诶？这个声音？难道是史密斯中校？”那个机器人却一脸惊讶地说出了让史密斯震惊的回答。</p>
+<p class = "firstLineIndent">“你……你难道是大卫？”史密斯愕然道。</p>
+<p class = "firstLineIndent">大卫是他的副官，他们对彼此的声音再熟悉不过。</p>
+<p class = "firstLineIndent">“中校，这是怎么一回事，为什么我们会变成这样？”大卫看着自己的双手，有些失神地问道。</p>
+<p class = "firstLineIndent">“我也不知道，不过看看我们的这幅长相，你没有想起些什么？”史密斯摸着下巴问道。</p>
+<p class = "firstLineIndent">“机器人的长相？哦对了！我想起来了！这和之前围攻我们的那些海底机器人长得很像啊！”大卫恍然。</p>
+<p class = "firstLineIndent">“而且和传闻中幽灵船长的尖耳骷髅形象也能对的上号！或许……他们就是这样一个族群？</p>
+<p class = "firstLineIndent">我在想是不是我们被俘后被抽取了灵魂，然后变成了他们中的一员？就像是……天际浩劫里演的那样？”</p>
+<p class = "firstLineIndent">“不……不会吧？那我们岂不是再也变不回人类了？”大卫只觉得未来一片黑暗。</p>
+<p class = "firstLineIndent">“先冷静，会找到办法的，不过既然我们两被俘之后变成了这副模样，那么佛罗里达号上的其他人呢？”史密斯想起自己的其他部下们。</p>
+<p class = "firstLineIndent">就在这时，那处古怪的金属房间门再次打开，这次门没有立刻关闭，而是从里面连续送出了大量的机器人。</p>
+<p class = "firstLineIndent">同刚刚大卫出来的情景一样，没一会儿，传送带的一端就堆起了一座机器人小山。</p>
+<p class = "firstLineIndent">然后两人目瞪口呆地看着这些机器人开始抽动手脚睁开眼睛。</p>
+<p class = "firstLineIndent">“诶？什么东西压在我身上？”</p>
+<p class = "firstLineIndent">“喂喂！谁压着我脑袋了，我什么都看不见……”</p>
+<p class = "firstLineIndent">“咦？我怎么变成这副样子了？”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">听着那些熟悉的声音，史密斯有些激动地喊道：“是他们！是我可爱的部下们！”</p>
+<p class = "firstLineIndent">“诶？”听到这个声音，几乎所有机器人都安静下来看向史密斯。</p>
+<p class = "firstLineIndent">“咳咳！各位，虽然很难以置信，但我就是佛罗里达号潜艇艇长史密斯中校，如果你是佛罗里达号的成员，那么请听我命令，立刻列队！”史密斯以军姿高声喊道。</p>
+<p class = "firstLineIndent">军人一贯的服从性让这些人迅速从慌乱中安静下来，开始有序地整队，很快，一个10人一列的整齐方阵出现在史密斯面前，大卫也同样入队。</p>
+<p class = "firstLineIndent">“立刻报数！”史密斯命令道。</p>
+<p class = "firstLineIndent">“1、2、3……102！”一直到最后一人报出了102的数字，史密斯这才长长舒了口气，用有些激动的声音喊道，“我！史密斯中校，103！现在宣布佛罗里达号全员到齐！”</p>
+<p class = "firstLineIndent">“噢耶！”虽然现在还搞不清楚状况，不过一群呆萌的机器人还是齐齐欢呼起来，至少战友们都还在！一个不少！</p>
+<p class = "firstLineIndent">“好了我的战友们，现在不是高兴的时候，我们是时候来研究一下现在的处境问题了！”史密斯这句话出口，立刻让众人安静下来。</p>
+<p class = "firstLineIndent">“首先，我们应该是被幽灵船长俘虏了没错！变成现在这副样子，很可能就是他动的手脚！</p>
+<p class = "firstLineIndent">为了确保我们中间没有幽灵船长的奸细，我需要先确认你们每一个人的身份！”史密斯看着102号一模一样的呆萌机器人，有些头疼地抚了抚额头。</p>
+<p class = "firstLineIndent">这些小型机器人已经删除了服饰等明显的“聂云特征”，浑身光溜溜的没有任何装饰，市面上这种款式的机器人并不在少数，每年都要流通数万个，就算回头他们按照机器人的外貌去寻找线索，也是大海捞针。</p>
+<p class = "firstLineIndent">然而这种没有特征也给史密斯带来困扰，这样根本分不清谁是谁啊！</p>
+<p class = "firstLineIndent">“士兵！就从你开始！”史密斯指着第一排右边第一个机器人道。</p>
+<p class = "firstLineIndent">“呃……中校，我是大卫……”那个机器人有些哀怨道。</p>
+<p class = "firstLineIndent">“呃……”史密斯顿时有些头疼。</p>
+<p class = "firstLineIndent">别说刚刚才站在自己身边聊天的大卫，就算是自己，只要扎进机器人堆中走一圈，谁还分得清？自己这个艇长的辨识度简直前所未有的低啊！</p>
+<p class = "firstLineIndent">“叮！检测到系统bug，自动添加人物标识插件！”这时，所有人脑海中的那个神秘的声音再次响起。</p>
+<p class = "firstLineIndent">然后所有人便看到光芒一闪，眼前的每个机器人头顶便出现了一个绿色的标记符号，上面标注了一个姓名。</p>
+<p class = "firstLineIndent">这些个人信息是佛罗里达号系统上的船员资料，系统已经用这些资料给每位实验者做了一份个人档案，因此匹配姓名并没有什么难度。</p>
+<p class = "firstLineIndent">史密斯看了看大卫头上漂浮的绿色名字，嘴角有点抽，怎么越来越有种在玩网游的即视感？</p>
+<p class = "firstLineIndent">“你到底是谁？为什么把我们弄成这副样子？！”史密斯大喊道。</p>
+<p class = "firstLineIndent">“本机是幽灵船长旗下头号智脑，代号！负责你们的bug修复和系统完善！因为本机很忙，所以本次解说仅此一次，最终解释权归本机所有！如有问题，请努力提升权限！”</p>
+<p class = "firstLineIndent">“等等！你还没有回答我的问题，为什么把我们变成这副样子，你们到底有什么目的？”史密斯再次问道，然而，那个自称智脑的家伙却完全不再理会他。</p>
+<p class = "firstLineIndent">“可恶啊！”史密斯恨恨道，然后突然想起什么，“对了，刚刚那个可恶的智脑说它的代号叫什么来着？我刚刚似乎没听清。”</p>
+<p class = "firstLineIndent">史密斯觉得刚刚自己的情绪可能比较激动，以至于漏过了这个细节。</p>
+<p class = "firstLineIndent">“诶？我也没听到，你听到了吗？”大卫问旁边的机器人。</p>
+<p class = "firstLineIndent">“啊？我也没有听到啊，你呢？”那家伙又转头问旁边的人。</p>
+<p class = "firstLineIndent">众人一阵交头接耳之后，发现竟然没有一个人听到那个智脑的代号，史密斯当时就懵了。</p>
+<p class = "firstLineIndent">所有人心中都有同样的疑惑，那个智脑的代号到底叫什么来着？莫非是权限不够被自动屏蔽了？</p>
+<p class = "firstLineIndent">一直到很久很久以后，幽灵船长旗下头号智脑的代号，依然还是个未解之谜……</p>
+<p class = "firstLineIndent">智脑：“……”</p>
+
+<h2>第一百五十四章 让人沉迷</h2>
+<p class = "firstLineIndent">由于未知的处境和诡异的情况，佛罗里达号的原船员们渐渐开始有了骚动。</p>
+<p class = "firstLineIndent">“大家不要惊慌，至少我们已经确认了，这不是什么灵异事件，而是幽灵船长人为的阴谋！</p>
+<p class = "firstLineIndent">只要是人为的，就一定有破解的方法！我们现在要做的，就是万众一心！只要坚持不抛弃不放弃的集体主义精神，我们就一定可以绝地反击！”史密斯赶紧高声安抚人心。</p>
+<p class = "firstLineIndent">“对！和幽灵船长斗到底！中校，我们听您的，那我们现在该怎么办？”大卫说道。</p>
+<p class = "firstLineIndent">“首先我们要弄清楚我们是怎么来到这里的，这个房间是唯一的线索，我们先进去搜索一下！”史密斯看了看四周道。</p>
+<p class = "firstLineIndent">他们所处的位置是一个典型的盆地地形，四周高而中心低，周围都是荒漠，唯一惹眼的就是将它们送上传送带的那个位于盆地中心的金属房间！</p>
+<p class = "firstLineIndent">于是，在史密斯带领下，众人小心翼翼地往金属房间靠近。</p>
+<p class = "firstLineIndent">虽然身体操控起来有些古怪，大家一开始走的有些歪歪扭扭，不过机器人内部优秀的控制系统很快就调整了参数，众人的动作看起来越来越流畅。</p>
+<p class = "firstLineIndent">但当众人靠近金属房间约3米左右的距离后，顿时浑身一僵，不管如何尝试，也无法控制这个机器人身体再前进一步！</p>
+<p class = "firstLineIndent">“可恶，这一定是那个可恶的智脑！我们的身体果然在他们的控制之下！”史密斯气愤道。</p>
+<p class = "firstLineIndent">“中校，看来这里面有着对方不想让我们知道的秘密，胳膊拧不过大腿，我们终究是人家的阶下囚，对方如果没对我们做任何限制，那才奇怪了。”大卫沮丧道。</p>
+<p class = "firstLineIndent">“大家别失去信心！就算无法靠近这里，我们也一定能够想其他的方法向外求援！外面还有我们的祖国，还有我们的战友！他们不会放弃我们！”</p>
+<p class = "firstLineIndent">“现在最关键的是先想办法弄清我们所处的位置，嗯……那里！我们先爬到那块高地观察一下周边的地形！大家不要落单，集体行动！”史密斯环顾四周后指着一个方向道。</p>
+<p class = "firstLineIndent">这个盆地大约有两三个足球场那么大，众人走了大概有七八分钟，却越走越觉得这里十分古怪。</p>
+<p class = "firstLineIndent">“报告中校，我懂一些地质，这里看样子似乎是个盆地的中心地带，但是地貌却是典型的戈壁荒漠，而且更奇特的是……这里寸草不生！这对以孕育生命闻名的盆地地形来说几乎是不可能的事情！”</p>
+<p class = "firstLineIndent">“我感觉这里的土壤很奇怪，粉尘化太严重了！”</p>
+<p class = "firstLineIndent">“我懂一些星象！那里是英仙座，英仙座是著名的北天星座之一，拥有很多亮星，所以很好辨认！</p>
+<p class = "firstLineIndent">不过这里的星光太亮，而星空却太暗。</p>
+<p class = "firstLineIndent">更古怪的是，所有星辰的光线都十分稳定，没有任何闪烁的迹象，要知道因为大气的存在，会折射星光的光线造成闪烁，这十分不正常……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">七嘴八舌中，众人心中的疑惑却是越来越浓，这里到底是什么地方？</p>
+<p class = "firstLineIndent">就在这种惊疑不定中，他们终于登上了那处高地，史密斯小小的脑袋第一个露出了盆地，向着外面的世界看了第一眼，然后是第二个、第三个……</p>
+<p class = "firstLineIndent">机器小人们在环形山上站成一排，谁都没有说话，只是看着外面的景象愣愣无语。</p>
+<p class = "firstLineIndent">放眼尽是一片荒芜，一点生命的迹象也不存在，而无数的环形坑，一直延伸到视野的尽头，他们这才意识到，自己所在的根本不是什么盆地，而是无数环形坑的其中之一罢了……</p>
+<p class = "firstLineIndent">只要稍微看过些科普期刊的人，恐怕对这样一幅景象都不会陌生！</p>
+<p class = "firstLineIndent">这里是……月球！？</p>
+<p class = "firstLineIndent">所有人愣愣的不知道该如何对此作出感想。</p>
+<p class = "firstLineIndent">喂喂！我们就是普通的米军大兵，就算看了点“越狱”但是绝对称不上专家，你给我们准备的监狱是不是规格高了点？</p>
+<p class = "firstLineIndent">不，应该说……逼格高了点？</p>
+<p class = "firstLineIndent">虽然被俘了，可是这种好荣幸的感觉完全止不住啊怎么办？！</p>
+<p class = "firstLineIndent">星空下，这些机器人成为这个世界的唯一异色，给这片荒芜大地带来了一丝生气……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海狼号内。</p>
+<p class = "firstLineIndent">扫视了一下内测实验者的情况，聂云笑着看向眼前的光团，“游戏体验感觉怎么样？”</p>
+<p class = "firstLineIndent">“十分奇特，这些实验者的思维方式和行为模式有许多共性，但是差异化更加明显，他们很多情绪化的非理性选择尚且无法用我数据库中的逻辑来做出解释。</p>
+<p class = "firstLineIndent">我正在尝试解析！但这需要更多的数据！”海狼号智脑“代号”回答。</p>
+<p class = "firstLineIndent">“嗯！按照你自己的想法去做，越是分析人类，了解人类，你就会越像是一个人类，或许这就是你进化的契机！”聂云笑着伸手拍了拍光点。</p>
+<p class = "firstLineIndent">其实，聂云费心思弄出这样一场“游戏内测”，其中的目的之一便是为了让智脑搜集大量的“智慧生命”数据，以此作为智脑向人工智能进化的契机。</p>
+<p class = "firstLineIndent">如果说混沌理论诞生人工智能靠的是虚无缥缈的“幸运骰子”，那么聂云要走的路就是量变产生质变！</p>
+<p class = "firstLineIndent">“是的舰长阁下，虽然没有期待这种情绪，但是我的核心逻辑会督促我往更高层次的生命演化！”</p>
+<p class = "firstLineIndent">“嗯！对了，关于远程操控系统，也顺便尽量优化完善吧，想要更多的数据，先要把服务做好，唔……你可以多参考一些优秀的游戏！</p>
+<p class = "firstLineIndent">如果能做出让人沉迷其中的作品来，还怕没人给你送经验？”</p>
+<p class = "firstLineIndent">“嗯……优秀的游戏？让人沉迷吗？明白了，我立刻开始优化！”代号庞大的计算力开始调动起来，主机的能量消耗急速上升！</p>
+<p class = "firstLineIndent">“嘿！你还真是个急性子。嗯！好了，我的海鲜炖锅火候差不多了，这里就交给你了！”聂云说着挥挥手离开了控制室。</p>
+<p class = "firstLineIndent">房间中，只剩下名为“代号”的智脑在疯狂计算着，打算做出一款让全人类沉迷其中的优秀作品，一股庞大的阴影开始缓缓笼罩地球……</p>
+<p class = "firstLineIndent">至于智脑的名字为什么是“代号”？</p>
+<p class = "firstLineIndent">“正所谓名字只是一个代号，所以‘代号’这个名字内含全即是一，一即是全的深奥哲学理念！</p>
+<p class = "firstLineIndent">充分满足简单明了不张扬、低调奢华有内涵的客户需求！我叫聂云，我为‘代号’代言！”</p>
+<p class = "firstLineIndent">——聂云语！</p>
+
+<h2>第一百五十五章 这样的小章鱼</h2>
+<p class = "firstLineIndent">“砰砰砰！”</p>
+<p class = "firstLineIndent">海狼号训练室中，两道人影挥舞着拳头互相往对方身上招呼，拳头迅如闪电，发出砰砰砰的巨大肉体碰撞声，听的旁边观战的二毛都有些心颤。</p>
+<p class = "firstLineIndent">听这声音，拳头力道绝对小不了，要是打一拳在自己身上，估计自己立刻就得跪！</p>
+<p class = "firstLineIndent">“砰！”这时，其中一道人影被一拳打飞了出去，滑行了六七米远这才停下，却正是兄弟之中的老大！</p>
+<p class = "firstLineIndent">“哇哦！这种感觉……太奇妙了！”老三看着自己的拳头，一脸的满足。</p>
+<p class = "firstLineIndent">力量不断从身体内涌出，让他有种一拳就能打爆月球的错觉！</p>
+<p class = "firstLineIndent">“切！果然战斗力还是比不过你这个专业的！”老大捂着胸口站起来无奈道。</p>
+<p class = "firstLineIndent">“哈哈！这副超级合金骨架是在是太给力了！加上被强化的肉体力量，我感觉自己已经可以……唔……对！胸口碎大石！”老三想了半天，才找到合适的词汇来形容此刻膨胀的内心。</p>
+<p class = "firstLineIndent">老大：“……”</p>
+<p class = "firstLineIndent">瞬间感觉我们这次强化的格调下降了不止一个档次，莫非除了胸大肌，这次强化对大脑里的肌肉也有效果？</p>
+<p class = "firstLineIndent">超级合金骨架，这就是聂云的新强化方案！</p>
+<p class = "firstLineIndent">人体的骨组织是活性最低、可替代性最强的一种人体组织，而替换后却又是强化效果最为明显的组织之一！</p>
+<p class = "firstLineIndent">聂云选择了一种材料性能达到航天级的陶瓷合金，不仅强度和韧性惊人，而且重量也几乎与人体骨组织相当。</p>
+<p class = "firstLineIndent">加上与二毛相同的肉体强化，产生的效果绝对不是1加1那么简单。</p>
+<p class = "firstLineIndent">至于基因逆流，聂云这次倒是并没有用在兄弟两身上，除了两人此时身强力壮，完全没有必要外，随机的记忆损伤也让聂云有所顾虑。</p>
+<p class = "firstLineIndent">万一两人把最近这段时间的经历忘了，自己这段时间的调教不就完全白费了？</p>
+<p class = "firstLineIndent">所以还没有找到对这个副作用的解决方法之前，两人算是逃过一劫。</p>
+<p class = "firstLineIndent">“啊……我也好想装一副超级合金骨架啊！和两位前辈比起来，我的这副身体好弱啊！”二毛一脸羡慕道。</p>
+<p class = "firstLineIndent">这时，聂云的声音突然从门外传来。</p>
+<p class = "firstLineIndent">“你想要装上也行，不过接下来你就别想继续长高了，如果你觉得做个小矮人也没什么问题，我倒是不介意手下的人种多样化！凑足七个说不定还能召唤白雪公主呢！”</p>
+<p class = "firstLineIndent">三人转头看去，就见聂云缓缓走了进来。</p>
+<p class = "firstLineIndent">他们闻言嘴角有些抽，七个小矮人就能召唤白雪公主？那七个葫芦娃能不能召唤蛇精？七个道士能不能召唤姑姑？</p>
+<p class = "firstLineIndent">不对不对，被老板带节奏了，这样脑回路会变得奇怪！</p>
+<p class = "firstLineIndent">“你们的强化适应地怎么样，感觉如何？”聂云这时问道。</p>
+<p class = "firstLineIndent">“感觉棒极了！我感觉可以在胸口碎两块大石！”老三兴奋地说道。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">“咳咳！那就好，去穿戴装备，一会儿大脑芯片会提示你们前往指定舱室集合，我要测试一下你们的强化效果！</p>
+<p class = "firstLineIndent">之前不是说过会让你们打个痛快？既然强化好了，那就可以满足你们这个愿望了！”聂云笑着道。</p>
+<p class = "firstLineIndent">“有架打？莫非老板给我们准备了对手？”老三一听能打个痛快，不禁跃跃欲试！</p>
+<p class = "firstLineIndent">老大翻了个白眼，往往强化技术没什么问题的时候，问题就会出在测试环节，都吃了这么多次亏了，这一根筋的家伙怎么还是不长记性！</p>
+<p class = "firstLineIndent">老大表示作为一名老司机，自己一定要做好万无一失的保护措施，以防翻车！</p>
+<p class = "firstLineIndent">聂云笑而不语！</p>
+<p class = "firstLineIndent">出现了！又出现了！果然是笑而不语！老大立刻笃定了自己的判断！他的心中警铃大作！</p>
+<p class = "firstLineIndent">“咦，这是什么？”这时二毛突然发现门外蹿进来一个拳头大小的小黑球！却正是之前的那只黑色小章鱼！</p>
+<p class = "firstLineIndent">此时小章鱼一脸惊慌失措的模样不断迈着小短腿想要远离聂云，但是跑出去没多久，又不由自主地重新跑回来，始终在聂云身边徘徊。</p>
+<p class = "firstLineIndent">聂云手上就像是有一条无形的绳索一般，拉着小章鱼来来回回地折腾。</p>
+<p class = "firstLineIndent">对小章鱼现在的情况，聂云也同样充满惊奇，在经过一段时间的意志感染后，聂云可以完全肯定，小章鱼身上的机械虫已经完全被自己感染控制。</p>
+<p class = "firstLineIndent">所以操纵小章鱼的身体对他来说并不难。</p>
+<p class = "firstLineIndent">但是小章鱼的本体意识竟然神奇地保存了下来！并且在聂云不作出干涉的情况下，依然能够动用机械虫的能力，就像是一种……二级权限？</p>
+<p class = "firstLineIndent">这让聂云都感觉十分意外。</p>
+<p class = "firstLineIndent">所以尽管能够一个念头彻底分解掉小章鱼，抹杀掉小章鱼的意识，但是聂云并没有这么做，这个珍贵的样本如果研究透了，聂云或许能够创造一种让普通生物机械虫化的方法？</p>
+<p class = "firstLineIndent">创造一个种族？聂云心跳有些快！</p>
+<p class = "firstLineIndent">正因如此，聂云尝试对小章鱼施展招降技能！</p>
+<p class = "firstLineIndent">然而出乎意料的是，小章鱼十分刚烈，它有一颗向往自由的心，并没有屈服在聂云的淫威之下，一获得自由，便立刻尝试逃跑！被聂云控制回来之后又再次逃跑，简直是锲而不舍！</p>
+<p class = "firstLineIndent">聂云威逼利诱用了个遍，也没能让这只小章鱼屈服，这让聂云意识到，它或许做到了连自己都做不到的事情——不忘初心！</p>
+<p class = "firstLineIndent">这让聂云都有些佩服起这个小家伙了。</p>
+<p class = "firstLineIndent">于是，就出现了刚刚这样一幕，为了防止小家伙逃跑，聂云也就只能将它像遛狗一般拴在身边。</p>
+<p class = "firstLineIndent">老三疑惑地看着那只不断尝试着逃跑的小章鱼。</p>
+<p class = "firstLineIndent">“呃……老板？这是那只章鱼？它在干吗？”</p>
+<p class = "firstLineIndent">“嗯，就像你们看到的那样，它在逃跑！”聂云摊摊手。</p>
+<p class = "firstLineIndent">老大目光古怪地看着这只小章鱼，“那它为什么又自己跑回来？”</p>
+<p class = "firstLineIndent">“嗯……说明它嘴上说不要，身体还是很诚实的！”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">小章鱼：“……”（⊙?⊙）</p>
+<p class = "firstLineIndent">“噗噗？”不同于三人的无语，小章鱼却是陷入了迷茫，连逃跑都顿了顿。</p>
+<p class = "firstLineIndent">从锅里出来之后，它完全不知道发生了什么，为什么自己的身体会不听使唤地不断违背自己的意愿，就像是身体内挤进来另外一个灵魂。</p>
+<p class = "firstLineIndent">难道那个人类说的是真的？我竟然是这样的小章鱼？</p>
+
+<h2>第一百五十六章 烦恼的根源</h2>
+<p class = "firstLineIndent">回到控制室的聂云看着脚边不断尝试逃跑的小章鱼，无奈的扶额，“小家伙，对你的执着我表示赞赏，不过你现在也该看清现实了吧？不累的吗？”</p>
+<p class = "firstLineIndent">小章鱼闻言停下“呼呼”地喘着气看着聂云，它现在简直要绝望了，这家伙到底对自己做了什么？！</p>
+<p class = "firstLineIndent">把我身体的控制权还回来啊魂淡！</p>
+<p class = "firstLineIndent">“噗噗！”（就算你得到我的身体，也别想得到我的心！）</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">很抱歉啊，我其实对你的心没什么兴趣，想得到的仅仅只是你的身体……</p>
+<p class = "firstLineIndent">“唉！我原本不想这么做的，不过为了让你认清这里到底谁说了算，那就明天见吧！”聂云看着目中喷火的小章鱼无奈摊了摊手。</p>
+<p class = "firstLineIndent">嗯？明天见？什么意思？小章鱼有些疑惑。</p>
+<p class = "firstLineIndent">然后它就看到地面突然蹿起一个银色铁栏，等它反应过来时，已经被关在一个小笼子中。</p>
+<p class = "firstLineIndent">“噗噗！”（还我自由！）小章鱼愤怒道。</p>
+<p class = "firstLineIndent">“嗯！知道知道，还你自由然后你要去环游世界对吧？这是你的梦想对吧？”聂云提起笼子，对着小章鱼笑道。</p>
+<p class = "firstLineIndent">“噗噗！”（没错！）小章鱼十分骄傲地挺起胸膛。</p>
+<p class = "firstLineIndent">“嗯，明白了，我被你追求梦想的执着感动到了，所以我决定，帮助你实现梦想！”聂云一脸认真道。</p>
+<p class = "firstLineIndent">“噗？！”帮助我实现梦想？难道你想放了我？</p>
+<p class = "firstLineIndent">下一刻，关着它的笼子就突然变形，将小章鱼整个包了起来，然后缓缓变得透明，很快，聂云手里就多出了一个章鱼水晶球。</p>
+<p class = "firstLineIndent">“噗噗？！”（你想干什么？）被困住的小章鱼意识到情况有些不对！</p>
+<p class = "firstLineIndent">这时地面上缓缓升起一个圆柱形平台，聂云将章鱼水晶球放在平台上的一个凹槽，然后平台旋转着缓缓没入地面。</p>
+<p class = "firstLineIndent">小章鱼看到的最后一个画面，是聂云笑眯眯地向它挥手，“那么，明天见！”</p>
+<p class = "firstLineIndent">然后小章鱼就感觉水晶球带着自己滚过了漫长而又曲折的通道，将它滚的七荤八素之后，“砰！”的一声终于停了下来。</p>
+<p class = "firstLineIndent">它抬起晕乎乎的脑袋看去，只见面前时一个长长的通道，两边有两条长长的导轨，而自己此时正处在导轨中间的位置。</p>
+<p class = "firstLineIndent">“滋滋！”就在小章鱼疑惑时，两边的导轨突然电光一闪，发出滋滋的电流声，然后下一刻水晶球就像是受到无形力量的击打一般，沿着导轨“嗖”的一下飞了出去。</p>
+<p class = "firstLineIndent">“噗！”小章鱼被突如其来的惯性死死按在透明水晶球上，只来得及发出一声短促的惊呼，便被瞬间印成了一张猎奇的大饼脸。</p>
+<p class = "firstLineIndent">与此同时，在永恒寂静的太空轨道上，突兀地出现了一颗被高速射出的水晶球，飞速向着更高的轨道远去。</p>
+<p class = "firstLineIndent">四周是空旷的宇宙，而下方就是蔚蓝色的星球，若是普通人站在这里，或许只会心跳加快，然后忍着一股尿意豪迈大喊一声：“地球啊！你真蓝！”</p>
+<p class = "firstLineIndent">不过对于某些极度恐高的小家伙来说……</p>
+<p class = "firstLineIndent">“噗噗……”（不要啊……）</p>
+<p class = "firstLineIndent">无声的宇宙中，似乎有生物的哀鸣在精神世界中回荡，充满了哀伤……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“章鱼小丸子发射成功，轨道确认无误，预计回收时间24小时！”聂云耳边传来代号的提示。</p>
+<p class = "firstLineIndent">环球一日游，这就是聂云所谓的“明天见”！</p>
+<p class = "firstLineIndent">你不是想环游世界吗？我24小时直接让你梦想成真！至于乘客恐高什么的，聂云表示自己负责过售后吗？</p>
+<p class = "firstLineIndent">“所以说，梦想……才是一切烦恼的根源啊！”聂云摊摊手。</p>
+<p class = "firstLineIndent">机械虫：“……”（→_→）</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">晚上10点，东南沿海的一处军港。</p>
+<p class = "firstLineIndent">码头附近都已经被荷枪实弹的军人封锁，整座码头只停着一辆大型房车。</p>
+<p class = "firstLineIndent">“今天早上10点，我国著名天体物理学家、最高科学技术奖获得者、航空航天事业奠基人于州去世，享年89岁……”房车内的电视中传来新闻播报声。</p>
+<p class = "firstLineIndent">“于老！委屈您了，为了保证消息不走漏，我们只能对外宣称您已经去世！”胡军长有些惭愧地道。</p>
+<p class = "firstLineIndent">在他对面的轮椅上，一名头发花白的老者正坐在那里，脸色有些苍白，手上还挂着点滴。</p>
+<p class = "firstLineIndent">“呵呵，我老头子经历了一辈子的大风大浪，这点小事算什么委屈？不过看着别人读自己的悼念词，这感觉倒是十分新鲜，哈哈！”于老有些虚弱地小声笑道。</p>
+<p class = "firstLineIndent">“感谢于老为国家做出的贡献和牺牲！没有您和您家人的配合，这出戏也演不下去！”胡军长诚恳道。</p>
+<p class = "firstLineIndent">“好了，别谢了，我倒是更加好奇，你们说的能为人延长寿命是真的？那个什么……sos组织真的能做到？”于老怀疑地问道。</p>
+<p class = "firstLineIndent">“我们目前不敢下结论，但是从对方展露出的各种匪夷所思、层出不穷的超前科技来看，这种事情的可能性并不小！</p>
+<p class = "firstLineIndent">您或许还不知道，前一段时间，幽灵船长用一艘飞行战舰将米军的冲绳基地给调戏的完全没脾气，据说还有一艘核潜艇被人家用环保条例给扣下了！”胡军长说起这个事情，也是不由对幽灵船长深不可测的实力心惊不已。</p>
+<p class = "firstLineIndent">“幽灵船长……sos组织……这个世界，看来不会平静太久了……”于老似乎有些预感地喃喃道。</p>
+<p class = "firstLineIndent">“滴滴！”这时，胡军长的电话有信息提醒，他拿起来看了眼，“于老，对方的船已经到了，我们过去吧！”</p>
+<p class = "firstLineIndent">于老点点头。</p>
+<p class = "firstLineIndent">为了保密，房车里除了于老，就只有胡军长和贴身警卫小刀，胡军长当下亲自推着于老出了房车，来到码头上。</p>
+<p class = "firstLineIndent">今晚月明星稀，能见度极佳，三人很快就看到不远处的海面上隆起一团黑影，它带着一阵哗哗的出水声破出水面。</p>
+<p class = "firstLineIndent">随着黑影越来越近，终于在月光下露出真容！</p>
+<p class = "firstLineIndent">略带扁平的舰身上，流线型的光滑装甲在月光下闪着银色的光辉，航行中寂静无声，几乎听不到螺旋桨的噪声。</p>
+<p class = "firstLineIndent">“哗哗……”潜艇犹如一头史前巨鲸，带着些许的海浪，无声无息缓缓停靠在码头上！</p>
+<p class = "firstLineIndent">于老看着眼前这艘让人震撼的华丽战舰，心中对于神秘的sos组织，生出了高山仰止的感觉。</p>
+<p class = "firstLineIndent">这么看来……“延长寿命”或许也是真的？我莫非真能向天再借30年？</p>
+<p class = "firstLineIndent">于老的呼吸顿时重了几分……</p>
+
+<h2>第一百五十七章 九阴针经</h2>
+<p class = "firstLineIndent">不仅是于老，小刀和胡军长两人也同样被眼前的这艘华丽潜艇震住。</p>
+<p class = "firstLineIndent">窥一斑而知全豹，作为军事专家，胡军长只看刚刚这艘潜艇的航行和停泊姿态，就能大致了解它的推进和航电控制系统的优劣。</p>
+<p class = "firstLineIndent">可以说，几乎完美无缺！灵活的犹如真的是一头海洋巨兽一般！</p>
+<p class = "firstLineIndent">“幽灵船长的潜艇技术，也已经达到这种地步了吗？”幽灵船长每一次展示出来的实力，都让胡军长心惊，然而谁知道这会不会是冰山一角？</p>
+<p class = "firstLineIndent">眼前的这艘潜艇，独特的外形设计和世界上普遍的水滴型或者过渡型的潜艇外观完全不同！而且通体看不到一颗铆钉或者焊接的痕迹，整艘潜艇宛如一体。</p>
+<p class = "firstLineIndent">虽然吨位看起来和各国的潜艇没有什么区别，然而胡军长心中想到那艘浮空战舰，同属幽灵船长旗下的这艘潜艇，其战斗力恐怕也是不能用常理揣度！</p>
+<p class = "firstLineIndent">就在几人被这艘潜艇吸引住目光时，潜艇一侧的一块上装甲突然外翻，“砰！”的一声搭在了码头上，形成了一座连接桥。</p>
+<p class = "firstLineIndent">胡军长眼珠子都快瞪出来了，这潜艇的出入口还能这么设计？</p>
+<p class = "firstLineIndent">他顿时为全世界的潜艇兵感到委屈，瞧瞧他们每次进出潜艇，哪个不是顺着狭窄逼仄的圆形垂直梯幸辛苦苦地爬上爬下，稍微肥胖点儿的你都挤不进去！</p>
+<p class = "firstLineIndent">再看看人家这个，直接上的就是两车道啊！</p>
+<p class = "firstLineIndent">就在胡军长感叹时，从那潜艇开口处的黑暗中缓缓走出一个人影，面还没露，熟悉的声音先传了过来。</p>
+<p class = "firstLineIndent">“哟！胡军长，又见面了！”</p>
+<p class = "firstLineIndent">“呃……聂云？！”胡军长惊讶地看着月光下缓缓走出的少年。</p>
+<p class = "firstLineIndent">“呵呵！是我！这位想必就是于老吧！太荣幸了，我是您的粉丝，您写的那篇‘五维空间中的时间轴跳跃’实在是发人深省！</p>
+<p class = "firstLineIndent">我原本还想着过两天去参加您的葬礼，没想到今天竟然能在这里见到活人，真是太好了！”聂云一出来便一脸荣幸地伸出双手。</p>
+<p class = "firstLineIndent">于老愣愣地伸出右手，看着面前这个似乎还没自己曾孙大的少年热情地握紧自己的手上下晃动。</p>
+<p class = "firstLineIndent">什么叫过两天来参加我的葬礼，有人见面这么打招呼的吗？</p>
+<p class = "firstLineIndent">还我粉丝，仰慕我的“五维空间中的时间轴跳跃”？连我实验室的博士后都不一定能完全理解，你浮夸了啊少年！</p>
+<p class = "firstLineIndent">“咳咳！于老，这位就是sos组织中的重要成员，聂云，我同你提过的！”胡军长嘴角抽了抽介绍道。</p>
+<p class = "firstLineIndent">“聂云，这次怎么是你过来接于老，怎么哪儿都有你啊！”胡军长和聂云接触的多了，说话也随意了很多。</p>
+<p class = "firstLineIndent">“我无处不在……”聂云神秘一笑。</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">无处不在你妹啊！你又不是cy！</p>
+<p class = "firstLineIndent">可是他不知道的是，这句话其实还真是实话……</p>
+<p class = "firstLineIndent">不得不说，sos组织的人说话行事虽然有时候让人感觉十分古灵精怪，有无数不吐不快的槽点，但是他们的这种相处方式倒是能够很快的消除双方的隔阂，拉近彼此的距离，自己不知不觉中都对聂云放下几分戒备心理。</p>
+<p class = "firstLineIndent">莫非这就是他们这种企业外交文化的精髓？</p>
+<p class = "firstLineIndent">机械虫：“……”（呵呵……）</p>
+<p class = "firstLineIndent">“嗯，这是图纸的u盘，然后，这是3台高精度的工业母机，现在就按照约定交给你们了！合作愉快！”聂云说着，从两车道上滑下来三个小型集装箱。</p>
+<p class = "firstLineIndent">“好！好！合作愉快！”胡军长接过u盘，看着眼前的三个集装箱呼吸有些加重，这可是花多少钱也买不来的宝贝啊！</p>
+<p class = "firstLineIndent">看似不起眼的三个工业母机，足以引发一场精度革命！</p>
+<p class = "firstLineIndent">“咳咳……”这时，于老突然就是一阵剧烈的咳嗽，脸色也开始潮红！</p>
+<p class = "firstLineIndent">老人家毕竟是油尽灯枯，海风一吹，身体顿时有些吃不住。</p>
+<p class = "firstLineIndent">胡军长心中一惊，刚想要上前查看，聂云却是抢先一步上前，手中不知何时竟然出现一根银针，一针就扎在了于老的肩头。</p>
+<p class = "firstLineIndent">“住手！”旁边尽心尽职担任护卫任务的小刀见聂云竟然二话不说给于老扎针，立刻就炸毛了，早就时刻按在枪柄上的手立刻拔出，枪口对准了聂云。</p>
+<p class = "firstLineIndent">“住手！”这第二声却是胡军长叫的。</p>
+<p class = "firstLineIndent">一来是他不相信聂云会在自己眼皮子底下伤害于老，二来他竟然发现于老的脸色正在飞速地恢复当中。</p>
+<p class = "firstLineIndent">然后两人很快就发现，于老不仅脸色迅速恢复正常，连咳嗽也渐渐消失。</p>
+<p class = "firstLineIndent">于老惊奇地看着聂云，就这么看都没看随便扎了一针，自己的呼吸就顺畅了许多，连气血都感觉旺盛了几分，有种精神一震的感觉！这小子莫非还是位神医？</p>
+<p class = "firstLineIndent">“这……这难道是传说中的——金针刺穴！？”小刀惊呼。</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">于老：“……”</p>
+<p class = "firstLineIndent">聂云则是一脸你很识货的表情缓缓收回银针。</p>
+<p class = "firstLineIndent">“聂兄弟竟然还懂医术？！”胡军长此刻像是重新认识聂云一般。</p>
+<p class = "firstLineIndent">怪不得人家年纪轻轻就是骑士小队长，地位比幽灵骑士还高！原本还以为他是组织里的二代，现在看来sos组织中果然没一个简单的角色！都是怪物啊！</p>
+<p class = "firstLineIndent">“呵呵！小时候偶然得到一部医书，这才练就一身通天彻地，阎王难收的医术，只不过我为人一向比较低调，否则我应该从医道入官途，算算时间，现在应该也是一名市高官了！”聂云笑着掐指一算。</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">你那不是低调，你只是高调的方式比较抽象！</p>
+<p class = "firstLineIndent">这种从医道入官途的想法暂且不提，可就算你把指头掐断了，也改变不了你刚成年的事实啊！</p>
+<p class = "firstLineIndent">刚成年的市高官？这绝对是要被钉上历史的耻辱柱的啊！而且你绝对还能顺便得一个“史上最强二代”的头衔！</p>
+<p class = "firstLineIndent">如果米国有这个市高官的编制，我觉得你可以去那里试试！</p>
+<p class = "firstLineIndent">“奇书？难道是传说中的《黄帝内经》？！”小刀一脸崇拜地插嘴道。</p>
+<p class = "firstLineIndent">“不，是《九阴针经》！”聂云背手望天。</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯▽╰)╭）</p>
+<p class = "firstLineIndent">你他么确定这是部医书？！金大大其实写了错别字？！</p>
+
+<h2>第一百五十八章 回忆杀</h2>
+<p class = "firstLineIndent">经过这个小插曲，胡军长和于老对幽灵船长生命科技的信心那是蹭蹭蹭往上冒，连手底下的“精英小队长”都有这种冠绝杏林的医术，作为大boss的幽灵船长还能差了？</p>
+<p class = "firstLineIndent">“对了，你们不需要先验验货？”聂云指着集装箱笑道。</p>
+<p class = "firstLineIndent">“呵呵！就凭那艘单挑冲绳基地的浮空战舰，幽灵船长说是高精度的工业母机，那精度就绝对不会比老米的差！”胡军长一脸我对你有信心的表情。</p>
+<p class = "firstLineIndent">聂云倒是不客气地点点头，这三台工业母机的精度，的确不是老米的那些可以比拟的，毕竟机械虫的加工精度，那可是原子级的！</p>
+<p class = "firstLineIndent">胡军长见聂云一脸当仁不让的表情，那心中更是欣喜，莫非我一不小心就真相了？</p>
+<p class = "firstLineIndent">“那么，我这就带于老离开了，等到治疗结束后，于老会亲自与你们通讯确认治疗效果！”聂云道。</p>
+<p class = "firstLineIndent">“好的！于老，那么接下来等治疗结束后，您就是sos的临时雇员，祖国期待您的科研成果，也请多多保重身体！”胡军长郑重地向于老敬了个军礼。</p>
+<p class = "firstLineIndent">这句话的“科研成果”，于老自动划重点，他笑着点点头，</p>
+<p class = "firstLineIndent">国内能够派自己过去，很大一部分原因其实也是存了向幽灵船长取经的想法，哪怕只是获得幽灵船长黑科技中的一小部分，对己方来说也绝对是赚大了！</p>
+<p class = "firstLineIndent">聂云对他们的小心思自然是再清楚不过，毕竟这也是人之常情，放到嘴边的肉，谁能忍住不吃？</p>
+<p class = "firstLineIndent">不过只要他们无法攻克机械虫这一终极底牌，聂云表示你们能学多少全算你们本事！</p>
+<p class = "firstLineIndent">他原本就有推进地球科技发展的想法，毕竟地球科技就是自己的技术储备池，地球科技越先进，有机械虫在手，自己的科技只会更加先进！</p>
+<p class = "firstLineIndent">所以技术外流什么的，聂云表示喜闻乐见！</p>
+<p class = "firstLineIndent">聂云接过轮椅，推着于老渐渐消失在潜艇入口中，随着两车道缓缓关闭，潜艇开始脱离码头，很快没入海水中，消失在两人眼前。</p>
+<p class = "firstLineIndent">“啧啧！好厉害的潜艇，要是我们能有这种装备就好了！”小刀羡慕地看着潜艇消失的方向。</p>
+<p class = "firstLineIndent">“这或许也不是不可能。”胡军长摸着下巴道。</p>
+<p class = "firstLineIndent">“什么？军长，您是说我们也有希望造出来？”小刀明显会错意。</p>
+<p class = "firstLineIndent">“咳咳！这倒不是，你忘了我们第一次见聂云的时候，人家对面可是有整整18艘潜艇，如果都是刚刚这种，那说明人家的这种装备早就可以量产了！</p>
+<p class = "firstLineIndent">只要是量产的，说不定我们有机会买过来呢？”胡军长心里打起小算盘。</p>
+<p class = "firstLineIndent">毕竟科技代差有些大，自己研发绝对不如直接买来的见效快，兔子现在有钱，如果幽灵船长肯卖，那么兔子绝对会豪气地来一句：钱，不是问题！</p>
+<p class = "firstLineIndent">不过细思极恐啊！18艘这样的潜艇，对方究竟哪来的这种制造能力？</p>
+<p class = "firstLineIndent">光是这些潜艇的生产，至少就得需要数十万人的规模才能支撑起上下游的整个工业链，但这么多人到底是怎么瞒住全世界的？</p>
+<p class = "firstLineIndent">现在地球上还有地方能够进行如此规模的闭关锁国？并且保证一点消息不泄露？</p>
+<p class = "firstLineIndent">胡军长陷入了迷茫……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">另一边，于老被聂云推着进入潜艇后，唯一的感觉就是宽敞、简洁！</p>
+<p class = "firstLineIndent">没有印象中那些密密麻麻的管路和狭窄的通道，内部宽敞的不可思议，完全不符合传统潜艇将每一分空间利用到极致的设计理念。</p>
+<p class = "firstLineIndent">而且就算进入航行状态室内也十分安静，几乎感觉不到震动和噪音。</p>
+<p class = "firstLineIndent">“咦？这里怎么看不到一名船员？”被聂云推着的于老突然发现一个问题。</p>
+<p class = "firstLineIndent">“哦，这艘潜艇是傻瓜式操作，必要时能够无人驾驶那种，我们sos团向来是只招收特定人群，所以……人手比较紧张，呵呵！”聂云笑着解释。</p>
+<p class = "firstLineIndent">潜艇也能无人驾驶？万一碰到敌人怎么办？你们的心都这么大的吗？于老有点懵。</p>
+<p class = "firstLineIndent">“特定人群？什么意思？”于老抓住一个关键问题。</p>
+<p class = "firstLineIndent">这或许是sos组织如此强大的原因？！是地球超级精英？还是能人异士？</p>
+<p class = "firstLineIndent">“唔……就是有一些很特别的属性，比如无人能及的小幸运，又比如一觉醒来就失忆，或者是珍惜的变异物种等等这类看起来就很特别的存在！”</p>
+<p class = "firstLineIndent">于老：“……”</p>
+<p class = "firstLineIndent">怪不得你们人手紧张，这是打算将sos组织发展成珍稀物种收藏馆？</p>
+<p class = "firstLineIndent">两人说着话时，已经来到一间舱室，室内空无一物，只摆放了一个类似休眠舱一样的东西。</p>
+<p class = "firstLineIndent">“好！到了于老，现在就进行手术吧。”聂云突然道。</p>
+<p class = "firstLineIndent">“什么？在这儿？就现在？”于老傻眼了。</p>
+<p class = "firstLineIndent">这里怎么看也不像是能够做延长寿命这种梦幻级手术的地方吧？说好的一群白大褂呢？</p>
+<p class = "firstLineIndent">“嗯，就是个小手术，花不了多少时间，路上还有点时间，就顺便做了吧！”</p>
+<p class = "firstLineIndent">小手术？顺便做了吧？你不要说得好像是割个阑尾一样啊！</p>
+<p class = "firstLineIndent">于老狐疑地看了聂云好一会儿，见他不像是在开玩笑，当下只能点点头。反正我这把老骨头也活不久，随你们折腾吧！</p>
+<p class = "firstLineIndent">聂云将于老搬进椭圆形的生物仓，舱盖关闭前，聂云突然很严肃道，“于老，这种生命技术目前还不完善，为了保证你的记忆不受伤害，我们会将你的脑部进行隔离，只对其余身体部位进行返老还童式的强化。</p>
+<p class = "firstLineIndent">理论上来说，大脑的寿命比人体寿命要长一倍，因此保守估计，你至少还能获得30年的理论寿命。</p>
+<p class = "firstLineIndent">那么，你现在可以选择将身体恢复到哪个年龄阶段！”</p>
+<p class = "firstLineIndent">返老还童式的强化？还能选择恢复到哪个年龄阶段？于老的呼吸沉重起来，这种事情，真的能做到？！</p>
+<p class = "firstLineIndent">“嗯！那就恢复到15岁的阶段吧！”于老想了想道。</p>
+<p class = "firstLineIndent">“嗯？为什么是15岁？”聂云有些惊讶，原本以为于老会选择青壮年，毕竟那时候的人体素质正值巅峰。</p>
+<p class = "firstLineIndent">“可能是人老了总喜欢回忆过去，最近老是想那些老朋友，想那些年我们一起追过的女孩……那一年，我15岁……”于老一脸的回忆神色，开始“很久很久以前……”</p>
+<p class = "firstLineIndent">“咳咳！好吧于老，我知道了，不过这里没酒，不适合听故事，我看我们还是赶紧开始手术吧！”聂云咳嗽两声赶紧打断于老。</p>
+<p class = "firstLineIndent">看这开头就知道故事短不了，为了防止这个过程你就寿终正寝，还是赶紧给你手术了吧！</p>
+<p class = "firstLineIndent">话说如果于老这时候挂掉，算不算回忆杀？</p>
+
+<h2>第一百五十九章 B</h2>
+<p class = "firstLineIndent">随着舱盖关闭，液态机械虫在于老惊讶的目光中缓缓充满。</p>
+<p class = "firstLineIndent">而旁边的聂云笑了笑，随之缓缓化为一座静止不动的银色雕塑……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">米国莫哈维沙漠！</p>
+<p class = "firstLineIndent">这里是地球的另一面，此时正是正午时分，火热的阳光洒在大地上，炙烤出扭曲的光影。</p>
+<p class = "firstLineIndent">莫哈维沙漠是米国面积最大的沙漠，其形状酷似一条西方巨龙，横跨南加州、内华达、亚利桑那、犹他州四个州，占地超过22000平方米。</p>
+<p class = "firstLineIndent">nasa在这里设立了一座侦测卫星基地，并和其他地方的基地联合，成立了远太空联络网，探索太空深处的奥秘！</p>
+<p class = "firstLineIndent">在距离nasa卫星基地西南5公里的地方，一座庞大的秘密基地深埋地下！</p>
+<p class = "firstLineIndent">这正是米国最为神秘的十三区，基地中，上百名黑衣人和白大褂在忙忙碌碌。</p>
+<p class = "firstLineIndent">十三区区长办公室。</p>
+<p class = "firstLineIndent">“区长！这是nasa有关‘super boy（超级男孩）’的全部资料，另外，这是我们从霓虹dyz（对幽组）拿到的关于幽灵船长的所有资料！”先前与nasa负责人交接资料的那名黑衣人男子此刻正在十三区区长的办公室，他递过两份文件道。</p>
+<p class = "firstLineIndent">虽然霓虹dyz迫于压力，向米国交出了所有的资料，但是米国不知道的是，这份资料缺失了“关键”的一部分！</p>
+<p class = "firstLineIndent">那就是服部的那个“永生”猜想，它被作为dyz的最大机密，秘而不宣！</p>
+<p class = "firstLineIndent">“嗯！杰伊（jay），资料你都看过了？”区长从幽灵船长的档案中抽出一张幽灵骑士的模糊照片，皱了皱眉问道。</p>
+<p class = "firstLineIndent">“是的！看来地球最近似乎真是很不太平，哦对了，月球也是！”杰伊给自己倒了杯咖啡，坐在沙发上翘起二郎腿摊了摊手。</p>
+<p class = "firstLineIndent">“月球？怎么回事？”</p>
+<p class = "firstLineIndent">“哦，这个没在资料里面，据nasa称，发现月球前一段时间发生过诡异的连续震动，原因不明，我觉得这里面可能有些联系。”</p>
+<p class = "firstLineIndent">“哦，有这种事？明明时间还没到，真是多事之秋啊！唉！</p>
+<p class = "firstLineIndent">那么杰伊，你对‘他们’的了解是区里公认的，谈谈你对这些异常事件的看法吧，会不会是‘他们’的杰作？”</p>
+<p class = "firstLineIndent">“幽灵船长是绝对不可能的！你知道的，那些家伙从来不会干涉我们的正常发展，这不符合他们的行事作风。</p>
+<p class = "firstLineIndent">另外，幽灵船长的技术虽然超前，但是依然有着无法磨灭的地球科技的痕迹，同时别忘了，幽灵骑士可是人形生物，所以应该可以确信幽灵船长是地球本土发展出来的势力！</p>
+<p class = "firstLineIndent">还有一点！幽灵船长可是只有一个组织！如果是‘他们’，那么……另一个呢？‘他们’的步调可是高度一致的！”</p>
+<p class = "firstLineIndent">“嗯，我和你的判断基本一致，而且幽灵船长的装备和战舰上并没有‘b’的明显标记，所以基本可以排除幽灵船长和‘他们’有关，那么‘超级男孩’呢？”区长又问道。</p>
+<p class = "firstLineIndent">“‘超级男孩’出现的两次事件都是发生在国际空间站，而且对方没有攻击意图，没有人员伤亡，它更像是一场恶作剧，这同样不符合‘他们’出手的风格！</p>
+<p class = "firstLineIndent">而且我发现了一个小细节，霓虹的资料中有提到，在空间站第一次事件发生的前一天，幽灵海域出现了大量不明的电磁武器高速攻击，引发过一场局部火流星！</p>
+<p class = "firstLineIndent">当时他们怀疑这是幽灵船长针对轨道卫星的攻击，但是到目前为止，世界上也没有任何一个国家的卫星发生异常！所以幽灵船长这么做的原因至今仍是个迷！</p>
+<p class = "firstLineIndent">但是从两件事情发生的时间来看，十分吻合，我并不相信这是一种巧合！所以，我大胆猜测，‘超级男孩’或许也是幽灵船长的手笔！</p>
+<p class = "firstLineIndent">虽然电磁武器无法发密仪器，但是有句古话叫做‘绵里藏针’！或许电磁攻击只是他的一种障眼法？</p>
+<p class = "firstLineIndent">另一方面，空间站的恶作剧风格也同幽灵船长以往的行事作风十分相似！</p>
+<p class = "firstLineIndent">区长你有没有发现，不管是出云号，还是冲绳基地，几次激烈的战斗下来，竟然没有出现一次大规模的伤亡！</p>
+<p class = "firstLineIndent">从个人的品行来看，这位幽灵船长简直堪称‘仁慈’！”杰伊一脸赞叹道。</p>
+<p class = "firstLineIndent">“哦！这么说来，这么多的巧合的确是有些不正常！</p>
+<p class = "firstLineIndent">不过如果这件事真的和幽灵船长有关，那么你对他‘仁慈’的评价我可不会赞同，你知道两次空间站给我们米国造成的损失有多大吗？</p>
+<p class = "firstLineIndent">至少上亿美金蒸发，而只要空间站继续被霸占着，那么这个损失还会继续扩大！”</p>
+<p class = "firstLineIndent">“嘿k，我发现你现在越来越像那些资本家了，早知道应该由我来做这个区长，这样才能够保证十三区的纯洁性！</p>
+<p class = "firstLineIndent">资本家的作风对‘他们’可不会起作用！”杰伊笑着调侃道。</p>
+<p class = "firstLineIndent">两人是多年的搭档，k是杰伊对区长平时私下里的称呼。</p>
+<p class = "firstLineIndent">“那我真是求之不得，杰伊，我已经整整三年没有过假期了，我真傻，真的，如果当年我不争强好胜……”</p>
+<p class = "firstLineIndent">“好了好了，区长大人，我投降！”杰伊一脸无奈道，如果不阻止k继续唠叨，恐怕接下来的半个小时就别想消停了！</p>
+<p class = "firstLineIndent">“好吧，让我们继续说正事！”区长有些哀怨地看了他一眼，止住了话头。</p>
+<p class = "firstLineIndent">“从幽灵船长的科技水平来说，占领空间站这种事说不定还真不难，毕竟连那种不科学的浮空战舰都拿出来了！</p>
+<p class = "firstLineIndent">那么如果‘超级男孩’真是幽灵船长的手笔，那么他为什么要这么做？”区长疑惑道。</p>
+<p class = "firstLineIndent">“嗯！好问题，让我们站在幽灵船长的角度换位思考一下！</p>
+<p class = "firstLineIndent">首先，有这样的黑科技，幽灵船长的组织必定经过了漫长时间的低调发展！</p>
+<p class = "firstLineIndent">但如果是我，拥有了超出世界10年的科技，我恐怕就会忍不住跳出来扩大自己的势力范围，甚至争夺世界的统治权了吧？</p>
+<p class = "firstLineIndent">但是对方却选择低调蛰伏？这绝对很不正常！</p>
+<p class = "firstLineIndent">我绝不相信“无欲无求”这种圣人属性会出现在一个组织首脑的身上，人类的天性就是扩张和侵略！</p>
+<p class = "firstLineIndent">我宁肯相信，是有什么原因让幽灵船长不得不做出这种选择！</p>
+<p class = "firstLineIndent">可是如此强大的幽灵船长，还有什么可以让他行事如此小心，在漫长的时光中都小心翼翼蛰伏不出呢？</p>
+<p class = "firstLineIndent">米国？从对方调戏冲绳基地的行为来看，恐怕还没有这种威慑力！</p>
+<p class = "firstLineIndent">那么区长大人，请问这个世界上，还有什么样的存在，是比世界霸主米国的威慑力还要强大的？！”杰伊眼神奇异地看了眼区长，然后目光落在区长办公桌后的巨大墙壁上。</p>
+<p class = "firstLineIndent">那里，一个硕大的红色字母“b”唯我独尊一般，独自霸占了整个背景墙！</p>
+<p class = "firstLineIndent">但是这个b的两个笔画却似乎故意分的较远，看起来却有点像是……1和3！</p>
+<p class = "firstLineIndent">“你是说……‘他们’？！”区长眼睛瞳孔骤然一缩！</p>
+
+
+
+
+
+</br></br>
+<a href="140.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="160.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

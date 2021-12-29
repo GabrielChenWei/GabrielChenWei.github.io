@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+
+<h2>第五百章 会师</h2>
+<p class = "firstLineIndent">“这怎么可能！”伊莎尔看着刚刚收到的战场情报，同样也是一脸的无法接受。</p>
+<p class = "firstLineIndent">对方怎么可能毫发无伤？</p>
+<p class = "firstLineIndent">难道之前是故意示敌以弱误导我们？</p>
+<p class = "firstLineIndent">“指挥官阁下，海族第三分舰队指挥官在战斗汇报之后，还发来一份电文，表示……表示阁下您指挥不当，导致其所部损失惨重，将保留向军部申诉的权力。”副官有些尴尬道。</p>
+<p class = "firstLineIndent">伊莎尔闻言不由头疼的揉了揉眉心。</p>
+<p class = "firstLineIndent">原本古斯塔夫的事情就让海族内部军心不稳，如今自己又出现了这样的失误，更是雪上加霜，指挥官的威信降到了冰点，还能不能指挥的动他们都还两说。</p>
+<p class = "firstLineIndent">这其实也不怪伊莎尔判断失误，实在是长生者的“回血”速度太过惊人，远远超出了正常范畴，信息的不对称让伊莎尔眼前如同一片迷雾，很难做出准确的决策。</p>
+<p class = "firstLineIndent">“让海族第三分舰队原地修整，等待救援，第一、二分舰队降低航速，等待与我方舰队汇合后再进行下一步的作战行动！”伊莎尔命令道。</p>
+<p class = "firstLineIndent">拦截失败已成定局，既然如此，为稳妥起见，必须尽量集中兵力，以免被敌人各个击破。</p>
+<p class = "firstLineIndent">很显然，长生者的强悍让伊莎尔更加忌惮。</p>
+<p class = "firstLineIndent">“是！”副官立正道。</p>
+<p class = "firstLineIndent">“对了，卡拉星那边的情况如何？”伊莎尔又问道。</p>
+<p class = "firstLineIndent">先前羽族舰队在追击长生者的途中，在经过卡拉星之时，突然收到了数百个来自卡拉星的求援信号。</p>
+<p class = "firstLineIndent">经过信号识别发现这竟然是海族的大量幸存者！</p>
+<p class = "firstLineIndent">救援友军幸存者即是义务，所以伊莎尔派遣了一支救援小分队共计5艘战舰前往卡拉星。</p>
+<p class = "firstLineIndent">除了救援任务，同时也是为了将卡拉星重新纳入掌控，避免对方在卡拉星上可能隐藏的兵力突袭后方基地。</p>
+<p class = "firstLineIndent">“报告指挥官阁下，我们留在卡拉星的救援舰队已经展开了救援工作，预计需要三天左右的时间完成救援任务。</p>
+<p class = "firstLineIndent">另外，从第一批获救的幸存者口中还原的事情经过，与我们猜测的大致相符。</p>
+<p class = "firstLineIndent">古斯塔夫阁下先是控制住了舰桥，接着伪造了自爆指令，逼迫所有船员弃舰，从而控制了整艘战舰。</p>
+<p class = "firstLineIndent">而隶属旗舰护卫队的三艘战舰，也确实是被旗舰开火击毁！</p>
+<p class = "firstLineIndent">阁下，有这么多人的证词，古斯塔夫阁下叛变一事，恐怕已是板上钉钉！”副官摇摇头有些唏嘘道。</p>
+<p class = "firstLineIndent">毕竟一名高级指挥官的叛变，在双子星的历史上都不多见。</p>
+<p class = "firstLineIndent">伊莎尔对这些早有预料，没有吃惊，反而问了另外一个问题。“这么多的幸存者，几乎都坠落在了卡拉星？”</p>
+<p class = "firstLineIndent">副官想了想，也觉得有些太过巧合。</p>
+<p class = "firstLineIndent">“确实如此，不过……其中一艘战舰乃是被迫投降后，被逼着全员弃舰，随后才遭到旗舰攻击被毁，对方的行为……颇有些让人费解。”</p>
+<p class = "firstLineIndent">“哦？”伊莎尔若有所思。</p>
+<p class = "firstLineIndent">这样的行为的确古怪，好像……好像是对方故意要将这批幸存者赶到卡拉星上一般。</p>
+<p class = "firstLineIndent">目的呢？难道在卡拉星上布置了什么陷阱，想要坑杀己方的救援部队？</p>
+<p class = "firstLineIndent">不是没可能，但是这么做除了激怒己方外根本没什么太大的意义。</p>
+<p class = "firstLineIndent">又或者……对方想要用这些幸存者做挡箭牌，让自己投鼠忌器？</p>
+<p class = "firstLineIndent">“卡拉星上可有发现敌方武装？”伊莎尔再次问道。</p>
+<p class = "firstLineIndent">“没有！对方撤离的很干净，没有发现任何大规模的敌方力量，对方似乎已经完全放弃了卡拉星。”</p>
+<p class = "firstLineIndent">“哦？”伊莎尔皱了皱眉。</p>
+<p class = "firstLineIndent">没有一点留守兵力，几乎是将卡拉星拱手相让？</p>
+<p class = "firstLineIndent">对方这么做，伊莎尔只能想到一个可能，那就是卡拉星对万物归一会而言再无价值……</p>
+<p class = "firstLineIndent">生命之水……果然被取走了吗？</p>
+<p class = "firstLineIndent">伊莎尔葱白的手指有节奏的点在扶手上，陷入沉思。</p>
+<p class = "firstLineIndent">比邻星系内最有价值的生命之水必然就藏在对方的生物堡垒内部，如果让对方两支部队汇合，想要夺回来就相当困难了。</p>
+<p class = "firstLineIndent">而一旦东西被运进了太阳系……那夺回宝物的希望就更加渺茫。</p>
+<p class = "firstLineIndent">对方一环扣一环的作战计划，目的恐怕就是这个了！</p>
+<p class = "firstLineIndent">“唉！”伊莎尔深深叹了口气。</p>
+<p class = "firstLineIndent">自己都还没入场，但是战略上就已经失败，这种战打起来真的是相当让人无奈……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">虫洞区域。</p>
+<p class = "firstLineIndent">远处一点亮光划过星空，越来越近……</p>
+<p class = "firstLineIndent">随着距离接近，地球防卫军的战舰终于捕捉到了它的影像，巨大无比的身躯和绿色伞盖震惊全场！</p>
+<p class = "firstLineIndent">这是……什么东西？</p>
+<p class = "firstLineIndent">传说中的宇宙生物？而且……还是一棵树？！</p>
+<p class = "firstLineIndent">长生者此时已经完成了180度掉头，正喷出数十米的尾焰在艰难的减速，不过庞大的身躯想要从高速中停下来，显然并不那么简单。</p>
+<p class = "firstLineIndent">“目标接近！准备接收！”</p>
+<p class = "firstLineIndent">所有人耳边，系统提示响起，随后就见所有的机甲和战舰摆出了一个整齐的环形阵型，一副严阵以待的架势。</p>
+<p class = "firstLineIndent">不久后，长生者高速掠过，精准无比的钻入环形阵型中心！</p>
+<p class = "firstLineIndent">几乎在同一时间，“嗖嗖嗖！”</p>
+<p class = "firstLineIndent">所有战舰和机甲射出一道道或粗或细的牵引光线，密密麻麻如同一张蓝色的巨大蜘蛛网，罩向了长生者的巨大树冠！</p>
+<p class = "firstLineIndent">下一刻，所有飞行器都被猛地向后拽去！</p>
+<p class = "firstLineIndent">“蹦蹦蹦！”一些脆弱的枝条承受不住巨大的撕扯力道，当即崩断。</p>
+<p class = "firstLineIndent">“轰轰轰！”数千台引擎都在发出怒吼，对抗着巨大的反作用力。</p>
+<p class = "firstLineIndent">一大片的尾焰交织成一道环形的光环，蔚为壮观！</p>
+<p class = "firstLineIndent">数千台机甲，包括吨位上十万吨的战舰，全都成为了一台台的减速器，被庞大的长生者拖出了足足数十万公里，这才缓缓停了下来。</p>
+<p class = "firstLineIndent">聂云的两支力量，历尽艰辛，终于完成会师！</p>
+<p class = "firstLineIndent">“竟然用这种方式给对方减速……”老胡等人看到这一幕，眼皮直跳。</p>
+<p class = "firstLineIndent">“接收完毕！欢迎到来，长生者阁下！欢迎到来，卡拉文明！”</p>
+<p class = "firstLineIndent">什么？刚刚系统说什么？</p>
+<p class = "firstLineIndent">卡拉……文明？！</p>
+<p class = "firstLineIndent">这么说，幽灵船长在外面晃悠了几个月，不仅忽悠回来一只宇宙生物，还连带着打包了一个外星文明？！</p>
+
+<h2>第五百零一章 攻心战</h2>
+<p class = "firstLineIndent">长生者的状态比之前更差了。</p>
+<p class = "firstLineIndent">树叶枯黄，枝条耷拉着有些萎靡，身体上纵横交错的伤痕足有数十道，虽然在缓慢的自我修复，但是速度比之前明显缓慢了许多。</p>
+<p class = "firstLineIndent">逃离卡拉星后，长生者历经恒星洗礼，以及双子星的两次拦截，前后共计三次受创，虽然每一次的修复速度惊人，但消耗却同样巨大！</p>
+<p class = "firstLineIndent">快速修复肢体需要各种元素和物质，同时消耗大量的能量，生命之水更是促进长生者进化，并加速恢复的必需品。</p>
+<p class = "firstLineIndent">从恒星中冲出后，长生者的战斗、进化和修复几乎是一刻都未停止，提前储存在长生者体内的各种物资损耗巨大，珍贵的生命之水几乎消耗殆尽。</p>
+<p class = "firstLineIndent">加上推动庞大身躯耗费的海量燃料，就连最为核心的能源储备都接近到了红色警戒线！</p>
+<p class = "firstLineIndent">哪怕是机械虫，也无法改变物质守恒定律无中生有，如今的长生者可以说是被彻底掏空，再不进行物资补给，不用双子星动手，长生者自己都快坚持不下去了。</p>
+<p class = "firstLineIndent">不过还好，双子星舰队的抵达还需要一段时间，长生者也终于获得了宝贵的修整时间。</p>
+<p class = "firstLineIndent">长生者被接收之后，聂云一方的战舰便开始纷纷向长生者靠拢。</p>
+<p class = "firstLineIndent">然后只见数十条粗壮的枝条从长生者各处伸出，直接插入了各艘飞船上方打开的圆形通道。</p>
+<p class = "firstLineIndent">“咕咚咕咚~”枝条上鼓起一个个小包，如同一根根吸管，贪婪的吸收着海量的营养物质和燃料。</p>
+<p class = "firstLineIndent">这些物资被分门别类的运往身体各处，补充一路来的消耗，长生者的恢复速度开始明显提速。</p>
+<p class = "firstLineIndent">一艘小型运输舰从海狼号内飞出，直接没入长生者体内，里面运载的是足有上吨重的能源水晶，足够让长生者火力全开，打上三天三夜。</p>
+<p class = "firstLineIndent">与此同时，外围的机甲部队也摆出整齐的飞行队列，分为数十股缓缓进入长生者各处早已准备好的机库进行燃料补充和设备维护。</p>
+<p class = "firstLineIndent">机甲续航能力有限，但如果有了长生者，那就是上了航母的舰载机，战略价值就完全不同了。</p>
+<p class = "firstLineIndent">大量机甲的入驻，也弥补了长生者灵活不足的短板，无疑将使它的战斗力大增。</p>
+<p class = "firstLineIndent">一座武装到牙齿，并且装载了大量舰载空战力量的超级航母雏形渐渐显现……</p>
+<p class = "firstLineIndent">长生者抵达虫洞，对地球文明来说绝对是一次不亚于“长征”的战略性胜利！</p>
+<p class = "firstLineIndent">从此以后，聂云在比邻星系就有了一座坚固的桥头堡，等同于打开了新世界的大门，不虞困守太阳系一域。</p>
+<p class = "firstLineIndent">而背靠正在飞速发展的太阳系，长生者也将获得源源不断的后勤补给，进入一个成长高速期！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“本次补给预计耗费时间5个小时，能够补充长生者阁下30的物资需求，不出意外的话，下一批补给物资将在40个小时后送达……”</p>
+<p class = "firstLineIndent">堕天使号上，代号正在向聂云汇报长生者的修整情况。</p>
+<p class = "firstLineIndent">“嗯！”聂云点点头。</p>
+<p class = "firstLineIndent">他转头看向星图上双子星一方的舰队位置，如今两族舰队已经汇合，正在朝着虫洞方向不疾不徐航行着。</p>
+<p class = "firstLineIndent">敌人虽然强大，不过聂云手中的力量也早已今非昔比，大量新锐兵器加上长生者这个火力平台，若是双子星执意开战，那他也同样不惧一战！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“本次补给限时5个小时，预计将补充长生者阁下40的物资需求，不出意外的话，下一批补给物资将在40个小时后送达……”</p>
+<p class = "firstLineIndent">堕天使号上，代号正在向聂云汇报长生者的修整情况。</p>
+<p class = "firstLineIndent">“嗯！”聂云点点头。</p>
+<p class = "firstLineIndent">他转头看向星图上双子星一方的舰队位置，如今两族舰队已经汇合，正在朝着虫洞方向前进。</p>
+<p class = "firstLineIndent">敌人虽然强大，不过聂云手中的力量也早已今非昔比，大量新锐兵器加上长生者这个火力平台，若是双子星执意开战两败俱伤，那他也同样不惧一战！</p>
+<p class = "firstLineIndent">将长生者的补给工作交给代号，聂云闭上了眼睛。</p>
+<p class = "firstLineIndent">接下来……他要全力以赴完成对海族旗舰剩余的吞噬解析工作！</p>
+<p class = "firstLineIndent">作为双子星的大型驱逐舰，海族旗舰内部包含了大量聂云未曾掌握的大型武器科技，这样的美味放在嘴边，聂云又如何会放过？</p>
+<p class = "firstLineIndent">海族旗舰虽然战斗力不弱，不过毕竟双拳难敌四手，它又没有长生者那么耐揍，如果在突破拦截的过程中被双子星舰队击毁了这件宝贵的战利品，那就太败家了。</p>
+<p class = "firstLineIndent">所以早在长生者进入恒星前，聂云就从长生者上调了一批机械虫登上海族旗舰，随后控制着它饶了些远路，避开了双方的正面战场，按照速度，不久后就能抵达虫洞与己方汇合。</p>
+<p class = "firstLineIndent">不过再出现时，相信这艘战舰绝对能够带给双子星足够的惊喜……</p>
+<p class = "firstLineIndent">想到海族旗舰内某位依旧在沉睡指挥官，聂云脸上突然露出一丝邪恶的微笑……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">5个小时后，伊莎尔率领着海族的残余舰队率先抵达虫洞，与地球军遥遥对峙。</p>
+<p class = "firstLineIndent">不过两族的阵型颇有些泾渭分明，相隔距离也相当微妙，差不多是能够互相支援，却又隐隐相互警惕。</p>
+<p class = "firstLineIndent">之前伊莎尔的决策失误无疑让海族的信任度一降再降，不满的情绪几乎不加掩饰。</p>
+<p class = "firstLineIndent">伊莎尔却又何曾信任过海族舰队，有古斯塔夫的前车之鉴，她指挥舰队的同时还要防备被人从背后捅上一刀，联合作战根本就是空谈。</p>
+<p class = "firstLineIndent">无奈之下，只能各自为战，仅仅确保需要时能够相互提供有限的支援罢了。</p>
+<p class = "firstLineIndent">不过即便双方貌合神离，内部矛盾重重，也依旧带给了地球一方极大的压力。</p>
+<p class = "firstLineIndent">虽然海族舰队接连遭到打击，损失了几乎一支分舰队，不过除了留守舰队外，两族汇合后的兵力依旧有接近4支分舰队，共计75艘战舰的庞大规模。</p>
+<p class = "firstLineIndent">如此庞大的舰队摆出攻击阵型，让第一次见到这么大场面的地球防卫军众人手心都有些发汗。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">此时的伊莎尔，正在仔细观察对面的阵型布置。</p>
+<p class = "firstLineIndent">9艘战舰在前形成5，1，3阵型，也就是5艘“后羿级”战舰在前，海狼号居中，3艘地球防卫军战舰在后。</p>
+<p class = "firstLineIndent">这些战舰排头，隐隐挡住了后方长生者的核心要害，组成了一支小型的护卫舰队。</p>
+<p class = "firstLineIndent">而长生者的树冠微微下垂，内部的具体情况依旧被遮挡在茂盛的枝叶下，让人看不清全貌。</p>
+<p class = "firstLineIndent">伊莎尔微微皱眉，“后羿级”的火力凶猛她已经见识过，现在对方一下拿出来五艘。</p>
+<p class = "firstLineIndent">长生者在她眼里更是战斗力不明，难以准确评估战斗力，加上内部装载的大量高级机甲，如同一支隐藏锋芒的利刃，不知道何时就会出鞘给予致命一击，这绝对是一块难啃的硬骨头。</p>
+<p class = "firstLineIndent">而那艘隐隐居中，作用不明的海狼号，更是让伊莎尔感受到了己方在情报上的巨大劣势。</p>
+<p class = "firstLineIndent">任何战争，第一步打的都是情报战，越是未来战争，情报的作用也越发重要，甚至能够左右一场战争的胜负。</p>
+<p class = "firstLineIndent">奈何对方间谍凶猛，连己方的指挥官都被策反，自己在对方面前毫无秘密可言。</p>
+<p class = "firstLineIndent">反观己方，对万物归一会的新式武器，组织架构，指挥风格等等几乎一无所知！</p>
+<p class = "firstLineIndent">这巨大的情报差距相当让人绝望，一对比，双子星未战便已经输了三分。</p>
+<p class = "firstLineIndent">但另一方面，对方占据虫洞，时间越拖，对己方越是不利，万一对方下一波援军再至，那就该轮到己方考虑如何全身而退的问题了。</p>
+<p class = "firstLineIndent">这一战，伊莎尔却是不得不打！</p>
+<p class = "firstLineIndent">不过在发动进攻前，伊莎尔却需要先处理一个更加棘手的问题……</p>
+<p class = "firstLineIndent">她的眼神瞥向侧面，从那个方向，一艘战舰似乎故意踩着点，在双方的瞩目下不疾不徐的进入战场中心，进入所有人的视野……</p>
+<p class = "firstLineIndent">伊莎尔眼神复杂，昔日战友，如今却各为其主，不得不对阵沙场。</p>
+<p class = "firstLineIndent">她又转头看向侧面的海族舰队，果然，阵型微乱……</p>
+<p class = "firstLineIndent">丧失战斗力或许不至于，但军心大乱已是必然！</p>
+<p class = "firstLineIndent">攻心战！</p>
+<p class = "firstLineIndent">伊莎尔心中无奈一叹……</p>
+
+<h2>第五百零二章 通讯干扰</h2>
+<p class = "firstLineIndent">“那是……我们的旗舰？”</p>
+<p class = "firstLineIndent">“这……难道真如传闻中那样，古斯塔夫阁下就是万物归一会的间谍？还带着旗舰叛逃了？”</p>
+<p class = "firstLineIndent">“假的吧？”</p>
+<p class = "firstLineIndent">“试着链接通讯了吗？”</p>
+<p class = "firstLineIndent">“试过了，可完全没有回应。”</p>
+<p class = "firstLineIndent">“那我们现在怎么办？难道要我们攻击自己的旗舰？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">所有的海族军官都有些不知所措。</p>
+<p class = "firstLineIndent">而就在这时，这艘吸引了全场所有目光的战舰内却突然弹射出一台机甲！</p>
+<p class = "firstLineIndent">亮银色机甲身材纤细，外形柔和，与剑仙机甲的构造有些相似，但背后却没有标志性的浮游炮，取而代之的一柄与机甲几乎等高，镌刻复杂能量纹路的巨大长剑！</p>
+<p class = "firstLineIndent">而这台机甲胸口处镌刻的旋涡标志，代表了自己的所属势力。</p>
+<p class = "firstLineIndent">即便早已知道己方的旗舰已经“沦陷”，但这台敌机的出现，无疑击碎了所有海族心中最后的一丝侥幸。</p>
+<p class = "firstLineIndent">“剑客”……这是这台改装机甲的系列代号。</p>
+<p class = "firstLineIndent">通体由机械虫打造，结合海暴级机甲和剑仙机甲的设计精华，可以说是一款融合了两个文明尖端机甲技术的顶尖机甲。</p>
+<p class = "firstLineIndent">这台机甲缓缓悬浮在虚空中，面对双子星的庞大舰队，颇有虽千万人吾往矣的豪迈气魄！</p>
+<p class = "firstLineIndent">随后只见它抽出腰间的激光剑柄。</p>
+<p class = "firstLineIndent">“刷！”幽蓝色的等离子体浮现，光剑在空中划过一道颇为优雅的轨迹，随后这台机甲手腕一转，挽了个剑花之后将光剑重新插回腰间。</p>
+<p class = "firstLineIndent">“这是……斗将？！”所有看到这一幕的双子星人顿时一愣。</p>
+<p class = "firstLineIndent">他们自然清楚这套动作的特殊含义。</p>
+<p class = "firstLineIndent">斗将，类似武将单挑，有时候，这也是双子星一种内部小规模冲突的解决方式。</p>
+<p class = "firstLineIndent">即便科技已经到达星际文明的水准，但这种阵前单挑的决斗传统却并没有被抛弃，只不过斗将的武器从刀剑变成了机甲……</p>
+<p class = "firstLineIndent">“这台机甲……难道是……”熟悉古斯塔夫的人心中一跳。</p>
+<p class = "firstLineIndent">作为一名技术高超的机甲王牌，古斯塔夫在成为指挥官之前，以机甲技术称雄，曾经在一场战争中，用斗将的方式三战三捷，立下辉煌的功勋。</p>
+<p class = "firstLineIndent">也正是因此，熟悉古斯塔夫的人都知道，在很多时候，这位指挥官最喜欢以斗将的方式打击敌方士气……</p>
+<p class = "firstLineIndent">如果古斯塔夫确实在对面，那这无疑相当符合对方的作风！</p>
+<p class = "firstLineIndent">“阁下，我们是否应战？”伊莎尔的副官轻声问道。</p>
+<p class = "firstLineIndent">名义上，伊莎尔是双子星舰队的最高指挥官，所以是否应战的决定权，自然落在了她手中。</p>
+<p class = "firstLineIndent">伊莎尔根本没有犹豫，她果断摇头，“这是对方想要拖延时间！”</p>
+<p class = "firstLineIndent">现在的情况下，不管对方是想利用海族旗舰和古斯塔夫继续做文章扰乱军心，还是有意拖延时间等待援军，情况只会对他们越来越糟，速战速决才是双子星现在最佳的选择！</p>
+<p class = "firstLineIndent">“立刻发动进攻，我们的第一优先是夺回虫洞！命令海族所部与我协同进攻，若有临阵不前者，军法从事！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">在伊莎尔的命令下，羽族舰队开始缓缓加速，同时开始投放无人机和机甲，寂静的宇宙瞬间喧嚣起来。</p>
+<p class = "firstLineIndent">如她所料，海族见伊莎尔二话不说直接动手，虽然对那架机甲内的驾驶者相当在意，可毕竟现在双方已是敌对，当下也不敢明着违抗命令，无奈之下也是缓缓压上。</p>
+<p class = "firstLineIndent">只不过有意无意，海族舰队的行动比自己的友军慢上了一拍，而且隐隐避开了与那台机甲的正面交锋。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“果然不行么……”</p>
+<p class = "firstLineIndent">遥控指挥的聂云见到伊莎尔居然连场面话都不说直接动手，也只能无奈叹了口气。</p>
+<p class = "firstLineIndent">他的确需要更多的时间修整，长生者的战斗力正在“+100，+100……”的提升着，虫洞冷却时间也在一分一秒的减少，所以开战时间越晚，对聂云一方无疑越是有利。</p>
+<p class = "firstLineIndent">原本是希望新机甲能够在“斗将”的过程中表演一下“夺命十三剑”、“圣光十字斩”之类的必杀技，将优良的性能好好做一番展示，惊掉对方一地眼球。</p>
+<p class = "firstLineIndent">然后装完一波之后稍微放点水，和对方的玩牌机师大战三百回合，一番龙争虎斗之后来一个险胜，再发表一个3000字的战后感言，表示和对方机师的惺惺相惜……</p>
+<p class = "firstLineIndent">嗯！大概可以拖个一两小时？</p>
+<p class = "firstLineIndent">可惜，好不容易想好的十几个招式名看来是喊不出来了……聂云稍稍有些遗憾。</p>
+<p class = "firstLineIndent">机械虫“……”</p>
+<p class = "firstLineIndent">这才不是该遗憾的重点好么！</p>
+<p class = "firstLineIndent">对方不配合，聂云的独角戏也唱不下去，不过备用方案却是早就准备好了的，当即开始执行b方案。</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”一台台剑仙机甲从长生者内部各处弹射而出，堪堪修整完毕，并且补充燃料的1500多台机甲再次返回战场，从远处看去，就像是一群离巢的蓝色蜂群。</p>
+<p class = "firstLineIndent">双子星的作战方式明显是以大量的舰载兵器打头阵，庞大的舰群在后方压阵，缓缓向前压迫己方阵线，若是没有对应的机动力量牵制，仅凭舰炮和要塞炮，根本坚持不了多久。</p>
+<p class = "firstLineIndent">从数量上看，双子星出动的机甲数量一点也不比地球军少，加上数以万计的无人机，规模相比地球军这边还要庞大数倍。</p>
+<p class = "firstLineIndent">不过聂云也并不是没有准备，心念一动。</p>
+<p class = "firstLineIndent">“嗡~”以长生者为中心，一阵奇异的波动扫过周围虚空，扩散到周围数千万公里的庞大星域，随后双子星一方骇然发现己方的量子通讯受到了严重干扰！</p>
+<p class = "firstLineIndent">大范围量子通讯干扰技术聂云早就在接手羽族第三分舰队时就已经掌握，一直隐而不发，就是为了这一刻给双子星一个惊喜。</p>
+<p class = "firstLineIndent">这种通讯干扰技术，原理说起来相当的高大上，因为它是利用了传说中的……“空间震荡”！</p>
+<p class = "firstLineIndent">双子星自然还没有掌握传说中的空间科技，但他们掌握了另一项关键科技……引力技术！</p>
+<p class = "firstLineIndent">爱因斯坦的广义相对论表示，引力的本质就是由扭曲的时间和空间组成的弧面结构，巨大的引力能够引起不同程度的空间塌陷。</p>
+<p class = "firstLineIndent">所以引力技术说是空间技术的前置科技也不为过！</p>
+<p class = "firstLineIndent">而量子通讯干扰器的核心部件其实就是一件高度压缩的引力子震荡源。</p>
+<p class = "firstLineIndent">通过一定频率的力场震荡，能够不断的引起空间极为轻微的塌陷和还原，从而产生某种程度上的“空间震荡”！</p>
+<p class = "firstLineIndent">这种空间的轻微不稳定性甚至不会对其中的物体造成任何影响，却能够切断量子之间的纠缠状态，打破量子对的耦合，从而对量子通讯进行干扰。</p>
+<p class = "firstLineIndent">虽然这是一种全频段干扰，就算是聂云一方的量子通讯同样会受到干扰，但论通讯技术，机械虫自带的是高级文明的通讯内核，明显比量子通讯更加高级。</p>
+<p class = "firstLineIndent">你干扰不到我，而我却可以干扰到你，这就是不对称的技术优势！</p>
+<p class = "firstLineIndent">双子星的大量四角钉无人机当即齐齐一顿，随后恢复正常，但飞行队形却没有一开始的那般整齐划一，让人赏心悦目。</p>
+<p class = "firstLineIndent">即便有内部的智能芯片在通讯断绝的情况下进行自动控制，能够分清敌我，但无法协同作战，接受统一指挥，无人机的战斗应变和掩护支援能力就将大大削弱，战斗力下降何止一半？</p>
+<p class = "firstLineIndent">不仅是无人机受到影响，就连舰队内部的通讯交流和协同指挥都受到极大的干扰。</p>
+<p class = "firstLineIndent">虽然还能够通过光信号等备用方式传递通讯信号，但通讯效率和安全性却是差强人意！</p>
+<p class = "firstLineIndent">聂云这件场景大杀器一出，双子星立刻被施加了一个“混乱”debuff！</p>
+
+<h2>第五百零三章 我来组成头部</h2>
+<p class = "firstLineIndent">“真是最糟糕的情况……”</p>
+<p class = "firstLineIndent">伊莎尔看着己方微乱的阵型微微皱眉。</p>
+<p class = "firstLineIndent">虽然从之前的情报中早就知道对方的通讯技术十分特别，也设想过对方会不会也掌握了量子通讯干扰技术用来反制己方，但事情真正发生时，还是让伊莎尔相当头疼。</p>
+<p class = "firstLineIndent">这不是阴谋诡计，而是实打实的技术优势。</p>
+<p class = "firstLineIndent">从先前战斗中掌握的情报来看，眼前万物归一会的机甲大军很大可能全是采用的无人机，不论是木卫四的小型机器人，还是眼前的机甲大军，对方似乎十分擅长用远程操纵技术遥控海量的无人机进行战斗。</p>
+<p class = "firstLineIndent">而且更让人惊讶的是，操控的灵活性甚至与真人控制的效果相差无几。</p>
+<p class = "firstLineIndent">己方战士浴血奋战，但面对的却是一支空无一人的钢铁大军，己方甚至无法给对方造成多少人员伤亡……</p>
+<p class = "firstLineIndent">这样的情况无疑相当的打击士气。</p>
+<p class = "firstLineIndent">“敌人的通讯手段还是没有解析出来吗？”伊莎尔转头看向副官。</p>
+<p class = "firstLineIndent">“很抱歉阁下，我们的技术人员对敌方武器残骸进行了系统性的分析，但与之前阿尔萨斯遭遇的木卫四战争一样，依旧一无所获，他们身上甚至没有通讯模块可以供我们解析……</p>
+<p class = "firstLineIndent">更诡异的是，残骸内所有的控制芯片全都不翼而飞，就像是凭空蒸发了一样。</p>
+<p class = "firstLineIndent">技术人员分析，这很可能是一种我方尚且无法破解的技术加密方式，其来源极有可能是对面的安特帝国，或者是其他与万物归一会有交易的外星文明……”副官无奈道。</p>
+<p class = "firstLineIndent">“唉！”伊莎尔只能叹口气。</p>
+<p class = "firstLineIndent">看来短时间内，己方是无法破解对方通讯技术的奥秘了……</p>
+<p class = "firstLineIndent">可惜，若是这种技术对方能够贡献给双子星文明，己方的军事实力必定将有一个质的飞跃！</p>
+<p class = "firstLineIndent">商人无国啊！</p>
+<p class = "firstLineIndent">就在伊莎尔心中给万物归一会的奸商们打上了一个黑标签时，副官却传来敌方舰队异动的消息……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">时间过去十几分钟，此时双方的空战先锋部队渐渐进入交火射程，而就在这时，聂云的“秘银舰队”也开始了动作。</p>
+<p class = "firstLineIndent">“我来组成头部！”</p>
+<p class = "firstLineIndent">一句让人有些莫名其妙的旁白突然在地球军内部响起，如同什么奇怪的bg……</p>
+<p class = "firstLineIndent">随后只见5艘“后羿级”以一个五角阵型开始缓缓向海狼号靠拢，而海狼号的5根“触手”也向四周五个方向笔直延伸，最终与5艘靠近的“后羿级”缓缓对接……</p>
+<p class = "firstLineIndent">“咔哒！”轻微的机械咬合之后，海狼号已经与“后羿级”护卫舰尾翼处的预留接口相互连接，形成了一个类似五芒星的古怪组合体。</p>
+<p class = "firstLineIndent">“嗤嗤~”5艘“后羿级”舰体侧面的姿态调整推进器有规律的启动，推动这个五芒星缓缓旋转起来。</p>
+<p class = "firstLineIndent">“滋滋！”强大的能量自海狼号内部的能源水晶炉被激发，通过双方的连接部，瞬间传递到了正前方一艘“后羿级”内部！</p>
+<p class = "firstLineIndent">随后这艘“后羿级”的伽马射线主炮炮口开始发出蓄能特有的光芒……</p>
+<p class = "firstLineIndent">下一刻，“轰！”</p>
+<p class = "firstLineIndent">一道巨大的灰色轨迹从炮口瞬间延伸，抵达海族的机甲大军前方！</p>
+<p class = "firstLineIndent">携带巨大能量的伽马射线沿途所过之处，周围近百米范围内被波及的所有机甲和无人机先是不规则的鼓胀起来，随后瞬间轰然爆开！</p>
+<p class = "firstLineIndent">“轰轰轰……”能量轨迹过处，形成了一条绚烂的爆炸通道。</p>
+<p class = "firstLineIndent">就算是机甲上搭载的小型护盾全功率开启，也只坚持了不到1s便宣告过载。</p>
+<p class = "firstLineIndent">而不幸被正面命中的飞行器，更是直接被湮灭成了无数的粒子彻底消失！</p>
+<p class = "firstLineIndent">这一发主炮在消灭了数十架机甲和无人机之后，很快便超出射程，然而扩散的能量依旧让后方的海族舰队周围辐射飙升。</p>
+<p class = "firstLineIndent">即便已经无法对己方战舰造成有效威胁，但这一炮的恐怖威力依旧让后方的海族舰队惊骇万分，整支舰队的冲势微微一滞。</p>
+<p class = "firstLineIndent">原本面对长生者的要塞炮和“后羿级”的伽马主炮，己方在射程和单一炮火威力上就处于劣势。</p>
+<p class = "firstLineIndent">而威力比原版放大了三倍以上的恐怖伽马射线一出手，便立刻震惊全场！</p>
+<p class = "firstLineIndent">紧接着，随着五芒星的自旋，第一艘“后羿级”护卫舰离开射击位，进入舰炮冷却期，而第二艘“后羿级”则抵达射击角度。</p>
+<p class = "firstLineIndent">“轰！”10s钟不到的时间，第二发超级伽马射线炮发射，在海族部队中再次犁出一道死亡通道。</p>
+<p class = "firstLineIndent">接下来，这艘怪异的战舰如同一把“死亡左轮”，随着转轮的缓缓转动，5艘“后羿级”在得到海狼号的能量加持之后依次开火，以极高的频率射出一道道死亡之光！</p>
+<p class = "firstLineIndent">“组合型战舰！”伊莎尔看到这一幕，不由面露惊容。</p>
+<p class = "firstLineIndent">对方居然用这种方式避开了太阳系无法通行大型战舰的限制。</p>
+<p class = "firstLineIndent">怪不得那艘球形战舰一看就不是战斗设计，原来是用来充当组合型战舰的中枢！</p>
+<p class = "firstLineIndent">没错，由海狼号组成“头部”，充当最为重要的能源核心，另外5艘“后羿级”作为输出炮台，这就是聂云为了投送大型兵器所设计的特殊组合战舰！</p>
+<p class = "firstLineIndent">海狼号就相当于一个“能量增幅器”，能够让“后羿级”的主炮威力倍增，经过机械虫的材料加成，其射程甚至比长生者上搭载的要塞炮还要惊人。</p>
+<p class = "firstLineIndent">六合一的机械虫版“大力神”，立刻成为聂云的第二座强力炮台，重火力输出甚至不比长生者要塞弱多少。</p>
+<p class = "firstLineIndent">接连不断的爆炸瞬间照亮了漆黑的虚空，也不断刺激着海族战士们的神经……</p>
+<p class = "firstLineIndent">是的……聂云的第一枪，不打勤，不打懒，专打作战不走心的海族部队！</p>
+<p class = "firstLineIndent">而长生者要塞随后发动的跟随攻击，同样也将目标放在了海族部队身上，一时间聂云的重火力几乎形成连绵不断的光雨，在海族部队中掀起一轮死亡风暴。</p>
+<p class = "firstLineIndent">兵力已经三去其一的海族舰队，看到自己居然又倒霉的成了敌人的第一攻击对象，顿时一脸懵逼，心头郁闷的简直想要吐血。</p>
+<p class = "firstLineIndent">有没有搞错？欺负老实人也不带这样的！</p>
+<p class = "firstLineIndent">我们连进攻的脚步都故意慢了一拍，都这么低调了还能成出头鸟？</p>
+<p class = "firstLineIndent">就是点兵点将也没有我们海族这么倒霉老是被点中的吧？</p>
+<p class = "firstLineIndent">歧视！这绝对的种族歧视啊！</p>
+<p class = "firstLineIndent">原本作战意志就不高的海族军官如今可谓是怨气沸腾，更是不愿做这个冤大头，替至今“毫发无损”的羽族挡刀。</p>
+<p class = "firstLineIndent">在各自指挥官的默许下纷纷降低航速，机甲大军也更加分散，以避开对方凶猛火力的狙击。</p>
+<p class = "firstLineIndent">这样的策略虽然能够降低己方损失，但是攻击力度骤降，相对的进攻压力便落到了羽族一方头上。</p>
+<p class = "firstLineIndent">伊莎尔虽然立刻看出苗头，下了严令要求海族保持进攻协同，却被海族的几位指挥官以敌方火力压制凶猛，加上通讯不畅，指挥混乱为由搪塞了过去。</p>
+<p class = "firstLineIndent">伊莎尔无奈，只能命令羽族舰队加速前进，希望尽早将对方的部队纳入己方舰队的射程，结束这种单方面挨打的局面。</p>
+<p class = "firstLineIndent">虽然敌人的火力全都集中到了海族身上，但是伊莎尔却一点都无法乐观。</p>
+<p class = "firstLineIndent">这就像打群架，己方虽然二打一占着优势，但对方明显先挑了一个软柿子，在盯着一个人往死里狂揍，如果这个倒霉队友被揍的缩了头，那么接下来倒霉的，无疑会轮到自己，而且很可能会被对方揍得更惨！</p>
+<p class = "firstLineIndent">利用这样的情况，聂云打了一个时间差，羽族的机甲和无人机大军率先与地球军接战，迎接他们的，是近千的“剑仙”机甲以及……原海族旗舰！</p>
+<p class = "firstLineIndent">聂云没有让海族旗舰攻击海族，而是有意选择了羽族舰队作为对手。</p>
+<p class = "firstLineIndent">作为一艘驱逐舰级别的大型战舰，海族旗舰很好的充当了地球军一方的作战核心，被大量的机甲保护在中心，形成一个舰甲协同的作战兵团。</p>
+<p class = "firstLineIndent">面对汹涌而来的羽族空战部队，海族旗舰火力全开，近百门舰炮轰鸣，第一轮便击毁上百架敌机，打散了一小股敌军。</p>
+<p class = "firstLineIndent">紧接着是双方机甲和战机的远程对轰。</p>
+<p class = "firstLineIndent">威力虽然不如重炮，但数量成千上万的各种光线武器交错而过，在战场中央带起无数的爆炸火光。</p>
+<p class = "firstLineIndent">羽族舰队随后加入战团，射出漫天的光束，大量舰炮为己方部队提供远程火力支援，同样给地球军带来不小的伤亡。</p>
+<p class = "firstLineIndent">战场中央随着双方空战兵器的短兵相接，很快便打成一团乱麻……</p>
+<p class = "firstLineIndent">后方的地球防卫军众人看得暗暗心惊，数量近万的机甲和无人机在虚空中往来厮杀，更有上百艘战舰无情的宣泄火力。</p>
+<p class = "firstLineIndent">剑仙机甲的浮游炮往来穿梭，洒出一道道激光，双子星的游荡者机甲正面接敌，顶住地球军凶猛的攻击，大量的无人机则是依靠灵活的机动性能往来穿插，让战场更加混乱。</p>
+<p class = "firstLineIndent">到处都是爆炸和流弹，兵器残骸如同暴雨般四散。</p>
+<p class = "firstLineIndent">这样宏大惨烈的宇宙战争场面，完全是他们生平仅见。</p>
+<p class = "firstLineIndent">本来还想冲上去秀一翻存在感的三艘战舰此刻很乖巧的扮演着自己“助阵”的角色，在较为安全的后方充当火力输出，顺便做个战场记录什么的……</p>
+<p class = "firstLineIndent">这样的高级战场根本就不是他们这种低级别玩家能够参与的。</p>
+<p class = "firstLineIndent">在后方丢个小火球，给对面敌人“-1，-1……”这样的优秀伤害，才是一名被带着练级的萌新应该有的正确姿势……</p>
+
+<h2>第五百零四章 无人机对决</h2>
+<p class = "firstLineIndent">“不愧是幽灵船长，如此的兵力劣势之下，居然能和双子星打的不分上下。</p>
+<p class = "firstLineIndent">这艘组合型战舰的威力也太恐怖了吧？压得对面的海族舰队根本就不敢冒头靠近啊！</p>
+<p class = "firstLineIndent">还有这射速，简直有点看不懂……”</p>
+<p class = "firstLineIndent">尤里开口评论时也依旧紧紧盯着战场，生怕错过眼前的任何一个细节。</p>
+<p class = "firstLineIndent">地球防卫军的三艘战舰位置很安全，火力支援自然有火炮手和下级指挥官负责，这也是一个很好的实战机会，三名指挥官并没有越俎代庖，反倒成了虚拟操控室内最为清闲的人。</p>
+<p class = "firstLineIndent">“唔……根据幽灵船长爱好图鉴，船长先生偏爱银色，在幽灵系列武器中，银色涂装往往代表着更加强悍的武器威力和性能。</p>
+<p class = "firstLineIndent">眼前的这些银色战舰……想来就是幽灵船长秘密发展的精锐力量了。”老胡头头是道的分析道。</p>
+<p class = "firstLineIndent">幽灵船长爱好图鉴，是地球内部一档专门幽灵船长个人爱好的热门娱乐节目，别说，收视率居然还很高！</p>
+<p class = "firstLineIndent">“除了银色舰队外，幽灵船长在比邻星系发展出来的其它力量才真的叫人惊讶，真不知道这么短的时间，他究竟是怎么做到的。”尤里赞叹道。</p>
+<p class = "firstLineIndent">长生者堡垒，海族旗舰，卡拉文明，每一个都价值惊人。</p>
+<p class = "firstLineIndent">正因为有了这些力量，聂云才能短时间内便在比邻星系积累起足够对抗双子星的力量，而不是一出虫洞便被双子星压回太阳系。</p>
+<p class = "firstLineIndent">“呵呵！你要是计算一下幽灵船长在地球的崛起速度，就不会觉得这种事有什么奇怪的了……”老胡呵呵笑道。</p>
+<p class = "firstLineIndent">其余两人闻言，皆是心有戚戚焉的点点头。</p>
+<p class = "firstLineIndent">从幽灵船长出现踪迹，只用了不到一年的时间便隐隐成为地球霸主，似乎在比邻星系重新上演一次也没什么值得大惊小怪的？</p>
+<p class = "firstLineIndent">不得不说，在幽灵船长不断的刷新三观之下，地球人的神经如今都变得大条了许多。</p>
+<p class = "firstLineIndent">“诶！你们发现没有，似乎从幽灵船长与双子星开战以来，无限币兑换列表中的科技物品就在呈现爆发式的增长……</p>
+<p class = "firstLineIndent">就连我们购买的武器装备，有许多明显就是和双子星的武器同出一源。</p>
+<p class = "firstLineIndent">比如我们采购的这些制式战舰，根本就是海族战舰的无人化改装版嘛！你们说这说明了什么？”施耐德眼中精光一闪道。</p>
+<p class = "firstLineIndent">聂云不正常的科技发展速度，总会通过某些蛛丝马迹向外泄露。</p>
+<p class = "firstLineIndent">越来越先进的宇宙飞船，威力越来越惊人的能量武器，就连太阳系内的殖民基地都一天一个样，只要是个智商正常的人都不会察觉不到。</p>
+<p class = "firstLineIndent">除非聂云进行严格的技术封锁，否则这种情况不可避免，有心人注意到这一点，不过是迟早的问题。</p>
+<p class = "firstLineIndent">不过聂云需要的是一个科技发达，能够为自己提供源源不断科技灵感和帮助的母文明，自然不会去做类似闭关锁国的愚蠢举动。</p>
+<p class = "firstLineIndent">其余两人听到施耐德意有所指的问题，也不意外，显然各国内部其实早有猜测。</p>
+<p class = "firstLineIndent">“这说明幽灵船长正在通过这场战争高速消化双子星的科技……他这是在以战养战……”尤里幽幽道。</p>
+<p class = "firstLineIndent">老胡心中也是暗暗点头。</p>
+<p class = "firstLineIndent">因为于老等人的存在，他知道的情报其实比在座的还要多一些，虽然多的有限。</p>
+<p class = "firstLineIndent">大概来说的话，就是于老他们很忙，因为一直会有做不完的无数科技解析工作在等着他们……</p>
+<p class = "firstLineIndent">“虽然不知道幽灵船长是怎么做到的，不过对我们来说这是好事，幽灵船长越强，我们能够买到的科技和武器就越高级。</p>
+<p class = "firstLineIndent">一年前，谁能想到我们如今能够拥有一支宇宙舰队？</p>
+<p class = "firstLineIndent">虽然现在规模还小，不过只要这样继续发展下去，就算是双子星文明，我也有信心与之一战！”</p>
+<p class = "firstLineIndent">尤里颇有些意气风发的话立刻引起了两人的共鸣。</p>
+<p class = "firstLineIndent">只要抱紧幽灵船长的大腿，眼前这样的宇宙舰队自己未来也一定会有！</p>
+<p class = "firstLineIndent">他们眼中闪烁着光芒，想象着自己率领无敌舰队，纵横宇宙的那一天……</p>
+<p class = "firstLineIndent">“诶！那谁，怎么回事？靠这么前干什么，快后退！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">那三艘战舰是怎么回事？</p>
+<p class = "firstLineIndent">伊莎尔看着画面中缩在虫洞附近，不时往己方的机群中丢一发远程射击的地球防卫军舰队心中疑惑。</p>
+<p class = "firstLineIndent">不说与其它战舰统一步调吧，那走位能不能不要那么风骚，哪里有点危险立马就缩回去？</p>
+<p class = "firstLineIndent">而不管是涂装、造型、还是指挥风格，这三艘战舰都显然与强悍的银色舰队格格不入，简直就像是第三方势力一样……</p>
+<p class = "firstLineIndent">等等？第三方势力？</p>
+<p class = "firstLineIndent">难道对面的……是万物归一会和安特帝国的联军？</p>
+<p class = "firstLineIndent">聂云有意安排的小伙伴，果然起到了预期的效果，它向双子星传递出一个信号，那是万物归一会身后隐约可见的安特帝国身影……</p>
+<p class = "firstLineIndent">敌人的银色战舰比自己这边更加先进，即便不愿接受，但双子星也必须承认这个事实。</p>
+<p class = "firstLineIndent">拥有如此犀利的银色舰队，管中窥豹，背后的安特帝国该是如何强大？</p>
+<p class = "firstLineIndent">伊莎尔现在更加担心，对方占据虫洞，会不会是安特帝国在为大规模入侵双子星做准备？</p>
+<p class = "firstLineIndent">而万物归一会……显然就是那个带路党啊！</p>
+<p class = "firstLineIndent">如今伍尔夫文明虫洞扩张已成既定事实，若是再招惹到一个一看就相当不好惹的安特帝国，双子星就算能够在双线作战中坚持下来，付出的代价恐怕也会远超想象！</p>
+<p class = "firstLineIndent">不行！虫洞必须夺回来！</p>
+<p class = "firstLineIndent">而且夺回来之后还需要重兵把守！</p>
+<p class = "firstLineIndent">这就是伊莎尔得出的最后结论。</p>
+<p class = "firstLineIndent">不过战局却并不以她的意志为转移，聂云为战斗所做的诸多准备开始显现威力……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">战场中央，双方的空战部队还在惨烈厮杀，因为双方已经完全混战在一起，后方舰队的火力支援效果大打折扣。</p>
+<p class = "firstLineIndent">而有些东西，正在随着时间的推移变得越发明朗起来。</p>
+<p class = "firstLineIndent">比如……战场上数量骤降的无人战机部队！</p>
+<p class = "firstLineIndent">双子星的无人战机并没有安装护盾，在流弹乱飞的纷乱战场上，完全就是被一碰就死的“脆皮”存在。</p>
+<p class = "firstLineIndent">而且在聂云的通讯干扰下失去指挥之后，这些无人机的战术模式正在被聂云慢慢摸透！</p>
+<p class = "firstLineIndent">机载智能就算设计的再好，也依旧是一段没有生命的数据！</p>
+<p class = "firstLineIndent">它们的战术动作在常人眼中精密、准确、妙到毫巅……但是在计算力惊人的聂云眼中，这就是一段预设的标准战斗模板而已！</p>
+<p class = "firstLineIndent">失去了双子星军官的指挥变通，就意味着战术死板，意味着用计算机进行推演计算，就能逆推出对方的作战模式！</p>
+<p class = "firstLineIndent">大量的战场数据，为聂云提供了海量的分析样本，分析进度条完全就是以肉眼可见的速度朝着100快速迈进。</p>
+<p class = "firstLineIndent">然后根据对方的战斗模板，聂云现场编写了一套反制程序，加载到所有的剑仙机甲控制芯片内。</p>
+<p class = "firstLineIndent">随后，战场上就出现了相当惊人的变化！</p>
+<p class = "firstLineIndent">往往是地球军的机甲随意开了一枪，下一刻，就有一架飞掠而过的双子星无人机凌空爆炸，就像是特意撞上去的一样。</p>
+<p class = "firstLineIndent">这些同样处于智能控制状态下的剑仙机甲，就像是突然剑神附体，学会了传说中料敌机先的“奕剑术”，每每都能准确预判对方的规避轨迹，提前进行狙击！</p>
+<p class = "firstLineIndent">满战场的蓝色浮游炮快速机动，如同一柄柄利剑，“咻咻咻”的不断激射光剑。</p>
+<p class = "firstLineIndent">碰到双子星的机甲表现的还算正常，战术动作只能算中规中矩，但是一遇到双子星的无人机，就像是遇到了菜逼，简直是例无虚发，射击命中率越来越高！</p>
+<p class = "firstLineIndent">智能无人机的对决，往往不是看各自的战机性能如何，更多的是谁能先找出对方的程序破绽！</p>
+<p class = "firstLineIndent">这就是无人机的应用局限性，一旦被对方全面解析，而又无法及时的变更战术指令，就只能成为一个个靶子。</p>
+<p class = "firstLineIndent">双方的无人机对决，在并不十分公平的情况下，双子星遭到碾压！</p>
+<p class = "firstLineIndent">战场上，双子星无人机的数量，也开始以肉眼可见的速度快速下降……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">双子星一方也很快发现了战场上的变化。</p>
+<p class = "firstLineIndent">“伊莎尔阁下，我们的无人机短时间内就有超过10的信号彻底消失，损失速度相当惊人，我们怀疑对方已经摸透了我方战机的战术模式！</p>
+<p class = "firstLineIndent">由于通讯干扰，我们无法修改其战术指令，根据智脑的推演模拟，若是这种情况持续下去，不用半个小时，我们的无人机就将被彻底消灭！”</p>
+<p class = "firstLineIndent">副官带来的坏消息让伊莎尔心中越发焦虑。</p>
+<p class = "firstLineIndent">从通讯被阻断，伊莎尔就知道这一刻终究会到来，不过对方能够这么快破解己方的无人机战斗模式，依旧有些超出伊莎尔的预计。</p>
+<p class = "firstLineIndent">她心中飞速思索着应对策略。</p>
+<p class = "firstLineIndent">如果无人机对敌人已经再无威胁，而双方的机甲部队数量又大致相当，考虑机体性能，恐怕己方的空战力量还要处于弱势！</p>
+<p class = "firstLineIndent">而一旦中央战场的战斗以失败宣告结束，己方舰队就得同时面对敌人的机甲残部和要塞火力，损失恐怕将会难以承受！</p>
+<p class = "firstLineIndent">看来堂堂正正碾压过去的策略已经无法奏效，那么……</p>
+<p class = "firstLineIndent">伊莎尔将目光放在了聂云的后阵。</p>
+<p class = "firstLineIndent">在那里，五芒星形状的组合型战舰异常显眼，正在不断的倾泻成吨的火力伤害……</p>
+
+<h2>第五百零五章 破甲武器</h2>
+<p class = "firstLineIndent">想要打破对己方不利的局面，必须至少先击毁对方的两个火力平台之一，也就是长生者或者组合型战舰。</p>
+<p class = "firstLineIndent">只有这样，才能打破聂云一方的远程火力优势，降低抵近射击时己方舰队的伤亡。</p>
+<p class = "firstLineIndent">不过长生者此时正在消化刚刚获得的补给物资快速恢复伤势，同时作为机甲大军的机库和补给点，相当低调的躲在后方压阵。</p>
+<p class = "firstLineIndent">不管是长生者、生命之水还是长生者体内的卡拉文明残部，对聂云的价值都相当巨大，属于绝对的第一保护序列，聂云自然会优先降低它被攻击的风险。</p>
+<p class = "firstLineIndent">也是因此，以海狼号为核心的组合型战舰就越发显得突出，双子星想要攻击后方的长生者，首先要面对的就是这柄强悍的“死亡左轮”。</p>
+<p class = "firstLineIndent">通过战场观察，伊莎尔此时也终于看出，“后羿级”战舰的主炮的确犀利，经过组合后的威力加成更是恐怖。</p>
+<p class = "firstLineIndent">但有得必有失，这种战舰设计将主炮威力提升到极致，几乎可以称为一艘“炮舰”，代价必定就是牺牲其他方面的性能，比如……防空能力！</p>
+<p class = "firstLineIndent">用机甲群去对付这种单一火力类型的战舰再合适不过！</p>
+<p class = "firstLineIndent">“命令我部所属机甲部队放弃与敌方空战部队纠缠，尽快摆脱战斗，执行第二套作战方案，优先攻击敌军后方战舰！”伊莎尔果断下令道。</p>
+<p class = "firstLineIndent">随着她的命令，羽族旗舰上立刻射出两发耀眼的信号弹，一红一蓝……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">中央战场，双方的空战部队正激烈厮杀着，不过明眼人都能看出，胜利的天平正在朝着地球军一方慢慢倾斜着。</p>
+<p class = "firstLineIndent">随着双子星无人机的战斗模式被破解，对剑仙机甲的威胁直线降低，双子星的机甲部队损失也在逐渐增大。</p>
+<p class = "firstLineIndent">聂云控制的机甲大军虽然同样是无人作战模式，战术动作并不如双子星灵活，但团队作战的协调性和机甲性能却超过双子星。</p>
+<p class = "firstLineIndent">它们通常都是以统一步调的阵型相互掩护，再以整齐划一的齐射获取战果，精密的如同一体。</p>
+<p class = "firstLineIndent">加上浮游炮攻击系统，让它们的火力输出翻了数倍，双子星的机甲几乎每时每刻都在被四面八方的浮游炮尝试锁定。</p>
+<p class = "firstLineIndent">无人机甲悍不畏死的作战风格，往往是就算自爆也要拉上一台机甲垫背，这也给双子星的机师们带来了相当大的压力。</p>
+<p class = "firstLineIndent">此时战场一角，数十发巨大光束射向一支建制较为完整的双子星机甲部队。</p>
+<p class = "firstLineIndent">“轰轰轰！”当场就有十几架双子星机甲轰然爆开！</p>
+<p class = "firstLineIndent">在这处战场，能够拥有这样密度齐射火力的，自然只有叛变的原海族旗舰。</p>
+<p class = "firstLineIndent">它此刻被大量的剑仙机甲保护着，正对着四周的双子星部队疯狂倾泻火力，哪里的敌人密集，它便是一轮齐射，将对方阵型轰散。</p>
+<p class = "firstLineIndent">齐射过后，从它身旁冲出一道银色身影，正是先前提出斗将的那台“剑客”机甲！</p>
+<p class = "firstLineIndent">只见银色机甲迅若闪电的冲入刚刚遭到齐射，阵型已经有些散乱的敌军机群中，对着迎面撞上的一台“游荡者”机甲挥出手中的银色长剑……</p>
+<p class = "firstLineIndent">奇怪的是，这柄银色长剑并未开锋，只是剑身上闪烁着奇特能量纹路，在剑刃上形成了仅有两三毫米厚度的奇特光刃。</p>
+<p class = "firstLineIndent">“刷！”长剑划过一道弧形轨迹，“游荡者”机甲的护盾如同纸糊，竟被轻松破开！</p>
+<p class = "firstLineIndent">长剑势如破竹，轻松切开任何阻挡在剑锋前的物体……透体而过！</p>
+<p class = "firstLineIndent">电光火石间，两台机甲交错而过，但“游荡者”却是从左肩到右胯，整个已经被斜劈成两段。</p>
+<p class = "firstLineIndent">“这不可能！”这台机甲内的双子星机师瞪圆了双眼，只来得及发出这样的惊呼，整个人便被火光淹没……</p>
+<p class = "firstLineIndent">“轰！”</p>
+<p class = "firstLineIndent">“是……是破甲武器！”周围的双子星机师看到银色机甲居然一剑斩破力场护盾，皆是惊呼出声。</p>
+<p class = "firstLineIndent">这种能够击破力场护盾的特殊武器，双子星人自然并不陌生，比如……“海暴级”机甲的标准装备“斩舰刀”！</p>
+<p class = "firstLineIndent">没错，这种破甲武器就是聂云获取自“海暴级”机甲的成果之一。</p>
+<p class = "firstLineIndent">被聂云点名当成赌注赢回来的“海暴级”机甲，最大的价值不是拥有强大战斗力的机甲本身，而是作为专属武器的那柄红色斩舰刀！</p>
+<p class = "firstLineIndent">这种斩舰刀的材质十分特殊，经过了复杂的加工工序后，一旦注入能量便可以形成一种奇特的切割力场。</p>
+<p class = "firstLineIndent">这种切割力场不仅对实体有效，还拥有强悍的破盾能力，是目前聂云唯一已知的，以特殊力场破解力场的科技武器！</p>
+<p class = "firstLineIndent">就算是在双子星内部，这种斩舰刀也属于绝对的尖端科技产品。</p>
+<p class = "firstLineIndent">只不过斩舰刀的材料工艺相当复杂，似乎还添加了什么特殊成分，以聂云目前的科技水平完全无法通过正常的冶炼工业制造出来。</p>
+<p class = "firstLineIndent">因此目前唯一能够复制这种“破甲武器”的方法，就只有使用机械虫材料！</p>
+<p class = "firstLineIndent">普通材料无法承受的巨大能量，对机械虫材料来说依旧游刃有余，因此小规模制造这种破甲武器对聂云来说倒是不难。</p>
+<p class = "firstLineIndent">聂云和于老等科学家也正在尝试破甲武器的量产可能。</p>
+<p class = "firstLineIndent">若是斩舰刀这种武器能够普及，凭聂云的数千机甲大军，恐怕就能追着眼前的双子星舰队砍……</p>
+<p class = "firstLineIndent">此时，破甲武器的威力在聂云亲自操控的“剑客”身上体现的淋漓尽致！</p>
+<p class = "firstLineIndent">“轰轰轰！”</p>
+<p class = "firstLineIndent">只见一道银色闪光在双子星的机甲部队中往来穿梭，不仅速度奇快，而且战术动作灵活，银色身影所过之处，只留下一个个耀眼的火球，或是一具具残破的机甲残骸。</p>
+<p class = "firstLineIndent">偶尔有双子星的攻击命中高速运动中的银色机甲，却只能在对方的护盾上荡开一片涟漪，让护盾稍稍暗淡，却收效甚微。</p>
+<p class = "firstLineIndent">仅仅十几分钟的时间，数十台机甲组成的小股部队，就在一轮密集火力和“剑客”机甲的屠戮下渐渐土崩瓦解。</p>
+<p class = "firstLineIndent">面对战斗性能还在“海暴级”之上的“剑客”机甲，双子星的机师们纷纷后退，一时间气势被夺，竟不敢上前。</p>
+<p class = "firstLineIndent">随后，他们看到了己方旗舰发射的红蓝信号弹……</p>
+<p class = "firstLineIndent">“执行第二套作战方案，攻击敌军后阵！我们走！”</p>
+<p class = "firstLineIndent">松了口气的机师们二话不说，立刻掉头离开。</p>
+<p class = "firstLineIndent">这处战团之外，其余的机甲部队也在做着各种机动，尽可能的脱出混乱的战团，并朝着聂云的舰队后阵缓缓飞速驶去。</p>
+<p class = "firstLineIndent">大量机甲突然脱离战斗，让双子星剩下的无人机部队压力大增，损失速度再次提升！</p>
+<p class = "firstLineIndent">伊莎尔采取这样的战术，无疑会加速中央战场的败亡速度，几乎是在用剩下的部队为自己的“斩首”行动争取时间。</p>
+<p class = "firstLineIndent">而且脱离过程中，必定也会造成不小的伤亡，聂云一方的部队可不会轻易放任他们离开。</p>
+<p class = "firstLineIndent">“终于忍不住了吗？”</p>
+<p class = "firstLineIndent">银色机甲悬浮在虚空，聂云通过外设显示装备看着远去的敌方机甲部队，毫不意外的笑了笑……</p>
+
+<h2>第五百零六章 狡兔死走狗烹</h2>
+<p class = "firstLineIndent">双子星的机甲大规模撤离，但是聂云的机甲部队却只是象征性追击一小段距离，吃掉一股断后的部队之后，便回头专心绞杀剩下的双子星部队，一副不慌不忙的样子。</p>
+<p class = "firstLineIndent">“没有追击？”伊莎尔疑惑的看着战场态势。</p>
+<p class = "firstLineIndent">为什么没有立刻回援？</p>
+<p class = "firstLineIndent">是另有所图？还是真有底气挡住己方的机甲突进？</p>
+<p class = "firstLineIndent">战斗到现在，除了所剩不多的无人战机外，双方的机甲部队已经损失近半，即便如此，双子星突出战团的，依然足有900余台机甲！</p>
+<p class = "firstLineIndent">面对这个数量的机甲部队，对方难道这么有自信的么？</p>
+<p class = "firstLineIndent">就在这个时候，副官突然惊讶道，“阁下，敌方的组合型战舰停止射击了！”</p>
+<p class = "firstLineIndent">伊莎尔看向敌方后阵，果然，那艘组合战舰已经停止了射击，仅剩下长生者的要塞火力继续对海族舰队保持火力压制。</p>
+<p class = "firstLineIndent">不仅如此，对方还在缓缓调整姿态，五芒星由原本的平面自旋逐渐翻转90度，变成了垂直自旋。</p>
+<p class = "firstLineIndent">随后海狼号的5根机械臂缓缓弯曲，将连接着的5艘“后羿级”同时对准前方。</p>
+<p class = "firstLineIndent">现在的这艘组合战舰，就如同一把旋转的加特林，枪管对准了气势汹汹而来的双子星机甲大军。</p>
+<p class = "firstLineIndent">根本不用伊莎尔命令，已经见识到这艘战舰恐怖火力的双子星机师们连忙将阵型稍稍分散，尽可能降低被命中的概率。</p>
+<p class = "firstLineIndent">不过他们虽惊不乱，5门主炮虽然犀利，但用主炮来对付机动灵活的小型机甲，明显有些大材小用，效果并不理想。</p>
+<p class = "firstLineIndent">不过怪异的是，想象中的超远程攻击并未到来。</p>
+<p class = "firstLineIndent">对方完成姿态变幻后，就突然沉默了下来，既不开火，也没有其余的机动，似乎就在静静等待敌人的到来。</p>
+<p class = "firstLineIndent">按照速度，距离双方接触大概还有十五分钟……</p>
+<p class = "firstLineIndent">趁着这个时间，两族舰队不约而同尝试向前突进，准备等敌人后阵战起，便压上去进行火力支援。</p>
+<p class = "firstLineIndent">不过长生者立刻加大了火力压制，海族舰队不愿当出头鸟，一面试探长生者的炮火威力，一面观望另一面的羽族舰队战况。</p>
+<p class = "firstLineIndent">伊莎尔的羽族舰队同样遭到了拦截，聂云剩余的机甲部队和“跳反”的海族旗舰一起出现在了他们面前。</p>
+<p class = "firstLineIndent">双子星的无人战机部队虽然还未被彻底绞杀干净，但剩余的数量完全不足以对聂云的机甲部队造成威胁，它们几乎是一边清理自身周边的无人战机，一边拦在了伊莎尔的面前。</p>
+<p class = "firstLineIndent">双方的战局似乎又回到了一个平衡点，只不过这一次，双方机甲部队的对手换成了各自的舰队。</p>
+<p class = "firstLineIndent">不过现在的情况却对双子星更加有利。</p>
+<p class = "firstLineIndent">聂云一方的战舰胜在主炮犀利，却数量不足，而双子星一方的火力射程和威力不及对方，但战舰数量众多，组成战阵后还拥有完善的防空火力网，就算被大量机甲近身，也有足够的火力压制能力。</p>
+<p class = "firstLineIndent">伊莎尔虽然达成了自己的战略意图，但对方引而不发的那艘组合战舰，却让她心中些许不安。</p>
+<p class = "firstLineIndent">对一个成熟的合格指挥官来说，战场上未知的，才是最可怕的！</p>
+<p class = "firstLineIndent">因为那意味着无法预知的变数……</p>
+<p class = "firstLineIndent">不过伊莎尔虽然心中忌惮，但忌惮的对象绝对不包括眼前的对手。</p>
+<p class = "firstLineIndent">一艘海族旗舰加上近千剑仙机甲就想拦住我的舰队？未免有些天真了！</p>
+<p class = "firstLineIndent">“保持巡航速度继续前进，各舰全力开火！轰散他们！”伊莎尔平静道。</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">“唔……还有，让我们的突袭登陆艇做准备，对面的海族叛舰，可能的情况下……尽量俘虏它！”伊莎尔想了想，还是补充了一句。</p>
+<p class = "firstLineIndent">至少……古斯塔夫为什么叛变，她还需要一个答案！</p>
+<p class = "firstLineIndent">“明白了！”副官领命。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“轰轰轰！”“嗖嗖嗖！”</p>
+<p class = "firstLineIndent">羽族舰队35艘战舰主副炮齐射，数百道光束轰进聂云的机甲群中，掀起一轮爆炸的焰火。</p>
+<p class = "firstLineIndent">其中不仅有剑仙机甲的，还有数量不少的双子星无人战机。</p>
+<p class = "firstLineIndent">伊莎尔已经毫不顾忌误伤，显然准备彻底放弃这支无人机部队。</p>
+<p class = "firstLineIndent">不仅是机甲部队，目标最大的海族旗舰自然也遭到了攻击，足有十几艘羽族战舰将目标对准了这里。</p>
+<p class = "firstLineIndent">虽然大部分攻击落空，但仍有数道攻击打在护盾上，战舰的护盾值疯狂下降。</p>
+<p class = "firstLineIndent">就算是防护能力更强的旗舰级战舰，也不可能在一对35的火力对射中坚持多久。</p>
+<p class = "firstLineIndent">不过奇怪的是，原本在刚刚的空战中尽力保护这艘旗舰的剑仙机甲们，此刻却像是大难临头各自飞，在密集的火力下，连招呼都不打就四散奔逃。</p>
+<p class = "firstLineIndent">一时间，这艘海族旗舰四周空旷，破显得有些形单影只……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">银色的流动液体从古斯塔夫身上缓缓褪去，随后渗透进金属地面消失不见。</p>
+<p class = "firstLineIndent">当地上的古斯塔夫艰难的睁开双眼时，看到的就是眼前爆炸不断，光芒乱闪的刺激战场……</p>
+<p class = "firstLineIndent">我在哪儿？</p>
+<p class = "firstLineIndent">这……什么情况？！</p>
+<p class = "firstLineIndent">清醒的古斯塔夫逐渐回过神，然后记起了昏迷前的画面……</p>
+<p class = "firstLineIndent">不对！自己的身体不是被控制了吗？</p>
+<p class = "firstLineIndent">古斯塔夫心中一惊，立刻低头观察自己的身体。</p>
+<p class = "firstLineIndent">唔……除了右臂的义肢已经不翼而飞，其余的零件都还在，一个没少……</p>
+<p class = "firstLineIndent">可是眼前的究竟是什么情况？</p>
+<p class = "firstLineIndent">自己为什么会在战场，对面攻击自己的……好像是羽族的舰队？</p>
+<p class = "firstLineIndent">自己昏迷的这段时间，究竟发生了什么？</p>
+<p class = "firstLineIndent">不过这不是古斯塔夫目前最关心的问题，现在最关键的问题是……</p>
+<p class = "firstLineIndent">自己的盾……好像要破？！</p>
+<p class = "firstLineIndent">然后就在古斯塔夫惊恐的目光中，已经摇摇欲坠的淡蓝色护盾再次遭受到一发重型力场射线炮的轰击，战舰防御告破。</p>
+<p class = "firstLineIndent">“轰！”脚下的战舰猛地晃动了一下，显然舰体开始遭到破坏。</p>
+<p class = "firstLineIndent">一艘失去了护盾的战舰，在这种密集火力下是什么下场，古斯塔夫用脚趾头都能想象到。</p>
+<p class = "firstLineIndent">“不……”</p>
+<p class = "firstLineIndent">只来得及吼出最后一句遗言，两三道光束便再次命中舰体。</p>
+<p class = "firstLineIndent">“轰！”剧烈的爆炸火光驱逐黑暗，成为这场战斗中最为闪耀的星辰……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海族的军官们看着远处耀眼的闪光，集体沉默了一下，心情复杂！</p>
+<p class = "firstLineIndent">忠心耿耿的部分军官更是拳头紧握，看向羽族舰队的目光中直欲喷火。</p>
+<p class = "firstLineIndent">古斯塔夫阁下最后的生存希望，被羽族的炮火彻底击碎了……</p>
+<p class = "firstLineIndent">不过另一边，“手刃叛徒”的羽族自己也是一脸的懵逼。</p>
+<p class = "firstLineIndent">这么简单就干掉了？</p>
+<p class = "firstLineIndent">总感觉……对面这防御力似乎有点弱啊？自己还没发力就结束了？</p>
+<p class = "firstLineIndent">命令上说好的尽量俘虏，现在咋整？</p>
+<p class = "firstLineIndent">说是没计算好火力，不小心用力过猛了？</p>
+<p class = "firstLineIndent">伊莎尔同样不解。</p>
+<p class = "firstLineIndent">眼睁睁看着那艘海族旗舰被己方轻松击毁，周围甚至没有一台机甲为其保驾护航，简直像是主动过来送人头的一样。</p>
+<p class = "firstLineIndent">她先是一阵错愕，随后心头浮现一种可怕的猜测……</p>
+<p class = "firstLineIndent">狡兔死，走狗烹？！</p>
+<p class = "firstLineIndent">万物归一会……这么狠的么？！</p>
+<p class = "firstLineIndent">（古斯塔夫：“……”）</p>
+
+<h2>第五百零七章 等等先容我变个身</h2>
+<p class = "firstLineIndent">“旗舰之死”引起了战场范围内的一阵波澜，但……也仅仅只是波澜而已！</p>
+<p class = "firstLineIndent">没有谁，需要对阵亡的“敌人”说抱歉，对双方都是如此……</p>
+<p class = "firstLineIndent">随着羽族舰队的推进，聂云残余的一千余机甲大军开始与其近距离缠斗，现场画面就像是一千多只马蜂围着一只爬行纲甲壳类生物。</p>
+<p class = "firstLineIndent">羽族舰队阵型严谨，配合紧密，各舰之间彼此支援，形成一张密集的立体防空火力网，将冒头突进的机甲绞杀当场，一时间聂云的机甲部队损失颇大。</p>
+<p class = "firstLineIndent">不过大量的攻击同样落在羽族舰队的外围战舰上，打的蓝色护盾泛起一片片的涟漪。</p>
+<p class = "firstLineIndent">对手防的四平八稳，密不透风，不过马蜂凶狠，同样带着积少成多也能致命的毒刺！</p>
+<p class = "firstLineIndent">在近距离的格斗战中，双方的火力命中率已经大幅提升，都是互有损伤。</p>
+<p class = "firstLineIndent">不过按照局势来看，机甲部队的顽强阻击，虽然有效减缓了羽族舰队的行军速度，但想要依靠这些机甲消灭对方绝对没有可能，被突破只是时间问题而已。</p>
+<p class = "firstLineIndent">另一面，少了组合型战舰的火力压制，海族舰队也在蠢蠢欲动。</p>
+<p class = "firstLineIndent">长生者的火力虽然凶猛，海族舰队想要突进，就必定需要付出一些伤亡，但是显然单凭这个，还不足以让海族作壁上观。</p>
+<p class = "firstLineIndent">虽然海族旗舰被伊莎尔连招呼都不打就干掉，但这是后面的内部官司，至少大义上羽族只是消灭了眼前拦路的敌人，海族无法用任何立场指责伊莎尔。</p>
+<p class = "firstLineIndent">但伊莎尔明显已经全力以赴作战，而且出现不小的战损，这个时候海族如果不配合行动隔岸观火，事后难免会被军部追究责任。</p>
+<p class = "firstLineIndent">更何况，前往攻击聂云后阵的机甲部队中可也包括了海族的兵力，就算是为了接应己方部队，海族舰队也必须给予对面的敌人更大的压力。</p>
+<p class = "firstLineIndent">海族前锋的十几艘舰队开始加速突进，发起了试探性的进攻。</p>
+<p class = "firstLineIndent">一千公里……一万公里……十万公里……</p>
+<p class = "firstLineIndent">让海族有些惊喜的是，聂云的组合战舰面对海族舰队的试探无动于衷，并没有针对他们再次开火的迹象。</p>
+<p class = "firstLineIndent">估计是面对数量庞大的机甲部队威胁，已经无暇顾及自己这边了吧？</p>
+<p class = "firstLineIndent">海族军官们如此猜测，随后少量的先锋试探变成了全面进攻！</p>
+<p class = "firstLineIndent">为了阻止海族舰队靠近，威胁己方后阵，长生者搭载的要塞武器不得不再次使用了透支性的密集攒射。</p>
+<p class = "firstLineIndent">不顾可能会造成的舰炮过热损坏，长生者的火力密度再次提升了一个档次，密集的炮火几乎形成一条笔直的光路，当场击毁了两艘倒霉战舰。</p>
+<p class = "firstLineIndent">不过这次海族并没有退缩，顶着长生者的凶猛火力依旧在顽强的往前突进！</p>
+<p class = "firstLineIndent">战争已经进行到最关键的胜负点，海族没有任何理由继续保存实力。</p>
+<p class = "firstLineIndent">聂云虽然通过种种手段动摇了海族军心，不过毕竟不可能让海族的舰队直接倒戈，做到如今这一步已经是极限。</p>
+<p class = "firstLineIndent">整体兵力上双子星始终占优，面对两族舰队的全盘压上，聂云一方的防线看起来有些岌岌可危！</p>
+<p class = "firstLineIndent">但更加危险的，则是聂云的后阵，因为大量的双子星机甲已经接近到一个危险距离。</p>
+<p class = "firstLineIndent">双子星的机师们纷纷打开火力保险，抬起枪口，对准了那艘从刚刚开始就一直保持静默的银色组合型战舰！</p>
+<p class = "firstLineIndent">不过，还没等进入己方的火力攻击射程，他们就看到对面的银色战舰开始动了！</p>
+<p class = "firstLineIndent">一门门三造型各异，长约3米左右的双联装炮台无声无息的从5艘“后羿级”的舰身各处抬起……</p>
+<p class = "firstLineIndent">一瞬间，人畜无害的小绵羊化身露出了獠牙的大灰狼！</p>
+<p class = "firstLineIndent">“嘶~”无数的抽气声从双子星机师们的嘴里发出。</p>
+<p class = "firstLineIndent">更有惊慌失措的机师，下意识的就踩了急刹车，差点和后面的友军一头撞上。</p>
+<p class = "firstLineIndent">没办法，对面亮出炮口倒也没什么，可是那密密麻麻数量，完全能让密集恐惧症的小伙伴产生心理阴影！</p>
+<p class = "firstLineIndent">每一艘“后羿级”上，前后左右加上下，此刻布满了炮台，凶残的设计师似乎还觉得空间不够，有些位置还玩起了“叠罗汉”，一层层往上堆炮台！</p>
+<p class = "firstLineIndent">一眼扫过去，每一艘战舰上的炮台数量已经上百，可以说，舰身上能放置武器的位置，已经全部摆满了各种“款式”的小型炮台。</p>
+<p class = "firstLineIndent">在科学合理布局的基础上，聂云某种程度上做到了“要你命三千”的视觉效果……</p>
+<p class = "firstLineIndent">“这……这不可能！”包括伊莎尔在内，几乎所有看到这一幕的双子星人都在心底发出了这样的怒吼。</p>
+<p class = "firstLineIndent">哪怕是对“战舰构造学”略懂略懂的一线战士，也知道对面这艘战舰的火力布局绝对的“不科学”！</p>
+<p class = "firstLineIndent">一般来说，一艘战舰在设计定型后，它就会有一个基本定位。</p>
+<p class = "firstLineIndent">它可以侧重主炮火力，选择安装一门恐怖巨炮，负责远程支援。或者也可以侧重防空，安装大量多角度立体式近防炮，负责拱卫防空圈。又或者侧重速度，负责机动游走。</p>
+<p class = "firstLineIndent">在舰队配合作战中，这样的分工合作是十分必要的。</p>
+<p class = "firstLineIndent">这就像是组合diy，你可以在战舰上安装自己想要的组件，但是请注意……装备栏是有限的！</p>
+<p class = "firstLineIndent">鱼与熊掌不可兼得！</p>
+<p class = "firstLineIndent">你不可能在拥有超越同级战舰攻击的情况下，拥有超越同级战舰的防御，或者同时拥有超越同级战舰的速度。</p>
+<p class = "firstLineIndent">当然，除非你真的超越了同级战舰，换句话说……你必须拥有超越它们的吨位！</p>
+<p class = "firstLineIndent">不过很显然，以对面那艘银色战舰的吨位来看，拥有一门恐怖主炮的同时，还安装了这么多近防炮台……</p>
+<p class = "firstLineIndent">这种难度不亚于一柄aw狙击枪能够超远程狙杀敌人的同时，还能够开启散弹模式，切换成s686玩近战？</p>
+<p class = "firstLineIndent">一脸迷茫的双子星同学表示自己应该是科技水平太低？</p>
+<p class = "firstLineIndent">难道是样子货？</p>
+<p class = "firstLineIndent">有人心中刚刚这么想，对面光芒大盛，其中一艘“后羿级”从各处炮口中射出密密麻麻上百道光束！</p>
+<p class = "firstLineIndent">然后是第二艘，第三艘……</p>
+<p class = "firstLineIndent">如果收刚刚的五芒星姿态是一柄“死亡左轮”，那么现在，这无疑就是一柄“死亡加特林”！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云的战舰构造学当然远没有到让双子星看都看不懂的地步，只不过他利用停火的这十五分钟做了一件事。</p>
+<p class = "firstLineIndent">就在刚刚，全秘银舰队表面上虽然毫无异样，但是内部却已经发生了翻天覆地的变化。</p>
+<p class = "firstLineIndent">舰体内大量的机械部件如同蜡像一般融化，随后银色液态金属重新成型，短时间内便完成了惊人的“回炉重铸”！</p>
+<p class = "firstLineIndent">因为早就设计好了组装图，聂云对组合战舰的“姿态切换”进行的相当迅速。</p>
+<p class = "firstLineIndent">十五分钟的时间很短，不过对机械虫造物来说，却足够使出它的一式奇招，这式奇招被聂云命名为——“等等！先容我变个身！”</p>
+<p class = "firstLineIndent">机械虫：“……”（￣︿￣）</p>
+
+<h2>第五百零八章 胜负之势</h2>
+<p class = "firstLineIndent">“滴滴滴～”</p>
+<p class = "firstLineIndent">海狼号的精密火控系统不断锁定一个个敌对目标，随后瞬间完成对“后羿级”的数据传递。</p>
+<p class = "firstLineIndent">调整炮台角度，开火！</p>
+<p class = "firstLineIndent">锁定下一个目标，再次调整角度，开火！</p>
+<p class = "firstLineIndent">5艘“后羿级”轮流齐射，每一秒，都有上百道光束射向敌人，聂云生生用5艘战舰编织出一道不下于一整只舰队的严密火力网！</p>
+<p class = "firstLineIndent">由于需要防御的面积更小，这套防空圈的火力密度比之羽族舰队那边的更加密集。</p>
+<p class = "firstLineIndent">一闪而逝的光束连绵不绝，呈扇形笼罩向双子星的机甲部队，如同传说中的天马流星拳……</p>
+<p class = "firstLineIndent">“轰轰轰！”</p>
+<p class = "firstLineIndent">爆炸的火光在双子星机甲部队中一路蔓延，呈燎原之势！</p>
+<p class = "firstLineIndent">作为组合型战舰的核心，海狼号并不负责直接作战，但它提供的能源支持和庞大的数据处理能力，却成为这组火力平台当之无愧的大脑和心脏！</p>
+<p class = "firstLineIndent">同时锁定近千个敌对目标，以最合理的方式进行攻击任务分配，将己方的立体火力利用到极致。</p>
+<p class = "firstLineIndent">随着双方距离的接近，双子星的伤亡越发惨重，足足200多台机甲被击毁，而此时他们的前锋才刚刚将敌人纳入攻击范围！</p>
+<p class = "firstLineIndent">冒着无数穿梭的密集火力网，少数侥幸突破的机甲发动了攻击……</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”七八道攻击命中前方的组合战舰，随后蓝色护罩显现，如同雨点坠入平静的池塘，荡开些许轻微的涟漪。</p>
+<p class = "firstLineIndent">“这……”</p>
+<p class = "firstLineIndent">有经验丰富的双子星机师瞪大眼睛，眼神中越发凝重，凭经验，这样的景象往往意味着攻击伤害有限，几乎等于刚刚破防……</p>
+<p class = "firstLineIndent">即便机甲火力稍弱，但对方这种程度的防御也绝对超过普通战舰太多。</p>
+<p class = "firstLineIndent">事实上，“后羿级”虽然防御极弱，但海狼号却刚刚升级了大型力场护盾，这个技术不用问，是聂云刚刚从海族舰队身上“拷贝”过来的。</p>
+<p class = "firstLineIndent">而且采用了机械虫作为构造材料之后，这套护盾系统的防护力更加强大，防过载性能提升了30以上！</p>
+<p class = "firstLineIndent">机械虫将敌人优势科技化为己用，因而愈战愈强！</p>
+<p class = "firstLineIndent">加上机械虫本身的材料加成，复制出来的科技造物比之原版性能还要强那么一丢丢……所以青出于蓝对于聂云来说只是基本操作。</p>
+<p class = "firstLineIndent">不过对于对手而言，那就很容易产生“不好！敌人好像比我高一个等级！”这样的人生错觉……</p>
+<p class = "firstLineIndent">眼见冒死突破的友军攻击收效甚微，对敌舰护盾的伤害积累甚至可能还不如人家的护盾恢复速度，双子星的机师们终于有些崩溃了……</p>
+<p class = "firstLineIndent">“不行，对面的火力太密集了，我甚至找不到空间穿插，这样根本就突不进去！”</p>
+<p class = "firstLineIndent">“支援！请求舰队尽快支援！后方的支援为什么还不来？”</p>
+<p class = "firstLineIndent">“该死！我的队伍已经损伤过半，这究竟是什么见鬼的战舰，它的舰炮都不用冷却的吗？！”</p>
+<p class = "firstLineIndent">“快！分散撤离，这一定是敌人故意引我们上钩的陷阱！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">与死神跳舞的感觉让人寒毛倒竖，看着周围的友军不断被击落爆炸，这种心理压力让双子星的机师们惊恐万状。</p>
+<p class = "firstLineIndent">战场通讯受到干扰，无疑加剧了这种混乱，面临计划外的突发危机，双子星的机师们乱成了一团。</p>
+<p class = "firstLineIndent">有些想要拼一把发起决死冲锋，有些想要组织撤离，加上海族和羽族还无法接受统一指挥，内部矛盾重重，原本严谨的攻击阵型当即散乱起来。</p>
+<p class = "firstLineIndent">这让聂云的“死亡加特林”能够更加轻松的应对敌人，集中火力优先解决更具威胁的敌方机甲。</p>
+<p class = "firstLineIndent">不到十五分钟，这一波机甲冲锋就被组合战舰的“散弹模式”彻底击溃，双子星部队损失过半，阵型彻底散乱之后，剩余的机甲对聂云来说已经基本失去威胁。</p>
+<p class = "firstLineIndent">聂云见状，一边指挥继续点射四散的双子星机甲，一边派出了最后的“收割者”……</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”从“后羿级”战舰内同时弹射出2台银色机甲。</p>
+<p class = "firstLineIndent">造型奇特的银色长剑背负身后，这些机甲一亮相，就让所有的双子星机师们心中一跳。</p>
+<p class = "firstLineIndent">对这种战斗力不下于“海暴级”，拥有破甲武器的敌方高端机甲，早在之前的战斗中双子星的机师们就领教过厉害，这时候看到对方居然一下子拿出来10台……</p>
+<p class = "firstLineIndent">如果是公平较量，区区10台顶尖机甲，就算用堆的，双子星这么多部队也能堆死它们。</p>
+<p class = "firstLineIndent">可如今自己还在敌人的火力网中垂死挣扎，哪还有那个能力组织大规模的围杀？聚在一起那纯粹就是找死！</p>
+<p class = "firstLineIndent">共计10台“剑客”机甲一出现，便迅速分散杀入双子星的机甲部队中，掀起新的一轮死亡风暴……</p>
+<p class = "firstLineIndent">拥有碾压性能的“剑客”机甲，当真是十步杀一人，千里不留行，两两组队配合，在敌人的部队中肆意收割。</p>
+<p class = "firstLineIndent">“剑客”机甲的出现，成为了压倒骆驼的最后一棵稻草，双子星的机甲部队再无战意，陷入仓皇奔逃的败亡局面……</p>
+<p class = "firstLineIndent">战局已定！</p>
+<p class = "firstLineIndent">眼见威胁基本解除，疯狂输出的组合型战舰慢慢垂下了已经烧得发红的炮管，攻击骤歇。</p>
+<p class = "firstLineIndent">随后，“散弹模式”的组合战舰缓缓展开，调整姿态，渐渐的重新恢复到先前的“五芒星”姿态。</p>
+<p class = "firstLineIndent">而密密麻麻的炮台，也功成身退一般缓缓被闭合收拢，“后羿级”顿时恢复了原先光滑优雅的银色镜面装甲。</p>
+<p class = "firstLineIndent">事了拂衣去，深藏身与名！</p>
+<p class = "firstLineIndent">如同一名收起了宝剑的绝世剑客，鞘中锋芒引而不发，却更让敌人忌惮！</p>
+<p class = "firstLineIndent">剩余的双子星机甲虽然分散，数量却依旧有200出头，但根本没有人会想来个回马枪，他们已经彻底被刚刚的恐怖火力吓到了。</p>
+<p class = "firstLineIndent">万一……这又是一个陷阱呢？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">另一边，眼见袭击敌方后阵的计划破产，己方的空战兵力至此几乎损失殆尽，海族舰队几乎是急刹车一般，立刻停下了进攻步伐。</p>
+<p class = "firstLineIndent">没办法，没见到先前恐怖的“死亡左轮”又出现了吗？枪口都已经重新瞄过来了！</p>
+<p class = "firstLineIndent">在羽族舰队被敌人机甲部队暂时纠缠住的情况下，凭己方已经损失不轻的海族舰队单独面对长生者和组合战舰两座恐怖的超级炮台，一头撞上去的下场……怕不是得被整个消灭建制？</p>
+<p class = "firstLineIndent">不行不行！</p>
+<p class = "firstLineIndent">指挥官都挂了，自己必须保存有用之身查明真相啊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“砰！”伊莎尔的拳头重重击在了金属扶手上。</p>
+<p class = "firstLineIndent">手上传来的疼痛也不能抚平她心中的不甘！</p>
+<p class = "firstLineIndent">再一会儿！只要再一会儿，羽族舰队就能突破敌人机甲的层层阻击，届时和海族舰队两面夹击对方舰队，胜负三七开，双子星占七！</p>
+<p class = "firstLineIndent">可没想到自己的机甲部队溃败的如此迅速，海族缩的如此干脆……</p>
+<p class = "firstLineIndent">战斗到如今，双子星一方仅剩下大约3支分舰队共计五十余艘战舰，如果战斗再打下去，胜负依旧三七开，只不过这回……对方占七！</p>
+<p class = "firstLineIndent">胜负之势，顿时逆转！</p>
+<p class = "firstLineIndent">要不要拼一拼这三成可能？</p>
+<p class = "firstLineIndent">可拼过之后，就算胜了，自己还能剩下多少兵力？</p>
+<p class = "firstLineIndent">或者……保存实力，转攻为守等待后方支援？</p>
+<p class = "firstLineIndent">就在伊莎尔在战或撤之间犹豫不决时，羽族舰队周围的“剑仙”部队突然集体停火，随后互相掩护着迅速撤离战团，竟主动放弃了对中心区域羽族舰队的围攻阵势。</p>
+<p class = "firstLineIndent">伊莎尔的舰队得以轻松突出重围，可她脸上却丝毫没有喜色。</p>
+<p class = "firstLineIndent">敢放任自己的舰队离开，说明失去了空战部队的配合，对方根本就不担心己方舰队能够对他们造成威胁。</p>
+<p class = "firstLineIndent">更何况战斗时敌人的机甲部队还在后方虎视眈眈，一旦无法快速突破对方的阵线出现僵持，自己还有可能陷入两面受敌的窘境……</p>
+<p class = "firstLineIndent">难了啊……</p>
+<p class = "firstLineIndent">伊莎尔苦思对策，然而这个时候，战场的通讯干扰突然消失。</p>
+<p class = "firstLineIndent">“伊莎尔阁下，接收到未知通讯请求！是万物归一会的黑执事！”身边的副官突然有些惊讶的道。</p>
+<p class = "firstLineIndent">黑执事？这是……准备提条件了吗？</p>
+<p class = "firstLineIndent">伊莎尔揉了揉眉心，心中一叹！</p>
+
+<h2>第五百零九章 跨文明代购</h2>
+<p class = "firstLineIndent">“伊莎尔阁下，很高兴再次见到你。”</p>
+<p class = "firstLineIndent">视频画面中的黑执事依旧是黑袍打扮，周围的环境也显得神秘幽暗，很符合隐藏黑暗组织的格调。</p>
+<p class = "firstLineIndent">“黑执事先生，贵方悍然撕毁双方和平协议，率先对我方舰队发动偷袭，这次的会面恐怕并不值得高兴。”</p>
+<p class = "firstLineIndent">伊莎尔一开口，便将主动开战的帽子扣了上去，这将有利于她为己方争取有利的谈判条件。</p>
+<p class = "firstLineIndent">“呵呵！伊莎尔阁下这可有些睁眼说瞎话了，我们先前的协议是贵方停止在卡拉星上的任何军事行动，可很显然，你们并没有遵守先前的约定！”</p>
+<p class = "firstLineIndent">伪装成黑执事的聂云说完，画面一转，阿尔法小队队长逃逸的一幕出现在通讯画面中。</p>
+<p class = "firstLineIndent">“你们的特种作战人员，携带大规模毁灭性武器入侵卡拉星，并潜伏进入生命之水的秘密生产基地，险些毁了珍贵的宇宙奇物，这已经严重威胁到我方在卡拉星的根本利益！</p>
+<p class = "firstLineIndent">迫于无奈，我们这才只能发动军事行动，确保生命之水掌握在我们手中，所以，主动撕毁协议的并非我们！”聂云的信誓旦旦道。</p>
+<p class = "firstLineIndent">伊莎尔闻言，脸色不由一黑。</p>
+<p class = "firstLineIndent">对方动手的时间，基本和阿尔法小队的入侵时间吻合，但明眼人都看的出来，这么处心积虑，一环扣一环的作战方案，根本就不是仓促发动能够完成的。</p>
+<p class = "firstLineIndent">对方显然早有预谋，什么迫于无奈，根本就是在睁着眼睛瞎扯淡！</p>
+<p class = "firstLineIndent">不过大哥不说二哥，阿尔法小队的刺探原本就是为下一步军事行动做铺垫，双方都在互相算计，只不过双子星迟了一步而已。</p>
+<p class = "firstLineIndent">伊莎尔知道，在“谁先违约”这种问题上继续扯皮根本没有意义，她很快就将注意力放在对方刚刚话中透露出的信息上。</p>
+<p class = "firstLineIndent">“你说，你们发动军事行动，是为了确保生命之水始终掌握在你们手中？这么说……生命之水果然就在那座生物堡垒中？”伊莎尔问道。</p>
+<p class = "firstLineIndent">“不错，这宝贝的运输过程着实惊险了些，为了保住它，我们组织可是付出了巨大代价！”聂云意有所指道。</p>
+<p class = "firstLineIndent">巨大代价？</p>
+<p class = "firstLineIndent">是指这些突然多出来的银色舰队？</p>
+<p class = "firstLineIndent">“那么……所谓生命之水的产地无法移动，也是假的吧？贵组织似乎很擅长编织谎言。”伊莎尔语带讥诮。</p>
+<p class = "firstLineIndent">“当然不是！我们说的自然都是真的，事实上，由于强行移动，生命之水的自然产量足足下降了一半以上，这对我们双方来说，都是一种巨大的损失！”聂云煞有介事的惋惜道。</p>
+<p class = "firstLineIndent">谎言被拆穿的时候，千万别想着坦白从宽，赶紧用另一个谎言弥补才是王道……</p>
+<p class = "firstLineIndent">伊莎尔：“……”</p>
+<p class = "firstLineIndent">那东西的产地双子星见都没见过，根本无从判断对方话中真假，不过直觉告诉她，对面的人在撒谎……</p>
+<p class = "firstLineIndent">“既然你们已经达成自己的战术目标，为什么还要死守虫洞？带着东西撤回太阳系才更加符合你们的利益吧？”伊莎尔死死盯着对方，问出自己心中最关心的问题。</p>
+<p class = "firstLineIndent">失去生命之水，对双子星来说是一种莫大的损失，但是如果万物归一会勾结对面的安特帝国想要进兵比邻星系，以此为跳板大举入侵双子星加达里星区疆域，那才是一场更大的危机！</p>
+<p class = "firstLineIndent">以这次战斗中对方展露的科技实力来看，安特帝国的强大毋庸置疑。</p>
+<p class = "firstLineIndent">区区六艘战舰组成的组合型武器，就将他们一支舰队打得如此狼狈……</p>
+<p class = "firstLineIndent">如果敌人都是这种级别的舰队，万物归一会先前声称的“实力碾压双子星”还真的不是在吓唬人。</p>
+<p class = "firstLineIndent">比邻星系链接双子星的虫洞可并非太阳系这样的小型虫洞，足够进行一定规模的军事行动，也就是说一旦对方占领比邻星系，双子星后方一定疆域内几乎无险可守……</p>
+<p class = "firstLineIndent">伊莎尔现在万分后悔，低估了来自太阳系的威胁，早知如此，就应该重兵把守这里的虫洞，彻底封死对面的进军可能，甚至花费大功夫建造一座防御要塞也是值得的！</p>
+<p class = "firstLineIndent">可惜，现在说这些已经晚了……</p>
+<p class = "firstLineIndent">“唉……”面对伊莎尔的问题，聂云装出一副相当无奈的样子深深叹了口气。</p>
+<p class = "firstLineIndent">“死守虫洞，我们的确是有不得已的苦衷，事实上，我们虽然从卡拉星夺取了生命之水，可惜……我们带不走它……”</p>
+<p class = "firstLineIndent">带不走？！</p>
+<p class = "firstLineIndent">伊莎尔神情一动，随后联想到了某种可能，眼睛看向远处身躯庞大的长生者……</p>
+<p class = "firstLineIndent">“没错！看来阁下也猜到了，生命之水的制造者，就是你们眼中的这棵树，你可以叫它——长生者！”</p>
+<p class = "firstLineIndent">长生者？意味着拥有漫长的寿命吗？</p>
+<p class = "firstLineIndent">的确，恐怕只有这样奇特的宇宙生物，才能够制造出生命之水这种神奇属性的宇宙奇物，这也符合双子星科学家们的一些推断和猜测。</p>
+<p class = "firstLineIndent">这是聂云谎言中的真实部分，绝对经得起双子星推敲。</p>
+<p class = "firstLineIndent">“呵呵！原来如此，虫洞的通行限制，根本不允许如此体积的‘长生者’通行么？</p>
+<p class = "firstLineIndent">可你为什么要告诉我这个秘密？就不怕我恼怒之下，选择一拍两散，你知道，如今我们双方的胜负不过是五五开，只要我肯付出代价，毁了长生者并非不可能！”</p>
+<p class = "firstLineIndent">五五开？</p>
+<p class = "firstLineIndent">聂云心中一笑，并没有纠正伊莎尔强行为己方加分的行为。</p>
+<p class = "firstLineIndent">“呵呵！不瞒你说，经过之前的一系列战斗，加上我们不计后果的机械化改造，长生者现在的情况的确相当糟糕，不仅生命之水的产能急剧下降，而且元气大损。</p>
+<p class = "firstLineIndent">你应该能够看得出来，我们先前一直在尽力保护它不受贵方的攻击，我也相信伊莎尔阁下有能力做到一拍两散。”</p>
+<p class = "firstLineIndent">“嗯？”伊莎尔没想到对方居然如此坦诚，不由愣了一下。</p>
+<p class = "firstLineIndent">“事情发展到如今的地步，是我们双方都不愿意看到的，与你们进行的是一场亲者痛，仇者快，毫无意义的战斗！</p>
+<p class = "firstLineIndent">我们万物归一会是个商业组织，战斗只不过是我们最后选择的无奈手段，若非联合议会下令对卡拉星发动军事行动，意图将生命之水据为己有，我们也不会冒险出此下策。</p>
+<p class = "firstLineIndent">看看如今的局面，贵方舰队损失惨重，我们为了这次行动，不得不向对面的盟军求援，为此也付出了无数的资源和代价。</p>
+<p class = "firstLineIndent">这是内斗，却凭白便宜了外人，真是何苦来哉！”聂云一副痛心疾首的模样。</p>
+<p class = "firstLineIndent">所以……都怪我咯？</p>
+<p class = "firstLineIndent">伊莎尔嘴角抽了抽，便宜你拿了，最后还要把主动挑事的锅扔出来让别人背，有点无耻了吧？</p>
+<p class = "firstLineIndent">“如果你们不想开战，我们还有很多方式可以解决问题！”伊莎尔摇摇头。</p>
+<p class = "firstLineIndent">“呵呵！这话说出来，你信吗？你觉得就算我们舌灿莲花，就真的能够说服那帮贪得无厌的政客吗？人啊！不见棺材不掉泪的……”聂云摇头笑笑道。</p>
+<p class = "firstLineIndent">伊莎尔有些无言以对。</p>
+<p class = "firstLineIndent">空口无凭，没有见到对方真正的实力之前，谁会相信万物归一会有这样的能力虎口夺食？</p>
+<p class = "firstLineIndent">伊莎尔也不得不承认，双方恐怕迟早必有一战！</p>
+<p class = "firstLineIndent">“既然如此，如今双方兵戎相见，就战场上分胜负，我们似乎没什么可谈的了？”伊莎尔问道。</p>
+<p class = "firstLineIndent">“当然还有的谈，如今继续打下去，除了两败俱伤，对双方都没有任何好处。”</p>
+<p class = "firstLineIndent">“你们想停战？”</p>
+<p class = "firstLineIndent">“当然，我们组织向来爱好和平！”</p>
+<p class = "firstLineIndent">伊莎尔嘴角抽了抽，随即问道，“如何停战？”</p>
+<p class = "firstLineIndent">“我们双方保持比邻星系内的舰队规模，不交火，不增兵，不进行军备竞赛，维持比邻星系的军事平衡，你觉得如何？”</p>
+<p class = "firstLineIndent">伊莎尔想了想，己方在比邻星系的失败几乎已成定局，如果能够获得对方不向比邻星系增兵的承诺，说不定对双子星更加有利。</p>
+<p class = "firstLineIndent">就算联合议会想继续打，也得等后方增援到了再说……</p>
+<p class = "firstLineIndent">“那生命之水……”</p>
+<p class = "firstLineIndent">“还是那个条件，生命之水和长生者由我方代管，不过这次的分配比例在减半的基础上你们只能拿三成！</p>
+<p class = "firstLineIndent">你先别反对，为了这次的行动，我们不得不让安特帝国介入，所以他们也要占股，我们可没占到任何便宜。”聂云扯虎皮道</p>
+<p class = "firstLineIndent">言下之意，就是安特帝国对宇宙奇物心动了，也要来插一脚。</p>
+<p class = "firstLineIndent">伊莎尔犹豫了一下，尽管很想夺回虫洞和长生者，可终究还是觉得现在继续战斗胜算不大……</p>
+<p class = "firstLineIndent">“我可以上报情况，要不要接受你们的条件，得看联合议会的决议。”</p>
+<p class = "firstLineIndent">“当然，另外我这里还有一个建议！”聂云又道。</p>
+<p class = "firstLineIndent">“什么建议？”</p>
+<p class = "firstLineIndent">“贸易！”</p>
+<p class = "firstLineIndent">“贸易？”伊莎尔疑惑。</p>
+<p class = "firstLineIndent">“是的，你知道我们身后就是安特帝国，根据组织内部的贸易规则，我们双子星分会已经可以与安特帝国分会建立直接的贸易关系。</p>
+<p class = "firstLineIndent">也就是说通过我们，贵方能够购买到安特帝国的各种高科技物品和情报。</p>
+<p class = "firstLineIndent">如果联合议会感兴趣，我们万物归一会可以做中间人，大家各取所需！”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">伊莎尔听后，反应了半晌才明白过来。</p>
+<p class = "firstLineIndent">这好像是……跨文明代购！？</p>
+
+
+
+
+</br></br>
+<a href="490.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="510.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

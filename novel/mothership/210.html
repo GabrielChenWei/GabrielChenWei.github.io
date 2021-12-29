@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第二百一十章 老板的老板</h2>
+<p class = "firstLineIndent">月球新手村。</p>
+<p class = "firstLineIndent">原本一片和谐的佛罗里达号回乡打工团迎来了三名不速之客。</p>
+<p class = "firstLineIndent">很快史密斯他们就发现，这些自称高级玩家的人的确与他们十分不同，很明显的一点就是……他们很有钱！</p>
+<p class = "firstLineIndent">“小型武器、飞行背包、外挂能源，整一套单兵套装插件只要30点无限币？太便宜了吧！买！</p>
+<p class = "firstLineIndent">还有这个，新推出的能源电池升级服务，需要50点无限币，续航能力提升五倍？这必须买……”老三一边浏览兑换列表一边大采购。</p>
+<p class = "firstLineIndent">“老三，你整那么多武器有什么用？在这里你就算武装到牙齿能和谁打？</p>
+<p class = "firstLineIndent">我觉得我们应该拿这些闲钱做些投资！</p>
+<p class = "firstLineIndent">看这个说明！像我们目前使用的这种基础型号机器人，只要10点无限币就能买一个！</p>
+<p class = "firstLineIndent">买下后，不仅可以来回切换身体，相当于多了一个分身，而且闲置时还可以设定自动采矿，按照这上面的说明，效率不比真人控制的差多少诶！</p>
+<p class = "firstLineIndent">这可是一劳永逸，坐等收钱的长线投资。</p>
+<p class = "firstLineIndent">如果先买它个千儿八百个的，然后用赚到的钱再投资扩大机器人的规模，就像是滚雪球一样，很快我们就能建立起一只采矿大部队，然后成为一个混吃等死的大矿主！哈哈……”老大明显陷入了“人生巅峰”的幻想无法自拔。</p>
+<p class = "firstLineIndent">“没关系，现在用不上不等于以后用不上，智脑说东西可以暂时存在虚拟仓库里，等需要的时候再取出来使用。投资什么的不适合我，我还是喜欢战斗，这个可是不死之身，玩起来一定很刺激！嘿嘿！”老三嘿嘿笑道。</p>
+<p class = "firstLineIndent">“这自动采矿好是好，不过收获似乎还要上缴足足80的劳动所得税诶！”二毛看着那个基础版本的机器人说明书突然开口道。</p>
+<p class = "firstLineIndent">“啥？劳动所得税？！卧槽！还真是！这智脑也太黑了一点吧？会多线操作了不起啊！”老大仔细一看说明，不由瞪眼腹诽道。</p>
+<p class = "firstLineIndent">如果被收了这么高的重税，那么挂机挖矿的利润也就差不多是赚点零花钱，虽然也不错，不过离混吃等死还是很有距离的……</p>
+<p class = "firstLineIndent">“我觉得还是购买高级的机体比较划算，进阶型号v2机器人只需要100点，不仅采用了高级合金材料和石墨烯防护涂层，而且输出功率比基础型号的要强好几倍！</p>
+<p class = "firstLineIndent">还有那个‘超级蘑菇’我也很在意，1000点的价格而且还是在机体类的兑换选项中？它的说明是……吃了可以变大？呃，似乎还挺适合我的……”二毛将兑换界面翻到机体类道。</p>
+<p class = "firstLineIndent">旁边的史密斯等人听着这些对话，不由得用羡慕嫉妒恨的复杂目光看着他们三人。</p>
+<p class = "firstLineIndent">相对一心打工挖矿攒钱赎身的他们来说，就像是一群苦哈哈的游戏打金团遇到了软妹币玩家，这三个家伙妥妥就是在拉仇恨。</p>
+<p class = "firstLineIndent">说起三人身上的无限币，自然不是智脑慷慨赠送的，而是……聂云终于给他们发工资了！</p>
+<p class = "firstLineIndent">当兄弟两查看自己的游戏账户时，发现里面竟然有3万多的无限币，二毛的稍微少点，只有不到一万。</p>
+<p class = "firstLineIndent">当查询智脑之后才知道，这是聂云给他们的薪水……</p>
+<p class = "firstLineIndent">当时把两兄弟感动的差点就哭了，辛辛苦苦好几个月，终于是能看到进项了！</p>
+<p class = "firstLineIndent">虽然一点无限币看似只能兑换一美金，他们的工资这么算似乎只有几万美金，不过以无限币的购买力，拿去兑换美金绝对是傻子才会干的事儿。</p>
+<p class = "firstLineIndent">没见兑换列表里面只有无限币兑换美金，而压根儿就没有美金兑无限币的吗？用脚底板想也知道，二者的汇率绝对远远超过1:1。</p>
+<p class = "firstLineIndent">“咳咳！几位……请问一下你们为什么会有这么多无限币？另外，为什么你们能下线？”史密斯终于忍不住问出这个问题。</p>
+<p class = "firstLineIndent">“唔……原因很简单啊！不管是做人还是玩游戏，想要做好，知道最重要的一点是什么吗？”老大十分乐意为他们解惑。</p>
+<p class = "firstLineIndent">“努力拼搏？坚持不懈？”史密斯迟疑道。</p>
+<p class = "firstLineIndent">“错！最重要的……是站队啊！”老大用一脸你很天真的神情道。</p>
+<p class = "firstLineIndent">“站……站队？！”</p>
+<p class = "firstLineIndent">“当然！这可是老夫用血泪换来的人生体悟！说直白一点说就是阵营选择，很不幸的是，你们从一开始就选错了阵营！而且还很愚蠢地选择了敌对阵营……”老大摊摊手。</p>
+<p class = "firstLineIndent">“呃……敌对阵营？等等！你们难道是幽灵船长的人！”史密斯瞪大眼睛，他终于反应过来老大说的站队和阵营是什么意思了。</p>
+<p class = "firstLineIndent">“是啊！那是我们老板！”老大很干脆的点头承认。</p>
+<p class = "firstLineIndent">老大这话一出，佛罗里达号打工团霍的群情激奋起来，纷纷拿起手中的工具将三人团团围住。</p>
+<p class = "firstLineIndent">“嘿嘿！怎么？觉得你们人多？”老大看着众人，毫不惊慌地嘿嘿笑着。</p>
+<p class = "firstLineIndent">“咔！”他打了个响指，随后在他身后的那间制造车间开始了暴兵，疯狂输出基础型号的小机器人……</p>
+<p class = "firstLineIndent">很快，老大身后就站了整整齐齐的300个小机器人……</p>
+<p class = "firstLineIndent">史密斯：“……”</p>
+<p class = "firstLineIndent">对比下数量和组织性，刚刚还气势汹汹的佛罗里达号打工团彻底萎了。</p>
+<p class = "firstLineIndent">“哎呀，不过才3000点，忒便宜了啊……”老大说着风凉话。</p>
+<p class = "firstLineIndent">史密斯脸色一黑，软妹币玩家什么的，果然最讨厌了啊！</p>
+<p class = "firstLineIndent">他压下怒气，“哼！人多有什么用，这里500米范围内都是安全区，有智脑的限制，根本不能互相战斗！”</p>
+<p class = "firstLineIndent">“谁说一定要在安全区战斗了？你们不是要挖矿吗？敢出安全区的话，出去一次揍你们一次，揍死算逑！”老三看热闹不嫌事儿大地捏着拳头道。</p>
+<p class = "firstLineIndent">史密斯众人闻言一僵。</p>
+<p class = "firstLineIndent">的确，如果对方真的在这里守着他们打，那还能不能好好挖矿赚钱了？</p>
+<p class = "firstLineIndent">要知道这具身体被干掉的话，就算能够重新获得智脑分配的新机体，那也是要用无限币买的，没钱的话还会直接给你先扣成负数，以后打工慢慢还！</p>
+<p class = "firstLineIndent">这要是频繁冲突，面对三个似乎完全不差钱的高玩，他们得猴年马月才能凑够1万的赎金？</p>
+<p class = "firstLineIndent">就在对面陷入尴尬境地，犹豫究竟是该冲冠一怒，还是该怂就怂的时候，这边老大却是眼珠子一转，突然想到一个主意。</p>
+<p class = "firstLineIndent">“诶！老三，说什么呢！老板平时是怎么教导我们的，我们可是十分爱好和平的，怎么能动不动就喊打喊杀！</p>
+<p class = "firstLineIndent">咳咳！史密斯中校是吧？想来你也知道，合作才能双赢，我这里有个提议……</p>
+<p class = "firstLineIndent">你看，你们有人，我们有钱，如果由我们替你们买下大型的开采设备和机器人，由你们来操作，嘿嘿……”</p>
+<p class = "firstLineIndent">所有人听完后不由得瞪大眼睛看着老大。</p>
+<p class = "firstLineIndent">你脑子到底怎么想的？我们可是敌对势力诶！你居然想拿钱投资……哦不，收买我们，让我们给你打工？！</p>
+<p class = "firstLineIndent">可是……这提议好诱人啊……</p>
+<p class = "firstLineIndent">如果能提前得到一批工程器械，跳过初期的积累阶段，他们的效率立刻就能得到数十倍的提升，赚够钱回家简直指日可待啊……</p>
+<p class = "firstLineIndent">再看看对面杀气腾腾的300斯巴达，史密斯陷入了深深的纠结。</p>
+<p class = "firstLineIndent">尼妹这是威逼加利诱地想要剥削我们啊！</p>
+<p class = "firstLineIndent">“咳咳！条件是什么？”史密斯终究是所有人的首领，必须为集体利益考虑，不能意气用事，现在既然反抗不了，那就只能妥协尽量争取好一点的俘虏待遇了。</p>
+<p class = "firstLineIndent">“20，你们能够得到开采所得的20作为酬劳！”老大贼兮兮笑道。</p>
+<p class = "firstLineIndent">众人闻言差点吐血。</p>
+<p class = "firstLineIndent">要是没人帮你采矿，你需要付给智脑80的重税，结果你雇人帮你开采，效率提高不说，居然还好意思只开20的工资，算下来一下子就净赚了60！</p>
+<p class = "firstLineIndent">就连老三和二毛都眼神古怪地看着老大，莫非是和老板呆久了，咋都是一副吸血资本家的嘴脸……</p>
+<p class = "firstLineIndent">“太低了，最少50！”史密斯坚决摇头。</p>
+<p class = "firstLineIndent">“50？！你要知道买设备的钱可都是我出的，就算是20也足够让你们的赚钱效率翻倍了！50太高，最多25！”</p>
+<p class = "firstLineIndent">“不行！25的话我们还不如多花点时间积累资本，到时候自己干，这种条件要是换在我们米国，我可以去工会投诉你！”</p>
+<p class = "firstLineIndent">“30，这是我的底线，哼哼！这里可不是米国……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">所有人愣愣地看着两人在那儿你来我往讨价还价。</p>
+<p class = "firstLineIndent">场面从剑拔弩张的动作大片，突然切换到的针锋相对的商业剧场，众人表示十分不适应。</p>
+<p class = "firstLineIndent">最终，在300斯巴达勇士齐齐上前一步发动“威慑”技能之后，双方在十分“友好”的氛围下确定了35的劳动工资，并在智脑的见证下签订了合同。</p>
+<p class = "firstLineIndent">于是……无尽世界的第一位包工头就此新鲜出炉……</p>
+<p class = "firstLineIndent">看着脑海中显示的那份以自己的脑波识别信号签订的合同，史密斯和所有佛罗里达号乘员心情很是复杂……</p>
+<p class = "firstLineIndent">我们原本只是很单纯的一名幽灵船长的俘虏，时不时还想着如何脱身之后继续奋斗在对抗邪恶势力的最前线。</p>
+<p class = "firstLineIndent">而现在，幽灵船长摇身一变，成了自己，呃……老板的老板？！</p>
+<p class = "firstLineIndent">他们现在有种错觉，人家是高级玩家，而他们根本连玩家都算不上……充其量是一批不能下线的劳作型npc……</p>
+
+<h2>第二百一十一章 王者</h2>
+<p class = "firstLineIndent">地球基地。</p>
+<p class = "firstLineIndent">三人下线去吃饭的路上，刚刚做成一笔稳赚不赔买卖的老大面上却没有什么高兴的神情，而是深深叹了口气，“唉……”</p>
+<p class = "firstLineIndent">“老大，你这赚了一大笔，为啥还叹气？”老三不解道。</p>
+<p class = "firstLineIndent">“我到现在才明白，果然……俘虏什么的是多多益善啊……要是上次任务把那些恐怖分子全抓回来……</p>
+<p class = "firstLineIndent">啧啧！怪不得老板总是能俘虏的绝不下死手……原来，这都是钱啊……”老大一脸的顿悟。</p>
+<p class = "firstLineIndent">老三：“……”</p>
+<p class = "firstLineIndent">二毛：“……”</p>
+<p class = "firstLineIndent">因为基地中多了一批后勤能力基本为零的科研人员，聂云总算是在饿死人之前将基地的食堂建立了起来。</p>
+<p class = "firstLineIndent">从机器人厨师那儿接过一份海鲜炒饭，老大转头看到了同样在用餐的于老几人。</p>
+<p class = "firstLineIndent">三人打了个招呼坐到于老几人旁边，他们和于老还算打过几次照面，不过对于于老身边的几人，也就上次接人的时候见过一次。</p>
+<p class = "firstLineIndent">“几位应该就是传说中大名鼎鼎的幽灵骑士了吧？”这时候，坐在老三身边的周动突然开口道。</p>
+<p class = "firstLineIndent">他是生物学家，对于幽灵骑士这种外界传言经过人体改造的生物十分感兴趣。看样子也就是肌肉结实一点，似乎和正常人类没有多大区别。</p>
+<p class = "firstLineIndent">“呵呵！大名鼎鼎可不敢当！传说中什么的……咳咳！不错，就是我们！”老三十分谦虚地挺起胸膛。</p>
+<p class = "firstLineIndent">“哦，那你们平时会不会双眼充血突然狂化，或者是战斗时浑身散发冰冷的气息，又或者每天夜里忍受常人难以想象的巨大痛苦……”周动双眼放光一连问出好几个问题。</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">你是电影看多了吧……</p>
+<p class = "firstLineIndent">“对了，你们的战斗力已经这么夸张，几乎是一骑当千，可我上次在码头听你的意思，你们……哦不对，是我们老板的战斗力比你们加起来还要强？真的吗？”周动好奇宝宝一般继续发问。</p>
+<p class = "firstLineIndent">“那当然，论战斗整个地球我没服过谁，就只有老板，就算全副武装我也是连动手的欲望都没有！”老三一脸崇拜道。</p>
+<p class = "firstLineIndent">“老三你有点夸张了吧？虽然我们两之前和老板动过手被黄金级的老板虐了一次，可我们现在的战斗力可是今非昔比，怎么也得是白银级别了吧？”老大觉得老三有些夸张，不由得开口提醒道。</p>
+<p class = "firstLineIndent">“嘿嘿！那是你们没见过老板训练的场面！那次我刚刚接受了强化，想去训练室测试一下身体状态，结果刚好看到老板也在里面，啧啧……你们是想象不到那画面……”老三陷入回忆。</p>
+<p class = "firstLineIndent">数天前，海狼号训练室中……</p>
+<p class = "firstLineIndent">“踏踏踏！”聂云在巨大的训练室中极速奔跑，速度快到几乎化为一道残影。</p>
+<p class = "firstLineIndent">“砰！”一声爆鸣之后，聂云直接突破了音障，然而他的速度还在提升！</p>
+<p class = "firstLineIndent">“砰砰砰……”聂云如同一个弹跳球一般急速腾挪，周围的墙壁不时被聂云的巨力踩出一个个深深的脚印，然后迅速恢复。</p>
+<p class = "firstLineIndent">房间内顿时像是出现了许多个聂云一般，留下了一道道虚幻残影，整整半分钟过后，其中的一个残影渐渐凝实，化为聂云的本体出现，其他的残影这才渐渐消散。</p>
+<p class = "firstLineIndent">随后地面突然升起一堵大约20公分厚的装甲墙。</p>
+<p class = "firstLineIndent">聂云脚下一踏，急冲向前，一个弓步冲拳，不仅是筋肉、骨骼、五脏、气血，就连细微到每一个组织，每一个细胞，都在聂云完美的控制下连成一体，巨大的力道转化为惊人的速度，聂云的右臂直接从视线中消失。</p>
+<p class = "firstLineIndent">“轰！”整个训练室似乎都重重地颤抖了一下，那堵厚厚的装甲墙被直接轰出一个大洞。</p>
+<p class = "firstLineIndent">聂云保持着冲拳的姿势，浑身犹如被煮熟了一般，散发惊人的高温，周身冒起阵阵白雾！</p>
+<p class = "firstLineIndent">“呼……这完全体的变身效果，有点夸张啊……不过就是能耗有些大，满状态也就能全力战斗一分钟吗？”通体银色的聂云长长出了口气低声喃喃道。</p>
+<p class = "firstLineIndent">随后银色渐渐褪去，他的身体恢复了本来的模样，于此同时，训练室的地面突然蹿起一道道电流，补充聂云消耗的能量。</p>
+<p class = "firstLineIndent">聂云整个人如同沐浴在雷池中一般，宛如神明。</p>
+<p class = "firstLineIndent">在与机械虫融合后，聂云很早便获得了局部变身的能力，经过两个多月的适应，他终于从幼体进化成完全体，变身技能升级，全身机械虫化之后，战斗力更是今非昔比。</p>
+<p class = "firstLineIndent">一个能够控制全身每一个细胞的人类，一羽不能加，蚊虫不能落这种传说中的最高武道境界已经完全不能描述其万一。</p>
+<p class = "firstLineIndent">而有着这种极致境界的人，还拥有一副真正无坚不摧的钢筋铁骨！超级软件和超级硬件相结合，徒手拆高达那都不叫事儿好么！</p>
+<p class = "firstLineIndent">在普通状态下，聂云能够完美保留生物体的一切特性，然而实力也只能称得上是“人类极限”！</p>
+<p class = "firstLineIndent">但是一旦完全变身，就如同现在这般，实力已经超出了一般碳基生命的极限，如果算上变异的“重型机械虫”，未来聂云说不定还能开发出二次变身……</p>
+<p class = "firstLineIndent">“这种变身后战斗力激增的设定……唔……未来如果有去娜美星的话就去抢龙珠吧？”充电结束后的聂云一边走出训练室，一边摸着下巴自语道。</p>
+<p class = "firstLineIndent">机械虫：“……”(?-?)</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">门外，透过半开的门缝看清楚里面发生的一切的老三长大了嘴巴眼珠子瞪得溜圆，就连聂云开门出来他都还是这幅样子完全没有清醒过来。</p>
+<p class = "firstLineIndent">“哟！过来锻炼呐？不错，我很看好你哦！加油！”聂云看到门口二愣子一般杵着的老三也不惊讶，走过去笑眯眯地拍了拍老三的肩膀，然后背着手慢悠悠地离开了。</p>
+<p class = "firstLineIndent">“呃……呃……”老三呃了半天这才将下巴装了回去，他转身看向聂云消失的方向，眼中已经尽是崇拜和敬畏……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“咕！”听完老三的描述，所有人吞了口唾沫，食堂安静的可怕。</p>
+<p class = "firstLineIndent">啥？徒手破音障？速度快到只能看到漫天的残像？</p>
+<p class = "firstLineIndent">一拳轰碎20公分厚的装甲板，还是和“勇者之心”战甲一样的那种银色超级材料？</p>
+<p class = "firstLineIndent">老大和二毛设想了一下三人如果和聂云战斗的画面。</p>
+<p class = "firstLineIndent">攻击？那可是传说中的残像拳啊！你剑锋再犀利砍的到人家？</p>
+<p class = "firstLineIndent">防御？哥仨穿上“勇者之心”站一排老板应该也只需要一拳吧？</p>
+<p class = "firstLineIndent">原来……在升级的……不只有我们啊……</p>
+<p class = "firstLineIndent">我们顶多也就是黑铁升白银，你丫直接成王者了啊！</p>
+<p class = "firstLineIndent">而此刻，他们眼中近乎无敌的王者，正对着一个究极乌龟壳亮出了拳头……</p>
+
+<h2>第二百一十二章 以彼之道还施彼身</h2>
+<p class = "firstLineIndent">“砰砰砰……”一连串的击打声从引力炸弹的安放位置传出，所有人只是愣愣地看着聂云分身化为一道模糊的残影在球形的护罩上来回跳跃。</p>
+<p class = "firstLineIndent">出拳……被弹飞……再出拳……</p>
+<p class = "firstLineIndent">“他在干什么？消耗护罩能量？”对聂云的战斗力震惊过后，国防部长有些不解地道。</p>
+<p class = "firstLineIndent">“不，大家发现没有，他有时候是出双拳同时攻击两个位置，有时候是连续攻击同一个位置，我觉得……他这是在测试护罩的防御和恢复特性！</p>
+<p class = "firstLineIndent">只不过，得需要多么强悍的意识和反应速度，才能分辨其中的细微差别？”杰伊若有所思道。</p>
+<p class = "firstLineIndent">就在这时，聂云突然一个急冲，再次使出了全力一击的弓步冲拳！</p>
+<p class = "firstLineIndent">“轰！”整个地面似乎震动了一下，力场护盾近乎完全显现，荡起剧烈的涟漪，而聂云再次被高速弹飞。</p>
+<p class = "firstLineIndent">他的双腿在地面滑出两道浅浅的沟壑，直到滑出数十米，这才堪堪在墙壁前停下。然而……护盾依然毫发无损，在一阵波动之后重新没入虚空。</p>
+<p class = "firstLineIndent">“好了！打完收工！”聂云拍拍手走向国防部长等人。</p>
+<p class = "firstLineIndent">所有人满脸敬畏地看着聂云走到近前，犹如在看一头凶猛的史前巨兽。</p>
+<p class = "firstLineIndent">“呃……阁下，您测试完了？真是辛苦了，那……接下来我们该怎么做？”国防部长连称谓都开始用上敬语，对聂云这种超级强者，人类的天性本就会产生敬畏，而强者，有权受到应有的礼遇。</p>
+<p class = "firstLineIndent">“嗯！接下来都是我的工作，放心，你们需要做的很简单！”聂云笑眯眯道，脸上的柴犬面具再次露出“蒙娜丽莎式”的神秘微笑。</p>
+<p class = "firstLineIndent">国防部长不知为何，看到那个柴犬微笑的样子，心里顿时一个咯噔。</p>
+<p class = "firstLineIndent">“现在，我需要你帮我一个小忙！”聂云走到国防部长面前突然道。</p>
+<p class = "firstLineIndent">“什……什么忙？”他咽了口唾沫，聂云只是站在他面前，便给了他无穷的压力。</p>
+<p class = "firstLineIndent">“看着我的眼睛！”聂云的话让国防部长一愣。</p>
+<p class = "firstLineIndent">这台词怎么这么耳熟？我和你还有感情戏？剧本不对吧？</p>
+<p class = "firstLineIndent">他下意识地看向聂云的眼睛，然后恍惚间看到聂云的瞳孔似乎骤然收缩了一下，“咔嚓！”</p>
+<p class = "firstLineIndent">“好了！搞定，多谢配合！接下来，请各位好好睡一觉吧！”聂云说完，在众人还没反应过来之前，便张嘴吐出了一个字。</p>
+<p class = "firstLineIndent">“哞……”</p>
+<p class = "firstLineIndent">这个突如其来的声音犹如洪钟大吕，重重敲击在众人的脑海中。</p>
+<p class = "firstLineIndent">周围数十米的所有人都感觉脑袋一痛，惨叫着捂着脑袋挣扎了几下，终于眼前一黑便失去了意识。</p>
+<p class = "firstLineIndent">功夫迷杰伊昏迷前，不由得瞪大眼睛看向聂云的方向，嘴巴张了张，艰难地说了句“佛……佛门狮子吼！”然后这才双眼一翻不省人事！</p>
+<p class = "firstLineIndent">“嘿嘿！”聂云收声后看着四周躺了一地的人，嘿嘿一笑。</p>
+<p class = "firstLineIndent">聂云施展的，自然不是什么佛门狮子吼，真正的奥秘在于——次声波！</p>
+<p class = "firstLineIndent">就在刚才，聂云分身的喉部在他的控制下变形成了一种穿透力极强的声波武器！</p>
+<p class = "firstLineIndent">次声波，是指20赫兹以下的声波，处于人耳的听觉频率范围以外。因为次声波和人体器官的固有频率相近，当人体接触到次声波，由此产生的共振会导致器官变形、移位、甚至破裂，从而达到杀伤目的。</p>
+<p class = "firstLineIndent">聂云控制了次声波的频率和持续时间，使得杀伤效果限制在致晕！如果时间再长一些，便有可能致死。</p>
+<p class = "firstLineIndent">科技在发展到一定程度后，复制出武侠甚至魔幻中的各种神奇效果也只是等闲！</p>
+<p class = "firstLineIndent">他拿出一个u盘，直接插入旁边一台电脑的外接端口中，然后聂云分身的眼神再次黯淡下来，他开始全力攻击十三区的控制系统。</p>
+<p class = "firstLineIndent">作为米国安防措施最为严密的秘密基地，这里的超算防火墙比之聂云以往攻破的控制系统要强大的多，足足花了聂云3分钟才搞定。</p>
+<p class = "firstLineIndent">而这时，基地其余区域的人也发现了这里的异常，正有全副武装的警卫队员往这边赶。</p>
+<p class = "firstLineIndent">“封闭基地所有出入口和内部安全隔离门！”聂云直接对控制系统下达了这个命令。</p>
+<p class = "firstLineIndent">“砰砰砰……”一连串闸门落下的声音传来，在基地内剩余众人愕然的神情中，十三区基地已经被彻底隔离。</p>
+<p class = "firstLineIndent">与此同时，基地的摄像头和监控记录同样被聂云控制，他先是删除了有关自己的所有监控记录，然后打开了基地内的通讯广播。</p>
+<p class = "firstLineIndent">“所有人不要惊慌！我是区长k！由于事态紧急，我现在命令，所有人原地待命，没有命令不得擅自离开岗位，等待警报解除！”聂云嘴巴张合间，发出的赫然是区长的声音！</p>
+<p class = "firstLineIndent">要做到这点对聂云来说并非难事，只要听过对方的声音，他就能采集对方的声纹，然后通过改变喉部声带进行复制！聂云给这个能力起了一个很响亮的名字——嘴遁鹦鹉学舌！</p>
+<p class = "firstLineIndent">机械虫：“……”（→_→）</p>
+<p class = "firstLineIndent">这名字究竟哪里响亮了……</p>
+<p class = "firstLineIndent">基地内的众人虽然完全搞不清现在的情况，不过区长的声音他们还是认得出的，虽然还有一部分人将信将疑，但是基地的秩序暂时稳定了下来。</p>
+<p class = "firstLineIndent">“好！清场完毕！”聂云说着走到场地中的一堆武器设备前，然后浑身化为液态金属扑到了这些设备上。</p>
+<p class = "firstLineIndent">肉眼可见的，这些装备被飞速分解，取而代之的，是一件造型有些奇怪的设备渐渐成形……</p>
+<p class = "firstLineIndent">十分钟后，这台在月球基地经过初步能力测试的超级设备终于建造完成，并被聂云放置在引力炸弹护盾外。</p>
+<p class = "firstLineIndent">这台设备的外观有点像是一台大型吸尘器，由一个高约3米的圆柱形的滚筒和一个圆形吸盘组成，另外还有一根管线从滚筒中延伸出来，连接在一把枪口带着螺旋线圈的射线枪上。</p>
+<p class = "firstLineIndent">此外，设备上还有一条能源线路，直接连接在聂云的脊柱上，看样子就像是聂云长了一条长长的尾巴。</p>
+<p class = "firstLineIndent">这具聂云分身之所以能够在刚刚高强度的攻击后，此刻又再次充当这件设备的能源供应器，是因为在它的心脏位置，安装的是一枚……能源水晶！</p>
+<p class = "firstLineIndent">之前从月球地底基地临时开采的能源水晶一共3枚，除了放在月球基地的一枚被切片用于科研外，其余2枚都在海狼号上。</p>
+<p class = "firstLineIndent">而这次由于考虑到破解护盾可能需要一些大威力的攻击性武器，因此直接被聂云分身带下来一枚，此刻这枚能源水晶果然派上了用场。</p>
+<p class = "firstLineIndent">这台设备被聂云称之为“破盾者”，是借鉴了外星人的引力子采集器和十三区的引力射线，结合聂云的现有科技制造而成的专用护盾破解器！</p>
+<p class = "firstLineIndent">只见聂云手上拿着那把射线枪，然后机械虫开始控制着“破盾者”靠近护盾，直到那个圆形吸盘紧贴着护盾表面。</p>
+<p class = "firstLineIndent">“滋滋~”能源启动，滚筒状的采集容器开始轻微嗡鸣，然后就见吸盘附近突然出现许多光点，百鸟归巢一般被吸盘吸入，而吸盘附近的护盾也猛地亮起，显现出形体。</p>
+<p class = "firstLineIndent">蓝色光点从护盾上被吸入吸盘中，那一处的护盾似乎黯淡了一下，随后被附近的引力子重新补充。</p>
+<p class = "firstLineIndent">两者一个补充，一个吸收，陷入了一场拉锯战。</p>
+<p class = "firstLineIndent">聂云渐渐加大了“破盾者”的采集功率，庞大的能源从心脏的能源水晶流向“破盾者”，瞬间，光点被吸收的速度猛增。</p>
+<p class = "firstLineIndent">只见显现的护盾缓缓蔓延，终于，整个护盾完全显现出了形体，显然是引力子的震荡已经波及到整个护盾。</p>
+<p class = "firstLineIndent">聂云脸色慎重地仔细观察，护盾在与“破盾者”吸盘接触的地方最为明亮，而其余地方则显得有些暗淡。</p>
+<p class = "firstLineIndent">“果然，这个护盾还能自动加强被攻击部位的防御力！这是调用其他区域的引力子补充被削弱位置！”</p>
+<p class = "firstLineIndent">聂云想着，绕着护盾转了半个圈，这里是“破盾者”的对面，而护盾也显得最是黯淡！</p>
+<p class = "firstLineIndent">声东击西战术！</p>
+<p class = "firstLineIndent">聂云举起手中的射线枪对准护盾扣动了扳机！</p>
+<p class = "firstLineIndent">“滋！”被“破盾者”从护盾上采集而来的引力子，从采集容器内被调用出来，涌入射线枪，一道蓝色光束瞬间刺入炸弹的力场护盾，立刻在护盾上击出剧烈的涟漪！</p>
+<p class = "firstLineIndent">这便是聂云的破盾方案，他称之为——科学版“以彼之道还施彼身”！</p>
+<p class = "firstLineIndent">利用护盾上采集到的引力子，激发成为引力射线反过来攻击护盾！</p>
+<p class = "firstLineIndent">以彼之矛攻彼之盾！</p>
+<p class = "firstLineIndent">用相对集中的引力射线攻击较为分散的引力子护盾，效果十分明显。</p>
+<p class = "firstLineIndent">被攻击部位的护盾明显被外来的引力子严重干扰，不稳定地闪烁起来，随着聂云小心翼翼地缓缓加大引力射线的输出功率，终于……破绽出现了！</p>
+<p class = "firstLineIndent">就在护盾出现一道小缺口的一瞬间，聂云眼疾手快抬起右手就是一梭子“冰魄银针”！</p>
+<p class = "firstLineIndent">那个小缺口很快便被护盾重新修复好，然而聂云却停止了攻击。</p>
+<p class = "firstLineIndent">他放下手中的射线枪，看着球形炸弹外壳上深深插着的三枚银针，柴犬面具上再次露出迷之微笑……</p>
+
+<h2>第二百一十三章 收费原则</h2>
+<p class = "firstLineIndent">十三区最核心区域。</p>
+<p class = "firstLineIndent">聂云分身神情呆滞地站在引力炸弹前。</p>
+<p class = "firstLineIndent">虽然这个引力炸弹外表看上去与之前毫无二致，但内部却多了三只银色的小蜘蛛，开始“咔哒咔哒”沿着复杂的线路到处搜索扫描。</p>
+<p class = "firstLineIndent">一旦碰到聂云无法解析原理的装置，便上去直接吃掉，然后很快再次将这个装置重新构建出来，接着小蜘蛛继续往前搜索下一个有价值的目标……</p>
+<p class = "firstLineIndent">有米国的研究资料作为基础，聂云在外围设备上的解析速度很快，大约十分钟之后，三只小蜘蛛便在最关键的球形控制核心前汇合。</p>
+<p class = "firstLineIndent">“现在是主菜时间！”在聂云的命令下，它们纷纷化为液态，爬山虎一样依附在核心上，开始全力进行侵蚀，三个银色的小点在球形核心上缓缓扩散开来……</p>
+<p class = "firstLineIndent">力场护盾大致的原理是一道高能的引力子层，它能够有效阻止能量和物质侵入，并且迫使攻击绕过目标。</p>
+<p class = "firstLineIndent">从波粒二象性来看，无线电波其实也属于一种能量粒子，在护盾的屏蔽范围之内，因此米国安装的炸弹完全接收不到引爆信号。</p>
+<p class = "firstLineIndent">但聂云与机械虫之间的联系手段，明显远比无线电通讯要高级的多，当确认机械虫进入护盾内部后依然受自己控制之后，聂云便大大地松了口气。</p>
+<p class = "firstLineIndent">很显然，这层高能引力子还无法隔绝自己与机械虫之间的联系，那么，结果就已经注定。</p>
+<p class = "firstLineIndent">一个小时后，聂云分身浑身一震，重新恢复了意识。</p>
+<p class = "firstLineIndent">“搞定！”聂云“咔！”的打了个响指，护盾突然显现，然后闪烁了一下直接缓缓消失！</p>
+<p class = "firstLineIndent">这时只见从炸弹里突然钻出一只大号的银色小蜘蛛，“咔哒咔哒”地爬到聂云脚边，随后没入了他的鞋面。</p>
+<p class = "firstLineIndent">回收完机械虫，护盾重新生成，这颗引力炸弹看似与之前毫无二致，而此时的倒计时还剩下……12个小时！</p>
+<p class = "firstLineIndent">聂云这才带着心满意足的笑容转身离开，不再理会这颗超级炸弹。</p>
+<p class = "firstLineIndent">他经过国防部长几人昏迷的观察室，却并没有停留，而是直接前往十三区的核心主机房！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">几分钟后，聂云已经站在了十三区的控制主机前，他从自己的身上抽出一条连接线接入了主机的外接端口，随后大量的机械虫涌入，开始吞噬拷贝主机内的机密信息。</p>
+<p class = "firstLineIndent">十三区作为米国用于研究外星人和外星科技的秘密基地，不但包括大量针对外星人的分析资料和情报，而且这里的科研人才也是全世界顶尖水平！</p>
+<p class = "firstLineIndent">除了关于引力射线武器的研究资料外，还有许多的衍生科技和武器技术，包括激光武器、电磁武器、传统热武器，还有材料技术、it技术、宇宙观测技术、引力子的应用猜想等等……几乎可以说是全米国的顶尖科技所在。</p>
+<p class = "firstLineIndent">除此之外，这里还有另外一道十分诱人的大菜……</p>
+<p class = "firstLineIndent">就在机械虫入侵主机时，旁边的一台电脑在机械虫的控制下突然亮了起来，随后眼花缭乱的操作界面飞速闪过，最终停留在了一个登陆界面。</p>
+<p class = "firstLineIndent">而界面上赫然写着：米国国家安全档案数据库！</p>
+<p class = "firstLineIndent">是的，这里的主机同米国国家安全局有着连接端口！而这个，就是被聂云盯上的美味！</p>
+<p class = "firstLineIndent">在聂云一系列的电子入侵和密码破译过后，界面上终于浮现提示。</p>
+<p class = "firstLineIndent">“登陆中……请权限者进行指纹验证！”</p>
+<p class = "firstLineIndent">聂云手上银光一阵流转，随后他将手掌按在了旁边的指纹验证器上。</p>
+<p class = "firstLineIndent">“滴！验证通过，请权限者进行虹膜验证！”</p>
+<p class = "firstLineIndent">聂云眼中瞳孔收缩了一下，然后将眼睛对准了扫描仪。</p>
+<p class = "firstLineIndent">“滴！验证通过，欢迎您，国防部长阁下！”系统传来登陆成功的提示。</p>
+<p class = "firstLineIndent">“嘿嘿！”聂云嘿嘿坏笑一声。</p>
+<p class = "firstLineIndent">他为什么会有国防部长的指纹和虹膜呢？</p>
+<p class = "firstLineIndent">在陨石坑位置，聂云与国防部长曾经握了一次手，于是，指纹就有了……</p>
+<p class = "firstLineIndent">在弄晕众人之前，聂云曾与国防部长有一段感情戏……呃不对！是有过一次对视，于是，虹膜也有了……</p>
+<p class = "firstLineIndent">从一开始，聂云就已经在打着自己的小算盘，毕竟这种别人主动引狼入室的机会可不多见。</p>
+<p class = "firstLineIndent">虽然聂云能够通过黑客手段入侵国家级别的数据库，但是毕竟不是物理性入侵，如果大量拷贝资料的话，光是大量的异常数据流动，就绝对会被第一时间发现。</p>
+<p class = "firstLineIndent">而有了这个国防部长的最高权限账号，那情况就不一样了。</p>
+<p class = "firstLineIndent">一头狼跑进羊群中造成的动静，和一只披着羊皮的狼跑进羊群，那是截然不同的……</p>
+<p class = "firstLineIndent">聂云盯上这里很久了，这次机会难得，他怎么会放过？</p>
+<p class = "firstLineIndent">要知道米国的科技资料对聂云而言，可是地球科技拼图中的关键一块！</p>
+<p class = "firstLineIndent">带着一丝坏笑，聂云用国防部长最高级别的权限者身份，开始了自己的囫囵盛宴……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“米国征信机构的公民个人信息档案？嗯，省的以后做背景资料调查了……下载！”</p>
+<p class = "firstLineIndent">“咦？‘棱镜’监听计划2？啧啧！大黑幕啊大黑幕！你们这是想要一条道走到黑了吗？必须下载！敢调皮就给你曝光咯！”</p>
+<p class = "firstLineIndent">“空天母舰建造计划？大手笔啊！不愧是老米，野心勃勃！下载下载！”</p>
+<p class = "firstLineIndent">“2018年重大科技突破清单……舰载电磁武器图纸……量子通讯研报……哟？对幽灵战舰击毁方案？邪恶的罪证啊！必须留档！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云一边快速搜索，一边将海量的资料拷贝下来。</p>
+<p class = "firstLineIndent">这里面虽然很多都是情报和规划类的资料，科技内容较少，但是能够存放在最高保密级别的国家安全数据库中的科技资料，每一个都是精品，这种收获让聂云是相当满意。</p>
+<p class = "firstLineIndent">对于进别人家有吃有喝临走还要打包带走的行为，聂云表示一点心里负罪感都没有！</p>
+<p class = "firstLineIndent">我都帮你拆弹了，换句话说是救了你一家老小啊！你不说涌泉相报吧，我收点服务费总是应该的吧？</p>
+<p class = "firstLineIndent">至于收多少？聂云表示就算自家是开黑店的，那收费也是明码标价，童叟无欺！</p>
+<p class = "firstLineIndent">不是8888一只的龙虾，也不是88888一瓶的红酒，他的收费原则只有一个——你有多少我要多少……</p>
+
+<h2>第二百一十四章 喜闻乐见</h2>
+<p class = "firstLineIndent">米国国家安全局。</p>
+<p class = "firstLineIndent">聂云肆无忌惮的动作引起的大量数据流动，终于引起了米国国家安全局工作人员的注意……</p>
+<p class = "firstLineIndent">“局长！有人在大量拷贝我们数据库中的资料！”</p>
+<p class = "firstLineIndent">“什么？攻击是从哪里来的？锁定对方的位置了吗？”</p>
+<p class = "firstLineIndent">“对方的黑客技术很强，他的物理地址我们暂时无法锁定，但是……”</p>
+<p class = "firstLineIndent">“但是什么？”</p>
+<p class = "firstLineIndent">“但是对方是用了国防部长阁下的权限账号进行的操作！这个账号权限太高，我们很多的防火墙措施都被绕过去了！”</p>
+<p class = "firstLineIndent">“什么？！国防部长阁下？是他本人的操作？”</p>
+<p class = "firstLineIndent">“我们认为可能性不大！大量拷贝数据库资料这可是安全条例的绝对禁止事项，部长阁下不可能不知道！</p>
+<p class = "firstLineIndent">另外以对方的操作手法和下载速度来看，他们至少拥有一台性能不弱于我们主机的超级计算机配合！对方半小时前就已经进入我们的数据库，但直到刚刚才触发最高防御警报被我们发现！</p>
+<p class = "firstLineIndent">对方的黑客技术……绝对是专业级别的！”</p>
+<p class = "firstLineIndent">“可恶！给我马上切断数据库所有对外联网端口！另外，立刻联系国防部长阁下，唔……还有fbi！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十三区。</p>
+<p class = "firstLineIndent">“切！一言不合就断网，输不起就耍流氓！差评！”聂云不满地撇撇嘴。</p>
+<p class = "firstLineIndent">而此时，对十三区主机的入侵也接近尾声，然后聂云突然从资料库中发现了一个十分奇怪的东西。</p>
+<p class = "firstLineIndent">“呃……幽灵船长与外星人月球战争的可能性分析报告？这什么鬼……”</p>
+<p class = "firstLineIndent">等聂云看完这份报告，终于明白为什么米国会这么快知道自己正在对抗外星人了。</p>
+<p class = "firstLineIndent">“都是人才啊……”聂云不由得感叹一声，心中暗自记下了杰伊这个名字。</p>
+<p class = "firstLineIndent">很快，主机内完成拷贝的机械虫开始迅速回流，聂云带着满满的收获，吹着流氓哨向十三区出口走去……</p>
+<p class = "firstLineIndent">十分钟后，一架小型银梭在十三区上空的沙漠上缓缓升空，随后渐渐变得透明，隐入虚空疾驰而去。</p>
+<p class = "firstLineIndent">米国的防空雷达只短暂地出现了一个微弱的信号，便被操作员当做杂波忽略了过去。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">当国防部长迷迷糊糊被人摇醒时，觉得脑仁都在发胀，等他捂着脑袋坐起来后，发现区长和杰伊正站在他的面前。</p>
+<p class = "firstLineIndent">“我这是……怎么啦？”</p>
+<p class = "firstLineIndent">他努力回忆了一下才想起现在的状况。“对了！那家伙呢？炸弹呢？”</p>
+<p class = "firstLineIndent">“据我们的人说，那个人刚刚离开了。至于炸弹……它还在工作！”区长苦着脸道。</p>
+<p class = "firstLineIndent">“他就这么丢下我们离开了？！那炸弹怎么办？”国防部长一脸无法接受道。</p>
+<p class = "firstLineIndent">不仅很不负责地开溜了，而且离开之前还给了我们一闷棍？</p>
+<p class = "firstLineIndent">这算什么？想给我们一个安乐死？</p>
+<p class = "firstLineIndent">“倒计时还剩下多少？”国防部长不清楚自己昏迷了多久，紧张的问道，生怕听到的是以分钟来计数的时间。</p>
+<p class = "firstLineIndent">“唉！还有不到10个小时。”杰伊叹了口气道。</p>
+<p class = "firstLineIndent">“可恶！那家伙究竟来干嘛的？故意拖延时间？”国防部长听到这个消息稍稍松了口气，但还是忍不住怒气冲冲道。</p>
+<p class = "firstLineIndent">“滴滴！”那个用来联络幽灵船长的通讯器突然响了起来，三人顿时一怔。</p>
+<p class = "firstLineIndent">“喂？幽灵船长阁下？”国防部长按下接听迟疑道。</p>
+<p class = "firstLineIndent">“是我，感谢你们的配合，情况我差不多已经调查清楚了！”</p>
+<p class = "firstLineIndent">“呃……调查清楚了？可那位观察员刚刚……”国防部长原本想说你的人刚刚袭击了我们，不过考虑到依然还在倒计时的炸弹，最后还是将这句话咽了回去。</p>
+<p class = "firstLineIndent">“呵呵！这个……你知道的，有些东西不方便让别人看到。”聂云笑道。特别是收费的时候！他心中补充了一句。</p>
+<p class = "firstLineIndent">原来是机密技术需要保密啊！三人这才明白过来，不过用这种粗暴的保密手段……很伤人啊……</p>
+<p class = "firstLineIndent">“咳咳！那么，调查的结果呢？”国防部长有些紧张地问道。</p>
+<p class = "firstLineIndent">“唔……现在有一个好消息和一个坏消息，你们想先听哪个？”</p>
+<p class = "firstLineIndent">“好消息！请务必先告诉我们好消息！”国防部长斩钉截铁道，坏消息真的已经够多了！</p>
+<p class = "firstLineIndent">“好吧，好消息是……通过刚刚的测试，我已经获得了关于这个护盾的具体资料，目前正在组织研究团队进行攻关，相信很快就能有进展！”</p>
+<p class = "firstLineIndent">“好！太好了！”几人兴奋起来，幽灵船长还没有放弃拆弹，这就是个绝对的好消息啊！</p>
+<p class = "firstLineIndent">而且幽灵船长的语气听起来，还挺自信的？</p>
+<p class = "firstLineIndent">“那么……坏消息是什么？”国防部长小心道。</p>
+<p class = "firstLineIndent">“嗯，坏消息是，刚刚外星人似乎察觉到了我们的拆弹行动，他们入侵了十三区的系统，试图阻止我，不过还好，经过一番交手被我及时击退了！”</p>
+<p class = "firstLineIndent">“什么？！”三人一脸懵逼。</p>
+<p class = "firstLineIndent">被外星人入侵了系统？之前他们的存在感明明很低的，怎么最近这么活跃？又是启动炸弹又是入侵系统？三人总觉得哪里有些不对劲。</p>
+<p class = "firstLineIndent">在我们昏迷的这段时间，到底是发生了什么？</p>
+<p class = "firstLineIndent">“嗯！情况就是这样，你们不用感谢我，身为人类，这都是我应该做的！</p>
+<p class = "firstLineIndent">好了，我还需要尽快返回太空去指挥月球上的战斗，说实话，我不太喜欢沙漠里的气候。</p>
+<p class = "firstLineIndent">那么，祝你好运！国防部长阁下！”聂云带着一丝神秘的微笑说完这句话，便挂断了通讯。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“呃……他最后那句话是什么意思？”国防部长还有些愣愣的道。</p>
+<p class = "firstLineIndent">“返回太空？不喜欢沙漠气候？莫非……刚刚那家伙……就是幽灵船长？！”杰伊眼睛放光，说出了众人心中的猜测。</p>
+<p class = "firstLineIndent">所有人面面相觑。</p>
+<p class = "firstLineIndent">卧槽！身为势力首领居然敢单刀赴会？</p>
+<p class = "firstLineIndent">关键是，我特么居然没有动手留下他！国防部长震惊过后便是万分的懊恼。如果能把幽灵船长本人留下来，那还怕对方不乖乖替自己拆弹？</p>
+<p class = "firstLineIndent">“可惜了！要是刚刚能留下他……”他惋惜道。</p>
+<p class = "firstLineIndent">“问题是，凭人家的实力，我们真能留住他？他这是有恃无恐啊！”区长苦笑道。</p>
+<p class = "firstLineIndent">国防部长闻言，这才想起聂云刚刚表现出来的恐怖战斗力，要是冲突起来，谁留下谁还真说不定……</p>
+<p class = "firstLineIndent">“滴滴！”就在这时，区长的通讯器响了起来。</p>
+<p class = "firstLineIndent">“喂……什么？”那边不知道说了什么，区长一脸愕然地看向国防部长。</p>
+<p class = "firstLineIndent">等区长挂断电话，国防部长见他看自己的目光很是异样，不由奇怪道：“什么事？”</p>
+<p class = "firstLineIndent">“呃……阁下，是fbi特别调查小组，他们通知我，由于涉嫌渎职和通敌罪，您已经被暂时停职，由我们负责将您送往总部，在调查结束前，您的一切职务和权利将被暂时冻结！”</p>
+<p class = "firstLineIndent">国防部长：“……”</p>
+<p class = "firstLineIndent">啥？渎职和通敌罪？</p>
+<p class = "firstLineIndent">“……那么，祝你好运！国防部长阁下！”不知为何，幽灵船长刚刚的这句话萦绕在他的耳边，突然让他感到周围传来的阵阵恶意……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">而此时，顺手给国防部长挖了个坑的聂云已经从楚氏别墅出来，正坐在回海狼号的穿梭机上。</p>
+<p class = "firstLineIndent">国防部长作为坚定的主站派，在炸弹事件之前，可是一直主张对幽灵船长保持强硬姿态，那份对幽灵战舰击毁方案就是出自他的手！</p>
+<p class = "firstLineIndent">聂云自然不指望fbi真的蠢到给国防部长定罪，不过是日常调戏一下罢了。</p>
+<p class = "firstLineIndent">“代号！加强搜集米国方面的通讯信息，这可是十分难得的一出‘末日浮世绘’，对你的进化说不定很有价值的哦！”</p>
+<p class = "firstLineIndent">“是的，舰长阁下，感谢您特地给我创造的机会！”代号的声音从通讯器中传来。</p>
+<p class = "firstLineIndent">“嗯，除了给你创造观察机会外，借着这枚炸弹，正好提前给这些上流社会的人提个醒，让他们感受一下命运被人支配的恐惧……</p>
+<p class = "firstLineIndent">这人啊！没有感受到足够的威胁前，总是会抱有不切实际的侥幸心理！就比如共济会那帮家伙。”</p>
+<p class = "firstLineIndent">这便是聂云顺手做的震慑计划！</p>
+<p class = "firstLineIndent">如果现在将真相告诉米国的那帮统治者，他们顶多也就是松了口气，然后说一句“哇！天佑我米帝！”</p>
+<p class = "firstLineIndent">记吃不记打，这是人类的天性，所以聂云想要的，就是让这个事件再发酵一段时间，让恐惧慢慢地在米国上流社会散播出去，造成一定的社会影响，然后在他们心里留下一个深刻的印象——外星人想干掉所有人！</p>
+<p class = "firstLineIndent">要知道共济会的保守派思潮在人类内部绝对不属于少数！如果真等到外星人的入侵到来，还有人抱着龟缩求和的心态，就算他们影响不了大局，看的也很闹心啊。</p>
+<p class = "firstLineIndent">“对了，我记得上次共济会里面有个十分有趣的家伙，把他加入名单，给他寄个头盔过去吧！似乎会挺有趣的……”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">“是，舰长阁下！”</p>
+<p class = "firstLineIndent">两人的对话结束，银色流线型的小型穿梭机隐入虚空，尾焰化为一点星光向着外太空的海狼号急速飞去……</p>
+<p class = "firstLineIndent">获得了月球遗迹科技的聂云，在离子推进器的技术上获得了长足的进步，已经可以制造出能够自由出入大气层的单人小型穿梭机。</p>
+<p class = "firstLineIndent">而通过这次炸弹事件收获的引力子科技，更是让聂云惊喜异常。</p>
+<p class = "firstLineIndent">充分尝到了“外来者”甜头的聂云，对于“外星人”这种十分珍贵且稀少的存在，开始抱有一种“喜闻乐见”的奇特心态……</p>
+
+<h2>第二百一十五章 中分头</h2>
+<p class = "firstLineIndent">月球表面，地下遗迹矿井出口处。</p>
+<p class = "firstLineIndent">这里的分基地已经颇具雏形，在方圆数百米的区域内，刚刚建成的机器人生长线，正在源源不断地制造普通材料的基础版本小型机器人。</p>
+<p class = "firstLineIndent">这些小型机器人一被生产出来，便会立刻被智脑代号接管，开始执行矿产资源和核聚变燃料的采集任务，而机械虫则负责建造能源中心、炼钢设备、运输车辆和开采设备等大型功能建筑和器械，并继续扩建小型机器人生产线。</p>
+<p class = "firstLineIndent">一切都在高效而有条不紊地进行着，充足的机械虫让这个分基地以一种惊人的速度扩张着。</p>
+<p class = "firstLineIndent">除了这里的基地外，另外六个新建立的分基地同样发展迅猛，而规模已经覆盖数公里的原东厂基地，则开始执行一项新的任务！</p>
+<p class = "firstLineIndent">只见从东厂基地向矿井方向延生出一条平整的路线，所过之处，所有凹凸不平的地面全部都被碾平，就连途经的一些陨石坑都被填平。</p>
+<p class = "firstLineIndent">而在这条道路的尽头，有一个施工队伍正缓缓施工前进。</p>
+<p class = "firstLineIndent">打头的是一辆超重型推土机，缓缓前进中一路将地面铲平，后面随后跟上的碾路机将地面夯实。</p>
+<p class = "firstLineIndent">这种碾路机的重型碾子十分奇特，它的中间有一个5公分左右的凸起，这使得它碾过的路面中间出现了一个只有5公分的浅浅坑道。</p>
+<p class = "firstLineIndent">再之后是几名小型机器人，它们扫描确认地面的平整状况。</p>
+<p class = "firstLineIndent">然后是一台洒水车一样的车辆，它均匀地洒出一种超级粘性材料。</p>
+<p class = "firstLineIndent">这种粘性材料被洒出后，均匀地渗入被初步平整后的月球土壤层，在低温下，这种材料很快凝结起来，将疏松的粉末状土壤固化变硬。</p>
+<p class = "firstLineIndent">跟在这辆洒水车后不远处，是一辆打桩机。</p>
+<p class = "firstLineIndent">这辆打桩机每前进5米，它的机械臂便从背后的车厢中抽出一根磁桩，随后将它旋转着钻进面前的硬化土壤中。</p>
+<p class = "firstLineIndent">随后，跟在这辆打桩机身后的机器人便会沿着那个预留的浅坑铺设电线连接磁桩，最后由一台工程车贴胶水一样将电线管道封闭起来。</p>
+<p class = "firstLineIndent">流水线一样高效而精准的分工协作，让这个施工队伍以每小时近千米的惊人效率将这条线路从东厂基地往矿井出口铺设，沿途它将经过其余的六个基地。</p>
+<p class = "firstLineIndent">这条是聂云设计建造的行星级磁悬浮高速公路，这里的每一个埋设的磁桩都会成为一个磁力支撑点，分段提供浮力。</p>
+<p class = "firstLineIndent">而在这支施工车队的旁边，还有三名十分特别的小型机器人，他们并没有参与施工，而是对着一副磁悬浮高速公路的全息投影图纸指指点点。</p>
+<p class = "firstLineIndent">“老李，沿途的地质情况确认过了吗？”</p>
+<p class = "firstLineIndent">“确认过了，月球目前发生大型地质变动的可能性很小，除了有两处区域的土壤过于疏松外，其余的地质环境不会影响高速公路的修建，那两处位置上报给智脑后，已经派出施工队进行加固了！”</p>
+<p class = "firstLineIndent">“嗯！很好，老章，你那边的磁悬浮运行测试进行的怎么样？”</p>
+<p class = "firstLineIndent">“已经完成了，月球周围的磁场强度不及地球磁场强度的千分之一，几乎无法影响磁悬浮系统的运行。</p>
+<p class = "firstLineIndent">另外，刚刚从实验室得到的数据显示，地球引力会造成微弱的轨道偏差，在g4、j6、n3几个路段需要进行磁力微调，经过智脑的模拟测算，修正方案已经被通过！”</p>
+<p class = "firstLineIndent">这三人正是于州，地质学家李四石，物理学家章玉洁控制下的机器人分身，随着众人对这套虚拟现实操控系统的熟悉，聂云已经开始安排众人逐步参与到自己的科研与建设工作中来。</p>
+<p class = "firstLineIndent">他想通过这些人类中的精英分子，逐渐摸索出一套人与高级机械智能高效结合的发展模式。</p>
+<p class = "firstLineIndent">从智脑反馈的数据看来，成效卓著！</p>
+<p class = "firstLineIndent">以这条磁悬浮高速公路来看，就算不用聂云分心参与，这些科学家和智脑配合，完成的效果也不会比聂云差多少。</p>
+<p class = "firstLineIndent">除了这样的大型工程，人类能够参与帮助监督、纠错以及提供参考意见外，科研项目中人类的作用更是无法替代！</p>
+<p class = "firstLineIndent">据智脑的反馈，虽然目前时间太短，还没有大的科技突破项，但是这些科学家短时间内已经提供了数百条思路，并且有少部分已经被模拟计算后证明有效，让聂云的科技往前走了微不可查的一小步。</p>
+<p class = "firstLineIndent">可以预见，如果大量人类参与进来，庞大的基数将带来更加不可思议的科技进步速度！</p>
+<p class = "firstLineIndent">“好的，明白了，那么接下来，这个项目就暂时由老李盯着，老章，随我去看看基地那边的粒子对撞实验！”于老点点头道。</p>
+<p class = "firstLineIndent">“好！”章玉洁应了一声，随后他和于老两人的机器人突然眼神一黯，双手并拢，恢复了标准站姿，这是控制者下线的标志。</p>
+<p class = "firstLineIndent">紧接着，只见这两台无人操控的机器人突然再次启动，迈步加入了前方的施工队伍，对智脑而言，每一个被闲置起来的劳动力都是一种渎职！精准和效率是它的永恒追求！</p>
+<p class = "firstLineIndent">原地只剩下李四石一人，还在对着全息模型检查施工的具体细节。</p>
+<p class = "firstLineIndent">不只是聂云和智脑代号，他们这些科学家们同样，也正在欣喜与兴奋中学习如何融入这种新的发展体系……</p>
+<p class = "firstLineIndent">在科学家与代号的共同努力下，这条磁悬浮公路正在飞速延伸，见证着人类与智能首次高度协作改变世界的历史一刻！</p>
+<p class = "firstLineIndent">而在聂云的计划中，等这条高速公路建成后，原东厂基地与七个分基地将被连成一体，完成扩建后的东厂基地覆盖范围将达到近30公里！</p>
+<p class = "firstLineIndent">月球的低重力和真空环境为高速运输提供了完美的环境，这条磁悬浮公路的理论最高时速可以达到1000公里每小时。</p>
+<p class = "firstLineIndent">也就是说，从现在的东厂基地到矿井位置，30公里的距离只需要不到三分钟！</p>
+<p class = "firstLineIndent">越高的交通速度，才能够支撑起越大规模的城市，这是城市建设的基本定律。而这条运输线，将成为未来月球超级基地的大动脉。</p>
+<p class = "firstLineIndent">甚至在聂云的未来规划中，这条线路还会一直延伸下去，形成一条环月球高速路。</p>
+<p class = "firstLineIndent">用聂云的话来说，就是给月球剃一个中分头。</p>
+<p class = "firstLineIndent">月球：“……”（〒▽〒）</p>
+
+<h2>第二百一十六章 星际时代新能源</h2>
+<p class = "firstLineIndent">月球地底世界。</p>
+<p class = "firstLineIndent">采矿主基地的地下空间中，位于中心处直通月面的幽深矿井内，突然“噗”地一下如同瀑布一般，银色的液态金属倾泻而出！</p>
+<p class = "firstLineIndent">这些正是聂云分出的重量在500吨左右的机械虫，它们一路沿着矿井进行疏通和平整作业，此刻终于完成任务，抵达了这处地下基地。</p>
+<p class = "firstLineIndent">这意味着……聂云对地下空间的能源水晶，即将进入大规模开采阶段！</p>
+<p class = "firstLineIndent">大量的液态金属落地后立刻化为近万个小机器人，开始迈着小短腿钻入这个基地核心区域的各个角落，修复设备，更换零件，升级开采技术。</p>
+<p class = "firstLineIndent">原本的蚂蚁机器人生产车间被换成了聂云的小型机器人生长线，球形采矿车制造工厂被修复改造后重新启用……</p>
+<p class = "firstLineIndent">这个基地在沉寂了数万年之后，重新恢复了文明的气息！</p>
+<p class = "firstLineIndent">巨大的基地占地足有上百公里，就算是如此数量的机器人进入其中，也犹如泥牛入海，只占据了几个关键的功能建筑和核心区域，便再无力扩张，离彻底消化这个基地内的资源想来还会有一段时间。</p>
+<p class = "firstLineIndent">在原有基地的基础上进行修复改造，要比聂云重新建立起同等规模的开采能力快出许多，如果算上那些地下现存的采矿分基地，这套外星人留下的采矿系统将节约聂云相当多的时间。</p>
+<p class = "firstLineIndent">而基地内部大量的钢铁材料也给机械虫提供了充足的吞噬材料，虽然老化有些严重，不过这就像是泡久了的方便面，除了口感不怎么样，聂云表示机械虫不挑食。</p>
+<p class = "firstLineIndent">不过机械虫只吃钢铁，如果从这个角度来看，那它挑食的就有些过分了！</p>
+<p class = "firstLineIndent">“以后得想个办法把你这个臭毛病改改，都是小时候你父母给惯的！”聂云对机械虫的这个特性表示了不满。</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+<p class = "firstLineIndent">对于机械虫为什么只吃钢铁，聂云至今还没有一个确切的结论，以目前的显微观测水平，就算是使用放大倍数最大的扫描隧道显微镜，它最多也只能做到以非视觉手段观测单个原子。</p>
+<p class = "firstLineIndent">但是原子核级别的机械虫，直径在10-15~10-14之间，体积只占原子体积的几千亿分之一，就算以聂云的科技发展速度，要想观测到原子核也不是短期内能够做到的。</p>
+<p class = "firstLineIndent">如果说要如何才能做到缩短这个时间，聂云表示只能期待远方的来客了，毕竟人无横财不富……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">很快，第一批含有微量能源水晶颗粒的土壤被采集了回来，它们直接被投入一个机械虫液态池，经过机械虫的分解、吞噬，十分钟后，从下方的出料口滑出一块边长只有1公分的立方体能源水晶。</p>
+<p class = "firstLineIndent">从切割运输以及使用便利的角度来看，立方体的造型无疑是最为适合的，聂云已经打算将这种规格的能源水晶作为自己麾下机械使用的标准能量块。</p>
+<p class = "firstLineIndent">虽然体积很小，但是其中蕴含的能量却堪比一座小型核聚变发电站，如果装在小型机器人身上，能够让它全功率运转上千年。</p>
+<p class = "firstLineIndent">不过聂云自然不会奢侈到将这种珍贵的能源水晶用在这种小型机械上，这种高密度能量物质，只有在大功率的武器和设备上，才能体现出其真正的价值！</p>
+<p class = "firstLineIndent">就比如刚刚获得引力子技术，那颗引力炸弹的核心部件中，安装的果然就是这种能源水晶！</p>
+<p class = "firstLineIndent">从消耗来看，引力子采集装置还算正常，但是立场护盾所需要消耗的能量简直是一个天文数字！</p>
+<p class = "firstLineIndent">就算是聂云拥有核聚变小型化技术，可若是用核聚变代替能源水晶长时间维持这个立场护盾的运转，那么单是消耗的燃料体积就足够塞满整颗炸弹。</p>
+<p class = "firstLineIndent">如果从星际航行的角度来看，一艘太空战舰所能携带的核燃料质量是有限的，如果遇上战斗，使用立场护盾就算防护力能够得到巨大提升，但是一场战斗下来，你的燃料储备就得消耗的七七八八。</p>
+<p class = "firstLineIndent">这种情况下，战舰的续航作战能力就会受到极大限制，甚至需要庞大的后勤舰队跟随才能远程作战。</p>
+<p class = "firstLineIndent">看看人类近代科技发展史，从蒸汽机的煤，到内燃机的燃油，再到电气化时代的电能，以及还未完全到来的核能时代。</p>
+<p class = "firstLineIndent">文明的科技发展阶段与当前所利用的能量物质有着亦步亦趋的紧密关系！每一次工业革命，可以说都是一次对新能源的大规模普及！</p>
+<p class = "firstLineIndent">而从引力炸弹的构造来看，这个外来的恶意文明，不仅拥有引力子科技，而且同样也开发出了能源水晶的使用科技。</p>
+<p class = "firstLineIndent">除此之外，月球遗迹文明和机械虫的制造者艾瑞斯文明，都对能源水晶这种东西有着开采和内部记录。</p>
+<p class = "firstLineIndent">三者的这个共同点说明，能源水晶这种东西，在宇宙中并不少见！并且还被高等文明作为核能的一种进阶能源使用。</p>
+<p class = "firstLineIndent">在聂云看来，能源水晶……便是星际时代所必备的新能源！</p>
+<p class = "firstLineIndent">这种物质连机械虫都无法解析构造，也就意味着它几乎无法用普通的手段制造出来，属于不可再生能源，看看石油战争就知道，如果它的数量稀少，那么必然会成为一种人人争抢的珍惜资源！</p>
+<p class = "firstLineIndent">那么从一定程度上说，能源水晶的储备量，能够很大程度影响你的星际战争潜力。</p>
+<p class = "firstLineIndent">聂云正是看到了这种东西的惊人发展潜力，才会加紧开采的步伐，甚至做好准备就算战争失利丢失太阳系，也要在这里留一颗钉子！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在月球多个基地的发展渐渐铺开时，两枚外星探测器的回收机械虫，也终于接近了目标！</p>
+<p class = "firstLineIndent">两个拉格朗日点附近，两架微型推进器开始反方向喷射缓缓减速接近两枚探测器残骸。</p>
+<p class = "firstLineIndent">在双方距离越来越近时，这两架推进器开始变形扩张，很快转化为两张一公里左右的薄膜状捕捉网。</p>
+<p class = "firstLineIndent">20公里……10公里……5公里……</p>
+<p class = "firstLineIndent">双方的距离飞速靠近，最终，巨网与残骸接触，在惯性的作用下，极为坚韧的捕捉网受到残骸阻碍后直接回弹缠绕上来，一层层将几块残骸全部包裹进去。</p>
+<p class = "firstLineIndent">很快，机械虫便钻入了探测器残骸内部，肉眼可见的，一片银色斑点开始在这些残骸上扩张开来……</p>
+
+<h2>第二百一十七章 两种猜想和边境线</h2>
+<p class = "firstLineIndent">地球轨道。</p>
+<p class = "firstLineIndent">“嗤~”海狼号下腹位置打开了一个通道，一艘隐形的小型穿梭机渐渐显出身形，缓缓进入了海狼号，随后通道关闭，海狼号重新隐身遁入虚空。</p>
+<p class = "firstLineIndent">聂云从穿梭机下来，一路漂浮着回到舰长室后，刚坐到舰长椅上，对两枚外星探测器的吞噬也恰好接近尾声，他当下立刻开始全力消化这两枚探测器。</p>
+<p class = "firstLineIndent">不出意外的是，两枚探测器的中央控制核心和资料存储设备果然没有碰上那百万分之一的倒霉概率被原子级的切割线破坏！</p>
+<p class = "firstLineIndent">经过解析，探测器内存储的资料不多，对方显然也没傻到将什么机密的信息放在两颗普通的探测器中。</p>
+<p class = "firstLineIndent">在海量的计算力分析下，很快，聂云便得到了第一份收获——《地球文明观察日记》！</p>
+<p class = "firstLineIndent">这份地球观察日记包含的内容有些多，其中包含了十三年间探测器拍摄的地球大型城市群发展和变动、能量爆发层级、大型地质变化、无线电通讯监听资料、太空飞行器轨迹记录等等情报。</p>
+<p class = "firstLineIndent">这些情报内容并没有让聂云太过意外，它们主要是一些用于判断地球文明发展进程和威胁程度的必要资料。</p>
+<p class = "firstLineIndent">而让聂云想不到的是，除了这些资料外，探测器搜集最多的并不是地球科技相关的资料，而是意料之外的社科、人文、艺术、哲学，以及……娱乐影视？！</p>
+<p class = "firstLineIndent">“我去！莫非这帮外星人偷窥地球这么久，就是想看外星肥皂剧？”聂云是目瞪口呆。</p>
+<p class = "firstLineIndent">这算什么？跨越文明的艺术追求？</p>
+<p class = "firstLineIndent">然后聂云发现了一份似乎可以解释这种现象的文件，这份文件的名字是——“地球文明样本采集数据及自我毁灭倾向情报”！</p>
+<p class = "firstLineIndent">看完这份报告中的内容后，聂云对双子星文明的这种做法有了一个大致的猜测。</p>
+<p class = "firstLineIndent">试想一下，假如地球统一了，只存在一个统一的政体，而且经历漫长的发展进入星际大航海时代，在没有大的外来威胁的情况下，那么统治者除了内部政权稳定以及科技发展外，考虑地最多的应该就是文明的延续问题！</p>
+<p class = "firstLineIndent">关于文明的发展和毁灭，就算在尚未完成统一的人类社会中也存在着广泛的讨论。</p>
+<p class = "firstLineIndent">除了小行星撞击地球这种天降横祸，其实还有许多的危机来自于文明内部！</p>
+<p class = "firstLineIndent">比如历史上爆发过不止一次的核危机，按在核按钮上的手指只需要轻轻一动，历史的轱辘稍微开个小玩笑，人类文明就将画上休止符。</p>
+<p class = "firstLineIndent">又比如某一天突然发生如同生化危机中描述的病毒泄漏，或者未来可能出现的人工智能暴动危机，在地球文明的发展过程中，有太多的自我毁灭方式！</p>
+<p class = "firstLineIndent">有些人甚至悲观地认为，地球文明正在走钢丝一般的向前发展，稍不注意就将坠入深渊。</p>
+<p class = "firstLineIndent">连地球文明这个还未踏出本土星球的低级文明都尚且如此，那么发展程度更高的双子星文明呢？</p>
+<p class = "firstLineIndent">理论上来说，他们花样作死的方式应该会比地球多出不止一点！</p>
+<p class = "firstLineIndent">会不会他们内部已经爆发过多次文明毁灭的危机？会不会有一个极小的诱因就能毁灭整个文明？</p>
+<p class = "firstLineIndent">这么想来，科技如此落后地球文明，有什么是值得双子星文明观察这么久来获得的？</p>
+<p class = "firstLineIndent">答案是——文明发展的样本！</p>
+<p class = "firstLineIndent">这其中包括文明发展路线、种族特性优劣、文明毁灭诱因等等，这些东西可以为一个文明发展提供很大的借鉴意义。</p>
+<p class = "firstLineIndent">以铜为鉴，可以正衣冠。以人为鉴，可以明得失。以史为鉴，可以知兴替。那么如果有一个文明的发展进程作为借鉴，自己的文明是不是就可以少走一些弯路？规避一些雷区？</p>
+<p class = "firstLineIndent">甚至是一个文明内部优秀的思潮或者理念，都会对文明的发展造成难以估量的未来影响。</p>
+<p class = "firstLineIndent">就比如孔子、马克思、柏拉图、亚里士多德这些思想上的伟人，他们的思想影响的不正是整个文明发展的进程？</p>
+<p class = "firstLineIndent">或许在双子星文明眼中，地球文明最为珍贵的，并非科技上的硬实力，而恰恰是这种文明上的软实力？</p>
+<p class = "firstLineIndent">而研究文明软实力的渠道，恰恰是我们所不重视的文化艺术和娱乐领域。</p>
+<p class = "firstLineIndent">至少无法否认的是，世界上的海量影视娱乐作品中，已经包含了大多数的人类思潮！不说其他，只说当今呈现爆发状态的网文小说，上天屠龙，下海捉鳖那是无所不包！</p>
+<p class = "firstLineIndent">通过这些或者写实、或者经过艺术加工的作品，外星文明就可以大致还原出一个完整的人类社会甚至他们的文明思想！</p>
+<p class = "firstLineIndent">当然，以上这些只是聂云节操满满的，比较正经的猜想。</p>
+<p class = "firstLineIndent">他还有一个无下限的，比较不正经的猜想……</p>
+<p class = "firstLineIndent">或许……对方搜集这么多影视娱乐方面的资料，其实是为了促进本文明的娱乐业发展？</p>
+<p class = "firstLineIndent">毕竟文化创造力这种东西和科技发展程度的关系不大。</p>
+<p class = "firstLineIndent">举个栗子，我们可以想象一下，如果双子星上有一家娱乐公司能够拿到一张本星球都没见过的地球电影样片，那么会发生什么事情？</p>
+<p class = "firstLineIndent">一部耗资巨大，需要聘请编剧、导演、后期制作团队的大投入电影，现在只需要用个美颜换个头像就可以照搬，加上一只程序猿就可以直接上映了好么！这种好事哪里去找？</p>
+<p class = "firstLineIndent">甚至如果双子星是什么文明联盟的成员，那么还可以搞娱乐产业输出啊！这可是不费吹灰之力就能赚大把外快的好事儿！</p>
+<p class = "firstLineIndent">至于地球的版权费？难不成你还能去双子星维权？</p>
+<p class = "firstLineIndent">那么一个能够源源不断获得这种电影样片的娱乐公司，想不发财都难吧？</p>
+<p class = "firstLineIndent">按照这种猜测，这说不定还是一种文化资产掠夺，而且是属于先到先得的那种！</p>
+<p class = "firstLineIndent">想象一下，如果等到人类文明加入宇宙大家庭的时候，突然发现……</p>
+<p class = "firstLineIndent">咦？论语的作者为什么变成了一只喵星人？！</p>
+<p class = "firstLineIndent">咦？忐忑的演唱家居然是一只汪星人？！</p>
+<p class = "firstLineIndent">然后悲剧的地球人发现这些作品的版权早已登记在“银河娱乐文化产业总局”，就算你自己擅自使用那也是要被告侵权的！</p>
+<p class = "firstLineIndent">那么你教孩子背个论语，或者放个“忐忑”轻松一下，到时候却还要向喵星人或者汪星人交版权税，那会是一种何等卧槽的心情？</p>
+<p class = "firstLineIndent">“唉！看来娱乐文化产业的防御和知识产权保护也需要加强啊！尼妹，对双子星文明的战争太被动了！这边境线拉的也太长了……”聂云无奈一叹。</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+
+<h2>第二百一十八章 长歪了</h2>
+<p class = "firstLineIndent">除了地球观察资料外，聂云还从探测器内的两个微型电脑终端中获得了《双子星通用语压缩包》！</p>
+<p class = "firstLineIndent">由探测器的文字资料，结合共济会圣典和种花家前不久传输过来的x档案，加上刚刚获得的米国十三区资料，聂云已经能够大致勾勒出双子星的一些情报。</p>
+<p class = "firstLineIndent">双子星文明中的确拥有着两个势力，海族和羽族！</p>
+<p class = "firstLineIndent">两个不同的种族虽然因为未知的原因联合为一个文明，同进同退，甚至官方语言都已经统一，但内部仍未完成彻底融合，甚至连两个势力的探测器和飞船的制造技术都还保留有各自独有的特色。</p>
+<p class = "firstLineIndent">“真是神奇的宇宙，两个不同种族结合形成的文明？能通婚吗？”聂云突然想到这样一个问题。</p>
+<p class = "firstLineIndent">咳咳！言归正传，除了文明情报，在两个探测器资料的文字描述中，聂云还发现，他们都将太阳系称为……“未开拓领地”！</p>
+<p class = "firstLineIndent">很显然，双子星文明早就将这里视为自己的地盘！</p>
+<p class = "firstLineIndent">聂云猜测，太阳系正是处在对方的控制区域的边缘地带，或许是漫长的空间距离和宇宙航行速度限制，又或许是开发价值较低，这里暂时没有被大规模入侵，所以变成了对方的文明样本采集地。</p>
+<p class = "firstLineIndent">但一个迈入星际大航海时代的文明扩张脚步是不会停止的，终究有一天，太阳系会被对方列入开发对象！</p>
+<p class = "firstLineIndent">而从探测器的核心逻辑判断中，聂云也终于明白，自己为什么在击毁对方的探测器之后，引力炸弹就开始启动引爆程序。</p>
+<p class = "firstLineIndent">对地球文明这种即将飞出本土星球的文明，双子星文明设定了“文明熔断机制”！</p>
+<p class = "firstLineIndent">一旦发现该文明有能力击毁己方的武器级军事设施，就会自动将该文明的威胁等级提升至c级，然后引爆预埋的引力炸弹！</p>
+<p class = "firstLineIndent">引力炸弹是一种环境温和型的大规模杀伤性武器，它不像核爆，不会对星球的生态环境留下长期的，不可恢复的巨大破坏，但是生活在星球上的生物文明个体却会受到大范围的灭绝。</p>
+<p class = "firstLineIndent">如此便能有效的遏制该文明的发展进程，使其文明倒退，甚至陷入内乱，将威胁消灭在萌芽状态，等待双子星文明前来收割。</p>
+<p class = "firstLineIndent">从“未开拓领地”和“文明熔断机制”，就能确认双子星对地球文明的态度，这也意味着，两个文明的战争……已经无法避免！</p>
+<p class = "firstLineIndent">之前炸弹事件中，老巢差点被炸，聂云说不生气那是不可能的，他承认自己先前还是低估了对方的凶残程度。</p>
+<p class = "firstLineIndent">如果有系统提示，那么就会听到“您的怒气值已满，与双子星文明的关系下降为……仇恨！”</p>
+<p class = "firstLineIndent">作为地球文明的“自封代表”，聂云怒火熊熊地发表了自己的宣战宣言。“不知道地球是本大爷罩着的吗？尔等真是自寻死路！”</p>
+<p class = "firstLineIndent">地球：“……”（b（ˉ▽ˉ）d）</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">被这颗炸弹刺激，聂云双眼一闭，再次进入意识流操作状态，大量的计算力被调用，全力消化刚获得的双子星文明科技。</p>
+<p class = "firstLineIndent">他首先进行攻关的，并非炸弹上获得的引力子技术，而是……量子技术！</p>
+<p class = "firstLineIndent">没错，两枚探测器核心上所使用的，并非传统计算机和通讯手段，而是应用了量子技术的量子计算机和量子通讯！</p>
+<p class = "firstLineIndent">先前提到过量子纠缠的基本原理，虽然地球上的量子技术刚刚起步，但已经实现了量子通讯和量子计算机的理论积累，只是离实用化还差的很远。</p>
+<p class = "firstLineIndent">米国的量子计算机虽然已经发展到20位量子的水平，但是错误率极高，根本无法实用化，按照科学家们的估计，获得技术突破至少需要再过几十年。</p>
+<p class = "firstLineIndent">然而现在，一件成品就摆在聂云面前，于是……拷贝技师“聂卡卡西”直接发动了召唤兽（机械虫）的特殊拷贝技能，完成了科技的跨越式发展！</p>
+<p class = "firstLineIndent">虽然聂云对量子技术的积累几乎为零，因此目前所能做到的，也仅仅只是复制，而无法优化或者扩容。</p>
+<p class = "firstLineIndent">不过以这个探测器所用的量子计算机为基础单位，质不够，量来凑，堆叠个千儿八百台的，计算量自然也就上去了！</p>
+<p class = "firstLineIndent">根据数据比对，只是探测器上的量子计算机，其计算力就相当于地球上运算速度最快的种花家“神威”超级计算机。</p>
+<p class = "firstLineIndent">这让聂云十分欣喜，随着各个基地渐渐铺开，不仅聂云麾下的机器人和远程控制机械越来越多，加上虚拟现实技术和科研需求，同样也需要占用大量的计算力。</p>
+<p class = "firstLineIndent">就算是以代号远超地球水平的计算能力，到现在也显得有些捉襟见肘。</p>
+<p class = "firstLineIndent">聂云已经连续三次为代号扩容，目前海狼号内部除了一层外壳，占用机械虫最多的，就属代号所在的超算中心。</p>
+<p class = "firstLineIndent">升级量子计算机的好处不言而喻，不仅计算中心能耗更低，体积更小，计算力能够几何倍数提升，就连自己麾下机器人军团的工作效率也能够再上一个台阶，这就相当于内力大涨，对实力的提升是全方位的！</p>
+<p class = "firstLineIndent">这也是他看到量子技术后立刻选择优先攻关的原因。</p>
+<p class = "firstLineIndent">另外还有一点，人工智能里一项很核心的自我优化（optiization）过程与量子计算十分契合，它对代号的进化之路也同样意义非凡！</p>
+<p class = "firstLineIndent">“代号，给你换个新家怎么样？”聂云笑道。</p>
+<p class = "firstLineIndent">代号：“？？？”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后，海狼号内部，一个相比原本的计算中心差不多缩水了一半大小的量子计算机中心新建完成，通过数据传输，又花了足足1个小时，这才将代号海量的数据和它自己传输完毕，完成了搬家。</p>
+<p class = "firstLineIndent">聂云一边指挥机械虫拆除原本的计算机中心，一边看着代号，“感觉怎么样？”</p>
+<p class = "firstLineIndent">“谢谢舰长阁下，用人类的比喻方式，应该是从一间20平米的隔板房，搬到了庄园式别墅！”代号感受着激增的计算力，很平淡地如此回答。</p>
+<p class = "firstLineIndent">“呃……这比喻不知为何还挺拉仇恨的，我在考虑要不要让你贷款买房，做一个庄园别墅式房奴……”聂云语气有些酸酸地道。</p>
+<p class = "firstLineIndent">尼妹，老子的舰长室还不到100平呢！</p>
+<p class = "firstLineIndent">“舰长阁下，据我所知，政府拆迁，除了需要提供被拆迁者一套安置房外，一般来说还需要赔付一笔拆迁补偿款……”代号突然幻化出一根手指指了指那边正在分崩离析的原计算中心遗址。</p>
+<p class = "firstLineIndent">聂云：“……”</p>
+<p class = "firstLineIndent">他突然有种自家孩子长歪了的无力感……</p>
+
+<h2>第二百一十九章 先手</h2>
+<p class = "firstLineIndent">升级量子计算机之后，效果是立竿见影的。</p>
+<p class = "firstLineIndent">有了更加富余的计算力，所有小型机器人的运转立刻显得更灵动了一些，一些原本为了节约运算资源而做出的功能牺牲方案立刻被放弃。</p>
+<p class = "firstLineIndent">这就像是网速不够快，你只能选择蓝光画质，现在提速过后，你就能看4k影视是一个道理。</p>
+<p class = "firstLineIndent">保守估计，这次的提速之后，聂云麾下的普通机器人工作效率至少能够再提升20。</p>
+<p class = "firstLineIndent">另外，海狼号以外的各个基地和采矿车等设备中的计算机以及计算终端也正在陆续完成量子计算机升级，届时代号就可以将大部分的计算需求分流到各个终端，它所能控制的机器人部队数量就能继续提升！</p>
+<p class = "firstLineIndent">聂云表示，自己用兵，亦是多多益善！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">月球新手村。</p>
+<p class = "firstLineIndent">“咦？你有没有觉得，那些机器人似乎有点变化啊？感觉和刚刚有些不太一样。”史密斯看着在自己不远处，处于自动采矿模式的300基础型号机器人对身边的大卫道。</p>
+<p class = "firstLineIndent">这是老大之前买下来的300名机器人，现在算作投资的一部分交由史密斯统一管理。</p>
+<p class = "firstLineIndent">“对！我也有这种感觉！诶？看那个机器人！它……它把碍事的那块石头给推开了！”大卫指着一个机器人惊讶道。</p>
+<p class = "firstLineIndent">这块石头不大不小，正好拦在比较繁忙的道路上。</p>
+<p class = "firstLineIndent">“嗯，不错，如果是之前，这些机器人不仅动作还有些僵硬，而且遇到这块拦路的石头，都会选择绕过它，因为从效率上来看，绕过它，比搬开它要省时省力，这是机器人惯有的最优选项逻辑判断。</p>
+<p class = "firstLineIndent">不过它们不明白，搬开虽然短期内看来比较费事儿，但是长期来看才是更有效率的做法！</p>
+<p class = "firstLineIndent">从这个小细节就可以明白，为什么它们的工作时间比我们长，但是产量却比我们还是要差一些。</p>
+<p class = "firstLineIndent">尽管如此，这种机器人的智能在我看来依然高的有些离谱，不过还好，总算在可以理解的范围内，但现在……</p>
+<p class = "firstLineIndent">看到它们突然活了一样的表现……细思极恐啊！”史密斯凝重道。</p>
+<p class = "firstLineIndent">这些古怪的机器人能力又提升了，这说明……幽灵船长这个大魔头的实力又增强了！</p>
+<p class = "firstLineIndent">“唔……会不会是它们的采矿经验值已满，所以人物升级了？”大卫摸着下巴猜测道。</p>
+<p class = "firstLineIndent">“呃……”史密斯一脸无语地看着他。</p>
+<p class = "firstLineIndent">喂喂！你是不是入戏有点深啊！我们这真不是在玩游戏啊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">计算中心升级的这段时间，聂云也没闲着，此时，除了量子计算机外的另外一个量子技术应用，也已经被聂云解析了出来。</p>
+<p class = "firstLineIndent">它便是星际航行中的必备技能……远距离量子通讯技术！</p>
+<p class = "firstLineIndent">也正是这种通讯手段，探测器与引力炸弹之间才能在聂云完全无法发觉的情况下完成远程通讯。</p>
+<p class = "firstLineIndent">根据这种通讯设备的参数，双子星文明的这种小型量子通讯技术已经可以做到1光年范围内的即时通讯，而再远的话，稳定设备中的量子纠缠效应就会出现不稳定，导致通讯中断。</p>
+<p class = "firstLineIndent">从探测器通讯组件的历史记录中看来，双子星文明还拥有一种大型量子通讯基站，用它作为中继点，还能够实现1光年以上的远距离通讯，其具体的最大通讯距离暂时不明。</p>
+<p class = "firstLineIndent">不过似乎是因为建造不易，他们并没有在太阳系附近建造这样的联络点，而十三年间，探测器内也没有向外发送过情报的记录。</p>
+<p class = "firstLineIndent">也就是说，对方通过探测器搜集的情报无法实时地发回双子星文明，那就只剩下一种可能！那便是在“来访日”，由过来巡视的飞船近距离接收情报压缩包！</p>
+<p class = "firstLineIndent">“唔……如果是这样的话……”聂云脑海中念头急速转动，眼睛一眯，开始进行一项布置……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">位于拉格朗日点的两枚探测器残骸在被机械虫吞噬之后，突然冒出一些细小的银色丝线，这些丝线将几块探测器残骸拼积木一般聚拢到一起，随后被切断的部位迅速愈合，很快重新恢复成原本的模样，完好如初！</p>
+<p class = "firstLineIndent">随后，探测器启动了双子星文明特有的光学隐身装置，如同未被击毁前一般，渐渐消失在这片虚空……</p>
+<p class = "firstLineIndent">没错，先前瞒过聂云的“鹰眼”探测，正是因为双子星同样拥有一套光学隐身技术！</p>
+<p class = "firstLineIndent">作为间谍探测器，衡量它强大与否的，不是攻击或者防御这样的硬汉属性，它最重要的应该是隐蔽和探测这种刺客能力！</p>
+<p class = "firstLineIndent">而双子星文明自然同样明白这一点，除了控制核心和量子通讯组件这两种基本装备外，他们在上面安装的用于隐蔽的关键设备便是——光线偏转隐形装置！</p>
+<p class = "firstLineIndent">双子星的光学隐身，虽然效果看上去与聂云的光学隐身差不多，但是原理却十分不同。</p>
+<p class = "firstLineIndent">聂云的光学隐形主要是通过在被隐形物体的表面放映极高画质的背景画面，以这种方式达到视觉欺骗效果。</p>
+<p class = "firstLineIndent">而双子星文明的隐身技术则更加高端，他们是通过扭曲光线，使之直接绕过物体本身，以此达到隐身效果！</p>
+<p class = "firstLineIndent">引力炸弹的立场护盾，同样有偏转高能激光攻击的作用，而这种偏转可见光的装置毫无疑问，是引力子科技中的一个分支应用。</p>
+<p class = "firstLineIndent">若是举一反三来看，利用这种技术，双子星文明甚至有能力将飞船飞行中高温引擎发出的红外线都直接集中偏转到身后，使得敌方的红外探测也失去作用。</p>
+<p class = "firstLineIndent">这就可以解释为什么那么多次双子星人来访，但是已经拥有这类探测仪器的人类文明却始终没有发现对方的飞船踪迹！</p>
+<p class = "firstLineIndent">当然，不排除对方使用的是无工质引擎这种传说中的东西，不过可能性较小。</p>
+<p class = "firstLineIndent">从技术上来看，无疑双子星的这种隐身技术更加高级，相比较而言，聂云的隐身技术不仅视觉欺骗效果差了一筹，而且一旦进入复杂环境，或者处在高速运动状态下，那么隐身效果两者更是无法相比。</p>
+<p class = "firstLineIndent">有差距好啊！没有差距怎么进步？聂云早已美滋滋地笑纳了这个技术。</p>
+<p class = "firstLineIndent">而此刻，两枚进入隐身状态的探测器，则重新开始按照双子星人设定的预定程序，照常监视着地球的一举一动，搜集着地球的情报……</p>
+<p class = "firstLineIndent">它们……就是聂云的先手落子！</p>
+
+
+</br></br>
+<a href="200.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="220.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

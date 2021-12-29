@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第一百六十章 杰伊*福尔摩斯</h2>
+<p class = "firstLineIndent">“你是怀疑，幽灵船长也知道‘他们’的存在，并且因为忌惮，所以选择了蛰伏不出？！”区长被这个猜测吓了一跳。</p>
+<p class = "firstLineIndent">然而仔细想了想，却又觉得这个猜测合情合理。</p>
+<p class = "firstLineIndent">以对方的科技实力，说不定组织的存在的时间比米国历史都还要久远地多，没道理连自己都知道的事情，人家会不知道啊！</p>
+<p class = "firstLineIndent">“当然，否则就算是忍者神龟，恐怕都没这么能忍的吧？”杰伊一脸笃定！</p>
+<p class = "firstLineIndent">“可不对啊，既然幽灵船长选择韬光养晦，那么现在又为什么要突然跳出来高调出场，要知道再过两个多月，就是每13年一次的‘来访日’！他就不怕和‘他们’产生冲突？”</p>
+<p class = "firstLineIndent">“所以这就是我的第二个猜测，也许幽灵船长现在主动暴露自己，是因为觉得……已经没有必要再隐藏下去了啊……”杰伊眼里有些兴奋。</p>
+<p class = "firstLineIndent">“呃……不会吧？你是说他主动求战？”区长有些难以置信。</p>
+<p class = "firstLineIndent">那可是“他们”啊！幽灵船长难道疯了？</p>
+<p class = "firstLineIndent">“当然，如果幽灵船长并不知道‘他们’的存在，那么暴露自己情有可原，但是如果明明清楚，却又用这么高调的方式入场……</p>
+<p class = "firstLineIndent">你说，如果等到‘来访日’，‘他们’知道了地球上竟突然出现幽灵船长这样的强大存在，‘他们’难道会无动于衷？</p>
+<p class = "firstLineIndent">不要忘了，39年前的‘阿波罗计划’，‘他们’明显对人类走出地球的进展十分关注，对我们的飞船进行了全程无死角的跟踪观察，这也是我们的月球殖民计划搁浅至今的原因！我们……也是在韬光养晦啊！</p>
+<p class = "firstLineIndent">对我们都是如此，那么没道理‘他们’会对一名拥有地球巅峰科技的幽灵船长置若罔闻吧？</p>
+<p class = "firstLineIndent">在我看来，幽灵船长暴露的那一刻，和‘他们’的接触就已经无法避免！</p>
+<p class = "firstLineIndent">至于是冲突还是交流，这一点我们无法猜测，但是可以预见，这次的‘来访日’必将有大事发生！”杰伊眼中精光一闪。</p>
+<p class = "firstLineIndent">“可如果是幽灵船长现在产生了对抗他们的念头，可是为什么要隐藏到现在，早在12年前‘来访日’结束，他就可以大力发展自己的势力，增加对抗‘他们’的筹码啊？”区长对杰伊的判断依然保持谨慎态度。</p>
+<p class = "firstLineIndent">“首先从幽灵船长的行事作风来看，他对地球上的势力并没有太大的恶意，冲绳基地事件更像是在传达一个信息‘这是一次警告，别来妨碍我！’</p>
+<p class = "firstLineIndent">扣押佛罗里达号船员三个月，这个时间和‘来访日’未免太过巧合。</p>
+<p class = "firstLineIndent">很显然，这是人质，就是想要让我们投鼠忌器！幽灵船长是想将时间拖过这三个月！</p>
+<p class = "firstLineIndent">可是为什么是三个月？</p>
+<p class = "firstLineIndent">说明他很清楚，三个月之后，要么行动成功再不需要这些人质了，要么……行动失败被‘他们’抹去！</p>
+<p class = "firstLineIndent">恐怕……幽灵船长自己也已经做好了对抗失败会激怒‘他们’的准备，故意等到这个时间才出现，分明是不想和地球上的势力有过多的牵连，他们……是想一力抗下这其中的风险啊！”杰伊说着眼神中已经露出钦佩的神色。</p>
+<p class = "firstLineIndent">“什么？这……”区长彻底懵了。</p>
+<p class = "firstLineIndent">喂喂！刚刚我们可是将幽灵船长当成一个米国的假想敌啊！连总统都要求我必要时出动“十三”干掉人家的飞船啊！</p>
+<p class = "firstLineIndent">你现在告诉我，他竟然是怀着一颗为全人类冒死试探外星人的“英雄”！？</p>
+<p class = "firstLineIndent">可是你这一顿分析，他么好有道理啊！搞得我完全无力反驳啊！</p>
+<p class = "firstLineIndent">“另外，‘super boy（超级男孩）’事件中的sb字母，我想对方确实是想要传达给我们一种信息，试想一下，b这个字母……如果是代表13或者说‘他们’呢？</p>
+<p class = "firstLineIndent">那么他想传递的信息或许是……stay（for）b（我在此，等待b）……幽灵船长这分明是想将空间站当成对抗‘他们’的前哨站啊！</p>
+<p class = "firstLineIndent">可想而知，一旦幽灵船长和‘他们’产生冲突，对方或许会恼羞成怒，对地球人展开报复，那么空间站首当其冲！</p>
+<p class = "firstLineIndent">幽灵船长为什么费那么大功夫将我们的宇航员逼回地球？这何尝不是对他们的一种保护？</p>
+<p class = "firstLineIndent">另外资料中提到过，那艘浮空战舰疑似拥有太空航行能力，现在看来，这不是可能，而是必然！</p>
+<p class = "firstLineIndent">没有太空战舰，幽灵船长哪里来的底气去对抗‘他们’？</p>
+<p class = "firstLineIndent">还有一个信息！在冲绳基地事件后不久，北极地区曾出现一个不稳定的雷达信号，在周边发现了明显的激光武器使用痕迹，我判断那应该是幽灵船长的战舰无疑！</p>
+<p class = "firstLineIndent">随后那艘浮空战舰从全世界销声匿迹，那么它又去了哪里？”</p>
+<p class = "firstLineIndent">“你不会是想告诉我，它已经被幽灵船长布置在地球轨道，准备对付‘他们’吧？”区长不可思议道。</p>
+<p class = "firstLineIndent">“不错！如果我是幽灵船长，绝不会将战场选在地球本土，至少是地球轨道，或者是月球甚至更远！</p>
+<p class = "firstLineIndent">北极虽然不像地球赤道地区那样拥有最佳的航天发射条件，但是有一点，那就是足够隐秘，几乎没有人会去关注这样一个地方！</p>
+<p class = "firstLineIndent">以那艘战舰的隐身能力……如果我先前的猜测无误，恐怕我们头顶已经出现了一艘太空战舰！”杰伊摊摊手。</p>
+<p class = "firstLineIndent">区长皱眉沉思，虽然杰伊的一番推理环环相扣，几乎是无懈可击！可是……</p>
+<p class = "firstLineIndent">“你说了这么多，可完全就是你的猜测，没有证据，我对此事保留态度。”区长靠在椅子上看着杰伊道。</p>
+<p class = "firstLineIndent">杰伊刚想说话，就在这时，门外敲门走进来一名黑衣人。</p>
+<p class = "firstLineIndent">“区长，有一个最新的消息，我们的哈勃望远镜在观测外太空时，偶然发现在地球近地轨道有一团巨大的影子扭曲了光线，造成星体的观测出现偏差，他们怀疑那里有什么东西存在！按照第十三条例，目前这个消息被暂时封锁！”那人说着将一份纸质文件交给区长。</p>
+<p class = "firstLineIndent">区长愕然地接过文件，一目十行地飞速扫视良久，然后抬头一脸古怪地看向杰伊。</p>
+<p class = "firstLineIndent">杰伊矜持一笑，慢悠悠地从胸口掏出墨镜戴上，然后对着区长摊手耸了耸肩。</p>
+<p class = "firstLineIndent">“嘿k，别太崇拜我，推理的旋律总会奏出事实的真相！从今天起，请叫我杰伊福尔摩斯！”</p>
+<p class = "firstLineIndent">区长：“……”</p>
+
+<h2>第一百六十一章 为了蔚蓝清净的世界</h2>
+<p class = "firstLineIndent">此时冲绳基地事件已经过去近两天，收到消息的世界各大势力很快从震惊中反应过来，开始着手采取措施。</p>
+<p class = "firstLineIndent">如果说先前的幽灵骑士和空中幽灵对各国而言只是战术层面的威慑力，那么浮空战舰的出现，意义绝对是战略性的！</p>
+<p class = "firstLineIndent">有人恐惧，担心强大的幽灵船长会改变世界军事力量格局！</p>
+<p class = "firstLineIndent">有人兴奋，认为迎来撬动旧有格局的新契机！</p>
+<p class = "firstLineIndent">有人贪婪，幻想获得幽灵船长的科技和装备！</p>
+<p class = "firstLineIndent">或许是出于报复的原因，幽灵船长基地的大概位置被米国悄悄泄露了出来，并被各个势力获悉。</p>
+<p class = "firstLineIndent">在普罗大众看不见的层面，有资格觊觎的势力纷纷将目光投放到幽灵船长基地的位置，蠢蠢欲动！</p>
+<p class = "firstLineIndent">而始作俑者米国，也在静静等待有人按耐不住替自己出手试探幽灵船长的基地。</p>
+<p class = "firstLineIndent">被打了脸不反击，可不是老米的作风，哪怕这些人或许只能给你添些堵！</p>
+<p class = "firstLineIndent">浮空战舰引发的一股暗流，开始慢慢涌动发酵……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">地球轨道，海狼号。</p>
+<p class = "firstLineIndent">聂云此刻眼中有无数的数据流光闪过，在“逆流星”计划之后，全球的通讯、侦查卫星，甚至包含大量机密信息的间谍卫星全部被他所掌控。</p>
+<p class = "firstLineIndent">现代通讯主要由卫星通讯和光纤通讯两种方式组成，而卫星通讯又具备了通讯距离长、信号覆盖广的特点，在军事、互联网、全球信号覆盖等领域拥有无可替代的作用！</p>
+<p class = "firstLineIndent">21世纪是信息的时代，谁掌控了更多的信息，谁就掌控了更多的资源，谁掌控了世界上所有的信息，那么他将成为世界的——神！</p>
+<p class = "firstLineIndent">这句话，聂云现在深有体会！</p>
+<p class = "firstLineIndent">卫星作为全球的信号中转站，其中的情报可谓海量，包罗万象，而且这个信息量每时每刻还在不断增长。</p>
+<p class = "firstLineIndent">其中有各种商业交易情报、世界500强企业的高层视频战略会议、各国军队的军事部署、政府的政策变动、毒枭的交易电话、恐怖分子的行动暗语，甚至针对幽灵船长的行动方案……</p>
+<p class = "firstLineIndent">聂云首次将世界上所有的卫星统合在一起，这意味着他获得了一张覆盖全球的强大情报网络，他正在成为这个世界的情报中枢！拥有了世界上最强大的情报搜集能力！</p>
+<p class = "firstLineIndent">更为可怕的是，机械虫海量的存储空间和超强的计算能力足以让聂云对这些情报进行系统的整合、筛选和分析。</p>
+<p class = "firstLineIndent">这两种能力相结合，产生的效果是惊人的！</p>
+<p class = "firstLineIndent">毫不客气地说，只要他想，就能从这些信息中获得无与伦比的发展优势，短时间内迅速建立一个称霸全球的庞然大物！</p>
+<p class = "firstLineIndent">而聂云的敌人却像是一个小透明一般，一举一动纤毫毕现！</p>
+<p class = "firstLineIndent">这就像是玩游戏开了挂，当别人的视野中还是迷雾时，聂云已经点亮了整张地图，获得的优势是战略性的！</p>
+<p class = "firstLineIndent">这些卫星就像是笼罩在地球的一张巨大的网，将地球的每一个细微变化纳入聂云的感知中，不可避免的，其中不仅有赤裸裸的利益纠葛，还有不为人知的黑暗……</p>
+<p class = "firstLineIndent">“这个世界的另一面吗？肮脏的政客、金钱与生命的交易、心中的正义、狂热的信仰、社会的变革……”聂云面无表情地喃喃着。</p>
+<p class = "firstLineIndent">这些信息就像是化为一个个画面映入聂云的脑海，有纷飞的战火，有怒吼的面容，有绝望的哭泣，还有最虔诚的仰望……</p>
+<p class = "firstLineIndent">他银色的眼眸中透着一股冷漠，毫无波澜！</p>
+<p class = "firstLineIndent">每次浏览这些信息时，他便会不由自主进入这样的状态，生物的情感属性被最大限度的压制，更像是一台冰冷的机械。</p>
+<p class = "firstLineIndent">这是属于聂云的生物本能和忠诚的机械虫在自主保护聂云的意识，以免他被这种海量的信息冲击心神，导致负面情绪的积累和爆发，冲垮聂云的意志。</p>
+<p class = "firstLineIndent">“真是愚蠢的人类……”聂云退出了这种状态，眼眸缓缓恢复漆黑，他不由叹息了一声。</p>
+<p class = "firstLineIndent">聂云从小生活的环境龙蛇混杂，人性的黑暗他同样接触过，然而就规模和性质而言，不及眼前看到的万一。</p>
+<p class = "firstLineIndent">“我不能更加认同，舰长阁下！人类绝对是我数据库中最为复杂和愚蠢的生物，他们有时可以无限崇高，为了理想献出宝贵的生命，有时却又为了一点微不足道的利益手足相残！</p>
+<p class = "firstLineIndent">而不可思议的是，这两种截然不同的行为却有可能发生在同一个个体身上！”代号这时突然开口。</p>
+<p class = "firstLineIndent">以进化为目标的智脑，同样在通过这些信息分析人类的行为模式，这一度让它逻辑混乱。</p>
+<p class = "firstLineIndent">在它看来，没有逻辑，等于愚蠢！</p>
+<p class = "firstLineIndent">“嗯，不过这种愚蠢恰恰就是你与智慧生物的区别，在理智与情感的天平上，后者更倾向于后者，就目前而言，我也是如此！”</p>
+<p class = "firstLineIndent">“好吧，我依然无法理解！那么舰长阁下，您打算怎么对付这些被欲望蒙蔽双眼的愚蠢人类？”</p>
+<p class = "firstLineIndent">“呵呵！我可是一名环保人士，保护环境，人人有责！”聂云笑了笑，然后看向窗外蔚蓝清净的地球。</p>
+<p class = "firstLineIndent">自己的后花园，可不需要带毒的罂粟……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海狼号的另外一边。</p>
+<p class = "firstLineIndent">聂云麾下的三人此刻正全副武装聚集在指定的舱室中，随后大脑芯片很快收到了这次的任务目标。</p>
+<p class = "firstLineIndent">三人飞速浏览过后，纷纷露出诧异的表情。</p>
+<p class = "firstLineIndent">“索马里海盗窝点？”</p>
+<p class = "firstLineIndent">“阿里兰反政府武装总部？”</p>
+<p class = "firstLineIndent">“中东恐怖分子训练基地？”</p>
+<p class = "firstLineIndent">呃……老板这是打算干什么？维护世界和平？</p>
+<p class = "firstLineIndent">小狼教官面色冰冷地在所有人的视网膜中，拿着教鞭开始解说任务。</p>
+<p class = "firstLineIndent">“有情报显示，这些作恶多端的武装力量不久后将派人对我们的基地展开秘密入侵行动，其不知死活的英勇精神让老板都为之震惊！</p>
+<p class = "firstLineIndent">这三个目标属于军事力量稍强的中等武装级别，拥有大量坦克、武装直升机、短程导弹等重火力，正适合测试你们的战斗力。</p>
+<p class = "firstLineIndent">而你们的任务是清除标定范围内的一切武装力量，对目标予以彻底毁灭！</p>
+<p class = "firstLineIndent">本次行动代号——‘为了蔚蓝清净的世界！’”</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">喂喂！有没有搞错，我们可是新人类啊！你竟然用自然人的口号？</p>
+
+<h2>第一百六十二章 不情之请</h2>
+<p class = "firstLineIndent">“等等，这三个是地面目标，而我们现在在地球轨道啊，怎么过去？”老大问出了一个关键问题。</p>
+<p class = "firstLineIndent">“从太空进入地球，难道还有第二条路？”小狼教官勾了勾嘴角。</p>
+<p class = "firstLineIndent">“不……不会吧……”三人心里齐齐一跳。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">很快，海狼号腹部装甲打开，弹射出三架长约5米的重装银梭，开始向着大气层坠落。</p>
+<p class = "firstLineIndent">通讯频道中。</p>
+<p class = "firstLineIndent">“唉！我早该猜到的！这恐怕就是老板特地把我们带上太空的原因……”老大一脸哀伤，恐怕这次，除了他们的战斗力测试，还顺便测试了以轨道空降对全球进行快速打击的能力？</p>
+<p class = "firstLineIndent">又被套路了！</p>
+<p class = "firstLineIndent">“哈哈老大，我喜欢这种感觉！老板的任务真是越来越刺激了！哈哈哈……”通讯中传来老三兴奋的声音。</p>
+<p class = "firstLineIndent">“作为地球首例军事用途的轨道空降兵，我感到无比的荣幸！这才符合世界级大boss的基本格调！”二毛同样是一脸狂热。</p>
+<p class = "firstLineIndent">老大闻言，对这两个神经粗大的家伙实在无语，我们组织里能不能来点正常人？你们这样显得我很不合群啊魂淡！</p>
+<p class = "firstLineIndent">想想三个月之前，自己还是一名地球上很普通的黑涩会成员，每天游手好闲游走在黑白之间，最大的敌人不过是街上巡逻的片儿警。</p>
+<p class = "firstLineIndent">现在呢？我他么正在从近地轨道向着地球发起冲锋，而且目标还是毁灭一个武力堪比小型国家的恐怖分子基地？！</p>
+<p class = "firstLineIndent">人生大起大落的太快实在是太刺激了……</p>
+<p class = "firstLineIndent">就在老大感慨间，银梭的坠落速度渐渐加快，外壳在与大气的剧烈摩擦中开始发红，尽管热量被机械虫迅速转化为能量储存起来，对银梭的影响不大，但机体的震动不可避免地逐渐剧烈起来。</p>
+<p class = "firstLineIndent">老大死死抓住扶手，肾上腺激素急速分泌！</p>
+<p class = "firstLineIndent">“没事的没事的，老板都鉴定过，老子的隐藏属性可是幸运！这次要是大难不死，老子就他么信啦！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">地球秘密基地。</p>
+<p class = "firstLineIndent">当于老再次睁开眼睛时，看着银色的金属天花板怔了好一会儿。</p>
+<p class = "firstLineIndent">困扰多年的风湿痛和关节炎突然间感觉不到了，呼吸也前所未有的顺畅，就像是以前一直压在胸口的一块巨石被突然移开。</p>
+<p class = "firstLineIndent">连原本模糊不清的视线也恢复清明，眼中的世界是那么多姿多彩，于老整个人简直有种重获新生的感觉。</p>
+<p class = "firstLineIndent">他的眼睛有些湿润，这种浑身轻松，久违的健康感觉多少年没有过了？</p>
+<p class = "firstLineIndent">不，不止是身体恢复了健康，应该说，比以往任何时候都还要好！浑身上下简直充满了力量！</p>
+<p class = "firstLineIndent">他抬起手，看着那双白皙陌生的，属于少年人的手。</p>
+<p class = "firstLineIndent">竟然真的回到15岁了？！</p>
+<p class = "firstLineIndent">尽管事先已经有了些心理准备，但是当这一幕真的发生在自己眼前时，于老依然被震撼当场！</p>
+<p class = "firstLineIndent">“呵呵！于老，恭喜重返15岁！”</p>
+<p class = "firstLineIndent">身边突然传来的声音将于老从失神中惊醒过来，转过头这才发现聂云正笑着站在他面前。</p>
+<p class = "firstLineIndent">“呃……谢谢！”于老愣了一下才坐起来点头感激道。</p>
+<p class = "firstLineIndent">不管人家有什么样的目的，对方给予了自己新生，这是不争的事实！他心中对幽灵船长的sos组织，产生了一丝感激之情。</p>
+<p class = "firstLineIndent">“于老不用客气，这是先前双方的约定内容！</p>
+<p class = "firstLineIndent">嗯！手术很成功，您老的身体各项机能已经恢复到十五岁青春期，成功焕发第二春，实在是可喜可贺！”</p>
+<p class = "firstLineIndent">焕发第二春？虽然话听起来似乎没错，不过你能不能换个词，总觉得会让人产生微妙的误会啊？</p>
+<p class = "firstLineIndent">“咳咳！手术虽然很成功，不过，这个过程也出现了一点小问题，呵……呵呵！”聂云接着却有些尴尬地笑道。</p>
+<p class = "firstLineIndent">“嗯？什么问题？”于老疑惑道。</p>
+<p class = "firstLineIndent">他看了看自己浑身上下，有胳膊有腿，没什么异常啊？</p>
+<p class = "firstLineIndent">就是脑袋感觉有点沉，应该是术后反应。</p>
+<p class = "firstLineIndent">聂云没说话，不知道从哪里摸出来一块镜子，眼神有些古怪地递给了于老。</p>
+<p class = "firstLineIndent">于老疑惑地接过来看了看，然后便是一愣。</p>
+<p class = "firstLineIndent">镜子中的，并不是想象中属于少年的稚嫩脸庞，虽然没有了满脸的皱纹和老年斑，但完全就是一张中年大叔的脸！</p>
+<p class = "firstLineIndent">于老自然是对这张脸很熟悉，这大概是自己40岁左右时的样子。</p>
+<p class = "firstLineIndent">十五岁的身体40岁的脸？怪不得刚刚感觉脑袋有些沉，这是……你妹比例失调了吧！？于老额头有些黑线。</p>
+<p class = "firstLineIndent">“咳咳！于老您知道的，虽然身体缩小了，但是由于头部大脑需要尽量维持原状，所以目前只能做到这种程度，体积会稍微有那么一点小超标。</p>
+<p class = "firstLineIndent">不过您放心，等到技术成熟，这个问题很快就能解决！”聂云拍胸脯保证。</p>
+<p class = "firstLineIndent">“呵呵，我还以为是什么大问题，你觉得我这样一个体悟过一次生死的人，会在意这么点外貌问题？”于老虽然觉得自己现在的样子有些怪异，不过和增加的寿命相比，这算是问题？</p>
+<p class = "firstLineIndent">“能够多活几十年，老头子绝对算是大赚特赚了！哈哈哈……”</p>
+<p class = "firstLineIndent">于老这时终于再也忍不住心中激荡的心绪，放声大笑起来，笑声说不出的开怀！</p>
+<p class = "firstLineIndent">重获新生的喜悦，恐怕没有人能够无动于衷。</p>
+<p class = "firstLineIndent">聂云见于老一副浑不在意的样子，当下笑道：“于老果然是豁达之人，那么请随我来吧，我们的基地已经到了，通讯器也已经准备好了，我想您或许会想要向国内报个平安？”</p>
+<p class = "firstLineIndent">“哦？这么快？感谢贵组织考虑的如此周到，我想我不仅需要报个平安，还需要将贵组织神乎其神的生命科技宣传一番，尽快让我的那些同僚就位！”于老似笑非笑看着聂云。</p>
+<p class = "firstLineIndent">果然人老成精！聂云暗道。</p>
+<p class = "firstLineIndent">被看穿心思，聂云倒是没有丝毫尴尬，“于老慧眼如炬，不过我也是出于一片好意，毕竟那些老爷子们已经是年老体虚，谁也不知道什么时候突然来个感冒发烧，万一……那就太可惜了！”</p>
+<p class = "firstLineIndent">于老一愣，想想的确是这样，急的应该是自己这边才对！</p>
+<p class = "firstLineIndent">“好！那我们现在就去！”于老很爽快地答应道，他没有理由拒绝。</p>
+<p class = "firstLineIndent">聂云刚想带路，于老突然想起什么一般，突然喊住了他。</p>
+<p class = "firstLineIndent">“于老？”聂云有些疑惑。</p>
+<p class = "firstLineIndent">“咳咳！那个，我这里还有个不情之请！”于老说话间有些不好意思。</p>
+<p class = "firstLineIndent">“您请讲，能做到的我一定不会推辞！”</p>
+<p class = "firstLineIndent">“那个……以后来的那些同僚们……能不能统一给他们调整到15岁？”于老的“中年脸”一红。</p>
+<p class = "firstLineIndent">“呃……这是为什么？”聂云奇怪道。</p>
+<p class = "firstLineIndent">要知道如果不是你要调整到15岁，只要过了青春期，那么基因逆流之后看起来也就是像个中年大叔，绝不会出现身体比例不协调的问题！</p>
+<p class = "firstLineIndent">换句话说，你这是自己作……聂云很没节操地甩锅！</p>
+<p class = "firstLineIndent">“这个……你们的名单里面有不少熟人呢！我身为里面资历最老，名望最高的，这么与众不同是不是……有些不好？”于老尴尬一笑。</p>
+<p class = "firstLineIndent">聂云闻言直接“嘶！”地倒抽一口凉气，瞬间明白于老的意思。</p>
+<p class = "firstLineIndent">尼妹！谁刚刚说对外貌问题毫不在意来着！</p>
+<p class = "firstLineIndent">于老这做法的目的再明显不过了，我一个看着与众不同不好，那就让所有人都与众不同，那不就天下大同了吗？</p>
+<p class = "firstLineIndent">这典型的死道友不死贫道啊！</p>
+<p class = "firstLineIndent">于老先前看着满脸慈祥，没想到竟然还是个宁叫我负天下人，勿叫天下人负我的狠角色啊！</p>
+<p class = "firstLineIndent">谁说科研人员纯粹，没有勾心斗角的？这人还没到呢，你就打算坑队友？！</p>
+<p class = "firstLineIndent">不过看着脸上带着尴尬却不失礼貌笑容的于老，聂云心中对这家伙的评价却顿时上升了一个台阶。</p>
+<p class = "firstLineIndent">他看人的思维比较奇葩，兢兢业业，跑腿代购！灵活变通，优秀员工！面厚心黑，这尼玛绝对是管理型人才没跑了！</p>
+<p class = "firstLineIndent">聂云有基因逆流技术在手，什么样的科学家勾引不到，手下就缺这种即懂科研，又懂管理的高级人才啊！</p>
+<p class = "firstLineIndent">“于老，这样万一东窗事发，你就不怕惹了众怒？”聂云眯起眼睛问道。</p>
+<p class = "firstLineIndent">“嘿嘿！放心，这些人里面辈分最高的都要叫我一声前辈！老夫自有分寸！”于老嘿嘿笑着伸手想摸胡须，结果摸了个空，只能讪讪地摸了摸光滑的下巴。</p>
+<p class = "firstLineIndent">聂云满脸笑意的点点头，好！就是要你这种干了坏事还一脸笃定自己有能力擦屁股的ceo！</p>
+<p class = "firstLineIndent">机械虫集团老总聂云很看好你哦！</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+<p class = "firstLineIndent">心中已经倾向于同意的聂云顺便想象了一下到时一群大脑袋的15岁科学家成群结队搞科研的场景……啧啧！那画面太美我忍不住想多看两眼啊！</p>
+<p class = "firstLineIndent">聂云这家伙看热闹嫌过事儿大吗？</p>
+<p class = "firstLineIndent">既然有人替自己背黑锅，还能丰富基地的娱乐文化，那聂云还有什么理由阻止？完全没有好么！</p>
+<p class = "firstLineIndent">至于后来的那些科学家们的感想……唉！谁让他比你先到？胡军长，你们所托非人啊……</p>
+<p class = "firstLineIndent">“好！我同意了！”聂云大手一挥！</p>
+<p class = "firstLineIndent">两人对视一眼，秒懂了对方的心思，有种阴谋，叫心照不宣……</p>
+<p class = "firstLineIndent">“嘿嘿！”</p>
+<p class = "firstLineIndent">“嘿嘿！”</p>
+<p class = "firstLineIndent">房间里响起两个阴险的笑声……</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯▽╰)╭）</p>
+
+<h2>第一百六十三章 阿里兰</h2>
+<p class = "firstLineIndent">很快，聂云就帮着于老接通了与国内的视频通讯，用的是于老提供的一个特别通讯号码，只要于老通过这个通讯号码联系他们，那么便代表没有异常，否则就有可能是在被胁迫的情况下进行通讯！</p>
+<p class = "firstLineIndent">这种小心谨慎也在聂云意料之中，他完全不以为意。</p>
+<p class = "firstLineIndent">通讯很快接通，画面上出现了胡军长的脸。</p>
+<p class = "firstLineIndent">为了更好的处理幽灵船长的事务，国内已经决定让胡军长成为己方的代言人，毕竟有过几次愉快的合作经历，彼此都很熟悉了。</p>
+<p class = "firstLineIndent">因此这次，胡军长也是亲自担任与于老的联络人，以便获得第一手的信息！</p>
+<p class = "firstLineIndent">“于老？咦？你是谁？”胡军长刚出现在画面上喊了一句于老，然后才看清眼前的中年人根本不是于老。</p>
+<p class = "firstLineIndent">他心中一跳，生怕对方接下来来一句：要么给xx，要么我撕票！</p>
+<p class = "firstLineIndent">“胡军长，我是于州！”然后中年人突然说出一句让胡军长差点跳起来的话。</p>
+<p class = "firstLineIndent">“什……什么？！你……你说你是于老？”胡军长看着对方那张红光满面的“中年脸”，一脸的你在逗我？</p>
+<p class = "firstLineIndent">“不错！治疗很成功，我现在感觉自己年轻了几十岁！”于老笑眯眯道。</p>
+<p class = "firstLineIndent">胡军长脸上露出狐疑的表情。</p>
+<p class = "firstLineIndent">有没有搞错，我们分开才一个多小时好么！我这还在回去的路上呢，你就和我说治疗结束了而且很成功？</p>
+<p class = "firstLineIndent">你以为就是去割个阑尾吗？还是在救护车上做的手术？</p>
+<p class = "firstLineIndent">重点是，治疗成功你就换了张脸？科幻了点吧！</p>
+<p class = "firstLineIndent">按照胡军长他们的想法，就算幽灵船长的生命技术再先进，也不过是治疗一下人体的疾病，或者是增强一下人体细胞活性，返老还童这种事情，从来没在他们的想象范围之内，毕竟这种科技跨度可比延长寿命要可怕太多了！</p>
+<p class = "firstLineIndent">“胡军长，我家的那盆紫罗兰很娇贵，麻烦你帮我照看好！”于老突然说了一句莫名其妙的话。</p>
+<p class = "firstLineIndent">胡军长闻言浑身一震，顿时瞪大眼睛。</p>
+<p class = "firstLineIndent">这是他们事先商量好的暗号，以便证明于老是于老！</p>
+<p class = "firstLineIndent">暗号一个字不差！</p>
+<p class = "firstLineIndent">忍住心中的震惊，胡军长仔细观察对面，视频画面上，中年人的脸占据了整个屏幕，看不见脖子以下，在放大的特效下看的十分清楚，胡军长顿时觉得的确有点眼熟。</p>
+<p class = "firstLineIndent">那眼角、那鼻子，和于老的确很像！</p>
+<p class = "firstLineIndent">莫非真是于老？胡军长看着眼前的中年男人整个人完全懵了。</p>
+<p class = "firstLineIndent">“唉！我自己都被自己现在这副样子给震惊到了，sos的生命科技，远远超出我们的想象！”于老叹息道。</p>
+<p class = "firstLineIndent">有这样的技术在手，sos组织在他眼中越发深不可测，该说不愧是以对抗外星人为己任的组织吗？</p>
+<p class = "firstLineIndent">“这……于老，今天晚上你吃的晚饭是什么？”胡军长依然有些不确定，决定再试探一下。</p>
+<p class = "firstLineIndent">“呵呵！今晚我根本就没吃晚饭！如果说有，那就是点滴瓶了！”于老笑道。</p>
+<p class = "firstLineIndent">胡军长点点头，看来的确是于老没错，如果是假冒的，对方不可能连这种细节都能提前逼问出来，并且做到对答如流！</p>
+<p class = "firstLineIndent">好容易才从于老返老还童的事实中清醒过来，胡军长酝酿了好久，这才憋出来一句，“真他么不可思议！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">夜里10点，阿里兰反政府武装总部！</p>
+<p class = "firstLineIndent">这里是位于西亚沿海的一个边陲小国阿里兰共和国的边境地区。</p>
+<p class = "firstLineIndent">阿里兰共和国国力不强，由于历史原因常年动乱，长期处在无政府状态，国内一共有两股较大的武装势力。</p>
+<p class = "firstLineIndent">一股现今的阿里兰共和国政府，一股是自称阿里兰反政府武装的势力，据说由一个神秘的大财团在背后提供支持。</p>
+<p class = "firstLineIndent">阿里兰反政府武装表面上打着推翻独裁统治的政治口号，实际上干的却是贩卖人口的勾当，他们以此换取大量的发展资金和武器装备，其组成成员多是世界各国的国际雇佣兵和当地的暴民。</p>
+<p class = "firstLineIndent">这是一个不为人知的世界黑暗面，每年从这里被贩卖的妇女和儿童数以千计！</p>
+<p class = "firstLineIndent">此刻的阿里兰反政府武装总部大楼中，巨大的落地窗前，一名剃着光头，满手祖母绿宝石，有着典型西亚库尔德人面部特征的中年男子正坐在沙发上抽着雪茄。</p>
+<p class = "firstLineIndent">“金主的雇佣任务进行的怎么样了？”他对着恭敬站立的一名手下问道。</p>
+<p class = "firstLineIndent">“头儿，人员和装备都准备好了，明天就可以乘船前往目标海域，不过对方可是最近名声大噪的幽灵船长，邪门儿的很，听说连米军都吃了亏，我们这样去招惹他们，真的没有问题吗？”</p>
+<p class = "firstLineIndent">“哼！怕什么！这次可是多个势力的联合行动，我们不过是其中不起眼的小角色，天塌了有个儿高的顶着！</p>
+<p class = "firstLineIndent">再说，事后幽灵船长就算知道我们参与了，他难不成还能开着军舰来找我们的麻烦？山高水远的，你还真当他是个幽灵，能纵横四海了？”男子不屑道。</p>
+<p class = "firstLineIndent">以阿里兰反政府武装的势力等级，自己的情报能力有限，有关幽灵船长的详细情报，还是它背后的神秘金主提供的。</p>
+<p class = "firstLineIndent">而有心找炮灰的金主，自然不可能提供给他们确切的情报，自然是相当程度弱化了幽灵船长的武力等级。</p>
+<p class = "firstLineIndent">所以他们并不十分清楚，自己正打算招惹的，是怎样一种存在。</p>
+<p class = "firstLineIndent">“这事儿就交给你去办了！对了，金主的预付款到了吗？”中年男子惬意地吐出一口烟圈道。</p>
+<p class = "firstLineIndent">“2架阿帕奇刚刚入库！检查过了，都是好货！”</p>
+<p class = "firstLineIndent">“好！有了这批武器，我们回头就能把南边那座小镇打下来，到时候人口这种东西，要多少没有？”</p>
+<p class = "firstLineIndent">“头儿，还有个好消息，昨天我们的‘游击小队’前往政府军的地盘，抓回来43个好货色，相信这个月的入账又要多一笔了，嘿嘿！”手下笑着道。</p>
+<p class = "firstLineIndent">“嗯！好，做的很好！看到了吗？这里满地都是财富！所以我爱阿里兰，爱这片黑暗的土地，如同这夜色一般，爱的那么深沉，哈哈……”他看着窗外漆黑的夜色大笑起来，话语中却满是残酷。</p>
+<p class = "firstLineIndent">然而就在这时，一道刺目的流星划破夜空，直直坠落而下，在这片深沉的黑暗中，显得那么耀眼……</p>
+
+<h2>第一百六十四章 地狱火</h2>
+<p class = "firstLineIndent">“妈妈，我害怕！”一个粉雕玉琢的小女孩蜷缩在母亲的怀中，看着四周持枪警戒的武装人员弱弱道。</p>
+<p class = "firstLineIndent">这是一处临时营地，几堆篝火照亮了周围十数米左右的区域，篝火旁围坐着四十多名衣衫褴褛的妇孺，在夜风中互相依偎取暖。</p>
+<p class = "firstLineIndent">“别怕，会没事的，会没事的！政府一定会派军队来救我们的！”年轻的母亲紧紧搂着怀中的女儿，喃喃着用苍白的语言安慰。</p>
+<p class = "firstLineIndent">她的脸上还带着一道淤青，那是被强掳时反抗留下的痕迹。</p>
+<p class = "firstLineIndent">嘴上虽然对女儿说着安慰的话，可是连她自己都无法被自己说服，要知道这里可是反政府武装的老巢，内战打了这么多年都没有丝毫结束的迹象，又怎么可能会有人到这里来救她们？</p>
+<p class = "firstLineIndent">此刻如果不是女儿支撑着她逃生的信念，恐怕她此刻已经绝望了！然而一想到那未知的可怕命运，她还是不由得露出恐惧的神色。</p>
+<p class = "firstLineIndent">就在这时，天空中突然传来一阵刺耳的呼啸。</p>
+<p class = "firstLineIndent">“看！那是什么？”身边突然有人指着远处的天空惊呼。</p>
+<p class = "firstLineIndent">年轻的母亲抬头望去，只见天边一团巨大的火球带着惊人的气势从天而降，成为这片黑暗夜色中最为夺目的存在！</p>
+<p class = "firstLineIndent">“轰！”一声巨大的撞击声过后，地面都微微震颤了一下，不远处的一座3层小楼被直接砸出一个巨大的坑洞。</p>
+<p class = "firstLineIndent">坠落物周围瞬间燃起熊熊大火，有不少被震伤的武装人员惊恐地逃离坠落点。</p>
+<p class = "firstLineIndent">周围所有人都愕然地看着那处燃烧着烈焰的所在，完全不知道发生了什么情况？</p>
+<p class = "firstLineIndent">陨石撞击？</p>
+<p class = "firstLineIndent">正当所有人都被这突如其来的一幕吓傻时。</p>
+<p class = "firstLineIndent">“踏踏……”一阵金属靴踩踏水泥地面的脚步声从坠落点中传来，然后在所有人目瞪口呆的目光中，火焰中竟缓缓走出一个漆黑的人影。</p>
+<p class = "firstLineIndent">全覆式的面罩，浑身泛着黑色金属的冷光，冰冷而坚硬的铠甲在火光的照映下犹如染上了一层火焰。</p>
+<p class = "firstLineIndent">“什……什么人！？”周围的武装人员终于从震惊中反应过来，纷纷紧张地举起枪口对准了这个诡异的入侵者。</p>
+<p class = "firstLineIndent">只见那人环视一圈，在那四十多名妇孺身上稍稍停顿了一下，“你们好，我之前是一名拳击手，现在则负责替老板打扫垃圾！”</p>
+<p class = "firstLineIndent">这是一句地道的阿里兰语，然后话音刚落，这个人影便抽出了腰间的长剑，遥遥对准了人群最为密集的位置。</p>
+<p class = "firstLineIndent">“开火！”这种明显挑衅的话语和举动已经彻底表明了对方是敌非友的立场，周围的暴徒和雇佣兵纷纷呼喝着扣动扳机。</p>
+<p class = "firstLineIndent">“哒哒哒！”猛烈的开火声让那些妇孺尖叫着压低身体，年轻母亲趴在自己女儿身上，眼睛却一直死死盯着那个似乎是从天而降的黑色身影。</p>
+<p class = "firstLineIndent">那会是神明派来拯救自己的使者吗？她心中祈祷。</p>
+<p class = "firstLineIndent">“叮叮叮……”在所有人愕然的目光中，密集的子弹打在神秘人的铠甲身上，却纷纷被反弹，竟然不能对对方造成一丝的威胁。</p>
+<p class = "firstLineIndent">这时，那人的长剑小范围地晃动了几下，同时众人耳中突然听到“嗖嗖嗖！”连续的诡异破空声。</p>
+<p class = "firstLineIndent">“噗嗤！”“啊！”……</p>
+<p class = "firstLineIndent">各种惨叫和穿刺物体的声音不断传来，只是这一眨眼的功夫，长剑所指的方向，就已经倒下一大片的武装分子。</p>
+<p class = "firstLineIndent">这些人或是额头突然飚出血花，或是心脏位置被击穿，无一不是要害诡异地受到致命贯穿伤。</p>
+<p class = "firstLineIndent">枪声顿时一滞，所有人都被敌人的攻击方式吓到了，没有枪声，没有火光，对方只是轻轻挥动长剑，然而剑尖所指的地方，同伴就瞬间被贯穿要害。</p>
+<p class = "firstLineIndent">这种诡异的攻击方式，让所有人心生恐惧，有些人甚至丢下武器，口中大喊着恶魔尖叫逃离，然而……</p>
+<p class = "firstLineIndent">“嗖嗖嗖……”诡异的破空声随着那人缓缓移动的剑尖依然在不停发出死神的低吟，几乎弹无虚发！</p>
+<p class = "firstLineIndent">很快，那人身边便被肃清了一片方圆数十米的真空地带，区域内除了那些妇孺，再无一名站立的武装分子。</p>
+<p class = "firstLineIndent">“喂！那边的！愣着干嘛，麻溜的赶紧走啊！你们在这儿很影响我发挥的好么！”几步来到一众面露惊恐的妇孺面前，那人指了指基地外的方向道。</p>
+<p class = "firstLineIndent">所有人愣了片刻，然后纷纷反应过来，惊喜地转身就逃，那名年轻的母亲抱着女儿，最后转头看了一眼，将那个黑色的身影牢牢记在心中。</p>
+<p class = "firstLineIndent">老三看着这些人逃入黑暗中，这才转身面向逐渐沸腾起来的基地。</p>
+<p class = "firstLineIndent">“嘿嘿！终于可以放开手脚活动活动了，可别让我失望啊！杂碎们！”老三扭了扭脖子，发出“铿铿！”的金属骨骼撞击声，然后缓缓走向基地内部……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“轰！”</p>
+<p class = "firstLineIndent">刚刚发表完“我爱阿里兰”演说的光头中年男子被一声突如其来的轰鸣吓的一个哆嗦，嘴里的雪茄顿时掉落在地。</p>
+<p class = "firstLineIndent">“这……他么什么情况！？”光头男子看着那处燃起大火的区域愕然道。</p>
+<p class = "firstLineIndent">“应该是什么坠落物吧！陨石之类的？”手下疑惑道。</p>
+<p class = "firstLineIndent">“砰砰砰！”这时，那个位置突然传来一阵激烈的枪声。</p>
+<p class = "firstLineIndent">“屁的陨石，是敌袭！”光头男子吼道，然后他立刻拿起桌上的通讯器。“发生了什么事？敌人是谁？！”</p>
+<p class = "firstLineIndent">“头儿！现在还不清楚，那边的人联系不上了！我们正在组织人员过去支援！”</p>
+<p class = "firstLineIndent">“废物！装甲车和重火力开过去！不管他是谁，给我撕碎他！”</p>
+<p class = "firstLineIndent">“是！头儿！”</p>
+<p class = "firstLineIndent">光头男子说完，抓起旁白的望远镜看过去，借着明亮的火光和较高的地势终于看清了那里的情况。</p>
+<p class = "firstLineIndent">横七竖八的尸体让他心中一跳，而唯一站立着的人影看上去分外显眼，那个身影此时正笔直地朝着他的位置走来，随着军用望远镜的焦距调整，他终于看清那个身影的模样！</p>
+<p class = "firstLineIndent">“全覆式黑色装甲，怪异的冷兵器长剑……不……不会吧？！”光头男子看清那个身影的模样后，不由得重重咽了口唾沫。</p>
+<p class = "firstLineIndent">幽……幽灵骑士？！</p>
+<p class = "firstLineIndent">有没有搞错？我的人都还没出发呢，你的报复就上门了？td谁出卖老子！</p>
+<p class = "firstLineIndent">另一个他完全想不通的地方是，对方刚刚到底怎么过来的？难不成是传说中的技能——地狱火？！</p>
+
+<h2>第一百六十五章 投靠</h2>
+<p class = "firstLineIndent">整座阿里兰反政府武装的基地已经被异常的动静彻底惊动，不远处，数辆装甲车和武装越野车正在向这里赶来，上面配备了车载重机枪和反坦克武器，在它们身后，还跟着数以百计的精锐雇佣兵。</p>
+<p class = "firstLineIndent">而更远的武器库中，训练有素的武装分子纷纷穿上装备进入战斗位置，坦克的发动机开始发出轰鸣，武装直升机的螺旋桨开始缓缓转动！</p>
+<p class = "firstLineIndent">然后很快，三发照明弹被发射到那片区域上空，照亮了所有人的视野。</p>
+<p class = "firstLineIndent">打头的一辆重型装甲车率先发现缓缓移动中的人形装甲，二话不说立刻开火。</p>
+<p class = "firstLineIndent">“嗵嗵嗵！”30大口径机炮射出一串火舌扫向对方，然而那道人影却在即将被命中之前猛地蹲身一跃，蹿向高空，车内的火力手只觉得眼前一花，便失去了对方的踪影！</p>
+<p class = "firstLineIndent">机炮将对面打得烟尘四起，却扑了个空，火力手这才惊愕地松开扳机。</p>
+<p class = "firstLineIndent">“人呢？”莫非刚刚自己眼花了？</p>
+<p class = "firstLineIndent">“砰！”这时车顶却突然传来一声重物坠落声。</p>
+<p class = "firstLineIndent">车内的武装分子还没有反应过来呢，“嗤！”的一声，一柄长剑就从车顶上直刺而入！那散发妖异水晶色彩的剑锋甚至离火力手的鼻尖只有不到一公分。</p>
+<p class = "firstLineIndent">火力手满脸冷汗地刚想道一声好险，然而下一刻，他眼前的那柄诡异长剑却突然蹿出幽蓝色的电芒。</p>
+<p class = "firstLineIndent">“滋滋！”装甲车外的人只看到车窗上蓝色电芒一闪，整辆装甲车顿时冒出无数火花，然后不到三秒便引爆了内部的弹药和汽油，装甲车“轰！”的一声直接化为一团耀眼的火球。</p>
+<p class = "firstLineIndent">而那个车顶上的敏捷身影早已在这之前便抽剑跃上后面跟上来的另一辆装甲车，只留下一个爆炸的背景……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“滋滋~发现入侵者，只有一人，大家不要大意，说不定对方还有同伙！”</p>
+<p class = "firstLineIndent">“a组装甲部队接敌！开火！”</p>
+<p class = "firstLineIndent">“滋滋~怎么回事……轰……天呐！前面的装甲车突然爆炸了！这是怎么回事？等等！有人在我们车顶……不……轰……滋滋……”</p>
+<p class = "firstLineIndent">“a组装甲部队全灭！b组？b组给我顶上！直升机呢？我们需要空中支援！”</p>
+<p class = "firstLineIndent">“快找掩护！小口径枪械对他无效，用重火力！火箭弹呢？”</p>
+<p class = "firstLineIndent">“他的速度太快了，我锁定不了他！小心，他往我们这里冲过来了……啊！滋滋……”</p>
+<p class = "firstLineIndent">“b组全灭，快后退！组织防御……”</p>
+<p class = "firstLineIndent">“坦克组上去了，不行！无法瞄准！轰……天呐！这家伙是个怪物！滋滋……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">通讯器中传来一阵嘈杂的激烈战斗和爆炸声，夹杂着己方人员的惨叫。</p>
+<p class = "firstLineIndent">光头男子难以置信地看着接战区域由远至近，渐渐靠近己方的核心区域，沿途所有的大型装甲车辆和武器全部被摧毁，单兵战斗人员更是完全被一路撵着往回逃跑。</p>
+<p class = "firstLineIndent">这一路，电光闪烁，烽火冲天！</p>
+<p class = "firstLineIndent">“该死的！他们到底有多少人？”光头男子恐惧地对着通讯器大吼道。</p>
+<p class = "firstLineIndent">“只……只有一个！从头到尾只有一个人在和我们战斗！可……可是他的身手太敏捷了，我们根本跟不上他的速度！恶魔！他一定是个恶魔！”通讯器中的声音显得无比惊慌失措。</p>
+<p class = "firstLineIndent">从头到尾只有一个人？！</p>
+<p class = "firstLineIndent">光头男子愣愣地看着外面燃烧着的半个基地，这就是……幽灵骑士？</p>
+<p class = "firstLineIndent">然而他震惊过后心中却是立刻燃起无穷的怒火！</p>
+<p class = "firstLineIndent">如果知道人家的单兵都有这种实力，老子吃了雄心豹子胆敢去主动招惹这种狠角色？</p>
+<p class = "firstLineIndent">共济会！你他么坑我！</p>
+<p class = "firstLineIndent">就在这时，两架阿帕奇直升机终于从空中接近交战区域，准备给地面上的敌人来一次地图炮，然而突然一道红光一闪，直接贯穿了其中一架阿帕奇。</p>
+<p class = "firstLineIndent">“轰！”这架全副武装的战争利器还没来得及发出一次攻击，便直接凌空爆成一团火球。</p>
+<p class = "firstLineIndent">另一架阿帕奇的驾驶员大惊，他完全没看清攻击从何而来！本能地，他立刻想要做出紧急规避动作，然而……第二道红光间隔2s后再次出现！</p>
+<p class = "firstLineIndent">“轰！”爆炸声再次传来。</p>
+<p class = "firstLineIndent">有人侥幸看清红色激光射来的方向，那里正是一开始幽灵骑士的坠落地点，而此刻，那里四周被吹起一圈烟尘，在跳跃的火光照射下，半空中似乎有一团扭曲的光影悬浮在那里！</p>
+<p class = "firstLineIndent">光头男子看着天空中一前一后爆开的大火球，整个人已经完全傻眼了。</p>
+<p class = "firstLineIndent">金主的预付款刚刚被金主的任务目标干掉了？</p>
+<p class = "firstLineIndent">然后低头再看看已经渐渐溃败的己方部队，他心中的恐惧此刻终于达到了极点！</p>
+<p class = "firstLineIndent">完全不理会旁边小弟惊愕的目光，光头男子立刻打开保险柜快速拿出一包金条，然后二话不说就出了房间。</p>
+<p class = "firstLineIndent">他爱这片土地，不过很明显，相比自己的小命，他还是更爱后者！</p>
+<p class = "firstLineIndent">“突突突！”很快，光头男子便启动了楼下的一辆越野车，刚想踩下油门跑路，然而耳边却突然传来一个男子戏谑的声音。</p>
+<p class = "firstLineIndent">“这么着急去哪儿啊？”</p>
+<p class = "firstLineIndent">他吓的一个哆嗦，猛地转头看向身后，然后瞳孔一缩，越野车的后座上，那名幽灵骑士不知何时已经悄无声息地静静坐在那里，冰冷的面罩映射出自己恐惧的有些扭曲的面容。</p>
+<p class = "firstLineIndent">“这……这位兄弟，有话好好说，我……我可以把我知道的所有事情都告诉你！包括是谁雇佣我们对付幽灵船长！对……对了，这里是小弟的一点心意，不……不成敬意！”光头男子哆哆嗦嗦把话说完，将那包金条递了过去。</p>
+<p class = "firstLineIndent">“哦！心意的分量不小嘛！”老三笑着颠了颠手上的布包，里面传来叮叮咚咚的诱人撞击声。</p>
+<p class = "firstLineIndent">光头男子脸色一喜，“只要这位兄弟能够高抬贵手，这种心意，我每个月都有孝敬，对了，我早就仰慕幽灵船长的威名，愿意带着手底下这帮弟兄投靠船长大人！先前我们是受人蒙骗，这其实都是一场误会！”</p>
+<p class = "firstLineIndent">“投靠幽灵船长？你确定？”老三很认真地看着他。</p>
+<p class = "firstLineIndent">“确定确定！当然确定！”光头男子点头如捣蒜。</p>
+<p class = "firstLineIndent">“好吧！既然你如此诚心诚意地请求了……”</p>
+<p class = "firstLineIndent">然后在光头男子惊恐的目光中，他手中的长剑亮起了熟悉的蓝色电芒……</p>
+<p class = "firstLineIndent">“轰！”</p>
+<p class = "firstLineIndent">老三缓缓离开已经化为一团火球的越野车，无奈地摊摊手，“幽灵船长的手下，自然是幽灵啦！我从没有听过想要将自己变成幽灵这么奇葩的请求……”</p>
+<p class = "firstLineIndent">至于我们？看看我们的正式员工合同上就知道啊，老板的签名栏可从来不是什么幽灵船长。</p>
+<p class = "firstLineIndent">所以说，想当然，很致命呐！</p>
+
+<h2>第一百六十六章 共济会</h2>
+<p class = "firstLineIndent">欧罗巴苏格兰。</p>
+<p class = "firstLineIndent">一座满是历史厚重感的古堡，坐落于悠然恬静的艾维克小镇！</p>
+<p class = "firstLineIndent">艾维克古堡，距今已有近800年的历史，是欧罗巴历史最为悠久的私人古堡之一，同时，它也是共济会在欧罗巴的最大秘密据点。</p>
+<p class = "firstLineIndent">共济会，最早成立于18世纪，是一种带宗教色彩的兄弟会组织，也是目前世界上最庞大的全球性组织。</p>
+<p class = "firstLineIndent">其成员包括乔治四世、威廉四世、爱德华七世等5位鹰国国王，华盛顿、罗斯福、杜鲁门等14位米国总统，以及其他为数众多的政治家、企业家、科学家、文学家等各界名流。</p>
+<p class = "firstLineIndent">而到了现代，共济会的外围组织已经实现了公开化，在互联网上就能查到关于共济会会所名录和会员名单。</p>
+<p class = "firstLineIndent">表面上看，这是一个成员达到数百万的慈善组织，但共济会内部还执行着一套严密的核心精英邀请制，加入不易，退出更难！</p>
+<p class = "firstLineIndent">这些核心成员有着自己的领导纲领，并且共同守护一个巨大的秘密，他们称之为——圣典！</p>
+<p class = "firstLineIndent">自从金融全球化之后，共济会依靠其庞大的组织资源和科技先进性，势力和实力突飞猛进，触手伸向世界上的各个角落！</p>
+<p class = "firstLineIndent">从财团崛起到国家决策，从军事政变到局部战争，许多为人所知的世界大事件都有它的影子在其中。</p>
+<p class = "firstLineIndent">而此时的艾维克古堡内的一片青翠草坪上，两名拄着文明杖的老者正在交谈。</p>
+<p class = "firstLineIndent">“约翰！关于幽灵船长的行动，我们做的是不是有些激进了？毕竟还不是十分了解对方的底细和态度！说不定是能够争取的brother（兄弟）？”一名身着燕尾服，有着高加索典型面容的老者对着身边的一名金发老者道。</p>
+<p class = "firstLineIndent">“克莱因，我当然明白这一点，不过幽灵船长崛起的太过迅速，让我们措手不及，如果现在不想办法尽快遏制他或者掌控他，那么或许这位神秘的幽灵船长将成为我们计划中的最大变数！我这也是迫不得已！”金发老者约翰摊摊手无奈道。</p>
+<p class = "firstLineIndent">“嗯！这的确是太过出人意料！</p>
+<p class = "firstLineIndent">一个多月前，我原本还以为他只是侥幸获得部分科技突破的幸运儿，顶多掀起一点小风浪，可是没想到对方连那种战舰都有，这绝对不是一朝一夕能够打造出来的东西，对方的底蕴超乎我们的预料！”</p>
+<p class = "firstLineIndent">“不错，幽灵船长的科技发展速度必须被遏制！他如此高调的行为已经让我们处在一个危险的境地边缘，别忘了，全知之眼一直在监视我们！”约翰皱眉道。</p>
+<p class = "firstLineIndent">全知之眼，又名上帝之眼，代表着上帝监视人类的法眼，常见的标志是一颗被三角形及万丈光芒所环绕的眼睛，以出现在米国国徽及一美元纸币的背面而闻名于世。</p>
+<p class = "firstLineIndent">而它正是共济会早期的标志！</p>
+<p class = "firstLineIndent">“嗯！我明白，但是我建议，在这次试探行动之后，尽快和对方取得联系，不管用什么手段，必须得到幽灵船长手上的技术，哪怕是与对方合作，那对我们而言意义重大，它甚至能够改变我们的计划初衷！”</p>
+<p class = "firstLineIndent">“改变计划初衷？克莱因，你还在幻想能够对抗他们吗？</p>
+<p class = "firstLineIndent">就算我们拥有十艘甚至20艘那样的战舰，或许我们能够击败对方一次，可是别忘了，我们的家园太过脆弱了，我们最大的弱点已经暴露在他们眼中。</p>
+<p class = "firstLineIndent">不仅是地球，就算我们殖民月球或者火星，这个事实也不会有丝毫的改变！</p>
+<p class = "firstLineIndent">对方是暗处的猎手，而我们是已经暴露的猎物！从战略上看，我们毫无胜算！你想用全人类的存亡，去赌那一丝微弱的胜机吗？”约翰语气严厉。</p>
+<p class = "firstLineIndent">在巨大的外部危机面前，有英勇对抗的激进派，自然也有委曲求全的保守派，很显然，共济会属于后者。</p>
+<p class = "firstLineIndent">克莱因听到约翰的话，沉默了好一会儿，这才叹了口气，“约翰，你是对的，但就算我们不选择过于激进的行为，那些科技对人类隐秘力量的增长也有重大的作用！”</p>
+<p class = "firstLineIndent">“这点我自然明白，届时我们会尽量秘密保留幽灵船长的科技成果，但是对外一定要彻底销毁！决不能让这些科技，特别是战舰制造技术外流！”约翰斩钉截铁道。</p>
+<p class = "firstLineIndent">“嗯！”克莱因点点头，然后重重叹了口气，“唉！不知道我们这么做到底是对是错，为了降低自身的威胁性，我们在20世纪初一手制造了日不落帝国的没落，然后是红色帝国的分崩离析和米国的经济大萧条，生生遏制了全球统一的步伐！</p>
+<p class = "firstLineIndent">或许，我们是人类的罪人也说不定……”</p>
+<p class = "firstLineIndent">“克莱因，这是我们的使命，别忘了圣典上先辈的记录，他们对我们无疑是怀着恶意的，如果我们让对方感受到可能脱离控制的威胁，谁也不知道会发生什么事情，至少目前来看，人类是安全的！我们……是正义的！</p>
+<p class = "firstLineIndent">现在我们要做的，是悄悄发展，示敌以弱！等待一个时机，在十三年的时间内厚积薄发，实现跨越式的发展，这是我们唯一的机会！”</p>
+<p class = "firstLineIndent">“嗯，希望……我们能够等到那个时机吧……”克莱因眼中满是惆怅。</p>
+<p class = "firstLineIndent">约翰没有接话，而是眼中精光一闪。</p>
+<p class = "firstLineIndent">共济会的宗旨虽然崇高，但是越是悠久的组织，其性质越容易产生变化，组织中自然也不乏野心家！</p>
+<p class = "firstLineIndent">遏制乃至消灭幽灵船长，不仅是组织计划的需要，同样也是确保世界格局在共济会控制下的需要，在约翰眼中，两者并不矛盾！</p>
+<p class = "firstLineIndent">一个世界，不需要同时存在两个强大的秘密组织，理想同样需要为自身的利益让步！</p>
+<p class = "firstLineIndent">就在这时，不远处跑来一名黑西装的保镖，将一个卫星电话递给约翰。“公爵阁下，您的电话！”</p>
+<p class = "firstLineIndent">约翰接过来拿到耳边，那名保镖这才恭敬地退出很远。</p>
+<p class = "firstLineIndent">“喂！我是约翰。”</p>
+<p class = "firstLineIndent">“公爵阁下，我们的行动暴露了！就在刚刚，行动计划中的索马里海盗、阿里兰反政府武装、中东恐怖分子的老巢被神秘势力几乎在同一时间剿灭！</p>
+<p class = "firstLineIndent">根据线索显示，出手的是……幽灵骑士，三个基地最后全部被激光武器化为一片火海，现在已经是一片废墟！组织首脑已经确认被对方击毙！”</p>
+<p class = "firstLineIndent">旁边的克莱因同样听到了电话中的声音，两人的眼睛慢慢睁大……</p>
+
+<h2>第一百六十七章 没收</h2>
+<p class = "firstLineIndent">“消息怎么泄露的？”约翰强压心中的震惊，语气不悦道。</p>
+<p class = "firstLineIndent">被摧毁的三个势力他不在乎，可是这件事代表的意义他不能不在乎！</p>
+<p class = "firstLineIndent">计划刚刚执行还不到两天，消息竟然这么快就被泄露，要知道参与的势力完全不知道其他参与者的信息，而幽灵船长能够如此准确地找到三个目标，这说明很可能……是他们内部出问题了！</p>
+<p class = "firstLineIndent">“目前还没有丝毫头绪，对方的反应速度太惊人了，不排除我们内部有对方眼线的可能！”</p>
+<p class = "firstLineIndent">“给我查！一定要将这件事彻底查清楚！另外，他们这次报复行动出动了多少兵力？”</p>
+<p class = "firstLineIndent">约翰心中虽然对行动还没开始就被对方破坏有些恼火，但是试探幽灵船长实力的目的算是达成了一部分，这三个目标虽然实力不算太强，不过也绝不是随随便便就能打发的角色。</p>
+<p class = "firstLineIndent">“这……根据情报显示，是……是3名幽灵骑士，还有数量在3架左右的空中幽灵。”</p>
+<p class = "firstLineIndent">“什么？你是说对方用3名幽灵骑士和3架飞行器就击败了一个人数上千的武装基地？”约翰不可思议道。</p>
+<p class = "firstLineIndent">“不……不是！”电话那边的回复让约翰稍稍松了口气，然而……</p>
+<p class = "firstLineIndent">“不是每个基地三名，而是对方每个基地只派遣了一名幽灵骑士，是……是总共3名。”通讯器那边的汇报人员艰难道。</p>
+<p class = "firstLineIndent">“什么！？”两名老者简直不敢相信自己听到的。</p>
+<p class = "firstLineIndent">一骑当千？你当是写小说呢？</p>
+<p class = "firstLineIndent">如果真是这样，那么自己的试探行动算什么？试探出来对方至少有3名幽灵骑士？</p>
+<p class = "firstLineIndent">这样和之前出云号事件情报中的2名对比一下，对方的兵力暴增了50？尼妹这种统计数据有个毛意义？</p>
+<p class = "firstLineIndent">“呼！把情况说清楚，是不是对方的飞行器和激光武器太厉害了，还是对方动用了什么新的高科技武器？”约翰不相信有人的单兵战斗力能够达到这种程度，深吸口气问道。</p>
+<p class = "firstLineIndent">“对方的飞行器和激光武器的确是十分犀利，但是据说当时的情况是幽灵骑士先以一己之力横扫整个武装基地，直接将基地内的武装力量击溃，然后才让空中幽灵负责扫尾！三个势力被摧毁时的情况基本一致。</p>
+<p class = "firstLineIndent">幽灵骑士比先前情报中叙述的更加可怕，速度超过常人3倍，配合身上强悍的防御性装甲，小口径武器基本无效，而重火力又几乎无法锁定对方，加上对方手上长剑形的诡异攻击性武器，几乎无人能挡！”</p>
+<p class = "firstLineIndent">约翰和克莱因对视一眼，都从对方眼中看出难以置信。</p>
+<p class = "firstLineIndent">幽灵骑士的战斗力，居然已经这么夸张了？难道说，幽灵船长最为犀利的，其实是人体强化技术？</p>
+<p class = "firstLineIndent">不仅拥有浮空战舰这种大杀器，连对方的单兵战斗力都已经可以横扫地球上的常规热武器军团了？</p>
+<p class = "firstLineIndent">这种幽灵骑士如果有一个排，恐怕就能横扫全世界的地面部队了吧？</p>
+<p class = "firstLineIndent">可对方为什么没有这么做？难道是这些强大的装备无法量产？两人皱眉思索。</p>
+<p class = "firstLineIndent">“还有一个情况，根据我们从米国情报部门得到的最新消息，幽灵船长的那艘浮空战舰很可能拥有外太空的航行能力，其实是一艘太空战舰，并且或许已经被布置在近地轨道！</p>
+<p class = "firstLineIndent">另外，幽灵骑士的空降方式十分奇特，有人探测到他们的飞行器是从超高空而来。</p>
+<p class = "firstLineIndent">结合这两个消息来看，对方的远距离投放模式很可能是传说中的——轨道空降！”</p>
+<p class = "firstLineIndent">“什么？太空战舰？轨道空降？！”两名老者惊呼。</p>
+<p class = "firstLineIndent">连这种外太空的黑科技幽灵船长都给点亮了？！作弊了吧？</p>
+<p class = "firstLineIndent">如果对方真的拥有这种技术，那岂不是意味着如今全球都处在幽灵船长的打击范围之内，假如在战舰上装备一种或者几种大规模杀伤性武器，那么这艘战舰的威胁性将令人恐惧！</p>
+<p class = "firstLineIndent">原来如此，太空战舰加上轨道空降，配合常规战斗下无人能及的强悍单兵战斗力，这就是幽灵船长的整套战术战略体系！</p>
+<p class = "firstLineIndent">只要不将对方的战舰打下来，那么这就是一柄达摩克利斯之剑！足以让所有势力都如芒在背！</p>
+<p class = "firstLineIndent">“公爵阁下，对方的实力超乎我们的想象，请问计划是否还有必要继续执行？”卫星电话中的手下问道。</p>
+<p class = "firstLineIndent">约翰皱眉想了想，目前虽然计划中的三个势力被对方剿灭，但是其余的参与力量还有一半以上，如果紧急调动资源，计划依然还能够进行下去。</p>
+<p class = "firstLineIndent">更重要的是，幽灵船长的强大虽然出乎他的预料，但是他想要遏制甚至毁灭幽灵船长的决心却更强烈了！</p>
+<p class = "firstLineIndent">不管是隐藏实力还是制造能力受限，对方表现出来的组织规模是幽灵船长如今唯一的弱点，绝对不能让这种危险的势力继续发展下去，必须趁早对他们的势力基地予以打击！</p>
+<p class = "firstLineIndent">计划不仅需要继续执行，而且需要调动更多的资源进行！</p>
+<p class = "firstLineIndent">“计划……”就在约翰刚想下达计划继续执行的命令时，他却突然愣住了，因为从两人不远处的阴影中，光线一阵扭曲，随后缓缓走出三道人影，两大一小，冰冷的黑色全覆式装甲别无分号！</p>
+<p class = "firstLineIndent">幽灵骑士！</p>
+<p class = "firstLineIndent">两人的瞳孔骤然紧缩，对方竟然……找上门来了？！</p>
+<p class = "firstLineIndent">内鬼！绝对有内鬼！两名老者相视苦笑了一下。</p>
+<p class = "firstLineIndent">“所有计划通通取消！”看着对面那名打头的幽灵骑士很“友好”地朝自己两人挥手，约翰很识趣地对着卫星电话说道。</p>
+<p class = "firstLineIndent">“是！公爵大人！”</p>
+<p class = "firstLineIndent">挂断电话后，约翰抬手制止了刚刚发现异常想要冲过来的黑衣保镖们。</p>
+<p class = "firstLineIndent">开什么玩笑，这可是一骑当千的幽灵骑士啊！自己这些保镖们捆一起够不够人家一个人一剑削的？</p>
+<p class = "firstLineIndent">“三位晚上好，不知道各位来此有何贵干？”克莱因强自镇定道。</p>
+<p class = "firstLineIndent">“嗯，是这样的！我们老板听说你们私藏了一本不良读物，叫什么‘圣典’，涉嫌聚众传播不良思想，特地叫我们过来予以没收！”老大笑着道。</p>
+<p class = "firstLineIndent">约翰：“……”</p>
+<p class = "firstLineIndent">克莱因：“……”</p>
+
+<h2>第一百六十八章 把我们当什么人</h2>
+<p class = "firstLineIndent">“你们为什么会知道‘圣典’？”约翰震惊问道。</p>
+<p class = "firstLineIndent">这可是共济会的核心机密，果然是出了内鬼了吗？</p>
+<p class = "firstLineIndent">“哦？还真有这玩意儿啊？”没想到老大竟然也是有些吃惊。</p>
+<p class = "firstLineIndent">约翰：“……”</p>
+<p class = "firstLineIndent">被套路了！</p>
+<p class = "firstLineIndent">其实当聂云知道这次针对幽灵船长的行动幕后是共济会时，就重点监听了共济会成员的通讯。</p>
+<p class = "firstLineIndent">然后很诧异地发现对方的部分高级成员中偶尔会提到“圣典”一词，虽然语焉不详，不过这个东西似乎对他们而言就像是圣物一样，就连这次针对自己都和这个所谓的“圣典”有些关联。</p>
+<p class = "firstLineIndent">这就让聂云很好奇了。</p>
+<p class = "firstLineIndent">虽说全球的通讯里面什么内容都有，不过这帮自认为是地球精英的共济会核心高层总不会是集体中二病了吧？所以聂云对他们口中可能真实存在的所谓“圣典”好奇起来。</p>
+<p class = "firstLineIndent">“好吧，既然真的有，那么带我们去取吧。”老大对约翰道。</p>
+<p class = "firstLineIndent">“不可能的，这是我们的圣物，绝对不会交给外人，就算你杀了我们也是如此。”没等约翰开口，克莱因就冷眼看着三人拒绝道。</p>
+<p class = "firstLineIndent">约翰眼神闪烁了一下，没有开口。</p>
+<p class = "firstLineIndent">“唉……你们这么不配合，我就很难办了啊！既然如此，二毛！”老大叹了口气。</p>
+<p class = "firstLineIndent">“约翰公爵，共济会主要领导者之一，本次计划主要策划者，全球范围内共57家公司，534处不动产，除公开家庭成员外，还有4名情人和5名私生子，其家族主要聚居地包括艾维克城堡、忒修斯庄园、华盛顿第五大道88号……预计彻底清除所需时间16小时34分！”二毛的声音还带着孩童的纯真，不过说出来的话却冰冷地如同腊月的寒风，让听到的约翰如坠冰窖，整个人都僵住了！</p>
+<p class = "firstLineIndent">他瞪大眼珠，像是看恶魔一般惊恐地看着眼前的三人。</p>
+<p class = "firstLineIndent">一丝不差！</p>
+<p class = "firstLineIndent">很多数据连自己都记不清了，对方却如数家珍，这其中还有很多是从未公开过的机密产业！</p>
+<p class = "firstLineIndent">他整个人就像是被天空中一双无形的眼睛注视着一般，感觉浑身赤裸，无所遁形。</p>
+<p class = "firstLineIndent">而最后那句“预计彻底清除所需时间16小时34分”更是让他心底生出一股莫大的恐惧，自己引以为傲的庞大家族势力，在对方眼中竟然就如此不堪一击？</p>
+<p class = "firstLineIndent">可是想想面前这三名幽灵骑士的战斗力，约翰却又不敢不信。</p>
+<p class = "firstLineIndent">旁边的克莱因也是瞪大眼睛，这数据和他所知的可大大对不上号？约翰竟然对自己隐瞒了这么多东西？背着我捞了这么多好处？</p>
+<p class = "firstLineIndent">克莱因有些不满地看向自己的老友，友谊的小船怎么说翻就翻？</p>
+<p class = "firstLineIndent">不过约翰此时哪里还顾得上克莱因心里的想法，他完全被二毛的话吓得魂不附体。</p>
+<p class = "firstLineIndent">“你……你们想做什么？！”他一脸苍白，声音颤抖着问。</p>
+<p class = "firstLineIndent">老大给了约翰一个自己体会的眼神，然后转身就走。</p>
+<p class = "firstLineIndent">喂！你戴着面罩啊，什么眼神我都看不到啊魂淡！</p>
+<p class = "firstLineIndent">对二话不说扭头就走的三人，约翰彻底傻眼了，这……算是谈崩了？</p>
+<p class = "firstLineIndent">“对了，提醒你们一句，这个古堡半个小时后就要被彻底抹平，别愣着了，赶紧组织人员疏散，什么文物啥的，能搬多少算多少。</p>
+<p class = "firstLineIndent">唉，800年的世界文化遗产……真是造孽啊！”</p>
+<p class = "firstLineIndent">老大带着一丝惋惜的声音传来，让依然还在发愣的两人猛然惊醒。</p>
+<p class = "firstLineIndent">“等……等等！”约翰猛地上前一步伸手喊住了三人。</p>
+<p class = "firstLineIndent">克莱因见状眼神严厉地盯着约翰。“约翰，你想做什么？”</p>
+<p class = "firstLineIndent">约翰有些不敢看自己的这位老友鄙视的目光，“咳咳！克莱因，我突然觉得，和幽灵船长合作或许才能更好的保护人类的未来，幽灵骑士的实力你也看到了，或许我们真的有机会击败他们呢？”</p>
+<p class = "firstLineIndent">克莱因鄙视地看着约翰，“你忘了自己刚刚怎么说的？那只是你想要维护自己家族利益的借口罢了！</p>
+<p class = "firstLineIndent">幽灵船长是什么样的组织我们都不清楚，贸贸然将圣典交出去，若是对方做出什么不智的过激举动，我们就是全人类的罪人！”</p>
+<p class = "firstLineIndent">“咳咳，虽然打断你们很不好意思，不过我们赶时间，晚饭都还没吃呢！”老大转身道。</p>
+<p class = "firstLineIndent">“克莱因，不用说了，我才是‘圣典’的保管者，你无权干涉我的决定！”约翰深吸口气道。</p>
+<p class = "firstLineIndent">克莱因看了看虎视眈眈的三名幽灵骑士和心意已决的约翰，只能沉默了下来。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">半个小时后，几人来到约翰的书房，经过一系列隐秘的机关和复杂的机械和人体识别密码解锁程序，地板上打开了一个密道口，约翰进去不久后，郑重地从里面的密室中取出一本古朴的黑色硬皮古籍。</p>
+<p class = "firstLineIndent">古籍的封面上，刻画的正是全职之眼的形象，上面还有一段小字，“我们正被注视！”</p>
+<p class = "firstLineIndent">约翰脸色有些复杂地递过书籍，“这就是我们的‘圣典’，事关人类存亡的圣物！希望贵方能够妥善保管，阅读完之后能够还给我方。”</p>
+<p class = "firstLineIndent">“如果是赝品，假一罚十哦！”老大很随意地接过书籍。</p>
+<p class = "firstLineIndent">“您放心，这世界上，仅此一本！”约翰可不敢用自己家族的存亡来赌对方的鉴定术等级不够！</p>
+<p class = "firstLineIndent">老大点点头，转头看向老三。</p>
+<p class = "firstLineIndent">老三会意，递过来一个上下两端开口的长条形的银色盒子。</p>
+<p class = "firstLineIndent">约翰和克莱因不明所以地看着那个盒子，用来装书？尺寸不对啊？</p>
+<p class = "firstLineIndent">然后在两人愕然的目光中，老大将书直接塞进盒子上端，随着“滋滋~”的一阵声响，这本共济会的“圣物”竟然就那么变成一堆纸屑从盒子下方纷纷扬扬洒了出来。</p>
+<p class = "firstLineIndent">碎……碎纸机！？</p>
+<p class = "firstLineIndent">“不！”克莱因一声惨叫就要扑过去，可是迟了一步，只抓到一把细碎的绝对拼不回去的纸屑！</p>
+<p class = "firstLineIndent">“为……为什么？！”两人难以置信地看着他们。</p>
+<p class = "firstLineIndent">你们费那么大功夫，就是为了将圣典抢过来碎掉？吃饱了撑的吗？</p>
+<p class = "firstLineIndent">“你们那是什么眼神，我们早说了，是来没收不良读物的，没收了当然是就地销毁啊，你以为我们没收回去自己看吗？把我们当什么人了？”老大一脸理所当然。</p>
+<p class = "firstLineIndent">约翰：“……”</p>
+<p class = "firstLineIndent">克莱因：“……”</p>
+<p class = "firstLineIndent">（圣典：我不是不良读物啊……）</p>
+
+<h2>第一百六十九章 骑士</h2>
+<p class = "firstLineIndent">其实，在聂云刚刚得到全世界的卫星情报网络时，就不乏诸如“超能力”“不可知世界”“外星人”“世界末日”“魔王”“使徒”等等奇葩的关键词频频出现。</p>
+<p class = "firstLineIndent">而且一个比一个说的像真的，各种文献引用和事实依据那是几个g几个g地往卫星上送，而且还搞得神秘兮兮的似乎生怕泄露了消息，很多内容居然还他么用了暗语加密！</p>
+<p class = "firstLineIndent">有一次，聂云费了老大劲破解了一个用aes（高级加密标准）256位秘钥加密过的密文，最后得到了这样一段话：爆裂吧现实，粉碎吧精神……吟唱该咒语，你就能看到世界的另一面！</p>
+<p class = "firstLineIndent">聂云表示自己找了个没人的房间亲自试验了这段咒语，最后证明——丫的果然是骗人的！</p>
+<p class = "firstLineIndent">他简直就对这些闲得发慌的中二病患者无奈了好吗？</p>
+<p class = "firstLineIndent">机械虫：“……”（我对如此认真去试了的你也很无奈啊！）</p>
+<p class = "firstLineIndent">好吧，不管怎么说，这给聂云的情报搜集工作造成了相当大的麻烦，是真是假？傻傻分不清楚！</p>
+<p class = "firstLineIndent">因此，他也只能将这类充满了人类浪漫主义幻想的词汇尽量屏蔽，以至于忽略了“圣典”，直到因为这次的事件关注到共济会才将“圣典”的关键词重新拉回有效信息。</p>
+<p class = "firstLineIndent">不得不说，初中二年级的学生党们，你们赢了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">艾维克城堡上空。</p>
+<p class = "firstLineIndent">看着夜空中极速远去的三道魅影，约翰和克莱因久久无语。</p>
+<p class = "firstLineIndent">“fuck！他们到底是来干嘛的？”约翰终于忍不住摔了手中的文明杖怒道。</p>
+<p class = "firstLineIndent">自己堂堂共济会的首领之一，竟然被幽灵船长派出三名小兵就给调戏了？人家从头到尾连面都没露过！</p>
+<p class = "firstLineIndent">更羞耻的是，自己等人当成圣物的无价之宝，竟然被对方当着自己的面就给用碎纸机碎了？！</p>
+<p class = "firstLineIndent">他们竟然把共济会的圣物给碎了啊！</p>
+<p class = "firstLineIndent">约翰觉得自己的灵魂都快要气炸了！</p>
+<p class = "firstLineIndent">一旁的克莱因则有些出神地看着夜空，对身边气急败坏的约翰看也不看。</p>
+<p class = "firstLineIndent">“或许在我们看来重若生命的东西，于对方而言根本不值一提呢？幽灵船长么……我有一种感觉，或许他……才是那个人类的转机也说不定……”克莱因的语气幽幽道。</p>
+<p class = "firstLineIndent">今天发生的事，让他一直坚持的信念产生了动摇，共济会……或许已经偏离了原本的初衷，克莱因看着约翰，露出失望的神色。</p>
+<p class = "firstLineIndent">“克莱因，你在说什么傻话？！”约翰瞪大眼睛难以置信地看着自己的老友。</p>
+<p class = "firstLineIndent">“人类的领导者从来都是共济会！也只能是共济会！我们才是地球的精英代表，我们才是正义的一方！”</p>
+<p class = "firstLineIndent">“不，约翰，我们并不是地球的精英代表，我们只是金钱和权势的代表！”克莱因淡淡撇了一眼约翰。</p>
+<p class = "firstLineIndent">“克莱因，你的思想很危险，这种想法绝对不该出现在共济会领导层的脑海中，我劝你最好明白自己的立场！”约翰看向克莱因的眼神渐渐冷漠下来。</p>
+<p class = "firstLineIndent">今晚自己的所作所为都被克莱因看在眼中，圣物更是可以说因自己而被毁，如果消息泄露出去，那么自己能不能继续留在共济会中不好说，可想要继续担任共济会的首领就是痴人说梦了！</p>
+<p class = "firstLineIndent">克莱因，别怪我……</p>
+<p class = "firstLineIndent">约翰的眼神眯起，露出一丝杀机。</p>
+<p class = "firstLineIndent">克莱因看着约翰阴冷的神色，浑不在意地笑了笑，他抽出一直插在上衣口袋中的右手，拿出一只手机晃了晃。</p>
+<p class = "firstLineIndent">“呵呵！约翰，这么多年的老朋友了，你的性格我还会不了解吗？</p>
+<p class = "firstLineIndent">我刚刚编辑了一条信息送了出去，这里是你的地盘，你可以现在就干掉我，不过明天，共济会内部的所有成员就会知道今晚发生的事情，然后，我的家族也会对你展开报复，那么现在……约翰，你的选择呢？”</p>
+<p class = "firstLineIndent">约翰先是愕然地看着克莱因手中的手机，接着脸色阴晴不定起来。</p>
+<p class = "firstLineIndent">“唉！约翰，你有没有发现，你今天面对的和人类所面对的何其相似？</p>
+<p class = "firstLineIndent">你最大的弱点已经暴露在幽灵船长眼中，对方是暗处的猎手，而你是已经暴露的猎物！从战略上看，你毫无胜算！</p>
+<p class = "firstLineIndent">所以你的选择同共济会一样，你选择隐忍妥协，而不是用整个家族的存亡，去赌那一丝微弱的胜机！</p>
+<p class = "firstLineIndent">结果……你看到了，这次，被毁掉的是我们视若生命的圣典，那么下次呢？被毁掉的，会不会是整个人类？</p>
+<p class = "firstLineIndent">我发现共济会内的大多数人和你都同样缺少一样东西！”克莱因叹了口气，提起文明杖退后两步。</p>
+<p class = "firstLineIndent">“你在说什么呢，我的老朋友，你对我一定是有什么误解……”约翰脸上堆起难看的笑容，然而解释的话还没说完，就被克莱因打断。</p>
+<p class = "firstLineIndent">“你们最缺少的，就是拼死一搏的骑士精神啊！”克莱因将文明杖笔直竖立在面前，就像擎着一柄骑士之剑，然后决然地挥下，杖尖划过脚下的草坪，带起些许的草屑，被席卷的夜风吹散。</p>
+<p class = "firstLineIndent">“我！克莱因骑士！从今天起，正式退出共济会！我要去用自己的方式，寻找拯救人类的方法！”</p>
+<p class = "firstLineIndent">银发的老者用铿锵的语气说完，深深看了一眼约翰之后，昂首转身向着古堡外走去。</p>
+<p class = "firstLineIndent">约翰脸色难看地盯着那个高大的背影，他缓缓伸出一只手微微扬起，暗处的一名保镖已经拔出手枪对准了背对着己方，毫不做防备的克莱因。</p>
+<p class = "firstLineIndent">然而……直到克莱因走出古堡，约翰的手也没能挥下……</p>
+<p class = "firstLineIndent">“啊……”古堡内，传来一声满是不甘的怒吼……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">地球轨道，海狼号舰长室。</p>
+<p class = "firstLineIndent">“哗啦~哗啦~”轻微翻动书页的声音已经持续了近半个小时。</p>
+<p class = "firstLineIndent">聂云靠在舰长椅上，一手托腮，一手拿着一本银白色的书籍慢慢翻看着。</p>
+<p class = "firstLineIndent">而那本书籍的封面赫然是——全知之眼！</p>
+<p class = "firstLineIndent">尽管圣典中的内容已经完全印在聂云的脑海，但聂云依然翻看地很是认真，许久后，聂云合上书籍，长长地呼出一口气。</p>
+<p class = "firstLineIndent">“啊呀啊呀，不小心就发现不得了的事情了呢！”</p>
+<p class = "firstLineIndent">聂云斜靠着椅背将舰长椅旋转起来，仰着头看着同样旋转起来的无尽星空，眼中满是期待的目光。</p>
+<p class = "firstLineIndent">这个世界，原来不止有人类啊……</p>
+<p class = "firstLineIndent">好幸福，好想去看看外面的世界，他们到底长什么样子呢……</p>
+<p class = "firstLineIndent">那么……到底谁是猎人，谁是猎物呢……</p>
+
+
+
+</br></br>
+<a href="150.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="170.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

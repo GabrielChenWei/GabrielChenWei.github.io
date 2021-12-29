@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第二百二十章 失联了</h2>
+<p class = "firstLineIndent">除了超强的隐身性能外，探测器的探测能力同样甩地球同类装备一条街，其中除了诸多较地球更加先进的光学探测器外，最关键的是一种新的宇宙探测方式——引力波探测！</p>
+<p class = "firstLineIndent">我们知道，任何有质量的物体都能扭曲时空，质量越大，扭曲效果越明显，比如黑洞周围连光线都可以扭曲，立场护盾也是类似的原理。</p>
+<p class = "firstLineIndent">而引力波是一种时空扭曲中的涟漪，通过波的形式从质量源向外传播，这种波以引力辐射的形式传输能量，传播速度等于光速，在1916年，爱因斯坦基于广义相对论预言了引力波的存在。</p>
+<p class = "firstLineIndent">理论上来说，任何拥有质量的物体都具有引力波，而双子星文明的引力波探测正是基于这样的特性让所有宇宙飞行器和天体无所遁形！</p>
+<p class = "firstLineIndent">在宇宙中，传统地面雷达等短距离探测手段在巨大的空间距离下已经基本无用，在接近到有效探测距离前，你就早已被红外探测在内的多种光学探测设备发现！甚至雷达的探测距离还不如战舰的攻击距离！</p>
+<p class = "firstLineIndent">因此目前人类在宇宙中的探测手段，主要是光学探测仪！或者称之为“光达”！</p>
+<p class = "firstLineIndent">不过光达可以用光线隐身技术克制，但引力波探测却几乎没有破解的方法。</p>
+<p class = "firstLineIndent">不问可知，引力波探测在星际战争中的地位就如同地球上的雷达，再重视都不为过。</p>
+<p class = "firstLineIndent">不过美中不足的是，聂云获得的引力波探测器只是一台小型设备，和战舰上的引力波探测雷达的分辨率和性能自然是没得比。</p>
+<p class = "firstLineIndent">若是想获得战舰级的引力波探测雷达，还需要聂云继续研究改良，当然……也可以继续杀怪爆装备。</p>
+<p class = "firstLineIndent">两枚探测器虽然有着不同的制造工艺，不过核心技术却如出一辙，显示出双子星文明的两个种族之间的技术交流和融合还要在聂云的想象之上。</p>
+<p class = "firstLineIndent">就算不能通婚那至少也是到了好基友的程度！聂云如此想着。</p>
+<p class = "firstLineIndent">至此，两枚探测器被聂云一阵敲骨吸髓之后，剩余价值已经被完全榨干，甚至连尸体也没放过，也算死得其所了……</p>
+<p class = "firstLineIndent">（探测器：“……”）</p>
+<p class = "firstLineIndent">聂云稍稍整理了一下自己的收获，从外星人的科技树来看，目前他们比地球遥遥领先的有三大类科技。</p>
+<p class = "firstLineIndent">那便是远距离航行技术、量子技术、引力子技术！</p>
+<p class = "firstLineIndent">除了可以确定对方拥有，但无法得知具体方式的星系级远距离航行技术外，量子计算机和量子通讯都是量子技术的一种应用。</p>
+<p class = "firstLineIndent">而立场护盾、光线偏转隐身、引力波探测技术则都可以归类到引力子科技的子科技项。</p>
+<p class = "firstLineIndent">可见双子星文明在量子技术和引力子技术上的研究上绝不是一朝一夕，而是已经形成了一个完整的系统！</p>
+<p class = "firstLineIndent">这三类科技不问可知，还有大量的潜力可以挖掘，聂云不知道双子星文明还会有多少他目前还不了解的强大军事科技，但是从技术层面，聂云目前无疑是处于劣势的。</p>
+<p class = "firstLineIndent">除此之外，聂云一方还有着一个巨大的命门，正毫无掩饰地暴露在敌人面前！</p>
+<p class = "firstLineIndent">没错……那就是地球！</p>
+<p class = "firstLineIndent">共济会那帮走“乌龟流”的精英虽然自私自利，但也不是笨蛋，就像他们所考虑的那样，已经暴露的地球的确是一个无法规避的巨大战略劣势！时刻处在毁灭的边缘。</p>
+<p class = "firstLineIndent">尽管两枚探测器的布局让聂云稍稍扳回一些先手，但只要战场还在太阳系，这种战略劣势就会是聂云一方的致命弱点。</p>
+<p class = "firstLineIndent">聂云曾在脑海中模拟了无数遍双方可能的战争走势，然而不管如何布置防御，他都无法保证对地球的防护能够做到万无一失。</p>
+<p class = "firstLineIndent">这就像是对方手上有了一个人质，哪怕聂云战斗力更强，他都只能束手束脚，投鼠忌器！</p>
+<p class = "firstLineIndent">不过，子曾经曰过，做人不能太钻牛角尖！</p>
+<p class = "firstLineIndent">针对目前这种敌暗我明、敌强我弱的战略态势，聂云制定了一个十分大胆的计划，并且给它取了一个很灵异的名字——借尸还魂！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">米国十三区。</p>
+<p class = "firstLineIndent">区长正焦急地来回走动，他的旁边，还坐着一脸凝重的杰伊。</p>
+<p class = "firstLineIndent">而在观察窗中，一帮科学家在不停往来忙碌，尝试破解引力炸弹的护盾，护盾上不时被激出涟漪。</p>
+<p class = "firstLineIndent">而引力炸弹上的倒计时……还有8个小时。</p>
+<p class = "firstLineIndent">“滴滴！”区长的电话响了起来。</p>
+<p class = "firstLineIndent">“喂！现在情况怎么样了？”电话一接通，那边就传来国防部长有些紧张的询问。</p>
+<p class = "firstLineIndent">“咦？部长阁下？调查结束了？”区长愣了愣。</p>
+<p class = "firstLineIndent">“刚刚结束！该死的，要是让我知道是谁盗用了我的账号入侵安全局的数据库，我”不提这个调查还好，一提国防部长差点气爆，一连串被屏蔽词就蹦了出来。</p>
+<p class = "firstLineIndent">事情的调查没有花太多时间，国防部长有不在场证明，而且种种迹象表明国防部长并无通敌嫌疑。</p>
+<p class = "firstLineIndent">这起足以引起全球政局动荡的机密文件泄露事件，目前只能够确认黑客攻击是从他们自己的内部网络发出的，但是究竟何人所为，调查毫无头绪。</p>
+<p class = "firstLineIndent">虽然按照幽灵船长的说法，外星人曾经对十三区的系统进行过入侵，看似嫌疑最大，但是国防部长觉得这是幽灵船长在乘火打劫、贼喊捉贼的可能性更大！</p>
+<p class = "firstLineIndent">不过在引力炸弹的巨大威胁之下，他只能暂时将这笔账记下，毕竟都快火烧眉毛了，谁还能顾得上家里失窃啊！</p>
+<p class = "firstLineIndent">“算了不提这个了，炸弹怎么样了？”</p>
+<p class = "firstLineIndent">“唉！炸弹还在工作……”区长叹了口气。</p>
+<p class = "firstLineIndent">“幽灵船长那边呢？他们不是说的很有把握的吗？”国防部长有些着急道。</p>
+<p class = "firstLineIndent">“呃……我联系过几次，提示说他……不在服务区……”区长嘴角有些抽搐道。</p>
+<p class = "firstLineIndent">国防部长：“……”</p>
+<p class = "firstLineIndent">不在服务区？！卧槽！关键时刻你怎么还能失联了？还有没有点责任心？！</p>
+<p class = "firstLineIndent">挂断通讯，国防部长回想着幽灵船长那张狗头面具的脸，越想越觉得那张脸靠不住！</p>
+<p class = "firstLineIndent">鸡蛋不能放在一个篮子里！</p>
+<p class = "firstLineIndent">咬了咬牙，他拨通了一个电话，“喂！我是国防部长，通知所有高层，立刻召开最高级别紧急会议！”</p>
+<p class = "firstLineIndent">不久后，一处机密会议室内，传来一阵惊呼喧哗，随后是纷杂的争吵……</p>
+<p class = "firstLineIndent">如同聂云设想的那样，随着死神一步步靠近……恐慌不可避免的……开始蔓延……</p>
+
+<h2>第二百二十一章 阵营选择</h2>
+<p class = "firstLineIndent">尽管是绝密的高层会议，只有少数米国的当权高层参与了会议，并且被下达了消息决不能外泄的命令。</p>
+<p class = "firstLineIndent">也尽管众人都知道他们还有一丝希望解决炸弹，或者炸弹的波及范围不如预计。</p>
+<p class = "firstLineIndent">但是在生命受到巨大威胁的情况下，总有人不甘心只能静静等待未知命运的宣判！哪怕多一丝生存的可能，他们都会以百分之百的热情去做到！</p>
+<p class = "firstLineIndent">于是，人类遭遇巨大危机的消息悄悄开始在米国的高层间流传，很多人开始以诺亚建造方舟的避难精神积极自救……</p>
+<p class = "firstLineIndent">经过专家的分析，引力炸弹可能引发的引力乱流任何物理防御都无法阻挡，哪怕你躲到地下掩体，只要不是数十公里乃至数百公里的深层地底，也照样可能会血管爆裂而死！</p>
+<p class = "firstLineIndent">至于你是幸运的受到2倍重力体验下负重训练，还是受到10倍以上的重力直接被压成肉饼，那就完全看脸了……</p>
+<p class = "firstLineIndent">当然，剩下另一条比较靠谱些的自救方式还有远离地球，简单来说……你要飞，飞得更高……</p>
+<p class = "firstLineIndent">炸弹的威力还波及不到超高空，如果能够飞到数百公里以上，那基本是安全了！而数十公里以上的空域，引力乱流的效果也会被大大削弱，生存概率也会大大增加。</p>
+<p class = "firstLineIndent">尽管在剧烈的重力变化下，飞行高度不够的飞机也很容易解体，但只要撑过一小段时间不死，跳伞生还的几率总比在地面赌那不到十分之一的概率要强。</p>
+<p class = "firstLineIndent">地球已经不安全了，你需要离它越远越好！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">随着倒计时的临近，米国的动静越来越大，终于引起了旁人的注意。</p>
+<p class = "firstLineIndent">很快，在米国的世界各国情报组织成员就发现情况有些不对劲，而且很不对劲！</p>
+<p class = "firstLineIndent">他们一脸愕然地看着米国高层像是抽了疯一样做出一系列让人莫名其妙的举动。</p>
+<p class = "firstLineIndent">比如很多重要人物和财团富豪举家搬迁到了各地的空军基地和航天基地中，而所有的飞机都被命令紧急待命，准备随时起飞，就连在外执勤的飞机也被紧急召回。</p>
+<p class = "firstLineIndent">随后各个空军基地被封锁，各种各样的物资开始被陆续运抵然后装上飞机。</p>
+<p class = "firstLineIndent">甚至就连米国的一些大型民航和最大的太空探索技术公司spacex都被政府紧急征调，接管了所有能飞的东西和操作人员。</p>
+<p class = "firstLineIndent">另外，不管是军用的还是民用的抗荷服，开始被大量抢购，大多数是米国大兵开着军车成包成包的往车上扛。因为抗荷服某种程度上可以提高人体的些许抗压能力，减少一些伤害，聊胜于无。</p>
+<p class = "firstLineIndent">再然后，米军的应急战略储备库被命令做最后清查，并上报物资情况汇总成册。</p>
+<p class = "firstLineIndent">甚至还有一个紧急秘密成立的“末日重建小组”，他们在紧锣密鼓地策划着如何在末日后迅速恢复米国的政治统治，并且在大多数人类灭亡，只剩下少量人口幸存的情况下，趁着末日后的大动乱直接将米国打造成地球上的唯一帝国！</p>
+<p class = "firstLineIndent">危机中总是伴随着机遇，如果危机无法避免，那么机遇就不该放过了吧？米国的高层在此刻依然在做着大难不死，就回过头称霸地球的美梦。</p>
+<p class = "firstLineIndent">殊不知……这只是某个人导演的一场史无前例的避难大演习……</p>
+<p class = "firstLineIndent">这些莫名其妙的命令，就连执行的米军，除了寥寥数名高层，大多数也都完全不知道发生了什么情况。</p>
+<p class = "firstLineIndent">但是纸终究是包不住火的，就在倒计时只剩下6个小时左右的时候，终于有几个国家的间谍人员获得了其中的内幕消息。</p>
+<p class = "firstLineIndent">外星人的超级炸弹？人类末日？</p>
+<p class = "firstLineIndent">所有得到消息的人全部傻眼！</p>
+<p class = "firstLineIndent">卧槽！昨天我还在都市谍战剧里面浴血奋战呢，怎么今天就突然串场到末日灾难大片里了？到底是谁给换的台？</p>
+<p class = "firstLineIndent">然后，六度空间理论再次体现了地球村的狭小！</p>
+<p class = "firstLineIndent">首先是几大国，然后是几大国的盟国……随着知道消息的人越来越多，这个消息以光速传播到了全世界的上流社会。</p>
+<p class = "firstLineIndent">至于底层民众，作为最后知后觉的群体，消息还是被上层很有默契的尽量限制，以免发生动乱加大自己逃生的难度，不过还是有一些小道消息通过网络传了出来……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">某贴吧。</p>
+<p class = "firstLineIndent">“米国空军基地封锁，高层集体逃难为哪般？！核大战是否一触即发？”</p>
+<p class = "firstLineIndent">“楼上标题党，请吧主予以制裁！”</p>
+<p class = "firstLineIndent">“楼主，我相信你，不过不要害怕，想来是我的刀片和血书已经寄到，他们心虚了……”</p>
+<p class = "firstLineIndent">“大家听我说，我有个亲戚在政府工作，似乎这事儿是真的，好多国家的重要高层和富豪都疯了一样往机场跑，似乎真是发生什么大事儿了！”</p>
+<p class = "firstLineIndent">“哟呵！楼主还知道找托，团伙作案啊！”</p>
+<p class = "firstLineIndent">“我航空管理局的，没啥证据，只不过……私人飞机的升空申请暴增！苗头……有些不对！”</p>
+<p class = "firstLineIndent">“呃……你们说的跟真的一样，我差点就信了！”</p>
+<p class = "firstLineIndent">“我是一名知情人士，详细的情况我无法透露，不过我可以明确告诉大家，不久之后，地球将迎来毁灭和新生，祝各位好运！”</p>
+<p class = "firstLineIndent">“我也是一名知情人士，楼上的是刚刚从我院偷偷跑出来的，病号9527，请各位看到此人的朋友帮我转告他：你的主治医师喊你回去打针！”</p>
+<p class = "firstLineIndent">知情人士：“……”</p>
+<p class = "firstLineIndent">于是……天聊死了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">然而，4个小时后……</p>
+<p class = "firstLineIndent">该贴吧。</p>
+<p class = "firstLineIndent">“卧槽！我信了，刚刚那个知情人士，给我滚粗来！求图求真相！不说我就打屎你！”</p>
+<p class = "firstLineIndent">“楼上的，发生什么事了？”</p>
+<p class = "firstLineIndent">“我们家数公里外的空军基地果然戒严了，而且从刚刚开始，就在不停起降飞机，跟阅兵似的！情况不对！很不对！”</p>
+<p class = "firstLineIndent">一连串惊呼之后，知情人士终于冒头，留下两字！“呵呵……”</p>
+<p class = "firstLineIndent">楼下：“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">倒计时还剩一个小时！</p>
+<p class = "firstLineIndent">一个惊人的消息，让整个世界开始有了混乱的苗头！</p>
+<p class = "firstLineIndent">海狼号舰长室。</p>
+<p class = "firstLineIndent">“事件波及范围已经达到预期，可以开始了计划了！”聂云对代号道。</p>
+<p class = "firstLineIndent">“是的，舰长阁下！阵营选择程序启动！</p>
+<p class = "firstLineIndent">阵营分类：守序、混乱、善良、邪恶，个人资料档案建立，筛选开始！”</p>
+<p class = "firstLineIndent">随着代号的这句话落下，全球所有卫星都在代号强大的量子计算机控制下疯狂运作起来，几乎全球范围内的公民资料库、通讯网络、交通监视网络、城市天眼等市政监管系统全都在悄无声息间被入侵……</p>
+
+<h2>第二百二十二章 剪蓝色（二合一）</h2>
+<p class = "firstLineIndent">伦敦某机场。</p>
+<p class = "firstLineIndent">“让我进去！你们这些混蛋！我是xx集团总裁，我每年纳税数百万欧元，你们有义务保护我们！”</p>
+<p class = "firstLineIndent">“让那些权贵滚出来！他们的命值钱，我们的就不值钱了吗？”</p>
+<p class = "firstLineIndent">“求求你，我还带着孩子……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">上千通过各种渠道收到消息，笃定末日就要来临的民众提着拥挤着想要进入机场，守卫的警卫同样脸色有些惊慌，防守的秩序同样在渐渐崩溃，甚至渐渐开始有人转身往机场内跑去。</p>
+<p class = "firstLineIndent">此时，又一架飞机呼啸着起飞，引起了一阵喧哗。</p>
+<p class = "firstLineIndent">仿佛是看到自己生还的几率又小了一分，终于，越发焦急的人们和不安的警卫，使得防线出现了漏洞，一泻千里般，人群终于蜂拥着进入机场。</p>
+<p class = "firstLineIndent">接着涌入机场的人们奔向每一架视线中能够看见的飞机，互相拉扯着开始了争抢，不时爆发肢体冲突，机场内部顿时一片狼藉……</p>
+<p class = "firstLineIndent">此刻没有了阶级和地位，财富和名望在生命的价值面前如此可笑，原本在机内惊慌躲避的权贵们鼻青脸肿的挣扎着哀求着被拖出飞机。</p>
+<p class = "firstLineIndent">几乎所有飞机都在冲突和争抢中陷入停滞，失去了秩序之后，逃生的效率急剧下降，但所有人仿佛没有意识到这点一般，争抢着越来越渺茫的那一丝希望……</p>
+<p class = "firstLineIndent">他们不知道的是，机场内的所有监控系统，此刻正全力捕捉着这些画面。</p>
+<p class = "firstLineIndent">“滋！”一个角落的摄像头转了一个角度对准混乱人群中的一名高大光头男子，他脸上有一道刺青，此刻正一脸凶悍地一拳打倒一名警卫，抽出他身上的警棍往前就是一顿横劈乱砸，从挡在自己身前的十几个人中冲出一条缺口，然后喘着粗气，血红着眼睛向前奔去……</p>
+<p class = "firstLineIndent">智脑迅速扫描男子的面部特征，比对伦敦行政系统公民数据库，对男子建立了个人档案。</p>
+<p class = "firstLineIndent">“滴！姓名：xxx，初始阵营判定：混乱！人员编码：h0000101。”</p>
+<p class = "firstLineIndent">“滋！”镜头稍稍转向，再次对准了不远处的一处人流，一名中年妇人被人群推搡着跌倒在地，扭伤了脚站不起来，她不由惊恐地一边躲避人群，一边大声呼救。</p>
+<p class = "firstLineIndent">然而在这样混乱的情况下，人们哪里还顾得上旁人，对她的呼救声充耳不闻！</p>
+<p class = "firstLineIndent">就在这时，一双有力的手从人潮中伸出，一把抓住了妇人的肩膀，将她用力拉出了人群，拖到旁边的角落。</p>
+<p class = "firstLineIndent">“没事吧？”一个典型的亚洲男子面孔出现在妇人眼前。</p>
+<p class = "firstLineIndent">“谢谢！谢谢你先生！”妇人不由感激地连连道谢。</p>
+<p class = "firstLineIndent">“滴！姓名：xxx，初始阵营判定：善良！人员编码：s0000041。”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">亚洲、非洲、美洲……</p>
+<p class = "firstLineIndent">类似的一幕在全球各个地方上演，代号通过无处不在的现代电子网络观察着人间百态，采集着某些特殊人物的信息并作出分类。</p>
+<p class = "firstLineIndent">而在海狼号上。</p>
+<p class = "firstLineIndent">“报告舰长，预定目标达成，共计10000人筛选完毕，另外，大型灾难纪录片‘人类末日（上）’录制完毕！”代号向聂云汇报。</p>
+<p class = "firstLineIndent">“嗯！很好，那么我宣布，演习……”聂云满意地笑了笑，然后刚想宣布演习结束。</p>
+<p class = "firstLineIndent">“滴滴！”他的通讯器突然响起，聂云看了一下，是楚潇潇！</p>
+<p class = "firstLineIndent">“呃……”聂云先是楞了一下，然后脑门开始冒汗。</p>
+<p class = "firstLineIndent">他突然想起来，之前刚和楚潇潇说过炸弹的事情不过是个“无尽世界”的游戏主线，结果计划赶不上变化，自己只不过是去拆了个弹，完全是灵机一动，这才顺势导演了一出“末日演习”。</p>
+<p class = "firstLineIndent">他完全忽略了，如果楚潇潇听到这个消息，对比一下“炸弹”这个关键词以及吻合得如此天衣无缝的倒计时时间，那么她会如何“龙颜大怒”……</p>
+<p class = "firstLineIndent">聂云脑海中瞬间百转千回，然后无奈一叹，接听了电话！</p>
+<p class = "firstLineIndent">“喂！”聂云的语气有些沉重。</p>
+<p class = "firstLineIndent">“……聂云，关于那个炸弹……你还有什么想要对我说的吗！？”一阵沉默之后，楚潇潇不出意料地问出这个问题。</p>
+<p class = "firstLineIndent">“唉！你知道了？”聂云叹了口气。</p>
+<p class = "firstLineIndent">“应该说，全世界都知道了！你们闹出这么大动静，难道还想瞒着我吗？”楚潇潇的语气略带伤感。</p>
+<p class = "firstLineIndent">她不怪聂云瞒着她，从第一次见面开始，楚潇潇就知道聂云的身上满是数不清的秘密！一个个解不开的秘密将聂云笼罩在一层迷雾中，往往之前那个秘密还未解开，另一个更大的秘密又紧接着而来。</p>
+<p class = "firstLineIndent">对于这种隐瞒，她之前从没怪过聂云，聂云在她眼里，毕竟是个超级秘密组织的成员。</p>
+<p class = "firstLineIndent">她认为或许这些机密的事情，是聂云碍于组织的规定不能外泄，或者是聂云为了她的安全考虑，隐瞒实则是一种保护。</p>
+<p class = "firstLineIndent">但是现在……炸弹再过不久就要爆炸了啊！人类都快毁灭了，难道还不能向自己坦白？</p>
+<p class = "firstLineIndent">“算了，现在说这些都不重要了……聂云，炸弹马上就要爆炸了，你在哪儿？安全吗？”聂云还没回答，楚潇潇便已经再次开口关心地问道。</p>
+<p class = "firstLineIndent">聂云闻言心中有些感动，楚潇潇的大度出乎他的意料，他此时对隐瞒楚潇潇有了些许愧疚。</p>
+<p class = "firstLineIndent">但是……如果全部坦白，那么势必要告诉她自己就是幽灵船长的真相，然后聂云就稍稍脑补了接下来好奇宝宝楚潇潇与诚实小郎君聂云的一番对话。</p>
+<p class = "firstLineIndent">楚潇潇：哇！原来你就是幽灵船长啊，那么那些超级科技到底是哪儿来的？</p>
+<p class = "firstLineIndent">聂云：唔……其实是我获得了一种神奇的机械虫，它们能够巴拉巴拉……</p>
+<p class = "firstLineIndent">楚潇潇：哇，机械虫好可爱好棒哦！那么你是怎么控制它们的呢？</p>
+<p class = "firstLineIndent">聂云：这个……你确定想要知道？</p>
+<p class = "firstLineIndent">楚潇潇：当然啦！快告诉我！</p>
+<p class = "firstLineIndent">聂云：好吧……看，这就是我控制它们的秘密所在！</p>
+<p class = "firstLineIndent">然后聂云启动了变身技能！</p>
+<p class = "firstLineIndent">楚潇潇：……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">于是，按照上面的剧本，最终聂云必然要告诉她一个残酷的真相，那就是你男朋友其实是一个“机械人”或者说……“小虫人”？</p>
+<p class = "firstLineIndent">虽然聂云在普通状态能够保持生物的一切特性，和普通人一般无二，但是天知道楚潇潇听到以后会是什么反应！</p>
+<p class = "firstLineIndent">知道许仙怎么死的吗？嗯，没错，就是被自己的老婆给吓死的！</p>
+<p class = "firstLineIndent">前车之鉴，后事之师啊！</p>
+<p class = "firstLineIndent">不管是吓傻还是吓跑，都不是聂云愿意看到的！正是因为预料不到楚潇潇的反应，聂云才无奈选择了隐瞒，尽管……这有些自私。</p>
+<p class = "firstLineIndent">但他不得不承认，自己的确是很喜欢楚潇潇的！</p>
+<p class = "firstLineIndent">喜欢她的纯洁善良，虽然有些大小姐脾气，不善于表达感情，但是对自己始终真心相待。</p>
+<p class = "firstLineIndent">回想起来，原本是不同世界的两人，因老爹产生交集，经历过初见时的傲慢与偏见，也因机缘巧合的英雄救美再次重逢，随后就是一系列的欢乐日常……</p>
+<p class = "firstLineIndent">不知不觉，两人之间有了与彼此相处的默契，和首次萌动的内心，或者称之为……“初恋”！</p>
+<p class = "firstLineIndent">事实上，在聂云融合机械虫的那段时间，他的身体虽然得到进化，生命形式得以升华，然而他属于人类的情感却在消退！</p>
+<p class = "firstLineIndent">完美融合机械虫并非一件简单的事情，过程中伴随着太多的未知和凶险，聂云在完全融合之前，也都还不了解自己究竟将会变成什么样的“东西”。</p>
+<p class = "firstLineIndent">在机械虫的融合初期，每当聂云全力使用机械虫的能力时，他便发现自己会进入一种冰冷无情的状态，生物的感情被压制到极限，整个人就像是一台机器，高效而精密，却无一丝生气。</p>
+<p class = "firstLineIndent">当时开枪射杀“拼命三郎”中的老二，他第一次杀人，却几乎没有任何异样的感觉。再到后来的游艇事件中，聂云更是将那些雇佣兵杀的血流成河，他同样眉头都没有皱一下。</p>
+<p class = "firstLineIndent">原本聂云觉得是自己心黑手狠，不过后来才明白，这或许多少是受到了机械虫的影响。也许正常情况下，他会杀着杀着，变得越来越漠视生命吧……</p>
+<p class = "firstLineIndent">而从什么时候开始，他的心中却有了连全力动用机械虫都无法抹去的一道靓影？</p>
+<p class = "firstLineIndent">或许是从无人岛救出楚潇潇的那个夜晚，看着她在星空下环抱双膝，对自己说“我去了，上了炷香”时的美丽侧脸吧……</p>
+<p class = "firstLineIndent">带着被抛弃的怨恨，善良的楚潇潇依然选择原谅了老爹，或许从那时候开始，楚潇潇就在自己心里占据了一个位置，让自己时不时会想起，会牵挂……</p>
+<p class = "firstLineIndent">而似乎是因为心中多了这样一份坚不可摧的感情，机械虫对聂云的影响力，竟然奇迹般地开始消退！</p>
+<p class = "firstLineIndent">从某种意义上来说，是楚潇潇拯救了聂云也说不定，她在聂云心中的分量，远比她自己想象的，还要高！</p>
+<p class = "firstLineIndent">也正是因为如此，聂云可以不遗余力帮助楚氏，甚至小心翼翼，用隐瞒的手段维持这段感情……</p>
+<p class = "firstLineIndent">聂云犹豫了一下，终于还是决定稍稍向楚潇潇坦白一些东西，至于真相……</p>
+<p class = "firstLineIndent">“唉！总之……能瞒多久算多久吧……”纯情少男聂云心中叹了口气。</p>
+<p class = "firstLineIndent">“潇潇，有些事瞒着你，我的确有不得已的苦衷……”聂云第一次承认了自己有事瞒着楚潇潇。</p>
+<p class = "firstLineIndent">只是这一句话，就让楚潇潇先前的些许怨气烟消云散。</p>
+<p class = "firstLineIndent">“不过趁着今天这个机会，我告诉你一些实情吧……你或许也应该猜到了吧，关于我的组织和幽灵船长……”聂云小心地斟酌着话语。</p>
+<p class = "firstLineIndent">楚潇潇闻言心中暗道果然！</p>
+<p class = "firstLineIndent">“这么说……你身后的组织果然就是神秘无比的幽灵船长吗？那么……对日耀集团出手，是为了……”</p>
+<p class = "firstLineIndent">“没错！是为了你！”聂云毫不犹豫地如此回答！</p>
+<p class = "firstLineIndent">他很自然的将日耀集团请的雇佣兵作死想要抢自己“舰队”，这才激的自己愤而出手的事情抛在脑后！</p>
+<p class = "firstLineIndent">“聂云……”楚潇潇果然感动的一塌糊涂！</p>
+<p class = "firstLineIndent">“潇潇，今天向你坦白，其实也是担心现在不说，我可能就再也没有说的机会了……”</p>
+<p class = "firstLineIndent">“聂云！你现在在哪儿？幽灵船长那么厉害，你们难道没有去避难吗？！”楚潇潇闻言顿时心中一惊，不由着急道。</p>
+<p class = "firstLineIndent">“实话和你说吧，我刚刚离开之后，就飞往米国，这种炸弹，目前只有我能拆！所以……我现在就在炸弹旁边！”</p>
+<p class = "firstLineIndent">“什么？！怎么拆弹这种事你都往上凑！既然拆不了，那你怎么还不离开那里！快走啊你这个笨蛋！”楚潇潇急了。</p>
+<p class = "firstLineIndent">在她想来，炸弹爆炸的消息都传播到全世界了，聂云想必也是束手无策了。</p>
+<p class = "firstLineIndent">“唉！这个炸弹的威力超乎所有人的想象，普通手段根本防御不了，我是可以走，可是你怎么办，我怎么能抛下你不管！”聂云乘机赚分。</p>
+<p class = "firstLineIndent">“你……你这个傻瓜！”楚潇潇眼中含泪，果然中招！</p>
+<p class = "firstLineIndent">“不过你不用太担心，炸弹也并不是一定会爆炸，我的拆弹已经进入最后一步了！打个比方，现在摆在我眼前的，是一条红线和蓝线，只要我剪对了，炸弹就不会爆炸，若是剪错了……”尝到善意谎言的甜头，聂云开始在这条不归路上越走越远……</p>
+<p class = "firstLineIndent">“什么？！”楚潇潇闻言愕然，然后心中升起希望。</p>
+<p class = "firstLineIndent">50的概率，总比等死强多了！</p>
+<p class = "firstLineIndent">“那……你选择好了吗？”楚潇潇紧张道。</p>
+<p class = "firstLineIndent">“概率都一样，所以，我想……让你来选！我选择相信你！”</p>
+<p class = "firstLineIndent">“哈？！”楚潇潇愕然地瞪大眼睛。</p>
+<p class = "firstLineIndent">“咕！”她咽了口唾沫，有没有搞错！我只是打个电话想和男朋友聊聊私人感情问题，真的很私人的那种！</p>
+<p class = "firstLineIndent">可你突然将全世界“生存”or“毁灭”的选择权交到我手上，我一点心理准备都木有啊！</p>
+<p class = "firstLineIndent">“选吧，潇潇，如果到时候我还活着，我就决定回家娶你！”聂云给开始自己给自己竖旗。</p>
+<p class = "firstLineIndent">“噗嗤！喂喂，你到法定结婚年龄了吗！”楚潇潇顿时被聂云逗乐了。</p>
+<p class = "firstLineIndent">她深深吸了一口气，突然感觉有聂云陪着，似乎心中再无一丝恐惧。</p>
+<p class = "firstLineIndent">“剪蓝色！”楚潇潇毅然道！</p>
+<p class = "firstLineIndent">“蓝色？为什么？”聂云好奇地问了一句。</p>
+<p class = "firstLineIndent">“笨蛋！”楚潇潇没回答，只是红着脸似羞似嗔道。</p>
+<p class = "firstLineIndent">“呃……笨蛋？”聂云挠了挠头不明所以。“好吧，既然你选好了！那我剪了！”</p>
+<p class = "firstLineIndent">“嗯！”楚潇潇重重点头。</p>
+<p class = "firstLineIndent">十秒……二十秒……三十秒……</p>
+<p class = "firstLineIndent">“聂……聂云？你剪了吗？”楚潇潇忐忑地问道。</p>
+<p class = "firstLineIndent">“呼……潇潇，恭喜你，拯救了全世界！”聂云笑道。</p>
+<p class = "firstLineIndent">楚潇潇：“……”</p>
+
+<h2>第二百二十三章 外星人的弱点（二合一）</h2>
+<p class = "firstLineIndent">米国十三区，炸弹倒计时只剩下不到半个小时。</p>
+<p class = "firstLineIndent">“快想想，还有什么办法能让这个该死的炸弹停下！”区长狠狠拍了下桌子对着面前的一名科研人员吼道。</p>
+<p class = "firstLineIndent">“这……我们尽力了，如果能够再多给我们点时间，或许……”</p>
+<p class = "firstLineIndent">“给你们时间？让谁给？那帮该死的外星人吗？”区长直接打断他气道。</p>
+<p class = "firstLineIndent">炸弹被发现后，全米国的顶尖学者全部被紧急召集起来，对引力炸弹进行解析，但是时间太短，到目前为止他们依然对破解护盾毫无头绪。</p>
+<p class = "firstLineIndent">“k，冷静点，一定还有办法的，幽灵船长那边什么情况？”旁边的杰伊出声道。</p>
+<p class = "firstLineIndent">“正在让人不间断联系，不过一直联系不上！那个家伙，该不会是在故意耍我们吧？”区长有些恨恨道。</p>
+<p class = "firstLineIndent">“应该不会，我们虽然算不上友军，但至少对外星人，终究还是同一个战线的，眼睁睁看着人类灭亡对他一点好处都没有！”</p>
+<p class = "firstLineIndent">不知道为什么，杰伊总觉得他们昏迷的那段时间发生了什么，另外他也不相信幽灵船长会对此事就这么放任不管。</p>
+<p class = "firstLineIndent">不管从哪个角度看，放弃人类都是个战略性的错误，因此他十分笃定，除非幽灵船长真的无能为力，否则必定会出手！</p>
+<p class = "firstLineIndent">不过别人对幽灵船长可没他这么强烈的信心。</p>
+<p class = "firstLineIndent">“唉！倒计时还有不到半个小时，都这个时候了，就算联系上了又有什么用？幽灵船长本事再大，这么短的时间能用来干嘛？</p>
+<p class = "firstLineIndent">我已经让人员紧急疏散了，离炸弹越远，至少生还的几率要高一些。</p>
+<p class = "firstLineIndent">另外，白宫那边已经开始准备新闻发布会了，他们打算公开这个消息，事情到了现在这一步，已经没有再隐瞒的必要了。</p>
+<p class = "firstLineIndent">人类，终究还是要迎来一场浩劫……”区长有些绝望道。</p>
+<p class = "firstLineIndent">随着倒计时的临近，原本还有所期待的米国此刻对于成功拆弹也已经不抱什么希望，打算以人类代表的身份召开新闻发布会，向全世界敲响末日来临的钟声。</p>
+<p class = "firstLineIndent">“开新闻发布会？可是……”杰伊听到这个消息一愣，他刚想说些什么。</p>
+<p class = "firstLineIndent">就在这时，“区长！幽灵船长那边有消息了！”就在这时，旁边一人喊道。</p>
+<p class = "firstLineIndent">“什么？终于联系上了？快接过来！”区长和杰伊闻言精神一震。</p>
+<p class = "firstLineIndent">“幽灵船长阁下！我是十三区区长，谢谢！太感谢了！”通讯接通后，区长有些激动地上来就是一通感谢。</p>
+<p class = "firstLineIndent">至于他谢什么，区长表示有很多，比如我谢你还没有放弃人类，又比如还要谢你百忙之中赶回服务区……</p>
+<p class = "firstLineIndent">“呃，呵呵！区长先生你好！”还是那个熟悉的金属音。</p>
+<p class = "firstLineIndent">“剩下的时间不多，我就不多客套了，请问阁下，那颗炸弹……”区长撇了眼倒计时，急急道。</p>
+<p class = "firstLineIndent">“嗯，放心吧，我们已经解析出了炸弹的工作原理！”幽灵船长的第一句话就让所有人精神一震。</p>
+<p class = "firstLineIndent">“那么……有破解的方法吗？”区长问出这句话以后，怀着紧张和期待的心情等待对面的回答！</p>
+<p class = "firstLineIndent">“呵呵！当然……有！”</p>
+<p class = "firstLineIndent">“这……真的吗？”惊喜来的那么突然，区长的声音都有些颤抖。</p>
+<p class = "firstLineIndent">“当然！而且很简单，只需要3分47秒你们就能解决那个炸弹！”</p>
+<p class = "firstLineIndent">啥？3分47秒？</p>
+<p class = "firstLineIndent">所有人脸色古怪，这咋拆个弹你还能精确到秒？属计时器的吗？</p>
+<p class = "firstLineIndent">区长更激动了，“那……方法是？”</p>
+<p class = "firstLineIndent">“记得我之前发出的那记音波功吗？”</p>
+<p class = "firstLineIndent">“当然记得！”怎么能忘，我现在还头晕恶心呢！区长心中腹诽。</p>
+<p class = "firstLineIndent">“嗯，那其实是我的一种测试方式，而且果然让我找到了关键所在！”聂云道。</p>
+<p class = "firstLineIndent">“测试？您是说……破解的方法和音波有关？”杰伊反应迅速惊讶道。</p>
+<p class = "firstLineIndent">“不错！从开始攻击护盾后不久，我就发现，其实有一样东西是可以穿透护盾的……那就是音波！所以，我们根本没必要攻击护盾就能破坏炸弹！”</p>
+<p class = "firstLineIndent">“唔……的确！这个我们也发现了，与电磁波不同，音波是一种机械波，而力场护盾的确不会干涉音波的穿透。</p>
+<p class = "firstLineIndent">但是各种频率的音波我们都试过了，它们的杀伤力太弱，对生物还好，对这种机械类的目标根本是毫无作用啊！”区长疑惑道。</p>
+<p class = "firstLineIndent">“呵呵！你们试的方法不对，需要更曲折的音阶和更具穿透力、感染力的节奏感！”聂云神秘一笑。</p>
+<p class = "firstLineIndent">更曲折的音阶？</p>
+<p class = "firstLineIndent">更具穿透力、感染力的节奏感？</p>
+<p class = "firstLineIndent">所有人脸上都是一片茫然，你确定我们在讨论的是如何拆弹？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后，放置炸弹的区域已经被清场，周围还摆满了十三区所有能够找到的音响设备。</p>
+<p class = "firstLineIndent">而此刻，倒计时还剩下十五分钟！</p>
+<p class = "firstLineIndent">“全体注意，扩音设备打开，音量开到最大！播放……开始！”随着区长的这一声命令。</p>
+<p class = "firstLineIndent">“āáǎà哦！āáǎà哦诶！阿是弟，阿是刀，阿是大的提大刀。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">啊伊呀伊呦，啊伊呀伊呦，阿弟可带一个带一个带一个他可带一个带一个刀，带一个带一个带一个他可带一个带一个刀，啊伊呀伊呦……”</p>
+<p class = "firstLineIndent">区长：“……”</p>
+<p class = "firstLineIndent">杰伊：“……”</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">整片地下区域回荡着奇异的音乐声！巨大的音浪让人耳膜生疼。</p>
+<p class = "firstLineIndent">曲子全长3分47秒，所有人这才明白幽灵船长刚刚那番精确到秒的拆弹时间到底是哪里来的了……</p>
+<p class = "firstLineIndent">炸弹即将爆炸带来的紧张、焦虑感，似乎都被这首格格不入的歌曲驱散，整个十三区笼罩在一种十分莫名的气氛中，所有人全都一脸的古怪……</p>
+<p class = "firstLineIndent">的确如同幽灵船长所说的那样，它拥有曲折的音阶，极具穿透力、感染力的节奏感……</p>
+<p class = "firstLineIndent">不过……总觉得这么干的我们像一群傻瓜一样啊……</p>
+<p class = "firstLineIndent">“喂喂！这么做真的有效果？”区长忍着脑门儿上的青筋道。</p>
+<p class = "firstLineIndent">且不论这让人很难做出评价的歌曲，用音乐对付外星人，这剧本确定没拿错？</p>
+<p class = "firstLineIndent">“原来如此！真相总是隐藏在不起眼的角落么？真是太出乎我的意料了！”杰伊却是一脸兴奋，似乎对幽灵船长有着迷之信心。</p>
+<p class = "firstLineIndent">“你又有什么想法？”区长眼皮一跳。</p>
+<p class = "firstLineIndent">“知道么，这首曲子我曾经听过！在幽灵海域对决f-35的战斗中，那架空中幽灵就曾经播放过这首音乐。</p>
+<p class = "firstLineIndent">我专门研究过空中幽灵这种机体，作为幽灵船长唯一现世过的战机类单位，毫无疑问，这是一种先进到难以想象的超级无人机！</p>
+<p class = "firstLineIndent">我们姑且将其当做幽灵船长的主力量产型战机。</p>
+<p class = "firstLineIndent">它超高的机动性，超高的飞行速度、作战性能，以及强的可怕的自动化战斗智能！哪怕是f-22都远远无法与之相提并论！</p>
+<p class = "firstLineIndent">那么你想想，如此先进的无人机，内部的每一寸都必然是紧凑精密到常人无法想象！但竟然还要浪费宝贵的机内空间搭载看似几乎无用的音响外放设备？这是为什么？”</p>
+<p class = "firstLineIndent">“咦？你这么说，倒真是可疑！毕竟战机这种东西，可不是什么东西你想加就加的，必然是设计定型后才能生产，也就是说，在原本的设计中，他们就加入了外放式音响设备？</p>
+<p class = "firstLineIndent">可是，幽灵船长的战机上究竟为什么要搭载音响呢？它莫非有什么作用？”区长疑惑道。</p>
+<p class = "firstLineIndent">“呵呵！你忘了，幽灵船长的主要敌人，可不是人类……”杰伊耳中听着那似乎要让人陷入其中的音乐，声音幽幽道。</p>
+<p class = "firstLineIndent">“不是人类……你莫非想说，这个音响是用来对付外星人的？！”区长难以置信道。</p>
+<p class = "firstLineIndent">“为什么不可能呢？对不同的敌人，为自己的武器进行针对性改造，这不是军事上的基本常识么？</p>
+<p class = "firstLineIndent">况且，我们对外星人以及他们的武器设备根本一无所知，就连人家的一颗炸弹，都无法完全破解，又怎么能知道，对方的弱点……不是那种我们根本意想不到的，不起眼的东西呢？”</p>
+<p class = "firstLineIndent">“你是说……外星人，或者说他们的武器装备，会被音乐克制？”区长瞪大眼睛，满脸不可思议道。</p>
+<p class = "firstLineIndent">“不，你刚刚没听幽灵船长说吗？不是普通音乐，而是这种曲折的音阶，极具穿透力、感染力的节奏感！我觉得这首曲子中很可能包含着独特的音波变化，那才是关键！</p>
+<p class = "firstLineIndent">空中幽灵战斗时为何外放这首歌曲暂时不提，不过若是这次，这首曲子真的能够破解炸弹，那么就说明……它真的是与众不同的！</p>
+<p class = "firstLineIndent">或许……称之为人类的‘神曲’也不为过！”杰伊一脸陶醉地听着音乐声，就像是在倾听人类反攻外星人的昂扬号角。</p>
+<p class = "firstLineIndent">区长听完杰伊的分析，整个人愕然呆滞了半晌，这才回过神，然后顿时，耳中那难以忍受的魔音似乎顺耳多了，仿佛谱写它的，是一个个来自天堂的福音，开始洗涤他的心灵……</p>
+<p class = "firstLineIndent">旁边的一些工作人员有些讶然地看着区长和杰伊两人，他们一脸享受的表情和周围的人简直格格不入！</p>
+<p class = "firstLineIndent">奇怪？怎么刚刚两人还是不堪忍受的神情，这聊着聊着就享受上了？</p>
+<p class = "firstLineIndent">难道这曲子另有奥妙？其实是属于一种极为耐听的大后期音乐？众人不由耐心琢磨其中的意境。</p>
+<p class = "firstLineIndent">别说，虽然乍一听有些难以接受，不过听着听着，还真有点为之着魔的感觉。</p>
+<p class = "firstLineIndent">室内众人沉浸在一片古怪的领悟状态……</p>
+<p class = "firstLineIndent">而几乎一秒不差地，音乐刚结束，那边的炸弹就在众人无限惊喜的目光中开始出现了剧变！</p>
+<p class = "firstLineIndent">“滋滋~”蓝色的电弧从内部穿透而出，在炸弹的外壳上劈啪作响，护盾闪烁了两下直接熄灭，接着电芒越来越亮……</p>
+<p class = "firstLineIndent">“不好！快趴下！”杰伊眼见情况不对，大喊一声之后直接一把按住身边的区长就地扑倒！</p>
+<p class = "firstLineIndent">他话音刚落，“轰！”的一声巨响，炸弹整个儿发生剧烈的爆炸，观察窗的玻璃直接炸碎，玻璃渣四溅，巨大的气浪让所有人犹如窒息一般。</p>
+<p class = "firstLineIndent">许久后，等所有人纷纷从一片狼藉中狼狈地起身时，发现炸弹所在已经是陷入一片火海！</p>
+<p class = "firstLineIndent">“我……我还活着？”“炸弹被破坏了！它没有爆炸！”“噢耶！得救了！”“哈哈！神曲万岁！我爱神曲！”……</p>
+<p class = "firstLineIndent">所有人发现危机解除，顿时欢呼传来！</p>
+<p class = "firstLineIndent">区长带着劫后余生和不可思议看着已经消失的炸弹，似乎还无法接受只是一首歌就干掉了能够毁灭人类的大危机？</p>
+<p class = "firstLineIndent">然后他有些愣愣地转头看向杰伊。“这就……完了？”</p>
+<p class = "firstLineIndent">“事实摆在眼前，真是不可思议的外星人，深不可测的幽灵船长！”杰伊拍着身上的尘土感叹道。</p>
+<p class = "firstLineIndent">“没想到，外星人的克星竟然是一首曲子！？这真是……对了！我去！我的炸弹啊！”区长感慨到一半，突然想起什么，不由看向那片火海。</p>
+<p class = "firstLineIndent">“停停停！都别嚎了！快给我去抢救炸弹！能救下多少算多少！快啊！”区长肉疼地喊着。</p>
+<p class = "firstLineIndent">所有人这才反应过来，这引力炸弹可是珍贵的研究对象，顿时慌乱地跑去拿灭火设备。</p>
+<p class = "firstLineIndent">“看这样子，估计是留不下什么咯！”杰伊看这爆炸现场摇摇头，也有些可惜道。</p>
+<p class = "firstLineIndent">“唉……十三区最大的秘密都毁了，以后想要经费就更难了啊……”区长一脸纠结，刚刚生还的喜悦顿时化为乌有。</p>
+<p class = "firstLineIndent">“咳咳！比起经费，现在估计还有另一件事比较着急！”杰伊突然道。</p>
+<p class = "firstLineIndent">“嗯？什么？”区长不解道。</p>
+<p class = "firstLineIndent">“新闻发布会……”杰伊幽幽提醒了一句。</p>
+<p class = "firstLineIndent">区长慢慢睁大眼睛。</p>
+<p class = "firstLineIndent">卧槽！对啊！新闻发布会正在召开啊！米国的发言人正在慷慨陈词，敲响人类末日来临的钟声啊！</p>
+<p class = "firstLineIndent">现在的情况尽管危急，影响恶劣但是至少还能收场，大不了耍个无赖说是谣言，可如果等新闻发布会召开后……</p>
+<p class = "firstLineIndent">末日的钟敲响了，它却没来，那么……</p>
+<p class = "firstLineIndent">米国从头到尾自导自演的末日风波就会变成一场彻头彻尾的全球性大笑话啊！</p>
+<p class = "firstLineIndent">或许万年后的史书会如此评价这次事件：这是一起有组织有预谋，计划周密，性质恶劣的严重反社会、反人类的政治事件，其主要涉案人员包括米国国防部长、十三区区长……</p>
+<p class = "firstLineIndent">想着想着，离遗臭万年只有一步之遥的区长额头顿时冒出冷汗……</p>
+
+<h2>第二百二十四章 宣战</h2>
+<p class = "firstLineIndent">米国华盛顿高空，一架c5重型战略运输机正在高空盘旋。</p>
+<p class = "firstLineIndent">运输机内部已经被改造成了一个临时指挥部，而国防部长正满脸凝重地看着各地传来的情报。</p>
+<p class = "firstLineIndent">是的，国防部长早早地就离开地面，抵达较为安全的高空！</p>
+<p class = "firstLineIndent">在多次确认幽灵船长失联，而他们的科学家对炸弹无能为力时，他便已经决定战略撤退，保留自己的有用之身，以便在灾后重建工作中发挥更重要的作用。</p>
+<p class = "firstLineIndent">甚至如果到时候总统有个什么意外……那么自己……</p>
+<p class = "firstLineIndent">说不定有生之年，还可以混个地球联邦的总统当当？</p>
+<p class = "firstLineIndent">“部长阁下，新闻发布会已经准备好了！”</p>
+<p class = "firstLineIndent">“好！发演稿我已经看过，没有问题，发给艾伯特吧！</p>
+<p class = "firstLineIndent">对了，顺便帮我转告他，作为敲响末日钟声的敲钟人！他将成为史书中见证历史的关键人物，留下浓墨重彩的一笔！米国和全人类都会记住他！”国防部长用一副十分庄重的神情道。</p>
+<p class = "firstLineIndent">不过事实上，他心底早就将艾伯特那个蠢货鄙视了好几遍。</p>
+<p class = "firstLineIndent">作为米国的发言人，可是要在现场对着记者露脸的，那么自然不可能在更安全的飞机上对着全世界做出通告，如果真这么干，你让坐在电视机前的观众朋友们如何接受？</p>
+<p class = "firstLineIndent">哦！你在飞机上安安稳稳的坐着，然后对着我们这些完全没有办法只能等死的民众说“人类就要完了，不过不要怕，上帝与你们同在”？</p>
+<p class = "firstLineIndent">确定不是来拉仇恨的？恐怕话还没说呢，就会被全世界60亿张嘴一连串的屏蔽词喷的直接怀疑人生！</p>
+<p class = "firstLineIndent">所以……这个发言人可是要有同人类共赴黄泉的觉悟的！</p>
+<p class = "firstLineIndent">尽管如此，米国的老牌发言人艾伯特表示粉身碎骨浑不怕，要留清白在人间！这种名留青史的事情请务必交给我来干！</p>
+<p class = "firstLineIndent">于是国防部长欣然同意，只要不是让自己上台，爱谁谁！</p>
+<p class = "firstLineIndent">发言稿很快发了出去，只不过……在途经卫星的时候，某人瞟了一眼，然后很是不满意的摇摇头。</p>
+<p class = "firstLineIndent">“喂喂！这可是全人类的墓志铭啊！你居然还在给自己的国家脸上贴金？怎么说你好呢……格局不够大，就连遣词造句也太娘炮！</p>
+<p class = "firstLineIndent">有空多看看人家希特勒的演讲！那才叫煽动性好么！改！必须改！”某人说完一阵挥毫泼墨，洋洋洒洒写的是酣畅淋漓……</p>
+<p class = "firstLineIndent">正在米国新闻发布会现场准备的“末日敲钟人”艾伯特很快收到了稿子，他看完稿子愣了好一会儿，随后浑身像是热血沸腾了一般，低声吼了一句，“娘的，有这份稿子，老子不名留青史都难了！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">此刻倒计时还剩下最后半个小时，而人类末日的消息几乎已经是传遍了全世界！</p>
+<p class = "firstLineIndent">尽管在聂云的有意控制下，消息的传播速度受到了一定的限制，能够得到确切消息并有时间作出一定反应的，多以各国的上流社会为主，当然也不乏一些门路较广的三教九流。</p>
+<p class = "firstLineIndent">然而这些人所能做的已经不多，毕竟……留给他们的时间太少了。区区几个小时的时间，连跑个路都嫌不够。</p>
+<p class = "firstLineIndent">正因如此，混乱暂时还被局限在较小的范围内，暂时还没有引起大规模的动乱。</p>
+<p class = "firstLineIndent">而各国政府大多都在一脸懵逼地紧急商讨对策，同时敦促始作俑者米国对这个莫名其妙出现的炸弹作出正面回应。</p>
+<p class = "firstLineIndent">而此时，更多的普通人，则只是或多或少收到了一些网络上的小道消息，他们依然还在惊疑地对这个消息的真实性摇摆不定。</p>
+<p class = "firstLineIndent">而随着官方的不辟谣、不澄清的奇怪举动，相信的人在渐渐增多……</p>
+<p class = "firstLineIndent">接受自己终将死亡的事实，这不是一件难事，但突然被告知将在何时迎接死亡，那就不是那么好接受的事情了。</p>
+<p class = "firstLineIndent">特别是……尼妹的老子根本连自己怎么死的都不清楚，真的是死不瞑目啊喂……</p>
+<p class = "firstLineIndent">在这种时候，人性在最危急的关头受到最严峻的拷问。</p>
+<p class = "firstLineIndent">然后，在类似“如果我的生命只剩一个小时”这样带着些许蓝色忧郁的作文题目上，用各自内心最深处的人格，以行动书写着属于自己最真实而深刻的那份答卷。</p>
+<p class = "firstLineIndent">有人焦躁，有人歇斯底里，有人静静等待命运的宣判，也有人鼓起勇气拿起电话打给心中一直牵挂的那个人……</p>
+<p class = "firstLineIndent">所有人都在经历一场生存与毁灭的洗礼，有的走向深渊，有的则开始自我升华……</p>
+<p class = "firstLineIndent">就在这样的时刻，米国终于向全世界宣布，要向全世界坦白自己所知道的一切！</p>
+<p class = "firstLineIndent">全世界收到消息的人们打开电视，开始观看新闻发布会的现场直播，各国政府基本都选择了转播。</p>
+<p class = "firstLineIndent">美洲、非洲、欧洲、亚洲……不同人种、不同民族的人们或在家中，或聚集在广场上，静静等待对命运的宣判。</p>
+<p class = "firstLineIndent">画面一闪，出现了一个坐满记者的新闻发布会场，随后，镜头转向一个中年白人男子，正是米国发言人艾伯特。</p>
+<p class = "firstLineIndent">“全世界各国的人类同胞们，我是艾伯特！</p>
+<p class = "firstLineIndent">在这个我们人类历史上最生死攸关的时刻！</p>
+<p class = "firstLineIndent">我向每一位民众，不管你们身处何方，传递这样一个消息！</p>
+<p class = "firstLineIndent">对你们的心情，我感同身受！甚至希望能挨家挨户，去通知你们……</p>
+<p class = "firstLineIndent">或许你们其中很多人已经知道这个让人悲伤的消息，是的，我们中大多数人即将死去！也包括我在内……”</p>
+<p class = "firstLineIndent">艾伯特这句话一出，全世界似乎都突然安静了一瞬间，人们的眼中开始出现惊慌的神色。</p>
+<p class = "firstLineIndent">艾伯特的发言还在继续，作为老牌发言人，他的演讲能力十分不俗，他的声音开始从一开始的悲伤渐渐激昂起来，调动起人们的情绪！</p>
+<p class = "firstLineIndent">“我们已竭尽所能，寻求通过和平方式解决争端……但一切都是徒劳！</p>
+<p class = "firstLineIndent">那些从遥远星球而来的外来者没有给我们谈判的机会！他们即将野蛮地在我们的家乡地球动用威力巨大的毁灭性武器！而我们对此束手无策！</p>
+<p class = "firstLineIndent">是的！我们被迫卷入了一场战争，同外星人的战争！</p>
+<p class = "firstLineIndent">十分钟后，我们或者会失去生命、或者会失去亲人，而整个世界即将迎来末日……”</p>
+<p class = "firstLineIndent">现场记者哗然，全世界也顿时哗然。</p>
+<p class = "firstLineIndent">我们刚刚听到了什么？外星人？这就是人类即将毁灭的真相？！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“该死的！这个发言稿是怎么回事？这根本不是我们给他准备的发言稿！”国防部长先是一脸愕然，接着便愤怒的喊道。</p>
+<p class = "firstLineIndent">他听到一半，就觉得情况有些不对，这台词根本不是自己这个导演写的啊！</p>
+<p class = "firstLineIndent">“这……我们也不知道怎么回事，稿子已经再三确认过绝对没有错，会不会是地面系统出现的问题？”旁边的一名工作人员呐呐道。</p>
+<p class = "firstLineIndent">“够了！现在说这些有什么用，还不快通知那边暂停，再把我们那份稿子传过去！”国防部长咆哮道。</p>
+<p class = "firstLineIndent">“是……是的阁下！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“在这生命的最后一刻，我忧虑，恐惧！</p>
+<p class = "firstLineIndent">我并非忧虑恐惧自己生命的终结，而是为那些在灾难中不幸幸存下来的同胞们！</p>
+<p class = "firstLineIndent">是的，你们是幸运的，同样也是不幸的！</p>
+<p class = "firstLineIndent">你们将无家可归，需要忍受着失去亲人的痛苦四处躲藏，你们中有人会被奴役、或者沦为玩物，在文明的废墟中苟延残喘。</p>
+<p class = "firstLineIndent">自由女神的火炬已经黯淡无光，而你们将失去尊严、失去自由！</p>
+<p class = "firstLineIndent">逝者安息永眠，而继续活下去却需要太多的勇气……”</p>
+<p class = "firstLineIndent">艾伯特眼含热泪，整个世界在他的感染下陷入一种无言的愤怒和哀伤。</p>
+<p class = "firstLineIndent">“这些外星人凶残而毫无人性，他们肆意践踏文明的秩序，将我们人类视为蝼蚁！”艾伯特带着愤怒的声音回荡在世界的每一个角落，人们的眼中同样燃起熊熊怒火。</p>
+<p class = "firstLineIndent">“然而从刀耕火种开始，人类就在同猛兽、同自然抗争……从未屈服！他们可以毁灭我的肉体，但是绝对无法让我低下属于人类高傲的头颅！</p>
+<p class = "firstLineIndent">我们不是机器，不是奴隶，我们是人！是从来没有屈服过的人类！</p>
+<p class = "firstLineIndent">如果有可能，我想要拿起枪去战斗，不为其他，只为尊严、为自由而战！</p>
+<p class = "firstLineIndent">哪怕是战死，我也会微笑着进入天堂！我会见到那些荣耀的祖先们，我可以昂着头颅走到伟大的先辈跟前，我可以骄傲地对他说：我，你的子孙，没有给你丢脸，我为伟大的人类流尽了最后一滴血！</p>
+<p class = "firstLineIndent">来自远方的邪恶敌人啊，你们想用死亡和恐惧让我屈服，而我只想对你说：fuck you！</p>
+<p class = "firstLineIndent">我的同胞们，地球文明万岁！人类，万岁！”艾伯特声嘶力竭地高举右拳，向着全世界发出一声最后的呐喊！</p>
+<p class = "firstLineIndent">整个世界似乎安静了瞬间，随后……</p>
+<p class = "firstLineIndent">“外星人，fuck you！”“干死丫的！”“绝不屈服！”“地球文明万岁！人类万岁！”……</p>
+<p class = "firstLineIndent">发布会现场的记者们沸腾起来，全世界电视机前的观众沸腾起来！</p>
+<p class = "firstLineIndent">全世界几乎都被声浪淹没，这是不屈的文明的呐喊！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">国防部长呆呆地站在同样沸腾起来的临时指挥部，身影有些孤单。</p>
+<p class = "firstLineIndent">怎么会这样？为什么会这样呢？</p>
+<p class = "firstLineIndent">好好的末日宣言，怎么弄的像对外宣战一样？这剧本完全不对啊……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“大型灾难纪录片‘人类末日（中）’录制完毕！”某幕后黑手的智脑响起一声提示……</p>
+
+<h2>第二百二十五章 士气爆棚</h2>
+<p class = "firstLineIndent">听着周围在自己的冲锋号角下热血沸腾的呐喊，艾伯特双手张开，似乎在坦然拥抱即将到来的死亡。</p>
+<p class = "firstLineIndent">今天这场演讲，不仅是人类的悼词，更是人类向外星文明发起冲锋的号角！其历史意义可谓前无古人！</p>
+<p class = "firstLineIndent">我艾伯特能有此殊荣，已经死而无憾了……</p>
+<p class = "firstLineIndent">然而，就在艾伯特沉浸在名留青史的无憾中不可自拔时，有一名工作人员突然满头大汗地跑过了过来，轻轻在艾伯特耳边说了一句什么。</p>
+<p class = "firstLineIndent">紧接着，艾伯特的眼珠子慢慢瞪得溜圆，脸上的表情开始变幻不定，那是相当精彩，愕然、惊喜、失落、惊慌……</p>
+<p class = "firstLineIndent">总结起来大概就是……你特么在逗我？</p>
+<p class = "firstLineIndent">虽然是个天大的喜讯，但艾伯特此刻却已经没心情去欢呼了。</p>
+<p class = "firstLineIndent">是的，十三区的消息终于传来，可惜，在某位幕后导演的控制下，时间刚刚好稍微晚了那么一点点。</p>
+<p class = "firstLineIndent">正是这一点点的时间差，让艾伯特此刻如同被架在了炭火上，内心的纠结煎熬，不为外人道也……</p>
+<p class = "firstLineIndent">尼妹的有没有搞错！我才刚刚宣布人类要完诶！你现在来告诉我倒计时停了？我们已经安全了？这让我怎么和已经被气氛感染，陷入“狂热”状态的数十亿人交代？</p>
+<p class = "firstLineIndent">这么高难度的弯，臣妾真的做不到，会翻车的啊……</p>
+<p class = "firstLineIndent">艾伯特此刻欲哭无泪的觉得，继续活下去真的需要太多的勇气……</p>
+<p class = "firstLineIndent">他犹豫了一下，终于是鼓起继续活下去的所有勇气将颤抖的嘴唇靠近麦克风。</p>
+<p class = "firstLineIndent">艾伯特这边的异状早就被人们所察觉，人群渐渐安静下来，看看这位人类的英勇斗士想要说什么。</p>
+<p class = "firstLineIndent">“我的同胞们，我……我简直无法相信我刚刚听到的那个消息……哦天哪！我感觉我激动的要晕过去了！</p>
+<p class = "firstLineIndent">是的！这个消息是如此振奋人心！</p>
+<p class = "firstLineIndent">刚刚有人告诉我！我们的科学家们已经在最后的关头找到办法并且成功拆除了炸弹！</p>
+<p class = "firstLineIndent">末日的脚步停止了！人类……胜利了！”艾伯特用一副激动到难以自制的神情道。</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">足足用了好几秒，人们才从这句话中转过弯，明白发生了什么事，顿时，全世界陷入一片欢呼！</p>
+<p class = "firstLineIndent">有人相拥着喜极而泣，有人双手合十感谢神明……</p>
+<p class = "firstLineIndent">现场的记者也同样在欢呼，无数帽子领带齐飞，随后，新闻工作者的本能让他们很快反应过来，不少人开始拿着话筒跑到艾伯特面前。</p>
+<p class = "firstLineIndent">“艾伯特先生，这究竟是怎么一回事，真的有炸弹吗？为什么在最后一刻才成功拆除？”</p>
+<p class = "firstLineIndent">“请问这是不是米国自导自演的一场惊天大骗局？其中是否有着某种战略性的目的？”</p>
+<p class = "firstLineIndent">“外星人为什么要入侵地球？其中是否有隐情？”</p>
+<p class = "firstLineIndent">“此事过后，我们人类会组建反抗军吗？”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">一连串的问题让艾伯特一个头有两个大，他终于被逼无奈使出了绝招，众人只见艾伯特眼睛鼓起，呼吸急促，面色潮红，然后……他双眼一翻，软软地瘫倒在地……</p>
+<p class = "firstLineIndent">众记者：“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在这一场虚惊对全世界造成的恐慌渐渐消退时……</p>
+<p class = "firstLineIndent">“舰长阁下，‘借尸还魂’计划的初期准备工作已经全部完成！”</p>
+<p class = "firstLineIndent">“嗯！很好，这次事件的伤亡如何？”</p>
+<p class = "firstLineIndent">“十分抱歉，舰长阁下，全球汇总数据显示，本次动乱共造成168人死亡，3267人受伤，多数是各国的政要和富豪。</p>
+<p class = "firstLineIndent">虽然已经尽量控制暴力冲突的范围，同时暗中干涉了通讯和警力调配，不过人类数量实在是太庞大，这已经是所能做到的极限！”代号道。</p>
+<p class = "firstLineIndent">由于聂云特意控制了消息传播的速度，骚乱还没有大范围波及到普通平民阶层，目前由于米国的新闻发布会公布了炸弹已经被拆除的消息，整个世界秩序在各国政府的全力安抚下正渐渐稳定下来。</p>
+<p class = "firstLineIndent">“不用道歉，全球每天因各种原因死亡的人数都在十数万，这个结果已经比我预想中的要好得多了。</p>
+<p class = "firstLineIndent">用少许牺牲换取计划的成功率，这是值得的，如果畏首畏尾，那什么都做不成！</p>
+<p class = "firstLineIndent">作为首领你可以仁慈，但是对于一场不是你死就是我活的战争来说，仁慈往往会带来更大的伤害，不管是对敌人，还是对自己人，慈不掌兵！”</p>
+<p class = "firstLineIndent">聂云的话似乎是说给代号听的，不过又似乎是在说给他自己听。</p>
+<p class = "firstLineIndent">“明白了舰长阁下，不过本机不太明白，我们其实还可以用更温和的手段，为什么要采用这种激烈的方式？”</p>
+<p class = "firstLineIndent">“唔……温和代表慢，我们没有多少时间了！</p>
+<p class = "firstLineIndent">另外，这场演习可不是你看到的那么简单，它的作用可不仅仅是为了配合我们的‘借尸还魂’计划。</p>
+<p class = "firstLineIndent">事实上，这是一个一箭三雕的低成本、高回报策划方案！</p>
+<p class = "firstLineIndent">它的第二个作用，便是一场征兵动员大会！</p>
+<p class = "firstLineIndent">决定一场战争胜负的，除了精良的装备和犀利的武器外，士气也是不可或缺的东西！</p>
+<p class = "firstLineIndent">知道霓虹二战时最大的败笔是什么吗？</p>
+<p class = "firstLineIndent">不是对米国宣战，而是对米国宣战之后，居然愚蠢地用偷袭的方式空袭珍珠港！</p>
+<p class = "firstLineIndent">这么做的后果就是直接将米国定义为正义的一方！</p>
+<p class = "firstLineIndent">知道之后米国的征兵点是怎样一种火爆的场面吗？竟然有人因为自己落选无法参加战斗而自杀！</p>
+<p class = "firstLineIndent">面对这样不怕死的狂热战士，霓虹果然跪了，还一直跪到了现在。</p>
+<p class = "firstLineIndent">哪怕霓虹当时选择宣战后正面刚上一场，都比愚蠢地偷袭珍珠港要强上千倍。</p>
+<p class = "firstLineIndent">然而到了抗米援朝以及越战时期，米军却结结实实挨了种花家两记大耳刮子，为什么？因为他们的士兵知道，这回自己才是侵略者！</p>
+<p class = "firstLineIndent">简单来说，怒气值没蓄满，没法放必杀啊！</p>
+<p class = "firstLineIndent">反观种花家，则正好相反，居然有人想打自己窝边草的主意，我都没舍得吃呢！于是怒气直接蓄满开无双，然后米国就跪了……</p>
+<p class = "firstLineIndent">所以，士气这东西看似无影无形，其实相当涨战斗力。</p>
+<p class = "firstLineIndent">而这次的‘末日危机’，正是双子星对地球文明的‘珍珠港事件’！</p>
+<p class = "firstLineIndent">换句话说，地球人现在……士气爆棚了！”</p>
+
+<h2>第二百二十六章 小米和小幽</h2>
+<p class = "firstLineIndent">“俗话说，士气可用！现在，是时候执行征兵计划了！”聂云道。</p>
+<p class = "firstLineIndent">“是，舰长阁下！征兵计划启动！”</p>
+<p class = "firstLineIndent">无数信息流开始从海狼号的量子计算机中心，向着各处扩散，犹如一张巨网，将触手伸向眼前蔚蓝色星球的每一个角落……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">苏格兰的一处庄园内。</p>
+<p class = "firstLineIndent">“……末日的脚步停止了！人类……胜利了！”</p>
+<p class = "firstLineIndent">看着显示器上米国新闻发布会的回放视频，一名银发老者深深的蹙了蹙眉头，他正是不久前退出共济会的克莱因。</p>
+<p class = "firstLineIndent">“怎么会这样，这么快就动手了？可明明还不是来访日啊？莫非是发生了什么我们不知道的变故？这可不是什么好兆头啊……”</p>
+<p class = "firstLineIndent">“滴滴！”正当克莱因心中忧虑时，他的电话响了起来。</p>
+<p class = "firstLineIndent">“喂！”</p>
+<p class = "firstLineIndent">“家主！大事不好了，我刚刚收到消息，约翰公爵刚刚在共济会内部宣布您为共济会的叛徒，目前约翰公爵正在利用共济会的关系网对我们家族的产业进行全方位的压制打击！”</p>
+<p class = "firstLineIndent">“嗯？有这种事？”克莱因闻言一怔。</p>
+<p class = "firstLineIndent">他心中有些疑惑，约翰的把柄还在自己手中，难道想鱼死网破？</p>
+<p class = "firstLineIndent">“是的，虽然短时间我们还能撑住，不过他们的势力太庞大，时间一长，我们恐怕会损失惨重！”</p>
+<p class = "firstLineIndent">“嗯，我知道了，这件事我会想办法解决的。”克莱因说完挂断电话。</p>
+<p class = "firstLineIndent">他皱了皱眉，又拿起电话拨通了一个号码……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">半小时后，一家咖啡厅内。</p>
+<p class = "firstLineIndent">“呵呵！克莱因，我猜到你会找我，看来已经收到消息了？”约翰公爵慢悠悠地品了一口咖啡，笑着对坐在对面的克莱因道，只不过语气有些森冷。</p>
+<p class = "firstLineIndent">“约翰，有必要闹成这样？我已经对你承诺过不将那晚的事情公之于众，你为什么还要做这么多余的事情？”克莱因问出了自己的疑惑。</p>
+<p class = "firstLineIndent">“多余？呵呵！克莱因，看来你还没明白！对我而言，不是朋友，便是敌人！而你已经很愚蠢地选择站在我的对立面，当然，也是站在共济会的对立面！你以为这件事能就这么算了？”</p>
+<p class = "firstLineIndent">克莱因闻言不由疑惑，“约翰，你就不怕我将那晚的事情公布出去？”</p>
+<p class = "firstLineIndent">“那晚？那晚发生了什么吗？哈哈！你尽管可以试试看啊！”约翰有恃无恐的笑道。</p>
+<p class = "firstLineIndent">“嗯？那圣典……”</p>
+<p class = "firstLineIndent">“圣典？圣典怎么啦？它不是还好好的锁在我的宝库中吗？”约翰轻轻吹了口咖啡，悠然道。</p>
+<p class = "firstLineIndent">克莱因明显被约翰的态度弄得愣了一下，随即想到一种可能，愕然道：“你……你居然伪造了圣典！”</p>
+<p class = "firstLineIndent">的确，圣典虽然被毁，不过电子备份还在，如果请高明的专家，完全有可能伪造一本以假乱真的赝品出来。</p>
+<p class = "firstLineIndent">“伪造？你太天真了，难道你忘了我宝库中的那幅‘蒙娜丽莎’了吗？卢浮宫里挂着的也是赝品，可就算我拿出真迹，你猜世人会相信哪一幅才是真的？</p>
+<p class = "firstLineIndent">有句古话，真作假时假亦真，假作真时真亦假！真真假假，谁又能说的清呢，哈哈……”约翰笑得很是肆无忌惮。</p>
+<p class = "firstLineIndent">“唉，连圣典你都敢伪造，看来……你早已经背弃了共济会的信仰！”克莱因叹息道。</p>
+<p class = "firstLineIndent">“共济会的信仰？不不不，我从未背弃过，我也一直坚信，我们才是正确的，人类只有在共济会的领导下才能长治久安。</p>
+<p class = "firstLineIndent">再瞧瞧你看好的幽灵船长都干了什么吧！我从米国方面收到了一个消息，这次的炸弹事件就是幽灵船长闹出来的！</p>
+<p class = "firstLineIndent">为什么这么长时间以来，我们都和外星人相安无事，幽灵船长一出现，便差点弄得全人类都被毁灭？究竟谁是正确的，事情不是明摆着吗？难道你还不明白吗？</p>
+<p class = "firstLineIndent">如果你现在幡然醒悟，我可以再给你一次机会！”约翰冷笑看着克莱因。</p>
+<p class = "firstLineIndent">“炸弹和幽灵船长有关？竟然是这样么……呵呵！原来如此！不过至少，人家还能逼得外星人出手对付人类，相比我们这些只能躲在角落瑟瑟发抖等待命运的可怜虫要强太多了……”克莱因震惊过后却笑着自嘲道。</p>
+<p class = "firstLineIndent">“他这是愚蠢！明知不可为而为之，这是愚夫才干的事！”约翰见克莱因竟然将双方做了这样的对比，不由怒道。</p>
+<p class = "firstLineIndent">“不管他是不是愚蠢，至少从结果来看，外星人似乎吃瘪了呢！哈哈……”克莱因畅快地大笑起来。</p>
+<p class = "firstLineIndent">“哼！克莱因，你真的已经疯了，竟然将一个来历不明，连敌我都还不能确定的家伙当做救世主？实在是太可笑了！”</p>
+<p class = "firstLineIndent">“至少他来当救世主，比你这个标榜正义，却只知道欺软怕硬搞窝里斗的废物要强。”克莱因语气中已经是对约翰赤裸裸的蔑视了，双方彻底撕破脸皮。</p>
+<p class = "firstLineIndent">“哼！冥顽不灵！既然如此，克莱因，那你就看看你眼中的救世主，能不能救得了你的家族！”约翰冷冷丢下这句话，便拿起衣服离席而去。</p>
+<p class = "firstLineIndent">克莱因看着约翰离去的背影，无奈叹了口气。</p>
+<p class = "firstLineIndent">事情有些麻烦了，约翰现在分明是有恃无恐，恐怕就算自己将圣典被毁的事情公布出去，他也肯定已经做好万全的应对策略。</p>
+<p class = "firstLineIndent">带着一丝忧虑，克莱因回到自己的庄园，刚进门，庄园的管家突然拿了个盒子过来，“老爷，有一个您的包裹！”</p>
+<p class = "firstLineIndent">克莱因疑惑地扫了一眼，他看到管家手中的包裹上印着一个十分奇特的银色漩涡状图案，</p>
+<p class = "firstLineIndent">sos？世界上还有这个公司？这算是世界级的侵权了吧？</p>
+<p class = "firstLineIndent">他奇怪地接过包裹，等管家恭敬退下后，克莱因打开了盒子。</p>
+<p class = "firstLineIndent">而里面……是一个银色的头盔……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">炸弹风波虽然过去，但事情闹到全人类都差点毁灭的程度，米国根本无法再隐瞒事件的真相，这已经不是米国一家的事情，如果现在还捂着不开口，米国马上会被全世界的口诛笔伐淹没！</p>
+<p class = "firstLineIndent">事实上，他们确实正在被口诛笔伐！</p>
+<p class = "firstLineIndent">对于米国为什么将消息隐瞒到纸包不住火了，这才故作慷慨地召开新闻发布会，所有国家基本都心知肚明。</p>
+<p class = "firstLineIndent">末日前谁的准备时间越长，幸存者越多，那么灾后秩序重建过程中谁就能占有更多的优势，米国这是想要在末日后建立米帝新秩序啊！</p>
+<p class = "firstLineIndent">单就这点，米国就要承受来自全世界各国的敌视，如果认错态度再不端正一些，那真是要自绝于人类了，哪怕是本国人民都不会认同这种做法！</p>
+<p class = "firstLineIndent">米国政府也自然意识到这点，在事件发生后，米国做了紧急公关，第一时间向全世界各国政府郑重道歉，并立刻发布了一条通告。</p>
+<p class = "firstLineIndent">“鉴于国防部长在本次人类危机事件中存在滥用职权、监管失职、知情不报、擅离职守等等严重渎职行为，现已撤职查办，正式移交司法部门！”</p>
+<p class = "firstLineIndent">是的，国防部长被撤职了。</p>
+<p class = "firstLineIndent">当刚下飞机的国防部长一脸茫然的听到这份对自己的宣判时，他整个人都懵了。</p>
+<p class = "firstLineIndent">自己就算有过失，也不至于被撤职啊？</p>
+<p class = "firstLineIndent">不过能当上国防部长，政治智慧自然不低，很快便想明白了其中的原因，这次事情闹得太大，所以米国这是……需要一只替罪羊啊！</p>
+<p class = "firstLineIndent">当失魂落魄的国防部长被带上车时，不知为何，国防部长又想起幽灵船长那句意味深长的话，“……那么，祝你好运！国防部长阁下！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">对于米国弃车保帅的做法，各国虽然明知道国防部长不过是个替罪羊，不过这只羊的分量的确够重，各国表示基本满意。</p>
+<p class = "firstLineIndent">紧接着，米国很快就向全世界政府发送了事件的详细经过，包括十三区的部分外星人资料和引力炸弹的少许信息。</p>
+<p class = "firstLineIndent">米国官方的说法那自然是相当的伟光正！</p>
+<p class = "firstLineIndent">故事大概是这样的……</p>
+<p class = "firstLineIndent">有一天地球村的村民小米正在村里闲逛，结果突然发现马路边竟然有一颗路边炸弹！</p>
+<p class = "firstLineIndent">正义感爆棚的小米一见，这还得了，万一炸到小朋友怎么办？就算炸不到小朋友，炸坏了花花草草也不好嘛！</p>
+<p class = "firstLineIndent">于是他吭哧吭哧将炸弹抱回了自己家一番研究，结果发现，这颗炸弹如果爆炸，那么不仅是花花草草和小朋友，整个地球村都要被炸平啊！</p>
+<p class = "firstLineIndent">小米顿时急了，他开始废寝忘食、砸锅卖铁地想方设法研究如何拆弹，在花费了大量的金钱和资源之后……还是没能拆掉它。</p>
+<p class = "firstLineIndent">然后炸弹突然启动，就在小米心急如焚，通知全村村民赶紧跑路时，千钧一发之际，村民小幽正好路过，发现了这里的情况，就给小米出了个主意。</p>
+<p class = "firstLineIndent">“为什么不来点音乐放松一下呢？”</p>
+<p class = "firstLineIndent">于是……小米和小幽就播放了一首充满节奏感的音乐放松了一下……</p>
+<p class = "firstLineIndent">然后……炸弹就被拆掉了……</p>
+<p class = "firstLineIndent">真是可喜可贺，可喜可贺……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">这个故事可谓曲折离奇，充满了让人拍案惊奇的吐槽欲……</p>
+<p class = "firstLineIndent">各国自然是纷纷翻白眼表示不信，你那通篇小米为了地球村巴拉巴拉的自我牺牲和奉献精神暂且不吐槽，最离奇的是，一首音乐解决了炸弹？逗我呢！</p>
+<p class = "firstLineIndent">但是等到信誓旦旦的米国将强悍的力场护盾和炸弹最后爆炸时的“音乐会现场”录像全都展示给各国看之后……</p>
+<p class = "firstLineIndent">各国政府：“……”</p>
+<p class = "firstLineIndent">种花家一脸懵逼，啥？我家龚老师才是拯救世界的幕后黑手？</p>
+<p class = "firstLineIndent">龚老师：“……”（ap;lt;(ˉˉ)ap;gt;）</p>
+
+<h2>第二百二十七章 快递</h2>
+<p class = "firstLineIndent">胡军长看着手中那份米国发来的事件详细通告，脸上的表情那是相当精彩。</p>
+<p class = "firstLineIndent">人类末日的骚乱自然也波及到种花家，部队基本都需要派驻各处安抚市民，忙碌了一夜的他刚刚处理完事件的后续收尾工作，还没来得及睡上一觉，便收到了上面发下来的这份文件。</p>
+<p class = "firstLineIndent">对于报告中提到的，幽灵船长提供了一些技术上的帮助，胡军长那是一点不信的。</p>
+<p class = "firstLineIndent">你老米啥秉性我还能不知道，若非束手无策，怎么可能腆着脸去求幽灵船长，要知道人家前不久还刚刚打了你的脸，巴掌印都还在呢！</p>
+<p class = "firstLineIndent">至于谁才是解决炸弹的技术主力，那还用问？</p>
+<p class = "firstLineIndent">要是米国真有把握解决，犯得着连自己的国防部长都飞上天去避难？</p>
+<p class = "firstLineIndent">外星人的强大毋庸置疑，从一个力场护盾就能管中窥豹，然而幽灵船长却能够用一首曲子……好吧，用一首曲子干掉那颗炸弹，这事儿的真实性还有待商榷！</p>
+<p class = "firstLineIndent">但从这次的事件就能看出来，在地球上，基本也就只有幽灵船长能够和外星人过过招了，正值外敌当前，人类世界风雨飘摇之际，更坚定了胡军长抱紧幽灵船长这条金大腿的想法。</p>
+<p class = "firstLineIndent">“不过，外星人么……看来这世界要变天了啊……”胡军长抬起头看着窗外的蓝天喃喃道，不知怎地，眼神却有些向往起来。</p>
+<p class = "firstLineIndent">“咦？那是什么？”就在这时，胡军长突然看到窗外的天空中突然落下什么东西，然后砰的出现了一朵白色的伞花，接着那伞花带着底下挂着的东西，直直的就朝着自己的军区指挥部降落了过来。</p>
+<p class = "firstLineIndent">“什么东西？！”胡军长大惊，这里可是军区指挥部，谁敢往这里空降？</p>
+<p class = "firstLineIndent">而且还是大白天的玩空降，太嚣张了点吧？！</p>
+<p class = "firstLineIndent">“砰！”一声重物落地声传来，东西落在了指挥部前的操场上。</p>
+<p class = "firstLineIndent">胡军长赶紧跑出去查看情况，警卫员小刀见状紧随护卫。</p>
+<p class = "firstLineIndent">这里的动静自然也引起了军区防卫部队的注意，胡军长出来时就见一群人已经持枪围住了这个空降物体，警惕地防备着。</p>
+<p class = "firstLineIndent">胡军长往人群中心看去，只见一个小型集装箱正挂着白色降落伞稳稳落在那里，箱体上还写着银色的“sos”。</p>
+<p class = "firstLineIndent">胡军长看到sos三个字母，顿时眼皮一跳，莫非……</p>
+<p class = "firstLineIndent">“军长！请不要靠近，里面说不定有危险物品！”小刀警惕地拦住想要上前的胡军长。</p>
+<p class = "firstLineIndent">他话音刚落，就见集装箱的一侧箱门突然缓缓打开，“砰”的一声砸落在地，吓的周围的战士齐齐往后退了一步，举枪对准了箱门。</p>
+<p class = "firstLineIndent">胡军长往箱门内看去，就见里面整整齐齐码放着一个个篮球大小的盒子，足有上百个。</p>
+<p class = "firstLineIndent">就在胡军长有些疑惑时，他的手机响了起来。</p>
+<p class = "firstLineIndent">“喂！聂云？”</p>
+<p class = "firstLineIndent">“是我，快递收到了吧？”聂云笑道。</p>
+<p class = "firstLineIndent">“快递……”胡军长的嘴角抽了抽。</p>
+<p class = "firstLineIndent">知不知道你的快递差点吓死我们，军区的防空火力居然一点反应都没有，这要是空投个什么大威力炸弹下来……</p>
+<p class = "firstLineIndent">胡军长想到这里忍不住无奈地感慨双方的差距要不要这么大，人家连民科快递技术都能碾压我们的军事装备了，就想问问你那儿还缺不缺快递员……</p>
+<p class = "firstLineIndent">“咳咳！那么这些是什么？”胡军长看着那个集装箱道。</p>
+<p class = "firstLineIndent">“嘿嘿，当然是好东西！你们既然已经将外星人的资料交给我们了，我们自然是要履行协议！”</p>
+<p class = "firstLineIndent">“履行协议？这么说，我们可以送宇航员去你们的那艘太空战舰上了？”胡军长闻言不由一阵欣喜道。</p>
+<p class = "firstLineIndent">“不用那么麻烦，喏，那个快递就是给你们的科研所！”</p>
+<p class = "firstLineIndent">“哈？这个……是科研所？”胡军长一脸愕然。</p>
+<p class = "firstLineIndent">“放心，你们肯定会觉得物有所值的！这里一共是300套科研专用版设备，操作很简单，里面有说明书，有什么问题可以进去后问智脑！好了，我还有事，先挂了！”聂云说完便挂断了电话。</p>
+<p class = "firstLineIndent">胡军长有些发愣地放下电话，虽然不解，不过幽灵船长一方的承诺执行起来向来是不打折扣，他暂时按下心中的疑惑，立刻吩咐召集军区研究院的科研人员前来检查货物。</p>
+<p class = "firstLineIndent">前后只花了10秒，军区的科研人员便已经搞懂了这些东西的使用方式，实在是这种傻瓜式的操作方式，压根儿就没啥好研究的。</p>
+<p class = "firstLineIndent">里面的说明书是这样的：</p>
+<p class = "firstLineIndent">第一步，插上电源；</p>
+<p class = "firstLineIndent">第二步，用一个舒服的姿势躺下；</p>
+<p class = "firstLineIndent">第三步，戴上头盔。</p>
+<p class = "firstLineIndent">“这玩意儿有啥用？操作比家用电饭煲都要简单，真是高科技产品？”胡军长一脸狐疑。</p>
+<p class = "firstLineIndent">“军长，就这制造工艺就已经是高科技，我敢保证全世界都找不出第二家！”军区科研所的赵所长抚摸着光滑的银色头盔，眼中放光。</p>
+<p class = "firstLineIndent">流线型的外壳，没有一丝连接缝，就像是通体铸造出来的一般。</p>
+<p class = "firstLineIndent">“军长，我能拆一个来看看吗？”赵所长突然开口道，光是这头盔的外观就已经让他忍不住赞叹，那里面会是怎样的风景？</p>
+<p class = "firstLineIndent">胡军长犹豫了一下，虽然拆解别人的装备来研究似乎有些不太好，不过人家也没说不让拆吧？</p>
+<p class = "firstLineIndent">要知道这可是幽灵船长的产品啊！这么巨大的诱惑根本忍不了啊……</p>
+<p class = "firstLineIndent">“唔……好吧，总共300套呢，拆一个应该没事儿，不过小心点，最好别给弄坏了！”</p>
+<p class = "firstLineIndent">“好嘞！”赵所长立刻兴奋地行动起来，准备动用工具打开头盔的外壳。</p>
+<p class = "firstLineIndent">不久之后……</p>
+<p class = "firstLineIndent">赵所长有些沮丧的回来了。“呃……军长，我们失败了！”</p>
+<p class = "firstLineIndent">“嗯？失败是什么意思？”胡军长眉头一皱问道。</p>
+<p class = "firstLineIndent">“幽灵船长在里面做了防泄密系统，头盔原本是全密封的，但只要外壳一被打开，内部压力失衡，就会立刻触发自毁……”赵所长无奈道。</p>
+<p class = "firstLineIndent">“这样么……好吧，算了，想来幽灵船长的技术也不可能让人轻易就偷学了，那么找人测试下这头盔到底有什么作用吧！”胡军长虽然有点惋惜，不过倒也不是太过失望。</p>
+<p class = "firstLineIndent">“好，我亲自来测试！”赵所长有点将功补过的意思道。</p>
+<p class = "firstLineIndent">胡军长想了想，以他们和幽灵船长的良好合作关系，应该不会有危险，于是点点头。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后。</p>
+<p class = "firstLineIndent">海狼号外围的一间无重力舱室中，一具小型机器人缓缓睁开了眼睛……</p>
+
+<h2>第二百二十八章 有原则的老板</h2>
+<p class = "firstLineIndent">月球基地科研所。</p>
+<p class = "firstLineIndent">地球上发生的巨大骚动丝毫没有影响这里的科研气氛。</p>
+<p class = "firstLineIndent">“这……这种材料……简直是闻所未闻！”十五名小型机器人聚拢在一起，中间的试验台上摆放着一块巴掌大的正方体银色金属锭。</p>
+<p class = "firstLineIndent">一共十五名科学家今天难得的齐聚于此，因为聂云终于向他们开放了自己的核心秘密……机械虫材料！</p>
+<p class = "firstLineIndent">鉴于于老等一干科学家最近在聂云的外围科研项目上成绩斐然，随着考察期结束，并且双子星来访日的威胁临近，聂云终于决定让这些人参与到核心项目中。</p>
+<p class = "firstLineIndent">其实以于老他们的科学素养，早就在聂云公开的科技材料中看出了些许的蛛丝马迹，部分科技根本就不符合他们的常识，这全都是因为一种魔性的材料。</p>
+<p class = "firstLineIndent">没错，就是那种“磁性有或无”的不科学存在！</p>
+<p class = "firstLineIndent">于老他们最近的科研项目大多是配合代号进行工程建设，或者做一些基础性科学原理突破。</p>
+<p class = "firstLineIndent">而目前大部分的机械虫都在聂云的命令下猫在角落搞种族大繁衍，这些角落自然是不对外开放参观的。</p>
+<p class = "firstLineIndent">他们能够接触到机械虫的机会并不多，唯一的机会就是海狼号。</p>
+<p class = "firstLineIndent">在第一次利用虚拟现实技术登上海狼号的时候，这些人中部分材料学领域的专家一眼就看出这种战舰材料和之前他们乘坐的那艘潜艇上的是同一种东西。</p>
+<p class = "firstLineIndent">而不管是空中幽灵，还是潜艇，又或者是这艘海狼号，所用的都是这种幽灵船长招牌式的银色材料。</p>
+<p class = "firstLineIndent">所以当再次近距离看到这种宇宙飞船级的材料时，这帮科学狂人哪里还忍得住，立刻就有人想要拿工具撬下来一块研究研究。</p>
+<p class = "firstLineIndent">当然，他们这种被人请进家门还要撬人家地砖的恶劣行为立刻被代号禁止了……</p>
+<p class = "firstLineIndent">在一片惋惜中，不少人后来想要申请研究这种材料，都被聂云驳回了！理由是……钱不够！</p>
+<p class = "firstLineIndent">是的，为了提高员工的工作积极性，这些科学家聂云也是给发工资的，用的也是无限币，而且每当他们做出了科技贡献，还会根据科技价值大小发放一笔奖金。</p>
+<p class = "firstLineIndent">聂云虽然说过“任何资料随便看，任何想法随便提，任何材料随便要！”的“三随便原则”，不过也仅仅只是针对普通级别的公开科研资源，更核心的东西可是要花钱买的！</p>
+<p class = "firstLineIndent">用自己发行的货币给手底下发工资，然后用各种方式将钱赚回自己的口袋，世界上还有比这更惠而不费的事情？</p>
+<p class = "firstLineIndent">聂云终于明白一个道理——世界上最大的资本家其实就是国家！</p>
+<p class = "firstLineIndent">也正是因此，他才想要培养一个自己的管家婆，聂云和代号虽然开发出了无限币金融体系，但是对金融的运作还稍显稚嫩，专业的事还是交给专业的人去做比较好。</p>
+<p class = "firstLineIndent">而经过这段时间的科研工作，这帮科学家们现在总算是知道了，在聂云这里，无限币真的是如同智脑打的广告一样，代表着无限的可能。</p>
+<p class = "firstLineIndent">就算是此前视钱财如粪土的这帮科研人员，现在也变得财迷起来，以前钱买不到寿命，买不到健康，买不到知识，它买不到的东西太多了！但现在……全都特么可以啊！</p>
+<p class = "firstLineIndent">想要更悠久的生命吗？想要更强健的体魄吗？想要这个世界的真理吗？只要你有小钱钱，这些都不是问题！</p>
+<p class = "firstLineIndent">台上摆着的那块机械虫材料也就巴掌大小，却是所有人集资了3万无限币才买下来的，直接就让这帮人一夜回到解放前。</p>
+<p class = "firstLineIndent">说起这个定价，聂云表示，全世界就自己有机械虫，妥妥的垄断托拉斯啊！一斤一块钱还是一斤8888，还不是自己嘴皮一碰说了算？</p>
+<p class = "firstLineIndent">机械虫：“……”（）</p>
+<p class = "firstLineIndent">终于在卖儿子的道路上踏出第一步的聂云对此毫无羞愧之心，很是得意洋洋地定了个一斤3万的价格，至于为什么定3万……</p>
+<p class = "firstLineIndent">他表示自己是一个有原则的老板，“你有多少我要多少”的核心收费原则要坚持一万年不动摇！</p>
+<p class = "firstLineIndent">所以说，遇到一个黑心老板真心伤不起，特别是这个黑心老板还知道你钱袋子里有多少小钱钱的时候……</p>
+<p class = "firstLineIndent">这是一个悲伤的故事……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">完全不知道自己被自家老板坑了一脸血的一帮狂热科学家们，正双眼放光盯着这块吐血得来的机械虫材料。</p>
+<p class = "firstLineIndent">“老梁，你是研究主力，初步测试结果出来了吗？”于老开口问道。</p>
+<p class = "firstLineIndent">“是的，和材料说明中的一模一样！这种材料真的是常温超导，而且材料加工性能真的很随便，物理性能强的不可思议，几乎能够抵挡小功率的激光武器！</p>
+<p class = "firstLineIndent">我总算明白几位幽灵骑士身上的那种‘勇者之心’战甲为什么会强到那种地步了。</p>
+<p class = "firstLineIndent">不仅如此，微观金相检测结果更是让人惊悚，它的晶格排列十分规则，毫无错乱错位，就像是一只受到指挥的军队一般，而且更不可思议的是……它居然不含任何杂质！</p>
+<p class = "firstLineIndent">也就是说……它是一种未知的金属单质！”说道后来，梁光的语气都有种朝圣的味道。</p>
+<p class = "firstLineIndent">“嘶！”所有人倒抽着凉气。</p>
+<p class = "firstLineIndent">此刻他们都是一个想法，这3万花的太特么值了！</p>
+<p class = "firstLineIndent">“另外……按照给出的说明，这种材料就算是成型后竟然也具备了惊人的可塑性，在某种条件下，它们的分子间距可以扩大，甚至……由固态转变为液态，同时具备自我修复能力！</p>
+<p class = "firstLineIndent">如果这是真的，那么……这就是传说中的液态记忆金属……”梁光接着又爆出一个大料。</p>
+<p class = "firstLineIndent">“咕！”所有人咽了口唾沫。</p>
+<p class = "firstLineIndent">液态记忆金属啊！下一步是不是要造t-1000了？</p>
+<p class = "firstLineIndent">“那么……是什么样的条件下？”于老问出了关键的问题。</p>
+<p class = "firstLineIndent">“这个……老板给的资料里没说！”梁光摊了摊手。</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">黑店吧！产品说明书这么不负责任的么？关键的地方给我好好写上去啊魂淡……</p>
+<p class = "firstLineIndent">“试试向老板申请这部分的资料？”有人提议道。</p>
+<p class = "firstLineIndent">“我试过了，智脑开价……100亿！我说的不是越南盾。”梁光翻了个白眼道。</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">“这应该是组织最核心的机密了，可惜我们的显微设备只能观察到原子尺度，我觉得秘密应该还要在更微观的层面！</p>
+<p class = "firstLineIndent">我还有种奇怪的感觉，总觉得……这东西似乎是活的一样……”梁光看着那块银色金属锭摸着下巴喃喃道。</p>
+<p class = "firstLineIndent">被卖去切片的机械虫：“……”（〒▽〒）</p>
+
+<h2>第二百二十九章 与天地同寿</h2>
+<p class = "firstLineIndent">“好了，老板既然不说，那肯定是有他的考虑。</p>
+<p class = "firstLineIndent">虽然这种材料的具体制造方式和原理我们还无法解析，不过想想看，有了这种超级材料，多少目前的难题都可以迎刃而解？</p>
+<p class = "firstLineIndent">我觉得我们可以在材料应用方面多下功夫！</p>
+<p class = "firstLineIndent">只要我们的成果够多，贡献足够，老板肯定会逐步对我们开放更核心的东西！</p>
+<p class = "firstLineIndent">再说了，100亿很多吗？有这种梦幻的材料在，多少科研难题能够被攻克？到时候钱还不是滚滚而来？”于老笑着给大家施展了一发“士气鼓舞”。</p>
+<p class = "firstLineIndent">众人闻言果然振奋起来，各个眼神放光。</p>
+<p class = "firstLineIndent">了解到这种材料的瞬间，他们脑子里就已经开始在沸腾着无数的应用构思，已经迫不及待想要去实验了。</p>
+<p class = "firstLineIndent">“老梁，这份材料就由你暂时保管，能得到这份材料，是大家努力的成果，有相关科研项目的人都可以去找老梁申请使用权！老梁你评估一下，大家轮流使用。”</p>
+<p class = "firstLineIndent">梁光点点头，大家也表示没有异议。</p>
+<p class = "firstLineIndent">“不过这种材料老板似乎还没有命名，老是这种材料的叫着也不是个事儿，先给它起个名字吧！”于老又道。</p>
+<p class = "firstLineIndent">“这东西神奇的像是件魔法物品，我看，不如叫……‘秘银’怎么样？”梁光提议。</p>
+<p class = "firstLineIndent">“秘银？这名字好！”“不错！”“老梁取得好！”众人纷纷点头赞同。</p>
+<p class = "firstLineIndent">机械虫：“……”（o(ˉˉ▽ˉˉ)d）</p>
+<p class = "firstLineIndent">讨论完毕，众人纷纷下线，准备回去构思对秘银材料的价值开发方案。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">看着面前的机器人纷纷恢复标准下线姿态，于老却是目光闪了闪，他选择下线后出了房间，在智脑的带领下，独自来到秘密基地内的一处偏僻房间前。</p>
+<p class = "firstLineIndent">犹豫了一下，他还是伸手……打开了门！</p>
+<p class = "firstLineIndent">房间内空无一物，只有一张背对着的老板椅，似乎是察觉到于老的到来，老板椅缓缓旋转过来……正是聂云！</p>
+<p class = "firstLineIndent">“呵呵……于老辛苦了，这段时间你们的成绩我都看在眼里，做的很好！”一手托腮的聂云分身靠着椅背对于老笑道。</p>
+<p class = "firstLineIndent">“都是老板提供的科研条件太好！”于老这话倒不是马屁，的确是心里话。有这种条件，就算是普通人出成果都不难，更何况他们这种顶尖的精英。</p>
+<p class = "firstLineIndent">“呵呵！你们刚刚的讨论我也都听见了，不愧是我看中的主管，团队带的很好，这样我就能放心了！</p>
+<p class = "firstLineIndent">不过说实话，就是这名字起的真不怎么样，秘银秘银，如果别人把自己的材料叫精金，那不是就被比过去了？我觉得银虫比什么秘银好多了！生动形象！”外号大王聂云恬不知耻道。</p>
+<p class = "firstLineIndent">于老：“……”</p>
+<p class = "firstLineIndent">（银色的）机械虫：“……”（Σ(ˉ△ˉ|||)︴）</p>
+<p class = "firstLineIndent">为何想换色儿的冲动如此强烈……</p>
+<p class = "firstLineIndent">于老一脸愕然，虽然从几位幽灵骑士那里或多或少听说过聂云的某种品味，不过这么没下限的名字……</p>
+<p class = "firstLineIndent">总之，肯定不是亲生的！</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+<p class = "firstLineIndent">对于聂云直言能够听到他们的对话，于老倒是一点都不惊讶，因为聂云很早就已经很明确表示，他们正在被时刻监视！</p>
+<p class = "firstLineIndent">这种坦然的态度让一众科学家都不知道自己是该不满，还是该感激人家以诚相待了……</p>
+<p class = "firstLineIndent">哪个秘密组织搞监视不是讳莫如深，暗中装个针孔摄像头悄悄干，你倒好，不仅直接提醒了，而且似乎还怕我们忘了，那是天天提醒！</p>
+<p class = "firstLineIndent">因为每次他们一上线，智脑就会弹出一个提示框——“为了保证服务质量，您的通话可能被录音……”</p>
+<p class = "firstLineIndent">于老他们表示自己都无奈了好么……这种明目张胆的监听还说的那么清新脱俗你也是够了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">玩笑开完，聂云突然脸色一肃，“那么……你想好了？”</p>
+<p class = "firstLineIndent">于老的脸色也郑重起来，随后露出一丝苦笑，“你让我选择的时候，就已经猜到结果了不是吗……”</p>
+<p class = "firstLineIndent">“因为你是聪明人，只要是聪明人，都会做同样的选择……”聂云眯起眼，笑的有些像是一只小狐狸。</p>
+<p class = "firstLineIndent">“好吧，那么我选择接受……大脑芯片植入！”</p>
+<p class = "firstLineIndent">是的，前不久，聂云向于老提供了大脑芯片的详细介绍，并给于老提供了一个选择。</p>
+<p class = "firstLineIndent">植入大脑芯片，获得超人般的能力，条件是受雇时间延长10年，是否植入，全凭自愿！</p>
+<p class = "firstLineIndent">于老看完大脑芯片的资料才明白，几名幽灵骑士之所以拥有非人般的战斗力，除了身体上的强化和先进的装备外，一大半的战斗力其实要归功于这种大脑芯片！</p>
+<p class = "firstLineIndent">超过人脑上万倍的运算速度，惊人的反应速度，还有与智脑数据库无缝链接，信息共享的能力。</p>
+<p class = "firstLineIndent">这简直是完美的个人辅助终端！</p>
+<p class = "firstLineIndent">它对战斗人员而言，可以大大增强战斗力，对科研人员而言，更是让人梦寐以求的超级增幅器！</p>
+<p class = "firstLineIndent">可以预见，如果植入大脑芯片，在人机结合的超强效果下，自己的科研能力必将数倍数十倍的提高！</p>
+<p class = "firstLineIndent">这种诱惑对于一名科研人员而言，大到难以想象。</p>
+<p class = "firstLineIndent">当然，副作用也有，而且只有一个……</p>
+<p class = "firstLineIndent">身为顶尖的科学家，于老自然明白，大脑芯片这种东西一旦植入，就意味着装上了一件枷锁，你的生命甚至思维，很可能都要受制于人！</p>
+<p class = "firstLineIndent">没有人会放心让人肆无忌惮地入侵自己的思维中枢——大脑！</p>
+<p class = "firstLineIndent">换句话说，这无异于将自己的灵魂卖给恶魔！</p>
+<p class = "firstLineIndent">对于老的干脆，聂云倒是有些意外了。</p>
+<p class = "firstLineIndent">“唔……你就没有需要我保证的东西？比如让你做的事，不违背侠义道德啥的？”</p>
+<p class = "firstLineIndent">于老：“……”</p>
+<p class = "firstLineIndent">侠义道德啥的倒是无所谓，反正违背的咱两也不是没合伙干过……</p>
+<p class = "firstLineIndent">“咳咳！我只需要问几个问题！”于老咳嗽两声，眼中突然散发出一阵睿智的光芒。</p>
+<p class = "firstLineIndent">“你问！”聂云饶有兴致的看着他点点头。</p>
+<p class = "firstLineIndent">“第一，在你眼中，谁是敌人？”</p>
+<p class = "firstLineIndent">“唔……目前来看的话，双子星文明！”聂云毫不避讳地道。</p>
+<p class = "firstLineIndent">“双子星？这就是他们的名字么……”于老了然地点点头。</p>
+<p class = "firstLineIndent">“那么第二个问题，为什么不统治全球？你没有野心吗？以你的实力，早就能做到了吧！”</p>
+<p class = "firstLineIndent">“唔……因为这么做很麻烦啊，至于野心……呵呵！我有更大的野心！”</p>
+<p class = "firstLineIndent">“这样么……很好，最后一个问题！你……能活多久？”于老盯着聂云，问出一个相当让人意外的问题。</p>
+<p class = "firstLineIndent">“活多久？”聂云愣了愣，然后托着下巴很认真的思考了一下，“唔……我想，大概……与天地同寿？”</p>
+<p class = "firstLineIndent">于老：“……”</p>
+
+
+
+</br></br>
+<a href="210.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="230.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

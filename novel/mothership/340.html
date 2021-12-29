@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第三百四十章 万物归一会</h2>
+<p class = "firstLineIndent">卡拉星丛林深处，某隐秘地下基地，纵横交错的奇特植物根系汇集着从四面八方传来的无数信息。</p>
+<p class = "firstLineIndent">自从双子星入侵，在巨大的实力差距下，这个最终的“末日避难所”便已经在国王的命令下秘密建造，成为卡拉文明的最后希望所在。</p>
+<p class = "firstLineIndent">就连双子星，都没有察觉到这个</p>
+<p class = "firstLineIndent">此刻的基地内。</p>
+<p class = "firstLineIndent">“殿下，我们的深空之眼观察到大量的海族战舰正在远离星系，目标似乎是太阳系方向！”</p>
+<p class = "firstLineIndent">“太阳系？难道说，那里如同我们的科学家猜测的那样，同样存在着生命星球？”</p>
+<p class = "firstLineIndent">“虽然不能完全肯定，但是可能性很大！”</p>
+<p class = "firstLineIndent">“唉！或许又有一个文明即将迎来浩劫……不过，敌人现在抽调了大量的兵力前往太阳系，这正是我们行动的天赐良机！”</p>
+<p class = "firstLineIndent">“殿下，行动的风险太高，您是我们的希望，决不能亲身冒险，这次就由我带队前往！”</p>
+<p class = "firstLineIndent">“冒险？我的子民正在被抓捕，被屠戮，每一分每一秒，我们的文明都在走向消亡，而我们最后的反扑也会越来越无力……</p>
+<p class = "firstLineIndent">这次行动已经赌上我们所有能够动用的力量，如果行动失败，你觉得我们还能剩下多少战士？</p>
+<p class = "firstLineIndent">双子星正在全力追捕我，我们的活动范围正在被压缩，而这里迟早也会暴露，所以……这次不是冒险，而是我们最后的机会！卡拉文明能否延续，成败在此一举！”</p>
+<p class = "firstLineIndent">“可是殿下……”</p>
+<p class = "firstLineIndent">“好了，你不用再劝！与其考虑失败的可能，不如想想如何提高计划的成功率，你下去准备吧！”</p>
+<p class = "firstLineIndent">“是！殿下！”声音无奈叹息一声，退了出去。</p>
+<p class = "firstLineIndent">房间中，一双翠绿色的眼眸用充满仇恨的目光盯着一幅影像。</p>
+<p class = "firstLineIndent">影像中，英俊的紫发青年一身笔挺的高级军官服，在众星拱月的护卫下进入基地，面带微笑……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">比邻星，虫洞入口处，古斯塔夫的攻击舰队已经排成笔直的阵型，如同一支利箭，箭头直指入口。</p>
+<p class = "firstLineIndent">排在箭头位置的，是几艘奇形怪状的飞行器。</p>
+<p class = "firstLineIndent">旗舰舰桥内。</p>
+<p class = "firstLineIndent">“指挥官阁下，攻坚准备完毕，我们是否立刻发动攻击？”副官请示古斯塔夫。</p>
+<p class = "firstLineIndent">“不，先派一艘无人穿梭机劝降！告诉他们，半个小时后如果没有人出来投降，将全部以叛国罪论处，舰炮所过，死活不论！”古斯塔夫冷声道。</p>
+<p class = "firstLineIndent">他收到的调查报告显示，海族巡林者号上的士兵大多都是身家清白，没有前科或者极端种族思想的普通士兵，应该是被少数人挟持或者威逼才会反戈。</p>
+<p class = "firstLineIndent">所以这份劝降通告就算不能奏效，也能动摇对方的军心，减小自己的损失。</p>
+<p class = "firstLineIndent">不久后……</p>
+<p class = "firstLineIndent">一艘穿梭机一头钻入虫洞，如同穿过一道隐形的墙壁，下一秒便跨越数光年的距离出现在太阳系境内，随后……</p>
+<p class = "firstLineIndent">“砰！”刚飞出虫洞没3s，这架穿梭机便很倒霉的撞上了一枚暗雷，在所有地球人眼中轰然炸裂成漫天碎片。</p>
+<p class = "firstLineIndent">而在它爆炸的前一秒，智能程序已经按照设定发出了一道广域通讯，完成了自己的使命……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“什么？劝降通告？”所有地球人一脸莫名其妙。</p>
+<p class = "firstLineIndent">“叛国罪？双子星的那帮人什么意思？”</p>
+<p class = "firstLineIndent">“会不会是翻译错了？这毕竟是一门新外语。”</p>
+<p class = "firstLineIndent">“我觉得或许是他们已经把地球当成了自己的地盘？所以我们的反抗算是一种叛乱？”</p>
+<p class = "firstLineIndent">“何等无耻！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">众人议论纷纷中，地球防卫军的三位指挥官也在窃窃私语。</p>
+<p class = "firstLineIndent">“这估计是在说那艘被幽灵船长黑了的双子星战舰吧？”尤里道。</p>
+<p class = "firstLineIndent">“嘿嘿！八九不离十了，他们八成是将那艘战舰当成了叛军。”胡将军笑的有些幸灾乐祸。</p>
+<p class = "firstLineIndent">“这种手段面前，也难怪他们误会了，幽灵船长的电子入侵实在是太可怕了，只要电子设备存在的地方，他就是一只无处不在的幽灵……”施耐德有些感慨。</p>
+<p class = "firstLineIndent">作为苦主之一，米国可是深刻体会过自家电子设备被人如入无人之境一般随意入侵的无力感。</p>
+<p class = "firstLineIndent">而双子星用的可是更高级的量子计算机，这种地球上都还是概念的计算机，幽灵船长却能神不知鬼不觉进行超远程入侵。</p>
+<p class = "firstLineIndent">他都怀疑电子入侵这个技能幽灵船长是不是已经点到了满级？</p>
+<p class = "firstLineIndent">“那么对敌人的劝降，幽灵船长那边怎么说？”</p>
+<p class = "firstLineIndent">“呃……让我们待机……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">卡拉星上，聂云正翘着二郎腿遥控指挥这场战斗。</p>
+<p class = "firstLineIndent">“劝降啊……这种情况如果不回复的话，正常来说士气会减一的吧？”聂云想了想，发出一道命令……</p>
+<p class = "firstLineIndent">不久后，比邻星这边的虫洞也缓缓飞出一艘穿梭机。</p>
+<p class = "firstLineIndent">海族这边的人见此情景，以为这是对方有谈判的打算，所以并没有立刻发动攻击。</p>
+<p class = "firstLineIndent">然而下一刻，就在众人愕然无比的目光中，这台穿梭机扔下一句话后直接自爆！</p>
+<p class = "firstLineIndent">“我们行走于黑暗，却为光明服务！万事皆允！万物归一！</p>
+<p class = "firstLineIndent">我等万物归一会使徒，为了澄澈而清净的世界，誓死不降！”</p>
+<p class = "firstLineIndent">伴随着一团微弱的爆炸火光，这句话瞬间传遍了所有战舰，一时间仿佛有低沉的耳语在众人身边回荡……</p>
+<p class = "firstLineIndent">古斯塔夫：“……”</p>
+<p class = "firstLineIndent">一干海族战士们面面相觑。</p>
+<p class = "firstLineIndent">这种一听就很极端组织教义的话语，在这种情况下说出，居然有种莫名的悲壮色彩。</p>
+<p class = "firstLineIndent">无疑，这是一群信仰坚定的极端组织成员，组织的名称应该是万物归一会，至于他们想要让什么归一？那还用问，这不是明摆着和“双子”这个称呼对着干吗？</p>
+<p class = "firstLineIndent">众人心中不由泛起一种古怪的感觉，就像是面对一群愤青，虽然对他们的做法并不一定认同，但是这种爱国理念还是相当值得肯定的。</p>
+<p class = "firstLineIndent">更不用提，对面的那伙人现在还是为了自己种族的利益而甘愿舍生赴死，这种情怀，不由让人产生同情。</p>
+<p class = "firstLineIndent">“呃……这群人真的有必要赶尽杀绝吗？要不还是用更温和的手段谈判看看？”</p>
+<p class = "firstLineIndent">“说什么呢，这伙人可是恐怖分子！”</p>
+<p class = "firstLineIndent">“可怎么说也是我们的战友，而且他们的做法……虽然法不容赦，但情有可原啊！”</p>
+<p class = "firstLineIndent">“怎么，看起来你还挺认同他们的教义？”</p>
+<p class = "firstLineIndent">“喂！这话不能乱说，我就是这么瞎一嘀咕！你再说我告你诽谤哦！”</p>
+<p class = "firstLineIndent">“怎么处理还要看古斯塔夫阁下怎么决定，反正我是不太想同室操戈的，这些人，是义士啊！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">各种言论声中，古斯塔夫却是一脸铁青。</p>
+<p class = "firstLineIndent">自己的劝降效果如何不提，反而是对方的“劝降书回函”已经让自己这边军心动摇，现在他有些后悔，早知道刚刚就二话不说直接攻击算了。</p>
+<p class = "firstLineIndent">现在他才明白，这次攻击虫洞，原来不是什么好差事！什么让自己戴罪立功，这分明就是抓人顶缸！</p>
+<p class = "firstLineIndent">办不好，羽族那边不会善罢甘休，办好了，这也是拿自己人来立功的坏名声，弄不好还要惹来那个什么万物归一会的记恨。</p>
+<p class = "firstLineIndent">虽然听都没听过这个组织，但毕竟是能在军方眼皮子底下，悄无声息策划这次阴谋的势力，那这个听名字就逼格很高的万物归一会，在海族内部的能量绝对小不了！</p>
+<p class = "firstLineIndent">自己得罪了他们，万一以后给自己穿小鞋呢？</p>
+<p class = "firstLineIndent">不过事已至此，后面的议会还在死死盯着这事儿，他总不能抗命吧？</p>
+<p class = "firstLineIndent">“下令，十分钟后，立刻进攻！”古斯塔夫咬牙道。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后，太阳系虫洞防御线。</p>
+<p class = "firstLineIndent">“虫洞辐射指数开始波动，敌人来了！”随着监控人员的一声示警，虫洞漩涡显现，一架圆滚滚的飞行器钻了出来。</p>
+<p class = "firstLineIndent">“开火！”</p>
+<p class = "firstLineIndent">还未看到飞行器的全貌，早已处在临战状态的两艘“海族战舰”以及防御要塞上近三分之一武器立刻齐射，这是为了保证火力的密度和持续性而采用的三段式射击。</p>
+<p class = "firstLineIndent">数十道强弱不一的激光攻击在大约5s之后准确命中了还没来得及张开护盾的球形飞行器。</p>
+<p class = "firstLineIndent">或者说……对方根本就没有打算张开护盾！</p>
+<p class = "firstLineIndent">由于虫洞穿越过程中会存在力场扰动现象，所以所有飞船在穿过虫洞之前，都需要关闭力场护盾，而以双子星目前的护盾技术，重新开启力场护盾大概需要接近5s左右的时间。</p>
+<p class = "firstLineIndent">也就是说，在穿越虫洞的5s内，双子星的战舰会处在裸机的无防护状态。</p>
+<p class = "firstLineIndent">为了抓住这个弱点，并保证攻击的命中率和杀伤力，地球一方布置的防线距离虫洞的距离在150万公里左右，光速攻击所需的时间恰好卡在了5s内这个水平上。</p>
+<p class = "firstLineIndent">而在现身的5s内，这台球形的飞行器并没有动用全部的能量来开启护盾，而是迅速做了三件事。</p>
+<p class = "firstLineIndent">第一件，全功率开启各种探测设备，扫描附近星域的所有情报！</p>
+<p class = "firstLineIndent">第二件，将所有的信息实时传回！</p>
+<p class = "firstLineIndent">第三件，浑身各处的射击孔中爆发出无数道细小的激光，密密麻麻如同一只发光的刺猬一般，一次性耗费了自身几乎所有的能量，将附近几十万公里内的暗雷直接引爆！</p>
+<p class = "firstLineIndent">完成了这三件任务之后，这个球形飞行物直接被迎面而来的海量攻击直接击毁，化为众多爆炸火光中的一道！</p>
+<p class = "firstLineIndent">“那是……通讯线缆！”</p>
+<p class = "firstLineIndent">爆炸的火光中，有人看到了直直连接着虫洞和球形飞行器残骸的一道黑影……</p>
+<p class = "firstLineIndent">线缆的另一端，则连接着比邻星系内的一艘战舰上！</p>
+<p class = "firstLineIndent">双子星竟然用有线通讯的方式，破解了虫洞无法通讯的难题，将太阳系的防御情报传回了比邻星！</p>
+
+<h2>第三百四十一章 老鹰抓小鸡</h2>
+<p class = "firstLineIndent">“报告，‘先登者’已被击毁，虫洞出口雷区清扫完毕！探测到敌方攻击源数量3，攻击能量密度34000，防线距离150万公里！”</p>
+<p class = "firstLineIndent">副官迅速汇报了获取的情报战果。</p>
+<p class = "firstLineIndent">由于虫洞穿越过程中会存在力场扰动现象，顶着力场护盾穿越虫洞相当于“求自爆”，所以所有飞船在穿过虫洞之前，都需要先行关闭力场护盾。</p>
+<p class = "firstLineIndent">而以双子星目前的护盾技术，重新开启力场护盾的普遍时间需要5s左右，也就是说，在穿越虫洞之后的5s内，双子星的战舰会处在“裸机”的无防护状态。</p>
+<p class = "firstLineIndent">为了抓住这个弱点，并保证攻击的命中率和杀伤力，地球一方布置的防线距离虫洞的距离在150万公里左右，光速攻击从发动到命中所需的时间恰好卡在了5s内这个水平上。</p>
+<p class = "firstLineIndent">“攻击源数量3？怎么回事？”古斯塔夫楞了一下。</p>
+<p class = "firstLineIndent">不是说对面只有两艘海族战舰？而且这攻击能量密度似乎也比他预计的要高些。</p>
+<p class = "firstLineIndent">“其中两艘已经完成识别，确系为我军护卫舰型号，但第三个攻击源……抱歉指挥官阁下，对方开启了光学隐形，我们无法探测到对方的具体影像资料。</p>
+<p class = "firstLineIndent">但是根据目标的引力数据计算，那应该是一颗直径在5~15公里左右的小行星！推测对方在这段时间应该利用它布置成了火力点，只是不能确定上面的武器数量和防御水平！</p>
+<p class = "firstLineIndent">另外，我们的雷达还观测到战场附近存在数量30左右，直径一公里以上的大质量小行星，应该是对方故意牵引过来的掩体，不排除在其中另有埋伏的可能性！”</p>
+<p class = "firstLineIndent">“嗯？新的火力点？对方哪来的那么多建设物资和武器？”古斯塔夫皱眉。</p>
+<p class = "firstLineIndent">“呃……我们在太阳系的确拥有一个前哨基地，原本是为了方便开拓舰队进行补给，里面储存着不少物资……”副官迟疑着道。</p>
+<p class = "firstLineIndent">“哼！真是一群烦人的家伙！”古斯塔夫觉得事情有些超出预料的棘手了，不过，也仅仅只是棘手而已！</p>
+<p class = "firstLineIndent">“按照计划开始进攻吧，第一波攻击，集火敌方的防御要塞，将它的具体情报试探出来！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">太阳系，布雷艇正在抓紧时间将先前被清扫出来的雷区重新布雷。</p>
+<p class = "firstLineIndent">刚刚那艘球形飞行器的一波密集攻击威力不大，不过密度惊人，虽然没有能够将虫洞出口位置的暗雷全数击毁，但是密度已经下降到一个十分感人的程度，对双子星强攻部队的威胁性直线降低。</p>
+<p class = "firstLineIndent">不过还没等它们将雷区重新往前推进多少，双子星的正式攻击就降临了。</p>
+<p class = "firstLineIndent">随着虚空中的漩涡再次出现，地球这边二话不说又是一轮密集的火力输出，然后下一刻，所有人便看见虫洞处一个边长近百米的正方体形状的古怪飞行物逐渐浮现。</p>
+<p class = "firstLineIndent">这个物体表面相当粗糙，坑坑洼洼就像是披了一层陨石外壳，而且表面还有纵横交错，九宫格一般的棋盘状网格，看起来就像是一个巨大的魔方。</p>
+<p class = "firstLineIndent">接着毫无悬念的，地球这边的攻击直接命中了这个正方体！然而……</p>
+<p class = "firstLineIndent">“这……怎么可能！”</p>
+<p class = "firstLineIndent">让所有人大跌眼镜的是，这轮攻击居然没有让这个古怪物体受到多大的伤害！</p>
+<p class = "firstLineIndent">几十道激光打在它身上，却只能令它的表面迅速发红，穿透2米左右的外壳便后继乏力，而这个飞行物的外壳不知道有多厚，竟然没有一点被贯穿的迹象。</p>
+<p class = "firstLineIndent">那几十处因高温而形成的岩浆状物体，让这东西看起来就像是多了几十处红色的斑块。</p>
+<p class = "firstLineIndent">激光武器基本无效，就连3发主炮级的重型力场射线炮也没能奈何的了它，射上去简直和挠痒痒差不多。</p>
+<p class = "firstLineIndent">没有爆炸，没有电火花四溅，除了造成一些裂纹，这东西竟然像是免疫了力场射线攻击一般。</p>
+<p class = "firstLineIndent">然后就在众人震惊的目光中，这个立方体在硬抗下一波攻击之后，居然缓缓展开。</p>
+<p class = "firstLineIndent">“咔哒咔哒！”如同一个魔方被扭转着摊开，一面厚度足有十米，面积超过6万平方米的巨大正方形石墙迅速出现在众人面前，将后方的虫洞牢牢挡在了身后！</p>
+<p class = "firstLineIndent">“这……居然是面盾牌！”众人终于看出了这东西的用途。</p>
+<p class = "firstLineIndent">一直在观察这场战斗的聂云同样被这个东西惊了一下，不过内行看门道，他从刚刚那波攻击中看出了更多的东西。</p>
+<p class = "firstLineIndent">“这面盾牌的材质肯定不一般！”</p>
+<p class = "firstLineIndent">事实上，这是一种名为星核的矿物，只有极少数的行星内核中存在，它除了熔点奇高，对力场射线的削弱作用也较为明显。</p>
+<p class = "firstLineIndent">虽然这种防护作用并不明显，无法作为战舰和机甲材料，不过如果厚度足够，提供的防御还是相当可观，因此被双子星作为极佳的攻坚防护物体。</p>
+<p class = "firstLineIndent">有这面盾牌在，激光攻击基本无效，就算是穿透力更强的力场类攻击也会被削弱80左右的威力，能够大大增加后方舰只的生存几率。</p>
+<p class = "firstLineIndent">聂云自然不能眼睁睁看着对方在虫洞处站稳脚跟，虽然双子星的攻坚手段有点出人意料，不过地球一方的攻击却从未间断。</p>
+<p class = "firstLineIndent">“快开火！”“集中一点攻击，这盾牌撑不了多久！”……</p>
+<p class = "firstLineIndent">各种呐喊声中，无数的攻击击打在这面盾牌上，一时间岩浆四射，碎屑横飞！</p>
+<p class = "firstLineIndent">如果按照这种攻击密度，估计不久后，就算是再强悍的盾牌也得被水滴石穿般击毁！</p>
+<p class = "firstLineIndent">不过双子星自然明白，这种虫洞攻坚战，最重要的就是攻击的连续性。</p>
+<p class = "firstLineIndent">实际上，就在魔方盾牌展开之后，虫洞就已经再次开启，这次出来的，是一艘海族护卫舰。</p>
+<p class = "firstLineIndent">凭着前方的盾牌掩护，这艘护卫舰终于在付出了轻伤的代价之后，将力场护盾打开，成为双子星站稳脚跟的第二防护力量！</p>
+<p class = "firstLineIndent">紧接着，一艘滚筒形状的小型航母几乎是尾随着紧跟护卫舰穿过虫洞！</p>
+<p class = "firstLineIndent">这艘航母躲在巨型盾牌和护卫舰之后，一站稳脚跟，圆柱形的外壳立刻齐齐打开，露出里面一排排整齐的机甲和战斗机。</p>
+<p class = "firstLineIndent">这种宇宙型航母类似地球上的海洋型航母，本身基本没有战斗力，但数量众多的舰载机一旦形成规模，战斗力也相当可怕！</p>
+<p class = "firstLineIndent">“砰砰砰……”下一刻，一台台机甲和宇宙战斗机被猛地弹射出来，如同数道螺旋状的烟花同时绽放！</p>
+<p class = "firstLineIndent">短短的2分钟内，200台机甲和近千架战斗机被陆续弹射，无数尾焰星星点点，景象壮观的让人震撼！</p>
+<p class = "firstLineIndent">可想而知，一旦这么多小型战斗兵器在战场上乱窜，足以给地球防线带来可怕的打击，毕竟从表面上看，论双方兵力，地球这边拍马也追不上双子星。</p>
+<p class = "firstLineIndent">“不愧是老牌的星际文明，这手段层出不穷啊！不过我很好奇……你们想怎么过雷区呢？”聂云看着战场画面，神情依然轻松。</p>
+<p class = "firstLineIndent">然后下一刻，聂云众人便看到那些机甲和战斗机并未四散攻击地球一方的阵线，而是齐齐躲在了盾牌之后！</p>
+<p class = "firstLineIndent">由机甲顶着盾牌，战斗机尾随其后，在机甲后方排成一列列整齐的队列。</p>
+<p class = "firstLineIndent">下一刻，这面巨型盾牌居然四散开来，分裂为54面小型盾牌，拖着54条小尾巴，朝着地球一方的防线冲去！偶尔的暗雷和光束撞在盾牌上轰然爆炸，却对后方的机甲和战斗机造不成大的伤害！</p>
+<p class = "firstLineIndent">“我去！老鹰抓小鸡？！”聂云目瞪口呆。</p>
+<p class = "firstLineIndent">机械虫：“……”（⊙﹏⊙b）</p>
+
+<h2>第三百四十二章 伏兵</h2>
+<p class = "firstLineIndent">巨型盾牌、护卫舰、小型航母，双子星的三连击一下子让地球一方的虫洞防线显得岌岌可危！</p>
+<p class = "firstLineIndent">为了不被各个击破，地球一方选择的是组成防御阵线，由两艘战舰拱卫浮游要塞。</p>
+<p class = "firstLineIndent">这就如同海战中，一只舰队为了防御敌方的空袭，往往都会选择组成较为密集的阵型，互相配合组织起严密的防空火力网一般。</p>
+<p class = "firstLineIndent">所以除了雷区外，地球一方目前的攻击大都来自一个方向，这就使得对方的盾牌防御战术有了实现可能。</p>
+<p class = "firstLineIndent">另一方面，按照原本的预计，压制火力的伤害输出与攻击地点并无关联，是联合组团攻击，还是分散成三个节点攻击，单位时间内对敌人造成的伤害是固定的，所有没有必要冒着被敌人揪住一个猛揍的风险多面出击。</p>
+<p class = "firstLineIndent">然而没想到双子星竟然会用这种挡箭牌的攻坚方式让自己陷入被动。</p>
+<p class = "firstLineIndent">事实上，这也是古斯塔夫吃准了太阳系这边兵力不足不敢分兵的弱点进行的针对性布置。</p>
+<p class = "firstLineIndent">不过尽管吃惊，但地球一方的火力优势依然存在！</p>
+<p class = "firstLineIndent">盾牌只能防御，小型母舰基本毫无战斗力，现在只能打酱油，机甲和战机还未进入各自的攻击射程，而仅有的一艘护卫舰连防御都做的十分勉强，根本无力发出多少攻击。</p>
+<p class = "firstLineIndent">所以现在的局势，基本还是群殴！</p>
+<p class = "firstLineIndent">盾牌的分散虽然让地球一方的攻击命中率直线下降，但是同样也让后方的护卫舰和小型航母暴露在了攻击之下。</p>
+<p class = "firstLineIndent">聂云没有将火力分散，去攻击拼命接近中，看似威胁最大的机甲和战机群，而是第一时间将火力全数集中在那艘护卫舰上。</p>
+<p class = "firstLineIndent">这艘护卫舰明显加强了护盾方面的性能，乌龟壳居然异常的厚实，足足2分钟之后，它的护盾才被击破，然后在几发光束下轰然化为一堆宇宙垃圾。</p>
+<p class = "firstLineIndent">随后不到半分钟，失去了所有掩护的小型航母也步了它的后尘！</p>
+<p class = "firstLineIndent">双子星损失了两艘战舰，换来的是已经彻底分散开来的机群。</p>
+<p class = "firstLineIndent">这种兑子谈不上谁输谁赢，就像是象棋中用自己的炮换了对方的马，到底谁占了便宜，那就是仁者见仁智者见智了。</p>
+<p class = "firstLineIndent">除了200台游荡者机甲，这些战机的放大画面也被地球一方的探测设备捕捉。</p>
+<p class = "firstLineIndent">从外观上看，这种战机乍看有些像是有着流线型外壳的四角钉，对！就是用来扎轮胎那种……</p>
+<p class = "firstLineIndent">战机尖端的凸起是一门高能激光炮，而尾部的三个凸起则组成了一个怪异的三角形推进器。</p>
+<p class = "firstLineIndent">这种推进器比传统的单发和双发推进器拥有更高的灵活性，从聂云观察到的影像来看，翻滚和变向机动性能极佳，几乎可以做出连续闪电形机动。</p>
+<p class = "firstLineIndent">在高精度雷达锁定和光速攻击的情况下，这种灵活的机动性能，能够做到更高难度的无序规避，逃离敌方战舰的雷达锁定！</p>
+<p class = "firstLineIndent">当然，多矢量变向系统需要更加智能的航向和平衡控制，至少地球目前还差了一大截。</p>
+<p class = "firstLineIndent">这些战机几乎是协同运动，不论前方的盾牌如何移动，都能同步翻滚着紧紧尾随，笔直整齐的如同一场艺术表演。</p>
+<p class = "firstLineIndent">“唔……三角形推进器么？莫非未来的宇宙战机推进器发展方向是量变引起质变？”我们的聂船长举三反五，已经在心中琢磨下一代五角星形的超级推进器……</p>
+<p class = "firstLineIndent">机群在稳步推进，而以地球一方的火力密度，想要远距离攻击一群躲在“母鸡”身后灵活机动的“小鸡”，基本是大炮打蚊子，见效甚微。</p>
+<p class = "firstLineIndent">聂云用脚趾头想，也知道对方没有继续派遣战舰过来的原因，无非是想要等这批机群接近并开始骚扰地球方的阵地之后，便能够趁着己方自顾不暇的时机大肆进兵！</p>
+<p class = "firstLineIndent">上千的机群，其中还有200台威胁相当大的机甲部队，如果地球一方只有一颗要塞和两艘护卫舰，那么被这些小东西突入扰乱防线几乎是必然的。</p>
+<p class = "firstLineIndent">它们甚至不需要强攻，只需要不断做出攻击姿态进行骚扰，就足够为己方争取“抢滩登陆”的喘息之机。</p>
+<p class = "firstLineIndent">54支小分队犹如54条毒蛇，游曳着逐渐接近地球一方的防线。</p>
+<p class = "firstLineIndent">虽然不时有倒霉的“小鸡”踩雷或者被攻击命中，不过相对庞大的机群数量来说，这点损失完全就是不痛不痒。</p>
+<p class = "firstLineIndent">它们就像是一条条贪吃蛇，撞上一颗颗暗雷，前排的倒下，后排的就顶上，一路火花带闪电，气势汹汹朝着地球防线野蛮冲撞而来。</p>
+<p class = "firstLineIndent">男人的胸怀再大，也大不过广袤的宇宙空间，聂云布置的数十万公里雷区已经是相当凶残，可以说远远超出双子星的战前预测。</p>
+<p class = "firstLineIndent">付出了比原先计划中要多些的代价，双子星的机群终于冲出雷区，然后一边做着规避机动，一边迅速拉近了双方的距离！</p>
+<p class = "firstLineIndent">“1~4号拦截小分队，立刻出击！”眼见对方就要进入射程，威胁到己方的防线，聂云终于下达了一道命令，先开了第一张底牌！</p>
+<p class = "firstLineIndent">下一刻，只见双子星机群前进路线的侧面不远处，从一颗流浪小行星掩体上，幽灵般悄无声息地飞出了4队机群，迅速靠拢合并为一股机群之后，全速向着双子星机群冲去。</p>
+<p class = "firstLineIndent">每队机群100台机甲，加起来就是400台，清一色的游荡者！</p>
+<p class = "firstLineIndent">“不好，对方有伏兵！”领队的前线指挥看到雷达上突然出现的密密麻麻红点，不由脸色骤变。</p>
+<p class = "firstLineIndent">他们所采用的引力子雷达只能探测物体散发的引力波动，如果飞行物紧贴着另一个飞行物，那么雷达就会默认成一个物体，这就像是飞机利用超低空飞行躲避雷达波一样。</p>
+<p class = "firstLineIndent">所以，停靠在某天体上的飞行器，是无法被引力子雷达所捕捉的。</p>
+<p class = "firstLineIndent">事实上，在战前双子星就已经猜测过，这伙“叛军”可能在那些流浪小行星上布置一些后手，安排一些固定式武器甚至伏兵，但是他们下意识认为对方只有两艘战舰，伏兵顶天了又如何能够对他们的庞大机群造成威胁？</p>
+<p class = "firstLineIndent">然而现在，战场上的态势却急转直下！</p>
+<p class = "firstLineIndent">打个比方，如果说机甲是太空战中的重骑兵，那么战机就是轻骑兵，一个注重攻防一体，一个注重灵活多变！</p>
+<p class = "firstLineIndent">那现在的情况就是，400名重装骑兵以密集锋矢阵冲向由200名重装骑兵和1000名轻骑兵的混编散兵阵。</p>
+<p class = "firstLineIndent">双子星为了规避地球一方的舰队密集火力而进行的散兵盾牌冲锋战术，在新的威胁面前却立刻陷入被动。</p>
+<p class = "firstLineIndent">更要命的是，他们此刻还不敢集结对抗，因为对方的要塞和战舰火力可是虎视眈眈。</p>
+<p class = "firstLineIndent">这就相当于一只要命的炮兵部队正狗在后方，如果你敢集结，对面肯定二话不说就是几十发意大利炮！</p>
+<p class = "firstLineIndent">这下……事情就比较尴尬了……</p>
+
+<h2>第三百四十三章 作案手法</h2>
+<p class = "firstLineIndent">双方距离迅速拉近，已经没有时间让双子星一方的前线指挥官犹豫。</p>
+<p class = "firstLineIndent">他立刻下达命令，各自为战，遭遇敌人，尽量牵制敌方的机甲部队，未接敌的部队按照原定计划全速前往攻击对方重点保护的浮游要塞！</p>
+<p class = "firstLineIndent">这是想要丢车保帅，只要能够完成预定目标缠住三个主要火力输出点，那么虫洞处就可以继续投入兵力，一旦双子星的突入舰队形成规模，那么这场战斗也就没有悬念了……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">而地球这边……</p>
+<p class = "firstLineIndent">“各小队注意，再重复一遍任务！跟紧我保持团队阵型，以我为中心的3000公里范围内，允许各小队自由猎杀！”由地球防卫军派出的前线指挥人员在通讯中大声喊道。</p>
+<p class = "firstLineIndent">“地球防卫军机甲团收到！”</p>
+<p class = "firstLineIndent">“钢铁雄心小队收到！”</p>
+<p class = "firstLineIndent">“圆桌骑士团收到！”</p>
+<p class = "firstLineIndent">“吃鸡高手团收到！”</p>
+<p class = "firstLineIndent">“珈蓝神殿公会收到！”</p>
+<p class = "firstLineIndent">“先锋队队长收到！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">各种各样的小队名称在通讯频道中响起，其中有军事化部队的正式番号，有崭露头角的佣兵小队，有原知名游戏公会，甚至还有独行侠……</p>
+<p class = "firstLineIndent">这伙团队名五花八门的机师便是这次地球一方拦截机群的远程操控者！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">两个月前……</p>
+<p class = "firstLineIndent">随着虚拟头盔的普及，虚拟现实技术开始逐渐改变着地球人类的生活与工作方式。</p>
+<p class = "firstLineIndent">大量的互联网公司进驻其中，开始对自己的技术进行更新换代，全面接轨虚拟世界，这是时代的大趋势，谁也不甘落后！</p>
+<p class = "firstLineIndent">于是，当人类的物质生活还未享受到幽灵船长所带来的先进科技红利之前，他们的精神世界已经获得了升华！</p>
+<p class = "firstLineIndent">无数的虚拟小世界被建立，从荒芜到逐渐填充进色彩，变得梦幻一般多姿多彩……</p>
+<p class = "firstLineIndent">无数的人类意识化为优美的代码，在虚拟世界中交流，碰撞出思想的火花……</p>
+<p class = "firstLineIndent">论效果，这简直就是神族心灵链接的初级版本！</p>
+<p class = "firstLineIndent">就算是双子星文明，也无法用这种身临其境的方式，将所有的社会个体全部纳入一个如此高效的交流体系中。</p>
+<p class = "firstLineIndent">而从木卫四战争的经验来看，利用虚拟训练技术，培养出满足战争需求的优秀兵员，确实具备相当大的可操作性！</p>
+<p class = "firstLineIndent">参与木卫四战争的过程中，地球防卫军的精英战士们不提，然而，就算是之前毫无基础的幽灵船长亲卫军，也表现出了极强的专业军事素养！</p>
+<p class = "firstLineIndent">这其中，有80的功劳要归功于虚拟训练！</p>
+<p class = "firstLineIndent">而利用虚拟技术训练出合格兵员，便是聂云一直在致力推广的，“藏兵于民”的发展大计！</p>
+<p class = "firstLineIndent">为此，自“科技树虚拟世界”之后，聂云再次出手，主导开发了无尽世界虚拟体系的第二个核心虚拟世界……“文明战线！”</p>
+<p class = "firstLineIndent">聂云亲自设计框架，随后在代号的协助下，亚特兰蒂斯公司携手全球各大知名游戏公司和地球防卫军的军事专家，耗时一个月，对这个世界进行了大量的完善和补充！</p>
+<p class = "firstLineIndent">简单来说，这个“文明战线”虚拟世界类似一款超拟真的星际战争游戏。</p>
+<p class = "firstLineIndent">世界背景完全参照如今的地球文明局势，甚至连国家、政治军事格局等等，都是完全真实！</p>
+<p class = "firstLineIndent">而目前虚拟世界内最大的邪恶反派势力，自然便是双子星文明！</p>
+<p class = "firstLineIndent">在这个名为游戏，实为虚拟训练的世界中，玩家可以扮演各种角色，比如战舰操作员、舰长、指挥官、陆战队员、宇宙战机驾驶员、机甲操作机师等等涵盖几乎所有太空军事领域的各个兵种！</p>
+<p class = "firstLineIndent">而游戏中的武器俱都是来源于真实的武器参数，因为目前只提供部分基础战斗兵器的蓝本，聂云倒也不怕泄露己方的军事机密，就当给地球人科普好了！</p>
+<p class = "firstLineIndent">因为其拟真性和幽灵船长携手打造的金字招牌，这个虚拟世界一经开放，便受到所有地球人的追捧，几乎所有人，都涌入了这个世界。</p>
+<p class = "firstLineIndent">短短一天时间，这个世界的登录人数便超过了科技树世界，成为又一个“现象级世界”！</p>
+<p class = "firstLineIndent">除了这个世界中恢弘的真实战争元素吸引眼球外，更是因为“文明战线”其实还是一个征兵世界！</p>
+<p class = "firstLineIndent">根据世界说明，经过智脑评估，有能力从数十亿人口中脱颖而出的顶尖玩家，将会有机会赢得共同保卫地球，与邪恶的双子星决战的远程操控名额！</p>
+<p class = "firstLineIndent">骚年！去拯救世界吧！</p>
+<p class = "firstLineIndent">这个口号能够经久不衰，不就是因为所有人心中都有一个英雄梦吗？</p>
+<p class = "firstLineIndent">如今这种机会摆在面前，只需要你能够成为某一个领域的战斗精英，就有机会亲自上阵，对抗邪恶的外星人，这种诱惑，几乎无人能够抵挡，更何况这还是一点危险也没有的远程操作？</p>
+<p class = "firstLineIndent">幽灵船长给这个虚拟世界写的推销广告语，成为最近地球上十分流行的战斗口号……一寸山河一寸血，十万玩家十万兵！</p>
+<p class = "firstLineIndent">经过一个月的选拔测试，共计有10000名各个领域的超级兵王，从数十亿人口中抢到了这个宝贵的名额！</p>
+<p class = "firstLineIndent">而今天，他们就被分散到了虫洞防线的各个防御位置，与作为主力的地球防卫军并肩作战。</p>
+<p class = "firstLineIndent">如果不是担心与地球防卫军的配合问题，这个参战名额还会更多！</p>
+<p class = "firstLineIndent">而相对于专业水平要求更高的指挥和战舰驾驶类兵种，机甲操作机师绝对是各个兵种中最为火爆的一种角色选择，没有之一！</p>
+<p class = "firstLineIndent">机甲是男人的浪漫！</p>
+<p class = "firstLineIndent">驾驶着巨型钢铁人形兵器，在广阔的宇宙之中，和敌人碰撞出钢铁的轰鸣！</p>
+<p class = "firstLineIndent">任何一名真正的男子汉都难以拒绝这种让人热血沸腾的诱惑！</p>
+<p class = "firstLineIndent">也正是因为如此，这10000个名额中，倒是有一小半是机甲部队的远程操作者，而他们大多是以战斗团队的形式，被智脑选中。</p>
+<p class = "firstLineIndent">能够从激烈的竞争中脱颖而出，操作技术只是其中一个指标，军事行动从来都不是一个人的独角戏，其中的团队协作更是占了极大的评估比例！</p>
+<p class = "firstLineIndent">因此，配合默契的团队更容易出线。</p>
+<p class = "firstLineIndent">当然，其中也不乏先锋队队长这种明显有些鹤立鸡群的独行侠存在……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在双方机群迅速接近，即将发生惨烈碰撞时……</p>
+<p class = "firstLineIndent">太阳系虫洞出口处，借助大量的钢铁碎片和飞船残骸，一个开启隐身状态的球形探测器隐藏在众多的漂浮物中，将太阳系发生的一切传回了后方。</p>
+<p class = "firstLineIndent">“这不可能！对方怎么可能会有这么多的机甲！他们哪来那么多机师？！”古斯塔夫满脸都是震惊和被世界欺骗的神情。</p>
+<p class = "firstLineIndent">真相隐藏在迷雾中，然后很明显，古斯塔夫阁下在迷雾中有些迷失了自己……</p>
+<p class = "firstLineIndent">是万物归一会！？</p>
+<p class = "firstLineIndent">这是古斯塔夫在震惊之后的第一反应！</p>
+<p class = "firstLineIndent">难道这个突然冒出来的神秘势力如此强大，竟然能在所有人眼皮子底下，将这么多武器装备和机师悄无声息的送到太阳系？</p>
+<p class = "firstLineIndent">是了！对方既然能够瞒过所有人，将一艘护卫舰悄悄送到太阳系配合伏击阿尔萨斯，那么再送几船军火和机师又有什么奇怪？</p>
+<p class = "firstLineIndent">等等？！这么说这些万物归一会的人并非他们想象的那样，是负隅顽抗的垂死挣扎，而是明显早有计划有备而来！</p>
+<p class = "firstLineIndent">只是为了对付一个阿尔萨斯，需要准备这么大的阵仗？</p>
+<p class = "firstLineIndent">如果不是，那他们下这么大功夫，拼死防御太阳系虫洞的目的又是什么？</p>
+<p class = "firstLineIndent">“在太阳系如此煞费苦心，做出如此巨大的投入，甚至不惜与军方正面交战，他们想得到什么？”古斯塔夫陷入沉思。</p>
+<p class = "firstLineIndent">没有任何一个势力，会无缘无故投入大量资源做无用功，他们的投入越大，说明这么做的回报越大！</p>
+<p class = "firstLineIndent">“对方先是设伏想要生擒阿尔萨斯，但被那家伙提前识破，知道事不可为后便又想杀人灭口，于是对他围追堵截……</p>
+<p class = "firstLineIndent">但事情都已经败露，到了如今的地步，他们却依然在不惜代价的修筑防御工事，一副死守太阳系的姿态……</p>
+<p class = "firstLineIndent">太阳系，又是太阳系……这太阳系里，究竟有什么秘密……”</p>
+<p class = "firstLineIndent">突然，脑海中念头急速闪动的古斯塔夫想到了一种可能！</p>
+<p class = "firstLineIndent">如果说……他们不是负隅顽抗，而是真的想要占据太阳系呢？！</p>
+<p class = "firstLineIndent">这个想法一旦生根发芽，便再也止不住。</p>
+<p class = "firstLineIndent">“如果……真的是我猜测的这般，那么，一切就都说得通了！”古斯塔夫眼中精光一闪。</p>
+<p class = "firstLineIndent">很显然，这么完善的防御准备，对方绝非事情败露后才想要据险死守，而是原本计划中就有这么一环！</p>
+<p class = "firstLineIndent">生擒阿尔萨斯，然后攻占整个太阳系，在虫洞处修建防御工事，等到双子星意识到两艘巡林者号的失联而反应过来的时候，一切早已尘埃落定！</p>
+<p class = "firstLineIndent">有议长之子在手，议会投鼠忌器！</p>
+<p class = "firstLineIndent">有严密的虫洞防御阵线在手，军方除非愿意拼着巨大的损失，否则根本无法强攻夺回太阳系！</p>
+<p class = "firstLineIndent">有人质和太阳系在手，只要双子星不想鱼死网破，必然会选择谈判，那么这个神秘组织万物归一会便能够理所当然提出自己的政治诉求！</p>
+<p class = "firstLineIndent">只不过可惜，这一切都被阿尔萨斯那个搅屎棍彻底破坏了……</p>
+<p class = "firstLineIndent">换个角度来看，这和恐怖分子的作案手法何其相似！</p>
+<p class = "firstLineIndent">纵观历史，恐怖组织想要用暴力手段和政府谈判，首先你要有一个易守难攻的险要之地，比如摩天大厦，比如大型客机，比如银行金库……</p>
+<p class = "firstLineIndent">然后你手上要有一个或者几个重量级的人质，比如豪商巨贾，比如政界要员……</p>
+<p class = "firstLineIndent">那么，又有哪个人质会比议长之子更有分量？</p>
+<p class = "firstLineIndent">万物归一会作为一个极端组织，其目的无非是实现自己的某些诉求，采取这种手段完全合情合理！</p>
+<p class = "firstLineIndent">这……就是事情的真相吗？</p>
+<p class = "firstLineIndent">古斯塔夫眼中露出看透了一切的迷之反光……</p>
+
+<h2>第三百四十四章 等级制度</h2>
+<p class = "firstLineIndent">太阳系中，双方的机群已然毫无花巧的碰撞在一起，一场绵延上万公里的机甲大战开始上演！</p>
+<p class = "firstLineIndent">如同两名骑士之间的直线冲锋碰撞，地球军的400台机甲群迅速锁定目标，兜住了双子星躲避不及的3只盾牌小队。</p>
+<p class = "firstLineIndent">近战下，盾牌战术毫无作用，再摆这种一字长蛇阵无疑是找死。</p>
+<p class = "firstLineIndent">双子星一方果断舍弃盾牌组成冲锋队形，3个小机群六十多台机甲和战机毫不畏惧的冲撞地球军的机甲部队。</p>
+<p class = "firstLineIndent">双方的机体性能高度一致，进入射程的一瞬间，无数飞弹和光束瞬间在战场上爆发开来。</p>
+<p class = "firstLineIndent">“轰！轰！轰！”火光和爆炸在宇宙中一路蔓延，犹如一条光带……</p>
+<p class = "firstLineIndent">双子星通讯频道内。</p>
+<p class = "firstLineIndent">“长官！第27、32、45小队被盯上了，对方兵力数量占优，我们的组队方式很被动，请求支援！”</p>
+<p class = "firstLineIndent">“报告，第32小队已经接敌，对方的机师训练有素，我方损失惨重！”</p>
+<p class = "firstLineIndent">“已穿透敌方机群，45小队残余7台战机，1台机甲，其余全数陨落！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">高速冲锋下，双方机错而过，留在战场上的是刺眼的爆炸和无数的钢铁碎片。</p>
+<p class = "firstLineIndent">双子星的3只小队在穿透地球军机群后，在优势兵力的群殴下只剩下稀稀拉拉的十几台，地球军一方则损失轻微，这第一场的小规模战斗以地球方大比分获胜告终。</p>
+<p class = "firstLineIndent">地球一方通讯频道内，一片欢呼！</p>
+<p class = "firstLineIndent">“哈哈！我干掉2架双子星战机，老子这辈子值了！”</p>
+<p class = "firstLineIndent">“一台战机100点无限币，干掉对方机甲报酬更丰厚，一个300点，这都是钱啊！谁都别和我抢！”</p>
+<p class = "firstLineIndent">“这……这经验值也太丰厚了吧！差不多是虚拟世界内的100倍啊，岂不是说一场战斗下来我的‘机师等级’就能提升了？”</p>
+<p class = "firstLineIndent">“升一级？没看到前面那个先锋队队长吗？人家已经升到lv2了，努力吧少年！”</p>
+<p class = "firstLineIndent">“卧槽！还真是，战绩排名第一，共击落1台机甲，6台战机，这特么是什么手速，这么短时间，我总共也就只能打出4次有效攻击，别说抢人头，捡人头也没你这样的吧！”</p>
+<p class = "firstLineIndent">“偶像啊！决定了，今天的目标是lv3！”</p>
+<p class = "firstLineIndent">“第一个到达lv10级会有惊喜大礼包吗？”</p>
+<p class = "firstLineIndent">“喂喂！你们别太得意忘形，给我注意队形啊魂淡！先锋队队长，你冲的太靠前了！快迂回，给我迂回咬住他们的尾巴！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">是的，你没有听错，这不是什么游戏乱入，的的确确是经典的游戏等级体系。</p>
+<p class = "firstLineIndent">对战争而言，军人的战功和荣誉需要得到彰显，这不仅是对其贡献的肯定，也是继续奋勇征战的动力！</p>
+<p class = "firstLineIndent">现实中，各国的军衔制度五花八门，但都存在一个问题，军衔上限！</p>
+<p class = "firstLineIndent">比如一个战绩辉煌的军人升到五星上将之后，升无可升了怎么办？</p>
+<p class = "firstLineIndent">人的野心永无止境！那么他会不会想去谋求军事领域之外的更大权力？</p>
+<p class = "firstLineIndent">这个问题看似不起眼，从长远看却是一个不小的隐患，和平年代或许还不明显，但战争时期这个问题就十分突出。</p>
+<p class = "firstLineIndent">而纵观人类历史，各国的军衔制度越来越复杂几乎是一种趋势！</p>
+<p class = "firstLineIndent">米军现有的军衔等级已经划分到7等25级的复杂程度，就连普通士兵都划分为1等兵、2等兵、新兵，而一个准尉就分了5个级别。</p>
+<p class = "firstLineIndent">从心理学上来说，这种细致的等级划分是相当有必要的！</p>
+<p class = "firstLineIndent">我比别人更多的付出，那么其成果到底体现在哪？</p>
+<p class = "firstLineIndent">一个军人从列兵升级为士官需要5年，但是只要一年，你就能从三等兵升级为二等兵，哪个军衔体系能够更直观的体现你的付出？这不言而喻！</p>
+<p class = "firstLineIndent">从实际效果上来看，越是细致的军衔划分，能让军人越是清晰的感受到自己付出所带来的“正面反馈”！</p>
+<p class = "firstLineIndent">而这种付出后的正面反馈，能够让人得到极大的自我满足！</p>
+<p class = "firstLineIndent">事实上，游戏就将这种细致的等级划分和正面反馈发展到了一个极致！</p>
+<p class = "firstLineIndent">等级能够清晰的代表一个玩家的战绩、实力，更高的等级，就代表更高的荣誉和地位。</p>
+<p class = "firstLineIndent">玩家对于游戏付出时间、精力、情感、金钱，都会以等级提升的方式得到迅速的正面反馈，这正是许多人沉迷游戏的原因，因为在游戏中获得的成就感和满足感是外界无法比拟的。</p>
+<p class = "firstLineIndent">基于这种理论，熟读兵法的聂船长大手一挥，在自己的势力范围内全面引入了等级制度。</p>
+<p class = "firstLineIndent">“去升级吧！为了人类！”这是虚拟世界的新口号。</p>
+<p class = "firstLineIndent">不仅是军事领域，就连商业领域和科研领域都引入了相应的等级制度！</p>
+<p class = "firstLineIndent">这种等级制度上不封顶，lv100都不是终点，换句话说，就算你打上一百层都还只是开始！</p>
+<p class = "firstLineIndent">每击破一个敌人，根据敌人的战斗力和战斗的重要性等因素，用一套复杂的算法计算出所能获得的经验值。</p>
+<p class = "firstLineIndent">经验值满足升级要求，便能够lv up！</p>
+<p class = "firstLineIndent">机师操作机甲，获得的经验值只能提升机师等级，战舰火炮手击毁敌方单位，能够提升相应的炮手等级，指挥官指挥一场战斗获得胜利，获得指挥官等级！</p>
+<p class = "firstLineIndent">在聂云的设想中，因为虚拟技术和远程操控技术的存在，未来军事化和游戏化的界限将越来越模糊。</p>
+<p class = "firstLineIndent">而在其它领域，例如科学家研究出一项技术，或者提供了有价值的思路，都能够获得学者经验。</p>
+<p class = "firstLineIndent">商人们每完成一笔诚信交易，就能获得一笔商人经验。</p>
+<p class = "firstLineIndent">所以，虚拟世界中的个人详细信息栏，所有人看到的就是这样一幅画面。</p>
+<p class = "firstLineIndent">【姓名：路人甲</p>
+<p class = "firstLineIndent">等级：学者lv2，机甲机师lv1，商人lv0……】</p>
+<p class = "firstLineIndent">【姓名：路人乙</p>
+<p class = "firstLineIndent">等级：学者lv0，飞船后勤lv1，商人lv2……】</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">太阳系虫洞战场！</p>
+<p class = "firstLineIndent">随着第一轮短暂交锋的结束，各种各样的信息在地球军的通讯频道内不断交流着，任谁都能感受到所有人话语中那股昂扬的斗志。</p>
+<p class = "firstLineIndent">不仅是看得见摸得着的无限币激励和等级制度，还有一种扬眉吐气的意气风发！</p>
+<p class = "firstLineIndent">木卫四保卫战时，地球一方还在被对方压着打，今天，情势逆转，地球人打出了一波漂亮的反击战。</p>
+<p class = "firstLineIndent">虽然区区几十架的战果相对于庞大的双子星机群来说连十分之一都不到，似乎显得有些微不足道，但其中的意义却十分振奋人心！</p>
+<p class = "firstLineIndent">第一次，地球一方与双子星的战损比超过了1比1！</p>
+<p class = "firstLineIndent">这无疑宣告地球一方完成了战争兵器的跨越式升级换代，在武器质量上已然能够与双子星分庭抗礼！</p>
+<p class = "firstLineIndent">虽然不知道为啥自家的机甲长的和对面的一模一样，连胸口刻的“商标”都给仿冒过来了……</p>
+<p class = "firstLineIndent">不过对于这种赤裸裸的侵权，所有人都在心中高呼……幽灵船长万岁！</p>
+
+<h2>第三百四十五章 小号</h2>
+<p class = "firstLineIndent">地球一方的机甲群在打残了3股敌人之后趁胜追击，一个急速迂回，放弃了剩余的残兵，继续朝着其它建制完整的双子星小队衔尾追去。</p>
+<p class = "firstLineIndent">“长官，对方的机群咬在我们身后，如果不作出应对恐怕会被各个击破！”被盯上的小队队长有些紧张的在频道内求援。</p>
+<p class = "firstLineIndent">“可恶！留下所有战机断后，机甲部队继续执行原定任务！”前线指挥官只能选择断尾求生。</p>
+<p class = "firstLineIndent">这些战机都是自动化的智能武器，属于低成本量产的消耗品，只要完成既定的干扰任务，那么就算战机部队全部损失掉了，他们也不心疼！</p>
+<p class = "firstLineIndent">这种自动化武器虽然拥有不俗的自动战斗智能，但主要依靠的还是远程控制，因此极易受到通讯干扰。</p>
+<p class = "firstLineIndent">事实上，双子星已经研究出了量子通讯干扰技术，但是这种大型设备需要专门的量子干扰舰，古斯塔夫就是料定太阳系这边没有量子干扰能力，才大量投入这种无人兵器。</p>
+<p class = "firstLineIndent">而聂云也确实还没有获得双子星的量子通讯干扰技术，否则这些战机失去了指挥，威胁性将会直线下降！</p>
+<p class = "firstLineIndent">随着双子星改变战术，近千架战机尾焰喷吐，旋转着机身脱离编队，随后齐齐一个掉头，如同上千枚四角钉暗器，飞速射向来势汹汹的地球机甲群！</p>
+<p class = "firstLineIndent">这些战机顶端的光束炮一个齐射，上千道激光让地球一方的前排机甲闪烁起一道道的护盾涟漪……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">战场上，圆桌骑士团内部通讯频道。</p>
+<p class = "firstLineIndent">“所有人注意，方向60，仰角30°，我们左上方，有20架敌方战机朝我们来了，以c号队形前进，两轮齐射后，30发飞弹再补一轮！”</p>
+<p class = "firstLineIndent">“兰斯，你的护盾值低于30了，回到后阵找掩护，帕西瓦尔，你顶到前面！”</p>
+<p class = "firstLineIndent">“全速前进！我们需要尽量往前突出，一定要快速凿穿敌人的拦截机群，不能让他们的机甲部队攻击我们的战舰！”</p>
+<p class = "firstLineIndent">克莱因看着虚拟操作界面中各种辅助智脑提供的战场信息，冷静的观察周围纷乱的战局，不断做出调动和指挥。</p>
+<p class = "firstLineIndent">“是，团长！”“明白！”……</p>
+<p class = "firstLineIndent">克莱因带领的圆桌骑士团，因为那部木卫四保卫战的宣传片，在地球上算是火了一把，但他们并没有趁势扩充人员，依然还是十二人，而且全部选择了机师作为自己的战斗职业。</p>
+<p class = "firstLineIndent">毕竟在星际时代，没有什么能够比机甲更适合作为骑士的坐骑了！</p>
+<p class = "firstLineIndent">作为第一批获得虚拟头盔的幸运儿，圆桌骑士团的十二人依靠更丰富的虚拟设备操作经验，以及越发成熟默契的小团队战术配合，加上克莱因的优秀指挥才能，成功从众多机师中脱颖而出，取得了一个团队参战名额！</p>
+<p class = "firstLineIndent">事实上，这批由聂云通过无孔不入的情报网亲自挑选的“幽灵船长亲卫队”，进入这种人类顶级战场的比例并不低！</p>
+<p class = "firstLineIndent">他们在被挑选时，或是名声在外，或是默默无闻，老少皆有，黑白通吃！</p>
+<p class = "firstLineIndent">但不论哪一个，都是在各自的专业领域中首屈一指天才般的人物。</p>
+<p class = "firstLineIndent">而能够抵达某个领域巅峰的人，总有一些普通人所不具备的才能，比如惊人的毅力，高超的智力，或是极端的偏执……</p>
+<p class = "firstLineIndent">这种人，换了一个新的环境，就算不能成为人才，也绝对会是个人物！</p>
+<p class = "firstLineIndent">圆桌骑士团中，有坚信骑士美德的团长，有战斗狂热者兰斯洛特，有射击冠军高文，也有顶级机械师、编程高手、爆破专家……</p>
+<p class = "firstLineIndent">不得不说，克莱因的确称得上未雨绸缪！</p>
+<p class = "firstLineIndent">早在建立圆桌骑士团之时，他便有意识的根据小团队战术配合的需要，以及虚拟远程操作可能涉及的相关技术领域，将一群看似杂乱无章，实际却能够进行能力互补的团员组成了一个几乎完美的团队！</p>
+<p class = "firstLineIndent">简单来说，这是一个有盾有输出，后勤还相当给力的综合型团队。</p>
+<p class = "firstLineIndent">经过一段时间的熟悉，他们甚至已经有能力根据各人的战斗风格和配合需要，对自己的机甲进行一定程度的diy微调。</p>
+<p class = "firstLineIndent">基于聂船长鼓励创新的基本政策，像是这种私人化订制的请求，只要通过基本测试证实可行，代号都会予以通过，当然，免不了是要收一点点工本费的……</p>
+<p class = "firstLineIndent">聂云提供的武器虽然经过了程序优化，采用了游戏式的傻瓜操作，不用太过专业的知识也能正常使用。</p>
+<p class = "firstLineIndent">但战争兵器，绝不是游戏那么简单的东西！</p>
+<p class = "firstLineIndent">如何挑选合适的武器，如何互相配合掩护，这都需要自己一点点去摸索。</p>
+<p class = "firstLineIndent">就像同样是一把小刀，有些人只能用它来削削铅笔，而有些人却能用它例无虚发！</p>
+<p class = "firstLineIndent">某李姓高手，就通过深入研究一把三寸七分长的小刀，重量、外形、材质……加上专业的高级气态流体力学知识，这才横行天下，闯下了“小李飞刀”的偌大名头！</p>
+<p class = "firstLineIndent">因此，只有真正弄懂自己的武器，才能发挥出武器120的性能！</p>
+<p class = "firstLineIndent">尽管目前的效果并不明显，不过圆桌骑士团，已经走在了正确的团队发展道路上……</p>
+<p class = "firstLineIndent">“哈哈！我已经干掉4架敌机了!”兰斯洛特一脸兴奋的汇报自己的战果。</p>
+<p class = "firstLineIndent">双子星的战机虽然速度和灵活性超过机甲，但攻击和防御远不如机甲。</p>
+<p class = "firstLineIndent">双方此刻已经是负距离接触，犬牙交错的纠缠在一起，而处在集团冲锋姿态的机甲群，如同一柄巨锤，一举砸开了松散的战机阵列。</p>
+<p class = "firstLineIndent">松散轻骑兵对上密集的重骑兵，特别还是阻击战，碰的头破血流是必然的，地球一方打得算是相当轻松！</p>
+<p class = "firstLineIndent">倒不是双子星不想用更密集的阵型，但它们一旦有集结的迹象，地球这边的3个火力点就会一轮齐射将其重新驱散，让他们的集结始终无法形成规模！</p>
+<p class = "firstLineIndent">“兰斯，4台还真不算什么，不是我想打击你，你自己看看那边。”趁着一个战斗空档，后方的狙击手高文标记了一个坐标过去。</p>
+<p class = "firstLineIndent">兰斯洛特闻言扭头一看，就见距离他们不远的地方，有一台特别醒目的机甲正在冲锋。</p>
+<p class = "firstLineIndent">这台机甲倒不是涂装醒目，同样是制式的游荡者机甲，外观上毫无特色，但……</p>
+<p class = "firstLineIndent">“卧槽！他怎么跑敌人阵地里去了，一台机甲突出本阵这么多居然还没被干掉？”兰斯有些目瞪口呆。</p>
+<p class = "firstLineIndent">这就像是古代两军对垒，结果一名炮灰居然潜到敌人的中军里去，而且还生龙活虎屁事儿没有一样让人难以置信！</p>
+<p class = "firstLineIndent">有没有搞错，我们是在玩星际争霸，不是刺客联盟好么……</p>
+<p class = "firstLineIndent">然后下一刻，让人更加震撼的事情发生了！</p>
+<p class = "firstLineIndent">这台机甲就像是在战场上跳起了一曲死亡华尔兹，它用一道道优美的弧线，险之又险的避开一道道光束。</p>
+<p class = "firstLineIndent">而所过之处，周边的战机几乎像是特意欢送贵宾的烟花。</p>
+<p class = "firstLineIndent">两把光束枪左右开弓，时不时从背后甩出几枚飞弹补刀，就刚刚这么一会儿，它周围已经爆开了4团火花。</p>
+<p class = "firstLineIndent">就在这时，两架战机一左一右向它冲锋夹击，这台机甲却不慌不忙。</p>
+<p class = "firstLineIndent">“嗖嗖！”两个点射又干掉一架面前的战机，随后它将手中的枪械往大腿外侧的悬挂系统一插，顺手就将腰间的两柄光剑剑柄抽出。</p>
+<p class = "firstLineIndent">下一刻，这台机甲背后引擎猛地尾焰大炽，一个标准的转体360°，以毫厘之差避开两架战机发出的光束攻击。</p>
+<p class = "firstLineIndent">随后，就在两架战机与那台机甲交错而过的瞬间，兰斯洛特似乎看到机甲手中剑柄光芒一闪。</p>
+<p class = "firstLineIndent">“嗤！”“嗤！”</p>
+<p class = "firstLineIndent">两架战机依靠着惯性飞行了一段时间，这才化为两团星空中的璀璨烟火……</p>
+<p class = "firstLineIndent">只是瞬间的光剑启动又关闭，如同两记拔刀术，精准如同手术刀一般，在双方交错而过的瞬间将两架战机腰斩！</p>
+<p class = "firstLineIndent">毫无花俏，动作简单到了极致，连能量损耗都降低到了最低。这是战场杀人术！</p>
+<p class = "firstLineIndent">似乎是扫掉了一堆微不足道的垃圾，这台机甲一边踩着凌波微步规避四面八方而来的攻击，一边化为战场收割者不断制造星空烟花！</p>
+<p class = "firstLineIndent">看着那道万军从中过，十步杀一人，千里不留行的潇洒背影，兰斯洛特只能大张着嘴，“呃……呃……”的说不出话来……</p>
+<p class = "firstLineIndent">“这……开挂了吧？！”兰斯洛特憋了半天终于憋出这么一句话。</p>
+<p class = "firstLineIndent">这种反应速度，这种作弊一般的预判能力，还有那妙到毫巅的精准操作，已经完全脱离了普通人类所能做到的极限！</p>
+<p class = "firstLineIndent">兰斯洛特看了看对方头顶上显示的名字——先锋队队长！</p>
+<p class = "firstLineIndent">果然，除了他，应该也没有人能有这么变态的实力了。</p>
+<p class = "firstLineIndent">先锋队队长，这是一个相当传奇的独行侠，从木卫四战役开始，他的个人战绩便亮瞎了所有人的眼睛，成为所有地球人关注的焦点人物。</p>
+<p class = "firstLineIndent">不少地球媒体悬赏了高额的奖金购买他的真实身份，但很可惜，至今，也没有人知道他究竟是谁。</p>
+<p class = "firstLineIndent">同那些在木卫四成名的虚拟操作者不同，据说这位先锋队队长从不露面，也从未有人在虚拟世界见过他，但是每当大战一起，他总是会在最危险的前线冲锋在前，就如同他的名字一般！</p>
+<p class = "firstLineIndent">而每一次与双子星爆发的战争，他都会毫无争议成为最耀眼的那个存在。</p>
+<p class = "firstLineIndent">木卫四如此，现在……亦是如此！</p>
+<p class = "firstLineIndent">战绩排行榜上，先锋队队长以一骑绝尘的姿态，用29架战机，1台机甲的战绩牢牢锁定榜首，剩下的前五，战绩加起来都没有他的多。</p>
+<p class = "firstLineIndent">刚刚的那一幕，不仅现场有不少人看到了，后方正在观看战场实况演播的待机轮换人员也同样看到了。</p>
+<p class = "firstLineIndent">而所有目睹这一幕的人全部在心中狂呼……此乃神人也！</p>
+<p class = "firstLineIndent">“这霸气侧漏的神操作，不是爆种，就绝对是开基因锁了吧？”</p>
+<p class = "firstLineIndent">“莫非地球自从幽灵船长之后，又出现新人类了？”</p>
+<p class = "firstLineIndent">“不知道队长收徒吗？我愿为先锋队开山大弟子！”</p>
+<p class = "firstLineIndent">“楼下排好队，我愿为先锋队二师兄！”</p>
+<p class = "firstLineIndent">“三师弟向二师兄问好！”</p>
+<p class = "firstLineIndent">“四师弟请师傅收下我的膝盖！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">然而……就在所有人无比崇拜狂热的目光下，眼看着就要单骑凿穿机群的那台机甲突然浑身一僵，机甲双眼逐渐暗淡下来！</p>
+<p class = "firstLineIndent">呃……发生了什么事？</p>
+<p class = "firstLineIndent">难道掉线了？！</p>
+<p class = "firstLineIndent">众人都是一脸的愕然，关键时刻你怎么能出这种幺蛾子呢？</p>
+<p class = "firstLineIndent">他们惊愕，不过双子星的智能战机显然不会在这个时候同意按暂停，然后友好的让你重新检查个网速什么的……</p>
+<p class = "firstLineIndent">下一刻，十几道光束直接命中了这台停机的机甲，就在众人惋惜的目光中，这台创造了辉煌战绩的机甲终于还是回归了星空的怀抱，留给众人一道遗憾的光和热……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">卡拉星。</p>
+<p class = "firstLineIndent">聂云一脸愕然的睁开双眼。</p>
+<p class = "firstLineIndent">被打扰了开小号虐菜的乐趣，聂云却已经没有时间去理会众人眼中那台传奇机甲的命运。</p>
+<p class = "firstLineIndent">因为……整个基地响起了凄厉的警报声！</p>
+
+<h2>第三百四十六章 还有我</h2>
+<p class = "firstLineIndent">“呜……呜……”急促的长鸣响彻整座基地。</p>
+<p class = "firstLineIndent">“什么情况？”聂云有些发愣。</p>
+<p class = "firstLineIndent">走到落地窗前，只见基地此刻已经是一副全力戒备的模样，不仅开启了力场护盾，就连周围的自动化武器也一台台升起，炮塔旋转间，露出了狰狞的战争姿态。</p>
+<p class = "firstLineIndent">聂云所在的这栋建筑位于基地中央，就在指挥中心旁边，属于贵宾区，从这里能够清晰的看到基地各处的情况。</p>
+<p class = "firstLineIndent">一队队士兵和装甲部队，跑动着赶赴自己的防御岗位，脚步显得有些慌乱。</p>
+<p class = "firstLineIndent">聂云意识一扫，分布基地各处的机械虫反馈回来各种情报……发现入侵者！</p>
+<p class = "firstLineIndent">“入侵者？难道是卡拉文明？”</p>
+<p class = "firstLineIndent">这里是双子星的占领区，如果说这个星球上还有谁有能力对这个基地发动进攻，那就只能是他们在这里唯一的敌人——卡拉文明了！</p>
+<p class = "firstLineIndent">聂云感觉地面有轻微的震动感，然后下一刻……</p>
+<p class = "firstLineIndent">“轰轰轰……”一连串地动山摇的巨响中，基地四周突然土石飞溅，从烟雾中升起数百道水桶粗细的墨绿色藤蔓！</p>
+<p class = "firstLineIndent">这些藤蔓如同一条条灵活的巨蟒，密密麻麻的将基地迅速缠绕起来，直接沿着力场护盾将整个基地裹成了一个半球形的绿色藤球！</p>
+<p class = "firstLineIndent">它们将基地缠绕起来后便似乎失去了活性一般，固化下来不再移动，基地上空被遮蔽，光线立刻昏暗了下来。</p>
+<p class = "firstLineIndent">“植物系技能，战场遮蔽术完成！”聂云饶有兴致的看着这一幕，自己充当了一下战场解说。</p>
+<p class = "firstLineIndent">而两台银翼守卫不知什么时候起，已经站在了他身后……</p>
+<p class = "firstLineIndent">骤然受到攻击，基地的防御火力自然也不是吃素的，立刻反应过来，各处炮塔立刻激发，一道道足以削金断玉的切割光束漫天飞舞，飞速扫向这些藤蔓！</p>
+<p class = "firstLineIndent">“嗤嗤嗤！”光束毫无意外的将这些藤蔓砍瓜切菜。</p>
+<p class = "firstLineIndent">但这藤蔓明显属于某种特殊品种，它们并没有如同普通的植物那样被切碎燃烧。</p>
+<p class = "firstLineIndent">那些被命中的部位虽然被很干脆的切断，但是其中伤口处喷洒而出的绿色液体很快将伤口覆盖，随后断裂的植物迅速蠕动生长，几乎是片刻之后就结成了一个个疙瘩，就像是一个个的树瘤。</p>
+<p class = "firstLineIndent">“好快的细胞分裂速度！”聂云看着这一幕，不由想起卡拉文明的介绍。</p>
+<p class = "firstLineIndent">由于卡拉星独特的循环毁灭环境，星球上的生命，不管是生物还是植物，都拥有比地球普通生命快上百倍的新陈代谢速度。</p>
+<p class = "firstLineIndent">这种环境也造成了生物的更新换代速度极快，物种进化速度比地球要快的多。</p>
+<p class = "firstLineIndent">原本，过快的新陈代谢应该会导致寿命的相应缩短，卡拉星上的大部分生物的确如此，草木一秋，飞火流萤，如同绚烂的昙花一现。</p>
+<p class = "firstLineIndent">但是卡拉星人却打破了这一生命规律！</p>
+<p class = "firstLineIndent">据说卡拉人连断肢伤害都能自然愈合，生命力极其旺盛，但同时，他们的寿命却相当悠久！</p>
+<p class = "firstLineIndent">正因卡拉星这种独特的进化环境和生命形态，这里被双子星视为未来的生物兵器培养基地。</p>
+<p class = "firstLineIndent">就连卡拉人，都是双子星研究生命科技的极佳素材，他们想要破解强悍生命的秘密。</p>
+<p class = "firstLineIndent">也正是因此，他们占领星球后并没有大肆屠戮卡拉星人，这都是小白鼠！</p>
+<p class = "firstLineIndent">在偶然看到的那份“卡拉星开发计划书”中，聂云充分体会了一个星际文明强悍的底蕴和冷酷的扩张本质。</p>
+<p class = "firstLineIndent">聂云倒不是对双子星这种做法有什么看法，要是换成地球人，指不定做的比这还绝，印第安人的历史告诉我们，不要高估人类在利益面前的人性。</p>
+<p class = "firstLineIndent">同族尚且如此，更何况是对异族？</p>
+<p class = "firstLineIndent">原本以为自己给那帮科学家提供的福利条件已经算是不错了，不过看看人家双子星这手笔，拿一整颗星球当做生化培育室！自己任重而道远啊！</p>
+<p class = "firstLineIndent">就在脑海中的思绪飞速转动时……</p>
+<p class = "firstLineIndent">“叮叮……”突然间，室内的玻璃器皿发出一阵碰撞响动，聂云感觉脚下一阵晃动，如同发生了八级大地震，而且震感越来越强烈！</p>
+<p class = "firstLineIndent">片刻间，脑海中便已经建立了地质模型，顺着震动的源头，他低头看着自己的脚下……</p>
+<p class = "firstLineIndent">这种感觉……不像是正常的地震，反而像是脚下有一只山岭巨人正在翻身！</p>
+<p class = "firstLineIndent">植物的根系吗？聂云心中有了一个大致的猜测。</p>
+<p class = "firstLineIndent">深埋地底的植物根系，的确能够避开双子星无孔不入的空中侦察，并且基地的各种探测器也不会对植物的根系有所反应。</p>
+<p class = "firstLineIndent">恐怕现在，整座基地下方，都已经被植物根系完全覆盖，而卡拉人正在用这种能够操控自如的根系犁地呢！</p>
+<p class = "firstLineIndent">“轰隆……”巨大的大地轰鸣声传来，地面晃动的更加剧烈，犹如世界末日即将来临。</p>
+<p class = "firstLineIndent">“嘎吱！嘎吱！”在这种愈演愈烈的震动之下，基地的各处钢铁结构终于开始发出不堪重负的哀鸣。</p>
+<p class = "firstLineIndent">护盾能够防御攻击，不过对这种毁天灭地的地质攻击，就显得有些无能为力了。</p>
+<p class = "firstLineIndent">在双子星人有些慌乱的呼喝声中，大地破碎，基地中出现了处处龟裂，裂痕还在不断扩大！</p>
+<p class = "firstLineIndent">暴露出来的电缆和各种管路被扯断，闪烁着电火花，不少地方燃起大火。</p>
+<p class = "firstLineIndent">聂云所在的这栋建筑也出现了扭曲变形，不过双子星的建筑可不是地球上的豆腐渣，至少使用的材料质量杠杠的，加上也不是高楼大厦，建筑整体尚且保持完整，只是地面有些倾斜。</p>
+<p class = "firstLineIndent">基地的能源输出似乎也受到了影响，护盾闪烁着荡起不稳定的涟漪，坚持了一会儿后突然消失。</p>
+<p class = "firstLineIndent">强烈的震动一直持续了2分钟左右，这才渐渐消停下来。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">距离基地十公里之外的丛林中，一株遮天蔽日参天巨树下，一只芊细的手掌刚刚从树干上挪开。</p>
+<p class = "firstLineIndent">这株卡拉萝的树叶已经变得枯黄，树皮干涸开裂，数百条裸露在外的粗壮根茎已经变的灰白，无法再往前挪动一步，整棵树如同耗尽了生命力一般。</p>
+<p class = "firstLineIndent">“抱歉了！”站在树下的少女抚摸着树干，目露哀伤的道了声歉。</p>
+<p class = "firstLineIndent">随后在如雨落下的枯叶中，少女后背喷射出两道绿色的粒子流，如同蝉翼般，卷起一股旋风，带着她飞向远处，飞向属于她的最终之战……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">看着处处烽火，如同被蹂躏了一百遍的基地，聂云抬头望天，脸色有些郁闷和无辜。“天罗地网啊，我应该……不会这么倒霉吧？”</p>
+<p class = "firstLineIndent">从立场上来看，地球文明和卡拉文明都是双子星的敌人，所谓敌人的敌人就是朋友，然而……</p>
+<p class = "firstLineIndent">“一声朋友你会懂？还有伤，还有痛，还要走，还有我……”室内响起一首“朋友”，曲调略带哀伤……</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯_╰)╭）</p>
+
+<h2>第三百四十七章 谁是目标</h2>
+<p class = "firstLineIndent">“敌袭！快请求支援！”</p>
+<p class = "firstLineIndent">“必须重新启动护盾……”</p>
+<p class = "firstLineIndent">“敌人！敌人在哪里？我们必须先找出他们！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">震动终于结束，各种嘈杂的喊声在双子星的内部战术网络中传递着。</p>
+<p class = "firstLineIndent">虽然基地内人员的损失倒是并不大，但基地的护盾系统已经被破坏，而各种防御工事也是瘫痪大半！</p>
+<p class = "firstLineIndent">位于基地各处的双子星战士尽管骤然遭到袭击，但是指挥系统和短距离通讯网络并没有受到破坏，他们此时虽慌不乱，正在开始有条不紊的重新组织防线。</p>
+<p class = "firstLineIndent">不过没有给双子星人重整旗鼓的时间，卡拉人的下一轮攻击就已经到来……</p>
+<p class = "firstLineIndent">基地上空，从那些遮蔽天空的藤蔓表面，以肉眼可见的速度生长出无数个囊泡，这些囊泡生长到脸盆大小之后便“嘭！”的一声突然爆开。</p>
+<p class = "firstLineIndent">一团团的墨绿色液体如同下雨一般洒落整座基地！</p>
+<p class = "firstLineIndent">一些穿着动力装甲的海族士兵觉得自己的装甲似乎越来越沉重，那些绿色液体像是强力胶一样，被溅射到的关节很快就被黏住，行动越来越困难……</p>
+<p class = "firstLineIndent">再次放了一波控制技之后，卡拉文明的攻击终于到来！</p>
+<p class = "firstLineIndent">只见从藤蔓间隙突然窜出数百道的黑色人影，从数十米高空直接一跃而下，如同一只只苍鹰，直扑地面的双子星战士而来！</p>
+<p class = "firstLineIndent">拉近视线，这些半空中的黑色人影是一名名身穿黑色全身甲胄的人形战士。</p>
+<p class = "firstLineIndent">黑色甲胄如同一件全覆式紧身衣，在关节和重点防御部位是骨骼一样的灰白色泽，每人双手中都拿着两柄像是长在手臂上的4指宽微弯黑色长刃。</p>
+<p class = "firstLineIndent">冷峻的头盔上依稀能够看出内部战士的五官，镶嵌着淡红色晶体的眼部泛着森冷的寒光！</p>
+<p class = "firstLineIndent">聂云从资料中见过这种甲胄，这就是卡拉文明特有的装甲兵器——生物殖装。</p>
+<p class = "firstLineIndent">作为小型人形兵器，相比双子星臃肿的动力装甲，这种生物殖装穿戴后，整体依然显得十分削瘦匀称，甚至各种人体的肌肉纹理都清晰可见，很显然，走的是轻灵敏捷路线。</p>
+<p class = "firstLineIndent">此刻几乎所有人都被头顶突然出现的敌人吸引了注意力。</p>
+<p class = "firstLineIndent">一名身穿动力装甲的海族战士刚要举起手中的枪械对半空中的敌人发动攻击，突然……</p>
+<p class = "firstLineIndent">“噗嗤！”一声，一柄滴着鲜血的黝黑刀刃从他后背刺入，胸前刺出，直接让他失去了浑身的力气。</p>
+<p class = "firstLineIndent">“嗤！”下一刻，这柄遍布细密怪异纹路的刀刃猛地抽出，在地上甩出一抹血痕。</p>
+<p class = "firstLineIndent">这名海族战士根本还没来得及反应过来，便十分不甘的应声而倒，随后才终于看到了身后结束自己生命的是什么人。</p>
+<p class = "firstLineIndent">那是一个模糊的身影，几乎与周围的环境融为了一体，不仔细分辨根本无法看出区别。</p>
+<p class = "firstLineIndent">卡拉文明的隐身技术与聂云和双子星的都不同，那是利用生物殖装的可操控生物细胞，进行变色龙一般的颜色伪装，算是一种仿生隐身技术！</p>
+<p class = "firstLineIndent">这名殖装战士解决掉一名敌人之后，还未等周围的人反应过来反击，便几个跳跃，几乎带着残影一般，片刻便消失在一栋残破的钢铁废墟后……</p>
+<p class = "firstLineIndent">殖装技术在攻击力上并不比双子星的动力装甲强，在正面战场也无法与结成阵列的装甲集群对抗，但是在丛林，或者是这种小范围的巷战环境中，他们可以说占据了主场优势！</p>
+<p class = "firstLineIndent">不仅是这里，基地靠外围区域，上百名的殖装战士不知何时趁乱潜入，此刻显出身形，在一众双子星战士中掀起了一片腥风血雨！</p>
+<p class = "firstLineIndent">由于地形已经被彻底破坏，大型的机甲类兵器在这种环境下根本无法发挥作用，更不用说现在对方与自己已经是混战状态，连大范围的攻击武器都不好动用！</p>
+<p class = "firstLineIndent">聂云听着外面不时响起的爆炸声，虽然自己巴不得双子星碰的头破血流，不过……战斗似乎离自己这边的基地中心越来越近了……</p>
+<p class = "firstLineIndent">“对方的目标应该是中央的控制中心吧？”聂云摸摸下巴这么想着。</p>
+<p class = "firstLineIndent">“滴滴！”正当聂云思考着怎么把自己变成一团小透明，让这帮卡拉人别误伤“自己人”的时候，他的个人终端突然响了起来。</p>
+<p class = "firstLineIndent">“阿尔萨斯阁下，请您立刻跟随护卫队离开那里，我们会护送您前来指挥中心，这里将会进行重点防御，可以绝对保证您的安全！”通讯接通后，刀疤军官有些焦急的道。</p>
+<p class = "firstLineIndent">随着他的话音落下，门外突然闯进来十几名全副武装的战士，一进门就立刻用“肉粽子阵型”将聂云团团围在了中间。</p>
+<p class = "firstLineIndent">“呃……”聂云欲言又止。</p>
+<p class = "firstLineIndent">有没有搞错，让我去指挥中心？傻子也知道这帮人的目标是那里好么！</p>
+<p class = "firstLineIndent">对方这么兴师动众，场面搞得这么大，肯定是有备而来，指不定到时候会放个大招，自己这么过去岂不是纯粹找虐？</p>
+<p class = "firstLineIndent">“咳咳！区区数百卡拉余孽，我相信你们很快就可以镇压！至于去指挥中心……还是算了，我级别高，到时候大家听谁的？就不给你们添乱了，打败敌人才是最重要的事！</p>
+<p class = "firstLineIndent">所以我会回到自己的登陆艇指挥防御，也算略尽绵薄之力！”聂云一脸不耽误你们工作的表情道。</p>
+<p class = "firstLineIndent">“这不行，太危险了……”刀疤军官连忙摇头想要阻止。</p>
+<p class = "firstLineIndent">换做平时，这么没组织没纪律的他才懒得管，你爱哪儿凉快哪儿凉快去！</p>
+<p class = "firstLineIndent">可现在这种情况，万一阿尔萨斯要是在他的地盘上出事，他能有好果子吃？指不定会被指控为第三次针对阿尔萨斯的暗杀主谋！</p>
+<p class = "firstLineIndent">自己可没有古斯塔夫那么硬的后台，要是陷进这桩大案，不死也得脱层皮！</p>
+<p class = "firstLineIndent">聂云才懒得管这家伙心里怎么想，他说完就直接挂了通讯，开玩笑，老子现在军衔比你丫还高，去哪儿防御还用的着你来教？</p>
+<p class = "firstLineIndent">嘚瑟完，聂云指挥这群免费的保镖护送他前往自己的“登陆艇”。</p>
+<p class = "firstLineIndent">这艘登陆艇，自然已经完成了机械虫化改造，它就是聂云深处险境的底气，有这艘登陆艇在，就算是自己单飞，那冲出卡拉星也都不是问题啊！</p>
+<p class = "firstLineIndent">远处的战斗声音越来越近，聂云在数十号护卫的簇拥下，向着自己的登陆艇停泊位而去。</p>
+<p class = "firstLineIndent">经验告诉我们，最危险的地方就……肯定最危险！</p>
+<p class = "firstLineIndent">所以，傻子才和你们挤一个指挥中心呢！</p>
+<p class = "firstLineIndent">然而自以为能够隔岸观火的聂云并不知道，基地上空的藤蔓上，数百只的侦查昆虫早已牢牢锁定他的位置。</p>
+<p class = "firstLineIndent">他们一行人刚刚走出那栋已经歪斜的建筑时，行踪就已经暴露在人家的眼皮子底下……</p>
+<p class = "firstLineIndent">嗯！作为“头号通缉犯”！</p>
+
+<h2>第三百四十八章 黑锅制造专业户</h2>
+<p class = "firstLineIndent">三分钟后……</p>
+<p class = "firstLineIndent">聂云在上百人的护卫下来到登陆艇的停泊位，这里的地形虽然也受到一定程度的破坏，飞船看起来有些歪斜，不过倒并没有受到损坏。</p>
+<p class = "firstLineIndent">此刻飞船上的留守人员正在警戒，看到自家的长官到来，齐齐敬了一个军礼。</p>
+<p class = "firstLineIndent">聂云摆摆手，带着众人进了飞船，那些海族的护卫们则留在飞船外布置防御。</p>
+<p class = "firstLineIndent">踏入飞船后，刚刚走了没几步，聂云脚步突然微微一顿，侧过脸看向飞船入口。</p>
+<p class = "firstLineIndent">“怎么了指挥官阁下？”一旁的凯瑟琳疑惑道。</p>
+<p class = "firstLineIndent">骤然遇到袭击，她的神情微微有些紧张。</p>
+<p class = "firstLineIndent">“唔……这次卡拉文明显然是有备而来，不能大意，让我们的本部人员全部进入飞船，三分钟后关闭飞船入口，开启护盾静观其变，至于战斗的事，就交给基地方面吧！”聂云想了想命令道。</p>
+<p class = "firstLineIndent">转过身，谁也没看到聂云的嘴角微不可查的勾了勾……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">不久后，一脸悠闲的聂云已经坐在了飞船控制室内喝茶了。</p>
+<p class = "firstLineIndent">飞船此刻已经派出了微型侦查无人机，基地各处的战况都显示在了面前的监控画面上。</p>
+<p class = "firstLineIndent">从整体上来看，卡拉文明虽然打了双子星一个措手不及，但是综合实力差距摆在那里，一群刺客类型的潜入者，没有大型的攻坚武器，一旦让双子星反应过来脱离了混乱状态，形式会对卡拉文明越来越不利。</p>
+<p class = "firstLineIndent">“这种殖装技术确实有独到之处……”聂云看着各处的战场画面一脸赞叹道。</p>
+<p class = "firstLineIndent">虽然攻击能力并不出众，但是恢复能力堪称变态！</p>
+<p class = "firstLineIndent">光束攻击打上去造成的伤口，一阵蠕动之后便迅速止血愈合，就算是被重力冲击波击飞，对方也像是没事儿人一样，晃晃脑袋再次站起来作战，抗击打缓冲能力也是绝佳！</p>
+<p class = "firstLineIndent">“的确如此，不过据说这种殖装需要特殊的生命体质，消耗的是装备者的生命力，没有特殊的补充方法，几场战斗下来，装备者的细胞就会迅速衰老死亡！”凯瑟琳解释道。</p>
+<p class = "firstLineIndent">“哦？那卡拉文明有什么方法补充生命力？”聂云饶有兴致问道。</p>
+<p class = "firstLineIndent">“这也是我们的科学院正在研究的关键技术问题！”</p>
+<p class = "firstLineIndent">“嗯，我发现你的消息还真灵通，不去搞情报工作可惜了……”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">“呃……呵呵，女人嘛，平时爱八卦。”凯瑟琳有些尴尬笑道，然后赶紧转移了一个话题。</p>
+<p class = "firstLineIndent">“对了，指挥官阁下，我们为什么不去基地指挥中心而要回到自己的飞船上？”她问出了自己刚刚一直没机会问出口的一个问题。</p>
+<p class = "firstLineIndent">这种情况下，怎么看也是指挥中心那里比较安全吧？</p>
+<p class = "firstLineIndent">聂云端起茶喝了一口，不经意间撇过室内一处角落，然后脸也不红道：“当然是因为可以随时跑路啊！”</p>
+<p class = "firstLineIndent">凯瑟琳：“……”</p>
+<p class = "firstLineIndent">“咳咳！您真会开玩笑，凭这些卡拉人，恐怕还攻不下我们的基地，他们的失败只是迟早的事情。”</p>
+<p class = "firstLineIndent">“攻下？谁说他们的目的是攻下基地？”聂云脸色有些古怪。</p>
+<p class = "firstLineIndent">凯瑟琳闻言一愣，“不是攻下基地？那他们有什么目的？”</p>
+<p class = "firstLineIndent">“唉！我原本也想不明白，但是现在我想我有些明白了……”聂云深深叹了口气。</p>
+<p class = "firstLineIndent">“嗯？您明白什么了？”</p>
+<p class = "firstLineIndent">“让我负责追捕卡拉王国的亡国公主，寻找那件宇宙奇物，这任务无可厚非，毕竟我算是那玩意儿的护送者，任务本身原本也没什么危险性，这算是平白给我立功的机会，简直就是发福利对吧？”</p>
+<p class = "firstLineIndent">“嗯，是啊！我想这是上面给您的一种补偿吧？”凯瑟琳赞同的点点头。</p>
+<p class = "firstLineIndent">“不错，表面上看的确如此，可我们抵达卡拉星的时间点很是微妙啊！</p>
+<p class = "firstLineIndent">你想想，对于剩余的卡拉文明反抗势力来说，他们的生存空间正在慢慢被压缩，时间拖得越久，我们在这里的军事存在就会越来越稳固，而此消彼长，他们则会越来越虚弱。</p>
+<p class = "firstLineIndent">所以，只要他们的首领不蠢，就应该知道留给他们的时间不多了！</p>
+<p class = "firstLineIndent">而这个时候，比邻星系的近半兵力被尽数抽调进攻太阳系虫洞，作为地头蛇，卡拉文明不可能察觉不到。</p>
+<p class = "firstLineIndent">你说，有什么时机比现在更适合最后反戈一击的？”</p>
+<p class = "firstLineIndent">凯瑟琳仔细思索一番，随即苦笑，“这么说，我们这是遭了无妄之灾？”</p>
+<p class = "firstLineIndent">“无妄之灾？呵呵！我看未必！</p>
+<p class = "firstLineIndent">按说以卡拉文明残余的军事力量，想要全面反扑那是痴人说梦，所以他们的攻击目标必然有所取舍！</p>
+<p class = "firstLineIndent">而从目前的情况来看，很显然……我们这里，就是他们的重点进攻目标！外面那些人，恐怕已经是他们所能拿出来的所有残存实力了……</p>
+<p class = "firstLineIndent">那你说，卡拉星上几十个类似的军事基地，为什么卡拉文明就偏偏选择了我们这里呢？”</p>
+<p class = "firstLineIndent">“为什么选中我们？”凯瑟琳愣了一下，思考片刻后脸上渐渐浮现惊愕神色，“是您的迎接仪式！”</p>
+<p class = "firstLineIndent">聂云一脸无奈的摊摊手。</p>
+<p class = "firstLineIndent">“不管那场迎接仪式是有意还是无意，不过这种待遇，两位军团指挥官恐怕都享受不到。</p>
+<p class = "firstLineIndent">据说卡拉文明的生物侦察兵无处不在，且极难察觉，要是那位亡国公主没事玩偷窥，那你说她看到之后，会不会认为我就是卡拉星上最大的那条大鱼？</p>
+<p class = "firstLineIndent">就算是要临死拉个垫背的，我是不是最合适的那个垫子？”</p>
+<p class = "firstLineIndent">聂云的一番话让凯瑟琳心底冒出一股凉气。“您……您是说，您才是他们真正的目标？！”</p>
+<p class = "firstLineIndent">“唉！我还是低估了这帮人的节操啊！为了除掉我，他们简直是无所不用其极！</p>
+<p class = "firstLineIndent">就算我在这里不幸阵亡了，那也是卡拉文明余孽动的手，他们可以推脱的一干二净！</p>
+<p class = "firstLineIndent">如此，不仅能够除掉一个眼中钉，还拿我当诱饵，引出那位亡国公主的人马一网打尽，最后还能顺带拿到那件宇宙奇物，一箭三雕啊！</p>
+<p class = "firstLineIndent">这幕后布局之人，真是好厉害的算计！”</p>
+<p class = "firstLineIndent">聂云脸上浮现让人熟悉的悲愤神色，充分将那种被人在背后捅刀子，凭栏处，潇潇雨歇的无奈和悲壮表现出来！</p>
+<p class = "firstLineIndent">凯瑟琳：“……”</p>
+<p class = "firstLineIndent">有没有搞错，又是你？这么招人恨的吗？</p>
+<p class = "firstLineIndent">聂云的想法倒是很简单，不管真相是不是吧，总之聂云是想要在“黑锅制造专业户”的行当里越走越远了……</p>
+<p class = "firstLineIndent">没有黑锅，哪来的高升？至于这锅到底被谁背了，重要吗？</p>
+<p class = "firstLineIndent">“那……那岂不是说我们现在很危险？”凯瑟琳突然反应过来！</p>
+<p class = "firstLineIndent">“岂止是危险，简直是危如累卵啊！否则我为什么要解释这么多？”</p>
+<p class = "firstLineIndent">凯瑟琳闻言一愣，什么意思？解释？向谁？</p>
+<p class = "firstLineIndent">然后她就见聂云突然转头看向一处角落，“你说对么，朋友！”</p>
+<p class = "firstLineIndent">凯瑟琳一脸愕然的看过去，然后骇然发现一片虚无的空气中竟缓缓浮现一道身影……</p>
+
+<h2>第三百四十九章 魔剑</h2>
+<p class = "firstLineIndent">淡绿色的殖装将来人玲珑纤细的身姿包裹其中，隐约可以看出是个女人，一柄长剑斜插于腰间，剑未出鞘，却有一股无形的气势扑面而来！</p>
+<p class = "firstLineIndent">骤然发现入侵者，室内的船员皆是惊慌失措的站起身拔出手中防身用的枪械对准了这个不速之客。</p>
+<p class = "firstLineIndent">然而还没等他们开枪，下一刻，只见这个入侵者身影一闪，以超越常人数十倍的速度消失在他们眼前，随后室内一连串细密的脚步踏地声，一道黑影浮光掠影一般在室内来回闪动！</p>
+<p class = "firstLineIndent">“砰砰砰！”一连串的肉体撞击声之后，全场的双子星船员完全无法反应过来便一个个应声而倒。</p>
+<p class = "firstLineIndent">静静站立中央，聂云的眼珠以违反人体极限的颤动频率始终紧紧跟随那道人影！直到……</p>
+<p class = "firstLineIndent">“砰！”入侵者的拳头停在了聂云眼前，却被一只钢铁手掌牢牢挡住，巨大的力量似乎连空气都产生了一丝爆鸣。</p>
+<p class = "firstLineIndent">那人一击不中，向后一个跳跃，抬头惊讶的看向挡在聂云面前，一脸冷酷的银翼守卫。</p>
+<p class = "firstLineIndent">从刚刚银翼守卫纹丝不动的手臂上来看，拼力量，自己绝对不是这台机器人的对手！</p>
+<p class = "firstLineIndent">她并没有继续发动攻击，但殖装的后背脊柱上打开了八个气孔，齐齐喷出一股股淡绿色的气体。</p>
+<p class = "firstLineIndent">“不好！是毒雾！”凯瑟琳看到这一幕顿时惊呼。</p>
+<p class = "firstLineIndent">不过想要屏住呼吸做出应对已经晚了，只是吸入了一点点，她整个人便感觉头重脚轻，直接软软的瘫倒在地，昏迷不醒！</p>
+<p class = "firstLineIndent">“噗通！”“噗通！”少数几个还站立着的人迅速被放倒，等淡淡的烟雾散去……</p>
+<p class = "firstLineIndent">“咦？”一声略显清脆的惊疑声响起。</p>
+<p class = "firstLineIndent">因为现场还能站着的，除了入侵者，就只剩下那台银翼守卫和……聂云！</p>
+<p class = "firstLineIndent">“不可能！你究竟是谁？为什么能看穿我的隐身，还不受神经迷雾的影响？”带着一丝机械音的双子星通用语从入侵者口中说出，显然这件殖装拥有同步翻译功能。</p>
+<p class = "firstLineIndent">如果说刚刚看穿自己的隐身只是某种技术或者巧合，那现在来人已经可以确定，眼前这个诡异的家伙和其他的双子星人……绝对不一样！</p>
+<p class = "firstLineIndent">聂云看了看四周倒地的众人，他们的生命特征并没有消失，很显然对方想要留活口。</p>
+<p class = "firstLineIndent">其实从对方跟着他们一行人潜入飞船的那一刻，聂云便已经发觉了这名隐身的潜入者。</p>
+<p class = "firstLineIndent">机械虫化的飞船如同聂云自己的身体，可以说整艘飞船的金属地面都等同于安装着最敏感的压力传感器。</p>
+<p class = "firstLineIndent">因此就算她的隐身技术能够屏蔽所有的生命特征，堪称完美潜行，但终究不是虚幻之物，只要拥有物理实体，那么一旦踏上飞船，就会无所遁形。</p>
+<p class = "firstLineIndent">至于神经迷雾，对于拥有神经系统的生命体来说或许是无解的药物，但是对于毒抗点到满级的聂云来说，任何生物性毒素皆是浮云……</p>
+<p class = "firstLineIndent">不过很显然，聂云没有兴趣和她讨论自己如何与众不同。</p>
+<p class = "firstLineIndent">“我是谁并不重要，重要的是……我们或许可以成为朋友！”聂云看着入侵者笑道。</p>
+<p class = "firstLineIndent">对面的人愣住了，因为聂云嘴里说出的，是一口纯正的卡拉文明母语，重点是对方并没有使用翻译器！</p>
+<p class = "firstLineIndent">卡拉文明和双子星打了这么久，对双方的语言体系自然都进行过解析和研究。</p>
+<p class = "firstLineIndent">而战争的过程中自然也有过一定的外交接触和语言交流，不过大体都是“你投不投降？”“宁死不降！”“再问一遍，你降不降？”“降你妹！”这样类似的强硬外交对话。</p>
+<p class = "firstLineIndent">所以双方都拥有彼此的语言包并非奇怪的事情，奇怪的是一名高级军官居然亲自去学习敌对文明的语言，这就和鹰国女王精通印第安语一样让人不可思议。</p>
+<p class = "firstLineIndent">或许是聂云一口地道的卡拉母语引起了对方的兴趣，入侵者的面罩向下滑开，露出一张倾国倾城，冷若冰霜的俏脸。</p>
+<p class = "firstLineIndent">她此刻带着些许疑惑，定定的看着聂云，“你究竟是什么人？”</p>
+<p class = "firstLineIndent">看着对面那张精致的容颜，聂云愣了一下，随后讶然笑道，“没想到是公主殿下亲临，刚刚真是失礼了！”</p>
+<p class = "firstLineIndent">作为自己的追捕对象，聂云自然从任务资料中见过萝丝的照片。</p>
+<p class = "firstLineIndent">“至于我是谁，我说过了，或许……是你们的朋友！”</p>
+<p class = "firstLineIndent">“朋友？呵！”萝丝冷笑一声，笑的有些悲凉，“所谓的朋友已经烧毁了我们的家园，还屠戮着我的子民，接下来更是要毁灭我们整个文明！这……就是你所谓的朋友？！”</p>
+<p class = "firstLineIndent">被萝丝仇恨愤怒的目光盯着，聂云一脸坦然，“首先，我从未出手伤害，或者下达过伤害贵文明的命令，我可以很坦然的告诉你，我的双手是干净的，没有沾染一滴卡拉文明的鲜血！”</p>
+<p class = "firstLineIndent">萝丝死死盯着聂云看了半晌，“就算这是事实，也改变不了我们立场敌对的事实，如果你想用这种方式让我放过你，还是少费口舌！”</p>
+<p class = "firstLineIndent">“唉！我刚刚对你解释了那么多，就是想要让你明白，双子星文明内部，也并非铁板一块，就像有人不想我死，也有人迫不及待想杀我！</p>
+<p class = "firstLineIndent">同样的，有人想消灭你们，自然也就同样有人不希望你们被消灭！”聂云摊手道。</p>
+<p class = "firstLineIndent">“呵！你难道想说，为了文明的内部矛盾，你愿意站在整个文明的对立面帮助我们？你认为我会相信？”萝丝冷笑。</p>
+<p class = "firstLineIndent">“这宇宙如此之大，没有什么是不可能！</p>
+<p class = "firstLineIndent">再说，我也根本没必要骗你，我知道，你应该是看上了我的身份，或许是想要挟持我作为人质，逼迫双子星文明作出一定妥协，不过……你确定你真的能做到？”聂云似笑非笑道。</p>
+<p class = "firstLineIndent">萝丝看了眼聂云身旁的银翼守卫。</p>
+<p class = "firstLineIndent">这就是你的底气所在？那我会让你知道，人最强大的武器……是自己！</p>
+<p class = "firstLineIndent">“我们卡拉文明的殖装，并非是制式装备，殖装的威力，和主人自身的实力息息相关……”萝丝一边说着，一边缓缓抽出了自己的长剑。</p>
+<p class = "firstLineIndent">暗红色如同水晶一般的修长剑刃，昭示着它的不凡。</p>
+<p class = "firstLineIndent">聂云饶有兴致的看着，然后向旁边平摊着伸出手掌……</p>
+<p class = "firstLineIndent">“锵！”银翼守卫长剑出鞘，递到了聂云手中，随后退到了一旁。</p>
+<p class = "firstLineIndent">剑看起来只是一把普通的十字剑，但聂云的这个动作却令萝丝一脸茫然。</p>
+<p class = "firstLineIndent">他想干嘛？</p>
+<p class = "firstLineIndent">“你不要小看这把剑，它同样不是制式装备，它的威力，和主人自身的实力息息相关……”聂云右手持剑，左手并指抚过剑脊，眼神古井无波，简单来说，逼格突破天际！</p>
+<p class = "firstLineIndent">萝丝：“……”</p>
+<p class = "firstLineIndent">一个普通人，没有穿戴任何装备，想靠着一柄普通长剑和全副武装的自己抗衡？</p>
+<p class = "firstLineIndent">她突然觉得，自己刚刚和这个神经病废话半天到底是哪根筋搭错了？！</p>
+<p class = "firstLineIndent">不再浪费时间和口舌，她的实力全面爆发，速度比刚才更上一个台阶，几乎无法用肉眼捕捉到身影，便已经出现在聂云侧后方，随后一剑挥砍而下！</p>
+<p class = "firstLineIndent">“铿！”刺耳的金属交击声响起，一道溅起的火花中，萝丝从两柄碰撞在一起的光滑剑身上，甚至能够看到自己愕然的神情！</p>
+<p class = "firstLineIndent">聂云反手持剑，头也不回地挡下了这迅猛的一击，随后手腕微颤，顺势将剑一收，一搅，口中念念有词。</p>
+<p class = "firstLineIndent">“太极剑，运剑在腕，非顺即逆缠丝劲！”</p>
+<p class = "firstLineIndent">萝丝只觉得剑上一股力道不强，却让人捉摸不定，绵绵不绝的颤动劲道席卷而来，让她原本想要抽剑再次攻击的动作瞬间变形，自己的长剑莫名其妙拐了个弯就被对方压在了肩头。</p>
+<p class = "firstLineIndent">“覆雨剑，唯快不破，奔雷逐电寒芒现！”</p>
+<p class = "firstLineIndent">聂云五指微松，瞬息间反手改正手，长剑闪电连刺，手臂几乎化为一片虚影，剑尖连续不断点在萝丝的剑身中心，丝毫不差！</p>
+<p class = "firstLineIndent">萝丝不论如何应对，却始终无法摆脱对方的剑雨笼罩，她清晰的感觉到手中长剑正在哀鸣。</p>
+<p class = "firstLineIndent">“玄铁剑，重剑无锋，大巧不工天地裂！”</p>
+<p class = "firstLineIndent">剑光一收，一计毫无花俏，势大力沉的横扫，十字剑带着剧烈的呼啸狠狠拍在萝丝仓促抵挡的长剑剑身上。</p>
+<p class = "firstLineIndent">“轰！”萝丝只感觉虎口巨震，犹如被火车头撞了一般直接被扫飞了出去，重重撞在了身后的金属墙面上，砸出一个浅浅的凹坑！</p>
+<p class = "firstLineIndent">“砰！”萝丝刚刚落地，还未平息浑身散架一般的疼痛，便听见手中的长剑发出“咔咔”轻微的碎裂声。</p>
+<p class = "firstLineIndent">在她难以置信的目光中，这柄在卡拉文明历史上赫赫有名，象征着王权，史书上至少有一整部大部头来书写它传奇的宝剑，居然沿着中心的细密裂纹，就那么碎裂开来……</p>
+<p class = "firstLineIndent">将手中十字剑随手抛给银翼守卫，聂云背着手，一脸宗师风范，“你……可悟了吗？”</p>
+<p class = "firstLineIndent">萝丝愣愣看着自己手中的残剑半晌，这才双眼失神的抬头看向聂云。</p>
+<p class = "firstLineIndent">只是三招，对方仅凭肉体，却从技巧、速度、力量上表现出了全方位的碾压实力！</p>
+<p class = "firstLineIndent">这就是双子星文明区区一个高级军官的实力？</p>
+<p class = "firstLineIndent">萝丝从未感觉如此绝望过！</p>
+<p class = "firstLineIndent">挟持对方的高级军官作为筹码，保留卡拉文明最后一丝火种自己都做不到了吗？</p>
+<p class = "firstLineIndent">面对如此强大的敌人，卡拉文明……难道真是无力回天了吗？</p>
+<p class = "firstLineIndent">泪水无声滑落……</p>
+<p class = "firstLineIndent">“呃……”聂云愕然看着一脸绝望，双眼空洞的黑化萝丝，脸色顿时浮现一丝尴尬。</p>
+<p class = "firstLineIndent">卧槽！玩过头了啊！那把剑难道对她很重要？</p>
+<p class = "firstLineIndent">“咳咳！一把易碎的艺术品，就算再好看，又如何能够用于复仇？我问你，你……想要更强大的力量吗？”</p>
+<p class = "firstLineIndent">低沉而充满了蛊惑的声音在萝丝耳边回荡。</p>
+<p class = "firstLineIndent">“力量……我，想要力量……”力量二字，让萝丝的双眼重新闪过一丝神采。</p>
+<p class = "firstLineIndent">就在这时，她面前的金属地面，突然犹如一面水银湖一般，泛起了层层的涟漪。</p>
+<p class = "firstLineIndent">如同传说中的湖中剑现世，漆黑色的剑柄，雪亮的银色剑身，嚎叫的脸孔，玄奥的符文，一柄华丽却略带诡异的长剑就那么一点点从水银湖中缓缓升起。</p>
+<p class = "firstLineIndent">及至长剑全部浮出，地面重新恢复成普通的金属地面，再也看不出任何异样。</p>
+<p class = "firstLineIndent">看着唯有剑尖点在地面，仿佛没有重力一般的长剑，这宛如魔幻的一幕，让此刻的萝丝也有了片刻的失神。</p>
+<p class = "firstLineIndent">聂云带着诱惑性的旁白解说适时响起……</p>
+<p class = "firstLineIndent">“封印着神秘力量的魔剑，据说拔出此剑者，将获得无尽的力量，加冕为王！</p>
+<p class = "firstLineIndent">剑名——霜之哀伤！”</p>
+<p class = "firstLineIndent">机械虫：“……”（lll￢w￢）</p>
+
+
+</br></br>
+<a href="330.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="350.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

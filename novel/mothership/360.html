@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第三百六十章 太阳系制造</h2>
+<p class = "firstLineIndent">“好！你尽快挑选人员组建调查组，我相信，我们在座的所有人，都会配合你的合理调查！”伊莎尔说完眼神凌厉的扫了眼众人。</p>
+<p class = "firstLineIndent">两位最高指挥官都点头了，事已至此，众人虽然不情不愿，但还是无人出头反对，默认了聂云的调查权，至于届时到底配不配合，那就得看聂云自己的手腕了……</p>
+<p class = "firstLineIndent">敲定这件事后，伊莎尔转头看向古斯塔夫。</p>
+<p class = "firstLineIndent">“接下来，我们来说说那第二种可能性吧！古斯塔夫，我想……你应该也有所猜测了吧。”</p>
+<p class = "firstLineIndent">“嗯！我确实有些想法！</p>
+<p class = "firstLineIndent">其实，对方的飞船和物资，除了通过我们内部走私，还有另外一个可能，那便是……它们根本就是‘太阳系制造’！”</p>
+<p class = "firstLineIndent">古斯塔夫的这个推断让众人纷纷露出惊讶的神色，毕竟太阳系在所有人的印象中，应该是一个从未经过开发的处女地。</p>
+<p class = "firstLineIndent">普通的军用物资还好说，但是机甲和战舰就和地球上的汽车、军舰一样，成千上万的零部件，少一个都会出问题。</p>
+<p class = "firstLineIndent">它们是整个工业链条的终端集成产品，需要一整个工业体系的高度协作！</p>
+<p class = "firstLineIndent">若想从无到有建造这些军事武器的生产基地，不仅需要雄厚的军事科技积累，而且还需要建造一大批的配套工厂，绝不是一朝一夕能够办到的！</p>
+<p class = "firstLineIndent">事实上，聂云虽然能够造出几艘战舰，但他的造舰工业却并不完整。</p>
+<p class = "firstLineIndent">因为除了战舰的基础骨架和部分低科技含量的工业设备聂云建造了生产流水线进行工业制造以外，战舰和机甲上30以上的关键核心部件，比如护盾发生装置、主炮、推进器等等，依旧只能靠“机械虫3d打印机”直接复制出来。</p>
+<p class = "firstLineIndent">它就像是一家合资企业，高精尖的零部件虽然自己无法生产，但是可以选择对外采购。</p>
+<p class = "firstLineIndent">正是这种传统工业生产+机械虫开挂的工业制造模式，让地球文明的制造业成功进行了跨越式发展！</p>
+<p class = "firstLineIndent">当然，目前聂云和一众科学家们正在攻关剩余的制造工艺，造船厂对机械虫的依赖正在逐步下降，直至未来形成独立的造舰工业体系……</p>
+<p class = "firstLineIndent">“这……不会吧？您是说他们在太阳系建立了自己的制造工业？这不太可能吧？他们怎么可能拥有护卫舰的全套生产技术？”有人惊讶的出声道。</p>
+<p class = "firstLineIndent">“为什么不行？如果万物归一会能够对军队进行渗透，那么为什么不能够对那些军工企业进行渗透？</p>
+<p class = "firstLineIndent">事实证明，他们的科技水平，在某些方面比之我们的最尖端科技，也不遑多让！对他们，我们绝不能掉以轻心！</p>
+<p class = "firstLineIndent">另外，我们对太阳系的巡逻周期是十三年，在这段空白期，花费数年时间选择一个隐蔽的星体建造秘密生产基地，这并非不可能！</p>
+<p class = "firstLineIndent">你们没有发现，他们的战舰都是统一的型号吗？</p>
+<p class = "firstLineIndent">一般来说，一座造船厂为了提高造舰效率，只会专门制造一个型号的战舰！</p>
+<p class = "firstLineIndent">所以我怀疑，对方在虫洞战斗中刚刚暴露的这第三艘战舰，或许就是这座秘密造船厂才下水不久的新产品也说不定！”古斯塔夫推测道。</p>
+<p class = "firstLineIndent">所有人都被他的这个猜测惊到了。</p>
+<p class = "firstLineIndent">“嘶！照这么说，万物归一会为了这个计划，在多年之前就开始对太阳系进行布局了？他们居然如此处心积虑？”聂云一副我见识少你不要骗我的模样。</p>
+<p class = "firstLineIndent">嗯……作为万物归一会的会长，我是不是得给我们的“战略策划部”点个赞？</p>
+<p class = "firstLineIndent">古斯塔夫不屑的瞥了一眼聂云，没经验的菜鸟就是喜欢大惊小怪！让前辈我给你上上课吧！</p>
+<p class = "firstLineIndent">“事实上，在太阳系的伏击事件发生之后，我们就对太阳系的虫洞入口进行了严密监控，所以对方这次出现的第三艘战舰绝对不是之后才偷渡过去的，它只能是……早就被布置在太阳系内部！</p>
+<p class = "firstLineIndent">那么想想看，若是这艘战舰早就在太阳系，那为什么在阿尔萨斯受到伏击时，它却并没有加入参与伏击？如果三打一，恐怕某人绝无幸理吧？”</p>
+<p class = "firstLineIndent">古斯塔夫抽空还损了聂云一句，不过聂云点点头，一脸不能更赞同的模样，让古斯塔夫很没成就感。</p>
+<p class = "firstLineIndent">“咳！所以我推测，更大的可能，不是他们不想动用，而是这艘战舰在当时根本就还未完工！</p>
+<p class = "firstLineIndent">也就是说，对方在伏击阿尔萨斯时，根本就是才拥有造舰能力不久，参与伏击的那艘护卫舰，恐怕就是他们当时仅有的一艘产品！</p>
+<p class = "firstLineIndent">而正是因为他们的伏击行动意外失败，让巡林者号逃回比邻星系，所以使得消息泄露的时间比他们计划的提前了数个月之久。</p>
+<p class = "firstLineIndent">这个时间差完全打乱了他们原本的计划！</p>
+<p class = "firstLineIndent">劫持阿尔萨斯，控制太阳系虫洞，之后他们的第三艘甚至是第四艘战舰陆续下水……到时候我们想要剿灭这股势力，恐怕付出的代价会远超我们的想象！</p>
+<p class = "firstLineIndent">所以，这次他们很可能是在准备不足，仓促应战的情况下遭受了我们的攻击！”</p>
+<p class = "firstLineIndent">“可是，这只是你的猜测吧？太阳系内如果有这样一个基地，怎么我们布置在太阳系的探测器会完全没有察觉？”有人提出了质疑。</p>
+<p class = "firstLineIndent">“探测器？他们的位置根本就是固定的，我有十几种方法，能够神不知鬼不觉把它替换成受我控制的傀儡！</p>
+<p class = "firstLineIndent">再说……谁说这只是我的猜测！”</p>
+<p class = "firstLineIndent">古斯塔夫说着，向众人播放了一段战斗视频，视频中是虫洞战役最后阶段，地球一方的三艘战舰火力全开的画面。</p>
+<p class = "firstLineIndent">“事实上，经过智脑的战场画面还原分析，对方的第三艘战舰在出现后进行的攻击中，表现出了与另外两艘战舰明显的作战风格差异！</p>
+<p class = "firstLineIndent">相比前两艘战舰，第三艘战舰表现出来的火力分配、射击频率、火力精准度、战舰协调性能，完全就像是一群缺乏经验的新手！</p>
+<p class = "firstLineIndent">这说明什么？这说明这是一艘缺乏训练，刚刚下水不久的战舰！否则断然不可能出现这种情况！</p>
+<p class = "firstLineIndent">所以，第三艘战舰在战斗的最后时刻出现，不是因为他们故意想要隐藏实力，而是……这艘战舰或许还只是勉强下水的半成品，战斗力严重缺失！</p>
+<p class = "firstLineIndent">如果它一开始就投入战场，很可能被我们察觉到异常！”</p>
+<p class = "firstLineIndent">众人不由点点头，这个证据的确相当能够说明问题！</p>
+<p class = "firstLineIndent">“一切的一切，都说明了，太阳系……很可能拥有造舰能力！”古斯塔夫一脸的迷之自信。</p>
+<p class = "firstLineIndent">聂云瞪大眼睛，特么这也行？！</p>
+<p class = "firstLineIndent">我就是让那帮精力旺盛的地球防卫军熟悉熟悉自己的新战舰，顺带让他们增加些实战经验，仅此而已……</p>
+
+<h2>第三百六十一章 新任务</h2>
+<p class = "firstLineIndent">“我个人赞同你的这个推断，太阳系的确很可能拥有颇具规模的工业制造能力！”这时，伊莎尔终于开口了。</p>
+<p class = "firstLineIndent">“另外其实还有一个十分重要的情报——劳动力！”伊莎尔说着，将一个机器人模型投影到了众人眼前。</p>
+<p class = "firstLineIndent">聂云眼睛微微一眯，那赫然是“安特帝国版”的小型机器人！下巴上八颗肉瘤一样的凸起标志性十足。</p>
+<p class = "firstLineIndent">“刚刚古斯塔夫就提到过，这种曾经在木卫四出现过的古怪机器人，虽然战斗力不怎么样，但它们却可以快速转化为极佳的生产劳动力。</p>
+<p class = "firstLineIndent">不管对方用的是更先进的远程控制科技，或者真是匪夷所思的灵魂科技，他们的机器人智能，确实十分让人惊叹，而这点才是这个组织最可怕的地方！</p>
+<p class = "firstLineIndent">很可惜，我们至今都未能得到一枚它们的控制芯片来解析这种技术，未来如果有机会，我建议以完整捕获这种机器人为优先任务！”</p>
+<p class = "firstLineIndent">“嗯！不错，这点我也有所猜测，就算是我们内部最先进的自动化智能生产设备，想要在短时间内建造一条战舰生产线，也需要大量的人手协助。</p>
+<p class = "firstLineIndent">那么这些人手从哪里来？我想和这种机器人脱不开关系！”古斯塔夫赞同道。</p>
+<p class = "firstLineIndent">双子星的智能程序虽然远超地球，但毕竟没有高级人工智能那种应对复杂条件的自我学习和精准的命令执行能力，战舰这种高端产品的无人化全自动生产，双子星目前还远无法做到。</p>
+<p class = "firstLineIndent">“从这点来看，我们可能还忽略了一个太阳系内十分重要的关键存在……地球文明！”</p>
+<p class = "firstLineIndent">伊莎尔这句话让聂云眉头微微一挑。</p>
+<p class = "firstLineIndent">“我仔细看过之前对方提供的那份‘地球末日’视频，并非造假。另外，在木卫四的战斗中，这种机器人也曾经显露过地球文明特有的基督教仪式动作。</p>
+<p class = "firstLineIndent">从各种情报来分析，对方确实很可能已经占领了地球，并且通过屠戮或者是奴役地球人的方式，大量获得这种高智能机器人！</p>
+<p class = "firstLineIndent">最坏的情况，整个地球上那数十亿的土著，或许都会成为对方的劳动力和炮灰，这恐怕就是对方有信心坚守太阳系的底气所在！所以，万一我们猜测成立，那么消耗战便不可能成功！”</p>
+<p class = "firstLineIndent">听完伊莎尔的这番分析，所有人都陷入莫名的震惊，如果真是如此，那这就不是单纯的恐怖袭击行为，这简直就像是要割地为王啊！</p>
+<p class = "firstLineIndent">这个万物归一会……究竟想干嘛？！</p>
+<p class = "firstLineIndent">聂云心中暗叹，能做到指挥官级别的，果然没一个是简单的家伙。</p>
+<p class = "firstLineIndent">之前是双子星对太阳系的这只小规模“叛军”并不重视，认为这只是部分内部人员不安分的小打小闹。</p>
+<p class = "firstLineIndent">但是这次虫洞战役失败，已经让他们心中生出一丝警惕，并开始正视这个对手，从这番分析结果来看，某种意义上他们的确接近了真相。</p>
+<p class = "firstLineIndent">若是没有自己放出的各种烟幕弹，将太阳系的势力指向双子星文明内部，恐怕他们还真的会将怀疑对象放在地球文明身上。</p>
+<p class = "firstLineIndent">届时一场内部矛盾就会转变为外来威胁，那双子星文明不炸毛才怪！</p>
+<p class = "firstLineIndent">通过聂云的观察，面对存在威胁的外星文明，双子星从来不会掉以轻心，他们会立刻从“如何攻破虫洞防线”转变为“如何毁灭地球文明”！</p>
+<p class = "firstLineIndent">这就是最坏的情况，到时候聂云所要面对的，恐怕就不是一两个军团，而是成千上万的战舰海……</p>
+<p class = "firstLineIndent">就算聂云占据了虫洞地利，但是将一切希望寄托在虫洞防御上，无疑是愚蠢的战略决策！</p>
+<p class = "firstLineIndent">万一对方放一个aoe大招直接清场呢？万一他们又发现另外的太阳系虫洞入口呢？万一他们绕过虫洞，直接从比邻星系远征太阳系呢？万一他们有跨星系打击能力呢？</p>
+<p class = "firstLineIndent">变数太多，聂云不敢冒这种风险。</p>
+<p class = "firstLineIndent">面对双子星文明这个庞然大物，就算聂云实力全开，也是螳臂当车，正面作战绝无胜算。</p>
+<p class = "firstLineIndent">所以从借尸还魂冒充安特帝国，随后利用阿尔萨斯这个身份打入双子星文明内部，到各种甩黑锅给海族，再到成立“万物归一会”混淆视听……</p>
+<p class = "firstLineIndent">聂云一直苦心积虑在做的，就是降低地球文明的威胁感！</p>
+<p class = "firstLineIndent">但是想要保住太阳系，就势必要面对双子星越来越强大的攻击力度，不可避免的就要暴露己方越来越多的实力，从而引来双子星越来越警惕的目光……</p>
+<p class = "firstLineIndent">这是一个无解的死循环！</p>
+<p class = "firstLineIndent">而聂云所能做的，就是使用最低限度的武力低调保卫太阳系的同时，将双子星这种警惕的目光尽量吸引到他们自己的文明内部，同时弱化地球文明在其中的作用。</p>
+<p class = "firstLineIndent">但是纸终究是包不住火的，地球文明终究还是开始进入双子星人的视线……</p>
+<p class = "firstLineIndent">“如果这一切都成立，那么……我们接下来该采取怎样的应对措施呢？”聂云语气有些幽幽的，让人听不出其中的情绪。</p>
+<p class = "firstLineIndent">“打！继续打！”古斯塔夫斩钉截铁道，倒是并未察觉聂云的异常。</p>
+<p class = "firstLineIndent">“从他们的造舰速度来看，太阳系内即便有工业基地，但此刻的规模绝不会太大，所以消耗战虽然有代价，但是却不能不打，不过这次我们不用传统的攻坚战法，改用无人机海平推过去！</p>
+<p class = "firstLineIndent">比消耗，我们此刻在比邻星的工业基础同样不弱！</p>
+<p class = "firstLineIndent">让后方的工厂全力制造无人机，哪怕十架无人机只有一架成功逃出他们的火力封锁网，最终只能给对方造成轻微损伤，但也可以损耗对方的一些能源和物资。</p>
+<p class = "firstLineIndent">就来看看，是我们军方的炮灰多，还是他们的补给多！”</p>
+<p class = "firstLineIndent">众人点头，这种方法虽然见效慢，不过它胜在安全无副作用，就看谁耗的过谁了。</p>
+<p class = "firstLineIndent">伊莎尔笑了笑，“古斯塔夫，你还是喜欢这么简单粗暴的战术，不过我承认，这个方法的确不错，但是就如同刚刚阿尔萨斯所说，谈判是摸清对手底细的一种手段，所以我建议……边打边谈！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">会议结束后，聂云乘坐穿梭机返回自己的巡林者号飞船。</p>
+<p class = "firstLineIndent">“还好，他们此刻的关注点还是在如何攻破虫洞防线，并没有对付地球文明的想法，除了觉得威胁性不大，或许，这其中也有生命星球的价值因素存在吧……”聂云心中暗道。</p>
+<p class = "firstLineIndent">宇宙中的生命星球十分稀少，但它却是一个星际文明发展的关键“节点”，通过它，数十亿，乃至数百亿的人口可以聚集其上，将文明的影响力辐射到生命星球周边广阔的领域。</p>
+<p class = "firstLineIndent">所以若非必要，任何文明都不会选择毁灭发现的珍贵生命星球！</p>
+<p class = "firstLineIndent">如果通过毁灭地球切断太阳系舰队的补给，那么就算他们最后攻破了虫洞，但太阳系的价值也同样大大缩水了。</p>
+<p class = "firstLineIndent">“看来……得给你们找点事情做了……”聂云捏着下巴，意识投向了卡拉星……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">卡拉星茂密的丛林中，三名秘银骑士缓缓走出，浑身上下还沾满了绿色的汁液，看起来有些狼狈。</p>
+<p class = "firstLineIndent">“系统提示，新任务发布：寻找魔剑持有者！”</p>
+<p class = "firstLineIndent">“呃……老大，这魔剑是啥？”</p>
+<p class = "firstLineIndent">“你问我，我怎么知道！那不是有地图嘛，跟着走就对了，只要不让我再体验这见鬼的“卡拉星风土人情三日游”，别说魔剑，让我找魔王也行啊！”</p>
+
+<h2>第三百六十二章 追捕</h2>
+<p class = "firstLineIndent">三天前，聂云利用登陆卡拉星的时机，往丛林里丢了三台侦查无人机，三人组从那一刻开始，便踏上了自己的异星之旅。</p>
+<p class = "firstLineIndent">聂云发布的日常任务“卡拉星风土人情三日游”，让三人充分领略了丛林之美和……丛林之美。</p>
+<p class = "firstLineIndent">这颗星球简直就像是生命的天堂，丛林中各种各样千奇百怪的植物和动物让他们目瞪口呆，连卡拉人的城市都大多建造在参天巨树之上，不过现在大多变成了焦黑的残骸废墟。</p>
+<p class = "firstLineIndent">因为他们的到来，丛林中出现了一场不大不小的骚动，三名太阳系来客受到了本地居民的热情欢迎。</p>
+<p class = "firstLineIndent">被恐怖食人花吞过，被凶猛巨兽追击过，遭遇过雨幕一般的超大暴雨，见识过生命禁区无情的火焰之地……</p>
+<p class = "firstLineIndent">曾被卡拉人的游击队当做双子星人伏击过，被双子星的侦察机当成卡拉星游击队空袭过……这三天的旅程对他们而言，绝对算不上友好，说是举世皆敌也不为过。</p>
+<p class = "firstLineIndent">不过依靠着秘银骑士强大的隐匿和战斗能力，三人几乎将整个丛林中该有的陷阱全部踏了个遍，至今才稍稍适应了这处复杂战场。</p>
+<p class = "firstLineIndent">大脑芯片赋予的学习能力让三人迅速适应了这里的丛林环境，完成了战场熟悉任务，聂云也通过三人的不断踩雷，搜集了大量的卡拉星本土情报。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“不管怎么说，这个任务至少偶尔还能打打架啊，前段时间不是各种训练，就是被那帮科学家拉去当新武器测试员，我浑身上下都快生锈了！”</p>
+<p class = "firstLineIndent">老三说着，拽过身边树干上一只毛茸茸树懒模样的奇怪生物，不顾它“吱吱吱”的抗议声，把它当成毛巾在自己身上胡乱擦了擦。</p>
+<p class = "firstLineIndent">“你还有脸说！”老大对着老三就是一顿吼。</p>
+<p class = "firstLineIndent">“要不是你一见到那帮双子星的巡逻队就一脸兴奋冲过去，凭秘银骑士的隐身能力怎么可能被人盯上！</p>
+<p class = "firstLineIndent">这可是在敌后，‘卡拉星风土人情三日游’还是生存任务，如果损失掉这三台珍贵机体，任务失败老子可是要被扣除19万8453无限币的，丫的，老板的数学还是那么刚刚好！”</p>
+<p class = "firstLineIndent">不得不说，老大还是很有理财天赋的，凭着市场对无限币的饥渴需求，他利用手上的无限币搞起了投资，短时间便直接踏入高收入群体。</p>
+<p class = "firstLineIndent">不过再好的投资手腕，碰上聂云这种不讲道理的“一键清零”式的惩罚手段，他也只能干瞪眼。</p>
+<p class = "firstLineIndent">老三闻言有些尴尬的将手上的那只生物丢开，那家伙浑身已经变得花花绿绿，哀怨的看了老三一眼，然后慢悠悠爬到一颗树干边上蹭自己漂亮的毛发。</p>
+<p class = "firstLineIndent">“只不过是几个巡逻兵，我这不也是为了增加些额外收入嘛。”老三很没说服力的为自己辩解道。</p>
+<p class = "firstLineIndent">就在昨天，他们遭遇了外出巡逻的一小队双子星侦察兵，当看到他们身上双子星特有的b型标志之后，老三自然不会和他们客气，二话不说上去就是一顿胖揍。</p>
+<p class = "firstLineIndent">不过之后就和捅了马蜂窝一样，遭受到了双子星的各种围追堵截，被追的那叫一个酸爽。</p>
+<p class = "firstLineIndent">然后听到动静的卡拉人游击队也不甘寂寞，看到三人之后居然将他们当成了双子星的动力装甲，然后二话不说就加入了追击队伍。</p>
+<p class = "firstLineIndent">总之，场面比较混乱，就算是三人组都不知道现在究竟有多少人在追他们。</p>
+<p class = "firstLineIndent">“几个巡逻兵？现在是万物互联时代好么，你以为是古代城头上摸哨兵啊！</p>
+<p class = "firstLineIndent">人家背后好几万人盯着呢，随便一发光束炮就能送我们免费回城，我和你说过多少回了，低调，这次任务要低调，狗到最后的才能大吉大利，枪打出头鸟不知道啊！”老大指着老三的鼻子就是一顿训。</p>
+<p class = "firstLineIndent">老三乖乖低头认错，二毛上前解围。“老大，看坐标，那把‘魔剑’的位置在300公里以外，我们现在怎么过去？”</p>
+<p class = "firstLineIndent">老大还没说话，那只还在蹭毛发的卡拉星生物突然耳朵动了动，然后以远超平时的敏捷迅速没入草丛中消失不见。</p>
+<p class = "firstLineIndent">“唉！原本我是想偷偷潜行过去的，不过似乎……我们的朋友太过热情，非得挽留我们不可啊……”老大说着，无奈的指了指前方。</p>
+<p class = "firstLineIndent">“唰唰唰~”茂密丛林中簌簌声响起，数十台黑色涂装的动力装甲手持重力锤和各种枪械出现在三人眼前，将他们隐隐包围起来。</p>
+<p class = "firstLineIndent">“嗡~”轻微的轰鸣声中，三人上空被一道阴影笼罩，强劲的气流让周围的草木纷纷倒伏。</p>
+<p class = "firstLineIndent">他们抬头望去，一艘数十米长，货柜一般的黑色飞船正缓缓打开两侧的舱门，下一刻，一架又一架碟形无人机被弹射出来，呈环形盘旋着，将三人上方彻底封锁起来……</p>
+<p class = "firstLineIndent">“这……我们的雷达怎么没反应？”老三看到这场面不由挠了挠头不解道。</p>
+<p class = "firstLineIndent">“应该是强效隐形材料涂层，他们这次是有备而来啊！”二毛抽出背后的长刀开口道。</p>
+<p class = "firstLineIndent">他们头盔上的战场分析仪器通过光谱分析，可以解析出对方黑色涂装的部分成分，经过初步比对，给出了最可能的材料用途。</p>
+<p class = "firstLineIndent">“哦！东西不错，系统提示这东西值300点无限币，一会儿记得留点儿塞进储物箱。”老大抽出腰间的两把手枪，发出了开战信号。</p>
+<p class = "firstLineIndent">他不想惹事只是为了降低任务风险，可不代表是怕了这些双子星地面部队……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">双子星通讯频道内。</p>
+<p class = "firstLineIndent">“这里是特殊捕捉部队a3小分队，我们已经发现目标，坐标xxx，xxx”</p>
+<p class = "firstLineIndent">“各单位注意，这三人战斗力相当强悍，他们身上装备的很可能是卡拉文明的新型殖装，可能的情况下，抓活的！必要的情况下，保证残骸完整性！”</p>
+<p class = "firstLineIndent">“听说他们三个人干翻了一个12人小队，是不是真的？”</p>
+<p class = "firstLineIndent">“我看了战斗视频，是他们其中的一个人干的，赤手空拳……”</p>
+<p class = "firstLineIndent">“什么？！”</p>
+<p class = "firstLineIndent">就在这时，对面的三人动了！</p>
+<p class = "firstLineIndent">“砰砰砰！”地面上留下三个浅坑，同殖装战士一般无二的流畅动作，猎豹一样的敏捷身形在原地几乎留下了残影。</p>
+<p class = "firstLineIndent">不过还没等三人靠近，头顶上的无人机就开火了。</p>
+<p class = "firstLineIndent">“噗噗噗！”一团团透明色泽的粘液从专用发射口射向三人的前行路线。</p>
+<p class = "firstLineIndent">三人大角度转折闪避，那些粘液射在他们身后，迅速凝固成一团团半透明的胶体。</p>
+<p class = "firstLineIndent">这种速度缓慢的武器根本摸不到三人的边，然而就在三人就要杀入对方的围堵人群中时，“砰砰砰！”他们脚下突然射出密密麻麻的网状物，直接将三人罩在其中！</p>
+<p class = "firstLineIndent">“滋滋滋！”黑色钢丝一样的网丝立刻发出剧烈的高压电，蓝色电弧四溅。</p>
+<p class = "firstLineIndent">“什么？！怎么可能！”然而让他们目瞪口呆的是，电弧没入对方的装甲后，居然没有产生丝毫的反应。</p>
+<p class = "firstLineIndent">没有一丝正常的颤抖，对手似乎连些许麻痹都没有产生。</p>
+<p class = "firstLineIndent">“抱歉，我们的套装属性，雷电抗性+1000哦！”老三手中一用力，将身上的黑色网状物撕开……</p>
+
+<h2>第三百六十三章 隐藏任务</h2>
+<p class = "firstLineIndent">位于三人组战场不远处的丛林中，3名浑身迷彩色的殖装战士正小心的向前探索。</p>
+<p class = "firstLineIndent">他们是附近自发组织起来的卡拉文明游击队，只不过此刻脸色看起来都有些疲惫不堪，双子星的巡逻部队和无孔不入的无人侦察机让他们疲于应付，补给和生存空间都在急速缩减。</p>
+<p class = "firstLineIndent">根据聂云所获得的情报，双子星人除了直接毁灭卡拉人的大型聚居城市，正在大量抓捕卡拉星上四散躲藏的残余卡拉人，或是送入实验室，或是分散运送到比邻星系内的其他行星上充当劳动力。</p>
+<p class = "firstLineIndent">双子星正在通过各种方式大量削减卡拉星上的卡拉人数量，以完成对卡拉星的彻底清理，为后续的大规模移民和建设做准备。</p>
+<p class = "firstLineIndent">这场文明战争已经让卡拉文明失去了近7成的人口，剩余的也正在恶劣的生存环境和双子星的追捕中飞速减少，按照这个速度，不久后卡拉文明便会逐渐消亡，消失在历史的长河中……</p>
+<p class = "firstLineIndent">弱肉强食，强者有权根据自己的利益和需求决定弱者的命运！</p>
+<p class = "firstLineIndent">这就是残酷的文明战争！</p>
+<p class = "firstLineIndent">“嘘！”打头的游击队小队长突然做了个手势让众人安静。</p>
+<p class = "firstLineIndent">其余2人停下来看着他，只见小队长皱眉倾听了一会儿，然后俯下身子，耳朵贴在地上做了个地听的姿势。</p>
+<p class = "firstLineIndent">殖装增强听力，各种声音化为情报进入耳中……</p>
+<p class = "firstLineIndent">“东北方向，距离5公里，有30到40人正在发生战斗！”他仔细分辨着声音道。</p>
+<p class = "firstLineIndent">“队长，肯定是我们的同胞碰到双子星的巡逻队了，我们赶紧过去救人吧。”</p>
+<p class = "firstLineIndent">“你在说什么傻话，那种规模的巡逻队肯定配备了大量的辅助飞行器，我们就三个人，过去自投罗网吗？”</p>
+<p class = "firstLineIndent">“那也不能见死不救啊！”</p>
+<p class = "firstLineIndent">“就算要救也得量力而行啊！”</p>
+<p class = "firstLineIndent">游击队的另外两人对于是否救援产生了分歧。</p>
+<p class = "firstLineIndent">“都闭嘴！”队长低喝了一声，他此刻的脸色有些古怪，他思索了片刻，终于下定决心。</p>
+<p class = "firstLineIndent">“这动静有些大，我觉得情况有些不太对劲，我们先过去看看！”</p>
+<p class = "firstLineIndent">其中一人虽有些不太情愿，不过显然队长有些威望，还是依言执行命令，三人开启了潜行模式向着那处战场飞速赶去。</p>
+<p class = "firstLineIndent">五分钟后，当三人离那处战场尚有数百米距离时，战斗的各种爆炸和轰鸣便清晰的传入他们耳中。</p>
+<p class = "firstLineIndent">“我滴个乖乖，这动静简直像是小规模的战场，莫非是我们的人在伏击双子星巡逻队？”其中一名队员兴奋道。</p>
+<p class = "firstLineIndent">“奇怪，我们这附近没听说有那个游击队能弄出这么大规模的伏击啊？而且这两天所有游击队应该都收到了蛰伏自保的新指令，难道是哪个游离在‘暗网’之外的游击队？”队长有些奇怪道。</p>
+<p class = "firstLineIndent">暗网，是他们以植物根系建立的秘密通讯网络，盘根错节，十分隐蔽，据说暗网的源头是由幸存的萝丝公主掌握，王室通过暗网，保持着对各地仅存的控制力。</p>
+<p class = "firstLineIndent">随着讨论声，三人终于偷偷潜伏到了战场边缘，从茂密的树丛中，看清了前方的战场。</p>
+<p class = "firstLineIndent">下一刻，三人的眼睛缓缓睁大。</p>
+<p class = "firstLineIndent">眼前的战场地形已经被彻底破坏，方圆2公里内的丛林已经消失，各种树木残骸杂乱的倒伏在地，不少地方还燃着未熄灭的火焰。</p>
+<p class = "firstLineIndent">战场上到处都是弹坑和横七竖八的沟壑，还有大量双子星动力装甲和无人机的残骸。</p>
+<p class = "firstLineIndent">战斗已经进入尾声，三名身穿古怪银色铠甲的战士分散于场中，“滋！”一道极细的赤红色激光穿透了战场的烟幕，最后一台双子星无人机冒着烟被击落，砸在游击队不远处的地面上，摔成一团火球。</p>
+<p class = "firstLineIndent">“呼~”老大吹了吹枪口，造型十分科幻的高能光束手枪在他食指上灵活的饶了三圈后准确插回腰间的特制固定枪套！</p>
+<p class = "firstLineIndent">这两把通体亮银色泽的手枪是于老等科学家专门组建的“秘银实验室”中，根据“秘银”材料的超强性能开发出来的一款试验性大威力激光枪，被聂云配发给秘银骑士当成中程武器。</p>
+<p class = "firstLineIndent">它不仅采用了能源水晶作为独立驱动能源，其中的激光反射镜面加工等级也达到了原子级，对反射激光的能量损耗直追简并态物质的全反射镜面。</p>
+<p class = "firstLineIndent">这种试验性手枪在实验室内的测试威力堪比小型激光炮，瞬间暴力输出的能量，甚至能够一枪击穿双子星动力装甲上搭载的小型力场护盾！</p>
+<p class = "firstLineIndent">这个结果将一众科学家们都吓的不轻，他们最近已经有将秘银这种材料当成“圣物”的架势……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">卡拉人游击队的三人已经被眼前的一幕彻底震撼到了！</p>
+<p class = "firstLineIndent">明明只有三个人，居然从正面杀的那些双子星人毫无还手之力，自身更是几乎毫发无损！</p>
+<p class = "firstLineIndent">这是什么战斗力，就算是顶尖的殖装战士恐怕也没有这种实力吧？我们星球什么时候出现了这么强悍的人物？</p>
+<p class = "firstLineIndent">“他们究竟是哪里冒出来了，看动作，和我们的殖装战士倒是有点相似，但是我从未见过这种型号的殖装，难道是隶属王室的秘密武器吗？”</p>
+<p class = "firstLineIndent">“我想起来了，听说前两天另一只游击队在附近发现了三名古怪的铠甲人，行动敏捷，实力强悍，还被误以为是双子星的新式兵器，不过现在看来，他们不是一伙的啊！”</p>
+<p class = "firstLineIndent">“不管怎么说，把这一幕记录下来报告上去……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">二毛将肩头挨的一发强韧胶质随手扯了下来，高速闪避终究躲不过密集的流弹，不过这种程度的禁锢手段面对十万马力的秘银骑士，效果和果冻也差不了多少。</p>
+<p class = "firstLineIndent">但这一幕却再次惊爆了卡拉人游击队的眼球，这种这种看上去就像是一团烟雾一般透明、虚无缥缈的气凝胶具有极强的韧性，是双子星用来捕捉卡拉人的常用工具，换成他们，就算全力挣脱，恐怕也难以撕扯下来。</p>
+<p class = "firstLineIndent">单从这一个小细节，他们就能够大概判断出来，这三个古怪铠甲战士的力量属性至少是他们的五倍以上！</p>
+<p class = "firstLineIndent">强悍的材料性能带来的是无与伦比的速度和力量，秘银骑士可不是殖装战士那种攻强守弱的敏捷型兵种，而是能打能抗的全面型战士。</p>
+<p class = "firstLineIndent">二毛随手将胶质丢在地上，然后瞥了一眼三人所潜伏的方位。“老大，那边还有三只，不过看样子像是卡拉文明的殖装战士。”</p>
+<p class = "firstLineIndent">“嗯！不用管他们，谅他们也不敢动手，这些家伙现在是黄色中立势力，干掉他们可是要被扣无限币的！”老大挥挥手。</p>
+<p class = "firstLineIndent">“呃……老大，这个事情可以等会儿再说，现在的情况似乎有些不太妙……”老三指了指天空。</p>
+<p class = "firstLineIndent">只见一架三人有些熟悉的海族登陆艇不知何时已经悬浮在三人上空，对准了他们的方位伸出伞柄一样的金色机械构件。</p>
+<p class = "firstLineIndent">“目标威胁等级提升，放弃活体捕捉计划，波动炮……发射！”双子星人对捕捉三人终于失去了耐心，打算将三人直接压成小饼饼再拿回去切片……</p>
+<p class = "firstLineIndent">“滋滋~”庞大的能量汇聚，“嗡！”的一声，蓝色力场波动在下方形成一道盾形光晕凝聚不散。</p>
+<p class = "firstLineIndent">“嗡！”又是一道力场波动荡漾扩散开来，与下方的光晕合二为一之后，光芒更甚！</p>
+<p class = "firstLineIndent">“嗡！嗡……”接着是第三道、第四道……</p>
+<p class = "firstLineIndent">整整7次力场波动不断叠加，光晕彻底形成一面朝下的弧形光幕！</p>
+<p class = "firstLineIndent">这熟悉的一幕三人自然不会陌生，木卫四战场可以说便是被双子星一击12层叠加的波动炮彻底终结。</p>
+<p class = "firstLineIndent">如今的波动炮显然不想对卡拉星造成大面积破坏，还克制了些许威力，不过对于三人而言，依然是不可抵挡的恐怖攻击！</p>
+<p class = "firstLineIndent">事实上，在第一道光晕形成时，三人便已经开足马力抱头鼠窜，临走前还不忘顺手牵羊拎起三个已经吓傻的卡拉人游击队往外逃去。</p>
+<p class = "firstLineIndent">短短8s蓄力过后，“嗡！”一声响彻天地的嗡鸣之后，光幕猛然坠落！</p>
+<p class = "firstLineIndent">下一刻，方圆数十公里地动山摇，鸟雀惊飞无数，丛林中的各种动物猛兽犹如遭受灭顶之灾一般四处逃窜！</p>
+<p class = "firstLineIndent">一片环形的冲击波扩散开去，方圆3公里左右的区域在强大力场的压迫下，塌陷下去一个深达数十米的巨大环形深坑……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">烟尘散去，位于深坑边缘的一处土丘突然动了动，下一刻，三名银色身影破土而出，抖了抖身上覆盖的泥土，将手中被震得七荤八素的三个殖装战士随手丢在一边。</p>
+<p class = "firstLineIndent">“还好跑得快，要是在攻击中心，估计得直接被压成半身不遂！”老三看着系统界面的伤害提示心有余悸道。</p>
+<p class = "firstLineIndent">他的机体上还有部分冒着电火花，可见损伤不轻。</p>
+<p class = "firstLineIndent">“哼！今天的我们，可不是之前的量产型号，惹毛了，我们直接杀进你们的据点，端了你们的老巢！”老大霸气侧漏道。</p>
+<p class = "firstLineIndent">虽然避开攻击中心，但强大的重力余波依旧影响到他们的机体，那三名口吐鲜血的殖装战士虽然没死，却也只剩下半条命。</p>
+<p class = "firstLineIndent">“老大，我们干嘛救他们？”二毛不解的问道。</p>
+<p class = "firstLineIndent">“哦，没事儿，试试看抓个中立怪能不能触发隐藏任务啥的……”</p>
+<p class = "firstLineIndent">“呃……”</p>
+
+<h2>第三百六十四章 下马威</h2>
+<p class = "firstLineIndent">“智脑，激活机体修复程序！”</p>
+<p class = "firstLineIndent">随着这个命令下达，三人的机体如同水银一般流转，身上所有的损伤迅速恢复，连污渍都被清理一空，恢复了银色的华丽外表。</p>
+<p class = "firstLineIndent">“修复完成，扣除300点维修费用！”机载智脑传来提示。</p>
+<p class = "firstLineIndent">“亏了啊！”老大捂脸哀叹。</p>
+<p class = "firstLineIndent">这场战斗他们大概进账1000点左右的无限币，但是维修费三人就花了900，算上盈亏自负的能量损耗，基本相当于白干。</p>
+<p class = "firstLineIndent">秘银骑士的修复程序，说白了流程就是聂云收到系统提示小弟们被揍了，然后聂云的意念稍稍关注一下，丢一个“时光回溯”技给机械虫重新加载秘银骑士的数据模型。</p>
+<p class = "firstLineIndent">根据聂云的研究，能够让机械虫真正受到伤害的，除了瞬间超高能量撑爆机械虫外，便只有猜想中的粒子湮灭类打击和空间武器等，当然，不排除宇宙中可能存在的超出理解范畴的其它超级武器。</p>
+<p class = "firstLineIndent">论真实伤害，波动炮这种纯物理类攻击基本不会对机械虫造成毁灭打击，而机械结构性的损伤对聂云而言，维修成本除了些许能量外，可以说是基本为零。</p>
+<p class = "firstLineIndent">至于为什么要收费，系统的事怎么能叫收费？</p>
+<p class = "firstLineIndent">“老大，要不要给那大家伙来一下？”机体恢复之后，老三盯着天空中那艘海族登陆艇，眼中散发着跃跃欲试的光芒。</p>
+<p class = "firstLineIndent">秘银骑士身上可不是没有大威力的武器。</p>
+<p class = "firstLineIndent">“滚！干掉这一艘，人家还能派来七八十艘，哪怕你能量用不完也得跪！”</p>
+<p class = "firstLineIndent">“他们派出无人机扩散搜索了，我觉得我们还是先离开这里为妙！”二毛指着天空中渐渐靠近的无人机群。</p>
+<p class = "firstLineIndent">“我们走！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">十分钟后，老大三人已经带着已经昏迷的三名游击队员来到一处隐蔽的岩洞中，这是他们昨天刚刚开辟出来的临时安全屋。</p>
+<p class = "firstLineIndent">“唔……”没过多久，地上的三人缓缓呻吟着陆续醒来，如果仔细观察，他们身上的伤口在这短短时间内便已经停止流血开始愈合，而殖装上的几处破损也在以一种匪夷所思的速度自我修复中。</p>
+<p class = "firstLineIndent">不得不说，卡拉文明的殖装战士虽然正面战力有些捉急，不过论恢复能力，用不死的小强来比喻一点也不为过。</p>
+<p class = "firstLineIndent">不过这种快速恢复的代价便是三人的脸色看上去比之前更为苍白，看上去比饿了好几天的难民好不到哪儿去。</p>
+<p class = "firstLineIndent">当睁开眼看到面前三个盯着他们的古怪战士，这些游击队员都是一惊。</p>
+<p class = "firstLineIndent">“你……你们究竟是什么人？”游击小队长有些艰难的坐起来，带着一丝警惕看着眼前三人。</p>
+<p class = "firstLineIndent">这些人拥有如此强悍的实力，只三个人居然就挑了一整支双子星的抓捕部队，但是他们却从未听说过自己文明内部有这样的人形兵器存在，实在是太可疑了。</p>
+<p class = "firstLineIndent">虽然对方和双子星似乎是敌对关系，但双子星人狡诈，说不定会利用这种方式借机打入他们游击队内部，不得不防！</p>
+<p class = "firstLineIndent">“我们是谁不重要，重要的是……我们救了你们一命！”老三居高临下看着他道。</p>
+<p class = "firstLineIndent">他用的是标准的卡拉文明通用语，不过通过头盔传出的声音却带着一丝金属音，听着像是翻译器的同声传译。</p>
+<p class = "firstLineIndent">三人刚反应过来想要表示一下感谢，对方后面的话就把他们的感谢堵回了肚子里。</p>
+<p class = "firstLineIndent">“在我们的家乡，救命之恩，一般都是以身相许！以身相许懂吗？”老三连说带比划着。</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">是翻译器的问题还是我的理解有问题？</p>
+<p class = "firstLineIndent">几名游击队不约而同惊恐地向后挪了挪屁股。</p>
+<p class = "firstLineIndent">“咳咳！以身相许就是身上有什么好东西，统统交出来的意思！”老大不得不抹着额头的黑线出来解释了一句。</p>
+<p class = "firstLineIndent">听到这个“正确解释”，三人同时松了口气。</p>
+<p class = "firstLineIndent">队长犹豫一下，从腰间取出一只金属试管，里面是翠绿色的透明液体。</p>
+<p class = "firstLineIndent">“感谢三位的救命之恩，这是我们仅有的生命补给液，如果说最有价值的东西，除了这个我们现在也拿不出更好的东西了。”</p>
+<p class = "firstLineIndent">老大接过来看了看，随后手指上突然伸出一根银针一样的东西，插入金属试管中汲取了少量液体。</p>
+<p class = "firstLineIndent">“解析完成，取得未知高能浓缩液样本，奖励1000点无限币！”</p>
+<p class = "firstLineIndent">“地图开荒好处就是多啊！”老大喜滋滋感慨了一句，然后随手将试管抛给了愕然的队长。</p>
+<p class = "firstLineIndent">这种新奇的物品，系统只会给出一次奖励，几人对此早就见怪不怪。</p>
+<p class = "firstLineIndent">见老大几人似乎对自己等人没有恶意，队长大着胆子将刚刚被抛回来的生命补给液试管插入手臂上的一个特殊凹槽。</p>
+<p class = "firstLineIndent">“滋~”试管内的液体肉眼可见的下降了一小截，而队长的脸色也迅速恢复红润，连殖装的修复速度都快了一截。</p>
+<p class = "firstLineIndent">接着，他又将生命补给液递给两个同伴，帮助他们恢复伤势和体力。</p>
+<p class = "firstLineIndent">轮番使用过后，试管内只剩下不到十分之一的残液，最后被脸色肉疼不已的队长小心翼翼收了起来。</p>
+<p class = "firstLineIndent">看样子，这伙游击队的日子的确是不好过。</p>
+<p class = "firstLineIndent">“接下来，我问你答！”见三人伤势没什么大碍，老大自然不会放过这个获取情报的机会，事实上，作为前哨部队，根据他们所获得的卡拉星情报，也会获得数量不等的奖励。</p>
+<p class = "firstLineIndent">“你们……想知道什么？”队长有些警惕，显然对三人的身份还有所疑虑，担心这些人是来刺探游击队情报的。</p>
+<p class = "firstLineIndent">“你们听说过魔剑吗？”</p>
+<p class = "firstLineIndent">魔剑？几人丈二和尚摸不着头脑。这伙人莫非骑士小说看多了出来寻宝？</p>
+<p class = "firstLineIndent">看三人茫然摇头的样子，老大几人却是有些迷糊。</p>
+<p class = "firstLineIndent">老板葫芦里卖的是什么药，怎么连当地人都不知道有这么个东西？</p>
+<p class = "firstLineIndent">“好吧，既然你们不知道，那就请你们稍微帮我们个忙吧……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">丛林中，6道幽灵一般的身影若隐若现，在高大的树木间快速跳跃移动，即便是最不便行军的丛林，他们也飚出了150公里的超高时速。</p>
+<p class = "firstLineIndent">秘银骑士不逊于殖装战士的丛林潜伏和超高敏捷再次让三名游击队员惊叹，这种人形装甲居然在赋予使用者强大战斗力的同时，还能兼顾隐匿和速度，似乎没有任何短板一般。</p>
+<p class = "firstLineIndent">他们同时庆幸，幸亏这些人不是卡拉文明的敌人，否则丛林将不再是自己的主场。</p>
+<p class = "firstLineIndent">现在他们基本可以排除对方是双子星文明间谍的可能性。</p>
+<p class = "firstLineIndent">因为对方想要让自己等人协助的事情也很简单，当个带路党而已！</p>
+<p class = "firstLineIndent">将三人带到指定的地点，他们便能离开！这就是双方的约定。</p>
+<p class = "firstLineIndent">这对己方来说根本不用冒任何风险，若他们真是双子星的间谍，绕这么大个圈子就为了顺利抵达指定地点？</p>
+<p class = "firstLineIndent">拜托，拥有制空权的双子星人，直接飞行就能瞬间搞定了好吗！</p>
+<p class = "firstLineIndent">这又不是唐僧取西经，你敢飞就直接判你输？</p>
+<p class = "firstLineIndent">“白龙马，蹄儿朝西，驮着唐三藏，跟着仨徒弟……什么妖魔鬼怪什么美女画皮……颠簸唐玄奘小跑仨兄弟……”老大边赶路边哼着小曲儿。</p>
+<p class = "firstLineIndent">隐藏任务虽然没有找到，不过他们却找到了任务的简单模式。</p>
+<p class = "firstLineIndent">在地头蛇的协助下，他们开启潜行模式绕开了双子星的大量巡逻部队，借由一条条隐蔽而又险恶的山道和峡谷，向着目的地快速进发。</p>
+<p class = "firstLineIndent">途中自然也遇到过卡拉人的游击队，不过见有自己人带队，虽然好奇那三个装扮古怪的铠甲战士身份，不过也都没有表现出敌意。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">2个小时后，众人成功抵达了地图中标记的魔剑所在地！</p>
+<p class = "firstLineIndent">出现在众人眼前的，是一株上百米高的参天巨树……</p>
+<p class = "firstLineIndent">“这里什么都没有，你们来这里做什么？”游击队队长看到三人的目的地后好奇问道。</p>
+<p class = "firstLineIndent">三人没有回答，而是比对着地图。“看样子，那把剑在地下。”</p>
+<p class = "firstLineIndent">“动手！”老大道。</p>
+<p class = "firstLineIndent">老三上前一步，一拳重重轰击在地面上。</p>
+<p class = "firstLineIndent">“轰！”肉眼不可见的震波扩散开去，声波迅速回馈到秘银骑士的耳部接收装置。</p>
+<p class = "firstLineIndent">“那里！”老三四处看了看，最终指向了眼前的巨树。</p>
+<p class = "firstLineIndent">那里……存在着一个巨大空洞！</p>
+<p class = "firstLineIndent">三人正打算走向巨树，突然，周围悄无声息出现了密密麻麻的上百位殖装战士，正充满警惕意味的盯着他们……</p>
+<p class = "firstLineIndent">“滴！支线任务发布：打倒眼前的所有敌对目标！（备注：不得致死！）”</p>
+<p class = "firstLineIndent">“呃……不得致死？这是唱哪出？”</p>
+<p class = "firstLineIndent">三人自然不明白，有种投名状，叫下马威……</p>
+
+<h2>第三百六十五章 剑刃风暴</h2>
+<p class = "firstLineIndent">“入侵者，说明你们的来意！”</p>
+<p class = "firstLineIndent">这伙殖装战士中走出一个首领模样的人，冷冷盯着几人，这人正是萝丝的侍卫长。</p>
+<p class = "firstLineIndent">“等……等等！入侵者？这里面一定有什么误会！”游击队长此时有些发懵，赶紧出来解释。</p>
+<p class = "firstLineIndent">和有些弱渣的游击队比起来，这批殖装战士各个气势非凡，明显个个都是强者。</p>
+<p class = "firstLineIndent">虽然身上没有任何身份标志，但之前本就是军人出身的游击队长自然能够看出，这些人一定是军中的百战精锐！</p>
+<p class = "firstLineIndent">这么多强者聚集在这里，那三个人到底来这里干什么？</p>
+<p class = "firstLineIndent">游击队长显然意识到自己已经卷入一个不得了的事件，然而……他的话完全被对峙的双方无视了。</p>
+<p class = "firstLineIndent">“我们来找一把魔剑，就在这里。”老大踩了踩脚下的土地，然后抬眼看向眼前的侍卫长。“所以说……你们就是它的守护兽么……”</p>
+<p class = "firstLineIndent">“嗯？！”听到魔剑两个字，侍卫长猛然瞪大眼珠。</p>
+<p class = "firstLineIndent">这些人……为什么会知道这个秘密？</p>
+<p class = "firstLineIndent">他心中顿时惊疑不定，莫非那把“魔剑”其实是双子星的定位器，他们是为了放长线钓大鱼？</p>
+<p class = "firstLineIndent">可是那份技术资料是怎么回事？只是为了取信我们？而且……只派了三个人过来，你们是有多自信？</p>
+<p class = "firstLineIndent">“你们为什么会知道……”侍卫长的问题还未说完，便被人打断了。</p>
+<p class = "firstLineIndent">“嘿嘿！这些对手看起来倒是有点意思，终于可以好好打一场了！不用废话，一起上吧！老大你们别动手，这场战斗交给我！”老三捏着拳头兴奋道。</p>
+<p class = "firstLineIndent">老大两人无所谓的点点头，往后退了两步。</p>
+<p class = "firstLineIndent">嚣张！太嚣张了！</p>
+<p class = "firstLineIndent">在场的殖装战士纷纷怒目而视，人人握住腰间的刀柄。</p>
+<p class = "firstLineIndent">“算了，不管你们的来意是什么，既然知道了这里，那就全部留下吧！一会儿，我会亲自审问你们来这里的目的！”侍卫长冷着脸挥了挥手。</p>
+<p class = "firstLineIndent">早就按耐不住的几名殖装战士立刻抽出刀刃扑了上去！</p>
+<p class = "firstLineIndent">然后……以更快的速度飞了回来……</p>
+<p class = "firstLineIndent">侍卫长慢慢瞪大了眼睛，眼中的银色身影几乎化为一道虚影，双拳闪电一般连续轰击。</p>
+<p class = "firstLineIndent">快！实在太快了！</p>
+<p class = "firstLineIndent">没有任何花俏的攻击，直拳！还是直拳！</p>
+<p class = "firstLineIndent">不管是刀光还是拳脚，统统被格挡，“叮叮叮！”“砰砰砰！”一连串的金属交击和肉体碰撞声过后，四五名殖装战士已经倒飞出去，在地上捂着伤处痛苦呻吟着，竟是瞬间失去了战斗力！</p>
+<p class = "firstLineIndent">“踏踏！”老三做了个拳击手的经典跳跃姿势，伸出手招了招，手背上一副黑色拳套闪过钻石一般的光泽。</p>
+<p class = "firstLineIndent">以变异的“重型机械虫”打造的超高密度拳套，一般的物理攻击，想要留个印都不容易。</p>
+<p class = "firstLineIndent">“大家注意，对方不是简单角色！速度很快，攻击很强！”侍卫长终于收起轻视，一脸凝重道，随后他抬起手，五指张开，随后猛地握拳。</p>
+<p class = "firstLineIndent">人群中的13名殖装战士对着侍卫长点点头，越众而出，“唰唰唰！”起落间，这十几道人影已经落在老三四周，从各个方位将他包围起来，就连天空中，都漂浮着3名殖装战士，虎视眈眈看着老三。</p>
+<p class = "firstLineIndent">地面上的10名殖装战士齐齐从腰间取出一个绿色圆球状的东西直接捏碎。</p>
+<p class = "firstLineIndent">下一刻，密密麻麻的藤条从他们的手心垂落，扎入泥土中迅速生长，很快，以他们为中心，这些外表泛着金属光泽的藤蔓迅速蔓延，互相缠绕，不久后周围便成为了藤蔓的海洋。</p>
+<p class = "firstLineIndent">“这……这是青萝藤！难道是青萝绞杀阵？！”游击队长对眼前的展开已经目瞪口呆。</p>
+<p class = "firstLineIndent">“队长，什么是青萝绞杀阵？”</p>
+<p class = "firstLineIndent">“我也没见过，不过听说是顶尖殖装战士才能施展的超强围攻战阵，据说只有王室……”游击队长说到这里猛然一惊，莫非……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">老三还是第一次碰上这样的攻击方式，虽然不知道接下来会发生什么，不过先离开这个包围圈肯定没错！</p>
+<p class = "firstLineIndent">他腿下一弹，冲向正前方的一名殖装战士。</p>
+<p class = "firstLineIndent">然而下一瞬间，无数藤蔓缠绕而上，老三面前迅速出现了一堵巨大藤墙，冲势不止的老三毫不犹豫就是一记重拳轰出。</p>
+<p class = "firstLineIndent">“砰！”有些沉闷的交击声。</p>
+<p class = "firstLineIndent">没有想象中藤蔓碎裂，汁液四溅的场面，那堵藤墙柔韧性惊人，除了拳劲中心断裂了数条藤蔓，而藤墙只是在巨力下出现一个巨大的凹陷。</p>
+<p class = "firstLineIndent">不仅如此，与老三接触的藤蔓还打蛇随棍上一般顺着老三的手臂就蔓延了上来。</p>
+<p class = "firstLineIndent">老三心中一惊，立刻收回手臂，用力扯断几根藤蔓，向后退了两步才惊讶的看向眼前这些殖装战士结成的藤蔓围杀阵。</p>
+<p class = "firstLineIndent">“嗯？”似乎感觉不对，老三低头看向自己的手臂。</p>
+<p class = "firstLineIndent">只见他手臂上残留的藤蔓在被扯断之后，竟然还能继续快速生长，沿着他的手臂渐渐向上蔓延，竟有将他捆缚的趋势。</p>
+<p class = "firstLineIndent">“唰！”老三将其再次扯下，这段藤蔓这才失去活性一般，迅速枯萎化为一堆灰褐色的腐烂物质脱落下来。</p>
+<p class = "firstLineIndent">好强的生命力！</p>
+<p class = "firstLineIndent">再看周围，十人布下的藤蔓正在迅速蔓延，已经形成了一个半成品囚笼。</p>
+<p class = "firstLineIndent">“有意思，不过天空中你们怎么防御？”老三说着，脚下一蹬冲天而起。</p>
+<p class = "firstLineIndent">然而，悬浮在半空中的3名殖装战士似乎早有所料，居高临下对准囚笼中心飞上高空的老三抬起手臂。</p>
+<p class = "firstLineIndent">“砰砰砰！”他们手臂上的怪异气孔中，发出一声声沉闷的声响，空气肉眼可见的扭曲了一下。</p>
+<p class = "firstLineIndent">老三只觉得上空一股巨力压了下来，“砰！”双脚轰然落地，竟是被轰回了快要完全成型的囚笼之中！</p>
+<p class = "firstLineIndent">“空气炮？！”旁观的老大两人有些惊讶的看着上空的3人。</p>
+<p class = "firstLineIndent">这种武器杀伤力完全不值一提，不过居然被对方用来当做控制技！</p>
+<p class = "firstLineIndent">“配合很默契啊！看样子这种藤蔓的防御力不弱，而且生命力匪夷所思，主要是数量太多了，被困住的话……除非能一次性攻破这个囚笼，否则只能做粽子了……”老大迅速分析着。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">老三被轰回囚笼中之后，便再也没有脱出的可能性，因为囚笼下一刻就飞速合拢，将他整个人囚禁其中。</p>
+<p class = "firstLineIndent">随后没等老三做出应对，数十条手臂粗细的藤蔓便从四面八方缠绕了过来……</p>
+<p class = "firstLineIndent">“真麻烦啊！”老三无奈叹了口气，这种缠绕攻击可以说将自己的攻击模式克的死死的。</p>
+<p class = "firstLineIndent">不过，真以为我只会用一双拳头？</p>
+<p class = "firstLineIndent">“无双模式……开启！”</p>
+<p class = "firstLineIndent">“唰唰唰！”老三控制的秘银骑士浑身各处关节纷纷弹出一把把蓝色光刃，瞬间让他成了一只刺猬！</p>
+<p class = "firstLineIndent">剑刃散发的高能高温，让空气都有些扭曲，秘银骑士各处的关节微微发亮，那时能量高度聚集产生的现象。</p>
+<p class = "firstLineIndent">“剑刃……风暴！”</p>
+<p class = "firstLineIndent">众人只听见眼前的藤蔓囚笼中传来这样的声音。</p>
+<p class = "firstLineIndent">“嘭！”无数藤蔓断裂，绿色汁液四溅，藤蔓囚笼被瞬间破开一个大洞，随后众人只见一个旋转的光球便带着无可睥睨的气势冲了出来，速度快到不可思议。</p>
+<p class = "firstLineIndent">“不好！快退！”侍卫长大喝道，可是已经晚了。</p>
+<p class = "firstLineIndent">两名殖装战士只是被擦了一个边，胸腹处便被开了两道长长的伤口，惨叫着跌飞开去。</p>
+<p class = "firstLineIndent">“轰！”剑刃组成的光球最终砸在远处一颗高大树木上，木屑横飞。</p>
+<p class = "firstLineIndent">片刻之后，老三带着一身赤红色高温，冒着烟雾缓缓走出，如同地狱的使者，就在老三俯身想要再次冲刺时……</p>
+<p class = "firstLineIndent">“都住手！”一个清脆声音响起，众人不禁望向声音传来的方向。</p>
+<p class = "firstLineIndent">“公主殿下！”</p>
+
+<h2>第三百六十六章 翻脸</h2>
+<p class = "firstLineIndent">腰挎长剑的绿发少女从那颗巨树中缓缓走出，目光在三名秘银骑士身上扫过，这种熟悉的感觉……</p>
+<p class = "firstLineIndent">“公……公主殿下？！”游击队的三人已经彻底懵了，见到少女后愣了半晌，这才满脸激动的单膝跪地行礼。</p>
+<p class = "firstLineIndent">卡拉文明王室素有威望，就算文明之战失败，但王室力战而亡，仅余萝丝公主一人幸免，因此至今，王室依然是所有反抗势力的精神领袖。</p>
+<p class = "firstLineIndent">“公主殿下，您不该冒险出现在这里。”侍卫长来到身前，始终面向看起来最有威胁的老三。</p>
+<p class = "firstLineIndent">与此同时，那些殖装战士们也立刻将萝丝护住，眼神警惕的看着老三，很显然，刚刚那一击给他们留下了十分深刻的印象。</p>
+<p class = "firstLineIndent">老三身上散发的光芒缓缓黯淡下来，身体各处的光刃也缩了回去，因为就在刚刚，他已经收到任务完成的提示。</p>
+<p class = "firstLineIndent">而那把所谓的魔剑，三人几乎是同时发现了，毕竟那剑的造型，完全就是鹤立鸡群般的存在！</p>
+<p class = "firstLineIndent">相比周围殖装战士身上平凡无奇的土鳖刀刃，它简直就是武器设计行业的一股清流……</p>
+<p class = "firstLineIndent">不得不说，老板依然是那样的恶趣味，巫妖王的霜之哀伤出现在卡拉星上，用脚趾头想都知道，这其中，一定隐藏着巨大的“阴谋”……</p>
+<p class = "firstLineIndent">“你们不是他的对手，更何况，他还手下留情了。”萝丝摆摆手道。</p>
+<p class = "firstLineIndent">刚刚那一击，若是再偏一些，那两名被擦到的战士就绝不是挨两记剑伤的下场。</p>
+<p class = "firstLineIndent">侍卫长神情变幻，不过也不得不承认，对方的战斗力比他们要高出太多，而且另外两人根本都还没出手。</p>
+<p class = "firstLineIndent">三人的这种行为虽然让他有种挫败感，不过至少，此刻双子星人的大部队没有前来围剿他们，就很能说明问题。</p>
+<p class = "firstLineIndent">“嘎嘎嘎！公主殿下，我花费大力气从异位面召唤来的究极召唤兽，实力如何？”</p>
+<p class = "firstLineIndent">在场众人有些茫然的环顾四周，什么人在说话？然后他们迅速锁定了声源，随后各个都是难以置信的张大了嘴巴，眼珠子都快从眼眶中突出来了。</p>
+<p class = "firstLineIndent">我是不是眼花了，那把剑在说话？！</p>
+<p class = "firstLineIndent">“嗯！确实如同你所说，一骑当千！”萝丝十分满意的点点头，心中却是火热。</p>
+<p class = "firstLineIndent">这个神秘的万物归一会果然强大，对方刚刚的表现，和自己遇见的那个阿尔萨斯如出一辙，似乎连力量体系都是同源，如果自己能够得到这种力量……</p>
+<p class = "firstLineIndent">“嘎嘎嘎！顾客的满意就是我们的追求，您满意就好，从今天起，他们就是您的专职保镖了，承惠！”魔剑剑柄上的人脸嘎嘎笑道。</p>
+<p class = "firstLineIndent">“嗯！放心，你要的东西，我决不食言！”萝丝说完扫了一眼老大三人，“你们随我来吧。”</p>
+<p class = "firstLineIndent">老大三人组傻傻的站在那里听着“一人一剑”的对话。</p>
+<p class = "firstLineIndent">看着萝丝走向树洞入口的背影，老三走到其余两人身边挠了挠头。“老大，那个‘从异位面召唤来的究极召唤兽’，不会是在说我们吧？”</p>
+<p class = "firstLineIndent">“这都是小细节，那个‘承惠’倒是让我比较在意啊……”二毛托着下巴道。</p>
+<p class = "firstLineIndent">老大：“……”</p>
+<p class = "firstLineIndent">很明显，他们是被无良老板卖了……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">三人跟随萝丝沿着长长的通道走向地下基地，身后是有些搞不清楚状况的一群王室侍卫。</p>
+<p class = "firstLineIndent">突然来了三个神秘的强大战士，然后公主殿下佩戴的古怪长剑突然开口说话，那三个战士就莫名其妙成了召唤兽，最后还成了公主殿下的专职保镖？</p>
+<p class = "firstLineIndent">今天一系列的超展开让他们的思维速度有些跟不上时代变化……</p>
+<p class = "firstLineIndent">比他们更加搞不清楚状况的，是侍卫们身后跟着的三名游击队，这三人表示我们真的只是出去打个酱油，根本没想到会卷入“魔剑、公主和三名召唤兽”的诡异故事情节中……</p>
+<p class = "firstLineIndent">侍卫长认为他们目睹了“不该目睹”的一幕，所以没有办法，他们只能暂时留在这处基地，当然，对三人来说，能为公主殿下效命，绝对是求之不得的事情。</p>
+<p class = "firstLineIndent">当众人通过一条长长的下行甬道之后，眼前豁然开朗。</p>
+<p class = "firstLineIndent">这是一个巨大无比的地下洞穴，一条仅容三人并行的笔直石桥连接山洞两侧，下方是深不见底的黑暗。</p>
+<p class = "firstLineIndent">随着众人走上石桥，洞内的视野更为清晰。</p>
+<p class = "firstLineIndent">“这……这是？！”老大三人缓缓睁大了眼睛，被眼前出现的一幕惊呆了。</p>
+<p class = "firstLineIndent">只见山洞崖壁上，一种散发金黄色微光的奇异菌类植物遍布其上，让整个山洞亮如黄昏。</p>
+<p class = "firstLineIndent">不过这不是让他们惊讶的地方，让他们瞳孔骤然收缩的，是通道两侧崖壁上，还生长着一条条像是树根根茎一般的叉状枝条。</p>
+<p class = "firstLineIndent">枝条上挂满的，是一个个囊泡一样的黑色果实，而那些半透明的枝条内，似乎还有翠绿色的液体在流动着，看上去就像是一条条输送管道。</p>
+<p class = "firstLineIndent">视野范围内密密麻麻的果实就有数千之数，而延伸向更远处看不到的黑暗中，不知还隐藏着多少的这样的果实。</p>
+<p class = "firstLineIndent">这整个山洞，看上去就像是一个果实培育基地。</p>
+<p class = "firstLineIndent">“这究竟是……”三人惊愕的看着眼前这一幕。</p>
+<p class = "firstLineIndent">“这是我们卡拉文明重新崛起的希望！”萝丝回答着，然后突然向着旁边的山崖踏空一步，几根崖壁上的枝条迅速组成一个阶梯平台，托着她缓缓升上高空。</p>
+<p class = "firstLineIndent">萝丝转过头微微一笑，她居高临下看着三人缓缓道，“也是我从你们那儿获得的力量之一！”</p>
+<p class = "firstLineIndent">看着渐渐远去的萝丝，和她语气中隐约的戏谑，老大突然觉得有些不对劲！</p>
+<p class = "firstLineIndent">他回头一看，本该跟在身后的王室护卫竟一个都不见了，而身后的通道入口正被大量的枝条缓缓封闭起来。</p>
+<p class = "firstLineIndent">“呃……老大，对方似乎想瓮中捉鳖诶。”老三看了看四周道。</p>
+<p class = "firstLineIndent">“这位……公主殿下，我们似乎是一伙儿的吧，你这是什么意思？”老大皱眉道。</p>
+<p class = "firstLineIndent">“呵呵！一伙儿的？当然，不过需要等我得到你们身上强大的秘密之后！</p>
+<p class = "firstLineIndent">你们真以为我会相信什么魔剑，什么召唤兽？我现在相信的，只有力量！</p>
+<p class = "firstLineIndent">我们只是合作关系，而且我不喜欢被人操控的感觉，所以，等我好好研究出你们身上的奥秘，再来谈合作吧！”萝丝脸色冷淡道。</p>
+<p class = "firstLineIndent">卧槽，被摆了一道！女人都是说翻脸就翻脸的吗？</p>
+<p class = "firstLineIndent">人与人之间基本的信任在哪里？还能不能一起愉快的打双子星这头小怪兽了？</p>
+<p class = "firstLineIndent">“咳咳！萝丝小姐，你这么不讲道义就让我有些难办了。</p>
+<p class = "firstLineIndent">不过……想切片我的召唤兽？你们卡拉人一直都这么天真的吗？</p>
+<p class = "firstLineIndent">不得不说，你们……真的不适合玩阴谋啊！”一直沉默的魔剑突然开口了。</p>
+
+<h2>第三百六十七章 通用技能</h2>
+<p class = "firstLineIndent">“怎么？你认为……我留不下他们？”萝丝微微皱眉，然后脚下轻轻一踏。</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”手臂粗细的枝条从崖壁的四面八方射出，却并不是对老大三人发动攻击，而是迅速结成了一道道纵横交错的密集绳网。</p>
+<p class = "firstLineIndent">老大几人没有任何惊慌，只是有些不明所以的看着这一幕。</p>
+<p class = "firstLineIndent">她这是想干嘛？就算这些枝条坚韧如钢索，也不可能困住他们啊？</p>
+<p class = "firstLineIndent">“嘭！”就在这时，什么东西破裂的声音吸引了他们的注意。</p>
+<p class = "firstLineIndent">转头看向身旁的山洞洞壁，只见离他们不远处的一个黑色囊泡突然破裂，一只枯瘦的黑色利爪从中猛地钻出！</p>
+<p class = "firstLineIndent">“呲啦！”一阵撕裂声过后，黑色囊泡被那只利爪彻底撕开，露出了一只蜷缩着的，浑身沾满绿色粘液的怪异生物。</p>
+<p class = "firstLineIndent">“嘶~”一声如同毒蛇吐信的细微嘶吼，那怪物猛地睁开了脸上的两对猩红眼眸。</p>
+<p class = "firstLineIndent">“嘭嘭嘭！”紧接着又是一连串的异响，周围越来越多囊泡破裂开来，缓缓钻出了一只只的四眼怪物。</p>
+<p class = "firstLineIndent">三人骇然看着这一幕，这里的整个巨大山洞，竟是一处怪物巢穴，而那一个个黑色果实一样的囊泡，正是一个个的生化培养舱！</p>
+<p class = "firstLineIndent">即便是在自家老板手下神经越发大条的三人组，也不由为这种惊悚片场中才会出现的场景震惊到了。</p>
+<p class = "firstLineIndent">密密麻麻数千的怪物如同被刺激了一般纷纷苏醒，看的老大三人头皮有些发麻。</p>
+<p class = "firstLineIndent">“啪！”一只怪物跌落在石桥上，正好落在三人的面前不远。</p>
+<p class = "firstLineIndent">四肢着地的古怪生物一边缓缓舒展身体，一边抬头看向三人，那猩红眼眸中的，是冰冷的杀意。</p>
+<p class = "firstLineIndent">泛着金属光泽的大面积外骨骼，黑色的皮肤看上去十分坚韧，还有长长的尾刃和利爪和锋利的犬齿……</p>
+<p class = "firstLineIndent">“呃……这东西看起来很眼熟啊！”二毛仔细打量这种怪物。</p>
+<p class = "firstLineIndent">除了多出一对眼睛，体型也缩小了一号外，这种怪物有80左右的生理结构和双子星的猎犬十分吻合！</p>
+<p class = "firstLineIndent">不过相比猎犬，这种生物给三人一种更加短小精悍的感觉，眼中虽然依旧充满杀戮欲望，但眼神更为灵动，竟然像是一苏醒便拥有不低的智慧一般！</p>
+<p class = "firstLineIndent">“猎手！这是它们的新名字！”萝丝带着一丝复杂的眼神看着脚下越来越多的怪物们。</p>
+<p class = "firstLineIndent">这种杀戮机器，从来不是卡拉人一贯追求的生物美学，但……残酷的宇宙生存法则告诉萝丝，力量，才应该是这个宇宙的终极真理！</p>
+<p class = "firstLineIndent">数以千计的“猎手”或是壁虎般攀爬，或是狸猫般跳跃，有些甚至倒挂在枝条上，纵横交错的枝条，成为它们四通八达的坦途，很快老大三人眼前便都是这种怪物的身影。</p>
+<p class = "firstLineIndent">这些“猎手”并未立刻发动攻击，而是如同在等待命令一般，只是死死盯着三人。</p>
+<p class = "firstLineIndent">“哼！这种东西，再来多少也都是炮灰！以为用它们就能对付我们？”老三十分不屑道。</p>
+<p class = "firstLineIndent">对于猎犬这种生物，三人都不陌生，周动的猎犬研究项目经常需要做一些战斗测试，他们自然不会缺席。</p>
+<p class = "firstLineIndent">这种生物兵器对付一般的标准版制式机器人可能还有威胁，但对秘银骑士，呵呵……</p>
+<p class = "firstLineIndent">“我承认你们很强，但是面对战斗强化型的猎手，你们能对付多少？一千？还是两千？一万？还是两万？</p>
+<p class = "firstLineIndent">哪怕是耗，它们也能耗死你们！</p>
+<p class = "firstLineIndent">在地面你们或许还有机会逃离，但是这里……是我的主场！”</p>
+<p class = "firstLineIndent">萝丝说着挥挥手，无数的枝条同样舞动着靠近，大有一言不合便将老大三人淹没的架势。</p>
+<p class = "firstLineIndent">她之所以选择将三人引到这里动手，一是因为担心对方从空中逃脱，同时也是担心动静太大，引来双子星的注意。</p>
+<p class = "firstLineIndent">而这里就是完美的伏击场所，哪怕三人同时开“无双”，也别想从这里逃出去！</p>
+<p class = "firstLineIndent">其实一开始当“魔剑”主动提出安排三名实力强大的战士过来，保证“卡拉文明反抗军领袖”安全时，萝丝公主并未想过这么早就和万物归一会翻脸。</p>
+<p class = "firstLineIndent">即便她心中十分清楚，自己就是万物归一会用来牵制双子星的棋子！</p>
+<p class = "firstLineIndent">双方的合作才刚刚开始，对方还提供了猎犬的全套技术给自己，显得也是诚意满满，怎么看现在闹翻对卡拉文明一点好处都没有。</p>
+<p class = "firstLineIndent">不过好死不死，这三个“召唤兽”勾起了萝丝对那个魔神一般的“阿尔萨斯”惨痛的回忆……</p>
+<p class = "firstLineIndent">聂云先前给萝丝留下的印象实在是太过深刻，那样一个单靠肉体就能完败她的男人，在她心中称之为魔神也不为过。</p>
+<p class = "firstLineIndent">而在老大三人身上，她感觉到了淡淡的熟悉味道……</p>
+<p class = "firstLineIndent">从某种意义上，萝丝的直觉真的是相当可怕！</p>
+<p class = "firstLineIndent">机械虫是聂云最大的秘密和底牌，而秘银骑士的身上，也的确存在着强大的“终极奥秘”！</p>
+<p class = "firstLineIndent">所以，心中对力量的渴望让萝丝再也按耐不住，最终选择了铤而走险！</p>
+<p class = "firstLineIndent">以卡拉文明的生物科技，只要让萝丝得到三人身上强大的奥秘，那么就算是双子星又算得了什么？</p>
+<p class = "firstLineIndent">在这种巨大的诱惑下，就算双方撕破脸，她也要先将这种力量的秘密弄到手！</p>
+<p class = "firstLineIndent">至于事后会不会受到万物归一会的报复……生米都煮成熟饭了，大不了在双子星之外，再多出个不死不休的敌人，光脚的自然不怕穿鞋的！</p>
+<p class = "firstLineIndent">“嘿嘿！卡拉文明的生物科技果然名不虚传，这种大规模培育的生化兵器都能够控制的如臂使指！不过……没用的，就算你有十万的猎手部队，也不可能抓住他们。”魔剑，或者说聂云嘿嘿笑道。</p>
+<p class = "firstLineIndent">对于卡拉文明能够在这么短时间内彻底消化猎犬的制造科技，并且取长补短做出优化调整，聂云也是相当惊讶。</p>
+<p class = "firstLineIndent">然后在知晓了这种新的“猎手”的部分数据参数之后，聂云便果断决定加大对卡拉文明的投资，单是这项技术，就值得聂云将卡拉文明的价值提升为五星级！</p>
+<p class = "firstLineIndent">因此在没有榨干卡拉文明的剩余价值之前，聂云必须好好保护这些卡拉文明最后的种子。</p>
+<p class = "firstLineIndent">而派出正在对卡拉星实地考察的老大三人组前来做专职保镖，也是考虑到萝丝身边缺少强大的护卫力量。</p>
+<p class = "firstLineIndent">双子星的搜捕可不是闹着玩的，无孔不入的科技手段光靠那些半吊子刺客的殖装战士，根本就防不住好么！</p>
+<p class = "firstLineIndent">他原本想让三人露一手，提高一下三人的保镖地位，顺便展示一下万物归一会的强大实力，方便之后双方的“合作共赢”，可没想到一下做过头，居然让萝丝动了做“召唤兽切片”的邪恶念头……</p>
+<p class = "firstLineIndent">所以说，过犹不及，古人诚不欺我！</p>
+<p class = "firstLineIndent">不过……机械虫这种终极机密，聂云又怎么会毫无防备的就展示在卡拉文明面前？</p>
+<p class = "firstLineIndent">就算是临时盟友，但非我族类，其心必异，聂云可能一点后手都不做？</p>
+<p class = "firstLineIndent">“嗯？你什么意思？”萝丝皱眉。</p>
+<p class = "firstLineIndent">这种环境和包围圈，就算插上翅膀，他们也绝对飞不出去吧？</p>
+<p class = "firstLineIndent">“嘿嘿！你可能还不清楚，像他们这种召唤兽，都有一个固有的通用技能！”魔剑嘿嘿笑道。</p>
+<p class = "firstLineIndent">固有的……通用技能？</p>
+<p class = "firstLineIndent">萝丝有些迷糊了，总不至于真是破开空间返回异世界吧？</p>
+<p class = "firstLineIndent">老大闻言无奈扶额，他已经隐约猜到其中的意思了……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“在木卫四保卫战中，这种基础型号的小型机器人发挥了不可替代的重要作用，为抵御双子星文明的入侵做出了不可磨灭的重要贡献！</p>
+<p class = "firstLineIndent">那么现在，哪位小朋友能够告诉我，这种机器人最基础的通用能力是什么吗？”</p>
+<p class = "firstLineIndent">地球上，一位小学教师正拿着一副小型机器人的彩图对班上的同学进行科普教育。</p>
+<p class = "firstLineIndent">“老师老师我知道！”一位粉嘟嘟的小胖纸高高举起手臂兴奋喊道。</p>
+<p class = "firstLineIndent">“好，小明，就由你来回答！”</p>
+<p class = "firstLineIndent">“是自爆！”</p>
+<p class = "firstLineIndent">“啪啪啪……”班上响起热烈的掌声……</p>
+
+<h2>第三百六十八章 远方表亲</h2>
+<p class = "firstLineIndent">石洞内的石桥上，一行人已经重新上路，不过队伍内的气氛却有些微妙……</p>
+<p class = "firstLineIndent">“唉！所以说，大家好好合作不好吗？友谊的小船说翻就翻，这么一闹，以后我们同事之间的感情还怎么培养，见了面得多尴尬啊！”老三熟络的搂着一只“猎手”的肩膀边走边叹息道。</p>
+<p class = "firstLineIndent">说完还转头对身边那只满脸不情愿的猎手咧嘴笑了笑，“你说是吧？”</p>
+<p class = "firstLineIndent">被这么自来熟的“同事”搂着，那只猎手猩红的眼中满是杀气，可似乎像是强行被压制住攻击能力一般，张了张满是獠牙的大嘴，最终还是没有咬下去。</p>
+<p class = "firstLineIndent">队伍中这只新加入的可怜猎手倒不是不想逃离，只是被老三搂住的肩膀就像是被老虎钳牢牢钳住，几次用尽力气想要挣脱，却毫无作用，整个身体几乎就是被强制性拖着往前走的。</p>
+<p class = "firstLineIndent">走在前方的萝丝公主闻言脚步踉跄了一下，饱满的胸脯剧烈起伏着，拳头几乎都捏白了，可最终却是只能低头装作没听到。</p>
+<p class = "firstLineIndent">没办法，形势比人强！原本对自己率先撕毁契约还有所愧疚的公主殿下，此刻已经感受到了来自星空之外的深深恶意……</p>
+<p class = "firstLineIndent">万物归一会即便在双子星内部，也绝对是个无比邪恶的反派组织，这点萝丝早已有所了解，但她现在觉得自己还是高估了这个组织的下限。</p>
+<p class = "firstLineIndent">居然在给自己送来的保镖身上安装超级自爆装置！？</p>
+<p class = "firstLineIndent">居然还有脸说什么友谊的小船说翻就翻，你丫倒是先上了船再提翻不翻的问题啊魂淡！</p>
+<p class = "firstLineIndent">幽灵船长出品，必属自爆精品！</p>
+<p class = "firstLineIndent">这个地球人都知道的常识让萝丝的铤而走险变成了彻头彻尾的一场闹剧。</p>
+<p class = "firstLineIndent">此刻得知三枚当量绝对能轰平小半个卡拉星的人形自走炸弹就跟在队伍中，哪怕是生死看淡的萝丝，都是起了一身的白毛汗！</p>
+<p class = "firstLineIndent">其实就连老大三人组，也是才从“魔剑”口中知道自己体内的“保险措施”居然如此丧心病狂！</p>
+<p class = "firstLineIndent">只需要几个简单的能量线路变换桥接，秘银骑士内部的能源系统便会发生“能量短路”现象，然后核心能源部件就会从他们体内的能源水晶中暴力抽取海量的能量，最终形成威力不下于核弹的超级大爆炸！</p>
+<p class = "firstLineIndent">这是聂云的“能源水晶科技专项攻关小组”的最新科研成果，为此，月球上的一座研发基地被彻底抹去，十六学士再次“集体阵亡”，造成经济损失若干……</p>
+<p class = "firstLineIndent">因为这次事故，现在能源水晶有关的所有科研项目已经被搬迁到了新建的冥王星基地内。</p>
+<p class = "firstLineIndent">据说那帮在作死道路上不断找到真理的科学家们正在酝酿“冥王计划”，目标直指爆炸的终极奥义……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">事实上，如果只是为了保护机械虫的“知识产权”，倒也不需要这么大当量的“艺术品”，只需要一个小规模爆炸掩护，外加聂云的自毁指令，这些机械虫就能自我湮灭。</p>
+<p class = "firstLineIndent">之所以加了料，其实是聂云的一招后手。</p>
+<p class = "firstLineIndent">即便有自己的暗中支持，目前卡拉文明和双子星的实力差距也实在是太过巨大，而且卡拉文明还丧失了最重要的行星轨道控制权。</p>
+<p class = "firstLineIndent">三人组只能够确保常规地面武装的搜捕，但一旦双子星发狠使用大威力武器，单凭三名秘银骑士是绝对无法抵抗的，保不准过两天就有一发从天而降的钨芯棒将萝丝等人彻底毁灭！</p>
+<p class = "firstLineIndent">而这三枚超级炸弹，就是聂云的pn b。</p>
+<p class = "firstLineIndent">假如卡拉文明最后的抵抗力量被双子星消灭，那么毫无疑问，双子星文明会立刻启动大规模移民，将卡拉星变成向外扩张的后勤基地，这里的军事力量也必然会有一个大幅度的上升！</p>
+<p class = "firstLineIndent">而拥有卡拉星这个跳板，太阳系将立刻成为双子星下一个重点关注对象，这是聂云所不愿意看到的。</p>
+<p class = "firstLineIndent">但是如果卡拉文明在最后的抵抗中启动了同归于尽的自杀式反击，将卡拉星弄成“重度伤残”，最好是炸回海啸不断，全球性火山喷发的洪荒时代，那至少双子星得先头痛星球治理，无法将所有精力放在攻打太阳系虫洞上。</p>
+<p class = "firstLineIndent">抛开给双子星添堵的原因，这三枚超级炸弹，同时也是聂云为卡拉文明彻底消亡所准备的“送葬烟花”，用来祭奠一个死去的辉煌文明……</p>
+<p class = "firstLineIndent">用闪耀星空的光和热，留下一个文明曾经来过的足迹，聂云觉得这绝对是宇宙级的浪漫仪式，当然，萝丝是绝对不会对此表示感谢的……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“侍卫长阁下，那把会说话的魔剑是王室珍藏的秘宝吗？</p>
+<p class = "firstLineIndent">还有，那三个到底是什么人啊？为什么你们一开始要打，公主殿下却说不打，然后公主殿下又改变主意要打，可最后突然却又不打了，这到底是怎么回事啊？”</p>
+<p class = "firstLineIndent">有些自来熟的游击队长跟在队伍后，不停的对着侍卫长提问。</p>
+<p class = "firstLineIndent">可侍卫长自己都有些搞不清楚事情的神发展，哪里有心情去给他解惑，翻了个白眼懒得理他。</p>
+<p class = "firstLineIndent">“对了对了，那些古怪生物是我们刚刚新研发的生物兵器吗？看上去很危险的样子啊！它们能够对抗双子星人吗？</p>
+<p class = "firstLineIndent">哦我想起来了，我们游击队分部刚刚被要求秘密种植的那种新植物，是和这种生物武器有关吗……”</p>
+<p class = "firstLineIndent">喋喋不休的好奇宝宝终于引起了侍卫长的愤怒，一个杀气凛然的眼镖之后，游击队长很果断怂巴巴的闭嘴了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">队伍中，老三依然拉着那只猎手在唠嗑增进“同事感情”。</p>
+<p class = "firstLineIndent">“嘿兄弟，你肯定不相信，我曾经见过你的远方表亲，你们两可真像，虽然一样长得比较抽象，不过你看起来比你表亲要聪明多了。</p>
+<p class = "firstLineIndent">对了，你知道1加1等于几吗？”</p>
+<p class = "firstLineIndent">猎手：“……”</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">萝丝转过身，面无表情的指着前方石桥尽头的洞口，“几位，这里就是我们的基地，里面有大量的仪器设备，猎手虽然拥有一定智慧，但为了安全起见最好不要带进去！”</p>
+<p class = "firstLineIndent">“哦，理解理解！”老三点头说着，终于放开搂在猎手肩膀上的手，松开了快要崩溃的这只倒霉蛋。</p>
+<p class = "firstLineIndent">它一被放开，几乎是逃一般窜入石桥下方，飞速消失在黑暗中。</p>
+<p class = "firstLineIndent">然而谁也没有发现，老三手心处，一根细小的银针正缓缓回收，针头上，一丝猎犬的血液发出微微的莹光……</p>
+<p class = "firstLineIndent">猎手的基因样本……到手！</p>
+<p class = "firstLineIndent">不久后，侍卫长带着三个“新员工”熟悉这里的环境，而萝丝则单独来到一间石室内。</p>
+<p class = "firstLineIndent">“这是猎手的全套科技资料，按照我们的约定，它现在是你的了！”萝丝解下了腰间的魔剑放在桌上，随后拿出一个手指长短的圆柱形金属物体放在旁边。</p>
+<p class = "firstLineIndent">“嘿嘿！很好，虽然刚刚发生了一些不愉快，不过这对我们来说都是小事，还是那句话，等价交换是我们交易的基本准则！</p>
+<p class = "firstLineIndent">只要你遵守这个交易准则，我们的合作就能长久的进行下去！”魔剑嘿嘿笑道，这话倒是让萝丝微微松了口气。</p>
+<p class = "firstLineIndent">说完，剑柄上的人脸眼中红光一闪，在萝丝惊愕的目光中，桌上的金属存储器突兀的浮上半空，然后准确落入剑柄人脸的口中。</p>
+<p class = "firstLineIndent">“吭哧吭哧！”圆柱形的存储器一截一截的被吃下去，直至最后整个被吞下，剑柄上却看不出任何异样。</p>
+<p class = "firstLineIndent">利用刚刚研究出来的磁场精确操控技术装了一波的聂云，立刻查看被吞噬的猎手资料，迅速比对了刚刚获得的猎手生物基因序列，聂云基本可以确认这份资料并非造假。</p>
+<p class = "firstLineIndent">一旁的萝丝目瞪口呆的打量桌上的魔剑。</p>
+<p class = "firstLineIndent">吃……吃了？！</p>
+<p class = "firstLineIndent">它居然把科技资料吃了？！</p>
+<p class = "firstLineIndent">不应该是出现个端口读取数据吗？你这是干嘛？</p>
+<p class = "firstLineIndent">萝丝原本以为这把剑只是一把高科技造物，可现在看起来，这把剑的科技含量……特么有些看不太懂啊！</p>
+
+<h2>第三百六十九章 女王</h2>
+<p class = "firstLineIndent">回想起阿尔萨斯召唤这把“魔剑”时那诡异的出场方式，以及拥有的高级智能，还有如今神奇的吞噬能力，无神论者萝丝的坚定信念也不由有些动摇。</p>
+<p class = "firstLineIndent">莫非世界上真的存在某种“超自然力量”？</p>
+<p class = "firstLineIndent">而此时，快要将异文明公主忽悠瘸的聂云，正全力消化刚刚获得的“猎手”科技资料……</p>
+<p class = "firstLineIndent">双子星生物兵器“猎犬”的几项关键技术，基本已经被周动等一干科学家解析出来。</p>
+<p class = "firstLineIndent">猎犬本身的基因改造和战斗能力自不必说，还有一个关键技术便是兵器操控技术！</p>
+<p class = "firstLineIndent">作为受双子星驱使的生物兵器，猎犬的大脑中拥有蝙蝠一样的声波定位系统，这套系统不仅对移动的动态目标有着惊人的灵敏感应，而且还能够接收外来的特定声波，下达一些简单指令，这也是双子星控制猎犬的模式之一。</p>
+<p class = "firstLineIndent">这种操控模式适用于现场指挥，原理类似训练海豚时用到的超声波哨子。</p>
+<p class = "firstLineIndent">但是声波指令容易被敌方窃听破译，并受到干扰，因此双子星开发了猎犬的第二种控制模式，那便是在猎犬的培育过程中，通过特定的记忆强化手段，直接对其大脑下达特定的“基础预设指令”。</p>
+<p class = "firstLineIndent">例如“不得攻击双子星人及其武装力量”，“消灭眼前所有的非友军单位”，“指定敌对目标相应特征”等基础预设指令。</p>
+<p class = "firstLineIndent">在这样的基础指令打底，就算敌人破译了第一种控制模式，顶多也就是让猎犬的临场指挥出现些许混乱，但绝不可能被敌人反过来操控猎犬。</p>
+<p class = "firstLineIndent">而临场指挥对于以偷袭、混战和无脑一波流为主要作战方式的猎犬而言，有没有基本没差。</p>
+<p class = "firstLineIndent">总的来说，“猎犬”作为一款被快速催熟的生物兵器，虽然受限于智力和实力，只能对其下单一些简单指令，因此在双子星手中只能算得上一款比较成熟的生物兵器炮灰。</p>
+<p class = "firstLineIndent">但在地面战场中这种灵活性极强，又不易被发现的兵种，若是用于潜伏、骚扰，深入敌后却有不小的作用。</p>
+<p class = "firstLineIndent">而现在，这种只能用来搞搞偷袭的炮灰技术到了卡拉文明手中，几乎可以说就是获得了脱胎换骨的进化！</p>
+<p class = "firstLineIndent">猎犬技术对卡拉文明来说，最宝贵的不是它的培育技术，或者是操控技术，而是珍贵的生物基因样本！</p>
+<p class = "firstLineIndent">一份强大生物的基因样本，对于一个生物科技文明来说，其作用不亚于一次工业革命！</p>
+<p class = "firstLineIndent">双子星从蛮荒星球获得的这种食物链顶端的杀戮机器，拥有无数岁月优胜劣汰保存下来的杀戮基因，这才是卡拉文明眼中的无价之宝！</p>
+<p class = "firstLineIndent">经过聂云的分析，卡拉文明获得猎犬的全套资料后，对这种生物兵器做了几项关键性的优化改造。</p>
+<p class = "firstLineIndent">首先，除了保留猎犬的声波定位系统外，还增强了它的视觉系统，两对眼睛中增加的那对是截取了卡拉星特有生物“深空之眼”的部分基因改造而成的强化侦查眼。</p>
+<p class = "firstLineIndent">深空之眼是卡拉文明花费近百年时间不断优化改造的一种用于探索宇宙的神奇生物，其作用类似地球上的天文观测基站。</p>
+<p class = "firstLineIndent">“猎手”身上的这对眼睛虽然没有原版那种“深空凝视”的逆天能力，但猎犬的侦查能力也得到了极大的强化，就算是2公里外的一只蚊子都逃不出这双眼睛的围观。</p>
+<p class = "firstLineIndent">另外，在猎手的培育过程中，卡拉文明也是下足了功夫，不仅采用了更为先进的生命激素培养液，培育过程更为温和，使得猎手的寿命大大延长，而且还应用了具有卡拉文明特色的“胎教”培育体系。</p>
+<p class = "firstLineIndent">卡拉文明的生物科技虽然进攻性不强，但生活类技能却点到了极高的地步，比如……种族中的幼儿从娘胎里便需要接受“胎教”。</p>
+<p class = "firstLineIndent">这种“胎教”是通过一种比较粗浅的感官共享科技，将特定的画面和基础知识，在幼体的大脑成型之后进行循环播放。</p>
+<p class = "firstLineIndent">这种技术不仅能够刺激幼体的大脑活动，优化大脑的成型过程，同时也能起到让幼体提前接受部分基础教育的作用，是一种十分先进的“产前义务教育”。</p>
+<p class = "firstLineIndent">虽然还没有达到聂云全脑域神经链接的水准，但卡拉文明对神经系统的研究，已经走在了双子星前面。</p>
+<p class = "firstLineIndent">而作为生物兵器，萝丝给猎手们做的胎教自然不会是“睦邻友好”“世界和平”之类的圣母宣言。</p>
+<p class = "firstLineIndent">通过这种“洗脑”模式培育出来的猎手，不仅智慧更高，而且已经被树立了“卡拉文明式三观”，绝对指哪儿打哪儿不含糊，看到双子星人就上去怼的那种死忠。</p>
+<p class = "firstLineIndent">如果说上面两个改造分别加强了侦查感知和智力属性，那么最后一个改造则是全面强化了它的战斗力！</p>
+<p class = "firstLineIndent">因为卡拉文明十分大胆的将“殖装技术”作为插件，应用到了猎手系列的培育中……</p>
+<p class = "firstLineIndent">殖装需要强大的生命体质，越是强大的生物个体，越能够发挥殖装的威力。</p>
+<p class = "firstLineIndent">不仅如此，殖装消耗的是装备者的生命力，没有特殊的补充方式，装备者的细胞就会迅速衰老死亡！</p>
+<p class = "firstLineIndent">这两种特性原本是殖装技术的巨大限制，但如果用在猎手这种消耗品身上……</p>
+<p class = "firstLineIndent">“还真是小瞧了卡拉文明，这样的组合想想就很凶残，简直就是一场超级进化！而且……关键是这种培育规模和数量……”聂云啧啧赞叹着，看向窗外红绿双色的卡拉星。</p>
+<p class = "firstLineIndent">生物兵器终究是生物兵器，想要在威力上超过科技造物，至少卡拉文明现阶段还没有那样的能力。</p>
+<p class = "firstLineIndent">所谓质不够，量来凑！生物文明，果然数量才是王道啊！</p>
+<p class = "firstLineIndent">聂云已经得知，萝丝不仅在自己的秘密基地内大肆培育这种新型的生物兵器，而且还通过隐秘的渠道，将培育种子传播开去，各个卡拉人的残余势力和游击队已经开始种植山洞中那种特殊的培育植物。</p>
+<p class = "firstLineIndent">“种田”，绝对属于卡拉文明的种族强项！</p>
+<p class = "firstLineIndent">与这些种子配套的，还有关键的“洗脑”教材，也都发送到各个培育基地中，在这份教材中，萝丝公主将作为所有“猎手”的最高领袖，深深刻入它们的记忆深处！</p>
+<p class = "firstLineIndent">而萝丝也摒弃了自己原本的公主封号，新晋封号……卡拉文明“女王”！</p>
+
+
+
+</br></br>
+<a href="350.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="370.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

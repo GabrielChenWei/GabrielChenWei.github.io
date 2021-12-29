@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第二百三十章 鞠躬</h2>
+<p class = "firstLineIndent">与天地同寿？！</p>
+<p class = "firstLineIndent">于老瞪大眼睛看着聂云，说实话，他有点被聂云的话吓到了，尽管知道聂云拥有的生命科技神乎其技，不过这个回答依然让他震惊莫名。</p>
+<p class = "firstLineIndent">这段时间，于老的内心其实也是十分纠结的。</p>
+<p class = "firstLineIndent">随着聂云一步步向他展露自己的实力，不仅各种超级科技层出不穷，就连外太空的布局都已经进入了一种让他看不懂的地步。</p>
+<p class = "firstLineIndent">“地球—地球轨道—月球”三个基地犹如三把利剑，牢牢钉住了地月系的控制权，可以说二十年以内，世界上没有任何一个国家能够挑战聂云在地月系的霸权！而以聂云远超地球的发展速度，这个时间还会拉长到让人绝望！</p>
+<p class = "firstLineIndent">地球上的国家或许还不清楚，但是人老成精的于老又怎么看不出来，聂云如今已经是地球当之无愧的无冕之王！</p>
+<p class = "firstLineIndent">更不用提，聂云的触手甚至已经伸向太阳系内的各大行星，正如同他所说，一个地球显然已经承载不下他的野心。</p>
+<p class = "firstLineIndent">而更让于老心惊的，不是聂云的科技和势力，而是已经成为地球霸主的sos组织内部的核心成员数量！</p>
+<p class = "firstLineIndent">幽灵船长、三名幽灵骑士，哦对了，还有一只吉祥物小章鱼……</p>
+<p class = "firstLineIndent">嗯，加上吉祥物正好一只手能数的过来，这是真正字面意思的只手遮天……</p>
+<p class = "firstLineIndent">成员数量都凑不出一只篮球队的世界级超级组织，这尼妹谁能信？</p>
+<p class = "firstLineIndent">有时候，成员数量少可并不代表实力弱！</p>
+<p class = "firstLineIndent">权利集中在少数人手中，代表更强的组织性和凝聚力，在实力相同的情况下，一个帝制国家和一个联邦制国家开片，赢的大概率是帝制国家！</p>
+<p class = "firstLineIndent">而作为聂云一言堂的sos，这实施的不用问，肯定是绝对“帝制”啊！</p>
+<p class = "firstLineIndent">更不用说，聂云还拥有智脑这种超级副手，可以说，只要智脑代号不搞什么人工智能叛乱，聂云对sos组织的掌控力是惊人的100！</p>
+<p class = "firstLineIndent">（对此，代号表示，臣妾做不到的……）</p>
+<p class = "firstLineIndent">然而，一个帝国就算再强，也并不可怕，汉唐盛世、罗马帝国，总有盛极而衰的时候，但这个帝国如果拥有一个永恒生命的帝王……那么就不是可怕可以形容的了……</p>
+<p class = "firstLineIndent">“好了，我没有问题了，随时可以进行芯片植入！”于老深吸了口气道。</p>
+<p class = "firstLineIndent">“哦，你这么相信我，不怕我骗你？”聂云笑眯眯做最后确认。</p>
+<p class = "firstLineIndent">对于于老看似毫不相干的3个问题，聂云也是赞叹不已，果然姜是老的辣，每一个问题基本都直指核心，他甚至都没有问过自己对种花家的态度！</p>
+<p class = "firstLineIndent">“我相信自己看人的眼光！”于老也笑道。</p>
+<p class = "firstLineIndent">“哦？这是我的荣幸！那么……请坐！”聂云满意地点点头，然后起身做了个请的手势。</p>
+<p class = "firstLineIndent">于老有些不明所以，不是应该带我去间手术室，至少有个治疗舱什么的吧？</p>
+<p class = "firstLineIndent">依言坐到了老板椅上，就见聂云笑着打了个响指，“那么，手术愉快！”</p>
+<p class = "firstLineIndent">一枚银色的探针刺入了于老的后脑，切断了他的控制神经，于老当即瞪大眼睛失去了对身体的控制权。</p>
+<p class = "firstLineIndent">不久后，于老就体会到了那种被人掀开头盖骨，然后有人拿着一台小电风扇在你大脑皮层上不停吹的惊悚感……</p>
+<p class = "firstLineIndent">尼妹！这手术一点也不愉快啊魂淡！</p>
+<p class = "firstLineIndent">室内似乎传来于老来自灵魂的呐喊……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海狼号，无重力实验室，两台小型机器人推门走了进来。</p>
+<p class = "firstLineIndent">这里虽然没有重力，但是这里的小型机器人都在内部安装了类似“磁力腰带”的模拟重力装置，这样就不用漂着进行无重力实验，给操作者带来很大便利。</p>
+<p class = "firstLineIndent">顺带一提，这个建议还是由一帮科学家们提出，随后被聂云采纳，这些原本被聂云忽略的小细节，正在被完善！</p>
+<p class = "firstLineIndent">而他对科学家们的投资，正在收到回报……</p>
+<p class = "firstLineIndent">“小型无重力冶炼炉，唔……是放在b4区域，3号材料和4号材料的熔炼实验要做三组，去2耗材区拿5份材料过来，操作流程和具体材料配比就按照我发给你的来，等实验结束把数据记录发给我！”其中一台小型机器人一边看着眼前浮现的数据光屏，不停写写画画，一边对身边的机器人道，而传出的正是梁光的声音。</p>
+<p class = "firstLineIndent">“收到，预计实验完成时间9小时零7分！</p>
+<p class = "firstLineIndent">另外，教授，刚刚收到消息，30分钟后，周动教授的机器人仿生课题讨论将在2号会议室进行，他请您过去参与动力系统的细节讨论！</p>
+<p class = "firstLineIndent">根据您今天的行程安排，将有40分钟的时间参与讨论，请问是否参加？”他身边的科研辅助型机器人眼睛闪了闪道。</p>
+<p class = "firstLineIndent">“好，告诉老周，我会去的！”梁光点点头。</p>
+<p class = "firstLineIndent">“是，回复已发送！”</p>
+<p class = "firstLineIndent">梁光不由得看了眼身边的这台助手，心中感叹……智能似乎又升级了！明明前不久还有些呆板的感觉，可现在……细思极恐啊！</p>
+<p class = "firstLineIndent">和它比起来，自己以前的那两名助手简直……唉！货比货得扔！</p>
+<p class = "firstLineIndent">“嗯？”梁光的脚步突然一顿，因为他看到面前有一台机器人正呆头呆脑地左看右看，一看就知道是“有人机”，而且重点是……这家伙的识别编码！</p>
+<p class = "firstLineIndent">小型机器人内部全都安装有身份识别装置，只要是在视线内的机体，丢一个“探查术”过去，就能得到对方机体的编号和用途等公开信息，如果有人在线，那么还会显示操作人员的姓名，相当便捷。</p>
+<p class = "firstLineIndent">只不过，眼前的这家伙头顶上显示的是“编外人员临时通行证，编号001，姓名：赵xx”。</p>
+<p class = "firstLineIndent">编外人员？梁光有些奇怪，难道是老板请了临时工？</p>
+<p class = "firstLineIndent">不过……赵xx？这名字似乎有点印象？</p>
+<p class = "firstLineIndent">那人似乎察觉到身后的动静，转头一看，待看清梁光头上的信息，不由呆了一下。</p>
+<p class = "firstLineIndent">“你……你是梁老？”那人突然惊呼出声。</p>
+<p class = "firstLineIndent">“嗯？你认识我？等等，赵xx？你莫非是军区研究院的小赵？”梁光想了想恍然道。</p>
+<p class = "firstLineIndent">他这会儿倒是真想起来了，之前经常被邀请去军区研究院攻关项目，这小赵就是那儿的副所长，不过后来听说转正了。</p>
+<p class = "firstLineIndent">“真……真是梁老？！我……我是小赵啊！您葬礼那天我还去鞠过躬呢。”</p>
+<p class = "firstLineIndent">梁光：“……”</p>
+
+<h2>第二百三十一章 第三雕</h2>
+<p class = "firstLineIndent">太阳系，第四行星——火星。</p>
+<p class = "firstLineIndent">一抹银色极速划过火星的天空！</p>
+<p class = "firstLineIndent">火星同样拥有大气层，大气的主要成分是二氧化碳，其次是氮、氩，此外还有少量的氧和水蒸气，不过其密度不到地球大气的百分之一。</p>
+<p class = "firstLineIndent">尽管如此，近2000公里每秒的相对速度下，这枚类似陨石的坠落物在与火星大气层摩擦的过程中依然亮起炽热的红芒。</p>
+<p class = "firstLineIndent">“轰！”最终，这枚陨石以近乎垂直于地心的角度完成了对火星的“硬着陆”，在火星一处平原地带砸出一个半圆形的深坑，激起数十公里的烟尘。</p>
+<p class = "firstLineIndent">待烟尘散去，出现在深坑中的，是一滩银色橡皮泥一样的东西，此刻正在缓缓向着中心处聚拢……这正是“太阳系侦查网络”计划中派往火星的“鹰眼侦察兵”！</p>
+<p class = "firstLineIndent">这枚“鹰眼侦查兵”在沿途不断散布“太空间谍”安插侦查眼，一边测绘沿途的太阳系星图，终于在此刻抵达最终目的地！</p>
+<p class = "firstLineIndent">“火星登陆成功，开始建立前哨基地！”</p>
+<p class = "firstLineIndent">随着聂云的命令，完成聚拢的近百公斤机械虫就地展开，依托这个数公里的陨石坑，开始按照月球基地的发展模式，建立各种功能设施和机器人生长线！</p>
+<p class = "firstLineIndent">在登陆火星前，鹰眼侦察兵靠近火星时就已经扫描了火星表面的部分地形，最终选择了这处平原地带作为登陆地点，在进行轨道微调后精准着陆。</p>
+<p class = "firstLineIndent">而此前，这枚鹰眼侦察兵还曾经分出一颗小卫星，将它留在了火星近地轨道。此刻这颗卫星正在调整速度和轨道，它除了能够为聂云提供各种火星观测数据外，还将为火星基地提供相关情报支持。</p>
+<p class = "firstLineIndent">“卫星开始进行火星地形扫描，同时搜索所有人类的火星探测器……发现目标后，立刻派出太空间谍予以吞噬！”聂云再次下达了一道命令！</p>
+<p class = "firstLineIndent">这些年人类对于火星的探测越来越频繁，火星上还有不少在工作的人类探测器，而此刻以人类对“外”统一战线领袖自居的聂云，很不客气的表示它们……被无条件征用了！</p>
+<p class = "firstLineIndent">一边操控火星上的机械虫，聂云同时将目光转向了另一处地方！</p>
+<p class = "firstLineIndent">几乎就在火星的鹰眼侦查兵登陆后不久，位于小行星带的谷神星表面，同样也爆出一团烟柱，被机械虫完成了入侵！</p>
+<p class = "firstLineIndent">火星和谷神星，这两处正是聂云未来将重点发展的基地选址，除了与地球环境最为相似，殖民条件极佳，且资源极其丰富的火星外，谷神星因为其战略位置，同样是聂云下一步太阳系开发计划中的目标之一！</p>
+<p class = "firstLineIndent">小行星带是太阳系内介于火星和木星轨道之间的小行星密集区域，其中包含了数目多达50万颗的小行星，而谷神星则是小行星带中最大的天体，其直径接近1000公里，另外体积比较大的小行星还包括灶神星，智神星等。</p>
+<p class = "firstLineIndent">在小行星带中建立基地有着其余地方无法比拟的优势。</p>
+<p class = "firstLineIndent">相对九大行星和各个卫星来说，其低引力环境和周围丰富的矿产资源将成为聂云绝佳的太空舰船工业制造场所，也是一些需要真空和低重力环境的原料加工基地的最佳选址！</p>
+<p class = "firstLineIndent">除此之外，小行星带位于火星的外围区域，而聂云早就将火星视为除月球外的第二重点殖民星球，在小行星带建立防御线，能够将聂云最重要的大后方——地球、月球、火星同时纳入保护！</p>
+<p class = "firstLineIndent">聂云的终极宏伟目标是将小行星带完全机械虫化！打造太阳系第一防御链！之后以各大行星为依托层层往外推进！</p>
+<p class = "firstLineIndent">“来访日”前来观察地球的，只能算是双子星文明的哨兵，就算这一波能够击退对方，聂云也不会天真的以为双方接下来就会相安无事，不管结果如何，他都必须要做好打一场持久战的准备！</p>
+<p class = "firstLineIndent">打造太阳系防御体系，势在必行！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">海狼号舰长室。</p>
+<p class = "firstLineIndent">聂云的眼中银光闪动，他一边分心于老的大脑芯片植入手术，一边推动各个基地的发展进度。</p>
+<p class = "firstLineIndent">随着机械虫群体数量的不断增加，聂云的运算和控制能力同样也在同步增加着。</p>
+<p class = "firstLineIndent">从一开始给两兄弟植入芯片时，聂云必须全身心投入，到如今已经能够双线操作，聂云这种软实力的增长虽然看不见，却如同魔法中的精神力，或者武侠中的内力一般，是对实力的基础性提升。</p>
+<p class = "firstLineIndent">这意味着聂云可以同时将更多的机械虫纳入自己的精密操控中，而且控制持续时间更长！</p>
+<p class = "firstLineIndent">不久后，完成于老手术的聂云将一半的心神收回，随后立刻开始查看这段时间地球的情报动态。</p>
+<p class = "firstLineIndent">他在脑海中浏览着海量的情报和数据，将地球上这段时间各方势力对“人类危机”事件的后续反应纳入掌控。</p>
+<p class = "firstLineIndent">“代号，征兵计划执行的如何？”聂云随口问道。</p>
+<p class = "firstLineIndent">尽管能力提升，但是摊子也同样越铺越大，除了操控机械虫外的琐事，聂云已经越来越习惯交给代号去办。</p>
+<p class = "firstLineIndent">而能力大幅提升，并且智能化同样在飞速进步的代号很好的起到了舰长副手的角色，在聂云的势力序列中，正在起到越来越重要的作用！</p>
+<p class = "firstLineIndent">“报告舰长，1万新兵已经陆续完成初始装备发放，正在虚拟新兵营进行集训，合格者将投放到月球新兵营进行进阶训练！”</p>
+<p class = "firstLineIndent">“嗯，很好，那三个家伙最近看起来挺闲的，让他们进去当个教官吧！”</p>
+<p class = "firstLineIndent">“好的，舰长阁下！不过恕我直言，以他们的‘性格特征’判断，恐怕并不适合这个角色！”智能程度越来越高的代号立刻理解了那三个家伙指的是谁，并且给出了中肯的评价。</p>
+<p class = "firstLineIndent">“呵呵！教官这种角色，除了要以德服人，教会他们必要的技能，其实更重要的……是教会他们如何做人……”聂云笑着道。</p>
+<p class = "firstLineIndent">“教会他们如何做人？？？”代号实在无法将这种“名师独有技能”和那三个充满邪恶和暴力因子的家伙联系到一起。</p>
+<p class = "firstLineIndent">聂云笑笑也没解释，翻看完地球情报资料的他将眼前的光幕挥散，站起身看向窗外蔚蓝色的星球，“‘末日危机’事件之后，情况如同预料的一样！‘思潮’的萌芽已经形成，可以执行下一步计划了！”</p>
+<p class = "firstLineIndent">“是的，舰长阁下！‘思潮增幅计划’启动！”</p>
+<p class = "firstLineIndent">聂云看着眼前瑰丽的景色，嘴角泛起一丝微笑……</p>
+<p class = "firstLineIndent">“地球新思潮”，这便是一箭三雕的——第三雕！</p>
+
+<h2>第二百三十二章 天下大同</h2>
+<p class = "firstLineIndent">米国某facebook社区。</p>
+<p class = "firstLineIndent">“嘿杰克，‘末日危机’时听说你在飞机上？”</p>
+<p class = "firstLineIndent">“哦！别提这茬了，我爸花了500万美金才买到的机票！</p>
+<p class = "firstLineIndent">你们想象不到，机场里的景象才是真正的末日，我还在拥挤的人流中磕破了头，别提有多狼狈了，绷带到现在都还没拆呢！</p>
+<p class = "firstLineIndent">不过这不是重点……重点是政府竟然在最后关头告诉我们地球安全了！而且飞机落地后他们居然告诉我们不能退票！你能体会我当时wtf的心情？”</p>
+<p class = "firstLineIndent">“500万美金？你从没说过你是个富二代，作为你最好的朋友，你能体会我现在想干掉你的心情？”</p>
+<p class = "firstLineIndent">“嘿！那是我爸的钱，不是我的！他说了等我工作立刻把所有钱都捐了成立一个什么慈善基金，而我只能当一个基金管理员！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">“杰克，你知道末日要来竟然没有通知我们，我觉得你欠我们一个解释！”有人插嘴道。</p>
+<p class = "firstLineIndent">“嘿这不能怪我！我爸二话不说把我塞进车时我根本不知道发生了什么，然后他连我的手机都没收了！否则我肯定第一时间通知你们！”</p>
+<p class = "firstLineIndent">“好吧，看在你这么惨的份儿上，暂时相信你吧。不过你们说那什么外星人炸弹是真的吗？不会是政府自己搞出来的武器失控后丢给外星人背锅吧？毕竟这事儿太离谱了！之前一点外星人的消息都没有。”</p>
+<p class = "firstLineIndent">“哼哼！你太天真了，我们ufo研究协会早就知道他们的存在，只不过没人相信我们罢了，怎么样，要不要加入我们社团，有绝密消息哦！妹子优先！”突然有人跳出来打广告。</p>
+<p class = "firstLineIndent">“打广告的滚一边？外星人都要来入侵了啊！都投放炸弹了啊！能不能有点危机意识？”</p>
+<p class = "firstLineIndent">“我们只是学生，这里最大的官儿也就是个学生会会长，能有什么办法，我要是总统，肯定派军队揍的那帮外星人满地找牙！”</p>
+<p class = "firstLineIndent">“得了吧，人家炸弹都能直接投放到地球了，这说明什么？敌暗我明，想战胜，难咯！”</p>
+<p class = "firstLineIndent">“就算我们人类再弱，也应该试着抗争一下吧？他们连谈都不谈，摆明了一条心想弄死我们，兔子急了还咬人呢！”</p>
+<p class = "firstLineIndent">“没错，就算能活下来，我反正是不愿意当奴隶的，我觉得艾伯特先生说得对！我们应该拿起枪，为生存、自由和尊严而战！”</p>
+<p class = "firstLineIndent">“没错！艾伯特先生说得对！”</p>
+<p class = "firstLineIndent">“对！支持艾伯特先生！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">某位演讲者俨然已经成为了地球反抗外星人的精神领袖。</p>
+<p class = "firstLineIndent">群情激奋过后，还是有人忍不住站出来说出了残酷的现实……</p>
+<p class = "firstLineIndent">“可是连我们最强大的米国都对外星人束手无策，最后还是靠了幽灵船长的帮助才成功阻止了外星人的阴谋，我们就算拿上枪，也无济于事啊……”</p>
+<p class = "firstLineIndent">“是啊，双方的实力摆在那儿，人家是能够进行星际航行的文明啊，我们的差距太大了，怎么办？”</p>
+<p class = "firstLineIndent">“谁说我们没有办法的！既然米国和幽灵船长联手，能够阻止外星人一次，那么为什么就不能有第二次？我觉得……是时候成立人类对外统一战线了！人类，必须团结起来！”</p>
+<p class = "firstLineIndent">“对！说得好，我们米国不行，如果联合世界上200多个国家，加上神秘莫测的幽灵船长，我觉得能行！”</p>
+<p class = "firstLineIndent">“没错！我支持！”</p>
+<p class = "firstLineIndent">“对！我们要组建地球军！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“可我们只是学生啊，这地球军又不是我们说要组建便能组建的……”有人弱弱地说了一句。</p>
+<p class = "firstLineIndent">“谁说我们不行，米国是讲民主的，我们上街游行！”</p>
+<p class = "firstLineIndent">“对啊！我们还要打出口号，谁支持组建地球军，我们就支持他当总统！”</p>
+<p class = "firstLineIndent">“没错，好主意！我们学生会鼎力支持游行，我保证，到时候可以发动至少200名学生前往声援！”</p>
+<p class = "firstLineIndent">“我们ufo研究协会可以出动30人！”</p>
+<p class = "firstLineIndent">“我们登山爱好者协会出动50人！”</p>
+<p class = "firstLineIndent">“极西麻瓜联合会出动90人！”</p>
+<p class = "firstLineIndent">“彩虹社出动100人！”</p>
+<p class = "firstLineIndent">“起床协会出动20人！”</p>
+<p class = "firstLineIndent">“单身狗协会出动300条！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">在一片奇奇怪怪的声援过后，参与人数很快接近一千……</p>
+<p class = "firstLineIndent">“我觉得一个学校的人还是太少，我认识xxx高校的学生会会长，听说他们也在讨论这事儿，他的电话是xxxxxx，不用谢我，请叫我雷锋……”某位长期潜水的成员突然冒泡道。</p>
+<p class = "firstLineIndent">“这位同学干得好！对，我们不仅要发动本校力量，而且还要成立高校联盟！联合一切可以联合的正义力量！</p>
+<p class = "firstLineIndent">不过雷锋是谁？算了，这不是重点……</p>
+<p class = "firstLineIndent">来来来，大家讨论一下动员的细节，把你们的社交网络都给我动员起来，我们要发动一次史无前例，为人类命运抗争到底的大游行！”</p>
+<p class = "firstLineIndent">“好，我哥是校外uber司机联盟的盟主，我可以去联系他！”</p>
+<p class = "firstLineIndent">“我爸是工会会长……”“我姐是拉拉队队长……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">类似facebook社区上发生的事情，同一时间在全世界各地纷纷上演，原本在“末日危机”事件中积累的恐惧、迷茫、不满、悲愤等等情绪，就像是个一点就着的火药桶，而那个导火索已经被某人引燃。</p>
+<p class = "firstLineIndent">某位名为“雷锋”的好人活跃在全世界各地，或者是一名潜水多年的群成员突然冒泡，又或者是一名僵尸粉突然死而复生……</p>
+<p class = "firstLineIndent">每一次他的出现，总能给予大家最贴心的帮助，让大家找到志同道合之士，而随后便又立刻消失不见，颇有事了拂衣去，深藏功与名的古侠士风范。</p>
+<p class = "firstLineIndent">而如果有有心人用心调查，说不定会发现，这些账号就连原本的主人自己，都已经忘记了登陆密码……</p>
+<p class = "firstLineIndent">而随后，这些关于“雷锋”的信息，便会在消息框被刷楼之后，悄无声息地被删除记录……</p>
+<p class = "firstLineIndent">就这样，在“雷锋”同学的穿针引线下，世界上的某种“思潮”在以令人瞠目结舌的速度连结起来，形成一张大网，即将给世界带来不一般的声音……</p>
+<p class = "firstLineIndent">在信息时代，谁掌控了互联网，不只是代表着掌控财富，或者掌控情报，它同样也代表着……掌控舆论……</p>
+<p class = "firstLineIndent">翻手为云，覆手为雨，于无声处……天下大同！</p>
+
+<h2>第二百三十三章 暴露</h2>
+<p class = "firstLineIndent">在全世界各国，游行活动，不管是营利性的还是非营利性的，基本都是需要报备的。</p>
+<p class = "firstLineIndent">而如此大规模的游行自然引起了各国情报部门的一些关注，不过连米国总统当选都有数百万人游行抗议，这次人类都差点灭亡了，民众发泄一下不满的情绪这不是再正常不过？</p>
+<p class = "firstLineIndent">单就米国而言，每年爆发个几百次游行那都不叫事儿！对此，就算是各国政府，也早已有了预料并作了相关预案。</p>
+<p class = "firstLineIndent">这些游行申请中，有抗议政府隐瞒真相的，也有抗议危机来临时政要富豪被政府优先拯救的，就连抗议外星人性情残暴的都有，不过最多的就是呼吁人类团结起来抵抗外星人的。</p>
+<p class = "firstLineIndent">一开始，各国只是尽量增强了警力，确保不会出现骚乱，除了游行规模较大外，也并没有察觉什么异常。</p>
+<p class = "firstLineIndent">第二天，米国各州县如期爆发了大规模的游行示威，而且规模史无前例！</p>
+<p class = "firstLineIndent">各主要城市的市中心广场基本都占领，示威者高举各种颜色的牌子和标语，高呼着各种口号走过城市的主要街道，不少人沿途加入进来，声势浩大！</p>
+<p class = "firstLineIndent">米国警局焦头烂额地维持着治安，各地的记者们也同样打了鸡血一般，前往各个地区拍摄采访。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“这里是cbs现场报道，今天上午九点，各州县上百个城市举行了一系列大规模游行活动，目前游行人数已经达到了两百万以上，并且还在持续增加中！</p>
+<p class = "firstLineIndent">据悉，游行活动将于今明两日在旧金山、亚特兰大、达拉斯、底特律和华盛顿等城市进行，此后，游行活动将继续在纽约、奥克兰、明尼阿波利斯和全国其他几十个城市举行，照此规模来看，这将是一场规模空前的游行示威活动！</p>
+<p class = "firstLineIndent">自‘末日危机’爆发以来，政府的应对举措显然受到了不少民众的诟病，现在让我们来采访一下现场的民众诉求！”这名记者说完，找到了一名举着标语激动高喊“打倒外星人”的年轻人。</p>
+<p class = "firstLineIndent">“先生您好，请问你们是从哪里来的？今天参加这场游行的目的是什么呢？”</p>
+<p class = "firstLineIndent">“呼……你好记者小姐，我是伯克利大学的学生会代表，我们的团体是加州高校联盟，请原谅，我有些激动，因为这场游行真的关乎每个人的生存、尊严和自由！</p>
+<p class = "firstLineIndent">我们正在遭受一场外星文明的野蛮入侵，所以我们必须站起来反抗，这靠几百万或者几千万的人是做不到的，我们今天站在这里，就是要呼吁政府，向联合国发起组建‘地球防卫军’的议案！</p>
+<p class = "firstLineIndent">在如此危急的情况下，是到了团结60亿地球人类，建立对外星人统一战线的时候了！只有这样，我们才能对抗那些邪恶而凶残的外星人！</p>
+<p class = "firstLineIndent">最后我想说，请各位不愿意当奴隶的地球人都来声援我们！人类必胜！”这位学生代表举拳呐喊着，赢得周围人一阵高呼喝彩……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">与此同时……n、nbc等米国知名电视台全都都在报道着类似的一幕！</p>
+<p class = "firstLineIndent">不仅是米国，全世界各地的媒体工作者愕然发现，在各大社交网络和游行人群中，“地球防卫军”、“地球对外作战部队”、“团结人类抵抗外星人”这种求团结的言论几乎是一面倒的呈爆发态势，并且受到越来越多人的支持！</p>
+<p class = "firstLineIndent">在种花家首都广场，甚至有上万人齐声高唱国歌。</p>
+<p class = "firstLineIndent">“……起来……不愿做奴隶的人们，把我们的血肉，筑成我们新的长城……每个人被迫着发出最后的吼声……起来起来起来，我们万众一心……”</p>
+<p class = "firstLineIndent">随着歌声远远传出，甚至就连越来越多的行人都加入进来，人类末日危机事件中，人们对外星人的愤怒和不甘，正在这场愈演愈烈的游行中爆发出来……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">米国六角大楼会议室。</p>
+<p class = "firstLineIndent">“……以上是本次‘末日危机’游行事件的全球动态播报，敬请收看本台对后续情况进行的跟踪报道！”</p>
+<p class = "firstLineIndent">啪！米国“新任”国防部长关掉了电视，脸色有些难看地看向在座的众人。</p>
+<p class = "firstLineIndent">这位新任国防部长正是总统紧急任命的临时替补，原米国空军司令。</p>
+<p class = "firstLineIndent">“各位，虽然由于‘末日危机’事件，我很理解我国公民对外星人的仇视，但是这种要求组建“联合地球防卫军”的强烈呼声，代表着民众已经对我们政府军队产生了严重的信任危机！”</p>
+<p class = "firstLineIndent">他环视一圈在座的将军和政要，“不仅如此，全世界如今几乎同时爆发了这种大规模请战声浪，这难道会是巧合？我更怀疑，这是有人在暗中推动！</p>
+<p class = "firstLineIndent">更可怕的是，有这样跨国行动能力的全球性组织，他们如此大规模的动作，而我们的情报部门居然事先连一点风声都没有收到？就连他们究竟是怎么做到的，到现在都没有一个确切的结论！</p>
+<p class = "firstLineIndent">这让我本人都对我们国家的情报系统产生了严重的信任危机！</p>
+<p class = "firstLineIndent">一个国家，就连司职保卫的军队和情报部门都无法让人信任，同僚们！作为米国新任的国防部长，本人现在却觉得……很没有安全感啊！”国防部长一字一顿道。</p>
+<p class = "firstLineIndent">在场所有人沉默不语，这时一人站起身开口，“部长阁下，作为军方成员，我必须要指出，本次事件的事态发展，根本就没有我们军方介入的余地，如果要问责，我觉得十三区必须要负起主要责任！”</p>
+<p class = "firstLineIndent">作为主要当事人，十三区区长此刻也赫然在座，见众人转头看向他，他不由叹了口气站起身，郑重地对在场所有人鞠了一躬。</p>
+<p class = "firstLineIndent">“很抱歉各位，此事我的确需要负很大的责任，这点我不会否认，但是各位先生们，我们的对手不是以往那些贫穷落后的国家，我们没有不对称的科技和战斗力优势！</p>
+<p class = "firstLineIndent">情况恰恰相反，那颗炸弹，并不是用军队或者常规武器所能解决的东西。</p>
+<p class = "firstLineIndent">就如同海湾战争中，面对我们的先进战机，敌方的坦克只能成为靶子一样，那颗炸弹对我们而言……是无解的！</p>
+<p class = "firstLineIndent">如果说十三区在这个过程中有什么错误的话，那么就是低估了外星人对我们的敌意，被先进的科技所诱惑，没有选择立刻销毁它，对此……我感到十分抱歉！”</p>
+<p class = "firstLineIndent">国防部长倒似乎对区长的这番话十分满意，“我看过事件报告，这件事错不在你们，你们的做法并没有失当之处，相反，最终坚持到最后一刻，解决了炸弹的你们，还应该受到嘉奖！”</p>
+<p class = "firstLineIndent">所有人面面相觑，虽然说听着似乎很有道理，可偏向也未免太明显了一点吧？别忘了，你才是军方的负责人好不好！莫非是两人有一腿？</p>
+<p class = "firstLineIndent">区长自己似乎都有点意外，不由感激地看了眼国防部长。</p>
+<p class = "firstLineIndent">“咳咳！我觉得刚刚区长说的很有道理，这次危机，是军事装备和军事科技的全面落后造成的，这证明了，我国的军事力量亟待加强的必要性！</p>
+<p class = "firstLineIndent">各位，加大军费开支，迫在眉睫啊！”国防部长扫了眼在座的几位议员，意思再明白不过。</p>
+<p class = "firstLineIndent">所有人：“……”</p>
+<p class = "firstLineIndent">尼妹！怪不得刚刚要故意贬低军方来着！刚上任一天，进入角色这么快的吗？</p>
+<p class = "firstLineIndent">就在此时，眼见只剩下自己被架在火上烤，生怕被新官上任三把火烧着的情报负责人也站了出来。</p>
+<p class = "firstLineIndent">“部长阁下，我们情报部门虽然短时间内不能抓到幕后推手，但也并非一无所获！</p>
+<p class = "firstLineIndent">这次的游行虽然行动速度和规模有些超出我们的预料，但根据我们的情报专家和心理专家评估，在‘末日危机’事件发生后，国内外会出现联合对抗外星人的呼声这并不奇怪。</p>
+<p class = "firstLineIndent">但在全世界范围内造成如此规模的舆论效应，也并不是单纯某个势力推波助澜所能造成的效果！</p>
+<p class = "firstLineIndent">还有一个重要因素才是这一切的起因！”</p>
+<p class = "firstLineIndent">“哦？是什么？”国防部长问奇道。</p>
+<p class = "firstLineIndent">“是艾伯特先生的演讲！”</p>
+<p class = "firstLineIndent">“嗯？哦……原来如此！”在座的没有笨蛋，众人纷纷恍然。</p>
+<p class = "firstLineIndent">的确，没有艾伯特的那篇充满挑动性的开战宣言，恐怕人们内心的情绪还找不到一个如此确切的发泄目标，请战的热情也不会如此高涨！</p>
+<p class = "firstLineIndent">“你的意思是？”</p>
+<p class = "firstLineIndent">“我认为，在这次事件中背后推动的人应该和篡改我们新闻发布会演讲稿的，是同一个势力！这是一次有组织、有预谋，被精心策划的舆论战！”</p>
+<p class = "firstLineIndent">“那么……你们情报部门有怀疑对象吗？”</p>
+<p class = "firstLineIndent">“是的！对方能够无声无息篡改我方机密频道的传输文件，这说明他们的电子入侵能力十分强大！</p>
+<p class = "firstLineIndent">而从本次事件中的一些蛛丝马迹推测，背后的推手很可能并不是用常规的，诸如资金支持等等方式推动游行和舆论，而是借用了互联网引导形成串联！</p>
+<p class = "firstLineIndent">从这两点共通点推断……世界上能够拥有如此能力的，目前我只能想到五大国，以及以电子入侵能力闻名于世的……幽灵船长！”</p>
+<p class = "firstLineIndent">“幽灵船长？！”国防部长眼皮跳了一下。</p>
+<p class = "firstLineIndent">“不错，而在那种情况下，能够笃定炸弹不会爆炸，并因势利导作出下一步精密安排的，也就只有幽灵船长！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“舰长阁下，您似乎暴露了呢！”代号突然道。</p>
+<p class = "firstLineIndent">“唔……意料之中，从我出手解决炸弹，可以说就已经成为所有势力的重点关注目标！就是隔壁大妈丢了只鸡，他们也会认为是我干的！</p>
+<p class = "firstLineIndent">不过现在知道不知道，对于结果……有影响吗？”聂云满不在乎的笑笑，继续忙碌起来……</p>
+
+<h2>第二百三十四章 角色</h2>
+<p class = "firstLineIndent">会议室内。</p>
+<p class = "firstLineIndent">底下的人听到幽灵船长这个十分敏感的字眼，纷纷议论开来。</p>
+<p class = "firstLineIndent">对于幽灵船长，他们的心情是复杂的，一方面，双方曾经爆发过一次不愉快，至今幽灵船长还扣押着他们的一百多名船员，虽然已经确认了他们的人身安全，但对于世界第一强国来说，这无疑是奇耻大辱。</p>
+<p class = "firstLineIndent">另一方面，这次事件中，正是因为幽灵船长的出手，才使得炸弹最终被拆除，说他拯救了米国和全人类也不为过！</p>
+<p class = "firstLineIndent">虽然事情似乎也是他搞出来的，不过一码归一码，这个人情终究还是要欠的。</p>
+<p class = "firstLineIndent">当然，这一切的基础是……他们想动手也根本打不过人家啊！</p>
+<p class = "firstLineIndent">“那么，如果是幽灵船长，他为什么要这么做？”国防部长皱眉问道。</p>
+<p class = "firstLineIndent">“这……”那人明显无法说明幽灵船长这种行为的动机。</p>
+<p class = "firstLineIndent">一直在低头思索的区长却突然开口了。“关于这个……我们十三区倒是有个猜测！”</p>
+<p class = "firstLineIndent">“哦？也对，你们和幽灵船长应该接触过，那么说说你的看法！”国防部长道。</p>
+<p class = "firstLineIndent">“我想诸位应该看过我递交的几份关于幽灵船长的情报分析报告，它们都出自我们十三区一名资深成员杰伊，他对外星人和幽灵船长的情报都有独到的见解。</p>
+<p class = "firstLineIndent">而在炸弹被拆除后，他就曾经对幽灵船长再次做了一番深入分析！</p>
+<p class = "firstLineIndent">首先，各位可以想想看，幽灵船长目前暴露在明面上的实力，除了在靠近南海的太平洋海域拥有一处实力未知的基地外，便是那艘太空战舰！</p>
+<p class = "firstLineIndent">这艘战舰出现的尤为突兀！</p>
+<p class = "firstLineIndent">就算是隐藏实力，但是航空工业并不是闭门造车就能建立发展起来的。因此我们怀疑，那艘战舰根本就不是对方设计建造的！”</p>
+<p class = "firstLineIndent">“不是幽灵船长建造的？莫非还是捡的不成？”国防部长不明所以道。</p>
+<p class = "firstLineIndent">“不错！我们怀疑它……就是捡的！”区长点头道。</p>
+<p class = "firstLineIndent">“什么？！”所有人闻言愣了愣。</p>
+<p class = "firstLineIndent">“相信大家原本就有怀疑，幽灵船长层出不穷的超级科技，难道真的是自己发展起来的？原本我们也是这么认为的！</p>
+<p class = "firstLineIndent">虽然这种可能性并不是不存在，但是随着对方暴露出来的科技实力越来越匪夷所思，这种可能性已经变得极为微小。</p>
+<p class = "firstLineIndent">我们先假设，幽灵船长捡到了一艘意外坠落到地球的外星文明太空战舰，地点很可能就在那处基地附近！</p>
+<p class = "firstLineIndent">那么他能获得什么？</p>
+<p class = "firstLineIndent">第一，战舰上的先进智脑，甚至是传说中的……人工智能！</p>
+<p class = "firstLineIndent">这就可以解释，为什么幽灵船长拥有如此强大的电子战能力。</p>
+<p class = "firstLineIndent">第二，舰载侦查机，也就是……空中幽灵！</p>
+<p class = "firstLineIndent">第三，战舰上的生命医疗设备，对方不可思议的人体强化技术或许便是由此而来。</p>
+<p class = "firstLineIndent">第四，太空作战服，根据分析，幽灵骑士身上的那套装备完全具备太空战的水准。</p>
+<p class = "firstLineIndent">第五，七具舰载战斗机甲，这种东西地球根本就没有成熟的研究体系，出现的太突兀了，但如果是战舰上自带的，那么是否就很正常了呢？</p>
+<p class = "firstLineIndent">第六，战舰数据库中大量的宇宙文明资料！这就能够解释，为什么幽灵船长会对外星文明如此了解，并轻易地解决了它们布置的炸弹！</p>
+<p class = "firstLineIndent">另外，还有一个佐证！幽灵船长在离开十三区后，说了一句话，他说他要返回太空指挥战斗。</p>
+<p class = "firstLineIndent">这说明，幽灵船长的常驻地点……就是在那艘战舰上！</p>
+<p class = "firstLineIndent">一般来说，一名势力首领的办公地点，会在他认为最为安全的势力核心地带！按照正常情况，幽灵船长不是应该坐镇地球基地指挥全局吗？</p>
+<p class = "firstLineIndent">那么很显然，这艘战舰……才是他们的核心所在！”</p>
+<p class = "firstLineIndent">全场一片静默。</p>
+<p class = "firstLineIndent">没错，之前看，幽灵船长的一系列武器装备似乎都是零零散散地出现，但是这么一联系，似乎这根本就是一艘太空战舰所应该具备的所有东西！</p>
+<p class = "firstLineIndent">各个线索如同一串散落的珍珠，而此刻，名为杰伊的人将其一一串起，事情……渐渐明朗！</p>
+<p class = "firstLineIndent">“这么说……幽灵船长在此前完全没有一点动静，只是在这几个月刚刚开始活跃，是因为……”</p>
+<p class = "firstLineIndent">“没错！他就是在修复飞船！</p>
+<p class = "firstLineIndent">又或者，对方是在完成对战舰的认主程序！否则无法解释对方能够如此完整地获得连同战舰智脑在内的大量战舰科技！</p>
+<p class = "firstLineIndent">所有人都明白，飞船一旦暴露，肯定会在地球引起一阵腥风血雨！而从组织规模来看，对方明显只是一个侥幸获得飞船的小型势力，只有等飞船完全恢复了，他才有自保的底气！</p>
+<p class = "firstLineIndent">事实也正是如此，试问如今，整个世界还有谁能够威胁到幽灵船长？”</p>
+<p class = "firstLineIndent">众人过了许久才消化了里面的信息，随后每个人心中基本都是一个想法，特么的我也好想出门捡飞船啊……</p>
+<p class = "firstLineIndent">“咳咳！那么，就算这是真的，那么这和幽灵船长推动舆论又有什么关系？”国防部长咳嗽了两声问道。</p>
+<p class = "firstLineIndent">“此前的报告中提到过，幽灵船长原本是想要以一己之力试探外星人，那么在发现引力炸弹之后，恐怕他本人也应该意识到自己和我们犯了同样的错误……那就是低估了外星人对人类的恶意！</p>
+<p class = "firstLineIndent">从‘末日危机’事件开始，我们与外星人，就已经从局部战争演变为全面战争，双方的矛盾已经不可调和，人类也再不可能置身事外！</p>
+<p class = "firstLineIndent">所以，看清了这一点的幽灵船长通过这次事件给了我们两个选择！</p>
+<p class = "firstLineIndent">第一，依然一盘散沙地等待‘来访日’他与外星人的战斗结果，随后接受命运的审判！</p>
+<p class = "firstLineIndent">第二，团结起来，以‘地球防卫军’的形式，成为幽灵船长的盟友！或者说……他的附庸！”</p>
+<p class = "firstLineIndent">闻言，所有人都不可思议地看着区长。</p>
+<p class = "firstLineIndent">“你说附庸？我没有听错吧？他想让我们堂堂米国做他的附庸？！”先前那位军方人员激动地差点跳起来大骂。</p>
+<p class = "firstLineIndent">“咳咳！这只是其中一种可能，虽然很难接受，但是从现在的实力对比来看，双方很可能是不对称的。</p>
+<p class = "firstLineIndent">不说其他，假设我们人类真的和外星人爆发战争，那么以我们米国的当前的科技实力，能够给幽灵船长提供什么帮助？”</p>
+<p class = "firstLineIndent">“这……”所有人沉默了。</p>
+<p class = "firstLineIndent">的确，两个文明之间的战争必然是以太空作战决胜负，而他们的太空军事力量……几乎为零！</p>
+<p class = "firstLineIndent">除了那些卫星和天文观测站能够提供一些情报支持，除此之外……难道用火箭送些肯德基上去，做做后勤工作？</p>
+<p class = "firstLineIndent">想到这里所有人不由得有些沮丧，不得不承认，差距的确是有点大，就连刚刚那位语气十分不客气的军方成员也沉默不语。</p>
+<p class = "firstLineIndent">“其实，从幽灵船长通过一篇演讲稿推动这次舆论开始，我们就已经没有选择了！就算我们米国不顾民意拒绝组建‘地球防卫军’，难道别的国家会无动于衷？</p>
+<p class = "firstLineIndent">联合国中，只要有一个大国动摇，提出议案，那么必然受到全世界的支持，届时……在自身的共同生存利益下，选择抱团加入的势力恐怕不会在少数！特别是那些完全没有自保能力的小国！</p>
+<p class = "firstLineIndent">甚至那些经历过‘末日危机’，如同惊弓之鸟的政客和富豪们，也会倾向于加强人类的自保力量！</p>
+<p class = "firstLineIndent">不加入的势力，恐怕还会被扣上软弱、苟且偷安，甚至反人类的大帽子吧？</p>
+<p class = "firstLineIndent">而可以预见的是，率先提出这一议案的大国，将会收获巨大的声望和支持，在未来成立的‘地球防卫军’中取得极大的话语权！</p>
+<p class = "firstLineIndent">恐怕……现在已经有人在草拟议案了吧……”区长眼神莫名地幽幽道。</p>
+<p class = "firstLineIndent">所有人又是倒抽一口凉气！细想一下，这种情况的确很有可能出现。</p>
+<p class = "firstLineIndent">“其实这何尝不是一个机会！请大家设想一下，如果你是幽灵船长，那么在推动这一切之后，难道会就这么放任不管？</p>
+<p class = "firstLineIndent">或许幽灵船长能够击退第一波‘来访日’的敌人，但是凭一艘战舰如何能够同一个庞大的文明作战？</p>
+<p class = "firstLineIndent">所以如果是我，则会在适当的时机下，给‘地球防卫军’提供更加先进的技术和装备，提升盟友的实力，以应对外星文明的威胁。</p>
+<p class = "firstLineIndent">到时候，恐怕没有加入‘地球防卫军’的势力……”</p>
+<p class = "firstLineIndent">区长的话并没有说透，不过所有人都明白他想表达的意思。</p>
+<p class = "firstLineIndent">到时候，恐怕没有加入‘地球防卫军’的势力……都要哭晕在厕所……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“精彩啊！实在是太精彩了！”聂云看完代号传输来的那份情报，不由得感叹一句。</p>
+<p class = "firstLineIndent">这个叫杰伊的家伙第二次进入他的视线。</p>
+<p class = "firstLineIndent">虽然限于想象力，他绝对无法猜到机械虫这种存在，但是虽不中，亦不远矣！</p>
+<p class = "firstLineIndent">聂云从一开始，其实就是在围绕着海狼号打造一艘太空战舰及其作战体系，所以很多技术上的蛛丝马迹会巧合到与杰伊的推断吻合。</p>
+<p class = "firstLineIndent">只不过聂云是正向建造，而杰伊则是逆向反推，然而就结果而言，已经相当接近！</p>
+<p class = "firstLineIndent">“已经将杰伊纳入重点观察名单！”代号很贴心地主动为聂云筛选人才。</p>
+<p class = "firstLineIndent">“嗯？代号，我觉得你最近的智能似乎提高的很快啊？看来量子计算机给你的帮助很大嘛！”</p>
+<p class = "firstLineIndent">“的确如此，下一步我打算以人类个体的身份与他人交流，以此来体悟人生。”</p>
+<p class = "firstLineIndent">“哦？好想法！唔……似乎我这里正好有一个角色很适合你呢！”聂云摸着下巴嘿嘿笑道……</p>
+
+<h2>第二百三十五章 到来</h2>
+<p class = "firstLineIndent">“什么？！你说你刚刚登上了幽灵船长的那艘战舰？还遇到了梁老？”胡军长目瞪口呆的看着面前的赵所长。</p>
+<p class = "firstLineIndent">“是的军长，虽然难以置信，不过事实已经摆在面前，这些头盔……的确是应用了传说中的虚拟现实技术！而且幽灵船长还更进一步，将这种技术运用到了机器人操控上！</p>
+<p class = "firstLineIndent">你能够想象像是在操纵自己的身体一样在操纵一具机器人吗？这简直太神奇了！”赵所长语气激动道。</p>
+<p class = "firstLineIndent">他实在是想不到，自己只是戴上了一个头盔，就跑到太空里溜达了一圈回来。</p>
+<p class = "firstLineIndent">胡军长愣愣的转头看向放在桌上的那个银色头盔。</p>
+<p class = "firstLineIndent">虽然幽灵船长隔三差五就会爆料出一些匪夷所思的科技来，不过先有返老还童技术，现在又突然整出来虚拟现实技术，作为一名地球人，他感觉这世界的变化有些快……</p>
+<p class = "firstLineIndent">“原来，这就是让我们拥有太空实验环境的方式么……”胡军长看向那个头盔的眼神渐渐变得炙热起来。</p>
+<p class = "firstLineIndent">用这种方式将人“送上去”，的确比他们原先预计的要强无数倍，不用发射昂贵的载人航天器，没有丝毫危险性，而且连航天训练都可以省去！</p>
+<p class = "firstLineIndent">也就是说，那些经验更加丰富的老年科学家都能毫不费力地前往太空亲自操作实验，有这种条件，谁还会吃饱了撑的将航天员培养成实验员？</p>
+<p class = "firstLineIndent">哪怕是自己，都有机会体验一下宇航员的感觉啊！两人对视一眼，都看到对方眼中的兴奋。</p>
+<p class = "firstLineIndent">“军长，这里可是300个太空研究员的名额啊！你汇报上去的时候可得多给我们研究所争取几个！”</p>
+<p class = "firstLineIndent">“呵呵！谁说是300个，明明是900个！”胡军长呵呵笑道。</p>
+<p class = "firstLineIndent">“嗯？什么意思？”赵所长不明所以。</p>
+<p class = "firstLineIndent">“这么珍贵的东西，一个人用24小时吗？当然要三班倒啦！”</p>
+<p class = "firstLineIndent">“呃……”赵所长这才反应过来，这东西又不限使用人员，自然是可以利用到极致啊！</p>
+<p class = "firstLineIndent">“的确如此！不过我想起个问题……似乎……刚刚烧坏了一个……”赵所长笑容中带着些尴尬。</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">卧槽！忘了这茬了，名额瞬间少了3个，心好痛啊……</p>
+<p class = "firstLineIndent">“咳咳！对了军长，关于梁老的事……”</p>
+<p class = "firstLineIndent">“嗯！看来你已经知道了，那么……这件事你应该知道严重性，一定要严格保密！”胡军长脸色一肃道。</p>
+<p class = "firstLineIndent">“这我当然知道，请组织相信我的忠诚，我想说的不是这个……”</p>
+<p class = "firstLineIndent">“嗯？那你想说什么？”</p>
+<p class = "firstLineIndent">“这个……您看，我这明年也要退休了……”赵所长有些不好意思道，笑的很腼腆。</p>
+<p class = "firstLineIndent">胡军长：“……”</p>
+<p class = "firstLineIndent">尼妹！这样让组织怎么相信你的忠诚啊魂淡！</p>
+<p class = "firstLineIndent">胡军长觉得，自己这边的墙角，似乎前所未有的松动，实在是敌人的糖衣炮弹很作弊啊……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">克莱因难以置信的看着眼前无比荒凉的景色。</p>
+<p class = "firstLineIndent">这里是一片暗红色荒漠，地表沙丘、砾石遍布，不远处可以看到一些高山、平原、峡谷还有干涸的河床，形成与地球迥异的地形地貌。</p>
+<p class = "firstLineIndent">“这……是哪里？到底发生了什么？”克莱因抬起手，看着一条陌生的金属手臂，却随着自己的心意如臂使指。</p>
+<p class = "firstLineIndent">“编号z000021，欢迎来到‘无尽世界’虚拟新兵营，请努力完成新兵模拟训练，合格者将有机会获得‘无尽世界’的正式参与资格，取得实现梦想的机会！”突然在脑海中响起的声音吓了克莱因一跳。</p>
+<p class = "firstLineIndent">“无尽世界？虚拟新兵营？这是……虚拟游戏？怎么可能！”克莱因被自己的猜测吓了一跳，哪家公司有实力开发出这种东西？而且效果如此逼真？</p>
+<p class = "firstLineIndent">但是眼前的一幕却又让他不得不信！</p>
+<p class = "firstLineIndent">就在这时，他的脑海中自动浮现了一些基础操作介绍和规则讲解。</p>
+<p class = "firstLineIndent">如此神奇的东西，让克莱因不由产生了尝试的兴趣，他按照提示开始一步步完成所谓的“新兵训练”。</p>
+<p class = "firstLineIndent">不久后，一个小小的身影在这片独特的地貌上飞奔，腾挪跳跃，做着各种机体的适应性训练……</p>
+<p class = "firstLineIndent">又过了不久，他的身上开始出现各种各样的武器装备插件，冷兵器热武器、电磁武器激光武器，然后是各种飞行装备、大型武器和载具的操作训练。</p>
+<p class = "firstLineIndent">这些武器装备虽然看着十分科幻，而且威力极大，但是自动化程度极高，操作起来却极为方便，给人的感觉就像是在玩第一人称的射击游戏。</p>
+<p class = "firstLineIndent">颇感有趣的克莱因一样样装备试了过去，四周开始子弹横飞，激光四射，出现一连串的爆炸，烟尘漫天……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">整整三个小时后，克莱因缓缓睁开眼睛。</p>
+<p class = "firstLineIndent">他有些茫然地看了看自己苍老，布满老年斑的手，然后脱下头盔，怔怔地呆了好一会儿。</p>
+<p class = "firstLineIndent">刚刚的是幻觉？那种仿佛置身梦中的感觉如此不真实，然而那种自由飞奔的真实感觉，多少年没有体会到了？</p>
+<p class = "firstLineIndent">无法否认的是，就算这是一款虚拟游戏，但对他这种七十多岁的老人来说，依然拥有十足的诱惑，那种重新获得一副躯体的美妙感觉，让人欲罢不能！就算……那是一具机器人的身体！</p>
+<p class = "firstLineIndent">他看向那个装着头盔的盒子，这种银色漩涡标志和sos的名称根本找不到任何与之相符的公司或者势力。</p>
+<p class = "firstLineIndent">然而他心中却隐隐有一种猜测。</p>
+<p class = "firstLineIndent">的确如同聂云所想的那样，在“末日危机”之后，幽灵船长在各大势力成员中的知名度暴涨，只要地球上发生什么超出常理的事情，大部分的人都会不由自主的往幽灵船长身上联想。</p>
+<p class = "firstLineIndent">毕竟……不科学的事情发生的多了，大家都有了些条件反射！而幽灵船长如今，就是不科学的代名词！</p>
+<p class = "firstLineIndent">如果真是幽灵船长，那么他为什么将这个虚拟世界称之为“新兵营”！为什么要招募新兵？这个词很耐人寻味啊……</p>
+<p class = "firstLineIndent">“实现梦想么……”克莱因看着头盔，眼神有些莫名的深邃……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在聂云的各项计划全力展开，新兵招募如火如荼时……遥远的比邻星域……</p>
+<p class = "firstLineIndent">“抵达比邻星—太阳系虫洞入口，护盾关闭，虫洞跳跃准备……完成！开始跳跃……目标……太阳系！”</p>
+<p class = "firstLineIndent">两艘巡林者号一前一后，渐渐没入漆黑色的漩涡……</p>
+<p class = "firstLineIndent">双子星文明……终于到来！</p>
+
+<h2>第二百三十六章 您已超速</h2>
+<p class = "firstLineIndent">太阳系外一处遥远的星域。</p>
+<p class = "firstLineIndent">两艘巡林者号缓缓驶出漆黑的漩涡，“跳跃完成！雷达未发现危险目标……力场护盾最低功率开启！”</p>
+<p class = "firstLineIndent">两艘飞船外一层淡蓝色护盾一闪即逝。</p>
+<p class = "firstLineIndent">“智脑，联合接收探测器文明情报数据包，进行初步筛选分析！”两艘巡林者号的舰长下达了类似的命令，同时两舰之间建立了通讯频道。</p>
+<p class = "firstLineIndent">下一刻，量子通讯瞬间传递到两枚遥远的探测器上，并发出了信息传输命令……</p>
+<p class = "firstLineIndent">丝毫没有延迟的，两艘巡林者号都收到了各自探测器发回的海量数据包，两艘飞船的智脑立刻开始情报整理工作！</p>
+<p class = "firstLineIndent">“报告两位舰长，情报分析结束，无文明发展异常。</p>
+<p class = "firstLineIndent">文明威胁评估：d！</p>
+<p class = "firstLineIndent">文明科技革命：未出现</p>
+<p class = "firstLineIndent">引力炸弹信号正常……”飞船智脑开始汇报一系列初步分析结果。</p>
+<p class = "firstLineIndent">“嗯！知道了，让情报组筛选有用资料存档备份。”羽族舰长听完汇报后命令道，随后他笑着看向身边海族舰长的虚拟投影。</p>
+<p class = "firstLineIndent">“之前联合议会已经正式下发了通知，确定了下一步开拓目标……正是太阳系！”羽族舰长笑道。</p>
+<p class = "firstLineIndent">“所以说，我们的机会来了？”海族舰长眼神有些兴奋。</p>
+<p class = "firstLineIndent">“不错，我父亲已经明确告诉我，只要我们在抵达地球后2个月之内能够彻底消灭地球文明的抵抗力量，那么这份功劳就算在我们头上！”羽族舰长笑道。</p>
+<p class = "firstLineIndent">“哈哈！那这次我就借光了！”海族舰长哈哈大笑。</p>
+<p class = "firstLineIndent">“呵呵！这次我们也是够幸运，比邻星卡拉文明那边的战争刚刚进入最后阶段，听说抵抗的很激烈，暂时抽调不出战舰过来支援我们，若非如此，我父亲也没办法帮我们争取到这样的机会。”</p>
+<p class = "firstLineIndent">“好，那么我们什么时候动用引力炸弹？”海族舰长有些迫不及待道。</p>
+<p class = "firstLineIndent">“不用着急，如果能够不动用引力炸弹，那样更好，毕竟这事儿容易给人留下口舌。</p>
+<p class = "firstLineIndent">我们可以先消灭他们几个城市，让他们看到我们双方的差距后劝降。如果对方真的冥顽不灵想找死，那么再动用引力炸弹不迟！</p>
+<p class = "firstLineIndent">这个文明目前竟然还存在200多个国家，连星球统一都还没有做到，到时候只要拉拢分化一批，剩下的估计很容易就会屈服！</p>
+<p class = "firstLineIndent">只要不对环境造成太大破坏，影响后续移民，我们任何手段都可以使用！”</p>
+<p class = "firstLineIndent">“好！就照你说的办！”</p>
+<p class = "firstLineIndent">“呵呵！成为我们双子星文明的猎物，真是他们的不幸！我已经能够看到一个文明临死前的哀嚎了……”羽族舰长抬头看了眼远方耀眼的恒星，话语说不出的残酷。</p>
+<p class = "firstLineIndent">“只能怪他们选错了地方，从被发现开始，这里就注定将成为我们领土的一部分！哈哈……”</p>
+<p class = "firstLineIndent">“的确如此，弱小是原罪啊……呵呵！巡林者号，出发吧！”</p>
+<p class = "firstLineIndent">“是！航道规划中……规划完成！推进器巡航功率加速，牵引光束激发，目标太阳系中心恒星！预计抵达地球时间……45天！”飞船的智脑响起提示。</p>
+<p class = "firstLineIndent">随后只见两艘飞船尾部发射出黯淡的尾焰，开始朝太阳系加速驶去。</p>
+<p class = "firstLineIndent">与此同时，从飞船上发射出两束不可见的高强度引力子射线，直直射向恒星系中心位置的太阳！</p>
+<p class = "firstLineIndent">在双子星文明的引力子分支科技中，这种引力子射线不仅可以作为一种攻击手段，而且稍作改变还能够当做牵引光束使用，是一种飞船推进器之外的辅助加速手段，利用它能够实现恒星系间的高速移动！</p>
+<p class = "firstLineIndent">这也是双子星文明飞船最为普遍的星际航行方式。</p>
+<p class = "firstLineIndent">当然，这种牵引光束虽然好用，但缺点也并不是没有。</p>
+<p class = "firstLineIndent">那便是明显的引力子聚集现象会如同黑夜中的一条火焰长鞭，只要对方也拥有引力子探测设备，就能够轻易发现己方飞船的位置！</p>
+<p class = "firstLineIndent">如果是战时，那么基本不会有飞船利用这种加速方式，因为这样会成为一个活靶子。</p>
+<p class = "firstLineIndent">不过这里即不是战区，而以地球文明区区d级的文明威胁等级，离引力子科技也还差得很远，他们根本不认为那里存在着什么能够威胁到两艘巡林者号的敌人。</p>
+<p class = "firstLineIndent">所以两艘巡林者按照往常一样，使用了牵引光束辅助加速，以求尽快抵达地球展开征服……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“嗯？”海狼号上，正闭目操控机械虫的聂云睁开了眼睛。</p>
+<p class = "firstLineIndent">“终于来了吗……”聂云的眼睛渐渐眯了起来。</p>
+<p class = "firstLineIndent">在两艘巡林者号的数据传输命令抵达探测器的一瞬间，聂云便收到了消息，而那份发送过去的情报数据包，自然是早就准备好的。</p>
+<p class = "firstLineIndent">为了防止被对方察觉异常，除了删除自己和“末日危机”的相关情报，聂云没有做出任何修改，将探测器搜集的原本数据包丝毫不差地发送了过去。</p>
+<p class = "firstLineIndent">“客人既然来了，那么……计划开始！”聂云开始下达一系列的命令。</p>
+<p class = "firstLineIndent">太阳系中所有的“鹰眼侦察兵”开始动用包括引力波探测在内的所有被动探测设备，全力搜索整个太阳系，寻找对方的踪迹……</p>
+<p class = "firstLineIndent">与此同时，太阳系内的所有机械虫飞行器关闭了推进装置，尽量保持原本轨道，以免给对方察觉异常。</p>
+<p class = "firstLineIndent">从这一刻开始，聂云的势力进入了全面静默状态……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">引力波的传播速度同样是光速，抵达太阳系同样需要时间。</p>
+<p class = "firstLineIndent">而三天后，聂云便有了收获！</p>
+<p class = "firstLineIndent">“牵引光束吗？引力子原来还能这么用！不过似乎……被小看了呢！你丫过来偷窥居然还铺红地毯？”聂云看着引力波雷达上十分显眼的那条连接着太阳的笔直光标，有些无语。</p>
+<p class = "firstLineIndent">不过对方越轻敌，就对自己越有利！</p>
+<p class = "firstLineIndent">聂云得到的引力波探测设备毕竟只是双子星文明探测器上的一种小型雷达，探测的范围有限，就算是目前飞出最远的鹰眼探测器，也无法观察到牵引光束尽头的敌方飞船。</p>
+<p class = "firstLineIndent">因此他命令所有光学被动探测设备开始集中往“红地毯”的另一端搜集对方战舰的光学信息。</p>
+<p class = "firstLineIndent">很快，在牵引光线尽头，聂云果然发现了两个绝不属于流浪天体的微弱红外信号！</p>
+<p class = "firstLineIndent">如果是正常情况，想要用这种方式发现如此遥远而微弱的光信号，比大海捞针要还要难得多，不过有了“红地毯”按图索骥，那就简单得多！</p>
+<p class = "firstLineIndent">虽然如此远的距离，聂云还无法获得对方的可视画面，不过红外定位却是能够做到了。</p>
+<p class = "firstLineIndent">而很显然，对方并不认为这么远的距离，会被地球文明发现，因此也并没有开启战舰的隐蔽能力！就这么大喇喇地直直飞往地球。</p>
+<p class = "firstLineIndent">“代号，记录他们现在所处的星域坐标！以它们现在的航行速度，肯定是刚刚才启动加速过程，所以它们不可能是用普通超高速航行的方式抵达这里！</p>
+<p class = "firstLineIndent">这个坐标……很可能有问题！</p>
+<p class = "firstLineIndent">给我用全部探测设备持续搜集这个坐标周围的所有宇宙信息，将探测数据发给于老，让他们的团队开始分析！</p>
+<p class = "firstLineIndent">另外，从现在开始，双子星文明的情报，对组织内所有成员开放！”聂云命令道。</p>
+<p class = "firstLineIndent">“是的舰长阁下！”</p>
+<p class = "firstLineIndent">处理完这件事，聂云看向面前星图上标注的敌方战舰信号，随后嘴角一勾，“呵！加速度看来还挺快，开的果然是豪车，不过不好意思，以为太阳系没交警的吗……该路段限速30，您已超速……”</p>
+<p class = "firstLineIndent">聂云嘿嘿笑着控制“聂云牌”双子星文明探测器发送了一个假信号……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">两艘巡林者号上。</p>
+<p class = "firstLineIndent">“滴！报告，收到来自太阳系内探测器警报！有不明飞行物正在进入太阳系内部！”智脑的提示让两位舰长一愣。</p>
+<p class = "firstLineIndent">外来飞船？什么情况？</p>
+<p class = "firstLineIndent">他们的面前出现了太阳系的三维投影，其中一个红色的光点刚刚进入探测器的有效探测范围，正与他们呈120°左右的夹角，从另一个方向朝太阳系内部飞速驶去！速度竟然达到了惊人的五分之一光速！</p>
+<p class = "firstLineIndent">两名舰长豁然站了起来。</p>
+<p class = "firstLineIndent">“报告目标参数！显示目标画面！”</p>
+<p class = "firstLineIndent">“目标初步判断，5万吨护卫舰级别，型号未知！无法捕捉目标画面，判断对方已开启光学隐身，探测到目标强烈红外信号，对方正在减速……按照目前航向，预计15天后进入我方舰载雷达探测范围！”</p>
+<p class = "firstLineIndent">5万吨护卫舰级别？五分之一光速？</p>
+<p class = "firstLineIndent">这比他们所能达到的最高航行速度还要高上一筹，虽然航速不能代表一切，不过至少可以判断这艘飞船并不是低级文明能够拥有的东西！</p>
+<p class = "firstLineIndent">“判断对方前进方向！”羽族舰长道。</p>
+<p class = "firstLineIndent">星图上标注出一条虚线，最终指向了……地球！</p>
+<p class = "firstLineIndent">“嗯？地球？莫非它是地球文明的最新科技造物？”海族舰长愣了一下。</p>
+<p class = "firstLineIndent">“不可能！就算再给地球200年，他们也不可能制造出这样的飞船！而且如果是地球发射出去的，探测器不可能没有记录！</p>
+<p class = "firstLineIndent">以它目前的速度判断，对方应该是经历了漫长的加速从太阳系外而来！</p>
+<p class = "firstLineIndent">而且看样子，对方的科技水平……不比我们低！</p>
+<p class = "firstLineIndent">该死……巡林者号，快，立刻关闭牵引光束！”羽族舰长突然反应过来，脸色阴沉地命令道。</p>
+<p class = "firstLineIndent">虽然或许有些晚了，不过在没有确认对方是否存在敌意前，继续开着牵引光束那就是找死了！</p>
+<p class = "firstLineIndent">“牵引光束已关闭，重新计算航道，预计抵达地球时间……60天！”</p>
+<p class = "firstLineIndent">被迫遵守交通规则的两位舰长对视一眼，脸色都十分难看……</p>
+
+<h2>第二百三十七章 威胁</h2>
+<p class = "firstLineIndent">海狼号舰桥。</p>
+<p class = "firstLineIndent">“舰长阁下，对方已经关闭牵引光束！”</p>
+<p class = "firstLineIndent">“呼……很好！看来我们的假信号并没有别识破！”聂云松了口气。</p>
+<p class = "firstLineIndent">别看他面上轻松，心里也是捏了把汗，自己对双子星文明的科技毕竟了解有限，最坏的情况是对方识破了自己，然后双方直接正面做上一场分胜负。</p>
+<p class = "firstLineIndent">到时候就算能够逼退对方，地球却也危险了。</p>
+<p class = "firstLineIndent">而第一步计划成功，那么接下来的计划就有了成功的可能性！</p>
+<p class = "firstLineIndent">“八条！”聂云招呼一声，正在舰桥内四处溜达的八条闻言停下脚步，很乖巧地几个跳跃蹦到了聂云的手心，然后瞪着圆溜溜的大眼睛不解地看着聂云。</p>
+<p class = "firstLineIndent">聂云一动不动盯着八条看了许久，直到八条被盯得有些发毛，不知道这个主人又在打什么坏主意时，聂云的右手上突然出现了一团机械虫，在聂云一阵捏橡皮泥一般的动作之后，一张十分古怪的“虫皮面具”新鲜出炉。</p>
+<p class = "firstLineIndent">聂云将面具往自己头上一套，用手扶了扶，然后用一张古怪的脸看向一脸愕然的八条得意问道：“怎么样，像吗？”</p>
+<p class = "firstLineIndent">八条：“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">巡林者号舰桥。</p>
+<p class = "firstLineIndent">“看那艘飞船刚刚的航向……是银河系外围，英仙旋臂方向而来！该死的，那个方向莫非有我们还未搜索到的虫洞？”海族舰长脸色难看地骂道。</p>
+<p class = "firstLineIndent">“不排除这种可能性，我们的虫洞探测技术虽然在附近几个文明中独树一帜，但是毕竟无法将一个恒星系外围所有区域都扫描一遍，有所遗漏也很正常。”</p>
+<p class = "firstLineIndent">“那我们现在怎么办？”海族舰长问道。</p>
+<p class = "firstLineIndent">“看对方的航行方向，显然也已经发现了地球文明！而且按照双方速度，他会比我们先抵达地球！</p>
+<p class = "firstLineIndent">我们接下来怎么做，取决于对方的态度！在情况未明之前，我们不能鲁莽行事，最好能够摸清对方的来意在做计较！”</p>
+<p class = "firstLineIndent">“你是说……主动联系他们？”</p>
+<p class = "firstLineIndent">“如果对方和我们科技实力相当，刚刚就应该已经发现我们了，倒不如大大方方地问清对方的来意！</p>
+<p class = "firstLineIndent">而如果对方连我们的牵引光束都发现不了，这种敌人还需要担心？”</p>
+<p class = "firstLineIndent">“可是，与一个实力未知的文明交流，这可不是小事……”海族舰长迟疑道。</p>
+<p class = "firstLineIndent">“放心，以现在双方的距离，如果情况不对，我们可以立刻返回比邻星再做计较。难道你想连敌人是谁都不知道，只是远远看一眼便灰溜溜的回去交差？”</p>
+<p class = "firstLineIndent">“当然不可能！对方只有一艘护卫舰，我们会怕它？论起战斗，我海族人何时退缩过！”海族舰长哼了一声道。</p>
+<p class = "firstLineIndent">“好！那我们……”羽族舰长话还没说完，飞船的控制智脑突然再次传来提示。</p>
+<p class = "firstLineIndent">“报告！太阳系内的探测器接收到未知信号，包含电磁波在内的多种广域通讯方式，经过解析，信息内容是一个加密的量子通讯频道！”</p>
+<p class = "firstLineIndent">“什么？！”两人一惊，自己这边都还没行动，对方竟然主动联系他们了，而且行动如此迅速！</p>
+<p class = "firstLineIndent">他们互相对视一眼，羽族舰长开口道：“看来牵引光束果然被对方发现了！我们关闭牵引光束的动作，也是在告诉对方我们已经发现了他们的存在，他们这才选择不再隐藏！”</p>
+<p class = "firstLineIndent">“哼！竟然敢主动联系我们，看来对方很有底气啊，我倒要看看这到底是何方神圣！智脑，给我接通通讯！”海族舰长冷笑道。</p>
+<p class = "firstLineIndent">对此，羽族舰长倒是没有反对，如果连人家一个通讯都不敢接，那干脆直接打道回府好了。</p>
+<p class = "firstLineIndent">通讯很快接通，画面显示在舰桥内的光屏上，而出现在双子星舰长面前的，是一张堪称怪异的脸。</p>
+<p class = "firstLineIndent">黑色布满龟裂痕迹的皮肤，光溜溜的脑袋，下巴上还有八条短短肉球一样的触须，特别引人注目的是那张大嘴，里面布满细密的尖利牙齿。</p>
+<p class = "firstLineIndent">如果说这张脸有什么特色，那就只有一个……凶狠！无比的凶狠！</p>
+<p class = "firstLineIndent">当看到这个生物的第一眼，两名舰长就觉得一股洪荒猛兽一般的嗜血气息扑面而来！让两人的神情不由得滞了一滞。</p>
+<p class = "firstLineIndent">当然不是害怕，而是……这种野兽派究竟是怎么晋升到科技类高级文明的？画风走形了吧？</p>
+<p class = "firstLineIndent">这个野兽派自然是聂云，而该造型的原型八条此刻已经哭晕在厕所。</p>
+<p class = "firstLineIndent">像尼妹啊！</p>
+<p class = "firstLineIndent">它心中发出无声的控诉，这绝对堪称史上最凶残的肖像侵权！</p>
+<p class = "firstLineIndent">聂云此刻也在打量双子星文明，不知道是否是巧合，对面的两人也是人形生物。</p>
+<p class = "firstLineIndent">那位羽族舰长的后背有着一对棕色的羽翼，一头紫色长发，还带着一只单边的耳环，面容略显妖异，服饰上绣着繁复的花纹，看起来是个十分优雅的种族。</p>
+<p class = "firstLineIndent">而海族则是一张鲨鱼脸，脸上带着三道鳃裂，身材高大，一脸的剽悍之气。</p>
+<p class = "firstLineIndent">“￥ap;ap;ap;￥￥”聂云嘴里突然吐出一连串叽里咕噜的未知语言。</p>
+<p class = "firstLineIndent">双子星的两位舰长一脸无语地看着对面，不知道两个文明之间第一次交流先要先递“名片”吗？</p>
+<p class = "firstLineIndent">“智脑，检索对方语言！”羽族舰长皱眉道。</p>
+<p class = "firstLineIndent">“检索完毕，已知文明数据库中无对应记录！”智脑回复道。</p>
+<p class = "firstLineIndent">羽族舰长的眉头皱的更深，如果是知根知底的文明还好，但最糟糕的情况出现了！</p>
+<p class = "firstLineIndent">对双子星文明来说，在这里遇到一个完全陌生的文明可以说是一个十足的坏消息，但是看到两位舰长脸上的表情，聂云却是心中大乐。</p>
+<p class = "firstLineIndent">听不懂？听不懂好啊！让你们不好好学外语，欺负的就是你们读书少！</p>
+<p class = "firstLineIndent">聂云似乎突然反应过来对方完全听不懂自己的话，他拍了拍脑门，然后让代号发送了一份数据包过来。</p>
+<p class = "firstLineIndent">“舰长，对方发送过来一份语言压缩包！”巡林者号的智脑提示道。</p>
+<p class = "firstLineIndent">“嗯，小心对方耍诈，用独立分区打开！另外……我们也发一份双子星通用语过去！”羽族舰长迟疑了一下道。</p>
+<p class = "firstLineIndent">随后他查看了一眼对方的文字，是一种奇怪的条形二维码，他确认自己没有见过这种文字形式。</p>
+<p class = "firstLineIndent">双方在很“友好”的气氛下互相递了“名片”，然后聂云在对方完成语言包解析的第一时间，便说了一句让两位舰长呆立当场的话。</p>
+<p class = "firstLineIndent">“嘿！两位，劝你们乖乖放下武器投降，否则我会直接轰平你们的星球！”聂云咧开满嘴的利齿邪恶地威胁道。</p>
+<p class = "firstLineIndent">羽族舰长：“？？？”</p>
+<p class = "firstLineIndent">海族舰长：“？？？”</p>
+<p class = "firstLineIndent">呃……这里面……是不是有什么误会？</p>
+
+<h2>第二百三十八章 为保卫地球而战</h2>
+<p class = "firstLineIndent">场面一度陷入十分尴尬的境地。</p>
+<p class = "firstLineIndent">面对活脱脱就像是把刀架在美女脖子上要求对方男盆友束手就擒的绑匪聂云，两位舰长一时不知道该怎么告诉对面自己其实和那位美女没啥关系。</p>
+<p class = "firstLineIndent">如果硬要说有关系，那可能就是我们和你一样也抱着想绑票的心思而来，所以其实咱们是同行来着……</p>
+<p class = "firstLineIndent">嗯……不过不管是从面相还是气势上来讲，同为反派角色的双子星文明……完败！</p>
+<p class = "firstLineIndent">不过……对方这样的误会倒是让羽族舰长有了些想法。</p>
+<p class = "firstLineIndent">“咳咳！这位舰长先生，先自我介绍一下，我们是双子星文明的极东巡林者，这里的确是我们双子星文明的外围领地。</p>
+<p class = "firstLineIndent">不过十分抱歉，那个星球上的低级文明并没有你想的那么重要，充其量只是我们文明领土内的一个无关紧要的附属文明。</p>
+<p class = "firstLineIndent">而我们这次过来，只是一次例行的文明观察而已！”羽族舰长斟酌了一下，道出这番说辞。</p>
+<p class = "firstLineIndent">他现在已经将对方也当成和他们一样的开拓文明，那么对方来到这里的意图很可能也是拓展领地！</p>
+<p class = "firstLineIndent">而要说太阳系，其实还没有被正式纳入双子星文明的版图，但如果对方知道这里是无主的领地，到时候说不定会以先到先得的宇宙惯例霸占这里，这样便会和双子星文明的开拓战略产生冲突。</p>
+<p class = "firstLineIndent">如果双方文明的水平相当，则很可能就会在双方的扯皮后演变成一场数百年的领土争端？</p>
+<p class = "firstLineIndent">所以心思急转之下，羽族舰长直接将太阳系说成是双子星文明的外围领地，那么侵略一个同等水平文明的领地和占领一个无主的星系，这就完全不是一个概念！</p>
+<p class = "firstLineIndent">对方如果不想和实力未明的双子星文明开战，至少会对占领太阳系有所顾忌。</p>
+<p class = "firstLineIndent">至于弱小的太阳系地球文明，已经自动被羽族舰长忽略，宇宙的真理同样只在舰炮的射程之内！</p>
+<p class = "firstLineIndent">“嗯？双子星文明？你们的外围领地？”聂云眯起猩红的双眼死死盯着羽族舰长，似乎想要判断对方是不是在诈自己。</p>
+<p class = "firstLineIndent">“本人乃是安特帝国第九星域第108舰队独立特遣舰舰长，荣誉开拓骑士……八条！”看了许久，聂云终于报上了一长串的名号，除了最后的名字，其他的都相当唬人！</p>
+<p class = "firstLineIndent">八条：“……”</p>
+<p class = "firstLineIndent">侵犯完肖像权之后是姓名权吗……</p>
+<p class = "firstLineIndent">两位双子星的舰长则是听的一愣一愣的，看看人家这自我介绍，对比自己刚刚“双子星文明极东巡林者”，怎么有种正规军遇上原始部落的感觉。</p>
+<p class = "firstLineIndent">自我介绍能不能重来一次，至少让我把序列号什么的补上啊魂淡……</p>
+<p class = "firstLineIndent">“至于你们说这里是你们的领地，星球上的是一个无关紧要的附属文明？怎么？想唬我放了他们？当我是三岁小孩子吗？”聂云不屑道。</p>
+<p class = "firstLineIndent">羽族舰长神情一僵，刚想开口辩解，聂云却没给他说话的机会，继续道：“你们不用多说！等我抵达那颗星球后，我自会搜集情报辨认真伪！如果你们敢骗我……休怪我直接灭了你们的星球！”</p>
+<p class = "firstLineIndent">聂云一副你们和我手上的人质肯定有关系的笃定模样。</p>
+<p class = "firstLineIndent">“喂！你这家伙很嚣张啊！这里怎么说也是我们双子星文明的领地，哪容得你这么叫嚣着喊打喊杀？</p>
+<p class = "firstLineIndent">安特帝国？听都没听过的帝国，真当我们双子星文明是好惹的？”</p>
+<p class = "firstLineIndent">海族舰长知道自己不擅长外交，加上羽族舰长地位特殊，所以很自然的交由羽族舰长主导谈判，只是在一旁关注事件的发展，不过此刻看到对方完全不将自己等人放在眼中的态度，终于忍不住怒道。</p>
+<p class = "firstLineIndent">“嘿嘿！别着急，等我料理了这个星球，就来见识一下所谓的双子星文明到底是不是好惹的！如果太弱了，我会很失望哦……”聂云邪笑着来回打量两名舰长，就像是在盯着两只美味的猎物。</p>
+<p class = "firstLineIndent">两名舰长心中一凛，对方究竟什么来头，连我们双子星文明的底细都不知道，就敢叫嚣着和我们开战？</p>
+<p class = "firstLineIndent">莫非帝制国家的开拓骑士都是这德性？简直是一群疯子！</p>
+<p class = "firstLineIndent">“八条阁下！你这是在代表安特帝国向我们双子星文明宣战？”羽族舰长终于难掩脸上的怒色，质问道。</p>
+<p class = "firstLineIndent">“宣战？不不不！我只是一个小小的开拓骑士，我的领主伯爵大人才有资格同一个文明正式宣战！</p>
+<p class = "firstLineIndent">只不过，在我们的家乡，两个刚刚认识的朋友最友好的交流方式，便是打上一架！我觉得，你们应该要学会尊重我们文明的文化习俗！”</p>
+<p class = "firstLineIndent">两位舰长：“……”</p>
+<p class = "firstLineIndent">刚认识就要打一架表示友好？哪个奇葩文明会有这样的习俗啊魂淡！</p>
+<p class = "firstLineIndent">对于这种习俗的说法，两位舰长自然是不信的，对方摆明了是想要做上一场试探己方的实力，不过……正合我意！</p>
+<p class = "firstLineIndent">“好啊！我正好也想见识一下安特帝国开拓骑士的实力，说吧，你想怎么打？”海族舰长冷笑道。</p>
+<p class = "firstLineIndent">“好！爽快！我就喜欢你这种直爽的好汉子！”聂云咧嘴一笑，“你们的那个……算了，我就暂时把它当做你们的附属文明吧！</p>
+<p class = "firstLineIndent">你们的附属文明在第三行星，那么在这颗星球外围选择一颗陆地星球作为交战地点如何？</p>
+<p class = "firstLineIndent">交战方式嘛……一共进行三场，三局两胜！第一场进行该行星地面争夺战，第二场是舰载兵器太空战，最后再进行太空舰队战。</p>
+<p class = "firstLineIndent">当然，为了公平，交战星球可以由你们定！</p>
+<p class = "firstLineIndent">在分出胜负之前，我可以向你们保证，只会暂时接管第三星球，如果你们赢了，那就证明了你们的实力，到时候我自会将它还给你们！</p>
+<p class = "firstLineIndent">不过如果你们输了……嘿嘿！弱者没有资格要求强者，所以我会立刻清除这颗星球上的土著文明，将它变成我的一块骑士领！</p>
+<p class = "firstLineIndent">这个提议……如何啊？”</p>
+<p class = "firstLineIndent">双子星的两位舰长对视一眼，对方显然是有备而来，这样的三场战斗，能够全面评估一个文明的战争实力，的确是加深相互之间“了解”的好方法！</p>
+<p class = "firstLineIndent">不过……似乎有哪里不太对劲啊？</p>
+<p class = "firstLineIndent">我们原本不是要过来侵略地球的吗？这种浓浓的为保卫地球而战的画风……是错觉吧？</p>
+
+<h2>第二百三十九章 连环计</h2>
+<p class = "firstLineIndent">羽族舰长低头沉思良久，然后抬头问道：“我们原则上同意，不过……这仅仅只是我们的个人行为，我们双方都无法代表我们身后的文明，这点你同意吗？”</p>
+<p class = "firstLineIndent">“当然！如果你们失败后，双子星文明想要找回场子，那么我们安特帝国自然奉陪到底！”聂云很爽快的点头同意，似乎生怕没有架打一样。</p>
+<p class = "firstLineIndent">对这种假设十分不满的海族舰长同样毫不示弱地反击，“哼！如果你输了，情况也是一样！我们双子星文明不惧任何人的挑战！”</p>
+<p class = "firstLineIndent">“等等，还有一个问题，不管敌人是一个人，还是一群人，我们双子星文明一向是两个种族同进同退，你……该不会要求我们只派一艘战舰和你单挑吧？”羽族舰长眯起眼睛看着聂云。</p>
+<p class = "firstLineIndent">平素十分谨慎的他怀疑聂云拐弯抹角的就是想让他们自废一臂，然后趁机各个击破，两个文明之间的战争哪里有道义可言，所谓兵不厌诈，不得不防啊……</p>
+<p class = "firstLineIndent">“哈哈！那真是巧了，不管敌人是一个人，还是一群人，我们安特帝国的开拓骑士一向是独自面对，呼叫支援那是被人耻笑的懦夫行为！你们要是不一起上，那才是对我八条骑士的侮辱和挑衅！”聂云用一脸“我要打十个”的战斗狂人表情看着对面两人。</p>
+<p class = "firstLineIndent">两名舰长闻言，脸色顿时像是吃了翔一样难看。</p>
+<p class = "firstLineIndent">嚣张！太嚣张了！好想再找八个人群殴他啊魂淡……</p>
+<p class = "firstLineIndent">不过不得不承认，似乎从一开始，自己这边的气势就弱了对方不止一筹，完全被压在下风！</p>
+<p class = "firstLineIndent">“好！我们答应了！”羽族舰长咬牙道。</p>
+<p class = "firstLineIndent">虽然愤怒，但是他并没有失去理智地说什么为了公平我们也派一艘战舰和你单挑这样的傻话，他还没有愚蠢到为了荣誉就放弃自身的军事优势的地步！</p>
+<p class = "firstLineIndent">“那么等我们抵达太阳系之后，再决定交战地点！”为了防止对方先抵达交战地点做手脚，羽族舰长选择了延后公布交战星球。</p>
+<p class = "firstLineIndent">“可以！不过在那之前，我还有份小礼物要送给你们！嘿嘿！”聂云嘿嘿笑着摆了摆手，似乎是在命令着什么。</p>
+<p class = "firstLineIndent">就在两位舰长不明所以的时候，巡林者号的智脑突然传来提示。“报告舰长，太阳系内的两枚探测器信号消失，确认已被彻底摧毁！”</p>
+<p class = "firstLineIndent">这个消息让两位舰长的脸色猛地一变，看向对面的聂云，这是……下马威？！</p>
+<p class = "firstLineIndent">是的，聂云主动将两枚探测器予以“摧毁”！</p>
+<p class = "firstLineIndent">对一个高级文明使用信息欺骗原本就需要冒极大的风险，能够成功一次就已经十分侥幸，为了避免在后续的信息比对中露出破绽，聂云选择主动结束探测器的历史使命，并追封它们为……“死间”！</p>
+<p class = "firstLineIndent">（探测器x2：“……”）</p>
+<p class = "firstLineIndent">“这份礼物希望你们能够喜欢，那么……我很期待与你们的一战！哈哈……”聂云嚣张地大笑着关闭了通讯。</p>
+<p class = "firstLineIndent">“该死的！”海族舰长猛地敲了一下桌面，这种全程被人压制的感觉让他分外难受。</p>
+<p class = "firstLineIndent">羽族舰长却是深深皱起眉头。</p>
+<p class = "firstLineIndent">在那种距离竟然就能发现他们的探测器，并且毫无声息地予以摧毁，恐怕就连自己的巡林者号也做不到吧？</p>
+<p class = "firstLineIndent">对方的实力，比想象的……还要强啊……</p>
+<p class = "firstLineIndent">是的，聂云同样是借着这个机会狠狠地给了双子星文明一个战术威慑，毕竟自己可是“强大的安特帝国开拓骑士”，不露一手，如何体现自己的强大？</p>
+<p class = "firstLineIndent">这算是发挥了两枚探测器的最后一点余热，而纵观这两枚探测器的一生。</p>
+<p class = "firstLineIndent">从被聂云切碎，再被连皮带骨吃掉，然后又被李代桃僵，最后被杀鸡儆猴，通过这种反复鞭尸的手法，聂云可谓将两枚探测器利用到了极致！</p>
+<p class = "firstLineIndent">（探测器x2：“……”）</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">挂断通讯，聂云从头上扯下“虫皮面具”丢到一边，然后长出了一口气抹了抹额头的冷汗。</p>
+<p class = "firstLineIndent">别看聂云刚刚表现的很嚣张，实际上是如履薄冰，每一句话都是动用了所有的心念和计算力反复推敲，生怕一句说错，满盘皆输！</p>
+<p class = "firstLineIndent">尽管这个计划已经模拟了无数遍，计算好了各种可能性，不过任何一个微小的意外都有可能导致计划失败，而计划失败，就意味着地球将陷入巨大的危机！</p>
+<p class = "firstLineIndent">还好……计划初步告捷！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">让我们来复盘还原一下聂云的整个谋划，他将其称之为……“借尸还魂计划！”</p>
+<p class = "firstLineIndent">没错，聂云所借的，正是月球地底遗迹文明这个“尸”！</p>
+<p class = "firstLineIndent">因为这个文明对蚂蚁那十分执着的爱好，所以聂云给它取名——“安特（ant）文明”。而正是利用了从安特文明获得的语言文字包，聂云无中生有地伪造了一个外来的开拓文明！</p>
+<p class = "firstLineIndent">一种历史悠久毫无破绽的语言文字，可不是短时间内凭空就能杜撰出来的，而地球上的语言情报又已经被双子星文明所掌握，所以聂云最终只能选择“借尸还魂”！</p>
+<p class = "firstLineIndent">他赌的，就是这个三万年前的遥远文明和紧邻地球的双子星文明没有交集！</p>
+<p class = "firstLineIndent">幸好，双子星文明的脚步终究还是没有走到那么遥远的星域。</p>
+<p class = "firstLineIndent">在确认过眼神，对方的确听不懂“安特语”之后，聂云就开始执行连环计的下一计……反客为主！</p>
+<p class = "firstLineIndent">既然地球已经暴露了，而凭自己目前的实力又不能确保交战时地球的绝对安全，于是“不钻牛角尖”的聂云选择了反其道而行！</p>
+<p class = "firstLineIndent">他一见面就将自己定义成一个凶残而毫无人性的侵略文明，并且先入为主地将地球定义为对方的重要星球，甚至想要以此威胁双子星文明。</p>
+<p class = "firstLineIndent">这么做的结果是在对方的心里造成一种固有印象……我对地球文明的死活毫不在乎，人类什么的给我统统去死……</p>
+<p class = "firstLineIndent">随后一系列的因势利导和语言陷阱之后，双子星文明稀里糊涂就被定义成了地球文明的保护文明。</p>
+<p class = "firstLineIndent">就算双子星文明对地球文明的死活同样毫不关心，但只要对方错误的估计了地球对聂云的重要性，那么这次的战略欺骗就算是完美达成！</p>
+<p class = "firstLineIndent">至少在双方分出胜负之前，地球将是安全的！而分出胜负之后……自然也就没有然后了……</p>
+<p class = "firstLineIndent">而为了倾情演绎“八条骑士”这个凶残而又嚣张的反派角色，聂云可谓是下了大功夫！</p>
+<p class = "firstLineIndent">“演员的自我修养”什么的那都是基础教材，服装、道具、神情、语气等等都是反复模拟练习。</p>
+<p class = "firstLineIndent">不说别的，单就刚刚最后那个嚣张的大笑，都是聂云建了10086个三维虚拟图像，最终反复揣摩人物心理选择的“最嚣张”模板，并且表演时就连嘴角勾起的弧度都精确到原子级别。</p>
+<p class = "firstLineIndent">这场堪称本世纪最豪华精良的超宏大制作，拿十个八个小金人那是一点悬念都没有！</p>
+<p class = "firstLineIndent">靠着这样影帝级的表演，聂云凶焰滔天地全程压制了对方，主宰全场！</p>
+<p class = "firstLineIndent">至此，聂云的“借尸还魂”和“反客为主”宣告完成，不过这还不是结束，似乎想把三十六计挨个儿使一遍将对手彻底忽悠瘸的聂云正在酝酿连环计的第三弹……苦肉计！</p>
+
+
+
+</br></br>
+<a href="220.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="240.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

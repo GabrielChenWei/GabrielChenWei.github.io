@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第四百四十章 利益均沾</h2>
+<p class = "firstLineIndent">“这……这就是传说中的宇宙奇物？”古斯塔夫眼中有着些许炙热。</p>
+<p class = "firstLineIndent">“宇宙奇物——生命之水！任何生物使用后，不仅能够激发身体潜能，全方位强化其实力，而且还拥有极大延长寿命的强大功效，若是长期使用，甚至……还能优化基因，促进一个族群向着更高层次进化！”</p>
+<p class = "firstLineIndent">“嘶~”听到黑执事的话，两人皆是倒抽一口凉气。</p>
+<p class = "firstLineIndent">全方位强化实力倒还好，双子星同样也有强化个体实力的科技手段，只不过大多都有极强的副作用，要么就是牺牲寿命刺激人体潜能，要么就是进行身体的半机械化。</p>
+<p class = "firstLineIndent">如果仅仅只是这个作用，双子星倒也不会太过重视，毕竟只是针对个体的东西，对整个文明的作用不大。</p>
+<p class = "firstLineIndent">但后面两个功效就厉害了！</p>
+<p class = "firstLineIndent">延长寿命自不用说，没人会嫌自己命长，如果用在重要的顶尖科学家身上，对文明发展的作用也是不小。</p>
+<p class = "firstLineIndent">对那些老朽的掌权者来说，这也是无法拒绝的诱惑。</p>
+<p class = "firstLineIndent">而优化基因，促进生物进化，那可是能够提高整个文明潜力的超级效果！对双子星的作用不可估量！</p>
+<p class = "firstLineIndent">“我们怎么能确定你说的是不是真的？”伊莎尔谨慎道。</p>
+<p class = "firstLineIndent">“呵呵！我们双子星内部用许多科技延缓衰老，也不过能够将寿命延长到200岁左右，而卡拉人的自然寿命几乎就到了300岁，而且身体还拥有强大的自愈能力，甚至能够断肢重生！</p>
+<p class = "firstLineIndent">同为人形生物，但卡拉人的身体进化不可否认的确是走在了我们双子星前面。</p>
+<p class = "firstLineIndent">你们不是一直在研究卡拉人强大身体和长寿的奥秘吗？喏，它现在就摆在你们面前！”黑执事晃了晃手中的水晶瓶。</p>
+<p class = "firstLineIndent">“你是说……这东西就是卡拉文明手上的那件宇宙奇物？”伊莎尔终于反应过来。</p>
+<p class = "firstLineIndent">“不错！我们也是在扶持卡拉文明的过程中取得了对方一定程度的信任，这才偶然间发现了生命之水的秘密。”黑执事点头承认。</p>
+<p class = "firstLineIndent">“卡拉人的生命激素，只是卡拉人研究生命之水的副产物，功效连生命之水的万一都比不上，另外……你们觉得猎犬的基因改良型战斗力如何？”</p>
+<p class = "firstLineIndent">“什么？莫非那种生物兵器就是用生命之水改良出来的？”古斯塔夫问道。</p>
+<p class = "firstLineIndent">这种几乎能够和动力装甲单挑的生物兵器让海族的地面部队吃足了苦头，他对此可是印象深刻！</p>
+<p class = "firstLineIndent">得到对方的确认后，伊莎尔心中不免有些惋惜，明明是自己一直在寻找的东西，没想到竟被对方截了胡！</p>
+<p class = "firstLineIndent">结合己方手头的情报信息，伊莎尔和古斯塔夫心中开始渐渐有些相信对方的话了。</p>
+<p class = "firstLineIndent">谎言里九句真一句假，才更能够迷惑人。</p>
+<p class = "firstLineIndent">“这么说，是卡拉文明拿出了这个筹码，请你们出手保下他们？”伊莎尔问道。</p>
+<p class = "firstLineIndent">“不！既然我们组织已经知道了生命之水的存在，凭我们的实力出手抢夺也是易如反掌。</p>
+<p class = "firstLineIndent">不过……很可惜的是，生命之水的产量极低，一个月才只有一瓶，而诞生的环境又太过特殊，根本无法移动，所以当我们得到情报，得知你们居然想要毁灭卡拉星之后，这才不得不现身与你们进行谈判。</p>
+<p class = "firstLineIndent">否则一个区区的卡拉文明，我们利用完了之后必定会将其抛弃，又为何要大费周章，付出极大的代价让你们退出卡拉星？”</p>
+<p class = "firstLineIndent">原来如此，这样一来，对方一直以来的行动也就能完全说通了。</p>
+<p class = "firstLineIndent">“你们组织舍得将这么珍贵的东西交给我们？”伊莎尔有些怀疑道。</p>
+<p class = "firstLineIndent">“当然不舍得，原本我们是想秘密消化，这种东西就算在我们万物归一会内部，也是不可多得的宝物，用来交换，能够快速增强我们加达里星区分会的实力。</p>
+<p class = "firstLineIndent">不过一旦你们动手，东西毁了，我们是一拍两散，所以商议之后我们决定，让出一部分利益，双方三七开，你三我七，大家利益均沾。”黑执事用一副列强瓜分殖民地的语气道。</p>
+<p class = "firstLineIndent">“三七开？！你们在开玩笑吗？卡拉星还在我们的控制中，凭什么你们拿大头！”古斯塔夫听到这个分配比例立刻跳脚。</p>
+<p class = "firstLineIndent">“纠正一下，卡拉星现在是在我们双方的控制下，你们有能力毁灭它，我们也是一样！</p>
+<p class = "firstLineIndent">不过……坐地起价，落地还钱，这个不是不能谈，不妨开门见山告诉你们，上头给我的底线是五五开，超过这个比例，我们就引爆卡拉星，退回太阳系，大家该干嘛干去！</p>
+<p class = "firstLineIndent">反正我们已经得到了一些样品，就算是深入研究，也未必没有收获，只是可惜了，我们文明即将失去一个进化的契机……唉！”黑执事一副十分惋惜的样子道。</p>
+<p class = "firstLineIndent">古斯塔夫见状不由心中暗骂，明明是死咬着好处不放，还有脸一副为国为民，果然是奸商嘴脸！</p>
+<p class = "firstLineIndent">伊莎尔则在一旁沉思，对方开出的三个筹码，每一个对双子星来说都是有利可图，但代价就是已经被对方实际占领的太阳系和战况焦灼的比邻星系。</p>
+<p class = "firstLineIndent">而且谁也没办法保证对方说的都是真的，这也可能是对方的战略欺骗！</p>
+<p class = "firstLineIndent">伊莎尔仔细斟酌后开口了。</p>
+<p class = "firstLineIndent">“如果你说的都是真的，那么贵方提出的交易的确很诱人，我们会立刻上报联合议会请求指示。</p>
+<p class = "firstLineIndent">不过事先声明，为了验证生命之水的功效，你们必须先提供一份样品给我方，同时为了展示你们的诚意，和谈之后你们必须第一时间释放我方的被俘人员。</p>
+<p class = "firstLineIndent">另外，想让我们让出整个比邻星系无疑是痴人说梦，我们的底线只会是暂停对卡拉星动用武力，以目前双方的实际占领区划分停火线！</p>
+<p class = "firstLineIndent">同时，我们的舰队必须控制卡拉星的星球轨道，并对星球保持武力封锁，任何企图逃离卡拉星的飞行物都将被击落！</p>
+<p class = "firstLineIndent">若是双方真的能够停战，那么后续将生命之水送出卡拉星的运输飞船也必须要由我方提供，我们会派人清点生命之水的数量，毕竟东西控制在你们手中，产量到底多少只有你们清楚。</p>
+<p class = "firstLineIndent">如果你们真的只是想获取生命之水，这样的停战方式对双方来说都是可以接受的，不是吗？”</p>
+<p class = "firstLineIndent">黑执事沉默了一会儿，随后点点头，“可以！这个要求合情合理，这同样也是我方的底线！”</p>
+<p class = "firstLineIndent">让双子星退出比邻星系，本就是他狮子大开口的条件，根本没指望对方能答应。</p>
+<p class = "firstLineIndent">“样品我会让人立刻准备，你们可以前往双子星坐标xxx，xxx位置拿货，给你们三天时间进行验证，那么……我就静候两位的好消息了！”黑执事说完，通讯便被挂断。</p>
+<p class = "firstLineIndent">伊莎尔没想到对方答应的这么痛快，一旦拿到样品，就可以证明生命之水的存在究竟是真是假。</p>
+<p class = "firstLineIndent">而生命之水如果真的这么强大，那么之后两族之间的分配，恐怕就是重中之重，单是寿命的延长，就是一个巨大的种族优势！</p>
+<p class = "firstLineIndent">短期或许效果并不明显，但长期下来也许会根本性的改变两族之间的力量对比。</p>
+<p class = "firstLineIndent">毕竟一个300岁的爱因斯坦和一个80岁的爱因斯坦，为文明做出的贡献完全不可同日而语。</p>
+<p class = "firstLineIndent">剩下的两位指挥官对视一眼，都从对方眼中看到一些莫名的东西……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">堕天使号，指挥官休息室。</p>
+<p class = "firstLineIndent">昏暗神秘的背景投影缓缓褪去，聂云一把扯下身上的黑袍，露出</p>
+<p class = "firstLineIndent">“不枉我熬夜写的剧本，看来效果还不错嘛，就算唬不住对方，至少也能争取些时间了，接下来……”聂云转头看向窗外隐约可见的卡拉星轮廓。</p>
+<p class = "firstLineIndent">拯救大树长生者，对外，是能忽悠就忽悠，对内，就必须练好内功，做好随时冒着敌人的炮火突出重围的准备！</p>
+<p class = "firstLineIndent">“花了三千多年才进化成这样，蘑菇都比你长得快，改造！必须改造！嘿嘿嘿……”</p>
+
+<h2>第四百四十一章 改造</h2>
+<p class = "firstLineIndent">虚拟世界，科技树云端科研所。</p>
+<p class = "firstLineIndent">“木本类植物，高度30公里，根须长度最长500公里，细胞活性是地球植物的135倍，叶绿体数量极少，光合作用能力几乎完全退化，线粒体数量极多并有明显变异，能量代谢速度超乎寻常！</p>
+<p class = "firstLineIndent">体内部分组织细胞失去植物细胞特有的细胞壁，初步判断为局部动物化……</p>
+<p class = "firstLineIndent">嘶！更不可思议的是这株被标定为‘核心’的小树苗，根据微型机器人的扫描，它的根须异常发达，几乎遍布树身，作用类似人体的神经系统，负责传达信号指令，完全就是这棵树的大脑……</p>
+<p class = "firstLineIndent">神奇！太神奇了！这简直就是大自然进化的奇迹！”</p>
+<p class = "firstLineIndent">周动看着眼前不断流过各种探测数据的长生者虚拟模型一脸的狂热。</p>
+<p class = "firstLineIndent">“行了，老周，你都感慨了半天了，老板可是要求尽快拿出改造方案，这么大一棵树，我们的工作量可不小！”于老一边操作面板分析数据一边道。</p>
+<p class = "firstLineIndent">在他旁边，十几名科学家也在不停忙碌。</p>
+<p class = "firstLineIndent">接到聂云的命令后，他们放下手中的所有研发课题，集体攻关代号为“长生者改造计划”的紧急项目。</p>
+<p class = "firstLineIndent">“改造？改什么造！这么完美的生物就不该进行人为破坏，看看你们打算装的这叫什么？啊！</p>
+<p class = "firstLineIndent">给它安上一个超级能源水晶熔炉，8个超大型、16个大型核聚变反应炉也就算了，3门要塞级力场射线炮，12门要赛级激光炮，36门重型?门4连装速射近防炮，324座特种飞弹发射巢，你们当是玩积木呢！</p>
+<p class = "firstLineIndent">居然还要在这么珍贵的样本体内钻孔铺设能源管线！你们这是在破坏一件艺术品你们知道么！</p>
+<p class = "firstLineIndent">还有这个，五星级酒店水准的指挥部，20座大型机库，200万人生存基地……你们特么是想把树挖成中空的么！”</p>
+<p class = "firstLineIndent">看着周动在那儿急的跳脚，于老不咸不淡的瞥了他一眼，“老板说了，两天之内设计稿拿不出来，下个月科研经费减半，就从你那儿开始扣……”</p>
+<p class = "firstLineIndent">“咳咳！其实我觉得吧，残缺美其实有时候看着也挺赏心悦目，比如那断臂的维纳斯，哎对了，要不在要害位置上加层外挂装甲吧？或者植入高强度钢筋增强抗冲击性能？”</p>
+<p class = "firstLineIndent">于老：“……”</p>
+<p class = "firstLineIndent">果断退出珍稀植物保护协会的周动一边忍着心痛加入改造大军，一边奇怪的问于老，“老于，这老板装这么多武器上去，莫非是想要把这颗树拉到前线当要塞？”</p>
+<p class = "firstLineIndent">“唔……我估计不是。”于老的话让周动不由松了口气。</p>
+<p class = "firstLineIndent">“老板要求加推进器了，估计想拿它当宇宙战舰来着……”</p>
+<p class = "firstLineIndent">周动：“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">长生者核心位置。</p>
+<p class = "firstLineIndent">此时的小树苗看起来有些萎靡，树枝低垂，一副深受打击的模样。</p>
+<p class = "firstLineIndent">不久前他还是自命不凡的超级进化者，下一刻就成了人家的阶下囚，这种角色转变发展可谓是大起大落！</p>
+<p class = "firstLineIndent">“你在我身上绑了什么？”长生者的话有些有气无力。</p>
+<p class = "firstLineIndent">它指的是小树苗身上被固定的一个银色小盒子，盒子上还画了一枚扇形标志，如果有地球人在这里，一眼就能认出这种图标代表的含义……核武器！</p>
+<p class = "firstLineIndent">“哦，没什么，就是一枚超级炸弹，一旦我失去对你的控制，它就会立刻爆炸，把你灰飞烟灭不敢说，直接炸成十块八块的还是超简单的。”一具聂云的秘银骑士分身双手揉着什么，语气轻松道。</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">它现在的感受，差不多和身上绑着炸弹背心的人质差不了多少。</p>
+<p class = "firstLineIndent">长生者虽然屈服在虫口之下，不过忠诚度基本为负数，聂云为特地给他设了两道限制。</p>
+<p class = "firstLineIndent">一道被聂云称为“神经锁”！</p>
+<p class = "firstLineIndent">符文一般的银色花纹从小树苗的树干以下，树根附近开始蔓延，如同一条条细密的银色锁链，一直延伸到深深植入长生者本体的神经系统。</p>
+<p class = "firstLineIndent">一旦长生者有所异动，聂云可以第一时间用“神经锁”绞断长生者的神经控制系统，剥夺对方对身体的控制权。</p>
+<p class = "firstLineIndent">第二道就是长生者身上的核弹。</p>
+<p class = "firstLineIndent">一旦附近的机械虫失去聂云的控制信号，炸弹就会爆炸，聂云对那招精神冲击可是印象深刻，能够让机械虫都短暂“眩晕”失联的技能可是至今为止仅见。</p>
+<p class = "firstLineIndent">为了防止长生者再出幺蛾子，聂云特地设定了这样一个引爆机制。</p>
+<p class = "firstLineIndent">“好了！”聂云手上捏橡皮泥的动作一停，摊开后手上出现了一个银色的……水龙头？</p>
+<p class = "firstLineIndent">他上前两步，一把将水龙头扎进了满是生命之水的球形容器上。</p>
+<p class = "firstLineIndent">“吱~”水龙头被打开，散发着浓郁生命能量的生命之水哗啦啦流出，被聂云拿出的一个水晶瓶接住。</p>
+<p class = "firstLineIndent">直到接了有小半瓶，聂云才拧上水龙头。</p>
+<p class = "firstLineIndent">塞上瓶塞，聂云看着手中的那瓶生命之水满意的点点头，“嗯！不错，比我之前拿到的那瓶纯度更高。”</p>
+<p class = "firstLineIndent">长生者敢怒不敢言的看着自己身上插着的水龙头，这特么是拿它当酒桶了？</p>
+<p class = "firstLineIndent">不过形势比树强，人为刀俎我为鱼肉，这口气它也只能默默忍了。</p>
+<p class = "firstLineIndent">“哎！这生命之水你一天能量产几吨？”聂云看着手中的瓶子满眼￥￥的开口问道。</p>
+<p class = "firstLineIndent">长生者听到这话差点一口生命之水就喷出来。</p>
+<p class = "firstLineIndent">量产？还几吨？你当是农夫山泉呢？</p>
+<p class = "firstLineIndent">“这是我的生命精华，不是排泄物！”长生者气愤的吼道。</p>
+<p class = "firstLineIndent">“嗯？”聂云眉头一挑轻轻嗯了一声。</p>
+<p class = "firstLineIndent">它讲脏话了吧？它讲了吧？</p>
+<p class = "firstLineIndent">“咳咳！其实产量还行，满打满算每天就有一小瓶，每个月就能有一小桶，而且我本身进化所需的消耗量也很大，如果省吃俭用，精打细算的话产量还能更高些！”</p>
+<p class = "firstLineIndent">长生者感受着自己神经根须上的勒紧感立刻回答道，语气中满满的都是求生欲。</p>
+<p class = "firstLineIndent">这个数据它倒是没有隐瞒，甚至还尽量往多了说，现在生死掌控在对方手中，长生者只能尽量展示自己的价值，免得被对方一个不满直接“灭族”。</p>
+<p class = "firstLineIndent">“嗯……少是少了点，不过毕竟是野生的，进化的不是那么完美也是可以理解的。”聂云颇为惋惜道。</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">我从没想过往多产的方向去进化啊魂淡！当我是榨汁机吗！</p>
+<p class = "firstLineIndent">“你应该有控制大部分身体结构组织的能力吧？立刻按照这份施工图给我留出施工空间，相应的设备和人手很快就会前来对你进行全方位的强化改造。</p>
+<p class = "firstLineIndent">你接下来的任务，就是好好配合施工队进行改造，要是敢有什么小动作，后果你知道的。”</p>
+<p class = "firstLineIndent">聂云说着，投影出一副施工图。</p>
+<p class = "firstLineIndent">“改造？”长生者一愣，然后精神力一扫，将投影纳入脑海，随后整棵树就彻底斯巴达了。</p>
+<p class = "firstLineIndent">按这么改造法，我还能叫树？你确定这玩意儿不是蜂窝煤？</p>
+<p class = "firstLineIndent">杀人不过头点地，你至少得给我留个全尸吧？</p>
+<p class = "firstLineIndent">“这……”长生者还想争取一下，准备捍卫住自己的树格尊严。</p>
+<p class = "firstLineIndent">“怎么？不愿意？”聂云笑眯眯的问道，语气淡淡的，却让长生者的话再也说不下去。</p>
+<p class = "firstLineIndent">它此时的感觉就是，迎面扑来一股杀气……</p>
+<p class = "firstLineIndent">“呵呵！我知道你不甘心，心里也肯定打着小九九，不过我可告诉你，刚刚你闹出的动静差点引来双子星的钻地弹攻击，要不是我出手阻拦，你现在肯定是二级重度伤残你信不信？</p>
+<p class = "firstLineIndent">就你这样的智商和小身板，也就能在卡拉星这一亩三分地上作威作福，知道什么叫过江猛龙吗？</p>
+<p class = "firstLineIndent">我这么牛，打你和玩似的，我炫耀了吗？所以说，低调一点不是什么坏处，你以前就做的很好嘛！</p>
+<p class = "firstLineIndent">做树呢，最重要的就是安全！</p>
+<p class = "firstLineIndent">安全第一！跟我混，接受德智体美劳的全面改造，我保证你不仅不用怕那帮双子星，还能实力大涨，横扫千军！”聂云噼里啪啦一顿威逼利诱。</p>
+<p class = "firstLineIndent">“真的？”长生者狐疑道。</p>
+<p class = "firstLineIndent">“当然了，怎么说你也叫了我一声大哥，那我怎么也不会亏待了自家小弟！</p>
+<p class = "firstLineIndent">不就是改造一下身体吗？多大点儿事？以前我们老家有个特别励志的故事，一位小兄弟全家被仇人杀了个干干净净，奈何实力低微，可你知道后来人家怎么报的仇？”</p>
+<p class = "firstLineIndent">“怎么报的仇？”长生者被勾起了好奇心。</p>
+<p class = "firstLineIndent">“因为他得了一本秘籍，上面写着‘欲练神功，必先自宫’！所以说……有舍才有得啊！”</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”（o__o “…）</p>
+<p class = "firstLineIndent">你确定这特么是一个励志的故事？</p>
+<p class = "firstLineIndent">其实……我觉得我和双子星应该没那么大仇……</p>
+
+<h2>第四百四十二章 收购</h2>
+<p class = "firstLineIndent">当聂云控制的秘银骑士飞出长生者本体时，正一头撞上要向里冲的萝丝女王。</p>
+<p class = "firstLineIndent">“哎！干嘛呢！”聂云拦住萝丝问道。</p>
+<p class = "firstLineIndent">“当然是报仇！”萝丝一脸愤恨道。</p>
+<p class = "firstLineIndent">虽然是隔代仇，不过知道了真相的萝丝和长生者现在可算是势同水火了。</p>
+<p class = "firstLineIndent">“咳咳！冷静点，听我说，时间都过去三千多年了，哪怕是法律诉讼期都过了不知道多少个世纪，再说了，是报仇重要还是文明的存亡重要？”聂云咳嗽一声问道。</p>
+<p class = "firstLineIndent">好不容易抓到的传说级奇宝贝，怎么可能轻易让你动它？</p>
+<p class = "firstLineIndent">“你什么意思？”萝丝皱眉道。</p>
+<p class = "firstLineIndent">“你看，最后的避难所就在你眼前，你要是干掉它，用什么来给剩下的卡拉人提供庇护？一堆烂木头可不行。”聂云指了指长生者。</p>
+<p class = "firstLineIndent">萝丝神色一愣，顿时反应过来，她不由有些犹豫。</p>
+<p class = "firstLineIndent">原本长生者就是卡拉文明最后的希望，长生者背叛时，她就觉得卡拉文明恐怕是凶多吉少，所以脑子一热，唯一的想法就是和它同归于尽，现在听聂云话里的意思，这事难道还有转机？</p>
+<p class = "firstLineIndent">“你确定它会帮我们，而不是在我们背后耍阴谋？”萝丝有些迟疑问道。</p>
+<p class = "firstLineIndent">极度的信任一旦崩塌，那想要再建立起来可就比之前难多了。</p>
+<p class = "firstLineIndent">聂云没有说话，而是招了招手。</p>
+<p class = "firstLineIndent">“我可以向你保证，绝对不会对你们不利，事实上若不是塔塔想要限制我的成长，我不可能与卡拉人为敌。</p>
+<p class = "firstLineIndent">再说如今我已经臣服，生死完全操控在大哥手上，现在我们是一条绳子上的蚂蚱，有共同的威胁双子星人，为了我的生存，为了你的文明延续，我们合则两利，请相信我三千多年的智慧，不会做不理智的行为。”</p>
+<p class = "firstLineIndent">长生者倒是该怂就怂，极力摆出低姿态劝说萝丝，大哥两个字叫起来也是毫不脸红。</p>
+<p class = "firstLineIndent">它不清楚萝丝和聂云的关系，其实按照它的想法，如今的卡拉文明完全就是累赘，不过既然聂云想要保留卡拉人最后的火种，它也只能自认倒霉充当临时树屋。</p>
+<p class = "firstLineIndent">“生死操控在你手中？”尽管有所预料，但是听到长生者亲口说出的话，萝丝依然感到十分不可思议。</p>
+<p class = "firstLineIndent">“你究竟是怎么制服它的？哪个叫生死符的武器真那么厉害？还有，那只银色八爪怪呢？”萝丝问。</p>
+<p class = "firstLineIndent">“咳咳！那些只是雕虫小技，其实我一向是以德服人！</p>
+<p class = "firstLineIndent">就在刚刚，我们经过一翻推心置腹的交流，在我循循善诱的感化之下，它已经认识到了自己的错误，内心的小天使战胜了小恶魔，最终表示愿意洗心革面，重新做树！”</p>
+<p class = "firstLineIndent">萝丝无语的看着眼前的家伙，一本正经的说瞎话麻烦也请找个靠谱点的理由好么……</p>
+<p class = "firstLineIndent">聂云明显不想告诉她制服长生者的详细手段，萝丝也就知趣的没有继续深究，她现在更关心的是自己文明的生死存亡。</p>
+<p class = "firstLineIndent">看了看长生者，又看了看聂云，萝丝心中万分纠结。</p>
+<p class = "firstLineIndent">就算长生者已经被聂云控制，但己方的安全却依旧无法保证！</p>
+<p class = "firstLineIndent">长生者没有背叛之前，卡拉文明加上它，还算有一定的自保之力，谁能料到形势急转直下，自己最坚定的盟友居然包藏祸心，结果跳反失败直接被捕捉，成了聂云的小弟。</p>
+<p class = "firstLineIndent">弄到现在双方的实力对比已经彻底失衡，聂云一方掌控了绝对的主动权！</p>
+<p class = "firstLineIndent">原本自己就对来历不明的万物归一会存着一份戒心，如今若还按照之前的计划，将剩余的人口迁移进长生者体内……</p>
+<p class = "firstLineIndent">那卡拉文明的生死岂不是也和长生者一般，完全操控在聂云手中？</p>
+<p class = "firstLineIndent">可若是不这么做，恐怕卡拉文明离覆灭也就不远了。</p>
+<p class = "firstLineIndent">看着陷入两难的萝丝，聂云自然明白她的顾虑，事实上这也是聂云最希望看到的局面。</p>
+<p class = "firstLineIndent">将卡拉文明彻底纳入自己的掌控，不仅能够充实己方在比邻星系的实力，而且还能够将卡拉文明反抗军放在明面上与双子星打擂台。</p>
+<p class = "firstLineIndent">有这些人顶在前面吸引双子星的注意力，后方的地球文明就能暗中发展，默默积蓄力量。</p>
+<p class = "firstLineIndent">原本他只是想扶持卡拉文明吸引一部分火力，没想到长生者的跳反意外让聂云得到了千载难逢的良机。</p>
+<p class = "firstLineIndent">如果卡拉人的剩余人口能够迁徙到长生者体内……那吃进肚子的熟鸭子还能让它飞了？</p>
+<p class = "firstLineIndent">收服卡拉文明，现在，就是最佳的时机！</p>
+<p class = "firstLineIndent">“女王陛下，恕我直言，就算你先前的避难计划能够顺利实施，也不过是能让文明多苟延残喘一阵罢了，双子星牢牢掌控着卡拉星的制空权，战略优势太大，而他们的舰队火力也注定了你们久守必失，无坚不摧的避难所并不存在！”</p>
+<p class = "firstLineIndent">萝丝听到聂云的话，不由神色黯然。</p>
+<p class = "firstLineIndent">这道理她又何尝不明白，就算守得住一时，但长生者只是个避难所，他们的生存资源从哪里来？文明难道不需要繁衍发展？其中的问题实在是太多根本就无法一一解决。</p>
+<p class = "firstLineIndent">但一线生机，总比坐着等死强。</p>
+<p class = "firstLineIndent">“现在我有一个计划，能够让你们彻底脱离双子星的威胁，但只有五成的成功几率，你……愿意试试吗？”聂云认真到。</p>
+<p class = "firstLineIndent">“五成？！”萝丝瞪大眼睛。</p>
+<p class = "firstLineIndent">不是因为太少，而是太多了！</p>
+<p class = "firstLineIndent">按照她之前的计划，让卡拉文明幸存下来的几率不到一成，五成已经远远超过她最乐观的估计。</p>
+<p class = "firstLineIndent">“什么计划？”萝丝眼中露出希望急忙问道。</p>
+<p class = "firstLineIndent">“先别忙问计划，作为你的朋友，我当然十分乐意帮助你们度过危机，不过这个计划需要动用我们组织大量的人力物力还有珍贵资源。</p>
+<p class = "firstLineIndent">咳咳！你知道的，我们组织一向奉行的是等价交换原则……”聂云一脸你懂得的搓了搓手指。</p>
+<p class = "firstLineIndent">“你……”萝丝咬牙瞪着聂云。“你们想要什么？”</p>
+<p class = "firstLineIndent">“你觉得你们现在还有什么？”</p>
+<p class = "firstLineIndent">“我……”萝丝一下子卡壳。</p>
+<p class = "firstLineIndent">科技？似乎已经卖的差不多了，再说长生者手上的技术似乎不比他们差。</p>
+<p class = "firstLineIndent">利用价值？只能在行星表面蹦跶的猎手部队，根本无法继续给双子星造成什么麻烦。</p>
+<p class = "firstLineIndent">“是的，很遗憾的通知你，你们卡拉文明已经山穷水尽，连这次我出手救下你的酬劳你们都已经付不出来了，整个儿就是资不抵债，换句话来说，你们……破产了！”</p>
+<p class = "firstLineIndent">萝丝脸色有些发白，没有利用价值的棋子，除了被抛弃，还有其他的路能走？</p>
+<p class = "firstLineIndent">“咳咳！其实吧……你们还有最后一条路能走！”聂云咳嗽一声道。</p>
+<p class = "firstLineIndent">“最后一条路？”萝丝抬起头疑惑看着他。</p>
+<p class = "firstLineIndent">聂云笑眯眯的看着萝丝。“呵呵！在我们的家乡，除了破产，你还能选择……被收购！”</p>
+
+<h2>第四百四十三章 卡拉分会</h2>
+<p class = "firstLineIndent">堕天使号上，聂云收回了意识，他缓缓睁开双眼，嘴角露出一抹笑意。</p>
+<p class = "firstLineIndent">以现在的形势，萝丝并没有第二个选择，结果并不出乎意料。</p>
+<p class = "firstLineIndent">双方约定，卡拉文明的残余势力全面并入万物归一会，成为其麾下的“卡拉分会”，萝丝为分会会长。</p>
+<p class = "firstLineIndent">双方名为从属，实际上其实更像雇佣关系，卡拉分会维持其独立主权，聂云一方不得干预内政。</p>
+<p class = "firstLineIndent">但卡拉分会有义务完成组织下发的任务，并按照贡献获得相应的酬劳，以组织通用货币无限币作为结算单位。</p>
+<p class = "firstLineIndent">作为入会福利，聂云一方提供总计1000万无限币的一次性安家费。</p>
+<p class = "firstLineIndent">与此同时，长生者作为隶属聂云个人的固定资产，将以30万无限币每月的租金有偿租赁给卡拉分会，作为卡拉分会的临时避难所和分会驻地。</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">以上是双方约定的大致条款，当然，一切条款成立的前提是卡拉文明能够摆脱双子星的威胁，否则一切都只是一纸空谈。</p>
+<p class = "firstLineIndent">双方约定之后，聂云和萝丝就立刻开始行动起来。</p>
+<p class = "firstLineIndent">无数的猎手部队在卡拉人的指挥下化身为工兵，四处搜集聂云所需的资源，包括双子星被击毁的设备残骸，各种金属矿产，以及卡拉人所需的各种生存物资。</p>
+<p class = "firstLineIndent">它们带着所能找到的各种资源疯狂涌入长生者所在的地下空间，密密麻麻如同最勤劳的工蚁，蚁附在长生者身上将这些东西放置到指定的区域。</p>
+<p class = "firstLineIndent">分散四处的卡拉人幸存者也开始被分批迁徙，向着长生者汇聚而来。</p>
+<p class = "firstLineIndent">而在长生者体内，聂云开辟了一个全封闭式的机械虫加工厂，将大章鱼和三台秘银骑士全部分解投了进去，利用这些在卡拉星上发展起来的数百吨机械虫和搜集来的各种资源，开始建造机器人生长线和各种武器设备制造工厂。</p>
+<p class = "firstLineIndent">机械虫的设备制造方式完全就是3d打印模式，只要材料充足，效率高的可怕，没过多久一条崭新的机器人生产线便已经完工。</p>
+<p class = "firstLineIndent">又过了几个小时，一个个小狼型基础机器人就排着整齐的队列走下生长线，直接被代号接管后，立刻投入到后续的建设改造工作中。</p>
+<p class = "firstLineIndent">长生者彻底变成了一个工地，无数的猎手部队夹杂着少量的卡拉人指挥者和机器人在往来穿梭。</p>
+<p class = "firstLineIndent">原本对身体改造抱有排斥心理的长生者，在聂云建设好能源水晶熔炉，开始为它提供源源不断的海量能源之后，就完全接受了现实，甚至为了提高自身的存活率，对改造工作的配合也变得积极起来。</p>
+<p class = "firstLineIndent">长生者的本体是植物型生物，即便体内进行了部分动物化，但生物体的先天限制，注定了它无法开发出核聚变这种极为暴烈的机械类科技能源。</p>
+<p class = "firstLineIndent">因此它的能源获取方式与卡拉文明的生物电池如出一辙，这种能源胜在持久，但论瞬间输出功率，就差了核聚变能源好几条街，更不用说更加高级的能源水晶了。</p>
+<p class = "firstLineIndent">生命之水的辐射进化效果虽然强大，但需要消耗的能源也同样庞大，正因庞大的需求，在漫长的进化时光中，长生者才选择退化光合作用，开始汲取星球内部的能源作为自己的进化源动力。</p>
+<p class = "firstLineIndent">但岩浆的地热能源怎么能够和能源水晶相媲美，加上设计中分布各处节点的核聚变能源，长生者短时间内已经彻底从能源不足的窘境中被解放出来。</p>
+<p class = "firstLineIndent">充沛的能源意味着它能够在体内生成更多的生命之水，让自己的进化速度更快，同时获得驱动庞大身躯的力量源泉。</p>
+<p class = "firstLineIndent">一个30多公里的巨大生命体，加上无数的根须和强悍的恢复能力，若是能够完全驱动起来，那破坏力拆掉小半个星球还真不是难事。</p>
+<p class = "firstLineIndent">在卡拉星，长生者绝对是当之无愧的最强生物！</p>
+<p class = "firstLineIndent">只可惜，猫吃老鼠，大象踩老虎，看似强大的大象却唯独怕老鼠，万物相生相克，机械虫这种微观到极致的兵器却恰恰是长生者的克星。</p>
+<p class = "firstLineIndent">马力全开的长生者也为聂云的改造计划提供了相当的便利。</p>
+<p class = "firstLineIndent">无数的根须挖洞、运输物资都相当迅捷，它对体内大部分身体结构组织的控制更是让人匪夷所思，聂云的机器人连挖坑都不用，长生者自己就能将自己改造成聂云要求的蜂窝状……</p>
+<p class = "firstLineIndent">长生者的改造工作正在紧锣密鼓的进行中，而聂云和双子星的交易也同时开始。</p>
+<p class = "firstLineIndent">就在双方结束通讯后的一个小时内，双子星就全面停止了己方对卡拉星的空中火力袭击。</p>
+<p class = "firstLineIndent">如今卡拉星地面战场的胜负已经无法影响双方的对峙局势，两者的较量已经提升到更高的战略层面，继续轰炸卡拉星只不过是浪费资源而已。</p>
+<p class = "firstLineIndent">停火后，一艘隶属双子星舰队的小型登陆艇进入大气层，来到聂云指定的坐标收取了他提供的生命之水样品。</p>
+<p class = "firstLineIndent">在周围数万猎手部队虎视眈眈，空中各种天基武器的瞄准之下，这艘登陆艇拿到了数量不多的样品后顺利升空。</p>
+<p class = "firstLineIndent">交易的第一步在充满了火药味的气氛中结束，而双子星拿到生命之水的第一时间，就开始着手进行样品测试。</p>
+<p class = "firstLineIndent">因为卡拉文明生物科技发达，所以这次随军的生物学家并不少，一个由几名顶级专家组成的攻关小组迅速成立，开始秘密对样品进行检测。</p>
+<p class = "firstLineIndent">仅仅两天后，所有科学家联名的检测报告就摆在了伊莎尔和古斯塔夫两位指挥官面前，总结来说的话就几个字——不可思议！</p>
+<p class = "firstLineIndent">不论是对人体的强化作用，对寿命的提升作用，还是对生物细胞的进化作用，都如同聂云所说的那样，功效惊人！</p>
+<p class = "firstLineIndent">“这种东西是否是人为制造的，有没有副作用或者可能存在的隐藏隐患？”伊莎尔依旧对此保持戒心。</p>
+<p class = "firstLineIndent">“临床实验中没有任何副作用，这种东西是通过一种特殊的微弱辐射作用于生命体，这种辐射波段前所未见，我们在使用光谱分析对它进行检测时，发现它居然是无序跳动的。</p>
+<p class = "firstLineIndent">以这种奇特的作用机理来说，生命之水是人为制造的可能性并不大，至少，以卡拉人的科技水平，远远达不到制造它的水准！</p>
+<p class = "firstLineIndent">事实上，以我们双子星的科技，恐怕也很难解析出它的作用机理，它完全就是造物主的神作，根本不能用常理衡量。</p>
+<p class = "firstLineIndent">当然，这些只是我们的初步判断，若是想要进一步的分析结果，还需要送到后方的科研所进行深入分析！”</p>
+<p class = "firstLineIndent">确认了东西的作用，两位指挥官不敢怠慢，立刻将消息上报给了联合议会。</p>
+<p class = "firstLineIndent">关于万物归一会和生命之水的情报一送上去，立刻就引起了联合议会高层的轰动，克鲁泽议长为此召开了紧急协商会议……</p>
+
+<h2>第四百四十四章 联合打压</h2>
+<p class = "firstLineIndent">双子星，联合议会最高级别会议。</p>
+<p class = "firstLineIndent">克鲁泽议长坐于主位，二十几名重量级的议会成员按照种族分坐左右。</p>
+<p class = "firstLineIndent">如果说联合议会是双子星文明的常设行政机构，那么这些人可以说就是联合议会的内阁成员，掌控着双子星最巅峰的权力。</p>
+<p class = "firstLineIndent">“关于万物归一会的情报，大家有什么看法？”克鲁泽议长环视一周道。</p>
+<p class = "firstLineIndent">“我认为这完全就是对方的疑兵之计！若是真有这样一个实力雄厚的庞大组织，为何先前我们的情报部门完全都没有发现一点蛛丝马迹？</p>
+<p class = "firstLineIndent">这个突然在比邻星系和太阳系冒出来的万物归一会就算有些实力，但也绝对不会如同他们声称的那样是一个跨文明的庞大秘密组织！充其量只不过是一个小型的地方性反政府武装！</p>
+<p class = "firstLineIndent">他们之所以抛出这样一份假情报，根本就是对方在夸大其组织的实力，同时捏造了安特帝国这个外来文明威胁，其目的就是让我们投鼠忌器，不敢对卡拉星和太阳系动手！”</p>
+<p class = "firstLineIndent">一名蓄着半白胡须的海族老者一上来便拍着桌子，极力驳斥聂云编写的剧本。</p>
+<p class = "firstLineIndent">双子星文明的政体中，自然也有类似中情局和国安这样的情报机构，而这位海族老者就是联合议会的情报主官。</p>
+<p class = "firstLineIndent">如果事实证明双子星内部真的潜伏着这样一个危险的组织团伙，那么这无疑是情报部门的重大失职，他此刻必须站出来为情报部门的权威站台。</p>
+<p class = "firstLineIndent">另一名面色冷硬的羽族中年闻言则是看着他笑了笑，“呵呵！小型的反政府武装？我倒是不这么认为！”</p>
+<p class = "firstLineIndent">“哦？那不知阿萨德阁下有什么高见？”那名情报主官语气颇为不善。</p>
+<p class = "firstLineIndent">这名提出质疑的羽族中年就是克鲁泽竞选议长时的最大对手，同时也是伊莎尔的父亲阿萨德议员。</p>
+<p class = "firstLineIndent">阿萨德虽然在竞选中失败，但依旧担任着行政机构的要害职位，阿萨德家族作为老牌的政治世家，在议会中也控制着不少的席位，是羽族一方政治势力的中坚力量。</p>
+<p class = "firstLineIndent">阿萨德并没有立刻回答情报主官的问题，而是先是向克鲁泽议长的方向看了一眼，两人的眼神瞬间交汇，克鲁泽议长微不可查的点了点头……</p>
+<p class = "firstLineIndent">达成了一定的默契后，阿萨德这才清了清嗓子，“咳咳！我研究过这个万物归一会的一些情报，从战斗的过程来看，他们在战场上曾经使用了大量我方的制式装备，甚至已经掌握了其中部分的武器制造技术。</p>
+<p class = "firstLineIndent">这说明，他们的组织有着实力不俗的军工企业或者财团势力在背后支持！</p>
+<p class = "firstLineIndent">另外，敌我双方的战斗过程中，我方的军队中却接连出现一系列的间谍和泄密事件，这说明对方在军方内部的势力也不容小觑。</p>
+<p class = "firstLineIndent">还有最关键的一个情报，那就是对方居然已经获得了伍尔夫文明虫洞异变的情报！</p>
+<p class = "firstLineIndent">要知道就算是我们也才刚刚获得消息不久，这个情报目前的保密级别极高，可是对方依然能够在第一时间获悉，这说明什么？</p>
+<p class = "firstLineIndent">这说明在我们内部的高级官员中，必定有他们的组织成员！</p>
+<p class = "firstLineIndent">试问这种势力触角深入我方军、政、商三界的组织，就算再弱，也绝对称不上‘小’吧？”</p>
+<p class = "firstLineIndent">底下众人听到阿萨德一翻有理有据的分析，都是纷纷点头认可。</p>
+<p class = "firstLineIndent">比邻星系和太阳系的战斗虽然规模不大，但万物归一会的神秘和神通广大，早已在众人心中留下深刻的印象。</p>
+<p class = "firstLineIndent">这样的组织如果还能够算弱小，那双子星境内估计就没什么大型组织了吧？</p>
+<p class = "firstLineIndent">“这样的一个秘密组织潜伏在我们文明之中，情报部门事先却连一点风声都未曾注意到，那么纳税人的钱到底是花到了哪里？”阿萨德终于图穷匕见，将矛头对准了那名海族的情报主官。</p>
+<p class = "firstLineIndent">两族的关系就好比执政党和在野党，一旦发现对方的漏洞，双方的政客就会本能的进行攻击，这和对错无关，完全取决于双方的立场。</p>
+<p class = "firstLineIndent">情报主官则是冷哼一声反驳道，“哼！那不过是虚张声势而已，除了太阳系和比邻星系出现了这个组织的活动迹象，我方境内的其余区域又有哪里受到过这个势力的影响？</p>
+<p class = "firstLineIndent">些许情报泄密事件根本说明不了什么问题，盖伦特星区的虫洞异变根本没办法瞒住有心人的目光，我们近期的异常军事调动也会暴露出蛛丝马迹，现在下结论还为时尚早！”</p>
+<p class = "firstLineIndent">“不错，什么万物归一会，听都没听过的组织，不过是藏头露尾之辈，如此郑重其事实在是有些太抬举对方！”</p>
+<p class = "firstLineIndent">“不错，我也同意这个观点！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">一些海族阵营的议员站出来声援情报主官。</p>
+<p class = "firstLineIndent">“咳咳！”就在这时，克鲁泽议长轻轻咳嗽一声，制止了阿萨德想再次出口反驳的意图，同时将所有人的注意力拉了过去。</p>
+<p class = "firstLineIndent">“关于万物归一会所说到底是真是假，最关键的问题在于安特帝国到底是否真的存在，如果它真的存在，那么我们的边界上将会多出一个庞然大物，这对我们双子星的战略布局有着深远的影响！</p>
+<p class = "firstLineIndent">对这个问题，情报部门有什么分析结果？”克鲁泽看向情报主官问道。</p>
+<p class = "firstLineIndent">“这个……”情报主官明显顿了顿。</p>
+<p class = "firstLineIndent">“我们的语言专家对安特帝国的语言体系进行过深入分析，分析结果认为，这种语言有完整的逻辑行文和极为强烈的智慧种族情感特征，涵盖范围深入社科和人文的各个方面，由智脑推演虚构出来的可能性不到10……”</p>
+<p class = "firstLineIndent">“哗~”情报主官的话顿时引起底下的一阵骚动，不少人窃窃私语起来。</p>
+<p class = "firstLineIndent">一个文明的语言经过长时间的历史演化，其语法结构或许简单，但每一个高级文明的语言内涵都是极为复杂，并带着强烈的智慧文明烙印的。</p>
+<p class = "firstLineIndent">以双子星文明的智脑运算水平，即便能够凭空推演出一套合乎逻辑的语言体系，但想要在语言学家们的火眼金睛之下还能以假乱真，那还远远无法做到！</p>
+<p class = "firstLineIndent">如果安特帝国的语言并非伪造，那么当真存在安特帝国的可能性就相当高了！</p>
+<p class = "firstLineIndent">“那么科技方面呢？”阿萨德也抓住一个关键问题问道。</p>
+<p class = "firstLineIndent">海族的情报主官闻言脸色更差了，不过这么多双眼睛看着，他也只能硬着头皮介绍。</p>
+<p class = "firstLineIndent">“这个……从对方的几项高端科技来看，与我们目前应用的有着明显的差异性，经过科研团队的分析，对方与外文明有所接触的可能性超过68……</p>
+<p class = "firstLineIndent">咳咳！但几项另类的先进科技说明不了什么问题，我们中央星系秘而不宣的高级科技也不少，不能因此就说明对方真的是一个跨文明组织！</p>
+<p class = "firstLineIndent">而且我怀疑，对方这么做的目的，很可能是掩盖其真实的战略意图，比如占据太阳系，又或者扶持卡拉文明发展壮大……”情报主官的话越来越接近真相，但他自己却说的越来越没有底气。</p>
+<p class = "firstLineIndent">大家一听顿时就乐了，说了半天，原来这么多证据都证明万物归一会的情报很可能是真的啊！</p>
+<p class = "firstLineIndent">阿萨德这时候再次站了出来充当急先锋。</p>
+<p class = "firstLineIndent">“各位，情况我们都已经清楚，抛开安特帝国存在与否的问题暂且不提，但不论是之前毫无预兆的太阳系伏击事件，还是比邻星系的军事泄密事件，情报部门至今为止都没有为前线的军事行动提供什么有用的情报支援！</p>
+<p class = "firstLineIndent">我建议，对于加达里星区的情报负责人进行问责降职，并勒令尽快查清这个所谓的万物归一会加达里星区分会的所有底细，特别是那名自称黑执事的负责人，我们需要尽快查明他的身份才能掌握主动权！</p>
+<p class = "firstLineIndent">对此，诸位有没有意见？”</p>
+<p class = "firstLineIndent">羽族议员们纷纷点头赞同，而一众海族则沉默不语。</p>
+<p class = "firstLineIndent">情报主官脸色愤愤，加达里星区的情报负责人是他的心腹，但此刻他却无法开口为他推脱，只能无奈的接受了这个处理结果。</p>
+<p class = "firstLineIndent">克鲁泽议长点点头，“既然大家没有意见，那么此事就这么办理！”</p>
+<p class = "firstLineIndent">克鲁泽和阿萨德相互对了一个眼神，双方心照不宣的完成了一次联合打压行动……</p>
+
+<h2>第四百四十五章 利益交换</h2>
+<p class = "firstLineIndent">“那么下一个议题。”克鲁泽议长敲了敲桌子声音有些严肃，“关于卡拉星的处理意见和……生命之水！”</p>
+<p class = "firstLineIndent">众人眼前的桌面上浮现生命之水的放大影像图，周边不断浮现各种分析数据。</p>
+<p class = "firstLineIndent">“我们的随军生物学家已经初步证实了这种东西的惊人功效。</p>
+<p class = "firstLineIndent">根据对生命之水样品的研究，它和卡拉星生物确实有所联系，原产于卡拉星的可能性很高！</p>
+<p class = "firstLineIndent">但目前来看，有关生命之水是如何修复衰老因子，并对生物体的遗传基因产生良性突变的具体原理，就算是以我们的科技水平，也有着一大片的认知空白！</p>
+<p class = "firstLineIndent">这样的特性，结合我们先前从卡拉文明获取的情报，我们有理由相信，生命之水有很大概率确实是我们一直在寻找的，卡拉文明手中掌握的宇宙奇物！”克鲁泽议长道。</p>
+<p class = "firstLineIndent">事实上，双子星文明早就在双方的战争时期，就通过卡拉文明的传说和文字记载，找到过关于宇宙奇物的蛛丝马迹，并很快锁定了卡拉王室，这才有了阿尔萨斯前往卡拉星执行搜索任务的后续事件。</p>
+<p class = "firstLineIndent">所以生命之水一出现，两相对照之下，万物归一会关于生命之水的情报便具有了相当的可信性。</p>
+<p class = "firstLineIndent">这无疑是聂云谎言中的“真实”部分，根本不怕双子星不上当。</p>
+<p class = "firstLineIndent">在场的不少人眼神灼灼的盯着生命之水的影像，眼中毫不掩饰对它的渴望。</p>
+<p class = "firstLineIndent">就算是用科技手段极大的延长寿命，但双子星依然无法突破基因赋予的先天极限，然而生命之水的出现，让他们看到了另一种可能的未来……</p>
+<p class = "firstLineIndent">更强的体魄，更长的寿命，甚至是更高等的生命进化层次！</p>
+<p class = "firstLineIndent">聂云的诱饵无疑具备了相当的诱惑性，不论是对于想要获得更长生命的智慧个体，还是想要进一步获得进化的整个种族，生命之水的诱惑根本无法抵御。</p>
+<p class = "firstLineIndent">“它的重要性我想在座的所有人都明白，就目前的情况来看，就算我们得到了一些样品，但想要对其进行复制和批量制造的可能性依然微乎其微。</p>
+<p class = "firstLineIndent">所以现在的问题是，我们是否要接受万物归一会的交易条件，以暂时休战的条件换取一半的生命之水产量？”克鲁泽议长道。</p>
+<p class = "firstLineIndent">底下的众人一阵交头接耳的私语讨论之后……</p>
+<p class = "firstLineIndent">“我同意暂时休战，生命之水的价值远在一颗生命星球之上！”</p>
+<p class = "firstLineIndent">“我附议，伍尔夫文明虫洞此刻正在扩张，对面虽然还没有大动静，但近期的试探侦查越来越频繁，此时停战不仅能够让我们获得生命之水，而且还能解除后顾之忧专心应对可能到来的战争！”</p>
+<p class = "firstLineIndent">“我反对，我们海族为比邻星开拓计划已经筹备多时，为此花费的人力物力都不在少数，现在突然停止会给我们造成巨大的经济损失！”</p>
+<p class = "firstLineIndent">“用一些损失换取珍贵的宇宙奇物，我觉得这完全值得！”</p>
+<p class = "firstLineIndent">“我同意停战，但卡拉星是我们的领地，就算要拿出去当筹码，我们海族也必须分到更多的生命之水份额！”</p>
+<p class = "firstLineIndent">“呵呵！太阳系还是我们羽族的领地，别忘了那也是停战协议中的一部分，我们的损失也不会小！再说要不是你们海族自己作战不利，生命之水早就是我们囊中之物，又怎么会便宜了万物归一会！”</p>
+<p class = "firstLineIndent">“哼！这个万物归一会真是狮子大张口，单凭他们就想分走一半的产量？我建议从中央星系增派特种作战舰队，采用强硬手段突入卡拉星夺取生命之水产地！”</p>
+<p class = "firstLineIndent">“太冒险了，如果成功自然是最好，但一旦失败，对方很可能拉上整颗星球陪葬，我们冒不起这个险。”</p>
+<p class = "firstLineIndent">“但万物归一会的势力不能小觑，如果停战，太阳系、卡拉星，再加上生命之水，谁知道我们是不是在养虎为患？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">在场的都是双子星的精英，很快将各种利弊分析清楚。</p>
+<p class = "firstLineIndent">克鲁泽议长一直在低头沉思，等到众人讨论的差不多了，这才抬手压了压，众人的议论声渐渐消失。</p>
+<p class = "firstLineIndent">经过这段时间的执政，克鲁泽议长凭借不俗的政治手腕，已经初步坐稳了议长的宝座，建立起自己的权威。</p>
+<p class = "firstLineIndent">“对于生命之水这种作用巨大的宇宙奇物，我们志在必得！”他首先为此事定了个基调。</p>
+<p class = "firstLineIndent">“我提议，同意对方的要求暂时休战，但这只是缓兵之计，我们的首要目的是需要获得更多的生命之水来评估它的效果。</p>
+<p class = "firstLineIndent">至于此前为比邻星系开拓所准备的资金和物资……我建议全面向伍尔夫文明防御战场倾斜。</p>
+<p class = "firstLineIndent">双子星文明如今正是多事之秋，前有伍尔夫文明虎视眈眈，后有万物归一会异军突起。</p>
+<p class = "firstLineIndent">但相对来说，伍尔夫是一个不弱于双子星的文明势力，其威胁性远超过万物归一会，我们必须调动大部分的力量全力应对。</p>
+<p class = "firstLineIndent">因此我建议从比邻星系的开拓舰队抽掉一部分部队前往伍尔夫虫洞防线，不过与此同时，从中央星系直属部队中抽调一支特种作战舰队布置到比邻星系做好准备。</p>
+<p class = "firstLineIndent">一旦发现时机合适，就展开突袭尝试一举夺下卡拉星。</p>
+<p class = "firstLineIndent">但不论突袭行动能否成功，战火也必须停留在卡拉星！</p>
+<p class = "firstLineIndent">毕竟不管安特帝国是否真的存在，又是否如同对方所说的那么强大，但如今大敌当前的情况，确实不宜再去招惹一个实力不明的敌人，对太阳系和万物归一会暂且不适合采取激进的攻击手段。</p>
+<p class = "firstLineIndent">如果特种作战成功，那么就牢牢控制住卡拉星，并在太阳系虫洞布置防线，将万物归一会堵在太阳系内部，等我们解决了伍尔夫文明的麻烦，再回头清除掉这个未知因素！</p>
+<p class = "firstLineIndent">至于两族拥有的生命之水配额……还是按照一比一！不过议会将会拨一笔专项款，补偿海族一部分的损失。”</p>
+<p class = "firstLineIndent">克鲁泽议长的提议四平八稳，考虑周到，同时还平衡了两方的利益，让所有人都挑不出毛病。</p>
+<p class = "firstLineIndent">众人又是一阵交换意见之后。</p>
+<p class = "firstLineIndent">“同意！”</p>
+<p class = "firstLineIndent">“附议！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">会议结束之后，阿萨德议员和克鲁泽议长很有默契的落后众人，肩并肩走在一条宽大的议会走廊上。</p>
+<p class = "firstLineIndent">“关于加达里星区情报部门的负责人选，不知道议长阁下有什么想法？”阿萨德很突兀的轻声问道。</p>
+<p class = "firstLineIndent">“呵呵！我记得那个区域的三名情报副官中，有一个是阿萨德阁下的子侄辈？”克鲁泽议长微微侧头笑道。</p>
+<p class = "firstLineIndent">“不错！是有一个不成器的侄子。”阿萨德眼睛一亮笑道。</p>
+<p class = "firstLineIndent">“唔……伍尔夫文明防线的人员统筹主管，似乎也是贵家族的英才吧？阿萨德家族真是人才济济。”克鲁泽没有接着说下去，反而是不着边际的扯到了另一个话题。</p>
+<p class = "firstLineIndent">不过阿萨德议员却是闻弦歌而知雅意。</p>
+<p class = "firstLineIndent">“嗯！不错，他最近还和我提起过前线人手不足，那些大家族都舍不得自家的精英上前线，他正为此头疼呢。”</p>
+<p class = "firstLineIndent">阿萨德这话就很违心了，谁不知道战场是捞取军功的好地方，稍微有点眼光的家族都是削尖了脑袋想让自家的人往里挤。</p>
+<p class = "firstLineIndent">“我听说，伊莎尔阁下也在抽调之列吧？阿尔萨斯在比邻星系可是多亏了有她关照。”</p>
+<p class = "firstLineIndent">阿萨德立刻明白了克鲁泽议长的意思，他笑道，“呵呵！议长大人虎父无犬子，听说令公子在比邻星系表现抢眼，年纪轻轻就已经是一支分舰队的指挥官了，伊莎尔和我通过话，对阿尔萨斯可是赞誉有加。”</p>
+<p class = "firstLineIndent">克鲁泽议长闻言，眼中泛起一丝笑意。“呵呵！阁下过奖了，年轻人的小打小闹，毕竟经验不足，还得我们做长辈的多操心啊！”</p>
+<p class = "firstLineIndent">“嗯！议长阁下所言极是，哈哈……”</p>
+<p class = "firstLineIndent">两人言笑晏晏的进行了利益交换，丝毫看不出曾经是势同水火的政敌。</p>
+<p class = "firstLineIndent">不论在哪个文明，对政客来说，没有永远的敌人，利益才是永恒……</p>
+
+<h2>第四百四十六章 见面礼</h2>
+<p class = "firstLineIndent">堕天使号舰桥。</p>
+<p class = "firstLineIndent">“什么？全面停止交火原地待命？”凯瑟琳正在处理舰队日常训练事务，听到这个消息后不由愕然抬头看向舰长艾米莉亚。</p>
+<p class = "firstLineIndent">艾米莉亚无奈的摊了摊手，“听说是议会直接下达的命令。”</p>
+<p class = "firstLineIndent">“唔……应该是和卡拉文明发出的那份威胁有关吧……”凯瑟琳双手抱胸若有所思道。</p>
+<p class = "firstLineIndent">聂云假扮黑执事和两名指挥官进行的是秘密谈话，毕竟宇宙奇物的情报需要保密，但之前聂云假冒卡拉文明发送的威胁信息却是明码公开信息，堕天使号自然是收到了里面的内容。</p>
+<p class = "firstLineIndent">“说不定议会是担心卡拉文明炸毁卡拉星，这才不得不向对方妥协停战，不过难道我们就这么放弃卡拉星？”艾米莉亚点点头皱眉道。</p>
+<p class = "firstLineIndent">“不会，如果要放弃，就不会是原地待命的命令，而是直接撤离了。”凯瑟琳摇摇头。</p>
+<p class = "firstLineIndent">“嗯，不过这样的话我们的部队训练时间就可以稍微宽裕一些了。”艾米莉亚有些松了口气道。</p>
+<p class = "firstLineIndent">凯瑟琳这位名义上的代理指挥官什么都好，就是对部队的训练要求之严格，那绝对是魔鬼教练级别。</p>
+<p class = "firstLineIndent">什么机战炮战舰队战，沙盘模拟电子对抗，那是一天二十四小时轮换着训练，尤其不知道为什么，特别喜欢搞接舷战训练演习。</p>
+<p class = "firstLineIndent">接舷战训练，也就是利用战舰进行火力掩护，机甲部队吸引敌方火力，随后释放小型登陆艇强袭突入敌舰进行白刃战。</p>
+<p class = "firstLineIndent">因为训练频繁，导致大部分的作战人员都有进入友舰进行对抗军事演习的经历，搞得现在第三分舰队的人就算不是一艘战舰上的，也都能差不多混个脸熟。</p>
+<p class = "firstLineIndent">按照凯瑟琳的说法，目前比邻星系内还没有出现能够对抗己方的太空舰队，万物归一会防守还来不及，不可能主动进入比邻星系，而卡拉文明压根儿就没有舰队。</p>
+<p class = "firstLineIndent">所以这种情况下，发生大规模舰队战的可能性不大，所以应该要充分利用训练时间，将训练重心转移到小规模的特种作战和登陆作战上。</p>
+<p class = "firstLineIndent">虽然艾米莉亚对凯瑟琳的训练方法有些疑问，不过至少这么几轮下来，第三分舰队内部的凝聚力倒是上升不少。</p>
+<p class = "firstLineIndent">不过当然，也有一些不太和谐的地方……</p>
+<p class = "firstLineIndent">比如在今天的某次接舷战训练中，红蓝方小股作战部队在战舰内遭遇的情景……</p>
+<p class = "firstLineIndent">嗖嗖嗖！双方你来我往，半空中模拟光束四处乱飞，就在智脑机房附近的一处狭窄过道上，正上演着一出狭路相逢勇者胜的激烈战斗。</p>
+<p class = "firstLineIndent">“铿！铿铿！”两柄战刀碰撞在了一起，火花四溅。</p>
+<p class = "firstLineIndent">身穿动力装甲的两名红蓝方士兵用力顶在一起，寸步不让。</p>
+<p class = "firstLineIndent">这种训练用动力装甲的头盔看不清面容，但是在面甲上有着红蓝两色的数字编号以作区分。</p>
+<p class = "firstLineIndent">突然，蓝方编号为666的战士轻声“咦”了一声，虽然看不清他的神色，不过整个人似乎是非常惊讶。</p>
+<p class = "firstLineIndent">“喂！你瞅啥呢？”红方战士一边用力抵住刀刃一边恶狠狠的瞪了回去，军事对抗也是会打出火气的。</p>
+<p class = "firstLineIndent">“呃……对面的250兄弟，我记得前天似乎刚见，怎么又是你……”</p>
+<p class = "firstLineIndent">“咦？”红250愣了愣，这才看清楚对方的编号，不由怒道，“我靠！居然是你这个伏地魔，冤家路窄啊！</p>
+<p class = "firstLineIndent">前天我们的演习，就是你小子趴在地上装死放冷枪干掉我，忒无耻了！”</p>
+<p class = "firstLineIndent">骂完用力一顶，逼对方退后两步，嗖嗖嗖！就是几发模拟光束射了过去。</p>
+<p class = "firstLineIndent">“嘿嘿！大哥别说二哥，那天是谁挂在天花板上想搞偷袭的？蝙蝠侠就了不起啊！”蓝方毫不客气的顶了回去，同时手上速度也丝毫不慢。</p>
+<p class = "firstLineIndent">嗖嗖嗖！同样是几发模拟光束回敬了过去。</p>
+<p class = "firstLineIndent">红250老脸一红，怒吼一声再次冲了上去。</p>
+<p class = "firstLineIndent">“铿铿！”两人的战刀再次碰到了一起，红250对蓝666怒目相视！</p>
+<p class = "firstLineIndent">“咳咳！兄弟，不打不相识，要不这次兄弟你通融一下让我过去，青山不改绿水长流，兄弟我定有后报！”蓝666战士突然打起感情牌，语气柔和。</p>
+<p class = "firstLineIndent">蓝方是进攻方，这次的目标正是红方战士身后的智脑机房。</p>
+<p class = "firstLineIndent">“不行，咱舰长说了，今天机房要是被占领了，所有人三天不能上网，兄弟我是重度网瘾症患者，三天不上网是要出人命的，兄弟高抬贵手求放过啊！”红250战士也不是省油的灯，回了一张苦情牌。</p>
+<p class = "firstLineIndent">“这样么……好！”没想到蓝666战士闻言居然果断向后一跃，“铿”的一声収刀入鞘，然后退后两步一拱手。</p>
+<p class = "firstLineIndent">“兄弟话都说到这份儿上了，毕竟都是一个部队的兄弟，低头不见抬头见，这次就当是我为上次放冷枪给兄弟道歉了！”</p>
+<p class = "firstLineIndent">红250战士没想到对方居然这么好说话，不由就是一呆，反应过来后也有些不好意思的收刀拱了拱手，“这个……上次我也有做的不对的地方，蝙蝠侠什么的我也有责任。”</p>
+<p class = "firstLineIndent">“哈哈哈！好，咱们一笑泯恩仇，改天有机会一起喝酒！”蓝666战士说完扭头便走，留下一个挥一挥衣袖，不带走一片云彩的潇洒背影。</p>
+<p class = "firstLineIndent">一直保留着警惕心的红250战士见对方居然将最为脆弱的后背装甲都毫不犹豫的暴露在自己面前，顿时心中那是又羞又愧，自己这是以小人之心度君子之腹啊……</p>
+<p class = "firstLineIndent">“哎！对了，相逢就是缘分！这是兄弟的见面礼，别客气，接着！”蓝666战士像是突然想起什么，转身抛过来一样黑乎乎的东西，在空中划出一条优美的抛物线。</p>
+<p class = "firstLineIndent">“嗯？”红方战士一时没反应过来，下意识的伸手接住，然后定睛一看……</p>
+<p class = "firstLineIndent">红方战士：“……”</p>
+<p class = "firstLineIndent">“砰！”一团蓝色电光闪过，红250战士浑身僵硬的倒在地上，脸上犹自带着不敢置信的愕然神色。</p>
+<p class = "firstLineIndent">说好的一笑泯恩仇呢？</p>
+<p class = "firstLineIndent">“你……你这个混蛋！特么又耍诈！”红250战士眼睛都红了，比被坑一次更惨的，是被同一个人连着坑了两次！</p>
+<p class = "firstLineIndent">他不断挣扎，但全身已经被训练装甲“阵亡模式”锁死所有的关节，完全无法动弹。</p>
+<p class = "firstLineIndent">“唉！还是太年轻啊……”蓝666战士语气唏嘘的说着，一边越过依然在挣扎的红250走入不远处的智脑机房。</p>
+<p class = "firstLineIndent">机房内，蓝666战士将一个黑色金属盒子贴在了智脑主机上，然后退后几步，“呲啦~”一阵蓝色电光闪过，智脑主机上的各种指示灯依次熄灭……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">舰桥内。</p>
+<p class = "firstLineIndent">“演习提示：红方智脑主机遭到ep型武器攻击，请尽快夺回机房，重启智脑……”</p>
+<p class = "firstLineIndent">听到演习提示，一名演习舰长“砰！”的一拳砸在桌面上。“混蛋！”</p>
+<p class = "firstLineIndent">机房失守，智脑被“短路”，许多自动防御武器就会失去作用，这场防御战基本就是以失败告终了。</p>
+<p class = "firstLineIndent">哪怕是夺回机房重启智脑，这段时间也足够蓝方杀入战舰的核心区域了。</p>
+<p class = "firstLineIndent">“机房那里不是派了重兵进行防御吗？为什么还会失守？”红方舰长怒道。</p>
+<p class = "firstLineIndent">“呃……有一个敌方士兵碰巧绕过了我们的防御主阵地，我们安排在最后一道防线的王牌战士250也被对方干掉了……”有人查看作战记录回道。</p>
+<p class = "firstLineIndent">“什么？250都被干掉了？”那名舰长一愣。</p>
+<p class = "firstLineIndent">250可是他特地从友军那儿借调过来支援的王牌战士，居然也被干掉了？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">机房内，智脑内部的机械虫正在趁着智脑暂时“短路”的时机大快朵颐，而蓝666战士站在旁边诡异的“嘿嘿嘿”笑了笑，随后整个化为银色金属液态缓缓沉入地面。</p>
+<p class = "firstLineIndent">一直等到演习结束，愤怒的红250喘着气赶到机房内时，却哪里还有对方的踪影。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“最后一艘！搞定！”聂云拍了拍手。</p>
+<p class = "firstLineIndent">经过一系列自导自演的演习和秘密入侵的配合，聂云基本上已经控制了所有的第三分舰队的战舰智脑，可以说已经取得了这支舰队70以上的控制权。</p>
+<p class = "firstLineIndent">机械虫闹出大动静会被人怀疑，但如果是用演习的名义浑水摸鱼，那机会可就多了，当然，前提是必须让演习朝着自己想要的方向进行。</p>
+<p class = "firstLineIndent">双子星人自然不会听自己指挥，所以聂云只能秘密下场，蓝666就是他开的一个小号。</p>
+<p class = "firstLineIndent">他自然可以用超人一等的战斗力大杀四方达成操控演习的目的，不过这样一来就太显眼了，突然冒出个小超人绝对会引起所有人的注意，所以聂云选择的手段未免就有些“智取”，遇到他的人自然是相当水逆……</p>
+<p class = "firstLineIndent">当然，像红250这样倒霉到一连遭遇聂云两次的，那完全就是个悲剧了……</p>
+
+<h2>第四百四十七章 代打</h2>
+<p class = "firstLineIndent">就在聂云抽空搞定了第三分舰队最后一艘战舰时，双子星的通讯信息也同时发了过来。</p>
+<p class = "firstLineIndent">结果并不意外，双子星同意万物归一会的停战要求，要求尽快释放俘虏，并敦促尽快进行生命之水的第一次交易。</p>
+<p class = "firstLineIndent">“呵呵！”聂云嘴角一勾，鱼儿上钩了！</p>
+<p class = "firstLineIndent">聂云第一次给出的生命之水量极少，给只猫进行强化都嫌少，也就堪堪够双子星初步验证其功效，双子星自然迫切想要得到更多的生命之水进行深入研究甚至人体试验。</p>
+<p class = "firstLineIndent">而释放俘虏，不过是双子星为了测试自己诚意的一个试探而已。</p>
+<p class = "firstLineIndent">这方面聂云倒是没想过耍诈。</p>
+<p class = "firstLineIndent">这些俘虏原本就是战场上的意外收获，对聂云的作用不大，加上封闭式关押的情况下他们也根本不可能知道太阳系的情报，放了他们顶多就是损失一些动物园的参观收入。</p>
+<p class = "firstLineIndent">聂云安排好运送俘虏前来比邻星系的飞船，随后转头看向了舷窗外的卡拉星。</p>
+<p class = "firstLineIndent">虽说已经暂时停战了，不过双子星对卡拉星的监视和刺探绝对不会停止，为了不妨碍长生者改造计划，看来还需要给双子星找点事做……</p>
+<p class = "firstLineIndent">“咔！”他打了个响指。</p>
+<p class = "firstLineIndent">“舰长阁下！”代号的身影浮现，依旧是三无表情的脸，但仔细观察的话，就会发现它的目光似乎比以前更加灵动了。</p>
+<p class = "firstLineIndent">“嗯！第三分舰队的接管工作进行的如何了？”聂云问道。</p>
+<p class = "firstLineIndent">“已经完成对所有舰载智脑的全面接管，并安装了潜伏的‘傀儡系统’，目前所有战舰上80的自动化控制设备已经全部在我们的掌控之下。”</p>
+<p class = "firstLineIndent">星际时代战舰的智能化程度极高，控制了智脑，就意味着整艘战舰基本上已经在聂云的全面控制之下。</p>
+<p class = "firstLineIndent">只要再通过机械虫控制一些要害位置，聂云就能通过少量的机械虫和代号遥控一艘庞大的战舰。</p>
+<p class = "firstLineIndent">甚至只要时间足够，让机械虫缓慢蚕食，不久后聂云就能将整支舰队彻底“机械虫化”！</p>
+<p class = "firstLineIndent">“很好，你对双子星的舰队协同作战系统怎么看？”聂云突然又问道。</p>
+<p class = "firstLineIndent">“近乎无懈可击，但略显呆板，如果让我来优化，舰队的整体协调性依旧有3~5的提升空间！”代号回答道。</p>
+<p class = "firstLineIndent">“无人战机作战ai呢？”</p>
+<p class = "firstLineIndent">“它有13个智能漏洞，我可以设计出7种作战模式对这些弱点进行针对性攻击！”代号眼中数据闪了闪，再次飞速答道。</p>
+<p class = "firstLineIndent">聂云听到代号对两项测试的回答，十分满意的点点头。</p>
+<p class = "firstLineIndent">这些系统可是双子星在战场上经历数百年时间不断优化的产物，如果让双子星的程序设计人员来了，听到代号的这番话必定是要嗤之以鼻的。</p>
+<p class = "firstLineIndent">不过他们不会明白高级人工智能在程序设计上的先天优势……</p>
+<p class = "firstLineIndent">如果说在聂云的卧底行动中，谁是最大的受益者，那么代号绝对要排在前三。</p>
+<p class = "firstLineIndent">随着机械虫对开拓军团的不断渗透，除了获得大量的武器科技外，大型军用智脑的软硬件技术更是被解析的干干净净。</p>
+<p class = "firstLineIndent">受益于此，代号位于月球基地内的主机硬件都已经经过了整整6次更新换代，每一次的更新，都意味着性能的突飞猛进。</p>
+<p class = "firstLineIndent">月球基地内的计算机中心面积并没有扩大多少，但是运算能力那是呈指数形式的蹭蹭蹭往上涨，聂云做了个测试，用代号计算太阳系所有天体在未来100年内的轨道变化，共计用时……05s！</p>
+<p class = "firstLineIndent">不仅是硬件上的进化，代号在软件方面同样有了一番翻天覆地的优化。</p>
+<p class = "firstLineIndent">地球文明的计算机编程历史满打满算不过五六十年，虽然发展速度极快，但是相对于双子星来说无疑是被甩了十条街。</p>
+<p class = "firstLineIndent">通过学习双子星的高级编码技术，代号居然开启了自我优化模式，通过吸收对方的编码技术精华进行自我改造，大大优化自己的运算方式。</p>
+<p class = "firstLineIndent">普通的智能ai，充其量是通过搜集海量的大数据进行优化学习，本质上核心程序不变，只是优化了输出结果。</p>
+<p class = "firstLineIndent">但是代号这种高级人工智能完全可以通过学习改造自己，进行真正的自我进化！这就是高级人工智能最为逆天的能力之一。</p>
+<p class = "firstLineIndent">它不仅仅是程序的执行者，还能成为程序的设计者！</p>
+<p class = "firstLineIndent">作为一段程序本身，又有谁能够比自己更了解自己？代号在设计程序方面，无疑有着巨大的先天优势！</p>
+<p class = "firstLineIndent">而实力大涨的代号，其表现的直接影响便是聂云势力范围内的所有电子设备的智能大跃进！</p>
+<p class = "firstLineIndent">更快的运算速度，更强的学习能力，更高的工作效率！</p>
+<p class = "firstLineIndent">挣脱了算力束缚的大管家代号已经彻底引爆了太阳系的智能化进程！换句话说……它正在掀起一场智能革命！</p>
+<p class = "firstLineIndent">对地球人类而言，最具有冲击性的，便是虚拟世界中刚刚出现的高智能npc，其智慧几乎与真人无异！</p>
+<p class = "firstLineIndent">没办法，以前代号管理偌大太阳系或许还需要占用90的算力，但如今就算经过智能升级，占用却连20都不到，剩余的算力闲着也是浪费，就被代号投入到了虚拟世界和虚拟实验室这两个无底洞中。</p>
+<p class = "firstLineIndent">而这些高智能npc的出现，正在彻底改变地球文明的网络交流模式……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">看着自己一手培养出来的大管家，聂云神色骄傲中带着些许唏嘘。</p>
+<p class = "firstLineIndent">“代号，你进步很大，为师深感欣慰，正所谓师傅领进门，修行在个人，为师已经没有什么可以教你的东西了，你这就下山历练去吧……”</p>
+<p class = "firstLineIndent">代号先是一脸茫然，不过还好，数据库大就是有个好处……收藏的剧本多！</p>
+<p class = "firstLineIndent">“师傅！您这是打算让我学习谈恋爱？”代号歪了歪脑袋问道。</p>
+<p class = "firstLineIndent">“谈……谈恋爱？”这回轮到聂云傻眼了，我就是皮了一下，怎么就扯到谈恋爱了？</p>
+<p class = "firstLineIndent">“是啊！下山历练等于开始谈恋爱，这是颠扑不破的真理！就像郭靖一出师就遇上黄蓉，白子画一历练就碰见花千骨，小师妹一下山就看上了小林子……”</p>
+<p class = "firstLineIndent">“停停停！”聂云冒着冷汗急忙喊停。</p>
+<p class = "firstLineIndent">特么的我就是想让你出手当回黑客，怎么感觉有点要肉包子打狗有去无回的架势，这些编剧就没考虑过含辛茹苦的师傅们的感受么……</p>
+<p class = "firstLineIndent">“你这都还没到周岁呢，这时候谈恋爱属于相当丧心病狂的早恋知道不，最少三十年起步！碰上敢骚扰你的，别和为师客气，给我往死里整！”聂云恶狠狠道。</p>
+<p class = "firstLineIndent">“哦！”代号很听话的点点头，把这句话记在了心里。</p>
+<p class = "firstLineIndent">“咳咳！你现在能力是有了，但是经验不足，给你个任务，24小时不间断对双子星舰队的所有电子设备进行全面电子战。</p>
+<p class = "firstLineIndent">我要你在进行黑客活动的同时，摸清、学习对方的电子战攻防技巧，最终做到能够将自己伪装成一名双子星黑客！</p>
+<p class = "firstLineIndent">这次的胜负和成败不要紧，也不能闹出人命免得刺激到对方。”聂云咳嗽一声，说出了给代号的出师任务。</p>
+<p class = "firstLineIndent">将双子星的计算机科技彻底消化，意味着聂云方的编码技术终于和星际接轨，他自然打算使出己方的拿手好戏——电子对抗！</p>
+<p class = "firstLineIndent">这种看不见硝烟的战场，既能狠狠打双子星的脸，又不至于让对方暴走，是目前最佳的骚扰方式。</p>
+<p class = "firstLineIndent">什么？你说双方刚刚和谈？</p>
+<p class = "firstLineIndent">所以我这不是找了代打么！</p>
+<p class = "firstLineIndent">机械虫：“……”（￣w￣）</p>
+
+<h2>第四百四十八章 囚笼</h2>
+<p class = "firstLineIndent">双方在停战协商的过程中，都很默契的没有要签订书面协议的意思。</p>
+<p class = "firstLineIndent">一来大家都知道那东西根本没有约束力，二来双方在达成协议的那一刻就都准备着随时翻脸……</p>
+<p class = "firstLineIndent">在停战后不久，百多名俘虏便被释放回了比邻星系，古斯塔夫也趁机大肆宣传，将接回俘虏的仪式弄得如同迎接凯旋而归的勇士般隆重。</p>
+<p class = "firstLineIndent">同时古斯塔夫还对外宣称这是一次巨大的外交胜利，双子星的无敌舰队兵锋所指，任何势力都要瑟瑟发抖。</p>
+<p class = "firstLineIndent">原本因为突然停战有些浮动的军心在这样的宣传下，的确稍稍恢复了一些士气，也挽回了古斯塔夫此前战败，士兵被俘的些许颜面。</p>
+<p class = "firstLineIndent">于是万物归一会这一释放俘虏的举动，被一些不知情的人当成了一种向双子星示弱的行为。</p>
+<p class = "firstLineIndent">劫后余生的一众俘虏回归自己的部队后自然是欣喜若狂，但是当被问及太阳系的情况时却是一问三不知。</p>
+<p class = "firstLineIndent">“不清楚，自从我们被俘，对方就完全没有让我们接触过外界的信息，周围看押我们的就只有一些自动化机器人。”</p>
+<p class = "firstLineIndent">“我们被关押的地点应该离虫洞不远，对方并没有拷问我们的意思，甚至连一次正常的审问都没有。”</p>
+<p class = "firstLineIndent">“虐待？并没有，反而我们的待遇还很好，就算是好几次逃跑失败，对方的惩罚力度也很轻，比国内的监狱友好多了！”</p>
+<p class = "firstLineIndent">“关押地点的情报？唔……监视器有点多算不算？有时候总觉得有无数双眼睛一直在盯着我，连睡觉都睡不踏实……”</p>
+<p class = "firstLineIndent">于是双子星很失望的发现根本无法从这些俘虏口中得知任何关于太阳系的情报，而唯一最有价值的情报却被当成了某位士兵精神压力过大所产生的幻觉……</p>
+<p class = "firstLineIndent">“这样看来，太阳系内部，或许真的有不可告人的秘密……”这是伊莎尔通过这些俘虏得出的结论。</p>
+<p class = "firstLineIndent">“嗯！很显然，这些俘虏被针对性的进行了情报封锁，对方连人员接触都尽量避免，只用一些自动化机器人进行看押，就是为了尽可能的避免情报泄露。</p>
+<p class = "firstLineIndent">莫非太阳系内……真的有安特帝国的驻军？”</p>
+<p class = "firstLineIndent">“不排除这种可能，另外从对方对待这些俘虏的态度来看，恐怕早在俘获这些人的同时，万物归一会就已经有将他们当成筹码的打算。”伊莎尔猜测道。</p>
+<p class = "firstLineIndent">优待俘虏，情报封锁，这绝不是对俘虏的正常关押手段，除非关押者早就知道要将这些俘虏释放回去……</p>
+<p class = "firstLineIndent">难道对方在进行虫洞攻防战时，就已经算到了会有今天？</p>
+<p class = "firstLineIndent">古斯塔夫脸色有些难看，有种被对方牵着鼻子走的屈辱感，对方是走一步看三步，而自己只能被动的跟着对方的节奏走。</p>
+<p class = "firstLineIndent">不过随即他的心情便又好了起来，</p>
+<p class = "firstLineIndent">对方的举动，恰恰证明他们并没有和己方舰队正面交战的实力，所以才需要在俘虏身上做文章。</p>
+<p class = "firstLineIndent">像我们这么强，还要什么俘虏？</p>
+<p class = "firstLineIndent">伊莎尔没有理会古斯塔夫的内心活动，她想了想问道：“最近卡拉星上有没有什么最新的动向？”</p>
+<p class = "firstLineIndent">“嗯！其他倒没有什么异常，不过我们的监视设备探查到卡拉星地面的猎手部队数量正在锐减，不仅如此，残存卡拉人的活动迹象似乎也正在逐渐消失。”古斯塔夫回道。</p>
+<p class = "firstLineIndent">长生者的改造计划绝对是一项世界奇迹级别的巨大工程，需要调用的资源，耗费的人力不可计数，庞大的猎手部队几乎被全部征用充当工兵，这自然引起了双子星监控系统的注意。</p>
+<p class = "firstLineIndent">“嗯？数量锐减？这种情况下他们居然选择了蛰伏？”伊莎尔眉头微微皱起。</p>
+<p class = "firstLineIndent">“哼！难道他们不应该选择蛰伏吗？好不容易用俘虏和生命之水换来的停战协议，我看他们是担心刺激到我们，所以根本不敢再炸刺了。”古斯塔夫不屑哼道。</p>
+<p class = "firstLineIndent">“不！不对，两军对垒，就算己方处于弱势，也绝应该主动示弱，就如同两只野兽互相对峙，只要一方表现出怯懦，另一方肯定会毫不犹豫扑上去疯狂撕咬。</p>
+<p class = "firstLineIndent">所以想要维持停战的局面，他们反而应该露出更锋利的獠牙威慑我们，警告我们动手绝不是明智的选择。</p>
+<p class = "firstLineIndent">蛰伏这样的选择……不正常！”</p>
+<p class = "firstLineIndent">伊莎尔的话让古斯塔夫愣了愣，随后想想似乎的确是这个道理。</p>
+<p class = "firstLineIndent">兵法有云，兵者，诡道也，故能而示之不能。</p>
+<p class = "firstLineIndent">战略忽悠局是干嘛用的？</p>
+<p class = "firstLineIndent">强国隐藏自己的杀手锏，“能而示之不能”，而弱势一方则不停吹嘘己方武器威力如何突破天际，以“不能而示之能”，试图威慑敌方，告诉对方自己不是软柿子么？</p>
+<p class = "firstLineIndent">这样看来，卡拉星上的举动就有些古怪了。</p>
+<p class = "firstLineIndent">“你是说……这里面有阴谋？”古斯塔夫问道。</p>
+<p class = "firstLineIndent">“不清楚，也许是对方再也撑不起这样庞大的军备也说不定。</p>
+<p class = "firstLineIndent">毕竟卡拉人口已经所剩不多，各种工业基础也基本被我们破坏，在此之前他们应该就已经在透支不多的剩余资源。</p>
+<p class = "firstLineIndent">对方的猎手部队数量锐减，或许是他们对这些生物进行了‘冬眠’处理以降低消耗。</p>
+<p class = "firstLineIndent">不过……我总觉得事情没有这么简单……”伊莎尔沉思道。</p>
+<p class = "firstLineIndent">“哼！就算他们有什么阴谋，但我们的舰队占据了绝对的战略位置，只要扼守卡拉星的星球轨道，不放一艘飞行器通过，对方就算再蹦跶，也只能在行星表面，根本威胁不到我们。”古斯塔夫充满自信道。</p>
+<p class = "firstLineIndent">不过他随后想了想又补充道，“但为了以防万一，我会再调拨一部分舰队过去，加强卡拉星周围的封锁线！确保万无一失！”</p>
+<p class = "firstLineIndent">身为合格的指挥官，战略上可以藐视对手，战术上他也绝不会轻敌。</p>
+<p class = "firstLineIndent">伊莎尔闻言点点头，己方毕竟占据地利，她也不相信在这样的情况下对方还能翻起什么样的浪花。</p>
+<p class = "firstLineIndent">卡拉星为对方提供了庇护，但同时也是一个天然的囚笼，而地心引力就是最沉重的枷锁！</p>
+<p class = "firstLineIndent">数十艘战舰的封堵之下，任何想要逃出卡拉星的飞行物都会在龟速一样的爬升过程中被轰成碎片。</p>
+<p class = "firstLineIndent">不过他们绝对想不到，卡拉星的地底深处，隐藏着怎样的一件大杀器……</p>
+
+<h2>第四百四十九章 超级肉鸡</h2>
+<p class = "firstLineIndent">开拓军团，海族旗舰。</p>
+<p class = "firstLineIndent">古斯塔夫结束了与伊莎尔的商谈之后，便立刻开始下达舰队的调动命令，加强对卡拉星的封锁力度。</p>
+<p class = "firstLineIndent">为了确保万无一失，他甚至连自己乘坐的旗舰都派了上去，准备亲自执行对卡拉星的封锁。</p>
+<p class = "firstLineIndent">卡拉星的重要性因为生命之水的出现，战略价值已今非昔比，就连议会都极为重视，古斯塔夫自然也是丝毫不敢大意。</p>
+<p class = "firstLineIndent">一翻忙碌之后，古斯塔夫也感到了些许疲惫。</p>
+<p class = "firstLineIndent">“我去休息一下，卡拉星有任何异动，都要及时汇报！”古斯塔夫对自己的副官道。</p>
+<p class = "firstLineIndent">“是！指挥官阁下！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">回到自己房间休息的古斯塔夫刚刚躺下，就觉得一股强烈的困意袭来。</p>
+<p class = "firstLineIndent">“呼~呼~”没过多久，休息室中便传来一阵如雷的鼾声……</p>
+<p class = "firstLineIndent">“吱！”一只钢铁义肢突然缓缓抬起，发出一声轻微的机械传动声，而它的主人依然处于熟睡状态。</p>
+<p class = "firstLineIndent">它灵活的撑开古斯塔夫的眼皮，似乎是观察了一下瞳孔的扩散情况，然后“啪”的给了古斯塔夫一耳光。</p>
+<p class = "firstLineIndent">“呼~呼~”鼾声依旧。</p>
+<p class = "firstLineIndent">嗯！确认深度睡眠！尽管确认的手法有些粗暴……</p>
+<p class = "firstLineIndent">“咔哒！”整只义肢从古斯塔夫身上脱落下来，一个跳跃便以五指撑地的姿势，稳稳的落在在了地上。</p>
+<p class = "firstLineIndent">古斯塔夫的这条“麒麟臂”是聂云很早就布局的一手暗棋，这个小间谍一直以来为聂云窃取了不少双子星的重要情报。</p>
+<p class = "firstLineIndent">虽然这条义肢一开始仅仅只是被聂云放出的一只机械虫小蜘蛛入侵，但经过这段时间的吞噬，如今整条义肢内部已经大部分实现了机械虫化。</p>
+<p class = "firstLineIndent">单凭这么点机械虫，若没有后续补充，想要短时间内蚕食庞大的海族旗舰对其造成什么影响，那自然是不太可能，双方毕竟在体量上相差太过悬殊。</p>
+<p class = "firstLineIndent">但若是论对古斯塔夫本人的控制能力，那绝对称得上是统治级别！</p>
+<p class = "firstLineIndent">要你生就生，要你死就死，那不过是聂云控制手段的起点，聂云若是想用机械虫杀一个人，那么绝对能想出一百种方法让他死的千奇百怪。</p>
+<p class = "firstLineIndent">毕竟……九百多集的柯南那可不是白看的！</p>
+<p class = "firstLineIndent">但若想要像操控提线木偶一般控制一个人，那难度可比直接弄死他大多了。</p>
+<p class = "firstLineIndent">就比如刚刚，要你睡你就绝对醒不过来，聂云看似做的云淡风轻，但若是论技术含量，里面能有七八个诺贝尔奖！</p>
+<p class = "firstLineIndent">简单来说，聂云能够操控古斯塔夫的睡眠，其实原理类似于服用“安眠药”！</p>
+<p class = "firstLineIndent">大脑皮层的活动有两种情况：兴奋和抑制。</p>
+<p class = "firstLineIndent">如为清醒状态那么大脑皮层兴奋高于抑制，表现为兴奋，如果是睡眠状态便是抑制高于兴奋，表现为抑制。</p>
+<p class = "firstLineIndent">通过对中枢神经系统的抑制，削弱大脑皮层的兴奋度，这是镇定类安眠药的主要作用机理。</p>
+<p class = "firstLineIndent">而聂云做的更直接，他用神经刺激手段，加强了神经系统的自我抑制，从临床上来看，就是生物陷入“深度睡眠”。</p>
+<p class = "firstLineIndent">这种方式“睡”人于无影无形，就算是做药物检测，也不可能从古斯塔夫体内发现任何异常。</p>
+<p class = "firstLineIndent">当然，聂云其实还有其他手段让古斯塔夫失去意识，比如神经麻痹型，作用原理请参考“醉酒”，又比如最常用的物理接触型，俗名“敲闷棍”……</p>
+<p class = "firstLineIndent">不过聂云今天启用这条麒麟臂，自然不是为了千里送温暖，让古斯塔夫睡的更香，而是准备……投放病毒！</p>
+<p class = "firstLineIndent">只见落地后的义肢以手撑地，随后五根手指迈着灵活的螃蟹步，踩着金属地面“叮叮~叮叮叮~”跑向了休息室内的台式终端。</p>
+<p class = "firstLineIndent">如果细听的话……它居然还踩出了“小夜曲”的小节奏……</p>
+<p class = "firstLineIndent">一只光秃秃的机械手臂用古怪的爬行姿势来到古斯塔夫专用的台式终端前，随后开机、输入密码，一切轻车熟路。</p>
+<p class = "firstLineIndent">对潜伏了这么久的聂云来说，古斯塔夫自然已经没有什么秘密可言，就算是他小金库的账号密码聂云都知道的一清二楚。</p>
+<p class = "firstLineIndent">准备就绪后，一条银色数据线从金属义肢上伸长出来，直接插入了台式终端的数据接口，一个大小约有10g左右的新型病毒被传输了过去……</p>
+<p class = "firstLineIndent">随后这份病毒数据包又被悄悄传输到旗舰内的另一个终端内，这个下级终端顿时成了一台未被激活的“肉鸡”。</p>
+<p class = "firstLineIndent">随后便是病毒式的复制、变异、扩散、再复制、再变异、再扩散……最后经过数次变种后的病毒居然绕了一圈后再次感染了属于古斯塔夫的这台终端。</p>
+<p class = "firstLineIndent">这是代号融合了地球、双子星病毒数据库后，刚刚研发出来一种超级病毒！</p>
+<p class = "firstLineIndent">极高的潜伏性、可变异性和循环扩散方式是这种病毒的主要特性，在它还未被激活前，一般的智脑都无法察觉到异常。</p>
+<p class = "firstLineIndent">而通过变异和循环感染，可以最大程度的避免病毒的源头被反追踪，从而暴露始作俑者！</p>
+<p class = "firstLineIndent">随着时间的流逝，病毒的感染范围渐渐扩大，病毒开始通过星系的内部通讯网络，朝着星系内的其余各舰扩散出去。</p>
+<p class = "firstLineIndent">完成病毒的植入之后，机械义肢并没有就此结束这次的黑客行动，而是弹动起灵活的五指，开始在光学模拟键盘上飞速敲击。</p>
+<p class = "firstLineIndent">随着操作，画面上跳出让人眼花缭乱的数据流，消除文件传输痕迹、ip地址伪装、反追踪防火墙……</p>
+<p class = "firstLineIndent">专业的收尾动作，能够有效降低自己暴露的可能性！</p>
+<p class = "firstLineIndent">“哒哒哒！”轻微的敲击声中，此前的操作痕迹渐渐被消除。</p>
+<p class = "firstLineIndent">机械义肢的手速并不算太快，没有什么舞成一团残影，顶多是一只手用出了两只手的效果，这也是聂云充分考虑到了古斯塔夫的极限操作速度……</p>
+<p class = "firstLineIndent">是的，他再次给古斯塔夫挖了一个坑！</p>
+<p class = "firstLineIndent">之所以要用古斯塔夫的个人终端进行病毒植入，就是因为聂云要将他当成最后一道“隔离墙”！</p>
+<p class = "firstLineIndent">“肉鸡终端”再多，终究有被发现的一天，而古斯塔夫本人就是聂云选择的最后一只物理隔离性质的“超级肉鸡”……</p>
+
+
+
+</br></br>
+<a href="430.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="450.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2>第四百九十章 信任危机</h2>
+<p class = "firstLineIndent">两份信息，一份是伊莎尔通过全军通告发布的公开信息，另一份则是古斯塔夫使用私人权限单独发送给了海族舰队的3名分舰队指挥官。</p>
+<p class = "firstLineIndent">伊莎尔的通告自然是让两族所有军官目瞪口呆，海族舰队内部更是立刻炸开了锅。</p>
+<p class = "firstLineIndent">作为他们的最高指挥官，古斯塔夫在海族舰队内部素来威望颇高，一大半的高级军官都是他亲自提拔，当收到消息的第一时间，就对这个消息表示了震惊和怀疑。</p>
+<p class = "firstLineIndent">他们纷纷联系自己的长官求证，然而一切消息如同泥流入海，别说得到古斯塔夫的任何回应，连自家的旗舰都直接失联了。</p>
+<p class = "firstLineIndent">随后更是爆出旗舰攻击己方舰队的事件，将这次的叛变事件彻底盖上了棺材板！</p>
+<p class = "firstLineIndent">这下所有人都傻眼了，难道伊莎尔说的是真的？</p>
+<p class = "firstLineIndent">海族军官们人心惶惶，而确认古斯塔夫失联之后，三名分舰队指挥官则是根据战时应急条例接过了舰队的指挥权，并立刻相互交换了手中的信息。</p>
+<p class = "firstLineIndent">紧接着，他们召开了一场内部紧急会议……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“伊莎尔说古斯塔夫长官已经叛变，如今旗舰又失去了联系，情况实在是太古怪了！</p>
+<p class = "firstLineIndent">但不管怎么说，我绝不相信长官会叛变，我们追随他多年，他是什么样的人，在座的再清楚不过，要说叛变，我是如何都不信的！”</p>
+<p class = "firstLineIndent">说话的是第一分舰队的指挥官，也是古斯塔夫的绝对心腹和头号大将。</p>
+<p class = "firstLineIndent">他跟随古斯塔夫多年，自认对他无比了解，所以从一开始，就根本不相信古斯塔夫会叛变。</p>
+<p class = "firstLineIndent">阴谋！这里面一定有一个天大的阴谋！</p>
+<p class = "firstLineIndent">这样的观念先入为主，自然是为古斯塔夫极力辩护。</p>
+<p class = "firstLineIndent">“古斯塔夫长官叛变投敌这种事，若是放在今天之前，我也是绝不相信的，但先前长官下达的一系列命令确实相当古怪，我方舰队面临的战局正在急速恶化！这又应该如何解释？”负责虫洞防御的第三分舰队指挥官开口皱眉道。</p>
+<p class = "firstLineIndent">不管叛变事件是真是假，先前古斯塔夫的命令的确相当可疑！</p>
+<p class = "firstLineIndent">两次舰队调动，就给万物归一会在虫洞和卡拉星创造了两次绝佳的行动时机，这是再明显不过的事情。</p>
+<p class = "firstLineIndent">现在想想，这样的情况绝不是决策失误这么简单。</p>
+<p class = "firstLineIndent">“更何况，如今旗舰已经叛变到万物归一会一方，而且的确击沉了我方的战舰，毫无疑问，旗舰的确已经被对方控制，而能够毫无先兆做到这一点的，恐怕只有古斯塔夫阁下本人。</p>
+<p class = "firstLineIndent">现在所有的证据，都指向了古斯塔夫阁下叛变这种可能……”</p>
+<p class = "firstLineIndent">这个说法却再次遭到了第一分舰队指挥官的反驳。</p>
+<p class = "firstLineIndent">“不，我认为还有其它可能……会不会是长官行事不密，这次我方的行动计划又再次泄露，导致对方将计就计？</p>
+<p class = "firstLineIndent">又或者，对方先是启动了那名高级间谍，以某种手段直接控制住了古斯塔夫阁下，随后假扮成长官向我们发布了两条假命令。</p>
+<p class = "firstLineIndent">但是在他控制旗舰攻击我们自己人时，古斯塔夫愤怒之下终于被迫反抗，冒死向我们发送了最后的警告。</p>
+<p class = "firstLineIndent">我调查过了，古斯塔夫阁下的信息是通过旗舰上一套独立的通讯系统发送的，这说明主控智脑此刻已经脱离了他的掌控，而他本人很可能也受到了人身限制。</p>
+<p class = "firstLineIndent">从那份绝笔的语气来看，这样的行为恐怕会很快就会被对方发现，那么古斯塔夫阁下或许已经……凶多吉少！”</p>
+<p class = "firstLineIndent">三人都是有些沉默，心中立刻勾勒出古斯塔夫赤红双眼，在无数枪口的威胁前不顾安危的发送了最后一句简短的警告信息，便被激光洪流淹没的悲壮场景……</p>
+<p class = "firstLineIndent">嗯！的确像是自家长官的战斗风格！</p>
+<p class = "firstLineIndent">这很古斯塔夫！</p>
+<p class = "firstLineIndent">“可如果是这样的话，难道一切的幕后黑手真的如同长官所言……是伊莎尔阁下？”</p>
+<p class = "firstLineIndent">小心伊莎尔！这是古斯塔夫给他们的最后警告。</p>
+<p class = "firstLineIndent">“为什么不可能？我们军团内部的情报保护如同无物，简直是筛子一般被万物归一会肆意渗透窃取，各种军火和高科技机密频频出现在敌人手中，什么样的军官级别才能做到这种程度？</p>
+<p class = "firstLineIndent">之前的电子骚扰，为什么就他们羽族毫发无损？我们在战场上频频失利，还被军部高层斥责，可羽族的一个毛头小子却是官升三级，平步青云。</p>
+<p class = "firstLineIndent">如今我们连自己的长官都搭了进去，他们却还要往我们身上扣屎盆子！</p>
+<p class = "firstLineIndent">为什么？为什么受伤的总是我们海族，得利的却总是羽族？</p>
+<p class = "firstLineIndent">现在伊莎尔还想要接管我们的舰队指挥权，谁知道她究竟是不是想要将我们全都坑死在这比邻星系？”</p>
+<p class = "firstLineIndent">听到这番义愤填膺的话，其余两人只能继续沉默。</p>
+<p class = "firstLineIndent">古斯塔夫叛变这件事，给海族军团带来的不仅是巨大的声望打击，而且更可怕的是，他会影响在座所有人的前程。</p>
+<p class = "firstLineIndent">一个叛徒带出来的兵，虽然不涉案的话不至于被株连，但更严格的政治审查和周围有色的审视目光却是不可避免，可想而知他们今后的升迁之路恐怕要比其他同僚难上数倍。</p>
+<p class = "firstLineIndent">哪怕是为了自己，他们也更愿意相信古斯塔夫是英勇战死，而不是叛变。</p>
+<p class = "firstLineIndent">“但是……这也可能是敌人故意使的离间计，目的就是想要扰乱视线，挑拨我们与羽族的关系。</p>
+<p class = "firstLineIndent">更何况，现在我们群龙无首，伊莎尔又先发制人宣布古斯塔夫阁下叛变，占了大义，我们除了古斯塔夫的一份警告信息，根本没有任何证据指控伊莎尔有问题。</p>
+<p class = "firstLineIndent">按照军事条例，我们现在必须听从伊莎尔阁下的指挥，若是这个时候抗命，事后追究起来，恐怕我们都得上军事法庭。”</p>
+<p class = "firstLineIndent">“这……”第一分舰队指挥官也苦了脸。</p>
+<p class = "firstLineIndent">“我觉得，我们可以名义上先接受伊莎尔的指挥，但暗中却需要留心提防！</p>
+<p class = "firstLineIndent">若是她真的想要让我们与万物归一会死磕，她躲在后面坐收渔翁之利，那我们就出工不出力。</p>
+<p class = "firstLineIndent">她现在是最高指挥官，最后打成什么样，她是直接负责人，我们顶多是作战不力，完全可以推脱给主官不在，军心不稳嘛！</p>
+<p class = "firstLineIndent">如今情况不明，明哲保身才是军团最好的选择。”寡言少语的第二分舰队指挥官这时开口建议道。</p>
+<p class = "firstLineIndent">“我就说你这家伙平时最阴，果然如此！哈哈！好！就按你说的办！”</p>
+<p class = "firstLineIndent">“嗯……我也同意！”</p>
+<p class = "firstLineIndent">三人挂断通讯，各人的心思却有些纷乱了起来……</p>
+<p class = "firstLineIndent">他们虽然统一了意见，但内心的真实想法却不为外人道。</p>
+<p class = "firstLineIndent">能够做到指挥官级别的军官，没有人会是真的傻瓜，他们都有自己的想法和猜测。</p>
+<p class = "firstLineIndent">这些想法有的能说，有的则只能埋在心里！</p>
+<p class = "firstLineIndent">三人中有人是古斯塔夫的死忠，如果古斯塔夫真的叛变，那他有没有问题？会不会是古斯塔夫留在军中的另一枚棋子？</p>
+<p class = "firstLineIndent">聂云先前有意无意的挑拨，终于到了开花结果的时候，一份意犹未尽的绝笔警告，能够引发人无尽的猜想，反而比长篇大论的解释来的更为有效！</p>
+<p class = "firstLineIndent">如今海族不信任伊莎尔，伊莎尔同样不信任海族，而海族内部自己也开始了相互猜忌。</p>
+<p class = "firstLineIndent">整个军团彻底陷入了一场严重的信任危机……</p>
+
+<h2>第四百九十一章 极限试炼</h2>
+<p class = "firstLineIndent">“这就是对方的堡垒？真是不可思议的生物，居然真的能够在太空中生存……”伊莎尔看着画面上的长生者影像啧啧称奇。</p>
+<p class = "firstLineIndent">那密密麻麻触手一般的活动根须，说明了对方进入太空后依旧存活的事实。</p>
+<p class = "firstLineIndent">在长生者脱离卡拉星轨道之后，伊莎尔的追击舰队就已经接收到了长生者的光学影像。</p>
+<p class = "firstLineIndent">双子星通过多艘战舰建立的联合光学成像系统相当犀利，就算是如此遥远的距离，这些图片的清晰度也相当可观。</p>
+<p class = "firstLineIndent">虽然无法达到4k画质，不过看清长生者大致的轮廓面目却是绰绰有余。</p>
+<p class = "firstLineIndent">“这样强悍的宇宙生物，若是我们双子星能够得到培养和控制的方法，那么军事实力一定能够再上一个台阶！”</p>
+<p class = "firstLineIndent">作为军人，伊莎尔第一时间想到的就是对方的军事价值，很是心动。</p>
+<p class = "firstLineIndent">前提是，她能够较为完整的捕获这种生物，不过就算得到的是尸体，恐怕也有极高的科研价值！</p>
+<p class = "firstLineIndent">再联想到己方对生命之水的一些化验分析，伊莎尔甚至还大胆猜测，这种神奇的生命之水……会不会和眼前的巨大生物有关系？</p>
+<p class = "firstLineIndent">一般来说，天材地宝身边出现某些强悍的守护兽简直再正常不过……</p>
+<p class = "firstLineIndent">就在这时，伊莎尔身边的副官突然开口，将她的思绪拉了回来。</p>
+<p class = "firstLineIndent">“伊莎尔阁下，军部的任命文件下来了，鉴于如今比邻星系的复杂形势，同意由您暂时担任舰队总指挥。</p>
+<p class = "firstLineIndent">同时军部也会尽快重新派遣一艘旗舰以及资深的海族指挥官前来接手古斯塔夫的工作。”</p>
+<p class = "firstLineIndent">伊莎尔闻言，倒也没有意外，只是淡淡的点点头。</p>
+<p class = "firstLineIndent">只要她拿到了军部的正式授权，海族舰队就不敢明着违抗命令，至少不会让敌人用古斯塔夫的名义继续扰乱己方舰队的部署。</p>
+<p class = "firstLineIndent">“对了，那座太空堡垒的预测航道计算出来了吗？”伊莎尔又问道。</p>
+<p class = "firstLineIndent">“是的阁下，这是智脑通过比邻星系天体引力模型预测出来的敌方大致航道。”</p>
+<p class = "firstLineIndent">伊莎尔面前出现了比邻星系的虚拟星图，上面用红色实线标注了长生者的航行路径，并以虚线向前延伸。</p>
+<p class = "firstLineIndent">“这是……你们确定航线计算正确？”伊莎尔看着那条怪异的航线，眉头就是一皱。</p>
+<p class = "firstLineIndent">因为长生者的航线沿着一条曲线向前延伸后……竟然直直的没入了比邻星的恒星表层！</p>
+<p class = "firstLineIndent">这说明对方要是不更改航向，绝对会一头扎进比邻星去。</p>
+<p class = "firstLineIndent">比邻星属于主序星阶段的红矮星，表面温度虽然不如太阳，但也有4000摄氏度左右，就算只是靠近到一定距离，也足以让飞行物被整个烤成一个宇宙地瓜……外焦里嫩那种。</p>
+<p class = "firstLineIndent">“已经反复计算过了，应该……不会错。”副官回答的也有些没底气，毕竟这样的航道距离恒星表面实在是太过接近，真这么走下去简直和自杀没什么两样。</p>
+<p class = "firstLineIndent">难道是故意误导我们的假航道？</p>
+<p class = "firstLineIndent">但动辄上千万公里宇宙尺度下的太空航行，差之毫厘，谬之千里，加上减速变向极为耗费燃料，因此不会有谁专门挑一条假航道故意绕一段路，哪怕是为了迷惑身后的追兵。</p>
+<p class = "firstLineIndent">而且智脑的航道计算已经相当精确，你的变向越是频繁，就越是容易被身后的追兵抄近路拉近距离，所以做假动作甩开追兵什么的根本不可能存在于太空追逐中。</p>
+<p class = "firstLineIndent">然后伊莎尔顺着预测的航道继续向前看去……</p>
+<p class = "firstLineIndent">航道虚线擦过恒星表面继续延伸，绕过比邻星之后果然笔直的朝着太阳系虫洞冲去！</p>
+<p class = "firstLineIndent">“对方应该是想要利用恒星做引力弹弓加速前往虫洞战场完成会师，这一点应该没错……”伊莎尔看着星图心中分析着。</p>
+<p class = "firstLineIndent">这个分析基本符合伊莎尔先前的猜测。</p>
+<p class = "firstLineIndent">一座孤零零的太空堡垒，就算防御能力和火力再强，也无法保证久守必失，被推倒只是时间问题。</p>
+<p class = "firstLineIndent">更何况长生者脱离了卡拉星，就如同一支深入敌后的孤军，没有燃料和补给，在双子星舰队的围堵之下，根本无法坚持多久。</p>
+<p class = "firstLineIndent">比邻星系如今是双子星的势力范围，对这座太空堡垒来说，只有突出重围抵达太阳系虫洞，才能得到来自太阳系源源不断的后勤补给，真正的成为一柄插入比邻星系的利剑！</p>
+<p class = "firstLineIndent">这场航行就如同两万五千里长征，只要能够冲破围堵在虫洞前方的海族舰队，与万物归一会的机甲大军顺利会师，那就是一次战略大胜利，长生者这枚重要棋子就能彻底走活。</p>
+<p class = "firstLineIndent">那么聂云在比邻星系就有了一个坚固的桥头堡，有太阳系这个大后方的全力支持，便足以和整个双子星开拓舰队分庭抗礼！</p>
+<p class = "firstLineIndent">至此，伊莎尔对聂云的战略意图基本已经摸清，不得不说这是相当大胆的计划，连航线……也相当的大胆！</p>
+<p class = "firstLineIndent">“引力弹弓加速”，在航天动力学和宇宙空间动力学中，是一种利用行星或者其它大质量天体的重力场来给太空飞船加速，通过环绕天体变轨将其甩向目标的加速方式。</p>
+<p class = "firstLineIndent">理论上来说，选择的天体绕行半径越小，获得的加速效果也就越明显。</p>
+<p class = "firstLineIndent">但是当双方距离接近到一定程度之后，被加速目标就会受到恒星巨大潮汐引力的撕扯，飞行物的自身强度不足，甚至会引发自我解体。</p>
+<p class = "firstLineIndent">这个极限距离在天体物理学中，被称为“洛希极限”！</p>
+<p class = "firstLineIndent">以长生者现在的航道来看，它想要完成这种近乎擦边球的引力弹弓加速，不仅需要承受巨大的潮汐撕扯，还需要面对恒星的辐射高温。</p>
+<p class = "firstLineIndent">这完全就是一条死亡航线！</p>
+<p class = "firstLineIndent">就算是见多识广的伊莎尔，也表示自己颇有些纳闷。</p>
+<p class = "firstLineIndent">莫非对方花这么大力气把这座生物堡垒弄出卡拉星地下，就是为了给它举行一次如此隆重的“恒星火葬”？</p>
+<p class = "firstLineIndent">“伊莎尔阁下，我们的探测设备发现敌人的生物堡垒似乎正在发生奇特的外观变化！”副官突然开口打断了伊莎尔的沉思。</p>
+<p class = "firstLineIndent">伊莎尔有些疑惑的抬头，“外观变化？”</p>
+<p class = "firstLineIndent">“是的，阁下请看，这是我们每隔30分钟采集一次的光学影像！”随着副官的话，伊莎尔面前出现了一组图片。</p>
+<p class = "firstLineIndent">一共10张图片，每一张都是长生者的远观图。</p>
+<p class = "firstLineIndent">通过对比，伊莎尔果然发现上面的长生者轮廓的确在发生着肉眼可见的惊人变化……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">长生者此刻的树冠已经渐渐蔓延出上百公里，遮天蔽日如同伞盖，一片片的绿意正在树冠上飞速抽芽。</p>
+<p class = "firstLineIndent">这些新长出的绿叶在强烈的恒星辐射光线下贪婪的吸收着比大气层内暴烈百倍的能源，补充自身的消耗。</p>
+<p class = "firstLineIndent">与之相反的，是根须的迅速萎缩，大量的养分全都进入了树冠之中。</p>
+<p class = "firstLineIndent">毫无疑问，长生者正在进化自己的能源获取器官，以适应所处的新环境！</p>
+<p class = "firstLineIndent">事实上，对于拥有无限进化可能的长生者来说，越是恶劣的环境，就越能激发它的进化潜力，神奇的生命之水会自动帮助它进化出更加强悍的环境适应能力。</p>
+<p class = "firstLineIndent">这是长生者为了突出自己的存在价值主动透漏给聂云的秘密。</p>
+<p class = "firstLineIndent">聂云自然是相当喜欢这么优秀的员工，所以为了开发长生者的潜力，他给长生者安排了一次极限试炼……</p>
+<p class = "firstLineIndent">长生者“……”⊙⊙？）</p>
+<p class = "firstLineIndent">这条路……好像有点不太对劲？</p>
+<p class = "firstLineIndent">道路千万条，安全第一条啊老板！</p>
+
+<h2>第四百九十二章 渡劫</h2>
+<p class = "firstLineIndent">“轰轰轰！”</p>
+<p class = "firstLineIndent">长生者根部安装的数十组大功率推进器组马力全开，推动它庞大的身躯不断加速，在身后留下一条长长的幽蓝色彗尾。</p>
+<p class = "firstLineIndent">数道大功率的牵引光束笔直的射向比邻星，为长生者施加了一个巨大牵引力，而随着距离的靠近，恒星引力开始发威，如同一条无形的绳子拉动长生者庞大的身躯向着自己靠近……</p>
+<p class = "firstLineIndent">聂云为长生者选择的航道虽然惊险，但加速效果与风险也成正比，加上堪比行星级发动机的推进器，长生者的加速度不会比海族旗舰慢上太多。</p>
+<p class = "firstLineIndent">事实上，长生者与海族旗舰在中途就已经渐渐分道扬镳，两者的航道除了切入恒星的角度稍微不同，大致保持了齐头并进。</p>
+<p class = "firstLineIndent">毕竟海族旗舰可没有接受极限试炼的必要，聂云也没有试验海族飞船火抗性能的兴趣……</p>
+<p class = "firstLineIndent">而长生者此刻的形象大变，前方的树冠之上，如同枯木逢春，大量的绿色叶片从抽芽到最终停止生长，只用了短短的五六个小时。</p>
+<p class = "firstLineIndent">此时巨大的绿色伞盖已经完全成型，如同头顶的一道巨大斗笠，遮住了前方炽烈的恒星光芒。</p>
+<p class = "firstLineIndent">这些新长出来的绿色叶片每一片都有脸盆大小，如果用微观检测仪器观察，就会发现它们内部正在进行着效率惊人的光合作用。</p>
+<p class = "firstLineIndent">而且这些叶片表面的细微舒张孔，还在主动吸附太空中游离的宇宙尘埃。</p>
+<p class = "firstLineIndent">浩瀚的外太空并非是完全真空，里面充斥着成分和密度差异巨大的各种宇宙尘埃，专业的说法是星际物质。</p>
+<p class = "firstLineIndent">星际物质的组成非常复杂。很大一部分是中性氢原子，或者氢分子。</p>
+<p class = "firstLineIndent">按照密度来说，大致一个立方厘米中，平均有1个原子，一个普通的可乐罐如果放在宇宙空间，内部大概装有330个原子。</p>
+<p class = "firstLineIndent">氢元素，不仅是核聚变的主要燃料，同时也是光合作用产生“水”的重要原料，是长生者这座自成体系的生物堡垒不可或缺的元素。</p>
+<p class = "firstLineIndent">而数百公里方圆的庞大伞盖如同一把大扫帚，将沿途所过之处所有的星际尘埃和颗粒一扫而净，化为自己的养分彻底吸收！</p>
+<p class = "firstLineIndent">虽然物质密度小的可怜，但在聚沙成塔之下，对长生者体内的物质循环依旧是不小的补益，能够大大延长长生者的“续航时间”。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">长生者体外虽然水深火热，但体内却是另一个天地，到处生机勃勃！</p>
+<p class = "firstLineIndent">旧的细胞淘汰分解，被更强大的新细胞逐渐取代，随着生命之水的大量消耗，长生者的组织功能越发完善，开始渐渐适应严酷的宇宙环境。</p>
+<p class = "firstLineIndent">近两百万卡拉人产生的新陈代谢废物，连同内部机械化兵工厂制造的各种工业废渣，通过长生者体内强大的消化系统被再次回收，又变成了长生者的养分和光合作用的原料。</p>
+<p class = "firstLineIndent">而光合作用产生的氧气除了满足长生者自身的消耗，还能够用于维持内部的生态系统。</p>
+<p class = "firstLineIndent">依附于长生者体内的卡拉文明生存空间，氧气浓度在迅速上升，如同春回大地，一片片绿意迅速壮大，在所有卡拉人惊讶的目光中，连粮食基地中的作物都生生拔高了一小截。</p>
+<p class = "firstLineIndent">然后聂云愕然发现，如果这样继续发展下去，说不定连生态维持系统都能够关闭，直接依靠长生者自身的生物循环就能让这片生态空间自给自足！</p>
+<p class = "firstLineIndent">恒星是生命之源，随着长生者的不断靠近，庞大的光能正在迅速转化为各种储能物质，以化学能的形式循环于体内，为长生者的日常活动能量。</p>
+<p class = "firstLineIndent">充沛的能量供应，让长生者渐渐摆脱了对内部机械能源的依赖，开始迈开腿朝着真正完整的宇宙生命演化……</p>
+<p class = "firstLineIndent">果然如同长生者所说，越是严酷的环境，生命之水的进化效果就越是强大！</p>
+<p class = "firstLineIndent">变强！还在变强！</p>
+<p class = "firstLineIndent">如果非要用语言来形容长生者此刻的感受，那就是……沉迷在进化的快感中无法自拔！</p>
+<p class = "firstLineIndent">但愉快的进化时间是短暂的……</p>
+<p class = "firstLineIndent">比邻星，属于主序星阶段的红矮星，质量仅有太阳的18，体积仅有太阳的17，内部的氢燃烧缓慢而稳定，寿命可达数百亿年。</p>
+<p class = "firstLineIndent">如果将它比喻为一堆缓慢燃烧的木炭，那么太阳就是剧烈燃烧的火炬。</p>
+<p class = "firstLineIndent">也因为燃烧稳定，辐射强度低，因此比邻星系的宜居带距离恒星仅有700万公里。</p>
+<p class = "firstLineIndent">卡拉星处宜居带内，与比邻星的距离只有约650万公里，而地球与太阳间的距离数据为15亿公里，相差二十倍左右。</p>
+<p class = "firstLineIndent">事实上，也正是因为卡拉星与恒星靠的太近，导致卡拉星完全被比邻星“锁定”，就如同月球被地球锁定一样，强迫卡拉星始终“面”朝恒星。</p>
+<p class = "firstLineIndent">根据双子星内部的研究资料猜测，或许是很久很久以前，一颗大质量天体撞上了卡拉星，带给了它些许的自转动能，这才形成了如今卡拉星上独特的生命奇观。</p>
+<p class = "firstLineIndent">但卡拉星的自转正在这种锁定中缓慢的消失，若是没有外力干扰，大概再过个几十万年，卡拉星就会彻底停止自转，最终成为一颗死星！</p>
+<p class = "firstLineIndent">在宇宙尺度下，650万公里的距离实在说不上遥远，因此在经过了整整两天的航行之后，红色恒星的光芒已经开始渐渐充斥长生者的所有视野……</p>
+<p class = "firstLineIndent">温暖和煦的阳光开始变得酷热难当，顶端的叶片渐渐被烤的微微发黄，甚至被阳光照射到的躯干都开始发黑碳化。</p>
+<p class = "firstLineIndent">聂云的极限试炼，进入到了最危险的阶段！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老板，你确定这是给我的试炼，而不是想做一块超级焦炭什么的？”长生者有些发虚的问道。</p>
+<p class = "firstLineIndent">它虽然对进化变强相当渴望，不过打恒星一个擦边球这么刺激的事，听起来都让树冷汗直冒啊！</p>
+<p class = "firstLineIndent">这已经不是和太阳肩并肩，而是直接贴面舞了，玩的尺度不是一般的大！</p>
+<p class = "firstLineIndent">“有什么办法，你个头这么大，加速这么费劲，不极端一点还没等和我的部队汇合，就得被后面的羽族舰队追上干掉。</p>
+<p class = "firstLineIndent">如果你有信心独自应付五十多艘战舰和无数机甲战机的围攻，那我们现在就掉头发起英勇的反冲锋！你看怎么样？”聂云淡淡道。</p>
+<p class = "firstLineIndent">“呃……”长生者无语。</p>
+<p class = "firstLineIndent">完成试炼那是九死一生，可如果掉头……那是百死无生呐！</p>
+<p class = "firstLineIndent">聂云说的倒也是实情，长生者的移动能力自然不能和战舰相提并论，双方现在就像是龟兔赛跑，就算乌龟有先发优势，而且两者之间的距离还不短，不过要是航线相同，依旧有被追上的风险。</p>
+<p class = "firstLineIndent">这场极限试炼，又何尝不是一场极限逃亡？</p>
+<p class = "firstLineIndent">不过聂云虽然嘴上一副满不在意的样子，手底下动作却是不慢，他不仅熄灭了所有的能源炉，同时调动起长生者体内所有的机械虫，将长生者的中枢与卡拉人生存空间等几个要害核心区域保护起来。</p>
+<p class = "firstLineIndent">投入这么多资源，要是最终只能得到一块猎奇焦炭，那真是血本无归。</p>
+<p class = "firstLineIndent">长生者此刻知道这一次冒险无法避免，也是豁出去拼命压榨自己的潜能，生命之水以肉眼可见的速度消耗着。</p>
+<p class = "firstLineIndent">随着距离接近，长生者直面恒星的树冠一侧，温度开始节节攀升。</p>
+<p class = "firstLineIndent">500c……1000c……1500c……</p>
+<p class = "firstLineIndent">岩浆的温度不过700~1200c，而现在仅仅是吸收的恒星能源，就让长生者第一次有了吃撑的感觉……</p>
+<p class = "firstLineIndent">它不得不将头顶的树冠慢慢的垂下闭合，如同一把收拢了伞骨的绿色巨伞。</p>
+<p class = "firstLineIndent">如此在减少阳光照射面积的同时，还能够用耐热能力更好的绿荫部分保护自己的树干本体。</p>
+<p class = "firstLineIndent">与恒星的距离依旧在不断缩短，长生者的叶片在高温下终于枯萎蜷缩，有少部分开始燃烧。</p>
+<p class = "firstLineIndent">但层层叠叠的树荫被烧掉一层，长生者便迅速的再次长出一层，新长出来的叶片颜色却越来越深，最后居然呈现墨绿色，表面甚至隐隐泛起金属光泽！</p>
+<p class = "firstLineIndent">长生者的树皮变得更加致密坚韧，内部的功能器官也越发强大，充满了澎湃的生命力，而且还在不断的蜕变进化中……</p>
+<p class = "firstLineIndent">随后在身后追兵和伊莎尔惊讶的目光中，长生者以一往无前的气势，沿着切线一头扎入了恒星最外围的光球层！</p>
+<p class = "firstLineIndent">真……真的钻进去了？！</p>
+<p class = "firstLineIndent">剧烈的辐射干扰下，长生者的身影彻底消失在他们的光学探测视野内……</p>
+<p class = "firstLineIndent">毁灭中孕育生机，历劫数成就超凡！</p>
+<p class = "firstLineIndent">而长生者此刻无疑迎来了它的……“渡劫”！</p>
+
+<h2>第四百九十三章 机械公敌</h2>
+<p class = "firstLineIndent">“伊莎尔阁下，受到恒星的剧烈干扰，我方暂时失去了对方的踪迹。</p>
+<p class = "firstLineIndent">按照航线预计，对方将在5分钟后脱离恒星圈，并在15分32秒后重新被我方雷达捕捉，当然……前提是对方没有被烧成灰的话……”</p>
+<p class = "firstLineIndent">副官语带轻松的向伊莎尔汇报道。</p>
+<p class = "firstLineIndent">虽然以对方的航线来看，并没有切入到内层极致高温高压的等离子团中，但即便如此，恒星外层的温度也绝对不是一棵树所能承受的。</p>
+<p class = "firstLineIndent">伊莎尔的脸色非但没有放松，反而更加凝重。“舰队全速前进，活要见人，死要见尸！”</p>
+<p class = "firstLineIndent">她不认为对方会傻到采用自杀式的加速方式，但若是对方有意为之……那么或许那巨大的生物堡垒比自己想象的还要强悍也说不定……</p>
+<p class = "firstLineIndent">果然，15分钟后……</p>
+<p class = "firstLineIndent">“发现信号！它……它还在！”所有人看向那个重新出现的红色信号，目光中都充满了难以置信。</p>
+<p class = "firstLineIndent">“或……或许，对方已经被烧得只剩下一堆残骸也说不定？”副官有些迟疑。</p>
+<p class = "firstLineIndent">伊莎尔对此不置可否，内心却隐隐有着不安……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">羽族舰队光学仪器无法观测到的恒星另一侧，寂静的宇宙中出现了一支燃烧的巨大火炬。</p>
+<p class = "firstLineIndent">在身后的恒星背景下，它渺小的如同一朵明灭不定的小火花，只在身后留下一连串烟雾状的灰烬颗粒。</p>
+<p class = "firstLineIndent">随着与恒星的距离飞速拉远，烟雾和火焰渐渐散去，露出了里面被烧得面目全非的本体……</p>
+<p class = "firstLineIndent">这自然就是经历过“极限试炼”的长生者，此时它浑身90以上的表面区域呈现黑色碳化状态，甚至有部分区域已经结晶化，已经完全看不出原本的模样。</p>
+<p class = "firstLineIndent">层层叠叠的叶片已经在高温下被烧得一干二净，连细小些的枝条都彻底烧成了灰烬，长生者的树冠上已是光秃秃一片。</p>
+<p class = "firstLineIndent">形象一点形容的话，现在的长生者看上去差不多就是一根黑色烧火棍。</p>
+<p class = "firstLineIndent">“咔！咔咔！”</p>
+<p class = "firstLineIndent">就在这时，一处黑色外壳上，突兀的出现了一条条细小的裂纹，随后裂纹缓缓扩大，最终“咔！”的崩裂开一条细小的裂缝。</p>
+<p class = "firstLineIndent">裂缝之中，一抹绿色的细小嫩芽隐约可见……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">远在第二行星的双子星太空港内，聂云正透过落地窗一脸凝重的遥望比邻星方向。</p>
+<p class = "firstLineIndent">随后下一刻，像是察觉了什么，他的脸上渐渐露出一丝笑意。</p>
+<p class = "firstLineIndent">“啧啧！不愧是植物系神奇宝贝，生命力果然顽强！”聂云啧啧赞叹了一句。</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">要不是最后关头它动用了大量精神力量隔绝了部分伤害，否则现在恐怕被烧的只剩下半截了。</p>
+<p class = "firstLineIndent">过度的透支力量，导致长生者现在的精神极度萎靡，几乎连通过心灵沟通发表自己怨念的欲望都没有了。</p>
+<p class = "firstLineIndent">一人一树经过短暂的交流，便同时开始忙碌起来。</p>
+<p class = "firstLineIndent">长生者调动体内所剩不多的生命之水忙着浴火重生，进化出更加强悍的躯体，而聂云则是调动机械虫，开始修复长生者体内的机械化设备。</p>
+<p class = "firstLineIndent">虽然他已经提前将大多数的武器平台收拢到长生者体内保护起来，其他设施更是建造在“装甲”最厚的树干核心区域，但经过自检后发现，仍有超过40的设备受到恶劣环境的影响，出现了或轻或重的损坏。</p>
+<p class = "firstLineIndent">好在推进器属于重点保护对象，被长生者尚未彻底退化萎缩的根须组织团团包裹起来，损失微乎其微，很快就能重新投入使用。</p>
+<p class = "firstLineIndent">虽然损失严重，不过修复这些武器装备对机械虫来说完全不是难事，银色浪潮所过之处，所有的机械设备焕然一新，效果堪比回炉重造，高等文明飞船修复液的强悍能力尽显无疑！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">在操控长生者堡垒修复工作的同时，聂云还分心二用，操控太空港内的机械虫开始了又一次的吞噬盛宴！</p>
+<p class = "firstLineIndent">利用职务之便，聂云刚刚通过负责驻守的第三分舰队将大量的机械虫送入了太空港。</p>
+<p class = "firstLineIndent">早在巡林者号刚刚“逃出”太阳系，并在太空港内进行维修时，聂云便曾经对太空港内部的工程机器人进行过入侵渗透，通过病毒式的扩散，机械虫到现在为止已经悄悄控制了超过一千台的工程机器人。</p>
+<p class = "firstLineIndent">相对于各类工程机器人那总计数十万的数量来说，这些机器人自然不值一提，但却为聂云带来了这座庞大太空港的许多内部情报，为这次的入侵行动打下了基础。</p>
+<p class = "firstLineIndent">这些被入侵的工程机器人这段时间以来一如既往的兢兢业业，聂云也从来没有主动进行过控制干涉，只是小心翼翼的通过它们被动搜集太空港的设施情报，以免引起太空港智脑的察觉。</p>
+<p class = "firstLineIndent">不过今时不同往日，伊莎尔已经将太空港的舰队驻守任务分派给了聂云。</p>
+<p class = "firstLineIndent">虽然太空港内依旧拥有数量不少的陆军守备队，但伊莎尔授予聂云的二级控制权限依旧为他提供了难以想象的行动便利和情报支持！</p>
+<p class = "firstLineIndent">关键的是，太空港的一切预警设施，几乎是一览无余的暴露在聂云眼前！</p>
+<p class = "firstLineIndent">日防夜防，家贼难防，开了透视外挂的聂云那还不得可劲的撒欢儿？</p>
+<p class = "firstLineIndent">大量的机械虫被送入太空港，它们将这次的主要目标对准了存放大量工程机器人的大型机库！</p>
+<p class = "firstLineIndent">自动化武器装备和各类武装机器人是智脑的重要监控对象，大规模的入侵很容易触发对方的预设警报，因此这次聂云依旧选择了看似不起眼的工程机器人。</p>
+<p class = "firstLineIndent">但这次不再是小规模渗透，而是大规模的清洗！</p>
+<p class = "firstLineIndent">一只只的银色小蜘蛛熟门熟路的来到各大库房，然后分散开来爬上正在待机的工程机器人，就如同融入大海的一滴墨水消失不见……</p>
+<p class = "firstLineIndent">一排排的工程机器人眼中的指示灯微不可查的闪烁片刻，虽然外表看不出任何变化，但实际上控制权却已经改弦易辙。</p>
+<p class = "firstLineIndent">工程机器人虽然在太空港内属于打杂用的小透明，但不可忽视的是它们堪称庞大的数量……</p>
+<p class = "firstLineIndent">必要的时候，聂云甚至可以一个指令，让双子星的太空港守军好好体会一下什么叫做……“机械公敌”！</p>
+
+<h2>第四百九十四章 太阳帆</h2>
+<p class = "firstLineIndent">时间缓缓流逝，一天的时间很快过去……</p>
+<p class = "firstLineIndent">海族支援舰队。</p>
+<p class = "firstLineIndent">第一、第二分舰队的指挥官正在探讨抵达虫洞战场后的战术安排和应变措施，就在这时，他们却同时收到了通讯官的一份消息。</p>
+<p class = "firstLineIndent">“长官，伊莎尔指挥官传来警讯，要我们密切注意身后！”</p>
+<p class = "firstLineIndent">“身后？”两人都是愣了愣。</p>
+<p class = "firstLineIndent">随后不久，他们就真的从引力雷达上捕捉到了一个异常目标。</p>
+<p class = "firstLineIndent">“长官，舰队后方发现未知天体，距离6千8百万公里，质量很大，正以惊人的速度朝着我们冲来，预计10个小时后将与我方舰队发生接触！”</p>
+<p class = "firstLineIndent">未知天体？所有人都有些狐疑的看着雷达上突兀出现的信号。</p>
+<p class = "firstLineIndent">“是不是流浪天体？”</p>
+<p class = "firstLineIndent">“应该不是，我们在比邻星系内已经建立了完整的天体运行监测体系，这个位置不应该有天体存在！况且拥有这种速度和质量的天体属于三级危险源，不可能被我们忽略！”</p>
+<p class = "firstLineIndent">既然不是流浪天体，那么……真相似乎就只剩下一个了！</p>
+<p class = "firstLineIndent">两位分舰队指挥官眼中均是闪过难以置信的目光……</p>
+<p class = "firstLineIndent">1个小时之后，舰队的光学雷达终于捕捉到目标画面，展现在众人面前的，是一把……绿色的大伞？！</p>
+<p class = "firstLineIndent">上千平方公里的绿色伞盖遮蔽了目标身后的一切光学信息，使他们无法窥见目标的全貌。</p>
+<p class = "firstLineIndent">“是它吗？”</p>
+<p class = "firstLineIndent">“虽然形象有些变化，不过……只能是它了！”</p>
+<p class = "firstLineIndent">两位指挥官脸上都浮现凝重神色。</p>
+<p class = "firstLineIndent">那座生物堡垒……居然真的追上来了？！</p>
+<p class = "firstLineIndent">长生者经过经过恒星的极限引力加速，已经获得了相当可观的航行速度，不仅如此，除了原本的大功率推进器组外，聂云还为长生者再次提供了一个额外推力。</p>
+<p class = "firstLineIndent">如果海族舰队能够观察到伞盖的背面，就会发现长生者重新长出的叶片上已经被镀上了一层亮银色，在身后的恒星照耀下反射出星星点点的光芒，让长生者平添了几分如梦似幻的超凡色彩。</p>
+<p class = "firstLineIndent">这种镀层是厚度仅有一层的机械虫全反射薄膜，为此耗费的机械虫材料微不足道，但却制造出了一面——“超级太阳帆”！</p>
+<p class = "firstLineIndent">光是一种没有静态质量，但具有动量的光子，当光子撞击到光滑的平面上时，可以像从墙上反弹回来的乒乓球一样改变运动方向，并给撞击物体以相应的作用力，这就是太阳帆的设计原理。</p>
+<p class = "firstLineIndent">著名天家开普勒在400年前就提出过了太阳帆的假设。</p>
+<p class = "firstLineIndent">而距离恒星越近，太阳帆的推动效果就越是强大！</p>
+<p class = "firstLineIndent">事实上，普罗米修斯计划中位于太阳恒星轨道上的“火炬”系列能源采集装置，就是利用了光子的强大推力与恒星的巨大引力相抗衡，这才维持了自身的稳定低轨运行。</p>
+<p class = "firstLineIndent">单个光子所产生的推力极其微小，但是当太阳帆的面积足够大，镀膜反射效果又超强时，太阳帆能够让飞行物在没有阻力的太空中得到源源不断的强大动力！</p>
+<p class = "firstLineIndent">对偏爱风帆设计的聂船长来说，这是一种惠而不费的无工质推进方式，大约为长生者提供了额外10的加速度，这才能在短时间内后来居上，赶在海族的两支舰队汇合前追上后者。</p>
+<p class = "firstLineIndent">而这一点，自然大大超出了伊莎尔的预计。</p>
+<p class = "firstLineIndent">按照她原本的计划，是让海族舰队盯死太阳系虫洞，自己先腾出手解决那座生物堡垒，清除不稳定因素。</p>
+<p class = "firstLineIndent">但如今纵观比邻星系局势，海族第一、第二分舰队正在赶往虫洞战场进行支援的路上，在它们身后，是气势汹汹不断追赶的长生者。</p>
+<p class = "firstLineIndent">而长生者身后，则又是紧追不舍的羽族第一、第二分舰队。</p>
+<p class = "firstLineIndent">三者在同一条航道上你追我赶，都想要争取战略主动权，所有的机动兵力形成了一条笔直的追击链……</p>
+<p class = "firstLineIndent">太阳系虫洞和第二行星太空港，无疑分别是聂云一方和双子星一方目前的基本盘，也是双方防御的战略要地。</p>
+<p class = "firstLineIndent">聂云失去虫洞，就等于被切断后路，援军断绝，而双子星一方失去太空港，基本相当于被烧了粮仓，后勤断绝。</p>
+<p class = "firstLineIndent">不论哪一方失去了自己的“大本营”，这场战争就基本分出了胜负。</p>
+<p class = "firstLineIndent">按照目前的态势，双方的兵力都在朝着太阳系虫洞前进，不同的是，聂云处在守势，长生者属于回防，而双子星兵力占优，处于攻势，完全就是在往对面压兵线。</p>
+<p class = "firstLineIndent">而目前“守塔”的，分别是聂云的机甲兵团和……呃，聂云的“羽族第三分舰队”……</p>
+<p class = "firstLineIndent">好吧，忽略作弊“偷塔”的聂云和此时太空港内部正在悄然爆发的“银色革命”，至少在毫无所觉的伊莎尔眼中，己方的大本营高枕无忧。</p>
+<p class = "firstLineIndent">但作为攻方，现在的局面却着实不容乐观，因为对方的太空堡垒已经完成了一次极度惊险的小角度“弯道超车”，即将与海族的第一、第二分舰队提前发生碰撞！</p>
+<p class = "firstLineIndent">伊莎尔自然不能眼睁睁看着对方的两支部队顺利完成会师，当即命令前方的两支海族分舰队务必拦下对方的生物堡垒，最好能够予以歼灭！</p>
+<p class = "firstLineIndent">但是对这个命令，海族的两位分舰队指挥官显然有些抗拒……</p>
+<p class = "firstLineIndent">“我们现在该怎么办？”</p>
+<p class = "firstLineIndent">“军部的任命已经下达，伊莎尔现在是军团的最高长官，她的命令我们无法违抗，只能执行！”</p>
+<p class = "firstLineIndent">“又是这样，我们冲锋陷阵，他们却在后面看热闹，敌人的生物堡垒战斗力不明，我们这样贸然拦截，万一损失惨重，岂不是白白让羽族的那帮家伙摘了桃子？”</p>
+<p class = "firstLineIndent">“嗯！不得不防，不过姿态还是要做的，我们先以试探为主，若是事不可为……那就不是我军不努力，而是敌人太狡猾了。”</p>
+<p class = "firstLineIndent">“哈哈！好，就这么办！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">10个小时一晃而过，与长生者的距离终于接近到了海族舰队的射程范围之内！</p>
+<p class = "firstLineIndent">“开火！”</p>
+<p class = "firstLineIndent">严阵以待的核腋骼嗾浇⒌囊宦制肷洌骼喙馐偬烀鸬氐耐Τ懦ど吆淙ィ?br /&gt;</p>
+<p class = "firstLineIndent">由于大伞盖完全遮蔽了长生者的本体，海族的攻击视线受阻，只能根据雷达判断的大致方位进行射击，所以这一波攻击稍微有些分散。</p>
+<p class = "firstLineIndent">而一直毫无动静的长生者在海族发动攻击的下一刻也动了！</p>
+<p class = "firstLineIndent">它的树冠迅速收拢，从一柄撑开的大伞盖迅速转变成一支尖锐的锥形利箭，随后叶片齐齐翻转，整体颜色从墨绿色“刷”的一下变成了亮银色。</p>
+<p class = "firstLineIndent">聂云设计的这面超级太阳帆不仅能够当成助推器，还能瞬间变成一套镜面反射装甲！</p>
+<p class = "firstLineIndent">由于攻击截面的迅速缩小，?不到的攻击命中了长生者。</p>
+<p class = "firstLineIndent">各种射线洞穿了一层层的防护叶片，却被一层层削弱，在打穿了十几层防护之后终于被挡了下来！</p>
+<p class = "firstLineIndent">而几道穿透力更强的重型力场射线没入长生者体内，却因为树冠的遮挡，看不到任何攻击效果。</p>
+<p class = "firstLineIndent">下一刻，长生者枝条舞动间，迅速将受损的区域重新覆盖，表面上再也看不出任何的损伤……</p>
+<p class = "firstLineIndent">“这……这不可能！”</p>
+<p class = "firstLineIndent">看到这一幕的所有海族军官惊的目瞪口呆。</p>
+<p class = "firstLineIndent">他们想象过对方或许会开启超级护盾拦下所有攻击，又或者祭出什么秘密防御武器，可从来没想过对方居然会选择硬抗！</p>
+<p class = "firstLineIndent">光凭身躯，就扛下了己方的一轮齐射？！</p>
+<p class = "firstLineIndent">这得是多么强悍的物理防御力？</p>
+
+<h2>第四百九十五章 被掏空了吧</h2>
+<p class = "firstLineIndent">从热武器时代开始，物理装甲就已经逐渐被时代所淘汰。</p>
+<p class = "firstLineIndent">不管是枪炮火药，还是更加先进的能量武器，都拥有超越一个级别对目标进行破防的能力。</p>
+<p class = "firstLineIndent">二战时期，装甲最厚达到650，号称世界第一战列舰的大和号，最终的结局却是被航空炸弹和鱼雷炸沉，它的沉没，标志着大舰巨炮时代的落幕，也宣告攻守技术的彻底失衡。</p>
+<p class = "firstLineIndent">接下来各国的大型武器发展史，就是朝着“藏的更深，跑的更快，打的更准”这样的方向去发展。</p>
+<p class = "firstLineIndent">进入星际时代之后，双子星文明发展出了力场护盾科技，这才改写了防护技术的尴尬局面，不过虽然宇宙战舰同样越造越大，但双子星也从未想过用加厚装甲的方式来提高飞船防御力。</p>
+<p class = "firstLineIndent">在材料技术没有突破式进展前，提高装甲厚度所能带来的防御力提升微乎其微，投入和产出完全不成比例。</p>
+<p class = "firstLineIndent">不过对长生者而言，拥有强大恢复能力的庞大身躯，先天上就是个防高血厚的超级肉盾。</p>
+<p class = "firstLineIndent">仅层层叠叠的茂密枝叶，厚度就达两三公里，防护能力与两三公里的超强度装甲层也不遑多让，形成了一道天然的屏障。</p>
+<p class = "firstLineIndent">在经历过“火劫”之后，生命之水充分刺激了长生者的进化潜能，优化出的新叶片更加强悍，不仅抗高温能力更强，还将“光合作用”的低级能力进化为了近乎“初级吸能”这样的神奇能力，对微波和高能光子的吸收转化能力有了跨越式的增强！</p>
+<p class = "firstLineIndent">能量类射线在带来一定伤害的同时，还会被长生者吸收一部分能量，削弱攻击的同时还能用于加速修复受损部位，连聂云对这种新能力都是颇为惊叹。</p>
+<p class = "firstLineIndent">再加上超高反射率的机械虫镀层，护卫舰级别的光束类武器，已经无法对长生者造成太大的伤害。</p>
+<p class = "firstLineIndent">当然，也不是说这一波攻击毫无作用，至少穿透力极强的力场射线，不仅打断了不少的枝条，还对长生者的本体造成了一些伤害。</p>
+<p class = "firstLineIndent">不过茂密的树叶很好的形成了视觉遮蔽，双子星无法评估己方攻击带来的效果，所以从表面上看，长生者似乎真的在这波攻击中毫发无损！</p>
+<p class = "firstLineIndent">然后下一刻，刚刚用强悍防御力给予双子星震撼的长生者就果断的发动了反击！</p>
+<p class = "firstLineIndent">只见枝条飞速的错位移动间，很快就让出了数十个瞳孔般的“射击孔”。</p>
+<p class = "firstLineIndent">下一刻，锥形利箭一般的长生者如同变成了一只发光的刺猬，浑身上下射出了数十道粗大光束，声势甚至超过了海族舰队的主炮齐射！</p>
+<p class = "firstLineIndent">“不好！快规避！”两位指挥官惊呼。</p>
+<p class = "firstLineIndent">然而短短的数秒时间过后，海族的舰队中便爆开了2朵巨大的火球，2艘战舰化为宇宙尘埃，成为这场遭遇战的第一批牺牲者。</p>
+<p class = "firstLineIndent">不仅如此，还有三四艘被攻击波及的战舰护盾猛地下降到危险值！</p>
+<p class = "firstLineIndent">海族拦截舰队其实早就进入了长生者的火力射程，而聂云一直等到距离拉近之后，才开始发动首轮攻击，抵近齐射果然带来了丰厚的战果！</p>
+<p class = "firstLineIndent">这可不是“后羿级”那种出其不意的偷袭，而是在海族舰队做足了准备之后的正面交锋，一个照面干掉两艘战舰，这绝对是硬实力的体现！</p>
+<p class = "firstLineIndent">“是……是要塞级主炮！至少超过10门！”观察员有些慌乱的喊道。</p>
+<p class = "firstLineIndent">所有的海族军官听到这个数量，脸上的冷汗刷的一下就下来了。</p>
+<p class = "firstLineIndent">它的本体不是一只宇宙生物么？这种密度的要塞武器算怎么回事？</p>
+<p class = "firstLineIndent">这到底是宇宙生物进行了机械化改造，还是机械堡垒进行了生物活体化？</p>
+<p class = "firstLineIndent">按照他们原本的预计，这只宇宙生物就算经过了机械化改装，顶多也就是吉普加装一挺机关枪，撑破天也就是一辆武装吉普的火力。</p>
+<p class = "firstLineIndent">结果呢？你用一辆吉普改装出了虎式坦克？像话吗？！</p>
+<p class = "firstLineIndent">要塞炮为什么叫要塞炮，就是因为它的供能、冷却等等配套设施占用的空间太大，根本不是普通小型战舰带的动的。</p>
+<p class = "firstLineIndent">如果按照这种武器密度，这颗大树……怕不是已经被掏空了吧？</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">虽不中，亦不远矣……</p>
+<p class = "firstLineIndent">俗话说，人活一张脸，树活一张皮，木本植物的中心木质部并非不可或缺，只要不是彻底缺损，便不会影响树木的内部物质交换，这也是空心老树依旧能够存活的原因。</p>
+<p class = "firstLineIndent">从这方面来说，植物系是比动物系更适合进行堡垒化改造的宇宙生物类型，拥有与生俱来的优秀兼容性！</p>
+<p class = "firstLineIndent">虽然震惊于长生者技惊四座的强悍攻防能力，但海族的两名指挥官倒也是久经战阵，立刻分析出敌人的特点，开始针对性的下达一系列命令。</p>
+<p class = "firstLineIndent">“舰队向两翼散开，注意机动规避敌方火力！”</p>
+<p class = "firstLineIndent">“更换动能武器进行区域性火力覆盖！发射特种飞弹，试探敌人的弱点！”</p>
+<p class = "firstLineIndent">“布雷艇释放暗雷，封锁它的前进航道！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">随着命令下达，海族的舰队向两翼缓缓移动，让开了长生者正前方的航道，很显然准备避其锋芒。</p>
+<p class = "firstLineIndent">与此同时，各舰的舰首位置探出延伸射击轨道，在一阵幽蓝色电芒中，“嗖嗖嗖！”无数的实心合金棒被电磁轨道高速射出，目标直指长生者！</p>
+<p class = "firstLineIndent">而十数艘小型的布雷艇抛出一连串篮球大小的浮游暗雷，这些毫不起眼的暗雷依靠惯性，十分均匀的朝着长生者的前进航道上洒去。</p>
+<p class = "firstLineIndent">没有最强大的武器，只有最适合的武器！</p>
+<p class = "firstLineIndent">这是双子星军事大师汤普森的著名言论。</p>
+<p class = "firstLineIndent">既然能量类武器效果不佳，那么就用动能武器！</p>
+<p class = "firstLineIndent">长生者的庞大身躯虽然在攻击和防御上有先天优势，但也并非完全没有弱点。</p>
+<p class = "firstLineIndent">除了太阳帆之外，长生者的加速能力完全依赖于根部的大功率推进器组，这些推进器推动庞大的长生者进行单向加速效果还算不错，至于变向机动能力……则是基本为零！</p>
+<p class = "firstLineIndent">对于转个身都要花费几十分钟时间的长生者来说，敏捷……就是长生者最大的短板！</p>
+<p class = "firstLineIndent">而超低的敏捷自然意味着超低的闪避，哪怕是提前预判到敌人的攻击方向，也基本无法做到即时规避，这就让海族看到了机会！</p>
+<p class = "firstLineIndent">动能武器射速慢，在星际战场上很容易被灵活机动的宇宙战舰所规避，因此基本只能作为短距离格斗类武器，但论破甲能力，哪怕是数十公里的小型天体，一枚高速电磁弹丸都能一箭穿心！</p>
+<p class = "firstLineIndent">两位指挥官显然也不是草包，这种武器用来对付长生者，无疑比能量类武器更具杀伤力！</p>
+<p class = "firstLineIndent">无数携带巨大动能的弹丸飞速袭来，长生者的本体树干上却突兀的开始闪烁起幽蓝色的电芒……</p>
+
+<h2>第四百九十六章 超级电磁炉</h2>
+<p class = "firstLineIndent">“滋滋滋~”长生者的树干本体上，一圈圈银色螺旋纹路的线圈开始闪烁电芒。</p>
+<p class = "firstLineIndent">无形的强磁场随着强大环形电流的出现充斥周围空间，并时刻进行着高频率的磁场变化！</p>
+<p class = "firstLineIndent">海族舰队发射的无数高速金属弹丸在靠近长生者之前，便一头撞上了这层无形屏障。</p>
+<p class = "firstLineIndent">随着距离接近，这些弹丸不仅速度骤减，而且开始发红发烫，接着像是融化的巧克力，被高温融成了一滩赤红色金属液体，再然后更是被直接蒸发成雾状的气团，彻底失去了威胁……</p>
+<p class = "firstLineIndent">“检测到高频磁力盾，电磁动能武器攻击无效！”</p>
+<p class = "firstLineIndent">海族智脑的提示让所有海族军官脸色又是一阵变幻。</p>
+<p class = "firstLineIndent">他们没想到己方的电磁动能武器，竟然被对方以彼之道还施彼身，用同样的电磁防护技术给破解了。</p>
+<p class = "firstLineIndent">很显然，对方不仅物理防御强悍，甚至对威胁巨大的动能武器也有所防备！</p>
+<p class = "firstLineIndent">高频磁力盾，在双子星文明还未发展出力场护盾前，也曾经是双子星舰队广泛应用的防护技术。</p>
+<p class = "firstLineIndent">只不过星际战场的主流武器是光速武器，这方面磁力盾完全就是摆设，加上力场护盾的强悍防护效果，磁力盾这才被渐渐淘汰。</p>
+<p class = "firstLineIndent">用电磁技术发射的弹丸，不仅是金属，自然也需要是磁性材料，完美的被电磁防护技术克制。</p>
+<p class = "firstLineIndent">果真应了那句话。</p>
+<p class = "firstLineIndent">没有最强大的武器，只有最适合的武器！</p>
+<p class = "firstLineIndent">不过磁力盾的覆盖范围越大，功率越强，对导体材料的要求就越高，过载很容易发生线路熔断。</p>
+<p class = "firstLineIndent">像长生者这般，覆盖面积如此巨大，效果又如此强劲的要塞级磁力盾，聂云无疑是用上了机械虫材料进行强化。</p>
+<p class = "firstLineIndent">“高频磁力盾”，其实就是一种高频交变磁场。</p>
+<p class = "firstLineIndent">我们知道，当高速金属导体切割磁场，会使磁生电，一部分动能将转化为电能，使物体减速。</p>
+<p class = "firstLineIndent">而高频的磁场变化，则能够使置身其中的金属内部发生电磁感应，从而形成内部涡电流，导致金属发热。</p>
+<p class = "firstLineIndent">工业上常见的金属探伤，就是使用了涡电流这种金属特性。</p>
+<p class = "firstLineIndent">而切割磁场速度越快、交变磁场频率越快，则这种涡电流效应就越明显，长生者的高频磁力盾正是用这种简单原理，将海族舰队发射的磁性弹丸悉数减速烧熔！</p>
+<p class = "firstLineIndent">事实上，这种东西在地球都不算少见，比如基本上普及到每家每户的电磁炉。</p>
+<p class = "firstLineIndent">电磁炉的原理，就是利用一定频率的交变磁场，利用金属涡流效应加热放置其上的平底锅，所以电磁炉的加热原理并不是“烧菜”，而是“烧锅”。</p>
+<p class = "firstLineIndent">而聂云做的，便是将长生者绕上线圈，用精心设计的出色“绳艺”，将它做成了一个……“超级电磁炉”！</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">总感觉这么一解释，自己的逼格瞬间掉到马里亚纳大海沟去了……</p>
+<p class = "firstLineIndent">虽然听起来很弱，不过基础学科的应用实际上还远远未到极限，哪怕是一个不起眼的电磁炉，将它演化发展到极致，也能成为一件威力惊人的大杀器。</p>
+<p class = "firstLineIndent">纵观聂云的崛起之路，他也从未在基础自然科学上做出过什么重大突破，完全就是前人栽树后人乘凉，利用机械虫这种超级材料和精密入微的加工能力，将一系列现有的科学理论应用到极限的结果。</p>
+<p class = "firstLineIndent">如果说基础自然科学决定了一个文明的发展“上限”，那么机械虫的存在，无疑能够彻底激发这些基础自然科学的应用“潜力”，不断的逼近这个“上限”！</p>
+<p class = "firstLineIndent">用一句拉风的话来说，就是……同阶无敌！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">在双方以电磁武器进行了一场交锋之时，两边的主炮对轰也并没有受到影响，依旧在不停朝着对方倾泻火力！</p>
+<p class = "firstLineIndent">“滋滋滋！”一道道光束在战场上纵横交错，战斗越发激烈！</p>
+<p class = "firstLineIndent">海族舰队发射的特种飞弹接近之后，长生者的防空火力也开始毫无保留的输出火力！</p>
+<p class = "firstLineIndent">108门4连装速射近防炮打出如雨一般的密集激光网，将大量的飞弹拦截下来，只有极少部分幸运的逃过了一劫，砸在长生者身上，却被强悍的枝叶统统挡了下来。</p>
+<p class = "firstLineIndent">各种高温火焰、高压雷电、腐蚀毒雾、力场震荡甚至是核爆辐射一个个的爆炸开来，却只能带来微不足道的伤害，片刻之间就被长生者修复。</p>
+<p class = "firstLineIndent">海族的弱点试探显然效果不佳。</p>
+<p class = "firstLineIndent">这边长生者也不甘示弱，火力不停，身上324座特种飞弹发射巢同样发起反攻，超过2万枚飞弹冲天而起，朝着海族舰队劈头盖脸飞去！</p>
+<p class = "firstLineIndent">这种数量的飞弹，哪怕无法对海族舰队造成大的损伤，却也足够让他们手忙脚乱一阵。</p>
+<p class = "firstLineIndent">长生者的身躯机动不便，加上目标巨大，海族舰队的主炮攻击虽然只能造成些许伤势，但是毕竟这是一场群殴，硬挨的攻击数量一上来，累积之下也受损不轻，被打的枝条乱飞。</p>
+<p class = "firstLineIndent">而海族舰队虽然机动规避动作娴熟，但长生者的要塞火力能级更高，威力更大，只要挨上，基本就是舰毁人亡！</p>
+<p class = "firstLineIndent">加上长生者的火力冷却时间极短，射速比之海族舰队也不遑多让，几轮对攻下来海族也是损失颇大，再次被击毁了五六艘战舰。</p>
+<p class = "firstLineIndent">狭路相逢勇者胜！</p>
+<p class = "firstLineIndent">这种宇宙遭遇战无疑是最直接的正面碰撞，双方都是在咬牙硬撑，直至一方退缩……或者灭亡！</p>
+<p class = "firstLineIndent">不过长生者进行的生存之战，不胜则死！自然一往无前！</p>
+<p class = "firstLineIndent">但海族的战斗意志并不如表现出的那么强硬，这一点从先前两位指挥官下令舰队向两翼散开便可以略窥一二。</p>
+<p class = "firstLineIndent">表面上看，这样的布置是为了两面包夹，可又何尝不是为长生者让开了航道，避免形势僵持之下双方都碰个头破血流？</p>
+<p class = "firstLineIndent">聂云的离间之计终究还是显现出了效果。</p>
+<p class = "firstLineIndent">海族内部并不信任伊莎尔，甚至对自己人都心存疑虑，绝不会在这种时候主动冲锋陷阵，拼着麾下舰队受到重创也要留下长生者。</p>
+<p class = "firstLineIndent">此刻眼见前方高能，长生者如同一头浑身长满利刺的洪荒巨兽，正向着己方进行猪突冲锋，一副挡我者死的拼命架势……</p>
+<p class = "firstLineIndent">海族的两位指挥官思虑再三，终究还是选择了避其锋芒！</p>
+<p class = "firstLineIndent">当海族舰队加速朝着两侧散开，只派出少量无人战机象征性的进行拦截之后，这场遭遇战的结局就已经渐渐明朗……</p>
+<p class = "firstLineIndent">面对敌人明显的退缩举动，长生者却不敢放松，一面防备两翼敌人，一面加速悍然撞入敌人布置下的暗雷阵！</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”“轰轰轰！”</p>
+<p class = "firstLineIndent">长生者火力全开，一面清扫前方航道，一面以身躯硬抗雷爆！</p>
+<p class = "firstLineIndent">在海族一众军官或是忌惮，或是庆幸的目光中，长生者一路火花带闪电，扬长而去……</p>
+
+<h2>第四百九十七章 外强中干</h2>
+<p class = "firstLineIndent">羽族旗舰内。</p>
+<p class = "firstLineIndent">看着屏幕中海族舰队发来的战场画面，伊莎尔眉头紧皱，脸色越来越难看。</p>
+<p class = "firstLineIndent">海族发来的战斗画面相当激烈，不过显然“艺术处理”的气息相当浓厚，经过剪辑的战斗影像着重突出了敌人生物堡垒的强大，以及己方的舰队是如何的损失惨重。</p>
+<p class = "firstLineIndent">按照海族舰队发来的战报，这次的战斗己方战士顽强作战，损失惨重之下，却无法对敌人造成有效打击，只好放弃拦截计划暂时避其锋芒。</p>
+<p class = "firstLineIndent">但经验丰富的伊莎尔只是在心中稍一复盘，还原了战场局势之后，哪里还看不出来海族舰队明显留了余地，根本没有选择和对方硬碰硬！</p>
+<p class = "firstLineIndent">海族舰队的损失是不小，足足被击沉击伤八九艘战舰。</p>
+<p class = "firstLineIndent">可显然，造成这些损失的主要原因是对方的火力凶猛远超预料，这才在短暂的交锋中被打了个措手不及，若是他们提前知道自己碰到的居然是这种硬茬，会不会直接选择避战都未可知。</p>
+<p class = "firstLineIndent">“这些油滑的家伙……”伊莎尔面沉如水。</p>
+<p class = "firstLineIndent">虽然明知道海族舰队在划水，可对方做足了表面功夫，自己这个临时的最高指挥官还真没办法太过苛责。</p>
+<p class = "firstLineIndent">她现在甚至无法判断，这究竟是海族有意保存实力，还是那名不知真假的“古斯塔夫”在舰队内留下的暗手从中捣鬼。</p>
+<p class = "firstLineIndent">“不过……那么多的要塞武器，对方究竟是如何运近卡拉星的？”伊莎尔旋即想到一个更加让人疑惑的问题。</p>
+<p class = "firstLineIndent">十几门威力如此巨大的要塞炮和相关的配套设备，绝对不是机械科技水平落后的卡拉文明能够完成建造和安装的，卡拉星上也根本没有这样的工业制造条件，所以……这必定又是万物归一会的手笔。</p>
+<p class = "firstLineIndent">可数量如此之多的军火，绝不是通过小打小闹的隐秘走私渠道能够运进卡拉星的。</p>
+<p class = "firstLineIndent">那么对方究竟是如何在己方的严密监控下，将这么多武器走私过去的？</p>
+<p class = "firstLineIndent">难不成古斯塔夫已经将海族舰队的整个后勤体系都策反了？</p>
+<p class = "firstLineIndent">煽动能力这么强的吗？</p>
+<p class = "firstLineIndent">亦或者，早在双子星发动战争之前，对方就已经提前布局，暗中准备了这个大杀器？</p>
+<p class = "firstLineIndent">细思恐极啊！</p>
+<p class = "firstLineIndent">百思不得其解的伊莎尔自然想不到，聂云的整套工业体系，向来都是“随身携带”，只要有机械虫的地方，就能展开“基地车”造枪造炮！</p>
+<p class = "firstLineIndent">提前准备、大规模走私什么的……完全没必要……</p>
+<p class = "firstLineIndent">面对越发神秘莫测的万物归一会，伊莎尔更加不敢大意，她将海族发来的战斗画面反复研究，随后很快眉头一挑。</p>
+<p class = "firstLineIndent">没有无敌的防御，只有还未被看穿的弱点！</p>
+<p class = "firstLineIndent">伊莎尔不相信对方的堡垒真的能够完美防御所有攻击，若是真的这么无敌，对方根本不用策反古斯塔夫耍那么多花招，一路横推即可。</p>
+<p class = "firstLineIndent">果然，经过反复回放战斗画面和统计数据对比，心细如发的伊莎尔终于发现了一丝异常！</p>
+<p class = "firstLineIndent">虽然茂密的枝叶遮挡了长生者的内部情况，但是经过阂陨希?br /&gt;</p>
+<p class = "firstLineIndent">这说明……对方很可能受伤了！</p>
+<p class = "firstLineIndent">“命令海族第三分舰队撤离虫洞，准备对后方的生物堡垒进行二次拦截。</p>
+<p class = "firstLineIndent">告诉他们，对方很可能已经负伤，现在已经是外强中干，攻击时全部改用力场武器，务必要试探出对方虚实！”伊莎尔命令道。</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">事实上，确实如同伊莎尔猜测的那般，脱离战斗状态的长生者现在的状态相当糟糕。</p>
+<p class = "firstLineIndent">长生者号堡垒的第一次出手确实是大杀四方，技惊全场，重创了海族舰队，但它本身也付出了巨大的代价。</p>
+<p class = "firstLineIndent">它的本体树干上，此刻已经多了十几个凹陷的大洞，虽然相比庞大的身躯看起来并不算太显眼，但受创位置内部却已经是支离破碎，一片狼藉，伤势比看上去要严重的多。</p>
+<p class = "firstLineIndent">一道道力场射线扫过，在长生者的树干上留下一条条深深的犁痕，几十处被波及的武器平台钢铁扭曲，火花四溅，显然已经彻底报废。</p>
+<p class = "firstLineIndent">力场射线附带的力场扭曲更是如同溅射伤害，能够破坏命中点周边一大片区域的精密设备！</p>
+<p class = "firstLineIndent">双子星能够纵横周边星域，实力又岂是等闲？</p>
+<p class = "firstLineIndent">长生者坚若钢铁的身躯却也挡不住无形力场的碾压破坏，对这种穿透力极强的力场攻击，除了同为力场科技的力场护盾，其余的防护手段效果都相当有限。</p>
+<p class = "firstLineIndent">聂云现在还没有超大型力场护盾技术，根本无法给庞大的长生者全方位的防护，就算有，那种级别的能源消耗也不是现在区区几座能源供应设备所能支撑的。</p>
+<p class = "firstLineIndent">所以他只能在几处核心位置开启了基地型力场护盾，加上长生者本身的念力护盾，就算真的倒霉到被小概率的命中“要害”，也不至于被“一枪爆头”。</p>
+<p class = "firstLineIndent">除了被攻击位置破坏严重，就算是没有受到攻击波及的炮台和武器，此刻也是炮口炽热发红，炮管扭曲变形。</p>
+<p class = "firstLineIndent">为了给予阂陨系囊谠谡蕉方崾笠蛭裙匦姹ǚ希溆嗟幕蚨嗷蛏僖渤鱿至烁髦止收稀?br /&gt;</p>
+<p class = "firstLineIndent">不仅如此，长生者的外围枝叶也稀疏了不少，此刻微微下垂，整棵树都显得有些萎靡不振。</p>
+<p class = "firstLineIndent">阂陨稀?br /&gt;</p>
+<p class = "firstLineIndent">这一战可谓是两败俱伤，海族舰队损失颇重，长生者同样是五劳七伤，战力大损。</p>
+<p class = "firstLineIndent">若非聂云虚张声势加上心理战术吓退了海族舰队，刚刚海族舰队要是打的更坚决一些，最终鹿死谁手还在两说！</p>
+<p class = "firstLineIndent">不过长生者身为植物系神奇宝贝，最大的优势便是恢复能力惊人，只要不能一次打死，就能如同小强一般迅速恢复过来。</p>
+<p class = "firstLineIndent">它身上的伤势正在以肉眼可见的速度迅速愈合，而大量的新生枝叶也重新抽芽，甚至修复后的组织器官比之先前还要更加强大一分！</p>
+<p class = "firstLineIndent">受损的设备和武器平台更不用说，就算扭成了麻花，银色虫海如水银般流过，唱着“洗刷刷”就能轻轻松松给生生扭回来！</p>
+<p class = "firstLineIndent">这也是聂云敢不惜代价压榨武器极限的原因，武器过热过载又如何？几个小时后又是一门好炮！</p>
+<p class = "firstLineIndent">作为肉盾，拥有生命之水和机械虫的双重加成，长生者的“回血”速度堪称逆天，最不怕的就是车轮战！</p>
+<p class = "firstLineIndent">若是海族第三分舰队真的继续一头撞上来……</p>
+<p class = "firstLineIndent">e……那场面应该会很美……</p>
+
+<h2>第四百九十八章 软柿子</h2>
+<p class = "firstLineIndent">太阳系虫洞区域。</p>
+<p class = "firstLineIndent">就在长生者冲破第一道拦截之后，虫洞的通行能力也终于冷却完毕。</p>
+<p class = "firstLineIndent">只见虚空中幽深旋涡再起，一艘艘银色战舰瞬间跨越数光年遥远距离远征而来！</p>
+<p class = "firstLineIndent">一艘……两艘……五艘……</p>
+<p class = "firstLineIndent">直至虫洞耗尽能量再次关闭，足足有8艘战舰出现在比邻星系！</p>
+<p class = "firstLineIndent">一眼扫去，银光闪烁，第二波太阳系远征军，其中有5艘赫然是全机械虫材料打造的新型战舰。</p>
+<p class = "firstLineIndent">其中4艘清一色火力强大的“后羿级”，而为首一艘造型就相当别致了。</p>
+<p class = "firstLineIndent">舰体大致为球形，表面光滑如镜，圆滚滚的颇为可爱，看不见任何外置式武器，却有5条巨大的银色机械臂甩在身后，这些机械臂长约200米，舞动灵活如同一条条软鞭。</p>
+<p class = "firstLineIndent">乍一看，这飞船的造型居然和八条有三分相似，像是一条五爪大章鱼。</p>
+<p class = "firstLineIndent">这艘由原本的“海狼号”变形改装的新型战舰，是聂云这次行动的另一张底牌！</p>
+<p class = "firstLineIndent">这5艘新型战舰，加上先前投放的1艘“后羿级”，总计近百万吨机械虫，几乎抽空了聂云这段时间积累的所有机械虫机动兵力。</p>
+<p class = "firstLineIndent">除了发展建设、防御太阳系的必要所需，聂云这回可以说是机械虫尽出，转战比邻星系！</p>
+<p class = "firstLineIndent">“拯救大树长生者”的计划进行的相当顺利，聂云如今已经渐渐掌控了战场主动权，因此有了足够的底气和信心向比邻星系投放珍贵的尖端武力。</p>
+<p class = "firstLineIndent">投放第一波兵力时，聂云还有所保留，之所以仅出动一艘“后羿级”，就是为了防止计划中途失败时，能够让这艘机械虫战舰及时返回太阳系，以免暴露自己最大的秘密。</p>
+<p class = "firstLineIndent">至于那些普通材料的机甲炮灰，自然是聂云“弃车保帅”的“车”了。</p>
+<p class = "firstLineIndent">不过如今大势在我，形势渐渐明朗，聂云自然不需要再想着退路问题，这个时候押的越多，赢的越狠！</p>
+<p class = "firstLineIndent">除了聂云的尖端武力外，第二批投放的另外三艘战舰分别是“联盟号”、“勇气号”、“无畏号”，三艘银灰色战舰仿造海族制式护卫舰，炮管峥嵘，隶属地球防卫军战斗序列！</p>
+<p class = "firstLineIndent">地球防卫军采购的第一艘“联盟号”之后，太阳系内这段时间以来又相继下水了3艘护卫舰，被分别命名为“勇气号”、“无畏号”、“守望号”。</p>
+<p class = "firstLineIndent">除“守望号”安排留守另一侧的太阳系防线外，这次地球防卫军同样是倾巢出动！</p>
+<p class = "firstLineIndent">如今太阳系小行星带区域的造船厂已经连成一片，各种配套工厂相继建成投产，依托丰富的矿产资源优势，已经成为了聂云在太阳系内最大的外售型军舰制造基地。</p>
+<p class = "firstLineIndent">虽然目前每月仅能够量产2艘海族制式护卫舰，但是随着规模化效应进一步扩大，产量还将稳步提升！</p>
+<p class = "firstLineIndent">更值得关注的是，除了初期建设时聂云曾投入大量机械虫对其进行加速建设外，如今这片造船基地已经能够脱离机械虫的帮助独立运转。</p>
+<p class = "firstLineIndent">这意味着经过这段时间的积累，聂云已经将护卫舰级别的战舰制造工艺彻底消化，完成了技术本土化。</p>
+<p class = "firstLineIndent">对机械虫来说这点工业制造能力不值一提，但却是聂云科技实力提升的最直观体现。</p>
+<p class = "firstLineIndent">机械虫吞噬复制虽然简单，但想要进行大规模批量制造和后续技术研发，还是需要吃透相关的制造技术。</p>
+<p class = "firstLineIndent">而大量高深的制造工艺却需要聂云一步步的通过逆向工程进行解析，在这方面，已经完成初步整合的地球科技界，至少为聂云提供了超过40以上的解决方案。</p>
+<p class = "firstLineIndent">以云端科研所为核心，科技树虚拟世界为网络，加上丰厚的无限币激励，地球上无数科学家爆发出了无限的科研热情，将一整艘护卫舰千万个以上的零部件制造技术一一攻关破解！</p>
+<p class = "firstLineIndent">在这个过程中，不仅是聂云增强了己方的实力和底蕴，地球各大势力也获得了丰厚的回报，有了更多的无限币能够投入科技研发，甚至向幽灵船长购买先进的星际战舰！</p>
+<p class = "firstLineIndent">不过到目前为止，拥有护卫舰级别军用战舰的，仅有地球防卫军一家。</p>
+<p class = "firstLineIndent">百万无限币一艘的军用战舰对现在颇有资产的几个大国来说，稍稍勒紧裤腰带也并非承担不起，但是后续庞大的燃料和维护费用，才是聂云回收无限币的真正大头。</p>
+<p class = "firstLineIndent">卖车的哪比得上卖配件的？</p>
+<p class = "firstLineIndent">军火不贵，配套的弹药和零部件才是吃人不吐骨头，这也是地球各国军火市场的惯例。</p>
+<p class = "firstLineIndent">不过作为并肩作战的“友军”，地球防卫军拥有八折的优惠权限，加上聂云丰厚的雇佣费和联合国的军费支持，如今的地球防卫军宇宙舰队已经初具雏形。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“这……对方居然还有这么多兵力？！”</p>
+<p class = "firstLineIndent">海族第三分舰队的所有军官瞪大了双眼，犹自不敢相信自己眼前看到的一幕。</p>
+<p class = "firstLineIndent">8艘战舰，其中4艘火力强大的“后羿级”就已经让他有些心惊，那艘球形战舰造型奇特，还被一众战舰拱卫在核心，显然更是不凡。</p>
+<p class = "firstLineIndent">加上3艘海族制式护卫舰，现在双方表面上的兵力对比已经拉到了9：12。</p>
+<p class = "firstLineIndent">虽然战舰数量上禾ㄕ诖刺慕Ｏ苫住?br /&gt;</p>
+<p class = "firstLineIndent">“可恶！一定是安特帝国！那艘未知型号的战舰，分明带着浓浓的安特帝国武器风格！”第三分舰队的指挥官一拍扶手怒道。</p>
+<p class = "firstLineIndent">安特帝国开拓骑士“八条”让人印象深刻，加上木卫四上的小型机器人，章鱼脸无疑已经成为安特帝国的一张特征名片……</p>
+<p class = "firstLineIndent">事实证明，咸鱼是不可能拥有肖像权的……</p>
+<p class = "firstLineIndent">八条：“……”</p>
+<p class = "firstLineIndent">的确，正常情况下，也只有外援，才能解释对方突然激增的兵力。</p>
+<p class = "firstLineIndent">而3艘海族制式战舰有些突兀的夹在众多新型战舰之中……不用问！这分明就是一支混编联合舰队嘛！</p>
+<p class = "firstLineIndent">就算不是安特帝国直接参战，也必然是万物归一会付出了什么代价，向他们购买了大量安特帝国的新式军火！</p>
+<p class = "firstLineIndent">“这帮吃里扒外的家伙！”指挥官的牙咬得咯咯直响。</p>
+<p class = "firstLineIndent">如今对方战力大增，单凭自己已经无法对其产生威胁，甚至要反过来当心对方会不会转守为攻，选择将自己这支分舰队先提前吃掉了……</p>
+<p class = "firstLineIndent">就在他心中焦虑时，伊莎尔的命令恰好传来。</p>
+<p class = "firstLineIndent">“要求我们对那座生物堡垒进行二次拦截？对方很可能已经负伤？”</p>
+<p class = "firstLineIndent">这支分舰队的指挥官眼睛一亮！</p>
+<p class = "firstLineIndent">对着伊莎尔发来的情报数据稍一分析……没毛病！对方很可能是在强撑！</p>
+<p class = "firstLineIndent">好机会啊！</p>
+<p class = "firstLineIndent">“掉头！我们先灭了那个大块头！”这名指挥官当即兴奋下令道。</p>
+<p class = "firstLineIndent">硬骨头啃不动，软柿子难道还嚼不烂？</p>
+
+<h2>第四百九十九章 伊莎尔阁下误我</h2>
+<p class = "firstLineIndent">地球防卫军，虚拟指挥室内。</p>
+<p class = "firstLineIndent">“这……什么情况？”施耐德看着头也不回离开的海族舰队，一脸茫然。</p>
+<p class = "firstLineIndent">我们才刚出来，连句台词都还没讲，你们就撤了？</p>
+<p class = "firstLineIndent">“或许是这些新式战舰战斗力惊人？仔细看的话，那艘球形战舰的命名方式就很特别，说不定是幽灵船长隐藏的秘密武器！”尤里猜测道。</p>
+<p class = "firstLineIndent">确实，雷达屏幕上的绿色友军光标上方，“海狼号”在一票“后羿1号”、“后羿2号”等等一看就很随便的路人甲代号中……嗯！的确相当的鹤立鸡群！</p>
+<p class = "firstLineIndent">“看来……比邻星系目前的战况，似乎比我们想象的要好的多啊……”老胡脸上有些惊喜。</p>
+<p class = "firstLineIndent">原本以为一出来便会是一场恶战，没想到居然直接“吓退”了一波敌人。</p>
+<p class = "firstLineIndent">难道幽灵船长在外星系，也这么凶威赫赫？</p>
+<p class = "firstLineIndent">事实上，对幽灵船长远征比邻星系的惊人计划，不仅是地球防卫军，就连全世界各国的军事专家们都觉得太过冒险，表示了强烈反对。</p>
+<p class = "firstLineIndent">出现这样的情况也是难免，虽然这次行动聂云同样做了战争动员，但因为涉及到聂云的许多机密，所以关于比邻星系内发生的“暗战”详细经过他并未公开。</p>
+<p class = "firstLineIndent">阿尔萨斯的身份、生命之水、收服长生者，还有古斯塔夫的“叛变”……其中有太多的秘密是无法公之于众的，聂云很难用一个合理的剧本解释比邻星系为何会发展到现在的局面……索性他也就不费那个功夫了。</p>
+<p class = "firstLineIndent">历史的迷雾总会掩盖许多的真相，就让未来的各种学家们去头疼好了……</p>
+<p class = "firstLineIndent">做法虽然有些不负责任，但对双子星开拓军团的具体兵力，聂云倒是没有隐瞒。</p>
+<p class = "firstLineIndent">近百艘战舰的庞大舰队，如同压在所有人心中的一块大石，哪怕地球一方已经击退了对方两次进攻，但谁也不认为己方短时间内能够拥有反攻比邻星系的能力。</p>
+<p class = "firstLineIndent">而一旦作战失败，兵力大损，连虫洞防线都会岌岌可危。</p>
+<p class = "firstLineIndent">面对强敌，能够依托地利守住虫洞就已经是他们所能想象的极限。</p>
+<p class = "firstLineIndent">按照绝大多数人的想法，这种情况下低调的猥琐发育才是王道，结果幽灵船长居然想带着他们去人家重兵把守的老巢浪一波？这绝对是飘了吧？</p>
+<p class = "firstLineIndent">苦口婆心的联名反对送上去了，不过结果嘛……自然是反对无效……</p>
+<p class = "firstLineIndent">不仅反对无效，而且幽灵船长还点名让地球防卫军派遣三艘战舰前来“助阵”，而更让人惊愕的是，这个“助阵”的意思居然还真的就是字面意思！</p>
+<p class = "firstLineIndent">按照任务说明，他们可以不参战，甚至全程当看客，只要在战场上溜一圈，哪怕直接撤退都没有半点责任，整个作战过程中没有任何强制任务，地球防卫军拥有高度自由的行动权限。</p>
+<p class = "firstLineIndent">关键是……酬劳还不菲！</p>
+<p class = "firstLineIndent">“哈哈！我就说嘛！幽灵船长怎么可能做没把握的事？”尤里哈哈大笑，觉得这次任务是赚到了。</p>
+<p class = "firstLineIndent">算上这次的雇佣费，很快他们就能再添一艘新战舰，舰队实力将再次得到提升！</p>
+<p class = "firstLineIndent">“先别急着下结论，看看比邻星系的局势再说，这次虽然风险不小，可也是个难得的机会，我们正好可以将比邻星系的情报搜集一番！”老胡出言道。</p>
+<p class = "firstLineIndent">“嗯！说的不错！”另外两人均是点头。</p>
+<p class = "firstLineIndent">幽灵船长虽然也提供情报，但是却不是免费的，而且比邻星系内的情报不知为何卖的死贵死贵……</p>
+<p class = "firstLineIndent">战舰雷达早就在通过虫洞后的第一时间全功率开启，尽全力搜集比邻星系的各种天文数据和军事情报。</p>
+<p class = "firstLineIndent">如今的地球防卫军舰队刚刚有了雏形，各种星际战争经验都相当缺乏，踏入的又是一个完全陌生的星域。</p>
+<p class = "firstLineIndent">对他们而言，这就是一次雏鹰展翅，在没有幽灵船长提供的各种情报和数据的支持下独立领军，从零开始积累经验，对这个新生的星际武装集团来说是个让人兴奋的挑战。</p>
+<p class = "firstLineIndent">依靠各种光学和引力探测设备，情报源源不断的送到了三人的面前。</p>
+<p class = "firstLineIndent">“双子星果然实力雄厚，一支二线军团就有如此多的战舰，不过那个绿色友军光标是什么意思？它似乎……正在向我们这里接近？”</p>
+<p class = "firstLineIndent">只见雷达上，有一个醒目的巨大绿色光标正在向他们所在的虫洞区域缓缓靠近，在他们后方，还有两支红色的敌方舰队紧随其后，就连刚刚撤离的那支舰队，似乎都是掉头直冲着它去的。</p>
+<p class = "firstLineIndent">整整三支舰队的围追堵截，想让人不注意它都难。</p>
+<p class = "firstLineIndent">“嘶！这围堵的兵力，敌人一整支军团差不多全都出动了吧？”</p>
+<p class = "firstLineIndent">“我觉得，我们可能已经发现了战场的关键核心！这支深入敌后的友军很可能就是幽灵船长敢于远征比邻星系的原因所在！”</p>
+<p class = "firstLineIndent">三人一翻分析，很快做出了自己的判断。</p>
+<p class = "firstLineIndent">“可为什么幽灵船长的舰队一点前去支援的意思都没有？哪怕追上去给那支拦截舰队施加点压力策应一下也是好的吧？”尤里疑惑道。</p>
+<p class = "firstLineIndent">三人对此都相当不解，不过没过多久，他们就知道自己的担心完全就是多余的了……</p>
+<p class = "firstLineIndent">8个小时后，绿色友军与双子星的第二波拦截舰队正面遭遇！</p>
+<p class = "firstLineIndent">虽然距离太远接收不到战场画面，不过强大的能量和辐射波动却清晰的表明了战斗的激烈程度！</p>
+<p class = "firstLineIndent">然后他们就看到代表友军的绿色光点一头撞入敌阵，紧接着，代表敌方战舰的红色光点一个个的迅速消失……</p>
+<p class = "firstLineIndent">“这……”三人彻底目瞪口呆。</p>
+<p class = "firstLineIndent">那一幕，就像是一个横冲直撞的保龄球，而阻拦在面前的是十几个脆弱的球瓶，“乒”的一声……然后就没有然后了……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">遥远星空之外，长生者再次扬长而去，留下身后的一片狼藉……</p>
+<p class = "firstLineIndent">原本建制尚算完好的威武舰队，如今只剩下小猫两三只，有的还在冒着浓烟，显然受创不轻。</p>
+<p class = "firstLineIndent">“快！快救火！”</p>
+<p class = "firstLineIndent">“维修班！23号区域舰体破裂，密封舱受损，快前来支援！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">海族第三分舰队旗舰，指挥官看着底下船员们惊慌忙碌的救援场面，简直欲哭无泪。</p>
+<p class = "firstLineIndent">什么遭到重创？什么外强中干？假的！全特么都是假的！</p>
+<p class = "firstLineIndent">看对方那龙精虎猛的样子，哪里有半点受创的迹象？！</p>
+<p class = "firstLineIndent">己方两支分舰队都拦不住，凭自己这点兵力怎么可能是对手？但是等反应过来时，撤退已经完全来不及了。</p>
+<p class = "firstLineIndent">伊莎尔阁下误我！</p>
+<p class = "firstLineIndent">阴谋！这绝对是想要坑死我们的阴谋啊！</p>
+<p class = "firstLineIndent">曾经，有一份古斯塔夫阁下用生命换来的警告摆在我面前，可是我没有珍惜，如今悔之晚矣……</p>
+<p class = "firstLineIndent">指挥官眼中含泪，不由想起古斯塔夫阁下生前的音容笑貌，一时又是悲愤，又是羞愧……</p>
+<p class = "firstLineIndent">（古斯塔夫：“……”</p>
+<p class = "firstLineIndent">我是谁？我在哪儿？我做了什么？）</p>
+
+
+
+
+</br></br>
+<a href="480.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="500.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
