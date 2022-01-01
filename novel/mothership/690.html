@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2>第六百九十章 没有心理负担了</h2>
+<p class = "firstLineIndent">“该死，这群该死的海盗！我要绞死他们，统统绞死！”</p>
+<p class = "firstLineIndent">金洛克愤怒的挥舞着自己的小胖拳头，房间里大多数的东西已经成了遍地的碎片，可见刚刚这里经历过了一场怎样的狂风暴雨。</p>
+<p class = "firstLineIndent">某某星系被入侵，某某行星被攻陷，某某仓库遭到洗劫这段时间每天都是这样的坏消息。</p>
+<p class = "firstLineIndent">每一条消息都像是一柄柄刀子，在狠狠的剜他的肉，让他食不知味，连体重都暴瘦了好几斤。</p>
+<p class = "firstLineIndent">金氏家族几代人的苦心经营，金洛克一辈子的积蓄，在这一次的海盗之灾中几乎缩水了三分之一。</p>
+<p class = "firstLineIndent">更惨的是，五大海盗的联合劫掠还仅仅只是一个开始。</p>
+<p class = "firstLineIndent">由他们带头撕开了洛克财团的外围防线，在内部疯狂劫掠之时，闻风而动的其余碎星海盗也像是闻到了血腥味的鲨鱼，纷纷聚拢到洛克财团附近。</p>
+<p class = "firstLineIndent">如果说五大海盗团是狮群，那么这些中小型的海盗团就是鬓狗。</p>
+<p class = "firstLineIndent">他们虽然实力参差不齐，战舰稀少，有些甚至仅有十几艘武装商船，但是胜在数量庞大，全部加起来足有两三千艘飞船。</p>
+<p class = "firstLineIndent">他们游曳在洛克财团外围，一旦发现合适的目标就蜂拥而上。</p>
+<p class = "firstLineIndent">洛克财团的某些星系刚刚庆幸五大海盗团的劫掠舰队离开，就悲剧的迎来了这些中小海盗团组团的二刷甚至三刷。</p>
+<p class = "firstLineIndent">五大海盗团看不上眼的，他们可不嫌弃，于是这些星系被舔的更干净了</p>
+<p class = "firstLineIndent">出现如今这种局面，自然少不了五大海盗团在背后的默许甚至推波助澜。</p>
+<p class = "firstLineIndent">在他们纷纷带着战利品跑路的时候，这些恋栈不去的海盗们就成了他们的替罪羊，为他们分担了不少的压力。</p>
+<p class = "firstLineIndent">他们的存在成功拖延了追兵的脚步，让黑帆和双龙等人的舰队能够从容的带着战利品脱离洛克财团。</p>
+<p class = "firstLineIndent">这些来捡便宜的中小海盗势力可没有那么灵敏的战场嗅觉，更是舍不得放弃眼前到手的利益。</p>
+<p class = "firstLineIndent">所谓人为财死，鸟为食亡。</p>
+<p class = "firstLineIndent">有战利品的拖累，以他们的速度，一旦被回援的洛克舰队碰上，那基本逃脱不了被剿灭的命运。</p>
+<p class = "firstLineIndent">然而剿灭了一些小虾米，却也根本挽回不了洛克财团已经受到的巨大损失。</p>
+<p class = "firstLineIndent">特别是惨遭海盗肆虐的消息传出去之后，更是引发了洛克财团股价的剧烈波动，由此造成的经济损失更是无法估量。</p>
+<p class = "firstLineIndent">“克洛罗斯人呢？”暴怒的金胖怒火无处发泄。</p>
+<p class = "firstLineIndent">“听说刚从虫洞那边回来，不过虫洞已经失守。”手下小心翼翼的汇报道。</p>
+<p class = "firstLineIndent">“废物！简直就是废物！知道对方要来还守不住，狗屁的名将种子！传我的命令，立刻解除克洛罗斯的指挥官一职，让他滚回家中红薯吧！”</p>
+<p class = "firstLineIndent">经过了多次的重大损失和策略失败，加上先前多次抗命举动，金胖对克洛罗斯的容忍显然已经到达了极限。</p>
+<p class = "firstLineIndent">“呃这个，克洛罗斯大人手中兵力不足，又遭到对方两面夹击，虫洞失守的确非战之罪，而且据说克洛罗斯大人还有后手”</p>
+<p class = "firstLineIndent">“住口！你这么替他说话，难道是被他收买了？”金洛克粗暴的打断手下的解释，眼神相当危险的盯着他。</p>
+<p class = "firstLineIndent">“不，不不！”手下一脸冷汗的连连摇手。“只是克洛罗斯背后是母星系那边的大贵族，我们这么撤了他，恐怕会得罪一些大人物啊！”</p>
+<p class = "firstLineIndent">“哼！大人物？”金洛克冷笑一声。</p>
+<p class = "firstLineIndent">“你当我不知道克洛罗斯是二皇子的人？若不是他确实有点能力，加上想要靠拢二皇子，你认为我会放着他在第一舰队收买人心而无动于衷？”</p>
+<p class = "firstLineIndent">谁都不是傻子，金洛克虽然只是个商人，但是在帝国摸爬滚打这么多年，更是一手将家族企业发展到如今的规模，手腕和能力绝对不缺。</p>
+<p class = "firstLineIndent">二皇子在洛克财团持有股份，又往他身边安插人手，甚至在碎星星域都有所布局，无非就是想在必要的时候，让这些力量成为他争储的助力。</p>
+<p class = "firstLineIndent">在这种帝国由盛而衰，皇室掌控力度被大大削弱的今天，每一位有志于那个位子的皇子，乃至实力雄厚的大贵族，或明或暗的都在扶持自己的割据势力，这并不稀奇。</p>
+<p class = "firstLineIndent">而金洛克之所以对二皇子的势力渗透睁一只眼闭一只眼，其实也是在提前押注，看好二皇子的未来而已。</p>
+<p class = "firstLineIndent">若是有一天二皇子真的坐上了那个位子，自己顺势依附过去，洛克财团自然也能水涨船高。</p>
+<p class = "firstLineIndent">不过看好归看好，这一次克洛罗斯急着拿到那件秘宝去邀功，置自己的安危与命令不顾，却是已经触碰到了金洛克的底线。</p>
+<p class = "firstLineIndent">手下听到金洛克毫不避讳的讲出这种话，额头上冷汗更多了，低头再也不敢出声。</p>
+<p class = "firstLineIndent">一通发泄过后的金洛克终于还是冷静下来。</p>
+<p class = "firstLineIndent">洛克财团如今风雨飘摇，势力遭受重创，正是需要获得外部支持的时候，这种时候的确并不适合动克洛罗斯。</p>
+<p class = "firstLineIndent">想了想，金洛克最终也只能无奈叹了口气。</p>
+<p class = "firstLineIndent">“告诉克洛罗斯，我不管他用什么方法，这次的损失必须给我弥补回来，否则他就自己卷铺盖滚蛋吧！”</p>
+<p class = "firstLineIndent">另一边，返航途中的聂云却是收到了一个不算意外的消息</p>
+<p class = "firstLineIndent">“你是说，他们想要强买我们的战士？”</p>
+<p class = "firstLineIndent">“是！龙骑兵的弥赛亚硬是塞给我们一船稀有矿物，然后扣了我们的三艘运输船，上面可有我们十几万的族人，还请船长大人为我莱恩族做主！”斯巴达克一脸愤怒道。</p>
+<p class = "firstLineIndent">就在刚刚，另一支分舰队传来消息，听闻族人即将被强行“买走”，斯巴达克顿时心急如焚。</p>
+<p class = "firstLineIndent">在他身旁，莱恩族的老族长同样在场。</p>
+<p class = "firstLineIndent">他仔细观察着这位传闻中的幽灵船长，却并没有第一时间对族人的遭遇发表看法。</p>
+<p class = "firstLineIndent">他在等，等着看这位莱恩族名义上的“解放者”如何处理这个问题。</p>
+<p class = "firstLineIndent">先前虫洞一战，让他终于明白莱恩族的战士们为何会对一群机器人如此友善。</p>
+<p class = "firstLineIndent">显而易见，一帮能在战场上替你挡枪的存在，哪怕它就是个锤子，你也得把他当吉祥物供起来！</p>
+<p class = "firstLineIndent">原本老族长还担心对方招揽他们，也只是想将莱恩族当成战场上的炮灰，那他们充其量也不过是从一个火坑，跳到另一个火坑罢了。</p>
+<p class = "firstLineIndent">不过看到上一战最终的伤亡报告之后，他就彻底放下心来。</p>
+<p class = "firstLineIndent">为了减少莱恩族的伤亡，不惜用自己的机械族“本部”给他们当僚机，哪怕只是为了收买莱恩族的人心，老族长也必须承这个情。</p>
+<p class = "firstLineIndent">初步的信任已经建立，这也是他听闻族人被扣押之后，并没有第一时间质问幽灵船长的原因。</p>
+<p class = "firstLineIndent">当然，初步认可并不代表莱恩族就要死心塌地为对方卖命，老族长依旧需要听其言，观其行</p>
+<p class = "firstLineIndent">“嗯！这件事我知道了。”</p>
+<p class = "firstLineIndent">令人意外的是，聂云只是意味深长的笑了笑，似乎完全没有动怒的意思。</p>
+<p class = "firstLineIndent">老族长心中一沉，面色顿时晦暗下来。</p>
+<p class = "firstLineIndent">也是，为了区区一些战利品就得罪两个最重要的盟友，怎么看这也不是一笔划算的买卖。</p>
+<p class = "firstLineIndent">果然还是将我们当成一些筹码而已么</p>
+<p class = "firstLineIndent">“船长大人”斯巴达克顿时急了。</p>
+<p class = "firstLineIndent">“好了！放心吧，我向你们保证，你们的族人很快就会回来，我幽灵船长看上的人，一个都不能少！”</p>
+<p class = "firstLineIndent">听到聂云霸气的承诺，斯巴达克顿时咧开了嘴，毫不怀疑自己的族人能够一个不少的回来。</p>
+<p class = "firstLineIndent">叮！您的下属斯巴达克忠诚度2！</p>
+<p class = "firstLineIndent">老族长也是一脸动容。</p>
+<p class = "firstLineIndent">许久，他单手抚胸，头颅微垂，朝着聂云缓缓行了一个莱恩族的最高礼节</p>
+<p class = "firstLineIndent">叮</p>
+<p class = "firstLineIndent">看着两人离去的背影，聂云脑补了一番系统提示音，这才笑着打开了自己的通讯器。</p>
+<p class = "firstLineIndent">敢抢老子的人，是时候让你们见识一下什么叫做“钓鱼执法”了。</p>
+<p class = "firstLineIndent">之前太熟不好下手，这下就彻底没有心理负担了</p>
+
+<h2>第六百九十一章 我们要是介意呢</h2>
+<p class = "firstLineIndent">通讯器响了许久，才被对面接通。</p>
+<p class = "firstLineIndent">“幽灵阁下，这次贵团的收获可是让人眼红，真是可喜可贺！”</p>
+<p class = "firstLineIndent">一上来，弥赛亚便笑意盈盈的恭喜道贺，似乎双方完全发生过。</p>
+<p class = "firstLineIndent">赤龙也在一旁，不过那笑容就有些尴尬了。</p>
+<p class = "firstLineIndent">“呵呵！彼此彼此，听说贵方的船队可是扩充了一倍有余，和大家比起来，我这点收获不值一提。</p>
+<p class = "firstLineIndent">可没想到，这三瓜两枣的，还是让弥赛亚阁下给惦记上了。”聂云同样笑的，看不到丝毫怒意。</p>
+<p class = "firstLineIndent">听到这隐约带刺的话，弥赛亚脸上的笑容渐渐收敛。</p>
+<p class = "firstLineIndent">“幽灵阁下这次劫掠了整个莱恩族，想来割爱一部分也无伤大雅，大家毕竟是盟友，我们的实力增强，也就意味着同盟的实力增强，不是吗？”</p>
+<p class = "firstLineIndent">双龙和幽灵海盗团虽然目前利益一致，而且面对黑帆这样的野心勃勃之辈，双方也有必要结成攻守同盟，以维持碎星星域的势力平衡。</p>
+<p class = "firstLineIndent">但对于道德水平普遍在水准以下，信任基础基本的海盗来说，盟友太强可不是什么好事。</p>
+<p class = "firstLineIndent">先前幽灵海盗团初出茅庐，实力根本无法与几大海盗团相比，弥赛亚对这样的场外助力自然分欢迎。</p>
+<p class = "firstLineIndent">但是在上次的碎星大混战中，幽灵海盗团一跃成了最大的黑马和赢家，实力膨胀的速度让所有人都措手不及，瞠目结舌。</p>
+<p class = "firstLineIndent">现在虽说底蕴还比不上一些老牌的大海盗团，但展现出来的战斗力已经丝毫不比龙骑兵来的差。</p>
+<p class = "firstLineIndent">本就背景神秘，这一次又得到了这么多能征善战的莱恩族加入，未来实力毫无疑问将进一步急速膨胀。</p>
+<p class = "firstLineIndent">弥撒亚这次的强买强卖，除了到嘴的肥肉不咬上一口实在可惜，其实也是一次对聂云的试探。</p>
+<p class = "firstLineIndent">若是聂云态度强硬，摆明了一副实力大进，心态膨胀，完全不将双龙放在眼里的架势，那弥赛亚恐怕就得重新衡量与这位盟友的关系了。</p>
+<p class = "firstLineIndent">说不定到最后，双龙还得倒向黑帆共同对抗幽灵海盗团，以重新平衡各方实力。</p>
+<p class = "firstLineIndent">在混乱的碎星星域，今天的敌人，未必不能成为明天的朋友。</p>
+<p class = "firstLineIndent">同样的，今天的朋友未必不会是明天的敌人</p>
+<p class = "firstLineIndent">“嗯！弥赛亚阁下说的太对了，我完全认同！大家好才是真的好！</p>
+<p class = "firstLineIndent">我那些个手下还叫嚣着把人抢回来，不然就鱼死网破！这是什么？这就是太缺少大局观，天天就守着自己那一亩三分地，恨不得把所有好东西都扒拉到自己碗里，生怕被别人惦记上，简直就是目光短浅，愚蠢至极！</p>
+<p class = "firstLineIndent">他们怎么就不明白，‘共享’才是合作大趋势，有了它，还要啥自行车？”</p>
+<p class = "firstLineIndent">“呃”</p>
+<p class = "firstLineIndent">虽然听不懂“共享经济”的梗，不过聂云的大度，显然完全出乎了两人的预料，让已经想好了各种说辞的弥赛亚一时不知道该怎么接这个茬。</p>
+<p class = "firstLineIndent">抢了他的人都这么好说话？是先让我们放松警惕，还是真准备忍辱负重？</p>
+<p class = "firstLineIndent">弥撒亚干咳一声，试探着道，“咳！阁下真是这么想的？”</p>
+<p class = "firstLineIndent">“当然！但是对弥赛亚阁下的行为，我只有一点十分不满！”</p>
+<p class = "firstLineIndent">果然，还是有“但是”么</p>
+<p class = "firstLineIndent">“我认为你们要的太少了，十几怎么够？这样吧，我准备再出一百莱恩族战士，让你们组一个战团！”</p>
+<p class = "firstLineIndent">弥赛亚一脸茫然。</p>
+<p class = "firstLineIndent">我刚刚应该是听错了吧？</p>
+<p class = "firstLineIndent">难不成对方如此看重自己，愿意主动拿出这么大好处来巩固盟友关系？</p>
+<p class = "firstLineIndent">这么舍得下血本的吗？</p>
+<p class = "firstLineIndent">赤龙也是目瞪口呆，“幽灵兄弟，你说的是真的？”</p>
+<p class = "firstLineIndent">一支高达百的莱恩族战团，这种诱惑根本就让人无法拒绝啊！</p>
+<p class = "firstLineIndent">“当然是真的，不过共享嘛，自然是相互的，所以我也想向你们借一样东西。”</p>
+<p class = "firstLineIndent">两人立刻警惕起来。</p>
+<p class = "firstLineIndent">“这个幽灵兄弟，除了钱，你想借啥都好商量！”赤龙小心翼翼道。</p>
+<p class = "firstLineIndent">糟！不会是真把人家惹火了，这家伙动了杀心，准备向自己下那个人人闻之色变的“有借无还预告函”吧？</p>
+<p class = "firstLineIndent">借钱？聂云疑惑的眨了眨眼睛。</p>
+<p class = "firstLineIndent">吞掉金币之后，现在自己就算做不成碎星首富，可像是缺钱的主？</p>
+<p class = "firstLineIndent">你们这一副打死也不借的架势这么抠的么？</p>
+<p class = "firstLineIndent">“当然不是，我想借一台机甲，嗯！传奇机甲！”聂云笑道。</p>
+<p class = "firstLineIndent">“呼~”赤龙松了口气，旋即皱了皱眉。</p>
+<p class = "firstLineIndent">“你想借赤龙号？这个好吧！兄弟你都开口了，那咱不可能不借！”赤龙迟疑了片刻，一咬牙答应下来。</p>
+<p class = "firstLineIndent">弥赛亚想了想，倒也没出言反对。</p>
+<p class = "firstLineIndent">毕竟机甲都是人家给修好的，对对方来说根本没什么秘密可言，就当还这个人情了。</p>
+<p class = "firstLineIndent">当然，前提是先兑现那百莱恩族的承诺。</p>
+<p class = "firstLineIndent">“不，我说的不是赤龙号，而是你们手上的另一台传奇！”聂云意味深长的笑了笑。</p>
+<p class = "firstLineIndent">咯噔一下！两人的脸色瞬间就是一变。</p>
+<p class = "firstLineIndent">“嗯，我要是搞错的话，它应该是叫女武神？”</p>
+<p class = "firstLineIndent">刷！</p>
+<p class = "firstLineIndent">两人额头上冷汗一下子就下来了。</p>
+<p class = "firstLineIndent">暴露了？怎么会？！</p>
+<p class = "firstLineIndent">“幽灵阁下说笑了，我们手里怎么可能还会有第二台传奇？要是有，我们先前也不会被弗林特逼得山穷水尽了。”弥赛亚笑了笑，可那笑容却十分牵强。</p>
+<p class = "firstLineIndent">最大的秘密被人道破，心神震荡之下，连脸上的表情都已经无法完全掩饰。</p>
+<p class = "firstLineIndent">“是么？真？”聂云一脸狐疑。</p>
+<p class = "firstLineIndent">“真真！”赤龙脸色慌乱连连摆手。</p>
+<p class = "firstLineIndent">“好吧，可惜了！本来还想研究一下传闻中战斗力更强一筹的队长级传奇机甲，既然那就算了。</p>
+<p class = "firstLineIndent">可恶的卡隆，死到临头居然还告诉我假消息！这么说来，什么二皇子，什么追杀令，原来都是假的！”聂云一副愤愤的样子。</p>
+<p class = "firstLineIndent">二皇子？追杀令？</p>
+<p class = "firstLineIndent">原来卡隆没死？！</p>
+<p class = "firstLineIndent">弥赛亚和赤龙的脸色彻底变得惨白，立刻明白自己两人的身份恐怕已经彻底暴露。</p>
+<p class = "firstLineIndent">“呵！”弥赛亚惨笑一声，彻底放弃了侥幸心理。</p>
+<p class = "firstLineIndent">“既然消息是从卡隆那里流出来的？这么说来恐怕我们的身份已经被二皇子的人查到了吗”</p>
+<p class = "firstLineIndent">赤龙此刻却是上前一步，用雄壮的身躯将弥赛亚挡在了身后。</p>
+<p class = "firstLineIndent">“你想拿我们去领赏？”赤龙血红的双眼死死盯着聂云，如同被逼入绝境的困兽。</p>
+<p class = "firstLineIndent">“别激动别激动！我要是和那个二皇子是一伙的，你们早就不知道死过几次了。”</p>
+<p class = "firstLineIndent">聂云的话让赤龙紧张的神色稍缓。</p>
+<p class = "firstLineIndent">“不介意的话，可以说说你们的故事吗？”聂云给自己倒了一杯酒。</p>
+<p class = "firstLineIndent">他又看了一眼身后。</p>
+<p class = "firstLineIndent">代号已经搬好了小板凳，手里拿着一包难吃的瓜子，满脸期待的盯着通讯屏幕。</p>
+<p class = "firstLineIndent">嘴角抽了抽嗯，那本《碎星双龙传》似乎已经快1000字了努力码字赚零花的作者也是真不容易，算了</p>
+<p class = "firstLineIndent">看聂云的语气还算温和，赤龙迟疑了一下，大着胆子小心问道，“那我们要是介意呢？”</p>
+<p class = "firstLineIndent">话音刚落，他就感觉屏幕对面似乎传来两股滔天的怨念</p>
+<p class = "firstLineIndent">“那等到明天，我就不知道会有多少人想拿你们去领赏了”幽幽的声音传来，带着杀气。</p>
+<p class = "firstLineIndent">赤龙：“”</p>
+<p class = "firstLineIndent">意思就是我们不讲故事，你就要曝光我们？</p>
+<p class = "firstLineIndent">在两位热心群众的“目光逼视”中，赤龙和弥赛亚惨然的对视一眼，终于还是说出了三十多前，那个隐藏在历史洪流中，不为人知的隐秘</p>
+
+<h2>第六百九十二章 真相</h2>
+<p class = "firstLineIndent">帝国历11543年。</p>
+<p class = "firstLineIndent">伍尔夫帝国皇帝已经在位278年，子嗣众多，其中最优秀，呼声最高的，当属两位嫡长子，也就是大皇子和二皇子。</p>
+<p class = "firstLineIndent">大皇子性情温和，在民众中的声望极佳，各大贵族中也有着大量的拥簇，而且也最受皇帝的喜爱，是无可争议的皇位第一顺位继承人。</p>
+<p class = "firstLineIndent">弥赛亚和赤龙，就是当时大皇子身边亲军骑士团中的一员。</p>
+<p class = "firstLineIndent">相比之下，二皇子虽然也是雄才大略，从小就展现出非凡的政治、军事才能，但相比大皇子，呼声却是弱了不止一筹。</p>
+<p class = "firstLineIndent">外界更是传言，说皇帝陛下有意正式册封大皇子为储君。</p>
+<p class = "firstLineIndent">而就在此时，某颗重要星系的恒星突然爆发灾难性氦闪，正好在附近巡视的大皇子自然而然的就被皇帝委派前往安抚难民，主持赈灾工作。</p>
+<p class = "firstLineIndent">为了尽快赶往事发星系，大皇子只带着自己的亲卫轻装简从。</p>
+<p class = "firstLineIndent">他们的路线自然是绝对保密的，可就在前往受灾星系的途中，大皇子一行却突然遭到了不明身份的武装力量袭击。</p>
+<p class = "firstLineIndent">众亲卫虽然浴血拼杀，但奈何寡不敌众，最终大皇子的坐舰被击沉，在战斗中发生了大爆炸，舰上无一人逃脱。</p>
+<p class = "firstLineIndent">最终，只有赤龙和弥赛亚两人凭借队长级的传奇机甲侥幸逃出了包围圈，靠着严重损毁的机甲在宇宙中流浪了整整数月，就在他们自己都快要绝望时，却幸运的被路过的一艘商船所救。</p>
+<p class = "firstLineIndent">他们立刻准备找出真凶，却在此时得知了大皇子被宣布“病逝”的消息，很显然，帝国皇室已经决定掩盖大皇子被袭身亡的真相。</p>
+<p class = "firstLineIndent">当时两人没有多想，认为这是皇室为了避免帝国动荡而做出掩盖消息的选择。</p>
+<p class = "firstLineIndent">然而，通过秘密渠道联系上皇室的他们，最终没等来皇室的援兵，却等来了一伙追杀者，而追杀者背后的势力却隐隐指向了霍顿大公爵！</p>
+<p class = "firstLineIndent">霍顿大公爵，帝国五大公爵之一，同时也是二皇子的外公！</p>
+<p class = "firstLineIndent">知道已经卷入帝位之争的两人再次开始了自己的逃亡之路，几乎是九死一生的躲过层层的追捕，最终辗转流落到碎星星域落草为寇。</p>
+<p class = "firstLineIndent">他们自知绝不是二皇子势力的对手，只能隐姓埋名，还对外貌做了处理，为了避免特征过于明显，两人更是决定分开发展，减少暴露的可能。</p>
+<p class = "firstLineIndent">事实证明，是金子在哪里都能发光，本就是帝国精英的两人很快就在碎星星域打下一片基业。</p>
+<p class = "firstLineIndent">表面上相互敌视，实则暗通款曲，在暗中的相互扶持之下，两人一步步发展，最终跻身七大海盗。</p>
+<p class = "firstLineIndent">当然，做海盗头子并不是他们的最终目标，他们一直在等待机会，等待将真相揭露的那个机会。</p>
+<p class = "firstLineIndent">然而二皇子的声势越发壮大，根基越发雄厚，触手甚至已经伸到了附近星域，这让他们越发绝望，甚至一度断了为大皇子复仇的念想。</p>
+<p class = "firstLineIndent">然而树欲静而风不止，黑帆的“屠龙计划”，让弥赛亚不得不暴露了和赤龙的关系，也终于招来了二皇子一系人马的注意</p>
+<p class = "firstLineIndent">“噗！”吐出嘴里的瓜子壳，聂云听得一脸惊奇，“你们的意思是，帝国的大皇子都被人做了，结果所有人就当他病死了，这事儿就这么过去了？”</p>
+<p class = "firstLineIndent">怎么看，这也不符合逻辑啊！</p>
+<p class = "firstLineIndent">即便是为了遮盖同室操戈的丑闻宣布大皇子是“病死”的，可秋后算账，事后一番腥风血雨的大清洗，再把涉案皇子贬为庶民、终身监禁啥的，这才是正常操作吧？</p>
+<p class = "firstLineIndent">就算查不到袭击的幕后真凶，但是以“利益最大者嫌疑最大原则”，那个二皇子绝对也吃不到好。</p>
+<p class = "firstLineIndent">但人家到现在却是越活越滋润，怎么看都透着古怪。</p>
+<p class = "firstLineIndent">“嗯嗯！”身后的代号也是连连点头，表示不符合“九龙夺嫡”的常规套路。</p>
+<p class = "firstLineIndent">“唉！或许是因为霍顿大公爵吧”弥赛亚一脸无奈道。</p>
+<p class = "firstLineIndent">“霍顿大公爵是五大公爵中实力最强的一位，不仅有着大量贵族私兵，而且在军方也有极大的影响力。</p>
+<p class = "firstLineIndent">别说没有证据，就算有证据，恐怕要定他的罪也不是一件容易的事。</p>
+<p class = "firstLineIndent">如今帝国政局不稳，惹急了对方，很可能造成帝国进一步的分裂。”</p>
+<p class = "firstLineIndent">这也是他们事后分析中最有可能的一种猜测，帝国皇帝不是不知道真相，而是投鼠忌器。</p>
+<p class = "firstLineIndent">原来如此！</p>
+<p class = "firstLineIndent">聂云点点头，无忌哥哥为啥能当明教教主？</p>
+<p class = "firstLineIndent">武功？战绩？谁学了乾坤大挪移谁就当教主？肤浅！</p>
+<p class = "firstLineIndent">混过社畜的人都明白，最重要的原因不是别的是因为对方有一个好外公啊！</p>
+<p class = "firstLineIndent">“大皇子和二皇子是陛下最优秀的子嗣，如今大皇子已经没了，如果再处理了二皇子，那皇室真的是后继无人了。</p>
+<p class = "firstLineIndent">现在想想，我们当时就算真的面见了陛下本人，他或许也会选择秘密处决了我们，防止消息泄露吧”赤龙也是一阵苦笑。</p>
+<p class = "firstLineIndent">嗯！盲生，你发现了华点！</p>
+<p class = "firstLineIndent">这么看来，那位二皇子最担心的不是消息传到皇帝耳中，而应该是两人被其他皇子得到，当成打击他的工具。</p>
+<p class = "firstLineIndent">毕竟皇帝不敢爆的料，其他的皇位竞争者可没有这种顾虑。</p>
+<p class = "firstLineIndent">估计他们还巴不得二皇子和皇帝彻底决裂打出脑浆子，这样他们才能浑水摸鱼。</p>
+<p class = "firstLineIndent">一旦消息被公之于众，即便再不愿意，那位皇帝也必须有所表示了。</p>
+<p class = "firstLineIndent">不过说到底，这毕竟是顶尖高层之间的撕逼，弥赛亚和赤龙两人作为无关轻重的棋子，不论落到谁手里，恐怕都不会有什么好下场。</p>
+<p class = "firstLineIndent">这恐怕也是他们根本没想过将事情捅出来的原因。</p>
+<p class = "firstLineIndent">不捅出来还有可能活，捅出来横竖是个死。</p>
+<p class = "firstLineIndent">“不过怎么说也是和皇帝直接对着干，那位霍顿大公爵敢冒天下之大不讳袭杀大皇子，为了个外孙这么拼的吗？”聂云疑惑道。</p>
+<p class = "firstLineIndent">要知道这罪名要是坐实了，那和谋反无异。</p>
+<p class = "firstLineIndent">万一那皇帝为了爱子来一个鱼死网破，霍顿公爵家族估计就得落个身死族灭的下场。</p>
+<p class = "firstLineIndent">这完全就是用整个家族的命在赌二皇子的前程啊！</p>
+<p class = "firstLineIndent">“是！霍顿公爵为了二皇子，还真有可能冒这个险！”</p>
+<p class = "firstLineIndent">没想到，弥赛亚却给出了肯定的答复。</p>
+<p class = "firstLineIndent">“二皇子是霍顿公爵最疼爱的子孙，没有之一！</p>
+<p class = "firstLineIndent">据说二皇子小时候曾经与霍顿公爵的亲孙子发生过矛盾，被打破了头差点破相，结果在那之后，外界就再也没有了对方的消息。”</p>
+<p class = "firstLineIndent">“嘶”聂云和代号齐齐倒吸一口凉气。</p>
+<p class = "firstLineIndent">为了外孙人间蒸发了自己的亲孙？！</p>
+<p class = "firstLineIndent">他总算明白为啥那位皇帝不敢对二皇子发难了。</p>
+<p class = "firstLineIndent">这何止是溺爱，简直就是变态啊！</p>
+
+<h2>第六百九十三章 植物人项目</h2>
+<p class = "firstLineIndent">不管这个霍顿大公爵是真变态，还是想要进行家族式豪赌，对方都是与二皇子深度捆绑的势力。</p>
+<p class = "firstLineIndent">这样的敌人，对聂云的威胁性可就更大了。</p>
+<p class = "firstLineIndent">他想了想，看向弥赛亚两人，嘴角露出一丝微笑。</p>
+<p class = "firstLineIndent">“所以，你们接下来有什么打算？我已经从组织收到消息，不止是暗神殿，那个洛克财团的克洛罗斯其实也是二皇子的人，他们已经放出话，一定是要弄死你们才肯安心的。”</p>
+<p class = "firstLineIndent">他们相互对视一眼，齐齐露出苦涩的神情。</p>
+<p class = "firstLineIndent">“还能怎么办？只能趁现在对方还没办法左右碎星星域的局势，尽快逃离这里了。”赤龙颇有些心灰意冷道。</p>
+<p class = "firstLineIndent">他虽然头铁，但还没不自量力到认为可以靠区区两个海盗团和二皇子对抗。</p>
+<p class = "firstLineIndent">“你们有把握逃过追杀？”聂云问道。</p>
+<p class = "firstLineIndent">“尽人事听天命，能不能躲过对方的追杀，看运气吧。”赤龙摇头叹气道。</p>
+<p class = "firstLineIndent">伍尔夫帝国已经是发展成熟的星际明，内部的人口统治和行政管理相当完善，所有人从一出生开始到死亡，各种DNA、指纹、虹膜、脑波都会严格录入中央数据库，想要伪造身份极其艰难。</p>
+<p class = "firstLineIndent">即便花大代价在黑市上买到了一个假身份，但只要一进入城市，在无孔不入的各种监控和探测之下也很快会原形毕露。</p>
+<p class = "firstLineIndent">这也是弥赛亚和赤龙选择来碎星星域这种混乱之地躲藏的主要原因。</p>
+<p class = "firstLineIndent">不过放弃好不容易打下的基业，再次东躲西藏的过上颠沛流离的生活，这对弥赛亚和赤龙来说，绝对是一个艰难的抉择。</p>
+<p class = "firstLineIndent">“幽灵阁下，你似乎有话要说？”弥赛亚心思敏锐，很快察觉到聂云问这话，并不是无的放矢。</p>
+<p class = "firstLineIndent">“嗯！我们怎么说也是盟友，如果两位有需要，我和我的组织也是可以帮忙的。”聂云笑道。</p>
+<p class = "firstLineIndent">弥赛亚和赤龙眼睛一亮。</p>
+<p class = "firstLineIndent">万物归一会？那可是有着机械族撑腰的神秘存在！</p>
+<p class = "firstLineIndent">虽说表面上是个松散的商业组织，可情报搜集能力极强，就连二皇子隐藏的势力都在他手上吃了个大亏，实力可见一斑。</p>
+<p class = "firstLineIndent">若是能得到对方的庇护</p>
+<p class = "firstLineIndent">“你们有什么条件？”弥赛亚直接道。</p>
+<p class = "firstLineIndent">“弥赛亚阁下快人快语，那我就直说了，组织可以给你们两个选择。</p>
+<p class = "firstLineIndent">第一，由我们接手龙骑兵和赤龙海盗团，它们成为我方附属势力，作为回报，我方则向你们两位提供政治庇护。</p>
+<p class = "firstLineIndent">考虑到距离因素和种族生存环境，我向两位推荐周边的几个可移民国度，包括双子星明、卡拉明和地球明。</p>
+<p class = "firstLineIndent">你们可以一边领略不同明的灿烂化，一边衣食无忧安度晚年。”</p>
+<p class = "firstLineIndent">意思就是让我们潜逃到国外？破财消灾？</p>
+<p class = "firstLineIndent">这倒是一个不错的选择，二皇子再有能耐，也不至于追查到外明去吧？</p>
+<p class = "firstLineIndent">“那么第二个选择呢？”弥赛亚考虑了一下，终于还是摇了摇头。</p>
+<p class = "firstLineIndent">第一个选择看似美好，可缺点就是自己的生死完全在对方手中，谁知道对方会不会榨干了自己的价值之后就弃之如敝履？甚至拿自己等人做筹码发挥余热？</p>
+<p class = "firstLineIndent">这种套路在地球上的各国之间也不少见，甚至已经形成了默契。</p>
+<p class = "firstLineIndent">弥赛亚可不希望自己被人卖了还在帮人数钱。</p>
+<p class = "firstLineIndent">“第二个选择，加入组织，成为我们的一员，龙骑兵和赤龙海盗团依旧由你们掌握，但会成为组织的外围势力存在。”</p>
+<p class = "firstLineIndent">两人脸色一怔。</p>
+<p class = "firstLineIndent">“你的意思是，让我们加入你们，然后继续公开的留在碎星星域？”弥赛亚在“公开”两个字上加重了语气。</p>
+<p class = "firstLineIndent">聂云点了点头。</p>
+<p class = "firstLineIndent">“你们想要正面对抗二皇子？”两人惊讶地瞪大眼睛。</p>
+<p class = "firstLineIndent">“呵呵！相信你们也看出来了，我们和二皇子本就有利益冲突。”聂云毫不在意的笑了笑。</p>
+<p class = "firstLineIndent">矢量引擎他是绝对不会让出去的，双方利益不可调和！</p>
+<p class = "firstLineIndent">不过这话听在两人耳中可就不是那么回事儿了。</p>
+<p class = "firstLineIndent">莫非万物归一会也想要在夺嫡之争中分一杯羹？这个组织好大的野心！</p>
+<p class = "firstLineIndent">就是不知道，对方支持的是哪位皇子？</p>
+<p class = "firstLineIndent">“呃还有没有第三种选择？”</p>
+<p class = "firstLineIndent">对方显然是想将两人绑上自己的战车，可弥赛亚却并不想卷入这两大势力的争斗中，无它，风险太高了。</p>
+<p class = "firstLineIndent">“当然有！”聂云依旧笑眯眯的。</p>
+<p class = "firstLineIndent">“怎么说也是朋友一场，如果你们不满意组织给出的条件，那么我可以提供一个私人的帮助，只要按照我的方法来，保证对方绝对一点蛛丝马迹都找不到！”</p>
+<p class = "firstLineIndent">“还有这种方法？”赤龙眼睛一亮。</p>
+<p class = "firstLineIndent">“嗯！其实我对人体改造也是有所涉的，可以提供各种改造套餐供两位选择，比如缸中之脑、全机械化改造、究极兽化改造、克鲁苏风格精选等等。</p>
+<p class = "firstLineIndent">当然，如果两位不觉得闷，又厌倦了人世间的纷纷扰扰，刀光剑影，那么我这儿还有刚刚立项的植物人改造项目，可以为两位选一颗山清水秀的星球，面朝大海，春暖花开。</p>
+<p class = "firstLineIndent">嗯？不知道两位对哪种活法比较感兴趣？”</p>
+<p class = "firstLineIndent">赤龙：“”</p>
+<p class = "firstLineIndent">弥赛亚：“”</p>
+<p class = "firstLineIndent">我们对哪种活法都不感兴趣啊魂淡！</p>
+<p class = "firstLineIndent">“你根本一开始，就没打算给我们选择的余地吧”弥赛亚无力道。</p>
+<p class = "firstLineIndent">聂云不置可否的笑了笑。</p>
+<p class = "firstLineIndent">开玩笑，好不容易钓到的大鱼，怎么可能说放就放了？</p>
+<p class = "firstLineIndent">买卖不成仁义也是不在的！</p>
+<p class = "firstLineIndent">即便是两人想悄悄溜走，聂云也会直接把消息放出去，可能的话再附上逃亡路线图，5块钱一张往外卖，说什么也得再把两人逼回来！</p>
+<p class = "firstLineIndent">只要对方舍不得赤龙号这台传奇机甲，就不怕对方能逃出自己的手掌心。</p>
+<p class = "firstLineIndent">“咳！如果选择第二条，你们有把握保下我们？</p>
+<p class = "firstLineIndent">你应该知道，二皇子如果真想对我们动手，绝对会调动域外的力量，到时候我们面对的就不止是眼前的这些敌人了。</p>
+<p class = "firstLineIndent">更何况，即便是我们三家联手，实力也并不算强，而且还要受到其他海盗的掣肘”弥赛亚虽然有些屈服的意思，可依旧不看好聂云一方。</p>
+<p class = "firstLineIndent">就算万物归一会实力强大，可在碎星星域毕竟没什么根基，而二皇子一方即便被废了两颗暗子，可剩下的暗神殿和洛克财团联手就够他们喝一壶的了。</p>
+<p class = "firstLineIndent">更不用提弗林特、狂人这两个家伙说不定关键时刻还会落井下石，不得不防，这又进一步分散了他们的抵抗力量。</p>
+<p class = "firstLineIndent">“嗯，单靠我们现在的力量，自然是没什么希望的，所以我需要你们先做一件事！”</p>
+<p class = "firstLineIndent">“什么事？”两人疑惑道。</p>
+<p class = "firstLineIndent">“投我一票，我要当海盗王！”聂云一拍桌子，拉票的气势很足。</p>
+<p class = "firstLineIndent">赤龙：“”</p>
+<p class = "firstLineIndent">弥赛亚：“”</p>
+
+<h2>第六百九十四章 你是真的想要吗</h2>
+<p class = "firstLineIndent">“就凭我们的支持……这个，是不是有点不现实？”</p>
+<p class = "firstLineIndent">赤龙虽然欣赏聂云的雄心壮志，不过还是好心的出言提醒道。</p>
+<p class = "firstLineIndent">海盗王，在碎星星域只存在于传说中，即便偶尔有一两个强势的海盗崛起，也很快就被其他海盗联手打压下去。</p>
+<p class = "firstLineIndent">就算是外部势力也会在关键时刻强行干预，不让碎星星域的海盗势力过度膨胀，威胁各方的利益。</p>
+<p class = "firstLineIndent">复杂的地域和历史原因，让这里几乎成了伍尔夫的“中东地区”，聂云想要当海盗王，难度比基地组织统一中东容易不了多少。</p>
+<p class = "firstLineIndent">“谁说，只有你们支持我了？”聂云神秘一笑。</p>
+<p class = "firstLineIndent">两人同时露出疑惑的神色。</p>
+<p class = "firstLineIndent">除了我们……你还打算坑谁？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">与此同时，另一处星域。</p>
+<p class = "firstLineIndent">“幽灵船长？你来找我做什么？”狂人看着眼前聂云的机械分身，又看了看远处幽灵海盗团与己方并行的幽灵舰队。</p>
+<p class = "firstLineIndent">这家伙不赶紧带着自己的战利品跑路，专程来找自己做什么？</p>
+<p class = "firstLineIndent">就这么点舰队，而且还是单枪匹马，难道不怕自己黑吃黑？</p>
+<p class = "firstLineIndent">没错，聂云帮助双子星夺回虫洞之后，并没有急着和大部队汇合，而是靠着速度更快的优势，从后面追上了狂人正在返航的劫掠舰队。</p>
+<p class = "firstLineIndent">聂云看了看四周，金属舱壁内隐藏的各种防御武器已经充能，显然也是防备着聂云暴起发难。</p>
+<p class = "firstLineIndent">不过聂云对这些视若无睹，他又不是来当荆轲的。</p>
+<p class = "firstLineIndent">他转过头看向狂人，身上的所有探测仪器对着他一阵疯狂扫描。</p>
+<p class = "firstLineIndent">这还是他第一次面对面见到这位大海盗，除了他身上纵横交错的伤疤极有逼格外……</p>
+<p class = "firstLineIndent">嗯！就属那颗大光头让聂云印象深刻。</p>
+<p class = "firstLineIndent">“你……恐怕活不久了！”聂云一开口，还是纵横家的老套路，语不惊人死不休。</p>
+<p class = "firstLineIndent">满场寂静了片刻……</p>
+<p class = "firstLineIndent">“什么？！”“该死的，你是来挑衅的吗？”“混蛋！敢咒我们老大，大家伙一起拆了他！”</p>
+<p class = "firstLineIndent">狂人还没开口，周围一票小弟反应过来后已经一个个眼红脖子粗的纷纷举起了手中的武器。</p>
+<p class = "firstLineIndent">看得出来，狂人人虽狂，不过手下的兄弟却是真心拥戴，否则狂人也拉不起这么大一支队伍。</p>
+<p class = "firstLineIndent">“都给我住口！”场内一声爆喝，狂人海盗们顿时收声，诧异的看向自己的老大。</p>
+<p class = "firstLineIndent">狂人脸色惊疑不定的盯着聂云。</p>
+<p class = "firstLineIndent">“看来你自己也已经有所察觉了吧？没错，你的身体已经快要撑不住了。”</p>
+<p class = "firstLineIndent">聂云的话让在场的一众小弟们都是面面相觑。</p>
+<p class = "firstLineIndent">他们自然是不肯相信这种无稽之谈的，可狂人诡异的沉默却让气氛莫名的压抑起来。</p>
+<p class = "firstLineIndent">“你胡说，我们老大龙精虎猛，今天对练还揍趴下我们一帮人，明明是实力大进，什么身体撑不住，你别在这儿危言耸听！”狂人身边一个忠心耿耿的小弟终于忍不住愤怒道。</p>
+<p class = "firstLineIndent">狂人大哥可是他偶像，一个打十个都是少的，怎么可能年纪轻轻的就突然不行了？</p>
+<p class = "firstLineIndent">“呵呵！龙精虎猛？实力大进？不过是烈火烹油，回光返照而已！”聂云风轻云淡，就差捋一捋胡须装一把神医了。</p>
+<p class = "firstLineIndent">他看向沉默不语的狂人，一脸智珠在握。</p>
+<p class = "firstLineIndent">“你们都先退下！”狂人摆摆手，看不清表情。</p>
+<p class = "firstLineIndent">等到神情各异的小弟们都退出这间舱室后，狂人这才抬头看向聂云。</p>
+<p class = "firstLineIndent">“你……知道些什么？”</p>
+<p class = "firstLineIndent">“呵呵！上次一战，你是不是使用了激发潜力的绝境药剂？”</p>
+<p class = "firstLineIndent">狂人看着对方，终于缓缓点头。“是！”</p>
+<p class = "firstLineIndent">“想来你不是第一次服用这种药剂，每次使用，身体恢复之后是不是觉得战斗力猛增？”</p>
+<p class = "firstLineIndent">“……是。”</p>
+<p class = "firstLineIndent">“战斗力猛增的同时，是不是觉得精神亢奋？感觉有使不完的精力？”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">“但是战斗力增强的同时毛发却一天天越掉越少，你变强了，也变秃了？”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">“好吧，这个问题是比较尴尬难回答，咱们可以略过。</p>
+<p class = "firstLineIndent">总之随着你一次次的使用绝境药剂，得到好处的同时，你也承受着得到好处的代价。</p>
+<p class = "firstLineIndent">我猜你现在的全身细胞应该都在急速衰老，率先衰竭的应该是内脏器官，而且伴随着经常性的头痛症？”</p>
+<p class = "firstLineIndent">“你……你怎么知道？”狂人惊疑不定的看着聂云。</p>
+<p class = "firstLineIndent">之前的那些就算了，其实并不算什么秘密，可是自己的身体状况连他身边的心腹他都没有提过，对方居然能一语道破，而且说得分毫不差！</p>
+<p class = "firstLineIndent">要知道在今天之前，聂云可是从未当面见过他本人才对，顶多也就是在几次远程会议上见过自己。</p>
+<p class = "firstLineIndent">“呵呵！不用惊讶，这是我从一位异文明的上古神医那里学会的绝学，名为‘望闻问切’之前第一次看到你，我就已经知道你的身体出了问题。”聂云大言不惭道。</p>
+<p class = "firstLineIndent">狂人：“……”</p>
+<p class = "firstLineIndent">我信你个鬼啊！</p>
+<p class = "firstLineIndent">听过望闻问切的，没听说过隔着屏幕都能看出器官衰竭的！</p>
+<p class = "firstLineIndent">事实自然没有聂云吹的那么玄乎。</p>
+<p class = "firstLineIndent">他之所以能够知道狂人的身体状态，除了代号的情报搜集工作做得极好之外，也多亏了上次和狂人的那次短暂交手。</p>
+<p class = "firstLineIndent">当然了……说是围殴也可以……</p>
+<p class = "firstLineIndent">通过那一次的“近距离”接触，聂云分明感应到了狂人那极为紊乱，起伏不定的精神力波动！</p>
+<p class = "firstLineIndent">今天当面一看，果然再一次验证了聂云的猜想。</p>
+<p class = "firstLineIndent">简单来说，绝境药剂是一种通过刺激人体，短暂提高精神力量的“兴奋剂”，它的效果极为明显，但是代价便是透支使用者的生命和精神发展潜力。</p>
+<p class = "firstLineIndent">这也是绝境药剂使用者非死即残的原因。</p>
+<p class = "firstLineIndent">作为精神力相关科技的拥有者，聂云麾下的云端科研所自然同样也有着提高精神力的相关研究课题。</p>
+<p class = "firstLineIndent">例如生物学家周动就正在攻关一种能够提高人类精神力的普适性药剂，命名为“幽能药剂”。</p>
+<p class = "firstLineIndent">生命之水毕竟太过稀有，想要大规模普及短时间内根本不现实，寻找替代品就很有必要了。</p>
+<p class = "firstLineIndent">有生命之水和长生者这两个绝佳的研究样本，科研速度倒也是不慢，幽能药剂目前已经开发到“yn-09”第九代系列。</p>
+<p class = "firstLineIndent">当然，几个系列无一例外全部失败了，不是效果不稳定，就是副作用太大，全被周动自己给否了。</p>
+<p class = "firstLineIndent">不过这些研究却也并不是一无所获，比如其中的“yn-07”系列药剂，使用效果就和绝境药剂相当类似。</p>
+<p class = "firstLineIndent">同样是短暂刺激精神力暴涨，同样是透支生命，使用者非死即残……</p>
+<p class = "firstLineIndent">两个文明的科技树，竟在某种巧合之下发生了碰撞！</p>
+<p class = "firstLineIndent">聂云甚至猜测，这个绝境药剂很可能与己方一样，是伍尔夫帝国皇室在开发精神力科技的过程中调试出的“残次品”。</p>
+<p class = "firstLineIndent">正因为有了类似药剂的科研数据，加上狂人的相关情报和不正常的生命波动，聂云才有把握对狂人说一句“君命不久矣~”！</p>
+<p class = "firstLineIndent">虽然聂云并不知道为狂人身上有什么特殊的地方，但很显然，狂人比一般人有着更强的“耐药性”。</p>
+<p class = "firstLineIndent">他不仅能够硬扛下绝境药剂的巨大副作用活下来，还从中得到了不小的好处。</p>
+<p class = "firstLineIndent">但即便如此，绝境药剂作为一种并不完美，甚至有着巨大缺陷的强化药剂，多次服用它带来的隐形伤害正在一步步将狂人拖入深渊……</p>
+<p class = "firstLineIndent">精神力不正常暴涨的后遗症，便是经常性的头痛。</p>
+<p class = "firstLineIndent">而狂人的精神越是提升，就好比蜡烛的火苗越是旺盛，用不了多久就会把蜡烛烧尽。</p>
+<p class = "firstLineIndent">这等于是透支生命来换取力量！</p>
+<p class = "firstLineIndent">带来的后果就是器官提前衰竭、细胞分裂次数急剧减少，这也意味着狂人的寿命正在迅速减少！</p>
+<p class = "firstLineIndent">“不错！我的确能够隐约察觉，自己恐怕是活不久了……”狂人震惊过后，倒是很干脆的承认了聂云的猜测。</p>
+<p class = "firstLineIndent">面色平静，并没有任何的惊慌或者恐惧。</p>
+<p class = "firstLineIndent">他用过很多手段试图缓解身体的不正常衰老，但是无一例外全部失败了，而且头痛的症状越发严重，到现在已经让他苦不堪言。</p>
+<p class = "firstLineIndent">显然，他对这一天早有所料。</p>
+<p class = "firstLineIndent">“我不知道你从哪里知道的这一切，不过你若是认为我命不久矣就想来捡便宜，那恐怕是想错了！”狂人的眼神重新恢复凶悍之色，带着想要战至最后一刻的狂热。</p>
+<p class = "firstLineIndent">聂云摇了摇头。</p>
+<p class = "firstLineIndent">很显然，精神力的不正常暴涨就好比吃了春药，多余的精神力时刻需要发泄，这也潜移默化影响着狂人的性格。</p>
+<p class = "firstLineIndent">恐怕这就是他嗜战如命的原因之一，只不过狂人自己似乎并没有察觉这一点。</p>
+<p class = "firstLineIndent">“我可不是来抢夺遗产的，如果我说……我能帮你，你信吗？”</p>
+<p class = "firstLineIndent">“帮我？”联想到对方神秘的背景，狂人心中一跳。</p>
+<p class = "firstLineIndent">莫非……对方真的能够帮自己延长寿命？</p>
+<p class = "firstLineIndent">“你能怎么帮我？”狂人的语气带上了一丝希冀。</p>
+<p class = "firstLineIndent">毕竟能活着，才能继续享受战斗！</p>
+<p class = "firstLineIndent">“呵呵！实不相瞒，其实我最精通的就是人体改造，可以提供各种物美价廉的改造套餐，比如‘缸中之脑’、‘全机械化改造’、‘究极兽化改造’、‘克鲁苏风格精选’，还有极具行为艺术的‘植物人改造’……”</p>
+<p class = "firstLineIndent">“够了！”狂人一脸黑线的打断还在滔滔不绝搞推销的聂云。</p>
+<p class = "firstLineIndent">我还想做个人呐！</p>
+<p class = "firstLineIndent">“咳！看来这些物美价廉的项目狂人团长不是很感兴趣，那么我最后向您隆重介绍本人最最得意的珍藏品！”</p>
+<p class = "firstLineIndent">聂云说着打开自己的胸腔，珍而重之地拿出一支玻璃试管。</p>
+<p class = "firstLineIndent">随着轻微的晃动，试管内翠绿色的液体缓缓流淌，迷离的光点不断从中出现、消失……</p>
+<p class = "firstLineIndent">“咕~”狂人狠狠咽了口唾沫。</p>
+<p class = "firstLineIndent">本能的渴望，让他的目光像是被黏住了一样，再也无法离开那梦幻般的药剂。</p>
+<p class = "firstLineIndent">“想要？你要是想要的话你就说嘛，你不说我怎么知道你想要呢？虽然你很有诚意地看着我，可是你还是要跟我说你想要的。</p>
+<p class = "firstLineIndent">嗯！你是真的想要吗？”</p>
+<p class = "firstLineIndent">狂人：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯▽╰)╭）</p>
+
+<h2>第六百九十五章 亡灵复苏</h2>
+<p class = "firstLineIndent">“老大，这次我们真的是发了啊！哈哈哈！”</p>
+<p class = "firstLineIndent">“是啊！这洛克财团简直富得流油，可惜，要是能再抢几天就好了。”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">黑帆这次的收获极为丰厚，丰厚到全体黑帆海盗都有种被馅饼砸中的感觉。</p>
+<p class = "firstLineIndent">他们在海盗中的实力最强，论起这次的收获，绝对也是几个海盗团中最多的。</p>
+<p class = "firstLineIndent">“呵呵！告诉弟兄们，回到后狂欢三日，行赏！”弗林特显然也是心情极好，毫不吝啬的开始发福利。</p>
+<p class = "firstLineIndent">“吼！”海盗们顿时发出阵阵欢呼。</p>
+<p class = "firstLineIndent">弗林特脸上露出笑意。</p>
+<p class = "firstLineIndent">这次的行动，除了数量不菲的财富和武器装备之外，最让他高兴的，无疑就是抢掠到的大量军工人才和生产设备。</p>
+<p class = "firstLineIndent">和聂云盯上了莱恩族一样，一开始，弗林特的行动目标就很明确。</p>
+<p class = "firstLineIndent">他放弃了那些令人垂涎欲滴的主要财富聚集之地，反而专门挑选洛克财团著名的工业星球，机甲制造中心、大型太空船坞、武器装备制造研发中心等等，统统成了黑帆的目标。</p>
+<p class = "firstLineIndent">拥有属于自己的武器制造工业，彻底补齐黑帆的短板，走上独立自主的强团之路，这是弗林特一直以来的野望！</p>
+<p class = "firstLineIndent">黑帆为什么要和洛克财团结盟？</p>
+<p class = "firstLineIndent">不正是因为缺乏武器制造能力，必须依靠外部势力么？</p>
+<p class = "firstLineIndent">如今天赐良机，他又怎么会放过？</p>
+<p class = "firstLineIndent">在碎星星域拥有属于自己的独立军工产业，不仅代表着庞大的利益，也是摆脱外部势力掣肘，成为强大独立势力的必要条件！</p>
+<p class = "firstLineIndent">从这方面来说，弗林特无疑是和聂云想到了一块儿。</p>
+<p class = "firstLineIndent">而且作为七大海盗中实力最强的一方，黑帆本就有着不弱的工业基础，在瓜分了金币海盗团的生产制造之后，其工业制造能力更是得到了一定的增强，比之幽灵海盗团更具先发优势。</p>
+<p class = "firstLineIndent">一旦从洛克财团劫掠的这些研发人才和各种先进工业设备抵达，到时候不论是抢占碎星星域的军火市场，还是利用军火拉拢收编其余的海盗团，都是意义重大！</p>
+<p class = "firstLineIndent">弗林特看得很清楚，二皇子和物归一会的强势介入，就好比狼群中突然跑进来两头猛虎，已经彻底搅动了碎星星域的局势。</p>
+<p class = "firstLineIndent">碎星星域的主要，已经从海盗们的利益，上升到了两大集团之间的明争暗斗。</p>
+<p class = "firstLineIndent">黑帆已经到了极为危险的时刻，想要在两大集团的相互倾轧下生存下来，他就必须尽快壮大自身。</p>
+<p class = "firstLineIndent">只有手中的筹码够多，自己够强，才能让虎视眈眈的两大集团有所顾忌，转而更倾向于拉拢收买，而不是被逼迫着选边站队，甚至直接武力收编。</p>
+<p class = "firstLineIndent">只要操作得当，说不定还能左右逢源，靠着双方的拉拢一步步壮大自己，形成三国鼎立的局面。</p>
+<p class = "firstLineIndent">这是弗林特结合各方面的最新形势，思虑良久之后，为黑帆定下的未来发展新战略。</p>
+<p class = "firstLineIndent">不得不说，弗林特不愧是七大海盗中极具战略眼光的大海盗。</p>
+<p class = "firstLineIndent">如果是按照正常的局势发展，这个计划说不定还真有可能有一定的操作性。</p>
+<p class = "firstLineIndent">不过计划很多时候是赶不上变化的</p>
+<p class = "firstLineIndent">“老大，前方侦察舰传来预警，航向正前方出现不明舰队！”</p>
+<p class = "firstLineIndent">“什么？”弗林特愣了愣。</p>
+<p class = "firstLineIndent">他们可是打着旗号的，况且这里已经是碎星星域外围，都到了家门口，还有谁吃了熊心豹子胆敢在这个时候拦截黑帆的舰队？</p>
+<p class = "firstLineIndent">“让侦察舰把画面传回来！”弗林特皱眉道。</p>
+<p class = "firstLineIndent">很快，画面传了回来，顿时，黑帆的一众海盗们全都愣住了。</p>
+<p class = "firstLineIndent">“怎怎么可能？！”弗林特瞪大了眼睛。</p>
+<p class = "firstLineIndent">画面中是一支数量仅有200余艘的小舰队，不过这并不是弗林特等人吃惊的地方，这点兵力还不被黑帆看在眼里。</p>
+<p class = "firstLineIndent">让人不可思议的是这支舰队最前方，那最为醒目，却又十分令人眼熟的庞然大物</p>
+<p class = "firstLineIndent">“卡隆！”弗林特瞳孔一缩！</p>
+<p class = "firstLineIndent">没错，这支舰队为首的，正是那头本该已经死在幽灵船长手中，销声匿迹了的卡隆兽！</p>
+<p class = "firstLineIndent">再看他身后的那支舰队，分明就是卡隆海盗团的旧部，其中更是夹杂着不少的生化兽。</p>
+<p class = "firstLineIndent">“这是怎么回事？卡隆不是死了吗？”</p>
+<p class = "firstLineIndent">“听说卡隆海盗团已经分裂成两派，正打的不可开交，可现在他们的舰队怎么会出现在这里？”</p>
+<p class = "firstLineIndent">“他们想干嘛？就算想要报仇，也不该来找我们啊？”</p>
+<p class = "firstLineIndent">一众黑帆海盗们惊疑不定。</p>
+<p class = "firstLineIndent">弗林特心中也是隐隐觉得不妥，就在这时，副手突然急匆匆赶了过来。</p>
+<p class = "firstLineIndent">“老大，不好了，现在碎星星域里面到处都在传，说是卡隆根本没死，已经重新召集旧部，准备东山再起了！”</p>
+<p class = "firstLineIndent">弗林特眼睛一眯，思索片刻之后很快明白过来。</p>
+<p class = "firstLineIndent">“没死？哼！就算没死，估计也早就被那家伙控制了！好一招‘借尸还魂’！”弗林特颇有些咬牙切齿。</p>
+<p class = "firstLineIndent">“老大您是说，这是那个幽灵船长在背后捣鬼？”副手立刻明白弗林特口中的“那家伙”指的是谁。</p>
+<p class = "firstLineIndent">毕竟尸体就是被幽灵船长当做战利品拉走的，如今卡隆兽突然诈尸重现江湖，若说和幽灵船长一点关系，那就是侮辱大家的智商了。</p>
+<p class = "firstLineIndent">弗林特的猜测基本已经接近了事实。</p>
+<p class = "firstLineIndent">卡隆兽被聂云俘虏之后，自然少不了被一帮科学家反复的切片研究，同时在聂云的要求下，开始对利维坦的神经控制中枢进行替换。</p>
+<p class = "firstLineIndent">植物人卡隆的拆除工作、神经信号的数据化替代、神经接驳、控制测试</p>
+<p class = "firstLineIndent">在云端科研所和卡拉文明科学家的通力合作之下，很快就完成了对卡隆兽的初步改造。</p>
+<p class = "firstLineIndent">虽然由于赶工需要，导致控制细节上还有许多不够完善，无法像卡隆那样对利维坦如臂使指，但主要的行动能力已经恢复。</p>
+<p class = "firstLineIndent">接下来的事情就很简单了，聂云装备上卡隆兽的皮肤，很快就靠着卡隆的余威收拢了一批旧部。</p>
+<p class = "firstLineIndent">再一扯大旗，“卡隆海盗团”宣布重新开张！</p>
+<p class = "firstLineIndent">一个“亡灵复苏”，聂云就轻松收获了一批可观的“炮灰”。</p>
+<p class = "firstLineIndent">“哈哈！这个幽灵船长也太小瞧我们了，他难道以为凭着一个从棺材里爬出来的家伙，加上眼前这些乌合之众就能给我们带来威胁？”副手忍不住嘲笑道。</p>
+<p class = "firstLineIndent">一番之后，卡隆海盗团的人死的死散的散，实力已经大不如前，如今在黑帆面前摆开阵势的这支舰队，恐怕就连精锐都算不上。</p>
+<p class = "firstLineIndent">卡隆兽是强，不过他们这边也是有传奇机甲存在的，加上这一次劫掠又大大扩充了舰队，战舰数量几乎达到800余艘，恐怕几轮齐射，就能让对面那支不知死活的舰队全军覆没！</p>
+<p class = "firstLineIndent">弗林特并说话。</p>
+<p class = "firstLineIndent">他隐隐觉得，对方不惜暴露卡隆的存在，目的恐怕不会是来给他找点麻烦这么简单</p>
+<p class = "firstLineIndent">“老老大！舰队左侧出现一支舰队，是赤龙！数量300！”</p>
+<p class = "firstLineIndent">“右侧也出现舰队，是龙骑兵！数量也是300！”</p>
+<p class = "firstLineIndent">果然，就在这时，雷达兵有了新的发现。</p>
+<p class = "firstLineIndent">三面合围？弗林特脸色顿时一沉。</p>
+<p class = "firstLineIndent">特么的！他们这是想要干嘛？黑吃黑？</p>
+<p class = "firstLineIndent">可是为什么是现在？</p>
+<p class = "firstLineIndent">要知道暗神殿和洛克财团可是实力犹存，他们就不怕和自己两败俱伤，让别人捡了便宜？</p>
+<p class = "firstLineIndent">还有，赤龙和弥赛亚的脑子是进水了吗？他们难道就不明白，帮着幽灵船长灭了自己，碎星星域的势力平衡就会被打破，下一个被吃掉的很可能就是他们自己？</p>
+<p class = "firstLineIndent">简直是猪队友啊！</p>
+<p class = "firstLineIndent">一个接一个的“为什么”浮上心头，弗林特心中几乎想要掀桌子，不过脸上却还勉强维持镇定。</p>
+<p class = "firstLineIndent">碎星星域内大家相互监视，基本不可能神不知鬼不觉的从调兵。</p>
+<p class = "firstLineIndent">也就是说大家手头能用的兵力，就是带出来的这批人马</p>
+<p class = "firstLineIndent">哼！凭这些兵力，你们可还吃不下自己</p>
+<p class = "firstLineIndent">“幽灵海盗团呢？他们一定就在附近，给我加大搜索力度！”弗林特命令道。</p>
+<p class = "firstLineIndent">很快，舰队雷达便发现了目标。</p>
+<p class = "firstLineIndent">“后方，幽灵海盗团出现在我们后方！”</p>
+<p class = "firstLineIndent">果然！弗林特冷笑一声，心中的怒火却是燃烧的越发旺盛。</p>
+<p class = "firstLineIndent">自己“三国鼎立”的完美计划看来是还未出道就要扑街了！</p>
+<p class = "firstLineIndent">该死的幽灵船长，亏我还把你当对手，结果你反手就给我来了一记王八拳？白瞎了我的惺惺相惜！</p>
+<p class = "firstLineIndent">既然你想鱼死网破，那我们就好好做过一场，大不了两败俱伤之后，老子直接去投奔二皇子，看谁先死！</p>
+<p class = "firstLineIndent">“立刻联络狂人赶来支援！”</p>
+<p class = "firstLineIndent">对方有盟友，自己也不是，他早就和狂人约定好，双方的行军路线并隔得太远，方便彼此相互支援。</p>
+<p class = "firstLineIndent">只不过他想到，这本是为了防备洛克财团的后手，居然会用在了另外的敌人上。</p>
+<p class = "firstLineIndent">“呃那个，狂人海盗团，似乎也在我们后面”</p>
+<p class = "firstLineIndent">手下的汇报让弗林特不由一愣。</p>
+<p class = "firstLineIndent">什么叫“也”在我们后面？恰好路过？</p>
+<p class = "firstLineIndent">不过很快，看到屏幕上那热情的几乎“贴”在一起的两支舰队，弗林特的脸色从惊愕，到不可思议，再到歇斯底里，最终变得一片惨白</p>
+
+<h2>第六百九十六章 我狂人从不食言</h2>
+<p class = "firstLineIndent">“老老大，我们好像被包围了。”副手声音都有些发颤道。</p>
+<p class = "firstLineIndent">就这种“亲密度”，怎么看，狂人也不像是想要来支援的样子。</p>
+<p class = "firstLineIndent">幽灵、卡隆、赤龙、龙骑兵、狂人，五方海盗团合围，这待遇，怎么看怎么像是金币的翻版。</p>
+<p class = "firstLineIndent">双方的战舰总数量对比大致在1800：800，这是一个几乎令人绝望的数字。</p>
+<p class = "firstLineIndent">而下一刻，更令人绝望的事情发生了，只见除了卡隆以外，其余的四大海盗舰队中光芒一闪，齐齐飞出一台机甲。</p>
+<p class = "firstLineIndent">“咕~”所有的黑帆海盗全都忍不住咽了口唾沫。</p>
+<p class = "firstLineIndent">传奇、传奇还是传奇！</p>
+<p class = "firstLineIndent">入眼一共四台机甲，身上赫然全都绽放着属于晶化护盾特有的闪耀光芒！</p>
+<p class = "firstLineIndent">除了他们已经熟知的狂人号、赤龙号以及聂云的“第五失传”，就连龙骑兵也派出了一台从未见过的传奇机甲！</p>
+<p class = "firstLineIndent">加上卡隆兽，这意味着对方出动了足足5个战略级的单位！</p>
+<p class = "firstLineIndent">战舰数量不如人家、传奇机甲的数量更是被碾压这仗，还怎么打？</p>
+<p class = "firstLineIndent">“滴！滴滴！”</p>
+<p class = "firstLineIndent">就在这时，一阵提示音之后，幽灵船长、赤龙、弥赛亚、狂人的虚拟投影齐齐出现在弗林特面前。</p>
+<p class = "firstLineIndent">“弗林特，来谈谈怎么样？”</p>
+<p class = "firstLineIndent">开口的是聂云，这也代表着这些人以他为首！</p>
+<p class = "firstLineIndent">弗林特看着幽灵船长，神情有些恍惚。</p>
+<p class = "firstLineIndent">就在不久前，就是同样的一句话，让他放弃了消灭双龙，一步步落入眼前这个家伙的算计。</p>
+<p class = "firstLineIndent">只不过上一次对方说这句话，是想与自己和谈，现在对方说这句话，却是想让自己投降</p>
+<p class = "firstLineIndent">现在想想，如果当时自己拼着实力受损直接消灭掉双龙，结局会不会有所不同？</p>
+<p class = "firstLineIndent">可惜现在，说什么都晚了。</p>
+<p class = "firstLineIndent">他回答聂云，而是转头看向了狂人。</p>
+<p class = "firstLineIndent">双龙为何这么帮幽灵船长，他勉强还能解释为“被仇恨蒙蔽了双眼”，可狂人完全理由倒向幽灵船长啊？</p>
+<p class = "firstLineIndent">黑帆一倒，狂人海盗团孤掌难鸣，拿什么去对抗幽灵船长和双龙联盟？</p>
+<p class = "firstLineIndent">“为什么？告诉我为什么？！”</p>
+<p class = "firstLineIndent">看到弗林特脸上几乎可以用“哀怨”来形容的神色，狂人脸上难得的露出尴尬神色。</p>
+<p class = "firstLineIndent">说好了在一起，现在扭头就是一个背刺，这事儿做的确实有些不太地道。</p>
+<p class = "firstLineIndent">“这个”</p>
+<p class = "firstLineIndent">“够了！我不想听！我现在只问一句话，你还记不记得对我的承诺？”</p>
+<p class = "firstLineIndent">一旁的聂云脸色顿时怪异起来，这话听着很有内涵</p>
+<p class = "firstLineIndent">狂人自然明白弗林特指的承诺是什么，他脸色一正。“当然记得！我狂人从不食言！”</p>
+<p class = "firstLineIndent">“阻击赤龙是一次，攻打龙骑兵是一次，我还欠你第三个承诺！”</p>
+<p class = "firstLineIndent">对狂人的干脆，弗林特反倒是愣住了。</p>
+<p class = "firstLineIndent">你丫记得还要背刺我？难道是想要用这种方式逼我用掉这最后一个承诺？</p>
+<p class = "firstLineIndent">不过不管怎么说，对方否认就好。</p>
+<p class = "firstLineIndent">弗林特对狂人的为人还是相当肯定的，否则也不会二话不说就将传奇机甲做投资送给他，就为了三个承诺。</p>
+<p class = "firstLineIndent">“那我现在要你兑现这第三个承诺，帮我对付他们，你怎么说？”弗林特抱着一的希望试探道。</p>
+<p class = "firstLineIndent">“可以！”没想到，狂人这次回答的更干脆。</p>
+<p class = "firstLineIndent">可还没等弗林特露出狂喜的表情，就听幽灵船长突然笑眯眯的插口道。“不好意思，打断一下，狂人团长，你还记不记得答应我的事？”</p>
+<p class = "firstLineIndent">弗林特一愣，答应你的事？</p>
+<p class = "firstLineIndent">这话听着怎么这么耳熟？</p>
+<p class = "firstLineIndent">狂人的神色颇为怪异。“咳！当然，我狂人从不食言！你救了我的命，我欠你三个承诺。”</p>
+<p class = "firstLineIndent">这</p>
+<p class = "firstLineIndent">弗林特顿时瞪大了眼睛。</p>
+<p class = "firstLineIndent">他现在总算是明白为什么狂人会临阵反水了，虽然不知道这其中发生了什么，但这救命之恩，可比一台传奇机甲的恩情重多了，可</p>
+<p class = "firstLineIndent">怎么又是三个承诺？</p>
+<p class = "firstLineIndent">喂喂！你这是的剽窃创意吧？</p>
+<p class = "firstLineIndent">聂云对弗林特几欲喷火的目光视若无睹，他满意的点点头，“嗯！那就好，我的第一个要求很简单，那就是拒绝弗林特团长的要求！”</p>
+<p class = "firstLineIndent">众人皆是神色古怪。</p>
+<p class = "firstLineIndent">用承诺抵消承诺，以彼之道还施彼身，这操作可还行？</p>
+<p class = "firstLineIndent">“哦对了！我知道狂人团长或许不忍心眼睁睁看着昨天的盟友惨死，这样吧，待会儿你就闭上眼睛，走远一点也没关系。”</p>
+<p class = "firstLineIndent">“你”弗林特差点气炸。</p>
+<p class = "firstLineIndent">他脸上阴晴不定，抱着最后的希望看向其余众人。</p>
+<p class = "firstLineIndent">“幽灵海盗团狼子野心，先灭金币，再灭卡隆，现在更是轮到我黑帆，你们就不怕下一个会轮到你们吗？”</p>
+<p class = "firstLineIndent">攻心计+挑拨离间！</p>
+<p class = "firstLineIndent">但不得不说，弗林特的话一针见血！</p>
+<p class = "firstLineIndent">要是正常情况，聂云这种先灭少林，再灭武当，野心勃勃的行为，必定会激起六大门派群起而攻之。</p>
+<p class = "firstLineIndent">只不过</p>
+<p class = "firstLineIndent">“咳！幽灵兄弟不论是手段计谋，还是实力威望，都是碎星海盗中的翘楚，我觉得就算人家想要一统碎星，那也无可厚非嘛，我赤龙第一个赞成！”</p>
+<p class = "firstLineIndent">“啥？”弗林特眼珠子一瞪。</p>
+<p class = "firstLineIndent">“嗯！碎星星域从前总是一盘散沙，最多不过小打小闹，也是时候该有一个领头人将我们整合起来了！</p>
+<p class = "firstLineIndent">就像这次，大家协力，洛克财团也要任我们予取予求！</p>
+<p class = "firstLineIndent">我觉得幽灵团长就有这样的领袖气质，绝对是不二人选！”弥赛亚点头赞同道。</p>
+<p class = "firstLineIndent">弗林特双眼茫然。</p>
+<p class = "firstLineIndent">这还是我认识的那帮海盗头子？幽灵船长到底给你们灌了什么迷魂汤？</p>
+<p class = "firstLineIndent">他不由将最后希望的目光放在狂人身上然后马上挪开了。</p>
+<p class = "firstLineIndent">这家伙早就闭上眼睛了</p>
+<p class = "firstLineIndent">“呵呵！大家真是过奖了。”聂云笑眯眯的受了这一波彩虹屁，然后看向已经开始怀疑人生的弗林特。</p>
+<p class = "firstLineIndent">“弗林特团长，现在形势已经很明朗，相信你也是聪明人，我也不多说废话了，告诉我你的选择？”</p>
+<p class = "firstLineIndent">弗林特迟疑片刻，低沉道。“我可以承诺绝不与你为敌！”</p>
+<p class = "firstLineIndent">聂云却是摇了摇头，“大敌当前，我绝不会放一颗在身边。”</p>
+<p class = "firstLineIndent">开玩笑，狂人的案例已经告诉我们，承诺什么的都是骗人的！</p>
+<p class = "firstLineIndent">别说你不是狂人那个一条筋，就算是，回头你再学我玩一出承诺抵消承诺，我岂不是要被自己蠢哭了？</p>
+<p class = "firstLineIndent">弗林特还待开口，弥赛亚却是适时出口道，“弗林特，你胜算的，就算你不为自己考虑，也得替手下的弟兄们考虑考虑。”</p>
+<p class = "firstLineIndent">弗林特一愣，顿时看向四周。</p>
+<p class = "firstLineIndent">不知何时开始，周围的手下们竟一个个脸色惊惧，目光闪烁。</p>
+<p class = "firstLineIndent">显然，压倒性的兵力差距，已经彻底击溃了黑帆海盗们的抵抗意志，这要是打起来，能扛过对方几轮齐射？</p>
+<p class = "firstLineIndent">即便自己能够仗着传奇机甲侥幸逃出去，黑帆也完了。</p>
+<p class = "firstLineIndent">唉！</p>
+<p class = "firstLineIndent">弗林特颓然的叹了口气</p>
+
+<h2>第六百九十七章 天黑请闭眼</h2>
+<p class = "firstLineIndent">“轰！”黑魔号关闭推进器，稳稳的停在了机库内。</p>
+<p class = "firstLineIndent">弗林特打开驾驶舱，抬头便看见了不远处其余的几位海盗团长已经到了。</p>
+<p class = "firstLineIndent">狂人、赤龙、弥赛亚，以及他弗林特，四大海盗团长齐聚，加上并未露面的聂云和外面的卡隆兽，便是整整六位。</p>
+<p class = "firstLineIndent">再看面前机库内停泊的5台机甲，清一色的传奇，一眼望去就是全明星阵容，即便在碎星星域的历史上，这也是绝对罕见的奇景了。</p>
+<p class = "firstLineIndent">黑帆放弃抵抗之后，聂云以商讨碎星星域未来发展的理由，将所有的海盗团长全都请上了自己的旗舰。</p>
+<p class = "firstLineIndent">弗林特虽然明知自己这是羊入虎口，却也知道自己现在已经是案板上的鱼肉，根本无法拒绝。</p>
+<p class = "firstLineIndent">他走下驾驶舱，立刻有隶属于幽灵海盗团的后勤人员上前协助停机。</p>
+<p class = "firstLineIndent">弗林特皱了皱眉，终究没说什么。</p>
+<p class = "firstLineIndent">自己都成阶下囚了，黑魔号难不成还能幸免？</p>
+<p class = "firstLineIndent">“又见面了，弗林特团长！”赤龙颇有些幸灾乐祸上来打了个招呼。</p>
+<p class = "firstLineIndent">看到之前的仇敌吃瘪，赤龙心中自然快意。</p>
+<p class = "firstLineIndent">让你丫嘚瑟搞什么“屠龙计划”，看吧，最后还不是把自己给搭进去了？</p>
+<p class = "firstLineIndent">这难道就是聪明反被聪明误？</p>
+<p class = "firstLineIndent">弗林特懒得搭理这家伙，他的目光扫视一圈，很快在不远处的一台传奇机甲上定住。</p>
+<p class = "firstLineIndent">“这台机甲……”</p>
+<p class = "firstLineIndent">手持剑盾的紫色机甲，整体设计充满着英武之气，但弗林特可以确认他之前从未见过这台传奇。</p>
+<p class = "firstLineIndent">“女武神，我的座机！”弥赛亚简单介绍了一句，却并没有详细解释它的来历。</p>
+<p class = "firstLineIndent">之前不敢暴露女武神的存在，纯粹是担心有人调查这台机甲的来历，露出破绽。</p>
+<p class = "firstLineIndent">但如今两人身份既然已经暴露，弥赛亚自然也就少了许多顾虑，拿出它某种程度上也是向万物归一会展示自己的价值。</p>
+<p class = "firstLineIndent">当然，此时的女武神在外观上，已经与之前有了相当的差异，只要不暴露战斗风格，倒是不虞被人看出端倪。</p>
+<p class = "firstLineIndent">见对方不愿细说女武神的来历，弗林特识趣的也没有追问，心中却是暗自猜测，这莫非又是幽灵船长的暗手？</p>
+<p class = "firstLineIndent">“有机会切磋一下！”狂人却是表现出对女武神号的浓厚兴趣，可惜被弥赛亚直接无视了。</p>
+<p class = "firstLineIndent">“幽灵船长人呢？怎么？是打算把我们这些人当成人质吗？”</p>
+<p class = "firstLineIndent">面对这种明显的挑拨，赤龙却是无所谓的耸了耸肩，“是不是人质，对我们来说真无所谓。”</p>
+<p class = "firstLineIndent">人家百万莱恩族都已经安排进来了，人质什么的根本就是多此一举。</p>
+<p class = "firstLineIndent">是的，聂云之前的话并不是虚言，他真的给双龙凑了整整一百万的莱恩族人。</p>
+<p class = "firstLineIndent">一下子多出近500万的莱恩族，对于基地规模本就不大的幽灵海盗团来说，哪怕紧急扩建生存区，后勤方面也要承受极大的压力。</p>
+<p class = "firstLineIndent">所以聂云早就打定主意，准备让自己的这些“盟友”们替自己分担一波了。</p>
+<p class = "firstLineIndent">莱恩族战力剽悍，只要武器装备到位，很快就能成为“监军”一般的存在，不说彻底掌控赤龙和龙骑兵海盗团，至少也是相当的战略威慑。</p>
+<p class = "firstLineIndent">这相当于是让其余的海盗团帮着自己养兵。</p>
+<p class = "firstLineIndent">当然，双龙也并不是没有好处，凭白得来的一批精锐，对海盗团的正规化和整体素质有极大的促进作用。</p>
+<p class = "firstLineIndent">只要没有小心思，这就是一种双赢。</p>
+<p class = "firstLineIndent">不仅是双龙，就连黑帆和狂人，聂云也打算照此办理。</p>
+<p class = "firstLineIndent">“我的命是幽灵船长救的。”狂人只说了一句，表明立场。</p>
+<p class = "firstLineIndent">重点是，生命之水聂云暂时只给了他半份的剂量……</p>
+<p class = "firstLineIndent">见到几人居然对自己的安危都是一脸无所谓的表情，弗林特脸上有些无语。</p>
+<p class = "firstLineIndent">幽灵船长到底是怎么把这些人吃的死死的……</p>
+<p class = "firstLineIndent">就在动着小心思时，弗林特突然发现，幽灵海盗团的人居然正在将黑魔号的传奇机甲核心取出来，然后用箱子装起来运走。</p>
+<p class = "firstLineIndent">不仅是黑魔号，女武神、狂人号也是一样的待遇。</p>
+<p class = "firstLineIndent">弗林特顿时急道。“他们这是做什么？”</p>
+<p class = "firstLineIndent">废了自己等人的机甲，图穷匕见？</p>
+<p class = "firstLineIndent">可为什么赤龙号是个例外？</p>
+<p class = "firstLineIndent">“别紧张，是发福利。”聂云的声音从身后传来，众人齐齐转身。</p>
+<p class = "firstLineIndent">“什么意思？你想对我的黑魔号做什么？”弗林特紧张道。</p>
+<p class = "firstLineIndent">“不过是对它们进行一次维护保养，毕竟现在大家都是自己人，呆久了你们就知道，组织对自己人绝对相当的大方！”聂云笑道。</p>
+<p class = "firstLineIndent">“嘿！幽灵兄弟可是传奇机甲核心的超级大师，能让他出手修复机甲核心，你就偷着乐吧！”赤龙替聂云打了个广告。</p>
+<p class = "firstLineIndent">显然，那神奇的“隔山打牛修理流”，至今令他印象深刻……</p>
+<p class = "firstLineIndent">“你能修复机甲核心？！”弗林特惊了。</p>
+<p class = "firstLineIndent">这可是帝国皇室的不传之秘，机械族已经破解传奇机甲的奥秘了？</p>
+<p class = "firstLineIndent">“原来如此，怪不得你的赤龙号强了那么多！”狂人两眼放光。</p>
+<p class = "firstLineIndent">对于一切可以变强的可能，他都不想放过。</p>
+<p class = "firstLineIndent">这样的福利不可谓不惊喜，几人瞬间觉得对加入幽灵海盗团的联盟，似乎也没那么抵触了。</p>
+<p class = "firstLineIndent">“呵呵！这也算是给大家的见面礼，都别客气！”</p>
+<p class = "firstLineIndent">传奇机甲入手x3！</p>
+<p class = "firstLineIndent">有莱恩族和传奇机甲做双重保险，聂云对这几个没啥节操的海盗头子也能放心些了。</p>
+<p class = "firstLineIndent">顺带的，也能再搜集一波传奇机甲的设计经验。</p>
+<p class = "firstLineIndent">“咳！当然了，增强各位传奇机甲的实力，除了是对各位的鼎力支持表示感谢之外，另外也是希望大家能够齐心协力，拔出碎星星域最后的一颗毒瘤！”</p>
+<p class = "firstLineIndent">众人神色一动，自然听明白聂云所指的毒瘤是谁。</p>
+<p class = "firstLineIndent">二皇子的秘密势力已经一个个被聂云所灭，星域内苟延残喘的也就仅剩一个暗神殿了。</p>
+<p class = "firstLineIndent">如今幽灵海盗团的雪球已经滚了起来，黑帆之后，暗神殿无疑就是最后的障碍，拔除了这颗钉子，聂云就能将碎星星域彻底掌控在手中。</p>
+<p class = "firstLineIndent">弗林特思索片刻，也终于明白为什么聂云要将他们召集到一起了。</p>
+<p class = "firstLineIndent">因为唯有传奇，能够对付传奇！</p>
+<p class = "firstLineIndent">以他们的实力想对付暗神殿，结局只会是碾压，但是暗影这台传奇机甲却有些特殊。</p>
+<p class = "firstLineIndent">作为刺客类型的传奇，想要击败它不难，难的是怎么留下他。</p>
+<p class = "firstLineIndent">对方打不过，隐身起来远遁千里，到时候他们可就要日日夜夜面对一个神出鬼没的暗杀者了。</p>
+<p class = "firstLineIndent">这事儿可不是危言耸听，多年前的暗神殿，就是靠着暗影神出鬼没的刺杀，生生的将敌方高层清洗了七七八八，这才登上了七大海盗的宝座。</p>
+<p class = "firstLineIndent">即便单独一个暗影面对整个海盗联盟翻不起多大的浪花，可千日做贼，也没有千日防贼的道理。</p>
+<p class = "firstLineIndent">更何况，聂云可是已经盯上了暗影号搭载的隐身技术。</p>
+<p class = "firstLineIndent">据他所知，这种特殊的隐身技术就连伍尔夫帝国内部都是极为罕见，绝对的高精尖，而且具有极高的战略价值！</p>
+<p class = "firstLineIndent">如今聂云搜罗的各种技术中，有充满暴力美学的界王炮，有防御极致的晶化护盾，有漂移神器矢量引擎，“力”“体”“敏”全都不缺，缺少的就是类似“全频段隐身”这样的辅助技能！</p>
+<p class = "firstLineIndent">“隐身”的重要性不用多说，那就是4代机和5代机的分水岭，足以形成不对称的科技优势！</p>
+<p class = "firstLineIndent">f22打f16，1:144的战损比可不是空穴来风。</p>
+<p class = "firstLineIndent">因此在聂云眼中，暗影号论研究价值，甚至比其余所有传奇加起来都要高出一筹。</p>
+<p class = "firstLineIndent">他猜测，这很可能也是皇室的秘传技术，底牌之一！</p>
+<p class = "firstLineIndent">随着中央集权的削弱，伍尔夫帝国皇室对高精尖技术已经越发敝帚自珍，以期面对割据势力形成一定的科技优势，这并不奇怪。</p>
+<p class = "firstLineIndent">正因为暗影号的隐形价值和难缠程度，聂云才需要集结手头现有的所有传奇机甲，凑齐战法牧，准备组团“刷boss”！</p>
+<p class = "firstLineIndent">目标……就是boss身上的“隐身类”稀有技能书！</p>
+<p class = "firstLineIndent">“各位，这是我为下一步行动拟定的计划，代号‘天黑请闭眼’……”</p>
+
+<h2>第六百九十八章 你看我说什么来着</h2>
+<p class = "firstLineIndent">碎星星域，暗神殿。</p>
+<p class = "firstLineIndent">这是一片建造在宇宙陨石之上的黑色宫殿群，由透明穹顶隔绝内外。</p>
+<p class = "firstLineIndent">宫殿群内金碧辉煌，一个巨大的广场坐落其中，广场中央有一座黑色神像。</p>
+<p class = "firstLineIndent">数十米高的神像通体由黑曜石打造，看不清面容，精心设计的灯光将它照耀的如同黑色水晶一般，透着一股幽冷神圣的味道。</p>
+<p class = "firstLineIndent">神像四周，密密麻麻的信徒正虔诚的低声祷告，如果不是外间飘扬的海盗旗，谁都不会想到这竟是一个海盗窝。</p>
+<p class = "firstLineIndent">此时，一处隐秘的宫殿内。</p>
+<p class = "firstLineIndent">“真没想到，区区一个幽灵海盗团，居然就搞得我们如此狼狈，这个万物归一会的实力真是不可小视。”</p>
+<p class = "firstLineIndent">身穿金纹黑袍，戴着金属面具的暗影听完这两天所有的情报，不由叹道。</p>
+<p class = "firstLineIndent">想想当时在竞技场与幽灵船长的那次会面，这才过去多久，那个根本没被自己放在眼里的小海盗团俨然已经成长为碎星星域举足轻重的力量，还给自己带来这么大的麻烦。</p>
+<p class = "firstLineIndent">早知如此，当时自己就该下场，直接干掉这个不稳定因素</p>
+<p class = "firstLineIndent">“是的大人，不论是在情报、战术乃至战略方面，这一次我都是输的心服口服，万物归一会绝对是个劲敌”暗影对面，克洛罗斯的虚拟影像开口道。</p>
+<p class = "firstLineIndent">令人惊讶的是，面对暗影，克洛罗斯居然是一副下属自居的模样，二人地位高下立判。</p>
+<p class = "firstLineIndent">“只可惜，我们不论怎么动用情报力量调查，都找不到帝国内部关于这个组织的蛛丝马迹。</p>
+<p class = "firstLineIndent">初步判断，若非他们是刚刚成立不久，就是隐藏太深。</p>
+<p class = "firstLineIndent">如果不是那件秘宝太过重要，恐怕他们也不会这么快浮出水面。”克洛罗斯分析道。</p>
+<p class = "firstLineIndent">“嗯从对方竟然能够仅凭一艘战舰就击败卡隆，而且还有能力反过来控制利维坦，恐怕对方的科技实力也绝不在我方之下</p>
+<p class = "firstLineIndent">不过既然敢对我们伸爪子，自然得把爪子留下”暗影冷笑一声。</p>
+<p class = "firstLineIndent">虽然在碎星星域的实力大损，就连暗神殿都不得不龟缩在自己的基地不敢妄动。</p>
+<p class = "firstLineIndent">不过以他们的庞大势力，从附近星域拉过来些援军，灭掉一个幽灵海盗团依旧不是什么难事。</p>
+<p class = "firstLineIndent">对他而言，要调集足够的外部力量介入碎星星域，需要的只不过是一点时间而已。</p>
+<p class = "firstLineIndent">重要的是，那两个人必须死秘宝也必须抢回来</p>
+<p class = "firstLineIndent">“大人还请放心，他们得意不了多久，幻术师已经成功潜入，如果一切顺利，相信很快就会有好消息传来。”</p>
+<p class = "firstLineIndent">听到“幻术师”几个字，暗影笑着点了点头，“嗯你的行动策划能力我自然是放心的，对了，洛克财团那边现在状况如何”</p>
+<p class = "firstLineIndent">克洛罗斯闻言，有些尴尬的咳嗽了一声。</p>
+<p class = "firstLineIndent">“咳情况不是很好，目前我正率领舰队清缴前来捡便宜的小股海盗，金洛克那家伙对此次计划失利大为光火，现在正在向我施压”</p>
+<p class = "firstLineIndent">洛克财团这次损失惨重，前后连番战斗下来，舰队损失过半，又遭到海盗们轮番刷副本，沦陷区工业设施被抢掠破坏，财富大量缩水，股价更是一片惨绿。</p>
+<p class = "firstLineIndent">就连因为滞留境内被抢的商队和公司，都纷纷要求洛克财团赔偿损失，重点是金洛克想要和他们继续做生意，还不能不赔</p>
+<p class = "firstLineIndent">财团旗下的财产保险公司已经倾家荡产，赔的几乎只剩下了一个空壳子。</p>
+<p class = "firstLineIndent">洛克财团经此一役，生生从帝国的三流势力，瞬间被打成了不入流。</p>
+<p class = "firstLineIndent">保守估计，想要彻底恢复，没个十几年时间是别指望了。</p>
+<p class = "firstLineIndent">遭受如此重大的损失，金洛克没有当场毙了克洛罗斯，都已经是算他克制了，可想而知克洛罗斯如今的处境。</p>
+<p class = "firstLineIndent">“嗯你的身份毕竟不能摆到明面上，金洛克那家伙还是有些用处的，必须先稳住他。</p>
+<p class = "firstLineIndent">我会尽快调拨一笔资金注入洛克财团，战舰和各种武器装备也会从其它星域尽快支援过来，帮助你快速恢复实力。”</p>
+<p class = "firstLineIndent">“多谢大人”克洛罗斯松了口气。</p>
+<p class = "firstLineIndent">虽然原定的碎星攻略被聂云搞得损兵折将，直接胎死腹中，不过这点损失他们还不看在眼里。</p>
+<p class = "firstLineIndent">既然力量不够，那就调集更多的力量再来一次一力降十会这就是大势力的底气。</p>
+<p class = "firstLineIndent">“嗯算算时间，再过不久就该是我前往朝圣的日子了，你尽快恢复实力、完善计划，等我归来之日，便是幽灵海盗团覆灭之时”</p>
+<p class = "firstLineIndent">听到“朝圣”两字，克洛罗斯神色越发恭谨。“是大人”</p>
+<p class = "firstLineIndent">不过旋即他似乎又想到了什么，出言提醒道，“大人，洛克财团有后方的支持，自然是自保无虞，但短时间内恐怕也调动不了多少兵力策应大人您，若是”</p>
+<p class = "firstLineIndent">“若是什么你担心他们会趁着我们的虚弱期联合起来先对付我”</p>
+<p class = "firstLineIndent">暗影立刻明白克洛罗斯的意思，不过他却是哈哈一笑。</p>
+<p class = "firstLineIndent">“哈哈弗林特那帮人什么心思，我再清楚不过了，如今幽灵海盗团声望大涨，还收编了一部分卡隆旧部，又与赤龙和龙骑兵关系暧昧，隐隐有碎星星域第一大势力的征兆。</p>
+<p class = "firstLineIndent">弗林特只要不傻，就知道如今的碎星星域不能没有我</p>
+<p class = "firstLineIndent">他们要真有攻打我的心思，弗林特绝对是第一个站出来反对的，我还巴不得他们因此自己斗起来。”</p>
+<p class = "firstLineIndent">暗影语带讥讽，显然很看不上这些只知道在这一亩三分地勾心斗角的海盗头子们。</p>
+<p class = "firstLineIndent">克洛罗斯刚想再说些什么，可就在这时，暗影的一名心腹突然快步走了进来，一脸的喜色。</p>
+<p class = "firstLineIndent">“神使大人，好消息前不久刚刚收到的消息，说是几大海盗团在碎星星域外突然起了冲突，似乎正在对峙，就差打起来了”</p>
+<p class = "firstLineIndent">暗影和克洛罗斯同时一愣。</p>
+<p class = "firstLineIndent">这帮海盗们都到家门口了，不赶紧回去消化劫掠所得，怎么还对上了</p>
+<p class = "firstLineIndent">难道是有人眼红别家的战利品，想黑吃黑</p>
+<p class = "firstLineIndent">“呵你看我说什么来着”暗影反应过来后露出一脸不屑的冷笑。</p>
+<p class = "firstLineIndent">而就在这时，另一名心腹又满头大汗的小跑了进来，却是神色惶恐。</p>
+<p class = "firstLineIndent">“神使大人，不好不好了六大海盗团的舰队杀过来了”</p>
+<p class = "firstLineIndent">暗影：“”</p>
+<p class = "firstLineIndent">克洛罗斯：“”</p>
+<p class = "firstLineIndent">现场气氛顿时有些尴尬。</p>
+<p class = "firstLineIndent">刚刚才一顿有理有据猛如虎的分析加鄙视，下一秒就被现实啪啪打脸。</p>
+
+<h2>第六百九十九章 滚</h2>
+<p class = "firstLineIndent">“怎么回事？什么叫六大海盗杀过来了？”暗影一把揪住那名心腹的衣领。</p>
+<p class = "firstLineIndent">“属属下也不知道，我们才刚刚收到他们在碎星星域外爆发冲突正在对峙的消息，可后来不知道其中发生了什么，他们竟突然毫无征兆的集体行动，而且一进入碎星星域就齐齐朝着我们基地冲来了！</p>
+<p class = "firstLineIndent">神使大人，来者不善，我们需要早做准备啊！”心腹满头大汗道。</p>
+<p class = "firstLineIndent">什么早做准备，你这分明是劝我赶紧溜才对！</p>
+<p class = "firstLineIndent">傻子都看得出来，六打一，他们可能有胜算吗？</p>
+<p class = "firstLineIndent">暗影丢开心腹的衣领，脸色惊疑不定。</p>
+<p class = "firstLineIndent">这一幕似曾相识啊</p>
+<p class = "firstLineIndent">上次就是双龙和黑帆阵营这么一对峙，转头二话不说，合起伙来就灭了金币。</p>
+<p class = "firstLineIndent">这次又是一个对峙，然后又合起伙来，难不成真轮到我了？</p>
+<p class = "firstLineIndent">可是这怎么可能？弗林特脑袋秀逗了也不会犯这么低级的战略错误吧？咱们现在可是自己人啊！</p>
+<p class = "firstLineIndent">“对方来了多少战舰？”暗影问道。</p>
+<p class = "firstLineIndent">“除了抽调一部分战舰运送战利品脱离，六大海盗的主力几乎都来了，加起来足有2500余艘。”</p>
+<p class = "firstLineIndent">闻言，暗影和克洛罗斯都是一惊。</p>
+<p class = "firstLineIndent">2500艘战舰扑面而来，那感觉真的是如同泰山压顶一般。</p>
+<p class = "firstLineIndent">这就是碎星海盗们联合起来的可怕威势！</p>
+<p class = "firstLineIndent">这还不算那些中小型的海盗势力，如果不是他们一盘散沙，绝对能分分钟超过洛克财团，成为周边霸主级的势力存在。</p>
+<p class = "firstLineIndent">二皇子不正是看中了这里的战争潜力，这才暗中发展势力吗？</p>
+<p class = "firstLineIndent">可没想到，这股力量还没为自己所用，就已经汹涌而来反噬自己了。</p>
+<p class = "firstLineIndent">“大人。不然的话我们先让暗神殿撤出碎星星域，等我这边实力恢复，我们的后续支援抵达之后，再与他们算这笔账？”克洛罗斯迅速判断局势，建议道。</p>
+<p class = "firstLineIndent">暗影犹豫片刻，还是摇了摇头。“不！暗神殿不能撤！”</p>
+<p class = "firstLineIndent">“如今碎星星域内我们的力量就只剩下暗神殿，暗神殿一撤，再无人掣肘万物归一会。</p>
+<p class = "firstLineIndent">如果让他们趁着这段时间在碎星星域继续膨胀扩张，打牢根基，我担心将来要面对的，恐怕就是一个铁板一块的碎星海盗了！</p>
+<p class = "firstLineIndent">到时候想要对付幽灵海盗团，可就不是调集一两千艘战舰过来就能办到的了”暗影无奈道。</p>
+<p class = "firstLineIndent">暗神殿目前最大的作用，无疑就是联合黑帆和狂人，一同压制幽灵海盗团的发育，等自己这边的队友克洛罗斯回满血，再拉上打野，最后开团战一波横推！</p>
+<p class = "firstLineIndent">可如果自己这个牵制没了，对方就可以放心的吃野怪其他海盗迅猛发育，到时候人家一身神装，兵强马壮，想反杀的难度可就突破天际了。</p>
+<p class = "firstLineIndent">碎星星域就好比北方的游牧民族，平时部族林立，互相倾轧，可要是真的被人组织起来，全民皆兵之下，凑出来二三十万铁骑就问你怕不怕？</p>
+<p class = "firstLineIndent">二皇子一系倒不是说解决不了一个碎星海盗，可想要消灭这样一股不弱的势力，肯定就不止是小打小闹了。</p>
+<p class = "firstLineIndent">洛克财团得上，几个暗中发展的隐藏力量也得上，说不定还得动用官面上的力量拉军队过来帮忙。</p>
+<p class = "firstLineIndent">这样一来，动静绝对小不了，这就必然会被其余的势力察觉端倪。</p>
+<p class = "firstLineIndent">二皇子的人这么大动干戈是想干嘛？</p>
+<p class = "firstLineIndent">小妾被海盗抢了？碎星星域内有宝？还是准备明着将这群海盗收编成自己的班底？</p>
+<p class = "firstLineIndent">到时候三人成虎，各个脑洞大开，必然引来各大势力关注，说不定还会有政敌从中作梗插手这里的局势给自己添堵，那这里的“小麻烦”说不定就会变成“大麻烦”。</p>
+<p class = "firstLineIndent">更何况，此时一撤，暗神殿这枚棋子基本就算是废了。</p>
+<p class = "firstLineIndent">先不说对方毫无征兆的突袭，自己就算想撤，好不容易建立起来的基业和大量的信徒根本无法在短时间内全都转移。</p>
+<p class = "firstLineIndent">如果对方继续围追堵截，即便舰队能逃出碎星星域，实力只怕也是十不存一。</p>
+<p class = "firstLineIndent">这么点兵力，就算和洛克财团合兵一处又有多大作用？</p>
+<p class = "firstLineIndent">那还不如赌一把，留下来同弗林特等人道明厉害，动之以情晓之以理，说不定还能扭转乾坤。</p>
+<p class = "firstLineIndent">“可是”克洛罗斯欲言又止，还想再劝。</p>
+<p class = "firstLineIndent">他自然也明白暗神殿钉在碎星星域的重要性，可万一乾坤没扭转，还把自己给搭进去了呢？</p>
+<p class = "firstLineIndent">对万物归一会，他如今很是忌惮。</p>
+<p class = "firstLineIndent">“放心，即便打不过，有暗影号，对方也留不下我！哪怕暗神殿没了，有我在，他们也别想好过！”</p>
+<p class = "firstLineIndent">这是身为顶级暗杀者的自信！</p>
+<p class = "firstLineIndent">“而且我还是坚信自己的判断，对面绝不可能是一条心，至少弗林特就不是轻易会俯首称臣的人，对方能够说服这么多海盗团一起对付我，无非是许诺重利。</p>
+<p class = "firstLineIndent">对方可以，我们也可以！”</p>
+<p class = "firstLineIndent">不就是比谁给的好处多吗？</p>
+<p class = "firstLineIndent">金钱？美女？哪怕你想封爵，也不是不能商量！</p>
+<p class = "firstLineIndent">上头有人，就是这么任性！</p>
+<p class = "firstLineIndent">在暗影的坚持下，暗神殿最终还是没有趁着最后的窗口期逃离碎星星域，而是选择了整军备战</p>
+<p class = "firstLineIndent">由卡隆兽打头阵充当先锋，庞大的舰队一路摧枯拉朽般的推进。</p>
+<p class = "firstLineIndent">暗神殿的外围警戒线、前沿岗哨、各种陷阱、浮游防御设施，根本没有起到什么作用就被庞大的军势彻底碾碎，留下一堆堆的太空垃圾。</p>
+<p class = "firstLineIndent">六大海盗团的舰队很快就将暗神殿的基地彻底围成了铁桶。</p>
+<p class = "firstLineIndent">哪怕是暗神殿内的一众信徒们自带信仰狂热，可面对这种几乎无法抵挡的庞大舰队，他们的士气也不免受到了打击。</p>
+<p class = "firstLineIndent">眼见这支庞大舰队就要进入暗神殿的攻击范围，暗影的声音突然出现在公共频道。</p>
+<p class = "firstLineIndent">“各位！我暗神殿到底哪里得罪了这么多人，值得你们如此群起而攻之？如果我暗神殿真的有什么做的不对的地方，各位尽可以指出来，我必定会给出让各位满意的赔偿！”</p>
+<p class = "firstLineIndent">以暗影的地位，这无疑是相当低姿态的开场白。</p>
+<p class = "firstLineIndent">然而过了许久，没有任何一个人回复，舰队依旧在朝着暗神殿逼近。</p>
+<p class = "firstLineIndent">暗影皱了皱眉。</p>
+<p class = "firstLineIndent">“各位，幽灵船长给了你什么好处，我都愿意出双倍！”</p>
+<p class = "firstLineIndent">话都说的这么明显了，你们还不出来提条件？私下密我也可以的！</p>
+<p class = "firstLineIndent">然而又过了许久依旧没人鸟他，现场不免因为冷场有些尴尬</p>
+<p class = "firstLineIndent">暗影憋在心里的一肚子腹稿说不出去，差点憋出内伤。</p>
+<p class = "firstLineIndent">喂喂！两军交战，阵前嘴炮，你们到底懂不懂规矩？</p>
+<p class = "firstLineIndent">大家好歹同行一场，你死我活之前见个面聊两句的面子都不给？</p>
+<p class = "firstLineIndent">“赤龙、弥赛亚、狂人、弗林特，你们这是打算正式投靠幽灵海盗团，一辈子给幽灵船长当马仔了吗？”</p>
+<p class = "firstLineIndent">一计不成，暗影改用激将法。</p>
+<p class = "firstLineIndent">“哼！”频道内传来一声冷哼。</p>
+<p class = "firstLineIndent">终于有反应了，暗影心中一松，总算是不用说单口相声了。</p>
+<p class = "firstLineIndent">“如果你背后的那位肯放我们一马，老子立刻退出！”</p>
+<p class = "firstLineIndent">这是赤龙的声音，暗影直接忽略。</p>
+<p class = "firstLineIndent">在二皇子眼中，赤龙和弥赛亚是必须死的人，这一点大家都清楚，承诺放对方一马？那可就太侮辱大家智商了。</p>
+<p class = "firstLineIndent">赤龙、弥赛亚劝退失败！</p>
+<p class = "firstLineIndent">“狂人，我知道你的特殊体质，我这里有副作用更小，效果更强的新型绝境药剂，哪怕一天喝上两瓶都没有问题，绝对能让你的实力更上一层楼！”暗影将目标转向狂人。</p>
+<p class = "firstLineIndent">“呵！留着你自己用吧！”狂人终于开口，言简意赅。</p>
+<p class = "firstLineIndent">他不屑的撇撇嘴。</p>
+<p class = "firstLineIndent">老子身体都快崩了，还一天两瓶？嫌我死的不够快是吗？</p>
+<p class = "firstLineIndent">暗影一愣，没想到对方拒绝的这么干脆，听语气还有些嫌弃？几个情况？</p>
+<p class = "firstLineIndent">不过没关系，狂人可还欠着弗林特的人情，买一送一，自己还有最后的机会！</p>
+<p class = "firstLineIndent">“弗林特团长，碎星星域太小，有没有兴趣前往中央星系发展？以阁下的能力，一个男爵的爵位绰绰有余！”</p>
+<p class = "firstLineIndent">与其当一个海盗，在自己的封地里一言九鼎，呼风唤雨它不香吗？</p>
+<p class = "firstLineIndent">男爵么</p>
+<p class = "firstLineIndent">弗林特眼中露出一丝向往要当官，杀人放火受招安！</p>
+<p class = "firstLineIndent">这可是弗林特曾经的梦想。</p>
+<p class = "firstLineIndent">伍尔夫帝国的爵位控制相当严格，哪怕只是一个男爵爵位，都可能需要几代甚至几十代人的努力。</p>
+<p class = "firstLineIndent">从一个海盗头子华丽转型贵族，这绝对是一步登天了。</p>
+<p class = "firstLineIndent">可惜</p>
+<p class = "firstLineIndent">看了看身后笑眯眯阴测测盯着自己的一整排海盗团长，弗林特只能深深吸了口气。</p>
+<p class = "firstLineIndent">“滚！”</p>
+
+
+
+
+<a href="680.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="700.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</br></br>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

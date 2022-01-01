@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第六百六十章 更何况还是个一尾</h2>
+<p class = "firstLineIndent">“吼！”愤怒的兽吼再次响起。</p>
+<p class = "firstLineIndent">“轰！”身后安装的8台大功率推进引擎喷射出长长的尾流，提供着澎湃的推力，怒不可遏的卡隆兽拖着庞大的身躯，如同一颗小型天体般朝着幽灵海盗团的方向冲去。</p>
+<p class = "firstLineIndent">与此同时，数以万计千奇百怪的兽形生物也从卡隆舰队的各艘飞船中蜂拥而出。</p>
+<p class = "firstLineIndent">圆的扁的，尖的方的，陆地生物、飞行生物，体型从几十公分到几十公里，眼前的画面简直就是人类所能想象到的所有外星生物的大百科图鉴。</p>
+<p class = "firstLineIndent">其中甚至还夹杂着一些克鲁苏风格的不可名状物体，看着异常渗人。</p>
+<p class = "firstLineIndent">这些长相丑陋，面目狰狞的兽形生命体，大部分都是采用人体改造技术做成的合成兽，而且身上或多或少都有机械化改造的痕迹。</p>
+<p class = "firstLineIndent">它们如同乳燕归巢一般，纷纷钻入卡隆兽庞大的身躯中，隐藏在密密麻麻的骨刺之下，跟随着这艘生化母舰冲锋陷阵！</p>
+<p class = "firstLineIndent">卡隆舰队则是尾随在卡隆兽身后，作为远程力量准备随时提供支援火力，组成了一个“马后炮”攻击阵型。</p>
+<p class = "firstLineIndent">这就是卡隆海盗团最常用的攻击套路。</p>
+<p class = "firstLineIndent">以卡隆兽为核心的生化军团，论战斗力不比普通的常规机甲部队来的差，论冲锋陷阵，则更具威胁性。</p>
+<p class = "firstLineIndent">“卡隆！等等！”暗影急忙出声阻止。</p>
+<p class = "firstLineIndent">虽说从刚刚短暂的交流中发现，弗林特似乎在有意甩锅幽灵船长，对方的联盟关系必然不会太牢固，甚至充满了裂痕和防备。</p>
+<p class = "firstLineIndent">但谁知道卡隆这一动，会不会直接演变为双方的大混战？</p>
+<p class = "firstLineIndent">撇开实际战斗力不论，聂云忽悠下临时组建的“灭金联盟”和他们的“兽人联军”相比，兵力上有着明显的优势，这个时候直接开战对他们而言十分不利。</p>
+<p class = "firstLineIndent">而幽灵船长一再的故意挑衅，更是让暗影觉得其中必有阴谋！</p>
+<p class = "firstLineIndent">然而已经被激怒的卡隆已经彻底不管不顾，对暗影的话充耳不闻。</p>
+<p class = "firstLineIndent">因为身体形态上的变化，心里已经扭曲的卡隆很是敏感，对于嘲笑自己的家伙从来都是见一个吃一个。</p>
+<p class = "firstLineIndent">第一次，居然有人将“濒危野生动物”这样充满了种族歧视的嘲笑安在了他的头上？</p>
+<p class = "firstLineIndent">玻璃心的卡隆兽表示，必须不死不休！</p>
+<p class = "firstLineIndent">暗影见状，只能暗骂一声，命令舰队从侧面掩护卡隆舰队，而暗影号也在一阵光影扭曲之后消失在众人的视野中。</p>
+<p class = "firstLineIndent">幽灵海盗团同时受到卡隆和暗神殿的针对，然而这还没完，侧后方突然一声大喝，冷不丁又杀出一骠人马！</p>
+<p class = "firstLineIndent">“幽灵船长！你赔我损失！”</p>
+<p class = "firstLineIndent">聂云愕然看去，只见一支五百余艘的海盗舰队，正排着有些杂乱的攻击阵型朝着他的方向冲来。</p>
+<p class = "firstLineIndent">“诶？我仇家……这么多的吗？”聂云自己都有些懵。</p>
+<p class = "firstLineIndent">他刚刚开的明明是单体嘲讽，怎么看效果像是变成了aoe了？</p>
+<p class = "firstLineIndent">“幽灵船长，交出我们的货物，赔偿我们的损失，否则今天这事儿绝对不能善了！”</p>
+<p class = "firstLineIndent">“各位！咱们这次不做则已，要干就干一票大的！凭什么他们吃肉，我们还得割肉喂给他们？瞧不起谁啊？小海盗也是有尊严的！”</p>
+<p class = "firstLineIndent">“说的不错，今天我们就要告诉所有人，咱们也不是能随便欺负的！打倒幽灵海盗团，还我血汗钱！”</p>
+<p class = "firstLineIndent">“对！打倒幽灵海盗团，还我血汗钱！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">听了半天，聂云总算是知道这群苦大仇深的家伙们究竟是来干嘛的了。</p>
+<p class = "firstLineIndent">原来竟是因为金币覆灭，遭受了巨大经济损失的海盗们临时组成了一个苦逼……呃不对，是苦主联盟。</p>
+<p class = "firstLineIndent">老牌的几个大海盗他们没有胆量去讨说法，此刻一见幽灵海盗团居然成了众矢之的，哪还有不落井下石的道理？</p>
+<p class = "firstLineIndent">毕竟这或许是他们追回损失的唯一机会。</p>
+<p class = "firstLineIndent">得！自己好不容易干掉了一个债主，结果又招来了一群？</p>
+<p class = "firstLineIndent">聂云顿时觉得有些心累。</p>
+<p class = "firstLineIndent">事实上，激怒卡隆兽的确是他有意为之。</p>
+<p class = "firstLineIndent">卡隆兽想要干掉自己这个罪魁祸首，聂云又何尝不想反杀？</p>
+<p class = "firstLineIndent">自己干掉金币的消息已经传开，已经将那个神秘的幕后势力得罪的死死的，和解的可能性极低。</p>
+<p class = "firstLineIndent">若是等到今天过后，暗神殿和卡隆联手来找自己的麻烦，以一敌二，那还真是有些不好对付。</p>
+<p class = "firstLineIndent">既然如此，一只爪子是剁，一双爪子不也是剁？</p>
+<p class = "firstLineIndent">留着他们，自己还得时刻提防着被人在背后捅上一刀，那还不如趁着“灭金联盟”还热乎的时候，直接先下手为强，灭了其中之一削弱那个幕后的神秘势力。</p>
+<p class = "firstLineIndent">至少现在还能有人分担火力不是？</p>
+<p class = "firstLineIndent">所以今天就算双方不想开战，聂云都得给他忽悠瘸了狠狠做过一场。</p>
+<p class = "firstLineIndent">不过这群乱入的“讨债联盟”却是不在他的计划之内……</p>
+<p class = "firstLineIndent">当然，聂云敢保证，这个讨债联盟里，肯定不乏一些见财起意，想要浑水摸鱼的家伙。</p>
+<p class = "firstLineIndent">金币海盗团的战利品，想想都知道是多么庞大的财富，别说是海盗了，良民看到了都得眼红下海。</p>
+<p class = "firstLineIndent">幽灵海盗团此刻看起来又是自顾不暇，不抢你抢谁？</p>
+<p class = "firstLineIndent">“大家都别怂，一起上！幽灵海盗团刚刚经历过一场大战，就算真的是他们灭掉了金币，但自身肯定也是损失惨重，这可是千载难逢的好机会！”</p>
+<p class = "firstLineIndent">“没错！别看他们战舰数量不少，可这么短的时间根本不可能完成对投降舰队的收服整编，满打满算，对方能作战的战舰也不会超过一百来艘，咱们能赢！”</p>
+<p class = "firstLineIndent">“弟兄们，以对方的超载水平根本就跑不掉，抓到一艘赚一艘，抓到两艘吃喝不愁啊！跟我冲！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“我说……你们应该不会袖手旁观吧？咱们灭金联盟可是说好了守望相助，同气连枝的啊！”聂云看向弗林特和弥赛亚几人。</p>
+<p class = "firstLineIndent">“不是我不想帮忙，实在是刚刚进攻基地的时候损失太大，现在还没缓过劲，爱莫能助啊！”弗林特说的无奈，可脸色那叫一个红光满面。</p>
+<p class = "firstLineIndent">刚刚坑我不是坑的很开心？还跟我扯什么四大区块？这回倒是想起我来了？</p>
+<p class = "firstLineIndent">还同气连枝？老子就是自挂东南枝，都不会和你同气连枝！</p>
+<p class = "firstLineIndent">“重伤未愈！”狂人的回答简洁明了。</p>
+<p class = "firstLineIndent">“放心！幽灵兄弟我挺你！”赤龙倒是很讲义气的站了出来。</p>
+<p class = "firstLineIndent">弥赛亚有些无奈，赶紧补充了一句，“对手有点多，我和赤龙顶多帮你对付一个方向的敌人。”</p>
+<p class = "firstLineIndent">“嗯，一个足够了！只要你们帮我对付暗神殿，其他的我自己可以搞定！”</p>
+<p class = "firstLineIndent">所有人都是一呆。你说啥？就你们海盗团这状态，还想单挑卡隆和讨债联盟？</p>
+<p class = "firstLineIndent">难不成先前让你捡了个漏干掉了金匕，还真就以为自己碎星无敌了？飘了吧？</p>
+<p class = "firstLineIndent">“不过，黑帆和狂人必须配合龙骑兵攻击暗神殿！”聂云这时提出一个条件。</p>
+<p class = "firstLineIndent">这两个海盗团可不能让他们闲着，否则关键时刻在背后捅自己一刀，那还真有点受不了。</p>
+<p class = "firstLineIndent">“‘灭金联盟’如今也才灭了一个金匕，不要忘记我们的最终目标是谁，和他相比，区区一个金币海盗团的财富又算得了什么？</p>
+<p class = "firstLineIndent">当然了，如果弗林特团长也就这么点眼界，那就当我们之前的协议作废，大不了我直接丢掉辎重跑路，以后金匕背后那位神秘人物想在碎星星域做点什么，我可就懒得管了。”</p>
+<p class = "firstLineIndent">聂云一副你们敢袖手旁观我就撂挑子不干的语气。</p>
+<p class = "firstLineIndent">弥赛亚和赤龙对视一眼，立刻道，“如果幽灵船长退出，那我们也退出。”</p>
+<p class = "firstLineIndent">并不是和幽灵船长的关系真有多铁，而是双龙其实比聂云更加忌惮金币身后的势力，自然是不希望这个脆弱的抵抗联盟就此散架。</p>
+<p class = "firstLineIndent">弗林特看了看一脸决绝的三人，顿时明白自己想要坐山观虎斗是不可能了。</p>
+<p class = "firstLineIndent">“哼！不用激我，你区区几百艘战舰都敢以一敌二，区区一个暗神殿，我还不放在眼里！”</p>
+<p class = "firstLineIndent">“我伤势虽重，指挥倒是并无大碍。”</p>
+<p class = "firstLineIndent">聂云顿时笑了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“老板！距离接敌还有十分钟，您打算怎么对付两个方向上的敌人？”代号皱眉问道。</p>
+<p class = "firstLineIndent">“很简单，你带领舰队对付讨债联盟，卡隆兽这边我来！”</p>
+<p class = "firstLineIndent">“呃……可对方是濒危野生动物？很珍贵的说！科研所那边的几个生物学家已经打了好几份研究申请过来……”</p>
+<p class = "firstLineIndent">代号对聂云能否对付卡隆兽似乎完全没有丝毫担心，关注点反而在一些奇奇怪怪的方面上。</p>
+<p class = "firstLineIndent">“放心，在大师级训练家的手中，任何的神奇宝贝都只有被收服一条路！”聂云自信一笑。</p>
+<p class = "firstLineIndent">“真以为体型大就无敌了？呵呵！今天就给你上一课，没开二档的人柱力都是垃圾！更何况还是个一尾！”</p>
+<p class = "firstLineIndent">代号：“呃……”</p>
+<p class = "firstLineIndent">超级母舰 lt;/pgt;</p>
+
+<h2>第六百六十一章 谈判专家</h2>
+<p class = "firstLineIndent">“什么？！”暗影神情错愕。</p>
+<p class = "firstLineIndent">黑帆、狂人、龙骑兵、赤龙的舰队仿佛约好了一般，呼啦啦全往自己这个方向冲来，一副准备群殴的架势。</p>
+<p class = "firstLineIndent">喂喂！被围攻的好像是幽灵海盗团吧？放下他不管真的没关系？</p>
+<p class = "firstLineIndent">难不成这是准备和己方兑子？想用幽灵海盗团兑掉自己？</p>
+<p class = "firstLineIndent">虽然想过卡隆的鲁莽会招来对方的反击，可暗影从没想过莫名其妙的自己就成了对方的主要报复对象。</p>
+<p class = "firstLineIndent">“卡隆！回来，这很可能是对方的陷阱！”暗影急忙再次联系上卡隆兽。</p>
+<p class = "firstLineIndent">“我要先干掉幽灵船长，不需要多少时间！”</p>
+<p class = "firstLineIndent">不得不说聂云拉仇恨的能力一流，卡隆兽干掉幽灵船长的决心异常坚定。</p>
+<p class = "firstLineIndent">“狗屎！”暗影暗骂一声，立刻下令舰队转向避开正面，与弗林特等人的舰队展开周旋。</p>
+<p class = "firstLineIndent">以一敌四，暗影即便对自己的实力再自信，也不认为会有胜算。</p>
+<p class = "firstLineIndent">而幽灵海盗团一边，却是做出了让所有人错愕的举动。</p>
+<p class = "firstLineIndent">只见幽灵舰队迎头驶向讨债联盟，原地却只留下了一艘孤零零的旗舰。</p>
+<p class = "firstLineIndent">独自面对汹涌而来的卡隆兽和生化军团，这艘幽灵海盗团的旗舰在旁观众人眼中是那么的孤单无助，充满了孤胆英雄式的悲壮。</p>
+<p class = "firstLineIndent">“对方想干嘛？留下一艘旗舰送死？”所有人心中都冒起一连串的问号。</p>
+<p class = "firstLineIndent">难不成是为了平息卡隆兽的怒火故意为之？</p>
+<p class = "firstLineIndent">这样的举动让人捉摸不透，却成功戳到了卡隆和讨债联盟的G点。</p>
+<p class = "firstLineIndent">卡隆兽看到了轻松解决幽灵船长的机会，而讨债联盟则看到了那满载的货物！</p>
+<p class = "firstLineIndent">“呃幽灵船长这是使得什么昏招？”</p>
+<p class = "firstLineIndent">“你懂什么，这招叫投其所好！一般人使不出来，没看到所有人都被震住了吗？”</p>
+<p class = "firstLineIndent">“哈哈哈”</p>
+<p class = "firstLineIndent">讨债联盟中，传来一阵阵的嘲笑。</p>
+<p class = "firstLineIndent">在他们眼中，那迎面驶来的不是敌人，而是一艘艘满载着财富的飞船在投怀送抱。</p>
+<p class = "firstLineIndent">“阵型松散，相互之间毫无配合，战舰数量不超过两成，大部分顶多算是商船改装来的炮艇。</p>
+<p class = "firstLineIndent">也就是机甲数量多些，不过看上去也都是些杂鱼，呼啦啦的一群连基本的蛇皮走位都显得那么不专业</p>
+<p class = "firstLineIndent">我说，这个高难度副本的对手似乎出乎意料的弱啊！”</p>
+<p class = "firstLineIndent">“无量舰派”的某位舰长在指挥频道中吐槽道。</p>
+<p class = "firstLineIndent">“你能指望一群海盗的战术素养有多高？副本介绍里都详细说明了，碎星星域也就七大海盗算是正规些的武装集团，剩下的连背景介绍都是春秋笔法。</p>
+<p class = "firstLineIndent">这些原本只是个背景板的龙套能争取到出场机会，已经是编剧给友情加戏了好么！”</p>
+<p class = "firstLineIndent">“呃，被你这么一说，突然觉得他们很可怜”</p>
+<p class = "firstLineIndent">“其实这场战斗难度也是有的，只不过最难对付的卡隆军团被船长大人揽过去了而已。”</p>
+<p class = "firstLineIndent">“没错，是我们实力太弱，还得船长大人亲自出手，我感觉十分羞愧！不过主要原因还是战舰不够多！”</p>
+<p class = "firstLineIndent">“嗯！楼上的弟兄透过现象看出了本质，无量舰派没有舰，如同巧妇没有米啊！”</p>
+<p class = "firstLineIndent">“教义宣传先等等，你们谁知道武斗派的那些家伙们去哪儿了？”</p>
+<p class = "firstLineIndent">“对啊！我记得那帮家伙剩下好几百吧？这些家伙平时跳的最欢，怎么今天这么安静？”</p>
+<p class = "firstLineIndent">“我知道我知道！听说他们似乎是发现了一个什么重要的NPC，如今正扎堆在那儿刷好感度呢。”</p>
+<p class = "firstLineIndent">“呃这些家伙，难不成还真当这是游戏啊？”</p>
+<p class = "firstLineIndent">“嘘科学家们都说了，默认这是个游戏，可以极大减轻玩家对战争的心里排斥和应激性创伤。</p>
+<p class = "firstLineIndent">所以看破不说破，这是明战线玩家的基本素质！今年最热畅销书玩家的自我修养你没读过啊？”</p>
+<p class = "firstLineIndent">“呃！对不起对不起，刚刚自我催眠失效了，我立刻补一个，我是一个玩家，我是一个玩家”</p>
+<p class = "firstLineIndent">“咳咳！行了，言归正传，就在刚才，智脑已经将战役指挥权下放给我们了，怎么着，这场仗咱们怎么打？”</p>
+<p class = "firstLineIndent">所有人立刻收起所有的斗图表情，语气也严肃了起来。</p>
+<p class = "firstLineIndent">“根据我775场PVP舰队模拟战A级评价的经验来看，对付这种一盘散沙的敌人，只要瞅准了最弱的那个直接集火打崩，只要能击溃对方的心理防线，造成连锁反应，后面基本就属于垃圾时间！”</p>
+<p class = "firstLineIndent">“嗯！精辟！我803场附议。”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">“咳！小弟665场，向各位大佬提议，为了减小损失，咱们还可以试着暗中收买几个墙头草，里应外合，釜底抽薪！”</p>
+<p class = "firstLineIndent">“还能这么玩？！”众人惊愕。</p>
+<p class = "firstLineIndent">“咱战术课老师经常说的一句话就是，一切皆有可能！谁说玩星际争霸就不能用钞能力了？”</p>
+<p class = "firstLineIndent">“收买？665小兄弟这波操作很骚，不过钱从哪儿来？”</p>
+<p class = "firstLineIndent">“嘿嘿！小弟刚刚查看了一下我方的后勤物资，发现金钱一栏简直突破天际，于是就试着打了一份战术支持申请，然后智脑就批了5亿碎星点的战术实验经费。”</p>
+<p class = "firstLineIndent">“流弊！”</p>
+<p class = "firstLineIndent">“土豪出没！”</p>
+<p class = "firstLineIndent">“船长大人不差钱！”</p>
+<p class = "firstLineIndent">“唔拉拢分化，攻城攻心，还充分利用了我富敌贫的不对称优势，此计深得我兵家之精髓，665小兄弟后生可畏啊！”</p>
+<p class = "firstLineIndent">“我有预感，此战过后，小兄弟必定666！”</p>
+<p class = "firstLineIndent">“哈哈！前辈们过奖！”</p>
+<p class = "firstLineIndent">一阵头shang脑ye风hu暴chui之后，众人提出的战术方案迅速被位于地球魔都的后方指挥部和智脑审核通过，并正式进入执行阶段。</p>
+<p class = "firstLineIndent">各舵手开始调整舰队阵型，炮手开始调整射击诸元。</p>
+<p class = "firstLineIndent">与此同时，参谋部根据搜集过来的情报，开始物色策反对象</p>
+<p class = "firstLineIndent">讨债联盟舰队后方。</p>
+<p class = "firstLineIndent">红黄蓝三色涂装的旗舰扎堆凑在了一起。</p>
+<p class = "firstLineIndent">“我说，咱们真要趟这摊浑水？幽灵海盗团那可不好惹，我总觉得心里有些不踏实。”</p>
+<p class = "firstLineIndent">“事到如今，咱们还有得选吗？基地已经被龙骑兵给端了，本想跟着黑帆捞点好处的计划也泡汤了。</p>
+<p class = "firstLineIndent">如今我手下的弟兄们都特么已经在讨论分行李了！</p>
+<p class = "firstLineIndent">两位，咱们如今已经山穷水尽，要是再错过这次机会，咱们三个的海盗团都得立刻宣告破产解散！”</p>
+<p class = "firstLineIndent">“对！光脚的不怕穿鞋的，反正没活路了，不如拼一把！</p>
+<p class = "firstLineIndent">再说了，幽灵船长都脱离舰队了，传奇机甲都不在，咱们还怕什么？”</p>
+<p class = "firstLineIndent">“嗯！说的不错，不过安全起见，一会儿动起手来大家都往后靠些，咱们要的不多，抢到几艘货船就立刻撤！”</p>
+<p class = "firstLineIndent">没错，他们就是红黄蓝杯具组合。</p>
+<p class = "firstLineIndent">由于名字起得太醒目，龙骑兵一招杀鸡儆猴，最受伤的就属三人，什么好处没捞着，老巢还被人给剿了。</p>
+<p class = "firstLineIndent">他们如今走投无路，只能一咬牙一发狠，加入了讨债联盟，希望能够从幽灵海盗团身上分一杯羹，找回点损失。</p>
+<p class = "firstLineIndent">不过将这次的混战从头看到尾的三人心里也都明白，幽灵海盗团绝对不是好惹的等闲之辈。</p>
+<p class = "firstLineIndent">没看金匕这种大佬都被人家干掉了吗？</p>
+<p class = "firstLineIndent">要不你以为讨债联盟为什么就只有这么几百艘飞船？</p>
+<p class = "firstLineIndent">因为理智的都不会选择冒这个险，选择冒险的，除了利令智昏之辈，就只剩下他们这三个被逼上梁山的了</p>
+<p class = "firstLineIndent">心底里，三人对这次的冒险投机行动其实十分忐忑，然而形势所迫，他们根本没的选择。</p>
+<p class = "firstLineIndent">“滴滴滴”就在这时，三人的通讯器突然之间几乎同时响了起来。</p>
+<p class = "firstLineIndent">“喂！您好，我是幽灵海盗团的谈判专家”</p>
+
+<h2>第六百六十二章 没童年真可怕</h2>
+<p class = "firstLineIndent">就在幽灵海盗团的主力舰队前往对付讨债联盟之时，另一边，卡隆军团与孤胆战舰之间的距离也在飞速接近。</p>
+<p class = "firstLineIndent">“界王炮充能准备，第一发，3倍标准能量压缩率，试验射击！”聂云下令道。</p>
+<p class = "firstLineIndent">“嗡！”战舰主炮炮口大量光点汇聚，就连秘银炮身都在巨大能量的充斥下开始微微泛红。</p>
+<p class = "firstLineIndent">5s过后，一道明亮的白色光束携带着惊人的能量粒子射向军团核心的卡隆兽，目标正是卡隆的本体所在！</p>
+<p class = "firstLineIndent">场外一直密切关注这里的所有人全都吃了一惊。</p>
+<p class = "firstLineIndent">没想到率先发动攻击的，竟然是那艘看似就是在找死的幽灵海盗团旗舰。</p>
+<p class = "firstLineIndent">“警报！警报！侦测到7级高能武器攻击，预计抵达时间7s！”</p>
+<p class = "firstLineIndent">“什么？！”听到高能预警雷达发出的刺耳警报，卡隆眼睛顿时一缩。</p>
+<p class = "firstLineIndent">己方都还未进入射程，对方就开火了？而且能级竟然达到了夸张的7级？</p>
+<p class = "firstLineIndent">难不成这艘看似不大的旗舰上面装着一门要塞炮？</p>
+<p class = "firstLineIndent">虽然对幽灵海盗团这艘旗舰的火力强度有些惊愕，不过卡隆的反应速度一点都不慢。</p>
+<p class = "firstLineIndent">一层层厚度超过500公分，强度堪比超级合金的致密骨质甲壳如同鱼鳞一般纷纷竖立起来，在卡隆面前形成了一道道盾牌一般的屏障。</p>
+<p class = "firstLineIndent">不仅如此，卡隆身体周围的气孔中，开始涌出大量的红色液体。</p>
+<p class = "firstLineIndent">不过片刻，这种液体在低温下便迅速凝固，将卡隆的整个身体如同琥珀一般完全包裹起来。</p>
+<p class = "firstLineIndent">此时的利维坦，额前就仿佛镶嵌了一枚红色水晶。</p>
+<p class = "firstLineIndent">这就是卡隆兽面对攻击时的防御方式……正面硬抗！</p>
+<p class = "firstLineIndent">“轰！”几乎是在卡隆做好防御姿态的下一刻，聂云的主炮攻击便轰在了第一面甲壳上，防御力不输超合金装甲的骨质甲壳几乎是被瞬间融穿。</p>
+<p class = "firstLineIndent">然后是第二面、第三面……</p>
+<p class = "firstLineIndent">一路势如破竹，这道主炮光柱势不可挡的穿透了整整百多面厚达半米的超硬甲壳后，光芒虽然变得极为暗淡，但依旧坚定的轰在了红色的琥珀状晶体上！</p>
+<p class = "firstLineIndent">“嗤！”正面被击中的琥珀晶状体在高温下直接汽化。</p>
+<p class = "firstLineIndent">然而，能量光束进入晶体之后像是射入了一面万花筒，竟以一种匪夷所思的速度发生散射。</p>
+<p class = "firstLineIndent">大量涌入的能量被分流扩散，让整个琥珀晶状体都微微泛出红光。</p>
+<p class = "firstLineIndent">片刻之后，光束能量消散。</p>
+<p class = "firstLineIndent">卡隆看着近在咫尺，几乎被射透一半的红色晶状体，眼皮微微跳了跳。</p>
+<p class = "firstLineIndent">这攻击的能量等级的确是7级没错，可是绝对已经达到了7级巅峰，接近8级的程度！</p>
+<p class = "firstLineIndent">这么一艘小小的战舰，居然能够发出堪比大型要塞炮的强大火力？！</p>
+<p class = "firstLineIndent">“这就是你敢单独面对我的底气所在？”惊讶过后，卡隆冷笑一声。</p>
+<p class = "firstLineIndent">他承认刚刚这一击，若是自己大意之下，说不定还真有可能被对方得逞。</p>
+<p class = "firstLineIndent">不过论起防御力，哪怕是正面挨上几发要塞炮，卡隆都有信心保护自己的本体不伤分毫。</p>
+<p class = "firstLineIndent">下一刻，更多的骨质甲壳竖立起来，挡在了卡隆的面前。</p>
+<p class = "firstLineIndent">而卡隆周围则再次涌出红色液体，几乎片刻之间，就将被击穿的缺口重新填满。</p>
+<p class = "firstLineIndent">这就是利维坦的强悍所在，否则也不可能被当做稀有的合成兽搬进实验室。</p>
+<p class = "firstLineIndent">庞大无比的体型，的确让卡隆兽有着灵活性差，机动力不足的明显缺点。</p>
+<p class = "firstLineIndent">即便卡隆兽身上已经加装了数量不少的辅助推进装置，但是相对于庞大的体型和质量来说，它们所能的瞬间加速度，依旧无法与灵活的战舰相提并论。</p>
+<p class = "firstLineIndent">短短几秒钟的反应时间，根本不够质量庞大的卡隆兽完成哪怕十公分的有效规避动作。</p>
+<p class = "firstLineIndent">被攻击面超大，闪避超低，使得卡隆兽面对战场上光速攻击的应对方法只有一个，那就是正面硬抗！</p>
+<p class = "firstLineIndent">考虑到庞大的能量消耗，安装能够匹配如此巨大体型的能量护盾并不现实，但是卡隆兽本身的物理防御力和快速恢复能力，却能够弥补这些不足。</p>
+<p class = "firstLineIndent">坦克不需要跑的比飞机快，只需要装甲够硬，火力够猛，依旧可以成为战场的主力武器！</p>
+<p class = "firstLineIndent">“好强的防御力，居然能挡住我的三倍界王炮！”聂云脸上也微微露出一丝诧异。</p>
+<p class = "firstLineIndent">界王炮，这是聂云得到传奇机甲核心的科技之后，一次创新性的尝试。</p>
+<p class = "firstLineIndent">它的灵感来自弗林特的传奇机甲黑魔号。</p>
+<p class = "firstLineIndent">作为一款远程狙击机甲，黑魔号的技术亮点不在于强大的防御晶盾，而在于它的武器系统。</p>
+<p class = "firstLineIndent">能量的极致压缩能够形成晶化护盾，大大提高防御力，同样的也能形成威力极大的能量攻击武器。</p>
+<p class = "firstLineIndent">黑魔号那一发对聂云的幽灵号造成直接破甲效果的惊人狙击便是佐证。</p>
+<p class = "firstLineIndent">于是，聂云将传奇机甲核心的能量压缩技术，尝试着用到了战舰的火力系统上，于是便有了威力成倍上升的战舰主炮……界王炮！</p>
+<p class = "firstLineIndent">悟空“侵权了喂……”</p>
+<p class = "firstLineIndent">“不愧是被誉为星际堡垒的巨兽利维坦！”聂云眼中兴趣更浓。</p>
+<p class = "firstLineIndent">除了速度实在是惨不忍睹，这防御力普通舰队碰上根本无解，不过这样就更有捕捉的价值了。</p>
+<p class = "firstLineIndent">值得一提的是，与此刻经过改造，利用起机械动力的卡隆兽相比，纯天然无污染的利维坦，移动速度那是更加的惨不忍睹。</p>
+<p class = "firstLineIndent">野生的利维坦，在宇宙中的推进主要依靠的两种方式。</p>
+<p class = "firstLineIndent">第一种，是利用面积巨大的鱼鳍状器官当做“太阳帆”！</p>
+<p class = "firstLineIndent">通过类似风帆一般的原理，利维坦可以通过调整自己的鳍状器官角度，获得星系内的可观持续动力。</p>
+<p class = "firstLineIndent">成年的利维坦，一旦全部展开自己的鱼鳍，面积能够达到上亿平方公里，几乎是地球的陆地面积总和。</p>
+<p class = "firstLineIndent">据说伍尔夫帝国的探险团队，曾经拍下过数千头利维坦在星系内展鳍遨游的壮观画面，最终被录入帝国皇家博物馆成为珍藏。</p>
+<p class = "firstLineIndent">所以除了贪吃成性之外，这其实也是一群乘着太阳风“冲浪”的浪漫种族。</p>
+<p class = "firstLineIndent">不过眼前的卡隆兽由于考虑到实战需要，已经在改造过程中切除了这个低效的动力器官。</p>
+<p class = "firstLineIndent">而利维坦的第二种推进方式，则是尾部的消化残渣排泄口！</p>
+<p class = "firstLineIndent">没错，这是一种依靠“尾气排放”和“生理排毒”进行空间移动的神奇生物……</p>
+<p class = "firstLineIndent">依靠强大的肠胃蠕动，这些废弃残渣和气体会被高度压缩后高速喷出，在排出无用的食物残渣的同时，还能为自己可观的反向动能。</p>
+<p class = "firstLineIndent">据说利维坦以这种方式推进时，那动静可以用“真天崩地裂”来形容。</p>
+<p class = "firstLineIndent">靠的近了，“一个屁崩死你”绝对不是夸张的描述。</p>
+<p class = "firstLineIndent">这两种推动方式虽然原始，或许百公里的加速时间会以年来计算，但是对于寿命上不封顶的利维坦来说，也只不过是一次距离稍远的徒步旅行。</p>
+<p class = "firstLineIndent">令聂云有些遗憾的是，不知道是不是因为脸皮太薄，卡隆兽还从没用过这第二种推进方式，这让聂云的某种猎奇心理有些无处安放。</p>
+<p class = "firstLineIndent">撇开它的话题性不谈，事实上，这也是聂云对付卡隆兽的过程中一个极为关键的重要情报。</p>
+<p class = "firstLineIndent">别看这只是一个不起眼的细节，用得好的话，这个细节就能够成为聂云对卡隆兽进行“二段嘲讽”的有力武器。</p>
+<p class = "firstLineIndent">假如刚刚的“濒危珍稀野生动物”无法奏效，那聂云就准备以“体内多余气体在失重状态下的自然释放对自身运动状态造成的影响”为论点，与卡隆进行一番亲切而深入的探讨。</p>
+<p class = "firstLineIndent">很可惜，聂云准备的“终极嘲讽”最后没能用上。</p>
+<p class = "firstLineIndent">事实证明，卡隆兽的智力值似乎受到改造的影响有些偏低，对负面状态的抗性低的令人发指。</p>
+<p class = "firstLineIndent">最终的结果就是，敌人太弱，没能逼出聂云的底牌。</p>
+<p class = "firstLineIndent">或者说，正是因为敌人太弱，聂云才不得不放弃使用这个大杀招。</p>
+<p class = "firstLineIndent">如果当时真用出来，恐怕卡隆兽会跳过“仇恨恒定”阶段，直接进入“终极狂暴”状态，说不定还能获得战斗力翻倍的增幅？</p>
+<p class = "firstLineIndent">那岂不是搬起石头砸自己的jio？</p>
+<p class = "firstLineIndent">所以说，玻璃心真的伤不起啊……</p>
+<p class = "firstLineIndent">机械虫“……”）</p>
+<p class = "firstLineIndent">完全不知道自己躲过了一劫的卡隆兽此刻却还在对着聂云叫嚣。</p>
+<p class = "firstLineIndent">“不用垂死挣扎了，我可不是金匕那个白痴，斩首战术对我是无效的！</p>
+<p class = "firstLineIndent">幽灵船长，识相的现在投降，我还可以让你体面的被我吃进肚子，你觉得抹上番茄酱怎么样？哈哈哈！”</p>
+<p class = "firstLineIndent">聂云闻言不由撇了撇嘴。</p>
+<p class = "firstLineIndent">“没童年真可怕，所谓界王炮，那可是三倍起步的哟……”</p>
+<p class = "firstLineIndent">超级母舰 lt;/pgt;</p>
+
+<h2>第六百六十三章 我那么多遗憾那么多期盼你知道吗</h2>
+<p class = "firstLineIndent">“毫无新意！”当聂云的主炮炮口再次亮起光芒时，卡隆只是报以不屑的冷笑。</p>
+<p class = "firstLineIndent">我没有准备时你都无法破防，现在我已经有了准备，你这是打算给我挠痒痒？</p>
+<p class = "firstLineIndent">他很想喊一句，同样的招数，对卡隆兽是无效的！</p>
+<p class = "firstLineIndent">然而这句话憋在嘴里还没说出来，就已经被刺耳的警报声所打断。</p>
+<p class = "firstLineIndent">“警报！警报！侦测到8级高能武器攻击，预计抵达时间65s！”</p>
+<p class = "firstLineIndent">纳尼？！</p>
+<p class = "firstLineIndent">“轰！”当看到那道刺眼的光亮时，攻击已经临身。</p>
+<p class = "firstLineIndent">身前的防护骨盾瞬间被摧枯拉朽的击碎、蒸发，就连利维坦分泌的特殊吸能凝胶这一次也无法阻挡，被直接击穿！</p>
+<p class = "firstLineIndent">聂云的一发五倍界王炮，如同一柄锋利的手术刀，所过之处无坚不摧，原地只留下一道深深的沟壑，利维坦额前几乎瞬间便多出了一道丑陋的伤疤。</p>
+<p class = "firstLineIndent">等到惊愕中的卡隆海盗团反应过来时，卡隆兽身上的人形本体已经被彻底蒸发干净，只剩下些许血红色的絮状物，如同断了风筝的线，在星空中凌乱……</p>
+<p class = "firstLineIndent">“死……死了？！”所有密切关注这里的海盗首领们一个个全都是目瞪口呆。</p>
+<p class = "firstLineIndent">那个以一人之力就能对抗一支小型舰队的卡隆……就这么死了？</p>
+<p class = "firstLineIndent">这未免……太简单了点吧？</p>
+<p class = "firstLineIndent">这就好比勇冠三军的敌方主将刚刚出场，还没来得及说一句“谁敢与我一战”，然后……然后就被流矢射死了？</p>
+<p class = "firstLineIndent">不过很快，所有人就发现事情并没有这么简单。</p>
+<p class = "firstLineIndent">因为卡隆的合成兽军团并未有丝毫的慌乱，就连座下的利维坦也瞪着死鱼眼，不紧不慢的继续前进着，似乎完全没有受到刚刚那一击的影响。</p>
+<p class = "firstLineIndent">“哈哈哈！你以为，我真会傻到将自己的本体就这么毫不掩饰的摆在你的面前？”果然，卡隆讥讽的笑声再次出现。</p>
+<p class = "firstLineIndent">下一刻，利维坦脊背上却是突然冒出大量的血红色絮状物，一个令众人熟悉的身影缓缓从海藻一样飘舞的絮状物中缓缓升起。</p>
+<p class = "firstLineIndent">卡隆！竟然是一个一模一样的卡隆出现了！</p>
+<p class = "firstLineIndent">“实话告诉你，利维坦体内储存着我上百个的克隆体，分布在全身各处，而只有一个，才是我真正的本体。</p>
+<p class = "firstLineIndent">我说过，斩首战术……对我是不起作用的！”</p>
+<p class = "firstLineIndent">众人顿时倒吸一口凉气。</p>
+<p class = "firstLineIndent">没想到卡隆兽居然这么奸诈！</p>
+<p class = "firstLineIndent">在卡隆兽的合体实验中，利维坦唯一的要害‘脑核’已经被切除，然后由卡隆的本体经过改造，代替控制利维坦全身的神经系统。</p>
+<p class = "firstLineIndent">然而，有这么多克隆体的迷惑和掩护，想要在如此庞大的身躯中找到唯一的那个本体，几乎可以用大海捞针来形容。</p>
+<p class = "firstLineIndent">这意味着卡隆兽几乎已经没有要害这么一说。</p>
+<p class = "firstLineIndent">弗林特等人见到这一幕，也都是脸色凝重。</p>
+<p class = "firstLineIndent">他们也曾与卡隆过手，不过从未逼出过对方这一手底牌，如果不是今天幽灵船长一炮将卡隆的克隆体干掉……</p>
+<p class = "firstLineIndent">想象一下，当自己信心满满的以为找到卡隆的弱点一击毙命时，对方却告诉自己那只是个西贝货，然后闯入舰队一阵屠杀……</p>
+<p class = "firstLineIndent">还好！还好今天这张底牌被幽灵船长逼出来了。</p>
+<p class = "firstLineIndent">众人对卡隆兽战斗力进行重新评估的时候，同样对幽灵船长旗舰上的那门舰炮好奇不已。</p>
+<p class = "firstLineIndent">以对方战舰的体型来说，能安装一门高达7级的能量主炮已经相当惊人，没想到刚刚人家居然还没用上全力？</p>
+<p class = "firstLineIndent">刚刚这一击，威力绝对堪比大型主力旗舰的全力一击！妥妥的八级！</p>
+<p class = "firstLineIndent">难不成我们久未出碎星星域，机械族的舰炮科技已经如此惊人了？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“我讨厌去猜‘心脏长在左边还是右边’这种玄学问题……”聂云叹了口气，对此也有些无奈。</p>
+<p class = "firstLineIndent">现在还不是刺左边还是右边的问题，谁知道他会不会将自己藏在肚子里或者是胳肢窝？</p>
+<p class = "firstLineIndent">5倍界王炮的确十分犀利，可找不到要害，所能造成的伤口大小，差不多就是拿着一把倚天剑给山丘巨人来那么一下子。</p>
+<p class = "firstLineIndent">充其量也就算是给卡隆兽挠挠痒，添几道疤。</p>
+<p class = "firstLineIndent">不过……没办法击败敌人，肯定不是敌人太狡猾，别问，问就是舰炮口径不够大！</p>
+<p class = "firstLineIndent">“8倍界王炮准备！”</p>
+<p class = "firstLineIndent">“滋~”一道足足有刚刚两倍粗的能量射线再次出现在卡隆眼前。</p>
+<p class = "firstLineIndent">二号卡隆再次被人间蒸发，这回更加彻底，连同脊背上一层足有数十米的肌肉层都被削掉，绝对连一个细胞都剩不下来。</p>
+<p class = "firstLineIndent">然而，又一个卡隆从利维坦的腹部钻了出来。</p>
+<p class = "firstLineIndent">“已经和你说了吧，没用的……”还没等卡隆再放几句话。</p>
+<p class = "firstLineIndent">“10倍！”</p>
+<p class = "firstLineIndent">“滋~”卡隆又一次消失在众人眼中，连同着利维坦的腹部也被开了一个巨大的贯穿伤。</p>
+<p class = "firstLineIndent">虽然相对巨大的体型而言，这也只能算是轻伤，但这次的创口似乎是真正让卡隆兽感觉到了疼痛。</p>
+<p class = "firstLineIndent">“吼！”卡隆兽愤怒的嘶吼一声。</p>
+<p class = "firstLineIndent">他立刻再次加快了突进的速度，决定不给聂云更多的攻击机会。</p>
+<p class = "firstLineIndent">只要让他靠近，幽灵船长绝对难逃一死！</p>
+<p class = "firstLineIndent">聂云不断提升的武器能量等级已经让卡隆感到了些许致命的威胁。</p>
+<p class = "firstLineIndent">毕竟自己的要害只是隐藏的够深，并不是没有，瞎猫也有抓到死耗子的时候。</p>
+<p class = "firstLineIndent">万一对方欧皇，自己非酋了呢？</p>
+<p class = "firstLineIndent">然而，已经令他也有些恐惧的攻击几乎是每十秒一发，以一种令人费解的冷却速度不断地射来，而且能级还在不断突破新的高度！</p>
+<p class = "firstLineIndent">“12倍！”</p>
+<p class = "firstLineIndent">“15倍！”</p>
+<p class = "firstLineIndent">主炮的炮口几乎是在射出上一发攻击的同时就已经在为下一次攻击蓄能，并且威力还在不断提升着……</p>
+<p class = "firstLineIndent">不过短短两分钟的时间，利维坦身上已经有十多处受创，创口一个比一个深，以防御著称的卡隆兽，竟然被打的怒吼连连。</p>
+<p class = "firstLineIndent">哪怕是卡隆已经命令周围的合成兽挡在自己面前分担火力，然而根本于事无补。</p>
+<p class = "firstLineIndent">任何阻挡在死亡光束面前的，都会被汽化蒸发！</p>
+<p class = "firstLineIndent">卡隆兽已经不再放出克隆体试图引诱攻击，因为聂云已经开启了无差别射击模式。</p>
+<p class = "firstLineIndent">只要看着像能藏人，他就毫不犹豫来上一发。</p>
+<p class = "firstLineIndent">“吼！”就在这时，怒吼声中，最后一发15倍界王炮攻击竟然从利维坦额前一直贯穿至背部，开出了一个足有数百米宽的恐怖大洞。</p>
+<p class = "firstLineIndent">弗林特等人几乎是张大了嘴巴，目瞪口呆的看着这一幕。</p>
+<p class = "firstLineIndent">原本嚣张的不可一世的卡隆兽如今仿佛就是个靶子一样被一艘小型战舰吊打。</p>
+<p class = "firstLineIndent">他们心中除了惊骇，就只有数不清的疑惑。</p>
+<p class = "firstLineIndent">这就是传闻中和伍尔夫帝国打的难解难分的机械族？</p>
+<p class = "firstLineIndent">我们到今天居然还没灭族简直是个奇迹啊！</p>
+<p class = "firstLineIndent">要是千年前的战争中，对方的一艘小型战舰都有这种战斗力，那伍尔夫还会孤注一掷玩斩首？</p>
+<p class = "firstLineIndent">赶紧跪舔才是正经啊！</p>
+<p class = "firstLineIndent">不过聂云发动如此狂暴的攻击，也并非完全没有代价。</p>
+<p class = "firstLineIndent">随着能量压缩的倍数不断上涨，界王炮的炮身却是越来越红。</p>
+<p class = "firstLineIndent">就在16倍界王炮即将发射之时，炮身终于支撑不住汹涌的能量灌注！</p>
+<p class = "firstLineIndent">“轰！”在一声爆炸之后，聂云的旗舰前端顿时冒出了滚滚浓烟……</p>
+<p class = "firstLineIndent">“呃……毕竟不是进阶材料，看来基础版的秘银炮身，最多也就是15倍的器量了……”聂云看着战舰的额受损警报，有些失望。</p>
+<p class = "firstLineIndent">他相信，如果以艾瑞斯文明的进阶秘银科技，绝对能够打造出远超基础版承受能力的炮身材料。</p>
+<p class = "firstLineIndent">到时候界王炮能够发挥到什么程度？</p>
+<p class = "firstLineIndent">20倍？50倍？还是100倍？</p>
+<p class = "firstLineIndent">能不能一炮煮熟一头卡隆兽？</p>
+<p class = "firstLineIndent">聂云悠然神往……</p>
+<p class = "firstLineIndent">而界王炮发生爆炸的这一幕惊人意外，却是令心里已经有些发憷的卡隆兽欣喜若狂。</p>
+<p class = "firstLineIndent">“哈哈哈！幽灵船长，真是自作孽不可活！你还当你这舰炮不用冷却吗？如今没了舰炮，你还拿什么和我斗？”</p>
+<p class = "firstLineIndent">这就叫乐极生悲！</p>
+<p class = "firstLineIndent">战舰主炮都毁了，那些个副炮在卡隆兽眼中根本没有丝毫威胁性。</p>
+<p class = "firstLineIndent">换句话说，如今的幽灵船长完全就是案板上的鱼肉，任我宰割！</p>
+<p class = "firstLineIndent">“所有人都不许动手，老子要生吃了他！”卡隆兽狞笑着冲了上去。</p>
+<p class = "firstLineIndent">随着距离迅速拉近，卡隆兽眼中的猎物似乎慌乱的想要转身逃走。</p>
+<p class = "firstLineIndent">然而，此刻已经加速到一定初始速度的卡隆兽，在速度上却是要超过刚刚起步的对方一筹，两者距离依旧在迅速缩短。</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”看起来有些惊慌的幽灵旗舰使用几门副炮向卡隆兽发动攻击。</p>
+<p class = "firstLineIndent">然而这就像是徒劳的挣扎，让卡隆兽更加兴奋。</p>
+<p class = "firstLineIndent">“咔咔咔！”就在两者距离只有数万公里时，卡隆兽张开了那堪称恐怖的血盆巨口。</p>
+<p class = "firstLineIndent">一股吸力莫名出现，竟然令前方的幽灵旗舰速度一滞！</p>
+<p class = "firstLineIndent">定向力场！</p>
+<p class = "firstLineIndent">这是利维坦在宇宙中捕食陨石和天体的主要方式，对战舰也同样有效。</p>
+<p class = "firstLineIndent">黑洞一般深不见底的巨大口腔越长越大，也越来越近，可不论战舰如何加大引擎功率，却始终逃脱不了巨大力场的捕捉，速度越来越慢。</p>
+<p class = "firstLineIndent">“轰！”终于，口腔轰然闭合。</p>
+<p class = "firstLineIndent">而那艘在众人眼中已经创造了奇迹的幽灵旗舰，则彻底消失在所有人的视野当中……</p>
+<p class = "firstLineIndent">“就……就这么被吃了？！”所有人都是一脸难以接受的看着这一幕。</p>
+<p class = "firstLineIndent">虽然一开始他们就知道是这个结局，不过……早知道还是这个结局，你何必一副“我能反杀”的样子白白浪费我们的表情？</p>
+<p class = "firstLineIndent">帅不过三秒。</p>
+<p class = "firstLineIndent">我那么多遗憾那么多期盼你知道吗？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">遥远的比邻星域，正在充当“精神力天线”的长生者看到这一幕，顿时一股同情油然而生。</p>
+<p class = "firstLineIndent">这似曾相识的一幕，让它不由想起当年改变了自己命运的那一波“生死符”……</p>
+<p class = "firstLineIndent">该说不愧是终极吃货，都被合成了也改不了吃货的本性？这是铁了心要死在吃的路上？</p>
+<p class = "firstLineIndent">那玩意儿我避之唯恐不及，你居然主动吞进去了？</p>
+<p class = "firstLineIndent">究竟是谁给你的勇气？梁静茹？</p>
+
+<h2>第六百六十四章 超级电疗</h2>
+<p class = "firstLineIndent">“啪！”明亮的战舰探照灯照亮了一大片的区域，入眼却依旧是一片虚无。</p>
+<p class = "firstLineIndent">哪怕只是卡隆兽的口腔，也是一个深不见底的巨大空间。</p>
+<p class = "firstLineIndent">下一刻，巨大的吸力从深处传来，聂云连同秘银战舰就像是汪洋中的一叶扁舟，翻滚着被卷入一道幽深的隧道。</p>
+<p class = "firstLineIndent">“哇！这是在坐过山车吗？食道够长啊！不行，撞的我头有点晕”</p>
+<p class = "firstLineIndent">“物理粉碎挤压、粒子切割风道、滚筒式高频震荡不愧是吃货，消化手段不少嘛！”</p>
+<p class = "firstLineIndent">“咦！超高温熔岩胃袋？还带死亡大漩涡的？这个厉害！”</p>
+<p class = "firstLineIndent">某船长就像是进了大观园的聂姥姥，压根儿不管已经被各种手段折磨的面目全非，犹如一团废铁的飞船，一个劲儿的在那儿啧啧称奇。</p>
+<p class = "firstLineIndent">“咳！船长大人，提醒一下，再不从它的消化道系统出去的话，应该很快就会进入它的超高压肠腔。</p>
+<p class = "firstLineIndent">我们好不容易进来，可别到时候再被喷出去”</p>
+<p class = "firstLineIndent">“呃对不起有点玩上头了。”聂云总算是想起自己不是来观光的了。</p>
+<p class = "firstLineIndent">“诶！那里长得像是血液循环系统，变个钻头钻进去！”</p>
+<p class = "firstLineIndent">“我去！连血液都是强酸物质，怪不得这家伙生冷不忌，幸好咱们这艘船耐久条够长！”</p>
+<p class = "firstLineIndent">“这个红色的看样子是神经信号传导组织，我看看，咦？居然用的也是电信号？也是，这么大体型，要是用化学信号，放个屁估计都要好几个小时。</p>
+<p class = "firstLineIndent">不过我突然有了一个大胆的想法！”聂云嘴角露出一丝邪恶的微笑。</p>
+<p class = "firstLineIndent">不久后，聂云操控着不断恢复原状的飞船，顺着红色的絮状组织找到了一处神经元异常密集的神经节点。</p>
+<p class = "firstLineIndent">随后就见飞船缓缓伸出两支针头形状的机械臂。</p>
+<p class = "firstLineIndent">“哔哔”两支巨大的针头相互碰撞了一下，擦出一溜耀眼的电火花。</p>
+<p class = "firstLineIndent">“嘿嘿！看我秘技十万伏特！”</p>
+<p class = "firstLineIndent">两支针头，狠狠的插进了其中一簇神经元</p>
+<p class = "firstLineIndent">“哈哈哈！”卡隆兽狂笑着。</p>
+<p class = "firstLineIndent">虽然充其量只算是吃掉了一颗小糖豆，完全体会不到饱腹感，但是一口吃掉胆敢挑衅自己的幽灵船长，卡隆兽精神上却异常的满足。</p>
+<p class = "firstLineIndent">利维坦也不愧是宇宙级的战争生物。</p>
+<p class = "firstLineIndent">之前被界王炮轰出的伤口看似恐怖，但红中带黑的血液喷洒出来，却能够迅速凝固，很快就自行封闭了创口。</p>
+<p class = "firstLineIndent">四周的肌肉也在以肉眼可见的速度蠕动生长着，虽然短时间内无法将巨大的伤口彻底愈合，但对本身的战斗力却是影响不大。</p>
+<p class = "firstLineIndent">所有看到这一幕的众人都是心中发寒。</p>
+<p class = "firstLineIndent">这战争巨兽实在是太恐怖了，除非有大量要赛级的火力进行密集集火，否则根本不可能重创它。</p>
+<p class = "firstLineIndent">很快，吃掉了幽灵船长的卡隆兽就将目光转向了剩下的幽灵海盗舰队身上。</p>
+<p class = "firstLineIndent">暗影那边显然不是四个大海盗的对手，已经在且战且退，以自己的速度根本帮不上忙，倒不如先吃掉幽灵舰队这块大肥肉。</p>
+<p class = "firstLineIndent">事后就算不敌，他们也能带着大笔财富撤离，也不算白来一趟。</p>
+<p class = "firstLineIndent">然而，就在他想带着合成兽军团朝幽灵海盗舰队冲去时，身子突然一颤！</p>
+<p class = "firstLineIndent">“啪！”巨尾一扫，当即有几十只躲闪不及的合成兽被拍成了肉泥。</p>
+<p class = "firstLineIndent">卡隆：“嗯？？？”</p>
+<p class = "firstLineIndent">怎么我的身体</p>
+<p class = "firstLineIndent">紧接着身体又是一颤，“啪！”巨尾又是一扫，再次殃及池鱼。</p>
+<p class = "firstLineIndent">而接下来，所有人就都看到了一副不可思议的画面。</p>
+<p class = "firstLineIndent">摆尾、扭腰、蜷缩、绷直、浑身骨刺炸开</p>
+<p class = "firstLineIndent">卡隆兽就如同一条上了岸的鱼，不断以各种怪异的姿势扭动身躯，并伴有不规律的全身抽搐。</p>
+<p class = "firstLineIndent">“这干掉幽灵船长这么兴奋的吗？”所有人眼神怪异。</p>
+<p class = "firstLineIndent">卡隆脑袋都懵了。</p>
+<p class = "firstLineIndent">他的意识很清醒，但是身体却间断性的不受控制。</p>
+<p class = "firstLineIndent">这种感觉，就像是自己极力的想要冷静，却有人不停的用小锤锤敲打自己的膝盖下韧带。</p>
+<p class = "firstLineIndent">这种不停膝跳反射的感觉，让卡隆感受到了深深的无力和恐惧！</p>
+<p class = "firstLineIndent">“幽灵船长！他没死？这怎么可能？！”</p>
+<p class = "firstLineIndent">经过实验室的特别改造之后，自己的消化道系统是多么凶残，卡隆兽自己可是知道的一清二楚。</p>
+<p class = "firstLineIndent">物理的、化学的、高温的、强酸的</p>
+<p class = "firstLineIndent">在那种全方位的多重毁灭性打击之下，就算是实心的金属球，最后也得被磨成粉，更何况是一艘精密而脆弱的飞船？</p>
+<p class = "firstLineIndent">“呃”</p>
+<p class = "firstLineIndent">又是一阵羊癫疯一般的扑腾，卡隆兽疯狂的跳起了迪斯科。</p>
+<p class = "firstLineIndent">这下，依附聚集在卡隆兽身边的合成兽军团可到了大霉。</p>
+<p class = "firstLineIndent">就像是受了惊的大象脚下的蚁群，那种吨位和体量，哪怕是一个小动作，都可能造成大范围的踩踏事件。</p>
+<p class = "firstLineIndent">伤亡了数千之后，合成兽军团纷纷惊恐的逃离卡隆兽身边，那场面，就如同被捅了的马蜂窝。</p>
+<p class = "firstLineIndent">然后下一刻，更加令人震惊的画面出现了！</p>
+<p class = "firstLineIndent">“轰！”</p>
+<p class = "firstLineIndent">数万吨的碎片残渣泄洪一般喷射了出来，绵延数百公里，聚集在卡隆兽尾部的合成兽军团顿时遭到了灭顶之灾！</p>
+<p class = "firstLineIndent">高速喷射的金属和碎片，无差别的覆盖了整片区域，一时间血肉横飞。</p>
+<p class = "firstLineIndent">就连跟在卡隆兽身后的卡隆舰队，都遭到了波及，顿时一阵兵荒马乱。</p>
+<p class = "firstLineIndent">不知道是不是错觉，现场在这一刻，似乎安静了瞬间</p>
+<p class = "firstLineIndent">就连始作俑者的聂云，通过幽灵舰队的监控设备看到这一幕，也不由得目瞪口呆。</p>
+<p class = "firstLineIndent">自己似乎是电到了什么不得了的开关</p>
+<p class = "firstLineIndent">不过，场面真壮观啊</p>
+<p class = "firstLineIndent">“吼！”卡隆兽终于忍不住心中的羞愤，巨大的精神咆哮传遍整片战场。</p>
+<p class = "firstLineIndent">瞬间，周围上千公里范围内的合成兽全都惨叫一声，直接被这精神冲击震死。</p>
+<p class = "firstLineIndent">更远区域的合成兽也都是摇摇晃晃，被震的晕晕乎乎。</p>
+<p class = "firstLineIndent">聂云也觉得脑袋一阵眩晕，飞船失去了短暂的控制。</p>
+<p class = "firstLineIndent">不过聂云终究只是依附了一部分精神，本体并不在这，片刻之后，就通过补充精神力恢复了控制能力。</p>
+<p class = "firstLineIndent">好强的精神冲击！</p>
+<p class = "firstLineIndent">看到周围的惨状，聂云也是惊讶不已。</p>
+<p class = "firstLineIndent">看来，这就是卡隆兽真正的底牌了。</p>
+<p class = "firstLineIndent">这种级别的冲击下，哪怕就是钻进去一台传奇机甲，卡隆兽都能通过这种手段给自己刷一个“净化术”，震死所有入侵者。</p>
+<p class = "firstLineIndent">可惜，他遇到的是专玩远程操控的“虫师”聂云。</p>
+<p class = "firstLineIndent">发动了这一发精神冲击的卡隆兽显然也不好受，死鱼一般似乎连动弹的力气都没有了。</p>
+<p class = "firstLineIndent">“哈哈哈！该死的幽灵船长，竟然逼得我动用这一招，不管你之前怎么活下来的，都给我去死！哈哈哈”卡隆有些虚弱的声音再次传出，笑声里满是快意。</p>
+<p class = "firstLineIndent">然而下一刻，耳边响起的那个熟悉的声音却是让卡隆兽的笑声戛然而止。</p>
+<p class = "firstLineIndent">“是吗？看来十万伏特不太够啊来个一亿伏特超级电疗怎么样？”</p>
+<p class = "firstLineIndent">“滋”</p>
+<p class = "firstLineIndent">“啊！”</p>
+<p class = "firstLineIndent">众人只听到卡隆兽一声凄厉到极点的惨叫。</p>
+<p class = "firstLineIndent">然后只见庞大的身躯抽搐几下，两眼一翻，便再没了动静</p>
+<p class = "firstLineIndent">虽然外表看不出什么损伤，但是卡隆兽全身的神经控制网络，却有70以上被强电流直接碳化。</p>
+<p class = "firstLineIndent">“呃似乎稍微过头了点，于老他们不介意我带回条烤鱼的吧？”</p>
+<p class = "firstLineIndent">“如果他们切片不需要考虑口感的话。”</p>
+<p class = "firstLineIndent">“呃！呵呵”</p>
+
+<h2>第六百六十五章 先反为敬</h2>
+<p class = "firstLineIndent">看着死鱼一般的卡隆兽，场面沉寂了片刻之后</p>
+<p class = "firstLineIndent">“首领怎么了？”</p>
+<p class = "firstLineIndent">“这不会是死了吧？”</p>
+<p class = "firstLineIndent">“不可能，首领那么强大，怎么可能就这么死了？”</p>
+<p class = "firstLineIndent">“哼！死了才好！”</p>
+<p class = "firstLineIndent">“嘘！你不要命了？”</p>
+<p class = "firstLineIndent">“老子早不想活了！这么不人不鬼的活着有什么意思？”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">卡隆海盗团本就是卡隆以铁血手段高压统治下的产物。</p>
+<p class = "firstLineIndent">里面不少都是被迫加入，并且进行了惨无人道的兽化改造手术，这样的一群海盗，忠诚度可想而知。</p>
+<p class = "firstLineIndent">现在眼见卡隆兽生死不明，平时迫于卡隆淫威敢怒不敢言的一众海盗们顿时发生了骚乱。</p>
+<p class = "firstLineIndent">“轰！”就在这时，卡隆兽背部突然被炸开一个大洞，血肉横飞。</p>
+<p class = "firstLineIndent">在众人惊讶的目光下，一台外观十分眼熟的六足地形车浑身浴血的钻了出来。</p>
+<p class = "firstLineIndent">它爬出卡隆兽体内后，机械足肢用力一蹬，身后引擎轰的启动，如同一只轻盈的昆虫跃上星空。</p>
+<p class = "firstLineIndent">直到它收起六条机械足肢，众人这才发现，这哪里是什么地形车，分明就是幽灵船长的那艘旗舰！</p>
+<p class = "firstLineIndent">只不过如今的这艘飞船，浑身沾满了卡隆兽的强酸性腐蚀血液，看上去坑坑洼洼十分凄惨。</p>
+<p class = "firstLineIndent">飞船外壳上，有烧灼痕迹，有撞击刮痕，甚至有好几处地方瘪下去一大块，几乎只剩下大致的轮廓完好。</p>
+<p class = "firstLineIndent">所有人都想不通，为什么遭受了这样的重创，这艘飞船竟然还没沉没？</p>
+<p class = "firstLineIndent">不仅没沉没，反而活蹦乱跳的还想要拖走自己的战利品！</p>
+<p class = "firstLineIndent">是的，飞船屁股后面，拖着一条银色铁链，一副要将卡隆兽打包带走的架势</p>
+<p class = "firstLineIndent">那画面，简直就像是一条小舢板想要拖走一条超级大鲸鱼，充满了老人与海一般的霸气！</p>
+<p class = "firstLineIndent">“轰！”卡隆海盗团瞬间哗然。</p>
+<p class = "firstLineIndent">如果说刚刚只是猜测，那么现在，幽灵船长摆明了一副胜利者的姿态出现在众人眼前，这已经充分说明了战斗结果。</p>
+<p class = "firstLineIndent">卡隆兽败了！</p>
+<p class = "firstLineIndent">就像是虫群失去了母虫，整个卡隆海盗团瞬间陷入了巨大的混乱。</p>
+<p class = "firstLineIndent">“太好了！那个魔鬼终于死了！”</p>
+<p class = "firstLineIndent">“我自由了！自由了！哈哈哈”</p>
+<p class = "firstLineIndent">“终于解脱了，呜呜呜！”</p>
+<p class = "firstLineIndent">“还有你们这些狗腿子，还我清清白白的身子！”</p>
+<p class = "firstLineIndent">“对！杀了他们，祭奠我死去的魁梧英姿！”</p>
+<p class = "firstLineIndent">一大批海盗，不仅没有为团长报仇的心思，反而红着眼，发了疯一般攻击着另一批忠于卡隆的势力。</p>
+<p class = "firstLineIndent">卡隆的合成兽军团，在失去首领之后立刻陷入了内战。</p>
+<p class = "firstLineIndent">双方野兽一般撕咬在一起，场面一时间血腥无比，满场的脑浆子。</p>
+<p class = "firstLineIndent">就连后方负责火力支援的舰队，都瞬间四分五裂，大部分竟是在混乱的局面下开始逃离战场。</p>
+<p class = "firstLineIndent">看似强大无比的卡隆海盗团，竟是在失去了首领之后直接分崩离析。</p>
+<p class = "firstLineIndent">至于慢悠悠拖着卡隆兽朝己方舰队驶去的那艘飞船，一时间反而无人敢上前阻拦。</p>
+<p class = "firstLineIndent">虽然身躯残破，但浑身浴血，带着惊人战绩的这艘战舰，注定将成为碎星星域新的传奇！</p>
+<p class = "firstLineIndent">战场另一侧，幽灵海盗团VS讨债联盟！</p>
+<p class = "firstLineIndent">“冲啊！为了那满载的财宝！”</p>
+<p class = "firstLineIndent">讨债联盟一方气势如虹，几乎是刚刚进入射程，便发动了攻击。</p>
+<p class = "firstLineIndent">只不过没有统一调度，这些攻击凌乱而分散，几乎没有对幽灵舰队造成什么像样的伤害。</p>
+<p class = "firstLineIndent">反观幽灵舰队一方，却是一直等双方拉近距离之后，这才开始反击。</p>
+<p class = "firstLineIndent">“全军，坐标XXX，XXX，三轮齐射！放！”</p>
+<p class = "firstLineIndent">刚接触，幽灵海盗团的舰队就表现出非同一般的组织协调性。</p>
+<p class = "firstLineIndent">只是第一波整齐划一的齐射，就将对面乱糟糟冲杀过来的讨债联盟轰出了一个缺口，十几艘战舰被集火当场轰成烟花。</p>
+<p class = "firstLineIndent">“射角修正，坐标XXX，XXX，三轮齐射！放！”</p>
+<p class = "firstLineIndent">又是三轮齐射，依旧是同一个位置的同一个海盗团，再次遭到针对。</p>
+<p class = "firstLineIndent">“混蛋！为什么又是我？”那个被选中的倒霉蛋惊怒交加。</p>
+<p class = "firstLineIndent">惊怒的不止他一个，所有讨债联盟的人直到此时，才猛然发现事情似乎和自己预料的完全不同。</p>
+<p class = "firstLineIndent">对方能够参加战斗的，不是一百艘，而是足足350艘左右的战舰！</p>
+<p class = "firstLineIndent">而且看对方统一协调的舰队指挥，根本就不像是刚刚被收编，缺乏士气和配合的舰队。</p>
+<p class = "firstLineIndent">这根本就是一群久经训练，战斗素养不输正规舰队的悍卒！</p>
+<p class = "firstLineIndent">可幽灵海盗团怎么可能在这么短的时间内就彻底完成对金币降舰的接手整合？这不科学！</p>
+<p class = "firstLineIndent">“除非他们早就料到会有今天，所以提前准备了足足三倍的后备船员！”有人隐约间猜测到了事情的真相。</p>
+<p class = "firstLineIndent">“什么？这怎么可能？”</p>
+<p class = "firstLineIndent">听说过满编的，没听说过还有三倍超编的！</p>
+<p class = "firstLineIndent">土豪喝豆浆，也只是敢喝一杯倒一杯好么！你凭什么这么壕？</p>
+<p class = "firstLineIndent">“大家别慌，咱们的兵力是对方的近两倍，怕个俅？”</p>
+<p class = "firstLineIndent">“没错，咱们也有强项，只要拉近距离进入混战，对方就死定了！”</p>
+<p class = "firstLineIndent">“对！事到如今就是一个字，抢！”</p>
+<p class = "firstLineIndent">讨债联盟的士气在几位临时头领的激励下总算稳了一波。</p>
+<p class = "firstLineIndent">一方占据数量优势，另一方配合无间，双方随着距离的拉近，伤亡数字也在攀升。</p>
+<p class = "firstLineIndent">只不过一方伤亡平均，另一方伤亡则相当集中</p>
+<p class = "firstLineIndent">“你们什么意思？为什么受伤的总是我？”</p>
+<p class = "firstLineIndent">从头到尾被集火的倒霉蛋终于忍受不了巨大的伤亡悲愤的发出控诉。</p>
+<p class = "firstLineIndent">没人回答他这个问题，幽灵舰队默默打豆豆，讨债联盟更是乐的有人替自己分担火力。</p>
+<p class = "firstLineIndent">萍水相逢，总不能因为都是来讨债的就生死与共吧？顶多也就是替你默哀。</p>
+<p class = "firstLineIndent">“首领！再这么打下去，咱们弟兄可就全完啦！”二当家声泪俱下。</p>
+<p class = "firstLineIndent">“混蛋！”倒霉蛋青筋暴跳，终于还是咬牙道，“咱们撤！”</p>
+<p class = "firstLineIndent">继续这么下去，就算最后打赢了幽灵舰队，可舰队都打光了，战利品恐怕也没他们什么事了。</p>
+<p class = "firstLineIndent">何苦为他人做嫁衣裳？</p>
+<p class = "firstLineIndent">随着他的命令，麾下剩余的三十余艘战舰开始转向脱离编队。</p>
+<p class = "firstLineIndent">讨债联盟的人一开始对这个倒霉蛋的临阵脱逃还抱着幸灾乐祸的态度。</p>
+<p class = "firstLineIndent">然而很快，当第二个被针对的倒霉蛋二号同样承受不住巨大伤亡开始逃离战场时，他们渐渐意识到情况不妙</p>
+<p class = "firstLineIndent">对一群乌合之众而言，勇气是集体给的，当这个集体中不断出现逃兵时，可想而知对士气的打击有多么巨大。</p>
+<p class = "firstLineIndent">大部分的海盗团一见到这种情形，几乎下意识的就避开了与幽灵舰队的正面交锋。</p>
+<p class = "firstLineIndent">到了后来，甚至幽灵舰队的齐射舰炮往哪里一指，哪里就是一片兵荒马乱，跑得慢的恨不得给自家的飞船多装几个引擎。</p>
+<p class = "firstLineIndent">即便是几个临时首领一脸焦急的大声怒骂，然而所有人该跑还是跑，根本没人理会。</p>
+<p class = "firstLineIndent">死道友不死贫道！凭什么堵抢眼儿的非得是我？</p>
+<p class = "firstLineIndent">“我们现在怎么办？”讨债联盟内部，一个隐秘的通讯频道中响起一个犹豫不定的声音。</p>
+<p class = "firstLineIndent">“看起来咱们这边的情况不太妙啊要不按照对方说的，咱们反水？”</p>
+<p class = "firstLineIndent">一方阵型严谨，一方混乱不堪，就像是以骑兵阵对散兵阵，明眼人几乎都已经看到了战斗的结局。</p>
+<p class = "firstLineIndent">“是啊，那可是5亿碎星点，重建咱们的基地都绰绰有余了，不如”</p>
+<p class = "firstLineIndent">“等等！咱们再看看，一旦双方短兵相接进入混战，说不定还有翻盘的机会！</p>
+<p class = "firstLineIndent">你们想对方能用5亿来策反我们，说明根本不差钱，那这舰队里的财富又该有多少？咱们可别捡了芝麻丢了西瓜！”</p>
+<p class = "firstLineIndent">“呃说的也有道理。”</p>
+<p class = "firstLineIndent">“诶！你们看那边！”正讨论怎么利益最大化呢，突然其中一人惊呼道。</p>
+<p class = "firstLineIndent">得到提醒的另外两人开启远程监控画面一看，顿时目瞪口呆。</p>
+<p class = "firstLineIndent">只见一艘破破烂烂的飞船，正用一种极不相称的体型，拉着传说中吃人不吐骨头的卡隆兽朝着这边缓缓而来。</p>
+<p class = "firstLineIndent">明明是一艘几乎要就地解体的战舰，配合着身后死鱼一般的卡隆兽，却带给人一种九龙拉棺般的霸气侧漏！</p>
+<p class = "firstLineIndent">“呃两位慢慢商量，我先反为敬！”</p>
+
+<h2>第六百六十六章 安全感爆棚</h2>
+<p class = "firstLineIndent">聂云捕捉卡隆兽的惊人战绩，严重打击了讨债联盟的士气。</p>
+<p class = "firstLineIndent">而红黄蓝的跳反，无疑成为压垮讨债联盟最后的一根稻草。</p>
+<p class = "firstLineIndent">从背后袭来的攻击，尽管反水的战舰数量并不算多，但也瞬间击溃了联盟剩余势力的心理防线。</p>
+<p class = "firstLineIndent">古代军营中最怕的不是十面埋伏，而是自己炸营！</p>
+<p class = "firstLineIndent">突然遭到身后友军的攻击，伤亡倒是其次，但是那种敌人就在自己身边的巨大心理压力和对友军的信任危机才更要人命。</p>
+<p class = "firstLineIndent">讨债联盟内部顿时陷入更大的混乱，炮口都不知道该往哪儿指，几位临时首领更是惊怒交加。</p>
+<p class = "firstLineIndent">“你们三个混蛋，得罪我们这么多人，你们以后还想不想在碎星星域混下去！”</p>
+<p class = "firstLineIndent">带路党往往比敌人更招人恨。</p>
+<p class = "firstLineIndent">然而红黄蓝三人却是一点不怂。</p>
+<p class = "firstLineIndent">“我们早就是幽灵船长的人了，谁敢动我们就试试！”</p>
+<p class = "firstLineIndent">所谓的策反，自然需要在金钱诱惑的同时，给予对方跳反之后的安全保障。</p>
+<p class = "firstLineIndent">而作为新上任的七武海，幽灵海盗团自然也需要发展自己的附属势力，山穷水尽的红黄蓝就是个不错的选择。</p>
+<p class = "firstLineIndent">嗯……虽然是用钱砸出来的。</p>
+<p class = "firstLineIndent">不过千金买马骨，有了这三个榜样，加上幽灵海盗团今天表现出来的强悍实力，后续自然会有人主动依附过来。</p>
+<p class = "firstLineIndent">其余的七大海盗团，基本也都是这样网罗关系网，增强己方影响力的。</p>
+<p class = "firstLineIndent">“机甲军团出击！”</p>
+<p class = "firstLineIndent">很快，幽灵舰队就开始投放机甲军团，四散开来进行最后的扫尾工作。</p>
+<p class = "firstLineIndent">在接二连三的打击之下，讨债联盟到了此时早已完全没有阵型可言，坚持反击的还没有逃跑的人多。</p>
+<p class = "firstLineIndent">这一场讨债之战，如同预料的那般进入垃圾时间。</p>
+<p class = "firstLineIndent">而论收人头，自然是小巧灵活的机甲部队更有效率。</p>
+<p class = "firstLineIndent">“所有人注意，击溃为主，尽量俘虏，告诉对方我们优待俘虏！”斯巴达克在军团频道中嘱咐道。</p>
+<p class = "firstLineIndent">这是来自聂云的命令。</p>
+<p class = "firstLineIndent">如今幽灵海盗团有钱有装备，缺的就是人！</p>
+<p class = "firstLineIndent">地球玩家虽然人力充足，但是“超远程集体降临术”毕竟相当消耗精神力，即便有了长生牌信号塔，也顶多是作为一支奇兵，不可能成为常备力量。</p>
+<p class = "firstLineIndent">所以这些自动送上门的家伙，自然是要留下来当做工具人发挥剩余价值的。</p>
+<p class = "firstLineIndent">斯巴达克传达完命令，正要驾驶刚换装的崭新机甲赶往一处交火激烈的战场……</p>
+<p class = "firstLineIndent">“呼啦啦！”突然冲出的500多台机甲直接将他团团围住，如同最忠心的护卫一般形成了一个铁桶阵。</p>
+<p class = "firstLineIndent">斯巴达克：“……”</p>
+<p class = "firstLineIndent">“长官，你放心，我们一定会保护好你的安全！”</p>
+<p class = "firstLineIndent">“想要伤害长官，先从我的尸体上跨过去！”</p>
+<p class = "firstLineIndent">“长官在我在，长官亡我立刻陪葬！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">斯巴达克额头垂下几条黑线。</p>
+<p class = "firstLineIndent">这群有着黑色涂装，胸前打着q版白色幽灵的部队，从内部番号上看，应该叫做“幽灵骑士团预备役”。</p>
+<p class = "firstLineIndent">没错，就是那群莫名其妙爆发热情，莫名其妙缠着自己刷好感，又莫名其妙说要保护自己的机器人们……</p>
+<p class = "firstLineIndent">总之，斯巴达克现在是满脑子的莫名其妙！</p>
+<p class = "firstLineIndent">这支部队级别上和自己的“毁灭之锤”军团平级，又是预备役，他们称呼自己长官并没有什么问题。</p>
+<p class = "firstLineIndent">至于保护自己……好吧，拥有特殊“机动战斗权限”的他们也有权自由选择战斗任务……</p>
+<p class = "firstLineIndent">可问题是……特么的，自家的旗舰都没这种规模的护卫队！</p>
+<p class = "firstLineIndent">你们这是准备将我打造成这片战场上最靓的仔？</p>
+<p class = "firstLineIndent">被集火了怎么办？</p>
+<p class = "firstLineIndent">刚刚想到这……</p>
+<p class = "firstLineIndent">“嗖！”“嗖嗖！”</p>
+<p class = "firstLineIndent">不知道是不是拥有乌鸦嘴的潜质，下一刻，战场上十几道主副炮就不约而同朝着他的方向射了过来，伴随而来的，还有大量的飞弹。</p>
+<p class = "firstLineIndent">毕竟根据经验，排场这么大的……至少得是个少佐吧？</p>
+<p class = "firstLineIndent">“我……”斯巴达克来不及委屈的爆粗口，面对这样的集火只能立刻逃窜。</p>
+<p class = "firstLineIndent">然而令他没想到的是，十几台机甲却是迅速挡在了自己面前。</p>
+<p class = "firstLineIndent">“轰轰轰！”</p>
+<p class = "firstLineIndent">爆炸的火光瞬间淹没了他们义无反顾的身影……</p>
+<p class = "firstLineIndent">这一幕让斯巴达克直接愣住了。</p>
+<p class = "firstLineIndent">错愕？感动？</p>
+<p class = "firstLineIndent">完全没想到这些机器人真的会牺牲自己来保护他。</p>
+<p class = "firstLineIndent">这一瞬间，斯巴达克对这些令人莫名其妙的古怪机器人，多了一份认同。</p>
+<p class = "firstLineIndent">即便只是一群古怪的机器人，但是能够为彼此流血牺牲的，便是战友！</p>
+<p class = "firstLineIndent">这就是莱恩族简单粗暴的世界观。</p>
+<p class = "firstLineIndent">一批人倒下了，但是很快，又有更多的机甲挡在了斯巴达克身前，几乎可以用“争先恐后”来形容。</p>
+<p class = "firstLineIndent">“长官，我来保护你！请记住我的名字……轰！”</p>
+<p class = "firstLineIndent">“风萧萧兮……轰！”</p>
+<p class = "firstLineIndent">“下次见面，不管家里有什么困难，一定要把任务给我啊……轰！”</p>
+<p class = "firstLineIndent">斯巴达克：“呃……”</p>
+<p class = "firstLineIndent">虽然不知道这些战友为啥对任务这么执着，不过这真是一群悍不畏死的战友！</p>
+<p class = "firstLineIndent">听他们的意思，阵亡后似乎还能通过“回档”之类的方式重新回到战场，简直就像是拥有不死之身一般。</p>
+<p class = "firstLineIndent">要是莱恩族今后能和这样的一群铁疙瘩并肩作战……安全感爆棚了有木有？</p>
+<p class = "firstLineIndent">嗯！为了族人，自己也得想办法和他们搞好关系。</p>
+<p class = "firstLineIndent">那么问题来了……好感度怎么发来着？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">聂云很满意的看着这一幕。</p>
+<p class = "firstLineIndent">区区五百多玩家，在战场上并不能发挥多大的作用，所以聂云利用一个金色nc吊起他们的胃口。</p>
+<p class = "firstLineIndent">守护和牺牲，多么正能量的词汇。</p>
+<p class = "firstLineIndent">它可以让玩家团体和莱恩族之间迅速建立战场基情，为之后两族的大规模并肩作战打下基础。</p>
+<p class = "firstLineIndent">对莱恩族这种单纯的战斗民族来说，建立信任的方法再简单不过……死在他们面前就完了！</p>
+<p class = "firstLineIndent">至此，卡隆兽被成功捕捉，讨债联盟正在被抓壮丁，自己的队伍还进行了一定程度的磨合。</p>
+<p class = "firstLineIndent">接下来只需要再解决最后一个障碍，聂云“碎星攻略”的第一步就能圆满达成。</p>
+<p class = "firstLineIndent">他转头看向另一处战场，眉头却是微微一挑。</p>
+<p class = "firstLineIndent">按理来说，四打一，暗神殿就算再强，只怕也只有被围歼的命运。</p>
+<p class = "firstLineIndent">然而他看到的，却只是暗神殿舰队仓皇撤离的车尾灯……</p>
+<p class = "firstLineIndent">被逃走了？</p>
+
+<h2>第六百六十七章 打回去再借点儿</h2>
+<p class = "firstLineIndent">“轰！”一艘隶属于狂人的战舰轰然爆炸。</p>
+<p class = "firstLineIndent">爆炸的火光中，只见一道淡淡的透明虚影在所有人的视网膜中停留了片刻，便鬼魅般的消失不见。</p>
+<p class = "firstLineIndent">“轰！”不远处又是一艘战舰坠落，就连沿途的两台机甲也是瞬间被一分为二，却根本看不到攻击者。</p>
+<p class = "firstLineIndent">“该死的，我看不到他！根本无法锁定！”</p>
+<p class = "firstLineIndent">“咱们的雷达根本没用，用覆盖式攻击逼他出来！机甲中队，锁死附近所有的空间！”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">通讯频道中，尽是一片兵荒马乱。</p>
+<p class = "firstLineIndent">然而他们的应对根本毫无效果，那道魅影依旧游刃有余的在数以千计的机甲围攻中好整以暇的腾挪闪避，不时出手击落几台敌机。</p>
+<p class = "firstLineIndent">手肘、膝盖、前胸、后背等多处布置的球型动力装置不时爆发出刹那的强光，让暗影号如同施展了海军六式的剃，在虚空中做着各种匪夷所思的瞬间变向。</p>
+<p class = "firstLineIndent">大量的攻击射向这道魅影，却始终碰不到对方的一丝衣角。</p>
+<p class = "firstLineIndent">大范围的AOE攻击威力不足，也被对方身上的晶化护盾所无视。</p>
+<p class = "firstLineIndent">暗影号，这是一台将敏捷属性点到极致的传奇机甲，加上强大的隐身能力和晶化护盾，在战场上绝对是最令人头疼的那一类存在。</p>
+<p class = "firstLineIndent">当暗影在发现卡隆兽彻底失去联系时，就立刻明白大势已去。</p>
+<p class = "firstLineIndent">他很果断的下令舰队立刻撤离，而自己则是艺高人胆大的单独留下断后，几乎是以自己为饵拖住了整支追击舰队。</p>
+<p class = "firstLineIndent">当然，能够对他造成威胁的也并非没有比如另外的传奇机甲。</p>
+<p class = "firstLineIndent">“暗影，有种你别跑！”赤龙驾驶着赤龙号有些气急败坏的冲了上来。</p>
+<p class = "firstLineIndent">“铿！”短暂的一回合交手之后，暗影再次依靠几乎快上一倍的速度转战下一个战场。</p>
+<p class = "firstLineIndent">这一幕已经发生过不止一次，每一次暗影都绝不纠缠，避免与赤龙陷入缠斗，显然是想要尽量拖延时间。</p>
+<p class = "firstLineIndent">隐蔽处。</p>
+<p class = "firstLineIndent">弗林特屏气凝神站在一艘战舰之上，手中的狙击枪的准星不断跟随着战场上那个鬼魅般的身影。</p>
+<p class = "firstLineIndent">许久，弗林特轻呼了口气，终于还是缓缓垂下枪口。</p>
+<p class = "firstLineIndent">暗影显然已经得到他拥有传奇狙击机甲的消息，战斗的同时也在时刻防着被自己锁定。</p>
+<p class = "firstLineIndent">在对方有心提防之下，自己出手命中的概率不足三成。</p>
+<p class = "firstLineIndent">当然，这也并不是他放弃出手的唯一原因。</p>
+<p class = "firstLineIndent">弗林特转头看向另一处战场，那一头显得异常扎眼，还被死鱼一般拖走的卡隆兽。</p>
+<p class = "firstLineIndent">卡隆舰队分崩离析，讨债联盟更是溃不成军，基本已经是在送人头</p>
+<p class = "firstLineIndent">短短的时间里，那位幽灵船长就彻底扭转了在他人眼中几乎必死的绝境，完成了绝地反杀。</p>
+<p class = "firstLineIndent">讨债联盟还好说，不过是一群乌合之众，弗林特一根手指头也能摁死。</p>
+<p class = "firstLineIndent">但卡隆是谁？</p>
+<p class = "firstLineIndent">那可是碎星星域传奇机甲之上的隐藏Boss，个人战力真No1的存在，就那么被莫名其妙弄死了？</p>
+<p class = "firstLineIndent">对方一次次创造的奇迹，让弗林特不得不一次次的刷新对幽灵船长的评价。</p>
+<p class = "firstLineIndent">相比于神出鬼没的暗影，弗林特现在觉得，比暗影更神秘的幽灵船长或许才是更大的威胁。</p>
+<p class = "firstLineIndent">既然如此，暗影活着，可比死了对他有利的多。</p>
+<p class = "firstLineIndent">至少暗神殿和他背后的势力，绝对不会放过幽灵船长这个接连灭了金币和卡隆的罪魁祸首！</p>
+<p class = "firstLineIndent">双方背后的靠山自己一个都惹不起。</p>
+<p class = "firstLineIndent">若是双方打起来，自己说不定还有机会火中取栗，可若是一家独大，那最后又怎么可能放过自己？</p>
+<p class = "firstLineIndent">想到这，弗林特不由摇头苦笑。</p>
+<p class = "firstLineIndent">没想到今天之前自己还意气风发，抱着彻底称霸碎星星域的野心，今天之后居然就得小心翼翼的玩平衡，夹起尾巴做人了？</p>
+<p class = "firstLineIndent">唉自己，是不是也该找根大腿了？</p>
+<p class = "firstLineIndent">在弗林特象征性的有意放水之下，暗影最终从容退走，遁入虚无。</p>
+<p class = "firstLineIndent">这一场将七大海盗团悉数卷入其中的碎星大混战，也终于彻底画上了句号。</p>
+<p class = "firstLineIndent">此役，金币海盗团被灭，百年积累的财富惨遭瓜分，首领金匕卒！</p>
+<p class = "firstLineIndent">卡隆海盗团群龙无首陷入内战，分裂为数个小团体，宣告除名，卡隆兽卒！</p>
+<p class = "firstLineIndent">惊回首，所有的吃瓜海盗们这才发现，短短时间内，居然有两个大海盗团接连覆灭，这足以引起碎星星域的势力大洗牌。</p>
+<p class = "firstLineIndent">而更令人不可思议的是，覆灭他们的居然还是同一个人！</p>
+<p class = "firstLineIndent">幽灵船长！</p>
+<p class = "firstLineIndent">一个注定成为碎星传奇的男人！</p>
+<p class = "firstLineIndent">别的海盗团顶多踩着一个七大海盗团的尸体上位，这位倒好，似乎嫌这样的上位方式不够拉风，居然一下子踩死了两！</p>
+<p class = "firstLineIndent">虽说这其中也有四大海盗配合围攻，以及卡隆海盗团自身内部矛盾重重的各方面原因，并不能说明幽灵船长的实力真的已经能够1V2。</p>
+<p class = "firstLineIndent">但是不管怎么说，Doube Ki的战绩是实打实的。</p>
+<p class = "firstLineIndent">不论你是塔下强杀，还是野外捡漏</p>
+<p class = "firstLineIndent">不过相对于强悍的战绩而言，有关于幽灵船长的另外一些小道消息，却是更加的让人津津乐道，细思恐极。</p>
+<p class = "firstLineIndent">此战过后，在“个人战力南波万”“碎星超新星”“机械贵族”等等一系列名头后面，幽灵船长就又添了一个新外号“债主杀手”！</p>
+<p class = "firstLineIndent">据说，幽灵船长有一个特殊的怪癖他最恨欠别人钱！</p>
+<p class = "firstLineIndent">所有他欠了钱的，幽灵船长都会写在小本本上。</p>
+<p class = "firstLineIndent">所以，金匕死了，讨债联盟的人打着讨债的旗号，更是犯了忌讳，最后也死的七七八八。</p>
+<p class = "firstLineIndent">没错！幽灵船长就是这样一个恐怖如斯的男人！</p>
+<p class = "firstLineIndent">他杀人前不放死亡通告，不留血手印，只做一件事借钱！</p>
+<p class = "firstLineIndent">碎星星域的另一边。</p>
+<p class = "firstLineIndent">“滴滴！滴滴！”急促的通讯铃声响起。</p>
+<p class = "firstLineIndent">“唔”捂着有些胀痛的脑袋，金牙迷迷糊糊的抬起手腕，接通了通讯。</p>
+<p class = "firstLineIndent">“喂！谁啊！不知道现在几点啊？”满嘴酒气的金牙嘟囔的抱怨着。</p>
+<p class = "firstLineIndent">“呃金牙大人，我是通杀钱庄的老板，打扰您休息真是太不好意思了。”</p>
+<p class = "firstLineIndent">“通杀钱庄？”金牙用宿醉的脑袋努力回想，这才记起这个有些熟悉的名字。</p>
+<p class = "firstLineIndent">这不就是之前自家老板因为囊中羞涩，所以拿着碎星城股份去抵押的那家钱庄嘛？</p>
+<p class = "firstLineIndent">他这时候找自己干嘛？</p>
+<p class = "firstLineIndent">难不成老板CPU出故障了，忘了去还钱了？</p>
+<p class = "firstLineIndent">虽说当时只借了1500万，不过那可是高利贷，这都过了好几个月了</p>
+<p class = "firstLineIndent">利滚利滚利滚利现在怎么也得几个亿了吧？</p>
+<p class = "firstLineIndent">想到这，金牙汗都下来了，酒也彻底醒了。</p>
+<p class = "firstLineIndent">心慌慌的他，自然也没有注意到对方恭敬的有些过了头的语气</p>
+<p class = "firstLineIndent">“呃请问您有什么事吗？”金牙小心道。</p>
+<p class = "firstLineIndent">“嗨！用什么您啊！我就是一小钱庄的老板，您这样的客户才是上帝！”</p>
+<p class = "firstLineIndent">不好！大事不妙！</p>
+<p class = "firstLineIndent">欠钱第一定律：债主越客气，你要还的铁定越多！</p>
+<p class = "firstLineIndent">“你这是冲1500万来的？”</p>
+<p class = "firstLineIndent">伸头也是一刀，缩头也是一刀，金牙一咬牙，开门见山道。</p>
+<p class = "firstLineIndent">“对！我就是冲这事儿来的！很急！”</p>
+<p class = "firstLineIndent">果然！</p>
+<p class = "firstLineIndent">可如今老板穷的都要赊账了，哪来的钱可以还？</p>
+<p class = "firstLineIndent">“我今天就是来通知您，那1500万不用还了！”</p>
+<p class = "firstLineIndent">“这个，能否宽限几呃！你刚刚说啥？”金牙一时间没反应过来，以为自己出现了幻听。</p>
+<p class = "firstLineIndent">“我说不用还了！”</p>
+<p class = "firstLineIndent">“这为什么啊？”金牙彻底懵了。</p>
+<p class = "firstLineIndent">什么叫不用还了？你这是开钱庄还是开善堂呢？</p>
+<p class = "firstLineIndent">你要是开善堂，先把你“通杀钱庄”这个很有抱负，很有杀气的店名给改改好么？</p>
+<p class = "firstLineIndent">“客户就是上帝，我们怎么能要上帝的钱，金牙大人您以后可千万别提还钱的事，谁提我和谁急，这事儿就这么说定了！啪！”</p>
+<p class = "firstLineIndent">说完，人家直接挂了通讯，急的就像甩出去的不是1500万，而是一个烫手的山芋。</p>
+<p class = "firstLineIndent">金牙：“？？？”</p>
+<p class = "firstLineIndent">他晃了晃有些迷糊的脑袋。</p>
+<p class = "firstLineIndent">等等！让我好好捋捋。</p>
+<p class = "firstLineIndent">欠钱的客户就是上帝上帝的钱又不能要</p>
+<p class = "firstLineIndent">结论就是请白嫖我？</p>
+<p class = "firstLineIndent">你这是签了传说中的白嫖合同了吗？</p>
+<p class = "firstLineIndent">看着手中的通讯器，金牙陷入了一个这辈子最令人心动的人生选择。</p>
+<p class = "firstLineIndent">要不要打回去再借点儿？</p>
+
+<h2>第六百六十八章 全员青铜制</h2>
+<p class = "firstLineIndent">战后。</p>
+<p class = "firstLineIndent">小弟们负责打扫战场，而隶属两大阵营的五艘海盗旗舰则是围成环形，聚拢在了一起。</p>
+<p class = "firstLineIndent">黑帆、狂人、龙骑兵、赤龙，加上刚刚成功上位的幽灵海盗团。</p>
+<p class = "firstLineIndent">作为这次碎星乱斗大获全胜的一方，这五艘旗舰所代表的五巨头，赫然已经成为了碎星星域新的食物链顶端，地位几乎等同于联合国五常。</p>
+<p class = "firstLineIndent">而反对派中硕果仅存的暗神殿，虽然暂时逃过了围杀，整体实力犹存，但好比战败后的德意志，不仅势单力孤，而且国际地位一落千丈，已然失去了在碎星星域的话语权。</p>
+<p class = "firstLineIndent">“幽灵阁下真是深藏不露，居然连卡隆都栽在你的手上！”弗林特瞥了一眼被某人拖在飞船后，明显带着示威意味的卡隆兽。</p>
+<p class = "firstLineIndent">五艘旗舰中，聂云的这艘座驾最为寒酸，不仅吨位最小，而且浑身上下到处都是伤痕，看起来比快要报废的二手飞船都有所不如。</p>
+<p class = "firstLineIndent">不过这一身的硝烟，加上身后物一般的卡隆兽，莫名的在气势上就压了在场所有人一头。</p>
+<p class = "firstLineIndent">“呵呵！侥幸侥幸！”聂云谦虚一笑。</p>
+<p class = "firstLineIndent">“卡隆他现在是死是活？”弥赛亚突然开口问道。</p>
+<p class = "firstLineIndent">在场众人都是眼神一凝。</p>
+<p class = "firstLineIndent">卡隆的死活没人在乎，不过若是卡隆活着，那么幽灵船长就很有可能从对方嘴里挖出一些对方背后之人的情报。</p>
+<p class = "firstLineIndent">这些情报才是他们最在乎的东西。</p>
+<p class = "firstLineIndent">“卡隆？不好意思，没能留手，确实已经死了。”聂云说完，有些意味深长的看了一眼弥赛亚。</p>
+<p class = "firstLineIndent">弥赛亚听闻卡隆已死，不知道是惋惜还是庆幸似的悄悄松了口气，却并未发现聂云的眼神有异。</p>
+<p class = "firstLineIndent">“嘿！我说幽灵兄弟，你究竟是怎么单枪匹马打败卡隆那家伙的？”赤龙忍不住好奇心问道。</p>
+<p class = "firstLineIndent">“嗯其实说出来也不是什么秘密。</p>
+<p class = "firstLineIndent">这其实是我从组织内部购买的秘密武器，专门用来对付利维坦这种战争巨兽，可惜是一次性的，而且价格不菲。</p>
+<p class = "firstLineIndent">我这次可算是下了血本了，也不知道是赚了还是赔了。”</p>
+<p class = "firstLineIndent">聂云装出一脸肉疼的样子，并趁机怒刷“某神秘组织”的存在感。</p>
+<p class = "firstLineIndent">组织？内部购买？</p>
+<p class = "firstLineIndent">弗林特已经是第二次听聂云提起组织，这次终于忍不住出言试探。</p>
+<p class = "firstLineIndent">“这么说来，幽灵阁下所在的组织，在机械族内部势力中，应该也是非同一般吧？不知道隶属于哪个机械公爵的麾下？”</p>
+<p class = "firstLineIndent">听到这个问题，聂云暗道一声“你可算是问到点子上了！”</p>
+<p class = "firstLineIndent">ennn是时候为“组织”宣传一波了！</p>
+<p class = "firstLineIndent">在场的都是碎星星域的大佬，这一句广告打下去，至少节省好几个亿的宣传费啊！</p>
+<p class = "firstLineIndent">“唔这个本来是机密，不过各位都是盟友，接下来还要通力合作，我倒是可以稍微透露一二。”他假意斟酌了一下。</p>
+<p class = "firstLineIndent">所有人都竖起耳朵。</p>
+<p class = "firstLineIndent">“实话告诉各位，我其实并不隶属于任何机械族的势力。”</p>
+<p class = "firstLineIndent">“什么？”聂云说了句大实话，不过却是让所有人愣住了。</p>
+<p class = "firstLineIndent">不隶属于机械族？难不成还是隶属于伍尔夫？</p>
+<p class = "firstLineIndent">什么时候伍尔夫都有能力策反机械贵族了？</p>
+<p class = "firstLineIndent">“我所在的组织名为万物归一会！”聂云一脸认真。</p>
+<p class = "firstLineIndent">“这是一个入会审核十分苛刻笑的会员制秘密联盟，其成员横跨周边数百个明，大小势力范围遍布周边数个悬臂。</p>
+<p class = "firstLineIndent">不仅是机械族和伍尔夫帝国，还有位于更遥远星域的安特帝国，就连虫洞对面的双子星，也有我们的人。”</p>
+<p class = "firstLineIndent">啥？所有人听得一愣一愣的。</p>
+<p class = "firstLineIndent">作为只在这碎星星域一亩三分地上混的小海盗，听闻这种庞大的组织，就好像城乡结合部突然来了一个跨国集团，张口就是“我在全球200多个国家有分部”</p>
+<p class = "firstLineIndent">弗林特等人对聂云的话自然是持怀疑态度的。</p>
+<p class = "firstLineIndent">毕竟能混到今天这个地位，谁也不是范伟。</p>
+<p class = "firstLineIndent">可是对方能够在虫洞被封锁的情况下依旧能获得洛克财团惨败的消息，从另一个角度佐证了对方很可能在双子星布有眼线的事实。</p>
+<p class = "firstLineIndent">另外，幽灵船长奇迹般的战绩所营造出来的神秘和强大，也令人不得不认真思考对方话语中的真实性。</p>
+<p class = "firstLineIndent">卖拐给正常人，看似简单，可确确实实是一项技术活。</p>
+<p class = "firstLineIndent">没有对末梢神经、腰椎压迫、血液循环相关方面的知识应用，你还怎么把人忽悠瘸？</p>
+<p class = "firstLineIndent">本山叔，这无疑是一个被自行车耽误的生理、心理学双料大师！</p>
+<p class = "firstLineIndent">同样的，说到底，聂云吹得牛波都是建立在实力的基础之上，没有展现出相应的实力，扯起来的就不是虎皮，而是牛皮了。</p>
+<p class = "firstLineIndent">弗林特还待再试探一些有关这个万物归一会的底细，聂云却主动止住了话头。</p>
+<p class = "firstLineIndent">“组织有保密条例，我也只能透露到这里了，毕竟我也只是个青铜级的初级会员，权限不足啊！”</p>
+<p class = "firstLineIndent">啥？你这样的还只能算青铜？</p>
+<p class = "firstLineIndent">那再往上的白银、黄金，乃至钻石又该是什么实力？那会长又该是什么样的存在？</p>
+<p class = "firstLineIndent">看着众人一脸敬畏的神情，聂云一本满足。</p>
+<p class = "firstLineIndent">嗯！看来这个“全员青铜制”以后可以作为组织的基本制度多加推广</p>
+<p class = "firstLineIndent">想想看，当别人用看大神的崇拜目光看着你时，你对所有人来上一句“其实我只是队里最弱的”</p>
+<p class = "firstLineIndent">那简直就是在神坛上再加个小板凳，逼格指数直接突破天际啊有木有？！</p>
+<p class = "firstLineIndent">“咳！言归正传，现在碎星星域战事已经平息，我们是不是该来商量接下来的计划了。”</p>
+<p class = "firstLineIndent">见有些冷场，弥赛亚开口缓解了一下凝重的气氛，并将众人的注意力再次拉回了碎星星域。</p>
+<p class = "firstLineIndent">强龙再强，暂时也影响不到他们这些地头蛇，但是接下来的计划，却是和他们每个人利益相关。</p>
+<p class = "firstLineIndent">“嗯虽然我同意加入这次行动，不过你确定对方现在无暇他顾？”弗林特谨慎的看向聂云。</p>
+<p class = "firstLineIndent">没办法，谁叫这家伙总喜欢给他挖坑。</p>
+<p class = "firstLineIndent">“放心，情报绝对准确，别忘了，我那边有人！”聂云龇牙一笑。</p>
+<p class = "firstLineIndent">“再说了，如果发觉事情不对，你们可以随时撤退，咱们是去捞好处，柿子挑软的捏不用我来教吧？”</p>
+<p class = "firstLineIndent">“唔好吧！可暗神殿这边”</p>
+<p class = "firstLineIndent">“各自留下三分之一的舰队盯着，他翻不起浪花。”</p>
+<p class = "firstLineIndent">“嗯！这种时候只要他不是想找死，就不会主动挑衅我们。”</p>
+<p class = "firstLineIndent">“那战利品怎么分配？”</p>
+<p class = "firstLineIndent">“老规矩，能拿多少，就看各自的本事。”</p>
+<p class = "firstLineIndent">“好！我们何时动手？”众人再次看向聂云。</p>
+<p class = "firstLineIndent">情报在他手上，时机自然必须由他来挑。</p>
+<p class = "firstLineIndent">“大战之后我们也都需要些时间修整，不过夜长梦多，三天之后如何？”</p>
+<p class = "firstLineIndent">“可以！”</p>
+<p class = "firstLineIndent">“我没意见！”</p>
+<p class = "firstLineIndent">“好，那么接下来，为了避免大家产生冲突，我们划分一下各自的行动区域”</p>
+
+<h2>第六百六十九章 难民潮</h2>
+<p class = "firstLineIndent">就在聂云一步一步执行碎星攻略的同时，虫洞的另一边，双子星与洛克财团的战争也在如火如荼的进行着</p>
+<p class = "firstLineIndent">时间回到两个月之前。</p>
+<p class = "firstLineIndent">双子星，暴风星系。</p>
+<p class = "firstLineIndent">往日里繁华的航道如今已是残破不堪，大量飞船和设备残骸形成了一条明显的碎片带，一直延伸向中央的行政星</p>
+<p class = "firstLineIndent">2200余艘战舰分为11支分舰队，以一种半包围的阵势，将这颗行政星团团围住。</p>
+<p class = "firstLineIndent">“轰！”最后一颗浮游要塞陨星在绝对优势的火力下化为一团火球。</p>
+<p class = "firstLineIndent">“克洛罗斯大人，对方的抵抗力量已经全灭！”副官一脸笑意道。</p>
+<p class = "firstLineIndent">不到一个月的时间，克洛罗斯的第二次入侵舰队便摧枯拉朽的摧毁了暴风星系所有的抵抗力量。</p>
+<p class = "firstLineIndent">面对洛克财团几乎是倾巢出动的2200余艘洛克财团正规军舰队，在上一次白矮星爆炸中几乎全军覆没的双子星一方，根本没有能力在短时间内再次集结同等规模的抵抗舰队。</p>
+<p class = "firstLineIndent">加上超新星爆发直接重创了暴风星系苦心经营的防御体系，破坏了超过60的防御设施。</p>
+<p class = "firstLineIndent">在这种情况下，暴风星系的沦陷根本无法逆转，这一点就连普通的双子星军官都能分析出来。</p>
+<p class = "firstLineIndent">负隅顽抗无疑是最愚蠢的选择。</p>
+<p class = "firstLineIndent">因此，在探明敌人第二波舰队的庞大数量之后，双子星军部震惊之余，毫不犹豫的下达了全面撤离的命令。</p>
+<p class = "firstLineIndent">除了少部分留下来拖延时间的地方卫戍部队外，包括聂云等残余舰队在内的所有军事力量，全都第一时间撤出了暴风星系退往后方。</p>
+<p class = "firstLineIndent">“嗯？那颗光速战星没有出现么”</p>
+<p class = "firstLineIndent">克洛罗斯松了口气的同时，眼中也不由露出一丝失望之色。</p>
+<p class = "firstLineIndent">“是的，看来如同大人所料，要么就是对方的这颗战星有着苛刻的使用条件，要么就是担心落入我们针对性的陷阱。”副官钦佩道。</p>
+<p class = "firstLineIndent">为了对付这个最大的威胁，克洛罗斯可是做了不止一套方案。</p>
+<p class = "firstLineIndent">包括将舰队分成十一支分舰队，通过扩大空间距离降低对方的攻击效率。</p>
+<p class = "firstLineIndent">又比如悄悄更换座舰，让自己的旗舰前去充当诱饵，同时避免对方的斩首行动。</p>
+<p class = "firstLineIndent">不过现在看来，对方根本就没有再次出动这件秘密武器的意思，克洛罗斯这些准备当真是作秀给瞎子看了。</p>
+<p class = "firstLineIndent">那么，如何在对方不出动战星的情况下得到它呢</p>
+<p class = "firstLineIndent">就在克洛罗斯沉思的时候，副官突然道。“大人，我们刚刚收到了行星上的双子星人发来的投降信号。”</p>
+<p class = "firstLineIndent">“哼！投降？”克洛罗斯露出一丝冷笑。</p>
+<p class = "firstLineIndent">“如果是代表他们的明投降，那么我或许还能接受，不过区区一颗行政星？他们难道以为我会优待俘虏？”</p>
+<p class = "firstLineIndent">是的，暴风星上，依旧滞留着不少的双子星平民。</p>
+<p class = "firstLineIndent">军队离开容易，一整个星系的撤离却又谈何容易？</p>
+<p class = "firstLineIndent">对一个开发时间超过百年的生命行星来说，上面的人口何止十亿。</p>
+<p class = "firstLineIndent">哪怕战事扩大之后，相当一部分有经济条件的人已经主动迁往更加安全的其它星系，但是剩下的人口也超过了5亿。</p>
+<p class = "firstLineIndent">所幸的是，吉拉德早已做好了应对最坏情况的准备，提前准备了大量从盖伦特星区征调的运输飞船。</p>
+<p class = "firstLineIndent">前线失利之后，双子星议会立刻发布了紧急避难令，开始安排运输舰撤离民众。</p>
+<p class = "firstLineIndent">然而太空港的运载能力始终有限，数亿人的迁徙，哪怕运输舰足够，也不是一朝一夕能够完成的。</p>
+<p class = "firstLineIndent">谁也没想到，看似占据一定优势的战局竟会急转直下，短短的时间里就让对方打到了家门口。</p>
+<p class = "firstLineIndent">这也导致了最终有超过2000万的人口还没登上运输船，就被堵在了行星上。</p>
+<p class = "firstLineIndent">听到克洛罗斯充满了冷酷意味的话语，副官眉头微微一跳。</p>
+<p class = "firstLineIndent">“大人，从我们缴获的一些资料来看，这个双子星明的实力并不算弱，若是屠杀他们的平民，恐怕会引起对方激烈的反抗。”</p>
+<p class = "firstLineIndent">“唔你说的不错，这些蝼蚁的死活我虽然不在乎，不过他们活着，或许比死了要有用处的多”克洛罗斯思索片刻，脸上渐渐露出一丝诡笑。</p>
+<p class = "firstLineIndent">不久之后，大量被困的双子星民众在舰炮的驱赶下争先恐后的乘坐飞船逃离暴风星。</p>
+<p class = "firstLineIndent">然而还没等他们惊讶于敌人的仁慈，庆幸自己逃过一劫时，一道耀眼的流光便从洛克财团的舰队中笔直射向了暴风星。</p>
+<p class = "firstLineIndent">下一刻，陆地沉没，板块崩裂</p>
+<p class = "firstLineIndent">在太空中都肉眼可见的巨大冲击波缓缓席卷了整颗星球！</p>
+<p class = "firstLineIndent">“哦！天呐！”</p>
+<p class = "firstLineIndent">“这些恶魔！”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">飞船上的人群传来阵阵或是恐惧，或是愤怒的惊呼。</p>
+<p class = "firstLineIndent">他们不明白，为什么这些入侵者上一刻还让他们安全的离开，下一刻就残忍的毁灭了他们的家园。</p>
+<p class = "firstLineIndent">“逃！快往明内部逃！”</p>
+<p class = "firstLineIndent">目睹家园被毁的残酷现实，无数人脑海中只有一个念头，那就是逃！</p>
+<p class = "firstLineIndent">两个月之后。</p>
+<p class = "firstLineIndent">盖伦特星区，磐石要塞。</p>
+<p class = "firstLineIndent">“报告！云岚星系陷落！”</p>
+<p class = "firstLineIndent">“报告！伊泽尔星系陷落！”</p>
+<p class = "firstLineIndent">“报告！百慕星系陷落！”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">前线传来的一个个坏消息，让在场的高层军官们脸色异常沉重。</p>
+<p class = "firstLineIndent">暴风星系之后，克洛罗斯兵分五路，追着难民们的脚步，开始将战火烧向双子星的其余星系。</p>
+<p class = "firstLineIndent">“阿尔萨斯，你说，这一战接下来会怎么发展？”雷诺忧心忡忡的问道。</p>
+<p class = "firstLineIndent">双子星在盖伦特星区的主力被重创，无畏战星沉没，不得不集中所有的残余力量退守磐石要塞，紧急建立第二道防线。</p>
+<p class = "firstLineIndent">这样做的好处是避免被对方逐个击破，但是坏处便是等同于放弃好几个外围星系。</p>
+<p class = "firstLineIndent">对于双子星来说，这是一个艰难的取舍。</p>
+<p class = "firstLineIndent">原本他们还有机会安排有序的撤离，然而他们也没想到，对方第一波舰队几乎覆灭后，第二波的舰队居然来的这么多，这么快。</p>
+<p class = "firstLineIndent">“如果没有外力干扰，恐怕最好的结局，就是丢掉四分之一的领土。”聂云有些唏嘘道。</p>
+<p class = "firstLineIndent">克洛罗斯果然不愧是伍尔夫帝国内成名已久的指挥官，眼光毒辣，竟然利用难民潮做章！</p>
+<p class = "firstLineIndent">每攻陷一地，对方不仅没有展开屠杀清洗，反而驱赶出大量的难民，然后直接用歼星武器破坏行星！</p>
+<p class = "firstLineIndent">这么做的目的只有一个冲击双子星的后勤体系！</p>
+<p class = "firstLineIndent">这就很要命了！</p>
+<p class = "firstLineIndent">现在除了一些地方卫戍舰队，已经抽掉不出多少机动力量，而其它星区的舰队抽调，又需要耗费大量的时间，远水解不了近渴。</p>
+<p class = "firstLineIndent">伍尔夫帝国的战舰，平均战斗力比之双子星一方只高不低，面对敌人每路至少400艘以上的分舰队，去的少了根本就是送菜。</p>
+<p class = "firstLineIndent">保守估计，至少需要500艘以上的战舰，才能抵挡其中一路舰队。</p>
+<p class = "firstLineIndent">可如今的盖伦特星区，到哪里去凑这500艘战舰？</p>
+<p class = "firstLineIndent">而这些少得可怜的舰队，还要因为海量难民的冲击，不得不分出一大部分的精力维持恐慌民众的秩序，提供必要的生存保障。</p>
+<p class = "firstLineIndent">这就进一步削弱了双子星的战争动员能力。</p>
+<p class = "firstLineIndent">连内部都混乱不堪，还谈何抵御外敌？</p>
+<p class = "firstLineIndent">因此洛克财团的舰队几乎是兵不血刃的接收着一个个的星系，然后继续制造更多的难民潮。</p>
+<p class = "firstLineIndent">不断陷落的星系，甚至让还未遭受入侵的星系民众都开始恐慌，然后拖家带口的逃向更为安全的其它三个星区。</p>
+<p class = "firstLineIndent">这无疑进一步加剧了混乱的蔓延。</p>
+<p class = "firstLineIndent">将战火烧向敌人的腹地，这就是客场作战的优势，而双子星不得不吞下门户大开，防御失利的苦果。</p>
+<p class = "firstLineIndent">“只不过驱赶难民也就算了，为什么还要破坏行星？</p>
+<p class = "firstLineIndent">这样的做法似乎完全不像是想要占领开发殖民地的样子，反而像是在故意制造恐慌，向双子星高层施加心理压力？</p>
+<p class = "firstLineIndent">对方到底想做什么呢”</p>
+
+
+
+
+<a href="650.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="670.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</br></br>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
