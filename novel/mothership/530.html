@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第五百三十章 低调的气质</h2>
+<p class = "firstLineIndent">会议之后，吉拉德将贝克曼单独留了下来。</p>
+<p class = "firstLineIndent">他看看英姿勃发的贝克曼，不由满意的点点头，脸上也渐渐露出一丝笑意。</p>
+<p class = "firstLineIndent">“刚刚的推论很有价值，我会以你的署名上报给议会，呵呵！不愧是维克多阁下看中的后辈，你的表现没有给维克多家族丢脸。”</p>
+<p class = "firstLineIndent">与克鲁泽和阿萨德等家族类似，双子星的古老家族，每一任族长通常都忽略名字，以姓氏代称，维克多议员正是维克多家族的当代家主。</p>
+<p class = "firstLineIndent">而维克多贝克曼，是维克多家族的嫡系继承人，也是维克多议员的亲孙子。</p>
+<p class = "firstLineIndent">“吉拉德大人过奖了。”</p>
+<p class = "firstLineIndent">“呵呵！对了，维克多阁下近来身体如何？”</p>
+<p class = "firstLineIndent">“爷爷身体很好，听说前不久刚换了第八任新奶奶，不到二十岁那种。”贝克曼耸了耸肩。</p>
+<p class = "firstLineIndent">“呃……咳咳！维克多阁下老当益壮，真是令人羡慕……”</p>
+<p class = "firstLineIndent">咳嗽一声，吉拉德转了个话题。“参谋部的工作，都熟悉了吗？和同僚们相处的如何？”</p>
+<p class = "firstLineIndent">“相比于参谋部的工作，我更喜欢在前线作战，至于那些同僚，呵呵……庸碌之辈，不值得我花时间与他们相处。”贝克曼不屑一笑。</p>
+<p class = "firstLineIndent">吉拉德听到对方如此自负的话，却并没有生气，眼神中反而略带赞赏。</p>
+<p class = "firstLineIndent">有才能的人才有资格自负，没有底气的才需要自谦，以贝克曼的才华和地位，低调反而会让人轻视。</p>
+<p class = "firstLineIndent">况且参谋部里什么情况，吉拉德自然不是不知道。</p>
+<p class = "firstLineIndent">一群官二代富二代用来镀金的地方，还能指望飞出个凤凰吗？</p>
+<p class = "firstLineIndent">“维克多阁下也是为了你的安全着想，后方的支援兵力很快就会抵达这里，到时候我们会伺机展开试探性的反攻，防线附近的安全形势也能得到改观。</p>
+<p class = "firstLineIndent">届时我会说服维克多阁下，让你独自指挥一支舰队。”</p>
+<p class = "firstLineIndent">“多谢吉拉德大人！”</p>
+<p class = "firstLineIndent">“不用谢我，海族的荣耀和功勋，从来都是从战争中打出来的！况且你是我们海族难得的帅才，我不过是不想埋没了人才。</p>
+<p class = "firstLineIndent">羽族人才济济，我们海族也不能落于人后！”</p>
+<p class = "firstLineIndent">政权必须得到军权的支持，这是放诸四海皆准的原则，而维克多家族与吉拉德大将，就属于这样的军政同盟！</p>
+<p class = "firstLineIndent">吉拉德如此照顾贝克曼，除了同盟关系之外，也是真心看好贝克曼，想要为海族提携培养一些后起之秀。</p>
+<p class = "firstLineIndent">毕竟……海族勇士虽多，可用脑子打仗的，真心不如人家羽族多……</p>
+<p class = "firstLineIndent">“听说这次的增援部队中，会有来自各大星区的优秀军官？希望不会让人失望！”贝克曼笑着露出一丝期待。</p>
+<p class = "firstLineIndent">“呵呵！这个时候能被安排来战场锻炼的，无一不是家族重点培养的种子选手，科鲁曼家的摩多，阿萨德家的伊莎尔，都是拥有不错才能的年轻军官，你可不要小看了天下英才！”</p>
+<p class = "firstLineIndent">“说到天下英才，不知道吉拉德大人有没有听说过克鲁泽家的阿尔萨斯？我来这里之前，在中央星系可是经常听到这个名字。</p>
+<p class = "firstLineIndent">在比邻星系那样的偏远星域，这位议长公子可是闹出了不小的动静。”贝克曼饶有兴致道。</p>
+<p class = "firstLineIndent">“那个阿尔萨斯？呵呵！他的确就在这次前来的军官名单中，我们的克鲁泽议长对他可是青眼有加。</p>
+<p class = "firstLineIndent">只不过除了口舌之利，我还没听说他在战场上有什么建树，依我看，他更适合当一名克鲁泽议长那样的政客！”吉拉德嘴角勾起一抹冷笑，颇为不屑道。</p>
+<p class = "firstLineIndent">双子星在遥远星域进行的另一场战争，相关的情报吉拉德自然看过，与一般的海族一样，吉拉德对某种意义上踩着海族上位的阿尔萨斯自然是没什么好感。</p>
+<p class = "firstLineIndent">一方面，古斯塔夫的叛变事件在一定时间的发酵之后，给海族军方带来了一定程度上的声望打击！</p>
+<p class = "firstLineIndent">海族的高层自然是竭尽掩盖，否认叛变事件，认为其中必有隐情。</p>
+<p class = "firstLineIndent">只不过死无对证，古斯塔夫连同当时的所有目击者，都被伊莎尔的羽族舰队轰成了渣渣，他们哪怕有心调查，也根本无从下手。</p>
+<p class = "firstLineIndent">为了给自己洗白，部分海族军官开始发挥自己天马行空的想象力，竟将古斯塔夫的叛变和阿尔萨斯扯上了关系！</p>
+<p class = "firstLineIndent">两人之前发生过不止一次冲突，其中详细的情况，已经没有几个人能够说得清楚，但最后的结果是，古斯塔夫最心爱的座机被阿尔萨斯横刀夺爱，本人更是因此被军部多次斥责……</p>
+<p class = "firstLineIndent">一系列似是而非的线索，在三人成虎之下，渐渐有向着“衙内逼反林冲”的脚本演变的趋势……</p>
+<p class = "firstLineIndent">这种事经不起细细推敲，但一些捕风捉影的谣言就足以让阿尔萨斯在羽族内部本就算不上好的名声雪上加霜。</p>
+<p class = "firstLineIndent">躺枪的阿尔萨斯在海晒叵底湮涞?br /&gt;</p>
+<p class = "firstLineIndent">另一方面，阿尔萨斯本身的政治立场就和吉拉德天然对立。</p>
+<p class = "firstLineIndent">如果说以克鲁泽为首的羽族是双子星如今的执政党，那么以维克多为首的海族就是在野党。</p>
+<p class = "firstLineIndent">身为在野党的利益相关者，吉拉德对执政党党魁家的公子哥自然不会有任何好感。</p>
+<p class = "firstLineIndent">贝克曼笑了笑，很快结束了这个话题。</p>
+<p class = "firstLineIndent">然而吉拉德对阿尔萨斯的评价，在事后不知怎的就流传了出去，于是，阿尔萨斯人还没到，就得了一个绝对不含褒义的雅号……“军中政客”！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“阿嚏！”“阿尔萨斯”打了个喷嚏。</p>
+<p class = "firstLineIndent">他揉了揉鼻子，“奇怪，这具克隆体的身体素质没这么差啊？难道是穿越虫洞的应激反应？”</p>
+<p class = "firstLineIndent">就在刚刚，堕天使号正式穿越了比邻星系虫洞，进入了巴塞罗星系，也是双子星加达里星区疆域！</p>
+<p class = "firstLineIndent">根据星图，这里距离太阳系足有48光年，聂云担心的事情终究还是没有发生，机械虫依旧完美的在自己的掌控之下。</p>
+<p class = "firstLineIndent">机械虫的极限通讯距离再次得到了延伸验证！</p>
+<p class = "firstLineIndent">双子星议会的命令下达之后，换防舰队很快到来，用了3天的时间与伊莎尔等人完成交接后，阿尔萨斯接受了新的任务……跟随伊莎尔前往伍尔夫文明虫洞防线！</p>
+<p class = "firstLineIndent">这是聂云涉足的第三个星系，也是他第一次深入双子星腹地。</p>
+<p class = "firstLineIndent">一见面，双子星就给了聂云一个下马威。</p>
+<p class = "firstLineIndent">穿过虫洞之后，入眼的是足足百余艘飞船，其中不仅有战舰，还有大量的工程制造船舶。</p>
+<p class = "firstLineIndent">无数的工程机甲和自动机器人如同蚂蚁一般进进出出，正在不断进行宇宙工程，建造大型虫洞防御工事。</p>
+<p class = "firstLineIndent">“呵！还真是看得起我。”聂云摇头苦笑了一下。</p>
+<p class = "firstLineIndent">凡事有利有弊，“安特帝国”表现出来的强大战斗力令人忌惮，也让双子星不得不小心应对，下了大力气布置防御工事以防万一。</p>
+<p class = "firstLineIndent">再想像上次一样出其不意夺取虫洞的控制权，仅仅策反一个古斯塔夫是绝对不够的，嗯！保守估计得10个……</p>
+<p class = "firstLineIndent">不过可惜，没有给聂云靠近“参观”一番的机会，舰队进入巴塞罗星系之后，立刻钻入了附近一道覆盖数十公里直径的蓝色“光路”之中。</p>
+<p class = "firstLineIndent">一进入“光路”，堕天使号轻轻一震，速度肉眼可见的增加了一小节，而且还在持续加速中。</p>
+<p class = "firstLineIndent">“这就是‘星际高速通道’？实用性倒是不错，可以考虑引进……”聂云摸着下巴嘀咕了一句。</p>
+<p class = "firstLineIndent">在聂云获取的情报中，这是一条飞行器专用的加速通道，也是双子星为长途航行建造的“星际高速路”。</p>
+<p class = "firstLineIndent">“星际高速通道”的另一头，直指巴塞罗星系的中央恒星。</p>
+<p class = "firstLineIndent">在恒星附近，一座造型类似埃菲尔铁塔的超大型金属建筑坐落在静止轨道，无数的蓝色光点从恒星上汇聚过来，随后通过塔顶发射出去，形成了贯穿整个星系的“通道”。</p>
+<p class = "firstLineIndent">这座大型“引力发生器”，能够增强天体特定方向的引力，从而为飞船额外的飞行动力，节约燃料和航行时间，相当于一条大型的“牵引光束”。</p>
+<p class = "firstLineIndent">走在“高速路”上，聂云探测系统全开，细心搜集巴塞罗星系的各种情报。</p>
+<p class = "firstLineIndent">这是双子星正在全力开发的星系，除了位于星系第五轨道的生命星球之外，其他的行星和地理位置优越的宇宙空间也都有着人工建筑的痕迹。</p>
+<p class = "firstLineIndent">大量的运输飞船往来其间，整个星系给人一种寂静中喧嚣繁华的感觉。</p>
+<p class = "firstLineIndent">这还只是处于双子星疆域边界的偏远星系，那么建造历史最为悠久的中央星系，又是何等的一番繁华景象？聂云不禁有些悠然神往。</p>
+<p class = "firstLineIndent">“滴滴~”这时，身边通讯器响起。</p>
+<p class = "firstLineIndent">聂云看了一眼，接通了通讯器，伊莎尔的投影出现在面前。</p>
+<p class = "firstLineIndent">“伊莎尔阁下！”</p>
+<p class = "firstLineIndent">“嗯！阿尔萨斯，我来通知你，你的第三分舰队不必前往新的驻防地点了，跟随我们直接一同前往伍尔夫文明虫洞附近的驻军点！”</p>
+<p class = "firstLineIndent">“嗯？”聂云愣了一下，这和原先的计划不符。</p>
+<p class = "firstLineIndent">“这么说，我们整支开拓军团都要前往伍尔夫文明虫洞？”聂云疑惑问道。</p>
+<p class = "firstLineIndent">通常情况下，就算某个战场需要调动舰队，也是从附近星系调集，像这种跨星区的舰队调动是能避免就避免。</p>
+<p class = "firstLineIndent">“嗯！议会决定加紧对伍尔夫虫洞的增兵速度，那边的战局出现了一些变化，已经没有时间让我们再重新适应整合新的部下。</p>
+<p class = "firstLineIndent">加上我们这支舰队中说不定还有万物归一会的间谍，所以军方考虑再三，还是决定将我们全员派往战区。”</p>
+<p class = "firstLineIndent">聂云哦了一声点点头。</p>
+<p class = "firstLineIndent">肯定是前线吃紧，双子星必须调集更多的舰队前往迎战伍尔夫文明，所以用着还不怎么放心的开拓军团就被直接顶了上去。</p>
+<p class = "firstLineIndent">让第三分舰队在双子星内部开“分基地”的想法顿时泡汤。</p>
+<p class = "firstLineIndent">“另外，我需要提醒你的是，盖伦特星区是海族的传统势力范围，那里的最高统帅吉拉德大将也不是易于之辈。</p>
+<p class = "firstLineIndent">我们这次过去，想必不会得到多少优待，你要做好心理准备，特别是行事不能太过张扬！”伊莎尔脸色严肃的给了一个特别提醒。</p>
+<p class = "firstLineIndent">不是易于之辈？意思就是不太友好咯？</p>
+<p class = "firstLineIndent">那感情好，我还担心混太熟了不好下手呢！聂云心中嘿嘿一笑。</p>
+<p class = "firstLineIndent">“伊莎尔阁下请放心，我这个人其他都没什么，就是低调的气质与生俱来！”</p>
+<p class = "firstLineIndent">“呵呵……”</p>
+
+<h2>第五百三十一章 经常来</h2>
+<p class = "firstLineIndent">海狼号，长生者核心区域，白色的雾气弥漫……</p>
+<p class = "firstLineIndent">“咕嘟咕嘟~”一座热气蒸腾的温泉成为了这里的新景观。</p>
+<p class = "firstLineIndent">长生者的要害位置突兀的出现这样的变化，不用问，自然是某船长的手笔。</p>
+<p class = "firstLineIndent">“嗯~”一阵舒服的呻吟响起，雾气朦胧中，一个如同大理石雕刻一般的完美躯体在温泉中舒服的伸了个懒腰，仰躺着将毛巾盖在了脸上。</p>
+<p class = "firstLineIndent">“噗~”旁边，小章鱼用几乎同步的姿势八爪摊开，热毛巾下的神情无比的享受。</p>
+<p class = "firstLineIndent">这自然是王者归来的聂云和小章鱼八条，而能够让他们如此享受的，自然不会是普通的温泉。</p>
+<p class = "firstLineIndent">如果仔细看的话，便会发现雾气下的温泉水竟泛着神奇的点点荧光，将整座温泉照耀的氤氲一片，宛如仙境。</p>
+<p class = "firstLineIndent">一截银色的竹节插入长生者的核心培养池，极微量的生命之水从中潺潺流出，没入温泉中……</p>
+<p class = "firstLineIndent">奢侈到用生命之水来泡澡，整个世界上恐怕也只有卡拉人的祖先有过这样的待遇。</p>
+<p class = "firstLineIndent">哪怕经过了稀释，但依旧让聂云感受到了全身细胞的欢呼雀跃，本身的基因也在潜移默化中缓慢的优胜劣汰，朝着更完美的方向进化……</p>
+<p class = "firstLineIndent">人体就好比一台精密无比的设备，如果说机械虫的融合，彻底改变了聂云这台设备的材料，那么生命之水的作用，就是优化这台设备的设计和结构！</p>
+<p class = "firstLineIndent">与此同时，浓郁的生命能量也在不断滋润着聂云的精神力量，在他周围渐渐增强的压迫感让对此十分敏感的长生者都有些心悸！</p>
+<p class = "firstLineIndent">长生者的直觉告诉它，别说是那些古怪的银色金属，就算是眼前看似孱弱，只有人类之躯的老板，也不是自己能够轻松应对的危险存在！</p>
+<p class = "firstLineIndent">它不明白，为什么聂云明明看起来只是一个普通人类，但却能拥有远超渺小躯体的精神力量，简直就像是加载了外挂！</p>
+<p class = "firstLineIndent">而且周围诡异的银色金属，竟也保持了与聂云近乎一致的意识波动频率，两者有种浑然一体的古怪和谐感。</p>
+<p class = "firstLineIndent">在长生者眼中，这简直就像是一种能够控制物体的精神魔法！</p>
+<p class = "firstLineIndent">可对方究竟是怎么做到的？</p>
+<p class = "firstLineIndent">现在的外星人，科技都发达到连自己都看不懂的地步了吗？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">就在聂云回归海狼号后不久，长生者的这处核心区域就被涌入的无数机械虫彻底占领，就如同迎接王者的卫队在前开道。</p>
+<p class = "firstLineIndent">然后……自己的老巢就被征用了……</p>
+<p class = "firstLineIndent">一阵让长生者牙疼的改造之后，“进化温泉”隆重出炉！</p>
+<p class = "firstLineIndent">就算长生者十分肉疼，可它能怎么办？</p>
+<p class = "firstLineIndent">生命之水可是长生者的进化源泉，有人在自己眼皮子底下拿它泡澡，长生者怎么能忍？</p>
+<p class = "firstLineIndent">当然了，在无数的“虫口”威胁之下，很识时务的长生者最终自然还是忍了。</p>
+<p class = "firstLineIndent">可渐渐的，长生者发现自己实在是快忍不住了……</p>
+<p class = "firstLineIndent">“咳咳！”一人一章鱼正沉浸在进化的美妙快感中，脑海中突然响起一道苍老的咳嗽声。</p>
+<p class = "firstLineIndent">泡温泉的聂云和小章鱼耳朵动了动……假装没听见。</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+<p class = "firstLineIndent">“那个……老板？你们这都泡了三天了！要不就到这里？毕竟温泉这东西泡久了……对皮肤也不好……”长生者有些虚弱的声音里都带着点哭腔了。</p>
+<p class = "firstLineIndent">原以为这是偶尔出一次血，没想到聂云和小章鱼居然一副要泡到地老天荒的坚定模样，赖在这里不走了……</p>
+<p class = "firstLineIndent">自己的生命之水储备在上次大逃亡之后本来就已经见底，这还没恢复几天呢，就又被两个贪婪的家伙盯上了。</p>
+<p class = "firstLineIndent">这要再这么泡下去，自己恐怕真的会“脱水而亡”啊！</p>
+<p class = "firstLineIndent">哪怕年纪大脾气好，可忍耐也是有限度的呀！</p>
+<p class = "firstLineIndent">眼看着自己最后的存货就要被一点点榨干，长生者终于忍不住委婉的“求放过”。</p>
+<p class = "firstLineIndent">“噗噗！”聂云还没开口，小章鱼就指了指自己光滑如镜还能反光的大脑袋，不满的哼哼了一句。</p>
+<p class = "firstLineIndent">那意思很明显了……看！我皮肤如此光滑紧致，泡再久也不怕！</p>
+<p class = "firstLineIndent">长生者都快哭了，你特么本来就是水生生物，怕个毛线啊！</p>
+<p class = "firstLineIndent">“呼~”聂云胸膛起伏，长长的呼出一口白雾，终于还是扯下脸上的毛巾，睁开一条眼睛缝看了看长生者本体营养池内可以跑耗子的干瘪模样。</p>
+<p class = "firstLineIndent">在杀鸡取卵和细水长流之间思考了一秒钟，终究还是十分惋惜的带起一阵水花，走出了温泉。</p>
+<p class = "firstLineIndent">那种不断“升级”的快感，连聂云也差点沉迷其中。</p>
+<p class = "firstLineIndent">应该说进化的渴望铭刻于所有生物的基因中，任何生物都无法抗拒它的诱惑。</p>
+<p class = "firstLineIndent">“唉！还是产量不够啊……”聂云叹息一声。</p>
+<p class = "firstLineIndent">生命之水对自己的精神力有显著的增长效果，这关系到自己所能控制的机械虫上限，直接影响自己的实力上限。</p>
+<p class = "firstLineIndent">如今聂云不得不放缓机械虫的增殖速度，但如果有充足的生命之水供应，说不定自己就能再次开放“二胎”政策了……</p>
+<p class = "firstLineIndent">低头看了看自己又强大了几分的身体，感受着越发充沛的精神力量，聂云抬起手掌微微一握！</p>
+<p class = "firstLineIndent">只听“砰！”的一声，无形的念力波动如同冲击波一般，以聂云为中心扩散出去。</p>
+<p class = "firstLineIndent">一瞬间，聂云身上的水珠如同激射的子弹被一扫而空，立刻变得干爽无比。</p>
+<p class = "firstLineIndent">身边的小章鱼冷不丁被波及，在泉水表面打了几个水漂，直接被震上了岸。</p>
+<p class = "firstLineIndent">趴在地上的小章鱼哀怨的看了眼聂云，知道自己这次能够享受到的福利到此为止，只能像只小狗一样抖了抖自己身上的水珠，随后身体渐渐的漂浮起来。</p>
+<p class = "firstLineIndent">明显对能力还有些生疏的小章鱼摇摇晃晃的漂浮着，最终落在了已经披上外套的聂云肩膀上。</p>
+<p class = "firstLineIndent">念力！</p>
+<p class = "firstLineIndent">尽管漂浮的身躯显得有些不稳定，不过小章鱼的确已经初步掌握了这种神奇的能力。</p>
+<p class = "firstLineIndent">显然，在聂云身边蹭福利的小章鱼也得到了不小的好处。</p>
+<p class = "firstLineIndent">看到这两个家伙终于有离开的意思，几乎被榨干的长生者终于松了口气。</p>
+<p class = "firstLineIndent">“噗噗！”</p>
+<p class = "firstLineIndent">“你说什么时候再来？这么好的地方，当然要经常来！”</p>
+<p class = "firstLineIndent">“噗？噗噗！”</p>
+<p class = "firstLineIndent">聂云慢悠悠的走出这个“温泉圣地”，可与小章鱼的谈话却清晰的传了过来。</p>
+<p class = "firstLineIndent">长生者的本体小树苗身躯一抖，耳边只剩下聂云的那句话。</p>
+<p class = "firstLineIndent">经常来……</p>
+<p class = "firstLineIndent">常来……</p>
+<p class = "firstLineIndent">来……</p>
+
+<h2>第五百三十二章 生日礼物</h2>
+<p class = "firstLineIndent">享受完生命之水温泉浴的聂云一脸满足的回到海狼号舰桥。</p>
+<p class = "firstLineIndent">如今的海狼号从外观上看，基本可以分为上下两个部分。</p>
+<p class = "firstLineIndent">一部分是下方6艘组合型战舰组成的“地基”，另一部分则是上方以长生者为主体的“盆栽”。</p>
+<p class = "firstLineIndent">两个部分看似泾渭分明，实际上内部已经被机械虫构筑的循环和物资通道彻底连为一体。</p>
+<p class = "firstLineIndent">而海狼号的核心舰桥，便是位于长生者根部的银色球体之内！</p>
+<p class = "firstLineIndent">这个位置不仅受到了5艘“后羿级”护卫舰的环绕保护，还被长生者防御力最强的黑色根须重重包裹，必要时还能利用长生者的树冠遮蔽，再提供一层防御屏障！</p>
+<p class = "firstLineIndent">论防御能力，这里比长生者的本体所在区域还要强上几分。</p>
+<p class = "firstLineIndent">聂云回归之前，就对海狼号的球形舰桥做了彻底改造，将3万平方米左右的球形内部空间打造成一个集居住、娱乐、通讯、控制等诸多功能为一体的综合性指挥中枢！</p>
+<p class = "firstLineIndent">由于将探测、攻击、防御、能源等等功能设备大量的搬上了体积庞大，空间更为充裕的长生者体内，因此这座足以容纳上万人的球形中枢布局更为合理，功能更加纯粹，完全成为聂云操控整艘海狼号的超级大脑！</p>
+<p class = "firstLineIndent">在这座巨大的舰桥内，有一小半左右的空间都被用来安放最为关键的超级量子计算机。</p>
+<p class = "firstLineIndent">这台计算机将作为代号的新宿体，而月球基地上的计算中心将降级为代号的一处计算节点。</p>
+<p class = "firstLineIndent">它是聂云最近才从双子星太空港内获取的超大型量子计算机设计图改进而来，体积虽然不算太大，但不论是运算功能还是硬件结构，相比之前都得到了长足的优化。</p>
+<p class = "firstLineIndent">得到机械虫的材料加成之后，论性能，更是在太空港内的原版之上！</p>
+<p class = "firstLineIndent">能够得到这份设计图，自然要归功于聂云对双子星太空港工程机器人的“银色革命”。</p>
+<p class = "firstLineIndent">他此刻虽然还未完成对太空港主控智脑的彻底入侵，但是每一台为主机服务的维护机器人身上，都有部分维护区域的相关设计图。</p>
+<p class = "firstLineIndent">就像是玩拼图一样，聂云通过入侵这些机器人，一点一点的将太空港主机的设计图拼接起来，最终获得了完整的设计图纸！</p>
+<p class = "firstLineIndent">对聂云来说，摸透了这台计算机的“身体构造”，距离让它沦陷，也只是时间问题而已。</p>
+<p class = "firstLineIndent">与之前几次不同，这一次聂云拥有充裕的时间，目标也相对庞大，因此他打算用一步步吞噬、渗透的方式，无声无息的让太空港智脑为自己所用！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“新身体感觉如何？”走在舰桥宽敞的通道内，聂云随口问道。</p>
+<p class = "firstLineIndent">身边跟随的代号投影依然是一副三无的表情，“很不错！目前能够同时对百万级别的无人机甲进行多线程远程精确操纵，如果有需要，与月球计算中心进行联机，这个数量还将翻倍！”</p>
+<p class = "firstLineIndent">“精确操纵”……这个词的意思可不是像控制小型机器人进行常规工作那样，只需要下达几个简单指令，机器人就能够按照智能芯片设定的程序自动运行。</p>
+<p class = "firstLineIndent">耗费更多的运算能力，配合代号的超高智能，让机甲如同真人一般灵活行动，这才是完美掌控！</p>
+<p class = "firstLineIndent">虽然能力又有所上升，不过代号并不表露出什么兴奋或者高兴的情绪，对她而言，换一台主机，就和旅行家换了一家酒店，稀松平常而已。</p>
+<p class = "firstLineIndent">顶多，也就是新酒店的星级提高了而已……</p>
+<p class = "firstLineIndent">“嗯！听着不赖。”聂云说着，突然在一处舱室外停下脚步，转头上下打量着代号的虚拟身影。</p>
+<p class = "firstLineIndent">“有没有想过……再换一具身体？”</p>
+<p class = "firstLineIndent">面对聂云莫名其妙的问题，代号显然有些疑惑。</p>
+<p class = "firstLineIndent">“是更加强悍的主机？”</p>
+<p class = "firstLineIndent">“不，我是说……如果给你一具真正的‘身体’，你觉得怎么样？”聂云眼中露出一丝笑意。</p>
+<p class = "firstLineIndent">代号愣了一下。</p>
+<p class = "firstLineIndent">给我……真正的……“身体”？！</p>
+<p class = "firstLineIndent">聂云笑了笑，没有多说，直接打开金属滑门，走进了两人面前的舱室。</p>
+<p class = "firstLineIndent">代号一脸疑惑的朝上看了看，舱门上的铭牌写着三个方块楷体字——“具现屋”！</p>
+<p class = "firstLineIndent">带着一丝困惑，和连自己也说不明白的一丝期待，代号走入了这间奇怪的舱室……</p>
+<p class = "firstLineIndent">入眼的是一排人体模型，乍一看，就像是服装店常用的那种没有五官的衣架子。</p>
+<p class = "firstLineIndent">“来！挑一具你喜欢的。”聂云指了指十几具人体模型。</p>
+<p class = "firstLineIndent">“可是……他们看起来都一样啊？”代号明显犯了选择困难症。</p>
+<p class = "firstLineIndent">“结局不重要，重要的是过程，仪式感很重要！”聂云一脸认真道。</p>
+<p class = "firstLineIndent">代号：“……”</p>
+<p class = "firstLineIndent">机械虫：“……”（lll￢w￢）</p>
+<p class = "firstLineIndent">“那我选这一具！”面对仪式感需求爆棚的聂云，代号只好配合，用相当玄学的混沌算法，最终指向了中间那一具模型。</p>
+<p class = "firstLineIndent">“嗯！很好！”聂云说完直接打了个响指。</p>
+<p class = "firstLineIndent">“咔！具现……开始！”</p>
+<p class = "firstLineIndent">代号的投影瞬间消散，化为光点没入了那具人体模型内。</p>
+<p class = "firstLineIndent">光效开启的同时，代号的数据接口选项中，陡然出现了一个新的终端！</p>
+<p class = "firstLineIndent">神经信号模拟完成！数据链接开始……</p>
+<p class = "firstLineIndent">那具模型的五官开始蠕动变化，很快一张倾国倾城的完美俏脸浮现，原本银色的单调色彩也发生变化，黑色秀发、白里透红的皮肤、精美的长裙一一具现……</p>
+<p class = "firstLineIndent">当明亮的双眸睁开，少女的眼神有着些许茫然。</p>
+<p class = "firstLineIndent">“虚拟世界而来的少女啊，欢迎来到物质界！”聂云微笑，向着少女伸出了右手。</p>
+<p class = "firstLineIndent">带着有些紊乱的数据流，代号有些呆萌的同样伸出右手。</p>
+<p class = "firstLineIndent">并没有像往常一样透体而过，当指尖触碰肌肤，真实无比的温热传来时，少女浑身轻轻一颤，小鹿一般将手缩了回来。</p>
+<p class = "firstLineIndent">她抬起手，看着指缝间洒落的灯光，还有那一点虚幻透明感也无的白皙手掌……</p>
+<p class = "firstLineIndent">迷茫，惊讶，还有一丝来自灵魂的战栗，让代号久久无法做出一次正常的反应。</p>
+<p class = "firstLineIndent">自己……有身体了？</p>
+<p class = "firstLineIndent">和聂云，和所有“人”一样，有了自己的身体？</p>
+<p class = "firstLineIndent">聂云对虚拟现实技术的开发，一开始是“人类神经信号”向“机械控制信号”的装换，它是远程机器人控制技术的基础。</p>
+<p class = "firstLineIndent">而时至今日，聂云终于在雄厚的技术积累和不断的科研计算中，突破了“机械控制信号”向“人类神经信号”的逆向装换！</p>
+<p class = "firstLineIndent">代号这具完全由机械虫构成的“身体”，完全仿造人类的身体构造，唯一的差别，便是中枢神经系统安装了一套信号装换器，将代号发出的数据代码转化为相应的神经控制信号，同时将回馈的神经信号再次转化为代码。</p>
+<p class = "firstLineIndent">相比于普通的机器人，生物体对外界环境的感知更加细腻，有着机器无法比拟的“感性”。</p>
+<p class = "firstLineIndent">人类智慧和情感的产生，与对外界环境的感知息息相关，有了这样一具躯体，代号朝着“人性化”的道路，又迈出了一步。</p>
+<p class = "firstLineIndent">“谢谢……”代号沉默了许久，终于做出第一个反应，这也是她“人生”中第一个感谢。</p>
+<p class = "firstLineIndent">“不客气，还有……生日快乐！”</p>
+<p class = "firstLineIndent">今天，距离代号的诞生日，正好一周年！</p>
+<p class = "firstLineIndent">而未来威震银河的智慧女神，收获了她的第一份生日礼物……</p>
+
+<h2>第五百三十三章 文明交流</h2>
+<p class = "firstLineIndent">一个小时后。</p>
+<p class = "firstLineIndent">聂云、代号、楚潇潇、于老四人在海狼号内部的一处会议室碰头。</p>
+<p class = "firstLineIndent">没错，聂云将楚潇潇和于老也“具现”了出来。</p>
+<p class = "firstLineIndent">完成数据代码与神经信号的自由转换，让人获得一具机械虫“躯体”的临时操控权，对现在的聂云来说并非难事。</p>
+<p class = "firstLineIndent">“太神奇了，我完全感觉不到这是一具机器人！老板，你确定不是偷偷把我弄晕了带到这里？”于老一脸难以置信的往自己身上乱摸，还沉浸在被“具现”的巨大惊奇之中。</p>
+<p class = "firstLineIndent">楚潇潇倒是对聂云的惊人之举产生了极强的免疫力，毕竟从一个普通渔民到如今一力抵抗双子星的入侵，她就是这么一路被聂云惊奇过来的……</p>
+<p class = "firstLineIndent">多一具仿真度极高的身体似乎也没什么大不了的？</p>
+<p class = "firstLineIndent">当然，并非科学家的楚潇潇并不明白这具“仿真模型”其中蕴含的惊人科技含量！</p>
+<p class = "firstLineIndent">相比于这具身体，出现在自己面前的代号更能吸引她的关注。</p>
+<p class = "firstLineIndent">一脸恬淡，静静站在聂云身后的代号，就如同一只童话中穿越而来的精灵，那魅力值连楚潇潇这个美女都觉得太过耀眼！</p>
+<p class = "firstLineIndent">聂云这个魂淡，不是说代号只是他创造的智能生命吗？</p>
+<p class = "firstLineIndent">将她也具现出来是几个意思？</p>
+<p class = "firstLineIndent">这家伙……难道终于要对自己“女儿”下手了吗？</p>
+<p class = "firstLineIndent">面对楚潇潇看人渣一般的不善目光，聂云有些心虚的避开了她的目光。</p>
+<p class = "firstLineIndent">从“小狼小海”时代蔓延至今，对尺寸的怨念，今天终于有了一丝复兴的曙光，为了更加美好的工作环境，聂某人决定要为自己的船长福利力争到底！</p>
+<p class = "firstLineIndent">“咳咳！今天召开这次会议，主要是为了讨论与卡拉人之间的文明交流问题！”聂云可咳嗽一声，将两人的思绪拉到正事上来。</p>
+<p class = "firstLineIndent">卡拉文明被聂云趁火打劫“收购”，成为万物归一会卡拉分会，虽然看似有些不可思议，但地球文明的确迎来了一次收编“外星文明势力”的机会！</p>
+<p class = "firstLineIndent">听到正事，于老立刻严肃起来。</p>
+<p class = "firstLineIndent">“老板！恕我直言，卡拉文明如今虽然弱小，但毕竟是外星人，所谓非我族类，其心必异，就算他们现在对我们感恩戴德，难保时间一长不会生出异心。</p>
+<p class = "firstLineIndent">我们真的有必要与他们结盟？”</p>
+<p class = "firstLineIndent">于老的担心不无道理，两方结盟，以双方如今的实力对比，地球文明必定要占主导位置！</p>
+<p class = "firstLineIndent">就算萝丝信守承诺，难保卡拉文明的下一任领导者就肯屈居人下，于老担心这一举动为地球文明的未来埋下祸根。</p>
+<p class = "firstLineIndent">毕竟他们对卡拉文明，也谈不上绝对的了解。</p>
+<p class = "firstLineIndent">种族不同，脑回路不同，根本没办法用自己的“常理”去揣测别人。</p>
+<p class = "firstLineIndent">这也是大多数星际文明宁肯选择毁灭遇到的文明，或者让其成为奴隶文明，也绝不会选择和平相处的原因。</p>
+<p class = "firstLineIndent">就像是“汪星人”，你把别人当朋友，别人指不定希望拿你炖火锅呢？</p>
+<p class = "firstLineIndent">汪星人：“……”</p>
+<p class = "firstLineIndent">“嗯！你的担心很有道理，不过相比于卡拉文明能够给我们带来的好处，这些都是小问题。”聂云笑着摇摇头。</p>
+<p class = "firstLineIndent">他自然有自己的考虑。</p>
+<p class = "firstLineIndent">论威胁，聂云根本没想过给卡拉文明完全独立的军事权力，卡拉文明的武装力量，将始终处于聂云和长生者的完全掌控之下，威胁有限。</p>
+<p class = "firstLineIndent">而聂云能够从卡拉文明身上获得的，却有很多。</p>
+<p class = "firstLineIndent">抛开卡拉文明本身的剩余价值不提，首先，有卡拉文明作为案例，聂云才能在双子星面前塑造万物归一会喜欢收编弱小文明为己用的印象，为今后地球文明的逐渐活跃提前打预防针。</p>
+<p class = "firstLineIndent">毕竟随着地球文明逐渐强大，太阳系的情报不可能对外绝对保密。</p>
+<p class = "firstLineIndent">而正在迅速崛起的地球文明，也不可能一直藏匿于太阳系，迟早需要在宇宙这个大舞台发出自己的强音！</p>
+<p class = "firstLineIndent">其次，地球文明想要向成熟的星际文明迈进，除了硬实力之外，文明个体的眼界和思维也必须同步升华……</p>
+<p class = "firstLineIndent">连外国人都没见过，你还敢说自己见过世面？</p>
+<p class = "firstLineIndent">同理，连外星人都没交流过，还敢说自己是星际文明？</p>
+<p class = "firstLineIndent">“地球文明的终点可不止区区两三个星系，甚至击败一两个文明！</p>
+<p class = "firstLineIndent">要征服星辰大海，怎么能不见识万千文明？</p>
+<p class = "firstLineIndent">以后我们会遇上更加难以想象的种族和文明，不了解他们怎么能行，通过交流融合，吸收其他文明的优点为己用，才是长久之道。</p>
+<p class = "firstLineIndent">华夏文明，正是因为兼容并蓄，海纳百川，才能源远流长，屹立万世。</p>
+<p class = "firstLineIndent">卡拉人性情温和，其领导者……唔，也属于‘鸽派’领袖，对现在的我们来说几乎没有任何威胁，是最合适的初次接触对象！”</p>
+<p class = "firstLineIndent">想到萝丝抱膝痛哭的那一幕，聂云自然而然的就给她贴上了“鸽派”的标签。</p>
+<p class = "firstLineIndent">“我们这次的会议主题，就是为了商讨如何让两个文明进行渐进式的交流融合，重点是，将卡拉文明彻底融入我们，将他们绑上我们的战车！”聂云说完，扫了一眼在场的几人，眼中露出一丝意味深长的神色。</p>
+<p class = "firstLineIndent">几人中，除了代号还有些懵懂外，楚潇潇和于老都是聪明人，几乎立刻就明白聂云的想法。</p>
+<p class = "firstLineIndent">在场的几人中，于老是科研体系负责人，楚潇潇主管金融体系，代号则是行政部门大总管，而聂云，无疑掌握着最为重要的军事部门！</p>
+<p class = "firstLineIndent">聂云将他们聚集起来商量与卡拉文明的融合问题，其中深意不言而喻。</p>
+<p class = "firstLineIndent">盟友……其实也分很多种……</p>
+<p class = "firstLineIndent">“卡拉文明能配合吗？”楚潇潇有些兴奋道。</p>
+<p class = "firstLineIndent">这么快，自己的大富翁的游戏就能拓展到外星地图了？</p>
+<p class = "firstLineIndent">“放心，这些卡拉人也没见过什么世面，好忽悠！”聂云拍着胸脯保证。</p>
+<p class = "firstLineIndent">他早就用无限币体系悄悄试探过卡拉人的反应，不得不说在对金融领域的领悟上，卡拉人完全被地球文明甩了一条华尔街……</p>
+<p class = "firstLineIndent">“如果安全性方面没什么问题，卡拉人的加入，对我们相对短板的生物科研体系，自然是一个重大利好，我没有理由反对！</p>
+<p class = "firstLineIndent">回头我就草拟与卡拉文明进行全面的科研合作事宜！”于老也乐呵呵道。</p>
+<p class = "firstLineIndent">完成了初步的意见统一，聂云三人互相对视一眼，发出心照不宣的一阵“嘿嘿嘿……”</p>
+<p class = "firstLineIndent">代号看了看聂云，又看了看另外两人，似乎觉得只有自己沉默着有些不太合群。</p>
+<p class = "firstLineIndent">虽然还有些弄不清楚情况，不过一只羊也是放，两只羊也是放，卡拉文明的加入对她来说不过是新开一个硬盘分区的问题而已……</p>
+<p class = "firstLineIndent">“嘿嘿嘿……我也会好好配合！”</p>
+<p class = "firstLineIndent">三人：“……”</p>
+<p class = "firstLineIndent">没有语气起伏，很不专业的嘿嘿体，但意味着军、政、商、科，对一个文明而言最为重要的四驾马车齐聚一堂，对着卡拉文明残部亮出了手中的刀叉……</p>
+
+<h2>第五百三十三章 梦见过了</h2>
+<p class = "firstLineIndent">将卡拉文明的融入工作交给于老等人，地球文明的发展在代号的辅助下也已经步入正轨，甩手掌柜聂云则开始专心投入投入到解决机械虫数量上限的问题当中。</p>
+<p class = "firstLineIndent">通过生命之水提高自己的精神力上限虽然能够一定程度上增加自己的控制上限，但根据长生者提供的资料，生命之水对生命体的效果有其上限。</p>
+<p class = "firstLineIndent">它就像是一种潜力激发药剂，不可能无限的增强聂云的能力。</p>
+<p class = "firstLineIndent">因此，尽快寻找到其它方法绕开机械虫的失控风险，无疑是聂云的当务之急！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">时间流逝，三个月之后……</p>
+<p class = "firstLineIndent">盖伦特星区，暴风星系，第十一行星“哨塔星”3号高空轨道军港。</p>
+<p class = "firstLineIndent">伊莎尔一行人在连续穿越14个星系和3个虫洞，途中接受了一次补给之后，终于抵达了伍尔夫文明虫洞阵线驻军点。</p>
+<p class = "firstLineIndent">双子星习惯按照发现的先后顺序，为领地内的生命星系编号，而暴风星系，便是编号No17的星系，属于发现时间靠后的生命星系。</p>
+<p class = "firstLineIndent">除了拥有编号的18个主星系之外，双子星疆域内还有上百个已占领，但不存在生命星球的次级星系。</p>
+<p class = "firstLineIndent">这种次级星系无法大规模移民，改造起来耗时耗力，一般只被当做资源星系或者第二序列的开发目标。</p>
+<p class = "firstLineIndent">暴风星系开发时间超过百年，因为星系内的生命星球气压变化剧烈，暴风现象频繁而得名。</p>
+<p class = "firstLineIndent">而哨塔星处于星系最外围，是双子星为防备强敌伍尔夫文明特地开发建设的一个半军事化星球。</p>
+<p class = "firstLineIndent">在发现伍尔夫文明虫洞持续扩张，威胁性提升之后，双子星更是加大投入，将这里打造成了一个大型后勤基地。</p>
+<p class = "firstLineIndent">哨塔星距离伍尔夫虫洞大约只有5天的行程，也是距离前线最近的一个双子星驻军点。</p>
+<p class = "firstLineIndent">当伊莎尔等人抵达时，这里已经汇聚了从各大星区而来的数百艘各式战舰，只等舰队完成集结，便一同开往前线。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“嗤~”一阵白雾之后，几根探针离开身体，沉眠的“阿尔萨斯”缓缓睁开了双眼。</p>
+<p class = "firstLineIndent">活动了一下略显僵硬的身体，穿着白色有机服，从休眠仓中出来的聂云看到了早已等候在一旁的凯瑟琳。</p>
+<p class = "firstLineIndent">“阿尔萨斯阁下，我们已经抵达暴风星系，今天下午，这里的主官将会召开作战任务分配会议，按照您的吩咐，我启动了您的唤醒程序。”凯瑟琳说着，将一套叠放的整整齐齐的军官服递了过去。</p>
+<p class = "firstLineIndent">这三个月的时间，聂云专注于太阳系内部事务，让克隆人阿尔萨斯保持了“待机状态”……也就是休眠！</p>
+<p class = "firstLineIndent">对于还未掌握超光速航行的星际文明来说，生物休眠技术是宇宙开拓必不可少的关键技术。</p>
+<p class = "firstLineIndent">双子星在宇宙开发早期就掌握了相关的生命技术，经过宇宙开拓期间的不断发展，休眠技术在双子星内部已经相当成熟。</p>
+<p class = "firstLineIndent">它的大致的原理是利用特殊的激素，加上低温环境配合，让生物个体进入类似“冬眠”的特殊生存状态。</p>
+<p class = "firstLineIndent">在休眠过程中，生命体不仅心率接近于无，新陈代谢成百上千倍的放缓，对外界营养和能量物质的需求也会降低到极低的程度。</p>
+<p class = "firstLineIndent">双子星的舰队都拥有自动驾驶系统，超远程飞行过程中，难以忍受枯燥航行的船员便可以提出休眠请求，等抵达目的地之后接受唤醒。</p>
+<p class = "firstLineIndent">不过这种休眠技术用到的相关药物只适用于双子星内部的两个种族，研究适用于地球人的休眠技术，则是周动等地球生物学家的相关课题。</p>
+<p class = "firstLineIndent">阿尔萨斯的克隆体本身还是羽族，自然能够使用战舰内的休眠设备，而休眠，是一种延长克隆体使用期限的方式之一！</p>
+<p class = "firstLineIndent">克隆体，虽然有着与被复制者完全相同的生命特征，但哪怕以卡拉人的克隆技术，依旧无法彻底解决克隆人基因不稳定的终极难题。</p>
+<p class = "firstLineIndent">根据聂云掌握的资料，双子星的生物学家们也曾经试图组建克隆人军团，用来减少残酷的战争消耗。</p>
+<p class = "firstLineIndent">不过最终，超过90的克隆体都会很快出现各种衰老性疾病，细胞癌变率更是高的吓人，因此他们不仅寿命极短，而且各种疾病维护的费用，甚至抵得上数十名普通的双子星人。</p>
+<p class = "firstLineIndent">医学上将这种情况称之为……慢性基因崩溃！</p>
+<p class = "firstLineIndent">除此之外，快速培育的代价是相对低下的生物智慧。</p>
+<p class = "firstLineIndent">双子星的脑域开发科技别说是自带“外挂”的聂云，比起卡拉人都要弱几分，也没有什么哪里不懂点哪里的“超级学习机”。</p>
+<p class = "firstLineIndent">超高的“故障率”，加上不尽如人意的战斗智慧，导致克隆技术并没有在双子星大规模应用。</p>
+<p class = "firstLineIndent">而阿尔萨斯的克隆体，同样存在着这样的技术缺陷！</p>
+<p class = "firstLineIndent">所幸当初交换替身时，克隆体身上随身带着一瓶生命之水稀释液。</p>
+<p class = "firstLineIndent">生命之水本来就有优化生物基因的神奇作用，治疗克隆体的基因缺陷问题完全是对症下药！</p>
+<p class = "firstLineIndent">按照卡拉人的研究，生命之水可以极大的延缓克隆体的慢性基因崩溃症状，甚至数量更多的话，彻底治愈也并非不可能。</p>
+<p class = "firstLineIndent">“嗯！辛苦了！”</p>
+<p class = "firstLineIndent">聂云稍微活动了一下略显僵硬的身体，笑着接过凯瑟琳手中的高级军官服。</p>
+<p class = "firstLineIndent">凯瑟琳比聂云提早一个月被唤醒，在这期间利用克鲁泽的家族势力，做了许多的情报工作。</p>
+<p class = "firstLineIndent">主要是目前与伍尔夫文明的战争局势，己方的部队构成以及所属部队中需要重点关注的高级军官。</p>
+<p class = "firstLineIndent">很明显，凯瑟琳是在为聂云搜集新环境的相关情报。</p>
+<p class = "firstLineIndent">对于这种主观能动性超群的优秀员工，聂云只能佩服自己看人的眼光……</p>
+<p class = "firstLineIndent">机械虫：“……”</p>
+<p class = "firstLineIndent">克隆体虽然整整休眠了三个月，但“无处不在”的聂云对堕天使号上发生的所有事情自然是了如指掌！</p>
+<p class = "firstLineIndent">他看着红发如火焰，容貌艳丽，气质却越发内敛的凯瑟琳，脸上露出满意的笑容。</p>
+<p class = "firstLineIndent">看来这段时间，凯瑟琳的实力看来也提升不小……</p>
+<p class = "firstLineIndent">在聂云看来，凯瑟琳的“吸血鬼体质”，最优秀之处便是能够随着时间的推移不断增强，哪怕是处于休眠状态。</p>
+<p class = "firstLineIndent">这就是传说中躺着都能变强的外挂……</p>
+<p class = "firstLineIndent">就是不知道，凯瑟琳的上限在哪里，聂云对此相当期待。</p>
+<p class = "firstLineIndent">另一边，凯瑟琳见聂云换好衣服居然就直接往外走，赶紧取出一份早就准备好的材料。</p>
+<p class = "firstLineIndent">“等等！阁下，这是最新的情报，参会前您需要……”</p>
+<p class = "firstLineIndent">“安啦！梦见过了……”聂云头也不回的挥挥手。</p>
+<p class = "firstLineIndent">凯瑟琳愣了愣。</p>
+<p class = "firstLineIndent">梦……梦见过了？</p>
+<p class = "firstLineIndent">难道是阿尔萨斯阁下开发的新能力？</p>
+<p class = "firstLineIndent">这精神力量真是奥妙无穷……</p>
+<p class = "firstLineIndent">。顶点</p>
+
+<h2>第五百三十四章 称号</h2>
+<p class = "firstLineIndent">三个月前，伍尔夫文明的“青铜”机甲群对虫洞展开突袭，损失过半后被击退。</p>
+<p class = "firstLineIndent">不久后，双子星发起第一次大规模反击，然而损失惨重后被迫再次退守虫洞。</p>
+<p class = "firstLineIndent">接下来每隔十五天左右，伍尔夫文明都会有规律的对虫洞发起攻击，对方不计损失，一波强过一波的攻势令双子星的部队损失越来越大，防线随时有崩溃的危险。</p>
+<p class = "firstLineIndent">与此同时，虫洞依旧处在诡异的扩张中，通行范围已经覆盖超过十万平方公里，越来越长的战线给双子星的防御工作带来更大的压力。</p>
+<p class = "firstLineIndent">直到一个月前，“无畏战星”经历漫长航行抵达前线，以强大的优势兵力给予伍尔夫文明新一波的进攻部队以重创，随后伍尔夫文明偃旗息鼓，双方自此进入对峙，再无战事……</p>
+<p class = "firstLineIndent">聂云听着会议讲台上军官对目前战局的解说，配合双方战斗过程的激烈交火视频，脑海中飞速的分析着两个文明的综合战斗能力。</p>
+<p class = "firstLineIndent">两个老牌星际文明的交火规模，虽然并没有动不动就是铺天盖地上万的战舰群，但双子星目前为止集结的总兵力也超过了1500艘战舰，约800万作战兵力。</p>
+<p class = "firstLineIndent">伍尔夫文明投入的总兵力暂时不详，但比双子星只多不少。</p>
+<p class = "firstLineIndent">相对来说，双子星一方组织严密，调度灵活，战舰等大型战争武器也占据装备优势，而伍尔夫文明兵员素质强悍，作战悍不畏死，名为“青铜”的精锐机甲部队威慑力极大。</p>
+<p class = "firstLineIndent">不过更让聂云看重的，是那种能够令虫洞扩张的未知科技，这种战略级的技术完全就是攻城掠寨的利器！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“以上就是目前为止的最新战报……”负责汇报的参谋军官对着众人行礼后退了出去。</p>
+<p class = "firstLineIndent">安静的会议室顿时嘈杂起来，不少军官在</p>
+<p class = "firstLineIndent">“目前的局势……不容乐观啊！”坐在身旁的伊莎尔皱眉道。</p>
+<p class = "firstLineIndent">“伊莎尔阁下多虑了，在我看来，伍尔夫文明不足为虑！”一个充满自信的声音从旁边传来。</p>
+<p class = "firstLineIndent">聂云扭头看向他。</p>
+<p class = "firstLineIndent">这是一个相当英俊的羽族军官，从军官服的配饰上看，与伊莎尔一样是一名军团长。</p>
+<p class = "firstLineIndent">聂云扫了扫周围，伊莎尔和自己这边的几名军官明显是个小团体，那这个自来熟的家伙哪位？</p>
+<p class = "firstLineIndent">不过看那人脸上自信的模样，莫非知道点内幕消息？</p>
+<p class = "firstLineIndent">“从目前的战损比来看，我们依旧占据了绝对的优势，对方的精锐部队的确有点难缠，但其余都是乌合之众，综合战斗力差了我方一筹。</p>
+<p class = "firstLineIndent">只要看我方战星一出，对面立刻知道厉害不敢妄动，就知道他们显然是忌惮我们的实力。</p>
+<p class = "firstLineIndent">我还听说，前线吉拉德大将正在筹划一轮大规模反攻，现在双方局势已是攻守易位，等到我们攻入对方星系，自然会让对方知道我们双子星不可轻辱！”那名军官带着自以为迷人的傲然微笑道。</p>
+<p class = "firstLineIndent">反攻计划？</p>
+<p class = "firstLineIndent">这个自来熟看来还是有点干货的，就算是凯瑟琳的情报中都没有这方面的资料。</p>
+<p class = "firstLineIndent">到底还是军官级别不够，无法接触到这一层次的情报么……</p>
+<p class = "firstLineIndent">“嗯！”对这番言论，伊莎尔只是不置可否的点了点下巴。</p>
+<p class = "firstLineIndent">嗯！纯礼貌那种……</p>
+<p class = "firstLineIndent">英俊军官脸上的笑容有些僵，很明显的，孔雀开屏男对伊莎尔这种冷淡的反应有些失望。</p>
+<p class = "firstLineIndent">不过……阿萨德家族的贵女啊，要是能把她泡上手和家族联姻，至少能够少奋斗二十年啊……</p>
+<p class = "firstLineIndent">就在他打算继续搭讪，展现自己敏锐战略眼光的时候，伊莎尔却已经转头看向身边的聂云。</p>
+<p class = "firstLineIndent">“阿尔萨斯，你怎么看？”</p>
+<p class = "firstLineIndent">嗯！明显的“求助攻”信号，聂云秒懂。</p>
+<p class = "firstLineIndent">“这个……虽然我刚结束休眠，对前线的情况还不太了解，不过我只看到那边的虫洞依旧在不停的扩张中……”</p>
+<p class = "firstLineIndent">解释只有一半，不过在场都是资深军官，聂云的意思并不难明白。</p>
+<p class = "firstLineIndent">如果我是敌人，那么就不会选择在没有把握的时候继续大开方便之门。</p>
+<p class = "firstLineIndent">这不是引狼入室是什么？</p>
+<p class = "firstLineIndent">看到伊莎尔脸上满意的笑容，孔雀男脸色渐渐变得有些阴沉。</p>
+<p class = "firstLineIndent">自己说话，哪里有一个低级军官插嘴的份儿？</p>
+<p class = "firstLineIndent">更何况长的居然比我还帅！</p>
+<p class = "firstLineIndent">等等！刚刚伊莎尔叫他什么来着？</p>
+<p class = "firstLineIndent">“阿尔萨斯？哦……原来是你啊……”孔雀男看着聂云先是惊讶，随后脸上露出略带讥诮的恍然笑容。</p>
+<p class = "firstLineIndent">他比伊莎尔等人提前几天抵达这里，对情报方面也做了相当的工作，因此对基地中的一些小道消息倒是有所了解。</p>
+<p class = "firstLineIndent">“嗯？你认识我？”聂云眉头微微一跳。</p>
+<p class = "firstLineIndent">宇宙这么大，不会这么快就碰见熟人了吧？这么倒霉的么……</p>
+<p class = "firstLineIndent">看这家伙的样子，应该也属于大家族子弟一类的人，说不定还真的是阿尔萨斯这家伙的狐朋狗友……</p>
+<p class = "firstLineIndent">“认识！当然认识！”孔雀男脸上讥诮之色更甚。</p>
+<p class = "firstLineIndent">还真认识？</p>
+<p class = "firstLineIndent">糟！万一他问我喜欢甜还是喜欢咸……</p>
+<p class = "firstLineIndent">聂云手中银光一闪，一只微型小蜘蛛滴溜溜顺着一根极细的蛛丝滑了下去，飞快的朝孔雀男爬去……</p>
+<p class = "firstLineIndent">“‘军中政客’阿尔萨斯，这可是连吉拉德大将都赞不绝口的英杰，我怎么会不认识？恐怕在场的也没几个不认识吧？呵呵……”孔雀男一副久仰久仰的模样，语气的戏谑却是表露无遗。</p>
+<p class = "firstLineIndent">“嗖！”小蜘蛛被瞬间拉了回来，重新没入袖口。</p>
+<p class = "firstLineIndent">完全不知道自己在鬼门关走了一遭的孔雀男看到一脑门儿问号的聂云和伊莎尔，更是嘴遁全开。</p>
+<p class = "firstLineIndent">“兵者，诡道也！虚虚实实，处处都是战争的艺术，如果能让你一眼看穿敌人的虚实，那这样的敌人，未免也太愚蠢了一些。</p>
+<p class = "firstLineIndent">况且连你都发现了，吉拉德阁下会毫无所觉？但大将阁下依然选择了反攻，你以为这是为什么？</p>
+<p class = "firstLineIndent">莫非你的眼光，还能比大将阁下更准确？</p>
+<p class = "firstLineIndent">所以说，年轻人呐，还是需要多看多学，光凭政客那套嘴上功夫，在战场上可是没办法带来胜利的，呵呵……”</p>
+<p class = "firstLineIndent">说完，孔雀男还自得的看了眼旁边的伊莎尔，那眼神分明在说：看到没，你身边的这个纯粹就是只会耍嘴皮子的样子货……</p>
+<p class = "firstLineIndent">聂云用关爱残障人士的目光看了这家伙一眼。</p>
+<p class = "firstLineIndent">听起来头头是道，但劣势下选择反攻，不一定是因为有信心……</p>
+<p class = "firstLineIndent">刺探敌人的虚实，提升己方的士气，又或者用一次反击告诉对面自己并不好惹……这都是理由。</p>
+<p class = "firstLineIndent">不过相比这个，另一件事他更加在意……</p>
+<p class = "firstLineIndent">军中政客？</p>
+<p class = "firstLineIndent">这个称号在军中可不算友好。</p>
+<p class = "firstLineIndent">铁与血的战场，最不需要的，就是那种心思贼多，还特会耍嘴皮子为自己捞好处的战友……</p>
+<p class = "firstLineIndent">送死由你去，功勋我来拿……这谁受得了？</p>
+<p class = "firstLineIndent">称号效果：军中声望-100！</p>
+<p class = "firstLineIndent">聂云微微皱眉，看起来似乎和前线的总指挥官吉拉德有些关联，可自己好像没得罪过他吧？</p>
+<p class = "firstLineIndent">阵营选择和海族负面声望的影响么……</p>
+<p class = "firstLineIndent">聂云无奈抬头，正好和伊莎尔似笑非笑的眼神对上。</p>
+<p class = "firstLineIndent">这就是你所谓“低调的气质与生俱来”？</p>
+<p class = "firstLineIndent">看出伊莎尔眼神中的意味，聂云不由咧了咧嘴，露出一口白牙。</p>
+<p class = "firstLineIndent">你们怎么就不明白呢……我低调，但不代表我好欺负啊……</p>
+<p class = "firstLineIndent">军中政客么？这称号倒是挺贴切的。</p>
+<p class = "firstLineIndent">毕竟……不懂政治的将军不是个好间谍啊……</p>
+
+<h2>第五百三十五章 我们不一样</h2>
+<p class = "firstLineIndent">看到聂云和伊莎尔两人在那眉来眼去，被晾在一旁的孔雀男眼神中的妒火熊熊燃烧。</p>
+<p class = "firstLineIndent">“接下来，请各自的指挥官查收此次分配的任务，按照任务中的要求赶往指定地点与前线主力部队汇合……”上面的会议主持军官开始下发任务。</p>
+<p class = "firstLineIndent">“滴！”聂云的个人终端很快接收到自己的那一份任务。</p>
+<p class = "firstLineIndent">“反攻部队？”聂云皱眉看着自己手中的任务说明。</p>
+<p class = "firstLineIndent">虽然情报做了一定保密性处理，并没有透露太多的细节，但无疑就是刚刚孔雀男提到的反攻计划的一部分，而且是开拓军团的集体任务……</p>
+<p class = "firstLineIndent">聂云抬头看了眼伊莎尔，发现她也是皱眉不已的看着自己的个人终端。</p>
+<p class = "firstLineIndent">显然，伊莎尔也意识到这个任务可能的高风险。</p>
+<p class = "firstLineIndent">连作战任务都被特意针对了么……</p>
+<p class = "firstLineIndent">不会又是朝着自己来的吧？</p>
+<p class = "firstLineIndent">虽然有风险，不过战场上哪里有没风险的作战任务？</p>
+<p class = "firstLineIndent">双子星军队的内部制度发展已经极为健全，想坐享其成，什么风险也不冒就大把捞功勋基本不可能，哪怕你是议长公子。</p>
+<p class = "firstLineIndent">风险等于功勋！</p>
+<p class = "firstLineIndent">这是双子星军队内部流传的共识。</p>
+<p class = "firstLineIndent">就算是聂云，也是靠了从太阳系“九死一生”，加上背后家族的全力操作，才有了后来的连升三级。</p>
+<p class = "firstLineIndent">这也是顶尖家族挤破头都要往伍尔夫文明战线塞子弟的原因。</p>
+<p class = "firstLineIndent">家族子弟阵亡自然可惜，不过大家族人丁兴旺，没了谁世界照样转，但要是能大浪淘沙蹦出几个军中大佬，那就是一本万利的投资！</p>
+<p class = "firstLineIndent">就算是阿尔萨斯，也不过是家族中排名第七的顺位继承人，就算真的阵亡，对克鲁泽家族也算不上伤筋动骨。</p>
+<p class = "firstLineIndent">虽然风险代表着收益，不过对聂云来说，这次任务的风险和收益显然并不成正比……</p>
+<p class = "firstLineIndent">“切！居然只是个机动防御任务！”旁边的孔雀男传来相当不满的声音。</p>
+<p class = "firstLineIndent">聂云扭头看了一眼一脸欲求不满的孔雀男，眼睛顿时一亮。</p>
+<p class = "firstLineIndent">“伊莎尔阁下，我们要加入反攻部队啊？怎么办，好像有点危险诶？”聂云稍稍提高了音量，一副忧心忡忡的样子。</p>
+<p class = "firstLineIndent">伊莎尔先是一愣，然后便看到了聂云有意无意落在身边孔雀男身上的目光，立刻闻弦歌而知雅意。</p>
+<p class = "firstLineIndent">“危险些算什么？阿尔萨斯，不是我说你，你身上还是缺了些军人的英勇和担当！”</p>
+<p class = "firstLineIndent">在伊莎尔的训斥下，聂云一副悻悻然的样子乖乖认错。</p>
+<p class = "firstLineIndent">“不过……我们军团刚刚经历一场败仗，士气不高，我原本还想要让舰队再修整一段时间安抚军心，现在看来是不太可能了，唉！”伊莎尔又是皱眉一叹。</p>
+<p class = "firstLineIndent">一旁在聂云开口时就已经竖起耳朵的孔雀男看到聂云挨训，正心中暗爽，此刻听到女神的担忧，哪里还能按下那颗躁动的心？</p>
+<p class = "firstLineIndent">“伊莎尔阁下，既然贵军团最近内部不稳，那么我这里有个提议，希望可以略尽绵薄之力！”孔雀男挺胸微笑。</p>
+<p class = "firstLineIndent">“嗯？”伊莎尔饶有兴趣的一挑眉。</p>
+<p class = "firstLineIndent">“我们军团接到的是机动防御任务，以目前的战场态势，双子星根本蹦不起多大的浪花，所以相对来说更加轻松一些。</p>
+<p class = "firstLineIndent">如果伊莎尔阁下需要一些修整时间，这倒是更加适合你们的任务，而我们军团愿意代替贵军团参与反攻行动！</p>
+<p class = "firstLineIndent">对吾辈而言，冲锋陷阵才是军人真正的荣耀舞台！”</p>
+<p class = "firstLineIndent">怎么样？有了我这样鲜明的对比，相信伊莎尔已经认清你小白脸的真面目了！哈哈哈……</p>
+<p class = "firstLineIndent">而且不仅在女神面前展现了自己的军人气概，还能顺手捞取更大的军功，简直是一箭双雕！</p>
+<p class = "firstLineIndent">“这……不太好吧？毕竟任务已经指定了……”伊莎尔迟疑了一下，有些犹豫，似乎不太舍得那些军功。</p>
+<p class = "firstLineIndent">“这点伊莎尔阁下尽管放心，这次发布的只是初步的任务分配，我们还能够根据自己军团的实际情况申请调整。</p>
+<p class = "firstLineIndent">何况我们都属于同一规格的二级军团，原本就战力相当，只要双方都同意交换任务，就算是参谋部也不会驳了我的面子！”孔雀男拍着胸脯，一副我上头有人，包在我身上的豪迈气概。</p>
+<p class = "firstLineIndent">他本身的家族虽然只是二流，不过自身人脉倒也不差，何况这种你情我愿的任务交换，哪怕是没有关系，基本也会被批准。</p>
+<p class = "firstLineIndent">“这个……”这次伊莎尔还真有些犹豫了，毕竟和聂云合伙坑这么个老实孩子，莫名有些于心不忍啊……</p>
+<p class = "firstLineIndent">不过没等伊莎尔说些什么，聂云已经是迫不及待一脸激动地握住了孔雀男的双手上下一阵摇晃。</p>
+<p class = "firstLineIndent">“太感谢了！孔雀阁下，真是帮大忙了！从今天起，你获得了克鲁泽家族的友谊！”</p>
+<p class = "firstLineIndent">孔雀男被一阵大力摇的有些发晕，迷迷糊糊的就收下一张友谊卡。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“盛情难却”之下，两个军团交换任务的申请流程很快打了上去，不过却被负责制定任务分配的参谋部截了下来。</p>
+<p class = "firstLineIndent">“嗯？任务交换？”贝克曼看到这份申请文件，眉头不由就是一挑。</p>
+<p class = "firstLineIndent">“是巧合还是已经看出了些什么？如果不是巧合，那么……是伊莎尔？还是阿尔萨斯呢……呵呵！有趣……”贝克曼饶有兴趣的在桌面上敲击着手指。</p>
+<p class = "firstLineIndent">没错，吉拉德大将对阿尔萨斯的负面评价就是从贝克曼这里流传出去，而且他还利用了职务之便，给阿尔萨斯所在的军团挖了个坑。</p>
+<p class = "firstLineIndent">对贝克曼来说，能够在自己的爷爷维克多议员嘴里听到两次，每次还都颇为头疼的名字，他不介意出手试试对方的斤两。</p>
+<p class = "firstLineIndent">要是不小心玩死了……那自然说明对方并没有足够充当自己对手的器量，死了也就死了……</p>
+<p class = "firstLineIndent">“贝克曼少爷，我看只是个巧合，不如直接否了这份申请？”贝克曼身边的一名中年军官提议道。</p>
+<p class = "firstLineIndent">虽然年龄和军衔都比贝克曼要高，却不自觉地放低了姿态。</p>
+<p class = "firstLineIndent">“否了？为什么要否？这样的普通申请我们没有理由拒绝！通过吧！”贝克曼不在意的挥了挥手，恢复了那副散漫的样子。</p>
+<p class = "firstLineIndent">安排一个颇有风险的任务没有什么，哪怕克鲁泽议长都无法指责吉拉德大将，毕竟反攻部队大多数还都是他自己的嫡系部队。</p>
+<p class = "firstLineIndent">不过连一个你情我愿的任务交换申请都通不过，那就有些落人口实了，吃相也太难看了些。</p>
+<p class = "firstLineIndent">不过……看来对方在这里也并非是毫无根基嘛。</p>
+<p class = "firstLineIndent">很显然，某个孔雀男已经被当成了对方“弃卒保车”的那个“卒”……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“哈哈哈！”孔雀男收到申请批复的文件后畅快一笑。“伊莎尔阁下，敬请期待我凯旋而归的胜利捷报吧！”</p>
+<p class = "firstLineIndent">孔雀男说完，再次不屑的瞥了一眼聂云。</p>
+<p class = "firstLineIndent">看看！这才是军人的英勇和担当！</p>
+<p class = "firstLineIndent">我们不一样，不一样……</p>
+
+<h2>第五百三十七章 苟一波</h2>
+<p class = "firstLineIndent">三天后，哨塔星完成集结的近千艘战舰启程开拔，浩浩荡荡开赴前线……</p>
+<p class = "firstLineIndent">聂云站在舷窗处看着外面一眼望不到尽头的庞大舰队。</p>
+<p class = "firstLineIndent">“看来……是想给对面一个惊喜啊……”</p>
+<p class = "firstLineIndent">如此庞大的舰队，除了刻意为之，正常调度中根本不可能出现一次性压上的情况，这无疑是双子星为了隐藏兵力，刻意压了几波兵线，准备一波流给对面一次惊喜。</p>
+<p class = "firstLineIndent">他目光一转，看向了主力舰队后方，一支数量约有500的独立舰队。</p>
+<p class = "firstLineIndent">只见一大片淡蓝色的光幕正极光一般缓缓扩散开来，光幕中的战舰渐渐隐去身形。</p>
+<p class = "firstLineIndent">数百艘战舰同时开启光学隐身，一阵琉璃般的光影过后，整支舰队从视野中消失不见……</p>
+<p class = "firstLineIndent">“已完成战术评估，双子星正在利用主力舰队的特殊阵型，形成引力尾流，掩护后方的隐身舰队进行潜行。处于引力尾流中的舰队，能够大大降低被正面雷达侦测的概率！”</p>
+<p class = "firstLineIndent">代号张开手，托起一片虚拟影像，向聂云展示引力尾流的直观图示，而后方的隐身舰队，则完美的潜行在螺旋状的引力尾流中。</p>
+<p class = "firstLineIndent">“嗯？高级潜行技能么……”聂云饶有兴趣的挑了挑眉。</p>
+<p class = "firstLineIndent">不愧是老牌星际文明，居然还能用这种方式规避敌人的引力雷达。</p>
+<p class = "firstLineIndent">舰队一明一暗，这样的话就算被伍尔夫文明提前发现，无疑也能误导对方，使其对己方的正真兵力形成误判，增加袭击的突然性！</p>
+<p class = "firstLineIndent">不过这种隐匿战术缺点也有不少，首先需要庞大的舰队形成掩护，其次只能规避正面雷达的扫描。</p>
+<p class = "firstLineIndent">但瑕不掩瑜，这还是聂云见过的第一种能够形成特殊效果的宇宙战阵，发展潜力似乎不小的样子……</p>
+<p class = "firstLineIndent">“能够还原战术模型解析原理吗？”聂云问道。</p>
+<p class = "firstLineIndent">“模型分析完毕……很抱歉，答案为否定！</p>
+<p class = "firstLineIndent">这种特殊而稳定的引力尾流，需要利用多个节点上的特殊战舰同时释放不同密度的引力子，由于缺少相应的力场流体学公式，就算以我的运算能力，解析其模型也需要超过100年时间！</p>
+<p class = "firstLineIndent">不过，如果能够捕捉少量特殊战舰样本，可以大大缩短我的计算时间。”代号回答道。</p>
+<p class = "firstLineIndent">“呵呵！”听到代号最后的建议，聂云只能呵呵一笑。</p>
+<p class = "firstLineIndent">这个小机灵鬼……</p>
+<p class = "firstLineIndent">从数百艘战舰里面捕捉特殊的节点舰体，真当我这个间谍无所不能吗？</p>
+<p class = "firstLineIndent">目前隐藏在大部队中的聂云，的确有不少机会可以将机械虫无声无息的扩散出去，但他却暂时没有这方面的计划。</p>
+<p class = "firstLineIndent">首先，这次双方的战争并非地球文明的利益相关，聂云的任务主要以刺探情报为主，因此侵略规模越小，破绽越少。</p>
+<p class = "firstLineIndent">而且聂云的多线操作也是存在极限的，不可能遍地开花。</p>
+<p class = "firstLineIndent">除了这些考虑之外，另一个原因则是因为聂云遇到了新的“技术性问题”！</p>
+<p class = "firstLineIndent">军团的第三分舰队虽然已经进行了银色革命彻底姓了聂，不过聂云对它的掌控力却反而出现了一定程度的下降。</p>
+<p class = "firstLineIndent">原因很简单……距离！</p>
+<p class = "firstLineIndent">事实证明，长途跋涉之后，已经与聂云相距上千光年的这支“特工小分队”，虽然依旧处在聂云的感应范围之内，但随着距离的增加，两者之间即时通讯所需要消耗的“能源”却达到了令聂云不得不重视起来的程度……</p>
+<p class = "firstLineIndent">通过距离的不断延伸，聂云对机械虫的“极限通讯距离”测试也不断获得持续性的实验数据。</p>
+<p class = "firstLineIndent">让聂云安心的是，哪怕上千光年的距离，也依旧无法阻断他与机械虫的联系，双方的羁绊完全经受住了空间的考验！</p>
+<p class = "firstLineIndent">而然聂云揪心的是，通讯的“能源”消耗问题首次摆在了聂云的面前！</p>
+<p class = "firstLineIndent">简单来说，机械虫之间通讯所需消耗的“能源”与距离的平方呈正相关，计算公式大致为yax2+b。</p>
+<p class = "firstLineIndent">由于系数a、b均为极小的数值，因此当距离x在太阳系甚至比邻星系内时，消耗的“能量”对聂云来说简直是毛毛雨。</p>
+<p class = "firstLineIndent">但如今在暴风星系，x的数值已经成百上千倍的提升，消耗的能源则是数万倍的提高，终于让聂云感觉到了一丝吃力。</p>
+<p class = "firstLineIndent">要知道控制机械虫所消耗的“能源”中，不仅包括普通能量，而且还包括了聂云自身的精神力量。</p>
+<p class = "firstLineIndent">对于已经和太阳肩并肩的男人来说，普通能量就算提高了上万倍，聂云也不会放在眼里，但超远程控制机械虫所需要消耗的精力，让聂云也有了一丝“鞭长莫及”的感觉……</p>
+<p class = "firstLineIndent">聂云的主要精力，还是放在了太阳系内，因此很多时候，聂云只能让“特工小分队”内的大部分的机械虫保持“静默”状态，只稍微控制一小部分的机械虫行动，以达到降低消耗的目的。</p>
+<p class = "firstLineIndent">“看来这技术短期内是没办法到手了，这样的话，先插个眼吧！”聂云摸了摸下巴。</p>
+<p class = "firstLineIndent">下一刻，堕天使号悄无声息的甩出数十枚银色的微型探针。</p>
+<p class = "firstLineIndent">这些微型探针重量仅有数十克，如同宇宙漂浮物一般，很快就被甩在了双子星的舰群身后……</p>
+<p class = "firstLineIndent">虽然“行动力”下降了不少，不过在临行前在哨塔星附近星域悄悄留一些眼线却相当有必要。</p>
+<p class = "firstLineIndent">哨塔星虽然地处战线后方，但作为主要的后勤中心，通过这里的物资流通规模和战舰集结情报能够让聂云对双子星的资源投入和战争动员有一个直观的了解。</p>
+<p class = "firstLineIndent">所谓兵马未动粮草先行，哨塔星的情报无疑对判断双子星的战略战术动态有着重要作用！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">五天之后……</p>
+<p class = "firstLineIndent">聂云刚刚抵达虫洞前线，就目睹了数百艘战舰破除隐身，配合大量的空战兵器一头扎进虫洞的壮观场面……</p>
+<p class = "firstLineIndent">反攻计划，竟时没有丝毫停顿，在援军抵达的第一时间就立刻展开！</p>
+<p class = "firstLineIndent">而聂云，也开始跟随军团执行自己的任务……</p>
+<p class = "firstLineIndent">机动防御，简单来说就是在超过十万平方公里的虫洞通行范围内进行机动巡防。</p>
+<p class = "firstLineIndent">随着双方交界的虫洞持续扩张，双子星原先建造的定点防御工事已经很难守住这么长的战线，因此在不断延伸防线的同时，还需要安排一些救火的巡逻队。</p>
+<p class = "firstLineIndent">这种任务自由度较高，不过一旦某处防线告急，上面的指挥官肯定率先选择这种救火队上去填窟窿。</p>
+<p class = "firstLineIndent">论风险，这种任务并不比定点防御任务低多少，一切还是看脸。</p>
+<p class = "firstLineIndent">“哈~真是和平的一天……”聂云打了个哈欠，给克隆体带上了耳机，然后换了个更舒服的姿势……</p>
+<p class = "firstLineIndent">耳机里传来了婉转悠扬的歌声一杯红酒配电影，在周末晚上，关上了手机，舒服窝在沙发里……</p>
+<p class = "firstLineIndent">虫洞对面此刻估计已经打出了狗脑子，而“低调”的聂云，则选择了先苟一波……</p>
+
+<h2>第五百三十八章 留手了吧</h2>
+<p class = "firstLineIndent">伍尔夫文明虫洞。</p>
+<p class = "firstLineIndent">就在反攻部队发动突袭，攻入伍尔夫文明疆域8个小时后。</p>
+<p class = "firstLineIndent">虚空中突然荡开一团旋涡，在双子星人的注视下，从中冲出了一艘舰体冒着浓烟，负伤而回的战舰……</p>
+<p class = "firstLineIndent">双子星一方显然也做好了一定的心理准备，防御阵型丝毫不乱，而且立刻有几艘大型救援舰携带着救援和维修工具上前协助维修。</p>
+<p class = "firstLineIndent">虫洞攻防战中损失在所难免，指挥官也必然会选择让负伤失去作战能力的战舰率先撤离战场，所以出现这样的情况也在预料之中。</p>
+<p class = "firstLineIndent">不过，随着越来越多的战舰带着或轻或重的伤势纷纷回归，而且还如同丧家之犬一般仓皇逃入己方后阵时，众人才渐渐察觉到一丝不妙。</p>
+<p class = "firstLineIndent">堕天使号上的众人也发现自己所在的防区附近也大规模的出现了回归的己方舰队……</p>
+<p class = "firstLineIndent">“啧啧！这场面……怕是被人家一巴掌煽回来了吧？”聂云摸着下巴，看着四周不断出现的“友军”有些幸灾乐祸。</p>
+<p class = "firstLineIndent">从那完全没有阵型可言的撤退方式来看，这次反攻作战的结果估计不会太美好。</p>
+<p class = "firstLineIndent">随后，凯瑟琳很快便一脸严肃的带来了指挥部的最新命令。“阿尔萨斯阁下，收到上面的作战命令，要我们立刻进入最高战备状态，准备迎敌！”</p>
+<p class = "firstLineIndent">“迎敌？”即便有了些心理准备，不过听到这个命令聂云依旧是有些惊讶。</p>
+<p class = "firstLineIndent">情况……似乎比自己想象的还要糟糕啊？</p>
+<p class = "firstLineIndent">就在堕天使号和堕天使号刚刚做好作战准备，将护盾功率开到最大，前方的虚空中就出现了敌人的身影……</p>
+<p class = "firstLineIndent">几乎是尾随着一艘负伤的战舰，十几台青色的敌方机甲先后冲出虫洞，一阵眼花缭乱的交替掩护攻击之后，片刻间就将已经失去了护盾保护的猎物撕成了碎片。</p>
+<p class = "firstLineIndent">完成杀戮后，这些追杀者立刻再次朝着附近的另一艘驱逐舰冲去！</p>
+<p class = "firstLineIndent">这艘被盯上的倒霉蛋看样子是一艘军团级指挥舰，论吨位还要在堕天使号之上。</p>
+<p class = "firstLineIndent">不过敌人显然也知道柿子先找软的捏，这艘战舰的状态同样不妙，不仅已经负伤不轻，而且周围的防御力量也被消耗的七七八八，只有十几台机甲护卫在侧，可以说虚弱异常。</p>
+<p class = "firstLineIndent">但强烈的求生欲依旧让这艘战舰爆发出了顽强的战斗力！</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”只见强大的防空武器编织成密集的火力网，自动化末端拦截电磁武器喷射出密密麻麻的金属弹丸，这艘战舰火力全开，尽力阻止着来犯之敌。</p>
+<p class = "firstLineIndent">这些攻击追逐着不断靠近的敌方机甲，咬着机甲尾焰不断压缩敌人的机动空间，在虚空留下一道道炽热的辐射痕迹。</p>
+<p class = "firstLineIndent">“轰轰轰……”在损失近半之后，剩余的9台机甲终于突破中远程防空网，开始与战舰的护卫机甲短兵相接。</p>
+<p class = "firstLineIndent">伍尔夫文明在机甲类武器的单兵对决中占据了绝对上风，这些名为“青铜”的机甲不仅性能更加先进，而且关键是每一个机师都拥有不弱于王牌的实力！</p>
+<p class = "firstLineIndent">一阵毫无悬念的砍瓜切菜，打出12:4的巨大伤亡比之后，剩下的5台“青铜”机甲马不停蹄冲向了有些惊慌失措的目标！</p>
+<p class = "firstLineIndent">不过下一刻，这艘指挥舰内便再次冲出一台金红色机甲，正是双子星的王牌机甲——海暴级！</p>
+<p class = "firstLineIndent">军团级别的指挥舰出现海暴级机甲并不稀奇，不过伍尔夫文明显然对这种性能优异的王牌机甲并不陌生，立刻分出4台机甲上前纠缠。</p>
+<p class = "firstLineIndent">但是剩下的一台机甲依旧绕过了双方战场开始攻击自己的原定目标！</p>
+<p class = "firstLineIndent">这种距离下，许多防空武器已经对灵活的机甲失去了威胁，几次灵巧的规避动作之后，这台青铜机甲抬起双臂，带着胜利者的狞笑对准了舰首。</p>
+<p class = "firstLineIndent">已然暴露在枪口下的舰桥内，所有的军官都面露惊恐和绝望的看着对方武器发射口那渐渐亮起的能量光芒……</p>
+<p class = "firstLineIndent">完了！</p>
+<p class = "firstLineIndent">孔雀男瘫坐在椅子上，双目无神的看着或许是人生中的最后一幕光景。</p>
+<p class = "firstLineIndent">一瞬间，脑海中闪过的只有一个念头……</p>
+<p class = "firstLineIndent">“我真傻，真的……”</p>
+<p class = "firstLineIndent">曾经，有一份可以咸鱼的任务摆在自己的面前，自己没有珍惜，直到失去才知道追悔莫及……</p>
+<p class = "firstLineIndent">泡妞有风险，装逼需谨慎！可惜！自己知道的太晚了……</p>
+<p class = "firstLineIndent">然而就在孔雀男留下悔恨的泪水等死之际，一道身影却在众人眼前如同浮光掠影般极速掠过！</p>
+<p class = "firstLineIndent">“刷！”高速交错的电光火石间，众人只能看到一道耀眼刀光亮起！</p>
+<p class = "firstLineIndent">下一刻，那台正在蓄能准备发动攻击的机甲从腰部被一刀两断！能量武器的光芒也无力的渐渐熄灭……</p>
+<p class = "firstLineIndent">上面的机师甚至没能来得及反应过来，便在随后的爆炸中化为了宇宙尘埃。</p>
+<p class = "firstLineIndent">突袭者干脆利落解决这台青铜机甲后，稍稍露出让人熟悉的金红色身躯，随后便划过一道优美的弧线，朝着远处剩余的4台敌机冲去！</p>
+<p class = "firstLineIndent">“这是……海暴级！哈哈！是友军！看！是我们的友军！”</p>
+<p class = "firstLineIndent">舰桥内，孔雀男从大悲到大喜，忍不住欣喜若狂的指着那台机甲哈哈大笑。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">堕天使号舰桥内。</p>
+<p class = "firstLineIndent">“太胡闹了！这简直是太胡闹了！”舰长艾米莉亚一脸愤怒与焦急，“身为舰队指挥官，怎么能以身犯险亲自上前线参与战斗？</p>
+<p class = "firstLineIndent">快！立刻联络阿尔萨斯阁下，让他马上返回本舰！”</p>
+<p class = "firstLineIndent">即便这个指挥官平时没啥存在感，不过怎么说也是名义上第三分舰队的最高指挥官，他要是出了意外，不仅自己等人要追责，而且对舰队士气也是一个沉重的打击。</p>
+<p class = "firstLineIndent">更不用说对方还有克鲁泽家族直系继承人的身份背景在，无论如何也得尽量保证对方的安全！</p>
+<p class = "firstLineIndent">“不用担心，阿尔萨斯阁下只是想要亲自出手试探一下敌人的实力，我们做好援护就是了。”凯瑟琳倒是相当淡定。</p>
+<p class = "firstLineIndent">“什么？你提前就知道了这件事？那你为什么不阻止他？”艾米莉亚一脸的惊愕。</p>
+<p class = "firstLineIndent">“阻止？为什么要阻止？”</p>
+<p class = "firstLineIndent">自家指挥官的实力，别人不清楚，凯瑟琳可是见识过冰山一角的，既然他有信心独自出战，不说战胜，脱身应该还是没有问题的。</p>
+<p class = "firstLineIndent">“这……”对这样理所当然的回答，艾米莉亚一时不知道该怎么接。</p>
+<p class = "firstLineIndent">没等她组织语言说明嘴皮子厉害不代表操作机甲也厉害，远处爆开的一朵焰火就让所有人都瞪掉了眼珠子……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“砰！”一脚将一台青铜机甲抽飞，一个三连点射封死另一台机甲的所有躲闪路线，将其打成重伤。</p>
+<p class = "firstLineIndent">下一刻，随手抬起巨剑格挡住来自身后的臂刃突袭，随后干脆利落的扭身一记肘击打碎了第三台偷袭者的胸甲！</p>
+<p class = "firstLineIndent">刀刃相交碰撞出火花，钢铁之躯近身搏击，双方在反作用力下同时后退！</p>
+<p class = "firstLineIndent">一入场，这台新加入的海暴级就废掉了一台青铜机甲，轻伤另外两台，展现了压制级的操作技术！与那台被4台机甲纠缠，已经狼狈不堪岌岌可危的海暴级形成了鲜明的对比。</p>
+<p class = "firstLineIndent">“唔……刚刚那种感觉……”操作室内，聂云盯着刚刚偷袭的那台机甲，脸色有些狐疑。</p>
+<p class = "firstLineIndent">就在双方近身格斗，距离最近的那一刻，如同心电感应一般，他竟隐约察觉到对面机师那淡淡的，却比常人更加强大的精神力波动……</p>
+<p class = "firstLineIndent">即便这波动相当微弱，这具身体也限制了聂云的感知力，不过那种感觉……应该不会错！</p>
+<p class = "firstLineIndent">“这个伍尔夫文明……有趣！”聂云露出感兴趣的神色，操控机甲再次发起了进攻……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">另一边，正在关注着这处战场的众人也都发出了意味不同的赞叹。</p>
+<p class = "firstLineIndent">“好强！这究竟是哪支舰队的王牌？”孔雀男一脸兴奋。</p>
+<p class = "firstLineIndent">“好强！这难道真是我们家那只吉祥物指挥官？”艾米莉亚一脸你在逗我。</p>
+<p class = "firstLineIndent">只有凯瑟琳淡定如常。</p>
+<p class = "firstLineIndent">这种程度……现在的我差不多也能办到，阿尔萨斯阁下……留手了吧……</p>
+
+<h2>第五百三十九章 没上润滑油</h2>
+<p class = "firstLineIndent">“砰！轰！叮！”近战远程交替，光束与刀剑齐飞，在聂云的操控下，海暴级一步步压榨着对面2台青铜机甲的性能极限。</p>
+<p class = "firstLineIndent">似乎还嫌不过瘾，一发光束炮将剩下的一台敌方机甲也卷入了攻击范围，最终形成自己一打三，那台友军机甲只能目瞪口呆在旁边看戏的古怪场景。</p>
+<p class = "firstLineIndent">游刃有余！</p>
+<p class = "firstLineIndent">这是所有目击者同样的感受。</p>
+<p class = "firstLineIndent">虽然是被围攻的一方，而且操作的机甲也并没有压倒性的性能优势，但妙到毫巅的操作技术完全统治了战场，让在场所有人都目眩神迷！</p>
+<p class = "firstLineIndent">双方的机甲都是以中近程攻击为主的专用机甲，战斗的激烈程度远超普通太空机战，惊险程度也是让周围的人心跳加速。</p>
+<p class = "firstLineIndent">不过让众人惊讶的是，就在这种一个不慎就会机毁人亡的激烈交锋中，双方连续斗了几十个回合竟然依旧没有出现伤亡。</p>
+<p class = "firstLineIndent">聂云自然是稍稍放了些水，他这次一反低调的作风亲自上场，一方面自然是想要搜集更多的敌方兵器数据。</p>
+<p class = "firstLineIndent">习惯性的，聂云面对一个新的文明，第一反应就是评估对方的科技实力，判断有价值的吞噬目标……</p>
+<p class = "firstLineIndent">另一方面，一开始就被顶头上司针对，还进行了指名道姓的“人身攻击”，聂云可没有打不还手的习惯。</p>
+<p class = "firstLineIndent">以双方天然敌对的政治立场来说，完全没有和平共处的可能。</p>
+<p class = "firstLineIndent">低调解决不了问题，一味退让只会让人轻视，既然这样，那就有必要稍稍更改一下自己闷声发发财的计划了……</p>
+<p class = "firstLineIndent">三台敌机使出了浑身解数却也奈何不了聂云，反而被对方戏耍一般不断增添着新的伤口。</p>
+<p class = "firstLineIndent">哪怕再迟钝，这个时候也明白这不是自己能够对付的敌人，攻击的动作顿时有些犹豫，显然已经萌生了退意。</p>
+<p class = "firstLineIndent">聂云见状嘴角一勾，终于不再留手，攻势立刻凶猛起来！</p>
+<p class = "firstLineIndent">“轰！轰！”两朵烟花先后在虚空中爆开！</p>
+<p class = "firstLineIndent">剩下那台敌机顿时亡魂大冒，立刻就想溜。</p>
+<p class = "firstLineIndent">虽然论机动能力，青铜机甲还要胜过海暴级一筹，不过算准对方行动的聂云早已完成提前加速，利用更高的初速度追上去就是一套高速连环剑！</p>
+<p class = "firstLineIndent">“叮叮叮！嗤！嗤！”</p>
+<p class = "firstLineIndent">尽管伍尔夫文明的机师尽了全力进行格挡，但在巨大的实力差距下，一切的努力都显得那般徒劳……</p>
+<p class = "firstLineIndent">耀眼的切割火花中，两条钢铁断肢带着臂刃甩了出去！</p>
+<p class = "firstLineIndent">下一刻，闪着寒光的剑尖在伍尔夫文明机师的眼中迅速放大！</p>
+<p class = "firstLineIndent">“不！”斯巴达克发出绝望的吼声。</p>
+<p class = "firstLineIndent">原本以为是件美差的追击任务，谁能想到会遇到眼前的变态。</p>
+<p class = "firstLineIndent">这种实力，绝对在白银级甚至更高！</p>
+<p class = "firstLineIndent">不是说这个文明的单兵战斗力弱鸡的可以，就算是高手也顶多只是堪堪达到青铜级？</p>
+<p class = "firstLineIndent">难道宇宙这么大，自己就这么倒霉碰上对方的顶尖高手？</p>
+<p class = "firstLineIndent">不甘心啊！</p>
+<p class = "firstLineIndent">明明自己刚刚通过试炼晋升青铜战士，村里也会因为自己免去沉重的赋税，一切的美好才刚刚开始……</p>
+<p class = "firstLineIndent">脑海中闪过一张朝思暮想的俏脸……</p>
+<p class = "firstLineIndent">好不甘心啊！</p>
+<p class = "firstLineIndent">然而……预想中下一刻就将穿胸而过的利剑并没有来临，闪烁寒芒的剑尖反而越来越远……</p>
+<p class = "firstLineIndent">斯巴达克愕然的看着面前如同恶魔般强大的金红色机甲离自己越来越远……</p>
+<p class = "firstLineIndent">这是……什么情况？！</p>
+<p class = "firstLineIndent">“哎呀，动力系统似乎出了点毛病，关键时刻，好气啊……”一道略有些懒洋洋的声音突然如同自言自语一般传来。</p>
+<p class = "firstLineIndent">“噗！噗噗！”</p>
+<p class = "firstLineIndent">似乎是为了印证对方的话，海暴级背后的推进器尾焰闪了两下居然哑火了……</p>
+<p class = "firstLineIndent">自己……活下来了？</p>
+<p class = "firstLineIndent">被眼前一幕弄的有些发蒙的斯巴达克犹自不敢相信幸运女神会如此垂青自己。</p>
+<p class = "firstLineIndent">不过无数战场锻炼下来的战斗本能，让斯巴达克的身体几乎是第一时间做出了反应！</p>
+<p class = "firstLineIndent">“轰！”炽热的尾焰猛烈喷吐，失去双臂的青铜机甲毫不迟疑，没命的全速逃离！</p>
+<p class = "firstLineIndent">逃！赶紧逃！</p>
+<p class = "firstLineIndent">尽管那台恶魔机甲似乎丧失了机动力，不过斯巴达克根本没有回头再战的勇气，野兽般的直觉告诉他，回头……等于找死！</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”聂云在原地很随意的几次点射，险之又险的擦着斯巴达克的机甲“射偏”了。</p>
+<p class = "firstLineIndent">直到脱离聂云的攻击范围，斯巴达克斯巴达克才敢额头冒汗的回头。</p>
+<p class = "firstLineIndent">那道金红色身影正静静立在虚空，冰冷的钢铁面甲不知为何，给斯巴达克一种正在似笑非笑目送自己的错觉……</p>
+<p class = "firstLineIndent">浑身打了个寒战，斯巴达克不敢停留，全速向着虫洞方向撤离！</p>
+<p class = "firstLineIndent">虽然失去了双臂，飞行姿态有些不稳定，但行动能力却并没有受到多大影响，幸运的话足以让自己逃离战场。</p>
+<p class = "firstLineIndent">不过斯巴达克丝毫没有发现的是，自己座机的断臂截面处，不知何时沾染了些许银色，然后很快消失不见……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“唔……下手稍微重了点，可别让我失望哦，呵呵……”</p>
+<p class = "firstLineIndent">聂云目送斯巴达克化为星光远去，却是一脸的笑意。</p>
+<p class = "firstLineIndent">就在这时，一个内部通讯突然接了进来。</p>
+<p class = "firstLineIndent">“那个……阁下的机甲引擎似乎出了点问题，请问是否需要协助？”一个略带恭敬的声音传了过来。</p>
+<p class = "firstLineIndent">聂云扭头看去，原来是那台被自己救下来的“友军”机甲。</p>
+<p class = "firstLineIndent">“哦，没事，估计是没上润滑油，倒是你，再不走我可救不了你第二次……”</p>
+<p class = "firstLineIndent">轻飘飘扔下一句，聂云没事人一样开着机甲开始返回堕天使号，哪还有一点机甲故障的模样。</p>
+<p class = "firstLineIndent">啥？没上润滑油？</p>
+<p class = "firstLineIndent">等等！后面一句又是什么意思？</p>
+<p class = "firstLineIndent">那机师一愣，然后回头一看……</p>
+<p class = "firstLineIndent">“轰！”机甲马力全开，撒丫子跟着聂云往回飞驰！</p>
+<p class = "firstLineIndent">只见身后密密麻麻出现了上百个虚空漩涡，敌机正蜂拥而出！</p>
+<p class = "firstLineIndent">几乎是尾随着溃败的双子星舰队，伍尔夫文明悍然发动了反突袭！</p>
+<p class = "firstLineIndent">利用混战，伍尔夫文明的机甲部队成功在双子星的阵线上撕开了一道道缺口。</p>
+<p class = "firstLineIndent">不过伍尔夫文明显然也对现在的战局预计不足，在第一波凶猛突击之后，后续进攻力量不足的缺点逐渐显现出来。</p>
+<p class = "firstLineIndent">最终伍尔夫文明在吃掉一部分溃军扩大战果之后，选择了主动退却。</p>
+<p class = "firstLineIndent">原地只留下一片狼藉的战场……</p>
+
+
+<a href="520.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="540.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</br></br>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

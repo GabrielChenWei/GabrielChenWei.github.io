@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第五百八十章 机械族</h2>
+<p class = "firstLineIndent">“智慧机械生命？这么说它们应该是将秘银骑士当成了类似代号一样的智能生命，这才触发了隐藏的敌我识别指令？</p>
+<p class = "firstLineIndent">还有爵位？看来智能生命在机械族中的地位应该不低……”聂云摸着下巴思考刚刚获得的信息。</p>
+<p class = "firstLineIndent">毁灭者的价值有些超出了聂云的预料。</p>
+<p class = "firstLineIndent">抛开毁灭者本身的机械构造和小型能量科技外，其内部的战斗智能程序也相当高级。</p>
+<p class = "firstLineIndent">虽然是用其他的程序语言编写的，却不妨碍聂云取长补短，将己方的自动化战斗智能提升一个小档次。</p>
+<p class = "firstLineIndent">而更令聂云感兴趣的，则是从基础指令集中提取出的某些相当有意思的信息……</p>
+<p class = "firstLineIndent">以“机械族”为关键字，聂云搜索了基地内的数据库，最终从一本《帝国大百科》中，获得了有关机械族的一部分基础资料。</p>
+<p class = "firstLineIndent">在大约一千多年前，伍尔夫帝国遇到了有史以来最为强大的外部文明……机械族！</p>
+<p class = "firstLineIndent">机械族的领袖“盖亚”是一个十分神秘的智能生命，它一手缔造了强大的机械帝国，据说还拥有创造机械生命的非凡能力。</p>
+<p class = "firstLineIndent">机械族的势力虽然庞大，但统治阶级仅有它们的共同领袖盖亚和区区近百位诞生了智慧的智能生命。</p>
+<p class = "firstLineIndent">因此即便麾下机器人亿万，但以“种族”的概念来说，这是一个族人超级稀少的“物种”。</p>
+<p class = "firstLineIndent">双方的接触过程已经无从考证，但最终，当时高傲的伍尔夫帝国皇帝同他的先辈一样，选择了征服和战争，双方爆发了一场史无前例的大规模战争。</p>
+<p class = "firstLineIndent">这场浩大而惨烈的战争持续了近百年的时光，机械族表现出了远超预期的战争潜力。</p>
+<p class = "firstLineIndent">机械族的各种智能战斗兵器层出不穷，在几乎无穷无尽的机械大军面前，成百上千的星系被打成了宇宙尘埃，双方都是损失惨重。</p>
+<p class = "firstLineIndent">原本，拼消耗和底蕴，科技实力不弱的伍尔夫帝国并不见得会比机械族差多少，甚至很多方面还要超出，正常情况下双方很有可能打成消耗战。</p>
+<p class = "firstLineIndent">但机械族却展现出了完全碾压的电子科技，不过短短数十年的光景，就全面解析了伍尔夫帝国几乎所有的人工智能技术。</p>
+<p class = "firstLineIndent">然后在一场至关重要的战役中执行了代号“归巢”的作战行动！</p>
+<p class = "firstLineIndent">那场战斗最终的结果是，前线隶属于伍尔夫帝国的统帅型智能生命毫无征兆的突然倒戈，麾下控制的数十个机械军团瞬间叛变，直接导致了一场惨烈的大溃败！</p>
+<p class = "firstLineIndent">强大的伍尔夫帝国第一次品尝到了失败的滋味。</p>
+<p class = "firstLineIndent">暴怒的帝国皇帝得知情况后，立刻下令，就地销毁了文明内剩余的3台智能生命，从此诞生了智慧的人工智能就成为了帝国的禁忌。</p>
+<p class = "firstLineIndent">而就在帝国内忧外患之下，由于长期的穷兵黩武，加上骤然缺失的大量智能管理者，帝国内部很快也陷入混乱，爆发了多起起义军暴乱。</p>
+<p class = "firstLineIndent">帝国烽烟四起，周边数个敌对文明也是趁机落井下石。</p>
+<p class = "firstLineIndent">那场造成了碎星星域破灭的局部战役，就是那个时期的战争缩影之一。</p>
+<p class = "firstLineIndent">因为这场动乱的起源是机械族，因此史学家们又将这一历史事件称之为“机械天灾”！</p>
+<p class = "firstLineIndent">但是就在帝国统治风雨飘摇，即将败亡之际，事件居然再次峰回路转！</p>
+<p class = "firstLineIndent">伍尔夫帝国皇室在关键时刻突然动用了一件强大的“皇室秘宝”，竟然将当时的机械族领袖“盖亚”直接斩首！</p>
+<p class = "firstLineIndent">失去了统领者的机械族很快陷入了内乱，3位机械族公爵瓜分了盖亚的权柄，直接导致如今的机械族势力一分为三，令伍尔夫帝国暂时解除了一个巨大的威胁。</p>
+<p class = "firstLineIndent">随后，腾出手来的帝国又花费了足足百余年的时光，这才彻底镇压了文明内部和周边的反对势力，与三个机械族势力呈鼎足之势。</p>
+<p class = "firstLineIndent">而毁灭者，就产自三个机械公爵势力的其中之一，银色黎明！</p>
+<p class = "firstLineIndent">相对于另外两个较为激进的机械公爵势力，银色黎明更为中立，是机械族中的温和派。</p>
+<p class = "firstLineIndent">机械族的三个势力中，仅有银色黎明与伍尔夫帝国有着正常的商贸往来，因此物美价廉的各种机械族产品在伍尔夫帝国并不少见。</p>
+<p class = "firstLineIndent">“原来如此，作为银色黎明的外销型兵器，毁灭者有着这样的隐藏指令倒也正常。”聂云从资料中已经分析出了大概。</p>
+<p class = "firstLineIndent">作为数量稀少的珍稀存在，每一位智能生命在几位机械公爵眼中都是宝贵的“族人”，这样的存在，哪怕是隶属于敌对势力，恐怕都要尽量保护。</p>
+<p class = "firstLineIndent">在机械族中，必定有着不许伤害“族人”的铁律。</p>
+<p class = "firstLineIndent">至于为什么毁灭者会将秘银骑士误认为智能生命……恐怕是由于聂云独特的“降临”技术。</p>
+<p class = "firstLineIndent">“这么说，以后要是有机会，说不定可以让人潜入机械族内部混个贵族当当？”</p>
+<p class = "firstLineIndent">能够和伍尔夫帝国分庭抗礼的存在，机械族的实力可见一斑，就是手里头随便漏点，恐怕都足够自己一波平推了双子星吧？</p>
+<p class = "firstLineIndent">聂云开始流着哈喇子畅想未来。</p>
+<p class = "firstLineIndent">不过这也就是想想，毁灭者毕竟是战斗型机器人，侦测功能有限，要是真傻乎乎派个机械虫替身就以为能蒙混过关，那绝对就是去送人头的。</p>
+<p class = "firstLineIndent">想来想去，有本事真的混出一个贵族当当的，恐怕也就只有聂云和代号。</p>
+<p class = "firstLineIndent">不过聂云连自己都不知道自己到底算不算智能生命，顶多算半个？</p>
+<p class = "firstLineIndent">代号倒是根正苗红来着，不过正是小学叛逆期的年龄，现在就已经很坑爹了，谁知道去机械族参加个培训班，回来会不会给直接升级成坑爹v20？</p>
+<p class = "firstLineIndent">毕竟机械族可是有策反智能生命的先例的，伍尔夫帝国那帮子技术更强的程序猿都被按在地上狠狠摩擦，自己可不能有了点成绩就太飘啊！</p>
+<p class = "firstLineIndent">对自己这种“半自动化”的势力来说，机械族这种“全自动化”的势力威胁性还真不是一般的大，特别是在这里的机械虫控制数量受限的情况下。</p>
+<p class = "firstLineIndent">嗯！在没有把握之前，还是先和这帮子“远房亲戚”保持些距离的好……</p>
+<p class = "firstLineIndent">“不过那个‘皇室秘宝’又是个啥子情况哟？千万光年外取人首级？要不要这么凶残？话说……机械族首领的首级是块电路板吗？”</p>
+<p class = "firstLineIndent">机械虫：“……”(ˉ―ˉ?)</p>
+
+<h2>第五百八十一章 天灾级</h2>
+<p class = "firstLineIndent">“叫我们赶往这个坐标隐藏待命？”堕天使号舰长艾米莉亚惊讶的看着手中的命令。</p>
+<p class = "firstLineIndent">“是的，阿尔萨斯阁下刚刚传回来的消息，似乎……是在海盗内部取得了一些进展，从他们手中获得了一处较为安全的隐蔽点。</p>
+<p class = "firstLineIndent">那是海盗们的备用基地，防止被围剿时特地安排的退路，安全性上应该没问题。”凯瑟琳脸色有些古怪道。</p>
+<p class = "firstLineIndent">“什么？”这回艾米莉亚真的是惊了。</p>
+<p class = "firstLineIndent">这才过去多久？就让海盗们将备用的隐藏地点拱手相让了？</p>
+<p class = "firstLineIndent">这是斩鸡头了吧？满打满算有没有24小时？桃园三结义都没这么快的吧。</p>
+<p class = "firstLineIndent">“而且……如果事情顺利，我们应该还能从那里获得一些补给……”</p>
+<p class = "firstLineIndent">“呃……”</p>
+<p class = "firstLineIndent">好嘛！连后勤补给都给包办了？</p>
+<p class = "firstLineIndent">自家这指挥官……外交术点满了吧？！</p>
+<p class = "firstLineIndent">“你确定这不是另一个陷阱？会不会阿尔萨斯阁下他……”艾米莉亚沉吟了片刻，还是皱眉迟疑道。</p>
+<p class = "firstLineIndent">虽然有通讯暗语确保是本人发送，不过谁知道这伙外星人有什么手段？</p>
+<p class = "firstLineIndent">要是指挥官受不住折磨拷打……</p>
+<p class = "firstLineIndent">“我明白你的意思，不过除了这个消息外，阿尔萨斯阁下还附了一份资料，你可以看看。”凯瑟琳脸色更古怪了。</p>
+<p class = "firstLineIndent">“资料？”艾米莉亚疑惑的点开自己的个人终端，点开凯瑟琳刚刚发送的文件。</p>
+<p class = "firstLineIndent">“这是……”艾米莉亚渐渐瞪大了眼睛。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">两个小时后，虫洞边界区域。</p>
+<p class = "firstLineIndent">“滴滴！情报接收完毕，指令确认，立刻返航！”</p>
+<p class = "firstLineIndent">虚空中一阵光影变幻，一台3米左右的隐身设备出现在虚空，随后立刻点不定是敌人故意散布扰乱我军心的假情报。”</p>
+<p class = "firstLineIndent">“不必在意，你的担忧也不无可能！但如果情报是真的，我们双子星文明这次，恐怕就真的是到了生死存亡之际了……”吉拉德微微一叹。</p>
+<p class = "firstLineIndent">众人皆是沉默，这个话题继续下去，可就太沉重了。</p>
+<p class = "firstLineIndent">“副官，阿尔萨斯是从哪里得到的这份情报？取得情报的过程有详细说明吗？”吉拉德问道。</p>
+<p class = "firstLineIndent">“因为担心通讯被敌人截获从而暴露行踪，因此阿尔萨斯阁下并未提及他们的位置和具体取得情报的过程。”身后的副官立刻上前汇报道。</p>
+<p class = "firstLineIndent">吉拉德眉头一挑，害怕通讯被截获？</p>
+<p class = "firstLineIndent">呵！是怕自己这边暴露他的行踪吧？这家伙对自己的戒心还真重……</p>
+<p class = "firstLineIndent">不过他现在已经没心思去计较聂云的小心思了。</p>
+<p class = "firstLineIndent">“现在重要的是确认这份情报的真伪，贝克曼那边有消息传回来吗？”他又问道。</p>
+<p class = "firstLineIndent">“贝克曼阁下的舰队大约2个小时前传回最后一个消息，说是已经盯上了一个目标，想来很快便会有进一步的消息传回来。”一名联络官上前汇报道。</p>
+<p class = "firstLineIndent">听到这话，在场众人神色各异。</p>
+<p class = "firstLineIndent">贝克曼这边才刚盯上目标呢，阿尔萨斯已经把情报传递回来了，不论是不是运气更好吧，这差距已经显现出来了。</p>
+<p class = "firstLineIndent">不过相比起这份情报中蕴含的恐怖信息，族中小辈们的竞争简直不值一提，就连羽族的将官们也没心情在这种时候向死对头冷嘲热讽了。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">视线转向另一支特遣舰队。</p>
+<p class = "firstLineIndent">一场太空中的激烈战斗刚刚落下帷幕，周围充斥着大量的战舰残骸和漂浮的货柜，一支数十艘的小型舰队正在打扫战场。</p>
+<p class = "firstLineIndent">“贝克曼阁下，确认敌方10艘战舰、23艘运输飞船已经被全部歼灭，我方损失37台机甲，其中7台海暴级，战舰轻伤3艘，战斗过程不到1个小时！”</p>
+<p class = "firstLineIndent">“哈哈！很好！”贝克曼忍不住哈哈一笑。</p>
+<p class = "firstLineIndent">经过数天时间的耐心潜行和搜索布局，贝克曼的特前舰队终于找到机会，利用地形和大量的海暴级机甲打了一个漂亮的伏击战，歼灭了一支小型的运输舰队。</p>
+<p class = "firstLineIndent">“俘虏的情况如何？”他问道。</p>
+<p class = "firstLineIndent">“由于时间紧迫，我们无法留手，因此只从逃生舱中俘虏了27名敌方人员，不过这些后勤人员的意志力薄弱，审讯室那边应该很快就会有结果！</p>
+<p class = "firstLineIndent">另外，我们正在寻找战舰残骸中的资料库，也许会有些收获。”</p>
+<p class = "firstLineIndent">“嗯！不过我们没有多少时间了，对方显然已经收到消息，巡逻力度越来越大，传令舰队，十五分钟后必须撤离！释放诱饵，按照1号路线规避敌人的追踪！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">就在贝克曼的舰队撤离3个多小时后，接到求援信息的巡逻舰队这才抵达了事发地点。</p>
+<p class = "firstLineIndent">巡曳一阵之后，怒明威胁等级……提升到s级！”</p>
+<p class = "firstLineIndent">s级的文明威胁，那是从未在双子星历史上出现过的……天灾！</p>
+
+<h2>第五百八十二章 组织的“真面目”</h2>
+<p class = "firstLineIndent">悠阅书城a，免费看小说全网无广告，ios需海外苹果id下载</p>
+<p class = "firstLineIndent">就在伍尔夫帝国的情报引发双子星高层集体大震动的时候，偏远的比邻星上。</p>
+<p class = "firstLineIndent">被聂云戏称为“华尔街之狼”的小型飞船运载着一批特殊的“乘客”抵达了这颗已经有些荒芜的行星，开始执行“卡拉星经济特区计划”……</p>
+<p class = "firstLineIndent">“你好，我是‘白执事’，这次的商务负责人。”楚潇潇面带微笑的伸出右手。</p>
+<p class = "firstLineIndent">加达里星区的情报主官莱昂面露古怪的打量眼前这个商务负责……仿生机器人。</p>
+<p class = "firstLineIndent">眼前的机器人是机械公敌的设计风格，没有昂贵的“皮肤”，用料精简，除了相当皮实外，科技含量相当低调。</p>
+<p class = "firstLineIndent">呃……毕竟考虑到以后大规模批量生产，成本是需要控制的。</p>
+<p class = "firstLineIndent">包括楚潇潇身后带来的500名谈判人员，万物归一会派出了清一色的机器人！</p>
+<p class = "firstLineIndent">既然是批量制造的，那自然不能“捏脸”，面对500台一模一样根本分不清谁是谁的谈判机器人，双子星的谈判人员都有些嘴角抽搐……</p>
+<p class = "firstLineIndent">倒不至于分不清，因为这些机器人头顶上都有个投影灯，齐刷刷顶着亮银色的投影铭牌。</p>
+<p class = "firstLineIndent">什么“农机采购员”、“飞船采购员”“机甲销售员”……一大堆的头衔晃的人有些眼花。</p>
+<p class = "firstLineIndent">不过这种网游既视感是怎么回事？</p>
+<p class = "firstLineIndent">再看最前面那台楚潇潇的专机，“地球分会会长白执事”。</p>
+<p class = "firstLineIndent">好家伙！还是亮金色的！</p>
+<p class = "firstLineIndent">很显然，这是个有名字的精英怪，没毛病！</p>
+<p class = "firstLineIndent">这架势，让伪装成商务访问团公司代表，想要刺探万物归一会情报的莱昂有些失望，不过很快，他便发现了一个相当异常的现象。</p>
+<p class = "firstLineIndent">对方竟然伸出了右手？！</p>
+<p class = "firstLineIndent">作为加达里星区的情报负责人，莱昂对万物归一会的所有已知情报了如指掌，而自从万物归一会宣称成立“地球分会”开始，他对地球文明的情报自然也是下了苦工的。</p>
+<p class = "firstLineIndent">而握手……这是地球人才会做出的礼节性动作！</p>
+<p class = "firstLineIndent">加上对方那酷似人类外形的仿真机器人，他心中顿时有了一个古怪的念头。</p>
+<p class = "firstLineIndent">“你好，我是双子重工的谈判代表莱昂，很高兴见到阁下！”面上不动声色，莱昂伸出手，有些不太适应的握了握。</p>
+<p class = "firstLineIndent">双子重工，是双子星文明内首屈一指的重工企业，背景深厚，主要产品是各类民用飞船和重型机械，也是楚潇潇这次想要建立合作意向的重点企业之一。</p>
+<p class = "firstLineIndent">莱昂之所以选择这个稍有分量的身份，是因为它即不会令对方太过敏感，又能够近距离的接触对方的重要成员探听消息，不至于被当成“群演”无视，可谓煞费苦心。</p>
+<p class = "firstLineIndent">“恕我冒昧，这种礼节……白执事阁下莫非不是双子星人？”</p>
+<p class = "firstLineIndent">寒暄过后，莱昂很巧妙的提出问题，尽量不让对方看出自己对地球文明有所了解。</p>
+<p class = "firstLineIndent">正常情况下，一个普通的公司代表，是不可能知道“握手礼”这种“生僻知识”的。</p>
+<p class = "firstLineIndent">“嗯！不错，我是地球人，包括我身后的代表团，他们都是地球人。”出乎意料的，楚潇潇承认的非常干脆。</p>
+<p class = "firstLineIndent">“嘶~”莱昂不由吸了一口凉气。</p>
+<p class = "firstLineIndent">他想过这个所谓“地球分会”的负责人会是双子星人，或者安特帝国人，但是绝对想不到她居然会是地球人！</p>
+<p class = "firstLineIndent">傀儡政权？可这放权的力度也太大了吧？</p>
+<p class = "firstLineIndent">事实上，这本来就是聂云想要给双子星传达的信息。</p>
+<p class = "firstLineIndent">为了令地球文明平滑的与星际“接轨”，不至于显得突兀，聂云在保密工作上可谓煞费苦心。</p>
+<p class = "firstLineIndent">所有可能导致泄密的漏洞都尽量模糊化处理，包括如今的地球，他都故意提前散播了一些真真假假的消息。</p>
+<p class = "firstLineIndent">比如幽灵船长隶属于一个星际组织“万物归一会”，他的科技和力量都来自于这个神秘的组织等等……</p>
+<p class = "firstLineIndent">哪怕是各国的高层，也根本分不清这消息究竟是真是假。</p>
+<p class = "firstLineIndent">毕竟太合理了！</p>
+<p class = "firstLineIndent">幽灵船长的那些高科技就像是凭空蹦出来的，肯定不是完全来自地球！得到外部势力的扶持，这个解释合情合理。</p>
+<p class = "firstLineIndent">就算双子星策反了一两个地球人，查到了“幽灵船长”的消息，恐怕也只会将他当做万物归一会的隐秘成员或者扶持的傀儡。</p>
+<p class = "firstLineIndent">毕竟从不公开自己的身份，这本来就是万物归一会成员的行事风格，比如黑执事……</p>
+<p class = "firstLineIndent">“阁下似乎对我是地球人很惊讶？其实，我们万物归一会本来就是星际商业组织，目标就是和全宇宙的种族和平贸易，万物皆虚，万事皆允，在我们看来，种族偏见只会阻碍智慧生命体的自由贸易交流。</p>
+<p class = "firstLineIndent">我们地球文明有句俗语，海纳百川，有容乃大……”</p>
+<p class = "firstLineIndent">楚潇潇按照早就编好的“万物归一会大忽悠指导纲要”滔滔不绝的安利了一波，听得莱昂一愣一愣的。</p>
+<p class = "firstLineIndent">“原来如此……贵组织真是好胸襟，好气魄！”莱昂赞叹道。</p>
+<p class = "firstLineIndent">哪怕分属敌对，他也不得不承认该组织的立意的确很高。</p>
+<p class = "firstLineIndent">恐怕也正是因为如此包容，他们才能做到跨文明贸易，分会遍天下吧……</p>
+<p class = "firstLineIndent">“呵呵！其实贵文明能够以两个种族进行融合，在理念上可谓和我们有异曲同工之妙，不知莱昂阁下有没有兴趣加入我们万物归一会，成为我们的独立注册会员？”</p>
+<p class = "firstLineIndent">“哈？”莱昂愕然。</p>
+<p class = "firstLineIndent">有没有搞错？</p>
+<p class = "firstLineIndent">我一个情报主官你居然想拉我入伙？恐怕我今天注册明天就得被军方直接人道注销吧！</p>
+<p class = "firstLineIndent">看到莱昂面色古怪，楚潇潇笑着道。“阁下不要误会，这个独立注册会员并不涉及立场问题，它没有强制义务，只是一个单纯的贸易身份。</p>
+<p class = "firstLineIndent">像是黑执事阁下，他就是从独立注册会员一步步提升贸易量和等级，发展多位下线，为组织作出了卓越的贡献，这才最终晋升成为星区执事。</p>
+<p class = "firstLineIndent">对于普通的注册会员来说，只是多了一条贸易渠道而已。”</p>
+<p class = "firstLineIndent">原来是这样，不过怎么感觉有点不太对劲，想当干部怎么还要发展下线？</p>
+<p class = "firstLineIndent">这真的不是什么披着贸易皮的“星际传销组织”？！</p>
+<p class = "firstLineIndent">“咳咳！关于注册会员的事情，我们公司会好好考虑，不过我有一个疑问，刚刚你提到黑执事，据我所知，他似乎是贵组织在加达里星区的负责人？</p>
+<p class = "firstLineIndent">而在你们组织内部，加达里星区的所有对外文明贸易，应该都是这位执事阁下的业务范围吧？</p>
+<p class = "firstLineIndent">如今你们选择和我们直接进行贸易，岂不是损害了他的利益？”莱昂继续旁敲侧击，想要探听出万物归一会内部的重要成员和势力构成。</p>
+<p class = "firstLineIndent">想想也知道，以前黑执事带着一帮子奸商玩星际走私赚的盆满钵满，如今双子星政府势力介入，都“两岸三通”了，哪里还有这帮走私商什么事儿？</p>
+<p class = "firstLineIndent">“呵呵！莱昂阁下看来对我们组织内部的事情相当好奇啊。”楚潇潇笑了笑，意味深长道。</p>
+<p class = "firstLineIndent">我一直和你谈生意，你却一直好奇宝宝一样一会儿一个“疑问”，有古怪！</p>
+<p class = "firstLineIndent">“呵呵！我们商人最要紧是长线投资，这位黑执事既然是加达里星区的负责人，我早点做些功课总不会错，免得以后碰上了发财的机会也不懂得把握，那岂不是太过遗憾？”莱昂毫不惊慌，笑眯眯的回答道。</p>
+<p class = "firstLineIndent">“嗯！这倒也不错，不过莱昂阁下多虑了。</p>
+<p class = "firstLineIndent">之前我们交通断绝，没有直接的贸易通道，所以组织只能私底下做一些小买卖，如今有了比邻星系这个贸易点，交易量自然需要水涨船高，能源水晶贸易就是一个例子。</p>
+<p class = "firstLineIndent">蛋糕做大了，对任何人而言利益都只会更大！更何况是一条全新的伟大航路？</p>
+<p class = "firstLineIndent">这次我们之间的贸易，本来就是黑执事一手促成的，而我们‘地球分会’更是他亲自发展的下线，所以，我们之间的贸易额越大，黑执事阁下获得的利益只会更多。”</p>
+<p class = "firstLineIndent">莱昂听了半天终于回过味来。</p>
+<p class = "firstLineIndent">呃！意思就是黑执事那家伙本来是做上门推销的，现在改坐地分红了呗？</p>
+<p class = "firstLineIndent">你妹！这果然是一帮传销吧……</p>
+<p class = "firstLineIndent">莱昂隐约间，似乎看到了这个组织的“真面目”……</p>
+<p class = "firstLineIndent">txt81813</p>
+<p class = "firstLineIndent">。阅址</p>
+<p class = "firstLineIndent">悠閱書城一個免費看書的換源a軟笮鑟gley下載安裝，蘋果手機需登陸非中國大陸賬戶下載安裝</p>
+
+<h2>第五百八十三章 钱不是问题</h2>
+<p class = "firstLineIndent">“这款‘丰收iii型’多功能农用机甲，不仅可以人工操作，还拥有高度自动化的播种收割智能，一台就可以管理1500亩的耕地。</p>
+<p class = "firstLineIndent">里面还附带了数百种普通作物的培养模式，更重要的是全流程傻瓜式操作，哪怕是仅有初级机械知识的普通人都能够熟练使用……”</p>
+<p class = "firstLineIndent">“哗！死阔以~”</p>
+<p class = "firstLineIndent">“我向您强烈推荐这款‘大力士7型’太空运输舰，它采用了ii型轻钢级间隙装甲，三层船体构造，拥有高达130万立方米的庞大船体空间，可以满足固、液、气等多种货物运输用途……”</p>
+<p class = "firstLineIndent">“哦！卖糕！”</p>
+<p class = "firstLineIndent">“‘风行者’系列飞梭，能够在行星表面和近地轨道往返，让您享受风驰电掣的快感……”</p>
+<p class = "firstLineIndent">“流弊！”</p>
+<p class = "firstLineIndent">“‘星源’大型能量熔炉，奉献清洁能源，构筑和谐城市……”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">勾心斗角的自然有双子星的特工情报部门，双子星这次派遣过来的上千名各大企业代表，可是真心实意想要大赚上一笔。</p>
+<p class = "firstLineIndent">毕竟三条腿的蛤蟆好找，愿意出市价两三倍采购的冤大头却是超稀有。</p>
+<p class = "firstLineIndent">双方带来的庞大团队很快便进入细分领域的采购销售谈判，现场热闹的堪比大型的商品博览会。</p>
+<p class = "firstLineIndent">双子星带来的货物清单包罗万象，高达数万种商品让一众没见过世面的地球采购员看的是眼花缭乱，不断的引起惊叹。</p>
+<p class = "firstLineIndent">虽然在聂云的催化下，近来地球科技大爆发，但论起底蕴和星际工业完善程度，相较老牌星际文明的双子星还是差了一个档次。</p>
+<p class = "firstLineIndent">尖端的军事科技领域，聂云已经不逊双子星多少，民用方面差距也并不算大，但问题是哪怕技术已经赶上了双子星，也根本还做不到短时间内将大量成品投入市场，这就造成了短期的市场空白。</p>
+<p class = "firstLineIndent">引进外来商品，无疑能够大大加速地球的星际化进程和太阳系开发速度，这也是地球开放市场，与星际接轨的重要意义！</p>
+<p class = "firstLineIndent">虽然一众双子星的销售员们看似热切的推销着自家公司的商品，但看到地球人一副刘姥姥进大观园的表情，心中却不由纷纷鄙视。</p>
+<p class = "firstLineIndent">“切！真是一群没见识的乡巴佬，果然是低级文明，我们几十年前的淘汰产品就惊讶成这样？喂喂！那家伙机（kou）油（shui）是不是要流出来了？”</p>
+<p class = "firstLineIndent">“呵呵！这回积压在仓库的滞销货终于可以出手了……”</p>
+<p class = "firstLineIndent">“这些家伙看起来很好忽悠的样子，枉费我还拿出前两代的商品，早知道把五代之前的拿出来显摆算了，不过也不知道那些老旧生产线还能不能启动……”</p>
+<p class = "firstLineIndent">在巨大利益的诱惑下，双子星虽然答应出售商品，不过自然不可能真的想为太阳系的建设添砖加瓦。</p>
+<p class = "firstLineIndent">所以在联合议会的授意下，这些企业拿出来的商品完全就是技术落后的淘汰产品，本来还有些担心对方不买账，哪成想一手烂牌居然打出了同花顺？</p>
+<p class = "firstLineIndent">“所以说，人员素质很关键啊……”一旁的莱昂看着这一幕摇头失笑。</p>
+<p class = "firstLineIndent">重用地球人看似解决了对方人员不足的问题，可也不是没有缺点，一个低级文明的教育水平如何能够满足高科技生产中对高素质人才的需求？</p>
+<p class = "firstLineIndent">连操作说明阅读起来都有困难的员工，更别说机械维护保养了。</p>
+<p class = "firstLineIndent">到时候设备损坏、使用效率等等都将成为大问题，靠着卖零件和二次服务输出双子星恐怕都能再大大的赚上一笔。</p>
+<p class = "firstLineIndent">他不否认地球人类同属智慧种族，也有着一定的科技基础，或许能够高速成长，但十年树木百年树人，这至少需要数十年甚至上百年的时间，地球人的素质或许才能可堪大用。</p>
+<p class = "firstLineIndent">不过等到数十上百年时间以后，谁知道太阳系是不是已经纳入双子星的版图了？这一切还不是为他人做嫁衣？</p>
+<p class = "firstLineIndent">“地球分会，短期内威胁等级有限。”莱昂在自己的小本本上记下这么句话。</p>
+<p class = "firstLineIndent">然而他并不知道的是，有着虚拟现实技术，已经某种意义上实现了精神联网的地球人，成长和发展速度有多么恐怖……</p>
+<p class = "firstLineIndent">而事实上，地球人还真不在乎货物是不是淘汰产品。</p>
+<p class = "firstLineIndent">太阳系建设需要什么高精尖的设备吗？你提供的技术再牛能牛的过幽灵船长？反正也就是短期的过渡产品，所以……量大管饱就够了！</p>
+<p class = "firstLineIndent">地球的刘姥姥们一番惊叹后，很快开始拟定采购意向。</p>
+<p class = "firstLineIndent">“这款大力士运输舰，我们初期采购1000艘，后期视使用效果再考虑追加订单，全款现金的话打几折？”</p>
+<p class = "firstLineIndent">“农用机甲暂定300万台，大型采矿车30万辆，请问包邮吗？”</p>
+<p class = "firstLineIndent">“这套太空版‘近轨游乐场’和‘高轨过山车’麻烦来5套，还有星际主题公园？版权可以买断吗？”</p>
+<p class = "firstLineIndent">“能量熔炉不需要，不过你们的高能电池我们需求量比较大……什么？生产线不卖？好吧，那先来3亿组。”</p>
+<p class = "firstLineIndent">“这种制式单兵防护服先来一个亿，要分春秋两季的，对了，外观设计可以diy吗？属性可能下降？没关系，帅就可以！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">这回轮到双子星人听得一愣一愣的。</p>
+<p class = "firstLineIndent">确定我没有多听了一个零？</p>
+<p class = "firstLineIndent">光大型运输舰就要1000艘？加达里星区一年的产量有没有这么多？</p>
+<p class = "firstLineIndent">更大的问题是，我们也没那么多旧产线啊！总不能让新船坞造旧船吧？肝疼……</p>
+<p class = "firstLineIndent">动辄数百万乃至上亿的采购数量，让所有双子星的销售员们呼吸急促。</p>
+<p class = "firstLineIndent">对不起我错了，这哪是乡巴佬，这是一群中东的狗大户啊！</p>
+<p class = "firstLineIndent">听听，全款现金眼睛都不带眨的！这种优质客户……必须包邮啊！</p>
+<p class = "firstLineIndent">有一些存货被采购一空的企业甚至开始联络上级，要求紧急追加生产线，因为这些狗大户们对商品质量的要求极低，唯一不满的就是交货期限太长……</p>
+<p class = "firstLineIndent">面对这帮壕无人性的家伙，一场星际采购博览会生生变成了清仓大甩卖！</p>
+<p class = "firstLineIndent">看着一个个被用钱砸脸瞬间化为舔狗的双子星谈判员，莱昂表情顿时微妙起来……</p>
+<p class = "firstLineIndent">特么的这帮家伙哪来的这么多钱？家里有矿啊？！</p>
+<p class = "firstLineIndent">对此，楚潇潇笑而不语。</p>
+<p class = "firstLineIndent">地球文明家里有矿不假，不过月球出产的能源水晶真心不算多，主要是空白水晶贸易太过暴利。</p>
+<p class = "firstLineIndent">充一充，单车变莫托，外汇储备来的不要太容易。</p>
+<p class = "firstLineIndent">3万吨的能源水晶刚刚出炉，她要做的，不过是将这些东西统统转化为加速太阳系建设的资源罢了。</p>
+<p class = "firstLineIndent">而对女人来说，花钱，是与生俱来的天赋……</p>
+<p class = "firstLineIndent">“对了莱昂先生，我记得双子重工似乎是股份制，能不能帮我问问股份卖不卖，放心，钱不是问题！”</p>
+<p class = "firstLineIndent">“呃……”</p>
+
+<h2>第五百八十四章 爱国商人</h2>
+<p class = "firstLineIndent">“123号采购员，方案审计通过，采购合同已发送。”</p>
+<p class = "firstLineIndent">“398号采购项目已完成，总计花费398吨能量水晶，请求纳入采购清单。”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">这场交易会持续了整整一天的时间，期间的通讯信号就一直没有断过。</p>
+<p class = "firstLineIndent">不仅这批上千人的贸易谈判人员忙的脚不沾地，双方背后的企业和智囊团更是全力开动，权衡利弊，指挥谈判人员为己方争取最大的利益。</p>
+<p class = "firstLineIndent">双方各取所需，都认为自己占了便宜，自然是皆大欢喜。</p>
+<p class = "firstLineIndent">地球方面最终敲定的贸易清单足有2534个项目，涉及星系开发的各个领域，几乎将所有的“外汇储备”花了个一干二净，而且还贴进去不少。</p>
+<p class = "firstLineIndent">楚潇潇看着各方汇总过来的商品目录满意的点点头。</p>
+<p class = "firstLineIndent">这次贸易谈判的主要目的已经达成，接下来就是聂云交代的另外一个小任务了……她将目光转向莱昂。</p>
+<p class = "firstLineIndent">这家伙说是谈判代表，不过言行举止和“商人”还是有着不小的区别，在饮用不少生命之水后思维越发敏锐的楚潇潇又如何感受不出来。</p>
+<p class = "firstLineIndent">双子星会安插一些情报人员探听消息本就在地球方面的意料之中，事实上地球方面做得更直接！</p>
+<p class = "firstLineIndent">他们倒是没安插什么特工，不过这机器人的摄像头难道是摆设？早就开启了全程偷……咳咳！是全程录像模式。</p>
+<p class = "firstLineIndent">聂云早就给地球防卫军开放了特权通道，他们刚刚组建不久的星际情报部门早就进入了虚拟世界，通过“旁观”模式身临其境的观察在场的所有双子星人。</p>
+<p class = "firstLineIndent">画质高清，体验流畅，绝对连对方的微表情都完美展现。</p>
+<p class = "firstLineIndent">也就是说，莱昂以及几乎所有的双子星特工早就进入这些“同行”的眼中，经过一天的筛选，早就被锁定的七七八八。</p>
+<p class = "firstLineIndent">而这位长相斯文，衣冠笔挺的莱昂先生，据分析极有可能是双子星这次刺探情报的主要负责人！</p>
+<p class = "firstLineIndent">这样的判断也早就上报给了楚潇潇。</p>
+<p class = "firstLineIndent">“唉！莱昂阁下，这回我们可算是倾家荡产，一次性将组织下拨的发展基金花了个七七八八。”楚潇潇假装叹口气道。</p>
+<p class = "firstLineIndent">“呃……贵组织财力雄厚，呵呵！”莱昂不知道楚潇潇的意思，只能干笑。</p>
+<p class = "firstLineIndent">今天的试探行动不能说完全没有收获……至少知道了万物归一会的组织模式？</p>
+<p class = "firstLineIndent">但仅有这样的收获，并不能让莱昂满意。</p>
+<p class = "firstLineIndent">成员身份，安特帝国的虚实，太阳系的兵力……这些统统都被一张张机械面孔所阻挡，让他一筹莫展。</p>
+<p class = "firstLineIndent">“这贸易逆差稍微有些大了，而且看样子贵方对我们展出的商品也并不感兴趣……”这一边，楚潇潇微微皱眉又道。</p>
+<p class = "firstLineIndent">这次的贸易地球一方也并不是没有销售员的，而且主要是军火销售员。</p>
+<p class = "firstLineIndent">没办法，聂云的前期科技树点的有些“专精”，民用方面还真有些拿不出手，而且聂云的军事科技更新换代极快，前期战时积累的武器装备现在都已经过时了，只能拿来外销。</p>
+<p class = "firstLineIndent">这些军火虽说性价比不错，但还引不起双子星的兴趣，他们内部的军工寡头也根本不会轻易放任外来者和他们分享这块蛋糕，这也导致成交基本为零。</p>
+<p class = "firstLineIndent">“嗯？”听到楚潇潇的话，莱昂眉头一挑。</p>
+<p class = "firstLineIndent">咋的？逆差大就受不了了？要打贸易战怎么的？</p>
+<p class = "firstLineIndent">然而楚潇潇却是话锋一转，“不过我这里倒是有样东西，相信贵方一定会感兴趣首发</p>
+<p class = "firstLineIndent">“哦？什么东西？”莱昂来了精神。难不成是压箱底的“幽能科技”？</p>
+<p class = "firstLineIndent">却只见楚潇潇手掌一翻，拿出来一本……大部头？</p>
+<p class = "firstLineIndent">就在他疑惑间，不经意却瞥到了金属封面上的几个字……</p>
+<p class = "firstLineIndent">“嘶！”莱昂顿时倒吸一口凉气。</p>
+<p class = "firstLineIndent">许久之后，他终于压下心中的激动，语气有些急切道，“这本书我们很感兴趣，放心，钱，不是问题！”</p>
+<p class = "firstLineIndent">“呵呵……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">《伍尔夫帝国大百科》，128t珍藏版（注：双子星语译本）！</p>
+<p class = "firstLineIndent">东西一送上去，通过对比前线传递回来的情报，双子星立刻判断出这东西……是真的！</p>
+<p class = "firstLineIndent">相较于聂云之前以阿尔萨斯身份提交的那份简略情报来说，这本电子书中蕴含的情报价值完全不可同日而语。</p>
+<p class = "firstLineIndent">有了它，双子星就能彻底揭开伍尔夫帝国的神秘面纱，这对现在惶惶不可终日的双子星高层来说，完全是如获至宝。</p>
+<p class = "firstLineIndent">哪怕被楚潇潇狠狠宰了一刀，莱昂也是甘之如饴，甚至立刻受到了议会的表彰，轻轻松松荣获一个一等功。</p>
+<p class = "firstLineIndent">这回也是无心插柳柳成荫，被莱昂捡了个大漏，在所有同行面前大大的露了一把脸，也让他彻底坐稳了加达里星区情报负责人的位子。</p>
+<p class = "firstLineIndent">自从伍尔夫帝国的情报传回议会，并且威胁等级被提升至史无前例的s级之后，伍尔夫帝国五个大字，就如同一座大山一样，压得整个双子星喘不过气来。</p>
+<p class = "firstLineIndent">可想而知，有关伍尔夫帝国的情报，在这个时刻会有多么珍贵。</p>
+<p class = "firstLineIndent">只不过所有人没有想到的是，情报不是来自相邻的盖伦特星区，而是隔着十万八千里的加达里星区！</p>
+<p class = "firstLineIndent">万物归一会，兼职情报贩子！</p>
+<p class = "firstLineIndent">这伙走私商脑门儿上无疑多了一个标签，而且突然间神秘度飙升。</p>
+<p class = "firstLineIndent">卡拉星的局部冲突只是小打小闹，伍尔夫帝国却是天灾级的威胁，两者完全不可同日而语，受到的重视程度自然也是截然不同。</p>
+<p class = "firstLineIndent">“据说万物归一会的势力遍布周边星域和文明，甚至连伍尔夫帝国都有他们的成员，没想到这居然是真的……”莱昂满脸唏嘘。</p>
+<p class = "firstLineIndent">之前聂云假扮黑执事吹得牛皮，在这一刻得到了完美印证。</p>
+<p class = "firstLineIndent">“不管怎么说，立刻向万物归一会的人释放友善信号，看看能不能从他们那里再获取一些有关伍尔夫帝国的情报。”克鲁泽议长立刻下达了这样的指示。</p>
+<p class = "firstLineIndent">“是！”莱昂关闭了通讯，终于松了口气。</p>
+<p class = "firstLineIndent">虽然立了大功，但莱昂兴奋过后心中却也不免忧虑。</p>
+<p class = "firstLineIndent">万物归一会展露出来的势力越来越庞大，组织也越来越神秘，这让他有些压力山大。</p>
+<p class = "firstLineIndent">“看来身份已经被识破了，既然如此，就光明正大的与对方接触好了。”莱昂叹了口气。</p>
+<p class = "firstLineIndent">楚潇潇能将情报卖给他，已经说明了很多问题。</p>
+<p class = "firstLineIndent">“白执事的地球分会刚刚成立，所以这份情报……应该是那位黑执事的手笔，不过对方既然在这种时候提供这样的珍贵情报，也许……算是一位爱国商人？”</p>
+<p class = "firstLineIndent">莱昂大胆猜测，开始思考如何能够从对方手中获取更多的情报。</p>
+<p class = "firstLineIndent">如果让聂云知道莱昂的想法，恐怕会绷不住直接笑出来。</p>
+<p class = "firstLineIndent">一份情报两头卖，阿尔萨斯赚了功勋，楚潇潇得了实惠，还大幅度提高了子虚乌有的“万物归一会”逼格，一箭三雕！</p>
+<p class = "firstLineIndent">爱国？聂云觉得自己应该是近朱者赤，有做“奸商”的潜质……</p>
+
+<h2>第五百八十五章 碎星城</h2>
+<p class = "firstLineIndent">碎星星域。</p>
+<p class = "firstLineIndent">“船长，我们到了，这里就是碎星星域最重要的核心地带，碎星城！”</p>
+<p class = "firstLineIndent">这……真特么……壮观！</p>
+<p class = "firstLineIndent">聂云望着舷窗外的景象，心里由衷的发出了如此的感叹。</p>
+<p class = "firstLineIndent">此刻呈现在众人眼前的，是一颗通体黝黑的岩质小行星，直径大概是月球的2倍。小行星本身很普通，然而令人震惊的是……它居然是中空的！</p>
+<p class = "firstLineIndent">没错，就是那种透心凉的前后通透！</p>
+<p class = "firstLineIndent">仿佛有一把恐怖的巨矛一穿而过，在中心处留下了直径达上千公里的空洞！</p>
+<p class = "firstLineIndent">而金牙口中的碎星城，并非建造在这颗天体表面，而是建造在中央空洞的侧壁上，形成了滚筒状的巨大太空都市。</p>
+<p class = "firstLineIndent">空洞两侧则是一层淡红色的蜂窝状透明晶状体，看起来防御不弱，同时也确保了碎星城的密闭性，使得内部的空间自成一体。</p>
+<p class = "firstLineIndent">人造都市闪烁的霓虹透过侧面的晶状体，使得整个碎星城看起来就像是一块熠熠发光的红宝石，有着一种妖异的美感。</p>
+<p class = "firstLineIndent">“这颗星球本来是一座军事要塞，只不过在战争中遭到了毁灭性武器的打击，最终只剩下一副残骸。</p>
+<p class = "firstLineIndent">数百年前，七大海盗团联合了当时排名前百的各个海盗团体，共同出资建造了碎星城，从此之后，这里就成为所有碎星海盗的交流地点，往来的海盗以百亿计算。”金牙很狗腿的客串起了导游，殷勤的向聂云介绍着碎星城的由来。</p>
+<p class = "firstLineIndent">“嘶！”聂云倒吸了一口凉气。</p>
+<p class = "firstLineIndent">这么说，这颗天体是被一炮打成了这样？物质湮灭炮？还是光速动能武器？伍尔夫帝国的超级武器这么凶残的么？</p>
+<p class = "firstLineIndent">好想要啊……</p>
+<p class = "firstLineIndent">心里震惊，脸上还是需要摆出一副“我见过世面”的淡定模样。</p>
+<p class = "firstLineIndent">“嗯！这么说，这里就是海盗们的销赃点咯？”聂云了然的点点头。</p>
+<p class = "firstLineIndent">碎星星域的众多海盗们各自为战，一盘散沙，又分散在广袤的碎星星系内，自然不是每个海盗团体都有自己的销赃渠道，因此这样一个物资交流地点就十分有必要了。</p>
+<p class = "firstLineIndent">“销赃点嘛……倒的确是，不过我们一般都更喜欢称它为‘销金窟’，嘿嘿……”金牙露出一个男人都懂的笑容道。</p>
+<p class = "firstLineIndent">海盗嘛，今朝有酒今朝醉，难道还攒着钱过年吗？</p>
+<p class = "firstLineIndent">“呵！这七大海盗团倒是有眼光，有这个销金窟和你们这群不用忽悠就往死里消费的优质客户，日进斗金啊！”聂云感叹道。</p>
+<p class = "firstLineIndent">“何止是日进斗金，七八斗都有！</p>
+<p class = "firstLineIndent">在这里出售的货先要被压价三成，各种物资和武器又比市价要高出三倍以上，一来一回，里面的利润可是天文数字。</p>
+<p class = "firstLineIndent">上次有个被俘虏的经济学家，巴拉巴拉给我分析了一堆，意思就是说碎星城的生产总值算下来，甚至比某些富裕星系的什么鸡低屁都要高！”金牙一副向往的表情。</p>
+<p class = "firstLineIndent">“嗯！最后他被你卖了3000碎星点，就在碎星城，这笔账在去年的账单上记着呢。”</p>
+<p class = "firstLineIndent">“呃……您明察秋毫……”金牙讪讪一笑。</p>
+<p class = "firstLineIndent">“呵呵！”聂云一乐，似笑非笑的看了金牙一眼。“你知道我最欣赏你哪一点？”</p>
+<p class = "firstLineIndent">金牙摸不准聂云的意思，迟疑了一下小心翼翼道“……忠诚？”</p>
+<p class = "firstLineIndent">聂云“……”</p>
+<p class = "firstLineIndent">机械虫“……”→→）</p>
+<p class = "firstLineIndent">舰桥内的几个海盗小弟表情也快绷不住了，以前怎么没发现自家的老大脸皮原来这么厚的？</p>
+<p class = "firstLineIndent">“咳咳！忠诚？那东西你没有，我也不需要。”</p>
+<p class = "firstLineIndent">我神教教主服众，靠的是小弟们的忠诚吗？肤浅！</p>
+<p class = "firstLineIndent">“呃……呵呵！”金牙能说什么？只能露出一个尴尬而不失礼貌的微笑。</p>
+<p class = "firstLineIndent">“我最欣赏你……会装！”聂云笑着说出了答案。“帝国财经大学毕业的高材生，怎么可能连gd都需要一个经济学家解释，你卖了他，主要是因为他对你根本毫无用处，你说是吗？”</p>
+<p class = "firstLineIndent">“刷！”金牙的冷汗瞬间就下来了。</p>
+<p class = "firstLineIndent">海盗们都是在帝国内混不下去的亡命之徒，或多或少都有些案底，因此身份什么的没有必要绝不会去大肆宣扬。</p>
+<p class = "firstLineIndent">他的出身来历仅有几个基地内的心腹有部分了解，难道说有人这么快就倒向了新老板，还将自己的老底给揭了？</p>
+<p class = "firstLineIndent">这家伙明明才刚来几天，而且深居简出，甚至连大部分小弟都没见过，怎么好像对基地内大大小小的事情了如指掌……真特么活见鬼了！</p>
+<p class = "firstLineIndent">“那时候年轻气盛，稍微拼了一点，呵……呵呵……”金牙只能继续干笑。</p>
+<p class = "firstLineIndent">“诶！别紧张，会装是一种天赋，什么韬光养晦、卧薪尝胆、忍辱负重，没会‘装’的天赋还真就做不到，做到了，你离王侯将相就不远了……”</p>
+<p class = "firstLineIndent">我觉得我是离死不远了……</p>
+<p class = "firstLineIndent">金牙都快吓哭了。</p>
+<p class = "firstLineIndent">自己只是想装一下蠢萌，表明自己的低能和无害，让新老大别在稳定金牙海盗团后悄咪咪的将自己人间蒸发。</p>
+<p class = "firstLineIndent">当然不可否认也的确有一些“先让丫得意一阵，回头等我翻盘再将你xxoo”之类的极端想法，可惜自己的小野心还没来得及野蛮生长，就彻底被对方暴露在光天化日之下。</p>
+<p class = "firstLineIndent">这家伙对人心的掌控简直太可怕了，难道是传说中的“读心术”？！</p>
+<p class = "firstLineIndent">是了！这家伙还是精神系的，完全有这个可能啊！</p>
+<p class = "firstLineIndent">等等，自己似乎还脑补过将对方xxoo的画面？金牙恨不得给自己一个巴掌，这完全就是一直在作死的边缘疯狂的徘徊啊……</p>
+<p class = "firstLineIndent">接下来对方会怎么处置我？金牙觉得自己八成是药丸，剩下两成……迟早药丸！</p>
+<p class = "firstLineIndent">“船……船长！我以后再也不装了！您放过我吧！呜~”两米多的大块头，哇的一声就扑街抱住了聂云的大腿，声泪俱下。</p>
+<p class = "firstLineIndent">一众海盗小弟忍不住扭过头……太贱了！</p>
+<p class = "firstLineIndent">自己以前就是这货的小弟？丢人呐！</p>
+<p class = "firstLineIndent">“诶！我可没和你开玩笑。”聂云露出一个人畜无害的笑容，然后一招手。</p>
+<p class = "firstLineIndent">“刷！”大门开启，外面走进来一个身高体型与金牙差不多的……“人”。</p>
+<p class = "firstLineIndent">机械虫分身伍尔夫帝国专用版），外观上模拟了典型的伍尔夫帝国人种特征，毛发是黑色的，看上去就像是穿戴了一件奇怪黑色装甲的狼人。</p>
+<p class = "firstLineIndent">经过聂云的捏脸，倒是和聂云本身的相貌有七八分相似。</p>
+<p class = "firstLineIndent">这家伙谁？以前怎么没见过？</p>
+<p class = "firstLineIndent">金牙愕然的看着莫名出现的“同胞”，脑子有些转不过来。</p>
+<p class = "firstLineIndent">“接下来，我需要你充分发挥自己的特长，陪我去碎星城演一出好戏……”</p>
+<p class = "firstLineIndent">前半句还只是聂云在说，后半句，那名狼人却诡异的统一了声调，两个人，却宛如一个声音在说话。</p>
+<p class = "firstLineIndent">“呃……”</p>
+
+<h2>第五百八十六章 数学是我的强项</h2>
+<p class = "firstLineIndent">在向港口控制系统上报了金牙海盗团的身份识别秘钥之后，聂云等人乘坐的飞船缓缓停靠在地表的停泊点。</p>
+<p class = "firstLineIndent">修建在行星内部的碎星城无法直接抵达，需要通过直通地表的电梯井进入。不过真空电梯井速度极快，只用了十多分钟两人便已来到碎星城内部。</p>
+<p class = "firstLineIndent">行星的自转速度显然经过调整，使得整个碎星城保持着一定的离心重力。</p>
+<p class = "firstLineIndent">而四周和穹顶之上，入目都是鳞次栉比的现代化都市轮廓，曲面视觉让习惯了天圆地方的聂云颇有种时空错乱的颠倒感。</p>
+<p class = "firstLineIndent">“各位大人，需要导游吗？一天只要十个碎星点。”</p>
+<p class = "firstLineIndent">“这位兄弟，需要销赃吗？奥利凡德销赃屋，百年老店，本地最良心的销赃价格，绝对童叟无欺。”</p>
+<p class = "firstLineIndent">“小哥好俊的身材，来我们怡红院的话打八折哦！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">一出电梯，两人便被一群打广告的围住。</p>
+<p class = "firstLineIndent">这些人中大部分是伍尔夫帝国人，还有不少长相各异的类人形物种，他们有些举着荧光牌拉客，有些搔首弄姿吸引顾客，场面颇有些混乱。</p>
+<p class = "firstLineIndent">“都给老子滚开，我金牙可不是菜鸟，别在我们身上打主意！”金牙二话不说，上前掏出枪恶行恶相的就开始挥手赶人。</p>
+<p class = "firstLineIndent">很显然，这是一群“找肥羊”的掮客。</p>
+<p class = "firstLineIndent">等人群失望散去，这才有几名穿着更加考究的人靠上来。</p>
+<p class = "firstLineIndent">新人基本都是没权没势的菜鸟，油水有限，而通常只有那些老海盗身上，才会有做大买卖的机会，而这些人才是那些大势力眼中真正的“客户”。</p>
+<p class = "firstLineIndent">“哟！这不是金牙团长吗？”</p>
+<p class = "firstLineIndent">其他几名掮客闻言脚步一顿，既然是熟人，那他们基本就没什么指望了，不过几人还是在不远处观望形势，似乎在等待机会。</p>
+<p class = "firstLineIndent">“德雷克？原来是你这家伙。”金牙看向说话那人，显然与对方相熟。</p>
+<p class = "firstLineIndent">来人身材有些瘦小，仅有一米五的身高，长得有些像是豺狼人，眼珠总是不住转动，看起来十分狡黠。</p>
+<p class = "firstLineIndent">“金牙团长可有一阵子没来碎星城了，怎么，又做了笔大买卖？”德雷克上前笑道。</p>
+<p class = "firstLineIndent">可不是大买卖吗，连人带小弟都给搭进去了……</p>
+<p class = "firstLineIndent">金牙心中哀叹，然后让开身形，“德雷克，我现在已经不是团长了，我们金牙海盗团弃暗投明，集体投奔了幽灵海盗团，这位就是我们的新首领，幽灵船长！”</p>
+<p class = "firstLineIndent">“什么？”德雷克瞪着眼睛愣住了。</p>
+<p class = "firstLineIndent">幽灵海盗团？</p>
+<p class = "firstLineIndent">碎星星域什么时候冒出个幽灵海盗团？金牙海盗团的实力虽然不怎么样，可也算是小有名气，就这么被一个名不见经传的海盗团给收编了？</p>
+<p class = "firstLineIndent">而且看样子，金牙对这个新首领似乎有些畏惧，应该不是什么和平收编……</p>
+<p class = "firstLineIndent">德雷克有些惊奇的上下打量这位“幽灵船长”。</p>
+<p class = "firstLineIndent">陌生的面孔，黑色的毛发，似乎不是附近星域的人种特征……</p>
+<p class = "firstLineIndent">“滴滴！”突然，右眼中的植入式探测仪发出讯息。</p>
+<p class = "firstLineIndent">德雷克顿时面色一阵古怪，不由看向金牙愕然问道，“机器人？”</p>
+<p class = "firstLineIndent">伍尔夫帝国无疑是一副高级地图，机械虫分身在越发先进的探测技术面前，越来越没有隐蔽性，不过聂云本来就没有打算隐瞒这只是具机器人的事实。</p>
+<p class = "firstLineIndent">“呵呵！不过是用来游历的玩具，不用在意。”聂云的机械虫分身用独特的金属音笑道，主动承认了德雷克的判断。</p>
+<p class = "firstLineIndent">用来游历的……玩具？恐怕是隐藏身份的手段吧。</p>
+<p class = "firstLineIndent">不过看这“玩具”足以以假乱真的精巧做工，操控的流畅性，再加上有实力收编金牙海盗团，就知道这个幽灵船长绝对身家颇丰。</p>
+<p class = "firstLineIndent">“幽灵先生，初次见面，不知道您来碎星城，可是有什么买卖要做？我和金牙大人做过几次交易，而且背后挂靠的是七大海盗团之一的金币海盗团，口碑和信誉您大可放心。”收起心中的思绪，德雷克摆出一副商人的标准化笑容道。</p>
+<p class = "firstLineIndent">和谁做生意不是生意，只要有钱，管他什么幽灵幽魂的，阎王爷都可以是上帝！</p>
+<p class = "firstLineIndent">“船长，这家伙是金币海盗团在碎星城的代理人之一，在碎星城拥有许多产业，只要肯花钱，可以替我们解决不少问题，收费还算公道。”金牙在聂云耳边轻声道。</p>
+<p class = "firstLineIndent">“嗯！既然是老相识，那就好说了，德雷克先生，我想买一批奴隶，种族不限，人数大概在3万人左右。”</p>
+<p class = "firstLineIndent">伍尔夫帝国并不禁止奴隶贸易，但不允许交易伍尔夫帝国人种，只不过在碎星城，这条法律自然形同虚设。</p>
+<p class = "firstLineIndent">被劫持的商船船员和旅客，如果交不出赎金，很大一部分就会被当成奴隶贩卖，在势力火并倾轧中失败的一些海盗，有时也会被当成奴隶卖掉，所以碎星城并不缺奴隶。</p>
+<p class = "firstLineIndent">至于聂云为什么要买奴隶，这就涉及聂云刚刚制定不久的“编外海盗团养成计划”了……</p>
+<p class = "firstLineIndent">“3万人？”德雷克眼睛一亮。这可是大买卖！提成丰厚啊！</p>
+<p class = "firstLineIndent">“不知道您对这些奴隶有什么要求？”德雷克有些兴奋道。</p>
+<p class = "firstLineIndent">“都要青壮，海盗奴隶优先，另外我还需要一批1000人左右的技术人才和管理人才。”</p>
+<p class = "firstLineIndent">“青壮奴隶的平均价格在300碎星点左右，技术性人才稍微贵些，均价1000碎星点左右，这样算下来大概总共需要1000万碎星点。</p>
+<p class = "firstLineIndent">不过由于您的采购量比较大，我可以做主给您打个9折，900万！您觉得怎么样？”</p>
+<p class = "firstLineIndent">“可以！”聂云回答的很干脆，就像是花出去九百块。</p>
+<p class = "firstLineIndent">瞅瞅！你瞅瞅！这么大买卖眼睛不眨都不带讲价的，这绝对是个豪客啊！</p>
+<p class = "firstLineIndent">旁边的金牙一听聂云居然想要买三万的奴隶，直接吓了一跳，这聂云可从来没和他说过。这边两人连价格都差不多谈好了，他这才反应过来。</p>
+<p class = "firstLineIndent">“船长，3万人可不是小数目，问题是我们没有那么多……”金牙小心的问了一句，不过他还没说完，就被聂云一个眼神，将剩下的话咽了回去。</p>
+<p class = "firstLineIndent">德雷克一听金牙的话，脸上的兴奋顿时一僵，神色顿时有些微妙起来……</p>
+<p class = "firstLineIndent">“那个……这种大额买卖，我们需要先收取一成的定金，您看……”德雷克有些小心的问道，似乎生怕这笔大买卖最后只是空欢喜一场。</p>
+<p class = "firstLineIndent">“微信还是支付宝？”聂云爽快的直接拿出个人终端准备转账。</p>
+<p class = "firstLineIndent">“呃……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">脸色红润的德雷克收了定金，兴冲冲的去准备奴隶资料。</p>
+<p class = "firstLineIndent">金牙也有些兴奋，没想到自家的新老大居然这么有钱，那可是90万碎星点，刷起卡来就像是上街点了杯奶茶。</p>
+<p class = "firstLineIndent">至于聂云购买奴隶的原因，他心中也猜到了一二。</p>
+<p class = "firstLineIndent">原金牙海盗团大约有不到5万人，加入3万的生力军，整个海盗团就相当于扩充了近一倍。</p>
+<p class = "firstLineIndent">更重要的是新老成员各占一半，聂云掌控起来无疑会更加得心应手。</p>
+<p class = "firstLineIndent">他不需要这些奴隶有多么忠诚，只需要打破金牙海盗团一家独大的局面，御下之道，平衡而已，这种手段见怪不怪。</p>
+<p class = "firstLineIndent">而有外部资金介入后，通过购买奴隶迅速扩充海盗团的规模，也不是什么新鲜的招数，许多排名飞速蹿升的海盗团就是这么扩张来的。</p>
+<p class = "firstLineIndent">自家这个新老大背后……绝对有个大财团啊！金牙有种被天使融资砸中的幸福感。</p>
+<p class = "firstLineIndent">“船长，您这次带了多少资金过来？”金牙兴奋的问道。</p>
+<p class = "firstLineIndent">不用问，这次绝对是要大肆扩张海盗团啊！什么a轮，b轮，让投资来的更猛烈些吧！</p>
+<p class = "firstLineIndent">“带了多少资金？刚刚的就差不多是全部了啊，刚好还剩下的一些零头。呵呵！你放心，我都计算好了，数学现在可是我的强项！”聂云云淡风轻的笑道。</p>
+<p class = "firstLineIndent">“呃……什么？”金牙傻眼。</p>
+<p class = "firstLineIndent">你刚刚……把全部的钱用来交了定金？！那尾款呢？被狗吃了？</p>
+<p class = "firstLineIndent">不对不对，应该是我理解的方式有问题……</p>
+<p class = "firstLineIndent">“这么说，我们剩下810万，刚好够尾款吗？是了是了，碎星城不算安全，谨慎点是应该的。”金牙如此自我安慰道。</p>
+<p class = "firstLineIndent">“不是啊，海盗团公账上有60万，加上你的小金库，差不多一共有90万，你连自己有多少钱都不知道吗？”</p>
+<p class = "firstLineIndent">聂云的话无疑打碎了金牙唯一的幻想……</p>
+<p class = "firstLineIndent">想想也是，一个连碎星星域基本情报都没有的势力，又怎么可能去兑换碎星点啊魂淡……</p>
+<p class = "firstLineIndent">等等！我的小金库？</p>
+<p class = "firstLineIndent">金牙风中凌乱，那可是自己的养老金啊，没想到，最终也没能逃过魔爪……</p>
+
+<h2>第五百八十七章 干什么来钱最快</h2>
+<p class = "firstLineIndent">从小康直接变成一贫如洗，金牙觉得整个世界都黑暗了起来。</p>
+<p class = "firstLineIndent">“呜呜呜~我的船长大人呐！我们没钱付尾款，进了金币海盗团的口袋想再要回来就根本不可能了啊！”金牙扑街哀嚎道。</p>
+<p class = "firstLineIndent">怪不得付钱付的那么爽快，合着压根不是你的钱。</p>
+<p class = "firstLineIndent">“没事没事，等他们准备好奴隶，我们差不多也就赚到尾款了。”聂云却是一脸轻松。</p>
+<p class = "firstLineIndent">“赚？”</p>
+<p class = "firstLineIndent">“当然，我来碎星城，本来就是来赚钱的。”聂云笑的很鸡贼。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“呼呼……船长大人，幽灵海盗团的信息已经更新，这是团长凭证。”金牙气喘吁吁的从认证大厅跑出来，手中还拿着一个金属徽章。</p>
+<p class = "firstLineIndent">“呜呜~感德补搓！”塞下最后一个丸子，聂云边咀嚼边道。</p>
+<p class = "firstLineIndent">碎星城的异域美食还是很有吸引力的，打发小弟去办事儿的空档，聂云已经逛完了整条美食首发</p>
+<p class = "firstLineIndent">虽然是分身，不过模拟出味蕾刺激一下神经还是没什么问题的。</p>
+<p class = "firstLineIndent">金牙看着面前吃个不停，还打包了好大一份外卖的新老大，眼中尽是古怪。</p>
+<p class = "firstLineIndent">特么的这什么机器人？还带消化功能的？</p>
+<p class = "firstLineIndent">等等！话说……你不会是把仅剩的一点路费都给吃了吧？</p>
+<p class = "firstLineIndent">“船长，我们接下来怎么赚钱？”金牙小心的问道。</p>
+<p class = "firstLineIndent">虽然觉得这么短时间要赚够八百多万的碎星点根本不可能，不过看聂云成竹在胸的样子，金牙也只能选择赌一赌最后的希望了。</p>
+<p class = "firstLineIndent">“我问你，碎星城干什么来钱最快？”</p>
+<p class = "firstLineIndent">“抢？”金牙愣了一下神经反射道。</p>
+<p class = "firstLineIndent">“咳咳！你觉得抢完你能活着离开这？”聂云被呛了一下。</p>
+<p class = "firstLineIndent">“那……那什么来钱快？”</p>
+<p class = "firstLineIndent">“当然是赌啊！搏一搏，单车变摩托，别告诉我碎星城没有赌场啊！”聂云理所当然道。</p>
+<p class = "firstLineIndent">“呃……您是想……出老千？”金牙很快明白聂云的想法，顿时脸色就古怪起来。</p>
+<p class = "firstLineIndent">正经人十赌九输，只有老千方能纵横赌场，这是傻瓜都明白的道理。</p>
+<p class = "firstLineIndent">聂云想要短时间赚这么多钱，除了作弊，金牙想不到第二种可能。</p>
+<p class = "firstLineIndent">“什么叫出老千啊，我这叫规则内变通，走的是技术流好么！”聂云反驳。</p>
+<p class = "firstLineIndent">靠机械虫暗中做个手脚，翻个骰子什么的……这是科技的胜利，怎么能算作弊？</p>
+<p class = "firstLineIndent">“这个……您知道现在的赌场都是远程下注，赌场都在天上飘着吗？”金牙指了指头顶。</p>
+<p class = "firstLineIndent">“呃……”这回聂云真有些傻眼了。</p>
+<p class = "firstLineIndent">星际时代的防千措施这么不要脸的吗？这和yy小说里写的不一样啊！</p>
+<p class = "firstLineIndent">不过还好，我还有pnb！</p>
+<p class = "firstLineIndent">“咳咳！我刚刚是在开玩笑，我听你提起过，碎星城有一个机甲竞技场，似乎可以挑战碎星榜？”聂云咳嗽一声掩饰尴尬道。</p>
+<p class = "firstLineIndent">“您是想打榜？”金牙愣了一下反应过来。</p>
+<p class = "firstLineIndent">“当然，这才是我来碎星城的主要目的。”</p>
+<p class = "firstLineIndent">伍尔夫帝国的强大无疑带给了聂云相当的压力。</p>
+<p class = "firstLineIndent">它的疆域至少是双子星的百倍以上，更掌握着先进的武器科技和虫洞科技，一旦双子星被消灭，地球文明恐怕也很难独善其身。</p>
+<p class = "firstLineIndent">连虫洞天险对伍尔夫帝国来说不过是费点事撑开的小问题，一旦对上，以地球文明如今的实力，除了成为对方的附庸文明，恐怕就只有流亡一条路。</p>
+<p class = "firstLineIndent">宇宙就是如此，大鱼吃小鱼，小鱼吃虾米，一山更比一山高，你永远也预料不到，自己会不会有一天吃着火锅唱着歌，突然就蹦出一只霸王龙将你一口吞掉。</p>
+<p class = "firstLineIndent">地球那边的发展虽然进入了快车道，但终究发展时间太短，机械虫数量和人类的人口基数限制了地球文明扩张的脚步。</p>
+<p class = "firstLineIndent">按照如今的情况，哪怕有机械虫和代号的辅助，地球文明想要发展到双子星那个体量，即便不顾后果的疯狂扩张，也至少需要数十年的时间。</p>
+<p class = "firstLineIndent">比体量和疆域，聂云的势力不可能在短时间内赶上双子星，更别说更加庞大的伍尔夫帝国。</p>
+<p class = "firstLineIndent">而数十年之后，谁知道伍尔夫帝国是不是已经将太阳系并入版图了？</p>
+<p class = "firstLineIndent">随着眼界的扩大，周边的强邻一个个出现，聂云突然发现地球文明的生存环境不仅没有变好，反而越发严峻起来。</p>
+<p class = "firstLineIndent">想要在强大的宇宙势力间求得一块生存之地，聂云就只能走精兵路线！</p>
+<p class = "firstLineIndent">不断的攀登科技树，攀登到让地球文明的战舰以一敌万……好吧，这也就是想想而已，没个数百上千年的科研时间根本不可能。</p>
+<p class = "firstLineIndent">走吞噬复制路线的聂云，敌人的科技上限决定了自身的科技上限，至少短期内就是如此。</p>
+<p class = "firstLineIndent">这种情况下如何迅速增强己方的自保能力？</p>
+<p class = "firstLineIndent">除了将地球文明整体精英化玩全民皆兵，并打造太阳系老巢的同时，聂云也萌生了发展编外势力的想法。</p>
+<p class = "firstLineIndent">幽灵海盗团，就很符合聂云目前的需求，成为海盗王……还真不是什么玩笑话，如果可以，聂云不介意客串一下。</p>
+<p class = "firstLineIndent">而来到碎星城，就是聂云“海盗团养成计划”的第一步。</p>
+<p class = "firstLineIndent">在无法大规模动用真实力量的情况下，凭一个初来乍到的“幽灵船长”想要在碎星星域站稳脚跟不难，但想要进一步扩大自己的影响力，那就需要一些技术性操作了。</p>
+<p class = "firstLineIndent">这就要提到一个碎星城相当有趣的设定——碎星榜！</p>
+<p class = "firstLineIndent">这帮海盗们为什么如此看重碎星榜的排名？</p>
+<p class = "firstLineIndent">为了部……啊呸！为了荣誉？</p>
+<p class = "firstLineIndent">别开玩笑了，有那闲工夫不如再去抢一票。</p>
+<p class = "firstLineIndent">真正的原因，是因为碎星城这块大蛋糕，必须由实力最为强大的一批海盗团共同保护，如果威慑力不够，碎星城的秩序很快就会被眼红其中利益的海盗所破坏。</p>
+<p class = "firstLineIndent">如何平衡各方利益，成为其中的关键。</p>
+<p class = "firstLineIndent">因此碎星城最初的建造者们决定……利益均沾！</p>
+<p class = "firstLineIndent">海盗们共同约定，任何海盗团体只要挤进碎星榜前一百，就有资格获得碎星城相应的股份，坐地分金！</p>
+<p class = "firstLineIndent">这是赤裸裸的利益捆绑。</p>
+<p class = "firstLineIndent">想想看，即便有不怕死的海盗眼红碎星城的利益，谁还敢冒天下之大不韪与实力前百的海盗作对？唯一的下场就是被无数的海盗围殴致死。</p>
+<p class = "firstLineIndent">正因这种看似让利的举动，让碎星城整整繁荣了数百年。</p>
+<p class = "firstLineIndent">也因此，碎星榜，成为各大海盗团体争相角逐的名利场，挤进前百，你就能名利双收。</p>
+<p class = "firstLineIndent">按照碎星城的规矩，七大海盗团各占一成股份，剩下的三成由其余93个海盗团按照排名先后瓜分。</p>
+<p class = "firstLineIndent">碎星城的利益何其庞大？哪怕是其中01，都足够一个小海盗团什么都不干也能过得舒舒服服。</p>
+<p class = "firstLineIndent">所以哪怕是垫底的百强海盗，一个个都富得流油！</p>
+<p class = "firstLineIndent">聂云这次，无疑就是盯上了碎星城股东的身份，准备来一个反客为主！</p>
+<p class = "firstLineIndent">“若是能在竞技场击败强大的对手，便能够以尖端战力的身份直接获得大量的实力评估分数，从而提高所在海盗团的排名，甚至挤进百强的话，还能获得碎星城的股份……我说的没错吧？”</p>
+<p class = "firstLineIndent">“这个，您说的是不错，不过幽灵海盗团虽然继承了金牙海盗团的排名，也不过就是排在187位。</p>
+<p class = "firstLineIndent">想要挤进前百，那需要击败许多成名高手，我完全没有把握，而且，就算我们挤进前百，那也仅仅只是股份分红，碎星城也不可能直接就给你发钱，远水解不了近渴啊……”金牙苦笑道。</p>
+<p class = "firstLineIndent">“谁说让你上场了？这么拉风的事，当然是我自己上！钱更不是问题，竞技场肯定有盘口的吧？你要做的，就是一直压我赢！”聂云嘿嘿笑道。</p>
+<p class = "firstLineIndent">我亲自下场坐庄，你把盘口开到恒星里面去都没用！</p>
+<p class = "firstLineIndent">按照电影小说里的套路，这种碾压局一上场，本钱翻个几百上千倍那还不是小意思？</p>
+<p class = "firstLineIndent">既能够刷排名，又能够顺手捞一笔，这买卖必须做！</p>
+<p class = "firstLineIndent">“您上场？”金牙狐疑的盯着聂云。</p>
+<p class = "firstLineIndent">精神力大师下黑手很好很强大，不过正面竞技……莫非是个高手？</p>
+<p class = "firstLineIndent">“唉！如果您真的有把握，挤进前百赢得股份倒是有可能，不过赚钱的事还是别想了。”金牙叹了口气。</p>
+<p class = "firstLineIndent">“这是为什么？”聂云疑惑道。</p>
+<p class = "firstLineIndent">“一百多年前，有个很不要脸的竞技场高手，明明实力很强，战绩彪炳，可他一上场就各种输，拉肚子、大姨夫、脑壳疼、湿度太高、空调太冷，总之用各种蛋疼的理由来输。</p>
+<p class = "firstLineIndent">然后背地里自己偷偷押重注，就这么一直输一直爽，最后输成了碎星城首富……</p>
+<p class = "firstLineIndent">从那以后，根本就没人来竞技场开盘口了。当然了，最后这家伙得罪了太多人，直接就被人间蒸发了……”</p>
+<p class = "firstLineIndent">“呃……”</p>
+<p class = "firstLineIndent">果然，小说里都是骗人的！</p>
+<p class = "firstLineIndent">一夜暴富的pnb直接胎死腹中……</p>
+
+<h2>第五百八十八章 该打谁</h2>
+<p class = "firstLineIndent">“如果我要是有了碎星城的股份，能不能抵押给银行之类的拿到贷款？”</p>
+<p class = "firstLineIndent">接二连三被打击的聂云终于明白不管是哪个地方，钱都不是那么好赚的，于是提出了一个稍微正经些的想法。</p>
+<p class = "firstLineIndent">既然不能暴富，那就只能老赖……啊不是，只能借贷了。</p>
+<p class = "firstLineIndent">“贷款？这个倒是可以，以碎星城股份的抢手程度，就算是拿到垫底排名的股份，都能够以此抵押借到至少3000万碎星点，不过……利息会比较高。”金牙斟酌了一下道。</p>
+<p class = "firstLineIndent">利息比较高？不就是高利贷嘛！</p>
+<p class = "firstLineIndent">想来也是，海盗们开的借贷机构，不是高利贷那才有鬼了，不过还好，只要不是裸贷，聂云基本都能接受。</p>
+<p class = "firstLineIndent">“就它了！现在，带我去竞技场！”聂云拍板。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">碎星城，战神竞技场！</p>
+<p class = "firstLineIndent">“吼！肌肉撕裂者，干掉他！撕碎他！”</p>
+<p class = "firstLineIndent">“泰坦，砸扁他！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">当聂云和金牙两人进入“战神竞技场”时，听到的就是这样排山倒海，充满了野性与暴力的嘶声呐喊。</p>
+<p class = "firstLineIndent">这是一栋大环套小环的双环形庞大建筑群，两座环形高墙将竞技场分为了内外两个部分。</p>
+<p class = "firstLineIndent">外环被隔成一个个小型竞技场，其中有纯肉体冷兵器互搏，也有携带武器，炮火轰鸣的刺激战场，格斗方式五花八门。</p>
+<p class = "firstLineIndent">而一整个内环，则完全都是机甲竞技的场地，隔着老远都能听到钢铁碰撞发出的轰鸣声。</p>
+<p class = "firstLineIndent">“霍！这还真是热闹。”聂云饶有兴趣的四下打量。</p>
+<p class = "firstLineIndent">“没办法，海盗们桀骜不驯，平时互相有个口角，有时候都要来竞技场干一架，两个团体的火并，只要不是生死相搏的死仇，大部分也会用这种方式来解决小矛盾。”金牙解释道。</p>
+<p class = "firstLineIndent">“嗯！”聂云理解的点点头。</p>
+<p class = "firstLineIndent">伍尔夫帝国尚武，战神法典不仅在附庸文明中被作为统治规则之一，在伍尔夫帝国内部也大行其道，可以说是一种特有的文明烙印，在海盗圈，这种弱肉强食的丛林法则更加明显。</p>
+<p class = "firstLineIndent">从某种方面来说，碎星星域的海盗们几乎都是血与火中锻炼出来的资深战士，真正的全民皆兵，如果能将这一股力量整合起来，恐怕能够一跃成为周边极具威慑力的存在。</p>
+<p class = "firstLineIndent">当然，那个时候就该考虑伍尔夫帝国官方的态度了，任谁也不会放任这样一股不受控制的威胁逐渐壮大。</p>
+<p class = "firstLineIndent">“船长，战神竞技场的竞技项目五花八门，有仿古的冷兵器格斗竞技，也有接近现代实战的枪炮竞技，不过最为热门的，毫无疑问是机甲竞技！</p>
+<p class = "firstLineIndent">作为除战舰外，最能体现战争实力的机甲竞技，它的强弱评估能够极大的影响海盗团的碎星榜排名，因此我们想要挤进前百，你的单人机甲竞技排名至少需要挤进前10，而且越高越好。”</p>
+<p class = "firstLineIndent">“好！我们去机甲竞技区！”</p>
+<p class = "firstLineIndent">很快，两人穿过人流进入内环，而一进入这里，听到的是更加疯狂的嘶吼和欢呼。</p>
+<p class = "firstLineIndent">内环的观众席有些类似罗马竞技场，可以容纳数十万的观众，中央是一片占地几乎有十来个足球场大小的庞大格斗区。</p>
+<p class = "firstLineIndent">此时竞技场内，正有两台机甲在激烈交战。</p>
+<p class = "firstLineIndent">其中一台酷似金刚狼，使用能量爪刀，明显是敏捷向的机甲，在操作者的操控下灵活异常，而另一台则是偏向防御的人形机甲，装甲极厚，使用一柄明显经过魔改的能量重锤，砸下去地面就是“轰隆”一个大坑。</p>
+<p class = "firstLineIndent">“轰！”“砰！”“滋啦~”金属碰撞的火光四溅，钢铁碎片漫天激射。</p>
+<p class = "firstLineIndent">远战、近战、空战、地面战，两台机甲的格斗水平相当不俗，而且有许多机甲武器、格斗理念与双子星文明截然不同，聂云看的津津有味，同时也在评估碎星星域的中高端机甲战力水平。</p>
+<p class = "firstLineIndent">场上的战局越来越明了，重装机甲攻击由余，灵活不足，很快浑身就布满了伤痕，左腿关节也受到了重点攻击，机动力进一步下降。</p>
+<p class = "firstLineIndent">不过操纵的机师还算沉稳，转攻为守，一步步防守后退，最终退入了一个环形的标记区域。</p>
+<p class = "firstLineIndent">而就在此时，“呜~”，如同古代号角一般的低沉声音响起，就见两台机甲立刻停止了格斗，占据优势的那台机甲明显有些不甘，但还是退后了一段安全距离。</p>
+<p class = "firstLineIndent">下一刻，一大堆明显是后勤人员的机械师蜂拥而上，动用各种工具和设备开始为受损的那台人形机甲进行维修。</p>
+<p class = "firstLineIndent">“呃……怎么还带中场休息的？”聂云愕然。</p>
+<p class = "firstLineIndent">正看到关键时刻呢，马上就要分出胜负了，这裁判吹黑哨了吧？</p>
+<p class = "firstLineIndent">“呃……您不知道竞技规则？”金牙则回了一个更愕然的表情。</p>
+<p class = "firstLineIndent">“啥规则？”聂云茫然。</p>
+<p class = "firstLineIndent">机甲格斗不就是“噼里啪啦”打到对方生活不能自理就算赢？</p>
+<p class = "firstLineIndent">看到聂云不像是开玩笑，金牙简直欲哭无泪！</p>
+<p class = "firstLineIndent">本以为这家伙信心满满还可能是个竞技高手，没想到这家伙居然连竞技规则都不知道……</p>
+<p class = "firstLineIndent">一个连竞技场都是第一次进的纯新人，居然还想要挑战排名前十？</p>
+<p class = "firstLineIndent">“唉！机甲竞技中，双方都有三次叫停的机会。</p>
+<p class = "firstLineIndent">任何一方的机甲只要退回己方的‘安全区’，就会得到一次叫停的启动机会，一旦使用叫停权限，裁判会直接宣布暂停比赛，并给予叫停者5分钟的机甲维修和补给时间……”</p>
+<p class = "firstLineIndent">即便心中绝望，金牙还是叹了口气，将机甲的竞技规则解释给聂云首发</p>
+<p class = "firstLineIndent">聂云听了半天才明白，原来星际时代的机甲竞技规则远比地球人想象的还要复杂。</p>
+<p class = "firstLineIndent">只要能回到划定的“安全区”，就好比机甲回到了己方战舰的火力支援区域，敌方就无法追击，自己就能得到一定的机甲维护，或者说是“回血”时间。</p>
+<p class = "firstLineIndent">这不仅仅是一种竞技规则，同样也贴近了实战，增加了战术的多变性和意外因素导致的不确定性。</p>
+<p class = "firstLineIndent">机甲竞技，就好比是地球上的f1方程式赛车，它不仅有赛车环节，还有换胎环节。</p>
+<p class = "firstLineIndent">虽然重点是看赛车手的操作水平和赛车的性能，但同样考验竞技者背后的后勤维修团队，一支优秀的后勤团队，节省的些许换胎时间，也许就会成为决定胜负的稻草。</p>
+<p class = "firstLineIndent">“有趣，也就是说机甲竞技不仅依靠机师和机甲，还考验团队的综合实力？”</p>
+<p class = "firstLineIndent">“不错，目前排在竞技场前十的，几乎都是七大海盗团的干部或者大将，他们每一个都是老牌的黄金级战士，而且驾驶的都是性能不逊于您那台‘幽灵号’的顶尖机甲，除此之外，实力雄厚的后勤团队同样起到了极为重要的作用。”</p>
+<p class = "firstLineIndent">金牙说完，又在心中重重叹了口气。</p>
+<p class = "firstLineIndent">唉！我们金牙海盗团的那帮后勤团队本来就良莠不济，难堪大用，现在连机师都是竞技菜鸟……金牙觉得自己会抱有希望真的是猪油蒙了心外加脑子进了水……</p>
+<p class = "firstLineIndent">呃！等等，说起来，自己的首席机械师似乎就在前不久被自己当成叛徒亲手干掉了？</p>
+<p class = "firstLineIndent">想到这，金牙顿时更加绝望了……</p>
+<p class = "firstLineIndent">“明白了，立刻以幽灵海盗团的名义登记挑战，把我的幽灵号运进来。”即便明白了这不是一个人的游戏，聂云依旧是一副信心满满的样子。</p>
+<p class = "firstLineIndent">规则？那只是弱者需要研究的东西，强者，从来都是无视规则的存在！</p>
+<p class = "firstLineIndent">说起来，我也很想看看自己火力全开的样子呢……</p>
+<p class = "firstLineIndent">“接下来，别和我说怎么打，告诉我，该打谁！”</p>
+<p class = "firstLineIndent">“呃……”</p>
+
+<h2>第五百八十九章 泛用人形决战兵器</h2>
+<p class = "firstLineIndent">战神竞技场，新的一轮竞技再度开始。</p>
+<p class = "firstLineIndent">“轰隆隆！”两台机甲被升降平台从地下机库先后送入竞技场。</p>
+<p class = "firstLineIndent">其中一台是较为少见的暗红色兽型机体，外观上看上去有些类似四肢着地的凶狼。而随着这台兽型机甲的出现，观众席上立刻就传来了阵阵的欢呼声。</p>
+<p class = "firstLineIndent">“疯狼！疯狼……”</p>
+<p class = "firstLineIndent">兽型机甲的背部驾驶舱门打开，一名有着红色毛发的高大伍尔夫狼人钻了出来，他嚣张的一手指天，然后发出了一阵悠长的狼嚎。</p>
+<p class = "firstLineIndent">“啊呜~”</p>
+<p class = "firstLineIndent">见到这样的胜利宣言，观众席上呼喊更加疯狂了。</p>
+<p class = "firstLineIndent">“哇哦！看哪！各位期待已久的疯狼终于出场！</p>
+<p class = "firstLineIndent">作为一名外来者，而且是十分少见的独行侠，疯狼踏入碎星星域不久就已经闯出了不小的名头，这一切都说明了疯狼强悍的实力。</p>
+<p class = "firstLineIndent">在加入了七大海盗团之一的赤龙海盗团之后，疯狼的实力更是一发不可收拾！</p>
+<p class = "firstLineIndent">短短五天，疯狼已经生生撕碎了十三名对手，目前的竞技场排名在第108位，正朝着百强稳步迈进！”解说a的声音响起，又是带动了一波情绪。</p>
+<p class = "firstLineIndent">“不错！疯狼的实力已经得到公认，另外有小道消息，据说一旦疯狼挤进前百，就将被赤龙海盗团任命为新的机甲强袭队队长，这无疑是一颗冉冉升起的新星！”解说b继续捧哏。</p>
+<p class = "firstLineIndent">许多海盗团都会鼓励麾下的强者在竞技场争夺排名，这不仅是展示肌肉，用以维持或者提升碎星榜排名，同样也是收割声望的方式。</p>
+<p class = "firstLineIndent">只有提高声望，才会有更多的海盗投入麾下，从而壮大海盗团，这是很简单的逻辑。</p>
+<p class = "firstLineIndent">解说a：“好的！再让我们看看疯狼这次的对手……呃！虽然是个新人，但是机甲风格看上去倒是相当的特别！”</p>
+<p class = "firstLineIndent">众人确实已经看到了疯狼这次的对手，那是一台纯黑色，有着类似铠甲巨人般奇怪肌肉纹理的独特机甲，虽然是同样是机械系，但却有种这机甲是活的诡异感觉。</p>
+<p class = "firstLineIndent">解说b：“这种外置骨骼铠甲以及人形仿生结构……我只能说，这样的结构对机甲材料的性能需求要远超普通的金属！如果这不是一个装逼犯的话，我现在倒是有些期待这个新人的表现了！”</p>
+<p class = "firstLineIndent">解说a：“哦？没想到连我们的机甲技术达人都对这台机甲有这样的期待，让我们来看看这位挑战者的资料……呃！没想到居然还是一位纯新人！他的竞技场记录是……零！”</p>
+<p class = "firstLineIndent">“哗！”“嘘~”“下去吧！”</p>
+<p class = "firstLineIndent">听到一个新人竟然想要挑战排名108的疯狼，众人都觉得这样的竞技毫无悬念可言，纷纷喝倒彩要求下场，他们要看的是激烈的厮杀，而不是一面倒的屠杀。</p>
+<p class = "firstLineIndent">解说b：“我很好奇，这种新人按理来说根本不会对上疯狼这种对手，这究竟是怎么回事呢？”</p>
+<p class = "firstLineIndent">解说a：“说出来大家可能不信，这位新人选手选择了赌斗模式，指名挑战排名前150的高手，重点是，他下的赌注相当不错，是一个碎星榜排名第187海盗团的所有资产！”</p>
+<p class = "firstLineIndent">“哗！”</p>
+<p class = "firstLineIndent">众人又是一阵哗然，对一部分小势力来说，哪怕只是排名187位的小海盗团，加起来的资产也有几百万碎星点。</p>
+<p class = "firstLineIndent">不得不说，这是一场豪赌！</p>
+<p class = "firstLineIndent">解说b：“也就是说，只要疯狼赢了这场竞技，他就能获得一个排名187的海盗团所有权？”</p>
+<p class = "firstLineIndent">解说a：“完全正确！而且更不可思议的是，赌斗中约定，即便疯狼输了，也不必付出任何的代价！当然，他的竞技场排名除外。</p>
+<p class = "firstLineIndent">这样的赌斗规则自然引来了许多高手的兴趣，只能说疯狼手快，接下了这单稳赚不赔的买卖。”</p>
+<p class = "firstLineIndent">解说b：“哇哦！这是一场令人眼红的赌斗！怪不得疯狼竟然愿意放下身段与一位新人进行战斗。</p>
+<p class = "firstLineIndent">我现在相当好奇，究竟是谁有如此的信心，花费巨大的代价只要求与高手一战？”</p>
+<p class = "firstLineIndent">两位解说完全调动起观众的好奇心，众人终于不再一边倒的喝倒彩，对这个神秘的挑战者有了些期待。</p>
+<p class = "firstLineIndent">解说a：“好！接下来让我隆重介绍这位新人，他就是……来自赛博坦星系的‘幽灵船长’！”</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯▽╰)╭）</p>
+<p class = "firstLineIndent">解说b：“赛博坦星系？有谁听说过这个地方吗？碎星星域附近有叫做赛博坦的星系吗？”</p>
+<p class = "firstLineIndent">解说a：“呵呵！很遗憾我也没有听说过，不过帝国星系何其之多，应该是来自十分遥远的星域。</p>
+<p class = "firstLineIndent">神秘的遥远之地，神秘的挑战者，我开始期待接下来的精彩战斗了！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">幽灵号内。</p>
+<p class = "firstLineIndent">“为什么要下这种赌注？为什么啊！”耳麦里响起金牙凄惨的哀嚎。</p>
+<p class = "firstLineIndent">“呵呵！按照你说的竞技规则，我没办法直接挑战竞技场前十，我们也没那么多米国时间用来打发杂鱼，这当然就是最快的方法咯。”聂云呵呵一笑。</p>
+<p class = "firstLineIndent">“可是一旦我们输了，那就真的是一无所有了啊！”</p>
+<p class = "firstLineIndent">金牙欲哭无泪，赚不到钱，顶多就是损失些本金，可要是聂云这回输了，那他连接下来的住宿费都付不起，只能流落街头了啊！</p>
+<p class = "firstLineIndent">为什么？为什么不能好好脚踏实地的赚钱，不是这个赌就是那个赌，赌性这么大的吗？！</p>
+<p class = "firstLineIndent">金牙发誓，从现在起，他这辈子最恨的……就是赌徒！</p>
+<p class = "firstLineIndent">“话说回来，这台机甲到底哪来的？”由于刚刚悲伤逆流成河，金牙这才将注意力转移到问题的关键上来。</p>
+<p class = "firstLineIndent">这机甲和原先看到的那台幽灵号完全不同，难道是对方刚刚从外界接收的秘密武器？</p>
+<p class = "firstLineIndent">金牙又燃起一丝期待。</p>
+<p class = "firstLineIndent">“你真想知道？”聂云的语气低沉，隐隐透着一股危险的意味。</p>
+<p class = "firstLineIndent">“不……不想！”金牙求生欲很强。</p>
+<p class = "firstLineIndent">“呵呵！”</p>
+<p class = "firstLineIndent">此刻的“幽灵号”确实早已改头换面，不管是外观还是内部结构，都已经发生了颠覆式的变化。</p>
+<p class = "firstLineIndent">从很早以前，聂云就已经在构思如何利用机械虫的活性金属特质，设计机械与人体相结合的“泛用人形决战兵器”……咳咳！</p>
+<p class = "firstLineIndent">神经连接操控、生物拟态、机械辅助，三者相结合，确实很符合eva中的某些概念设定。</p>
+<p class = "firstLineIndent">一直以来，前两者的应用技术已经趋于成熟，但是机甲构造学的积累尚在初期阶段。</p>
+<p class = "firstLineIndent">不过在吸收了大量双子星机体与部分伍尔夫机甲设计理念后，这块短板也被补齐，终于将“泛用人形决战兵器”的前置科技统统点亮，于是有了此刻的“幽灵号”！</p>
+<p class = "firstLineIndent">在伍尔夫帝国这个高级地图，聂云终于可以稍稍放开手脚，看看机械虫机甲的极限究竟在哪儿。</p>
+<p class = "firstLineIndent">这是一台迥异于主流机甲的跨时代产品，而这座竞技场有幸成为它诞生后的第一个测试点！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">解说a：“好！战斗即将开始，双方的后勤团队已经开始入场……呃！为什么我只看到了疯狼一方的人？</p>
+<p class = "firstLineIndent">等等！我们的神秘新人居然没有带后勤团过来！他居然是单枪匹马前来挑战的！太令人震惊了！”</p>
+<p class = "firstLineIndent">解说b：“哈哈！这位幽灵船长真是每每有出人意料之举！”</p>
+<p class = "firstLineIndent">解说a：“好吧，虽然不知道他究竟是狂妄还是自信，不过看疯狼暴跳如雷的样子，恐怕已经被对手的轻视彻底激怒了！</p>
+<p class = "firstLineIndent">哦！看呐！出现了，是疯狼的割喉礼！这意味这将是一场不死不休的战斗！”</p>
+<p class = "firstLineIndent">“呜~”战斗开始号角吹响，场内爆发出一阵震天的欢呼。</p>
+<p class = "firstLineIndent">“轰！”疯狼驾驶的机甲第一时间化为一道暗红色的影子窜了出去，卷起漫天的土石，强劲的动力展露无遗！</p>
+<p class = "firstLineIndent">解说a：“看呐！疯狼果然在一开始就选择了攻势！</p>
+<p class = "firstLineIndent">他驾驶的疯狼号是蛮兽星系出产的顶级机甲，擅长地面战和正面突袭，并且拥有着超乎寻常的机动能力和短程防空火力网，近战手段十分令人惊艳，任何对手被它近身的话几乎难逃厄运！</p>
+<p class = "firstLineIndent">接下来就看幽灵选手如何应对……呃！这是怎么回事？幽灵选手竟然一动不动的待在原地！他甚至连武器都没有取出！”</p>
+<p class = "firstLineIndent">解说b：“是某种后发制人的战术吗？还是等待疯狼进入攻击距离？”</p>
+<p class = "firstLineIndent">解说a：“不好，距离太近了！疯狼已经进入了最有利的近身攻击位置，但幽灵船长依旧一动不动，哦！我已经不忍心再看了！”</p>
+<p class = "firstLineIndent">“撕碎他！”观众席上的海盗们已经忍不住发出兴奋的嘶吼。</p>
+<p class = "firstLineIndent">从上空俯视，一道暗红色流光飞速冲向了站在原地一动不动的幽灵号。</p>
+<p class = "firstLineIndent">“砰！”两道巨大的身影终于碰撞在于一起，下一刻，一道身影直接倒飞了出去。</p>
+<p class = "firstLineIndent">“轰隆！”直到那巨大的钢铁身躯落地，众人才惊愕的发现被击飞的人……居然是疯狼！</p>
+<p class = "firstLineIndent">现场似乎陷入了短暂的寂静。</p>
+<p class = "firstLineIndent">“哦！天呐！我看到了什么，在近身战中，疯狼居然被……一巴掌拍飞了！”解说a显然也陷入了呆滞，好半天才不可思议的惊呼出声。</p>
+<p class = "firstLineIndent">“看！幽灵船长终于出手了，他冲了上去，然后……然后又是一巴掌！”</p>
+<p class = "firstLineIndent">“砰！”还没站稳的疯狼再次被拍到在地。</p>
+<p class = "firstLineIndent">“砰！砰！砰！”现场一片死寂，连解说都已经不知道该如何形容这一刻的情形。</p>
+<p class = "firstLineIndent">方才还气势汹汹的疯狼简直毫无还手之力，它一次次的爬起，然后一次次被再次拍倒在地，那模样简直不能用战斗来形容，这完全就是一面倒的教育小朋友！</p>
+<p class = "firstLineIndent">解说b：“不可思议，幽灵船长使用的居然也是一台顶级的近战机甲！这流畅的动作，沉重的力量！灵活！太灵活了！这是力与技的完美结合！完全没有任何僵硬的机械感，简直是完美的拟态设计！</p>
+<p class = "firstLineIndent">如果不是探测器告诉我它是完全的机械结构，我一定会以为这是一台披着铁甲的泰坦巨兽！”</p>
+<p class = "firstLineIndent">解说a：“呃……疯狼选手似乎想要主动拉开距离，可惜每一步都十分艰难，好吧，他熬不住了，他挣扎着想要返回安全区，但是……哦！幽灵船长抓住了疯狼号的后腿，一个完美的过肩摔！哦！又是一下！”</p>
+<p class = "firstLineIndent">“砰！砰！砰！”幽灵号抡圆了手中的疯狼，一次次狠狠拍下，地面顿时出现两个巨坑。</p>
+<p class = "firstLineIndent">“砰！”最后一下，曾经不可一世的疯狼号已经散成了一地的零件……</p>
+<p class = "firstLineIndent">现场又是一片安静，这场堪称“短暂”的战斗带给众人的是巨大的震惊。</p>
+<p class = "firstLineIndent">谁也没有料到，竞技场排名108，实力强悍的疯狼居然会被一个名不见经传的无名小卒斩落马下，而且还是以一种毫无还手之力的方式惨败。</p>
+<p class = "firstLineIndent">良久之后，解说这才长长的呼出一口气，“呼~这是一场不可思议的战斗，我们见证了一台人形暴龙，陆战之王的诞生！”</p>
+<p class = "firstLineIndent">“陆战之王！陆战之王……”片刻后，竞技场的呐喊和欢呼冲霄而起……</p>
+
+
+
+
+
+<a href="570.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="590.html" style="float:right;margin-right:2em;">下一章</a> 
+
+</br></br>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
