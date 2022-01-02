@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>第七百二十章 后花园</h2>
+<p class = "firstLineIndent">洛克星系。</p>
+<p class = "firstLineIndent">“完了！”看着星系外密密麻麻的舰海，金洛克面如死灰。</p>
+<p class = "firstLineIndent">即便再没有军事常识，他也已经意识到，自己的洛克星系差不多已经算是完了。</p>
+<p class = "firstLineIndent">5000艘海盗飞船1000艘双子星战舰，数量足足是己方的3倍左右。</p>
+<p class = "firstLineIndent">这种悬殊的数量差，已经足以将己方的防守优势抵消殆尽。</p>
+<p class = "firstLineIndent">一旁的克洛罗斯同样是脸色难看至极。</p>
+<p class = "firstLineIndent">双子星的战舰虽少，但论集团战斗力，抵得上2000艘海盗飞船。</p>
+<p class = "firstLineIndent">这意味着自己本就捉襟见肘的防御兵力，又得分出一部分前去拦截这一支敌人，这绝对是压死骆驼的最后一根稻草。</p>
+<p class = "firstLineIndent">像这种情况下别说守住一个月等援兵到来，就是想要守半个月都够呛！</p>
+<p class = "firstLineIndent">可是他怎么也想不明白。</p>
+<p class = "firstLineIndent">这个时候刚刚遭受重创，本应该选择隔岸观火的双子星，怎么会联合海盗主动出兵攻打他们。</p>
+<p class = "firstLineIndent">虫洞也就算了，毕竟是家门口的要隘，可洛克财团可是伍尔夫帝国的领地，攻击这里就不怕帝国的报复？</p>
+<p class = "firstLineIndent">究竟是谁给他们的勇气？</p>
+<p class = "firstLineIndent">艾瑞斯：“”可能是我？</p>
+<p class = "firstLineIndent">“克洛罗斯！有没有希望守到援兵到来？”金洛克沙哑着声音问道。</p>
+<p class = "firstLineIndent">这不明知故问嘛！</p>
+<p class = "firstLineIndent">克洛罗斯诧异的看向金洛克，然后顿时就是一愣。</p>
+<p class = "firstLineIndent">此时的金洛克面色灰败，但眼睛却是血红一片，如同红了眼的赌徒。</p>
+<p class = "firstLineIndent">沉吟良久，克洛罗斯还是缓缓点了点头道，“有！”</p>
+<p class = "firstLineIndent">金洛克眼睛瞬间一亮，恢复了些许神采。</p>
+<p class = "firstLineIndent">“对方虽然人多势众，不过我也不是没有后手，海盗那边我还有几枚暗子，虽然不及七大海盗这种级别，但只要在决战的关键时刻反戈一击，一定能让对方阵脚大乱。</p>
+<p class = "firstLineIndent">届时我们集中兵力进行斩首，只要能干掉那个海盗王，海盗联盟绝对会分崩离析！</p>
+<p class = "firstLineIndent">海盗联盟一去，双子星就完全不足为虑！”</p>
+<p class = "firstLineIndent">“真的？”金洛克脸上总算是恢复了点血色。</p>
+<p class = "firstLineIndent">得到克洛罗斯再次点头确认的金洛克当即大喜，为了表示对克洛罗斯的看重，他当即喊道，“来啊！再来两个卫兵！”</p>
+<p class = "firstLineIndent">克洛罗斯：“”</p>
+<p class = "firstLineIndent">面对金洛克对自己“安全保卫工作”的进一步重视，克洛罗斯不动声色的瞥了一眼金洛克身边默默站立的人影，这才做出一脸无奈的神情，跟着自己的“警卫排”前往自己的旗舰进行指挥</p>
+<p class = "firstLineIndent">洛克星系拥有六大行星，半径约为90亿公里。</p>
+<p class = "firstLineIndent">在星系平面轨道上，遍布洛克财团历经多年打造的星系防御体系，包括8个防御要塞，18个驻军兵营，88个机甲弹射点，888个无人机储存仓库，以及成千上万的中小型辅助火力点。</p>
+<p class = "firstLineIndent">这些防御兵器上都安装了驱动引擎，平时分散布置在整个星系内部，作为常规的防御力量。</p>
+<p class = "firstLineIndent">一旦遇到大规模的军事入侵，也可以花费一定的时间针对来袭方向进行重新布局，形成最严密的火力网！</p>
+<p class = "firstLineIndent">碎星海盗联盟和双子星的联军虽然兵力众多，但是想要将一整个星系全都包围起来也并不现实。</p>
+<p class = "firstLineIndent">加上并不熟悉彼此的进攻套路，因此泾渭分明的分为了两个遥相呼应的攻击阵列。</p>
+<p class = "firstLineIndent">依靠兵力优势，他们将战线尽可能的拉长，形成了一条长达60万公里的漫长半包围圈。</p>
+<p class = "firstLineIndent">这就迫使洛克财团的防御兵力被相应的分散开来，火力密度也相应下降。</p>
+<p class = "firstLineIndent">“总攻开始！各舰交替掩护，缓步推进，一寸寸将洛克星系的防御体系彻底清除！”</p>
+<p class = "firstLineIndent">“飞弹50万发，自杀无人机300万台，第一波攻击阵列开始投放！第二波攻击阵列准备！”</p>
+<p class = "firstLineIndent">“嗖嗖嗖！”一艘艘海盗飞船上开始投放出大量的一次性攻击武器，铺天盖地朝着洛克星系的外围防线射去。</p>
+<p class = "firstLineIndent">这些速度较慢的攻击武器无法对洛克星系完善的防御体系形成足够的威胁，却可以消耗对方的防御力量。</p>
+<p class = "firstLineIndent">没错！海盗们装备不行，团战配合不行，可就是欺负你人少，要生生用人数压死你！</p>
+<p class = "firstLineIndent">舰炮不够重，射程不够远，那我就用铺天盖地的攻击淹没你！</p>
+<p class = "firstLineIndent">除了规格尚算统一的飞弹和自杀无人机，其中还夹杂着数量众多五花八门的“奇门兵器”。</p>
+<p class = "firstLineIndent">比如甜瓜浮雷、蝶形飞盘、各种奇形怪状的小型浮游炮，各种知名或者不知名的战争兵器全都被一股脑投放了出去。</p>
+<p class = "firstLineIndent">反正海盗王大人说了，物资损耗可以统统折算成功勋点从这次的战利品中补回来。</p>
+<p class = "firstLineIndent">不花钱的实弹训练，这帮海盗们还不得可着劲将自己压箱底的武器拿出来射出去？</p>
+<p class = "firstLineIndent">海盗们开始发动攻击的同时，不远处收到攻击信号的双子星同时舰队前压，杀进了洛克星系的防御警戒圈。</p>
+<p class = "firstLineIndent">前排大型战舰开道，用重炮撕开一处防线后，后方的舰群如同群狼一般从被撕开的防线处杀了进去，再向两侧扩散，逐步扩大占领区域。</p>
+<p class = "firstLineIndent">一个以面破面，一个以点破面，双方同时对洛克星系发动了攻击！</p>
+<p class = "firstLineIndent">洛克财团同样没有坐以待毙。</p>
+<p class = "firstLineIndent">要塞、兵营、武器仓库中，密密麻麻的各种飞弹和无人机同样升空而起，扑向迎面而来的敌人，那数量丝毫不比海盗一方来的少。</p>
+<p class = "firstLineIndent">好在为了避开对方占据的本土优势，聂云选择的进攻地点避开了最外围的第六行星运行轨道，使得行星所能提供的支援能力被大大削弱，否则洛克财团还能爆发出更大的战争潜力。</p>
+<p class = "firstLineIndent">星际战争中，舰队就是骑兵，哪怕你的城墙建的再坚固，我绕过去直接打你的首都就是了。</p>
+<p class = "firstLineIndent">“轰轰轰！”双方之间的宇宙空间刹那间就被交错而过，相互碰撞的各种武器爆炸所淹没，形成了一条绚丽的光带。</p>
+<p class = "firstLineIndent">各种无人兵器在其中厮杀，击毁敌人，或者被敌人击毁。</p>
+<p class = "firstLineIndent">每时每刻，星空中都会多出大量的战争残骸。</p>
+<p class = "firstLineIndent">“轰轰！”两座大型要塞上的重火力朝着双子星的先锋舰队射去，将前排的大型战舰打的护盾闪动不已。</p>
+<p class = "firstLineIndent">显然，相对来说，双子星的舰队对他们防线的威胁更大，属于更有价值的重火力集火目标。</p>
+<p class = "firstLineIndent">双子星也不傻，立刻放缓了攻击节奏，以牵制对方火力为主，即便进攻受阻也绝不冒险进入危险地带。</p>
+<p class = "firstLineIndent">海盗们也是不急，一轮轮的用远程武器洗地。</p>
+<p class = "firstLineIndent">攻击双方很有默契的稳扎稳打，利用兵力优势，一点点清除着洛克星系的外围防御工事，缓慢地向着星系内部插去！</p>
+<p class = "firstLineIndent">“这洛克财团还真是沉得住气！”聂云的旗舰内，弗林特皱了皱眉。</p>
+<p class = "firstLineIndent">至今为止，洛克财团那2200余艘飞船依旧静静在后方遥遥待命，丝毫没有前出加入战团的意思。</p>
+<p class = "firstLineIndent">“呵！克洛罗斯知道自己没胜算的，他唯一的希望就是集中兵力突破一点，给我们造成混乱，一举击溃我们。</p>
+<p class = "firstLineIndent">他在等，等我们露出破绽！”聂云笑了笑。</p>
+<p class = "firstLineIndent">“嗯！的确如此。”弗林特点头赞同。</p>
+<p class = "firstLineIndent">面对如此悬殊的战力对比，也就只有海盗这帮乌合之众算是唯一的破绽。</p>
+<p class = "firstLineIndent">只要能一举冲垮海盗，这支庞大的舰队极有可能变成一群溃兵，到时候就是一场屠杀。</p>
+<p class = "firstLineIndent">聂云倒是想直接让代号接管所有的舰队进行战斗，这样就能形成另一种形式上的“悍不畏死”。</p>
+<p class = "firstLineIndent">只不过先前给海盗们的甜头，给他们刷一刷士气，提高一点忠诚度还行。</p>
+<p class = "firstLineIndent">让人家把视若身家性命的飞船控制权交给你，那就有点痴心妄想了。</p>
+<p class = "firstLineIndent">聂云要敢提这种要求，下一秒他这个还热乎的海盗王就得众叛亲离。</p>
+<p class = "firstLineIndent">而这也是聂云不敢分兵四面出击的原因。</p>
+<p class = "firstLineIndent">克洛罗斯的舰群就像是一柄蓄势待发的利剑，需要他分出大部分的精力予以防范！</p>
+<p class = "firstLineIndent">“只不过这样就打成消耗战了，这可都是钱呐！”赤龙有些惋惜地看着外面的烽火连天。</p>
+<p class = "firstLineIndent">大炮一响黄金万两，对星际战争更是如此。</p>
+<p class = "firstLineIndent">“不要紧，反正这些迟早也是要拆的，就当是给联盟的海盗们练习打靶吧。”</p>
+<p class = "firstLineIndent">聂云毫不在意的笑了笑，眼神看向窗外敌方阵营密集的火力点。</p>
+<p class = "firstLineIndent">“今天过后，我要让这洛克领再无一处防御工事，彻底成为我碎星海盗联盟的后花园！”</p>
+
+<h2>第七百二十一章 有钱自然就会有交情</h2>
+<p class = "firstLineIndent">将洛克领变成我们的后花园？</p>
+<p class = "firstLineIndent">这是何等嚣张的宣言！</p>
+<p class = "firstLineIndent">“你是想彻底解除洛克领的防御力量，这样海盗联盟便可以时刻以武力威慑洛克领，将其始终置于我们的淫威之下？”弗林特领会了聂云的意图。</p>
+<p class = "firstLineIndent">怎么能叫淫威呢？这叫提供军事保护！聂云翻了个白眼。</p>
+<p class = "firstLineIndent">“不错！我们没办法直接占据洛克领，但不代表我们无法对它继续施加影响力！”</p>
+<p class = "firstLineIndent">海盗无法真正占领洛克领，这件事聂云从一开始就明白。</p>
+<p class = "firstLineIndent">他灭了洛克财团，伍尔夫帝国充其量不过死了个地方豪强，人家说不定还会拍手称快。</p>
+<p class = "firstLineIndent">但你要是堂而皇之的赖在人家里不走，摆明了要裂土封侯，那就是往人家脸上啪啪地打！</p>
+<p class = "firstLineIndent">伍尔夫帝国要是再没反应，岂不是告诉别人自己现在已经虚弱到连一群海盗都能站在自己头上拉屎撒尿？</p>
+<p class = "firstLineIndent">届时不仅是已经结了死仇的二皇子，帝国皇帝也得调八十万禁军前来杀鸡儆猴。</p>
+<p class = "firstLineIndent">洛克领又没有碎星星域那种天险，到时候人家大军一来，他们能平安缩回碎星星域就算是烧高香了。</p>
+<p class = "firstLineIndent">“另外，我们撤退之后，假如有大批敌人来袭，防御设施齐全的洛克领自然是他们进攻碎星星域的最佳桥头堡。</p>
+<p class = "firstLineIndent">可如果没了这些防御工事，他们就得在洛克领布置重兵，防御我们可能的偷袭，这就大大增加了对方的进攻成本。</p>
+<p class = "firstLineIndent">舰队少了根本不够我们吃的，多了那就得大动干戈了，对方未必会愿意劳师动众。”</p>
+<p class = "firstLineIndent">“你是担心此事过后，帝国会出手剿灭我们？”狂人恍然道。</p>
+<p class = "firstLineIndent">对现在的海盗联盟来说，周围够资格被称为“大批敌人”的，恐怕就只有帝国官方势力了。</p>
+<p class = "firstLineIndent">“嗯！极有可能，凭借二皇子的关系网，推动帝方前来清剿我们并不难，毕竟我们现在可不算是一群散兵游勇。”赤龙也道。</p>
+<p class = "firstLineIndent">弥赛亚迟疑片刻，像是下了什么决心一般，“如果是帝国方面的态度，我们倒是有一些以前的人脉，可以帮忙打听打听。</p>
+<p class = "firstLineIndent">只不过多年没有联系，也不知道这点交情还在不在。”</p>
+<p class = "firstLineIndent">她所指的人脉，自然是先前大皇子一系的人马。</p>
+<p class = "firstLineIndent">所谓一朝天子一朝臣，大皇子身死之后，他这一系的人马自然也是死的死，贬的贬。</p>
+<p class = "firstLineIndent">不过瘦死的骆驼比马大，剩下的或是抱团取暖，或是改换门庭，怎么说也有一小部分残存了下来。</p>
+<p class = "firstLineIndent">虽然活的比较低调吧，在帝国内部还是有一定地位的。</p>
+<p class = "firstLineIndent">以前弥赛亚和赤龙如同惊弓之鸟，加上别人也是泥菩萨过江自身难保，也就从未想过主动联系对方。</p>
+<p class = "firstLineIndent">如今身份都被二皇子识破，自然也就少了些许顾虑。</p>
+<p class = "firstLineIndent">“哦？”聂云一脸欣慰地看了弥赛亚一眼。</p>
+<p class = "firstLineIndent">什么叫员工的主观能动性？这就是！</p>
+<p class = "firstLineIndent">换成以前，双龙大概率会想着明哲保身，低调才能活的更久。</p>
+<p class = "firstLineIndent">但自从碎星海盗联盟成立，打的以前不可一世的洛克财团岌岌可危，他们真切感受到了什么叫做背靠大树好乘凉，腰板儿都硬了不少。</p>
+<p class = "firstLineIndent">而聂云先前提出的“窃国者侯”理论，更是给众人画了一个无比诱惑的大饼，有些睁眼看世界的醍醐灌顶之感。</p>
+<p class = "firstLineIndent">别提本就野心勃勃的弗林特，就连原本只想抱大腿躲避追杀的双龙都渐渐的有些改变了想法。</p>
+<p class = "firstLineIndent">幽灵船长踏入碎星星域不到一年就能在群敌环视下夺得海盗王的宝座，不动声色就能拉来双子星一千多艘战舰助战，不仅是奇迹，更说明了对方身后那个万物归一会的可怕之处。</p>
+<p class = "firstLineIndent">有这样的组织在背后撑腰，让双龙看到了直面二皇子威胁的希望！</p>
+<p class = "firstLineIndent">毕竟能风风光光的活着，谁愿意整天东躲西藏，去当那“面朝大海，春暖花开”的佛系植物？</p>
+<p class = "firstLineIndent">他们现在就像是一家初创公司的核心元老，每个人都拿着股份，ceo还可以轮流做。</p>
+<p class = "firstLineIndent">然后神秘大佬万物归一会给了公司一个天使轮投资，一口气就将之前的竞争对手一顿收拾，牛逼哄哄不可一世。</p>
+<p class = "firstLineIndent">这个时候是个傻子都知道，他们这家公司要火，市值必定是噌噌噌往上走，说不定还能拼一下世界500强。</p>
+<p class = "firstLineIndent">这个时候要是让他们回去继续当个体户，那落差可就太巨大了。</p>
+<p class = "firstLineIndent">在这种环境下，众人的创业热情高涨，自然不难理解。</p>
+<p class = "firstLineIndent">“唔虽然我从组织拿到这些情报也不难，不过多条线相互印证自然更好。”聂云大言不惭道。</p>
+<p class = "firstLineIndent">毕竟逼格不能掉。</p>
+<p class = "firstLineIndent">“另外，不要怕花钱，交情没了不要紧，有钱自然就会有交情！”</p>
+<p class = "firstLineIndent">“好！我明白了！”</p>
+<p class = "firstLineIndent">聂云也很满意，弥赛亚手段圆滑，心思缜密，很适合培养成情报负责人和金牌交际花。</p>
+<p class = "firstLineIndent">他正愁在伍尔夫帝国官方没有情报力量，如今有弥赛亚利用以前的人脉编织一张帝国内部的情报网，自己开地图视野的速度也能加快不少。</p>
+<p class = "firstLineIndent">与此同时，弥赛亚刚刚提到利用大皇子残余的人脉，倒是让聂云对伍尔夫战略有了一些新的想法</p>
+<p class = "firstLineIndent">碎星海盗联盟与双子星对洛克星系的进攻毫不停歇的进行了整整两天，从外围的第六行星轨道一直打到第三行星轨道。</p>
+<p class = "firstLineIndent">沿途遍布被击毁的战争残骸，双方虽然并未出全力所以伤亡不多，但战斗依旧异常激烈。</p>
+<p class = "firstLineIndent">海盗联盟一边缓步推进，聂云一边通过联合作战平台下达各种命令，整合作战能力优秀并且听话的海盗团体，纳入自己的舰队核心圈。</p>
+<p class = "firstLineIndent">而不听话就想捡便宜的刺儿头，倒也没有让他们当炮灰，只是不动声色调往后阵，让他们的影响因子降到最低。</p>
+<p class = "firstLineIndent">与此同时，这批人还被列入了“海盗联盟三等公民”的黑名单未来可以享受待遇减半，福利全免。</p>
+<p class = "firstLineIndent">通过这种方式，整个海盗舰队就如同被战火一遍遍淬炼的粗坯，开始逐渐显露出狰狞的锋芒，大有越打越强的趋势。</p>
+<p class = "firstLineIndent">然而直到此时，克洛罗斯的主力舰队依旧按兵不动，似乎还在寻找那稍纵即逝，一击致命的机会</p>
+<p class = "firstLineIndent">洛克星系打的火热，人迹罕至的莱恩星上却也并不宁静。</p>
+<p class = "firstLineIndent">“砰！”一颗黑色的头颅突然破土而出，睁开了猩红的双眼</p>
+<p class = "firstLineIndent">春天种下的种子，终于到了秋天收获的时节</p>
+
+<h2>第七百二十二章 萝丝牌CPU</h2>
+<p class = "firstLineIndent">怪兽猩红色的竖瞳急速收缩了几次，几乎片刻间便适应了头顶刺眼的阳光。</p>
+<p class = "firstLineIndent">“砰！”砂石飞溅，黝黑色的躯体钻出大地，身上的土石哗啦啦往下掉。</p>
+<p class = "firstLineIndent">足有3米多长的躯干呈现光滑的流线型，即便四肢着地也有一米多高，熟悉的外骨骼和反关节，全身上下还都覆盖着黝黑色的皱巴巴皮肤。</p>
+<p class = "firstLineIndent">除了体型大了好几圈，背部还多了两片知了一般的半透明翅翼，它与双子星的生物兵器“犬”有着三四分的相似度。</p>
+<p class = "firstLineIndent">只见它缓缓舒展身体，抖落身上的土石。</p>
+<p class = "firstLineIndent">然而过了片刻，它似乎察觉了什么一样，瞬间停止动作，扭头看向侧方一处空旷地带。</p>
+<p class = "firstLineIndent">“轰！”下一刻，一头足有五米多高，脑袋上长着三根尖锐长角，形如穿山甲，身上遍布黑色鳞片的凶兽突然从地底钻了出来，带起漫天烟尘。</p>
+<p class = "firstLineIndent">赫然是莱恩星上的野生霸主，地行龙！</p>
+<p class = "firstLineIndent">出来觅食的地行龙显然是盯上了这头比自己矮上一大截的物，一钻出地面便直扑目标而去！</p>
+<p class = "firstLineIndent">“轰隆隆！”大地在地行龙高达十数吨重的巨大压力下颤抖起来。</p>
+<p class = "firstLineIndent">猩红双目微微眯起。</p>
+<p class = "firstLineIndent">这头“物”像是被地行龙吓傻了一般一动不动。</p>
+<p class = "firstLineIndent">就在地行龙距离接近到不足5米，眼见物即将被自己头顶的三根长角刺穿之际，却突然发现对方尾部猛地甩出一条长长的黑影，寒光一闪。</p>
+<p class = "firstLineIndent">“噗呲！”利刃入肉，转瞬即收。</p>
+<p class = "firstLineIndent">地行龙脚部一歪，轰然侧翻，在地面滑出一道长长的沟壑。</p>
+<p class = "firstLineIndent">而它的头部双眼之间，赫然多出了一条浅浅的血线，白色的脑浆缓缓渗出，一代霸主就此殒命。</p>
+<p class = "firstLineIndent">下一刻，先前钻出怪兽的地下通道口突然爬出数条古怪的黑色根须，直接将地形兽的尸体缓缓拖入地下，眨眼间便消失在黑洞洞的地道口</p>
+<p class = "firstLineIndent">而轻描淡写就干掉一只霸主级的凶兽，就像是做了一件微不足道的事情，这头本不该存在于莱恩星之上的杀戮兵器淡漠的扭头，重新将尾刃缩入体内，展开双翼，双足用力一蹬，直接冲天而起。</p>
+<p class = "firstLineIndent">背后淡红色粒子流形成一条光带，带着它越飞越高，身上皱巴巴的皮肤也在飞行过程中渐渐舒张开来，缓缓将它的全身上下包裹起来，直至整个覆盖，连眼睛都没有放过。</p>
+<p class = "firstLineIndent">此时的它整体看起来就像是一块拖着尾焰飞行的黑色石块。</p>
+<p class = "firstLineIndent">而就在这只异兽升空后不久，整颗星球上的各个区域，总计十数万同样的生物几乎同时升空。</p>
+<p class = "firstLineIndent">一个个光点越升越高，对流层、平流层、中间层、散逸层直至彻底挣脱行星引力，进入太空！</p>
+<p class = "firstLineIndent">旋即，绕了行星半圈之后，他们就如同一片片太空中再普通不过的流浪小行星群，开始朝着四面八方，距离莱恩星最近的另外几颗行星飞去，渐行渐远</p>
+<p class = "firstLineIndent">天空之上重新陷入寂静，而行星之下，却是渐渐沸腾。</p>
+<p class = "firstLineIndent">“吼！”“嘶嘶”“轰隆隆！”</p>
+<p class = "firstLineIndent">从高空俯瞰，行星上一共有三个区域几乎同时发生了异变，一群群地底生物如同受了惊的小兽，开始疯狂的逃离地底，形成了一大片黑色的海洋，仿佛地底有着什么可怕的巨兽一般。</p>
+<p class = "firstLineIndent">仔细看去，就会发现地底时不时就会钻出几条粗壮的根须，如同巨蟒，将一头头惊慌失措的物卷入黑暗之中。</p>
+<p class = "firstLineIndent">在聂云将莱恩星上的数百万莱恩族集体劫走之后，莱恩星早已经成为了一颗荒废的行星。</p>
+<p class = "firstLineIndent">在少了莱恩族日夜不停的搏杀之后，这颗星球上凶悍的地底生物等于少了最大的天敌。</p>
+<p class = "firstLineIndent">洛克财团在星球上仅有的一座矿场，也在失去了莱恩族的保护之后被一大群凶悍的地底生物淹没。</p>
+<p class = "firstLineIndent">只不过这群地底生物没能得意多久。</p>
+<p class = "firstLineIndent">不知从何时起，莱恩星上就出现了一种可怕的植物！</p>
+<p class = "firstLineIndent">那是一棵树，一颗隐藏于地下，能够将根须扎入地底岩浆，甚至还能催生可怕怪物的可怕植物。</p>
+<p class = "firstLineIndent">聂云先前在离开莱恩星前布置的后手，可是比莱恩族更加可怕的“天灾”</p>
+<p class = "firstLineIndent">比邻星系，长生者内部，卡拉a地球联合生物兵器研究所。</p>
+<p class = "firstLineIndent">“第一批15万卡地虫已经进入预定轨道，控制信号收发正常，预计530天之后抵达目的地星球，开始进行下一轮播种。”</p>
+<p class = "firstLineIndent">“卡地虫在太空环境下的整体存活率988，达到实验设计要求。”</p>
+<p class = "firstLineIndent">“休眠状态下，卡地虫整体保持2的活性维持，预计最长生存时间约为150年。”</p>
+<p class = "firstLineIndent">“综合考虑殖装体对宇宙辐射能量的吸收效率和引擎的能量消耗比，卡地虫达到星际航行的a2标准，最长攻击半径可达245光年。”</p>
+<p class = "firstLineIndent">“卡地萝生长情况良好，第二批卡地虫正在进行孵化，预计数量将达到40万。”</p>
+<p class = "firstLineIndent">“莱恩星残余生物圈资源剩余898，预计能够支撑3颗卡地萝生长到第二阶段25左右，但无法达到进入太空的第三阶段标准，申请调整成长方案！”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">一连串的信息数据从一个个穿着白大褂的科研人员口中报出。</p>
+<p class = "firstLineIndent">其中不仅有卡拉星人，还有7名来自云端科研所的远程科研机器人。</p>
+<p class = "firstLineIndent">他们此时除了密切关注各种参数指标之外，都齐齐围绕在一个由无数藤蔓形成的高高王座四周。</p>
+<p class = "firstLineIndent">卡拉明的最高统治者，萝丝女王陛下此时正闭目坐在王座之上，身上散发出隐晦的精神力波动，通过王座直连位于核心处的长生者本体。</p>
+<p class = "firstLineIndent">“呼”萝丝缓缓出了口气，终于睁开紧闭的双眼，眼中幽蓝色光芒一闪而逝。</p>
+<p class = "firstLineIndent">“女王陛下，感觉怎么样？”周动操控自己的小机器人有些滑稽的蹦到了萝丝身前，急切的问道。</p>
+<p class = "firstLineIndent">“唔感觉还不错，除了精神有些疲惫，没有感觉其它不适。”萝丝笑了笑道。</p>
+<p class = "firstLineIndent">“哗！”“太棒了！”</p>
+<p class = "firstLineIndent">全场响起一阵阵的掌声和欢呼。</p>
+<p class = "firstLineIndent">开发一种全新的，适合太空作战的生物兵器，这是聂云先前交给卡拉明的第一项重点研发任务。</p>
+<p class = "firstLineIndent">毕竟没有宇宙兵种，你好意思叫生物明？</p>
+<p class = "firstLineIndent">于是，在卡拉明和地球明的科学家们通力合作之下，历经一年多，他们终于在不久以前，制造出一种可怕的“母巢类生化兵器”卡地萝种子！</p>
+<p class = "firstLineIndent">它的原理是，以长生者分裂的子株“卡拉萝”、双子星搜集的生物兵器“犬”为基础模板，辅以聂云从几大明搜罗到的各种优秀生物基因数据为蓝本</p>
+<p class = "firstLineIndent">好吧！原理太复杂，此处省略180万字，智商10086以上的可以找我要资料</p>
+<p class = "firstLineIndent">简单来说。</p>
+<p class = "firstLineIndent">“卡拉萝”“犬”“基因杂交技术”“生命之水”“秘银”“幽能技术”“长生牌信号塔”“萝丝牌cu”“卡地萝种子”！</p>
+<p class = "firstLineIndent">萝丝：“”</p>
+
+<h2>第七百二十三章 地球人绝不是这个尺寸</h2>
+<p class = "firstLineIndent">卡地萝，取卡拉明和地球明的首字，代表这是两族通力合作的科技结晶。</p>
+<p class = "firstLineIndent">它将数种经过编辑的优秀生物遗传信息，整体压缩到了一颗小小的种子之中。</p>
+<p class = "firstLineIndent">种下之后，它能够隐蔽在地底不断成长，并通过发达的根系汲取星球的地下资源和地热能量维持生长消耗，彻底摆脱低效能光合作用的桎梏。</p>
+<p class = "firstLineIndent">这种活化植物不仅拥有移动能力，还有着不俗的攻防属性，能够使用“触手怪式”的攻击方式捕捉物，以血肉为食加速生长。</p>
+<p class = "firstLineIndent">而它最核心的功能，便是能够在体内建立生化兵工厂，孵化基因库中提前录入的数种功能各异的生化兵器，完全就是一株行走的生化母巢！</p>
+<p class = "firstLineIndent">只要不出意外，春天种下一颗卡地萝种子，秋天就能收获一整支能够独立作战的生化兵团，堪称“一种成军”！</p>
+<p class = "firstLineIndent">而在卡地萝的生化兵器作战体系中，最为核心的当属基础量产化兵种“卡地虫”。</p>
+<p class = "firstLineIndent">这是以顶级捕食者“犬”的基因为模板，加上卡拉明的殖装技术为战斗核心，精心打造的一款海陆空天四栖生物兵器。</p>
+<p class = "firstLineIndent">覆盖在卡地虫体表的生物殖装，能够根据不同的战斗环境，变化出不同的战斗形态，比如“大地捕食者形态”、“休眠孢子形态”、“大气环境战斗形态”、“宇宙环境战斗形态”等等。</p>
+<p class = "firstLineIndent">它既是这套生化作战体系的最基础战斗兵种，也是卡地萝自我繁殖的重要“播种者”！</p>
+<p class = "firstLineIndent">卡地萝必要的时候，可以自我复制出新的“卡地萝种子”，由卡地虫携带着散播向宇宙的四面八方，最终如同蝗虫一般增殖。</p>
+<p class = "firstLineIndent">“虫灾”这就是聂云在洛克领留下的后手！</p>
+<p class = "firstLineIndent">他无法真正占领洛克领，却能在洛克领留下一个大麻烦。</p>
+<p class = "firstLineIndent">聂云让于老等人动手的时机选择的也很巧妙，正好在海盗们将洛克领整个儿犁了一遍，而洛克财团又自身难保无暇他顾的时候。</p>
+<p class = "firstLineIndent">正常情况下，爆发虫灾这么大动静，绝对会引起各方注意，提前将这次的虫灾掐灭在萌芽状态。</p>
+<p class = "firstLineIndent">但只要熬过这段艰难的“创业阶段”，度过危险期，接下来等待敌人的，就将是茫茫多的虫海</p>
+<p class = "firstLineIndent">“不愧是女王陛下，如此数量的庞大军团，竟然能够通过精神力轻松控制，只可惜，我们其他的自愿者都达不到这么高的精神力要求。”于老恭维一句，随后有些惋惜道。</p>
+<p class = "firstLineIndent">卡地萝的其中一大优势，就是应用了尚且不太成熟的幽能系列科技。</p>
+<p class = "firstLineIndent">没错，不论是卡地萝还是卡地虫等附属军团，使用的控制方式都是“精神力”！</p>
+<p class = "firstLineIndent">精神力这种无形无质的东西，除了精神力本身之外极难干扰，无疑是最安全迅捷的通讯手段。</p>
+<p class = "firstLineIndent">只不过想要控制这么庞大的数量，对控制者的精神要求极高，这就是萝丝这个“女王cu”的存在意义。</p>
+<p class = "firstLineIndent">有卡拉人的优秀素质打底，加上生命之水的二次强化。</p>
+<p class = "firstLineIndent">在整个势力中，萝丝目前的精神力等级，可以说是仅次于长生者和聂云的存在。</p>
+<p class = "firstLineIndent">聂云马甲太多，日理万机的根本没有精力再亲自担任一支生物军团的指挥者。</p>
+<p class = "firstLineIndent">长生者虽然精神力强大，不过当个信号塔还算勉强，指挥大军可不是强项。</p>
+<p class = "firstLineIndent">于是，萝丝这位曾经统领过千军万马的女王陛下，自然而然的成为了“卡地萝军团”的最佳指挥者。</p>
+<p class = "firstLineIndent">通过长生者的信号放大能力，她能够无视漫长的距离，直接对卡地萝军团进行操控。</p>
+<p class = "firstLineIndent">卡拉萝本就是长生者通过断枝扦插，分裂出来充当耳目的子体，与长生者之间存在着天然的精神联系，作为它的变异体，卡地萝与长生者之间同样也存在着精神链接。</p>
+<p class = "firstLineIndent">如果将长生者比作一个巨大的信号收发中心，那么这些卡地萝就是一个个的小型信号塔。</p>
+<p class = "firstLineIndent">只要有它们存在的地方，长生者便能够将自己的精神触手以它为中心辐射出去，从而大大减少远距离控制的精神消耗。</p>
+<p class = "firstLineIndent">卡地萝的诞生，虽然只是一项生化应用技术，但是却糅合了聂云手上各种几乎最为尖端的科技成果，可以说是目前的科技集大成者！</p>
+<p class = "firstLineIndent">“于老过奖了，我目前所能做的，只是下达一些简单的基础命令，根本无法精细化操作，如果换成那位，做的肯定会比我好很多”萝丝谦虚道。</p>
+<p class = "firstLineIndent">这倒是心里话。</p>
+<p class = "firstLineIndent">她现在的操作模式，基本等于鼠标一划拉，选中一大票单位，然后朝着目标点击一下左键，被选中单位呼啦啦涌上去。</p>
+<p class = "firstLineIndent">嗯很没有技术含量，完全做不到微操。</p>
+<p class = "firstLineIndent">而按照长生者的说法，如果说自己的战斗力是一千，那么聂云没变身前战斗力差不多是二十万</p>
+<p class = "firstLineIndent">那手速怕是只能看到残影？</p>
+<p class = "firstLineIndent">有人家这标准在，自己根本傲娇不起来啊</p>
+<p class = "firstLineIndent">“嗯！确实可惜！”周动却是很没眼力见的点点头。</p>
+<p class = "firstLineIndent">他倒是真的打过一份申请报告，希望聂云参加这个项目，可惜，申请打到代号那儿就被直接驳回了，因为老板的档期都已经快排到年底了</p>
+<p class = "firstLineIndent">“咳咳！”这个直白的二货！</p>
+<p class = "firstLineIndent">于老只能尴尬地咳嗽一声。</p>
+<p class = "firstLineIndent">人家好歹是个女王，周围这么多人家的子民，给人家留点面子不行吗？</p>
+<p class = "firstLineIndent">这家伙智商和情商完全成反比啊！</p>
+<p class = "firstLineIndent">要不是卡拉族性情温和，换个暴躁点的种族，怕不是得酿出外交纠纷？</p>
+<p class = "firstLineIndent">萝丝对周动直白的话倒是没觉得有什么，只是略有些不自然的拢了拢自己的裙摆。</p>
+<p class = "firstLineIndent">没办法，这帮小家伙只有自己膝盖高，不知道的还以为是七个小矮人，离得近了很没安全感</p>
+<p class = "firstLineIndent">这或许也算是矮人一族的种族天赋？</p>
+<p class = "firstLineIndent">矮人族：“”</p>
+<p class = "firstLineIndent">“有个问题我很早就想问了。”犹豫片刻，萝丝还是按耐不住自己的好奇心。</p>
+<p class = "firstLineIndent">“为什么你们不做的唔！我的意思是高一点。”萝丝用手比划了一下。</p>
+<p class = "firstLineIndent">经过这么长时间交流，她自然也知道，地球人绝不是这个尺寸</p>
+<p class = "firstLineIndent">“e”</p>
+<p class = "firstLineIndent">这个问题让几位云端科研所的科学家好一阵沉默。</p>
+<p class = "firstLineIndent">怎么解释？</p>
+<p class = "firstLineIndent">说我们打上去的尺寸放大申请全被老板娘以经费不足给否了？</p>
+<p class = "firstLineIndent">而且否的时候居然还是一脸甜蜜的模样秀了他们一脸？</p>
+
+<h2>第七百二十四章 人族起源猜想</h2>
+<p class = "firstLineIndent">“咳咳！个子矮，料子省嘛！”身后突然传来的咳嗽声打破了尴尬的沉默。</p>
+<p class = "firstLineIndent">众人转头一看，聂云分身不知道何时出现在众人身后。</p>
+<p class = "firstLineIndent">“老板好！”众人热情的打招呼。</p>
+<p class = "firstLineIndent">只不过脸上热情，一个个心中却是腹诽不已。</p>
+<p class = "firstLineIndent">神特么的个子矮，料子省，那你这具为啥还是原尺寸？给我一视同仁点啊魂淡！</p>
+<p class = "firstLineIndent">“老老板好！”萝丝有些不自然的打了招呼。</p>
+<p class = "firstLineIndent">从身份上讲，卡拉明已经被聂云打包收购，如果说他是董事长，那么萝丝就是个部门经理，喊一句老板合情合理。</p>
+<p class = "firstLineIndent">而双方深入合作之后，很多秘密自然也就不是秘密了。</p>
+<p class = "firstLineIndent">所以萝丝在不久前，才终于知道阿尔萨斯，或者说卡拉明精心调制出来的那具克隆体，不过是这位的马甲。</p>
+<p class = "firstLineIndent">嗯也有可能是马甲之一</p>
+<p class = "firstLineIndent">“老板，听说前线不是正打得火热，今天怎么有空过来？”于老问道。</p>
+<p class = "firstLineIndent">“嗯！这次的对手很有耐性，估计还得打上一两天，所以我趁着上厕所的功夫来看看你们的成果。”</p>
+<p class = "firstLineIndent">趁着上厕所的功夫？</p>
+<p class = "firstLineIndent">这档期还真是够满的</p>
+<p class = "firstLineIndent">“报告老板，卡地萝的实验数据十分不错，目前第一批卡地虫已经成熟，我们下一步”</p>
+<p class = "firstLineIndent">“不不不！卡地萝项目由你们负责我很放心，定期给份报告就行，我今天来是收到消息，你们对生命之水的联合研究似乎有新的进展？”</p>
+<p class = "firstLineIndent">这才是聂云抽空过来的真正原因。</p>
+<p class = "firstLineIndent">对聂云而言，涉及到对宇宙奇物的研究，这方面的事项优先度一向很高。</p>
+<p class = "firstLineIndent">在场的两族研究人员对视一眼，皆是露出郑重之色，最终还是于老开口道，“老板，请跟我来。”</p>
+<p class = "firstLineIndent">聂云微微挑眉。</p>
+<p class = "firstLineIndent">搞得这么神秘，看来发现不小啊</p>
+<p class = "firstLineIndent">会议室内，于老等人和卡拉明的几位顶尖科学家依次坐定，聂云和萝丝分坐主位。</p>
+<p class = "firstLineIndent">“老长？你在吗？”聂云突然对着空气问了一句。</p>
+<p class = "firstLineIndent">“我在。”片刻之后，长生者有气无力的回应才在众人脑海中响起。</p>
+<p class = "firstLineIndent">老长</p>
+<p class = "firstLineIndent">卡拉星的众人脸色无比怪异。</p>
+<p class = "firstLineIndent">长生者的黑料，不论是聂云还是萝丝都没有主动说出去，一是徒增无谓的对抗，二是遭逢大变的卡拉人也急需一个精神信仰。</p>
+<p class = "firstLineIndent">所以在卡拉明如今公开的历史正中，长生者依旧是那个“伟光正”的高大形象。</p>
+<p class = "firstLineIndent">不仅如此，如今被当成卡拉人寄居地的长生者，不仅为他们提供了栖身之地，就连他们的粮食问题，都通过“长生者农业化改造”项目而得到了彻底的解决。</p>
+<p class = "firstLineIndent">这样的存在完全就是衣食父母，作用堪比诺亚方舟。</p>
+<p class = "firstLineIndent">即便是萝丝，对长生者的恶感也随着时间的流逝慢慢淡化，认可了对方“图腾树”一般的地位。</p>
+<p class = "firstLineIndent">现在居然被人喊“老长”</p>
+<p class = "firstLineIndent">“嗯！好了，该到的都到齐了，于老，说说你们的新成果吧。”</p>
+<p class = "firstLineIndent">既然是有关生命之水的研究进展，那么作为生命之水的生产商，长生者应该能提供些意见。</p>
+<p class = "firstLineIndent">“好的老板，其实，我们这次的发现不算是成果，只能说是一种猜想。”</p>
+<p class = "firstLineIndent">“猜想？”</p>
+<p class = "firstLineIndent">“是的，我们称之为人族起源猜想！”于老石破天惊。</p>
+<p class = "firstLineIndent">“嘶”聂云倒吸了一口气。</p>
+<p class = "firstLineIndent">这课题严重标题党了喂！</p>
+<p class = "firstLineIndent">“你确定不是为了多要点研究经费故意起这个名字？”聂云狐疑的看着于老。</p>
+<p class = "firstLineIndent">“咳咳！”于老尴尬的咳嗽两声，义正言辞，“老板，请相信我们的职业操守。”</p>
+<p class = "firstLineIndent">聂云将信将疑的看了对方一眼，表达了自己的有限信任，然后示意对方继续。</p>
+<p class = "firstLineIndent">“泛人类明圈的概念，相信老板不会陌生。”</p>
+<p class = "firstLineIndent">聂云点了点头。</p>
+<p class = "firstLineIndent">这个概念还是当年刚刚接触双子星时，从对方内部获取的资料内容。</p>
+<p class = "firstLineIndent">地球明、卡拉明、双子星明、莱恩族、伍尔夫明</p>
+<p class = "firstLineIndent">从生物进化的角度，人族生物如此密集的扎堆生存在一起，并形成一个个明，而且生命形态如此相近的概率几乎无限趋近于零！</p>
+<p class = "firstLineIndent">生命星球环境不同，所诞生的行星霸主基本也是千奇百怪的。</p>
+<p class = "firstLineIndent">理论上来说，诞生人族明的概率，不会比诞生皮皮虾明来的高上多少。</p>
+<p class = "firstLineIndent">类似于et、异形、小绿皮、触手怪等等形态各异的生命体，才应该是正常的外星明画风。</p>
+<p class = "firstLineIndent">然而“泛人类明圈”，无疑违反了这一常识。</p>
+<p class = "firstLineIndent">“在我们研究了伍尔夫帝国内部的周边明资料后，我们更加确信，泛人类明圈是真实存在的。</p>
+<p class = "firstLineIndent">几个明内部也有着相似的理论猜想，不过高等明遗留生态圈是最主流的一个。</p>
+<p class = "firstLineIndent">这个猜想认为，是某个史前的高等宇宙明，为了未知的目的，通过基因播种、基因污染等手段，将这一片星域改造成了人族的繁衍之地！”</p>
+<p class = "firstLineIndent">“嗯！”聂云对此倒并没有多少惊讶。</p>
+<p class = "firstLineIndent">这是目前几个明内部主流的看法，只不过没人能够拿出确切的证据证明这一切。</p>
+<p class = "firstLineIndent">“而我们通过研究各个明的历史发现，有一些人族明的种族诞生时间，甚至可以相隔数万年之久。</p>
+<p class = "firstLineIndent">也就是说，这种影响是长时间一直持续的，否则无法解释如此时间跨度的神奇巧合！</p>
+<p class = "firstLineIndent">所以我们更倾向于有某种东西，能够通过能量辐射之类的手段，影响周边星球的生命进化进程，使得周边星系的种族基因朝着泛人类的形态转变！”</p>
+<p class = "firstLineIndent">“你想说是某种宇宙奇物？”聂云眉头一挑。</p>
+<p class = "firstLineIndent">“这就是接下来我想要说的重点！</p>
+<p class = "firstLineIndent">在卡地萝的项目研究中，由于需要对各种基因样本进行优化，得到了大量的对比数据，因此我们偶然间发现了生命之水中隐藏的真正奥秘！”于老深深吸了一口气。</p>
+<p class = "firstLineIndent">“一开始我们认为，生命之水是一种超级基因优化液。</p>
+<p class = "firstLineIndent">卡拉人就是典型的例子，他们比之原先的原始种族更高、更强、更快，而且对精神力也有更强的适应性。</p>
+<p class = "firstLineIndent">然而我们后来发现，我们都错了！</p>
+<p class = "firstLineIndent">它对基因的优化其实是有极强的选择性的！</p>
+<p class = "firstLineIndent">生命之水的确是一种超级基因优化液，然而在这之前，我们还需要给它加个前缀人族专用！</p>
+<p class = "firstLineIndent">它不是朝着更优秀的基因这一方向去优化的，而是朝着更优秀的人族基因这一方向去优化的！”于老一脸肃然。</p>
+<p class = "firstLineIndent">聂云悚然动容。</p>
+<p class = "firstLineIndent">“你的意思是哪怕是一条狗，如果用生命之水长期的优化下去，最终很可能让它变成汪星人？！”</p>
+<p class = "firstLineIndent">所有人：“”</p>
+<p class = "firstLineIndent">汪星人：“”汪？</p>
+
+<h2>第七百二十五章 XX文明到此一游</h2>
+<p class = "firstLineIndent">“咳！意思大概是这么个意思，不愧是老板，一针见血！”于老顺手给出一记马屁。</p>
+<p class = "firstLineIndent">这不就是传说中的化形水？</p>
+<p class = "firstLineIndent">聂云摸着下巴，思考要不要进化头二师兄出来长长见识？</p>
+<p class = "firstLineIndent">不过八条那家伙也泡了不少生命之水，除了稍微变聪明了点，似乎也没见长成章鱼娘啊？</p>
+<p class = "firstLineIndent">难不成和机械虫化有关？</p>
+<p class = "firstLineIndent">倒是凯瑟琳不过她喝的那个算是被机械虫加了料的“随缘鸡尾酒”，至今无法复制，研究价值有限。</p>
+<p class = "firstLineIndent">这时候，周动接过了话头，对在场众人继续介绍。</p>
+<p class = "firstLineIndent">“按照生物学基本常识，世界并不存在绝对有用，亦或者绝对更优秀的基因。</p>
+<p class = "firstLineIndent">比如对海洋生物来说，鳃是一种有用的器官，但对陆地生物来说，那就是无用器官。</p>
+<p class = "firstLineIndent">一个基因在一种情况下可能是优秀基因，但是换一种情况的话也许就是劣质基因了，我们很难准确的定义一种基因到底是好的还是坏的。</p>
+<p class = "firstLineIndent">就连我们自己都说不清，那么生命之水对更优秀基因的判定又是哪来的？</p>
+<p class = "firstLineIndent">所以我们大胆猜测，生命之水之所以给我们基因优化的错觉，不是因为它能够判断到底什么类型的基因更优秀，而是因为它很可能早就提前知道了完美的人族应该是什么样的！”</p>
+<p class = "firstLineIndent">完美的人族？！</p>
+<p class = "firstLineIndent">“你是说生命之水里，很可能隐藏着一套完整的完美人族基因图谱？”聂云惊奇道。</p>
+<p class = "firstLineIndent">“完全正确！”于老等人齐齐点头。</p>
+<p class = "firstLineIndent">“这就好比本就有了标准答案，生命之水根本不需要判断基因的好坏，只需要照抄就行！</p>
+<p class = "firstLineIndent">它的作用，完全就是将使用生命之水的生物，朝着这个已有的完美模板缓慢而有序地转化而已！</p>
+<p class = "firstLineIndent">完美其实是相对的，比如猩猩比猴子进化的更完美，而人类比猩猩进化的更完美。</p>
+<p class = "firstLineIndent">以生命之水目前展现出来的强悍功效来看，这幅隐藏的完美基因图谱，就算不是人类进化的终点，也绝对是人类进化的大后期！</p>
+<p class = "firstLineIndent">那很可能是另一个层次的生命体！”</p>
+<p class = "firstLineIndent">唔聂云眼中露出沉思之色。</p>
+<p class = "firstLineIndent">自己这边连生命之水的原理都无法解析，而神秘明却能够将一套庞大的基因图谱隐藏其中这里面的科技含量高到吓人呐！</p>
+<p class = "firstLineIndent">这么一对比，于老等人刚刚开发的“卡地萝技术”虽然也属于转基因技术，可在它面前完全就拿不上台面啊！</p>
+<p class = "firstLineIndent">那么问题来了，究竟是谁制造了这么吓人的东西？</p>
+<p class = "firstLineIndent">生命之水的存在，到底是神秘明的馈赠，还是隐藏着不为人知的天大阴谋呢</p>
+<p class = "firstLineIndent">“老长！你不觉得该站出来说点什么吗？”</p>
+<p class = "firstLineIndent">产品被检测出含有“未知添加物”，说不定还带副作用，作为它的制造商，你是不是得解释解释？</p>
+<p class = "firstLineIndent">似乎是同样也被这个消息所震惊，沉默良久，长生者才缓缓开口。</p>
+<p class = "firstLineIndent">“我的原始意识是在宇宙流浪的过程中诞生的，而生命之水的制造，是我与生俱来的天赋。</p>
+<p class = "firstLineIndent">如果你们的研究成果是真实的，那么或许我真的不是自然诞生的生命体也说不定”</p>
+<p class = "firstLineIndent">长生者此时的心情也是相当复杂。</p>
+<p class = "firstLineIndent">它本以为自己是宇宙中土生土长的超级物种，吸取日月之精华孕育而出，类似于天生石猴，因此一向自视甚高。</p>
+<p class = "firstLineIndent">可现在别人却告诉他，你脚底板打娘胎里开始就被人偷偷纹了一句“xx明到此一游”。</p>
+<p class = "firstLineIndent">顿时，整棵树都感觉不好了</p>
+<p class = "firstLineIndent">聂云仔细感受着长生者的精神波动，是浓浓的怨念没错！</p>
+<p class = "firstLineIndent">这么说也是受害者吗</p>
+<p class = "firstLineIndent">随着精神力量的增长，聂云对他人情绪的判断也越来越准确，这一点连他自己都觉得相当神奇。</p>
+<p class = "firstLineIndent">“作为一颗种子，保留这些记忆的可能性的确不大，难道线索到这里就断了？”</p>
+<p class = "firstLineIndent">“不！还没断！”于老断然道。</p>
+<p class = "firstLineIndent">“虽然我们并不知道究竟是谁将这一副基因图谱隐藏在长生者体内，但可以肯定的是，对方与泛人类明圈必定有着千丝万缕的关系！</p>
+<p class = "firstLineIndent">这两者存在着一个高度相似的共同点”</p>
+<p class = "firstLineIndent">聂云目光微动。“你是说教我们做人？”</p>
+<p class = "firstLineIndent">所有人：“”</p>
+<p class = "firstLineIndent">“咳咳！也可以这么说。</p>
+<p class = "firstLineIndent">这个神秘明给我的感觉，就好像就好像他们希望这里诞生出人族，然后通过生命之水不断朝着他们设定好的完美人族去进化发展。”</p>
+<p class = "firstLineIndent">“你是说，对方先是广撒网，制造出一个泛人类明圈，然后其中的幸运儿发现生命之水的秘密后，必然会相互争夺用来纯化血脉，最终进化出一个最完美的人族？”</p>
+<p class = "firstLineIndent">“不错！这是最大的一种可能性！”于老点了点头。</p>
+<p class = "firstLineIndent">“唔听起来像是养蛊。”聂云皱了皱眉。</p>
+<p class = "firstLineIndent">“可对方为什么要这么做？是带着善意，亦或是恶意？”</p>
+<p class = "firstLineIndent">如果生命之水里面真的藏着一副“完美基因图谱”，那么对任何人族来说绝对是无价之宝，可以省去无数的进化时光。</p>
+<p class = "firstLineIndent">但同样的，如果这是神秘高等明的一次“基因入侵”，那么会不会在这里面做了什么手脚，比如在某个基因片段中安插了某种“后门”？</p>
+<p class = "firstLineIndent">要知道自己为地球人设计的第三序列补完计划中的核心就是生命之水，要是它出问题了</p>
+<p class = "firstLineIndent">细思恐极啊！</p>
+<p class = "firstLineIndent">“我们认为，对方带着恶意的可能性不大！”于老却是摇了摇头，“毕竟有这样的科技水平，他们可以轻而易举的批量制造出大量的完美人族。</p>
+<p class = "firstLineIndent">不论是作为实验体，或是收服成为附庸种族，根本没有必要这么麻烦。</p>
+<p class = "firstLineIndent">养蛊的目的是以强大淘汰弱小，选出最强者，但人家手中早已经有了最强的蛊虫，根本没必要再用养蛊的方式选一只一模一样的蛊王出来。”</p>
+<p class = "firstLineIndent">聂云想了想，分析了各种可能性后，初步认可了于老的这一判断。</p>
+<p class = "firstLineIndent">“好吧！神秘明和人族起源猜想暂且列为最高机密，现在我就想问一个问题，这生命之水我们还要用吗？”</p>
+<p class = "firstLineIndent">“当然要用！”在场的所有科学家异口同声道。</p>
+<p class = "firstLineIndent">“老板，这很可能是高等明遗留下来的宝藏，入宝山怎能空手回？</p>
+<p class = "firstLineIndent">如今这么大一份好处摆在咱们面前，咱们可不能因噎废食啊！”周动激动道。</p>
+<p class = "firstLineIndent">“可毕竟是神秘明给的基因图谱，咱们真要这么进化下去，还算是人吗？”聂云迟疑着看向众人。</p>
+<p class = "firstLineIndent">我倒是没什么，反正早就不是了，可你们过的了心里那一关？</p>
+<p class = "firstLineIndent">“老板这你就错了！朝着更高的生命层次进化，是所有生物体的本能追求！</p>
+<p class = "firstLineIndent">比如咱们是猴子进化过来的，可你听谁说过想要变回猴子的？”</p>
+<p class = "firstLineIndent">聂云认真想了想</p>
+<p class = "firstLineIndent">微博里很多女孩子说要和我生猴子，这个算不算？</p>
+<p class = "firstLineIndent">机械虫：“”￢￢</p>
+
+<h2>第七百二十六章 毕业证书</h2>
+<p class = "firstLineIndent">聂云最终还是没有对生命之水的利用加以限制。</p>
+<p class = "firstLineIndent">不说他都已经泡过了，感受到的只有好处没有坏处。</p>
+<p class = "firstLineIndent">更何况，人类的诞生，本身就已经受到泛人类明圈的影响，对方真想在基因方面开后门，他们估计也早就中招了！</p>
+<p class = "firstLineIndent">往好了想，即便真的是神秘明在养蛊，那生命之水大小也算是个“空投包”，不舔一下怎么和别人竞争？</p>
+<p class = "firstLineIndent">往更好了想，或许生命之水是人家为了培养族人，提升种族血脉天赋设计出来的某种“功能饮料”也说不定呢？</p>
+<p class = "firstLineIndent">说不定长生者的定位，很可能就和“可乐工厂”差不多？</p>
+<p class = "firstLineIndent">这么想的话让它往多产的道路进化，这个选择果然没错！</p>
+<p class = "firstLineIndent">长生者：“”</p>
+<p class = "firstLineIndent">“老板，为了密切观测生命之水的进化效果，警惕可能出现的副作用，我认为有必要找几个志愿者。</p>
+<p class = "firstLineIndent">毕竟有先行者的话，一旦情况有变，我们也能及时作出反应。”于老迟疑着建议道。</p>
+<p class = "firstLineIndent">嗯！投石问路，炮灰先行，没毛病。</p>
+<p class = "firstLineIndent">而且就算是炮灰，安全系数也相当之高。</p>
+<p class = "firstLineIndent">退一万步来说，哪怕是生命之水真有问题，聂云也有把握让机械虫深入基因层面，将问题当场吃掉！</p>
+<p class = "firstLineIndent">大不了给整一套“基因逆流”，保证安全回档！</p>
+<p class = "firstLineIndent">至于短期内记忆紊乱什么的这样技术上的小失误大家就不要在意了</p>
+<p class = "firstLineIndent">假如那神秘明手段太犀利，连“基因逆流”都回天乏力，那聂云就只能感谢对方为明作出的英勇牺牲，每逢清明过节，早晚一炷香了</p>
+<p class = "firstLineIndent">不过毕竟是相当重要的人体试验，这人选上</p>
+<p class = "firstLineIndent">“唔我记得幽能培训班的第一期学员，似乎也快毕业了吧？”聂云想了想，意有所指。</p>
+<p class = "firstLineIndent">于老秒懂。</p>
+<p class = "firstLineIndent">实际上，他也认为那三位是目前最合适的人选。</p>
+<p class = "firstLineIndent">首先他们是第一批使用生命之水的人，本就走在进化的第一梯队，可以省掉一切重新开始的麻烦，项目接着上。</p>
+<p class = "firstLineIndent">其次是几人饱经摧咳咳！是经验丰富，和云端科研所已经多次合作，受到了相关科学家们的一致好评！</p>
+<p class = "firstLineIndent">“确实，应该给有能力的年轻人多一些机会，不过一般来说，这种人体试验都需要提前告知志愿者详细的实验情况和实验风险的，我怕”</p>
+<p class = "firstLineIndent">毕竟是老板的三大“爱将”，于老不好强来。</p>
+<p class = "firstLineIndent">“诶！此话差矣！个人荣辱和明兴亡，哪个更重要？知情权，有时候也是需要给生存权让路的嘛！”聂云义正言辞。</p>
+<p class = "firstLineIndent">“老板深明大义，实在是我辈楷模！”</p>
+<p class = "firstLineIndent">“彼此彼此，于老也是劳苦功高，于我人族功德无量！”</p>
+<p class = "firstLineIndent">旁边几人听得冷汗涔涔，你确定是深明大义，不是大义灭亲？</p>
+<p class = "firstLineIndent">资本家，实在是太可怕了</p>
+<p class = "firstLineIndent">月球，亚特兰蒂斯总部实验基地，幽能培训班。</p>
+<p class = "firstLineIndent">宽敞的训练室内，老大五心朝天盘腿而坐。</p>
+<p class = "firstLineIndent">在他头顶，重达300公斤的杠铃一沉一浮，仿佛有一双无形的手在做往复式的肩上推举。</p>
+<p class = "firstLineIndent">“五百八十一、五百八十二、五百八十三”老大口中念念有词，相当吃力。</p>
+<p class = "firstLineIndent">百米开外，老三双目紧闭静静肃立，仿佛一尊入定的老僧。</p>
+<p class = "firstLineIndent">“刷！”寒芒乍现！</p>
+<p class = "firstLineIndent">老三感知全开，野兽般的直觉和非人的神经反射让他提前察觉到了危险的到来，间不容发之际微微偏头。</p>
+<p class = "firstLineIndent">几根碎发，落地无声。</p>
+<p class = "firstLineIndent">偷袭者一击不中，立刻消失无踪，仿佛从未存在过，一切都无声无息。</p>
+<p class = "firstLineIndent">三人正刻苦修行之时</p>
+<p class = "firstLineIndent">“滴滴滴！”一道信息提示音突然响起。</p>
+<p class = "firstLineIndent">“砰！”“哎呀！”一声沉闷撞击，伴随着惨叫。</p>
+<p class = "firstLineIndent">老大捂着被砸出大包的脑袋，朝着老三怒吼，“和你说了多少次了，我修炼的时候不能受打扰必须开静音！”</p>
+<p class = "firstLineIndent">在他脚下，是已经被脑袋砸弯了的可怜杠铃。</p>
+<p class = "firstLineIndent">“呃”老三委屈巴巴，“这回真不是我”</p>
+<p class = "firstLineIndent">老三身后一个身影渐渐显现出来，拿起个人终端点了两下，“咳！不好意思，昨晚追番忘了关</p>
+<p class = "firstLineIndent">咦？”</p>
+<p class = "firstLineIndent">二毛说到一半，突然“咦”了一声。</p>
+<p class = "firstLineIndent">“哼！还想蒙混过关？”老大两掌虚握，准备报一杠之仇。</p>
+<p class = "firstLineIndent">“不是啊老大，你快看个人终端，咱们好像毕业了！”</p>
+<p class = "firstLineIndent">“什么？”其余两人一愣，纷纷查看自己的信息。</p>
+<p class = "firstLineIndent">“真的诶！幽能培训班第一期学员毕业证书哈哈哈！终于可以出去打架了”老三差点喜极而泣。</p>
+<p class = "firstLineIndent">如今三人神功大成，不能出去装逼，简直犹如锦衣夜行！</p>
+<p class = "firstLineIndent">“还有每人10万无限币的奖学金，表彰我们这段时间以来的刻苦学习和深造，另外嘶”</p>
+<p class = "firstLineIndent">当老大看到证书上，持有者的第二项福利时，顿时倒抽了一口凉气。</p>
+<p class = "firstLineIndent">“生命之水不限量供应？！这”三人皆是目瞪口呆。</p>
+<p class = "firstLineIndent">生命之水是什么？</p>
+<p class = "firstLineIndent">人类进化的瑰宝，延年益寿的灵丹妙药，开启幽能系技能的钥匙，提升精神力的南山捷径</p>
+<p class = "firstLineIndent">今天之前，官方售价1万无限币1滴！</p>
+<p class = "firstLineIndent">放在游戏里，绝对是SSS级别的天材地宝，不是土豪根本氪不起的那种！</p>
+<p class = "firstLineIndent">可现在，这种宝物对他们不限量供应？！</p>
+<p class = "firstLineIndent">“老大，这么说，我们以后可以把生命之水当可乐喝了？”老三咽了口唾沫，眼中露出无比的渴望。</p>
+<p class = "firstLineIndent">“应应该是吧？”老大也有种被巨大馅饼砸中的不真实感。</p>
+<p class = "firstLineIndent">这喝的哪里是可乐，完全就是白花花的无限币啊！</p>
+<p class = "firstLineIndent">怪不得人家都说书中自有黄金屋，这毕业证书含金量这么高的么？</p>
+<p class = "firstLineIndent">“等等！冷静，冷静！先把证书放大一百倍，看看有没有陷阱。”老大压下跳动的心脏，强自镇定道。</p>
+<p class = "firstLineIndent">超小号字体，再加90透明度效果，这一向是老板“友情提示”的风格，不得不防。</p>
+<p class = "firstLineIndent">“咦？居然没有！”老大颇感惊奇。</p>
+<p class = "firstLineIndent">除了福利最后一项的“每三天进行一次免费体检”，频率高的让人有些不解外，没有任何“字陷阱”。</p>
+<p class = "firstLineIndent">“是不是真的，试试不就知道了？”二毛一语惊醒梦中人。</p>
+<p class = "firstLineIndent">“智脑！给我来一瓶不！一桶生命之水！”老大举着毕业证书大吼。</p>
+<p class = "firstLineIndent">十分钟后</p>
+<p class = "firstLineIndent">“嗝！”老三丢掉空桶，打了个水嗝。“看来是是真的没错了，嗝！”</p>
+<p class = "firstLineIndent">此时的三人，皆是露出一脸舒爽的鬼畜表情，仿佛陷入了失神状态，浑身上下每一个细胞都充满着浓郁的生命气息，就连头发居然都齐齐长了一大截。</p>
+<p class = "firstLineIndent">“不不行了！精神力都在溢出”</p>
+<p class = "firstLineIndent">“呵！呵呵世界真美好”</p>
+<p class = "firstLineIndent">机械虫：“”╮╰╭</p>
+
+<h2>第七百二十七章 何必只活在爱恨里</h2>
+<p class = "firstLineIndent">将兄弟三人安排明白，聂云刚想设定自动泊车，让这具分身自个儿躺回专用机库，萝丝却是突然叫住了他。</p>
+<p class = "firstLineIndent">“等等！”</p>
+<p class = "firstLineIndent">“女王陛下，有什么事吗？”聂云停下脚步。</p>
+<p class = "firstLineIndent">“不用叫我女王陛下，叫我萝丝就行。”</p>
+<p class = "firstLineIndent">“好的，萝丝！有事？”</p>
+<p class = "firstLineIndent">聂云看了看表，表示自己很忙，不过显然文化代沟有点大，萝丝完全没领会。</p>
+<p class = "firstLineIndent">“那个……一直都没机会向你说声谢谢。”萝丝难得的有些扭捏。</p>
+<p class = "firstLineIndent">在卡拉文明濒临绝境之时，是聂云将她和族人从绝望中一步步拉了出来，这一点萝丝虽然没说，但始终铭记于心。</p>
+<p class = "firstLineIndent">她之所以让卡拉文明倾尽全力帮助开发“卡地萝”项目，甚至亲自上场，其中未尝没有报恩的心思。</p>
+<p class = "firstLineIndent">回想起当时一头闯入聂云的登陆舰想要俘虏对方，却被对方三剑败北，就连王剑绯红礼赞也被击碎，萝丝心情就有些复杂。</p>
+<p class = "firstLineIndent">“哦！没什么，不过是公平交易，想谢谢我的话，加把劲努力工作就行！”</p>
+<p class = "firstLineIndent">聂云笑着拍了拍萝丝的肩膀，一副领导鼓励下属的模样。</p>
+<p class = "firstLineIndent">萝丝：“……”</p>
+<p class = "firstLineIndent">不知道为什么，心情似乎更复杂了……</p>
+<p class = "firstLineIndent">“铿！”佩剑出鞘，萝丝轻抚剑脊。</p>
+<p class = "firstLineIndent">“这把剑……”</p>
+<p class = "firstLineIndent">“很润！我知道，不过这剑名字不太吉利，这样，我先拿回去请大师开个光，去去邪性，回头再给你送把火之高兴。”</p>
+<p class = "firstLineIndent">霜之哀伤：“……”</p>
+<p class = "firstLineIndent">“咳！你还有事吗？没事的话我得先走了，你知道的，那边还需要赶场。”</p>
+<p class = "firstLineIndent">聂云拿着剑走了，在把天彻底聊死之后……</p>
+<p class = "firstLineIndent">“老板，我之前说什么来着？</p>
+<p class = "firstLineIndent">这位女王陛下的生命进化层次较高，潜意识中对拥有强大力量的异性有着特殊好感，果不其然！</p>
+<p class = "firstLineIndent">人家明明对你有点意思，别告诉我你看不出来，何必拒人千里之外。</p>
+<p class = "firstLineIndent">如果以恋爱养成游戏的标准，你刚刚的表现简直丢分！按你这么交流下去，怕是能够轻松达成隐藏成就……‘因爱成恨’！”</p>
+<p class = "firstLineIndent">脑海里响起代号怒其不争的惋惜。</p>
+<p class = "firstLineIndent">聂云却是看向舷窗外，那一片奇幻瑰丽的浩瀚星空，眼神古井无波。</p>
+<p class = "firstLineIndent">“冲动只是暂时的，很快她就会明白，星海辽阔，何必只活在爱恨里……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“他真这么说？”</p>
+<p class = "firstLineIndent">“嗯嗯！”代号小鸡啄米。</p>
+<p class = "firstLineIndent">“不仅是严词拒绝，而且连定情信物都给回收了，没留一丝暧昧余地！”代号一脸笃定。</p>
+<p class = "firstLineIndent">“哼！算他老实！”楚潇潇露出白森森的小虎牙。</p>
+<p class = "firstLineIndent">“老板娘，安全起见，我得赶紧把这个临时子终端人道销毁，不然万一被老板发现，我怕是得被直接重启。”</p>
+<p class = "firstLineIndent">“嗯！辛苦了，放心，下个月福利拉满，奖金加倍！”</p>
+<p class = "firstLineIndent">“为老板娘服务！”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“呼~”聂云擦了擦额头的冷汗。</p>
+<p class = "firstLineIndent">“怎么啦幽灵兄弟，一副劫后余生的模样。”赤龙疑惑道。</p>
+<p class = "firstLineIndent">“没事，就是有时候觉得，还是战场单纯，没那么多勾心斗角，尔虞我诈。”聂云仰头望天。</p>
+<p class = "firstLineIndent">“单纯吗？我怎么没看出来？”</p>
+<p class = "firstLineIndent">赤龙指着对面的舰队。“至少我就看不出来，那个克洛罗斯到底想干嘛。”</p>
+<p class = "firstLineIndent">战斗都打了两天了，他们的舰队已经从洛克星系第六行星轨道圈一直推进到了第三行星轨道圈。</p>
+<p class = "firstLineIndent">可洛克财团的主力舰队却像是生了根一般，对此视若无睹，任凭海盗联盟将洛克财团的防御体系剥洋葱一般层层击毁。</p>
+<p class = "firstLineIndent">“那自然是因为所有的人里面，就属你最单纯！”弥赛亚恨铁不成钢地白了他一眼。</p>
+<p class = "firstLineIndent">“呃……”</p>
+<p class = "firstLineIndent">感觉这不像是在夸我？</p>
+<p class = "firstLineIndent">“对方应该是在利用大纵深，拉开战线分散我们的兵力，看来对方还没死心，一直在寻找我们的破绽。</p>
+<p class = "firstLineIndent">不过我们数次故意露出破绽引诱对方，没想到对方居然一次都不上当。”</p>
+<p class = "firstLineIndent">“这克洛罗斯出身名门，据说曾被某位大贵族赞誉为名将种子，手腕不可小视。</p>
+<p class = "firstLineIndent">可我想不明白的是，他的战略空间已经被压缩到了极限，可供周旋的余地越来越少，等我们再下一城，就算是对方想要翻盘，恐怕也是无力回天了吧？”弗林特皱起眉头。</p>
+<p class = "firstLineIndent">如今的局面虽然看似是消耗战，但在聂云的微操下，海盗一方边打边磨合，就像是在借着猎物磨砺爪牙的凶兽。</p>
+<p class = "firstLineIndent">明眼人都看得出来，海盗一方虽然队形渐渐拉开，但旗舰所在的核心圈，战斗力却是越打越强。</p>
+<p class = "firstLineIndent">如果说一开始对方还有机会从海盗这边寻找破绽，但如今，这种机会却是随着时间的流逝越发渺茫。</p>
+<p class = "firstLineIndent">身为名将种子，不可能连这一点都看不出来，那么……对方究竟在等什么？</p>
+<p class = "firstLineIndent">他在守一座城，等一个人！</p>
+<p class = "firstLineIndent">聂云心中将答案说了出来，眼神不自觉的瞥向了战场侧面一处毫不起眼的角落。</p>
+<p class = "firstLineIndent">这种地图开了透视挂的感觉……</p>
+<p class = "firstLineIndent">真是单纯的战场呐……</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">洛克舰队，旗舰。</p>
+<p class = "firstLineIndent">克洛罗斯一脸笑意的看着已经倒了一地的“警卫排”，“干的很好！”</p>
+<p class = "firstLineIndent">“克洛罗斯大人过奖了！”面前一道人影恭敬的弯腰行礼。</p>
+<p class = "firstLineIndent">等他抬头，却赫然正是金洛克倚为心腹的那名副手！</p>
+<p class = "firstLineIndent">“放心，二皇子殿下绝不会亏待有功之臣！”克洛罗斯拍了拍对方的肩膀，让对方脸上一阵欢喜。</p>
+<p class = "firstLineIndent">“谢大人！金洛克不识时务，明知不可为而为之，还想要拉着所有人一起陪葬，简直愚蠢至极！</p>
+<p class = "firstLineIndent">只有跟着大人，效忠二皇子殿下，才是我们唯一的出路！”</p>
+<p class = "firstLineIndent">在场一众舰长、军官纷纷脸色一凛，加上身后黑洞洞的枪口，当下有不少人直接倒戈。</p>
+<p class = "firstLineIndent">“我等以克洛罗斯大人马首是瞻！”</p>
+<p class = "firstLineIndent">“嗯！很好！”克洛罗斯满意的点了点头。</p>
+<p class = "firstLineIndent">“大人，金洛克那边已经对大人的消极怠战极为不满，虽说我安排了人尽力周旋，不过恐怕拖不了多久，咱们毕竟没办法掌控所有的舰队，一旦对方反应过来，多少也是个麻烦。”</p>
+<p class = "firstLineIndent">“嗯！那位大人的情况如何了？”</p>
+<p class = "firstLineIndent">“大人放心，机体已经完全修复，那位大人目前也是全盛状态！”</p>
+<p class = "firstLineIndent">“很好！我想他恐怕也已经迫不及待了！呵呵……”</p>
+
+<h2>第七百二十八章 天堂之伞</h2>
+<p class = "firstLineIndent">暗影最近感觉很糟心。</p>
+<p class = "firstLineIndent">苦心经营的暗神殿被人连根拔起，自己还惨遭埋伏，连暗影号都差点报废。</p>
+<p class = "firstLineIndent">这还不算，敌人还借着自己的名头招摇撞骗，硬是用李鬼顶替了李逵，让自己有苦还说不出。</p>
+<p class = "firstLineIndent">不得已选择战略撤退，从碎星星域逃了出来吧。</p>
+<p class = "firstLineIndent">刚想投奔隔壁的难兄难弟，组建一支“复仇者联盟”，谁知道前脚刚走，后脚屁股后面5000多艘海盗船呼啦啦就全追了出来。</p>
+<p class = "firstLineIndent">当时雷达上那密密麻麻的红点，差点就把一整船人给吓尿了！</p>
+<p class = "firstLineIndent">多大仇？为了追杀我几乎动员了所有的海盗？到底是给我上了几个亿的悬赏？</p>
+<p class = "firstLineIndent">好在后来暗影才发现，完全是自己自作多情了，对方根本就没把自己所乘坐的小飞船放在眼里，不过是很恰巧的“同路”了而已。</p>
+<p class = "firstLineIndent">戏剧性的是，由于一开始场面极度混乱，他的飞船位置也比较微妙，居然被海盗们当成了积极响应海盗王号召的“自己人”，结果稀里糊涂的就被大部队给裹挟了。</p>
+<p class = "firstLineIndent">于是，暗影来了，以标准的“引狼入室”动作</p>
+<p class = "firstLineIndent">克洛罗斯当时听到暗影居然是跟着海盗联盟的大部队一起到来的时候，脸上的表情那叫一个精彩。</p>
+<p class = "firstLineIndent">要不是暗影身份特殊，克洛罗斯怕是得当场把他当成二五仔处理！</p>
+<p class = "firstLineIndent">好不容易解释完自己现在的尴尬处境，这才在克洛罗斯的接应下顺利脱离海盗舰队，最终抵达了一处隐蔽的秘密基地。</p>
+<p class = "firstLineIndent">直到昨天，暗影号才终于完成修复，于是暗影便迫不及待的来到战场附近伺机复仇，一雪前耻。</p>
+<p class = "firstLineIndent">“幽灵船长！别得意太早，很快你就会明白，什么叫做爬得越高，摔得越惨！”</p>
+<p class = "firstLineIndent">与此同时</p>
+<p class = "firstLineIndent">洛克星系，中央恒星圈。</p>
+<p class = "firstLineIndent">这里的核心是一颗年龄约为58亿年的年轻恒星，大小和亮度属于中等，按半径和温度归类属于g1型矮星。</p>
+<p class = "firstLineIndent">同许多经过多年开发，经济发达的帝国星系一样，这里同样建造了庞大的戴森球结构体。</p>
+<p class = "firstLineIndent">不过这个戴森球结构体并未彻底完工，而是以米字形的超巨大钢铁支架为中心形成不完整球面，覆盖了恒星约十分之一的面积。</p>
+<p class = "firstLineIndent">以超巨大钢铁支架为支撑，半透明，散发昏黄光晕的太阳能薄膜，被更小更细的骨架分割成一块块的太阳能光膜井。</p>
+<p class = "firstLineIndent">这种在伍尔夫帝国内部被称为“能量井”的基础戴森球单位，就像是一块块的太阳能电池板，可以根据每个星系的工程投入一块块的拼装上去。</p>
+<p class = "firstLineIndent">只要你有持续性的投入，和愚公移山的精神，早晚也能将整颗恒星收入囊中，让它单独为你发光发热。</p>
+<p class = "firstLineIndent">从远处看去，这里就像是一柄撑开了的透明伞。</p>
+<p class = "firstLineIndent">洛克星系的人们给它取了个形象而优雅的名字“天堂之伞”！</p>
+<p class = "firstLineIndent">洛克星系开发至今已有数百年时光，在一代代的洛克家族族长手中，眼前的戴森球结构体才有如今的光景。</p>
+<p class = "firstLineIndent">别看十分之一似乎不多，但是对比一下，聂云的“普罗米修斯计划”，至今才覆盖了太阳不到千分之一的面积，其中的工程量可想而知。</p>
+<p class = "firstLineIndent">而即便只是十分之一不到的覆盖量，就已经为洛克星系提供了整整90以上的常规能源消耗，而且能量块还远销周边星系。</p>
+<p class = "firstLineIndent">不过此前还只是作为民用设施的“天堂之伞”，此刻却是开始向世人展示它不为人知的一面。</p>
+<p class = "firstLineIndent">“轰！”只见“天堂之伞”的伞骨尖端如同花瓣一般轰然打开，露出里面一座黑色方尖碑形状的奇异设备。</p>
+<p class = "firstLineIndent">“天堂之伞充能开始！预计完成时间30分钟”</p>
+<p class = "firstLineIndent">无数“能量井”上储存多时的庞大能量，开始朝着“天堂之伞”的中心处汇聚过来。</p>
+<p class = "firstLineIndent">整座“天堂之伞”骤然间散发出蒙蒙亮光，看起来美轮美奂，却有着足以毁天灭地的致命危险。</p>
+<p class = "firstLineIndent">“滋滋滋”耀眼的闪光开始不断游走在方尖碑周身各处，散发出令人心悸的威势。</p>
+<p class = "firstLineIndent">这样的一幕，自然瞒不过海盗一方已经严密布控的眼线和侦测设备。</p>
+<p class = "firstLineIndent">“警报！警报！发现星系中央出现超规格的能量反应，初步判定为恒星武器启动前兆！”</p>
+<p class = "firstLineIndent">“报告！洛克财团主力舰队也有动作，他们已经开始进入高速机动状态！”</p>
+<p class = "firstLineIndent">“什么？！”一众海盗团长脸色一变。</p>
+<p class = "firstLineIndent">“对方这是终于忍不住终于要动手了吗？主攻方向会是哪儿？等等！对方分兵了！这这是什么战术？”</p>
+<p class = "firstLineIndent">只见洛克财团不动则已，动则分道扬镳！</p>
+<p class = "firstLineIndent">克洛罗斯在兵力处于绝对劣势的情况下，居然出人意料的分兵了！</p>
+<p class = "firstLineIndent">两支几乎数量相当的舰队一左一右，朝着海盗联盟的主力舰队包夹了过来，一副想要两面夹击的态势。</p>
+<p class = "firstLineIndent">可人多势众才叫两面夹击，势单力孤那就叫自不量力了。</p>
+<p class = "firstLineIndent">“不管怎么说，先让舰队收缩阵型，以不变应万变！”</p>
+<p class = "firstLineIndent">“不行！别忘了那座恒星武器，咱们这个时候收缩阵型，不是明摆着给人竖靶子吗？”</p>
+<p class = "firstLineIndent">“想必这就是洛克财团留着最后保命的东西了，这杀手锏隐藏的够深的，咱们的探子居然事先一点消息都没有！”</p>
+<p class = "firstLineIndent">“可恶！怪不得对方一直放任我们攻入星系内部，原来是想将我们引入恒星武器的射程之内！”</p>
+<p class = "firstLineIndent">“怕个俅，他们兵分两路，我们也可以！恒星武器虽然厉害，不过短时间内根本无法连续射击，只要我们能够尽快击溃对方的主力舰队，再厉害的恒星武器也会成为摆设！”</p>
+<p class = "firstLineIndent">“怕就怕对方一虚一实，将精锐隐藏在其中一路，到时候敌人主攻的一路或许就危险了。”</p>
+<p class = "firstLineIndent">“都别吵了，海盗王大人，请您拿主意吧！”</p>
+<p class = "firstLineIndent">众人看向聂云。</p>
+<p class = "firstLineIndent">这个时候，有一个权威的声音，就显得无比重要。</p>
+<p class = "firstLineIndent">聂云不动声色的看了舰队左侧的某个方向一眼，就像是偷偷翻到最后一页瞄了一眼答案。</p>
+<p class = "firstLineIndent">随后朗声道，“立刻兵分两路，我方主力舰队前往迎击右侧敌方舰队，务必尽快歼灭。</p>
+<p class = "firstLineIndent">由旗舰率领其余海盗舰队迎战左侧敌人！”</p>
+<p class = "firstLineIndent">众人闻言一愣。</p>
+<p class = "firstLineIndent">“您是判断右侧会是敌人主攻方向，让旗舰脱离主力舰队，则是为了防止对方斩首？”弗林特疑惑道。</p>
+<p class = "firstLineIndent">看聂云一脸笃定的样子，莫非是机械族的天赋技能“战场分析”被动触发了？</p>
+<p class = "firstLineIndent">“嗯差不多是这个意思吧”聂云含含糊糊回了一句。</p>
+<p class = "firstLineIndent">差之毫厘谬以千里，所以有时候，差不多，和差很多基本是一个意思</p>
+<p class = "firstLineIndent">怕你们小心肝承受不住，我还是先不告诉你们真相好了。</p>
+<p class = "firstLineIndent">嗯！这是善意的谎言</p>
+
+<h2>第七百二十九章 隐秘的角落</h2>
+<p class = "firstLineIndent">“左路吗？呵呵！看来这是天要亡你！”克洛罗斯关闭了通讯器，脸上浮现一丝笑意。</p>
+<p class = "firstLineIndent">暗影就埋伏在左路附近，连绕路都省了，自己的计划执行起来也更加简单。</p>
+<p class = "firstLineIndent">很显然，对方抽了个下下签！</p>
+<p class = "firstLineIndent">“大人神机妙算，实在是运筹帷幄，决胜千里！</p>
+<p class = "firstLineIndent">那个所谓的海盗王简直就是自作聪明，以为用主力舰队做诱饵，将旗舰藏于另一支舰队就能迷惑我们，殊不知这群乌合之众根本就是漏洞百出，一点钱财就能收买一大批的海盗向我们通风报信。</p>
+<p class = "firstLineIndent">有这样的猪队友，对方岂能不败？”</p>
+<p class = "firstLineIndent">“哈哈！估计对方是想要用主力舰队当诱饵引开我方天堂之伞的火力，哪知这么做根本正中大人下怀！</p>
+<p class = "firstLineIndent">如今对方旗舰的防护力量已经大大减弱，只要瞄准对方旗舰，主攻左路，我们说不定就能一举将对方首领一网打尽！</p>
+<p class = "firstLineIndent">即便杀不了身为机械族的对方首领，那几个海盗头目一死，所谓的海盗联盟也必将分崩离析！”</p>
+<p class = "firstLineIndent">金洛克的心腹和手下改换门庭之后，一个个谀词如潮，比伺候原主人都卖力。</p>
+<p class = "firstLineIndent">而克洛罗斯的谋划，确实也让他们看到了一丝胜利的希望，各个信心倍增。</p>
+<p class = "firstLineIndent">“机械族？呵！即便是机械族也不是真的不死之身！敢于挡在二皇子道路上的，哪怕是机械族，也要给我陷入永眠！”克洛罗斯眼中寒芒一闪。</p>
+<p class = "firstLineIndent">众所周知，机械族是一种相当耍赖皮的种族，他们的存在形式其实很像是人类幻想中的巫妖一族。</p>
+<p class = "firstLineIndent">传说中的巫妖，有着能够容纳自身“灵魂”的容器“巫妖命匣”，命匣不毁，巫妖不灭。</p>
+<p class = "firstLineIndent">而机械族也有相似的装备，也就是“数据中心”，比如代号的核心数据，便储存在位于月球上的超大型计算阵列中。</p>
+<p class = "firstLineIndent">理论上，只要月球不被攻陷，代号便不死不灭。</p>
+<p class = "firstLineIndent">另外，巫妖可以分裂出一部分的“灵魂”控制身体，哪怕这具身体被毁灭，甚至这部分灵魂被消灭，他也能够通过巫妖命匣中的灵魂重新复活，顶多也就是缺失点记忆。</p>
+<p class = "firstLineIndent">机械族同样，他们能够以制造“子终端”的方式控制一具具在外活动的分身，哪怕控制的分身被敌人毁灭，子终端数据被清零，也完全不影响机械族的本体。</p>
+<p class = "firstLineIndent">比如背着聂云赚外快的代号，将自己的子终端人道销毁起来眼睛都不眨，端的是人狠话不多。</p>
+<p class = "firstLineIndent">如果算上巫妖能够制造亡灵大军，而机械族能够制造机械大军，双方的相似点就更多了。</p>
+<p class = "firstLineIndent">面对这样一种可怕的种族，常规手段根本无法伤到对方的本体。</p>
+<p class = "firstLineIndent">但，世界上并不存在无敌的能力，也不存在无敌的种族。</p>
+<p class = "firstLineIndent">机械族虽然赖皮，但也并非无解。</p>
+<p class = "firstLineIndent">至少伍尔夫帝国的历史上，就曾经消灭了超过两位数的机械族敌人！</p>
+<p class = "firstLineIndent">与此同时，碎星海盗联盟，左路大军。</p>
+<p class = "firstLineIndent">“团长，消息已经送出去了！”</p>
+<p class = "firstLineIndent">“嗯！很好！”被称为团长的海盗首领阴阴一笑。</p>
+<p class = "firstLineIndent">这位赫然是在酒吧惨遭红黄蓝三位团长一顿反勒索的海盗团团长金毛！</p>
+<p class = "firstLineIndent">碎星海盗联盟的成立，虽然使一大批人因此鸡犬升天，得到了实实在在的好处，但是遭受损失的旧秩序既得利益者同样不少。</p>
+<p class = "firstLineIndent">金毛就是其中之一。</p>
+<p class = "firstLineIndent">他原本就是暗神殿的忠实狗腿之一，只是碍于碎星海盗联盟势大，不得不虚与委蛇。</p>
+<p class = "firstLineIndent">加入联盟后，不仅自己巧取豪夺的好处原原本本给吐了回去，就连自己名下的两间旺铺，都被以500块的地板价打包买走，遇见以前可以任由自己拿捏的三个孙子，现在倒还得点头哈腰的反过来装孙子</p>
+<p class = "firstLineIndent">这种从天堂到人间的巨大地位落差，让这位习惯了暗神殿老大，他老二的海盗头子怨念丛生。</p>
+<p class = "firstLineIndent">因此，对那位素未谋面的海盗王，金毛的初始忠诚度可想而知！</p>
+<p class = "firstLineIndent">进攻洛克领的行动开始之后，金毛好处没少捞，对聂云的命令，却是阳奉阴违，能后撤的绝不冲锋，能往后钻的绝不站前排，苟的一批。</p>
+<p class = "firstLineIndent">当然，这样的家伙自然已经被聂云记在了小本本上，打上了“三等公民”的标签，然后踢出主力部队直接打发到了后阵坐冷板凳。</p>
+<p class = "firstLineIndent">毫不知情的金毛还为此沾沾自喜了一阵，心中暗自嘲讽这个海盗王就是一傻缺。</p>
+<p class = "firstLineIndent">让听话的冲锋陷阵，想摸鱼的直接就给放生了？</p>
+<p class = "firstLineIndent">主力部队的战斗力暂时是上去了，可人心散了，队伍还怎么带？</p>
+<p class = "firstLineIndent">这帮机械族，把战场想的这么单纯的吗？</p>
+<p class = "firstLineIndent">前不久老东家暗影主动联系，给出了一个让人难以拒绝的价码，双方一拍即合，金毛立刻承诺可以暗中提供情报。</p>
+<p class = "firstLineIndent">当然，他也不傻，知道现在暗影和洛克财团翻盘的几率实在渺茫，因此只愿意当一个匿名的地下抵抗者。</p>
+<p class = "firstLineIndent">下黑手给那位海盗王找点麻烦还行，让他旗帜鲜明的加入“复仇者联盟”？他还不想和自己的小命过不去。</p>
+<p class = "firstLineIndent">就在不久前，聂云决定兵分两路，可对方的旗舰却是出人意料的脱离了主力部队，反而和他们这批坐冷板凳的混在了一起组成左路军。</p>
+<p class = "firstLineIndent">这么重要的消息，自然是第一时间被金毛卖了个好价钱！</p>
+<p class = "firstLineIndent">“团长，如今联盟势大，在碎星星域更是一手遮天，咱们这么干，怕是有些风险吧？”先前汇报的那名小弟有些小心翼翼道。</p>
+<p class = "firstLineIndent">“混账！怕个俅？”金毛一拍对方脑门儿，“咱们不过是漏点消息，你以为没有我们，其他人就会守口如瓶了？这笔钱，不赚白不赚！</p>
+<p class = "firstLineIndent">再说了，咱们有没有公开扯旗造反，这事儿只有你知我知，你不说，哪会有什么风险？”</p>
+<p class = "firstLineIndent">“说说的也是”小弟刚松口气，冷不丁眼前一道光芒闪过。</p>
+<p class = "firstLineIndent">下一刻，这名小弟脑袋上已经多了一个血洞仰面栽倒，那松出去的一口气，却是再也没能再收回来了</p>
+<p class = "firstLineIndent">“哼！现在，就真的什么风险都没有了”</p>
+<p class = "firstLineIndent">收起枪，金毛冷笑一声，转身离开了这个隐秘的角落</p>
+
+
+
+<a href="710.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="730.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp</p><p>&nbsp</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

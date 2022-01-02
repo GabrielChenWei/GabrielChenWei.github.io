@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+<h2>第七百九十章 被动</h2>
+<p class = "firstLineIndent">在冰冷寂静的宇宙中，规模以上的舰队调动留下的足迹极难掩盖，地球防卫军也未曾想过掩盖舰队行踪。</p>
+<p class = "firstLineIndent">于是这400艘入侵战舰很自然的，就朝着柯伊伯带内，地球主力所藏匿的陨星密集区域直线袭来！</p>
+<p class = "firstLineIndent">“追踪者密集阵”依旧在战场上持续不断的怒吼。</p>
+<p class = "firstLineIndent">这种塔防一样的持续性杀伤设施，虽然伤害感人，但只要能量足够，弹药足够，敌人放着不管的话足以打满整个战场加时赛，相当恶心人。</p>
+<p class = "firstLineIndent">这就是主场优势！</p>
+<p class = "firstLineIndent">而将目标集中在400艘朝着太阳系而来的侵略战舰之后，密集阵的火力密度又有了一个提升。</p>
+<p class = "firstLineIndent">然而铁壁舰队只是打开一个军团版的“大气神盾”，便将这些弹道简单的“暴雨梨花针”尽数拦截了下来。</p>
+<p class = "firstLineIndent">场面就像是一个盾战士顶着枪林弹雨开始了冲锋。</p>
+<p class = "firstLineIndent">不过身为帝国精锐，铁壁舰队以防御著称，但也绝不是只会挨打的铁乌龟，反击很快到来。</p>
+<p class = "firstLineIndent">宽体战舰上，一排排大口径五联装炮口从舰体上方升起。</p>
+<p class = "firstLineIndent">“砰砰砰！”一枚枚直径2米左右的重型金属炮弹高速射出。</p>
+<p class = "firstLineIndent">300艘战舰三轮齐射，数量超过4500枚金属炮弹，直奔已经暴露了坐标的“追踪者”3号炮台而去！</p>
+<p class = "firstLineIndent">“呃……这些家伙干嘛？都星际时代了还玩巨舰大炮那一套？”</p>
+<p class = "firstLineIndent">“这攻击速度也太慢了点，而且还是实体弹丸，就这么点数量，‘大气神盾’什么的以为我们没有？真当我们是土著文明了？”</p>
+<p class = "firstLineIndent">正在看现场直播的地球人一头雾水，这画风有点走偏了吧？</p>
+<p class = "firstLineIndent">不过很快，他们就发现事情没那么简单。</p>
+<p class = "firstLineIndent">只见这些金属炮弹弹出后不久，便突然在太空中轰然爆开。</p>
+<p class = "firstLineIndent">但他们并没有彻底解体，却是在众人惊讶的目光中形成了一个个耀眼的能量球，爆炸产生的能量居然还额外的提供了一部分动能，让它们的速度爆发式激增，直接化为一道道流光！</p>
+<p class = "firstLineIndent">“卧艹！我以为是物理攻击，没想到居然是能量攻击！”</p>
+<p class = "firstLineIndent">“好高的能量反应，这内部温度怕不是得有几百亿度？”</p>
+<p class = "firstLineIndent">“有点像是电浆炮，不过能量密度更高，更像是被极致压缩的iii型聚变反应，莫非这就是传说中的……‘微型类托卡马克磁约束装置’？！”</p>
+<p class = "firstLineIndent">“呃……我们中似乎混入了某个不得了的大佬……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“检测到攻击源，转换优先攻击目标！”</p>
+<p class = "firstLineIndent">3号密集阵炮台在智能控制系统的分析下，迅速调转了枪口，将目标对准了来袭的一大波不明攻击。</p>
+<p class = "firstLineIndent">“追踪者密集阵”攻防一体，用于攻击的同时，自然也能够充当“导弹拦截系统”。</p>
+<p class = "firstLineIndent">智脑的弹道计算相当精准，密集的弹链算好了提前量，准确的扫中极速射来的弹幕。</p>
+<p class = "firstLineIndent">然而令人意想不到的是，这些电磁弹丸还未靠近对方，便被一层无形的磁场阻隔，不是被偏转便是被弹开。</p>
+<p class = "firstLineIndent">当然，力是相互的，动能守恒定律依旧在发挥作用。</p>
+<p class = "firstLineIndent">只不过，这些奇特炮弹受到的绝大多数反作用力，却是在外层磁场的作用下，被直接以自转的方式卸去力道。</p>
+<p class = "firstLineIndent">就好比鞭子抽打陀螺，大部分的鞭打力道都被转化成了旋转势能。</p>
+<p class = "firstLineIndent">因此即便被命中，也仅仅只是让这些滑不溜手的高能磁约束体疯狂旋转，从一颗普通“能量弹”变成了“螺旋丸”。</p>
+<p class = "firstLineIndent">貌似威力反而还变大了一些……</p>
+<p class = "firstLineIndent">密集阵拦截无效，很快，这一波重炮便顶着密集的弹幕火力来到了3号密集阵的近前。</p>
+<p class = "firstLineIndent">“阵地护盾功率全开，近防能量炮全力拦截！”负责3号火力阵地的军官大声喊道。</p>
+<p class = "firstLineIndent">数十门高速射线炮同时开火，密集的光雨扑向这波能量球。</p>
+<p class = "firstLineIndent">然而结果却令人大失所望，能量光束精度高速度快，确实命中率极高，但是打上去的能量光束竟然是直接被高能磁约束体所吸收，一点水花都没冒出来。</p>
+<p class = "firstLineIndent">完全无效也就算了，看样子似乎还给对方主动冲了能，让这些能量球的能量反应更剧烈了。</p>
+<p class = "firstLineIndent">而力场射线，则根本无法破坏这种磁约束体。</p>
+<p class = "firstLineIndent">引力与电磁力同为四大基础力，但却无法相互影响，这是不同的两种存在形式。</p>
+<p class = "firstLineIndent">“物理攻击免疫也就算了，魔法攻击也免疫？还能吸收伤害增强威力！这特么什么见了鬼的炮弹？！”地球防卫军眼珠子都快瞪出来了。</p>
+<p class = "firstLineIndent">“果然，没有无用的科技树，这未来战争莫非是要走复古流？”</p>
+<p class = "firstLineIndent">能量武器拦截依旧无效，下一刻，成吨的伤害就砸在了火炮阵地的大型力场护盾上。</p>
+<p class = "firstLineIndent">猛烈的高速撞击瞬间破坏了磁约束装置，被极致压缩的高能粒子流终于肆无忌惮的猛烈爆发开来！</p>
+<p class = "firstLineIndent">“轰轰轰！”一团团爆开的巨大火焰，如同黑夜中绽放的火焰之花，瞬间覆盖了整面护盾。</p>
+<p class = "firstLineIndent">每一枚炮弹爆炸的威力，都足够炸掉小半个地球，护盾剧烈动荡起来。</p>
+<p class = "firstLineIndent">终于，在挨了近千枚重炮之后，地球军的大型护盾再也坚持不住轰然崩解，随后而来的重炮毫无阻碍的轰进了阵地。</p>
+<p class = "firstLineIndent">随后便是一片耀眼的火光……</p>
+<p class = "firstLineIndent">这种炮弹的外层是高能粒子，内部核心的磁约束机构却是实体，竟是同时具备了能量攻击和物理攻击特性。</p>
+<p class = "firstLineIndent">被命中的目标先是遭受一波高能爆炸，随后便是高速炮弹带来的动能冲击，即便是厚度达到数十公里的掩体，都只能被一击击穿！</p>
+<p class = "firstLineIndent">现场只能用四个字来形容——摧枯拉朽！</p>
+<p class = "firstLineIndent">观看现场直播的地球人尽皆失声，只能眼睁睁看着火力阵地内的一个个监控视频迅速变成雪花点。</p>
+<p class = "firstLineIndent">最后的画面是一个远景镜头。</p>
+<p class = "firstLineIndent">画面中，整个3号火力阵地方圆数千公里已经是千疮百孔，如同被狗啃过一般，遍布大大小小的坑洞。</p>
+<p class = "firstLineIndent">恐怖的攻击几乎纵向击穿了一整个柯伊伯带，将这附近的地貌彻底破坏。</p>
+<p class = "firstLineIndent">追踪者密集阵自然是彻底哑火，它所在的大型陨星这回是成了“真蜂窝煤”，连同它附近的所有配套设施，都是被破坏殆尽，短时间内根本无法修复，或者说，完全没有了被修复的价值。</p>
+<p class = "firstLineIndent">有那功夫，还不如重新再造一座火力点。</p>
+<p class = "firstLineIndent">只是三轮重炮齐射，3号火力阵地便被彻底摧毁，这样的攻击火力绝对堪称凶残。</p>
+<p class = "firstLineIndent">似乎是通过一轮试射探出了虚实，铁壁舰队的300艘战舰在取得第一个战果后，迅速进入了下一轮攻击节奏。</p>
+<p class = "firstLineIndent">“砰砰砰！”一波波的重炮朝着剩余的几个密集阵火力点开始倾泻。</p>
+<p class = "firstLineIndent">只花了一个多小时，10座地球防卫军精心打造的火力点便被一一拔除，而敌方舰队则是丝毫不受影响的持续拉近着与太阳系的距离。</p>
+<p class = "firstLineIndent">“这就是伍尔夫帝国的高端武力么……”</p>
+<p class = "firstLineIndent">地球防卫军内，三位指挥官齐齐惊叹。</p>
+<p class = "firstLineIndent">太阳系防御链自然不可能只有这么点家底。</p>
+<p class = "firstLineIndent">但即便这些只是用来试探敌人的开胃小菜，如此轻易便被敌人破解，依旧有些出乎众人的预料。</p>
+<p class = "firstLineIndent">“和他们相比，洛克财团的舰队果然只能算是地方武装了。”</p>
+<p class = "firstLineIndent">“怪不得人家有信心只用400艘战舰攻击我们，更令人在意的，还是那支从未动手的黑色舰队……”</p>
+<p class = "firstLineIndent">从始至终，发动攻击的就只有前方的300艘铁壁舰队，而在这些“肉盾”身后，如同闲庭信步一般的100艘黑旗战舰竟是一炮未发。</p>
+<p class = "firstLineIndent">这架势，仿佛就是用来压阵的绝世猛将。</p>
+<p class = "firstLineIndent">逼格拉满，咖位尽显！</p>
+<p class = "firstLineIndent">而就在所有人都认为对方将会以雷霆万钧之势一路强袭，最终与地球防卫军正面决战之时，对方却是突然在中途一个拐弯！</p>
+<p class = "firstLineIndent">“咦？怎么转向了，不会是怕了吧？”</p>
+<p class = "firstLineIndent">“这支舰队会不会只是虚张声势，其实想玩声东击西？”</p>
+<p class = "firstLineIndent">看直播得观众们一脸茫然，地球防卫军的三位指挥官却是尽皆变了脸色。</p>
+<p class = "firstLineIndent">“唉！果然，作为防守方，我们还是太被动了……”</p>
+
+<h2>第七百九十一章 上班时间</h2>
+<p class = "firstLineIndent">“本想利用附近的防御节点配合舰队与敌人决战，没想到敌人看似自大，却相当谨慎，居然没上当，这是逼着我们换战场啊！”</p>
+<p class = "firstLineIndent">三人叹息。</p>
+<p class = "firstLineIndent">这就是身为防御方最为无奈的地方了。</p>
+<p class = "firstLineIndent">星系攻防战中，防御一方占据绝对的主场优势是没错，但战争的主动权无疑却是牢牢掌握在进攻方手中。</p>
+<p class = "firstLineIndent">地球、火星，乃至太空中一系列的重要工业基地和航空港，都是防御方所必救的软肋，或者可以称之为“战略要害”！</p>
+<p class = "firstLineIndent">再完善的星系防御体系，也做不到将每一个地方都武装到牙齿，一旦被突入到危险距离，再来一波刚刚那样的齐射，那真是一夜回到解放前。</p>
+<p class = "firstLineIndent">有这样的战略优势在，经验丰富的铁壁舰队自然不会傻到在地球防卫军精心挑选的“战场”上交战。</p>
+<p class = "firstLineIndent">想什么时候打，想在哪儿打，这完全取决于进攻方。</p>
+<p class = "firstLineIndent">“小行星带是我们最后的红线，一旦让对方突破，我们的精华区域就危险了。”</p>
+<p class = "firstLineIndent">“命令舰队机动吧，总不能让对方就这么长驱直入。”</p>
+<p class = "firstLineIndent">“太阳系外围防御体系也不用隐藏了，一旦敌人进入射程，立刻发动攻击！”</p>
+<p class = "firstLineIndent">“发布全民战争动员令，各大机库大规模弹射准备！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">随着一连串指令的下达，原本隐藏在柯伊伯带之内，与一系列防御要塞融为一体的舰群引擎轰鸣，缓缓驶出要塞群……</p>
+<p class = "firstLineIndent">经过这段时间造船厂加班加点24小时不间断的疯狂下饺子，如今的地球防卫军共计拥有369艘各类战舰。</p>
+<p class = "firstLineIndent">其中刚刚列装不久的1公里级“鱼肠”特种舰12艘。</p>
+<p class = "firstLineIndent">3公里级“干将”、“莫邪”护卫舰200艘。</p>
+<p class = "firstLineIndent">8公里级“纯钧”、“湛泸”驱逐舰98艘。</p>
+<p class = "firstLineIndent">10公里级“泰阿”航母56艘。</p>
+<p class = "firstLineIndent">此外还有3艘旗舰级载人指挥舰“守望号”、“辉煌号”和“天兵号”。</p>
+<p class = "firstLineIndent">论体积，地球防卫军的这些战舰普遍比铁壁舰队小上一号，不过考虑到无人战舰的精简布局，武器槽位却并不会比同级别战舰少多少。</p>
+<p class = "firstLineIndent">这些战舰形态各异，即便是同一型号的战舰，细节上也略微有所不同。</p>
+<p class = "firstLineIndent">主要是技术更新太快，导致战舰设计图一直在变动，已经建造完成的战舰，时不时都要返回船坞改造一番。</p>
+<p class = "firstLineIndent">这就导致这支舰队看起来就是一支五花八门的杂牌军，相比于铁壁舰队清一色威武霸气的制式装备，气势上就弱了不少。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“呵！果然还是高看了这些家伙。”铁壁子爵看到前方发回来的战场图像，摇头失笑。</p>
+<p class = "firstLineIndent">这七拼八凑的舰队，怕是挨不了己方一轮齐射……</p>
+<p class = "firstLineIndent">那100艘黑旗战舰看来是多余了。</p>
+<p class = "firstLineIndent">不过很快，地球文明就让他知道了，什么叫做主场优势。</p>
+<p class = "firstLineIndent">只见地球舰队开拔的同时，剩余32座分布于柯伊伯带各处的“追踪者密集阵”却是不再顾忌暴露坐标，开始了肆无忌惮的咆哮，密集的弹幕铺天盖地般扑向敌舰！</p>
+<p class = "firstLineIndent">而随着铁壁舰队的接近，附近的3座大型防御要塞也开始露出狰狞的獠牙。</p>
+<p class = "firstLineIndent">这3座防御要塞以3颗直径超过1000公里的大型天体为依托，不仅表面炮塔林立，内部也几乎彻底被挖空，成为巨大无比的地下机库。</p>
+<p class = "firstLineIndent">此时，上百个电磁弹射通道轰然开启，蜂巢般的天体开始以每秒上百台的速度，疯狂朝外喷吐无人机甲、战机等空战武器。</p>
+<p class = "firstLineIndent">要塞表面的导弹阵地上更是壮观，每一秒，都有成百上千的飞弹冲天而起，那场面，就像是不小心捅了一个超级马蜂窝。</p>
+<p class = "firstLineIndent">“终于轮到我们出场了，不说了，一发飞弹先干为敬！”</p>
+<p class = "firstLineIndent">“弟兄们，冲啊！前三轮炮灰所有武器装备全部05折优惠，突出一个量大管饱！过了这个村就没那个店了！”</p>
+<p class = "firstLineIndent">“知道是炮灰居然还这么多人报名，我前面居然还有987万排队的……你们真的是够了！”</p>
+<p class = "firstLineIndent">“求组队作死！”</p>
+<p class = "firstLineIndent">“不看不知道，原来我们地球文明家底居然已经这么雄厚了，今天就是堆，也得把他们堆死！”</p>
+<p class = "firstLineIndent">“愚蠢的伍尔夫星人，说吧，棺材是想买滑盖的还是翻盖的？”</p>
+<p class = "firstLineIndent">“……有没有加固防诈尸的？主要怕没凉透。”</p>
+<p class = "firstLineIndent">已经集体上线的地球人远程控制着各种武器，依靠滑行静静地靠近敌方舰群，不出意外，半个小时后，他们就将成为第一波拦截力量。</p>
+<p class = "firstLineIndent">嗯！时间有点漫长，无聊的地球人只能水群……</p>
+<p class = "firstLineIndent">这些无人作战武器燃料有限，作战半径相当感人，不过在太空中，它们却能够依靠惯性，计算好提前量利用初速度缓慢接近。</p>
+<p class = "firstLineIndent">当然，返航什么的就不用考虑了，本来就是一次性用品，还要什么回收？</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">看到画面中铺天盖地的进攻单位，铁壁子爵眼角微微抽了抽。</p>
+<p class = "firstLineIndent">“这风格……怎么这么像机械族？”</p>
+<p class = "firstLineIndent">就在这时，他却是突然收到了一个来自太阳系内部的通讯信号……</p>
+<p class = "firstLineIndent">“万物归一会黑执事？”看到对方的“好友申请备注”，铁壁子爵眼睛微微一眯。</p>
+<p class = "firstLineIndent">“有意思！接进来。”</p>
+<p class = "firstLineIndent">他没有拒绝，对这个据说背景成谜，还能让二皇子吃瘪的神秘组织，他倒是很有兴趣接触一下。</p>
+<p class = "firstLineIndent">至于对方联系他的目的……</p>
+<p class = "firstLineIndent">大概……是为了求和吧……</p>
+<p class = "firstLineIndent">铁壁子爵蜜汁自信。</p>
+<p class = "firstLineIndent">很快，一个黑袍人的影像出现在他的面前，画面阴暗背景板营造的气氛就是突出四个字……“我很神秘”！</p>
+<p class = "firstLineIndent">铁壁子爵打量对方一眼，随后有些厌恶地皱了皱眉。</p>
+<p class = "firstLineIndent">“我讨厌一切黑兜帽，所以你给我的第一印象……很不好！”</p>
+<p class = "firstLineIndent">因为这样的同款黑袍，让他不由得想到了二皇子的秘卫。</p>
+<p class = "firstLineIndent">聂云愣了一下，没想到只是撞个衫，人家的初始好感度就给莫名其妙降低了……</p>
+<p class = "firstLineIndent">要不下次给黑袍上绣上几朵红云，听说最近反派角色流行穿这个？</p>
+<p class = "firstLineIndent">“呵呵！那真是太不好意思了，毕竟是组织要求的统一着装，上班时间倒是不好违反规定。”</p>
+<p class = "firstLineIndent">铁壁子爵显然是没想到会听到这样的回答，一时间居然接不上话。</p>
+<p class = "firstLineIndent">神特么上班时间……</p>
+<p class = "firstLineIndent">“不过看来……铁壁子爵似乎也是不太喜欢二皇子的秘卫？”聂云笑眯眯地猜测道。</p>
+<p class = "firstLineIndent">稍微联系一下铁壁子爵光荣的家族历史，不难猜到原本是保皇派的铁壁家族，突然就被领导要求参加皇位争霸赛，按照常理来说，这铁定是有些心里抵触的吧？</p>
+<p class = "firstLineIndent">铁壁子爵闻言果然浑身一震，不可思议的看着聂云。</p>
+<p class = "firstLineIndent">怎么可能？！</p>
+<p class = "firstLineIndent">没办法，聂云的这句话字很少，但里面的信息量就太大了。</p>
+<p class = "firstLineIndent">对方知道此行真正得主使者是二皇子，这也就罢了，但是对方居然一语道破了自己的身份，这就不是仅凭推测能够解释得通的了。</p>
+<p class = "firstLineIndent">“你认识我？”铁壁子爵盯着聂云问道。</p>
+<p class = "firstLineIndent">“霍顿大公爵的得力干将，帝国铁壁，阁下的名号如雷贯耳。”聂云假装自己很有见识。</p>
+<p class = "firstLineIndent">事实上，这名字刚听说没多久……</p>
+<p class = "firstLineIndent">“万物归一会，果然有点门道，看来二皇子这亏吃的，不冤！”震惊过后，铁壁子爵很快恢复了镇定。</p>
+<p class = "firstLineIndent">“这么说，你们早知道我要来？那么……是我的人，还是二皇子的人？”</p>
+<p class = "firstLineIndent">有人泄密！</p>
+<p class = "firstLineIndent">铁壁子爵第一时间想到的就是这个唯一的可能。</p>
+<p class = "firstLineIndent">“如果我说泄密的是二皇子，你肯定不信。”</p>
+<p class = "firstLineIndent">“你当我是傻子吗？”</p>
+<p class = "firstLineIndent">“呵……”</p>
+<p class = "firstLineIndent">聂云无奈地摊了摊手。</p>
+
+<h2>第七百九十二章 清道夫</h2>
+<p class = "firstLineIndent">虽然被人一语道破身份，还疑似出了内鬼，不过铁壁子爵依旧一脸镇定。</p>
+<p class = "firstLineIndent">这是对实力无比的自信。</p>
+<p class = "firstLineIndent">任何的阴谋诡计，在他的强大舰队面前，不过是蚍蜉撼树。</p>
+<p class = "firstLineIndent">偷袭又如何？强攻又如何？在他眼里差别不过是多费点手脚而已。</p>
+<p class = "firstLineIndent">“知道又怎么样？看样子，你们得到消息的时间似乎有点晚，有些准备不足啊？”铁壁子爵指了指另一面的战场，有些不屑。</p>
+<p class = "firstLineIndent">那边的战场之上，虽然地球一方看似数量上占据了绝对优势，不过铁壁舰队的齐射威力极大，暴露出来的火力阵地正一个个被点掉。</p>
+<p class = "firstLineIndent">“知道的晚，总比有的人一直被蒙在鼓里好多了。”聂云意有所指地笑了笑。</p>
+<p class = "firstLineIndent">铁壁子爵眉头微微一皱。</p>
+<p class = "firstLineIndent">“你特意找来，只是为了透露些可有可无的情报，再讲些模棱两可的垃圾话就像唬住我，以为我是吓大的？”</p>
+<p class = "firstLineIndent">聂云一愣，这铁壁子爵讲话，倒不像那些端着架子的贵族透着股流氓气。</p>
+<p class = "firstLineIndent">“原本我想着大家能以和为贵，毕竟我们万物归一会和子爵阁下往日无冤近日无仇的，不过看来子爵阁下不是个随便三言两语就能说服的人。”</p>
+<p class = "firstLineIndent">“当然！虽然看不上二皇子那家伙，不过毕竟是霍顿公爵阁下亲自下的命令，我这个人，只信拳头和舰炮！</p>
+<p class = "firstLineIndent">如果你想让我放弃任务退兵，光靠嘴可不行。”</p>
+<p class = "firstLineIndent">“嗯，有你这句话我就放心了。”</p>
+<p class = "firstLineIndent">“什么？”</p>
+<p class = "firstLineIndent">“呵呵！我们很快会再见的”</p>
+<p class = "firstLineIndent">愣愣的看着突然黑掉的屏幕，铁壁子爵久久无语。</p>
+<p class = "firstLineIndent">这家伙到底来干嘛的？</p>
+<p class = "firstLineIndent">放狠话？那你倒是说几句脏的啊？</p>
+<p class = "firstLineIndent">而且最后那一副“你这么不给面子真是太好了”的样子是我的错觉？</p>
+<p class = "firstLineIndent">“哼！故弄玄虚！”</p>
+<p class = "firstLineIndent">对方一番云里雾里的话，铁壁子爵虽然有些在意，不过很快就将其抛在了脑后。</p>
+<p class = "firstLineIndent">“子爵阁下，我们的行动已经暴露，需不需要改变计划。”副官迟疑了一下道。</p>
+<p class = "firstLineIndent">“不需要，我们行动前后不过3个月，算上他们刺探情报所需要的时间，这么短时间你认为他们能集结多少防御力量？</p>
+<p class = "firstLineIndent">如果对方真的早有准备，等待我们的就不会只是这么点舰队了。</p>
+<p class = "firstLineIndent">你再告诉我，3个月内是否有大规模舰队进入太阳系的迹象？”</p>
+<p class = "firstLineIndent">“这个倒是没有。”副官如实回答。</p>
+<p class = "firstLineIndent">只要不是无工质推进引擎，宇宙真空中的能量辐射就可以保存相当长的时间，一艘两艘战舰或许还能用各种方法躲过探测，大规模舰队就绝无可能。</p>
+<p class = "firstLineIndent">无工质推进引擎，伍尔夫帝国倒也不是没有，只不过推力完全无法同传统工质引擎相比，对机动性能要求极高的宇宙战舰来说，基本不可能安装这种东西。</p>
+<p class = "firstLineIndent">“那不就结了！对方要有埋伏，肯定也是在双子星那边，可区区一个双子星，他们刚刚又经历惨败，此刻能有多少实力？</p>
+<p class = "firstLineIndent">说实话，我还巴不得对方集结个几万艘战舰，最好再来十颗八颗的战星，这样咱们就能有借口直接打道回府，你以为我真想蹚这趟浑水，给那种家伙卖命？”</p>
+<p class = "firstLineIndent">副官没敢接话。</p>
+<p class = "firstLineIndent">“把画面切过去，我倒要看看，这万物归一会的一个区区分会，有没有能力挡下我铁壁舰队的兵锋！”</p>
+<p class = "firstLineIndent">“是！”</p>
+<p class = "firstLineIndent">“轰轰轰！”一座座火力阵地一个个哑火，地球军的海量无人机大军还未与对方短兵相接，就有超过一半的“密集阵”遭到毁灭性的打击。</p>
+<p class = "firstLineIndent">“敌方无人机群接近中，更换‘清道夫’，齐射！”</p>
+<p class = "firstLineIndent">“砰砰砰！”超过1500枚圆柱状的白色特殊炮弹慢悠悠地朝着密密麻麻的地球军无人机群飞去。</p>
+<p class = "firstLineIndent">“什么东西？”</p>
+<p class = "firstLineIndent">“不管是什么，撞下来再说！”</p>
+<p class = "firstLineIndent">“‘没头脑’第一小分队，上！”</p>
+<p class = "firstLineIndent">位于攻击序列最前方的飞弹群立刻就有一批“悍不畏死”的玩家启动了飞弹引擎，长长的环形幽蓝尾焰喷吐，带着它们加速朝着对面的攻击撞了过去。</p>
+<p class = "firstLineIndent">地球军的无人机大军虽然一开始就启动了“集团冲锋”技能，不过并不是一窝蜂的往上冲，而是很有层次的分成了几个冲锋集团。</p>
+<p class = "firstLineIndent">最前面的排头兵没说的，自然是玩家控制的金牌炮灰——“特种飞弹”，它们负责充当第一轮试探性质的炮灰。</p>
+<p class = "firstLineIndent">然后是机动灵活的小型战机“银梭vi型”，它们负责引开敌人的火力，牵制干扰敌人舰队的防空武器。</p>
+<p class = "firstLineIndent">最后则是重型机甲群“剑仙ii型”，负责重火力支援，突破防线，杀伤敌舰。</p>
+<p class = "firstLineIndent">“没头脑小队”，正是玩家团体组建的“特种飞弹”战斗群。</p>
+<p class = "firstLineIndent">名字起得有些任性，不过论起当炮灰的经验，里面的玩家各个都称得上大师级别，作死的经验极其丰富。</p>
+<p class = "firstLineIndent">随着双方距离飞速拉近，就见最前方的飞弹突然弹开了部分弹体，露出里面密密麻麻的小钢珠。</p>
+<p class = "firstLineIndent">紧接着如同天女散花般，这些小钢珠被一排排弹射出去，最终在太空中形成了一大片由小钢珠构成的网状弹幕。</p>
+<p class = "firstLineIndent">一枚枚飞弹，顷刻间变成了一张张巨网罩了过去。</p>
+<p class = "firstLineIndent">集束子母弹——“花蕊”系列！</p>
+<p class = "firstLineIndent">经过技术的不断更新换代，“飞弹”这种几乎已经快被宇宙战争淘汰的低速武器却是被地球人玩出了花。</p>
+<p class = "firstLineIndent">它们不仅拥有了更灵活的机动能力，而且种类也是五花八门。</p>
+<p class = "firstLineIndent">比如侧重突防能力的“针尖”系列，侧重爆炸威力的“麦芒”系列，还有类似这种用于拦截和范围杀伤的集束子母弹“花蕊”系列。</p>
+<p class = "firstLineIndent">单只是打头的飞弹群，玩家们几乎就能组一个功能齐全的进攻梯队。</p>
+<p class = "firstLineIndent">战时一枚飞弹一点无限币的售价，简直就是白菜价！</p>
+<p class = "firstLineIndent">“轰轰轰！”</p>
+<p class = "firstLineIndent">双方相对速度超过100马赫，这样的速度下，那绝对是挨着即死，擦着即亡，铁壁舰队的炮弹不出意外地被当场拦截。</p>
+<p class = "firstLineIndent">然而这爆炸的威力却是远远超出了地球人的预料。</p>
+<p class = "firstLineIndent">宇宙中如同多出了上千个太阳，一枚枚耀眼的光团猛然炸开，恐怖的高能射线以光速扩散，将沿途上万公里以内所有的物体尽数气化！</p>
+<p class = "firstLineIndent">这些光球以光速膨胀开来，几乎是眨眼间便将后方一大波的飞弹群囊括在内。</p>
+<p class = "firstLineIndent">随着距离的拉长，爆炸产生的高能射线威力在极速衰减，但是照射在飞弹弹体上，依旧如同硫酸泼了上去。</p>
+<p class = "firstLineIndent">足够抵抗上千度高温的金属外壳瞬间发泡脱落，随后里面的精密构件瞬间起火，下一刻直接爆开成为一团火花。</p>
+<p class = "firstLineIndent">后方的飞弹根本无法刹车，直接一头扎了进来，最后也是无一幸免！</p>
+<p class = "firstLineIndent">光线继续扩散，照射在更后方的“银梭”机群身上，虽然没有直接击落它，却也使得机体的护盾值狂掉。</p>
+<p class = "firstLineIndent">更要命的是，这样爆炸足有上千次，每一个爆炸的有效杀伤范围都超过百万公里。</p>
+<p class = "firstLineIndent">要是太倒霉，挨上附近五六次“能量冲击波”，伤害叠加之下，即便是战机的力场护盾也坚持不住，最后的下场自然就可以预见了</p>
+<p class = "firstLineIndent">“快躲开！”</p>
+<p class = "firstLineIndent">“散开，从侧面绕过去！”</p>
+<p class = "firstLineIndent">“护盾全开，扛下来！”</p>
+<p class = "firstLineIndent">战场频道内都是地球人的惊呼。</p>
+<p class = "firstLineIndent">即便是后方的机甲群，都受到了些许影响，护盾微微荡漾开一团团波纹。</p>
+<p class = "firstLineIndent">“这是伽马射线暴？！”一直在观察战局的三位指挥官眉头微微一皱。</p>
+<p class = "firstLineIndent">经过战场数据分析，他们很快得到了这种爆炸的本质——超新星拟态爆炸！</p>
+<p class = "firstLineIndent">简单来说，这是一种模拟超新星爆炸的超级，堪称宇宙版超级核弹。</p>
+<p class = "firstLineIndent">只不过这玩意儿完全就是无差别的大范围地图炮，用出来往往是两败俱伤。</p>
+<p class = "firstLineIndent">三人看向对面的敌方舰队。</p>
+<p class = "firstLineIndent">果然，对方确实也受到了影响。</p>
+<p class = "firstLineIndent">只不过相比于机甲和战机这类小型战争兵器，战舰的超大功率护盾几乎完全无视了这种爆炸核心外围的能量冲击，微微闪了闪，云淡风轻。</p>
+<p class = "firstLineIndent">“这摆明了是以大欺小啊”</p>
+<p class = "firstLineIndent">“不愧是常年和机械族作战的伍尔夫帝国精锐，对付‘机海战术’，绝对是驾轻就熟的老手啊！”</p>
+<p class = "firstLineIndent">“论‘艺术’水平，对方恐怕不在我方之下！”</p>
+<p class = "firstLineIndent">一群玩家无奈水群。</p>
+<p class = "firstLineIndent">这就是缺少大型战争兵器的弊端之一了。</p>
+<p class = "firstLineIndent">清场神器“清道夫”，欺负的就是地球军这种低护甲的大规模小型单位。</p>
+<p class = "firstLineIndent">第一波无人机集群还未靠近，便已经损失大半，“没头脑”小队全军覆没。</p>
+<p class = "firstLineIndent">随着双方距离拉近，铁壁舰队更是肆无忌惮的近距离发射大批的“清道夫”，直接将这些可怕的当成了护身符。</p>
+<p class = "firstLineIndent">那场面，就像是一群皮糙肉厚的盾战士死命的往自己脑袋上砸陨石天降，周围一波波小怪血条狂降，麦浪一样倒下</p>
+
+<h2>第七百九十三章 独乐乐不如众乐乐</h2>
+<p class = "firstLineIndent">“啊！我的一血！”</p>
+<p class = "firstLineIndent">“不行，根本近不了身啊！”</p>
+<p class = "firstLineIndent">“我是来当炮灰的没错，可也不是这么送人头的啊！”</p>
+<p class = "firstLineIndent">“呜呜感觉自己的牺牲轻于鸿毛”</p>
+<p class = "firstLineIndent">通讯频道内，一票战斗玩家发出阵阵哀嚎。</p>
+<p class = "firstLineIndent">面对地图炮攻击，包括飞弹和战机在内的前两个攻击集群很快就在高能辐射战场中化为灰灰，直接团灭。</p>
+<p class = "firstLineIndent">而没有了海量友军的掩护，后方的近千台“剑仙ii型”机甲就像是裸泳的人遇上了退潮，完全暴露在了敌人的舰炮之下。</p>
+<p class = "firstLineIndent">“滋滋滋！”铁壁战舰上分布各处的10门近防副炮开始充能，炮口泛着幽光开始缓缓转向。</p>
+<p class = "firstLineIndent">在多频谱光电雷达的辅助下，火控系统迅速锁定了迎面而来的近千个目标，并瞬间完成了攻击任务分配，几乎每一台地球军机甲都是同时被三四门舰炮锁定。</p>
+<p class = "firstLineIndent">下一刻，无数道赤红色高能光束横扫而过，在星空下构成了一张密集而耀眼的防空火力网。</p>
+<p class = "firstLineIndent">“轰轰轰！”一台台地球军机甲本就在无处不在的伽马射线爆中苦苦挣扎，此刻又遭到复数舰炮的精准点射，结果还未靠近敌人，便被成片成片的收割，轰然化为战场上的点点星火。</p>
+<p class = "firstLineIndent">最终，能够进入攻击距离的，就只剩下幸运躲过副炮齐射的小猫两三只，数量两只手都数的过来。</p>
+<p class = "firstLineIndent">“上，我们只有一次攻击机会！”看着已经濒临红线的护甲值，幸存的远程操控者神色决然。</p>
+<p class = "firstLineIndent">身后暗红色长剑出鞘，侥幸存活下来的六台地球军机甲做了几次极限闪避机动，不顾耳边刺耳的过载警告，不约而同的撞向了最前方的那艘铁壁战舰！</p>
+<p class = "firstLineIndent">“轰！”六点星光撞上庞大的舰体，双方之间能量相互激荡。</p>
+<p class = "firstLineIndent">剑刃上的能量纹路爆发出耀眼的光芒，一点点抵消着战舰的护盾力场</p>
+<p class = "firstLineIndent">与此同时，剧烈的碰撞和激荡的能量瞬间破开了机甲残余的护盾，机甲身上的外层装甲肉眼可见的被能量风暴“吹飞”，露出里面复杂的构装，活像是一具残破的金属骷髅。</p>
+<p class = "firstLineIndent">而他们手中的利剑，也仿佛承受不了过量能量的冲击，渐渐的有了烧红融化的迹象。</p>
+<p class = "firstLineIndent">随着敌对明科技力的提升，力场护盾的防护等级也在不断加强，战场上“矛”与“盾”渐渐的再次取得了相对平衡。</p>
+<p class = "firstLineIndent">面对敌人越来越厚实的护盾，单兵搭载的小型远程攻击武器已经渐渐失去了威胁，攻击效率极其低下，想要提高攻击效能，机甲就必须拉近距离。</p>
+<p class = "firstLineIndent">同时因为破甲武器的存在，贴身近战，再次成为舰载兵器的主流战术。</p>
+<p class = "firstLineIndent">这款“剑仙ii型”，是在原版本基础上开发的第二代地球军专用制式机甲，这款新机甲外观上与原版本相差无几，依旧是身负长剑的造型。</p>
+<p class = "firstLineIndent">它的能源、动力、防护系统相比一代来说提升相当有限，但这款机甲的“突防”能力则是被重点强化了一番。</p>
+<p class = "firstLineIndent">原本安装在背后的“浮游炮”系统，已经替换成了一柄具备破甲能力的“破甲剑”，取消了远程攻击能力的同时，加强了对力场护盾的破防能力。</p>
+<p class = "firstLineIndent">单以“破甲”能力而言，“剑仙ii型”与双子星的“海暴级”已经不相上下，甚至还要超过伍尔夫帝国的“青铜级”。</p>
+<p class = "firstLineIndent">当然，考虑到成本，这款机甲的“破甲剑”自然不会奢侈到与海暴级采用相同的稀有材料和制造工艺，而是进行了一定程度的“简配”和“降级”。</p>
+<p class = "firstLineIndent">偷工减料，虽然满足了批量化制造的基本条件，却也导致了这种破甲剑的使用寿命极其有限。</p>
+<p class = "firstLineIndent">大概使用过三次基本上就会报废</p>
+<p class = "firstLineIndent">若是普通的机甲军团，自然不太可能采用这种“耐久值”仅为3的一次性主武器，但对于本身战场定位就是“炮灰”的无人机甲而言，只能使用三次就根本不叫事儿了。</p>
+<p class = "firstLineIndent">说白了，设计者压根儿就没指望这种炮灰机甲能打出1:3的战损比</p>
+<p class = "firstLineIndent">矛与盾发生了短暂的激烈交锋，最终以破甲剑更甚一筹，这艘铁壁战舰的护盾渐渐的有被破开的迹象。</p>
+<p class = "firstLineIndent">“给我开啊！”作战频道中响起一声声怒吼。</p>
+<p class = "firstLineIndent">然而，还未等敌舰的护盾坚持不住，四面八方激射而来的耀眼光束却是再次亮起</p>
+<p class = "firstLineIndent">“轰轰轰！”几台机甲先后爆炸，只有一台幸运儿抓住千钧一发的机会，击穿了护盾闪身进入。</p>
+<p class = "firstLineIndent">虽然最终依旧在下一秒便被周围密不透风的防空火力所击毁，但剧烈的爆炸冲击波，却是在这艘铁壁战舰的舰体上砸出一小块斑驳的区域，成为此战唯一的“战果”</p>
+<p class = "firstLineIndent">看着尽数暗淡的战斗画面，地球明一方无数人扼腕叹息。</p>
+<p class = "firstLineIndent">“可惜，就差一点啊”</p>
+<p class = "firstLineIndent">“最后就蹭破对方一点皮，实力差距这么大的吗？”</p>
+<p class = "firstLineIndent">“没了机海战术掩护，用这么点机甲去冲对方的铁桶阵，果然还是太勉强了。”</p>
+<p class = "firstLineIndent">“没办法，对方的攻防属性太强了，廉价的小型机体冲过去完全就是送死。”</p>
+<p class = "firstLineIndent">“心里冰冰的！我武斗派的未来在哪里”</p>
+<p class = "firstLineIndent">“别丧气，这才是第一波，后面的弟兄已经在路上，就算破不了防，也要先消耗对方的能源储备和弹药！”</p>
+<p class = "firstLineIndent">“不错！我们的舰队即将抵达，到时候和他们双剑合璧，有了舰队配合，咱们的机海战术才能发挥威力！”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">“轰！”庞大的舰体将沿途飘散的各种武器残骸撞飞，铁壁舰队丝毫没有受到影响，依旧在加速朝着太阳系而去，而且速度越来越快。</p>
+<p class = "firstLineIndent">甚至就在歼灭地球军炮灰部队的同时，他们还在不间断的重炮齐射，将一个个地球军的暴露出来的火力阵地一一点名。</p>
+<p class = "firstLineIndent">就像是行进中的“马其顿方阵”，精密、严谨，充满了铁血和从容的味道。</p>
+<p class = "firstLineIndent">“不愧是纵横数千年的老牌帝国，这才是真正的星际强军啊”聂云不由发出一声感叹。</p>
+<p class = "firstLineIndent">在他的眼中，一个个监控画面飞速闪过，几乎是无死角的将这支铁壁分舰队纤毫毕现的展露在眼前。</p>
+<p class = "firstLineIndent">第一波次炮灰的牺牲并非毫无价值，至少，它们为聂云带来了全方位的战场监控。</p>
+<p class = "firstLineIndent">地球军的机体内部，每一枚控制芯片都是“幽灵牌”秘银造物，只要聂云想，有残骸存在的地方，就有聂云插下的“眼”。</p>
+<p class = "firstLineIndent">太阳系内部更是不用说，他早年布局的“太阳系侦查网络”计划一直在持续进行，如今的太阳系内早已遍布经过技术革新的“鹰眼侦察兵”。</p>
+<p class = "firstLineIndent">星系内的几乎每一个角落，都在聂云的监控之下，这也是聂云面对大军压境，却到现在还如此从容的原因之一。</p>
+<p class = "firstLineIndent">有他在，太阳系就不存在被偷袭的可能。</p>
+<p class = "firstLineIndent">而论刚正面，聂云表示眼下的这些只是小场面</p>
+<p class = "firstLineIndent">看了看依旧在朝着太阳系1号虫洞不断挺进的铁壁主力舰队，聂云旋即将注意力转向了对面的双子星这边。</p>
+<p class = "firstLineIndent">讲道理，人家本来就是冲着双子星母星去的，聂云就算打得过，也完全没必要自己一个人扛。</p>
+<p class = "firstLineIndent">独乐乐，不如众乐乐嘛！</p>
+<p class = "firstLineIndent">“算算时间，应该也差不多了吧</p>
+<p class = "firstLineIndent">失落的远古传送阵，究竟能召唤出什么呢？真期待啊”</p>
+
+<h2>第七百九十四章 分裂</h2>
+<p class = "firstLineIndent">时间回到一个月之前……</p>
+<p class = "firstLineIndent">“什么？你说有一支精锐舰队可能会偷袭我们后方？”克鲁泽议长豁然起身。</p>
+<p class = "firstLineIndent">在座的诸位议员也是一脸的惊容。</p>
+<p class = "firstLineIndent">“是的，这是万物归一会的黑执事刚刚送过来的情报。”莱昂阿萨德一脸肃然。</p>
+<p class = "firstLineIndent">没错，聂云在得到情报的第一时间，就将铁壁舰队即将入侵的消息友情“奉送”了出去。</p>
+<p class = "firstLineIndent">等到众人听完莱昂的汇报，一个个脸色那是异常难看。</p>
+<p class = "firstLineIndent">“没想到对方居然找到了一条通往加达里星区的捷径，情况不妙啊！”</p>
+<p class = "firstLineIndent">“果然，参与到两个势力之间的争斗中，那就是火中取栗！</p>
+<p class = "firstLineIndent">看看，现在连那个二皇子的嫡系精锐都给招惹来了，超过三千艘战舰的庞大舰队，而且还是百战之师。</p>
+<p class = "firstLineIndent">一个洛克财团就那么难对付，这个二皇子的精锐部队肯定更强，这让我们怎么挡？”</p>
+<p class = "firstLineIndent">“皇位之争向来最为凶险，我们不知道双方底细的情况下就冒然卷入，果然还是草率了啊……”</p>
+<p class = "firstLineIndent">不少反对派议员心中不安，借势隐晦地表达了对之前决议的不满。</p>
+<p class = "firstLineIndent">然而还未等克鲁泽发话，向来与克鲁泽不对付的维克多此时却是眉头一皱，犀利的目光扫视几人。</p>
+<p class = "firstLineIndent">“现在说这些有什么用？万物归一会的‘虫洞扩张技术’已经到手，想要任何风险都不冒就白拿好处，你们觉得可能吗？</p>
+<p class = "firstLineIndent">现在的当务之急，是想想怎么应对即将到来的危机，而不是推卸责任！”</p>
+<p class = "firstLineIndent">维克多的这番话表明了自己的立场，显然是不想在文明存亡的关键时刻扯克鲁泽的后腿。</p>
+<p class = "firstLineIndent">克鲁泽朝维克多点了点头表达谢意，旋即看向莱昂。</p>
+<p class = "firstLineIndent">“怎么说，这麻烦也是万物归一会给我们惹来的，万物归一会难道就看着我们腹背受敌一点表示也没有。”</p>
+<p class = "firstLineIndent">“这个……黑执事表示会在太阳系尽量阻击敌人，只不过对方的首要目标应该是我们，而太阳系兵力有限，恐怕拦不下所有的敌人。”</p>
+<p class = "firstLineIndent">“什么？你确定对方说的是拦不下，而不是打不过？”克鲁泽诧异道。</p>
+<p class = "firstLineIndent">“按照他们的说法应该是这样，对方似乎完全不担心太阳系的安全，我猜测他们要么就是准备彻底放弃太阳系，打算让对方长驱直入，要么就是还有后手。”</p>
+<p class = "firstLineIndent">克鲁泽皱眉沉思。</p>
+<p class = "firstLineIndent">——————</p>
+<p class = "firstLineIndent">之前的太阳系什么情况他们双子星是再清楚不过了，基本没什么开发不说，就连战舰都没见到几艘，这才过去多久？</p>
+<p class = "firstLineIndent">难不成万物归一会朝太阳系增兵了？</p>
+<p class = "firstLineIndent">可太阳系不过是万物归一会的一块飞地，他们哪儿来的增援？</p>
+<p class = "firstLineIndent">等等！莫非是……</p>
+<p class = "firstLineIndent">“你说，那黑执事会不会是向太阳系背后的安特帝国求助？”克鲁泽说出了自己的猜测。</p>
+<p class = "firstLineIndent">“嗯！确实有这种可能。”莱昂点点头，议长的猜测与他不谋而合。</p>
+<p class = "firstLineIndent">在黑执事关于“是忠是奸”的自辩中，对方夺取太阳系的理由便是为了给双子星与“可怕”的安特帝国之间留下一个战略缓冲带。</p>
+<p class = "firstLineIndent">如今伍尔夫帝国要来进攻这个战略缓冲带，作为万物归一会的成员、黑执事的盟友，那位安特帝国‘八条男爵阁下’没道理不表示一下抗议的吧？</p>
+<p class = "firstLineIndent">“如果安特帝国有对方说的那么厉害，一遭遇就能将我们双子星打的毫无还手之力，那么身为一名男爵，应该不会比伍尔夫帝国的子爵差到哪里……吧？”莱昂有些不确定道。</p>
+<p class = "firstLineIndent">事到如今，众人只能在心中这么安慰自己了。</p>
+<p class = "firstLineIndent">只不过，这对双子星还真说不准到底是好消息还是坏消息……</p>
+<p class = "firstLineIndent">盖伦特星区对面是狼，加达里星区隔壁也是虎，总觉得双子星被一票大佬包围，很没有安全感啊……</p>
+<p class = "firstLineIndent">“万物归一会那边，只能希望对方的实力不会比他的对手差上多少了。</p>
+<p class = "firstLineIndent">至少，从情报获取方面来说，能够提前刺探到对方近似于偷袭的行动，足见万物归一会对伍尔夫帝国的渗透之深，实力绝不在二皇子之下。”</p>
+<p class = "firstLineIndent">“更何况，我们这边也不是完全没有希望……”</p>
+<p class = "firstLineIndent">克鲁泽先是给众人增强了一些信心，旋即看向了下手边的阿萨德族长。</p>
+<p class = "firstLineIndent">“失落之地的寻回计划进行的怎么样了？”</p>
+<p class = "firstLineIndent">“回议长阁下，万物归一会提供的技术资料基本解析完毕，我们的科学家们不久前已经用对方提供的核心部件组装了一套‘虫洞扩张装置’，验证了技术的可行性，如今已经进入最后的试验阶段。”</p>
+<p class = "firstLineIndent">“很好！不过看来，我们是没有时间让他们慢慢调试设备了……”克鲁泽点点头道。</p>
+<p class = "firstLineIndent">众人一愣。</p>
+<p class = "firstLineIndent">“你是想提前开启虫洞，让‘失落的第三星系’重新回归？”维克多猜到了克鲁泽的想法。</p>
+<p class = "firstLineIndent">“不错！这是我们现在唯一能够短时间内增强实力的方法。”</p>
+<p class = "firstLineIndent">“这……咱们的准备毕竟不充分，如此仓促，恐怕会有些风险。”维克多有些迟疑。</p>
+<p class = "firstLineIndent">双子星如今处在最为虚弱的时候，这个时候开启虫洞，如果对面闹幺蛾子，还真难说己方能不能强行镇压下去。</p>
+<p class = "firstLineIndent">“只能赌一赌运气了，非常时期，恐怕也只能用些非常手段了。”克鲁泽眼中精芒一闪。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">不久之后，位于加达里星区与米玛塔尔星区交界处的一处虚空中，三道巨大的光柱闪耀，一个虚空漩涡从无到有，缓缓打开了前往遥远之地的通道……</p>
+<p class = "firstLineIndent">而此时的通道对面，两支舰队正遥遥对峙。</p>
+<p class = "firstLineIndent">这两支舰队身上，或多或少都能够看出海族与羽族特有的战舰建造风格，此时泾渭分明的分成了两个阵营。</p>
+<p class = "firstLineIndent">“米洛斯，你的手捞过界了！”</p>
+<p class = "firstLineIndent">“哼！明明是你的人先进入的争议区，巴蒂，我知道你们海族最近又发现了一座能源水晶矿，实力膨胀了，野心怕是也膨胀了吧？</p>
+<p class = "firstLineIndent">怎么？想撕毁协议，霸占这第三星系？”</p>
+<p class = "firstLineIndent">“呵！听说你们羽族最近又开始扩军了，野心膨胀的恐怕不是我，而是你吧？”</p>
+<p class = "firstLineIndent">“放屁！我们扩军完全就是为了自保，你们海族的家伙都是肌肉决定脑袋，我们当然得防着你们发疯，你以为我们跟你们海族一样好战吗？”</p>
+<p class = "firstLineIndent">“都是借口，我们还不知道你们羽族的阴险吗？当面一套背后一套，我要是真相信了你们，恐怕也就离被灭族不远了！”</p>
+<p class = "firstLineIndent">“血口喷人，哪次的冲突不是你们海族先引起的？”</p>
+<p class = "firstLineIndent">“哼！当年的军备竞赛可是你们羽族先挑起的！”</p>
+<p class = "firstLineIndent">“别忘了当年是你父亲先闹的独立！”</p>
+<p class = "firstLineIndent">“那是因为你父亲要强行夺权！”</p>
+<p class = "firstLineIndent">双方各执一词，谁也不让谁，话语中充满了对对方的不信任。</p>
+<p class = "firstLineIndent">没错，这里的双子星人……分裂了……</p>
+
+<h2>第七百九十五章 你得叫我一声爷爷</h2>
+<p class = "firstLineIndent">双子星文明诞生的过程，就是一个不断的竞争和妥协的过程。</p>
+<p class = "firstLineIndent">某种角度来说，双子星文明的体制却是与地球上的某国惊人的相似。</p>
+<p class = "firstLineIndent">两个种族就像是一个国家的两个政党，想要为自己的族群获得在文明内部更大的话语权和生存权，就得不断地发展、强大自身，失败的一方最终将沦为另一方的附庸。</p>
+<p class = "firstLineIndent">这种奇特的多种族竞争体制，给双子星文明带来了强大的生命力和活力，让他们在极短的时间内，就发展出璀璨的星际文明，展现出了其制度优越性。</p>
+<p class = "firstLineIndent">然而，在获得强大内部前进动力的同时，这种相互竞争的体制也埋下了根源性的副作用，那就是尖锐的内部矛盾。</p>
+<p class = "firstLineIndent">家族矛盾、派系矛盾、种族之间的矛盾，这个文明的内部冲突比起正常文明要更加的激烈、汹涌。</p>
+<p class = "firstLineIndent">平日里这种矛盾可以被强行压下，乃至于形成整体上的良性竞争，主要依靠的是三个主要因素。</p>
+<p class = "firstLineIndent">第一是“确保相互摧毁”！</p>
+<p class = "firstLineIndent">在相互融合的过程中，两族已经是你中有我，我中有你的复杂局面，双方也都维持着基本平衡的军事实力。</p>
+<p class = "firstLineIndent">不论是哪一方想要东风压倒西风，都意味着己方可能需要承受杀敌一千自损一千二的尴尬局面。</p>
+<p class = "firstLineIndent">一场内乱直接四分五裂陷入内乱或者被直接打回石器时代也不是没有可能。</p>
+<p class = "firstLineIndent">这让任何一方都不敢随意诉诸武力。</p>
+<p class = "firstLineIndent">第二是外部压力，也就是来自“外星人”的挑战。</p>
+<p class = "firstLineIndent">纵观双子星历史，其内部矛盾升降曲线，与相对应时期受到外部势力的威胁程度呈现极为明显的相关性。</p>
+<p class = "firstLineIndent">简单来说就是，门外有敌人的时候我们联合起来一起打，没有敌人的时候我们关起门来自己接着打！</p>
+<p class = "firstLineIndent">最后则是“双子星议会”。</p>
+<p class = "firstLineIndent">由诸多世家、财阀和军人组成的联合议会，如同一个庞大的利益结合体，协调着双方的利益，促进双方融合，并且将一切不和谐的声音强行压下。</p>
+<p class = "firstLineIndent">种族团结的文明环境，便是他们的“政治正确”。</p>
+<p class = "firstLineIndent">阿尔萨斯之前传闻被海族刺杀，最后却不了了之，只是内部做了处理和利益交换，便是在这种大环境下的政治妥协。</p>
+<p class = "firstLineIndent">在协调双子星内部矛盾，平衡各方利益上，双子星议会的作用毋庸置疑。</p>
+<p class = "firstLineIndent">总结来讲，两族的团结需要“武力威慑”、“外部压力”以及头顶上的“联合政府”。</p>
+<p class = "firstLineIndent">然而，对“失落之地”的这支双子星分支来说，随着虫洞的关闭，这些两族团结的基础一夜之间几乎荡然无存！</p>
+<p class = "firstLineIndent">与议会的失联，让移民过来的双子星人瞬间失去了名义上的统治者。</p>
+<p class = "firstLineIndent">而经过探索，这一片富饶的“失落之地”星系群，完全就是一片与世隔绝，还未经过任何开发的处女地，附近没有任何能够产生威胁的外星文明，外部压力几乎为零。</p>
+<p class = "firstLineIndent">仅存的约束，便只剩下“武力威慑”这一项。</p>
+<p class = "firstLineIndent">虫洞关闭之后，陷入混乱和恐慌的移民们根据《双子星开拓条例应急预案》，顺理成章的进入了“军管”状态，负责移民保卫工作的开拓军团指挥官成为了这里的最高负责人。</p>
+<p class = "firstLineIndent">一开始，双方还能依靠惯性的力量精诚合作，试图重新打开虫洞。</p>
+<p class = "firstLineIndent">然而技术的突破并非一朝一夕，他们也缺乏虫洞相关的顶尖科研人才和科研设备，就连双子星母文明都无法做到的事情，他们最终自然也是徒劳无功。</p>
+<p class = "firstLineIndent">随着时间的流逝，众人几乎都已经绝望。</p>
+<p class = "firstLineIndent">他们最终只能抛弃幻想，开始凭借自己的力量在这个富饶的星系群中繁衍发展，并且试图复制出一个类似于联合议会这样的统治架构。</p>
+<p class = "firstLineIndent">然而，以军人为主要力量的新统治者们，显然缺乏最关键的，以“妥协”为核心的政治智慧。</p>
+<p class = "firstLineIndent">在新政府构建的过程中，两位最高指挥官终于爆发了不可调和的矛盾，最终分道扬镳。</p>
+<p class = "firstLineIndent">经过百余年的发展，两族以靠近虫洞的“第三星系”为分界，瓜分了这个富饶星系群。</p>
+<p class = "firstLineIndent">两者同出一源，加上这里广阔的生存发展空间，一开始两族还能相安无事，各自玩“星际大航海”，人口也随之爆发性增长。</p>
+<p class = "firstLineIndent">然而，随着地盘被全部瓜分完毕，双方的摩擦也开始增大。</p>
+<p class = "firstLineIndent">在争夺关键资源的过程中，自然免不了一番争夺，因此爆发的冲突，让两族越走越远，最终演变成了两族的军备竞赛。</p>
+<p class = "firstLineIndent">而作为双方“缓冲区”的“第三星系”，便成了双方争执不下的最关键“边界争端”。</p>
+<p class = "firstLineIndent">“第三星系”的资源并不是最富饶的，但地位却是最特殊的——因为这里存在着唯一一座能够“回家”的虫洞！</p>
+<p class = "firstLineIndent">即便它现在似乎已经彻底关闭，但战略意义却是非同凡响。</p>
+<p class = "firstLineIndent">万一它只是一时想不开，想开了又突然开启了呢？</p>
+<p class = "firstLineIndent">万一技术突破，到时候能够想办法重新打通虫洞呢？</p>
+<p class = "firstLineIndent">这个星系群虽然富饶，但却也如同一个与世隔绝的世外桃源，发展空间有限，他们最终还是得想办法“走出去”。</p>
+<p class = "firstLineIndent">正因为战略意义重大，因此这里也就成为了双方的“克什米尔”。</p>
+<p class = "firstLineIndent">随着近年来两族冲突越发激烈，发展到后来，两族在这里全都布置了重兵，相互对峙，小规模冲突不断。</p>
+<p class = "firstLineIndent">“米洛斯，我最后再问一遍，你退是不退？”</p>
+<p class = "firstLineIndent">“巴蒂，我最后再告诉你一遍，除非你的舰队先撤出第三星系，否则我这次绝不退让！”</p>
+<p class = "firstLineIndent">“这么说，你是执意要开战？”</p>
+<p class = "firstLineIndent">“引发战争的是你，而不是我！”</p>
+<p class = "firstLineIndent">随着谈判陷入了僵持，双方的舰队越发剑拔弩张，指挥官都已经进入了最终的“推卸责任”阶段，战争可谓一触即发！</p>
+<p class = "firstLineIndent">然而，就在双方即将爆发一场大战之际，远处的虚空却是突然诡异的扭曲了一下。</p>
+<p class = "firstLineIndent">“滴滴！”“滴滴！”</p>
+<p class = "firstLineIndent">与此同时，双方的雷达不约而同的开始发出刺耳的警报。</p>
+<p class = "firstLineIndent">“有埋伏！”米洛斯和巴蒂脸色一变，都以为是对方提前安排了伏兵。</p>
+<p class = "firstLineIndent">“是……是虫洞反应！虫洞有反应了！”年轻的雷达兵脸上满是震惊，惊呼着喊道。</p>
+<p class = "firstLineIndent">被这些“失落之民”誉为“回乡走廊”的间歇性虫洞，已经百多年没有开启过了，甚至对新一代的双子星人来说，虫洞这种东西都仅仅存在于传说中。</p>
+<p class = "firstLineIndent">人们只知道它的存在，看过它的影像，却从未亲眼见证过。</p>
+<p class = "firstLineIndent">然而今天，传说中的古老传送门……重新开启了……</p>
+<p class = "firstLineIndent">“这……”两位指挥官也是震惊莫名的看着视频上传过来的画面。</p>
+<p class = "firstLineIndent">一个虚空漩涡正在缓慢而坚定的，从无到有，从小到大……</p>
+<p class = "firstLineIndent">这一幕所带来的震撼，不亚于一颗超新星在眼前近距离爆炸。</p>
+<p class = "firstLineIndent">“退后，拉开距离！立刻派遣侦察舰前往虫洞抵近侦查！”震惊过后反应过来的两位指挥官，不约而同的下达了指令。</p>
+<p class = "firstLineIndent">虫洞重新开启，不论是自然开启，还是对面的母文明或者什么人主动开启，这时候开战，显然不是明智之举。</p>
+<p class = "firstLineIndent">至少，先得搞清楚现在的情况再说，双方表现出惊人的默契。</p>
+<p class = "firstLineIndent">一个小时过后，范围已经扩张到一公里的虫洞闪了闪，一艘小型战舰突然冲了出来，出现在众人面前。</p>
+<p class = "firstLineIndent">“这是……这是我们的飞船！”</p>
+<p class = "firstLineIndent">看到那艘建造风格极为眼熟的小型战舰，不少人心中狂跳。</p>
+<p class = "firstLineIndent">这难道是……母文明的飞船？</p>
+<p class = "firstLineIndent">这艘小型战舰很快便发现了远处的两支舰队，然后下一刻，一道广域通讯传遍了每一艘飞船。</p>
+<p class = "firstLineIndent">“未知舰队，这里是双子星文明，联合议会直属舰队麾下联络舰，请告知你们的身份！”</p>
+<p class = "firstLineIndent">“果然！这是母文明的飞船！”不少人脸上露出惊喜的神色。</p>
+<p class = "firstLineIndent">两位指挥官却是神色复杂。</p>
+<p class = "firstLineIndent">他们是在失落之地出生的新生代，对母文明的归属感，绝没有父辈那么强烈，相反，已经取得了一定地位的两人，对母文明的到来，更多的是抗拒。</p>
+<p class = "firstLineIndent">毕竟当惯了土皇帝，谁也不想突然多出来一个顶头上司。</p>
+<p class = "firstLineIndent">只不过，既然母文明派人过来了，在摸不清情况前，自己也不能表现出过分的抗拒。</p>
+<p class = "firstLineIndent">“这里是‘失落之地’羽族舰队，指挥官米洛斯！”</p>
+<p class = "firstLineIndent">“这里是‘失落之地’海族舰队，指挥官巴蒂！”</p>
+<p class = "firstLineIndent">面对询问，两人还是报上了己方的身份，不约而同的使用了“失落之地”这个称谓。</p>
+<p class = "firstLineIndent">对面沉默了片刻，随后一个通讯画面突然弹了出来。</p>
+<p class = "firstLineIndent">画面上，上百位穿着各不相同的双子星人列坐其中，看装扮，有军人、商人、政客，仿佛来自各行各业。</p>
+<p class = "firstLineIndent">唯一的一个共同点，便是这些人年纪都不小了，看上去就像是一个老年团。</p>
+<p class = "firstLineIndent">两位指挥官有些摸不着头脑，怎么这联络舰上不带战士，却是装着这么多老人家？</p>
+<p class = "firstLineIndent">难道是谈判专家？还全都是资深的？</p>
+<p class = "firstLineIndent">不知道的还以为是来搞老年旅游团的呢……</p>
+<p class = "firstLineIndent">“米洛斯，巴蒂？你们是哪一家的子孙？”坐在最前方一个胡须花白，面相威严的老者开口问道。</p>
+<p class = "firstLineIndent">两人愣了一下。</p>
+<p class = "firstLineIndent">“羽族艾斯卡家族，第23代孙，米洛斯！”</p>
+<p class = "firstLineIndent">“海族巴洛克家族，第35代孙，巴蒂！”</p>
+<p class = "firstLineIndent">“艾斯卡和巴洛克家族的？”老者松了口气。</p>
+<p class = "firstLineIndent">还好，农民起义什么的狗血剧情没有发生，这里现在的统治者至少还是世家子弟，这样就好说了……</p>
+<p class = "firstLineIndent">他看向周围一众老者。“这两家的主事人来了吗？”</p>
+<p class = "firstLineIndent">当即就有两位老者红光满面的站了起来。</p>
+<p class = "firstLineIndent">“哈哈哈！不愧是我巴洛克家族的种，巴蒂小家伙，你父亲呢？我记得他进入这失落之地前，才刚娶了媳妇儿，还是他婶儿给介绍的。”海族老者看了看周围众人，一脸的得意。</p>
+<p class = "firstLineIndent">“米洛斯是吧，干得不错，没给艾斯卡家族丢脸！”另一位羽族老者就显得比较淡定，只不过脸上的笑意，却是怎么也遮不住。</p>
+<p class = "firstLineIndent">周围众人一脸羡慕。</p>
+<p class = "firstLineIndent">能在这失落之地成为统治者，不管用的什么手段，那也是本事，在上位者的眼中，这就是能力，对家族而言，这就是荣光。</p>
+<p class = "firstLineIndent">更何况，这次事情办好了，说不定还能给家族带来巨大的利益，众人自然艳羡。</p>
+<p class = "firstLineIndent">克鲁泽议长可是当着他们的面承诺了两个议会议员的席位。</p>
+<p class = "firstLineIndent">这简直就是可以让一个小型家族直接一飞冲天的机遇！</p>
+<p class = "firstLineIndent">巴蒂小家伙？</p>
+<p class = "firstLineIndent">听到这个称呼，已经一百来岁的巴蒂眼角微微抽了抽，强忍着没当场发作。</p>
+<p class = "firstLineIndent">“敢问您是？”</p>
+<p class = "firstLineIndent">“嘿！论辈分，你得叫我一声‘爷爷’！”</p>
+<p class = "firstLineIndent">“米洛斯，还不快过来见过你曾祖父？”另一位羽族老者这时候也笑着开口道，脸色那叫一个慈祥。</p>
+<p class = "firstLineIndent">啥？两位指挥官当即脸就绿了。</p>
+<p class = "firstLineIndent">谁出的主意，太卑鄙了吧……</p>
+<p class = "firstLineIndent">这还怎么谈？</p>
+<p class = "firstLineIndent">难不成他们还能和自己的爷爷和祖父红着脖子谈条件？</p>
+<p class = "firstLineIndent">这事儿……</p>
+<p class = "firstLineIndent">好做不好听啊！</p>
+
+<h2>第七百九十六章 换防</h2>
+<p class = "firstLineIndent">“爷……爷爷……”</p>
+<p class = "firstLineIndent">“曾祖父大人……”</p>
+<p class = "firstLineIndent">为了取信于人，对面居然连族谱都带了过来，并当场展示给米洛斯和巴蒂，铁证之下，两位“失落之地”的主事者只能尴尬地“认亲”。</p>
+<p class = "firstLineIndent">心里不情不愿，脸上还得一副兴奋激动的表情，别提多别扭了。</p>
+<p class = "firstLineIndent">做了大哥好多年，结果一眨眼，自己就要恭恭敬敬装孙子……还是真孙子那种，换了谁心里都别扭！</p>
+<p class = "firstLineIndent">双子星挑选的移民，绝大部分是孤家寡人、无牵无挂的无业人士，报名前往未知的新星系碰运气。</p>
+<p class = "firstLineIndent">但也有相当一部分，是各大财团、家族，派往新大陆淘金的先遣队，这些人与双子星母文明之间，依旧存在着千丝万缕的联系。</p>
+<p class = "firstLineIndent">区区两三代人的时间，并不足以完全割裂家族关系。</p>
+<p class = "firstLineIndent">更重要的是，这些人的人数虽然占比极少，只有不到1，但普遍占据高位，如果论掌握的实力和资源，却是要占到整个移民队伍的80以上。</p>
+<p class = "firstLineIndent">虽然经历过与母文明失联之后的动乱，但百年皇朝千年世家，阶级固化和既得利益者的“统治权”并不是那么容易撼动的。</p>
+<p class = "firstLineIndent">“失落之地”的历史发展再次证明了这一点。</p>
+<p class = "firstLineIndent">动乱之后，富人依旧掌握着大量财富，而穷人依旧贫穷。</p>
+<p class = "firstLineIndent">在完全封闭的情况下，更是诞生出了米洛斯和巴蒂这样的“军二代”，构建了一个典型的军政府架构。</p>
+<p class = "firstLineIndent">事实上，“失落之地”眼前的这种情况，并不出乎双子星议会的预料。</p>
+<p class = "firstLineIndent">在大量历史学家和社会学家的推演和计算下，还未开启虫洞，克鲁泽和双子星议会就已经大致预料到了对面有可能演变的发展路线。</p>
+<p class = "firstLineIndent">排除外来势力和自我毁灭等几种极端情况，“军政府”和“两族分裂”路线，都是概率最高的可能性之一。</p>
+<p class = "firstLineIndent">因此，克鲁泽结合双子星“外强中干”的现状，制定了几种“促进失落之民重新合流”的计划，计划的关键之一便是这个“德高望重族老团”。</p>
+<p class = "firstLineIndent">事实证明，这一举动十分有效，一见面，对方就完全被爷爷辈的气势压在了下风。</p>
+<p class = "firstLineIndent">没见他们连说话都得用敬语么……</p>
+<p class = "firstLineIndent">“感人”的爷孙相认环节之后，米洛斯和巴蒂两人不得不派出护卫舰，一路护送着这群“大爷”们前来会面。</p>
+<p class = "firstLineIndent">从行为上说，两人的这一举动有些不敬，哪有小辈“召见”长辈的道理。</p>
+<p class = "firstLineIndent">只不过虫洞新开，两人实在是摸不准母文明的打算，就算亲戚是真的，万一对面埋伏了三百刀斧手，我们一到就直接被拿下兴师问罪怎么办？</p>
+<p class = "firstLineIndent">毕竟严格来说，他们如今的地位名不正言不顺，还有自立为王玩割据的嫌疑，身上更谈不上干净。</p>
+<p class = "firstLineIndent">如果按照双子星律法……他们犯下的罪名怕是得有清明上河图那么长……</p>
+<p class = "firstLineIndent">两人一边安排双方会面，一边私下进行了联络。</p>
+<p class = "firstLineIndent">“米洛斯，看来我们得好好谈谈了……”</p>
+<p class = "firstLineIndent">“嗯！没想到母文明居然这么快就掌握了重新开启虫洞的技术，明明按照科学家们的预测，至少要在数百年之后才对……唉！”</p>
+<p class = "firstLineIndent">“技术突破这种事谁能说得准，母文明有着我们无法企及的人口和科研优势，更何况，咱们这些年，哪个不是将人力物力都消耗在了发展军事上？”</p>
+<p class = "firstLineIndent">“好消息是，对面仅仅只派了一艘联络舰，又摆明了想用家族拉近彼此的关系，这说明武力统一并非他们的首选，应该是想和平收编我们，我们还有谈判的资本。”</p>
+<p class = "firstLineIndent">“和平收编……你说如果我们双方联手……”</p>
+<p class = "firstLineIndent">“……那也得在了解过母文明那边的情况之后再说。”</p>
+<p class = "firstLineIndent">“如果……我是说如果，到了最糟糕的情况……”</p>
+<p class = "firstLineIndent">“哼！我可不是坐以待毙的人，大不了鱼死网破！那么，你又是什么态度？”</p>
+<p class = "firstLineIndent">“呵！宁教我负天下人！”</p>
+<p class = "firstLineIndent">“……”</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">虫洞重启，母文明派人接触的消息，像是一场突然的海啸，在失落之地内部掀起了惊涛骇浪。</p>
+<p class = "firstLineIndent">有人欣喜若狂，有人忐忑不安。</p>
+<p class = "firstLineIndent">而双方会面之后的第一件事，便是相互交换各自的文明发展历史。</p>
+<p class = "firstLineIndent">然后，米洛斯和巴蒂两人心中就凉了一半。</p>
+<p class = "firstLineIndent">疆域、人口、经济、科技、军事，双子星提供的各项数据无疑碾压他们。</p>
+<p class = "firstLineIndent">对比下来，“失落之地”的综合实力，大概只相当于对方的一个星区，也就是穷兵黩武之下，军事力量可圈可点，但要说匹敌，也是相差甚远。</p>
+<p class = "firstLineIndent">这些信息数据大多都是有据可考，大量的事实资料和证据经过两人麾下科学家的验证，基本没有造假的可能性。</p>
+<p class = "firstLineIndent">事实上，这些证据确实没有造假，只不过双子星很鸡贼的隐藏了最近半年的数据。</p>
+<p class = "firstLineIndent">如果要加上最近半年的数据，那么双子星母文明45°向上的发展曲线恐怕就得来一个跳水式暴跌……</p>
+<p class = "firstLineIndent">盖伦特星区沦陷，至今还在重建，军事力量被废了大半，如今又有强敌逼近母星，可谓是伤筋动骨、内忧外患。</p>
+<p class = "firstLineIndent">双子星文明的整体实力在短短半年内断崖式下跌，当然，这些情况双子星是打死也不会提供给对方的。</p>
+<p class = "firstLineIndent">见初步唬住了对方，双子星这边立刻又派了一支数量300的精锐舰队抵近虫洞，并派出一支分舰队与对方打了一场小规模的“友谊赛”。</p>
+<p class = "firstLineIndent">这支舰队是双子星议会直属精锐，平时只负责拱卫双子星母星系，人员装备全都是顶尖水平，全员装备海暴级机甲，可以说是双子星如今仅有的能够拿得出手的一支机动力量。</p>
+<p class = "firstLineIndent">克鲁泽也是果决之人，关键时刻将双子星这支最为核心的军事力量都压上了赌桌。</p>
+<p class = "firstLineIndent">300艘战舰，并不放在米洛斯两人眼中。</p>
+<p class = "firstLineIndent">但一番相互试探之后，两人就立刻变了脸色。</p>
+<p class = "firstLineIndent">喂喂！母文明的军事实力这么夸张的吗？</p>
+<p class = "firstLineIndent">普通舰队就有这种实力了？那精锐得厉害成什么样？</p>
+<p class = "firstLineIndent">双子星这边其实更加震惊，由于陷入军备竞赛，失落之地的武备超出常规不少，加上这里的星系群资源富饶，两族的战舰加起来竟然足有2000余艘！</p>
+<p class = "firstLineIndent">而且对方的军事科技并不落后，甚至还开发出了一种特殊战舰，让双子星的精锐应付起来都有些吃力。</p>
+<p class = "firstLineIndent">据说是这个星系群内发现了一种特殊矿物，导致的军事科技突破。</p>
+<p class = "firstLineIndent">这样的发现，让双子星是即紧张，又兴奋。</p>
+<p class = "firstLineIndent">“咳！母文明的意思我已经清楚了，那么我只想知道，议会准备怎么对待我们这些人？”</p>
+<p class = "firstLineIndent">相互亮完底牌，自然是开始谈条件了。</p>
+<p class = "firstLineIndent">又是认亲戚，又是秀肌肉，双子星议会如此作为，他们自然不会不明白人家的打算。</p>
+<p class = "firstLineIndent">两人在情感上其实并不排斥重新融入双子星，特别是在了解到母文明的“强大”之后。</p>
+<p class = "firstLineIndent">事实上，在“德高望重族老团”到访之后，失落之地内部的抵抗意志就已经被瓦解了大半。</p>
+<p class = "firstLineIndent">这里一大半的统治阶级都和这帮大爷们沾亲带故的，你让自己把枪口对准他们？怕不是当场就得有一半军队叛变？</p>
+<p class = "firstLineIndent">“很简单，失落之地如今的统治架构维持十年，等到与母文明接轨之后再做调整，其中人员职位一律维持现状。</p>
+<p class = "firstLineIndent">但是，两位必须交出所有舰队，由军方统一收编，失落之地的安全防卫工作，必须由议会派出舰队接管。”</p>
+<p class = "firstLineIndent">听到这个条件，米洛斯和巴蒂两人倒是并不意外。</p>
+<p class = "firstLineIndent">最重要的兵权议会肯定是要收回的，这一点毋庸置疑。</p>
+<p class = "firstLineIndent">十年维持现状，相当于是暂时性的一国两制，也确保了其中的利益既得者能够有一个缓冲期。</p>
+<p class = "firstLineIndent">“至于两位指挥官阁下……两个议会议员的席位，依旧暂代失落之地舰队指挥官。</p>
+<p class = "firstLineIndent">同时议会也会确保两位的家族财产不受侵犯，同时不会追究两位在文明失落期间，包括挑动两族对抗在内的一切违法行为。”</p>
+<p class = "firstLineIndent">“呼~”两人大松了口气。</p>
+<p class = "firstLineIndent">这个条件不得不说相当优渥，优渥到超出了他们的想象。</p>
+<p class = "firstLineIndent">解决了他们最大的顾虑之后，接下来的事情就顺理成章了。</p>
+<p class = "firstLineIndent">克鲁泽议长亲自来到失落之地，并且当众宣布了特赦令，正式宣告失落之地回归双子星！</p>
+<p class = "firstLineIndent">米洛斯和巴蒂再无后顾之忧，当即宣布两族舰队接受议会整编。</p>
+<p class = "firstLineIndent">双方很快启动了交接程序，随后交出控制权的失落之地舰队便立刻被议会调往虫洞另一侧，失落之地的防务开始由少量的双子星卫戍舰队接管。</p>
+<p class = "firstLineIndent">按照协议，失落舰队将和另一支双子星舰队进行换防，然后再慢慢接受整编。</p>
+<p class = "firstLineIndent">舰队轮换，本就是双子星原有的军事制度，失落之地又是刚刚回归，换防是应有之意，米洛斯和巴蒂两人不疑有他。</p>
+<p class = "firstLineIndent">议会的动作很快，就像是早就准备好了一切般，交接手续、人员安排、后勤补给，一切井井有条，效率高的出奇。</p>
+<p class = "firstLineIndent">这让米洛斯和巴蒂两人直呼不愧是母文明……专业！</p>
+<p class = "firstLineIndent">“咱们换防的星区听说很是富饶，即便在四大星区中也能排到前二，到了当地，一定要好好逛逛。”</p>
+<p class = "firstLineIndent">“嗯！早就听长辈们说过，我大双子星物产丰富，特别是各种传统美食，可惜在失落之地很多都失传了，等到了那里，一定得好好品尝品尝！”</p>
+<p class = "firstLineIndent">“哈哈哈！早就传闻巴蒂阁下是个吃货，我本来还不信，这回信了。”</p>
+<p class = "firstLineIndent">“同去同去，咱们也算是不打不相识，过命的交情了，以后还得相互关照才是。”</p>
+<p class = "firstLineIndent">“那是自然，同为失落之民，咱们可算是同乡，自然应该相互关照。</p>
+<p class = "firstLineIndent">诶！对了，咱们换防的那个星区叫什么来着？”</p>
+<p class = "firstLineIndent">“唔！好像是叫……‘加达里星区’？”</p>
+
+<h2>第七百九十七章 积木型宇宙植物</h2>
+<p class = "firstLineIndent">时间回归……</p>
+<p class = "firstLineIndent">“子爵大人，按照目前的速度，我们将在两天后穿越目标虫洞，根据情报，这个虫洞对面应该就是双子星的领地，名为加达里星区。”</p>
+<p class = "firstLineIndent">“目前情报有限，我们无法得知对面的具体兵力部署。”</p>
+<p class = "firstLineIndent">“嗯！无妨，我看过双子星的战斗视频和武器资料，不过是一群土鸡瓦狗罢了。”铁壁子爵满不在意道。</p>
+<p class = "firstLineIndent">铁壁子爵说着看向了后方的太阳系战场。</p>
+<p class = "firstLineIndent">“倒是这个万物归一会，给我的惊喜更多一些。”</p>
+<p class = "firstLineIndent">此时距离战斗开始，已经过去了整整36个小时，而铁壁分舰队已经顶着地球文明的攻击抵近了柯伊伯带。</p>
+<p class = "firstLineIndent">从远处望去，这支数量不过400艘的舰队如同惊涛骇浪中的万吨巨轮，岿然不动的承受着周围的狂风暴雨。</p>
+<p class = "firstLineIndent">整个战场所过之处，一枚枚“清道夫”超级炸弹凌空爆炸，如同千日同辉，耀眼的光芒甚至在地球上的夜空中，都能直接用肉眼观测到。</p>
+<p class = "firstLineIndent">“该死的，绕过去，注意规避爆炸！”</p>
+<p class = "firstLineIndent">“魂淡！这是aoe啊，根本没有空隙，绕到后方都没用，怎么规避！”</p>
+<p class = "firstLineIndent">“组成人墙，安德的游戏看过没有，就像最后一战里那样，掩护里面的兄弟突破进去！”</p>
+<p class = "firstLineIndent">“对啊还可以这样！”</p>
+<p class = "firstLineIndent">“没用的，人家能成功是仗着虫族没有大规模杀伤性武器，你在这里用出来，人家一发主炮过来就能收割你们一个团……”</p>
+<p class = "firstLineIndent">“好可怕的帝国精锐，跟他们比起来，碎星星域那里简直就是新手村啊！”</p>
+<p class = "firstLineIndent">“我们的舰队什么时候能到啊，这种大型厚甲单位实在是太克制我们了，我们多少还能撑几分钟再挂，‘没头脑’小队完全就是无脑送死啊！”</p>
+<p class = "firstLineIndent">不出铁壁子爵的预料，地球文明的机海战术并没有造成多大的麻烦，在铁壁分舰队如同铁桶一般的防御和清场神器之下，接连数个波次的攻击都无功而返，最后只是在太空中留下了一条大量钢铁残骸组成的惨烈路径。</p>
+<p class = "firstLineIndent">地球文明的战斗频道内，充斥着沮丧和失望。</p>
+<p class = "firstLineIndent">即便是被地球人寄予厚望的机甲海，也没给这支可怕的舰队造成多大的麻烦。</p>
+<p class = "firstLineIndent">他们唯一的战果，便是拼死突破防御火力，击伤了几艘铁壁战舰。</p>
+<p class = "firstLineIndent">但是在对方精密的阵型轮换和相互掩护之下，这些轻伤也很快便被高度自动化的内部维修机械迅速修复，很快又满血复活。</p>
+<p class = "firstLineIndent">防御、攻击、恢复，这三百艘战舰的各项综合素质全都是顶尖水平，而且均衡的可怕，几乎没有短板。</p>
+<p class = "firstLineIndent">加上丰富的战争经验，让地球文明深深体会到了与老牌星际帝国之间存在的巨大差距。</p>
+<p class = "firstLineIndent">铁壁舰队一路火花带闪电防御的同时，也不忘一一将远处暴露的火力点清除掉。</p>
+<p class = "firstLineIndent">凭借特殊重炮的无限射程优势，铁壁分舰队还未进入要塞群的重火力射程，便将一大批的威胁直接扼杀在萌芽状态。</p>
+<p class = "firstLineIndent">地球防卫军在附近精心布置的数个要塞火力群，几乎是未发一炮，便被轰成了碎片。</p>
+<p class = "firstLineIndent">更糟糕的是，随着武器装备的大量消耗，几处机库似乎也后继乏力，各种武器装备的弹射频率有缓缓下降的趋势。</p>
+<p class = "firstLineIndent">太阳系防御体系毕竟才打造没多久，根本没办法将每一处星空都武装到牙齿。</p>
+<p class = "firstLineIndent">铁壁分舰队又很谨慎的挑选了一处防御薄弱点，即便其它防线上还有大量的武器装备，但是距离太远，投送不过来也只是一堆摆设。</p>
+<p class = "firstLineIndent">说到底，固定防御系统面对高速移动的舰队，本身就处在绝对劣势。</p>
+<p class = "firstLineIndent">舰队想打就打，想走就走，在规避攻击上，比起固定靶的防御工事更是优势明显。</p>
+<p class = "firstLineIndent">“怎么样？对敌人武器装备的分析结果出来了吗？果真全都是无人机？”铁壁子爵看着前仆后继的地球军问道。</p>
+<p class = "firstLineIndent">“是的，已经确认这些都是无人武装，但以战术行为模式来看并非单纯的逻辑操控，战场上出现的很多行为无法用逻辑解释。</p>
+<p class = "firstLineIndent">根据分析，对方要么就是采用了随机性极高的拟人化ai，要么就是采用了智慧生物远程操控。</p>
+<p class = "firstLineIndent">最令人惊奇的是，明明使用的也是量子通讯技术，但我们的通讯压制舰对对方完全不起作用，我们的技术人员分析，对方应该还有第二套通讯系统，采用的科技不明。”副官回答道。</p>
+<p class = "firstLineIndent">“不过，这些武装的科技水平差不多只有c级左右，即便是数量多些，综合威胁等级也仅有b级，以我方派出的舰队战力，不足为虑。”</p>
+<p class = "firstLineIndent">“那么你认为……他们与机械族有没有联系？”这是铁壁子爵最关心的问题。</p>
+<p class = "firstLineIndent">机械族是伍尔夫帝国最大的敌人，与对方常年作战的铁壁子爵深知这个族群的可怕。</p>
+<p class = "firstLineIndent">有许多机械族的特色武器，就连黑旗舰队都不得不谨慎应对。</p>
+<p class = "firstLineIndent">“看似风格类似，但是仔细分析的话，很多细节又有相当的差异，而且实力水平不是一个层次，有关系的可能性并不大。</p>
+<p class = "firstLineIndent">据我们掌握的情报，万物归一会似乎是一个较为松散的利益联盟，组织成员来自不同文明，相互之间也不过是贸易关系，因此实力水平相差极大。</p>
+<p class = "firstLineIndent">毕竟在双子星的情报描述中，这个太阳系分会的水准不过和他们半斤八两，但是伍尔夫帝国内部的万物归一会，却连那位殿下都觉得有些棘手。</p>
+<p class = "firstLineIndent">所以不排除这个太阳系分会只是低级会员的可能。”</p>
+<p class = "firstLineIndent">副官头头是道的分析着，却不知道擅长“以彼之道”的聂云不论对上谁，一开始都会给对方一种“此人不在我之下”的错觉……</p>
+<p class = "firstLineIndent">听到副官的分析结果，铁壁子爵最后的疑虑顿消，却是摇头失笑。</p>
+<p class = "firstLineIndent">“呵！如此看来，之前是我多虑了。”</p>
+<p class = "firstLineIndent">“大人指的是……”</p>
+<p class = "firstLineIndent">“你不觉得奇怪吗，那个黑执事先前故意透露出早就知道了我们计划的消息，难道只是为了逞一时的口舌之快，就主动告诉我们‘你们中有内鬼’这么重要的情报？”</p>
+<p class = "firstLineIndent">关注公众号：，关注即送现金、点币！</p>
+<p class = "firstLineIndent">“这个……的确有违常理。”副官皱眉道。</p>
+<p class = "firstLineIndent">间谍最重要的，便是其隐蔽性，假如你前脚将情报送出去，后脚你的上线就大喇喇地告诉全天下的人这消息我们已经知道了……这不是坑间谍呢吗！</p>
+<p class = "firstLineIndent">“现在看来，这家伙无非实在虚张声势，想要让我们疑神疑鬼，目的便是拖延时间让双子星组织防御而已，这恰恰说明了对方准备不足。”铁壁子爵笃定道。</p>
+<p class = "firstLineIndent">“所以，我们只需要以不变应万变，任对方再狡猾，也不过是垂死挣扎罢了。”</p>
+<p class = "firstLineIndent">“子爵大人英明！”</p>
+<p class = "firstLineIndent">然而，就在副官想要顺着杆子再拍几句马屁时，前方的星空中却传来了异常……</p>
+<p class = "firstLineIndent">虚空漩涡凭空出现！</p>
+<p class = "firstLineIndent">“探测到虫洞开启反应，有什么东西从另一边过来了！”</p>
+<p class = "firstLineIndent">“什么？”铁壁子爵和副官都是一愣。</p>
+<p class = "firstLineIndent">很快，前方虫洞的探测画面被投放到两人面前。</p>
+<p class = "firstLineIndent">“这……这是什么鬼东西？”</p>
+<p class = "firstLineIndent">他们惊讶地的看着对面虫洞中缓缓钻出来的灰黑色古怪物体。</p>
+<p class = "firstLineIndent">单从形状上看，上半部分圆柱形，下半部分则是虬结在一起的大量根须一般的东西。</p>
+<p class = "firstLineIndent">硬要说的话，却是像极了一个……被砍伐过的树墩？</p>
+<p class = "firstLineIndent">可是……怎么会有这么大的树墩？</p>
+<p class = "firstLineIndent">“又出来了！”</p>
+<p class = "firstLineIndent">随着惊呼，虫洞漩涡再次吐出了一个物体。</p>
+<p class = "firstLineIndent">这次的物体形状规则了很多，就是一个矮矮胖胖的圆柱体，然后又冒出来一个，虫洞中又接连不断的出现了五个圆柱体，这些圆柱体之后则是一个黑色伞盖一样的东西。</p>
+<p class = "firstLineIndent">无一例外，这些古怪的物体都有着光滑如镜的切口，切面异常平整。</p>
+<p class = "firstLineIndent">紧接着，在众人惊讶的目光中，这些古怪的物体切面突然冒出一丝丝银色丝线一般的絮状物。</p>
+<p class = "firstLineIndent">这些絮状物不断延伸出去，并迅速彼此接触，然后将几个古怪物体藕断丝连一般粘连了起来，从监控画面中可以看到，几个物体被这种絮状物渐渐拉近。</p>
+<p class = "firstLineIndent">很快的，一个完整的物体被组装了起来，一个个断面切口在银色絮状物的粘连下被严丝合缝的贴合在一起，眨眼间便再也看不出痕迹。</p>
+<p class = "firstLineIndent">此刻展现在他们面前的，是一颗造型有些怪异的超级巨树，单是树身直径便有数十公里！</p>
+<p class = "firstLineIndent">铁壁子爵揉了揉眼睛，有些傻眼了。</p>
+<p class = "firstLineIndent">宇宙植物他也不是没见过，这么大的倒也不算太稀奇。</p>
+<p class = "firstLineIndent">可刚刚这出场方式算怎么肥事？</p>
+<p class = "firstLineIndent">积木型宇宙植物？</p>
+<p class = "firstLineIndent">长生者：“……”</p>
+
+<h2>第七百九十八章 巨神兵形态</h2>
+<p class = "firstLineIndent">把大象放进冰箱一共需要几个步骤？</p>
+<p class = "firstLineIndent">打开冰箱，放进大象，然后关上冰箱？</p>
+<p class = "firstLineIndent">那么问题来了，没这么大的冰箱怎么办？</p>
+<p class = "firstLineIndent">太阳系虫洞原本就是一个小型虫洞，通过普通的战舰勉勉强强，对长生者这种庞然大物，那无疑就是条羊肠小道了。</p>
+<p class = "firstLineIndent">直接塞肯定是塞不进去的。</p>
+<p class = "firstLineIndent">而聂云又没有铁壁舰队“掘地虫”这种快速开洞的神器。</p>
+<p class = "firstLineIndent">于是聂云选择了更加简单粗暴的方式，先将长生者切成了七八段，然后通过分批运送，再重新拼装起来的方式，将长生者硬生生运了过来。</p>
+<p class = "firstLineIndent">对于拥有原子级切割和修复能力的机械虫来说，别说是棵树，就是把人切个七八段再原封不动安回去，那都是一点难度都没有。</p>
+<p class = "firstLineIndent">嗯……就是说服长生者的过程有点难度……</p>
+<p class = "firstLineIndent">毕竟长生者活到这把年纪，被人切成七八段再拼回去，这种体验绝对是有生以来第一次，第一次，总是有点抗拒的。</p>
+<p class = "firstLineIndent">好在聂云没有惯着它的毛病，很快便以德服人的说服了长生者……</p>
+<p class = "firstLineIndent">“快看，那东西动了？”副官一声惊呼，将惊愕的铁壁子爵从惊讶失神中拉了回来。</p>
+<p class = "firstLineIndent">只见这棵体积超规格的巨树枝条一阵晃动，将头顶上无数茂密的黑色叶片横了下来挡在身前，如同身前多出了一面巨大的盾牌。</p>
+<p class = "firstLineIndent">同时，大量的枝条纠缠在一起，很快形成了两条仿佛有着肌肉纹理的巨臂，就连双手的指节都分明可见。</p>
+<p class = "firstLineIndent">紧接着，下方树根位置虬结的密集黑色根须也缓缓舒展了开来，开始缓缓向着四面八方伸展出去。</p>
+<p class = "firstLineIndent">无数长达上千公里的根须缓缓舞动，画面那叫一个群魔乱舞，遮天蔽日。</p>
+<p class = "firstLineIndent">随着所有根须舒展开来，被层层掩盖的巨型银色金属球状物也终于渐渐露出了身形……</p>
+<p class = "firstLineIndent">这个球状物通体银白，表面光滑如镜，看上去就像是一颗银色小星球上长了棵比例夸张的人形巨树。</p>
+<p class = "firstLineIndent">这是全新海狼号的中央核心，超巨型能源核心将海量的能量源源不断的运输到长生者的全身各处，从而驱动这具庞大的躯体。</p>
+<p class = "firstLineIndent">在外人看不到的内部，长生者也早已脱胎换骨，体内近三分之二已经完成了秘银化和机械化。</p>
+<p class = "firstLineIndent">在云端科研所和卡拉文明生物科技的帮助下，聂云对长生者进行了大刀阔斧的全身改造。</p>
+<p class = "firstLineIndent">大量无用或者可替代的器官和功能组织被机械虫取代，获得了更加高效的能量转换效率和输送效率。</p>
+<p class = "firstLineIndent">此刻的长生者已经与海狼号彻底融为一体，成为了一棵半机械巨树。</p>
+<p class = "firstLineIndent">与之前的相比，两者完全就是暴龙兽与机械暴龙兽的差别，某种程度上来说，长生者完成了一次生命层次的进化。</p>
+<p class = "firstLineIndent">就在长生者展现新姿态的同时，虫洞附近漂浮的数十颗或大或小的陨星突然动了起来，纷纷向长生者靠拢。</p>
+<p class = "firstLineIndent">为了防御双子星，聂云在之前的“虫洞保卫战”之后，便将周围的中小型天体尽数收拢了过来，组建了一个虫洞防御要塞群。</p>
+<p class = "firstLineIndent">这些陨星便是要塞群的一部分，实际上内部早已经完成了“秘银化”。</p>
+<p class = "firstLineIndent">只见长生者身后根须一卷，便将这数十颗主动靠近的陨星卷在手中。</p>
+<p class = "firstLineIndent">随着根须缠绕勒紧，这些陨星表面的岩石层粉碎剥落……</p>
+<p class = "firstLineIndent">“这是……”铁壁子爵愕然。</p>
+<p class = "firstLineIndent">因为那岩层之下隐藏的，赫然是一件件造型各异的超巨大“兵器”。</p>
+<p class = "firstLineIndent">厚重的超大型盾牌、结构复杂的长柄巨锤、刻画繁复能量纹路的金属长矛，更多的是一柄柄巨型“枪械”。</p>
+<p class = "firstLineIndent">这些无一例外都是以长生者的体型打造的巨型兵器，每一件兵器的体积都堪比巨舰。</p>
+<p class = "firstLineIndent">就比如那十几柄巨型枪械，实际上用巨炮来形容更合适一些。</p>
+<p class = "firstLineIndent">最为惹眼的是长生者双手握持的那门超级重炮，粗长的炮管，厚重的炮身，以及那长达数十公里的体型，分明就是一门“手持式”的超级要塞炮！</p>
+<p class = "firstLineIndent">挥舞着数十把巨型兵器，身后无数根须妖魔般游曳不定，长生者此刻展现的姿态，绝对符合“超级守关大魔王”的经典形象。</p>
+<p class = "firstLineIndent">海狼号——巨神兵形态！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“哦？这就是对方的底牌么……”</p>
+<p class = "firstLineIndent">愕然过后，铁壁子爵脸上浮现饶有兴趣的神色。</p>
+<p class = "firstLineIndent">虽然对于这么个小星系，居然能够拿出这种级别的稀有兵种感到一丝惊讶，不过面对自己的庞大舰队，以区区一只宇宙生物就想拦住自己，那就未免有些螳臂当车了。</p>
+<p class = "firstLineIndent">在长达百年的战争生涯中，铁壁子爵见识过各种形形色色的超级宇宙生物，亲手干掉过的利维坦就不下三只，因此对于巨型宇宙生物兵器并不陌生。</p>
+<p class = "firstLineIndent">但大多数的宇宙生物，最终都倒在了自己无敌舰队的舰炮之下，尸骨无存！</p>
+<p class = "firstLineIndent">“发动一轮试探性攻击，我要看看这个超级生物的成色，如果合适，我不介意在我的后花园里多出一棵稀有植物。”</p>
+<p class = "firstLineIndent">“是！子爵大人！”</p>
+<p class = "firstLineIndent">随着命令的下达，铁壁主力舰队两千余艘战舰齐齐打开炮口，对准了海狼号便是一轮齐射！</p>
+<p class = "firstLineIndent">上万枚磁约束重炮炮弹朝着海狼号高速射去，在视网膜中留下一条条光路，宇宙中仿佛下起了一场光雨。</p>
+<p class = "firstLineIndent">五分钟后……</p>
+<p class = "firstLineIndent">“嗯？不躲吗？”铁壁子爵看着对面无动于衷的样子，有些疑惑。</p>
+<p class = "firstLineIndent">这种实体重炮攻击，实际上攻击速度并不快，以目前双方的距离，只要对方闪避，还是能够避开大部分的炮弹的。</p>
+<p class = "firstLineIndent">然而直到这波炮弹接近到对方十万公里以内的距离，对方却仍旧没有挪动一步的意思。</p>
+<p class = "firstLineIndent">“莫非是由于体积过大，导致没有移动能力？”</p>
+<p class = "firstLineIndent">就在铁壁子爵如此猜测的时候，对面的超大型宇宙生物终于动了！</p>
+<p class = "firstLineIndent">它手中双持的那门超级巨炮发出了耀眼的光芒！</p>
+<p class = "firstLineIndent">“能……能量！探测到超过15级的能量汇聚反应！”身边的一名军官突然惊恐的喊道。</p>
+<p class = "firstLineIndent">15级？！</p>
+<p class = "firstLineIndent">包括铁壁子爵在内的所有人都惊呆了。</p>
+<p class = "firstLineIndent">怎……怎么可能？！</p>
+<p class = "firstLineIndent">要知道普通的行星级要塞炮也不过是11~13级的能量反应，15级，那已经是恒星级武器的能量标准了！</p>
+<p class = "firstLineIndent">可你现在告诉我，一门不过数十公里的要塞炮，居然产生了足以媲美恒星级武器的能量反应？</p>
+<p class = "firstLineIndent">确定今天不是愚人节？</p>
+<p class = "firstLineIndent">可没等他们从震惊中缓过神来，对面的宇宙生物已经高举手中的恐怖兵器，在所有人的目光中……重重挥下！</p>
+<p class = "firstLineIndent">“滋~”一道几乎被压缩为实质的弧形能量光刃便在这一挥间被甩了出去。</p>
+<p class = "firstLineIndent">弧形能量光刃激射而出，然后迅速扩大。</p>
+<p class = "firstLineIndent">“轰轰轰！”沿途所过之处，迎面而来的炮弹直接被超高的能量冲击引爆，哪怕是仅仅被擦过，超量的能量辐射也瞬间破坏了精密的磁约束装置，让它顷刻间化为一团火球。</p>
+<p class = "firstLineIndent">只是一击，对方竟是直接用粗暴的斩击斩出了一条通路，轻松化解了铁壁舰队的一波密集弹雨。</p>
+<p class = "firstLineIndent">剩余的炮弹从对方身侧掠过，再也无法造成任何威胁。</p>
+<p class = "firstLineIndent">这一幕画面，就如同一名绝世剑客随手挥了一剑，对面的暗器便哗啦啦掉了一地。</p>
+<p class = "firstLineIndent">令人惊掉了下巴的是，对方用的居然是一门超级巨炮……</p>
+<p class = "firstLineIndent">“快！规避！护盾最大功率！”眼见那道可怕的光刃拦下攻击的同时，居然还余势不减朝着己方舰队而来，铁壁子爵身边的副官吓的高声喊道。</p>
+<p class = "firstLineIndent">其实不用他提醒，反应迅速的铁壁舰队已经开始进行规避机动，与此同时舰体外的护盾能量水平也骤然升高。</p>
+<p class = "firstLineIndent">“轰！”已经扩散到数千公里的弧形光刃掠过铁壁舰队，将它从中一分为二！</p>
+<p class = "firstLineIndent">“滴滴滴！”被扫中的战舰护盾一阵晃动，刺耳的警报响彻整艘战舰。</p>
+<p class = "firstLineIndent">好在毕竟距离极远，这道可怕的攻击经过了能量散射之后威力已经下降了一大半，好歹是被铁壁舰队硬抗了下来。</p>
+<p class = "firstLineIndent">虽然并没有造成伤亡，但是也吓出了众人一身的冷汗。</p>
+<p class = "firstLineIndent">“30倍试做型超级界王炮”！</p>
+<p class = "firstLineIndent">聂云采用传奇机甲核心的尖端艾瑞斯文明科技，使用了大量进阶型秘银材料，将炮身的能量承受能力疯狂拔高之后，制造出的恐怖巨炮。</p>
+<p class = "firstLineIndent">事实上，长生者手上的每一件巨型兵器，都是聂云集科技之大成者，加上秘银材料的属性加成，绝对是敌人的噩梦。</p>
+<p class = "firstLineIndent">近防用的“重型秘银盾”，近战用的“破甲秘银重锤”，中远程的投掷武器“破甲重矛”加上应用了“界王炮”技术的“巨型能量重炮”。</p>
+<p class = "firstLineIndent">聂云对尺寸的追求，终于在今天得到了完美的贯彻！</p>
+<p class = "firstLineIndent">铁壁子爵此刻已经完全没有了刚刚的轻视，满脸凝重地盯着对面的那只恐怖生物……手中的巨炮。</p>
+<p class = "firstLineIndent">拿巨炮当开山刀耍的，他还是第一次见。</p>
+<p class = "firstLineIndent">问题是，这把开山刀威力有点小可怕……</p>
+<p class = "firstLineIndent">不！简直就是超乎想象！</p>
+<p class = "firstLineIndent">假如铁壁子爵知道，如果将这门巨炮上消耗的进阶型秘银材料拆下来的话，足够伍尔夫帝国重新组建一支“星十字骑士团”，恐怕他就不会这么惊讶了……</p>
+<p class = "firstLineIndent">拿限量版遗迹材料当普通耗材用的，就问除了聂云还能有谁？</p>
+
+<h2>第七百九十九章 此树是我栽</h2>
+<p class = "firstLineIndent">“嗤~”发射完恐怖一击的30倍试做型“界王炮”炮身渐渐从通红的高温状态冷却下来。</p>
+<p class = "firstLineIndent">附近的细微宇宙颗粒被蒸发成了白雾，炮身上残留的一些岩石碎片则是直接被融化成了岩浆缓缓淌下。</p>
+<p class = "firstLineIndent">这可怕的景象，让这支线条流畅、造型优美的巨型“兵器”多了一丝凶悍的气势。</p>
+<p class = "firstLineIndent">“能量输出率998，最高温度9800万度，消耗能量水晶9672公斤，预计三分钟后结束冷却……”</p>
+<p class = "firstLineIndent">代号的统计数据报了上来，聂云听完后嘴角抽了抽。</p>
+<p class = "firstLineIndent">大炮一响，黄金万两。</p>
+<p class = "firstLineIndent">这哪儿是在开炮，简直就是在烧钱啊！</p>
+<p class = "firstLineIndent">按照现在的物价，近10吨的能源水晶，完全可以在地球魔都把整个汤臣一品买下来。</p>
+<p class = "firstLineIndent">科技越进步，战争越昂贵。</p>
+<p class = "firstLineIndent">石器时代部落间打个架，抄起石头就能上，零成本。</p>
+<p class = "firstLineIndent">现代战场一波导弹过去，几个百分点的鸡滴屁就没了。</p>
+<p class = "firstLineIndent">这年头没个印钞机，打个架都没啥底气，要不全世界怎么只有老米敢撒了欢的到处开战？</p>
+<p class = "firstLineIndent">而到了星际时代，能源作为货币等价物，更是成为衡量一场战争消耗的最直观参数。</p>
+<p class = "firstLineIndent">发展到后期的星际文明打一场大规模战争，一般不说花了多少钱，都说打出去几个恒星……</p>
+<p class = "firstLineIndent">“界王炮搭载的独立能源还可以满功率发射9次，降低功率的话使用次数还能继续增加，如果是由海狼号提供外部能源，那么把对面犁一遍应该不成问题。”代号跃跃欲试道。</p>
+<p class = "firstLineIndent">聂云白了她一眼。</p>
+<p class = "firstLineIndent">合着是花的公款，你用着不心疼是吧？</p>
+<p class = "firstLineIndent">再说了，他就是来秀一下肌肉的，可没好心打算替双子星抗下所有。</p>
+<p class = "firstLineIndent">“给对面的发个信息过去。”</p>
+<p class = "firstLineIndent">“发什么？”</p>
+<p class = "firstLineIndent">“嘿嘿……”聂云嘿嘿一笑。</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“此洞是我开，此树是我栽，要想从此过，留下买路财？”</p>
+<p class = "firstLineIndent">铁壁子爵看着刚刚收到的这条消息，差点以为是自己的眼睛看错了。</p>
+<p class = "firstLineIndent">这是碰上流窜的职业海盗了？</p>
+<p class = "firstLineIndent">旋即，他就被对面的家伙彻底激怒了。</p>
+<p class = "firstLineIndent">蔑视，裸的蔑视！</p>
+<p class = "firstLineIndent">“哼！还从来没有人，敢如此轻视我铁壁舰队！”铁壁子爵眼中寒光一闪。</p>
+<p class = "firstLineIndent">“命令舰队采用围杀阵型，让铁壁骑士团做好准备，进入投放距离后，立刻出击！”</p>
+<p class = "firstLineIndent">铁壁舰队令行禁止，立刻开始迅速变阵。</p>
+<p class = "firstLineIndent">原本密集的阵型开始分散，从一开始的锋矢巡航阵型，渐渐的朝着半月型的包围阵型演变，战舰之间的距离拉得极大。</p>
+<p class = "firstLineIndent">与此同时，铁壁舰队内部备战级别陡升，一群群训练有素，脸色肃然的精锐机师开始穿上紧身防护服，身手矫健地登上自己的机甲。</p>
+<p class = "firstLineIndent">一台台青铜色涂装，左手持盾，右手持矛的钢铁巨兽眼中光芒一闪，陆续被激活，随后被迅速送上弹射通道。</p>
+<p class = "firstLineIndent">一切显得忙碌而有序。</p>
+<p class = "firstLineIndent">铁壁子爵虽然愤怒，但界王炮的恐怖威力，确实对铁壁舰队造成了巨大的威慑，他自然不会再用密集阵型对付这种攻击力超高，堪称一刀9999的boss。</p>
+<p class = "firstLineIndent">围猎这种大体型宇宙级单位，铁壁舰队同样也是经验丰富。</p>
+<p class = "firstLineIndent">体型大有体型大的优势，但是劣势同样不小，尤其面对像是机甲这种数量多，突防能力强的武器，完全能达到蚁多咬死象的效果。</p>
+<p class = "firstLineIndent">以星际时代的武器威力，只要冲进去一台，基本就能完成绝杀。</p>
+<p class = "firstLineIndent">特别是高端机甲横行的伍尔夫帝国，单枪匹马歼灭一艘超大型文明旗舰的例子，在伍尔夫帝国的历史上也不是没有过。</p>
+<p class = "firstLineIndent">“战星”什么的伍尔夫帝国已经很少玩了，那东西就是个昂贵的铁棺材，性价比太低。</p>
+<p class = "firstLineIndent">好在类似“界王炮”这种大杀器，正常情况下是不可能连续发射的，恒星级武器的冷却周期，一般都是用“小时”甚至是“天”来计算，散兵阵显然能够有效降低伤亡。</p>
+<p class = "firstLineIndent">当然，他不知道的是，使用了秘银材料的界王炮，显然不太正常……</p>
+<p class = "firstLineIndent">“‘破魔弩’，5发齐射！”</p>
+<p class = "firstLineIndent">铁壁子爵已经完全正视了自己的对手，排兵布阵后再次下达了一道指令。</p>
+<p class = "firstLineIndent">当头被海狼号糊了一脸，铁壁子爵自然是要找回场子的。</p>
+<p class = "firstLineIndent">随后就见铁壁舰队前方的战舰开始朝着两侧缓缓让开，露出位于舰队后方5艘体积臃肿，整体呈滚筒造型的特殊战舰来。</p>
+<p class = "firstLineIndent">只见这5艘战舰在一阵机械传动后，下半部舰体竟是缓缓向两侧完全敞开，最后露出了被固定在机械臂上的庞然大物……</p>
+<p class = "firstLineIndent">“咦？”聂云惊讶地看着现场画面。</p>
+<p class = "firstLineIndent">那是一个长约10公里，纺锤形的青黑色巨大岩石柱。</p>
+<p class = "firstLineIndent">没错，就是石柱！</p>
+<p class = "firstLineIndent">里面露出的居然不是什么机械造物，而是一个连表面抛光处理都没做过，显得异常粗糙的石柱子，体积几乎占到了整艘战舰的一半。</p>
+<p class = "firstLineIndent">如果不是它被挂在铁壁战舰的舰体上，聂云绝对会认为这就是一个普通的再不能普通的石柱子。</p>
+<p class = "firstLineIndent">暴露在太空中之后，数百机械臂齐齐打开，这5根古怪的岩石柱缓缓与舰体脱离。</p>
+<p class = "firstLineIndent">下一刻，光芒猛地一闪，5根岩石柱陡然向后喷射出一道道粒子流，推动着巨大的石柱开始加速。</p>
+<p class = "firstLineIndent">它们的速度越来越快，渐渐脱离了舰队，朝着海狼号射来！</p>
+<p class = "firstLineIndent">“老板，这些飞行物有些古怪，我们的探测设备显示，它们的重量超乎寻常，密度几乎是寻常钢铁的10倍，总重量超过千万吨。”代号迅速道。</p>
+<p class = "firstLineIndent">“嗯……超重型飞行物？会是什么？看这东西的造型，略有点原始啊，难道是猎奇风格的攻击舰？”聂云摸了摸下巴。</p>
+<p class = "firstLineIndent">这粗糙的做工，难道是某种独特的艺术表现方式？连层烤漆都不涂的吗？</p>
+<p class = "firstLineIndent">“除了内嵌式的大推力引擎，未观测到明显的机械化痕迹，未观测到攻击性武器。</p>
+<p class = "firstLineIndent">按照对方的运行轨迹和加速度，预计1个小时后进入我方射程，届时我们双方的相对速度将达到3万公里每秒……</p>
+<p class = "firstLineIndent">呃……不会吧……”</p>
+<p class = "firstLineIndent">聂云掐指一算，眉头一挑。</p>
+<p class = "firstLineIndent">莫非……对方的目的是撞击我舰？</p>
+<p class = "firstLineIndent">这种重量级选手，一旦冲锋起来，寻常的物理攻击根本就是挠痒痒，看对方的皮糙肉厚的样子，里面估计还是实心的，能量攻击估计也作用不大。</p>
+<p class = "firstLineIndent">而且没有探测到任何电磁反应，也就是说这玩意儿完全就是个电磁绝缘体，不受电磁防护罩的影响……</p>
+<p class = "firstLineIndent">这么算下来，这东西要真用那种速度撞上来，海狼号上搭载的超大型护盾系统有和没有，结局恐怕不会有多少差别。</p>
+<p class = "firstLineIndent">即便是升级版的“晶化护盾”，面对这种火星撞地球的世纪大碰撞，恐怕也和肥皂泡一样脆弱不堪。</p>
+<p class = "firstLineIndent">“这……太空版鱼雷啊这是！”</p>
+
+
+
+
+<a href="790.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="800.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp</p><p>&nbsp</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

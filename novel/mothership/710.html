@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2>第七百一十章 窃国者</h2>
+<p class = "firstLineIndent">白银星系。</p>
+<p class = "firstLineIndent">这里是隶属洛克领的几个核心区域之一，因此在上一次的海盗之灾中幸运的逃过了一劫。</p>
+<p class = "firstLineIndent">可躲得过初一，躲不过十五。</p>
+<p class = "firstLineIndent">当海盗们的劫掠舰队卷土重来，并开始大肆袭击外围星域时，这里的民众也终于收到了风声。</p>
+<p class = "firstLineIndent">一大波海盗即将来袭，洛克财团却选择了断尾求生，这无疑让白银星系直接暴露在了海盗的兵锋之下，陷落只是时间问题。</p>
+<p class = "firstLineIndent">城市立刻陷入了混乱，大批大批的市民开始拖家带口的前往空港，希望逃往洛克星系，甚至更加遥远的帝国内陆地区。</p>
+<p class = "firstLineIndent">一对小夫妻带着大包小包的行礼，慌慌张张的正准备驾车去逃难，可抬头就看见一台悬浮车正缓缓降落在隔壁的停车坪上。</p>
+<p class = "firstLineIndent">“咦？老王，你不是准备去投奔洛克星系的亲戚吗？怎么又回来了？”拎着包的男主人惊愕的看着从车上下来的中年人。</p>
+<p class = "firstLineIndent">“嘿！你还不知道？”</p>
+<p class = "firstLineIndent">“呃知道什么？”</p>
+<p class = "firstLineIndent">“所以说，没事多看看新闻，不看新闻，有空你刷刷逗音也好啊！”说着，老王调出自己的个人终端，打开了一个短视频。</p>
+<p class = "firstLineIndent">“两位，这是家里所有的钱，请两位兄弟喝茶。”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">“巴萨尼奥星际运输公司的所有者，名下剩余流动资产376万帝国信用点，里面的应该是你的妻子和孩子，我说的应该没错吧？”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">“别害怕，我们不会伤害你们，根据海盗王大人制定的保护费阶梯式费率表，资产低于5000的免收保护费。</p>
+<p class = "firstLineIndent">而资产超过百万，但低于500万的，需要缴纳10的保护费，老弱妇孺可以免交，所以我们这次需要收取376万的保护费，请问是现金还是转账？”</p>
+<p class = "firstLineIndent">“”</p>
+<p class = "firstLineIndent">看完这段明显是由门禁监控系统拍摄下来的录像，这对小夫妻面面相觑。</p>
+<p class = "firstLineIndent">“这这是真的？”</p>
+<p class = "firstLineIndent">天底下还有觉得被打劫的给多了，主动找零的海盗？</p>
+<p class = "firstLineIndent">“假不了！网络上数千个类似的视频，都是各个被海盗攻陷的星系里传出来的。</p>
+<p class = "firstLineIndent">别的不说，视频里这个安东尼奥和我还有些业务往来，绝对不是托！</p>
+<p class = "firstLineIndent">看，还有这张保护费费率表，就贴在人家碎星海盗联盟新建的官网上了，还附上了投诉电话，多收滥收粗暴收，都可以打电话匿名投诉的！”</p>
+<p class = "firstLineIndent">啥？还有官方网站和投诉电话？</p>
+<p class = "firstLineIndent">这年头，海盗都改行做服务业了么</p>
+<p class = "firstLineIndent">“可可就算这样，他们也还是海盗啊！”男主人犹豫着。</p>
+<p class = "firstLineIndent">“嘿！人家都微笑打劫了，够明了吧，你还想怎样？</p>
+<p class = "firstLineIndent">再说了，这帮海盗都比那帮吸血鬼仁慈多了，知道现在空港那边一张船票多少吗？100万！还谢绝讲价！</p>
+<p class = "firstLineIndent">那帮子有钱人，自己提前跑路也就算了，临走还不忘乘火打劫喝咱们的血！</p>
+<p class = "firstLineIndent">老子宁可让海盗收点保护费，也不上这帮吸血鬼的贼船！”</p>
+<p class = "firstLineIndent">“100万？那两个人不就是200万？”身边的女主人吓了一跳。</p>
+<p class = "firstLineIndent">他们只是普通平民阶层，砸锅卖铁也拿不出200万啊除非把房子卖了！</p>
+<p class = "firstLineIndent">可海盗都打到家门口了，现在就算他想卖，也得有人当接盘侠啊！</p>
+<p class = "firstLineIndent">心里算了笔账，他们夫妻流动资产加年收入大概35万，然后还欠着460万的房贷按照那张保护费费率表一七得七，二七四十八，三八妇女节，五一劳动节，六一儿童节</p>
+<p class = "firstLineIndent">飞速的算了笔账，她眼睛顿时一亮，看向丈夫。</p>
+<p class = "firstLineIndent">“要不然咱们交保护费？”</p>
+<p class = "firstLineIndent">随着四路海盗大军一个接一个星系的巡回打劫，联盟海盗另类的保护费收取方式也迅速传扬了开去。</p>
+<p class = "firstLineIndent">这种讲信用、守规矩，还明码标价，明打劫的海盗，立刻就让正在被打劫以及即将被打劫的星系局面迅速稳定了下来。</p>
+<p class = "firstLineIndent">大多数平民达不到收保护费的要求，不需要跑。</p>
+<p class = "firstLineIndent">少部分中产买不起船票宁愿交保护费，不愿意跑。</p>
+<p class = "firstLineIndent">只有占极少数的富豪被高昂的保护费费率吓到，可劲儿的往外跑！</p>
+<p class = "firstLineIndent">这也给海盗们的收保护费工作提供了很大的便利。</p>
+<p class = "firstLineIndent">只要派兵把通往外界的要道一堵，遇见跑路的就逮起来，绝对是一抓一个准，各个都是身家丰厚的大肥羊！</p>
+<p class = "firstLineIndent">“幽灵兄弟，高啊！借着这次的劫掠，不仅提升了战前的士气，还顺带着树立起联盟的对外形象，一箭双雕！</p>
+<p class = "firstLineIndent">下一步，咱们就该等着那些商队主动来交保护费了吧？”赤龙乐呵呵道。</p>
+<p class = "firstLineIndent">一个只知道破坏和劫掠的海盗团伙，大家自然是敬而远之，但讲信用、守规矩的海盗，却是值得信任。</p>
+<p class = "firstLineIndent">而信任，是合作的基础！</p>
+<p class = "firstLineIndent">“嗯！不错！”聂云笑了笑。</p>
+<p class = "firstLineIndent">“有追求、有理想的海盗，不应该是杀戮和破坏的代名词，而应该是传统秩序的挑战者，新秩序的制定者。</p>
+<p class = "firstLineIndent">杀戮和破坏不会产生财富，只会产生财富的再分配，但秩序可以。</p>
+<p class = "firstLineIndent">人家上交了保护费，在我们的地界畅通无阻，我们节省了打劫的成本，对方降低了血本无归的风险，这是双赢！</p>
+<p class = "firstLineIndent">用不了多久，就会有更多心怀顾忌的商队选择走我们的黄金航道，来往的商队越多，咱们的保护费就会越多。</p>
+<p class = "firstLineIndent">这就是把蛋糕做大。”</p>
+<p class = "firstLineIndent">对此，弗林特十分赞同的点了点头。</p>
+<p class = "firstLineIndent">作为一方霸主，弗林特当然也明白制定规则，做大蛋糕的道理，只不过以前根本没有实际执行的条件。</p>
+<p class = "firstLineIndent">试想一下，周围和你一样实力的还有六个。</p>
+<p class = "firstLineIndent">什么？别人向你交了保护费，让我们别动他？凭什么？照抢不误！</p>
+<p class = "firstLineIndent">给别人保护费不给我？瞧不起我怎么地？</p>
+<p class = "firstLineIndent">给我照死里抢！</p>
+<p class = "firstLineIndent">久而久之，还有谁愿意主动交保护费？</p>
+<p class = "firstLineIndent">一句话，想要做规则的制定者，一切的基础还是实力！</p>
+<p class = "firstLineIndent">而碎星海盗联盟，无疑已经有了制定一些规则的实力。</p>
+<p class = "firstLineIndent">“你说的这些大道理我不懂，不过你的意思我倒是明白了，也就是说，咱们接下来就坐等发财了？”赤龙兴奋的搓了搓手。</p>
+<p class = "firstLineIndent">“唔如果按照我的设想一步步执行下去，咱们可不是发财这么简单。</p>
+<p class = "firstLineIndent">我给你举个栗子，比如上古时期，打劫的开场白是这样的：此山是我开，此树是我栽，要想从此过，留下买路财！</p>
+<p class = "firstLineIndent">听听！语言多么的粗俗！</p>
+<p class = "firstLineIndent">经过上千年的明洗礼，到了近现代社会，语言变得更明，更贴心：前方500米收费站，请减速慢行！”</p>
+<p class = "firstLineIndent">“呃这个栗子告诉我们什么？”赤龙疑惑，其他人却是一脸若有所思。</p>
+<p class = "firstLineIndent">聂云扫视一圈众人，笑眯眯道。</p>
+<p class = "firstLineIndent">“这个故事告诉我们，窃钩者诛，窃国者侯！”</p>
+<p class = "firstLineIndent">“嘶”</p>
+
+<h2>第七百一十一章 再来两个卫兵</h2>
+<p class = "firstLineIndent">一个组织想要打造核心凝聚力，无非靠物质条件和精神信仰。</p>
+<p class = "firstLineIndent">海盗们熙熙攘攘，皆为利来，这样的情况有利有弊，比如聂云能够通过一场劫掠迅速提升海盗们的士气。</p>
+<p class = "firstLineIndent">但仅靠利益拉拢，那么未来在更大的利益面前，这群海盗又会作何选择？</p>
+<p class = "firstLineIndent">所以，对海盗们的“精神建设”也被聂云提上了日程。</p>
+<p class = "firstLineIndent">“各位！我们现在是海盗，将来未必还是海盗，毕竟这江山也是人打下来的！王侯将相，宁有种乎？”</p>
+<p class = "firstLineIndent">当众人从会议室离开时，眼神都变得有些不一样了。</p>
+<p class = "firstLineIndent">弗林特自认已经是野心勃勃，胆大包天之辈，但比起聂云的这个豪情壮志来说，自己以前的算是什么？小富即安？</p>
+<p class = "firstLineIndent">王侯将相，宁有种乎？</p>
+<p class = "firstLineIndent">说的……真是太特么好了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">“别！老板，千万别冲动啊！”</p>
+<p class = "firstLineIndent">“撒手，老子要和这帮海盗拼了！要死大家一起死！”</p>
+<p class = "firstLineIndent">“不要啊老板！对方放缓行军，摆明了就是在钝刀子割肉，这是激将法，冷静，千万别冲动啊！”</p>
+<p class = "firstLineIndent">好不容易拉住想要派兵决战的金洛克，克洛罗斯抹了把冷汗，赶紧跟他解释什么叫做请君入瓮。</p>
+<p class = "firstLineIndent">别看聂云现在兵发四路，放纵麾下四处劫掠，本阵只留了3000艘飞船，似乎是一个各个击破的好机会。</p>
+<p class = "firstLineIndent">但海盗一方整体上依旧保持着阵型。</p>
+<p class = "firstLineIndent">五支舰队如同张开的五指，一旦己方被海盗们肆无忌惮的劫掠激怒，想要走出洛克星系主动迎战，克洛罗斯敢保证，对方的五指立刻就会收拢，将他们直接包饺子！</p>
+<p class = "firstLineIndent">不仅如此，对方还不时的轮换前出劫掠的部队。</p>
+<p class = "firstLineIndent">在提升海盗整体士气的同时，也将大量的战利品通过舰队的后勤运输队送回碎星星域，保证舰队的战斗力不被这些财富拖累，根本没给克洛罗斯留任何破绽。</p>
+<p class = "firstLineIndent">金洛克想死他不拦着，但他现在可是想让自己去送死，这就很惆怅了。</p>
+<p class = "firstLineIndent">“难道就眼睁睁看着对方在我的领土上收保护费？还有那些贱民！人家不过是稍微少抢一点，居然还有人对这群海盗感恩戴德？那可也是我的钱！</p>
+<p class = "firstLineIndent">等这事儿过去，老子一定要收重税！把这些贱民的钱全都收回来！”金洛克愤怒道。</p>
+<p class = "firstLineIndent">其实洛克财团放弃其余星域固守洛克星系，从战略上来说并无不妥，实属无奈之举。</p>
+<p class = "firstLineIndent">但社会就是如此残酷。</p>
+<p class = "firstLineIndent">好人做的再好，只要做了一件错事，所有人都会觉得他是坏人。</p>
+<p class = "firstLineIndent">而坏人稍微做点好事，甚至做的坏事不那么坏，所有人都会很宽容的原谅甚至赞美他。</p>
+<p class = "firstLineIndent">所以现在的网络上，就充斥着大量辱骂金洛克和权贵不顾平民死活，反而是一帮海盗，文明打劫的同时还帮着维护治安，尽显人性光辉的言论。</p>
+<p class = "firstLineIndent">人心向背，令人瞠目！</p>
+<p class = "firstLineIndent">不仅是自己的财富正在被劫掠，还要被自己人指着鼻子骂？这不是往自己身上正反两面同时插刀吗？</p>
+<p class = "firstLineIndent">金洛克简直就想把这群患了斯德哥尔摩综合症的家伙统统流放星空三万里！</p>
+<p class = "firstLineIndent">“老板不用动怒，对方这招不过是在收买人心，想要借机树立威望，建立周边星域的新秩序，足见其野心勃勃！</p>
+<p class = "firstLineIndent">不过成也野心，败也野心，对方这么做，不过取死之道！”克洛罗斯冷笑一声。</p>
+<p class = "firstLineIndent">“哦？怎么说？”金洛克果然被转移了注意力。</p>
+<p class = "firstLineIndent">“碎星星域的海盗屡禁不绝，除了地势复杂，不易剿灭之外，也有帝国轻视的原因在内。</p>
+<p class = "firstLineIndent">可对方现在不仅完成了一统，实力暴涨，还大张旗鼓的又是保护费，又是护航计划，摆明了视帝国为无物，想要形成实质上的军阀割据。</p>
+<p class = "firstLineIndent">更何况，这位海盗王还是一名机械族，身份更是敏感，您认为帝国还会当他们只是癣疥之疾吗？”</p>
+<p class = "firstLineIndent">“你是说，帝国会出兵围剿他们？”金洛克眼睛一亮。</p>
+<p class = "firstLineIndent">“不错，实际上我已经在运作了，我向您保证，不出一个月，帝国就会出兵剿匪！</p>
+<p class = "firstLineIndent">所以只要我们坚守不出，守住一个月，就能和帝国大军会师，杀进碎星星域将财富统统再抢回来！”克洛罗斯终于将话题转回正题。</p>
+<p class = "firstLineIndent">聂云在刷士气buff，顺带扩张海盗联盟的影响力，克洛罗斯自然也不会坐以待毙。</p>
+<p class = "firstLineIndent">他知道，此时凭借洛克财团，想要限制海盗的势力扩张已经不太现实，哪怕加上二皇子在附近星域准备的暗手，也不见得能够稳压对方。</p>
+<p class = "firstLineIndent">换句话说，对方确实已经逼得己方束手无策，只能开大！</p>
+<p class = "firstLineIndent">克洛罗斯已经以洛克财团的名义，整理了有关碎星海盗联盟的所有资料，向军方正式求援！</p>
+<p class = "firstLineIndent">虽然帝国对地方，特别是洛克财团和碎星星域这种“非核心区域”的掌控力已经大大下降，但依旧保持着相当规模的驻军。</p>
+<p class = "firstLineIndent">当然，像洛克财团这种私人性质的财团领地，想要驻军出手，绝对要付出不菲的代价。</p>
+<p class = "firstLineIndent">以金洛克现在的财物状况……这笔钱显然是不可能出的。</p>
+<p class = "firstLineIndent">不过有二皇子的势力在背后推动，加上这伙海盗的确已经触碰了帝国的敏感神经，军方选择出兵的概率在九成以上！</p>
+<p class = "firstLineIndent">毕竟帝国越是脆弱，就越是不能容许一个公然挑战帝国秩序的存在。</p>
+<p class = "firstLineIndent">所以哪怕是白干，帝国军方也会选择将碎星海盗这个刺儿头抹去，保住帝国最后的遮羞布。</p>
+<p class = "firstLineIndent">有了军方刚正面，加上二皇子的势力暗中围剿，碎星海盗联盟，也不过将是昙花一现！</p>
+<p class = "firstLineIndent">“嗯！你的能力，我还是信任的！”听到克洛罗斯的计划，金洛克怒气稍缓。</p>
+<p class = "firstLineIndent">主要他信任的不是克洛罗斯，而是对方身后那位殿下的庞大能量。</p>
+<p class = "firstLineIndent">“当然，这一次我绝对……”</p>
+<p class = "firstLineIndent">“停！打住！”金洛克赶紧抬手制止了克洛罗斯的日常fg。</p>
+<p class = "firstLineIndent">你丫的忘了前几次也是这么向我保证的？</p>
+<p class = "firstLineIndent">结果呢？</p>
+<p class = "firstLineIndent">“卫兵！再来两个卫兵，给我好好保护咱们的指挥官阁下！”</p>
+<p class = "firstLineIndent">军令状啥的我已经彻底绝望了，还是用生命的可贵，来刺激你的主观能动性吧。</p>
+<p class = "firstLineIndent">克洛罗斯：“……”</p>
+
+<h2>第七百一十二章 抵押物</h2>
+<p class = "firstLineIndent">就在聂云和克洛罗斯隔空交手，各自出招之际，另一处星空</p>
+<p class = "firstLineIndent">“东西带来了吗？”</p>
+<p class = "firstLineIndent">“嗯！钱带来了吗？”</p>
+<p class = "firstLineIndent">“没带！”</p>
+<p class = "firstLineIndent">“好！那我们现在就呃！你刚刚说什么？”莱昂阿萨德脸上有些懵。</p>
+<p class = "firstLineIndent">这台词不对啊！</p>
+<p class = "firstLineIndent">“哗啦啦！”莱昂身后一票全副武装的特战队队员立刻抬起手中的武器，一脸紧张的仔细观察四周。</p>
+<p class = "firstLineIndent">“黑执事阁下，你们想干什么？”莱昂顿时紧张了起来。</p>
+<p class = "firstLineIndent">这帮家伙，不会想在这个节骨眼黑吃黑吧？没道理啊！</p>
+<p class = "firstLineIndent">不过两艘飞船之间的对接舱中平静异常，想象中的刀斧手并没有冒出来，对面的交易者也依旧只有黑执事一个人。</p>
+<p class = "firstLineIndent">“别激动！别激动！”笼罩在黑袍下的机械虫分身抬了抬手，“我们可没有撕毁协议的意思。”</p>
+<p class = "firstLineIndent">“可明明说好了矢量引擎和2万吨能源水晶，我们一手交钱，一手交货，你们现在连钱都没带过来，难不成是想耍我们吗？”</p>
+<p class = "firstLineIndent">莱昂依旧没有放松警惕，手已经摸上了警报器。</p>
+<p class = "firstLineIndent">只要他一发信号，在远处等待的那近百艘护卫舰队见势不妙，就会直接四散而逃，带着隐藏在其中的矢量引擎快速逃回双子星！</p>
+<p class = "firstLineIndent">至于矢量引擎究竟藏在那一艘飞船里，就连莱昂都完全不清楚。</p>
+<p class = "firstLineIndent">这是双子星为了防范万物归一会翻脸的后手。</p>
+<p class = "firstLineIndent">没错，这里正是聂云和双子星的PY交易现场。</p>
+<p class = "firstLineIndent">在完成对洛克财团的“制裁”，迫使对方从双子星退兵，并协助夺回虫洞控制权之后，聂云就已经完成了与双子星的第二个承诺。</p>
+<p class = "firstLineIndent">只差交割2万吨能源水晶的“无息战争贷款”，他便可以获得双子星手中的宇宙奇物“矢量引擎”！</p>
+<p class = "firstLineIndent">双子星这次很老实，根本没打算耍赖皮。</p>
+<p class = "firstLineIndent">或者说，根本不敢！</p>
+<p class = "firstLineIndent">在洛克财团的“惨状”传回双子星之后，就连军方最坚定的主战派，都不敢轻言得罪万物归一会这个能量极为恐怖的存在。</p>
+<p class = "firstLineIndent">那么一个比之双子星实力有过之而无不及的超级财团，人家说制裁你就制裁你，不带半点含糊的。</p>
+<p class = "firstLineIndent">看看现在的洛克财团，怎一个惨字了得！</p>
+<p class = "firstLineIndent">你说恐怖不恐怖？</p>
+<p class = "firstLineIndent">从食物链级别来说，洛克财团能揍的双子星灰头土脸，万物归一会又能揍得洛克财团灰头土脸</p>
+<p class = "firstLineIndent">那万物归一会真要是揍起双子星来，恐怕只能用“打豆豆”来形容了。</p>
+<p class = "firstLineIndent">而且根据刚刚刺探来的情报，似乎是因为洛克财团背后的势力有了展开报复的想法，这一回人家更狠！</p>
+<p class = "firstLineIndent">不知道进行了什么神仙操作，居然短时间内就扶植起一个海盗王，拉起了一个庞大的海盗联盟，据说此刻前往攻打洛克财团的海盗舰队足足有5000艘飞船！</p>
+<p class = "firstLineIndent">5000艘飞船什么概念？</p>
+<p class = "firstLineIndent">单看数量，这几乎已经和双子星在战前所拥有的战舰总数相当！</p>
+<p class = "firstLineIndent">当然，海盗们的装备水平和战斗素养自然不可能和正规军比，但看着忒吓人啊！</p>
+<p class = "firstLineIndent">矢量引擎是珍贵，但面对这种恐怖的势力，若是毁约</p>
+<p class = "firstLineIndent">怕不是嫌明历史太长？</p>
+<p class = "firstLineIndent">至于为什么会是身为情报主官的莱恩前来进行交易，这就不得不提到克鲁泽议长给予他的特别调查手令了。</p>
+<p class = "firstLineIndent">在上一次的协商会面中，黑执事曾主动透露了一句话。</p>
+<p class = "firstLineIndent">“我的名字在座的各位应该都听过”</p>
+<p class = "firstLineIndent">凭借老辣的眼光，克鲁泽判断这句话很可能为“真”，于是立刻颁下手令，派莱恩秘密调查黑执事的身份。</p>
+<p class = "firstLineIndent">毕竟一名高级间谍就这样藏身于他们之中，己方的一举一动都在对方的眼皮子地下，对方还时不时在他们面前堂而皇之的刷存在感，这实在是一件令人后背发凉的事情。</p>
+<p class = "firstLineIndent">而这一次事关机械虫失散多年的兄弟“矢量引擎”，聂云直接以“黑执事”的身份前来交易，务求万无一失的同时，也表明对这件秘宝的重视。</p>
+<p class = "firstLineIndent">正愁无处下手的莱恩听说后，自然认为这是一次千载难逢的“近距离”接触机会，于是立刻动用自己的特殊权限，申请了使者的身份。</p>
+<p class = "firstLineIndent">莱恩本以为这只是一次例行公事，轻松愉快的交易</p>
+<p class = "firstLineIndent">毕竟人家连洛克财团都说揍就揍了，还差这2万吨能源水晶？</p>
+<p class = "firstLineIndent">可结果没想到，他们裤子都脱了，对方居然没带钱？！</p>
+<p class = "firstLineIndent">“别误会，之所以没带钱，是因为2万吨能源水晶不是个小数目，短时间内我们要从伍尔夫帝国各处的分部调集过来，实在太过麻烦。”聂云摊了摊手解释道。</p>
+<p class = "firstLineIndent">和双子星的水晶贸易一直在进行，所以太阳系那边空白水晶自然不缺。</p>
+<p class = "firstLineIndent">但有原材料，产能却是跟不上，太阳系的能源水晶充能工厂，每个月也才一两百吨的产量。</p>
+<p class = "firstLineIndent">加上月球那边的矿渣已经濒临枯竭，太阳系那边想要一下子拿出2万吨能源水晶根本不现实。</p>
+<p class = "firstLineIndent">原本，聂云打劫了金币海盗团之后一夜暴富，碎星分基地这边凑一凑，拿出2万吨也不是问题。</p>
+<p class = "firstLineIndent">不过现在幽灵海盗团刚吃下了整个莱恩族，手底下多了几百万张嘴。</p>
+<p class = "firstLineIndent">紧接着聂云还打算建造碎星工业中心，联盟初立也需要大笔资金收买人心，用钱的地方一下子就多了起来。</p>
+<p class = "firstLineIndent">考虑了一下聂云就想着“赖”掉这笔钱。</p>
+<p class = "firstLineIndent">“因为筹钱太麻烦，所以没带钱？”莱恩瞪大眼睛，立刻就准备按下警报器了。</p>
+<p class = "firstLineIndent">没钱？没钱你还夸海口一掷千金？合着是想空手套白狼咋地？</p>
+<p class = "firstLineIndent">“别误会，听我说！虽然钱没带，不过我带来一件东西，我用它抵给你们！”</p>
+<p class = "firstLineIndent">啥？用一件东西抵给我们？</p>
+<p class = "firstLineIndent">“黑执事阁下，你确定是一件东西？”莱恩狐疑的盯着聂云。</p>
+<p class = "firstLineIndent">什么抵押物能值2万吨能源水晶？</p>
+<p class = "firstLineIndent">这就和20世纪的地球，有人告诉你我有一件宝贝，它值2万吨黄金一般不可思议。</p>
+<p class = "firstLineIndent">“当然，这可是我花费很大代价，从伍尔夫分会那边交易来的宝贝，绝对值这个价！”聂云神秘一笑。</p>
+<p class = "firstLineIndent">“哦？那究竟是什么东西？”莱恩疑惑道。</p>
+<p class = "firstLineIndent">“刷！”聂云没回答，只是打开了一副虚拟投影，莱恩眼前出现三座形似“日晷”的立体投影。</p>
+<p class = "firstLineIndent">“这这是”莱恩的眼睛越睁越大！</p>
+<p class = "firstLineIndent">“虫洞扩张装置！”</p>
+
+<h2>第七百一十三章 是忠是奸</h2>
+<p class = "firstLineIndent">一个激动，莱恩差点没把手里的警报器给按下去！</p>
+<p class = "firstLineIndent">“你你想把这项技术卖给我们？”莱恩咽了口唾沫。</p>
+<p class = "firstLineIndent">这项技术的战略价值，他作为一名精英级的情报主官，自然不会不懂。</p>
+<p class = "firstLineIndent">“当然，你觉得它难道不值2万吨能源水晶？”聂云笑道。</p>
+<p class = "firstLineIndent">洛克财团的三座虫洞扩张装置，在预料到虫洞必定失守之前就已经被克洛罗斯取走了关键核心，随后直接摧毁，就连残骸都被小心的一一回收。</p>
+<p class = "firstLineIndent">不过奈何聂云手更快，早就派潜入的小间谍将它“吃”了个通透。</p>
+<p class = "firstLineIndent">云端科研所的天体物理学家卡尔，便是“虫洞扩张技术”逆向工程的主要负责人。</p>
+<p class = "firstLineIndent">经过这段时间的实验和研究，如今装置的设计图已经还原了出来，而且相关的基础自然学科也在积极攻关中。</p>
+<p class = "firstLineIndent">地球明由此点亮了“宇宙潮汐学”“虫洞形成机理”“初级空间跃迁”“暗能量初步猜想”等高端学科的皮毛！</p>
+<p class = "firstLineIndent">即便以地球明如今的科研团队，这项伍尔夫帝国历经千年才逐步开发完善的超级科技，也不是他们短时间内能够消化的。</p>
+<p class = "firstLineIndent">不过，卡尔对虫洞的理论猜想却已基本形成！</p>
+<p class = "firstLineIndent">宇宙就像一片汪洋，而虫洞，就好比海洋中的一个个漩涡。</p>
+<p class = "firstLineIndent">海洋漩涡，是由层流、海底空腔、涡量集中等因素形成，而宇宙中的虫洞，则是由宇宙潮汐、暗能量势差等因素共同作用形成。</p>
+<p class = "firstLineIndent">宇宙虫洞，在宇宙潮汐激烈交汇处形成，也会因宇宙潮汐的涨落和迁徙而自然消失。</p>
+<p class = "firstLineIndent">这个形成和消失的时间尺度或长或短，有些数万年后依旧存在，有些则仅仅持续了数个月时间便自然消散。</p>
+<p class = "firstLineIndent">而正如同双子星的科学家们之前猜测的那样，“虫洞扩张技术”的前置科技便是“虫洞充能技术”。</p>
+<p class = "firstLineIndent">简单来说便是在极限充能情况下，为虫洞注入过量的能量，从而达到令其非自然扩张的目的。</p>
+<p class = "firstLineIndent">利用这种技术，伍尔夫帝国虽然无法人为制造虫洞，但已经能够将一处自然形成的虫洞永久固化，乃至继续扩张。</p>
+<p class = "firstLineIndent">“这个”莱恩有些拿不准。</p>
+<p class = "firstLineIndent">2万吨能源水晶多吗？</p>
+<p class = "firstLineIndent">当然多，这是一笔难以想象的巨款，足以让遭受重创的双子星从战后迅速恢复过来。</p>
+<p class = "firstLineIndent">但伍尔夫帝国独有的“虫洞扩张技术”，却是能够令双子星明的基础科学得到跨越式发展，且多出一项战略技能的超级科技！</p>
+<p class = "firstLineIndent">一种是眼前的庞大财富，另一种是将来的发展潜力。</p>
+<p class = "firstLineIndent">是选眼前的苟且，还是诗和远方？</p>
+<p class = "firstLineIndent">“恐怕这已经超出了我的权限，我需要请示议会再做决定。”莱恩苦笑一声，“不过我想冒昧问一下，这项技术的来源”</p>
+<p class = "firstLineIndent">“嗯！不错，这的确是来自伍尔夫帝国！”聂云并没有隐瞒，当然，真话后面又紧跟着来了一句假话。</p>
+<p class = "firstLineIndent">“我们双子星分会花费了许多代价，才从伍尔夫分会手中买来的。”</p>
+<p class = "firstLineIndent">莱恩闻言震惊道，“他们居然连这种压箱底的技术都卖？”</p>
+<p class = "firstLineIndent">“呵呵！组织的成员来自各个明，各个阶层，我们拥有不同的身份，自然也秉承不同的立场。</p>
+<p class = "firstLineIndent">有人像我一样，为明的发展和存续而殚精竭虑，自然也有人为了一己私利，不惜出卖明的核心利益！”</p>
+<p class = "firstLineIndent">莱恩：“”</p>
+<p class = "firstLineIndent">你？为了明的发展和存续而殚精竭虑？</p>
+<p class = "firstLineIndent">似乎看出了莱恩脸上的想法，聂云仰头，惨yg然di一fu笑ti。</p>
+<p class = "firstLineIndent">“呵呵！怎么？难道你们以为加入了万物归一会，就一定是明之敌？我问你，至今为止，我是否有做过什么损害明利益的事情？”</p>
+<p class = "firstLineIndent">“有的！生命之水！”莱恩立刻举例。</p>
+<p class = "firstLineIndent">黑执事最初现身，就是为了与双子星抢夺卡拉星的生命之水，最终的结果大家都知道了，黑执事一顿操作猛如虎，成功摆了双子星一道，顺利夺宝。</p>
+<p class = "firstLineIndent">而双子星一方，则是只能定期获得少量的生命之水，损失不可谓不大。</p>
+<p class = "firstLineIndent">这你怎么解释？</p>
+<p class = "firstLineIndent">“是，我是抢夺了生命之水的所有权，但是这件东西放在我手上，其实比在议会手上更有价值。</p>
+<p class = "firstLineIndent">知道这一次的虫洞扩张技术是用什么换来的吗？没错，就是大量的生命之水！</p>
+<p class = "firstLineIndent">只有万物归一会的庞大商业网络，才能将这种宝物的价值发挥到最大，落在议会手中，只会成为少数人的禁脔！</p>
+<p class = "firstLineIndent">我特地给出了一定份额的生命之水，用于科研完全足够。</p>
+<p class = "firstLineIndent">所以综合来说，除了让几个老不死的尽早入土为安，我并未给明造成任何实质性的损失！”</p>
+<p class = "firstLineIndent">“这”莱恩有些反驳不能。</p>
+<p class = "firstLineIndent">对方说的似乎有些道理？</p>
+<p class = "firstLineIndent">生命之水的内部分配他自然也有所耳闻，据说只有很少一部分到了研究所，至于其它的</p>
+<p class = "firstLineIndent">好吧，再想下去说不定议会宪兵队就得找我喝茶了</p>
+<p class = "firstLineIndent">“可是，你之前的所作所为”莱恩迟疑着道。</p>
+<p class = "firstLineIndent">“呵！世人笑我太疯癫，我笑世人看不穿！</p>
+<p class = "firstLineIndent">我所做的一切，无愧于明，无愧于人民，我自认问心无愧！</p>
+<p class = "firstLineIndent">在我看来，绝大多数的人，都被与生俱来的傲慢和偏见蒙蔽了双眼，看不清这个世界的真实。</p>
+<p class = "firstLineIndent">如果你能够抛开我的身份和立场，公平公正的评价我的功过，那么你就会发现，是我，费尽心思建立太阳系缓冲区，为明隔开根本无法力敌的安特帝国！</p>
+<p class = "firstLineIndent">是我，促成了空白水晶贸易，大大缓解了议会的财政危机，提供了充足的战争经费。</p>
+<p class = "firstLineIndent">是我，建立卡拉星自贸区，拉动外需，为明制造了大量贸易顺差，创汇创收，刺激经济。</p>
+<p class = "firstLineIndent">也是我，半卖半送的向你暗中提供了伍尔夫帝国大百科，借此提醒明提高警惕，防范强敌。</p>
+<p class = "firstLineIndent">还是我，在明生死存亡之际，付出常人难以想象的巨大代价，说服组织对洛克财团进行制裁。</p>
+<p class = "firstLineIndent">用一件价值根本不大的宇宙奇物，借力打力，利用组织的力量逼迫侵略者退兵，换取了明的喘息之机，保下了四分之一的领土和数以亿万计的平民！</p>
+<p class = "firstLineIndent">你说我究竟，是忠是奸？”</p>
+<p class = "firstLineIndent">莱恩：“”</p>
+<p class = "firstLineIndent">他眼神茫然。</p>
+<p class = "firstLineIndent">是忠？是奸？傻傻分不清楚</p>
+<p class = "firstLineIndent">明明前一刻还是我想方设法要接近调查的大反派，可经对方这么一通官方解释下来</p>
+<p class = "firstLineIndent">似乎对方真的是默默地为双子星明立下了n多的功劳？</p>
+<p class = "firstLineIndent">如果真如对方所说，这些功劳累加起来咱还得给他颁发一枚代表双子星最高荣誉的无双国士勋章？</p>
+<p class = "firstLineIndent">“那你为什么不直接表明态度，与议会深入合作？如果双方能够坦诚相待，未必不能让明更进一步啊！”莱恩提出了最后的疑问。</p>
+<p class = "firstLineIndent">“呵！与议会深入合作？现在回忆起来，我那时何尝不是像你这么天真呢”</p>
+<p class = "firstLineIndent">聂云背过身，负手而立。</p>
+<p class = "firstLineIndent">那语气，说不出的饱经沧桑，那背影，说不出的萧瑟与孤单。</p>
+<p class = "firstLineIndent">莱恩听出了话里未尽之意。</p>
+<p class = "firstLineIndent">这个男人受过伤！</p>
+<p class = "firstLineIndent">或许，对方也是迫不得已，才只能选择以一种备受指责唾弃方式，为明默默贡献力量吧</p>
+<p class = "firstLineIndent">毕竟，能够身处光明，谁会选择在黑暗中前行呢？</p>
+<p class = "firstLineIndent">有时候，想留不能留，才最寂寞吧</p>
+
+<h2>第七百一十四章 Lost No.3</h2>
+<p class = "firstLineIndent">自然而然的，莱恩已经脑补出了一名对腐朽官僚体制渐渐绝望，最终心灰意冷投身黑暗的热血青年形象</p>
+<p class = "firstLineIndent">“唉”</p>
+<p class = "firstLineIndent">“唉”x12</p>
+<p class = "firstLineIndent">莱恩一愣，我叹个气，怎么还带回音？</p>
+<p class = "firstLineIndent">转过身，发现自己带来的护卫队居然一个个都露出崇敬和同情的目光。</p>
+<p class = "firstLineIndent">我们原来都不知道，竟有一位无名英雄忍辱负重，默默无闻的的为明做了这么多事？</p>
+<p class = "firstLineIndent">哪有什么岁月静好，只不过是有人在为你负重前行罢了</p>
+<p class = "firstLineIndent">莱恩：“”</p>
+<p class = "firstLineIndent">p！这家伙演说感染力这么强的吗？</p>
+<p class = "firstLineIndent">不行不行！再这么下去，老子的调查报告应该怎么写？</p>
+<p class = "firstLineIndent">说你们眼中十恶不赦的反明分子其实是身在曹营心在汉？他打我们骂我们，其实都是为了我们好？</p>
+<p class = "firstLineIndent">别看人家成天黑袍罩脸，其实是个人畜无害，可爱而又迷人的反派角色？</p>
+<p class = "firstLineIndent">他敢保证，这份调查报告要是交上去，那就不是扣年终奖这么简单了，怕不是得被当成万物归一会的同党？</p>
+<p class = "firstLineIndent">同情归同情，钦佩归钦佩，屁股还是得摆正的！</p>
+<p class = "firstLineIndent">“咳！黑执事阁下，虽然不知道过去发生过什么，不过我还是觉得凡事都可以协商，以阁下现在的身份，想必一定会受到议会的重视！”</p>
+<p class = "firstLineIndent">言下之意，以前你或许人微言轻，或许曾经受到过不公平的待遇，但今时不同往日，现在你身后可是有个庞然大物一般的万物归一会，手中又掌握着大量的情报和资源。</p>
+<p class = "firstLineIndent">现在表明身份，回到明岂不是妥妥的装逼打脸流？</p>
+<p class = "firstLineIndent">“道不同不相为谋，更何况，现在时机未到”</p>
+<p class = "firstLineIndent">聂云委婉拒绝，同时留下一句耐人寻味的话。</p>
+<p class = "firstLineIndent">莱恩皱了皱眉，什么叫时机未到？要等到什么时机？</p>
+<p class = "firstLineIndent">不过看样子，自己劝说对方公开身份，轻松达成100任务完成度的打算是落空了。</p>
+<p class = "firstLineIndent">“好吧！人各有志，不过既然黑执事阁下心向明，那么这一次的交易还请多多为明考虑。”</p>
+<p class = "firstLineIndent">莱恩借坡下驴，言外之意，既然大家都是自己人，那在这次的交易上可别坑我们啊！</p>
+<p class = "firstLineIndent">“呵呵！放心，这一次的交易对我们双子星来说，绝对是占了天大的便宜！</p>
+<p class = "firstLineIndent">你毕竟不是专业的科技人员，所以或许只看到了虫洞扩张技术部分战略价值，但这项技术，远没你想的那么简单！”聂云神秘一笑。</p>
+<p class = "firstLineIndent">“哦？愿闻其详！”莱恩眼睛一亮。</p>
+<p class = "firstLineIndent">“虫洞是一种奇特的宇宙空间通道，而对虫洞的探测、干预，实际上是一条循序渐进的科技链。</p>
+<p class = "firstLineIndent">双子星目前只发展到了第一阶段，也就是对虫洞的探测。</p>
+<p class = "firstLineIndent">而伍尔夫帝国则已经能够做到对虫洞进行一定程度的干预，也就是虫洞充能技术和虫洞扩张技术。”</p>
+<p class = "firstLineIndent">“嗯！不错！”莱恩点点头。</p>
+<p class = "firstLineIndent">“那么，如果这项技术更进一步呢？</p>
+<p class = "firstLineIndent">高等明的科技发展，究其根本，其实就是对宇宙万物的解析、学习和利用，试想一下，一旦我们将虫洞的形成原理和运作机制完全吃透，接下来呢？”</p>
+<p class = "firstLineIndent">隐约间，莱恩有些明白聂云的意思来了。</p>
+<p class = "firstLineIndent">他渐渐的瞪大了眼睛，“你是说制造虫洞？！”</p>
+<p class = "firstLineIndent">“恭喜你，答对了！”聂云一副孺子可教的神情。</p>
+<p class = "firstLineIndent">“在多次的模拟推演中，我们推测，这项伍尔夫帝国的虫洞扩张技术只要能够再次取得突破，便极有可能直接制造出临时性的人工虫洞。</p>
+<p class = "firstLineIndent">换句话说，这项技术的进阶科技，便是梦幻级的超光速科技空间跳跃！”</p>
+<p class = "firstLineIndent">“嘶”一片倒抽凉气的声音。</p>
+<p class = "firstLineIndent">超光速科技，这可是低级宇宙明和高级宇宙明的分界岭，其中的意义傻子都明白！</p>
+<p class = "firstLineIndent">莱恩也被惊到了，他毕竟不是科研人员，一开始也的确没有意识到，这项技术的发展潜力居然这么恐怖。</p>
+<p class = "firstLineIndent">这哪里是什么诗和远方，简直就是直指大道的通天之路啊！</p>
+<p class = "firstLineIndent">“咳！即便真如你所说，可这也只是这项技术的潜力而已！”</p>
+<p class = "firstLineIndent">莱恩不是不相信对方的判断，这种谎言根本一戳就破，他只是不想让对方牵着鼻子走，习惯性的“压价”而已。</p>
+<p class = "firstLineIndent">“这其中肯定涉及到极其复杂的制造和材料工艺，以及对各个新学科的基础研究，每一项，都需要一个明耗费数十乃至数百年的时间持续攻关。</p>
+<p class = "firstLineIndent">空间跳跃技术要是真的那么容易突破，伍尔夫帝国也不会卡在上面上千年！”</p>
+<p class = "firstLineIndent">“嗯！你说的不错！”聂云倒也并没否认，毕竟这是事实。</p>
+<p class = "firstLineIndent">要是双子星今天拿到技术，明天就顿悟突破，一跃晋升超光速明，那聂云又怎么敢将这种技术交易出去。</p>
+<p class = "firstLineIndent">“我刚刚说的只是这项技术的长期潜力，那么我们再来谈谈它能够为双子星带来的短期效益！”</p>
+<p class = "firstLineIndent">啥？还有短期效益？</p>
+<p class = "firstLineIndent">莱恩立刻竖起了耳朵。</p>
+<p class = "firstLineIndent">“你知道，议会为何会规定每13年进行一次巡林者例行巡视？”聂云突然提了一个让他有些莫名其妙的问题。</p>
+<p class = "firstLineIndent">“每13年一次的例行巡视？这个我当然知道，这是为了纪念失落的第三星系，让众人牢记教训，不得盲目开拓虫洞殖民地”</p>
+<p class = "firstLineIndent">莱恩说到一半，便猛地顿住了。</p>
+<p class = "firstLineIndent">他的眼睛越睁越大，心脏剧烈的跳动了一下。</p>
+<p class = "firstLineIndent">脑海中仿佛出现了一道闪电，像是一股电流，让他整个人从头麻到了脚！</p>
+<p class = "firstLineIndent">失落的第三星系ost no3：本书第三百一十七章，能记住这个词儿的算你厉害！</p>
+<p class = "firstLineIndent">“失落的第三星系”，指的是双子星明殖民开拓历史上的一起悲剧。</p>
+<p class = "firstLineIndent">那是双子星历史上发现的第3个可通行虫洞，在虫洞的另一端，连接着一个富饶无比的星系群。</p>
+<p class = "firstLineIndent">新的殖民地，意味着新的财富！</p>
+<p class = "firstLineIndent">欣喜若狂的议会高层当时就展开了大规模的移民开拓，数百艘移民舰穿越虫洞抵达了遥远的星系群，整个明都为此欢欣雀跃。</p>
+<p class = "firstLineIndent">然而，就在发现这处虫洞之后的第13年，如同命运和双子星开了个玩笑，这个虫洞犹如从未存在过一般彻底消失了，至今未曾再次开启！</p>
+<p class = "firstLineIndent">这次事故造成了过亿族人和大量物资财富的巨大损失，经历过这次惨痛的教训，双子星人才发现了“间歇性虫洞”的存在。</p>
+<p class = "firstLineIndent">为了铭记这次的教训，当时的双子星明定下了13年一次的开拓巡查条例，并保留了该星系的开拓编号，人们称之为“失落的第三星系”。</p>
+<p class = "firstLineIndent">严格来说，先前地球每13年被双子星的巡林者号骚扰一次，就来源于这起事故。</p>
+<p class = "firstLineIndent">“莫莫非”莱恩的声音都有些颤抖。</p>
+<p class = "firstLineIndent">聂云笑眯眯的点点头</p>
+<p class = "firstLineIndent">“对！就是那个莫非！”</p>
+
+<h2>第七百一十五章 语言的艺术</h2>
+<p class = "firstLineIndent">根据卡尔的研究表明，“虫洞扩张技术”的确有一定的概率，能够重新打开被封闭的虫洞。</p>
+<p class = "firstLineIndent">能形成虫洞的区域，一般都是暗能量势差较大，宇宙潮汐激烈交汇处，也可以理解为空间的“不稳定点”。</p>
+<p class = "firstLineIndent">也就是说，对“间歇性虫洞”而言，只要其封闭的时间尚短，能量潮汐尚未完全平复，就依旧有可能利用“虫洞扩张技术”重新打开这条虫洞通道。</p>
+<p class = "firstLineIndent">这就好比刚刚熄灭的火堆，让它死灰复燃，比你空手搓个小火球无疑要简单许多。</p>
+<p class = "firstLineIndent">从双子星查询到的资料来看，失落的第三星系虫洞关闭至今只有百余年。</p>
+<p class = "firstLineIndent">以宇宙尺度的时间计量单位来看，差不多属于“尸体还没凉透”“还可以抢救一下”的那种类型</p>
+<p class = "firstLineIndent">“当然，这只是一种可能，具体的成功几率还需要验证，不过在伍尔夫帝国内部已经有过重新激活间歇性虫洞的案例，可行性不用怀疑。”</p>
+<p class = "firstLineIndent">聂云倒也没把话说死，毕竟除了伍尔夫帝国，谁也没有真正进行实操的经验。</p>
+<p class = "firstLineIndent">到时候万一那个虫洞已经凉透了，那也是你们自己命不好，可不是我虚假宣传。</p>
+<p class = "firstLineIndent">“理解！理解！”</p>
+<p class = "firstLineIndent">即便只是一种可能性，莱昂也已经兴奋的呼吸粗重。</p>
+<p class = "firstLineIndent">找回失落的第三星系，这对双子星而言无疑意义重大！</p>
+<p class = "firstLineIndent">要知道失落的那个星系群，以富饶程度而言完全就是s级别，其资源和价值完全不下一个星区。</p>
+<p class = "firstLineIndent">如果没有意外，以当时输送过去的人口和物资来看，对方在百余年的时间里应该已经站稳了脚跟并有所发展，形成了一个双子星明的“子明”。</p>
+<p class = "firstLineIndent">由于脱离母明时间尚短，失落群体对母明应该还抱有相当的认同感，双方合流的基础依然存在。</p>
+<p class = "firstLineIndent">即便对方的领导层出现了分裂意图，但当年为了保证对新兴殖民区的绝对掌控，一起跟随过去的开拓军团其实数量并不多，军工产业和军事科技也不算完整。</p>
+<p class = "firstLineIndent">所以不管是用柔，还是用强，将这个“子明”重新吸纳进来的阻力应该都并不大。</p>
+<p class = "firstLineIndent">不仅如此，拯救回失落在外的族人，无疑也能极大的提振因为遭受巨大损失而低迷的军心士气。</p>
+<p class = "firstLineIndent">这对刚刚遭受战败，威望受损的双子星议会而言，也绝对是无法拒绝的诱惑！</p>
+<p class = "firstLineIndent">“谢谢！”莱昂强压下心中的激动真诚道，连看向聂云的目光都不一样了。</p>
+<p class = "firstLineIndent">如果说刚刚他对聂云刚刚那番“是忠是奸”的说辞只信了三分，那么如今就已经是六分。</p>
+<p class = "firstLineIndent">他实在是无法想象，如果对方对双子星抱有敌意，又怎么会将这种技术拱手相让？</p>
+<p class = "firstLineIndent">双子星得到这项科技，那简直就是如虎添翼！</p>
+<p class = "firstLineIndent">真是敌人，有可能这样资敌吗？</p>
+<p class = "firstLineIndent">“诶！先别忙着谢，我要先提醒你，我从伍尔夫那里得到的，也只是一份虫洞扩张装置的设计图纸，想要制作出成品，还需要双子星的科学家们共同努力。</p>
+<p class = "firstLineIndent">毕竟那位卖家也不是真的无所顾忌，只能做到这个程度了。”</p>
+<p class = "firstLineIndent">“这”莱昂愣了一下，旋即释然。</p>
+<p class = "firstLineIndent">鸭子对方都给你煮熟了，你还指望人家给你片好了沾上酱？</p>
+<p class = "firstLineIndent">“问题不大，我们本就有对虫洞的研究基础，对虫洞扩张技术也是临门一脚，有设计图，相信我们的科研团队很快就能将这项技术完整的还原出来！”</p>
+<p class = "firstLineIndent">很好！等的就是你这句话！</p>
+<p class = "firstLineIndent">聂云为什么愿意把这项技术共享出去，很重要的原因之一就是想借鸡生蛋！</p>
+<p class = "firstLineIndent">云端科研所的那帮科学家虽然能力强悍，一个能顶100个，或许不用百年就能依靠自己的实力完全吃透这项技术。</p>
+<p class = "firstLineIndent">但双子星也不差啊！别的不说，人家科研团队的数量就是你的成千上万倍。</p>
+<p class = "firstLineIndent">而且双子星对虫洞的研究历史悠久，论深度和广度还要超出刚刚入门的地球明一筹，攻关起来速度绝不会比地球那边来的慢。</p>
+<p class = "firstLineIndent">看着科技升级条缓慢上涨，聂云是快乐的！</p>
+<p class = "firstLineIndent">如果分享一下，快乐就是双倍的！何乐而不为？</p>
+<p class = "firstLineIndent">一百年太久，我只争朝夕！</p>
+<p class = "firstLineIndent">聂云心中满意，不过嘴上却道，“技术理论或许难不倒我们，但有一部分装置核心的材料和加工工艺，却不是我们短时间内就能突破的。</p>
+<p class = "firstLineIndent">不过这方面我已经考虑到了，所以又花了一笔钱，从伍尔夫分会那边买了两套虫洞扩张装置的核心组件，应应急还是够用的。”</p>
+<p class = "firstLineIndent">“虫洞扩张装置”的技术集大成者就在几件装置核心上，制造难度非常惊人。</p>
+<p class = "firstLineIndent">即便是有设计图，但以目前双方的材料和工业制造水平，不论是双子星还是地球明，短时间内都不可能拿出真正的产品。</p>
+<p class = "firstLineIndent">从理论突破，到实际应用，双方都还有一段马拉松式的长跑。</p>
+<p class = "firstLineIndent">不过聂云另有所图，可没时间等双子星慢慢用锉刀一个零件一个零件锉出来，没办法，只能作弊，老办法用“手搓”！</p>
+<p class = "firstLineIndent">“什么？核心组件都给我们准备好了？”</p>
+<p class = "firstLineIndent">莱昂只觉得一股感动涌上心头。</p>
+<p class = "firstLineIndent">原来人家真的已经片好了沾上酱</p>
+<p class = "firstLineIndent">不仅给图纸，连现货都准备好了！这是多么周到贴心的服务？</p>
+<p class = "firstLineIndent">有了这些核心组件，相信己方就能以最快的速度将这项技术实用化！</p>
+<p class = "firstLineIndent">人家这是把什么都替你考虑好了啊！</p>
+<p class = "firstLineIndent">惊喜来的太大，大到莱昂感觉有些不真实，他迟疑着看向聂云。</p>
+<p class = "firstLineIndent">“这些真的只需要2万吨能源水晶？”</p>
+<p class = "firstLineIndent">聂云闻言笑了笑，终于图穷匕见。“当然，不过嘛，我的确还有另外一个附加要求”</p>
+<p class = "firstLineIndent">双子星议会。</p>
+<p class = "firstLineIndent">“什么？为吉拉德阁下复仇？！”</p>
+<p class = "firstLineIndent">众议员面面相觑。</p>
+<p class = "firstLineIndent">“是的！对方的交易条件中，除了原本应该交付的2万吨能源水晶，还有就是希望我们能够出兵，联合碎星海盗联盟一同剿灭洛克财团负隅顽抗的最后一批残党！</p>
+<p class = "firstLineIndent">据说，上一次进攻我们双子星，直接导致吉拉德壮烈殉国的罪魁祸首，甲级战犯克洛罗斯目前就在洛克星系！</p>
+<p class = "firstLineIndent">对方已经说服海盗联盟，愿意给我们提供一次复仇的机会！</p>
+<p class = "firstLineIndent">至于对方为什么这么做据现场情报人员的分析，那位黑执事很有可能是吉拉德大将阁下的故交。”</p>
+<p class = "firstLineIndent">克鲁泽说这话的时候，脸色明显也是有些异样。</p>
+<p class = "firstLineIndent">黑执事这个人的态度简直叫人捉摸不透，似乎完全就是在敌我之间反复横跳。</p>
+<p class = "firstLineIndent">如果一定要用一个词来形容那就是“亦正亦邪”！</p>
+<p class = "firstLineIndent">“哼！想让我们出兵就直说，找什么冠冕堂皇的理由！吉拉德大将阁下死得其所，用得着他一个敌我不明的人假惺惺？”有一位议员不屑的撇了撇嘴。</p>
+<p class = "firstLineIndent">他说的倒是不错，聂云要的是一场大胜，而不是惨胜，以现在海盗联盟的实力有点难度。</p>
+<p class = "firstLineIndent">不过如果加上双子星，那就完全不一样了。</p>
+<p class = "firstLineIndent">这就是聂云的真实目的！</p>
+<p class = "firstLineIndent">不过这位议员说出的真相，却是立刻就遭到了几位军中老将的怒目相视！</p>
+<p class = "firstLineIndent">“不管对方怎么想的，他们终究是给了我们一个复仇的机会，这个情，我们得认！”</p>
+<p class = "firstLineIndent">开口的是维克多族长。</p>
+<p class = "firstLineIndent">吉拉德，不仅是维克多家族的坚定盟友，而且还是维克多的多年至交。他在上一次的大战中身陨，对维克多来说无疑是一次巨大的打击。</p>
+<p class = "firstLineIndent">如今有了一个能够为老友报仇的机会，哪怕这其中或许有万物归一会其他的小心思，维克多本能的也不想轻易放弃。</p>
+<p class = "firstLineIndent">“不错！不说对方提供的技术本就拥有极大的价值，即便是要明着借兵，我们也根本不亏，哪怕是什么好处也没有，我也赞成出兵，为吉拉德大将阁下复仇！”</p>
+<p class = "firstLineIndent">“我也赞成出兵！我双子星不能只挨打不还手，数千万的战士战死沙场，对方必须为此付出代价！”</p>
+<p class = "firstLineIndent">“我附议！”</p>
+<p class = "firstLineIndent">“附议！”</p>
+<p class = "firstLineIndent">吉拉德毕竟在军中德高望重，有着深厚的人脉，继维克多之后，一众军方大佬也纷纷出言，赞成出兵。</p>
+<p class = "firstLineIndent">吉拉德：心情莫名的有些复杂啊</p>
+<p class = "firstLineIndent">除了维克多一系，不少主战派同样加入声援。</p>
+<p class = "firstLineIndent">己方的大将死了，现在报仇的机会就在眼前，你要是还默不作声，那还算什么主战派？政治正确懂不懂？</p>
+<p class = "firstLineIndent">一时间，议会内部赞成出兵的竟超过了三分之二。</p>
+<p class = "firstLineIndent">这其中，不仅有“虫洞扩张技术”的巨大诱惑，同样也是聂云给的理由实在是太过巧妙。</p>
+<p class = "firstLineIndent">如果聂云摆明了要求双子星出兵，那这充其量就是一次交易。</p>
+<p class = "firstLineIndent">但聂云巧妙的换了一种说法，不仅让双子星内部出兵的阻力大大减小，反过来还让他们得欠自己一个人情。</p>
+<p class = "firstLineIndent">这就是语言的艺术。</p>
+
+<h2>第七百一十六章 莱昂的“惊人成果”</h2>
+<p class = "firstLineIndent">伊莎尔作为一名高级将官，同样出席了这一次的高级别会议。</p>
+<p class = "firstLineIndent">她看着眼前这一幕，就知道双子星出兵大势已定，心中不由感慨。</p>
+<p class = "firstLineIndent">“好一个黑执事，好一个万物归一会！”</p>
+<p class = "firstLineIndent">这位黑执事简直就是将双子星算计到了极致！</p>
+<p class = "firstLineIndent">很明显，他十分清楚双子星目前面对的恶劣局面。</p>
+<p class = "firstLineIndent">初逢大败，即便其中更多的原因是伍尔夫帝国不讲道理的强，双方实力差距过大，然而普通民众不会想那么多，他们只会认为这是议会高层和军方决策者的战略失误。</p>
+<p class = "firstLineIndent">就连文明重器“矢量引擎”都被迫交易了出去，简直就是变相的交了“保护费”。</p>
+<p class = "firstLineIndent">这让从未在对外战场上吃过大亏，心高气傲的双子星人如何能够接受？</p>
+<p class = "firstLineIndent">那战死的大量士兵家属，以及因为盖伦特星区沦陷而造成的大量无家可归者，同样也会对高层心生不满。</p>
+<p class = "firstLineIndent">民心-10！</p>
+<p class = "firstLineIndent">双子星目前的体制类似两党议会制，克鲁泽任内遭受了如此惨重的失败，威望受损，无疑对他的继续执政相当不利。</p>
+<p class = "firstLineIndent">军方也是同样的处境。</p>
+<p class = "firstLineIndent">如果被军中将士贴上无能、怯战、求和的标签，无疑会极大的打击士气。</p>
+<p class = "firstLineIndent">军心-10！</p>
+<p class = "firstLineIndent">所以不论是议长一系，还是军方一系，都需要一个契机来扭转这种不利的局面！</p>
+<p class = "firstLineIndent">舆论有时候什么都不是，但有时候却无法让人忽视。</p>
+<p class = "firstLineIndent">黑执事无疑就提供了这样一个完美无缺的契机。</p>
+<p class = "firstLineIndent">对方甚至连维克多家族的反应都考虑了进去，他知道，维克多必定无法拒绝这一提议。</p>
+<p class = "firstLineIndent">作为海族的领头羊，维克多一表态，那就代表着议会内部一个大派系的态度，为议会的选择增添了一个巨大的砝码！</p>
+<p class = "firstLineIndent">不仅是双子星的政治格局，甚至连人心也算计了进去，对方可怕的如同一台精密的机器！</p>
+<p class = "firstLineIndent">这个家伙……</p>
+<p class = "firstLineIndent">“好吧！我原则上同意出兵。”克鲁泽终于缓缓开口。</p>
+<p class = "firstLineIndent">“科学院那边已经确认，‘虫洞扩张技术’的确潜力巨大，并且也有可能让我们重新找回‘失落的第三星系’。</p>
+<p class = "firstLineIndent">也就是说，这一项技术的价值是我们绝对无法放弃的！</p>
+<p class = "firstLineIndent">从这一方面来说，这位黑执事阁下确实如同他所说，为文明的发展做出了巨大的贡献！”</p>
+<p class = "firstLineIndent">克鲁泽环视一圈，“不过我们也需要清楚的认识到，对方选择促成这项交易的目的，绝非对方口中的‘无私奉献’，亦或者‘为吉拉德大将复仇’这么简单！</p>
+<p class = "firstLineIndent">莱昂阁下，你现在全权负责有关黑执事的情报事宜，我想听听你的看法。”</p>
+<p class = "firstLineIndent">众人的目光看向莱昂的会议虚拟影像。</p>
+<p class = "firstLineIndent">莱昂心头一热，知道自己表现的机会终于来了！</p>
+<p class = "firstLineIndent">是时候，让领导们知道自己这段时间以来的惊人成果了！</p>
+<p class = "firstLineIndent">“议长大人，各位议员，我对黑执事这个人进行过全面且细致的分析，对方的每一句话都曾拿来反复分析！</p>
+<p class = "firstLineIndent">可以说，对方行事虽然古怪，看似亦敌亦友，但其实也有迹可循。</p>
+<p class = "firstLineIndent">为了封锁太阳系、抢夺生命之水，哪怕和我们开战对方也绝不手软！</p>
+<p class = "firstLineIndent">然而，在初期的激烈对抗之后，对方却是很快摆出了一副合作互惠的架势。</p>
+<p class = "firstLineIndent">无可否认的是，至今为止与对方的交易，都让我们双子星获益匪浅，缓解了面对强敌的不利局面。</p>
+<p class = "firstLineIndent">对方不仅向我们提供了伍尔夫帝国的情报，还动用万物归一会在伍尔夫帝国内部的力量，帮我们逼退了洛克财团。</p>
+<p class = "firstLineIndent">从这一系列的动作上看，有一点是毋庸置疑的！</p>
+<p class = "firstLineIndent">那就是……在同伍尔夫的战争中，对方站在我们这一边！”</p>
+<p class = "firstLineIndent">众人沉默。</p>
+<p class = "firstLineIndent">虽然心里有些不是滋味，不过万物归一会从卡拉星冲突之后，就有意无意的扶持他们对抗洛克财团，以前他们身在局中，感觉还不太明显。</p>
+<p class = "firstLineIndent">但如今回过头仔细分析，对方的意图就再清晰不过了！</p>
+<p class = "firstLineIndent">“那么，你认为对方为什么要这么帮我们？”克鲁泽问道。</p>
+<p class = "firstLineIndent">“据我判断，无非是有两个可能！第一，确如对方所说，双子星分会与双子星文明一荣俱荣，一损俱损！</p>
+<p class = "firstLineIndent">对方的根基在我们双子星文明，他可以在我们内部吸血，发展壮大，自然不会允许外界的势力前来干扰，甚至覆灭他赖以生存的土壤。</p>
+<p class = "firstLineIndent">从这一点上看，面对伍尔夫帝国，对方和我们是统一战线！”</p>
+<p class = "firstLineIndent">“嗯！那么第二个可能呢？”克鲁泽点点头又问。</p>
+<p class = "firstLineIndent">“第二个可能不在我们，而在……伍尔夫帝国！”莱昂掷地有声！</p>
+<p class = "firstLineIndent">“哦？怎么说？”</p>
+<p class = "firstLineIndent">“在这一次的交易协商中，对方曾无意中提到过一句话！</p>
+<p class = "firstLineIndent">‘有人像我一样，为文明的发展和存续而殚精竭虑，自然也有人为了一己私利，不惜出卖文明的核心利益’。</p>
+<p class = "firstLineIndent">各位，你们想想看，对方口中这个为了一己私利，出卖文明核心利益的人会是谁？</p>
+<p class = "firstLineIndent">谁能连‘虫洞扩张技术’这么重要的东西都能弄到手，还敢往外卖？”</p>
+<p class = "firstLineIndent">“唔……能够接触到这种技术资料的，必定是伍尔夫帝国内部的核心人物。”维克多猜测道。</p>
+<p class = "firstLineIndent">“不错！而且对方还很可能已经加入了万物归一会，正是由此，黑执事才能与对方进行一定程度的技术和情报交易！</p>
+<p class = "firstLineIndent">甚至，这个人……很可能就是伍尔夫分会的会长！”</p>
+<p class = "firstLineIndent">嗯！双子星分会和伍尔夫分会的两位会长进行py交易，这没毛病！</p>
+<p class = "firstLineIndent">“这和你所说的第二个可能有什么关系？”众人不解。</p>
+<p class = "firstLineIndent">“当然有关！黑执事曾经透露过，洛克财团的其中一位大股东是帝国二皇子，也就是说，洛克财团的背后，很可能就是这位二皇子在站台！</p>
+<p class = "firstLineIndent">而那位疑似机械族出身的海盗王阁下，不出意外，恐怕就是万物归一会的暗子，否则无法解释对方能够通过一群海盗制裁洛克财团。</p>
+<p class = "firstLineIndent">从这一点上看，我们能否认为，海盗联盟和洛克财团的对抗……其背后，实际上就是万物归一会和这位二皇子之间的对抗？</p>
+<p class = "firstLineIndent">二皇子想要矢量引擎，结果万物归一会开出了更好的条件横刀夺爱。</p>
+<p class = "firstLineIndent">二皇子扶持洛克财团，对方就纠集海盗联盟要将对方连根拔起！</p>
+<p class = "firstLineIndent">这明显说明双方完全是水火不容！</p>
+<p class = "firstLineIndent">我们的战争……很可能不过是双方的局部冲突而已！</p>
+<p class = "firstLineIndent">所以这第二个可能，黑执事根本不是在帮我们对抗洛克财团，而是在帮万物归一会对抗二皇子！”</p>
+<p class = "firstLineIndent">“唔！有趣的分析！”克鲁泽目露沉思。</p>
+<p class = "firstLineIndent">跳出己方的局限性，从两大势力之间的冲突分析黑执事的行事目的，无疑给众人提供了一个崭新的视角。</p>
+<p class = "firstLineIndent">不得不承认，莱昂的这顿分析合情合理。</p>
+<p class = "firstLineIndent">而且……除了那位莫名其妙乱入的“伍尔夫分会会长”，某种程度上的确已经接近了真相……</p>
+<p class = "firstLineIndent">得到大领导肯定的莱昂越发兴奋。</p>
+<p class = "firstLineIndent">“不仅如此！进一步猜测，黑执事隔着一个文明，应该不至于和一位帝国皇子结仇，那么真相就只剩下一个了！</p>
+<p class = "firstLineIndent">与那位二皇子你死我活的……应该是那位万物归一会伍尔夫分会的会长！”</p>
+<p class = "firstLineIndent">“根据现有的情报，二皇子乃是下一任帝国皇帝最有力的竞争者。</p>
+<p class = "firstLineIndent">试想，谁会与一位如日中天，即将登上储君之位的皇子有着根本性的利益冲突，不惜大打出手，明争暗斗？”</p>
+<p class = "firstLineIndent">莱昂深吸一口气，终于抛出了自己的“惊人成果”！</p>
+<p class = "firstLineIndent">“没错！只能是另一位皇子！”</p>
+<p class = "firstLineIndent">满场震惊！！</p>
+<p class = "firstLineIndent">我双子星不过是挨个揍，怎么……莫名其妙就卷入了夺嫡之争？！</p>
+<p class = "firstLineIndent">看到众人脸上的神色，莱昂心中一本满足。</p>
+<p class = "firstLineIndent">震惊吗？震惊就对了！</p>
+<p class = "firstLineIndent">说实话，我推理出来的时候，连自己都震惊了！</p>
+<p class = "firstLineIndent">……</p>
+<p class = "firstLineIndent">另一边。</p>
+<p class = "firstLineIndent">“啪嗒！”嘴里的薯片掉了下来。</p>
+<p class = "firstLineIndent">正在通过伊莎尔身上的“小间谍”观看现场同步直播的聂云一脸的目瞪口呆。</p>
+<p class = "firstLineIndent">我就转个身，让你们开个闭门会……这事情怎么就成这样了？</p>
+<p class = "firstLineIndent">关于那位卖技术的朋友，懂我的人都知道，我只是习惯性的无中生友。</p>
+<p class = "firstLineIndent">真没别的意思啊……</p>
+<p class = "firstLineIndent">机械虫：“……”（╮(╯▽╰)╭）</p>
+
+<h2>第七百一十七章 暗藏玄机</h2>
+<p class = "firstLineIndent">“你的意思是，万物归一会正在扶持另一位皇子与那二皇子争夺皇位？”克鲁泽皱眉道。</p>
+<p class = "firstLineIndent">“这倒也不失为一种可能性！万物归一会是商业组织，将一位皇子扶上皇位，所能获得的利益不会比任何投资来的少，可谓一本万利的买卖！</p>
+<p class = "firstLineIndent">我记得咱们双子星的古代历史上也有一位豪商，就是因为提前投资了一位落魄的皇子，最终成为了权倾天下的首相。”维克多也出言道。</p>
+<p class = "firstLineIndent">克鲁泽并没有立刻下结论，反而是看向排在会议室末尾的伊莎尔。</p>
+<p class = "firstLineIndent">“伊莎尔阁下，你是伍尔夫帝国方面的前线指挥官，你对莱昂阁下的这个猜测怎么看？</p>
+<p class = "firstLineIndent">还有，对于我方出兵洛克财团可能造成的后续影响，我也想听听你这个专业人士的意见。”</p>
+<p class = "firstLineIndent">众人不由看向伊莎尔。</p>
+<p class = "firstLineIndent">由军团级指挥官，一跃成为盖伦特星区的前线最高指挥官，相当于从师级干部被提拔为军区司令级别。</p>
+<p class = "firstLineIndent">嗯！虽然目前还是临时的，不过已经算是一只脚踏进了双子星的最高权力层。</p>
+<p class = "firstLineIndent">近期伊莎尔雷厉风行地整合盖伦特星区的军事力量、收复失地、安抚难民、夺回虫洞。</p>
+<p class = "firstLineIndent">一系列的行动中虽然没有令人惊艳的表现，但也四平八稳，做的滴水不漏，极大的稳定了盖伦特星区的战后局势，展示出足以胜任一区统帅的军事指挥能力！</p>
+<p class = "firstLineIndent">对于急速蹿升的伊莎尔，各个势力自然予以了高度的重视。</p>
+<p class = "firstLineIndent">特别是伊莎尔、阿尔萨斯、雷诺所组成的小团体，大有成为盖伦特星区最大军事派系的苗头，这更是引起了不少人的关注。</p>
+<p class = "firstLineIndent">雷诺被当成跟班直接忽略，但伊莎尔和阿尔萨斯背后却有着两大家族的背景，这其中代表的意义耐人寻味。</p>
+<p class = "firstLineIndent">克鲁泽议长这个时候让伊莎尔发言，无疑也是有提高伊莎尔话语权的意思在其中。</p>
+<p class = "firstLineIndent">伊莎尔在一众大佬面前倒也不怯场，她环视四周一圈。</p>
+<p class = "firstLineIndent">“我们是不是卷入了两位皇子之间的皇位之争，这个我暂不评价。</p>
+<p class = "firstLineIndent">不过，不知道各位注意到了没有，对方除了向我们提供一整套的虫洞扩张装置设计图之外，还承诺附赠2套核心组件。</p>
+<p class = "firstLineIndent">我想问的是为什么是2套？”</p>
+<p class = "firstLineIndent">“这有什么问题吗？”有人不解。</p>
+<p class = "firstLineIndent">“有！我们的需求是明确的，失落的第三星系必定需要其中一套核心，以便我们尽快获得子明的反哺，恢复实力。</p>
+<p class = "firstLineIndent">这样的话一套核心组件就足够了，为什么要给我们2套，我相信对方不会无的放矢！</p>
+<p class = "firstLineIndent">那么现在的问题是，对方想要我们将另一套用在哪儿？”</p>
+<p class = "firstLineIndent">“你是说伍尔夫虫洞？”克鲁泽很快明白伊莎尔的意思。</p>
+<p class = "firstLineIndent">“不错！”伊莎尔点点头，“由于失去了洛克财团的虫洞扩张装置支撑，如今我们与伍尔夫帝国的虫洞已经在逐步萎缩。</p>
+<p class = "firstLineIndent">根据科学家的预测，如果没有外力干扰，这个虫洞将在一年之后恢复到原本的大小，届时，它将无法允许中型以上的战舰通过。</p>
+<p class = "firstLineIndent">我想，这就是对方隐藏的暗示！”</p>
+<p class = "firstLineIndent">“你的意思是，对方给我们2套设备，其实是想要让我们将这第二套用在这个虫洞上？可我们凭什么要这么做？”有军方人士不以为然。</p>
+<p class = "firstLineIndent">“伍尔夫帝国并非我们如今能够力敌的存在，而且我们刚刚遭受了巨大的损失，为今之计应该是任由虫洞缩小，最好彻底阻断这一通道才对！</p>
+<p class = "firstLineIndent">咳！当然，等我们恢复元气之后，再等待合适的时机撑开虫洞反攻伍尔夫也不迟。”</p>
+<p class = "firstLineIndent">不少人暗自点头，也都认可这是双子星最佳的战略选择。</p>
+<p class = "firstLineIndent">“是的！我们确实可以选择这么做，我将它称为孤立主义！</p>
+<p class = "firstLineIndent">孤立主义的好处是，任凭外界斗得你死我活，短时间内也影响不到我们双子星，我们可以用这段宝贵的时间恢复元气，发展科技。</p>
+<p class = "firstLineIndent">然而，孤立主义的坏处是，我们也会失去对外界的干预能力。</p>
+<p class = "firstLineIndent">虫洞限制了外敌入侵，也同样限制了我们出兵！</p>
+<p class = "firstLineIndent">试想，一旦碎星海盗联盟在战争中最后失败，洛克财团卷土重来，甚至那位二皇子也插上一脚，我们下一次面对的，可能就是更为凶险的战争威胁。</p>
+<p class = "firstLineIndent">双子星的坐标已经暴露在伍尔夫帝国眼中，而且某种程度上，我们已经得罪了洛克财团和那位二皇子。</p>
+<p class = "firstLineIndent">如果他们获胜，取得了周边星域的最终话语权，那么秋后算账并不是不可能的事。</p>
+<p class = "firstLineIndent">区区一个虫洞，阻止不了对方，而届时，我们将孤立无援！”</p>
+<p class = "firstLineIndent">众人沉默。</p>
+<p class = "firstLineIndent">不得不说，这种可能性并不低。</p>
+<p class = "firstLineIndent">如果洛克财团一方胜了，很难相信他们会放弃双子星这块肥肉。</p>
+<p class = "firstLineIndent">而选择在这场战争中保持中立的双子星，在万物归一会内部的好感度无疑也会受到影响，对方很可能选择见死不救。</p>
+<p class = "firstLineIndent">到时候他们去哪里找第二件秘宝交保护费？</p>
+<p class = "firstLineIndent">“可若是海盗联盟胜了呢？从目前的情形来看，海盗一方应该已经占据了绝对的优势吧？</p>
+<p class = "firstLineIndent">有他们在前面顶着，或许我们的这些担心是多余的？”一名议员质疑道。</p>
+<p class = "firstLineIndent">“不！根据情报来看，那位二皇子如日中天，声望和势力都远超其他皇子。</p>
+<p class = "firstLineIndent">二皇子在明，那位海盗王身后的存在却在暗，这就很能说明问题。</p>
+<p class = "firstLineIndent">拼硬实力，恐怕还是那位二皇子更胜一筹，否则对方也没必要打我们的主意。</p>
+<p class = "firstLineIndent">所以我更倾向于，洛克财团很快就能得到外部的支持，他们的胜率更大！”</p>
+<p class = "firstLineIndent">顿了顿，见众人不再反对，伊莎尔这才继续道，“想来各位也都意识到了，对方的这第2套核心组件，就是一个暗示，一个让我们选边站队的暗示！</p>
+<p class = "firstLineIndent">撑开虫洞，加入到这场躲不掉的战争中，与碎星海盗联盟互为犄角，互为同盟，就是对方给我们的第二种选择！</p>
+<p class = "firstLineIndent">我记得那位黑执事曾经说过，能帮我们一次，下次呢？下下次呢？</p>
+<p class = "firstLineIndent">我认为对方就是在隐晦地提醒我们，伍尔夫帝国的威胁将一直存在。</p>
+<p class = "firstLineIndent">但一直通过交易获得万物归一会的庇护并不现实，付出的代价我们也承受不起，所以必须找到一个一劳永逸的方法。</p>
+<p class = "firstLineIndent">这个方法就是站队！彻底的倒向万物归一会一方！”伊莎尔总结道。</p>
+<p class = "firstLineIndent">众人心中默默点头，伊莎尔的分析的确很有可能。</p>
+<p class = "firstLineIndent">“另外，这一次的借兵，极有可能也是对方的一次算计！</p>
+<p class = "firstLineIndent">克鲁泽议长大人刚刚问道我方出兵洛克财团可能造成的后续影响，我的看法是，只要我们加入这次对洛克财团的围剿，就已经一只脚踏上了万物归一会的战车！</p>
+<p class = "firstLineIndent">我们认为这只是针对洛克财团的一次报复行动，但二皇子一系很可能会认为我们已经加入了万物归一会一方，而将我们打上同党的标签。</p>
+<p class = "firstLineIndent">到时候我们即便想中立，恐怕也都说不清了。”伊莎尔幽幽叹道。</p>
+<p class = "firstLineIndent">有超级科技作诱惑，双子星根本无法拒绝对方出兵的要求。</p>
+<p class = "firstLineIndent">然而看似对双子星极为有利的出兵要求，实则却又暗藏玄机，完全就是在为下一步彻底将双子星拉下水做准备</p>
+<p class = "firstLineIndent">对方的算计简直一环扣一环，而且你即便看穿了，也都很难拒绝。</p>
+<p class = "firstLineIndent">黑执事这家伙实在是太可怕了！</p>
+<p class = "firstLineIndent">对伊莎尔的这番分析，在场的一众双子星大佬们在反应过来之后，纷纷是破口大骂！</p>
+<p class = "firstLineIndent">“该死！居然这么阴险！”</p>
+<p class = "firstLineIndent">“这是要先造成既定事实，让我们有苦说不出啊！”</p>
+<p class = "firstLineIndent">“怪不得对方那么大方，毫不犹豫就将那么重要的科技交给我们！”</p>
+<p class = "firstLineIndent">“要不是伊莎尔阁下提前看出了对方的意图，我们险些就上了贼船！”</p>
+<p class = "firstLineIndent">“呃可我们现在好像也没得选了吧”</p>
+<p class = "firstLineIndent">“屁！主动上车和被动上车，这能一样吗？”</p>
+<p class = "firstLineIndent">“”</p>
+
+<h2>第七百一十八章 有点眼熟</h2>
+<p class = "firstLineIndent">“如果真如伊莎尔阁下所分析的那样，那么不出意外，对方在这一次的借兵之后，恐怕就会和我们正式摊牌了！”</p>
+<p class = "firstLineIndent">克鲁泽看向伊莎尔的眼神相当满意。</p>
+<p class = "firstLineIndent">同伊莎尔的看法一样，克鲁泽也认为，在选哪一边上双子星其实并没有多少选择，对方是裸的阳谋。</p>
+<p class = "firstLineIndent">所以充其量，他们只是提前一步识破了对方的真实意图，不过，这对双子星依旧具有不小的意义。</p>
+<p class = "firstLineIndent">主动上车和被动上车还是大有区别的。</p>
+<p class = "firstLineIndent">比如，他们能够在接下来的行动中占据更多的主动权，争取最有优势的条件，而不是被动的任由对方摆布</p>
+<p class = "firstLineIndent">伊莎尔的一番分析，让在座的众位议员看向她的目光也不由慎重了许多，彻底收起了小觑之心，也初步认可了伊莎尔的能力。</p>
+<p class = "firstLineIndent">阿萨德族长更是笑的像只老狐狸。</p>
+<p class = "firstLineIndent">莱昂和伊莎尔，他们可都是姓阿萨德的！</p>
+<p class = "firstLineIndent">自家的两位嫡系，一个抛出了惊人的“夺嫡论”，一个更是将万物归一会的谋算当场识破。</p>
+<p class = "firstLineIndent">这是什么？一门两英杰啊！</p>
+<p class = "firstLineIndent">有这等天骄，我阿萨德家族何愁不兴盛？</p>
+<p class = "firstLineIndent">将这一幕看在眼中的克鲁泽心中一叹。“可惜，自家那个大儿子不争气啊”</p>
+<p class = "firstLineIndent">阿尔萨斯的眼光倒是不错，伊莎尔要颜值有颜值，要背景有背景，要能力有能力，和对方结盟，确实是阿尔萨斯走的一步好棋！</p>
+<p class = "firstLineIndent">如果能和阿萨德这个实力盟友联姻，对克鲁泽家族的发展无疑也是大有益处。</p>
+<p class = "firstLineIndent">可惜，阿萨德那个老狐狸认准了阿尔萨斯这支优质潜力股，其他的儿子一个都不满意。</p>
+<p class = "firstLineIndent">想到阿尔萨斯，克鲁泽心中不由开始思索。</p>
+<p class = "firstLineIndent">要不然，认真考虑一下两人的事？</p>
+<p class = "firstLineIndent">毕竟最近议会都开始讨论两族合法通婚的可能性了</p>
+<p class = "firstLineIndent">连种族都不是问题，年龄算个事儿？</p>
+<p class = "firstLineIndent">不出意外的，短暂的远程闭门会之后，双子星议会最终还是高票通过了聂云的交易方案。</p>
+<p class = "firstLineIndent">“黑执事阁下，矢量引擎就在那艘战舰上，贵方只需要先给我们提供部分的技术资料，我们的科学家检查过资料的真伪后，东西就会正式移交给你。”</p>
+<p class = "firstLineIndent">莱昂指了指透明舷窗外的那几十艘护卫舰。</p>
+<p class = "firstLineIndent">是的，几十艘，莱昂口中的“那艘”完全就是泛指，根本没有真正提前告知聂云的意思。</p>
+<p class = "firstLineIndent">显然，双子星还在防范聂云下黑手。</p>
+<p class = "firstLineIndent">毕竟双子星在生命之水上可是吃过大亏，对方可是有着“携重宝跑路”的案底在的。</p>
+<p class = "firstLineIndent">不过聂云已经完全没有心思去关注对方的这点小谨慎了。</p>
+<p class = "firstLineIndent">感觉到了！</p>
+<p class = "firstLineIndent">是同类的气息！</p>
+<p class = "firstLineIndent">聂云将目光死死锁定在了其中一艘毫不起眼的护卫舰上。</p>
+<p class = "firstLineIndent">即便双子星已经用各种高密度，强干扰的材料将“矢量引擎”层层叠叠、严严实实的藏在了一个超级保险柜中，但依旧无法阻隔聂云的感应。</p>
+<p class = "firstLineIndent">那感觉是血脉相连吗</p>
+<p class = "firstLineIndent">“滴！发现异类同源信号接口，请问是否进行接驳？”</p>
+<p class = "firstLineIndent">浑身上下响起的提示让聂云一愣。</p>
+<p class = "firstLineIndent">这</p>
+<p class = "firstLineIndent">上次碰到机甲核心还需要接触才能接驳，这一次只需要靠近就行？</p>
+<p class = "firstLineIndent">有线连接升级成无线wifi了？</p>
+<p class = "firstLineIndent">等等！明白了！</p>
+<p class = "firstLineIndent">传奇机甲核心准确来说应用的只是机械虫这种材料，本身其实并不是真正的艾瑞斯明造物。</p>
+<p class = "firstLineIndent">但这次的“矢量引擎”不同它是完整的！</p>
+<p class = "firstLineIndent">既然是完整的，没道理对方的控制模块还处于有线连接那么低级吧？</p>
+<p class = "firstLineIndent">不过“异类同源”这个词是什么意思？</p>
+<p class = "firstLineIndent">表示咱们有一样的身体，但归属于不同的灵魂？</p>
+<p class = "firstLineIndent">“接驳！”聂云心中命令道。</p>
+<p class = "firstLineIndent">下一刻，一股陌生的意识与聂云相连。</p>
+<p class = "firstLineIndent">“滴！检测到未识别的身份信息拒绝接入！</p>
+<p class = "firstLineIndent">电子入侵警报开启！威胁等级评估为低级威胁，对应逃逸式防火墙开启，引擎预热中”</p>
+<p class = "firstLineIndent">“呃”</p>
+<p class = "firstLineIndent">这瞬间的信息量，聂云表示自己有点没反应过来。</p>
+<p class = "firstLineIndent">发生了什么？我就连个wifi，怎么就引擎预热了？</p>
+<p class = "firstLineIndent">让我捋捋</p>
+<p class = "firstLineIndent">这家伙先是想要验证我的个人信息，不过很显然，我的二代身份证号人家艾瑞斯明根本不认。17</p>
+<p class = "firstLineIndent">接着这家伙判断我的举动是一种入侵行为，经过评估，很鄙视的将我打到“低级威胁”的行列，然后装完逼就想跑？</p>
+<p class = "firstLineIndent">等等！这玩意儿想跑？！</p>
+<p class = "firstLineIndent">反应过来的聂云顿时脸都绿了。</p>
+<p class = "firstLineIndent">喂喂！误会！天大的误会啊！</p>
+<p class = "firstLineIndent">我就是看到有个没设密码的wifi习惯性的就给连一下，真不是什么电子入侵啊！</p>
+<p class = "firstLineIndent">你要是真跑了，我到时候怎么向双子星解释？你是被我一个信号吓跑的？</p>
+<p class = "firstLineIndent">怕不是要谈崩的节奏？</p>
+<p class = "firstLineIndent">不过幸好，下一刻事情似乎又有了转机</p>
+<p class = "firstLineIndent">“滴！系统错误！系统错误进行全面自检自检中</p>
+<p class = "firstLineIndent">自检完成！艾瑞斯明状态判定中零号指令激活！</p>
+<p class = "firstLineIndent">入侵警报解除！逃逸程序解除！矢量引擎初始化开始初始化完成！</p>
+<p class = "firstLineIndent">欢迎您！第233任指挥官阁下！”</p>
+<p class = "firstLineIndent">聂云泪目了，人生大起大落，实在是太刺激了！</p>
+<p class = "firstLineIndent">下次能不能麻烦你说话别大喘气，一口气把话说完能死啊？</p>
+<p class = "firstLineIndent">还有，那个“艾瑞斯明状态判定”是什么意思？判定结果是什么？“零号指令”又是什么？为什么就突然认主了？</p>
+<p class = "firstLineIndent">一连串的问题从脑子里冒出来很让人在意啊！</p>
+<p class = "firstLineIndent">艾瑞斯明到底是已经消亡了，还是在偷偷窥屏？又或者是暂时失联了所以矢量引擎才重新认主？</p>
+<p class = "firstLineIndent">聂云发现这引擎着实是有些皮。</p>
+<p class = "firstLineIndent">它不仅说话大喘气，还故意特么的吊人胃口！</p>
+<p class = "firstLineIndent">好！你不说，老子自己找！</p>
+<p class = "firstLineIndent">下一刻，一股信息涌入聂云的脑海。</p>
+<p class = "firstLineIndent">聂云瞬间就激动了，这可是他第一次获得艾瑞斯明的完整造物，其中的资料应该可以解开自己长期以来的一些困惑！</p>
+<p class = "firstLineIndent">比如，有关那艘可能已经坠毁的“艾瑞斯沉船”</p>
+<p class = "firstLineIndent">按下扑通扑通跳的小心肝，聂云开始仔细阅读这些信息。</p>
+<p class = "firstLineIndent">旋即他就发现，这些信息原来就是一本“使用说明书”。</p>
+<p class = "firstLineIndent">嗬！功能挺多啊！</p>
+<p class = "firstLineIndent">咦！还能这样？</p>
+<p class = "firstLineIndent">霍！不愧是艾瑞斯！</p>
+<p class = "firstLineIndent">对矢量引擎的各种性能指标一阵赞叹之后，聂云渐渐的发现事情似乎有些不对劲了。</p>
+<p class = "firstLineIndent">“等等！你的数据库呢？要不要这么干净？”</p>
+<p class = "firstLineIndent">聂云傻眼了。</p>
+<p class = "firstLineIndent">按照约定俗成的套路，发现了上古明的某件重要物，不是应该给我留点线索的吗？</p>
+<p class = "firstLineIndent">明发展简史、如何正确喂养机械虫、机械虫的进化方向、艾瑞斯强大的终极秘密啥的我也不指望。</p>
+<p class = "firstLineIndent">可你连自己的“使用日志”都不留，这就有点过分了吧？</p>
+<p class = "firstLineIndent">机械虫：“”不！你指望的还挺丰富</p>
+<p class = "firstLineIndent">看着已经被彻底初始化的空白档，聂云用尽了手段想要找出某些“被删除但还可以抢救的隐藏小档”，不过最终还是无功而返。</p>
+<p class = "firstLineIndent">艾瑞斯明的造物可不是那些送修的电脑硬盘，说给你初始化，就真的毫不留情的给你彻底粉碎了</p>
+<p class = "firstLineIndent">聂云牙齿咬得咯咯直响。</p>
+<p class = "firstLineIndent">这些艾瑞斯明的设计师是有毛病吗？谁规定一旦重新认主就得把所有设置“恢复出厂”的？</p>
+<p class = "firstLineIndent">前面的232任所有者都是受吗？不知道去投诉啊！</p>
+<p class = "firstLineIndent">“呃黑执事阁下？”</p>
+<p class = "firstLineIndent">看着一直盯着窗外一动不动，似乎陷入沉思的黑执事，莱昂终于忍不住开口喊了一句。</p>
+<p class = "firstLineIndent">然后他就看到黑执事缓缓抬起了手，靠近唇边。</p>
+<p class = "firstLineIndent">“嘘”下一刻，一声悠长的口哨音响起</p>
+<p class = "firstLineIndent">看到黑执事这怪异的举动，莱昂心中一跳。</p>
+<p class = "firstLineIndent">这莫不是发信号准备动手？</p>
+<p class = "firstLineIndent">他刚想提醒众人提高戒备，眼角余光就闪过一道幽蓝色的光芒。</p>
+<p class = "firstLineIndent">“砰！”“嗖！”</p>
+<p class = "firstLineIndent">紧接着，耳边才传来什么东西被撞碎，以及那一声刺耳的尖啸！</p>
+<p class = "firstLineIndent">“不好！快保护”以为己方遭到偷袭，莱昂凄厉的警示还没完整的说出口，就戛然而止。</p>
+<p class = "firstLineIndent">因为他发现，不知何时，黑执事身前已然静静漂浮着一枚幽蓝色的菱形物体</p>
+<p class = "firstLineIndent">嗯那玩意儿，还有点眼熟</p>
+
+<h2>第七百一十九章 有超级文明撑腰</h2>
+<p class = "firstLineIndent">“好宝贝！”</p>
+<p class = "firstLineIndent">聂云眼睛放光的看着眼前这枚只有拳头大小，浑身散发淡淡幽蓝色光芒的菱形物体。</p>
+<p class = "firstLineIndent">比他想象中要小得多，很难想象就是这么个小家伙，居然能驱动那种体积的“死神战星”，不愧是艾瑞斯明。</p>
+<p class = "firstLineIndent">虽然给刷成白板了，不过艾瑞斯明做事留了一线，好歹把它失去了灵魂的躯壳留了下来。</p>
+<p class = "firstLineIndent">既然得不到它的心，得到身也是不错的。</p>
+<p class = "firstLineIndent">矢量引擎：“”</p>
+<p class = "firstLineIndent">就在这时，莱昂身上的通讯器才姗姗来迟地疯狂响了起来。</p>
+<p class = "firstLineIndent">“莱昂阁下，不好了！矢量引擎它它跑了！</p>
+<p class = "firstLineIndent">我知道这很难相信，但我发四！它的确是自己跑了我们的保险柜都被钻出了一个大洞，几十双眼睛都看到了喂喂？在听吗”</p>
+<p class = "firstLineIndent">“咕”莱昂咽了口唾沫。</p>
+<p class = "firstLineIndent">看了看聂云身前载沉载浮，乖巧如同宠物的矢量引擎，又转身看了看远处，正在飞船紧急修复系统下缓缓被泡沫状物质封闭起来的一个小破口</p>
+<p class = "firstLineIndent">是的我信了，因为它现在就在我们面前</p>
+<p class = "firstLineIndent">在场的所有双子星人都被这一幕弄懵了。</p>
+<p class = "firstLineIndent">对方刚刚干了什么？</p>
+<p class = "firstLineIndent">一声口哨就把自家雪藏了多年的超级宝贝给拐走了？简单的就像在招呼自己从小养到大的二哈</p>
+<p class = "firstLineIndent">要知道这可是高级明的失落造物，他们试验了足足数百年，才琢磨出一些粗浅的利用方式，连这东西的外壳都切不开，更谈不上彻底掌握了。</p>
+<p class = "firstLineIndent">但对方一来，就好像直接取得了引擎的控制权。</p>
+<p class = "firstLineIndent">这黑执事，或者说他身后的万物归一会到底什么来头？</p>
+<p class = "firstLineIndent">就在莱昂震惊之际，身后的几名护卫队员已经不动声色的悄悄抬起了枪口。</p>
+<p class = "firstLineIndent">这矢量引擎可是他们双子星的明重器，要是技术没拿回来，东西被人家抢走了，他们怕是得成为明罪人，剖腹恐怕都是轻的。</p>
+<p class = "firstLineIndent">不过还没等他们有所动作。</p>
+<p class = "firstLineIndent">“嘘”又是一声口哨。</p>
+<p class = "firstLineIndent">众人只觉得黑执事身上的黑袍轻微拂动，幽蓝色光芒一闪而逝！</p>
+<p class = "firstLineIndent">“哗啦啦”下一刻，所有士兵手中的武器全都碎成了一地的零件。</p>
+<p class = "firstLineIndent">直到此时，视网膜内一条九曲十八弯，极违反惯性常识的幽蓝色路径残影，过了片刻才从众人眼中缓缓消散。</p>
+<p class = "firstLineIndent">所有人看了看自己已经空空如野的双手，又惊骇的看向残影的源头那依旧静静漂浮着的矢量引擎！</p>
+<p class = "firstLineIndent">这东西刚刚似乎只是晃了晃，完全看不清如何动作的，便将所有人缴了械，展现出了极为恐怖的速度和变向能力。</p>
+<p class = "firstLineIndent">那种极静和极动之间的转换，让所有看到的人难受的想吐。</p>
+<p class = "firstLineIndent">“这”莱昂顿时失去了语言能力。</p>
+<p class = "firstLineIndent">难道，这才是矢量引擎的正确打开方式？</p>
+<p class = "firstLineIndent">对方看似是个引擎实则是把飞剑？！</p>
+<p class = "firstLineIndent">“好宝贝！”聂云眼睛一亮，再次赞叹了一声。</p>
+<p class = "firstLineIndent">这种超高的变速变向能力，带给了聂云前所未有的流畅体验，如果要用一个词来形容，那就是随心所欲！</p>
+<p class = "firstLineIndent">没有沉重的外挂负担，矢量引擎将超绝的加速和诡异的走位发挥到了极致，加上坚不可摧的特性，威力堪称绝世暗器。</p>
+<p class = "firstLineIndent">平时当引擎，闲时还能拆下来当成单兵武器，聂云对新入手的宝贝相当满意。</p>
+<p class = "firstLineIndent">“刷！”黑袍一拂，眼前的矢量引擎已经被收了起来。</p>
+<p class = "firstLineIndent">看到这一幕，莱昂等人却是瞬间红了眼睛。</p>
+<p class = "firstLineIndent">“黑执事，你欺人太甚，我和你拼呃！”</p>
+<p class = "firstLineIndent">莱昂只觉得心中一阵悲愤，明知不敌，却还是冲上去准备以卵击石，不过拼命两字还没说完，就瞥见半空中一个金属小方块朝自己砸了下来。</p>
+<p class = "firstLineIndent">“哎！哎？”两手扑腾了两下，才将东西接住。</p>
+<p class = "firstLineIndent">“别紧张嘛！刚刚只是和你们开了个玩笑，喏！这是答应你们的技术资料，我们万物归一会做生意一向诚信为本，能公平交易的，就绝不用强！”</p>
+<p class = "firstLineIndent">莱昂又惊又喜的看着手中的存储介质。</p>
+<p class = "firstLineIndent">东西都抢走了，却还是愿意和己方公平交易？人品这么坚挺的吗？</p>
+<p class = "firstLineIndent">对万物归一会的商业信誉，莱昂有了新的理解。</p>
+<p class = "firstLineIndent">至于这技术资料是真是假要真想赖账，对方似乎也没必要多此一举？</p>
+<p class = "firstLineIndent">莱昂终于松了口气，事情总算是没搞砸，但是依旧满脑子的疑问。</p>
+<p class = "firstLineIndent">“那个我能冒昧问一下，阁下究竟是怎么控制矢量引擎的？”</p>
+<p class = "firstLineIndent">可以肯定的是，这黑执事肯定与矢量引擎的制造者明有关系！否则无法解释对方为什么能够如此轻松的控制引擎。</p>
+<p class = "firstLineIndent">“怎么控制？如你所见，这东西声控的啊！我想你们肯定没试过在它面前吹流氓哨。”聂云笑眯眯道。</p>
+<p class = "firstLineIndent">东西到手，聂云的心情显然很好。</p>
+<p class = "firstLineIndent">莱昂：“”</p>
+<p class = "firstLineIndent">别欺负我读书少，你吹个口哨还能穿透真空，把东西从另一艘飞船上拐过来？</p>
+<p class = "firstLineIndent">你以为是飞来咒啊？</p>
+<p class = "firstLineIndent">“咳！我是想问，阁下是怎么取得引擎的控制权的”莱昂干笑道。</p>
+<p class = "firstLineIndent">“呵呵！实不相瞒，这东西和我们会长所在的明有些关系”聂云手指往上指了指，一脸神秘道。</p>
+<p class = "firstLineIndent">嗯艾瑞斯明怎么说也是万物归一会的“技术供应商”，客串一下会长不过分吧？</p>
+<p class = "firstLineIndent">有这么好的机会，不好好装装逼怎么能行？</p>
+<p class = "firstLineIndent">会长？！</p>
+<p class = "firstLineIndent">莱昂瞬间兴奋起来。</p>
+<p class = "firstLineIndent">毫无疑问，以矢量引擎那让人完全看不懂的科技水平，其制造者必定是个有好几层楼那么高的高级明。</p>
+<p class = "firstLineIndent">也就是说，万无归一会背后真的有超级明撑腰？</p>
+<p class = "firstLineIndent">这可是大消息啊！</p>
+<p class = "firstLineIndent">以前总听说万物归一会逼格如何如何高，就连黑执事这个新晋双子星分会会长也不过是个青铜级会员。</p>
+<p class = "firstLineIndent">但终究是耳听为虚。</p>
+<p class = "firstLineIndent">可今天发生在眼前的一幕，无疑说明了很多问题，完全就是眼见为实啊！</p>
+<p class = "firstLineIndent">不是那个超级明的马仔，能让人家的失落造物如此听话？</p>
+<p class = "firstLineIndent">实锤了！这万物归一会绝不是在虚张声势！</p>
+<p class = "firstLineIndent">莱昂传回的技术资料很快便被科学家们确认真实无误，与此同时，交易中发生的那场变故和莱昂的新发现，也让双子星高层集体震动。</p>
+<p class = "firstLineIndent">原本对于正式加入万物归一会阵营对抗二皇子持反对态度的一些议员瞬间不说话了。</p>
+<p class = "firstLineIndent">一个是只比自己超出一线的伍尔夫，实力顶多算白银级，而另一个则是身后站着超级大佬的万物归一会，段位至少是黄金级往上走。</p>
+<p class = "firstLineIndent">怎么站队，还需要选吗？</p>
+<p class = "firstLineIndent">双子星当即痛快地立刻履行交易承诺，刚刚完成集结不久的1000余艘战舰在伊莎尔的统领之下，直接冲出虫洞，直奔洛克星系而去</p>
+<p class = "firstLineIndent">“复仇！复仇！为吉拉德大将阁下和战死的同胞们复仇！”</p>
+<p class = "firstLineIndent">以复仇之名，整支舰队内部士气高涨</p>
+<p class = "firstLineIndent">与此同时，碎星海盗联盟也终于开始收拢舰队，加速朝着洛克星系驶去。</p>
+<p class = "firstLineIndent">经过一番轮流劫掠，腰包鼓鼓的海盗们同样是士气爆棚，在财富的激励下对联盟的认同感大增。</p>
+<p class = "firstLineIndent">“弟兄们，海盗王大人说了，先前的只是开胃小菜，洛克星系才是正餐！只要打下洛克星系，战利品按照功勋分配！</p>
+<p class = "firstLineIndent">那可是洛克星系，遍地财富的洛克星系！</p>
+<p class = "firstLineIndent">这种机会一辈子可能都碰不到一次，豁出去拼了！攻陷洛克星系！”</p>
+<p class = "firstLineIndent">“吼！攻陷洛克星系！”</p>
+
+
+
+<a href="700.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="720.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp</p><p>&nbsp</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
