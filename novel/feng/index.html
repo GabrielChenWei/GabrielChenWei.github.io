@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+Content goes here.
+
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+
+</p>
+************************** content template **************************/
+</style>
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<h2>风临异世 作者：蓝领笑笑生</h2><hr/>
+
+<p class = "firstLineIndent">一个现代不为人知的天才，意外死亡后穿越到异世成了一个游魂，却在机缘之下找了一个超级的纨绔子弟做自己的替身。 用天才的大脑来练习斗气，用现代的记忆来运用武技，用特殊的方式来释放魔法，用脑中的技术来打造兵器的故事。 </p>
+
+
+<ul>
+
+<li>	<a href="	500.html	">	第502章 十全十美（大结局）	</a> 	</li>
+<li>	<a href="	500.html	">	第501章 我们结婚吧	</a> 	</li>
+<li>	<a href="	500.html	">	第500章 传奇	</a> 	</li>
+<li>	<a href="	490.html	">	第499章 化身成龙	</a> 	</li>
+<li>	<a href="	490.html	">	第498章 绝强实力	</a> 	</li>
+<li>	<a href="	490.html	">	第497章 龙威	</a> 	</li>
+<li>	<a href="	490.html	">	第496章 吹雪出鞘	</a> 	</li>
+<li>	<a href="	490.html	">	第495章 堂吉诃德	</a> 	</li>
+<li>	<a href="	490.html	">	第494章 一个就够了	</a> 	</li>
+<li>	<a href="	490.html	">	第493章 龟甲	</a> 	</li>
+<li>	<a href="	490.html	">	第492章 爱你的全部	</a> 	</li>
+<li>	<a href="	490.html	">	第491章 瞬杀	</a> 	</li>
+<li>	<a href="	490.html	">	第490章 爱的执着	</a> 	</li>
+<li>	<a href="	480.html	">	第489章 决斗事宜	</a> 	</li>
+<li>	<a href="	480.html	">	第488章 向往宁静	</a> 	</li>
+<li>	<a href="	480.html	">	第487章 心有灵犀	</a> 	</li>
+<li>	<a href="	480.html	">	第486章 人质	</a> 	</li>
+<li>	<a href="	480.html	">	第485章 冷	</a> 	</li>
+<li>	<a href="	480.html	">	第484章 接受？	</a> 	</li>
+<li>	<a href="	480.html	">	第483章 今晚我要	</a> 	</li>
+<li>	<a href="	480.html	">	第482章 抱抱亲亲	</a> 	</li>
+<li>	<a href="	480.html	">	第481章 再见精灵	</a> 	</li>
+<li>	<a href="	480.html	">	第480章 凌风阅兵	</a> 	</li>
+<li>	<a href="	470.html	">	第479章 神龙一号	</a> 	</li>
+<li>	<a href="	470.html	">	第478章 小猫凌儿	</a> 	</li>
+<li>	<a href="	470.html	">	第477章 我不能走	</a> 	</li>
+<li>	<a href="	470.html	">	第476章 再次升级	</a> 	</li>
+<li>	<a href="	470.html	">	第475章 黑石军团	</a> 	</li>
+<li>	<a href="	470.html	">	第474章 战争之始	</a> 	</li>
+<li>	<a href="	470.html	">	第473章 回家之门	</a> 	</li>
+<li>	<a href="	470.html	">	第472章 恶魔属性	</a> 	</li>
+<li>	<a href="	470.html	">	第471章 成人礼？	</a> 	</li>
+<li>	<a href="	470.html	">	第470章 寻宝之旅	</a> 	</li>
+<li>	<a href="	460.html	">	第469章 顶级待遇	</a> 	</li>
+<li>	<a href="	460.html	">	第468章 意外连连	</a> 	</li>
+<li>	<a href="	460.html	">	第467章 龙穴开启	</a> 	</li>
+<li>	<a href="	460.html	">	第466章 异世艳照	</a> 	</li>
+<li>	<a href="	460.html	">	第465章 小猫暗器	</a> 	</li>
+<li>	<a href="	460.html	">	第464章 皇权神权	</a> 	</li>
+<li>	<a href="	460.html	">	第463章 我信龙神	</a> 	</li>
+<li>	<a href="	460.html	">	第462章 生死抉择	</a> 	</li>
+<li>	<a href="	460.html	">	第461章 神权势力	</a> 	</li>
+<li>	<a href="	460.html	">	第460章 明年三月	</a> 	</li>
+<li>	<a href="	450.html	">	第459章 唯一婚礼	</a> 	</li>
+<li>	<a href="	450.html	">	第458章 最强骑士	</a> 	</li>
+<li>	<a href="	450.html	">	第457章 龙穴初现	</a> 	</li>
+<li>	<a href="	450.html	">	第456章 长痛短痛	</a> 	</li>
+<li>	<a href="	450.html	">	第455章 第一次爱	</a> 	</li>
+<li>	<a href="	450.html	">	第454章 是对是错	</a> 	</li>
+<li>	<a href="	450.html	">	第453章 血统问题	</a> 	</li>
+<li>	<a href="	450.html	">	第452章 内心深处	</a> 	</li>
+<li>	<a href="	450.html	">	第451章 你有毛病	</a> 	</li>
+<li>	<a href="	450.html	">	第450章 双生公主	</a> 	</li>
+<li>	<a href="	440.html	">	第449章 叫我凌风	</a> 	</li>
+<li>	<a href="	440.html	">	第448章 精灵公主	</a> 	</li>
+<li>	<a href="	440.html	">	第447章 自然之子	</a> 	</li>
+<li>	<a href="	440.html	">	第446章 少女们的城市	</a> 	</li>
+<li>	<a href="	440.html	">	第445章 禁咒，冰封千里	</a> 	</li>
+<li>	<a href="	440.html	">	第444章 魔法的极端对决	</a> 	</li>
+<li>	<a href="	440.html	">	第443章 惊世骇俗	</a> 	</li>
+<li>	<a href="	440.html	">	第442章 公主？！	</a> 	</li>
+<li>	<a href="	440.html	">	第441章 再次来到	</a> 	</li>
+<li>	<a href="	440.html	">	第440章 回娘家了	</a> 	</li>
+<li>	<a href="	430.html	">	第439章 惊！喜？	</a> 	</li>
+<li>	<a href="	430.html	">	第438章 篝火晚会	</a> 	</li>
+<li>	<a href="	430.html	">	第437章 淡淡的情感	</a> 	</li>
+<li>	<a href="	430.html	">	第436章 有感情，不枉此生	</a> 	</li>
+<li>	<a href="	430.html	">	第435章 感情	</a> 	</li>
+<li>	<a href="	430.html	">	第434章 全部甩掉	</a> 	</li>
+<li>	<a href="	430.html	">	第433章 不放手	</a> 	</li>
+<li>	<a href="	430.html	">	第432章 手术也是一种治疗手段	</a> 	</li>
+<li>	<a href="	430.html	">	第431章 无需再回	</a> 	</li>
+<li>	<a href="	430.html	">	第430章 璃	</a> 	</li>
+<li>	<a href="	420.html	">	第429章 顺其自然	</a> 	</li>
+<li>	<a href="	420.html	">	第428章 重新介绍	</a> 	</li>
+<li>	<a href="	420.html	">	第427章 回家	</a> 	</li>
+<li>	<a href="	420.html	">	第426章 爱意绵绵	</a> 	</li>
+<li>	<a href="	420.html	">	第425章 爱的结果	</a> 	</li>
+<li>	<a href="	420.html	">	第424章 爱的告别式？	</a> 	</li>
+<li>	<a href="	420.html	">	第423章 相拥相吻	</a> 	</li>
+<li>	<a href="	420.html	">	第422章 十年等待	</a> 	</li>
+<li>	<a href="	420.html	">	第421章 水晶列车	</a> 	</li>
+<li>	<a href="	420.html	">	第420章 不辞而别	</a> 	</li>
+<li>	<a href="	410.html	">	第419章 少女的完美胴体	</a> 	</li>
+<li>	<a href="	410.html	">	第418章 天材地宝	</a> 	</li>
+<li>	<a href="	410.html	">	第417章 传统好男人	</a> 	</li>
+<li>	<a href="	410.html	">	第416章 我很生气，后果可是很严重的	</a> 	</li>
+<li>	<a href="	410.html	">	第415章 再流氓我也会做	</a> 	</li>
+<li>	<a href="	410.html	">	第414章 死后我们还要在一起	</a> 	</li>
+<li>	<a href="	410.html	">	第413章 你眼红了	</a> 	</li>
+<li>	<a href="	410.html	">	第412章 相守一生	</a> 	</li>
+<li>	<a href="	410.html	">	第411章 沉睡六年	</a> 	</li>
+<li>	<a href="	410.html	">	第410章 婚约谈判	</a> 	</li>
+<li>	<a href="	400.html	">	第409章 克丽丝·比蒙	</a> 	</li>
+<li>	<a href="	400.html	">	第408章 一句话一辈子	</a> 	</li>
+<li>	<a href="	400.html	">	第407章 暴力少女	</a> 	</li>
+<li>	<a href="	400.html	">	第406章 近在咫尺	</a> 	</li>
+<li>	<a href="	400.html	">	第405章 皇家侍卫	</a> 	</li>
+<li>	<a href="	400.html	">	第404章 超级红眼病	</a> 	</li>
+<li>	<a href="	400.html	">	第403章 红眼凌风	</a> 	</li>
+<li>	<a href="	400.html	">	第402章 身体进化	</a> 	</li>
+<li>	<a href="	400.html	">	第401章 破冰之始	</a> 	</li>
+<li>	<a href="	400.html	">	第400章 天雪湖畔	</a> 	</li>
+<li>	<a href="	390.html	">	第399章 冰封湖底	</a> 	</li>
+<li>	<a href="	390.html	">	第398章 十年生死两茫茫	</a> 	</li>
+<li>	<a href="	390.html	">	第397章 消失	</a> 	</li>
+<li>	<a href="	390.html	">	第396章 杀猪宝刀	</a> 	</li>
+<li>	<a href="	390.html	">	第395章 天大笑话	</a> 	</li>
+<li>	<a href="	390.html	">	第394章 乔装打扮	</a> 	</li>
+<li>	<a href="	390.html	">	第393章 偷天换日	</a> 	</li>
+<li>	<a href="	390.html	">	第392章 暗渡陈仓	</a> 	</li>
+<li>	<a href="	390.html	">	第391章 有鱼鳍的少女	</a> 	</li>
+<li>	<a href="	390.html	">	第390章 紧张与震惊	</a> 	</li>
+<li>	<a href="	380.html	">	第389章 她是我的表姐	</a> 	</li>
+<li>	<a href="	380.html	">	第388章 我是我，你是你	</a> 	</li>
+<li>	<a href="	380.html	">	第387章 直接了当	</a> 	</li>
+<li>	<a href="	380.html	">	第386章 局部冰雹	</a> 	</li>
+<li>	<a href="	380.html	">	第385章 当街狂奔	</a> 	</li>
+<li>	<a href="	380.html	">	第384章 凰芷衫	</a> 	</li>
+<li>	<a href="	380.html	">	第383章 意外事情	</a> 	</li>
+<li>	<a href="	380.html	">	第382章 纸包不住火	</a> 	</li>
+<li>	<a href="	380.html	">	第381章 凤凰家族珍品展	</a> 	</li>
+<li>	<a href="	380.html	">	第380章 偷鸡不成蚀把米	</a> 	</li>
+<li>	<a href="	370.html	">	第379章 祝寿进行曲	</a> 	</li>
+<li>	<a href="	370.html	">	第378章 花言巧语的废物	</a> 	</li>
+<li>	<a href="	370.html	">	第377章 大无畏精神	</a> 	</li>
+<li>	<a href="	370.html	">	第376章 将事实夸大	</a> 	</li>
+<li>	<a href="	370.html	">	第375章 队伍扩大	</a> 	</li>
+<li>	<a href="	370.html	">	第374章 我很斯文	</a> 	</li>
+<li>	<a href="	370.html	">	第373章 宴会前奏	</a> 	</li>
+<li>	<a href="	370.html	">	第372章 凰芷心	</a> 	</li>
+<li>	<a href="	370.html	">	第371章 又一次夜袭	</a> 	</li>
+<li>	<a href="	370.html	">	第370章 龙家的奇特规矩	</a> 	</li>
+<li>	<a href="	360.html	">	第369章 狐族禁地	</a> 	</li>
+<li>	<a href="	360.html	">	第368章 辅助魔导器	</a> 	</li>
+<li>	<a href="	360.html	">	第367章 侍女，还有一个	</a> 	</li>
+<li>	<a href="	360.html	">	第366章 做公子的丫头	</a> 	</li>
+<li>	<a href="	360.html	">	第365章 贝蒂第一准则	</a> 	</li>
+<li>	<a href="	360.html	">	第364章 自作孽不可活	</a> 	</li>
+<li>	<a href="	360.html	">	第363章 活着要比死亡更痛苦	</a> 	</li>
+<li>	<a href="	360.html	">	第362章 治疗只是为了再次打废	</a> 	</li>
+<li>	<a href="	360.html	">	第361章 天天亲你	</a> 	</li>
+<li>	<a href="	360.html	">	第360章 对不起	</a> 	</li>
+<li>	<a href="	350.html	">	第359章 哀伤	</a> 	</li>
+<li>	<a href="	350.html	">	第358章 女子防狼术	</a> 	</li>
+<li>	<a href="	350.html	">	第357章 百兽颤抖	</a> 	</li>
+<li>	<a href="	350.html	">	第356章 第七公主	</a> 	</li>
+<li>	<a href="	350.html	">	第355章 双生公主	</a> 	</li>
+<li>	<a href="	350.html	">	第354章 我是小辈	</a> 	</li>
+<li>	<a href="	350.html	">	第353章 品茶时间	</a> 	</li>
+<li>	<a href="	350.html	">	第352章 伯克家族	</a> 	</li>
+<li>	<a href="	350.html	">	第351章 朱雀皇宫	</a> 	</li>
+<li>	<a href="	350.html	">	第350章 何须在乎	</a> 	</li>
+<li>	<a href="	340.html	">	第349章 兄弟齐心	</a> 	</li>
+<li>	<a href="	340.html	">	第348章 盗贼之灾	</a> 	</li>
+<li>	<a href="	340.html	">	第347章 幽蓝红影	</a> 	</li>
+<li>	<a href="	340.html	">	第346章 贝尔魔盒	</a> 	</li>
+<li>	<a href="	340.html	">	第345章 熄火·糊弄	</a> 	</li>
+<li>	<a href="	340.html	">	第344章 贪得无厌	</a> 	</li>
+<li>	<a href="	340.html	">	第343章 风之守护	</a> 	</li>
+<li>	<a href="	340.html	">	第342章 精灵的牵绊	</a> 	</li>
+<li>	<a href="	340.html	">	第341章 红月斋	</a> 	</li>
+<li>	<a href="	340.html	">	第340章 侍女	</a> 	</li>
+<li>	<a href="	330.html	">	第339章 表亲	</a> 	</li>
+<li>	<a href="	330.html	">	第338章 关灯睡觉	</a> 	</li>
+<li>	<a href="	330.html	">	第337章 夜袭	</a> 	</li>
+<li>	<a href="	330.html	">	第336章 独一无二	</a> 	</li>
+<li>	<a href="	330.html	">	第335章 倒追·表弟	</a> 	</li>
+<li>	<a href="	330.html	">	第334章 同居	</a> 	</li>
+<li>	<a href="	330.html	">	第333章 不要惹贝蒂	</a> 	</li>
+<li>	<a href="	330.html	">	第332章 表姐·好人	</a> 	</li>
+<li>	<a href="	330.html	">	第331章 专用手镯	</a> 	</li>
+<li>	<a href="	330.html	">	第230章 讽刺·手镯	</a> 	</li>
+<li>	<a href="	320.html	">	第329章 月哀	</a> 	</li>
+<li>	<a href="	320.html	">	第328章 表姑·兄妹	</a> 	</li>
+<li>	<a href="	320.html	">	第327章 重逢·误会	</a> 	</li>
+<li>	<a href="	320.html	">	第326章 强悍的贝蒂	</a> 	</li>
+<li>	<a href="	320.html	">	第325章 凌风式进城	</a> 	</li>
+<li>	<a href="	320.html	">	第324章 铲除危险	</a> 	</li>
+<li>	<a href="	320.html	">	第323章 凌风的老婆军团	</a> 	</li>
+<li>	<a href="	320.html	">	第322章 朱雀敖家	</a> 	</li>
+<li>	<a href="	320.html	">	第321章 人生如梦	</a> 	</li>
+<li>	<a href="	320.html	">	第320章 偷情·求婚	</a> 	</li>
+<li>	<a href="	310.html	">	第319章 赏月	</a> 	</li>
+<li>	<a href="	310.html	">	第318章 异世版工业革命	</a> 	</li>
+<li>	<a href="	310.html	">	第317章 归途	</a> 	</li>
+<li>	<a href="	310.html	">	第316章 空中飞船	</a> 	</li>
+<li>	<a href="	310.html	">	第315章 天使的翅膀	</a> 	</li>
+<li>	<a href="	310.html	">	第314章 奥特的未来	</a> 	</li>
+<li>	<a href="	310.html	">	第313章 震撼·次要	</a> 	</li>
+<li>	<a href="	310.html	">	第312章 橄榄枝·羡慕	</a> 	</li>
+<li>	<a href="	310.html	">	第311章 第二次承诺	</a> 	</li>
+<li>	<a href="	310.html	">	第310章 我的妻子	</a> 	</li>
+<li>	<a href="	300.html	">	第309章 从天而降	</a> 	</li>
+<li>	<a href="	300.html	">	第308章 婚礼进行曲	</a> 	</li>
+<li>	<a href="	300.html	">	第307章 雪柔出嫁！？	</a> 	</li>
+<li>	<a href="	300.html	">	第306章 曲解·无耻	</a> 	</li>
+<li>	<a href="	300.html	">	第305章 突破·私生女	</a> 	</li>
+<li>	<a href="	300.html	">	第304章 东方冰·表白	</a> 	</li>
+<li>	<a href="	300.html	">	第303章 民主·乐礼	</a> 	</li>
+<li>	<a href="	300.html	">	第302章 龙月·:月亮	</a> 	</li>
+<li>	<a href="	300.html	">	第301章 看好戏·少女	</a> 	</li>
+<li>	<a href="	300.html	">	第300章 无力药·人质	</a> 	</li>
+<li>	<a href="	290.html	">	第299章 新的龙家	</a> 	</li>
+<li>	<a href="	290.html	">	第298章 弑兄弟·聘礼	</a> 	</li>
+<li>	<a href="	290.html	">	第297章 酒·唯一	</a> 	</li>
+<li>	<a href="	290.html	">	第296章 被围·解药	</a> 	</li>
+<li>	<a href="	290.html	">	第295章 吻别·赴宴	</a> 	</li>
+<li>	<a href="	290.html	">	第294章 谜·邀请	</a> 	</li>
+<li>	<a href="	290.html	">	第293章 反威胁·太子	</a> 	</li>
+<li>	<a href="	290.html	">	第292章 射·再射	</a> 	</li>
+<li>	<a href="	290.html	">	第291章 一生换一时	</a> 	</li>
+<li>	<a href="	290.html	">	第290章 已然变天	</a> 	</li>
+<li>	<a href="	280.html	">	第289章 疑虑升级	</a> 	</li>
+<li>	<a href="	280.html	">	第288章 疑云初现	</a> 	</li>
+<li>	<a href="	280.html	">	第287章 目标天翔	</a> 	</li>
+<li>	<a href="	280.html	">	第286章 失落的神器	</a> 	</li>
+<li>	<a href="	280.html	">	第285章 改建	</a> 	</li>
+<li>	<a href="	280.html	">	第284章 吻·婚礼	</a> 	</li>
+<li>	<a href="	280.html	">	第283章 出水	</a> 	</li>
+<li>	<a href="	280.html	">	第282章 重建	</a> 	</li>
+<li>	<a href="	280.html	">	第281章 原因	</a> 	</li>
+<li>	<a href="	280.html	">	第280章 战斗结束	</a> 	</li>
+<li>	<a href="	270.html	">	第279章 狂暴	</a> 	</li>
+<li>	<a href="	270.html	">	第278章 准备偷袭	</a> 	</li>
+<li>	<a href="	270.html	">	第277章 牺牲贝蒂？！	</a> 	</li>
+<li>	<a href="	270.html	">	第276章 禁咒	</a> 	</li>
+<li>	<a href="	270.html	">	第275章 战斗开始	</a> 	</li>
+<li>	<a href="	270.html	">	第274章 怀疑	</a> 	</li>
+<li>	<a href="	270.html	">	第273章 怪物攻城	</a> 	</li>
+<li>	<a href="	270.html	">	第272章 颤抖！！	</a> 	</li>
+<li>	<a href="	270.html	">	第271章 清单	</a> 	</li>
+<li>	<a href="	270.html	">	第270章 丰收时刻	</a> 	</li>
+<li>	<a href="	260.html	">	第269章 三人同眠	</a> 	</li>
+<li>	<a href="	260.html	">	第268章 跑	</a> 	</li>
+<li>	<a href="	260.html	">	第267章 龙口夺食	</a> 	</li>
+<li>	<a href="	260.html	">	第266章 公主侍女	</a> 	</li>
+<li>	<a href="	260.html	">	第265章 你很讨厌	</a> 	</li>
+<li>	<a href="	260.html	">	第264章 暴力公主	</a> 	</li>
+<li>	<a href="	260.html	">	第263章 凌风式教育	</a> 	</li>
+<li>	<a href="	260.html	">	第262章 示爱	</a> 	</li>
+<li>	<a href="	260.html	">	第261章 杰出青年	</a> 	</li>
+<li>	<a href="	260.html	">	第260章 骗子凌风	</a> 	</li>
+<li>	<a href="	250.html	">	第259章 龙族孤女	</a> 	</li>
+<li>	<a href="	250.html	">	第258章 借口！？	</a> 	</li>
+<li>	<a href="	250.html	">	第257章 海底之城	</a> 	</li>
+<li>	<a href="	250.html	">	第256章 询问	</a> 	</li>
+<li>	<a href="	250.html	">	第255章 雪菲的泪	</a> 	</li>
+<li>	<a href="	250.html	">	第254章 答案	</a> 	</li>
+<li>	<a href="	250.html	">	第253章 可以娶我吗？	</a> 	</li>
+<li>	<a href="	250.html	">	第252章 龙贝蒂	</a> 	</li>
+<li>	<a href="	250.html	">	第251章 小别胜新婚	</a> 	</li>
+<li>	<a href="	250.html	">	第250章 娇小的贝蒂	</a> 	</li>
+<li>	<a href="	240.html	">	第249章 神奇	</a> 	</li>
+<li>	<a href="	240.html	">	第248章 龙晶石	</a> 	</li>
+<li>	<a href="	240.html	">	第247章 宝物	</a> 	</li>
+<li>	<a href="	240.html	">	第246章 谜	</a> 	</li>
+<li>	<a href="	240.html	">	第245章 龙族成年礼	</a> 	</li>
+<li>	<a href="	240.html	">	第244章 龙息草	</a> 	</li>
+<li>	<a href="	240.html	">	第243章 魔法免疫	</a> 	</li>
+<li>	<a href="	240.html	">	第242章 来之远古	</a> 	</li>
+<li>	<a href="	240.html	">	第241章 傲龙决	</a> 	</li>
+<li>	<a href="	240.html	">	第240章 龙的气息	</a> 	</li>
+<li>	<a href="	230.html	">	第239章 屠龙？！	</a> 	</li>
+<li>	<a href="	230.html	">	第238章 龙的逆鳞	</a> 	</li>
+<li>	<a href="	230.html	">	第237章 紫色的龙	</a> 	</li>
+<li>	<a href="	230.html	">	第236章 独闯龙岛	</a> 	</li>
+<li>	<a href="	230.html	">	第235章 海族禁地	</a> 	</li>
+<li>	<a href="	230.html	">	第234章 防御	</a> 	</li>
+<li>	<a href="	230.html	">	第233章 海族	</a> 	</li>
+<li>	<a href="	230.html	">	第232章 海上千军	</a> 	</li>
+<li>	<a href="	230.html	">	第231章 美人鱼	</a> 	</li>
+<li>	<a href="	230.html	">	第230章 海盗	</a> 	</li>
+<li>	<a href="	220.html	">	第229章 来使	</a> 	</li>
+<li>	<a href="	220.html	">	第228章 称霸水上	</a> 	</li>
+<li>	<a href="	220.html	">	第227章 工匠主管	</a> 	</li>
+<li>	<a href="	220.html	">	第226章 公主打工	</a> 	</li>
+<li>	<a href="	220.html	">	第225章 水上堡垒	</a> 	</li>
+<li>	<a href="	220.html	">	第224章 酒	</a> 	</li>
+<li>	<a href="	220.html	">	第223章 黑色	</a> 	</li>
+<li>	<a href="	220.html	">	第222章 清晨	</a> 	</li>
+<li>	<a href="	220.html	">	第221章 精灵之吻	</a> 	</li>
+<li>	<a href="	220.html	">	第220章 弓	</a> 	</li>
+<li>	<a href="	210.html	">	第219章 初吻	</a> 	</li>
+<li>	<a href="	210.html	">	第218章 少女法神	</a> 	</li>
+<li>	<a href="	210.html	">	第217章 浪费时间	</a> 	</li>
+<li>	<a href="	210.html	">	第216章 富甲天下	</a> 	</li>
+<li>	<a href="	210.html	">	第215章 真话假话	</a> 	</li>
+<li>	<a href="	210.html	">	第214章 回家	</a> 	</li>
+<li>	<a href="	210.html	">	第213章 出发！回天翔！	</a> 	</li>
+<li>	<a href="	210.html	">	第212章 缘	</a> 	</li>
+<li>	<a href="	210.html	">	第211章 克丽丝	</a> 	</li>
+<li>	<a href="	210.html	">	第210章 传说	</a> 	</li>
+<li>	<a href="	200.html	">	第209章 姻缘	</a> 	</li>
+<li>	<a href="	200.html	">	第208章 无耻	</a> 	</li>
+<li>	<a href="	200.html	">	第207章 优胜者	</a> 	</li>
+<li>	<a href="	200.html	">	第206章 简单问题	</a> 	</li>
+<li>	<a href="	200.html	">	第205章 智问赛	</a> 	</li>
+<li>	<a href="	200.html	">	第204章 近身	</a> 	</li>
+<li>	<a href="	200.html	">	第203章 “无”斗气	</a> 	</li>
+<li>	<a href="	200.html	">	第202章 一招定胜负	</a> 	</li>
+<li>	<a href="	200.html	">	第201章 第一战	</a> 	</li>
+<li>	<a href="	200.html	">	第200章 生命守护	</a> 	</li>
+<li>	<a href="	190.html	">	第199章 凰嫣	</a> 	</li>
+<li>	<a href="	190.html	">	第198章 不舍	</a> 	</li>
+<li>	<a href="	190.html	">	第197章 幸福	</a> 	</li>
+<li>	<a href="	190.html	">	第196章 手镯	</a> 	</li>
+<li>	<a href="	190.html	">	第195章 齐聚一堂	</a> 	</li>
+<li>	<a href="	190.html	">	第194章 未婚妻？	</a> 	</li>
+<li>	<a href="	190.html	">	第193章 飞天	</a> 	</li>
+<li>	<a href="	190.html	">	第192章 印记	</a> 	</li>
+<li>	<a href="	190.html	">	第191章 重逢	</a> 	</li>
+<li>	<a href="	190.html	">	第190章 乌鸦嘴	</a> 	</li>
+<li>	<a href="	180.html	">	第189章 天籁之音	</a> 	</li>
+<li>	<a href="	180.html	">	第188章 传言	</a> 	</li>
+<li>	<a href="	180.html	">	第187章 际会	</a> 	</li>
+<li>	<a href="	180.html	">	第186章 林语冰	</a> 	</li>
+<li>	<a href="	180.html	">	第185章 月满西楼	</a> 	</li>
+<li>	<a href="	180.html	">	第184章 清场	</a> 	</li>
+<li>	<a href="	180.html	">	第183章 青楼	</a> 	</li>
+<li>	<a href="	180.html	">	第182章 一箱黄金	</a> 	</li>
+<li>	<a href="	180.html	">	第181章 相亲？招亲！！	</a> 	</li>
+<li>	<a href="	180.html	">	第180章 到达	</a> 	</li>
+<li>	<a href="	170.html	">	第179章 出发	</a> 	</li>
+<li>	<a href="	170.html	">	第178章 兽人是怎么来的	</a> 	</li>
+<li>	<a href="	170.html	">	第177章 兽神祭	</a> 	</li>
+<li>	<a href="	170.html	">	第176章 时光倒流	</a> 	</li>
+<li>	<a href="	170.html	">	第175章 双月	</a> 	</li>
+<li>	<a href="	170.html	">	第174章 情系三雪	</a> 	</li>
+<li>	<a href="	170.html	">	第173章 相拥	</a> 	</li>
+<li>	<a href="	170.html	">	第172章 雪情	</a> 	</li>
+<li>	<a href="	170.html	">	第171章 魔武双修	</a> 	</li>
+<li>	<a href="	170.html	">	第170章 剑舞	</a> 	</li>
+<li>	<a href="	160.html	">	第169章 轰动全城	</a> 	</li>
+<li>	<a href="	160.html	">	第168章 都是命长惹得祸	</a> 	</li>
+<li>	<a href="	160.html	">	第167章 龙芝草	</a> 	</li>
+<li>	<a href="	160.html	">	第166章 人质	</a> 	</li>
+<li>	<a href="	160.html	">	第165章 奇迹	</a> 	</li>
+<li>	<a href="	160.html	">	第164章 变天	</a> 	</li>
+<li>	<a href="	160.html	">	第163章 盛宴	</a> 	</li>
+<li>	<a href="	160.html	">	第162章 归心	</a> 	</li>
+<li>	<a href="	160.html	">	第161章 璃	</a> 	</li>
+<li>	<a href="	160.html	">	第160章 回到起点	</a> 	</li>
+<li>	<a href="	150.html	">	第159章 魔法元素	</a> 	</li>
+<li>	<a href="	150.html	">	第158章 夜晚，荷尔蒙	</a> 	</li>
+<li>	<a href="	150.html	">	第157章 朦胧	</a> 	</li>
+<li>	<a href="	150.html	">	第156章 无斗气，无敌	</a> 	</li>
+<li>	<a href="	150.html	">	第155章 少女领主	</a> 	</li>
+<li>	<a href="	150.html	">	第154章 奇特种族	</a> 	</li>
+<li>	<a href="	150.html	">	第153章 城市	</a> 	</li>
+<li>	<a href="	150.html	">	第152章 地下城	</a> 	</li>
+<li>	<a href="	150.html	">	第151章 地底迷宫	</a> 	</li>
+<li>	<a href="	150.html	">	第150章 风暴	</a> 	</li>
+<li>	<a href="	140.html	">	第149章 出动	</a> 	</li>
+<li>	<a href="	140.html	">	第148章 悲伤	</a> 	</li>
+<li>	<a href="	140.html	">	第147章 传奇	</a> 	</li>
+<li>	<a href="	140.html	">	第146章 跳崖	</a> 	</li>
+<li>	<a href="	140.html	">	第145章 裸奔	</a> 	</li>
+<li>	<a href="	140.html	">	第144章 小猫发“火”	</a> 	</li>
+<li>	<a href="	140.html	">	第143章 一夫当关	</a> 	</li>
+<li>	<a href="	140.html	">	第142章 恐怖一剑	</a> 	</li>
+<li>	<a href="	140.html	">	第141章 内心变化	</a> 	</li>
+<li>	<a href="	140.html	">	第140章 突围	</a> 	</li>
+<li>	<a href="	130.html	">	第139章 战	</a> 	</li>
+<li>	<a href="	130.html	">	第138章 浴血	</a> 	</li>
+<li>	<a href="	130.html	">	第137章 武力	</a> 	</li>
+<li>	<a href="	130.html	">	第136章 杀意	</a> 	</li>
+<li>	<a href="	130.html	">	第135章 赵雅	</a> 	</li>
+<li>	<a href="	130.html	">	第134章 我比你快	</a> 	</li>
+<li>	<a href="	130.html	">	第133章 突变	</a> 	</li>
+<li>	<a href="	130.html	">	第132章 嫌疑	</a> 	</li>
+<li>	<a href="	130.html	">	第131章 毒杀	</a> 	</li>
+<li>	<a href="	130.html	">	第130章 奥特城	</a> 	</li>
+<li>	<a href="	120.html	">	第129章 守护	</a> 	</li>
+<li>	<a href="	120.html	">	第128章 永远	</a> 	</li>
+<li>	<a href="	120.html	">	第127章 过关	</a> 	</li>
+<li>	<a href="	120.html	">	第126章 刺杀	</a> 	</li>
+<li>	<a href="	120.html	">	第125章 思雪	</a> 	</li>
+<li>	<a href="	120.html	">	第124章 后会有期	</a> 	</li>
+<li>	<a href="	120.html	">	第123章 自报身份	</a> 	</li>
+<li>	<a href="	120.html	">	第122章 通缉	</a> 	</li>
+<li>	<a href="	120.html	">	第121章 身份	</a> 	</li>
+<li>	<a href="	120.html	">	第120章 归还	</a> 	</li>
+<li>	<a href="	110.html	">	第119章 木棍	</a> 	</li>
+<li>	<a href="	110.html	">	第118章 角色对换	</a> 	</li>
+<li>	<a href="	110.html	">	第117章 真正目标	</a> 	</li>
+<li>	<a href="	110.html	">	第116章 对决剑神	</a> 	</li>
+<li>	<a href="	110.html	">	第115章 糊弄	</a> 	</li>
+<li>	<a href="	110.html	">	第114章 抢亲	</a> 	</li>
+<li>	<a href="	110.html	">	第113章 佣兵升级	</a> 	</li>
+<li>	<a href="	110.html	">	第112章 龙牙关	</a> 	</li>
+<li>	<a href="	110.html	">	第111章 离开山寨	</a> 	</li>
+<li>	<a href="	110.html	">	第110章 月欣	</a> 	</li>
+<li>	<a href="	100.html	">	第109章 女俘虏	</a> 	</li>
+<li>	<a href="	100.html	">	第108章 意外收获	</a> 	</li>
+<li>	<a href="	100.html	">	第107章 强力泻药	</a> 	</li>
+<li>	<a href="	100.html	">	第106章 剿匪	</a> 	</li>
+<li>	<a href="	100.html	">	第105章 炸飞学院	</a> 	</li>
+<li>	<a href="	100.html	">	第104章 炼金学院	</a> 	</li>
+<li>	<a href="	100.html	">	第103章 到达	</a> 	</li>
+<li>	<a href="	100.html	">	第102章 凤凰家族	</a> 	</li>
+<li>	<a href="	100.html	">	第101章 少女公子	</a> 	</li>
+<li>	<a href="	100.html	">	第100章 新生报道	</a> 	</li>
+<li>	<a href="	090.html	">	第99章 三年之约	</a> 	</li>
+<li>	<a href="	090.html	">	第98章 精灵公主	</a> 	</li>
+<li>	<a href="	090.html	">	第97章 带血的项圈	</a> 	</li>
+<li>	<a href="	090.html	">	第96章 禁魔项圈	</a> 	</li>
+<li>	<a href="	090.html	">	第95章 挑战	</a> 	</li>
+<li>	<a href="	090.html	">	第94章 精灵长老	</a> 	</li>
+<li>	<a href="	090.html	">	第93章 误会	</a> 	</li>
+<li>	<a href="	090.html	">	第92章 月色森林	</a> 	</li>
+<li>	<a href="	090.html	">	第91章 佣兵团	</a> 	</li>
+<li>	<a href="	090.html	">	第90章 为了离开	</a> 	</li>
+<li>	<a href="	080.html	">	第89章 离去	</a> 	</li>
+<li>	<a href="	080.html	">	第88章 与君翻墙	</a> 	</li>
+<li>	<a href="	080.html	">	第87章 龙阳归来	</a> 	</li>
+<li>	<a href="	080.html	">	第86章 越墙	</a> 	</li>
+<li>	<a href="	080.html	">	第85章 实力	</a> 	</li>
+<li>	<a href="	080.html	">	第84章 圣魔学院	</a> 	</li>
+<li>	<a href="	080.html	">	第83章 白发雪菲	</a> 	</li>
+<li>	<a href="	080.html	">	第82章 偶像	</a> 	</li>
+<li>	<a href="	080.html	">	第81章 重返校园	</a> 	</li>
+<li>	<a href="	080.html	">	第80章 魔导炮	</a> 	</li>
+<li>	<a href="	070.html	">	第79章 炼金试验	</a> 	</li>
+<li>	<a href="	070.html	">	第78章 茶	</a> 	</li>
+<li>	<a href="	070.html	">	第77章 孙子兵法	</a> 	</li>
+<li>	<a href="	070.html	">	第76章 孤儿院	</a> 	</li>
+<li>	<a href="	070.html	">	第75章 学校	</a> 	</li>
+<li>	<a href="	070.html	">	第74章 挖地三尺	</a> 	</li>
+<li>	<a href="	070.html	">	第73章 归还赌注	</a> 	</li>
+<li>	<a href="	070.html	">	第72章 建筑师们	</a> 	</li>
+<li>	<a href="	070.html	">	第71章 刀与剑	</a> 	</li>
+<li>	<a href="	070.html	">	第70章 九级魔核	</a> 	</li>
+<li>	<a href="	060.html	">	第69章 无	</a> 	</li>
+<li>	<a href="	060.html	">	第68章 刀	</a> 	</li>
+<li>	<a href="	060.html	">	第67章 炼金	</a> 	</li>
+<li>	<a href="	060.html	">	第66章 枪法	</a> 	</li>
+<li>	<a href="	060.html	">	第65章 兵器	</a> 	</li>
+<li>	<a href="	060.html	">	第64章 战前	</a> 	</li>
+<li>	<a href="	060.html	">	第63章 赔率	</a> 	</li>
+<li>	<a href="	060.html	">	第62章 开工	</a> 	</li>
+<li>	<a href="	060.html	">	第61章 精兵	</a> 	</li>
+<li>	<a href="	060.html	">	第60章 合同	</a> 	</li>
+<li>	<a href="	050.html	">	第59章 废铁如山	</a> 	</li>
+<li>	<a href="	050.html	">	第58章 推测	</a> 	</li>
+<li>	<a href="	050.html	">	第57章 抢钱	</a> 	</li>
+<li>	<a href="	050.html	">	第55章 温馨	</a> 	</li>
+<li>	<a href="	050.html	">	第55章 醒来	</a> 	</li>
+<li>	<a href="	050.html	">	第54章 震撼	</a> 	</li>
+<li>	<a href="	050.html	">	第53章 全歼	</a> 	</li>
+<li>	<a href="	050.html	">	第52章 舍生	</a> 	</li>
+<li>	<a href="	050.html	">	第51章 生死一线	</a> 	</li>
+<li>	<a href="	050.html	">	第50章 路上遇袭	</a> 	</li>
+<li>	<a href="	040.html	">	第49章 前去演唱会	</a> 	</li>
+<li>	<a href="	040.html	">	第48章 人形打印机	</a> 	</li>
+<li>	<a href="	040.html	">	第47章 重建龙家	</a> 	</li>
+<li>	<a href="	040.html	">	第46章 精灵语	</a> 	</li>
+<li>	<a href="	040.html	">	第45章 纯真的乐琳	</a> 	</li>
+<li>	<a href="	040.html	">	第44章 决斗？？	</a> 	</li>
+<li>	<a href="	040.html	">	第43章 校园行	</a> 	</li>
+<li>	<a href="	040.html	">	第42章 精灵语	</a> 	</li>
+<li>	<a href="	040.html	">	第41章 剑神出世	</a> 	</li>
+<li>	<a href="	040.html	">	第40章 战斗升级	</a> 	</li>
+<li>	<a href="	030.html	">	第39章 爷孙比剑	</a> 	</li>
+<li>	<a href="	030.html	">	第38章 异世女歌星	</a> 	</li>
+<li>	<a href="	030.html	">	第37章 剑士？魔法？？	</a> 	</li>
+<li>	<a href="	030.html	">	第36章 雪情开口	</a> 	</li>
+<li>	<a href="	030.html	">	第35章 红袖添香	</a> 	</li>
+<li>	<a href="	030.html	">	第34章 酒醉的精灵	</a> 	</li>
+<li>	<a href="	030.html	">	第33章 解除契约	</a> 	</li>
+<li>	<a href="	030.html	">	第32章 军队废兵器	</a> 	</li>
+<li>	<a href="	030.html	">	第31章 剑就是要随身	</a> 	</li>
+<li>	<a href="	030.html	">	第30章 神器余波	</a> 	</li>
+<li>	<a href="	020.html	">	第29章 收购风波	</a> 	</li>
+<li>	<a href="	020.html	">	第28章 吹雪是神器	</a> 	</li>
+<li>	<a href="	020.html	">	第27章 吹雪的价值？	</a> 	</li>
+<li>	<a href="	020.html	">	第26章 拍卖精灵	</a> 	</li>
+<li>	<a href="	020.html	">	第25章 奴隶将军	</a> 	</li>
+<li>	<a href="	020.html	">	第24章 奴隶交易市场	</a> 	</li>
+<li>	<a href="	020.html	">	第23章 我要打造空前的兵器	</a> 	</li>
+<li>	<a href="	020.html	">	第22章 失踪风波	</a> 	</li>
+<li>	<a href="	020.html	">	第21章 魔法造炉	</a> 	</li>
+<li>	<a href="	020.html	">	第20章 买下黑石山	</a> 	</li>
+<li>	<a href="	010.html	">	第19章 准备炼钢	</a> 	</li>
+<li>	<a href="	010.html	">	第18章 矮人洛克	</a> 	</li>
+<li>	<a href="	010.html	">	第17章 要钱买武器	</a> 	</li>
+<li>	<a href="	010.html	">	第16章 悠闲的早晨	</a> 	</li>
+<li>	<a href="	010.html	">	第15章 雪情痴呆？	</a> 	</li>
+<li>	<a href="	010.html	">	第14章 我来处置公主	</a> 	</li>
+<li>	<a href="	010.html	">	第13章 我就是龙天	</a> 	</li>
+<li>	<a href="	010.html	">	第12章 刑场团聚	</a> 	</li>
+<li>	<a href="	010.html	">	第11章 回家，刑场？？	</a> 	</li>
+<li>	<a href="	010.html	">	第10章 到达皇城	</a> 	</li>
+<li>	<a href="	000.html	">	第9章 首次佣兵任务	</a> 	</li>
+<li>	<a href="	000.html	">	第8章 G级佣兵	</a> 	</li>
+<li>	<a href="	000.html	">	第7章 准备离开	</a> 	</li>
+<li>	<a href="	000.html	">	第6章 与猫对持	</a> 	</li>
+<li>	<a href="	000.html	">	第5章 被“小猫”追杀	</a> 	</li>
+<li>	<a href="	000.html	">	第4章 还魂成功，计算机大脑	</a> 	</li>
+<li>	<a href="	000.html	">	第3章 借尸还魂	</a> 	</li>
+<li>	<a href="	000.html	">	第2章 我成了鬼吗？	</a> 	</li>
+<li>	<a href="	000.html	">	第1章 救美而亡	</a> 	</li>
+
+
+
+
+
+</ul>
+
+
+
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
