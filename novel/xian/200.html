@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here.
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2> 第两百章 庄子 </h2>
+<p class = "firstLineIndent"> 一条泥泞的黄土小路上，重新变回正常模样的李火旺一行人。继续赶着路。</p>
+<p class = "firstLineIndent"> 距离从镇上逃了出来，已经过了好几天。</p>
+<p class = "firstLineIndent"> 此刻每个人的脸上都带着憔悴，这没办法，吃不好穿不好，肯定会是这样结果。</p>
+<p class = "firstLineIndent"> 当来到一片稍微平坦一点的地方，李火旺用袖口擦了擦额头上的汗。“都歇会吧。”</p>
+<p class = "firstLineIndent"> 这话一出口，所有人顿时都滩了下来，横七竖八地躺在地上。大口喘着气。</p>
+<p class = "firstLineIndent"> 白灵淼小心把怀里的最后一块黄饼子掏出来，先掰开一半重新放回去，紧接着又把那半块递到李火旺面前。“李师兄，给，吃饭吧。”</p>
+<p class = "firstLineIndent"> 李火旺看了她一眼，伸手直接在她肚子上捏了捏，那里是瘪的。</p>
+<p class = "firstLineIndent"> 这一举动，让白灵淼感到羞愧难当，但是又不忍拒绝。</p>
+<p class = "firstLineIndent"> “别省，我知道你饭量大，该吃就吃，千万别饿着，别的事情我来想办法。”</p>
+<p class = "firstLineIndent"> “我真的不饿，你吃吧。”白灵淼把饼子再推了过来。</p>
+<p class = "firstLineIndent"> 这一次李火旺懒得再接，重新打开地图，寻找着补充粮食的办法。</p>
+<p class = "firstLineIndent"> 吃的用的都不够了，必须尽快补充才行。</p>
+<p class = "firstLineIndent"> 他有想过打劫那些土匪，可一想到土匪跟贼配军的关系，李火旺就打消了念头。</p>
+<p class = "firstLineIndent"> 很难说得清楚，这些土匪到底是不是那女人的哨站。</p>
+<p class = "firstLineIndent"> 之前好不容易才摆脱成功，再为了点吃食，再招惹上贼配军不值当。</p>
+<p class = "firstLineIndent"> “抢普通的平民百姓？”</p>
+<p class = "firstLineIndent"> 李火旺第一时间否决了这个念头，他绝对不会做出跟自己师傅一样的畜生事情来，</p>
+<p class = "firstLineIndent"> 自己是李火旺，自己不是丹阳子。</p>
+<p class = "firstLineIndent"> 不抢土匪不欺压百姓，但又必须弄到足够的盘缠跟粮，这实在有些难办。</p>
+<p class = "firstLineIndent"> 就在这时，一旁的狗娃笑嘻嘻地走过来。就向着白灵淼手里的饼抓去，但是却被她打掉了。</p>
+<p class = "firstLineIndent"> “白师姐，给我吧，李师兄他不饿，我饿啊。”</p>
+<p class = "firstLineIndent"> “不行，现在就这点粮食了，吃你自己的去！”</p>
+<p class = "firstLineIndent"> “我的早就吃光了。”</p>
+<p class = "firstLineIndent"> “那你就饿着，饿几天又不会死。”</p>
+<p class = "firstLineIndent"> 垂头丧气狗娃把手伸进松松垮垮的衣服里，挠着自己的肋骨。</p>
+<p class = "firstLineIndent"> 他转过身来，看向一旁的其他人。</p>
+<p class = "firstLineIndent"> 不过这回，大伙都没吃的，就连最善解人意的杨小孩都没给他。</p>
+<p class = "firstLineIndent"> 渐渐地他的眼睛瞄到了那些从土匪寨子里面救出来的那些女人。</p>
+<p class = "firstLineIndent"> “早知道把这些娘儿们扔了，什么事情都不干，光会浪费粮食，完全就是累赘啊。”</p>
+<p class = "firstLineIndent"> 狗娃这话让那些女人脸上露出惶恐的表情。手足无措的无助地依偎在一起。</p>
+<p class = "firstLineIndent"> “你是个男人吗？怎么这么多废话！”春小满看不过眼。</p>
+<p class = "firstLineIndent"> “本来就是嘛，我说的有错吗？”</p>
+<p class = "firstLineIndent"> “别……别扔下俺！俺有用，俺知道哪有粮，就这不远，俺可以带捺们去借。”</p>
+<p class = "firstLineIndent"> 这话让其他人的目光聚集到那群女人身上。</p>
+<p class = "firstLineIndent"> 说话的是一位大嘴的女人，能有被土匪抢的资本，她很显然不单单只靠嘴大。</p>
+<p class = "firstLineIndent"> 看到其他人都看了过来，这女人不安的垂下了脑袋。</p>
+<p class = "firstLineIndent"> “你说的是真的？真的可以弄到粮食？”</p>
+<p class = "firstLineIndent"> 李火旺走了过来，站在她面前问道。</p>
+<p class = "firstLineIndent"> 他忽然发现自己刚刚钻牛角尖了，有这么一帮后蜀本地人带路，还要什么地图。</p>
+<p class = "firstLineIndent"> “嗯.....捏附近有个庄子....俺四姨在那种田....俺能去借...”</p>
+<p class = "firstLineIndent"> 李火旺重新看了一下手中的地图，发现上面并没有标记。</p>
+<p class = "firstLineIndent"> “呵呵...这些小庄小寨的太多，老朽哪里标的过来。”金山找走过来尴尬地解释道。</p>
+<p class = "firstLineIndent"> “兄弟，不懂就不懂，你装什么，你这给小道爷耽误多少事，”</p>
+<p class = "firstLineIndent"> 吕状元的调侃让金山找老脸一红，“老哥哥，我这不是瞎说，整个后蜀你知道有多少这样的——”</p>
+<p class = "firstLineIndent"> “行了，没工夫聊天，我们先过去看看，你带我们去你四姨她们家。”</p>
+<p class = "firstLineIndent"> 李火旺的话一锤定音，让还在休息的所有人都站了起来。</p>
+<p class = "firstLineIndent"> 紧接着，一行人跟着那大嘴女人向着远处的一座石头山走去。</p>
+<p class = "firstLineIndent"> 当来到贫瘠的石山脚下时，大嘴女人没有停，带着其他人就开始向孤零零的山上爬。</p>
+<p class = "firstLineIndent"> 刚开始还有些路，可是到后面都没路了，需要四肢一起才能攀上去。</p>
+<p class = "firstLineIndent"> 好几次，李火旺都以为这女人在骗自己，这破地方怎么看都不像有村子的地方。</p>
+<p class = "firstLineIndent"> 可费了九牛二虎之力，爬上了山顶后，一幅世外桃源的景色出现再他的面前。</p>
+<p class = "firstLineIndent"> 这山是平顶山，在这平顶山上居然真的有一个村庄。</p>
+<p class = "firstLineIndent"> 更重要的是他看到了大片大片的绿色田地，这在贫瘠的后蜀国实在难得见。</p>
+<p class = "firstLineIndent"> “哪个疯.....哪个吃饱的撑得干的？居然把庄子建这里，累死我了。”狗娃揉着酸疼的腿抱怨到。</p>
+<p class = "firstLineIndent"> “老朽猜啊，兴许为了躲苛捐杂税跟徭役，要么就是躲征兵，反正无非就这几种。”</p>
+<p class = "firstLineIndent"> “哎，这么一想，这天下百姓苦啊，要操劳的事情真多。”</p>
+<p class = "firstLineIndent"> “后蜀的官老爷把人逼得这么狠吗？把人都逼山上来了，我们那的官老爷可不这样，种田秋收的时候只收五成官粮，而且种田的人免徭役。”</p>
+<p class = "firstLineIndent"> 跟更差的人对比，让吕状元获得到了廉价的满足感。</p>
+<p class = "firstLineIndent"> 他们说话间，李火旺已经跟那大嘴女人问清了她四姨的位置，并且向着里面走去。</p>
+<p class = "firstLineIndent"> 看起来这里确实祥和，每家的屋子都干净亮堂。</p>
+<p class = "firstLineIndent"> 外面的一切都没有影响这里半点。仿佛真的是世外桃源一样。</p>
+<p class = "firstLineIndent"> “李师兄，我们村子也跟着差不多，虽然人少些，但是都是好人。”</p>
+<p class = "firstLineIndent"> 看到眼前的一切，白灵淼想起了什么，脸上泛起一丝喜悦。</p>
+<p class = "firstLineIndent"> “等安顿下来，以后能跟其他人在这样的地方一直生活下去，似乎也是一个不错的选择。”李火旺心中暗道。</p>
+<p class = "firstLineIndent"> 敏锐的感知让他听到了屋子里的声音。</p>
+<p class = "firstLineIndent"> 一大帮外村人走进庄子，肯定是引起村庄里人的注意。</p>
+<p class = "firstLineIndent"> 不过随着大嘴女人准确地说出了她四姨的名字，他们脸上的敌意少了很多。</p>
+<p class = "firstLineIndent"> 本以为一切开始朝好的方向发展，可一听到自己的远房亲戚过来借粮，那家人连们都不开。</p>
+<p class = "firstLineIndent"> 那大嘴女人站在贴了两门神，紧闭的大门口，惶恐地看着其他人。</p>
+<p class = "firstLineIndent"> 她眼泪止不住地就流了下来。哽咽地说道：“俺....俺真....不知道.....恁们别撇下俺.....俺没地方去了....”</p>
+<p class = "firstLineIndent"> 站在原地的其他人，烦躁不安挂上了他们的脸。再没吃的可就只能喝西北风了。</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零一章 收获 </h2>
+<p class = "firstLineIndent"> 一时间气氛显得格外的沉重。</p>
+<p class = "firstLineIndent"> 就在这时，春小满发现李火旺脸上一点反应都没有，她刚要开口。</p>
+<p class = "firstLineIndent"> “嘘。”李火旺把手中放在嘴边，示意春小满安静。他向着南边侧耳倾听什么。</p>
+<p class = "firstLineIndent"> 过了一会，他脸上难得地露出一丝笑意。</p>
+<p class = "firstLineIndent"> “不急，粮食的问题解决了。”</p>
+<p class = "firstLineIndent"> 紧接着，在其他人注视下，李火旺的身体缓缓偏移，逐渐没入一旁的墙壁。</p>
+<p class = "firstLineIndent"> “在这等着我，我一会儿就回来。”李火旺的声音凭空响起。</p>
+<p class = "firstLineIndent"> “啧啧啧，这我知道，这就是我二舅说过的穿墙术啊，高人就是高人啊，做梁上君子都比别人厉害。”</p>
+<p class = "firstLineIndent"> 当李火旺把自己的虚影隐藏在墙里，他的本身处于一种隐身状态。</p>
+<p class = "firstLineIndent"> 李火旺贴着墙，绕着向一栋房子里走去。</p>
+<p class = "firstLineIndent"> 穿过了养了鸡的外院，他走进了屋内。方才的说话声听得更清楚一些。</p>
+<p class = "firstLineIndent"> “儿子，你这不行，功夫还练不到家啊，去把《骗经》再读上十遍。”</p>
+<p class = "firstLineIndent"> “是……”</p>
+<p class = "firstLineIndent"> “别怪你爹狠，这是咱们吴家的立家之本，这么多家业，那都是靠咱们祖辈们一分一厘骗出来的。”</p>
+<p class = "firstLineIndent"> 李火旺轻叹了一口气，看起来并没有什么世外桃源啊。</p>
+<p class = "firstLineIndent"> 这破地方居然还有以骗术发家的人。</p>
+<p class = "firstLineIndent"> 不过这样更好，自己就可以正大光明地黑吃黑了，解了燃眉之急。</p>
+<p class = "firstLineIndent"> “真想不到，我这新能力的第一次作用居然是偷东西。”</p>
+<p class = "firstLineIndent"> “之前还想押镖的赚盘缠，结果现在干上这种事情来，也许干正事真的不适合我吧。”</p>
+<p class = "firstLineIndent"> 一边胡乱想着这些，李火旺一边在整个屋子里摸索起来。</p>
+<p class = "firstLineIndent"> 很快一处暗格被他找到了，打开一看，里面全是银子跟金子，各种样子跟老旧都有，一看就算脏物。</p>
+<p class = "firstLineIndent"> 李火旺脸上一喜，之后的盘缠有了，迅速找个袋子，装好放进自己的怀里。</p>
+<p class = "firstLineIndent"> 此时，隔壁屋子的两父子还在讨论骗术，声音不断传入他的耳内。</p>
+<p class = "firstLineIndent"> “儿啊，咱们家就你一根独苗，你好好好学啊，你要学不会，咱们南派的香火可就断了。”</p>
+<p class = "firstLineIndent"> “记住了爹，我一定好好学习，不会辜负你的栽培。”</p>
+<p class = "firstLineIndent"> 听到这话，李火旺脸上露出一丝鄙夷，一窝骗子还骗出家族荣誉来了。</p>
+<p class = "firstLineIndent"> 迅速转了一圈后，李火旺找到了他们家的地窖，走了进去。里面各种腊肉跟咸菜坛子堆满了。</p>
+<p class = "firstLineIndent"> 李火旺把这些东西都带到外面来。隔着墙头给那边的其他人抛了过去。</p>
+<p class = "firstLineIndent"> 这一幕显得格外的古怪，一个菜坛子自己会漂浮起来去。来到墙角边又跑了过去。</p>
+<p class = "firstLineIndent"> 要是别人看到了，肯定会吓一跳。</p>
+<p class = "firstLineIndent"> 耳边的那父子的谈话声还在继续。</p>
+<p class = "firstLineIndent"> “儿子，等这次下山，你就给我骗个媳妇回来，只要你能骗回来，我就算你出师了。”</p>
+<p class = "firstLineIndent"> “爹，媳妇也能骗啊？”</p>
+<p class = "firstLineIndent"> “废话，只要你用心骗专心骗，什么不能骗？你娘当时就是我骗过来了，她现在还被蒙在鼓里呢。”</p>
+<p class = "firstLineIndent"> 不知道为什么越听，李火旺的心中火就越大，李火旺手里的活停了下来。“要不要干脆弄死他们算了？”</p>
+<p class = "firstLineIndent"> 因为之前左忘道的原因，他现在对骗子敌意很大，最好全天下骗子死绝才好。</p>
+<p class = "firstLineIndent"> “道士，你可不能那么干啊，他们确实做错了事情，但是至少罪不至死啊。”</p>
+<p class = "firstLineIndent"> 一旁的声音把李火旺吓了一跳，他发现那有段时间没见的和尚又忽然冒出来了。</p>
+<p class = "firstLineIndent"> 和尚围着李火旺，絮絮叨叨的说着那些劝人向上的话。</p>
+<p class = "firstLineIndent"> 犹豫再三，李火旺最终还是放弃了这个想法。</p>
+<p class = "firstLineIndent"> 和尚说得没错，自己不能杀了他们。</p>
+<p class = "firstLineIndent"> 自己不能总是拿杀人当做唯一手段，要不然手里拿着锤子，之后看什么都是钉子，自己会变得越来越偏激的。</p>
+<p class = "firstLineIndent"> 不过死罪可免活罪难逃，他决定把他们家彻底掏空，让他们家好好享受丢失东西的感觉。</p>
+<p class = "firstLineIndent"> 随后李火旺把他们家的里里外外偷了个空。只要是吃的跟值钱的都给偷了。</p>
+<p class = "firstLineIndent"> “儿子，你骗人的话不能瞎编，必须几分假掺着几分真。这样别人才信。”</p>
+<p class = "firstLineIndent"> “爹，这我知道，可到底几分假掺了几分真？《骗经》上也没说啊。”</p>
+<p class = "firstLineIndent"> “笨！这当然是看人下菜碟，好骗一点的，真话就少点，假话多点。”</p>
+<p class = "firstLineIndent"> “难骗一点的人，尤其是一些特别执拗的人，你一定要在他面前多说真话多说实话，这样等你行骗的时候，别人才会信你。”</p>
+<p class = "firstLineIndent"> “记住了，一个合格的骗子说出来的话，里面必须要有真话的！”</p>
+<p class = "firstLineIndent"> “记住了。”</p>
+<p class = "firstLineIndent"> 刚准备要走的李火旺听到这话再次绕进屋内。</p>
+<p class = "firstLineIndent"> 等他再次出来时，一本半旧半新的书已经在他手中了。上面歪歪扭扭写了两个字，《骗经》</p>
+<p class = "firstLineIndent"> “我让你们骗！”</p>
+<p class = "firstLineIndent"> “怎么样？都拿齐了吗？”李火旺的虚体跟本体在其他人面前重新重叠在一起。</p>
+<p class = "firstLineIndent"> “拿齐了，拿齐了，咱们都放不下了，不过李师兄，这些东西都是哪来的？”已经把一块腊肉塞进自己嘴里的狗娃说到。</p>
+<p class = "firstLineIndent"> “拿齐了就行，咱们路上边走边说。”</p>
+<p class = "firstLineIndent"> 随着逐渐走出这个村子，那那凄惨的嚎叫声也在李火旺的耳边逐渐远去。</p>
+<p class = "firstLineIndent"> “爹！咱们家的《骗经》被人偷了！”</p>
+<p class = "firstLineIndent"> “爹！咱们家里的鸡被人偷了！！”</p>
+<p class = "firstLineIndent"> “爹！咱们家灶上的锅也被人偷了！！！”</p>
+<p class = "firstLineIndent"> 这么多东西，费了好一番功夫，才总算是从那崎岖山路上搬下来。</p>
+<p class = "firstLineIndent"> 不过看手里沉甸甸的东西。每个的脸上都洋溢着高兴，终于饿不着了。</p>
+<p class = "firstLineIndent"> 下山后的第一件事，就是找到活水，生火做饭美美地吃上一顿。</p>
+<p class = "firstLineIndent"> 吃饱了之后，每个人的脸上的焦虑都消失了，连脾气都好了一些。</p>
+<p class = "firstLineIndent"> “妹子，对不住了啊。我之前说的话都是无心的。”狗娃笑眯眯地就向着那些女人靠去。</p>
+<p class = "firstLineIndent"> “给你起开！谁不知道你脑子现在在想什么？吃饱了就想那些龌龊事。”</p>
+<p class = "firstLineIndent"> “小满姐，瞧你这话说得，我之前说那话，也不是为了大家着想啊，吃的是大伙的……”</p>
+<p class = "firstLineIndent"> 一边听着他们的拌嘴，李火旺一边伸手从怀里掏出之前的收获。</p>
+<p class = "firstLineIndent"> 把这些沉甸甸的袋子递给白灵淼怀里。“这都是那骗子的存货，金子银子都有，你点点。”</p>
+<p class = "firstLineIndent"> “嗯。”</p>
+<p class = "firstLineIndent"> 终于闲下来的李火旺看着酒足饭饱的其他人，心中悬着的那颗心总算是放了下来。</p>
+<p class = "firstLineIndent"> 物资问题解决了，接下来只要顺利穿过后蜀，这次的麻烦就安全度过了。</p>
+<p class = "firstLineIndent"> 想了想，他又把之前那本《骗经》拿出来翻阅了起来。</p>
+<p class = "firstLineIndent"> “居然还有专门教骗术的书，还真是第一次见。”</p>
+<p class = "firstLineIndent"> “呵，里面连骗术的说话套路都有。”</p>
+<p class = "firstLineIndent"> 李火旺本来就是胡乱翻阅打发打发时间。</p>
+<p class = "firstLineIndent"> 可是随着不断翻阅，李火旺的表情却开始逐渐凝重起来，身体也坐直了。</p>
+<p class = "firstLineIndent"> 他发现这上面的一些话术，坐忘道在自己身上用过。</p>
+<p class = "firstLineIndent"> 坐忘道说的话，确实有一部分是假话，可是其中有一部分是真话！</p>
+<p class = "firstLineIndent"> 
+<h2> 第两百零二章 真？假？ </h2>
+<p class = "firstLineIndent"> “李师兄这是咋的了？”</p>
+<p class = "firstLineIndent"> “我也不知道啊，刚刚还不是好好的，怎么看了一下书，看魔怔了？”</p>
+<p class = "firstLineIndent"> “白师妹，你要不去看看？不是又犯病了吧？”</p>
+<p class = "firstLineIndent"> 在其他人怂恿下，白灵淼走了过去，声音带着忐忑的对着蹲在地上的李火旺小心问道：“李师兄，你....没事吧？”</p>
+<p class = "firstLineIndent"> 她偷瞄到李火旺面前有一排排字，他一直在盯着那些字看。</p>
+<p class = "firstLineIndent"> 因为白灵淼不认识字，并不知道写的是什么，看这模样，那些字应该对他很重要。</p>
+<p class = "firstLineIndent"> 见他没理会自己，白灵淼想了想，拿下别在腰间敲鼓的鞭子，抵住李火旺身边的那本书，用力一撇，把那本书推飞出去老远。</p>
+<p class = "firstLineIndent"> “刚刚李师兄，就是看了这本书之后变成现在这个样子的，兴许是这书不吉利。”</p>
+<p class = "firstLineIndent"> 做完这件事情后，白灵淼接着问道：“李师兄，你没事吧？”</p>
+<p class = "firstLineIndent"> 一向感知敏锐的离火旺，此刻完全听不见别人在说什么。全神贯注地盯着地上自己列出来的几行字。</p>
+<p class = "firstLineIndent"> 我是彭质，某位存在的三尸之一。（假）</p>
+<p class = "firstLineIndent"> 我是坐忘道的大三元之一红中，坐忘道之前骗我，是我指示他们这么干旳。（假）</p>
+<p class = "firstLineIndent"> 那个死镇上死去的人就是我杀的。（假）</p>
+<p class = "firstLineIndent"> 坐忘道的其中一位高层，也是心素，他活了一百九十岁，完全摆脱了幻觉。（？）</p>
+<p class = "firstLineIndent"> 李火旺看着第四条，脑子里思考着各种可能性。“这莫非是真的？”</p>
+<p class = "firstLineIndent"> 既然别人都要心素，肯定是有价值的，既然他们能用，为什么心素自己不能利用？</p>
+<p class = "firstLineIndent"> 通过忽然获得的新能力推断，心素的潜力可能远比自己想象的要大。</p>
+<p class = "firstLineIndent"> “如果真的有办法，那也就是说我这种病是能治的！我能成为正常人，不，我甚至说不定，可以完全控制心素这股力量，能在这个世界彻底立足！如果真的那样，那其他人再也不敢骗我害我了！”</p>
+<p class = "firstLineIndent"> 想到激动处，李火旺感觉自己浑身充满了力量，自己始终阴郁的心情此刻也变得激昂起来。</p>
+<p class = "firstLineIndent"> 可是渐渐地，李火旺冷静了下来，这所有的一切都有一个大前提，那就是坐忘道当初说这话的时候，是真话。</p>
+<p class = "firstLineIndent"> 从过去跟坐忘道打交道看来，这实在是有点悬。</p>
+<p class = "firstLineIndent"> 李火旺不知道这最后一条，有多少的概率是真话，可哪怕就是只有一成，对于现在的他来说，都充满着诱惑力。</p>
+<p class = "firstLineIndent"> 他实在太渴望了。</p>
+<p class = "firstLineIndent"> 不单单是为了获得更强的能力，同样是摆脱磨难，自己这种不定时让自己在幻觉跟现实中变幻，实在太折磨人了，之前经历的那种比死还要痛苦的感受，李火旺真的不想再试了。</p>
+<p class = "firstLineIndent"> “现在不行，等逃出后蜀之后，我可以尝试收集这方面的信息，步步为营，理性辨别。”</p>
+<p class = "firstLineIndent"> “我现在必须谨慎，不能贸然的相信坐忘道的任何话，管他是真是假，一切事情都以真实为准。”</p>
+<p class = "firstLineIndent"> 仔细地整理完头绪后，李火旺站了起来，紧接着他看到了其他人都在远处，表情古怪地看着自己。</p>
+<p class = "firstLineIndent"> “都看着我干什么？我脸上有字？”</p>
+<p class = "firstLineIndent"> “没，没事没事。”杨小孩端起大铁锅就要背，高智坚的大手伸过来，一把提了起来。</p>
+<p class = "firstLineIndent"> 其他人也开始收拾行李，作出一副准备出发的样子。</p>
+<p class = "firstLineIndent"> 李火旺左右看了看，拿起远处的《骗经》塞进自己怀里，就准备继续走。</p>
+<p class = "firstLineIndent"> 可就在这时，他脑中忽然灵光一闪。“那两个骗子有没有可能也是坐忘道的人？他们又在打算骗我？”</p>
+<p class = "firstLineIndent"> “停下，我回去一趟。”说完这些，阴着脸的李火旺立即把怀里的《骗经》掏了出来，扔在地上，马不停蹄的向着那座平顶山走去。</p>
+<p class = "firstLineIndent"> 这一幕让其他人都没有反应过来，到底是怎么回事，一时间所有人都不说话了。</p>
+<p class = "firstLineIndent"> “我去盯着，免得他半路上犯病。”春小满说完，马上提着自己的剑跟了过去。</p>
+<p class = "firstLineIndent"> 剩下的其他人一等，就是两个时辰，当天都要黑了的时候，他们看到李火旺终于从平顶山再次下来了，而春小满脸上带着不忍的跟在后面。</p>
+<p class = "firstLineIndent"> 李火旺表情明显比上山的时候好了很多，仿佛松了一大口气样子。</p>
+<p class = "firstLineIndent"> “咋了？发生啥事了？”狗娃跑到春小满身边小声询问，</p>
+<p class = "firstLineIndent"> “那两个骗子太惨了，哎..实在太惨了，骗人而已，罪不至死啊。”</p>
+<p class = "firstLineIndent"> “李师兄为啥要这么做啊？”</p>
+<p class = "firstLineIndent"> 春小满欲言又止，仿佛不知道该如何解释。“他....想看看，那两个人有几张脸，很显然他们只有一张。”</p>
+<p class = "firstLineIndent"> “嘶~”狗娃瞬间感到头皮发麻。</p>
+<p class = "firstLineIndent"> “别聊了，趁天还没黑，我们再加紧赶路，别忘了我们现在还在被人追杀呢。”</p>
+<p class = "firstLineIndent"> 李火旺的话让两人连忙加快步伐跟了上来，默契的没有再谈平顶山上发生了什么。</p>
+<p class = "firstLineIndent"> 就在这时，其他人刚准备再次动身的时候，又突发意外。</p>
+<p class = "firstLineIndent"> “李.....李师兄，你怎么了？你还好吧？”</p>
+<p class = "firstLineIndent"> 李火旺却表情极其难看的双手抱住脑袋。“锁...锁链！困住我！要来了！”</p>
+<p class = "firstLineIndent"> “李师兄，没锁链啦！都在马车上呢！”</p>
+<p class = "firstLineIndent"> “快挖坑！挖坑把我埋起来，快点！千万别让我乱跑！”</p>
+<p class = "firstLineIndent"> 没等他们的坑挖好，李火旺就已经再次回到了充满消毒水的病房内。</p>
+<p class = "firstLineIndent"> 他面前站着一个人，一位穿着白大褂的戴眼镜的青年。</p>
+<p class = "firstLineIndent"> 白大褂微微一笑，用手推了推自己的眼镜。“李火旺？你醒了？自我介绍一下，我是你的主治医师。我姓侯。”</p>
+<p class = "firstLineIndent"> “你现在感觉怎么样，相比之前，清醒的时间似乎有点少。”</p>
+<p class = "firstLineIndent"> 李火旺左右看了看，开口问道：“我妈呢？”</p>
+<p class = "firstLineIndent"> 候医生脸上露出温暖的笑容，和颜悦色的对着李火旺说到：“你母亲有事情要出去处理一下。她几分钟之前还在呢，只是你刚好没醒罢了。”</p>
+<p class = "firstLineIndent"> “李火旺同学，如果你真的在乎你母亲，那就要配合我的治疗，尽快治愈，这样才能报答她尽心尽力对你做的一切啊。”</p>
+<p class = "firstLineIndent"> “我们聊聊吧，我知道你认为这边是幻觉，没事，那就聊聊你那边真实的世界如何？”</p>
+<p class = "firstLineIndent"> “最近好像那边发现了很多……特别的事情呢。”</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零三章 王韦 </h2>
+<p class = "firstLineIndent"> 听到候医生自报了身份，李火旺把脸撇向一边，不再言语，他懒得听幻觉里的医生废话。</p>
+<p class = "firstLineIndent"> 见病人如此抗拒，候医生也不说什么，用手指在平板上敲了几个字，转身离开了。</p>
+<p class = "firstLineIndent"> 他刚一走，李火旺就听到一个新的脚步声走进了病房。</p>
+<p class = "firstLineIndent"> “小老弟，听候医生说，你醒了？那你能自己上厕所吗？我真不想给你倒尿袋了，可怜可怜我吧。”</p>
+<p class = "firstLineIndent"> 这特殊的声音，还有这明显话痨属性。不用睁开眼睛，李火旺都知道进来的人，就是之前在电话里聊过的王护士。</p>
+<p class = "firstLineIndent"> 忽然，一块温暖的毛巾盖在了李火旺的脸上用力揉了揉。“来，大少爷，小的给你洗脸啊。”</p>
+<p class = "firstLineIndent"> 用力把毛巾甩掉，李火旺瞪向了来人。</p>
+<p class = "firstLineIndent"> 这是一个身材富态的男人。五官平和，脑袋顶着蓝色的护士帽，身上穿着蓝色的护士服。</p>
+<p class = "firstLineIndent"> 他脸上唯一的一个记忆点，就是他旳下巴左边长了一颗黑痣。</p>
+<p class = "firstLineIndent"> “哟？大少爷醒来？有什么需要小的帮忙的吗？”</p>
+<p class = "firstLineIndent"> 李火旺烦躁地看着他，“你能不能别说话，你这么喜欢跟精神病聊天？就不怕把自己聊神经了吗？”</p>
+<p class = "firstLineIndent"> “这话说得。精神病人欢乐多啊，昨天那个隔壁89号床挑食，你知道挑食的理由吗？”</p>
+<p class = "firstLineIndent"> “居然说那个茄子贼眉鼠眼的，他怕吃下去后，茄子在自己肚子里干坏事。哈哈哈！！”</p>
+<p class = "firstLineIndent"> 笑完后，王护士又开始接着干活了，拿起一旁挂在床边的尿袋，就去厕所放尿。</p>
+<p class = "firstLineIndent"> 等他捏着尿袋再次回来，又开口了。</p>
+<p class = "firstLineIndent"> “呵，你这尿有够黄的，最近吃上火了啊，年轻人就是好，吃医院餐都能吃上火。”</p>
+<p class = "firstLineIndent"> 不等李火旺回答，他又接着问道：“哎，小子，我之前在护士在听说，你获得什么神通啊？怎么的，你在那边成神仙了？”</p>
+<p class = "firstLineIndent"> “跟你有什么关系？”</p>
+<p class = "firstLineIndent"> 这王护士就跟苍蝇一样在自己身边嗡嗡嗡的，一刻都没消停过，这让李火旺莫名感到非常烦躁。</p>
+<p class = "firstLineIndent"> “说说看嘛，你说的那些胡话，我可爱听了，真有意思，我上班不能玩手机，现在每天就指望你打发时间了。”</p>
+<p class = "firstLineIndent"> “我还听到，你在里面还找到了一个女人？怎么样？逼真吗？要是逼真，那你赚大发了啊！！”</p>
+<p class = "firstLineIndent"> 李火旺眼中带着怒火，看向眼前冒犯白灵淼的男人。</p>
+<p class = "firstLineIndent"> 可下一秒，他脸上的怒火忽然消失，变成了深深地怀疑。“你姓什么？”</p>
+<p class = "firstLineIndent"> “不是跟你说了嘛，我姓王，你可以叫我王护士，不过你也可以跟65床还有31号床一样，叫我美男子，我不挑的。”</p>
+<p class = "firstLineIndent"> “你姓王？全名叫王德裘？”</p>
+<p class = "firstLineIndent"> “不是，这什么破名字，我姓王，叫王炜，火字旁加一个韦小宝的韦。”</p>
+<p class = "firstLineIndent"> 听到这话，李火旺眼中的怀疑消失离去，眼中只剩下深深的冷意。“你在骗我，你不是护士，你的身份是医生！”</p>
+<p class = "firstLineIndent"> 王炜疑惑地挠了挠头。“什么呀？你又犯病了吧？”</p>
+<p class = "firstLineIndent"> “你把我妈支走，是因为她这个人性子直，骗不来人，怕在旁边露出破绽。”</p>
+<p class = "firstLineIndent"> “你之前一直在三番五次的用语言刺激我，是在企图诱导我对你的语言产生反馈。”</p>
+<p class = "firstLineIndent"> 王炜听到这话，脸上挂上一抹无奈的笑意。</p>
+<p class = "firstLineIndent"> 他弯腰把尿袋接了回去后，对着门口说到：“进来吧。”</p>
+<p class = "firstLineIndent"> 病房门打开，之前那位候医生从外面走了进来，他对着王炜轻轻一鞠躬。“老师。”</p>
+<p class = "firstLineIndent"> “瞧见没有？患者还是很敏锐的，他们只是在犯病的时候，自控能力下降，其实正常稳定的时候，跟正常人一样的，甚至还比正常人聪明。”</p>
+<p class = "firstLineIndent"> “所以你平时，一定要以平常心对待患者，不要以为他们是精神病，就把他们当傻子对待。”</p>
+<p class = "firstLineIndent"> 跟自己学生说我后，他扭头看向床上的李火旺。</p>
+<p class = "firstLineIndent"> “自我介绍一下。我是你的主治医生。我姓王，叫王韦，韦小宝的韦，第一次见面，很高兴认识你。”</p>
+<p class = "firstLineIndent"> “为什么假扮护士？”</p>
+<p class = "firstLineIndent"> “因为你对医生身份有非常大的敌意，所以我才打算换一个身份跟你交谈，不过护士医生没什么差别，还不都是为患者服务嘛。”</p>
+<p class = "firstLineIndent"> 识破了这人的身份，李火旺闭上眼睛，不再跟这人有任何交流。安静地等待着这段时间过去。</p>
+<p class = "firstLineIndent"> 有这时间跟他废话，还不如好好在脑子里想想，该如何尽快离开四齐。</p>
+<p class = "firstLineIndent"> “李火旺同学，你知道吗？有没有可能我真的我什么都不是，我只是你的幻觉呢？”</p>
+<p class = "firstLineIndent"> “嗯？”李火旺睁开眼睛。</p>
+<p class = "firstLineIndent"> 看到患者有了回应，王韦继续说到：“我常常在想啊，人对自己的认知，为什么如此的奇妙，认为自己是什么，他就会是什么。”</p>
+<p class = "firstLineIndent"> “你知道吗？其实并不是所有意识都这样的，比如说有些动物的思维里，甚至婴儿时期，其实是没有“我”这個概念。”</p>
+<p class = "firstLineIndent"> “而像他们这种，就不会得精神病，说起来，精神病也算是一种高级病了。”</p>
+<p class = "firstLineIndent"> “你到底想说什么？东一头西一头的，王医生，撑不住就回去休假吧，别治着治着，把自己给治神经了。”</p>
+<p class = "firstLineIndent"> “错误纠正。”王韦围绕着李火旺的病床不断徘徊。</p>
+<p class = "firstLineIndent"> “不是神经，是精神，不过医生的职业病很多，神经衰弱也算其中一种，所以严格来说，你说的也没错。”</p>
+<p class = "firstLineIndent"> 李火旺懒得再理货他重新闭上了眼睛。</p>
+<p class = "firstLineIndent"> “李火旺，根据之前我对你的录音进行分析，你似乎在那边获得了一种能力，一种可以把自身错位的能力？”</p>
+<p class = "firstLineIndent"> “你知道吗？这很符合精神分裂的症状哦。”</p>
+<p class = "firstLineIndent"> “你现在病的可已经够重的了，可不能病上加病了。”</p>
+<p class = "firstLineIndent"> “不理我没关系，反正我工资是照样拿。不过你妈妈肯定会很伤心的。毕竟你妈妈可是花了大价钱请我的。”</p>
+<p class = "firstLineIndent"> “忘了告诉你，我们这是私营医院，收费是很贵的，而且因为是私营，所以医保报销的很少。”</p>
+<p class = "firstLineIndent"> “你真的想这样在这里呆一辈子？你有没有想多，这会给你的家庭造成多大的负担。”</p>
+<p class = "firstLineIndent"> “俗话说，久病床前无孝子，换成母亲也一样，你还是这么固执，始终都不配合治疗。”</p>
+<p class = "firstLineIndent"> “那么不管你的女朋友，还是你的母亲最终都会离你而去，这种事情我见多了。”</p>
+<p class = "firstLineIndent"> “你的最后结局，很可能是就送到一家便宜的医院关押起来。一辈子都无法出来。”</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零四章 打 </h2>
+<p class = "firstLineIndent"> 王韦的话一段一段地说着，语气也开始逐渐重了起来。</p>
+<p class = "firstLineIndent"> “当然，除了你的母亲，还有你的女朋友！她们最终都会厌恶你，因为没有人会乐意待在疯子身边。”</p>
+<p class = "firstLineIndent"> 看到躺在床上瞪着自己的李火旺，王韦接着说道：“你知道她每次来这里，需要坐火车多久吗？需要中途转几趟车吗？为了躲着自己的父母编了多少借口？不，你不知道，你心里只有你自己。”</p>
+<p class = "firstLineIndent"> “那叫杨娜的小姑娘一直在为你付出，可是你呢？”</p>
+<p class = "firstLineIndent"> “你却始终消极治疗，宁愿躲在自己的舒适圈里，不肯为她迈出一步，李火旺！你算什么男人！！”</p>
+<p class = "firstLineIndent"> 青筋在李火旺额头上暴起。</p>
+<p class = "firstLineIndent"> “李火旺，你不配！杨娜早就该放弃你去找更好的！最后的结局是，她会给别人生儿育女，到时候的你，只会躺在病床上，猜想着他们在床上的情景！”</p>
+<p class = "firstLineIndent"> “你给我把嘴闭上！！”</p>
+<p class = "firstLineIndent"> “嘎吱～”声响起，捆住李火旺身体的布条被崩得摇摆起来，他用那吃人旳目光死死地盯着眼前的王韦。</p>
+<p class = "firstLineIndent"> 王韦看出了他眼中的敌意，却一点都不害怕，而是直接走到床边，解开了他身上的一切束缚。</p>
+<p class = "firstLineIndent"> “哗”的一下，李火旺猛地冲了上来，一手揪住王韦的护士衣服，一拳锤了上去。</p>
+<p class = "firstLineIndent"> “你懂什么！你个幻觉！你知道我曾经经历什么！你根本什么都不懂！！”</p>
+<p class = "firstLineIndent"> 王韦开始反击了，一拳头打在李火旺的脸上，鼻血开始流了下来。</p>
+<p class = "firstLineIndent"> 此刻，他的表情仿佛变得跟李火旺一样癫狂，同样咬牙切齿地瞪着他。</p>
+<p class = "firstLineIndent"> “我告诉你，李火旺！我还真就知道！你以为全世界陷入幻觉的人就你一个人！错了！我曾经也是，可是我走出来了，而且现在还成为了一位合格医生！所以我就比你强！你这个孬种！”</p>
+<p class = "firstLineIndent"> 就在两人越打越激烈的时候，一根注射器从一旁扎进了李火旺的手臂。</p>
+<p class = "firstLineIndent"> 李火旺紧接着就感觉到自己脑子好像生锈一般，干什么都慢的要命，浑身也使不上劲。</p>
+<p class = "firstLineIndent"> 王韦带着自己的学生把李火旺搀扶起来，重新绑在了床上。</p>
+<p class = "firstLineIndent"> 紧接着，气喘吁吁浑身凌乱的王韦把手指伸进嘴里，揉了揉那颗有些松动的牙齿。</p>
+<p class = "firstLineIndent"> “这小伙子这么长时间肌肉没有得到锻炼，劲还这么大。”</p>
+<p class = "firstLineIndent"> “老师，这你.....”一旁的候医生面露难色，虽然说他早就听闻对方做事风格别具一格，可刚上来就跟患者互殴的，还未免也太离谱了。</p>
+<p class = "firstLineIndent"> 王韦站在床边，居高临下地看着李火旺那张被子弹撕裂的青涩面孔。</p>
+<p class = "firstLineIndent"> 李火旺迟钝地看着眼前这个人，脑子里想什么连他自己都不知道。</p>
+<p class = "firstLineIndent"> 渐渐地，他面前的两人变了，变得很高很大。大道说话声都产生了回响，朦朦胧胧的，仿佛有什么鼓声在帮奏。</p>
+<p class = "firstLineIndent"> “他病情比较特殊，而且心理防线很高，情感几乎自我封闭，所以我们第一步，就是必须增加他跟现实世界的交互。让他用自身感觉来干涉这个世界。”</p>
+<p class = "firstLineIndent"> “可.....书上不是这么写的啊。”</p>
+<p class = "firstLineIndent"> “书上没写？难道书上还有这样的病例吗？别死读书，有些事情要学会变通好吧，安定加倍。”</p>
+<p class = "firstLineIndent"> 李火旺不知道之后发生了什么，他只记得很乱很乱，等他再次醒来时，发现自己眼前的世界是颠倒的了，大大的圆月挂在自己身下。</p>
+<p class = "firstLineIndent"> 判断了好一会，李火旺才反应过来，月亮没有掉下来，是自己上下颠倒了。</p>
+<p class = "firstLineIndent"> 自己似乎在无意识的时间，使用了自己获得的新能力。</p>
+<p class = "firstLineIndent"> 等他慢慢把身体归位后，开始顺着地上的凌乱痕迹一步一步往回走去。</p>
+<p class = "firstLineIndent"> 没走多久，李火旺就看到在一块石头后面探头探脑的狗娃。</p>
+<p class = "firstLineIndent"> “我不是叫你把我埋起来吗？怎么还让我跑了？”</p>
+<p class = "firstLineIndent"> 听到这话，狗娃满脸的都是无辜，“李师兄，我们埋了啊，可问题你又从土里面走出来了。”</p>
+<p class = "firstLineIndent"> “走出来？什么意思？”</p>
+<p class = "firstLineIndent"> “就是跟那时候，我们跟你哭坟呢，结果你从坟里面爬出来一样。”</p>
+<p class = "firstLineIndent"> 狗娃的话让李火旺的脸色难看了几分，他之前还真没考虑到这方面。</p>
+<p class = "firstLineIndent"> 拥有了那种新能力，确实变强了很多，这对其他人来说，或许是一件好事。</p>
+<p class = "firstLineIndent"> 但是自己来说却未必如此。因为李火旺明白自己是一个疯子。</p>
+<p class = "firstLineIndent"> 如果说有什么比一个疯子还要危险的话，那就是一个手里拿着刀的武疯子。</p>
+<p class = "firstLineIndent"> 力量越大责任越大，那是别人，在他这里，只有力量越大危害越大。</p>
+<p class = "firstLineIndent"> “不行，之后不管在幻觉那边发生了什么，我之后都必须尽可能的心平气和才行。”</p>
+<p class = "firstLineIndent"> 李火旺一边想着这些事情，一边默默地往回去。</p>
+<p class = "firstLineIndent"> 一路上李火旺看到了拿着火把的其他人，他们都是过来找自己的，看起来自己走了很远。</p>
+<p class = "firstLineIndent"> 李火旺在他们的脸上看到了对自己的恐惧。他什么都没说，继续往回走。</p>
+<p class = "firstLineIndent"> 当重新来到之前的位置，发现其他人都来齐了。</p>
+<p class = "firstLineIndent"> 李火旺对着白灵淼的背影说到：“我回来了。”</p>
+<p class = "firstLineIndent"> 白灵淼身体一颤，缓缓地一回头，把那张右边乌青的脸展示在李火旺的面前。</p>
+<p class = "firstLineIndent"> 当看到这一幕时，一种对自己的强烈自责瞬间笼罩了李火旺的内心，压得他喘不过气来，很显然那是自己打的。</p>
+<p class = "firstLineIndent"> 白灵淼眼中带泪的冲了过来，双手死死的抱着李火旺。“太好了，李师兄，我刚刚差点以为再也见不到你了！”</p>
+<p class = "firstLineIndent"> 李火旺双手颤抖的环抱住白灵淼，那力道仿佛要把她塞进自己的身体里。</p>
+<p class = "firstLineIndent"> 自责稍稍减轻了一些后，强烈的后怕又涌了上来，这一次还好只是打了一拳，可万一下次自己手里有把刀呢？</p>
+<p class = "firstLineIndent"> 一些绝望的画面出现在李火旺的脑海，让他瞳孔微微颤动起来。</p>
+<p class = "firstLineIndent"> 虽然李火旺一句话都没有说，但是白灵淼明显感觉到对方在想什么，伸出白皙如玉的手轻抚着他的背。</p>
+<p class = "firstLineIndent"> “李师兄，没事的，我知道这不是你有意的，这只是肿了而已，过几天就消了。”</p>
+<p class = "firstLineIndent"> 对方的话并没有让李火旺心情好多少，他贴在对方耳边轻声说道：“答应我，再有下次，你.....尽可能地离我远点。”</p>
+<p class = "firstLineIndent"> “好。”白灵淼顺从地点了点头，可是她心里到底是怎么想的，唯有他自己知道。</p>
+<p class = "firstLineIndent"> 李火旺的视线越过白灵淼的肩膀慢慢向前移动，眼中的情感也越来越坚定。</p>
+<p class = "firstLineIndent"> 最终视线定格在了地上自己用刀刻出来的一行字上面。</p>
+<p class = "firstLineIndent"> 坐忘道的其中一位高层，也是心素，他活了一百九十岁，完全摆脱了幻觉。（？）</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零五章 金山找 </h2>
+<p class = "firstLineIndent"> 嘎吱嘎吱的牛车缓缓前进着。</p>
+<p class = "firstLineIndent"> 李火旺一行人跟着牛头一旁继续往前走。</p>
+<p class = "firstLineIndent"> 他们一些行李被放在了几辆牛车上面，每个人也轻松了不少，样子也没有之前那么憔悴了。</p>
+<p class = "firstLineIndent"> 这些新的工具，是之前路过一个镇子，让孙宝禄出面新买来的。</p>
+<p class = "firstLineIndent"> 毕竟以后还要继续赶路，这种必备的工具还是不能缺少。</p>
+<p class = "firstLineIndent"> 金山找依然背着自己那竹篓，嘴角里哼着歌。</p>
+<p class = "firstLineIndent"> 看着四周郁郁葱葱的草地，让他的心情好很多。</p>
+<p class = "firstLineIndent"> 在后蜀腹地可看不到这么漂亮的景色，看样子快到了。</p>
+<p class = "firstLineIndent"> 他再一次的打开自己花的地图，重新校对起当前的位置来。</p>
+<p class = "firstLineIndent"> “嗯……差不多再走上些几天，应该就能过关口。”</p>
+<p class = "firstLineIndent"> 他重新把地图收起来，双手合拢对着李火旺恭喜道：“真人，马上就要出关了。恭喜恭喜啊。”</p>
+<p class = "firstLineIndent"> “只要出了关，进了青丘地界，就彻底没事了。”</p>
+<p class = "firstLineIndent"> 正在看《骗经》的李火旺，抬起头来看他一眼，又重新埋头接着看。</p>
+<p class = "firstLineIndent"> “你准备去哪？打算跟着我们穿过青丘，到梁国？”</p>
+<p class = "firstLineIndent"> “不，老朽不去青丘，送各位到了关口，我就回去了。”</p>
+<p class = "firstLineIndent"> “回去？回哪去，你不怕被别人抓了？”</p>
+<p class = "firstLineIndent"> 金山找自信地一笑。“无妨，老朽还有可以自保的。”</p>
+<p class = "firstLineIndent"> 李火旺再次打量着面前这人，怎么看都觉得对方在吹牛。</p>
+<p class = "firstLineIndent"> 之前都被贼配军吓得都快尿裤子了，这会又开始装了。</p>
+<p class = "firstLineIndent"> 就在两人聊天时，前面出现了一座村子。</p>
+<p class = "firstLineIndent"> 他们没有全部进去，而是金山找跟李火旺两人去购买粮食。</p>
+<p class = "firstLineIndent"> 两个人不至于过于惹眼，而起金山找旳口才不错，适合跟对外人有敌意的农户打交道。</p>
+<p class = "firstLineIndent"> 李火旺不打算在这里停留，打算一路补充完食物就尽快穿过后蜀。</p>
+<p class = "firstLineIndent"> 这样虽然更累，但是后有追兵的情况下，也讲究不了那么多了。</p>
+<p class = "firstLineIndent"> 刚走进村内，李火旺就闻到了一股特有的臭味。</p>
+<p class = "firstLineIndent"> 他顺着味道走过去，看到了一个猪圈，一个盖在屋子下面的猪圈。</p>
+<p class = "firstLineIndent"> 看到这些黑毛猪吃的这些东西，李火旺声音都有些颤抖起来。</p>
+<p class = "firstLineIndent"> “他们……这边也这么喂猪吗？”</p>
+<p class = "firstLineIndent"> 触景生情，看着眼前的一幕，他想起了安慈庵内，躺在猪圈里死去的静心师太。</p>
+<p class = "firstLineIndent"> “嗯？真人为何会这么说，猪都不这么喂吗？所以老朽从来不吃香肉跟猪肉，因为猪狗这两畜生都是食粪的。”</p>
+<p class = "firstLineIndent"> 李火旺迅速压抑心中的情感，扭头看向了他。</p>
+<p class = "firstLineIndent"> “你说什么？其他人喂猪，都是这么喂的？”</p>
+<p class = "firstLineIndent"> “这是自然，千百年来都是这么喂的。”</p>
+<p class = "firstLineIndent"> 金山找蹲下，拿起一块石子，在松软的泥土上一笔一画的写了起来。</p>
+<p class = "firstLineIndent"> 他端端正正的写了一个家字，哪怕用的工具是石子，工具也非常漂亮。</p>
+<p class = "firstLineIndent"> “家”这是他写出来的字。</p>
+<p class = "firstLineIndent"> “真人你看，上面这个宀，视为屋宅，下面这个豕，视为猪。”</p>
+<p class = "firstLineIndent"> “上屋下猪，就是家。”</p>
+<p class = "firstLineIndent"> “从这个字就可以见得，至少从古人那时就已经是拿垢物喂猪了。”</p>
+<p class = "firstLineIndent"> “看字识意，其实仔细琢磨琢磨，有些东西就藏在这些字里。”</p>
+<p class = "firstLineIndent"> 看着地上这个家字，李火旺缓缓蹲了下来，用手指头轻轻地抚摸着。</p>
+<p class = "firstLineIndent"> “原来这就是家吗…看来我之前误会师太了。”</p>
+<p class = "firstLineIndent"> 想起之前的点点滴滴，李火旺的眼角微微滋润了。</p>
+<p class = "firstLineIndent"> 那里曾经是他在这個疯了的世界，唯一能感到温暖的地方，可是那个地方再也没有了。</p>
+<p class = "firstLineIndent"> “真人？”金山找看出李火旺情绪有些不对劲，稍稍后退一步。</p>
+<p class = "firstLineIndent"> 相处了这么久，他早就发现有些蹊跷，虽然会各种神通，可是这真人脑子好像有问题。</p>
+<p class = "firstLineIndent"> 李火旺手指扣动一旁的土，把那个“家”字埋了起来，紧接着站了起来。</p>
+<p class = "firstLineIndent"> 他再次正视着面前的金山找，这模样看起来非常普通的老人。</p>
+<p class = "firstLineIndent"> “老丈，你的身份不寻常吧？”</p>
+<p class = "firstLineIndent"> 寻常百姓里识字可不多，更何况他用石头子写的字这么好看。</p>
+<p class = "firstLineIndent"> 金山找僵在那里，均衡着什么。</p>
+<p class = "firstLineIndent"> “我可救了你的命，连这都不告诉？算了算了，不想说就算了，去找个农户买粮食去吧。”</p>
+<p class = "firstLineIndent"> 就在李火旺刚转身没走几步，金山找的声音从后面响了起来。</p>
+<p class = "firstLineIndent"> “也罢，告诉真人也无妨，老朽其实是纵横家弟子。”</p>
+<p class = "firstLineIndent"> “纵横家？”李火旺缓缓转过身来，疑惑地打量着他。这三个字对他来说很陌生。</p>
+<p class = "firstLineIndent"> 说出了自己的身份，金山找整个人都变得精神焕发起来。</p>
+<p class = "firstLineIndent"> “四时开闭以化万物纵横，或合众弱以攻一强，此为纵；或事一强以攻诸弱，此为横。此为纵横。”</p>
+<p class = "firstLineIndent"> 在金山找的不断解释下，李火旺也知道了纵横家是什么。</p>
+<p class = "firstLineIndent"> 说白了，就是小国众多的特殊环境下出现的特殊职业。</p>
+<p class = "firstLineIndent"> 用金山找自己的话来说，是智谋，是每一个君主身边不可或缺的谋士。</p>
+<p class = "firstLineIndent"> 帮助君主出谋划策，合纵连横。</p>
+<p class = "firstLineIndent"> 但是从李火旺的理解，这是在各个小国间，用口才左右横跳的聪明人。</p>
+<p class = "firstLineIndent"> “知大局，善揣摩，通辩辞，会机变，全智勇，长谋略，能决断，这就是我等纵横弟子。”</p>
+<p class = "firstLineIndent"> 看着金山找那尾巴都要翘到天上的样子，李火旺开口打断。</p>
+<p class = "firstLineIndent"> “你都这么厉害了，之前碰到那女人，怎么不来个一舌战三军？”</p>
+<p class = "firstLineIndent"> 听到这话，金山找的脸上露出一丝尴尬。</p>
+<p class = "firstLineIndent"> “哎～正所谓秀才遇到兵，有理也说不清啊，更何况是后蜀的贼配军。”</p>
+<p class = "firstLineIndent"> “呵呵”李火旺转身向着村子里走去，金山找连忙跟上。</p>
+<p class = "firstLineIndent"> “真人，你知道你信不过老朽。但是无妨，等真人安全离开后蜀国之后，再干自己正事。”</p>
+<p class = "firstLineIndent"> “以免真人的位置被我透露。”</p>
+<p class = "firstLineIndent"> “真人既然救我一命，定当涌泉相报。待我在后蜀国担任行人之后——”</p>
+<p class = "firstLineIndent"> “弄了半天，合着你现在还没有君主啊，那你现在不是个无业游民吗？”</p>
+<p class = "firstLineIndent"> “快了快了，等老朽翻身，在后蜀为官后，定忘不了真人。”</p>
+<p class = "firstLineIndent"> “行啊，到时候再说吧，不过我估计到时候早就到梁国了。”</p>
+<p class = "firstLineIndent"> 本来一切都很好，不过两人有些轻松的闲聊气氛，随着李火旺忽然握住剑柄的手打断了。</p>
+<p class = "firstLineIndent"> “真……真人？”金山找顺着李火旺的视线看去，在屋檐下看到了几个黑陶缸，每一个上面都贴着大大的红色倒福。</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零六章 有人看 </h2>
+<p class = "firstLineIndent"> “怎么了，真人？”看到李火旺如此的紧张，稍稍后退几步。</p>
+<p class = "firstLineIndent"> 远处的那些黑陶缸看起来并没有什么异常，完全就是普通腌咸菜的缸子，唯一特点，无非就是它的上面贴了一个倒福字罢了。</p>
+<p class = "firstLineIndent"> 李火旺看着那些缸子没有丝毫的放松警惕，“有东西刚刚从那里看了我一眼！”</p>
+<p class = "firstLineIndent"> “看....看你？”金山找表情迟疑，再次打量着远处的那些坛子。</p>
+<p class = "firstLineIndent"> “莫非里面有人？可是真人，那坛子也太小了，装不下一个人。”</p>
+<p class = "firstLineIndent"> “我又没说是人在看我！”李火旺果断把《大千录》铺在地上。带血的指甲盖迅速飞了过去，轻易的斩破了那些黑陶坛子。</p>
+<p class = "firstLineIndent"> “哗啦”声不断响起，那些黑陶坛子纷纷破裂，褐色的盐水混合着咸菜洒落一地。</p>
+<p class = "firstLineIndent"> 李火旺的心并没有放松警惕，小心地走过去，用手中的剑挑开陶片挨个仔细检查。</p>
+<p class = "firstLineIndent"> 仔细检查了一番后。李火旺并没有找到任何异常，这些坛子真的就知道腌咸菜旳菜坛子罢了。</p>
+<p class = "firstLineIndent"> 声音引起了屋子里的人，一个拄着拐杖的老婆子颤颤巍巍的旁边走了过去，“你这娃娃，为什么要砸了我家的菜坛子！赔钱！”</p>
+<p class = "firstLineIndent"> 李火旺把剑收了起来，从怀里掏出一些碎银子扔到了她脚边后，警惕的面对着她一步一步向后撤去。</p>
+<p class = "firstLineIndent"> “真人，这是要去哪？不是去买粮食吗？”金山找连忙跟了上来。</p>
+<p class = "firstLineIndent"> “先离开这个地方，我们去别的地方买！”经过刚刚那么一下，李火旺对面前这村子已经完全失去了信任。</p>
+<p class = "firstLineIndent"> 现在这种关键时期，李火旺宁愿是自己猜错了，也不想被某些东西埋伏了，这种亏他已经不想再吃了。</p>
+<p class = "firstLineIndent"> 面对李火旺两人远离，那老妪并没有再阻拦，而是扶着拐杖弯着捡着地上的碎银子，没牙的嘴里嘟囔着，仿佛在骂着什么。</p>
+<p class = "firstLineIndent"> 离开了那村子后，李火旺带着一行人继续向前赶路，这路一赶就是赶到深夜。</p>
+<p class = "firstLineIndent"> 在一片竹林里，他们终于停了下来，不管那视线是什么，这样远的距离也足够远离危险了。</p>
+<p class = "firstLineIndent"> 篝火升起，一行人开始架锅烧饭，虽然每个人都很倦了，可饭还是要吃的。要不然身体根本撑不住。</p>
+<p class = "firstLineIndent"> 李火旺没有干这些杂活，他站在牛车顶棚上，用那极佳的视力如同瞭望塔般向着四周不断的巡查着。</p>
+<p class = "firstLineIndent"> 馒头似乎也理解到李火旺的心思，把鼻子贴在地上，绕着圈不断的嗅着。</p>
+<p class = "firstLineIndent"> 不过一直到吃饭后，依然没有任何异常，仿佛之前在那村子里的视线是幻觉一般。</p>
+<p class = "firstLineIndent"> “我难道感觉错了？”李火旺心中对自己产生了一丝怀疑。其实他对自己的感觉一直不太信任。</p>
+<p class = "firstLineIndent"> 但是很快他就把这完全没有不要的怀疑抛之脑后了，已经做了事情不需要犹豫。</p>
+<p class = "firstLineIndent"> “李师兄，晚饭做好了，你快来吃吧。”</p>
+<p class = "firstLineIndent"> 今天吃的是就地取材的竹笋面。新鲜竹笋味道脆甜，虽然没有肉，但是面汤上的一层厚厚浓浓的猪油，很是抚慰了李火旺那干瘪的胃。</p>
+<p class = "firstLineIndent"> 一时间围绕着篝火旁，其他人吃得热火朝天，喝汤声，竹笋清脆的咬断声不绝于耳。</p>
+<p class = "firstLineIndent"> 吃饱喝足就感到困意，疲惫的其他人直接躺在被子里，就闭上了眼睛。</p>
+<p class = "firstLineIndent"> 今天晚上守夜的是李火旺，这个时候，别人他信不过。</p>
+<p class = "firstLineIndent"> 很快竹林里，除了篝火燃烧的噼啪声外，就没有了别的声音。</p>
+<p class = "firstLineIndent"> 就剩下李火旺坐在篝火旁，轻轻地用手抚摸着馒头身上柔顺的毛发。</p>
+<p class = "firstLineIndent"> 不过他毕竟不是铁人，很快也感觉到困了。</p>
+<p class = "firstLineIndent"> 用力晃了晃脑袋，感觉并没有驱散困意后，李火旺从下摆处掏出一根尖锥，对着自己的右手掌心直接刺了进去。</p>
+<p class = "firstLineIndent"> 血染得道袍更红了一些，剧痛让李火旺浑身紧绷一紧，顿时提神醒脑，没有了任何困意。</p>
+<p class = "firstLineIndent"> “小道爷，要不我来替你，老人本来就少觉。”</p>
+<p class = "firstLineIndent"> 虽然没有看到人，但是通过脚步声，还有那熟悉的烟丝味，李火旺已经知道是谁在自己身后。“吕班主，睡你的吧。明天还要赶路，你今天守夜了，明天就吃不消了。”</p>
+<p class = "firstLineIndent"> 吕状元顶着那满脸褶子的脸在李火旺一旁坐了下来，他小心从烟袋子里面绕出三根烟丝，再混合着一些地上的一些枯叶碎屑，放进烟杆洞里点了起来。</p>
+<p class = "firstLineIndent"> “道爷，你瞅我小儿子咋样？”</p>
+<p class = "firstLineIndent"> “嗯？”李火旺看了一眼靠着自己哥哥嫂嫂睡的吕秀才。</p>
+<p class = "firstLineIndent"> 他对这少年的印象不怎么样，胆子小不说，而且干什么事情都瞻前顾后，犹犹豫豫的。</p>
+<p class = "firstLineIndent"> “小道爷，我知道有些痴心妄想，不过，老汉我还是想拉下一张老脸来问问，能让他拜你为师吗？”</p>
+<p class = "firstLineIndent"> “那小子其实不算戏子，没开过腔，您别嫌弃，不奢望您教会他所有神通，哪怕就会一样，那也算我们吕家祖坟上，冒青烟了。”</p>
+<p class = "firstLineIndent"> 吕状元刚说完，却发现这小道爷的反应是忽然站了起来。</p>
+<p class = "firstLineIndent"> “它跟来了！都起来！”李火旺一声暴喝，让刚入睡的其他人揉着眼睛苏醒过来。</p>
+<p class = "firstLineIndent"> “戒备！”李火旺说完，提着剑缓缓地向着一旁的竹林子里走去，本应该脆绿色的竹林在黑暗的笼罩下，显得格外的阴深。</p>
+<p class = "firstLineIndent"> 并没有走多久，李火旺在竹子之间看到了两个白瓷坛子。</p>
+<p class = "firstLineIndent"> 坛子不大，看起来跟西瓜差不多，这两个坛子上面贴着一块长条红字，上面还用毛笔写了一些字。</p>
+<p class = "firstLineIndent"> 亡母：显妣杨氏凤玲之位</p>
+<p class = "firstLineIndent"> 祖父；先祖父李公全有之位</p>
+<p class = "firstLineIndent"> 很显然这是两个骨灰坛子，坛子前面的祭拜痕迹也证明了这一点。</p>
+<p class = "firstLineIndent"> 看到这坛子，李火旺有些犹豫了起来，自己真的要把这骨灰坛子砸了？天知道等会儿里面蹦出什么来。</p>
+<p class = "firstLineIndent"> 思来想去后，李火旺缓缓退了出去。远处的火光也渐渐消失，所有人开始半夜赶路了。</p>
+<p class = "firstLineIndent"> 不知道过去了多久，那两個骨灰坛子的盖子缓缓升了起来，从坛子里面冒出两个脸上抹着白粉的小孩脑袋。</p>
+<p class = "firstLineIndent"> 他们明显不是普通的小孩，脑袋只有寻常男人拳头大小。</p>
+<p class = "firstLineIndent"> 两人脸颊两边的圆形腮红在雪白的脸上显得格外的显眼。</p>
+<p class = "firstLineIndent"> 小人相互对视了一眼，嬉笑起来，紧接着他们同样抹着白粉的手臂跟腿，穿过骨灰坛子伸出来。</p>
+<p class = "firstLineIndent"> 两人刚要走，却被冲天而降的一道人影挡住了去路。</p>
+<p class = "firstLineIndent"> 李火旺咬牙切齿，用那因为缺觉而带有血丝的双眼，死死瞪着面前这两古怪的东西。</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零七章 危险 </h2>
+<p class = "firstLineIndent"> 当那坛子娃娃看到了眼前的如同大山一样的李火旺时，抹满了白粉的脸上露出惊讶跟害怕相互交织的表情。</p>
+<p class = "firstLineIndent"> “原来你们还知道怕啊！”</p>
+<p class = "firstLineIndent"> “锵啷”一声，长剑出鞘，带着冲天的杀意挥看下。</p>
+<p class = "firstLineIndent"> 伴随着陶瓷破裂声，这两个娃娃瞬间身首异处。</p>
+<p class = "firstLineIndent"> 从惨白的体内飞溅出来的并不是血液，而是某种灰褐色的粉末。</p>
+<p class = "firstLineIndent"> 其中还夹杂的白色的碎骨，那是骨灰，这两个娃娃是用骨灰捏出来的！</p>
+<p class = "firstLineIndent"> “不对劲，这看起来不想是野生的邪祟。”</p>
+<p class = "firstLineIndent"> 李火旺看着陶瓷罐子里，那明显旳手指印，心中暗道。</p>
+<p class = "firstLineIndent"> “沙～”竹叶划过纸张的声音，让李火旺迅速站了起来。</p>
+<p class = "firstLineIndent"> 忽然他的脸色变得极其的难看，这一次不再是两个视线。</p>
+<p class = "firstLineIndent"> 密密麻麻的视线从四面八方射了过来，自己被包围了。</p>
+<p class = "firstLineIndent"> 很快李火旺看到了那些东西，那些身上穿着纸做的寿衣的东西。</p>
+<p class = "firstLineIndent"> 它们没有脸，而是全部顶着一个白瓷坛子。</p>
+<p class = "firstLineIndent"> 惨白的坛子上还贴着一条写着字的长条红纸，那东西如同眼睛般注视着李火旺。</p>
+<p class = "firstLineIndent"> 他们的身影在黑暗笼罩下的竹林中若隐若现。</p>
+<p class = "firstLineIndent"> 他们在动，虽然李火旺没有看到他们移动的样子。</p>
+<p class = "firstLineIndent"> 可是他们确实以某种无法看到的方式在靠近。</p>
+<p class = "firstLineIndent"> “哗啦啦”《大千录》迅速在地上铺开，李火旺拿出钳子，随时准备伸进自己的嘴里。</p>
+<p class = "firstLineIndent"> 就在这时，有什么红色的东西东摇西摆地挡住了李火旺的视线。</p>
+<p class = "firstLineIndent"> 这红色的东西如同僵尸电影里的黄符，贴在李火旺的额头上。</p>
+<p class = "firstLineIndent"> 李火旺迅速伸手摘下，震惊发现那是一条红色的宽纸条，上面写了一行字。亡夫：李火旺之位。</p>
+<p class = "firstLineIndent"> 看到这纸条上写的字后，李火旺的脑子瞬间被各种混乱的信息所占据。</p>
+<p class = "firstLineIndent"> “他们在同化我？我正在变成他们？他们是谁！不对！我过去好像在清风观听说过他们。”</p>
+<p class = "firstLineIndent"> 电光火石之间，一个名字出现在他的脑海中，“大姥姥！他们是大姥姥！”</p>
+<p class = "firstLineIndent"> 几乎就在这一瞬间，李火旺再次举起钳子，可这一次，他没有对准牙齿，而是对准了自己的左眼。</p>
+<p class = "firstLineIndent"> “啪”的一声，随着眼球被捏爆，一道奇异的光芒笼罩了四周，四周的大姥姥身上被某种带有黏性的朦胧的光晕包住。</p>
+<p class = "firstLineIndent"> 四周所有的视线在这一刻忽然消失了。</p>
+<p class = "firstLineIndent"> 李火旺趁着这个机会迅速前冲，重新回到了路边。</p>
+<p class = "firstLineIndent"> 路边的其他人显然还没有明白到底发生了什么，站在原地百无聊赖地打着哈切。</p>
+<p class = "firstLineIndent"> “快走！离开这片竹林，这地方危险！”</p>
+<p class = "firstLineIndent"> 也许是李火旺那血肉模糊不断滴血的左眼的威慑力，没有任何人质疑，他们拖着疲惫的身体纷纷跑了起来。</p>
+<p class = "firstLineIndent"> 这一跑就没有停下来过，等穿过那片竹林，后面是一片草原。</p>
+<p class = "firstLineIndent"> 所有人在这一览无余的草原上迅速地逃命，一直逃到远处的天边渐渐泛白这才停了下来。</p>
+<p class = "firstLineIndent"> 浑身被汗湿透的金山找踉跄把背上的竹篓扔在地上。</p>
+<p class = "firstLineIndent"> 直接躺在地上大口大口地喘着气。</p>
+<p class = "firstLineIndent"> 右手抓起地上的嫩草看了看，又无力的放了下来。上气不接下气地说道：“哈……哈……青……咱们快到……哈……哈……咱们快到青丘了……哈……”</p>
+<p class = "firstLineIndent"> 此刻，李火旺再一次的站上了牛车顶棚。</p>
+<p class = "firstLineIndent"> 空旷的环境给了李火旺极远的视力，眉头紧锁的他用那只独眼环视着四周的一切。</p>
+<p class = "firstLineIndent"> 如果都这样，那些来历不明的大姥姥还能跟得过来，那李火旺真的只能跟他们博一博了。</p>
+<p class = "firstLineIndent"> 好在随着日头渐渐升高，温暖的阳光驱散了李火旺身上的寒意，没有任何视线再射过来。</p>
+<p class = "firstLineIndent"> 而之前的竹林中，也已经没有了大姥姥的身影，一块石头说话了。</p>
+<p class = "firstLineIndent"> “怎办，此小子看起来不好对付，连咱们引过来的大姥姥都拦不住，要不回司内喊人吧？”</p>
+<p class = "firstLineIndent"> 石头话音刚落，一旁的竹笋回复到：“废那功夫做什么，彭龙腾不是在找这小子么，直接告诉她就行了，还省着咱们麻烦。”</p>
+<p class = "firstLineIndent"> “说的也是，要是出了差错就往她身上推，要是有功那也算我们三人一份。”</p>
+<p class = "firstLineIndent"> 说完这话后，石头跟竹笋再也没有说上一句话。</p>
+<p class = "firstLineIndent"> 当天，李火旺他们在这地方休息了一整天。</p>
+<p class = "firstLineIndent"> 不休息不行，毕竟人不是铁做的。</p>
+<p class = "firstLineIndent"> 好在这一段时间内，除了几个顺道路过的，没有发生什么意外。</p>
+<p class = "firstLineIndent"> 曲腿侧坐在地上的李白灵淼心疼地看着正在睡觉的李火旺。</p>
+<p class = "firstLineIndent"> 哪怕睡觉也睡得不安稳，李火旺微微扭头，嘴里还在不断低声念着什么。</p>
+<p class = "firstLineIndent"> 她那白皙的手指举起，向李火旺脸上那恐怖的血洞抚去。“这得多疼啊……”</p>
+<p class = "firstLineIndent"> “轰”的一声，睡梦中的李火旺瞬间炸起，双手已经掐住了白灵淼的纤细脖子不断收紧。</p>
+<p class = "firstLineIndent"> 这一举动把所有人都吓出一身冷汗，包括李火旺自己。</p>
+<p class = "firstLineIndent"> 后怕的他连忙放开手，仔细检查一番后，发现白灵淼并没有被自己掐坏，他这才抱进自己的怀里又亲又搂。</p>
+<p class = "firstLineIndent"> “李师兄……别人还看着呢……”</p>
+<p class = "firstLineIndent"> 李火旺停了下来，心有余悸地说道：“以后……我睡觉的时候，你离我远点。”</p>
+<p class = "firstLineIndent"> “可……我们一直是睡一块的啊。”</p>
+<p class = "firstLineIndent"> “听话，乖，我这段时间，神经有点紧绷，等过了这段时间再说。”</p>
+<p class = "firstLineIndent"> “那好吧，对了李师兄，你的……眼睛。”</p>
+<p class = "firstLineIndent"> “没事，这样更好，跟之前变化更大了，更容易隐藏。”</p>
+<p class = "firstLineIndent"> 李火旺等人，就这样在这广阔的草原上走了三天，在第三天的中午时分终于看到了关口。</p>
+<p class = "firstLineIndent"> 说关口也不算，这破地方只有一面矮墙围绕起来，边军也没几个，东倒西歪的靠着墙，显得格外懒散。</p>
+<p class = "firstLineIndent"> “这是自然，青丘跟后蜀本就是盟国，他们之间并没有那么防备。”</p>
+<p class = "firstLineIndent"> 看到李火旺眼中的疑惑，金山找贴心的解释到。</p>
+<p class = "firstLineIndent"> “盟国？那贼配军不会杀到青丘去？”一边打量着眼前一条热闹的街道，李火旺一边问道。</p>
+<p class = "firstLineIndent"> “绝无这种可能，后蜀军进入青丘，这几乎等同双边开战，此种事情可比杀几千人严重得多。”</p>
+<p class = "firstLineIndent"> 听到这，李火旺的心稍安。</p>
+<p class = "firstLineIndent"> 他忽然想到了什么，重新打量起眼前的老人。“你这是要打道回府了？”</p>
+<p class = "firstLineIndent"> 金山找微笑着对着李火旺拱了拱手。“真人，后会有期了，救命之恩没齿难忘。”</p>
+<p class = "firstLineIndent"> “假若有一日，老朽入朝为官，定会涌泉相报。”</p>
+<p class = "firstLineIndent"> 李火旺笑了笑。“你行不行，没事就别折腾了，找个地方养老吧。”</p>
+<p class = "firstLineIndent"> 说到这，金山找表情却严肃起来。</p>
+<p class = "firstLineIndent"> “君子当修身齐家平天下！在下潜心学习纵横术数十载，岂有不用之理？”</p>
+<p class = "firstLineIndent"> “老朽定要一展抱负，让这国与国之间再无纷争！还这天下一个朗朗乾坤！！”</p>
+<p class = "firstLineIndent"> 说到这，金山找那有些浑浊的眼中仿佛有光。</p>
+<p class = "firstLineIndent"> 李火旺有些被金山找震撼到了。</p>
+<p class = "firstLineIndent"> 眼前这看起来有些胆小的老头，心中居然还有如此伟大的理想。</p>
+<p class = "firstLineIndent"> 而且看他这样子，一点都不像是随便说着玩的。</p>
+<p class = "firstLineIndent"> 李火旺端正地给金山找行了一個道礼。“那在下祝你马到成功，一展宏图。”</p>
+<p class = "firstLineIndent"> 微笑的金山找回礼。“多谢真人，那我们就在此别过了。”</p>
+<p class = "firstLineIndent"> “呼呼呼～”呼啸声骤然响起。</p>
+<p class = "firstLineIndent"> “刺啦”一声，微笑的金山找被一把飞来的巨戟拦腰斩断。</p>
+<p class = "firstLineIndent"> 在近在咫尺的李火旺面前，活生生的一分为二了。</p>
+<p class = "firstLineIndent"> 
+<h2> 第二百零八章 血 </h2>
+<p class = "firstLineIndent"> 一滴鲜血飞溅到李火旺因为极度震惊而微张的嘴里，“咸，腥，还有苦。”</p>
+<p class = "firstLineIndent"> 李火旺来不及尝出太多滋味，因为泛着寒光的长戟已经戳破了金山找的身体，向着他脸上砸来。</p>
+<p class = "firstLineIndent"> 这次攻击本来就是对准他的，金山找只是顺带罢了</p>
+<p class = "firstLineIndent"> 李火旺下意识的迅速切换位置，让自己的本体向着左边挪了两寸。</p>
+<p class = "firstLineIndent"> “轰~”长戟刺穿了李火旺的脑袋，重重砸在李火旺身后地上，把地面砸得四分五裂。</p>
+<p class = "firstLineIndent"> 毫发无损的李火旺低头看向地上的金山找，看着他脸上的笑容渐渐消失，逐渐被迷茫所代替。</p>
+<p class = "firstLineIndent"> 他对着李火旺张了张嘴，似乎想要对嘱咐点什么，眼中的光却迅速地黯淡下来。</p>
+<p class = "firstLineIndent"> 看着地上金山找的两节尸体，此刻李火旺心里堵得慌，事情不应该这样发展才对。</p>
+<p class = "firstLineIndent"> 刚刚还打算一展宏图旳金山找死了，死得悄无声息。跟一个笑话一样。</p>
+<p class = "firstLineIndent"> “哒哒哒”连绵不绝的马蹄声从远处响起，李火旺抬头向着那边看去，心中的那团火越烧越盛。</p>
+<p class = "firstLineIndent"> 当到达最顶点后，他对着那熟悉的面甲怒吼道：“彭龙腾！！”</p>
+<p class = "firstLineIndent"> 带着上百名骑兵的彭龙腾，骑着她那专属铁骑缓缓地走进来关口，躲了这么久，在最后时刻她最终还是追来了。</p>
+<p class = "firstLineIndent"> 她用那独眼透过面甲上的孔，看到了毫发无损的李火旺，纹满刺青的脸上露出一丝冷笑。</p>
+<p class = "firstLineIndent"> “果然有两下子，之前算我轻敌了，不过这回可不再会有了，能伤到本将军，你也算有几分本事，既然如此，给你留个全尸吧，驾！”</p>
+<p class = "firstLineIndent"> 上百铁骑同时一声嘶吼，带着轰鸣声，带着排山倒海的气势向着势单力薄的李火旺冲去。</p>
+<p class = "firstLineIndent"> 就在他们刚冲到一半的时候，彭龙腾忽然用手指对准李火旺一指，“射！”</p>
+<p class = "firstLineIndent"> 所有骑兵同时拉弓，一面箭雨向着李火旺方向直接抛来。</p>
+<p class = "firstLineIndent"> 面对如此绝境，李火旺丝毫不躲，直接右腿在地上一蹬，把天书举过头顶，对着面前的铁骑对冲。</p>
+<p class = "firstLineIndent"> 这里是平原，是骑兵的主场，跑是肯定跑不掉了，现在能做的只有决一死战！</p>
+<p class = "firstLineIndent"> “嗖～”一根箭从一个刁钻的角落射出，隐蔽的刺过了李火旺的胸口。</p>
+<p class = "firstLineIndent"> 可这依然没有任何作用，李火旺再次把实体跟虚体分开了。</p>
+<p class = "firstLineIndent"> 他已经距离他们很近了。近到可以看到面上的表情。</p>
+<p class = "firstLineIndent"> “那是障眼法！那小子肯定就在附近！拿当初对付那黑脸和尚的办法逼他出来！！”</p>
+<p class = "firstLineIndent"> 哗啦一下，李火旺看到整列的骑兵迅速散开，围绕着自己转了起来。</p>
+<p class = "firstLineIndent"> 一边奔跑，这贼配军还不断向着李火旺四周不断抛射。</p>
+<p class = "firstLineIndent"> 他们没有放过任何一处，似乎要把这地方全部射满，把李火旺逼出来。</p>
+<p class = "firstLineIndent"> “噗呲”一声，锋利带着倒刺的长锥顺着李火旺的掌心扎了进去。</p>
+
+
+<a href="190.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="210.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

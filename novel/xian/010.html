@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here.
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+<h2>第十一章 玄元</h2>
+<p class = "firstLineIndent">“唯三一圣人～乃一小太极～普受浩劫家命～鼎膺无量品褒～.......赐福解厄，普济存亡，道冠诸天，恩覃三界，大悲大愿，大圣大慈.......”</p>
+<p class = "firstLineIndent">抑扬顿挫诵经声在宽敞的溶洞内不断回荡，包括李火旺在内的所有六位清风观弟子都盘坐在蒲团上，跟着师傅上着早课。</p>
+<p class = "firstLineIndent">所有人面前都没有经书，早课的内容李火旺只能含糊地跟着师兄们念。</p>
+<p class = "firstLineIndent">一边诵经李火旺一边抬头，视线凝聚在坐在最前面的丹阳子身上，他眼中的戾气刚浮现出来的，就迅速压制下来。</p>
+<p class = "firstLineIndent">对于这恶心的家伙，他现在恨不得吃他的肉扒了他的皮，但是李火旺知道，自己现在太弱小了，根本不是他的对手。</p>
+<p class = "firstLineIndent">对方实力强大，他不能鲁莽，自己现在最主要的就是隐忍下来，暗中寻找机会。</p>
+<p class = "firstLineIndent">这或许困难重重，也许还会被丹阳子发现死得很惨，但是李火旺什么都不在乎了。</p>
+<p class = "firstLineIndent">当看到丹阳子微微侧身，李火旺的视线迅速向上移去，越过三柱高香，看向摆放在掏空岩壁内摆放的三尊神像。</p>
+<p class = "firstLineIndent">三位样貌各异的神仙身穿黄色道袍怀抱浮尘，眼睛不悲不喜，注视着下面渺小的凡人。</p>
+<p class = "firstLineIndent">他们身上半点仙风道骨的样子都没有，反而样貌寻常，如果不是身上的道袍看起来只是三个大号的普通人。</p>
+<p class = "firstLineIndent">这三位神像是谁，李火旺当然不认识，但是他把这三位的长相深深地记在自己的脑子里。</p>
+<p class = "firstLineIndent">此时诵经声开始变缓，当最后一个小段经文脱口而出后，一旁童子重重地在红鼓上敲三下，早课结束。</p>
+<p class = "firstLineIndent">所有弟子跟着丹阳子站了起来，同时用右手掐住左手的拇指，左手的四个指头放在右手的指头上面，把双手举过头顶对着神像行礼。</p>
+<p class = "firstLineIndent">行完了礼，丹阳子缓缓转过身来，打量着自己身后的弟子。</p>
+<p class = "firstLineIndent">当看到身穿道袍的李火旺表情平静地站在人群的最尾端的时候，他满意地点了点头。</p>
+<p class = "firstLineIndent">“玄元，玄阳刚入本门，肯定有很多不懂的地方，你作为师兄教教他。”</p>
+<p class = "firstLineIndent">“是，师傅。”一位脸型圆润表情微胖的中年人对着丹阳子行礼。</p>
+<p class = "firstLineIndent">“行了，过了卯时，没什么事了，都去用饭吧。”丹阳子说完双手背在身后，向着一旁的洞口走去。</p>
+<p class = "firstLineIndent">一位头戴混元巾表情阴郁的青年人，跟在他的身后一同出去。</p>
+<p class = "firstLineIndent">“那是正坤师兄，自从正坎正震师兄叛逃后，他是师傅唯一的内门弟子了，以后观内遇见了，记得尊敬点，他可不像师傅那般好脾气。”</p>
+<p class = "firstLineIndent">玄元走到李火旺身边，对着他解释那人的来历。</p>
+<p class = "firstLineIndent">李火旺点了点头，“多谢玄元师兄解惑，那他也会师傅那样的神通吗？”</p>
+<p class = "firstLineIndent">别的不知道，但是李火旺知道丹阳子会一手御物的能力，而且力大惊人，能举起几百斤的石瓮。</p>
+<p class = "firstLineIndent">这些还不是最忌讳的，最让李火旺忌讳的是溶洞内发生的任何事情都知道，无论是自己说他是个屁，还是之前自己并没有答应一同逃跑。</p>
+<p class = "firstLineIndent">如果真的想要对付他，这一点必须弄清楚。</p>
+<p class = "firstLineIndent">“他是内门弟子，他跟师傅学了什么我哪知道。”李火旺察觉到对方这话里面的嫉妒。</p>
+<p class = "firstLineIndent">“一个人的力量太弱小，我要不要在清风观内找别的盟友？”李火旺心中泛起一个念头，但是很快这个念头马上熄灭了。</p>
+<p class = "firstLineIndent">有反抗之心的人估计早就在上一次的时候，被黑太岁吃掉了，如今剩下来的哪怕不是对丹阳子死心塌地，估计也是胆小懦弱之辈。</p>
+<p class = "firstLineIndent">“走吧，我们边走边说。”玄元说完转身带着李火旺向着厨房方向走去。“我知道你想什么，别惦记着师傅的成仙功法，要从上面轮下来，你是最后一个。”</p>
+<p class = "firstLineIndent">“你呢，就安心干你的活，师傅吩咐你做什么，你就去做就是了，等按资排辈到了时候，自然就轮到了你。”</p>
+<p class = "firstLineIndent">此时他们已经来到了吃饭的溶洞，早到的其他师兄已经开始喝起粥来。</p>
+<p class = "firstLineIndent">其中三位他认识，两位背长剑的道士是长明长仁，还有一位之前有过一面之缘的玄阴。</p>
+<p class = "firstLineIndent">再加上一旁的玄元，还有自己玄阳，清风观内五位记名弟子如今都在这里集合了。</p>
+<p class = "firstLineIndent">“清风观的规矩，食不言寝不语，用饭过后我再教你别的。”玄元说完就坐下来一起喝粥。</p>
+<p class = "firstLineIndent">李火旺坐下来端起黑陶碗喝了一口，目光默默地观察着其他师兄们行为举止。</p>
+<p class = "firstLineIndent">这些人长相各不相同，样貌没有太显眼的也没有太丑陋的。可身穿道袍的他们坐在一起，李火旺总感觉有点怪怪的。</p>
+<p class = "firstLineIndent">当看到玄阴按住鼻子的一侧用力对着地面擤鼻涕，而另外两位师兄眉头微皱的时候，李火旺终于反应过来了，他们的气质不一样。</p>
+<p class = "firstLineIndent">这些人中有些人书生气多一些，而有些人手脚关节粗大看起来像是干粗活的。</p>
+<p class = "firstLineIndent">“这五位弟子都是丹阳子从哪找来的？该不会跟我一样从药引提上来的吧？”</p>
+<p class = "firstLineIndent">一个个空碗放下，其他师兄没有看新来的玄阳师弟一眼，大步向着门口走去。</p>
+<p class = "firstLineIndent">等吃完饭玄元带着李火旺继续在清风观内介绍，从他们那里得知，五位记名弟子分别负责道观内不同的位置。</p>
+<p class = "firstLineIndent">有些负责管理道童，有些负责出观采购，还有的负责饲养黑太岁的，甚至资历深的几位还要身兼多职。</p>
+<p class = "firstLineIndent">本来没这么忙的，可惜之前死了那么一批人后，他们身上的责任就只能被迫分到剩下弟子身上。</p>
+<p class = "firstLineIndent">李火旺的责任自然不必说了，料房的一切事物都是他负责，而他们这些弟子所做的一切都是为了协助师傅成仙。</p>
+<p class = "firstLineIndent">就这样兜兜转转一整天，李火旺终于从玄元这里对整个道观有了详细认识。</p>
+<p class = "firstLineIndent">李火旺把这些事情牢牢的记在心里，这里不再是随时离开的幻觉了，自己能否杀死丹阳子，这些信息说不定能派上大用场。</p>
+<p class = "firstLineIndent">相处一天下来，玄元跟李火旺的关系稍稍有些活络，两人正在从正一殿往回走。</p>
+<p class = "firstLineIndent">“玄阳师弟啊，其实没必要那么紧张，你的活不会那么忙的，师傅也不是每天炼丹。”</p>
+<p class = "firstLineIndent">“哦？还请玄元师兄解惑。”</p>
+<p class = "firstLineIndent">“炼丹这种事情是跟天象时辰有着密切关系的，有些东西的丹药必须是固定时辰才能发挥到最大作用，就比如说吧，今日跟明日就不宜炼丹，可后日的子时就是非常好的日子。”
+------------</p>
+<h2>第十二章 丹方</h2>
+<p class = "firstLineIndent">“哎呀，反正跟你说了也不懂，这其中的奥妙很是繁杂，跟着师傅好好看着好好学吧。”</p>
+<p class = "firstLineIndent">“哦，原来如此。”假装思索状的李火旺此时在想着别的事情。</p>
+<p class = "firstLineIndent">丹阳子给自己的那丹药明显是有用的，这同样代表这个世界的法则跟自己的世界完全不一样的。</p>
+<p class = "firstLineIndent">如果想要对付丹阳子，对于这个陌生的世界事情他还需要了解更多。</p>
+<p class = "firstLineIndent">“小说里的修真者？不像，哪有拿人炼丹的修真者？哪有还要奴役凡人协助自己成仙的修真者？”</p>
+<p class = "firstLineIndent">“而且按照惯例，普通修仙门他不是应该送一本建基的功法给我吗？为什么也没有？”</p>
+<p class = "firstLineIndent">随着李火旺对这个地方越了解，就越觉的这个道观越怪，完全没有过去他概念中修道之人的样子。</p>
+<p class = "firstLineIndent">“对了，玄阳师弟，师兄我教你个乖，你最好在师傅动嘴前，把事情都妥当的准备好了。”</p>
+<p class = "firstLineIndent">“就比如昨天的丹药吧，因为你的癔症发作，错过了时辰，你如果在后天子时之前，把药引提前送过去，不就等于向师傅他老人家赔礼道歉了吗？”</p>
+<p class = "firstLineIndent">“别看师傅喜怒无常，但是你只要把他哄开心了，自然会有你的好处。”</p>
+<p class = "firstLineIndent">“昨天的丹料？”李火旺愣了一下。</p>
+<p class = "firstLineIndent">“对啊，怎么，你忘了？昨天师傅让你送什么了？”</p>
+<p class = "firstLineIndent">“白.....白灵淼。”李火旺的瞳孔瞬间缩到了极小，之前发生了那么多事情，可是这件事情还没结束呢，</p>
+<p class = "firstLineIndent">如果自己没有在后天之前想到办法，那个白化病的姑娘就要跟之前的所有药引一样，被垂成肉泥了！</p>
+<p class = "firstLineIndent">李火旺不知道怎么回的自己的住所，他躺在自己的石床上，那缠着红线的金脚环如同烧红的铁块般按在他的胸口，催促着他想出办法来。</p>
+<p class = "firstLineIndent">可是现在丹阳子跟李火旺的实力相差极大不说，整个道观内全是他的人。</p>
+<p class = "firstLineIndent">之前那些死去师兄的前车之鉴，也表明盲目逃跑是没用的。</p>
+<p class = "firstLineIndent">就在辗转反侧之中，一晚上就过去了。</p>
+<p class = "firstLineIndent">在上早课的前夕，李火旺穿起衣服，向着洞外走去。</p>
+<p class = "firstLineIndent">他想去丹房看看，去找找那边有什么其他办法没有。</p>
+<p class = "firstLineIndent">举着油灯刚走出来，一张尖嘴猴腮的脸从黑暗中冒了出来，把李火旺吓了一跳，那是狗娃的脸。</p>
+<p class = "firstLineIndent">“嘿嘿嘿，李师兄，没什么事，我就是看昨天您一天都没来料房，实在有些担心，就过来看看您。”</p>
+<p class = "firstLineIndent">“白师妹没事吧？”李火旺后退一步问道。</p>
+<p class = "firstLineIndent">“没事没事，您亲自开口说让白师妹来代管料房，谁敢不听话，嘿嘿嘿，李师兄就是厉害，你看，自从你掌管料库后，还没带走一个人呢。”</p>
+<p class = "firstLineIndent">听到狗娃说这话，李火旺心中感到十分的烦躁，他用油灯格开这家伙，大步走了出去。</p>
+<p class = "firstLineIndent">当李火旺来到炼丹房，发现一些起的早的童子已经开始拿着麻布清洗丹炉跟地板了。</p>
+<p class = "firstLineIndent">一位童子更是站在石翁里，拿着猪毛刷子，用力刷着石壁上的残余肉沫。</p>
+<p class = "firstLineIndent">作为丹阳子的弟子，他进炼丹房，自然没有人敢说什么。</p>
+<p class = "firstLineIndent">李火旺装作随意的走动，视线开始向着四周仔细观察。</p>
+<p class = "firstLineIndent">整个炼丹房十分的简约，除了占了三分之一空间的巨大黑色丹炉外，就只剩下一个丹阳子用来砸人的石瓮跟石棒了。</p>
+<p class = "firstLineIndent">别说炼丹的书籍了，连墙上的字画都没有一张，而且整个房间非常的空旷，任何掩体都没有。</p>
+<p class = "firstLineIndent">“你在看什么？”一道熟悉但又毛骨悚然的声音忽然在他身后响起。</p>
+<p class = "firstLineIndent">李火旺回头一看来人，连忙双手行礼。“师傅。”</p>
+<p class = "firstLineIndent">“我问你在看什么？”</p>
+<p class = "firstLineIndent">李火旺心中迅速思索了一秒，马上想到了一个由头。“弟子看师傅炼丹之道如此厉害，所以心生仰慕，就想着弟子什么时候也能到那种地步。”</p>
+<p class = "firstLineIndent">丹阳子对李火旺的态度转变很是满意，看来这小家伙彻底想通了。</p>
+<p class = "firstLineIndent">他双手背在身后，围绕着黑色炼丹炉转着。“有上进心是好事，但不是道爷不教你，而是外丹之道可没那么简单的。”</p>
+<p class = "firstLineIndent">“寻常丹药还好说，可如果你想以丹道成仙，必须外丹内丹一起炼，本道爷炼到现在即将大乘，可是花了好一番功夫。”</p>
+<p class = "firstLineIndent">丹阳子的脸上露出一丝得意跟兴奋，仿佛在畅享成仙后的自己过上神仙日子。</p>
+<p class = "firstLineIndent">“师傅.....马上要成仙了吗？”</p>
+<p class = "firstLineIndent">李火旺这话一出，丹阳子脸上的表情收了回来、“成仙之事没那么简单，路途漫长，但是本道爷肯定能成仙，你知道为什么吗？”</p>
+<p class = "firstLineIndent">“不知。”</p>
+<p class = "firstLineIndent">丹阳子的神情变得有些激动起来。“因为成仙的办法是老君爷天书上写的，而且还是老君爷亲自送到我手上的，试问全天下还有谁能成仙？他说我能成仙。我肯定能成仙！”</p>
+<p class = "firstLineIndent">“老君爷？这是哪位？那三位神像中的一位？”李火旺有点听不懂这类似神话的描述。</p>
+<p class = "firstLineIndent">虽然半点没听懂，但是李火旺还是奉承的说道：“师傅所言极是，您定能成仙，与天地同寿！”</p>
+<p class = "firstLineIndent">丹阳子很明显非常乐意听这话，丑陋的脸上笑开了花。</p>
+<p class = "firstLineIndent">“哈哈哈，好好好，既然你想学炼丹，那我就先教你一个简单的润血丹丹方吧，你记下来。赤丹12两，香附子半斤，阳起石2两4钱......”</p>
+<p class = "firstLineIndent">虽然莫名其妙有了意外收获，但李火旺当然不会说不要。</p>
+<p class = "firstLineIndent">连忙想要笔墨记录下来，可是左右张望，整个丹方内什么笔墨都没有。</p>
+<p class = "firstLineIndent">情急之下，他从丹炉下找了一块炭杂，干脆在自己道袍下摆上记录下来。</p>
+<p class = "firstLineIndent">“……丑时三刻起炉，正当沐浴；以目寂照，以息吹嘘，以神熏蒸，以文火慢慢养之。卯时四刻开炉。”</p>
+<p class = "firstLineIndent">“这个丹方拿去慢慢练，道爷先看看你的天赋如何。”</p>
+<p class = "firstLineIndent">李火旺扔掉手中的炭杂，双手捧着送到丹阳子的面前。“师傅，您看弟子记得可有遗漏？”</p>
+<p class = "firstLineIndent">可看到那写满炭字的下摆呈现在自己面前时，刚刚还眉开眼笑的丹阳子脸上瞬间晴转多云。</p>
+<p class = "firstLineIndent">右脚一抬，直接把李火旺踹飞了出去，撞在丹炉上嗡的一响后，又重重的摔在地上。</p>
+<p class = "firstLineIndent">丹阳子铁青着脸，骂骂咧咧的背着手直接离开了，就这么把李火旺晾在原地。</p>
+<p class = "firstLineIndent">当心中情绪化的怒意逐渐散去，李火旺感觉到这件事情非常蹊跷，自己并没有做什么，他为什么忽然这种态度？</p>
+<p class = "firstLineIndent">李火旺低头看着手中的丹方思索起来，自己的字虽然难看，可这明显还是能辨认的出来啊。</p>
+<p class = "firstLineIndent">忽然李火旺想到了什么，他张望着四周没有任何字画摆设的炼丹房，紧接着又想起上早课时，所有人都没有任何经书。</p>
+<p class = "firstLineIndent">一个突如其来的念头在李火旺脑海中蹦出，“难道说这癞子头是个文盲，他不识字？”
+------------</p>
+<h2>第十三章 炼丹</h2>
+<p class = "firstLineIndent">李火旺小心翼翼地看着眼前的小丹炉，旁边还竖立着用来计时的三柱香。</p>
+<p class = "firstLineIndent">在这种没有闹钟的环境下，李火旺只能靠这种简陋办法来计算时间。</p>
+<p class = "firstLineIndent">当最后那一炷香彻底燃尽，他马上熄灭炉火打开了丹门，一股混杂着奇特草药香气的味道从里面飘了出来。</p>
+<p class = "firstLineIndent">李火旺心中一喜，炼成了。练好的丹料在一个罗筛内不断晃动，当无用成灰的丹渣全部筛去后，最终盒子里就剩下一些大大小小的黑色丹药。</p>
+<p class = "firstLineIndent">这些丹药就是丹阳子口中的润血丹，这是一种非常简单的丹药，用处是止血。</p>
+<p class = "firstLineIndent">一次吃下去不能超过一两，否则全身血液会有完全凝固的危险。</p>
+<p class = "firstLineIndent">听起来很鸡肋，用来害人说不定比治人好用，</p>
+<p class = "firstLineIndent">可因为这丹药是最简单的，丹阳子才会给李火旺炼手用。</p>
+<p class = "firstLineIndent">仔细数了数，最终李火旺获得了十三颗大润血丹，二十六颗小润血丹。</p>
+<p class = "firstLineIndent">李火旺的收获不仅仅只是这些，而且通过炼制润血丹的过程，他还了解到了炼丹的一些基本知识。</p>
+<p class = "firstLineIndent">炼丹远比他想象的还要难，除了时间上的区别，甚至生长朝向不同的草药都要仔细分辨。</p>
+<p class = "firstLineIndent">只要其中错一步，丹药的药效跟成丹率就会天差地别，旁边的一堆焦黑的废料就是证明。</p>
+<p class = "firstLineIndent">李火旺拿出一个小竹筒把这些丹药都收了进去，紧接着深吸一口气，穿上一旁的道袍向着门外走去。“时间差不多了，子时快到了。”</p>
+<p class = "firstLineIndent">当李火旺伸手推开料房的门时，正在劳作的所有人齐刷刷地站了起来，惊恐地看着他。</p>
+<p class = "firstLineIndent">现在的他在其他人的眼中，就是活脱脱的阎王</p>
+<p class = "firstLineIndent">李火旺表情复杂地看着他们，在所有人的注视下从他们面前走过，最终来到了白灵淼的面前。</p>
+<p class = "firstLineIndent">少女的白发跟随着她的身体一同颤抖着，她想要强忍着不哭，可是最终还是没忍住，泪水从她那白化病特有的淡粉色瞳孔边流下。</p>
+<p class = "firstLineIndent">表情凝重的李火旺伸手拉住她的手，离开料房向着炼丹房走去。</p>
+<p class = "firstLineIndent">湿答答的溶洞隧道内，白灵淼向着李火旺哽咽地交代遗言。</p>
+<p class = "firstLineIndent">李火旺沉默地听着，什么话都没有说，当他特意来到自己住处门外时，身体一转拉着她进了屋内。“脱裤子。”</p>
+<p class = "firstLineIndent">白灵淼的眼睛大睁僵在原地，似乎被对方的举动吓住了。</p>
+<p class = "firstLineIndent">子时前三刻，李火旺带着白灵淼来到了丹药房，而此时的丹阳子也才刚到。</p>
+<p class = "firstLineIndent">当他看到李火旺不用自己吩咐，就提前带药引过来，丹阳子的脸上露出一丝满意，他看着这位最小的弟子稍微顺眼了一些。</p>
+<p class = "firstLineIndent">“呵呵，好徒儿，过来吧。”随着丹阳子随手一召，白灵淼直接飞了过去，被他掐住脖子扔进了那一个人的石瓮。</p>
+<p class = "firstLineIndent">看到这一幕的李火旺心扑通扑通直跳，双手握紧。</p>
+<p class = "firstLineIndent">眼看着那几百斤重的捣药石棒就要向着下面砸去的时候，丹阳子却忽然停了下来。</p>
+<p class = "firstLineIndent">“哎，怎么偏偏这个时候落红呢？这下药性全变了。”丹阳子眉头微皱地看看白灵淼那渗出血的裤子说到。</p>
+<p class = "firstLineIndent">看到这一幕的李火旺顿时松了一口气，自己的计划成功了。</p>
+<p class = "firstLineIndent">当李火旺了解这个世界的炼丹是怎么回事后，他找到了破局的办法。</p>
+<p class = "firstLineIndent">既然别的金石草木的药性如此多变，那么人药引同样会有变化。</p>
+<p class = "firstLineIndent">而且在他的印象，在道家女人的落红是某种污秽的东西，让白灵淼假装来月经了，是他的应对手段。</p>
+<p class = "firstLineIndent">而且这种事情为了避免对方怀疑，不能别人说，必须让丹阳子他自己发现才行。</p>
+<p class = "firstLineIndent">现在看来，自己的目的达到了，白灵淼的命救下了。</p>
+<p class = "firstLineIndent">丹阳子宽大的道袍一挥，石翁内的白灵淼直接飞了出来，重重地摔在地上。</p>
+<p class = "firstLineIndent">这一摔很重，白灵淼半天才捂着膝盖爬起来，可李火旺却不能帮忙，他之只能在一旁冷漠地看着。</p>
+<p class = "firstLineIndent">“玄阳，把这里料引带回去。”听到丹阳子说这话，李火旺这才彻底放心，恭恭敬敬的对着丹阳子行礼，“遵命，师傅。”</p>
+<p class = "firstLineIndent">当白灵淼走到自己身边时，李火旺这才发现对方的头似乎被磕破了，鲜红的血液顺着她的脸颊往下流。</p>
+<p class = "firstLineIndent">即便如此白灵淼依然对李火旺投来感激之情，在死亡面前，受这点小罪已经不算什么了。</p>
+<p class = "firstLineIndent">“不管怎么样总算是蒙混过一关了，下次估计轮到白灵淼估计要很久。”李火旺带着白灵淼向着门外走去。</p>
+<p class = "firstLineIndent">可就在他们即将走出那巨大丹炉黑影的时候，丹阳子一道轻飘飘的话从后面响起。</p>
+<p class = "firstLineIndent">“玄阳啊，既然这个药引不行，你再去带一个过来吧，我记得这种白药引还有一个，速去速回，别误了时辰。”</p>
+<p class = "firstLineIndent">这话让李火旺的身体轻微地颤了一下，紧接着他转身尊敬的对着丹阳子再次行礼。“是，师傅。”</p>
+<p class = "firstLineIndent">李火旺不知道自己是怎么走到了料房的，他只能麻木地走到另外一位白化病男人面前，伸手拉着他向外走。</p>
+<p class = "firstLineIndent">对方在绝望的哭喊着，跪在地上向自己不断磕头饶命。但是李火旺此时却什么都做不了。他只能亲手送这人去炼丹房。</p>
+<p class = "firstLineIndent">他的哭喊声在丹阳子的捣药棒下戛然而止，渺渺白烟带着浓郁的香味升腾到丹药房，把上面的钟乳石挂上了一层厚厚的人油。</p>
+<p class = "firstLineIndent">颤抖的李火旺转身刚要走，就被丹阳子喊住了，“你不是向往炼丹之道吗？过来，仔细瞧瞧，这么复杂稀有的丹药炼制，别的地方可不到。”</p>
+<p class = "firstLineIndent">李火旺走了过去，仔仔细细地看着观察着，聆听着丹阳子说着什么时候放什么料，什么时候又加多大的火。如同一位好学的孩子观察整场炼丹过程。</p>
+<p class = "firstLineIndent">当丹炉下的火焰熄灭了，炼丹炉打开，七颗早已成体的黑色丹药就这么排着队来到了丹阳子的面前。</p>
+<p class = "firstLineIndent">“不错，不错，你很有天赋，其他徒儿根本没你这么好学，来，师傅赏你的。”丹阳子从自己掌心拿出一粒来，放在李火旺的面前。</p>
+<p class = "firstLineIndent">“谢师傅赐药！”李火旺慎重的对着丹阳子行了一个大礼，双手颤抖捧着那颗丹药放进自己嘴里咽了下去。
+------------</p>
+<h2>第十四章 帮手</h2>
+<p class = "firstLineIndent">刚吃下去这颗丹药，李火旺就感觉到丹田如同有着一团火暖烘烘的，并且这团火有越烧越旺的趋势。</p>
+<p class = "firstLineIndent">烧的他都顾不上内心涌出的恶心跟反胃。</p>
+<p class = "firstLineIndent">“玄阳啊，回去歇着吧，这药效很烈，想要完全吸收要一阵子功夫呢。”</p>
+<p class = "firstLineIndent">“是，师傅。”</p>
+<p class = "firstLineIndent">跌跌撞撞回到自己住处的李火旺扶着门框大口的干呕起来，然而他却只能呕出一些清水。整个丹药早就已经完全吸收了。</p>
+<p class = "firstLineIndent">“咔嚓咔嚓。”李火旺浑身的关节嘎吱作响，身体不由自主的抽搐着。</p>
+<p class = "firstLineIndent">此时他丹田的那团火已经顺着脉络到了四肢。现在的他就像大夏天穿了一件大棉袄，浑身上下都仿佛煮熟了一样。</p>
+<p class = "firstLineIndent">热量也让他的脑海昏昏沉沉的，李火旺躺在床上看着上方不断旋转的屋顶，想到刚刚发生的一切，想起料房内所有人的恐惧绝望的目光。</p>
+<p class = "firstLineIndent">自己成为了丹阳子那令人作呕的帮凶，把对方对自己做的事情，强压在别人身上。</p>
+<p class = "firstLineIndent">对方或许不识字，但是对方却并不愚蠢。在绝对的实力面前，自己做什么都是虚的。</p>
+<p class = "firstLineIndent">“我一定要弄死他，必须想办法弄死他！！”李火旺在心中疯狂咆哮着。</p>
+<p class = "firstLineIndent">他的右手不自觉的抓住了石床的边缘，随着最后一句话在心中喊出，他的手背上青筋暴起。</p>
+<p class = "firstLineIndent">“咔嚓”一声，坚硬的石床被他生生掰下来一块。</p>
+<p class = "firstLineIndent">这一变化让李火旺始料未及，他看了看自己的手，又看了看自己中抓住了石块。马上反应过来，这是丹药的作用。</p>
+<p class = "firstLineIndent">不只是力量，其他方面也变的不一样了，李火旺甚至觉得自己的眼睛都能看的更远一点。那颗丹药让李火旺有种脱胎换骨的感觉。</p>
+<p class = "firstLineIndent">可一想到这种能力是怎么换来的之后，李火旺心中再次泛恶心。</p>
+<p class = "firstLineIndent">“李师兄？你没事吧？”白灵淼小心翼翼地从门口探出头来。</p>
+<p class = "firstLineIndent">李火旺抬起头来表情复杂的看着她，一时间不知道该说什么。</p>
+<p class = "firstLineIndent">白灵淼上前一步说道：“李师兄，其实你不用自责，我们都知道你身不由己的，如果……我是说师傅如果再让我去的话，你就别换别人了，反正.....大家的下场都一样。”</p>
+<p class = "firstLineIndent">李火旺不想跟她聊这个，看着她流血的额头，掏出之前炼制的丹药递过去，“吃吧，能止血。”</p>
+<p class = "firstLineIndent">白灵淼看到李火旺手中的丹药，却恐惧的用力摇了摇头。“我不吃丹药，绝对不吃丹药。”</p>
+<p class = "firstLineIndent">李火旺干笑的几下，把那丹药随手扔在地上，“是啊，是药三分毒，吃了确实不好。”</p>
+<p class = "firstLineIndent">白灵淼咬了咬嘴唇，思索一会后对着李火旺问道：“李师兄，你是想对付师傅吗？”</p>
+<p class = "firstLineIndent">李火旺脸色一变，紧张的看向门口，连忙冲过去关好门。</p>
+<p class = "firstLineIndent">“没事的，师傅现在听不见我们，师傅是靠“游老爷”来盯梢的。每次赶大集的日头，“游老爷”都要回去赶集。”</p>
+<p class = "firstLineIndent">“游老爷是什么？”李火旺疑惑的问道，这是他第一次听到这个词。</p>
+<p class = "firstLineIndent">“游老爷就是游老爷啊，它看不见摸不着的，我听我爷说过，只有有道行的高人能调令它们。”</p>
+<p class = "firstLineIndent">“哦？”李火旺心中一动，把这个点记在心里，这个信息对自己非常关键。</p>
+<p class = "firstLineIndent">“赶大集的时间是什么时候？”</p>
+<p class = "firstLineIndent">听到这话，白灵淼疑惑的看着他，“初一十五赶大集啊，李师兄，你怎么连这都不知道？你爹娘没有带你去赶集吗？”</p>
+<p class = "firstLineIndent">李火旺摇了摇头，他脑海中那些不知是真实还是虚幻的记忆，证明他之前只生活在城市里，从来没有参与过赶集这种乡下物质交流大会。</p>
+<p class = "firstLineIndent">“李师兄，聊回正事吧，你真的是想对付师傅吗？”</p>
+<p class = "firstLineIndent">李火旺表情一凝。“当然，我恨不得吃他的肉喝他的血！”</p>
+<p class = "firstLineIndent">白灵淼深吸一口气用力点了点头，“那师兄，我算我一个吧，这种事情我也想帮忙！”</p>
+<p class = "firstLineIndent">李火旺看向眼前的少女，还有她坚定的目光，白灵淼或许并没有他想象的那么柔弱。</p>
+<p class = "firstLineIndent">“好，算你一个。”李火旺答应下来，自己现在确实需要帮手好。</p>
+<p class = "firstLineIndent">仔细思索了一会后，李火旺表情凝重对着她说到：“我们两个人不够，你先去料房看着，找找有没有其他人心怀不满的。”</p>
+<p class = "firstLineIndent">别的人或许不敢反抗丹阳子，可是料房里的药引注定要死了，其中肯定有不甘心的，这是根本性矛盾，这些人中肯定有自己争取的对象。</p>
+<p class = "firstLineIndent">“嗯。”白灵淼点了点头，转身离开了。</p>
+<p class = "firstLineIndent">李火旺坐了一会后，拿起绑在自己腰间的那块圆形玉佩，他想起了那位逃跑失败的师兄。</p>
+<p class = "firstLineIndent">“玄阳啊，玄阳，当初你们这么一批人也是这样聚集起来的吗？但愿我不会落的跟你一样的下场吧。”</p>
+<p class = "firstLineIndent">随后一段时间内，李火旺开始全身心地融入整个清风观，把料房被人整理得井井有条，无论是人还是物。</p>
+<p class = "firstLineIndent">面对如此上道的弟子，丹阳子自然要有所赏赐，各种基本的丹药都告诉了他，仿佛真的把他当弟子来培养。</p>
+<p class = "firstLineIndent">这些寻常的丹药效果不怎么样，最多让李火旺治疗点小伤寒跟外伤。</p>
+<p class = "firstLineIndent">而且李火旺不知道是丹阳子丹药这样，还是这个世界的丹药都这样，丹药这种东西都有度的，吃多了，治病就会变成害人。</p>
+<p class = "firstLineIndent">而且还有忌讳，不能混着吃，混着吃也容易吃出事来。</p>
+<p class = "firstLineIndent">与其说李火旺现在可以成为一个蹩脚医生，倒不如说他现在是一位合格的下毒人。</p>
+<p class = "firstLineIndent">丹药不是关键，关键的是李火旺在这接触中跟丹阳子的关系逐渐升温。</p>
+<p class = "firstLineIndent">对方甚至有时候炼丹，还会让李火旺在一旁打下手。</p>
+<p class = "firstLineIndent">当丹阳子再次把一位道童收为弟子，李火旺不再是最小的那位，已经彻底融入清风观当中去了。</p>
+<p class = "firstLineIndent">通过如此近距离的接触，李火旺确定了自己猜想，丹阳子确实不认识字，并且还非常非常排斥别人认字。</p>
+<p class = "firstLineIndent">他不允许自己的徒弟在任何事情上，超过自己，因此他找到徒弟基本上都不认识字。</p>
+<p class = "firstLineIndent">这让李火旺感觉到一丝不对劲，他还记得当初丹阳子跟自己说过的话。</p>
+<p class = "firstLineIndent">“因为成仙的办法是老君爷天书上写的，而且天书还是老君爷亲自送到我手上的，试问全天下还有谁能成仙？他说我能成仙。我肯定能成仙！”</p>
+<p class = "firstLineIndent">既然他口中的老君爷给了他一本天书，其他徒弟都不认识字，他自己也不认识字，那到底是谁读给他听的呢？
+------------</p>
+<h2>第十五章 正坤</h2>
+<p class = "firstLineIndent">“我家在下梁东城门宝禄坊廿二，你告诉我媳妇，床下面第三个腌菜摊子的夹层里有两条小金鱼，省着点用，应该都用到宝儿成年。”</p>
+<p class = "firstLineIndent">一位满脸长满豆子的中年人强忍着恐惧，低声的对着李火旺交代着遗言。</p>
+<p class = "firstLineIndent">这是今天送去丹房的药引，对此李火旺却什么都做不了，只能把这些遗言记在心里。</p>
+<p class = "firstLineIndent">看着颤抖不已的他走进了炼丹房，李火旺转身离开了，表情有些烦躁向回走。</p>
+<p class = "firstLineIndent">这已经是第八人了，随着时间的推移，料房里的人数在不断减少，更让他感到痛苦的是，自己似乎已经习惯了，把人送进死亡的负罪感正在不断的减弱。</p>
+<p class = "firstLineIndent">自己正在被丹阳子这种令人作呕的家伙同化，他不想这样。</p>
+<p class = "firstLineIndent">李火旺迫切想要摆脱现在这种异常折磨人的处境，他在寻找解决方法，可是这并不好找，单凭借着自己跟料房的一些残疾人，想要对付高深莫测的丹阳子几乎毫不可能。</p>
+<p class = "firstLineIndent">他现在唯一知道丹阳子控制的“游老爷”初一十五不存在，无法盯着他们，另外就是丹阳子不认识字，清风观内有一个存在在帮他看天书。</p>
+<p class = "firstLineIndent">“我去丹阳子的住处找到那位存在把他弄死？全洞内他的弟子中只有我认字，他肯定只能让我帮他翻译天书？到那时候，我想要弄死丹阳子岂不是手到擒来？”</p>
+<p class = "firstLineIndent">这个念头刚从脑海中蹦出来没一会，李火旺就否决了。</p>
+<p class = "firstLineIndent">他虽然知道丹阳住的溶洞在哪，可第一不知道里面有什么陷阱，第二不知道替丹阳子看天书的存在实力强不强，自己就这么莽莽撞撞的进去，怕不是死都不知道怎么死。</p>
+<p class = "firstLineIndent">“往他的丹料里下毒？不行，我的炼丹技术都是他教的，这么班门弄斧更是找死。”</p>
+<p class = "firstLineIndent">李火一边走着一边向回走去，脑海中不断思考着有什么新办法来对付丹阳子。</p>
+<p class = "firstLineIndent">就在这时，对面走来一位身穿道袍头戴方士巾的表情阴郁的青年，李火旺认识他，他是丹阳子的内门弟子，正坤。</p>
+<p class = "firstLineIndent">对于他李火旺了解的并不多，除了平时吃饭的时候偶尔遇上，平时根本看不到正坤的影子。</p>
+<p class = "firstLineIndent">而且他还跟李火旺这些记名弟子不同，不用费心思来料理清风观上上下下的事物，至于他平时在弄什么，李火旺并不知道。</p>
+<p class = "firstLineIndent">两人一左一右一交错，随着正坤肩膀轻轻一靠，李火旺直接撞在了他的身体，碰到他身上的瞬间，李火旺仿佛感觉到自己顶到了一块生铁。</p>
+<p class = "firstLineIndent">正坤站定，侧过身来皮笑肉不笑地看着他。“玄阳，你最近在观内很跳脱，师傅他老人家被你哄得很开心啊。”</p>
+<p class = "firstLineIndent">李火旺眉头微皱看了他一眼，并没有说什么转身就要离开。</p>
+<p class = "firstLineIndent">可他还没走两步，就感到身后猛地传来一股巨力，把他直接推了出去。</p>
+<p class = "firstLineIndent">李火旺踉跄的几步，稳定了好一会，总算是没有摔成狗吃屎。</p>
+<p class = "firstLineIndent">“怎么，玄阳师弟，本师兄说话都不好使了是吗？”双手抱胸的正坤一步一步上前，走到李火旺的面前问道。</p>
+<p class = "firstLineIndent">“正坤师兄，我还需要去帮师傅整理好丹料呢。”李火旺表情平静地说道。</p>
+<p class = "firstLineIndent">“少他妈拿师傅来压我，当年我陪着师傅被人追杀，你还不知道在哪呢！我告诉你，玄阳，平时老实干好你的活就好，其他事情最好就闭嘴，别那么没眼力劲。”正坤的语气再次严厉一分。</p>
+<p class = "firstLineIndent">李火旺并没有感到生气，而是愣愣地看着眼前的正坤，似乎在思考着什么事情，对方确实如玄元口中所说的一样脾气很差，不过岂不是说这家伙比较冲动？</p>
+<p class = "firstLineIndent">“怎么？哑巴了？说话啊！”</p>
+<p class = "firstLineIndent">刚刚一直表情木讷的李火旺开始生动起来，他的语气中开始带上了一丝讥讽。</p>
+<p class = "firstLineIndent">“师傅器重我是师傅的打算，哪怕就是师傅把成仙的办法告诉我，那也是他的事情，正坤师兄恐怕是管不了吧。”</p>
+<p class = "firstLineIndent">正坤愣了一下，一下没有反应过来，对方居然敢这么对自己说话。</p>
+<p class = "firstLineIndent">当他回过神之后，表情狰狞的双指一并单手成决，如同一把小凿子般隔着道袍直接捅在李火旺的左肋上。</p>
+<p class = "firstLineIndent">“就凭你也配？成仙功法师傅都没告诉我，他会告诉你？你以为你是什么东西？药渣！！”</p>
+<p class = "firstLineIndent">剧烈的疼痛差点让李火旺疼晕过去，可是他脸上却笑了起来，他猜对了。</p>
+<p class = "firstLineIndent">“呵呵，师傅没告诉你，兴许是你的悟性低呢，正坤师兄，修仙这种事情是看天赋的，既然你的天赋不行，那就别让师傅在你身体上浪费时间。”</p>
+<p class = "firstLineIndent">这话仿佛触碰到了正坤逆鳞，他的双指再次拔出，对着李火旺的身体再次连捅三下。“你这个药渣！你找死！！”</p>
+<p class = "firstLineIndent">巨疼之下，李火旺的笑声却越来越大，“哈哈哈，来啊，来弄死我，看看师傅知道观内弟子互相残杀，会有什么反应。”</p>
+<p class = "firstLineIndent">看着眼前的李火旺的笑声从大笑变成了狂笑，正坤右脚一踢一蹬，直接把他踹到墙上。“哼！不知死活的癫子。”</p>
+<p class = "firstLineIndent">李火旺躺在地上半天没缓过劲来，过来一盏茶的功夫，旁边一双宽大的手伸过来，把他搀扶起来。</p>
+<p class = "firstLineIndent">“哎，玄阳师弟，你这么不听劝呢，我不是说了让你对正坤尊敬点吗？你怎么还招惹他呢？”</p>
+<p class = "firstLineIndent">说话的人是老好人玄元，因为他随和的性格，是清风观内唯一跟李火旺说的上话的人。</p>
+<p class = "firstLineIndent">李火旺捂着自己的腋下，忍着疼痛说道：“怎么？他还能杀了我不成？师傅的游老爷可在旁边看着呢，道观里的弟子再死，可就维持不下去了。”</p>
+<p class = "firstLineIndent">“什么游老爷？”玄元表情有些诧异。</p>
+<p class = "firstLineIndent">他不知道？李火旺心中忽然闪过一个念头，难道其他人不知道师傅监控整个清风观的办法？</p>
+<p class = "firstLineIndent">联想到之前死去的那些人中有两位内门弟子，李火旺发现这些人说不定还真不知道。</p>
+<p class = "firstLineIndent">“没什么，我就是说他不敢动手。”</p>
+<p class = "firstLineIndent">“话不是这么说的，他是内门弟子，你是挂名弟子，虽然不敢直接打杀你，可他想给你穿小鞋，那简直易如反掌。”</p>
+<p class = "firstLineIndent">“哈哈，我脚小，天生就适合穿小鞋。”</p>
+<p class = "firstLineIndent">跟玄元说话间，李火旺的眼神却露出一声笑意，刚刚正坤透露一个信息，哪怕作为内门弟子的他，依然没有资格学习成仙功法。</p>
+<p class = "firstLineIndent">丹阳子这家伙谁也不信任，</p>
+<p class = "firstLineIndent">这不是重点，重点是他看到了对方的眼神，刚刚对视的时候，当自己说出自己学了成仙功法时，就明确感觉到他眼中的强烈不甘心。</p>
+<p class = "firstLineIndent">丹阳子教育出来的弟子，不可能忠心耿耿到哪里去。</p>
+<p class = "firstLineIndent">这或许是一个利用点。他想试试。
+------------</p>
+<h2>第十六章 脑袋</h2>
+<p class = "firstLineIndent">被正坤这么一弄，李火旺的肋骨被戳断了两根，身体也留下好几个乌青的凹坑。好在这不算什么，凭借着丹药，他勉强能治疗这点小伤。</p>
+<p class = "firstLineIndent">相比伤势，他更在乎自己的布局。</p>
+<p class = "firstLineIndent">刚好是初一的时候，李火旺借着跟他的再次冲突，把从白灵淼那里知道的“游老爷”的情报无意的告诉了他。</p>
+<p class = "firstLineIndent">当看到他的神情微变之后，李火旺顿时心中一喜。</p>
+<p class = "firstLineIndent">其实他也不知道对方得到这信息会怎么做，他只是想试试罢了，反正没事干，有枣没枣打三杆子再说，现在看来自己成功了，对方肯定有自己的私心。</p>
+<p class = "firstLineIndent">溶洞内的日子里没日没夜，阴历初一很快就到了，这一天是丹阳子练丹药的最佳时辰，他要在炼丹房呆上一上午，而且刚好也是“游老爷”不在的时候。</p>
+<p class = "firstLineIndent">整个清风观虽然不大但是也不小，生活了这么长时间，李火旺早就摸清了正坤的行动轨迹。然而他并没有做什么事情，安安静静的呆在正一殿内双腿盘坐。</p>
+<p class = "firstLineIndent">“难道我猜错了？这家伙并没有这么贪婪？”李火旺躺在自己的床上思考着哪里出了差错。</p>
+<p class = "firstLineIndent">当十五天过去，来到了二月初一，正坤依然没有任何动静。</p>
+<p class = "firstLineIndent">就在李火旺以为自己算错了的时候，二月十五的那天，正坤常去的正一殿没有人，他最终还是安耐不住。</p>
+<p class = "firstLineIndent">就在看到丹阳子开炉的时候，李火旺按照原定计划急匆匆向着丹阳子的住处靠近。</p>
+<p class = "firstLineIndent">就在快要抵达洞口的时间，李火旺忽然停住了脚步，他看到正坤就在远处守着，他没有进去。</p>
+<p class = "firstLineIndent">看着他站在门口小心的观察着，李火旺马上知道了，有人替他了，他在望风，这家伙疑心比自己想象的还要重。</p>
+<p class = "firstLineIndent">过了有半个时辰左右，李火旺看到玄阴偷偷摸摸的从里面走了出来。</p>
+<p class = "firstLineIndent">正坤看了他一眼，掏出黑色符箓贴在两人的膝盖上，如同一阵风般迅速消失了。</p>
+<p class = "firstLineIndent">门仅仅只是虚掩着，仿佛就是一个诱惑人进去的陷阱。</p>
+<p class = "firstLineIndent">看到对方已经替自己当了探路人，李火旺知道哪怕房间里有准备了，估计也被正坤给解除掉了，他缓缓靠了过去，这是自己的机会。</p>
+<p class = "firstLineIndent">丹阳子的住处十分宽敞，但是里面很乱也非常脏，而且屋内一股死老鼠的味道十分的难闻。</p>
+<p class = "firstLineIndent">虽然环境恶劣，但是李火旺还是一眼看出来明显最有价值的东西，一个被黑线铜钱网罩着的石板。</p>
+<p class = "firstLineIndent">不出意外的那石板就是丹阳子口中的天书了，他小心翼翼地走过去，隔着黑线打量着上面的内容。</p>
+<p class = "firstLineIndent">正坤肯定是偷学成仙功法，不过从现场看来，他没成功。</p>
+<p class = "firstLineIndent">李火旺仔细的辨认着这天书上的内容，上面的内容十分的晦涩难懂，勉强能看的出是象形文字，但是似乎是更古老朝代的文字。</p>
+<p class = "firstLineIndent">虽然说汉字的上千年演变是最小的，可他依然看的很吃力。</p>
+<p class = "firstLineIndent">越看李火旺觉得越不对劲，丹阳子不说成仙的办法是内丹外丹同时练吗？看起来这家伙根本没有按照上面练啊。</p>
+<p class = "firstLineIndent">“喜步普音乾闼婆……得如云广布普荫泽……妙好身令一切获安乐解脱……”</p>
+<p class = "firstLineIndent">而且这东西怎么看都不像是所谓成仙功法，而是一本经书。</p>
+<p class = "firstLineIndent">“嘻嘻。”一声诡异的窃笑让李火旺后颈发凉，他迅速转身却发现身后并没有人。</p>
+<p class = "firstLineIndent">被掏出一个坑的墙壁上，只有一个小臂般粗细的青花瓷竖瓶。</p>
+<p class = "firstLineIndent">“有些不对劲。”心惊胆战的李火旺开始原路返回，正坤似乎并没有把所有的危险清理掉。</p>
+<p class = "firstLineIndent">“不准动哦。”一声又尖锐又纤细的女声从身后响起。</p>
+<p class = "firstLineIndent">李火旺缓慢的再次一回头，眼前的一幕让他感到后脊背发凉。刚刚得那窄小的竖瓶的瓶口处顶着一个白森森的女童脑袋。</p>
+<p class = "firstLineIndent">说是女童，但是皮肤颜色又不太像活人，尤其是那左右两边的腮红，红的吓人。</p>
+<p class = "firstLineIndent">盯着她额头中央的那点红到极致的小红点，李火旺越看越觉得诡异。</p>
+<p class = "firstLineIndent">在这一瞬间，他也明白过来，丹阳子是靠什么来替他看天书的了，就是自己眼前这家伙。</p>
+<p class = "firstLineIndent">“你跟刚刚那人是一伙的？嘻嘻，你们麻烦大了，我只要摇下铃，我爹就会回来。”她的冲天辫子上就刚好用红线绑了几个铜铃铛。</p>
+<p class = "firstLineIndent">眼看着对方说这话，李火旺顿时心急如焚，可下一秒他表情却忽然淡定了起来。“你叫吧，刚好让你爹过来知道，是你骗了他。”</p>
+<p class = "firstLineIndent">当看到那花瓶脑袋脸上路程一丝慌张的时候，李火旺心中顿时冷笑。自己猜对了，没错，想要愚弄不认识字的癞子头不止是他一个，这不知道是什么的东西早就已经这么做了！</p>
+<p class = "firstLineIndent">上梁不正下梁歪，整个清风观内个个心怀鬼胎！</p>
+<p class = "firstLineIndent">“这....这也不能怪我啊，那些字写的太难看了，我根本看不懂啊，爹逼着我读给他听，我能怎么办啊。”花瓶脑袋委屈的说完就要掉眼泪。</p>
+<p class = "firstLineIndent">看着花瓶女孩彻底慌了神的表情，李火旺思索片刻后迅速有了决定。</p>
+<p class = "firstLineIndent">“那好，我们约法三章，我现在离开这个地方，你当没看到我，我也当不知道你的事情，这样对谁都好。”</p>
+<p class = "firstLineIndent">花瓶脑袋摇晃着，最终点了点头。“那好吧，你赶紧走吧，我就当你们没来过。”</p>
+<p class = "firstLineIndent">李火旺抬脚缓缓的向着门外挪去，“既然天书是假的，那拿人炼丹的丹方都是你编给他的？”</p>
+<p class = "firstLineIndent">花瓶脑袋脸上露出憨笑，“是啊，因为我只记得那些东西，我就把那些丹方假装书上的写的，告诉爹了，你放心，吃不死人的，我不想爹死，我就是怕爹知道我没用了，不要我了，你看我这没手没脚的----”</p>
+<p class = "firstLineIndent">就在花瓶脑袋说的兴起的时候，李火旺忽然右手高举，握紧玉佩对着瓶子用力一砸。</p>
+<p class = "firstLineIndent">圆形玉佩带着一道白影瞬间撞在瓶子身上，裂缝出现，在瓶子脑袋的恐慌下，她直接重重的摔在地上。</p>
+<p class = "firstLineIndent">瓶子碎了，混杂着粪便尿液的被黑色佛珠缠住的五脏六腑就这么直接暴露在空气中。</p>
+<p class = "firstLineIndent">“呜呜呜~爹啊！！我疼，爹啊，我好疼啊。”花瓶脑袋的哭声越来越虚弱。
+------------</p>
+<h2>第十七章 找到了</h2>
+<p class = "firstLineIndent">“谁！！是谁！！！”一道极其暴虐的咆哮声在整个溶洞内回荡，那是丹阳子的声音，这是他第一次如此大动肝火。</p>
+<p class = "firstLineIndent">之前有人逃跑的时候，丹阳子没有生气，李火旺无意间用字冒犯他的时候，他也没有生气，但是他现在生气了。</p>
+<p class = "firstLineIndent">整个清风观内气氛变得极其压抑，连墙上挂着的油灯都感觉比平时暗上许多。</p>
+<p class = "firstLineIndent">在丹阳子的命令下，所有人陆陆续续的来了上早课的大殿内。</p>
+<p class = "firstLineIndent">空气中充满着血腥味，地上凌乱的尸体已经证明丹阳子把无处发泄的怒火倾泻到了一些无辜人身上。</p>
+<p class = "firstLineIndent">杀人能让他的心情好受一些，但是这还不够，远远不够。</p>
+<p class = "firstLineIndent">“啪嗒~”一团连着脑袋血肉模糊的东西猛地摔在所有人的面前。</p>
+<p class = "firstLineIndent">那是李火旺之前打破的花瓶脑袋，死亡让她的腮红变得暗淡无关，那无神的眼睛中流露出深深的害怕。</p>
+<p class = "firstLineIndent">“这是谁干的？是谁趁着我炼丹之时，偷偷撞入我的屋子！！”</p>
+<p class = "firstLineIndent">丹阳子此时的声音低沉压抑，如同一只爆发前夕的狮子。“你现在老老实实站出来，本道爷给你个痛快，你要是等会被我亲自逮到，哼哼！我会让你跪着求本道爷杀了你！”</p>
+<p class = "firstLineIndent">整个洞内鸦雀无声，无论是药引还是弟子又或者说是童子，没有一个人敢动。</p>
+<p class = "firstLineIndent">“好！都不说是吧？那我就一个一个来问！长明长仁，我之前在炼丹的时候，你们在干嘛？”</p>
+<p class = "firstLineIndent">背着长剑的两位弟子马上对丹阳子行礼。“禀师傅，我二人按您的吩咐，把手清风观大门，一刻都没有怠慢！！”</p>
+<p class = "firstLineIndent">面无表情的丹阳子走到他们面前，详细地端详着他们的神态。盯着两人冷汗都要流下来后，丹阳子这才缓缓地看向一旁。“玄元！你呢？”</p>
+<p class = "firstLineIndent">而此时站在玄元旁边的李火旺心中一紧，他知道下一个就要轮到自己了，连忙在心中给自己打气，坚持住！只要别让他看出破绽来，自己就赢了定了！</p>
+<p class = "firstLineIndent">“玄阳！到你了，你今天送完药引过来后，你去哪了？”</p>
+<p class = "firstLineIndent">听到这话的瞬间，李火旺马上脱口而出。“弟子在料房。为师傅准备下次需要的丹料。”</p>
+<p class = "firstLineIndent">“是吗？”丹阳子走了过来，他身上令人作呕的臭味跟那让人窒息的威压感让李火旺身体紧绷到了极致，他终于明白刚刚其他师兄们为什么会流这么多汗了。</p>
+<p class = "firstLineIndent">时间一分一秒地过去了，在强压下，李火旺的额头的汗珠也越来越多。</p>
+<p class = "firstLineIndent">忽然身体一轻，就在他以为自己逃过一劫的时候，丹阳子的声音再次响起。“你们这些人真的看到玄阳在料房？</p>
+<p class = "firstLineIndent">李火旺的目光投去，他看到丹阳子已经来到了白灵淼他们这些料房面前，他这话是对那些药引说的。</p>
+<p class = "firstLineIndent">“想好再说，谁要是能帮我找到是谁干的，本道爷不但送他回家，而且还发盘缠。”</p>
+<p class = "firstLineIndent">这话一出，料房剩下的十几号残疾人顿时睁大眼睛，他们想回家，做梦都想离开这鬼地方。</p>
+<p class = "firstLineIndent">“师傅.....李师兄当时确实跟我们在一起....”感觉到人心有些浮动的白灵淼第一时间开口了。</p>
+<p class = "firstLineIndent">丹阳子深深地在她的脸上看了一眼，“哦？其他人呢？”</p>
+<p class = "firstLineIndent">此时的狗蛋深吸有些急促，表情有些挣扎，最终他一咬牙一跺脚站了出来。“那个，仙人爷爷，我说！玄阳那家伙我今天根本就没来料房一次！那人肯定是他！”</p>
+<p class = "firstLineIndent">这话一出，人群中吓得脸色惨白的玄阴表情嘴角微微上扬，几乎都要笑出声来，自己的命保住了。</p>
+<p class = "firstLineIndent">丹阳子回头看了李火旺一样，缓缓走到狗蛋面前，右手一轮啪的一下直接甩在他的脸上。“放屁！今天早上的药引是玄阳亲自送过来的！他没有去料房去哪找的药引？你是想找死吗？”</p>
+<p class = "firstLineIndent">狗蛋仿佛被吓坏，连忙跪在地上鼻涕眼泪直流，不断地磕头。“仙人爷爷，我错了，我是一时间被猪油蒙了心了，我才撒谎了。”</p>
+<p class = "firstLineIndent">丹阳子面无表情的看着地上吓得都要尿出来的狗蛋，下一刻，忽然转身望去了玄阴。“你刚刚笑什么？玄阳被诬陷，你很欢喜吗？”</p>
+<p class = "firstLineIndent">这话一出，顿时吓得玄阴身体一抖，丹阳子身体传来的强大压力压得他几乎要喘不过气来。</p>
+<p class = "firstLineIndent">随着丹阳子缓缓向着他走去，玄阴的表情也越来越慌张。慌到旁边不知道真相的人都看得出他明显不对劲。</p>
+<p class = "firstLineIndent">就在丹阳子走到他面前时，他彻底支撑不住了，直接瘫在地上，黄色的尿液从道袍下摆下缓缓渗了出来。“师傅！这不是我想做的啊!是正坤师兄逼着我这么做的！！”</p>
+<p class = "firstLineIndent">这话一出，旁边的正坤表情一狞，双脚在坚硬的地面用力一蹬，如同一头猎豹般带着残影向着洞口方向冲去。</p>
+<p class = "firstLineIndent">“居然会是你！”丹阳子冷哼一声，右手道袍一挥，伴随着铃铃铃的清脆响起，一枚带着铜绿的铜钱翻滚着落到地上，如同陀螺般旋转起来。</p>
+<p class = "firstLineIndent">眼看着正坤即将逃出洞口之际，丹阳子那穿着布鞋的右脚猛地一抬一踏，尘土被高高扬起。</p>
+<p class = "firstLineIndent">“咔嚓”一声，整个铜钱瞬间四分五裂，飞溅而出，四分五裂的不单单铜钱，还有远处的正坤。</p>
+<p class = "firstLineIndent">他的四肢如同受到了五马分尸般，直接被扯断开了。</p>
+<p class = "firstLineIndent">没有了四肢，血流不止的正坤居然没有死，依然如同一条肉蛆般向着门口蠕动。</p>
+<p class = "firstLineIndent">“娃啊，你是跟我最久的，怎么偏偏是你啊！我早该想到的，我屋内禁制也有你解的来。”狰狞的丹阳子的脚踩在了正坤的脑袋上，阻止了他的蠕动。</p>
+<p class = "firstLineIndent">“师傅。我……我错了，师傅，我现在都成废人了，你就饶了我这一次吧！”</p>
+<p class = "firstLineIndent">“师傅，当初那些正德寺的和尚追杀我们的时候，是我两个胞弟拿命才换来我们逃生啊！师傅！”</p>
+<p class = "firstLineIndent">丹阳子的脚微微下移，把脸上憋得紫红的正坤的脸直接压在地上，让他彻底说不出话来。</p>
+<p class = "firstLineIndent">“娃啊，你知道吗？你心里想什么，其实本道爷知道了一清二楚，你跟你那两个弟弟一样都是养不熟的白眼狼！！”丹阳子一字一顿地说着，他的脚也在不断的加大力度。</p>
+<p class = "firstLineIndent">“碰！”伴随着一声炸响，一滴粘稠的血液飞溅到李火旺的脸上。
+------------</p>
+<h2>第十八章 成仙功法</h2>
+<p class = "firstLineIndent">打破自己瓶子的人找到了，但是丹阳子却一点都高兴不起来，他表复杂地看着着正坤的残躯，狠狠地抬脚踢飞。</p>
+<p class = "firstLineIndent">“老子几乎都把你当半个儿子来养了！结果你却这么对老子！”</p>
+<p class = "firstLineIndent">整个洞内鸦雀无声，只剩下丹阳子急促的呼吸声。</p>
+<p class = "firstLineIndent">这种情况维持了两柱香的时间，丹阳子缓缓抬起手来，伸手一指直接指向了人群之中的李火旺。“你，过来，给祖师爷磕头。”</p>
+<p class = "firstLineIndent">李火旺微微愣了一下，最终在所有人的目光下走了过去，跪在地上对着墙上的那三位雕塑进行跪拜。</p>
+<p class = "firstLineIndent">当一套三礼九叩的流程下来，此时举着三柱香的李火旺已经明白对方要做什么了。“以后你就是本道爷的关门弟子了！”</p>
+<p class = "firstLineIndent">“是，师傅。”李火旺此时兴奋的几乎心肝都要颤抖。“这一刻终于来了，放心，癞子头，我绝对会助你得道“成仙”的！！”</p>
+<p class = "firstLineIndent">“跟我来，为师有件事情要你做。”丹阳子小心翼翼地把那花瓶脑袋的残骸捧在手心。</p>
+<p class = "firstLineIndent">跟着丹阳子身后，李火旺重新故地重游，来到了他的住处。</p>
+<p class = "firstLineIndent">“咻咻咻~！”缠绕石板的黑线如同长蛇般迅速飞舞，钻进了丹阳子的袖口，那所谓的天书完全呈现在他的眼前。“上面写的什么你看得懂吗？”</p>
+<p class = "firstLineIndent">李火旺装模作样地详细辨别了一下后，有些疑惑地问道：“师傅，您之前跟我说成仙之法是内丹外丹双修方可成仙？可是不对啊，这上面没有什么内丹啊。”</p>
+<p class = "firstLineIndent">“嗯？什么？！”丹阳子阴晴不定看向一旁花瓶脑袋的尸体。</p>
+<p class = "firstLineIndent">“千真万确。”李火旺斩钉截铁地说道。</p>
+<p class = "firstLineIndent">天知道花瓶她之前跟李火旺瞎编了什么，自己如果接不上话怕是要直接露馅，与其那样，倒不如索性坦白，直接推倒重来。</p>
+<p class = "firstLineIndent">而且自己又没瞎说，这就是事实，之前丹阳子所谓的成仙功法确实就是那花瓶脑袋瞎编的，根本就是假的。</p>
+<p class = "firstLineIndent">当然了，接下来自己编的也不会是真的就是了。</p>
+<p class = "firstLineIndent">丹阳子阴晴不定思索起来，刚开始他还不想相信李火旺说的，可是多疑的他后来越想疑点就越多。</p>
+<p class = "firstLineIndent">难怪自己这么长时间都没有成仙，难怪这丫头说这天书上写的东西会变，根本无法硬背，感情是这么一回事。</p>
+<p class = "firstLineIndent">“咔~呸！”一口恶心的绿色浓痰被丹阳子直接吐到花瓶脑袋上，他转过身看向李火旺，“那你说，这天书上写的是什么？”</p>
+<p class = "firstLineIndent">“嗯....是一套内功功法，上面说，必须在旧年未去，新年未来之际，配合好几种外丹同时服用修炼，才可把天道注入凡间的那一股来至仙界的灵气截下，吸入体内让自己得道成仙。”李火旺看着那石板，眉头紧锁地瞎编着。</p>
+<p class = "firstLineIndent">“吃的丹药还有好几种呢，就比如说是一种丹方吧，需要朱砂2两4钱，白钱子1钱，砒霜1两2钱，还有......游老爷？师傅，这游老爷是个什么药材？”</p>
+<p class = "firstLineIndent">丹阳子没有回答，而是静静的看着李火旺。“娃啊，那小囡囡能骗我，你该不会也骗我吧？”</p>
+<p class = "firstLineIndent">李火旺回答到的斩钉截铁。“师傅，这可是成仙的法子啊，我怎么能骗你呢！我也想成仙啊！”</p>
+<p class = "firstLineIndent">“好！”丹阳子重重的一拍巴掌，大笑起来，“那这一次，咱们师徒一块成仙。”</p>
+<p class = "firstLineIndent">李火旺表情愣了一下，紧接着表情变得极度亢奋。“这是真的吗？师傅，这真的可以吗？多谢师傅！多谢师傅！！”</p>
+<p class = "firstLineIndent">丹阳子仔细的观察着他的表情，并没有发现任何异常后，了然的点了点头。</p>
+<p class = "firstLineIndent">“嗯，丹药先不急，你先把那套功法告诉我，等我们师徒两人练熟了。再炼制外丹，离过年还有段日子呢。”</p>
+<p class = "firstLineIndent">“是，师傅！”李火旺随后先编出一套所谓内外大周天的功法告诉了丹阳子。</p>
+<p class = "firstLineIndent">作为看过不少小说的现代人，想要现编出一套这么的功法还是手到擒来的。</p>
+<p class = "firstLineIndent">当天李火旺在丹阳子的房内呆了很久，一直到深夜才回来。</p>
+<p class = "firstLineIndent">李火旺提着灯笼在隧道中走着，高兴的计划正在顺利的进行着，自己目的很快就能达到了。</p>
+<p class = "firstLineIndent">压抑了这么长时间，终于有一件好事发生了。</p>
+<p class = "firstLineIndent">当他来到料房时，发现剩下的人果然没睡。</p>
+<p class = "firstLineIndent">看到是李火旺，所有人顿时一窝蜂地涌上来，他们的眼神中带着兴奋，所有人都明白今天发生的事情代表着什么，之前李火旺已经特意给他们提供了消息。</p>
+<p class = "firstLineIndent">“放心，等我好消息，你们马上就可以回家了。”</p>
+<p class = "firstLineIndent">李火旺这话一出，所有人几乎都要激动的哭出声来，他们终于可以回家了。</p>
+<p class = "firstLineIndent">“李师兄，你就是我的再生父母！你就是活菩萨啊！！”其中一位手脚不变的小儿麻痹症患者激动地跪在地上，就要向李火旺磕头。</p>
+<p class = "firstLineIndent">他似乎起到了一个带头的作用，其他人纷纷效仿。</p>
+<p class = "firstLineIndent">李火旺劝了好一会后，终于让这场闹剧停止下了。“今天中午，要不是靠各位，我就完了。那是不是我还要向你们磕头啊？”</p>
+<p class = "firstLineIndent">当他们从地上爬了起来，个个喜笑颜开，过年一样开心。</p>
+<p class = "firstLineIndent">李火旺看着眼前的这一张张笑脸，心中泛起一丝暖意，在这陌生的世界中，他们这些长相千奇百怪的家伙算是自己的同伴了。</p>
+<p class = "firstLineIndent">“李师兄，我演的不错吧？那癞子头跟个傻子一样，被我骗的团团转。”狗娃拍打着干瘪的胸膛，嬉皮笑脸的向着李火旺邀功。</p>
+<p class = "firstLineIndent">“确实，演的不错，要不是你那么来一下，丹阳子没那么容易善罢甘休。”</p>
+<p class = "firstLineIndent">就在其他人围着李火旺七嘴八舌的问话的时候，有人却在担心着其他都。</p>
+<p class = "firstLineIndent">“李师兄，你没事吧？他真的没有为难你吗？”白灵淼走过来，有些担忧地问道。</p>
+<p class = "firstLineIndent">听到这话，李火旺回想起丹阳子说要一起成仙的话，丹阳子企图拿自己试药这种事情，自己知道就好，没必要给她说。</p>
+<p class = "firstLineIndent">“他现在都让我给他翻译天书上的内容了，我能有什么事情，放心吧，我好的很。”</p>
+<p class = "firstLineIndent">相互闲聊了一会后，李火旺表情一正，“初一马上就要过了，那些游老爷马上赶集回来了，我们长话短说，我这里还需要你帮忙的事情，你爷爷之前还告诉你什么故事没有？”</p>
+<p class = "firstLineIndent">天书上的成仙丹药他还没编全乎呢。</p>
+<p class = "firstLineIndent">单纯的朱砂，这种汞矿石已经无法满足他了，他要往里面放别的东西，有多邪乎要多邪乎的那种。</p>
+<p class = "firstLineIndent">丹阳子的实力，他没有忘记。必须让他彻底死透。
+------------</p>
+<h2>第十九章 迷信</h2>
+<p class = "firstLineIndent">听到李火旺的话，白灵淼睁大眼睛说道：“有啊，有啊，我爷还跟我说，别往村子外面跑，村外的人坏得狠，抓到小孩子，就会把人剥了皮披上狗皮当狗来训，因为小孩聪明，所以他们就能用这条听懂人话的狗去街上演杂技，那小孩就惨了，因为身子跟那狗皮黏在一起，就再也长不大了。”</p>
+<p class = "firstLineIndent">眉头微皱的李火旺摇头，“不，我说的不是这些老太太吓唬小孙子的故事，我是说类似游老爷这种。”</p>
+<p class = "firstLineIndent">“游老爷那样的？我想想……”白灵淼眉头微皱开始思索起来。“我爷平时讲的故事都很乱的，但是大部分都是山里的长虫吃人之类的，游老爷之种真的很少。”</p>
+<p class = "firstLineIndent">“那是谁告诉你爷爷游老爷故事的？”</p>
+<p class = "firstLineIndent">白灵淼无辜地瞪大眼睛，“那当然是我爷的爷告诉他了啊，然后我爷再告诉我，我将来也会告诉我孙子。”</p>
+<p class = "firstLineIndent">李火旺挠头，合着这故事还是祖传的，看起来自己失算了。</p>
+<p class = "firstLineIndent">“李师兄，我知道一个。”一位扶墙旁听的虚弱青年忽然开口说道。</p>
+<p class = "firstLineIndent">此人关节畸形，一个肩膀高一个肩膀低，整个身体十分的拧巴，哪怕在料房内也算得上是比较“样貌出众”。</p>
+<p class = "firstLineIndent">“李师兄，我姓赵，在家行五，你叫我赵五就行了。”</p>
+<p class = "firstLineIndent">别管谁讲都行，李火旺走到他面前说道：“行，你说。”</p>
+<p class = "firstLineIndent">赵五左右看了看，特意压低声音说道：“你说的那种邪门东西，我听老一辈说过有过一种，那玩意叫大姥姥。”</p>
+<p class = "firstLineIndent">“大姥姥？长什么样？”李火旺迅速在脑海中搜索了一遍，并没有找到与之相关的图片，从字面意思上来猜，也完全没有线索。</p>
+<p class = "firstLineIndent">“嘘~李师兄，别这么大声，小点声，这东西很邪乎的，我听说啊，大姥姥会听到的，你要是经常说的话，它们过来找你的！”</p>
+<p class = "firstLineIndent">“哦？”听到这话，李火旺来了精神。</p>
+<p class = "firstLineIndent">“我听我表舅说啊，它在所有人的眼前的样子都不一样，有些像长耳朵的精怪，有的是自己过世的老人，但是唯一相仿的是，任何人只要跟他们旁边呆一会，那些人也都会变成大姥姥！”</p>
+<p class = "firstLineIndent">李火旺摸着下巴若有所思。“这地方还真奇怪，什么莫名其妙的东西都有，行，还有吗？”</p>
+<p class = "firstLineIndent">“有，还有，还有公婆鱼，这东西也邪门.....”</p>
+<p class = "firstLineIndent">在赵五那里，李火旺知道了不少稀奇古怪的名词，而这些都是他将要放进成仙丹药里面的材料。</p>
+<p class = "firstLineIndent">“你知道的还真不少啊，多谢了，这些消息对我有帮助。”单独只说剧毒的丹料，丹阳子也许会发觉出来，但是加入这些连他都无法分辨的东西，可信度就高多了。</p>
+<p class = "firstLineIndent">要的就是听不懂，任何东西只要是听不懂了，那就显得高深起来了。</p>
+<p class = "firstLineIndent">听到李火旺说这话，赵石喜悦的笑了。“这都是我从我表舅那听来的，他是货脚郎，哪都去过，知道得也多。”</p>
+<p class = "firstLineIndent">“行了，马上就要到点了，我回去了，你们安静等我消息。”李火旺深吸一口气，站起来向外走去。</p>
+<p class = "firstLineIndent">刚走没两步，一位最起码一米九的高大身影挡在他的面前。“我我我……”</p>
+<p class = "firstLineIndent">李火旺认识眼前这光头，料房的人都叫他傻子，斗鸡眼流口水的那种。</p>
+<p class = "firstLineIndent">说完全傻子不一定准确，他只是有些口吃加反应迟钝加智力低下。“我我我也知道！”</p>
+<p class = "firstLineIndent">李火旺叹了一口气，伸手在他大光头上拍了拍，转身向着门口走去。</p>
+<p class = "firstLineIndent">问一个傻子，倒不如干脆自己瞎编。</p>
+<p class = "firstLineIndent">第二天一早，李火旺便被丹阳子早早的唤到住处。“你说的内外大小周天功法，我练得差不多了。你把搭配功法服用的丹药说出来吧。”</p>
+<p class = "firstLineIndent">“是，师傅。”李火旺走到那石板面前再次装模作样地观察起来。“嗯.....大姥姥心两颗，炼其精华？师傅这是什么意思？”</p>
+<p class = "firstLineIndent">表情阴晴不定的丹阳子在屋内来回徘徊，嘴里喃喃自语地说道：“原来是这样吗？成仙之道居然要用到这种阴邪？”</p>
+<p class = "firstLineIndent">“师傅，大姥姥是什么？”</p>
+<p class = "firstLineIndent">“你别管，继续往下说。”</p>
+<p class = "firstLineIndent">“公婆鱼一只，取其鳃，浸泡砒霜二两……”</p>
+<p class = "firstLineIndent">从赵五那里知道的东西，在搭配李火旺从现代的知识，最终混合一晚上没睡的精力，在他的口中柔和出了一套成体系的成仙办法。</p>
+<p class = "firstLineIndent">李火旺说完自己编好的一切后，就看到他十分的亢奋，喃喃自语说着什么。</p>
+<p class = "firstLineIndent">然而当他仔细辨别出来后，顿时感到十分的错愕。</p>
+<p class = "firstLineIndent">“对，错了不了，砒霜偏寒，必须要公婆鱼这种燥热之物中和。妙啊！还有这居然用大姥姥入丹，我之前怎么没有想到呢，既然人能入丹，这些阴邪之物怎么就不能入丹呢？”这家伙居然开始脑补出出丹药的药性平衡了。</p>
+<p class = "firstLineIndent">李火旺发现，丹阳子聪明的时候很聪明，但是愚昧的时候是真的愚昧，他谁都不信，只信自己心中拟定出不来的一套。</p>
+<p class = "firstLineIndent">如果有一个词来表达的话，那就是迷信，没有神鬼的世界，迷信鬼神代表着愚昧，可有神鬼的世界迷信依然是愚昧的，只是迷的东西不同罢了。</p>
+<p class = "firstLineIndent">就在这时，丹阳子右手伸进自己的袖口一提，缺了一角的铜道铃出现在他手中，就是那种他在僵尸片中看到的用来操作僵尸的铃铛。</p>
+<p class = "firstLineIndent">随着他开始用力晃动，刺耳的铃声瞬间响起，李火旺顿时感到头疼欲裂，他本能的捂住脑袋咬紧牙关。</p>
+<p class = "firstLineIndent">这种诡异的铜铃声不但影响到他的听力，还影响到他的眼睛。</p>
+<p class = "firstLineIndent">四周的一切都开始扭动变形，整个世界仿佛地震般剧烈摇晃。</p>
+<p class = "firstLineIndent">“怎么回事？丹阳子，这是在搞什么名堂？我有什么纰漏吗？难道被他发现了？”</p>
+<p class = "firstLineIndent">就在李火旺这么想的时候，他看到桌子的桌角，丹阳子的道袍边缘，甚至是旁边天书的一侧，整个房间内，任何看到东西的边缘夹角，如同活了一般随着扭动缓缓在丹阳子面前凝聚。</p>
+<p class = "firstLineIndent">这团由物体的边角形成的东西很难描述是什么样子，但是唯一肯定是它能是活的。</p>
+<p class = "firstLineIndent">李火旺以为自己看错了，他用力地晃动脑袋，结果不晃还好，一晃之下，那东西却随着李火旺的晃动居然变成了两个。
+------------</p>
+<h2>第二十章 丹阳子</h2>
+<p class = "firstLineIndent">当看到这两个东西匍匐在同样在不断扭动的丹阳子面前时，李火旺心中有了一个猜测。“这两个东西是来帮他找丹料的？”</p>
+<p class = "firstLineIndent">就在他这么想时候，李火旺看到丹阳子弯腰从地上抓起一把泥塞进自己嘴里，就开始对着这两团东西叽里呱啦说了起来。</p>
+<p class = "firstLineIndent">声音很怪，听起来完全不像人能发出来的声音，可那两个东西却好像听懂了般，上下沉浮了一下后迅速散去。</p>
+<p class = "firstLineIndent">随着它们的离开，不断扭动天昏地黑的一切也逐渐恢复正常。</p>
+<p class = "firstLineIndent">“娃啊，别着急，虽然天书上的东西很难弄到，但是却难不倒你师父我，在外面，为师还是有人脉的。”丹阳子得意的说道。</p>
+<p class = "firstLineIndent">“那是，师父都是要成仙的人了，世间恐怕没有什么事情能难得到您！不过师父，刚刚那是什么？”</p>
+<p class = "firstLineIndent">“哼哼，娃啊，你还有得学啊，这个东西就是天书上说的“游老爷”啊。”</p>
+<p class = "firstLineIndent">过去的危机始终让李火旺绷紧神经，一直没有时间思考一个问题，这地方到底是怎么样一个世界。</p>
+<p class = "firstLineIndent">什么大姥姥，什么游老爷，怎么看都不像是寻常东西。</p>
+<p class = "firstLineIndent">要不是吃饭的时候，吃到过正常的猪肉跟羊头，他真的差点以为这世上的活物没有一个是正常的。</p>
+<p class = "firstLineIndent">“哎，这东西可是好宝贝，道爷我当初为了抢到它，可是花了好些功夫。”丹阳子重新把那铜铃放进自己的袖口。</p>
+<p class = "firstLineIndent">“抢？”</p>
+<p class = "firstLineIndent">“当然要抢，不抢别人会白送给你吗？哼！咱们没有别人有怎么办？抢！”</p>
+<p class = "firstLineIndent">“这是我五岁那年，一个比我大的要饭的从我手里抢走馊馒头后学到的。”</p>
+<p class = "firstLineIndent">“年轻的时候，我抢婆娘抢马抢银子，后来我抢功法，抢法器，抢弟子，甚至整个清风观都是我抢来的！你看那泥塑的祖师爷说什么了吗？哼哼。”说道这，丹阳子的脸上露出一丝得意。</p>
+<p class = "firstLineIndent">“娃啊，大人说话你要听，这是教你乖呢，知道吗？我这是把你当自己人，才告诉你的。”</p>
+<p class = "firstLineIndent">“但是师傅，抢不过怎么办？”</p>
+<p class = "firstLineIndent">“抢不过？抢不过你不会搭伙抢？你这会认字的脑袋怎么这么死脑筋呢？合伙抢不过就下药，下药弄不过就来阴的！！”</p>
+<p class = "firstLineIndent">寥寥几句话让李火旺知道了眼前这位癞子头的处事风格，这也让他知道了为什么这家伙各种手段都不挨着，合着他的一切都是东一榔头西一榔头抢来的。</p>
+<p class = "firstLineIndent">“师傅....师傅活得明白。”</p>
+<p class = "firstLineIndent">“哼！我不认识字怎么了？我没悟性怎么了？说我旁门左道说我没有道心，等我成仙后，我要掀开那些家伙的眼皮让他们看看，现在是谁没悟性！是谁没有道心！”丹阳子说道这，表情咬牙切齿，丑陋的脸上满是戾气。</p>
+<p class = "firstLineIndent">李火旺不知道那些人是谁，但是可以肯定双方的恩怨肯定很深。</p>
+<p class = "firstLineIndent">随后一段时间，李火旺几乎都跟丹阳子吃住在一起，全身心地捣鼓天书上的成仙办法。</p>
+<p class = "firstLineIndent">借着这段时间，李火旺也在暗中不断的完善，让整个成仙办法显得越发的可信</p>
+<p class = "firstLineIndent">李火旺说出来的东西很快被送来了。</p>
+<p class = "firstLineIndent">看着那覆着黑色软毛的灰白色的粘滑巨体以及旁边一团无定形的闪着隐隐约约的微光的黑色肿泡。</p>
+<p class = "firstLineIndent">李火旺除了惊叹这些东西的恶心外，就是惊讶于丹阳子的实力了，居然都能搞到。</p>
+<p class = "firstLineIndent">“师傅，我们开炉吗？”李火旺问道。</p>
+<p class = "firstLineIndent">“不急，离过年还有一会呢，走，我们先去吃年夜饭。”</p>
+<p class = "firstLineIndent">丹阳子的话让李火旺有些意外，这么怎么就吃年夜饭了？这两者之间有关系吗？</p>
+<p class = "firstLineIndent">话是这么说，可看到丹阳子都起身离开炼丹房，李火旺连忙跟了上去。</p>
+<p class = "firstLineIndent">来到用餐的溶洞，其他弟子都已经到了，说是其他弟子，其实也就长仁长明还有玄元三个人。</p>
+<p class = "firstLineIndent">一看到有些空荡荡的大圆桌，丹阳子脸上瞬间阴沉下来，“怎么没给过世的弟子摆碗筷？都摆起来！接他们回来过年。”</p>
+<p class = "firstLineIndent">没过一会，当死去的所有弟子都有了碗筷，整个圆形桌子显得满满当当。</p>
+<p class = "firstLineIndent">重新露出满意笑容的丹阳子点了点头，重新坐在正座上，李火旺坐在他的右侧，另外一侧是空的，那是正坤的位置。“来啊，上饺子。”</p>
+<p class = "firstLineIndent">一锅热气腾腾的饺子被童子们抬了起来，扑鼻的香味阵阵，他们用铁勺子小心翼翼地放进每个人的碗里，包括那些死去人的碗。</p>
+<p class = "firstLineIndent">“呵呵呵，过年了，都放松点，多吃点啊。”话是这么说，可包括李火旺四人在内，都等他动了筷子后才动口。</p>
+<p class = "firstLineIndent">丹阳子拿起一双筷子夹起一个白饺子放进自己嘴里，眼睛微闭陶醉地嚼了起来，“嗯~猪油渣韭菜馅的，香！哎！这是什么？一文钱？好兆头好兆头，哈哈哈。”</p>
+<p class = "firstLineIndent">李火旺看着眼前碗里的饺子，愣了好一会，发了狠的大口大口地吃了起来</p>
+<p class = "firstLineIndent">丹阳子笑眯眯地看着大口吃饺子的李火旺。“你们遇上了好时候啊，吃的上这么好吃的饺子。”</p>
+<p class = "firstLineIndent">“我像你们这个年纪的时候，连饺子长什么样都不知道，就光听说它有多好吃了。呵呵。”</p>
+<p class = "firstLineIndent">“后来啊，有一年过年，我闻到别人家的饭香味，闯进去一看才发现饺子原来长这样，当时连那家人的漂亮闺女都没玩，直接一刀跺了，就蹲在炕头上稀里糊涂，把两斤饺子吃了一个精光，当时他们家包的也就是这猪油渣韭菜馅的。”</p>
+<p class = "firstLineIndent">其他弟子讪讪地陪笑着，只有李火旺依然在那里狼吞虎咽。</p>
+<p class = "firstLineIndent">丹阳子看到眼角有泪光的李火旺，他小心地端起碗来，把自己的饺子倒进他的碗里。“唉，也是苦命家的娃啊，慢点吃，别噎着。”</p>
+<p class = "firstLineIndent">在吞咽声跟碗筷撞击声中，只有五人的年夜饭落下来帷幕。</p>
+<p class = "firstLineIndent">就在李火旺以为要开始炼丹的时候，他看到丹阳子用手拍了拍自己的癞子头，从袖口里掏出一打红包，给长明长仁还是那些死人碗筷旁边发了过去。</p>
+<p class = "firstLineIndent">“来来来，过年了，记得放枕头下面压着，都拿好，我像你们这么大的时候，可从来没有长辈给我发压岁钱。”</p>
+<p class = "firstLineIndent">丹阳子把最后一个红包放在正坤的碗旁，紧接着扭头笑呵呵的对着李火旺说道：“你就不用压岁了，咱们师徒二人一起成仙去，从此天地同寿！”</p>
+<p class = "firstLineIndent">李火旺笑了，笑得很是开心。“师傅所言极是。”</p>
+<p class = "firstLineIndent">“走，回炼丹房，起炉炼丹！娃啊，你来掌火！”</p>
+<p class = "firstLineIndent">“好咧，师傅！”
+------------</p>
+
+
+
+<a href="000.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="020.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>

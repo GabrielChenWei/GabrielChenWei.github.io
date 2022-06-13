@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>📕</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!--used by changeFontSizeUserPanel-->
+<link rel="stylesheet" href="main.css">
+<style>
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/************************** list element template **************************
+<!---------------------------------------------------------->
+  <li id = "_primaryli">
+    <details><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/...NAS_folder_name_here...." target="_blank">
+      (04-Sep-2018)(tag) text to be display </a></summary>
+      <ul>
+        <li>Source:          NA</li>
+        <li>Post date:       NA</li>
+        <li>Collected date:  NA</li>
+      </ul>
+    </details>
+  </li>
+<!---------------------------------------------------------->
+************************** list element template **************************/
+/************************** content template **************************
+<p>Content goes here. 
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here.
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+</p>
+************************** content template **************************/
+</style>
+
+</head>
+  
+<body onload="getOriginalFontSize()">
+<div id="_userPanel">
+  <button id="_biggify">A+</button>
+  <button id="_reset">A</button>
+  <button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+
+
+
+<h2> 第一百零一章 打仗 </h2>
+<p class = "firstLineIndent"> 杨小孩看到李师兄走后，这才松了一口气，坐姿也些许的随便了一些。</p>
+<p class = "firstLineIndent"> 一众人一边吃着一边闲聊着天，待在一起也没什么聊的，聊着聊着又转移到了门外探头探脑的乞丐身上。</p>
+<p class = "firstLineIndent"> “我记得咱们这一路也没这么多乞丐，这些人到底是哪来的？”</p>
+<p class = "firstLineIndent"> 听到宝禄师兄这么一说，杨小孩立马拿起一块锅盔泡在稀粥里，端着碗就向着外面走去。“我帮你们去问问。”</p>
+<p class = "firstLineIndent"> 狗娃看着他的背影对着其他人说到：“这小孩可真懂事啊，要不是他要回家，我都想收下了当儿子。”</p>
+<p class = "firstLineIndent"> “你那是当儿子吗？你这是拿回去当下人伺候你吧？”</p>
+<p class = "firstLineIndent"> 被别人揭穿了，狗娃也不在意，打个哈哈就过去了。</p>
+<p class = "firstLineIndent"> 见杨小孩出来了，门口的乞丐们望眼欲穿地举着手中的破碗，一些人甚至就开始唱起来莲花落。</p>
+<p class = "firstLineIndent"> 杨小孩没理会他们，反而端着碗走向之前那位摔倒的小乞丐身边。</p>
+<p class = "firstLineIndent"> 他缩在墙角，看起来很是可怜，跟当初的自己一样。</p>
+<p class = "firstLineIndent"> “问你个事，你要答得上来，这块锅盔就是你的。”</p>
+<p class = "firstLineIndent"> 看着杨小孩手中的锅盔，那蓬头垢面的小乞丐激动地连连点头。</p>
+<p class = "firstLineIndent"> “你们这些叫花子是从哪来的？”</p>
+<p class = "firstLineIndent"> “东面，我们都是从东边来的！我其实不是叫花子，我是跟我爹跟我娘逃难来的。”</p>
+<p class = "firstLineIndent"> “路上我被人牙子拐走了，我半路逃出来才变成乞丐的。”</p>
+<p class = "firstLineIndent"> 杨小孩从皱里掏出泡软的锅盔，递了过去。</p>
+<p class = "firstLineIndent"> 那小乞丐也不嫌烫，双手抓住就死命往嘴里塞。</p>
+<p class = "firstLineIndent"> “为啥要逃难啊？你家那边遭了灾吗？”</p>
+<p class = "firstLineIndent"> 呲溜吸了一口锅盔上沾的粥，把嘴里的东西送下去后，小乞丐点了点头接着说道：“嗯，遭了灾，其实如果旱灾水灾，我爹肯定不会扔掉田跑的，可是这次是兵灾。”</p>
+<p class = "firstLineIndent"> “你看这些人都是遭了兵灾，才过来的，这次的兵灾可大了，那些当兵的冲进去村子里见到啥东西都抢，听说有好几个村子没了。”</p>
+<p class = "firstLineIndent"> 就在羊小孩接着问的时候，一道傻子从后面笼罩了他，那是高智坚，结结巴巴地开口说道：“这.....这....这不是兵.....兵.....兵灾，这是.....这是....溃军！”</p>
+<p class = "firstLineIndent"> “高师兄，这么说，是打仗了吗？”杨小孩仰头看着那宽宽的下巴。</p>
+<p class = "firstLineIndent"> 见杨小孩并没有跟别人一样，轻视自己的结巴，他的眼中露出一丝喜悦。</p>
+<p class = "firstLineIndent"> 比杨小孩的脑袋还大的厚茧巴掌，盖在他脑袋上轻轻摸了摸。“对......对.....对.....对.....对的。”</p>
+<p class = "firstLineIndent"> 杨小孩扭头向着有被高智坚高大个头吓到的小乞丐接着问道：“真的打仗了？怎么没听说过啊，你说你家来自东边？那你知道是哪里打仗了吗？”</p>
+<p class = "firstLineIndent"> “不知道，我就记得我家在东边。”</p>
+<p class = "firstLineIndent"> 见小乞丐很显然对这方面没有什么认识，杨小孩就把目光投向了其他年纪大点的乞丐。</p>
+<p class = "firstLineIndent"> “我说你们一大一小外面跟乞丐聊什么聊得那么起劲啊？赶紧回来吃饭，一会还要等你们的碗吸。”</p>
+<p class = "firstLineIndent"> 听到这话，杨小孩马上警觉起来，“我洗碗！我来洗碗！”说着他转身就往里走。</p>
+<p class = "firstLineIndent"> 看着离去杨小孩脚上的干净布鞋，再低头看看自己那冻得发紫的双脚，小乞丐眼中带着浓浓的羡慕。“真想被他们买走啊.....”</p>
+<p class = "firstLineIndent"> “曹操师兄，那些乞丐是因为东面打仗才过来的。”</p>
+<p class = "firstLineIndent"> “打就打呗，挨着我们什么事了，宝禄也就是随口一问，你别当得了圣纸似的，他又不是皇帝老子。”</p>
+<p class = "firstLineIndent"> ——————————————————</p>
+<p class = "firstLineIndent"> 李火旺躺在洁白的病床上，表情看起来十分犹豫跟挣扎。</p>
+<p class = "firstLineIndent"> 看四周的环境，他看起来，幻觉已经从重症监护室转到了普通病房了。</p>
+<p class = "firstLineIndent"> 此刻，他的手中拿着一块圆形的玉佩，这是他身上的东西，被一根绳子穿起来戴在脖子上的。</p>
+<p class = "firstLineIndent"> 李火旺记得自己当初把这东西交给了杨娜，可现在它却莫名地出现在自己的脖子上。</p>
+<p class = "firstLineIndent"> 对于这东西怎么回来的，李火旺已经不再纠结，他现在在考虑其他的问题，之前李医生说过的话。</p>
+<p class = "firstLineIndent"> “对了，小李啊，你刚刚不是说，因为可以把那边世界的东西送到这边来，所以才认为这边的世界是假的吗？那你有没有尝试过，把这边的东西送到那边去呢？也许会有不同的收获哦。”</p>
+<p class = "firstLineIndent"> 举起这圆形的玉佩看了又看，李火旺最终下定了决心单手一捏，握着塞进自己病服的怀里。</p>
+<p class = "firstLineIndent"> “试试看吧，试试又不吃亏，万一成功了呢？”李火旺心中暗道。</p>
+<p class = "firstLineIndent"> 可下一个问题出现在李火旺的脑海中，让他愣住了。</p>
+<p class = "firstLineIndent"> “如果成功之后呢？那这代表什么意思？代表的白灵淼那边是假的？又或者说两边都是真的？”</p>
+<p class = "firstLineIndent"> 李火旺不知道，但是他不管怎么样，还是决定先尝试了之后，再根据最终结果想办法。</p>
+<p class = "firstLineIndent"> 一分一秒的时间过去了，李火旺安静等待着结果降临，这种感觉并不好受，他感觉到了度日如年的感觉。</p>
+<p class = "firstLineIndent"> 在期间护士换了一批药后，李火旺终于感觉到四周地幻觉开始崩溃。</p>
+<p class = "firstLineIndent"> 当重新回到古香古色的房间内后，李火旺第一时间摸向了自己的胸口，当他把那块玉佩拿出来后，脸上顿时一僵。</p>
+<p class = "firstLineIndent"> 顾不上穿衣服，李火旺下床迅速翻找一番后，看着手中一模一样的两块圆形玉佩，表情愣住了。</p>
+<p class = "firstLineIndent"> “两块？怎么能是两块？为什么会是两块？”</p>
+<p class = "firstLineIndent"> 此刻李火旺的脑子很乱，他之前考虑可能会把那边的东西带过来，可是他真的没想到会有现在这样的结果。</p>
+<p class = "firstLineIndent"> “火旺。”一道轻柔的女人忽然从门外响起，那是杨娜的声音。</p>
+<p class = "firstLineIndent"> 李火旺看向门外，脸上满脸地震惊，杨娜怎么可能过来？她不是幻觉那边的人吗？</p>
+<p class = "firstLineIndent"> “李师兄。”这一次是白灵淼的声音，嘎吱一声，门被人从外面推开了。</p>
+<p class = "firstLineIndent"> 看着门外走进来的拼接出来的“东西”，李火旺的脸上露出极地的惊恐。</p>
+<p class = "firstLineIndent"> “不，不！不要！！”满脸冷汗的李火旺猛地从床上坐了起来。</p>
+<p class = "firstLineIndent"> 看着四周的古代家具，他这才反应过来。日有所思夜有所梦，自己刚刚的一切都是在做梦。</p>
+<p class = "firstLineIndent"> 刚准备躺下，脑子里不知道从哪里冒出来的念头。“真的是梦吗？”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零二章 好处 </h2>
+<p class = "firstLineIndent"> 脑子里冒出来的这个念头忽然让李火旺浑身战栗。</p>
+<p class = "firstLineIndent"> 他仔仔细细的摸遍了全身，发现身上并没有多出一块玉佩后，他这才彻底松了一口气。</p>
+<p class = "firstLineIndent"> “没错，刚刚就是做梦，刚刚就是在做梦。”李火旺心有余悸地不断喃喃自语。</p>
+<p class = "firstLineIndent"> “怎么了？”白灵淼点燃了油灯，睡眼朦胧地问道。</p>
+<p class = "firstLineIndent"> “没什么，什么事情都没有，你睡吧。”</p>
+<p class = "firstLineIndent"> 见李火旺没有回答什么，白李淼也没说什么，闭上眼睛。</p>
+<p class = "firstLineIndent"> 满头白发的脑袋轻靠在他肩膀上，用纤细的手掌一下一下地软轻抚着他的不断起伏的胸口。</p>
+<p class = "firstLineIndent"> 用手按住自己胸口的手掌，李火旺眼睛直直地看着头顶上的房梁。“淼淼啊。”</p>
+<p class = "firstLineIndent"> “嗯？”半睡半醒的白灵淼下意识地回应道。</p>
+<p class = "firstLineIndent"> “想知道我的过去吗？知道我为什么会得癔症吗？”</p>
+<p class = "firstLineIndent"> 白灵淼的睡意一下子被驱散的不少，惊讶地睁开的眼睛，侧头看向身边的男人，这是第一次李师兄跟她聊起他的过去。</p>
+<p class = "firstLineIndent"> 朝夕相处之下，她其实早就能察觉到李师兄跟他们其他人的不一样。</p>
+<p class = "firstLineIndent"> 不是因为国的不同而产生的区别，而是一种非常特殊的格格不入的感觉，不止她一人，其他人也这么想，只是没有说出来罢了。</p>
+<p class = "firstLineIndent"> “其实吧，我不是这里的人。”</p>
+<p class = "firstLineIndent"> “我知道啊，你不是四齐的人。”</p>
+<p class = "firstLineIndent"> 李火旺会心一笑摇了摇头。“我是说我不是这个世界的人，我是另外一个世界的人.....”</p>
+<p class = "firstLineIndent"> 在油灯摇摆的陪伴下，李火旺缓缓地给白灵淼说明了自己的来历，以及自己的烦恼。</p>
+<p class = "firstLineIndent"> 随着不断地倾述，李火旺感觉到心里也好受一些，就仿佛压在自己身上的千斤重担有人分担一般。</p>
+<p class = "firstLineIndent"> 一直讲到纸床蒙蒙亮，李火旺才停了下来，屋子内一时间十分的安静，“你就没有什么想问的？”</p>
+<p class = "firstLineIndent"> “有。”白灵淼的手从李火旺的手抽出来，反向握住了他的手，那只没了三个指甲盖的手。</p>
+<p class = "firstLineIndent"> 手指尖有些颤抖地在那些血痂上轻轻抚过。“那红色的竹简是怎么回事？”</p>
+<p class = "firstLineIndent"> “告诉你个小趣闻，其实人的指甲是可以再生的，指甲拔掉之后，它也会自己长出来。”</p>
+<p class = "firstLineIndent"> 岔开话题的李火旺刚要从她手中抽着，却被她再次捏住了，紧接着他就看到，白灵淼那有些发红且执拗的双眸出现在自己面前。</p>
+<p class = "firstLineIndent"> “我不在乎你从哪来的，我也不在乎癔症到底发生了什么，我只是知道你腹部的伤是不是也跟它有关？”</p>
+<p class = "firstLineIndent"> 李火旺并没有回答她的问题，只是把她的脑袋按在自己的怀里，一下一下的轻拍着。</p>
+<p class = "firstLineIndent"> “李师兄，那东西太邪门了，把它扔了吧，再这样下去，你真的会被它给害死的。”</p>
+<p class = "firstLineIndent"> 说完这话后，白灵淼停顿了一下，但是最终带着一丝哭腔地说道：“你要是死了，那我怎么样啊？”</p>
+<p class = "firstLineIndent"> 李火旺轻轻叹了一口气，白灵淼看起来柔柔糯糯的，可这只是她的表面，其实她外柔内刚。</p>
+<p class = "firstLineIndent"> “我再想想，再想想......”</p>
+<p class = "firstLineIndent"> 其实李火旺也能知道到《大千录》是把双刃剑，稍不留神就会把自己伤得遍体鳞伤。</p>
+<p class = "firstLineIndent"> 可这东西同样是一件非常有用的工具，有了它，自己在这个诡异的世界里有了一定的自保能力。</p>
+<p class = "firstLineIndent"> 把它扔掉，真要碰上腊月十八之类的邪祟，自己该怎么办？总不能靠丹阳子吧？</p>
+<p class = "firstLineIndent"> 他也想加入别的什么门派，修炼获得足够强大的实力。可这更是困难重重。</p>
+<p class = "firstLineIndent"> 先不说别人收不收，会不会窥窃自己如此稀有的心素，就是别人肯收，李火旺也未必敢练。</p>
+<p class = "firstLineIndent"> 清风观，正德寺，安慈庵，自打接触了这些门派后，李火旺已经对其他门派基本不报有什么希望了，肯定一个比一个邪门。</p>
+<p class = "firstLineIndent"> 在没有找到其他替代品之间，《大千录》绝对不能丢，这是自己的立身之本，哪怕每次使用它要付出极其残酷的代价。</p>
+<p class = "firstLineIndent"> 不知不觉中，门外就开始有了动静，其他师兄妹正在准备早饭了。</p>
+<p class = "firstLineIndent"> 李火旺刚坐了起来，白灵淼就要服侍他穿衣服，可是他忽然愣住了。“等等。”</p>
+<p class = "firstLineIndent"> 他动作迟缓的用手按了按自己腹部的纱布，居然发现没那么疼了，拉开一看，发现里面的伤口已经上已经快要愈合了。</p>
+<p class = "firstLineIndent"> “愈合得这么快？”这连李火旺自己都感到惊讶。</p>
+<p class = "firstLineIndent"> 要是按照李火旺的猜测，最起码要半个月才能恢复到这种程度，自己的身体似乎在发生着某种变化。</p>
+<p class = "firstLineIndent"> 思索了很久后，李火旺把注意力集中在当初巴虺注视自己的那最后一眼。“这应该是好事吧？”</p>
+<p class = "firstLineIndent"> 此刻李火旺喜忧参半，对于自己用身心的双重痛苦召唤出来的那东西，他实在理解太少太少。</p>
+<p class = "firstLineIndent"> 不知道这代表着什么。</p>
+<p class = "firstLineIndent"> “它这是让我更加方便的自残吗？”李火旺想了半天只想到了这个理由。</p>
+<p class = "firstLineIndent"> 所谓虱子多不痒，债多了不愁，在丹阳子还有自己的病情比，这只能算得上小事。</p>
+<p class = "firstLineIndent"> “按照这个趋势，我明天的伤就应该恢复得差不多了，我们今天再在这里休整一天，明天就回去。”李火旺对着白灵淼说道。</p>
+<p class = "firstLineIndent"> 白灵淼显得有些欲言又止，最终点了点头。</p>
+<p class = "firstLineIndent"> 当听到可以回去了，其他人便开始向马车上搬东西，几乎把整个院子都收刮了一个干净，连两只能下蛋的老母鸡都放了上去。</p>
+<p class = "firstLineIndent"> 当时间再次来到吃晚饭的时辰，李火旺拆开纱布，发现那伤口基本上已经好得差不多了。</p>
+<p class = "firstLineIndent"> “还行，至少付出了那么多，总算有点收获了。”李火旺对于这种莫名得来的能力还算满意，有了这种能力，至少以后自己没那么容易死了。</p>
+<p class = "firstLineIndent"> 再次来到大堂，李火旺坐下来开始吃饭了，桌子上都是一些农家小菜，都是从吴家村的田里摘的。</p>
+<p class = "firstLineIndent"> 虽然都是素的，可毕竟是用了猪油炒，味道还是不错的。</p>
+<p class = "firstLineIndent"> 李火旺夹起一块萝卜咬了一口，不由地皱起了眉头，“这饭是谁做的？怎么还是这么咸？”</p>
+<p class = "firstLineIndent"> 他虽然对口食之欲没那么高，可毕竟也不是牲口。</p>
+<p class = "firstLineIndent"> 李火旺很快看到一位脸色惨白的道童站了起来，“李师兄.....是我...”</p>
+<p class = "firstLineIndent"> 一旁的白灵淼夹过李火旺筷子上的萝卜。“李师兄，这萝卜没这么咸啊，刚刚好。”</p>
+<p class = "firstLineIndent"> “没有吗？”李火旺疑惑地又夹起一块咬了一口，发现还是咸的很。</p>
+<p class = "firstLineIndent"> “算了，继续吃吧。”咸就咸点吃，多下饭。”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零三章 婚 </h2>
+<p class = "firstLineIndent"> 端着一杯茶李火旺慢慢喝着，倒不是他喜欢喝茶，而是纯粹的晚饭吃咸了。</p>
+<p class = "firstLineIndent"> 用盖子抵住水面的茶沫，李火旺轻轻一吸，浓郁的苦涩充斥着他的口腔。</p>
+<p class = "firstLineIndent"> “早该猜到的，吴村长家肯定好茶叶。”李火旺呸了呸，把茶杯放下，转身向着自己的卧室走去。</p>
+<p class = "firstLineIndent"> 昨天晚上因为那场噩梦没睡好，今天要尽可能的早睡，为了明天赶路保存体力。</p>
+<p class = "firstLineIndent"> 走到通往卧室的路上，李火旺的脑子也没闲着，想起了昨天晚上的恶梦，那两块玉佩。</p>
+<p class = "firstLineIndent"> “等幻觉再次出现的时候，我要不要试试把某些东西拿过来？”这个问题，李火旺并没有犹豫太久。</p>
+<p class = "firstLineIndent"> “试试！但是不是拿玉佩，而是拿一些绝对不可能出现在这边的东西，比如吊瓶，比如手铐。”</p>
+<p class = "firstLineIndent"> “如果我拿不过来，这就证明那边的世界是假的，我就没什么好留恋的。可是如果是拿的过来.......”</p>
+<p class = "firstLineIndent"> 沉思中的李火旺不知不觉中走到了自己的卧室门口。</p>
+<p class = "firstLineIndent"> “嘎吱”一声，门被推开了，可里面的一切打乱了他的思绪。</p>
+<p class = "firstLineIndent"> 桌子上红蜡烛墙上贴红双囍，还有那红枕头还有那红被子，一切都是红色的，包括坐在床边白灵淼脑袋上的红盖头。</p>
+<p class = "firstLineIndent"> 看着眼前的一切，李火旺的心跳快了一拍，他在这屋内的红色与外面的夜色的交接之间，停住了，脸上露出些许的挣扎。</p>
+<p class = "firstLineIndent"> 李火旺明白自己走进去代表着什么，这不单单代表自己有了一个妻子，同样还代表了重重的责任跟承诺。</p>
+<p class = "firstLineIndent"> 犹豫了片刻，李火旺深吸一口气，抬脚走了进去，反手锁上了门。</p>
+<p class = "firstLineIndent"> 紧接着他来到新娘子面前开口说道：“你确定想清楚了吗？我这个人有什么问题，相信你也能明白，你真的能接受嫁给一个疯子吗？“”</p>
+<p class = "firstLineIndent"> “嗯....”一双小手轻轻地握住李火旺有些厚茧的手掌。</p>
+<p class = "firstLineIndent"> “李师兄，嫁鸡随鸡嫁狗随狗，不管将来遇到了什么，我甘愿跟你过一辈子。”</p>
+<p class = "firstLineIndent"> 白灵淼的声音还是那么轻柔，可声音中却透着平时难有的坚决。</p>
+<p class = "firstLineIndent"> 女方都这么说了，李火旺要是再犹豫就有些不是男人了，他伸手就向着红盖头抓去，却被对方扭捏地躲了过去。“李师兄....那种事情......人家害羞....你能先吹灯吗？”</p>
+<p class = "firstLineIndent"> 李火旺转身来到桌边长袖一甩，红色蜡烛逐渐熄灭了。</p>
+<p class = "firstLineIndent"> 当天晚上，缠绵床第，紧接着李火旺才明白一个道理，为什么说女人是水做的。</p>
+<p class = "firstLineIndent"> 两个时辰后，一片漆黑的婚房内，李火旺重重的倒在床上，大口大口地喘着气。</p>
+<p class = "firstLineIndent"> 他用手轻轻地抚摸着趴在自己胸口少女的秀发，回味着刚刚那种奇妙的感觉。</p>
+<p class = "firstLineIndent"> “相公～”这一声相公叫的李火旺浑身都酥麻起来。“你还是叫我李师兄吧，我听不惯这个。”</p>
+<p class = "firstLineIndent"> “好，听你的。你是当家的，你让我干什么我就干什么。”</p>
+<p class = "firstLineIndent"> 白灵淼把耳朵靠在李火旺的胸口，听着那皮肤下面急速跳动的心脏。</p>
+<p class = "firstLineIndent"> 李火旺深深地呼了一口气，把怀中的少女搂上来一些，在她那插满簪子的秀发间亲了一口。</p>
+<p class = "firstLineIndent"> “等丹阳子的事情解决了，我们就继续回家，回到你家去，我们正式拜堂成亲。”</p>
+<p class = "firstLineIndent"> “那你的癔症怎么办？真的没办法治吗？”</p>
+<p class = "firstLineIndent"> “不知道，我也是听别人说的，安慈庵的师太在这种事情上，没有什么理由欺骗我。”</p>
+<p class = "firstLineIndent"> 李火旺的手伸下去，在滑腻腻的皮肤上不断抚摸。“但是没事的，我现在有了你，我已经在这个世界彻底扎根，我绝对不能在让那边的没轻飘飘的幻觉给控制了。”</p>
+<p class = "firstLineIndent"> “嘻...”白灵淼显得非常的高兴，四肢牢牢地缠着他，脑袋在李火旺的胸口轻蹭着。</p>
+<p class = "firstLineIndent"> 不知道为什么，李火旺发现床上的白灵淼跟床下，给他的感觉非常的不一样。</p>
+<p class = "firstLineIndent"> 之前还说害羞，其实一点都不害羞。</p>
+<p class = "firstLineIndent"> “所有的女人都这样吗？”第一次面对这种场景的李火旺显得有些没经验。</p>
+<p class = "firstLineIndent"> 感觉到对方又开始乱动起来，李火旺用手按住了她，“等等，就在刚刚我发现了一些事情。”</p>
+<p class = "firstLineIndent"> “什么事情？我有落红的。”白灵淼的话有些紧张。</p>
+<p class = "firstLineIndent"> 李火旺哑然失笑，“我说的不是这个，我是说我的感觉很不一样。”</p>
+<p class = "firstLineIndent"> “感觉？什么感觉？”</p>
+<p class = "firstLineIndent"> “似乎我所有的感觉都变得敏感的很多，所有的所有。”李火旺回味着刚刚那升天般的感觉，那种感觉太不对劲了。</p>
+<p class = "firstLineIndent"> 之前还不明显，李火旺以为自己记错了，可经历过刚刚的事情后，李火旺这才确定自己的身体除了恢复能力提升，同样感知方面同样得到了全面提升。</p>
+<p class = "firstLineIndent"> 无论是触觉还是嗅觉甚至是味觉。</p>
+<p class = "firstLineIndent"> “这同样也是巴虺的能力？”李火旺发现，它赐予我的这两种能力都跟献祭有关。</p>
+<p class = "firstLineIndent"> 就在他跟白灵淼述说自己的发现时，他忽然感觉到右手食指钻心般疼痛。“嘶~！你咬我做什么？”</p>
+<p class = "firstLineIndent"> “疼吗？比之前还疼吗？”</p>
+<p class = "firstLineIndent"> “当然了！都流血了，能不疼么。”</p>
+<p class = "firstLineIndent"> “那李师兄，看来你猜对了，它确实可以提升痛觉。”</p>
+<p class = "firstLineIndent"> 下一秒，李火旺就感到自己被咬得手指陷入一片柔软之中，白灵淼轻轻地吮吸让疼痛迅速地退去。</p>
+<p class = "firstLineIndent"> “你过去跟我说过游老爷，有听过巴虺的传说吗？”李火旺开口问道。</p>
+<p class = "firstLineIndent"> “嗯嗯”含住手指的白灵淼摇了摇头。</p>
+<p class = "firstLineIndent"> “嗯....”李火旺睁开眼睛，看着漆黑一片的屋子思索着。“巴虺到底为什么要给予我这两种能力呢？它到底是什么样的存在呢？”</p>
+<p class = "firstLineIndent"> 不由得李火旺就开始在脑海中企图拼接出巴虺的样子，可他最终还是失败了，凭借着人类的正常感知，根本无法想象它的样子。</p>
+<p class = "firstLineIndent"> “磕磕嗑~！”大半夜的，房门忽然被敲响了。</p>
+<p class = "firstLineIndent"> 浑身一紧的李火旺连忙翻身把胸口的白灵淼拉进自己怀里，把被子严严实实的盖住。“谁？没什么要紧的事情明天再说吧。”</p>
+<p class = "firstLineIndent"> “李师兄，是我，能让我进去吗？我不知道怎么回事躺在柴房了。”</p>
+<p class = "firstLineIndent"> 那声音十分的轻柔熟悉，李火旺瞬间反应了过来，那是白灵淼的声音！</p>
+<p class = "firstLineIndent"> 屋子外面的是白灵淼，那我怀里的是谁？！李火旺瞬间感到浑身发冷。</p>
+<p class = "firstLineIndent"> “嘻嘻嘻，相公～”李火旺感觉到怀里的东西一缩，瞬间就从被子后面滑了出去。</p>
+<p class = "firstLineIndent"> 李火旺猛地掀开被子，以最快的速度点燃红蜡烛，然而不大的卧房内却只剩下他一人了。</p>
+<p class = "firstLineIndent"> “李师兄，怎么了?发生什么事情了吗？”门外的白灵淼还在呼喊。</p>
+<p class = "firstLineIndent"> 而此时李火旺的视线，已经移到了自己那被吸的发白的手指上。</p>
+<p class = "firstLineIndent"> 上面的外翻狰狞的伤口，根本就不像人类正常的牙齿能咬出来的，更像是某种锋利的兽齿啃出来的！！</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零四章 二神 </h2>
+<p class = "firstLineIndent"> 稀里哗啦声不断。其他人不断用筷子把粥扒拉到自己的嘴里。</p>
+<p class = "firstLineIndent"> 今天是赶路的日子，得多吃点，要不然没到中午就饿了，肚子可是难受得很。</p>
+<p class = "firstLineIndent"> 不过这很显然不是李火旺目前考虑的问题，他侧头看了一眼旁边的白灵淼。</p>
+<p class = "firstLineIndent"> 少女的脸色有些闷闷不乐、因为昨天晚上他没让白灵淼进门，还是让她去跟春小满睡去了。</p>
+<p class = "firstLineIndent"> 趁着这个短暂的时间，他把屋子里的所有的红色都全部给清理干净，以免对方发现自己在不知道的情况下莫名其妙的成婚了。</p>
+<p class = "firstLineIndent"> 虽然后患解除，他现在脑中只有一个问题，“那是什么？我昨天晚上到底睡了个什么？”</p>
+<p class = "firstLineIndent"> 从自己的手指咬痕可以看出，那绝对不是寻常人。</p>
+<p class = "firstLineIndent"> 现在回想起来，李火旺后知后觉的发现了很多疑点。</p>
+<p class = "firstLineIndent"> 为什么摘红盖头的时候，非要先灭蜡烛？为什么在床上“她”跟白灵淼的差别是那么大。</p>
+<p class = "firstLineIndent"> 还有黑暗中，她脑袋上的簪子，也许那根本就不是簪子！而是她本身脑袋上就自带的。</p>
+<p class = "firstLineIndent"> “她为什么这么干？这么做对她有什么好处？”李火旺百思不得其解。</p>
+<p class = "firstLineIndent"> 昨天晚上几乎没睡，都是在为了防备她再次出现，可是她却并没有再次出现。</p>
+<p class = "firstLineIndent"> 对于那人是谁，当李火旺回想起那红盖头，其实心中已经隐隐约约已经有了答案。但是他想确认一下。</p>
+<p class = "firstLineIndent"> 李火旺安静地看着，看着白灵淼就着稀粥，吃下了五块锅盔。</p>
+<p class = "firstLineIndent"> 过去一直留意，对方娇小的身体，什么时候胃口变得这么大了。</p>
+<p class = "firstLineIndent"> 看到对方吃得差不多了，李火旺用脚尖在她的脚边踢了踢，转身向着卧室走去。</p>
+<p class = "firstLineIndent"> 白灵淼擦了擦嘴，把碗放下，跟了上去。</p>
+<p class = "firstLineIndent"> 当她走到屋内，就看到自己的李师兄表情十分凝重地，站在那里看着自己。</p>
+<p class = "firstLineIndent"> “李师兄，怎么了？有什么事情吗？”她感觉到气氛有些不太对劲，声音小了一些。</p>
+<p class = "firstLineIndent"> “你坐，我有些事情想问问你。”李火旺伸手把她按在凳子上。</p>
+<p class = "firstLineIndent"> 斟酌了一下后，李火旺开口了。</p>
+<p class = "firstLineIndent"> “我从李志那里知道，跳大神一般要两个人才能跳，一个大神请仙一个二神装仙，既然你能用跳大神来治疗我，也就是除了你之外还有一个二神对吧？”</p>
+<p class = "firstLineIndent"> 同样都是红盖头，李火旺不可能怀疑不到，昨天晚上是白灵淼的二神。</p>
+<p class = "firstLineIndent"> “嗯。”白灵淼点了点头。</p>
+<p class = "firstLineIndent"> “那她是活人？还是仙家？还是别的什么东西？”</p>
+<p class = "firstLineIndent"> “是活人，她不是仙家，仙家要请才能出来的。”</p>
+<p class = "firstLineIndent"> “这个李志的媳妇是什么时候爬出来的？她不是脑袋都被高志坚垂烂了，跟他李志一同埋起来了吗？”</p>
+<p class = "firstLineIndent"> 听到这话，白灵淼愣了一下，“李师兄，二神她不是李志的媳妇啊。”</p>
+<p class = "firstLineIndent"> “什么？不是？二神还分不同吗？”李火旺感到十分的意外。</p>
+<p class = "firstLineIndent"> “嗯，它们跟我说，二神跟大神是连着的，别人的二神不能乱用的。”</p>
+<p class = "firstLineIndent"> 李火旺回想起当初李志的二神，她除了脸上浓妆艳抹一番，还多了一些可怖的增生物外，那位二神活脱脱就是一个李志。</p>
+<p class = "firstLineIndent"> “难道……”联想到昨天晚上，那熟悉的白灵淼的声音，李火旺忽然发现自己明白了什么。</p>
+<p class = "firstLineIndent"> “把脸上的那些长出来的东西去掉，其实你的二神模样跟你长的一样？”</p>
+<p class = "firstLineIndent"> 听到李火旺的话，白灵淼犹豫了片刻后，最终点了点头。</p>
+<p class = "firstLineIndent"> “嗯，她长的跟我一样，其他二神跟大神长的也一样。”</p>
+<p class = "firstLineIndent"> “那她是怎么出来的？仙家是怎么把这么一个活脱脱的大活人变出来的？”李火旺问出的关键问题。</p>
+<p class = "firstLineIndent"> 这一次白灵淼没有马上回答，而是表情显得非常地挣扎，双手不断扭着自己上衣的下摆。</p>
+<p class = "firstLineIndent"> “李师兄，我真的很想告诉你，我真的很想说清楚。可是我真的不知道怎么说，就是出马的那天晚上，二神她就出现在我梦里了，然后……然后……”</p>
+<p class = "firstLineIndent"> 看到白灵淼几乎快要急的快要哭了的表情，李火旺也不再逼问，他也明白在这鬼地方有些事情，无法解释得太清楚。</p>
+<p class = "firstLineIndent"> “你把她叫出来，我有事情要问她。”此刻李火旺的眼中带着满满的不善。</p>
+<p class = "firstLineIndent"> 白灵淼小心地看了李火旺一眼后，转身走到门口把门一拉，一位脑袋上顶着红盖头的女人，踩着大红色的绣花鞋站在了那里。</p>
+<p class = "firstLineIndent"> 李火旺强行安耐住怒气走了过去，就这么隔着红盖头跟二神对望着。</p>
+<p class = "firstLineIndent"> 他明显能感觉到里面的东西在注视着自己，自己现在对别人的注视感知也变强了不少。</p>
+<p class = "firstLineIndent"> 仔细的观察着她身上的衣服着褶皱，还有她的身形，李火旺再次确定，昨天晚上床上就是她！</p>
+<p class = "firstLineIndent"> “李师兄，她怎么了？到底发生什么事了？”白灵淼满脸担忧地问道。</p>
+<p class = "firstLineIndent"> 心中燃烧着怒意的李火旺刚要张嘴，可看着白灵淼的面孔却硬生生地停了下来。</p>
+<p class = "firstLineIndent"> 他真的很想问二神昨天晚上到底为什么那么做，可是当着白灵淼的面，自己却说不出来。</p>
+<p class = "firstLineIndent"> 总不能说，昨天晚上自己跟眼前这天知道有没有魂的怪东西睡了一觉吧？</p>
+<p class = "firstLineIndent"> “李师兄，到底怎么了？你说话啊，她到底怎么你了？”</p>
+<p class = "firstLineIndent"> 白灵淼的一再逼问反而让李火旺打消了逼问，他用手在二神脸上指了指，露出一个威胁的眼神后</p>
+<p class = "firstLineIndent"> 推开另外一扇门直接离开了。“算了，我们出发。”</p>
+<p class = "firstLineIndent"> 此刻，白灵淼此时却一脸的雾水，她转身看向一旁的二神再次询问到：“到底怎么了？”</p>
+<p class = "firstLineIndent"> 可二神却如同僵尸般立在那里，一动都不动。</p>
+<p class = "firstLineIndent"> “奇怪，这到底是怎么回事啊？”白灵淼明显被搞蒙了。</p>
+<p class = "firstLineIndent"> 两辆马车从后院里牵了出来，带着所有人，离开了这快要沦为乞丐窝的吴家村。穿过枯萎的竹林原路返回。</p>
+<p class = "firstLineIndent"> 两百多里路，说长也长，说短也短，紧赶慢赶之下，他们以最快的速度重新来到了横华山下。</p>
+<p class = "firstLineIndent"> 相比之前，此时的山下小镇明显“热闹”了一些，路边多了一些要饭的乞丐。</p>
+<p class = "firstLineIndent"> 李火旺打开那漆盒，重新看了一眼死瞪着的一对血红色的眼球后，抬脚向着山下走。</p>
+<p class = "firstLineIndent"> 不过这次白灵淼却拦住了他。“李师兄，这次我陪你去，我能跳大神了，我不再是累赘。”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零五章 贪婪 </h2>
+<p class = "firstLineIndent"> 看着眼前的白灵淼，李火旺此刻显得有些犹豫，他不知道该不该带她一同上去。</p>
+<p class = "firstLineIndent"> 对方的跳大神的能力，确实可以在某种程度上帮助自己，但是他又不想让对方有危险。</p>
+<p class = "firstLineIndent"> 这时其他人也开始劝说了，</p>
+<p class = "firstLineIndent"> ”对了，李师兄，让我们也跟去吧。”</p>
+<p class = "firstLineIndent"> “遇上点事情我们也能帮忙，你不是说那些尼姑没什么危险吗？”</p>
+<p class = "firstLineIndent"> “就是，别的不说什么，万一……万一旁边你又犯病了，旁边不是还有人照看不是。”</p>
+<p class = "firstLineIndent"> 狗娃的最后一句话让李火旺松了口。“宝禄，你去把把马车寄放在客栈后，我们上山。”</p>
+<p class = "firstLineIndent"> 黑太岁的抑制幻觉的能力正在飞快地消失，自己随时有可能陷入幻觉，现在自己身边脱不了人。</p>
+<p class = "firstLineIndent"> 听到这话，其他人脸上顿时露出一丝笑意，连忙跟了上来。</p>
+<p class = "firstLineIndent"> 上山的土路弯弯曲曲，但是对于李火旺等人来说，早就已经走惯了。</p>
+<p class = "firstLineIndent"> 半山腰歇了一会后，他们最终赶在天黑前到达了，安慈庵的山门。</p>
+<p class = "firstLineIndent"> 从这里往里面看，安慈庵依然跟之前一样破败，地上的石板缝隙间长满是杂草，远处的几座屋顶有洞的庙依然也没人补。</p>
+<p class = "firstLineIndent"> 看着山门两边的女书对联，李火旺转心不由得开始跳动起来。</p>
+<p class = "firstLineIndent"> 自己拼死拼活就是为了这一天。</p>
+<p class = "firstLineIndent"> 一想到可以摆脱那个怪异的师父，李火旺实在按捺不住心中的激动。</p>
+<p class = "firstLineIndent"> 站在原地深呼了一口气，李火旺转过身来，开始给其他人先交个底。</p>
+<p class = "firstLineIndent"> “安慈庵里面很脏也很乱，里面的女尼姑也很胖，等进去后大惊小怪的，明白没有？”</p>
+<p class = "firstLineIndent"> 得到了所有人的准确答复后，李火旺单手握着腊月十八的眼睛，深吸一口气向着里面走起。</p>
+<p class = "firstLineIndent"> 刚进山门还没进庙，一股腐败的臭味就好似一堵墙般扑面而来。</p>
+<p class = "firstLineIndent"> “这帮尼姑在干什么？比之前还臭了不少。”</p>
+<p class = "firstLineIndent"> 眉头紧锁的李火旺不由得用手捂住鼻子，顶着臭味向里面冲。</p>
+<p class = "firstLineIndent"> 此刻，其他药引们开始有些后悔了，这是没危险，可这还不如有危险呢，实在太臭了。</p>
+<p class = "firstLineIndent"> 安慈庵的第一座庙宇，李火旺踏进去的右脚瞬间感到一软，等他迅速抬脚脚来才发现自己踩的是一块，松软的桃酥。</p>
+<p class = "firstLineIndent"> “当心点脚下，这里面的人不怎么喜欢整理的。”</p>
+<p class = "firstLineIndent"> 抬头看了一眼没有任何变化的灰尘菩萨，李火旺围绕着大殿向菩萨的后背绕去。</p>
+<p class = "firstLineIndent"> 不出意外的在菩萨的后面，躺着一座高耸的小肉山，这胖尼姑把一个大号锅盔套在自己的脑袋上，模模糊糊的边吃边陲。</p>
+<p class = "firstLineIndent"> “好家伙，这是......这是个人啊？”跟着李火旺的其他人顿时被这一幕震撼到了。</p>
+<p class = "firstLineIndent"> 有了上一次的经历，李火旺也不打算喊醒她了，估计也喊不醒。</p>
+<p class = "firstLineIndent"> 一行人穿过一旁墙上的侧门，正式进入了安慈庵内部。</p>
+<p class = "firstLineIndent"> 可刚进去没走几步，李火旺他们发现根本没地方下脚。</p>
+<p class = "firstLineIndent"> 放眼望去，地上屋顶上全是各种腐烂的食物，他们的右侧甚至堆成了一座发霉的馒头山，各种苍蝇还有白蛆上面爬上爬下。</p>
+<p class = "firstLineIndent"> 偏偏都到这种地步，这些吃食里面居然没有半点荤腥，全是素食。</p>
+<p class = "firstLineIndent"> 看着这些东西，李火旺马上明白过来，这很显然就是自己之前送上来的那些金子换来的。</p>
+<p class = "firstLineIndent"> 拿到钱后，这些尼姑第一时间买了吃的各种各样的吃的。</p>
+<p class = "firstLineIndent"> “踩过去。”李火旺伸脚踩进了腐烂的食物，好似在沼泽中般，缓缓地前行。</p>
+<p class = "firstLineIndent"> 其他人面带难色，尤其是爱干净的白灵淼更是如此。</p>
+<p class = "firstLineIndent"> 可当她看向远处的背影时，一咬牙抬脚跟了上去。</p>
+<p class = "firstLineIndent"> “这些尼姑干嘛买这么多东西放着烂掉？多浪费啊，现在可是灾年，这些吃的可能救活不少人呢！”</p>
+<p class = "firstLineIndent"> 作为曾经的乞丐，眼前这一幕让杨小孩实在看不过眼，罕见地开口说话了。</p>
+<p class = "firstLineIndent"> 李火旺瞥了一眼小道童，“因为她们贪。”</p>
+<p class = "firstLineIndent"> 杨小孩抿了抿嘴，什么都没说了。</p>
+<p class = "firstLineIndent"> 就这么走了一炷香的时间，李火旺带着其他人来到了之前尼姑吃饭的地方，看到了其他的尼姑。</p>
+<p class = "firstLineIndent"> “呕~”一位胖尼姑当着李火旺的面大口大口地呕吐着，把胃里肉糜状的东西全部反吐了出来。</p>
+<p class = "firstLineIndent"> 吐得满头大汗的她，顾不上擦脸上的汗水，不断用双手把四周腐烂的吃食划来到肚子上来，把肚子当桌子继续疯狂大吃起来。</p>
+<p class = "firstLineIndent"> “妙音师父，别来无恙啊？”李火旺对着那胖的尼姑打着招呼。</p>
+<p class = "firstLineIndent"> 妙音一张嘴，嘴里的食物残渣混合着口水就向着李火旺脸上喷来。“是你啊，还要带路吗？这次要涨价，最起码一两黄金。”</p>
+<p class = "firstLineIndent"> “不劳驾了，敢问静心师太还在原来的屋子吗？”李火旺努力的后退着，尽可能地站在对方射程之外。</p>
+<p class = "firstLineIndent"> 见没金子拿，妙心脸上的极度贪婪迅速变成失望，“废话，她胖的连路都走不了，她能去哪？”</p>
+<p class = "firstLineIndent"> 李火旺点了点头，转身向着之前的路继续出发。</p>
+<p class = "firstLineIndent"> 其他人也紧紧地跟着李火旺继续在腐烂食物的沼泽中继续穿行，</p>
+<p class = "firstLineIndent"> 可站在最后面的杨小孩走到胡吃海塞的尼姑身边的时候，实在有些忍不住了。</p>
+<p class = "firstLineIndent"> “你这样多浪费啊！你知道外面还有多少人饿着肚子，甚至饿死的吗？你知道饿肚子多难受吗？”</p>
+<p class = "firstLineIndent"> 妙音回答得理所当然。“是啊，所以不能浪费，没看到都在烂了吗？再不吃就没机会了。”</p>
+<p class = "firstLineIndent"> 说罢她扭过头来，张开嘴巴肚子里刚吞下的重新呕了出来，眼中带着贪婪继续胡吃海塞。</p>
+<p class = "firstLineIndent"> 按照原来的路，穿过猪棚，李火旺最终来到了静心师太的屋前，也就在这相对偏僻的地方，地上才没有那么多腐烂的食物。</p>
+<p class = "firstLineIndent"> 李火旺手举着荧石刚走进去，就看到静心师太正在把什么东西往自己肥肉之间的褶皱里面塞。</p>
+<p class = "firstLineIndent"> “啊，是你小子啊？怎么样？找到了腊月十八吗？</p>
+<p class = "firstLineIndent"> 表情凝重的李火旺点了点头，把手中的漆盒打开。</p>
+<p class = "firstLineIndent"> 虽然没有眼睛，可静心师太仿佛能感受到什么，松松垮垮的脸上顿时露出极度贪婪的笑容。</p>
+<p class = "firstLineIndent"> 随着静心师太身上褶皱松垮的肥肉开始向着李火旺方向挪动，整个房子都仿佛开始颤动起来。</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零六章 开始 </h2>
+<p class = "firstLineIndent"> 静心的一双指甲缝中满是污垢的双手伸到漆盒之中，把那双血红色的眼睛掏了出来，轻轻地揉捏着。“呵呵，这可真是好东西。”</p>
+<p class = "firstLineIndent"> 说完，她一手拿着一个鸡蛋大小的红色眼球，猛地向着自己脸上那双眼黑漆漆的眼眶之中拍去。</p>
+<p class = "firstLineIndent"> 等她再次把手放下来时，那双血红的眼睛有了新主人。“多谢了，我终于又能看见了。”</p>
+<p class = "firstLineIndent"> 一位臃肿，丑陋，无牙的老尼姑脸上却顶着一双大大的血红色没有眼皮的大眼泡，这让人感觉到头皮发麻的一幕让屋里的其他人感到浑身不自在。</p>
+<p class = "firstLineIndent"> “李师兄，她真的是好人吗？怎么感觉不像啊……”白灵淼缩在李火旺身后悄悄地问道。</p>
+<p class = "firstLineIndent"> “嘘，别说话了，”对于眼前的静心的举动，李火旺居然非常出乎意料的并没有感到非常吃惊。</p>
+<p class = "firstLineIndent"> 不知不觉中经历了各种事情后，他的承受能力已经提高了非常多。</p>
+<p class = "firstLineIndent"> 表情十分凝重的李火旺看着眼前这张渗人的老脸开口说道：“这东西拿到了，什么时候开始驱逐丹阳子？”</p>
+<p class = "firstLineIndent"> “急什么急，年轻人就是毛毛躁躁。”静心说完，李火旺就听到身后有动静，扭头一看就发现是一排东倒西歪，打着饱嗝的胖尼姑。</p>
+<p class = "firstLineIndent"> “她们要干什么？难道想过河拆桥？！”李火旺的手下意思地按在了《大千录》上。</p>
+<p class = "firstLineIndent"> 然而对方的举动让李火旺马上明白过来，自己会错意了，眼前的这些尼姑居然开始徒手拆墙。</p>
+<p class = "firstLineIndent"> 静心师太身体太大了，门又太小，想要出来就必须拆墙。</p>
+<p class = "firstLineIndent"> 当一整面墙都彻底拆空了之后，一个下面有着很多轮子的木板被尼姑们推了上来，这是静心师太的行动工具。</p>
+<p class = "firstLineIndent"> 在所有人的注视下，静心师太如同一只巨大的肥虫，一下一下地扭动着，向着那木板车爬去。</p>
+<p class = "firstLineIndent"> 静心挪了半天，有些没好气地对着一旁的李火旺说道：“你这人真没眼力劲，不是记着摆脱你师父吗？怎么没见你着急啊？没看到我走得慢吗？还不过来推！”</p>
+<p class = "firstLineIndent"> 在所有人的帮助下，静心师太终于被推到了车上。轮轴转动的吱嘎声响起，其他胖尼姑们推着她往前走。</p>
+<p class = "firstLineIndent"> 松开肥肉后，李火旺在师太那挠不到的地方，用力用手挠了挠。</p>
+<p class = "firstLineIndent"> 后退几步，看着被一众胖尼姑包围的臃肿的静心师太，李火旺莫名有种，对方此刻是尊佛像的感觉。</p>
+<p class = "firstLineIndent"> “佛像只是佛像，真要成佛没那么容易的，快跟上吧。”</p>
+<p class = "firstLineIndent"> 听到这话，李火旺抬脚跟了上去。</p>
+<p class = "firstLineIndent"> 尼姑们并没有把静心师太往山门方向推，而是往李火旺没去过的安慈庵的最深处推去。</p>
+<p class = "firstLineIndent"> “把你的手从《大千录》上放下来，这次就算了，以后这种东西绝对不能带到庵内来了，晦气的很。”</p>
+<p class = "firstLineIndent"> 虽然静心的语气中满是厌恶，不过此刻的李火旺根本没时间这些，他现在满脑子都在想着接下来的事情。</p>
+<p class = "firstLineIndent"> “去除丹阳子的法事是什么办法？肯定能成吗？”李火旺心中带着一丝忐忑的开口问道。</p>
+<p class = "firstLineIndent"> “你这么问这话，是不是有点晚了？放心吧，我们安慈庵还是讲信用的，你要是连我们都信不过，那别的地方就更别提了。”</p>
+<p class = "firstLineIndent"> 静心师太的话并没有让李火旺的心安静下来，自从知道丹阳子始终都在缠着自己的那一刻起，就想着这一天。</p>
+<p class = "firstLineIndent"> 现在自己身上那压着的千斤重担终于可以放下了，一时间他想了很多。</p>
+<p class = "firstLineIndent"> “别这么急着乐，你师父这个麻烦没了，可你还是心素，这可是大头。”</p>
+<p class = "firstLineIndent"> 听到这话，李火旺心中一沉，“师太别说得太绝对，你过去没有找到办法，未必我就找不到。”</p>
+<p class = "firstLineIndent"> 师太听到这话，却笑了。“你以为就你一个人这么想吗？其他心素都这么想，可他们最终的下场都大同小异。”</p>
+<p class = "firstLineIndent"> 眉头紧锁的李火旺刚要张嘴，却又马上停了下来，深吸一口气说道：“不管有没有总要试试吧？想余儿那样过一辈子，你真觉得这么好？”</p>
+<p class = "firstLineIndent"> 静心师太表情迅速低落下去，伸手把自己儿子从自己的肥肉里掏了出来，轻轻地搂着自己的怀里，怜悯的看着他那张老脸。</p>
+<p class = "firstLineIndent"> “哎~他这样我有什么办法，作为她娘，我只要他活着就行。”</p>
+<p class = "firstLineIndent"> 李火旺伸手过去，在他那干枯的白发上轻轻地抚摸着，眼中露出跟静心师太眼中一模一样的慈祥。</p>
+<p class = "firstLineIndent"> 其他药引还有其他尼姑，此刻同样向着那四肢枯萎地老头看去。</p>
+<p class = "firstLineIndent"> 李火旺看着老头，缓缓地开口说道：“我还记得他小的时候，摇摇晃晃的向着我扑来的样子，多好玩啊。”</p>
+<p class = "firstLineIndent"> 师太点了点头，紧接着脸上又露出一丝痛苦。“其实说真心话，变成这种样子，很难说得上对跟错，之前在幻觉里时，看着我妈跪在我面前的时候，在那一瞬间，我真的心里实在堵得慌，如果真有办法让我一辈子呆在幻觉里，其实也没什么不好。”</p>
+<p class = "firstLineIndent"> 静心师太脸上的痛苦，仿佛会传染般同时出现在四周所有人的脸上。</p>
+<p class = "firstLineIndent"> “哎......”在场所有人同时轻轻地叹了一口气，气氛变得十分的压抑起来。</p>
+<p class = "firstLineIndent"> 在这种心情的陪伴下，小木车吱嘎地继续往前推，没过多久，前方左侧同样推出了一位巨大臃肿的老尼姑。</p>
+<p class = "firstLineIndent"> 李火旺看着那老尼姑，脸上露出一丝嫌弃，“静源师妹，能不能快点，要知道丹阳子时时刻刻都在修改我的认知呢。”</p>
+<p class = "firstLineIndent"> “着什么急啊，都等了这么久，还差这点功夫，你之前找快点，犯得着节约这点时间？”</p>
+<p class = "firstLineIndent"> 静源说着从旁边地上拿起一块发霉的发糕塞进自己的嘴里。</p>
+<p class = "firstLineIndent"> 静源并不是第一个，很快第二个，第三个老尼姑同样被木板车给推着出来了。最终连同静心在内，有六位老尼姑被抬了出来。</p>
+<p class = "firstLineIndent"> 在这些人的陪伴下，李火旺等人来到了一处低洼处，里面竖立着一尊十几米高黑色蠕动的巨型佛像。</p>
+<p class = "firstLineIndent"> 当他们彻底走进后，嗡嗡嗡嗡声响起，原来那黑色蠕动的佛像全是一只只绿头苍蝇堆积而成。</p>
+<p class = "firstLineIndent"> “我肚子有点不舒服，要不你们等我会？”李火旺捂着肚子问道。</p>
+<p class = "firstLineIndent"> “别墨迹了，赶紧的吧，你当我们出来一趟方便吗？”静心从肥肉里掏出一串盘着发亮的佛珠扔了过去。</p>
+<p class = "firstLineIndent"> 李火旺顺手接了过去，一边转起佛经，一边开始低声念叨起来生涩难懂的佛经来。</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零七章 佛 </h2>
+<p class = "firstLineIndent"> “行者见已，欢喜踊跃。自见其身，乘金刚台，随从佛后，如弹指顷，往生彼国。生彼国已，见佛色身，众相具足；见诸菩萨，色相具足....”</p>
+<p class = "firstLineIndent"> 从李火旺口中念出的佛经逐渐响了起来，在诵经声的承托下，此刻他的脸上仿佛笼罩在一片神圣的佛光之中。</p>
+<p class = "firstLineIndent"> 刚开始只有他一种声音，可是没过多久，这单调的诵经声开始产生混响。</p>
+<p class = "firstLineIndent"> 或高或低的唱诵赞偈声开始一同配合李火旺起来。</p>
+<p class = "firstLineIndent"> 这些声音是来自周围的胖尼姑跟师太之口，她们的脸上同时露出李火旺脸上一模一样的虔诚。</p>
+<p class = "firstLineIndent"> 紧接着，四周的庙宇跟房屋内也同步响起了，照面铛子，手磬，木鱼，这些佛门乐器的声音。</p>
+<p class = "firstLineIndent"> 在这些东西的配合下，李火旺的诵经声越来越威严，越来越有佛性。</p>
+<p class = "firstLineIndent"> 这种特殊的声音开始改变，不应该由声音改变的东西，比如四周的一切颜色开始逐渐失真，仿佛盖上了一层厚厚的暗黄色滤镜。</p>
+<p class = "firstLineIndent"> 随着时间的推移，诵经声音响越来越大，白灵淼狗娃高志坚，甚至包括静心师太怀中，她的孩子都开始跟着唱。</p>
+<p class = "firstLineIndent"> 在声音越来越响之下，低坑内的那樽苍蝇菩萨极具震撼的开始动了。</p>
+<p class = "firstLineIndent"> 它在诵经声的陪绑下，缓缓的向着李火旺的头顶飘了过来，此时此刻，那些苍蝇的扇动翅膀的嗡嗡声也开始仿佛变得跟诵经旋律一样了。</p>
+<p class = "firstLineIndent"> 当诵经声到达了最顶点之时，肉菩萨猛地睁开黑漆漆的双眼，猛地向下一降。嗡嗡作响的绿头苍蝇瞬间把李火旺彻底罩住。</p>
+<p class = "firstLineIndent"> 苍蝇的翅膀声开始的疯狂的抖动了起来，抖动声与那四周的佛经声不断的重叠。</p>
+<p class = "firstLineIndent"> 再次所有人跟那些上百万只苍蝇，在这一刻，开始在精神上牢牢链接在了一起，不分彼此。</p>
+<p class = "firstLineIndent"> 人知道了苍蝇的想法，苍蝇也知道了人的想法。</p>
+<p class = "firstLineIndent"> 随着静心师太心中一动，罩住李火旺身上的苍蝇重新凝聚，形成了一樽盘坐在莲花座上的手托净瓶的菩萨，它的声音盖过了李火旺的声音，开始带领了其他人接着诵经。</p>
+<p class = "firstLineIndent"> 就在这如此庄严的场景并没有维持多久，就被一道雷声打破了，所有人齐刷刷的看去，天破了。</p>
+<p class = "firstLineIndent"> 那长着三颗脑袋，浑身被各种令人作呕的器官铺满的丹阳子，仙气飘飘踩着白云悬在那里，用那三双眼睛戏谑的盯着下面整个安慈庵。</p>
+<p class = "firstLineIndent"> “呵呵....娃啊......你着相了.....”</p>
+<p class = "firstLineIndent"> 根本没有任何废话，包括静心师太在内的所有臃肿的老尼姑，迅速从自己的油腻肥肉的褶皱中掏出一串由纯金打造的佛珠。</p>
+<p class = "firstLineIndent"> 她们分别一左一右缠绕在自己双手虎口，紧接着食指拇指向掌心弯曲，手结弥陀印，身具威仪，猛地向着头顶一送。</p>
+<p class = "firstLineIndent"> “念佛！念法！念僧！念戒！念施！念天！比丘修六念！得无量百千陀罗尼门！”</p>
+<p class = "firstLineIndent"> 嗡嗡声再次响起，形成佛陀的黑色苍蝇冲天而起，如同海浪般包裹着阵阵佛音向着空中的丹阳子飞去。</p>
+<p class = "firstLineIndent"> 看着眼前的黑色海啸，丹阳子三张大脸同时露出极其讥讽的笑容，脚下踩着白云，身边飘着仙絮，向着那些苍蝇就反冲了上来。</p>
+<p class = "firstLineIndent"> 他右手那蠕动的触手手掌用力猛地一甩，一把由眼球触手还有血肉拼接而成的铜钱剑就从他掌心内生了出来。</p>
+<p class = "firstLineIndent"> 血肉铜钱剑用力一甩，肉沫飞出，任何被溅射的苍蝇血肉都会迅速扭曲。</p>
+<p class = "firstLineIndent"> 一张张蠕动微小尖叫的丹阳子脑袋替代了苍蝇头，迅速转向四周的苍蝇同类进行反击。</p>
+<p class = "firstLineIndent"> 此刻，在下方双腿盘坐表情凝重的李火旺不为所动，口中继续念着佛经，声音一次比一次的大。</p>
+<p class = "firstLineIndent"> 在诵经声的催化下，整个念慈庵内，所有趴在腐烂食物上蠕动的白色蛆虫都迅速成苍蝇，它们扇动着那湿漉漉的苍蝇翅膀，向着无比混乱的空中赶去。</p>
+<p class = "firstLineIndent"> 一时间天空混乱到了极点，激烈交战下，空中甚至开始下起了黑色的死苍蝇雨。</p>
+<p class = "firstLineIndent"> 眼前越发焦灼的占据，静心此刻却显得不慌不忙，既然她之前同样帮助李火旺，自然是有十足的把握。</p>
+<p class = "firstLineIndent"> 李火旺双手缓缓合十，一脸慈悲的低声唱到：“摄受正法，舍三种分，如一切色悉入空界，如是菩萨恒沙诸愿悉入兹愿，善哉善哉。”</p>
+<p class = "firstLineIndent"> 伴随着空灵的佛凝声响起，一道光刺破裂开的天空，从天而降，把他彻底镀成了无悲无喜的金身佛陀。</p>
+<p class = "firstLineIndent"> 李火旺身体被照成金色的瞬间，空中的丹阳子身上那些恐怖的器官同时也镀上一成金，移动起来非常的缓慢。</p>
+<p class = "firstLineIndent"> 趁着这个好机会，四周的苍蝇群瞬间抓住了机会，迅速涌了上去。一拥而上，把他整个包裹起来。</p>
+<p class = "firstLineIndent"> “嗡嗡嗡.....”苍蝇团不断的扩大，最终重新形成了一座巨大的盘坐莲花的净瓶菩萨，慢慢的向着地上落去。</p>
+<p class = "firstLineIndent"> 距离地面每少一寸，那菩萨就向内缩一分，空中那破开天空的异像也减弱一份。</p>
+<p class = "firstLineIndent"> 诵经声，木鱼声，敲钟声，一切的声音逐渐开始变轻。都仿佛这一切都结束了。</p>
+<p class = "firstLineIndent"> 地面上，两位胖尼姑手中拿着拖把般大小的毛笔，笔头上沾满了香炉里的香灰，盯着苍蝇尼姑眼带期待着等待着什么。</p>
+<p class = "firstLineIndent"> 看到这一幕，诵经的静心师太心中闪过一丝贪婪，按照正常情况，接下来只要收尾了，那这苍蝇里面的东西就归她了。</p>
+<p class = "firstLineIndent"> “这东西也罕见的很啊，也不知道味道怎么样。”</p>
+<p class = "firstLineIndent"> 就在她以为一切都朝好的地方进行时，可偏偏意外就发生了。</p>
+<p class = "firstLineIndent"> 浑身笼罩着金光的李火旺忽然开始咳嗽了一下，并且越咳越厉害。</p>
+<p class = "firstLineIndent"> “怎么回事！我感觉不到他想什么了！那小居然子断开了我们的清净心！”一位老尼姑惊呼喊到。</p>
+<p class = "firstLineIndent"> 话音刚落，捂着自己脖子的李火旺大嘴猛地张到了最大，极其恶心的干呕声响起。</p>
+<p class = "firstLineIndent"> 紧接着在场的所有人都看到极其匪夷所思的一幕，从那位穿着红色道袍的道士嘴中，几根蠕动的带着粘稠液体的黑色触手从他喉咙深处钻了出来。</p>
+<p class = "firstLineIndent"> 那是黑太岁，但是又不完全是黑太岁，在一根触手的根部，挂着半张脸，那是丹阳子的脸！</p>
+<p class = "firstLineIndent"> “哎呀！！这佛没死！！他还没完全成佛！佛其实一直跟着黑太岁混着躲在李火旺的肚子里呢！我们弄错了！这才是正主！”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零八章 丹阳子 </h2>
+<p class = "firstLineIndent"> 这突如其来的变化，让所有人都没有反应过来。</p>
+<p class = "firstLineIndent"> 从李火旺的嘴里钻出来的触手，瞬间绷直向着前方刺去。</p>
+<p class = "firstLineIndent"> 黑太岁那柔软的触手绷直后变得坚硬无比，瞬间就戳穿了一位胖尼姑的肚子，伤口并没有流血，而是不断渗着发白的脂肪。</p>
+<p class = "firstLineIndent"> 可不管里面渗什么，尼姑的惨叫声让庄严的诵经声中多了一些不和谐的声音。</p>
+<p class = "firstLineIndent"> 随着颂经声的减弱，那尊苍蝇菩萨不再凝固，开始变得松垮起来。</p>
+<p class = "firstLineIndent"> 这还仅仅只是一个开始，越地蠕动蠕动的，粘连着丹阳子器官的黑色触手，从李火旺的口中钻了出来，疯狂袭击着其他尼姑。</p>
+<p class = "firstLineIndent"> 触手们把整个李火旺倒了起来，好似章鱼用触手撑着地上不断移动。</p>
+<p class = "firstLineIndent"> 整个场地乱成了一团，一个胖尼姑刚要出手阻止，空中形成菩萨的苍蝇就垮了。</p>
+<p class = "firstLineIndent"> 受困的丹阳子摆脱束缚，双方局面瞬间发生了倒转。</p>
+<p class = "firstLineIndent"> 静心她们想要对付丹阳子，可却根本做不到，没有了清静心的链接。她们等人眼中再也没有什么丹阳子，只有一位嘴里有着十几根蠕动触手的赤袍道士。</p>
+<p class = "firstLineIndent"> “要想办法让这小子再加入我们的清净心，否则我们根本影响不到丹阳子。”</p>
+<p class = "firstLineIndent"> “不行，做不到了，丹阳子就在他肚子里，时时刻刻都在捣乱，师妹，请菩萨上身吧，再拖下去庵里要出事了。”</p>
+<p class = "firstLineIndent"> 静心看着远处掉吊着的李火旺，心里有些无奈地叹了一口气，都到这一步了，偏偏功亏一篑。</p>
+<p class = "firstLineIndent"> 不管别人的眼中是怎么样的，此刻在李火旺眼中，自己嘴里并没有什么触手自己也根本没动，是恐怖的丹阳子，正在疯狂地攻击那些胖尼姑。</p>
+<p class = "firstLineIndent"> 刚刚静心的话，此时他也听到了。</p>
+<p class = "firstLineIndent"> “丹阳子没死？他居然没死？一直跟黑太岁生活在我的肚子里？”李火旺瞬间感觉到浑身发冷。</p>
+<p class = "firstLineIndent"> 那个杀人如麻，拿人炼丹的丹阳子居然还没有死！</p>
+<p class = "firstLineIndent"> 李火旺过去一直以为丹阳子只是从精神上不断侵蚀自己，结果怎么也没想到，他肉体层面也没有放过！</p>
+<p class = "firstLineIndent"> 看着远处的丹阳子，李火旺的眼中露出极度的恨意。</p>
+<p class = "firstLineIndent"> “不行！必须做点什么，我必须做点什么！我绝对不能坐以待毙！想要解决掉他，就在今天！”</p>
+<p class = "firstLineIndent"> 李火旺右手伸向腰间的《大千录》，左手打开下摆的刑具包。</p>
+<p class = "firstLineIndent"> 从刑具包里掏出一把锋利的三棱锥，迅速在自己身体的各个部位打量了几下，李火旺一咬牙，直接捅进了自己掌心，从掌心不断下压，一路插进小臂骨髓之中。</p>
+<p class = "firstLineIndent"> 剧烈的疼痛差点让李火旺彻底抽过去，痛觉翻倍的情况下，这种感觉实在是常人难以接受的。</p>
+<p class = "firstLineIndent"> 也许在使用《大千录》的时候，痛觉加深是件好事，但是这一次李火旺却并不打算使用《大千录》</p>
+<p class = "firstLineIndent"> 刚要打开《大千录》一条仙气飘飘的仙绥飞了过来，缠住了李火旺腰间的《大千录》直接甩飞了出去。</p>
+<p class = "firstLineIndent"> “娃啊，你要助为师成仙，可不能帮外人捣乱啊~！”丹阳子的那个左侧秃顶的老人脑袋忽然开口说到。</p>
+<p class = "firstLineIndent"> “助人成仙可是大功德！将来等你登上了修仙之路你会明白的！”中间的中年脑袋说道。</p>
+<p class = "firstLineIndent"> “你根本想象不到，我在仙界的边缘看到了什么！我要进去，我一定要进去！我就差临门一脚了！帮我！！”最后说的是丹阳子的孩童脑袋。</p>
+<p class = "firstLineIndent"> “去你妈的！我就是死，我也不再帮你！！”李火旺咬着牙把三棱锥从伤口处用力拔了出来。</p>
+<p class = "firstLineIndent"> 丹阳子那相互嵌套的嘴巴狞笑看着李火旺，“娃啊，斩三尸这种事情，你帮也得帮，你不帮也得帮，你可别忘了谁是师傅。”</p>
+<p class = "firstLineIndent"> “什么狗屁斩三尸，你以为我还会信你的鬼话吗？！想要我的身体就直说！我能骗的了你，不代表你你能骗我！”</p>
+<p class = "firstLineIndent"> “告诉你一件事！你被丹料里的那些邪祟的血肉，彻彻底底扭曲成了怪物！成仙的功法都是我瞎编出来的！！”</p>
+<p class = "firstLineIndent"> 听到了这个真相，丹阳子非但没有露出愤怒的表情，反而六双眼睛同时露出强烈憧憬。</p>
+<p class = "firstLineIndent"> “不，我现在确实成仙了，虽然只是个半仙，可是我确实看到南天门了，我还看到了里面跟我一样的神仙，还看到了那些仙女们！”</p>
+<p class = "firstLineIndent"> 李火旺冷笑，“呵呵，仙界？陪我说了半天话，你不看看你身后是什么？”</p>
+<p class = "firstLineIndent"> 三个脑袋同时扭头，他们就看到了一尊由臃肿肥肉形成的三头六臂的巨大观音站在他的眼前。</p>
+<p class = "firstLineIndent"> “碰！”臃肿腐烂的肥肉压了下来，却直接从丹阳子困在原地。</p>
+<p class = "firstLineIndent"> 半个身子埋在肥肉里的丹阳子扭过头来，用那极其恐怖的眼睛看向李火旺。</p>
+<p class = "firstLineIndent"> “放心，小问题罢了，只要不让这些姑子连着你的心，她们就看不到我，就是一群瞎子。再厉害又有啥用。”</p>
+<p class = "firstLineIndent"> “而你嘛，别怪为师说话难听，你要是听话呢那还是我徒弟，如果不听话，那你就是路边的野狗，我随时可以一脚踹死！在这些事情上，你什么都做不了。”</p>
+<p class = "firstLineIndent"> 听到这话，一股血直涌李火旺大脑，</p>
+<p class = "firstLineIndent"> 李火旺握住刀柄瞬间举起狠狠地插入自己的腹部，颤抖向左划动后，李火旺抬起那没有少了三个指甲盖的右手插入自己的腹中翻找起来。</p>
+<p class = "firstLineIndent"> “你在干什么？停下！”丹阳子的表情变得异常恐怖起来。</p>
+<p class = "firstLineIndent"> 他想要动手阻止，却发现自己被那帮尼姑给困住了。</p>
+<p class = "firstLineIndent"> “你不是说我什么都做不了吗？”双眼通红的李火旺对丹阳子大喊着。</p>
+<p class = "firstLineIndent"> 当摸到一个不断蠕动，好似暖水袋一样的东西时，李火用力扯断上面的粘连组织后，颤颤巍巍地从伤口处掏了出来。</p>
+<p class = "firstLineIndent"> “那这样呢！”李火旺强忍着因为剧痛而产生的颤抖，举起刀来狠狠地刺入自己手中的胃，大堆好似墨汁般的黑水从伤口处溅了出来。</p>
+<p class = "firstLineIndent"> 看到这一幕，丹阳子脸上瞬间变得极其的难看。</p>
+<p class = "firstLineIndent"> “你这个孽徒，你根本不知道你在做什么！你以为自己斗得过我？别做梦！你的下场早就已经注定！”</p>
+<p class = "firstLineIndent"> 李火旺咬着牙，狠狠地再次捅下，这一次他把整个胃彻底捅穿了。</p>
+<p class = "firstLineIndent"> “注定？我就便不信这个邪！！癞子头！！这事没玩！！”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百零九章 伤 </h2>
+<p class = "firstLineIndent"> “呲呲～”的声音不断响起，黑色的液体不断从李火旺的胃袋缺口处喷了出来。</p>
+<p class = "firstLineIndent"> 这毕竟是自己的胃，李火旺表情极其痛苦的踉跄倒地。</p>
+<p class = "firstLineIndent"> 可看到眼前的丹阳子那邪异的身体也开始变得不稳起来时，他的脸上露出一丝快意。</p>
+<p class = "firstLineIndent"> 只要能弄死丹阳子，自己受多少苦都行！</p>
+<p class = "firstLineIndent"> “白眼狼！要不是道爷出手，你还在癔想中沉沦！！”</p>
+<p class = "firstLineIndent"> 李火旺咬着牙，刀刃颤抖地用力向下压，把整个胃袋彻底劈开，露出里面劈成两半的黑太岁。</p>
+<p class = "firstLineIndent"> “我他妈要你出手了？就是因为你!!我会活得这般般痛苦！！”</p>
+<p class = "firstLineIndent"> “好！好的很！！”丹阳子三双眼中露出极致的杀意，这种杀意也同时感染了李火旺。</p>
+<p class = "firstLineIndent"> 在这一刻，李火旺心中再也没有别的情感，他现在唯一想做的就是杀了丹阳子！</p>
+<p class = "firstLineIndent"> 就在这压抑的气氛到达了最顶点的时候，大团的苍蝇从天而降，带着腐败跟肮脏彻底包裹住了两人。</p>
+<p class = "firstLineIndent"> 远处的静心六位师太，带着佛珠的双手重重的用力合十，跟着那巨大的佛像重新开始念起经来。</p>
+<p class = "firstLineIndent"> ”无苦集灭道，无智亦无得，以无所得故，菩提萨埵，依般若波罗蜜多故，?心无罣碍，故无有恐，远颠倒想，究竟涅盘，?三世诸佛，依般若波罗蜜多！”</p>
+<p class = "firstLineIndent"> 随着颂经声响起，她们身上的衰老肮脏跟肥胖都在以极快的速度消减。</p>
+<p class = "firstLineIndent"> 与之相对的，天空中开始出现了异变，在那裂开的天空之处，出现了一颗遮天蔽日的眼睛，一颗来至，无垢无净怒目罗汉的眼睛。</p>
+<p class = "firstLineIndent"> “喝！”一声怒喝穿出去数十里地去，整个空间为之一振，整个安慈庵所有不正常的一切都迅速分散，这同样包括丹阳子。</p>
+<p class = "firstLineIndent"> ----------------------</p>
+<p class = "firstLineIndent"> 迷迷糊糊中白灵淼清醒了过来，等她彻底回过神来之时后，发现自己居然正在趴在一大锅油腻腻的炒饭面前，双手抓住炒饭拼命向着自己嘴里塞。</p>
+<p class = "firstLineIndent"> “呕~！”吐掉口中的发腻的炒饭，白灵淼慌张的向着四周看去。</p>
+<p class = "firstLineIndent"> 张望一会后，她这才发现自己正常坐在了安慈庵的伙房内，四周全是吃饭的胖尼姑，咀嚼吞咽声不断钻入了她的耳朵。</p>
+<p class = "firstLineIndent"> 扭过头来，重新看向铁锅，她发现这锅饭不是给她一个人的，而是给他们一桌人的。</p>
+<p class = "firstLineIndent"> 狗娃，小满，宝禄，杨小孩，高智坚所有人都在这，他们跟着那些尼姑一样狼吞虎咽着。</p>
+<p class = "firstLineIndent"> 不过很快，他们就清醒了过来，慌张的看着四周的一切。</p>
+<p class = "firstLineIndent"> “这....这是怎么了？我们怎么会在这？”其他人很显然还没有反应过来到底怎么回事。</p>
+<p class = "firstLineIndent"> 白灵淼迅速找了一圈，发现其他人都在，可唯独少了李火旺。</p>
+<p class = "firstLineIndent"> “这到底咋回事啊？不是说给师兄驱邪吗？怎么忽然跑这来吃饭来了？连的菜都不放一个，这么腻怎么吃啊。”</p>
+<p class = "firstLineIndent"> 狗娃说完看向其他桌，发现其他尼姑们此刻根本懒得理会自己，疯狂地胡吃海塞，不过她们吃的不是炒饭，而是一些发霉的馒头。</p>
+<p class = "firstLineIndent"> 白灵淼脸上带着一丝焦急，走到一位胖尼姑的身后询问。“这位师父，请问可见我李师兄？”</p>
+<p class = "firstLineIndent"> “李师兄？那心素小子是吧？他在静心师太那，你去找她去吧。”</p>
+<p class = "firstLineIndent"> 那尼姑头也不回地回答到，一边说着手中还一边抢着，生怕抢慢了，吃少了。</p>
+<p class = "firstLineIndent"> 等这帮人再次闯过发霉的吃食沼泽，来到静心师太屋前的时候，</p>
+<p class = "firstLineIndent"> 就看到李火旺正在站在那里跟着一位模样非常怪异的女尼姑说话，那尼姑怪得很，眼眶中并没有眼睛，双眼整个向里面萎缩着。</p>
+<p class = "firstLineIndent"> 身形看起来十分的消瘦，可偏偏身上的皮却宽得很，下巴上的皮能垂到肚子，肚子上的皮能垂到地上。</p>
+<p class = "firstLineIndent"> 听到脚步声，李火旺转过身来，面带微笑的向着他们招手，示意他们过去。</p>
+<p class = "firstLineIndent"> 白灵淼心中顿感惊讶，这是他第一次见李师兄笑。</p>
+<p class = "firstLineIndent"> “你们来了？没吓到吧？安慈庵的师父们神通有些收不回，影响到了很正常。”李火旺对着其他人解释到。</p>
+<p class = "firstLineIndent"> 白灵淼刚一靠近，就被那骨瘦如柴的尼姑的容貌给惊艳到了，对方太漂亮了。</p>
+<p class = "firstLineIndent"> 哪怕对方模样古怪，哪怕她自己也是女人。</p>
+<p class = "firstLineIndent"> 白灵淼拉着李火旺稍远一点，小声地问道：“李师兄，这人是谁啊？”</p>
+<p class = "firstLineIndent"> “她是静心师太啊，怎么？不认识了吗?”</p>
+<p class = "firstLineIndent"> 李火旺的话音刚落，远处皮肉拖地的瞎眼少女对着其他人点了点头。</p>
+<p class = "firstLineIndent"> “她？！是静心？？是那个连走路都走不了的大胖子？”所有人顿被惊得睁大大了眼镜，这反差未免也太大了。</p>
+<p class = "firstLineIndent"> “安慈庵的功夫跟别的地方都不一样，大家都别问了，不过好在静心师太付出这么大，也是有效果的，我的麻烦没了。丹阳子不会出来了。”</p>
+<p class = "firstLineIndent"> 当听到李火旺的最后一句话，所有人纷纷眉开眼笑，纷纷向着李火旺祝贺着。</p>
+<p class = "firstLineIndent"> 简单交流几句后，微笑的李火旺举起双手按了按，把其他人询问细节的话语先压了下来。</p>
+<p class = "firstLineIndent"> “我在这边还有点事情要忙，估计还要呆上一段时间，你们先走，等忙完了，我会尽快赶过去的。”</p>
+<p class = "firstLineIndent"> “李师兄，什么事情要这么久？不如我们待下去帮你们吧？”听到要分开行动，白灵淼第一个表示不同意。</p>
+<p class = "firstLineIndent"> “别瞎闹了，修炼方面的事情你们帮不上忙，先走吧，最多十来天，我就赶上了。”</p>
+<p class = "firstLineIndent"> “再说了，你们不是要回家吗？赶紧走吧，都已经耽搁了这么长的时间了，再耽搁又要在外面过年了。”</p>
+<p class = "firstLineIndent"> “放心，我又不是不走了，放心，只要你们沿着地图上的画好的线路走下去，我指定能追上的。”</p>
+<p class = "firstLineIndent"> 在李火旺的一番劝说下，其他师兄妹们终于说动了，转身离开了安慈庵。</p>
+<p class = "firstLineIndent"> 随着他们的背影渐渐的消失，李火旺脸上的笑意也渐渐的冷了下来，逐渐被痛苦所替代。</p>
+<p class = "firstLineIndent"> 他解开自己的红色道袍，拉开自己的上衣，在他腹部有个一个硕大的伤口，密密麻麻的白色蛆虫在里面钻进钻出。</p>
+<p class = "firstLineIndent"> “在安慈庵内，这点伤不日就会痊愈，你该担忧的是另外的，你明白我说什么。”</p>
+<p class = "firstLineIndent"> 
+<h2> 第一百一十章 疯子 </h2>
+<p class = "firstLineIndent"> 李火旺轻捂着自己的伤，缓慢的挪动着，挪到静心那屋子里。靠着墙根迟缓地坐了下来。</p>
+<p class = "firstLineIndent"> “连你们都对付不了丹阳子吗？”李火旺开口问道。</p>
+<p class = "firstLineIndent"> “当然对付的了，只要把你杀了就行。”</p>
+<p class = "firstLineIndent"> 静心的话逗笑了李火旺，“没想到师太还这么会讲笑话。”</p>
+<p class = "firstLineIndent"> “我没跟你讲笑话，丹阳子的根现在彻底扎在了你身上，你现在就是他未完成的三尸之一。”</p>
+<p class = "firstLineIndent"> “可是你又要活着，又要剥离你师父，这确实是个精细活，毕竟你们连着太深了，甚至可以说，你现在都算得上一小半个丹阳子，这也是为何我没有把那黑太岁从你胃中剥离，因为它现在不单单是丹阳子同样也是你。”</p>
+<p class = "firstLineIndent"> 李火旺请安慈庵尼姑清除丹阳子，并没有成功，虽然她们跟李火旺配合，重伤了丹阳子，并且暂时驱逐了他。</p>
+<p class = "firstLineIndent"> 可这仅仅只是权宜之计，麻烦还在，并没有解决。</p>
+<p class = "firstLineIndent"> 李火旺躲在黑暗中背靠着冰冷的墙壁，麻木的望着外面的庙宇顶部的带着青苔的层层瓦砾。</p>
+<p class = "firstLineIndent"> “这不能怪我们，我也不知道你师父居然还有一半没死干净，我们安慈庵对于空我界方面比较擅长，可涉及到皮肉，正德寺那些不受戒律的秃驴们更在行。”</p>
+<p class = "firstLineIndent"> “师太，我不怪你，我只是想问还有多久会被彻底转变成丹阳子？”</p>
+<p class = "firstLineIndent"> “按照现在算的话，还有两个月。”静心师太说着走到暗中，来到一个竹摇篮面前轻轻地摇了起来，看着摇篮里面老人，她的脸上露出和蔼的笑容。</p>
+<p class = "firstLineIndent"> “哦....”</p>
+<p class = "firstLineIndent"> “所以你打算怎么做？”</p>
+<p class = "firstLineIndent"> “我需要先等等，等个答案，师太，我可否向你借用一下东西？”</p>
+<p class = "firstLineIndent"> 一时间昏暗的房间内安静了下来，安静了好久。</p>
+<p class = "firstLineIndent"> 李火旺深吸一口气，表情微微有些挣扎起来，随后猛地睁开了眼睛，之前四周的黑暗已经被白色所替代，他再次来到了医院。</p>
+<p class = "firstLineIndent"> 仔细辨别一番后，李火旺发现这并不是精神病院，而是普通的医院，在幻觉里，自己的伤看起来还没好。</p>
+<p class = "firstLineIndent"> 而自己的母亲此时的孙晓琴就坐在一个小板凳上趴在床上，睡的很沉。</p>
+<p class = "firstLineIndent"> 在李火旺的映像中，自己母亲一直是非常爱干净的人，可是现在的她头发很油，看起来很长时间没洗。</p>
+<p class = "firstLineIndent"> 李火旺想伸手过去，就发现自己的四肢都被牢牢地绑住了，他只能轻声向着那边呼唤着。“妈，是我，火旺。”</p>
+<p class = "firstLineIndent"> 当孙晓琴睁开眼睛发现自己儿子正在盯着自己看，并且表情非常正常地喊着自己的名字的时候，她激动的扑了上去，死死的搂住了他。“儿子，你终于清醒了。”</p>
+<p class = "firstLineIndent"> 安静等了半天，等到对方的情绪没这么复杂之后，李火旺再次的开口问道：“妈，我爸呢？”</p>
+<p class = "firstLineIndent"> “你爸赚钱去了，咱们家现在很缺钱，而且还欠了不少外债。”</p>
+<p class = "firstLineIndent"> 刚说完这话，孙晓琴心中顿时咯噔一下，连忙捧着李火旺的脸心疼的解释道：“火旺，妈不怪你，我知道，这都不是你想这么干的，这都是那病，那杀千刀的疯病！这么多人为什么偏偏就落到我儿子头上。”</p>
+<p class = "firstLineIndent"> “妈，你能帮我解开一只手吗？我松松手。”</p>
+<p class = "firstLineIndent"> 看眼前儿子说话如此正常的样子，孙晓琴犹豫片刻后，脸上重新堆出笑容。</p>
+<p class = "firstLineIndent"> “好，松松也好，天天绑着，身体都要绑坏了。”</p>
+<p class = "firstLineIndent"> 恢复自己右手自由的李火旺对着孙晓琴笑了笑，“谢谢妈。”</p>
+<p class = "firstLineIndent"> 说完，他把手伸进自己的病服内，从里面掏出一串沉甸甸的金色佛珠来。</p>
+<p class = "firstLineIndent"> 在孙晓琴的惊讶的眼神中，李火旺把这佛珠放在了她的手里。</p>
+<p class = "firstLineIndent"> “妈，拿去换些钱，把家里的债给还了，可以还有剩的话，把咱们家的房子再买回来吧。我还是挺喜欢这个小区的。”</p>
+<p class = "firstLineIndent"> 孙晓琴捧着黄金佛珠，显得有些六神无主，“这.....这到底怎么回事啊？儿子，这金子哪来的？你趁我睡着的时候出去拿的？”</p>
+<p class = "firstLineIndent"> 李火旺轻轻地摇了摇头，他伸手把自己脖子上的那块玉佩摘了下来，同样放在孙晓琴的手中。“妈，这个也拿去吧，应该也能换点钱，哪怕我知道你是幻觉，我也不想看到你在我眼前受苦。”</p>
+<p class = "firstLineIndent"> 听到这话，孙晓琴顾不上手中的金子跟玉佩，双手抓住李火旺的肩膀不断的摇着，泪水止不住地往下流。</p>
+<p class = "firstLineIndent"> “儿子，你看清楚啊！我是你妈呀，我不是幻觉啊，我真的不是幻觉啊。”</p>
+<p class = "firstLineIndent"> 李火旺把手伸过去，轻轻地擦了擦她脸上的眼泪，脸上露出一丝微笑。“嗯，对，妈你是真的，你不是幻觉，呵呵，我刚刚逗你玩的。”</p>
+<p class = "firstLineIndent"> 听到李火旺说这话，孙晓琴激动的又蹦又跳，双手合十，念叨着菩萨保佑。</p>
+<p class = "firstLineIndent"> 就在她激动地拿出手机，准备让李火旺跟工作的爸爸视频的时候，李火旺伸出右手在她衣服上扣了扣，扣下来一颗纽扣塞进自己的怀里。</p>
+<p class = "firstLineIndent"> 也许是李火旺这次主动转换原因，这一次回归非常的快。</p>
+<p class = "firstLineIndent"> 就在李火旺看到视频里的头发斑白的父亲，还没有说上半句话，四周的一切再次切换。重新回到昏暗的屋内。</p>
+<p class = "firstLineIndent"> 手中拿着金色佛珠的静心师太，站在那里安静地看着自己。</p>
+<p class = "firstLineIndent"> 李火旺表情有些犹豫，他缓缓地抬起右手，呼吸越发地急促起来，此刻他脑子很乱。</p>
+<p class = "firstLineIndent"> 一咬牙，李火旺向着自己的胸口一摸，手顿时僵住了，那里结果什么都没有摸到。</p>
+<p class = "firstLineIndent"> 面对这早已经是意料之中的结局，李火旺笑了。</p>
+<p class = "firstLineIndent"> “呵呵，我早该想到的，那边怎么可能是真的，我居然我听信幻觉里面的人说的话，我真的是疯了。”</p>
+<p class = "firstLineIndent"> 笑着笑着李火旺又停了下来，因为他发现这似乎并不是什么好消息，既然那边是假的，他现在连幻想中最后一丝可能的退路都没了。</p>
+<p class = "firstLineIndent"> 李火旺深吸一口气，对着空中轻柔的说道：“妈，没吓着你吧？把我的手绑起来吧，免得碰到你。”</p>
+<p class = "firstLineIndent"> 一直在默默看着一切的静心师太忽然说话了，“既然那边是假的，那你在对谁喊？”</p>
+<p class = "firstLineIndent"> 李火旺抬头看着黑暗中的尼姑，“对我自己喊不行吗亲？”</p>
+<p class = "firstLineIndent"> “你打算接下来怎么做？”</p>
+<p class = "firstLineIndent"> 李火旺的眼中瞬间被满满的杀意覆盖，“我要丹阳子死！”</p>
+
+
+
+<a href="090.html" style="float:left;margin-left:2em;">上一章</a> 
+<a href="index.html" style="float:center;margin-left:1em;">回目录</a> 
+<a href="110.html" style="float:right;margin-right:2em;">下一章</a> 
+
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<script>
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById("_userInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("_mainUL");
+  li = ul.getElementsByTagName("li");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+	if (li[i].id == "_primaryli") {
+	//console.log(li.length);
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+	console.log(txtValue);
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+	}
+  }
+}
+/************* Filter list script ******************/
+/************* font size change script *************/
+var originalFontSize; 
+function getOriginalFontSize(){
+	originalFontSize = $('.container').css('font-size');
+}
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px')
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', originalFontSize)
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+/************* font size change script *************/
+</script>
+</body>
+</html>
