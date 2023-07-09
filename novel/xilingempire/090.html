@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel"><p>
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</p></div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h2>第九十一章 捣乱的人</h2>	
+	<p class = "firstLineIndent"> 在魔法饰品店败完家之后，我们再次踏上逛街的苦难之旅。</p>
+	<p class = "firstLineIndent"> 当然，仅仅是针对我和珊多拉的苦难之旅……</p>
+	<p class = "firstLineIndent"> 不过跟刚才一点都不想走的样子比起来，现在珊多拉心情明显好了很多，也略微露出了对逛街的兴趣——难道，现在痛苦着的就只有我一个人么？</p>
+	<p class = "firstLineIndent"> 更糟糕的是，难道珊多拉也即将产生这种可怕的爱好不成？</p>
+	<p class = "firstLineIndent"> 不知怎的，我脑海中突然浮现出了未来的某一天陪着身边的希灵女帝逛外星军火市场的场景，同时，潘多拉疯狂采购军火的身影也在这个恐怖的幻象中不断浮现……</p>
+	<p class = "firstLineIndent"> “珊多拉，怎么不听你抱怨了？”</p>
+	<p class = "firstLineIndent"> 我试图唤回曾经坚定地与我站在同一战线上的盟友。</p>
+	<p class = "firstLineIndent"> “我发现逛街偶尔也会有一些让人惊喜的收获呢。”</p>
+	<p class = "firstLineIndent"> 珊多拉对我露出了招牌式的灿烂微笑，脸颊旁的水晶耳坠随着微微摆动，显示出主人现在开心至极的心情。</p>
+	<p class = "firstLineIndent"> 难道，这个坑是我自己挖的？</p>
+	<p class = "firstLineIndent"> “我发现，除了战争，原来生活中真的可以有很多别的乐趣——原来我还以为自己永远不可能过上普通人的生活呢。”</p>
+	<p class = "firstLineIndent"> 珊多拉的语气中带着三分落寞和七分快乐，一时间让我产生很多感慨。</p>
+	<p class = "firstLineIndent"> 珊多拉并不是生来就是一个只知道战争的人，只是她所生活的国度和她的位置让她不得不成为一个冷酷的征服者，在几乎无止尽的战争中，她几乎已经忘掉了自己其实是一个女孩子，直到现在，在我身边，她才能够解放出自己的真实一面，恐怕，平常在外人面前那个不苟言笑高傲无情的女皇帝，只是珊多拉的伪装吧？</p>
+	<p class = "firstLineIndent"> “现在帝国成了这个样子，估计就是你想发动大规模的战争也不可能了，最起码这段时间，你就老老实实地在我身边呆着吧——虽然现在看上去，我身边也不是那么平静的。”</p>
+	<p class = "firstLineIndent"> 看来希灵帝国突然莫名其妙地分崩离析也不是一点好处都没有啊——这个想法要是让潘多拉知道了小家伙肯定又要别扭好几天。</p>
+	<p class = "firstLineIndent"> “已经比从前好多了，就当是平常的余兴活动好了，”珊多拉笑着说道，对我而言已经是不可想象的异界冒险在她眼中恐怕只是一个用来放松神经的游戏而已，“说起来，这对耳坠还是我第一件首饰呢，如果是以前的我，恐怕会立刻将这种无用的东西销毁吧——陈俊，你看我戴这个好看么？”</p>
+	<p class = "firstLineIndent"> 珊多拉抚摸着自己的耳垂，微笑着问我。</p>
+	<p class = "firstLineIndent"> “当然，很漂亮。”</p>
+	<p class = "firstLineIndent"> 我由衷地称赞，珊多拉本来就是一个相当美丽的女孩，只是她平常永不停止的心灵压迫力场和拒人于千里之外的态度让外人意识不到这一点而已，不过作为少数有幸免于这种待遇的人之一，我对珊多拉真实的一面可谓是相当了解。</p>
+	<p class = "firstLineIndent"> 美丽，高贵，偶尔又会以令人不可思议的方式转变成为嘻嘻哈哈的邻家小妹，这才是真正的珊多拉。</p>
+	<p class = "firstLineIndent"> “阿俊，你们在聊什么呢？看上去很开心啊……”</p>
+	<p class = "firstLineIndent"> 浅浅的声音突然在我耳边响起，听上去似乎很平静……</p>
+	<p class = "firstLineIndent"> 傻子才会相信这是平静的表现！</p>
+	<p class = "firstLineIndent"> 我背对着浅浅以惊人的效率迅速让自己的五官在脸上运动了一番，调整出毫无破绽的表情，然后在珊多拉憋笑的表情下转过身去，严肃地说道：“其实，刚才我正在和珊多拉讨论一些涉及到战争与和平的重要话题……”</p>
+	<p class = "firstLineIndent"> “你就吹吧！”浅浅毫不客气地给了我一个白眼，然后将视线投向了珊多拉。</p>
+	<p class = "firstLineIndent"> 一向只能让别人感到恐惧的珊多拉竟然在浅浅看似无害的注视下露出了不安的神情。</p>
+	<p class = "firstLineIndent"> 但是浅浅并没有说什么，只是静静地看了珊多拉一会，然后露出了一个无奈的微笑，上来抱住了我的胳膊。</p>
+	<p class = "firstLineIndent"> 珊多拉露出了一脸茫然的表情。</p>
+	<p class = "firstLineIndent"> 不得不说，即使是在统治上相当精明的珊多拉，有时候也会反应迟钝的。</p>
+	<p class = "firstLineIndent"> “你真的没有生气？”</p>
+	<p class = "firstLineIndent"> 我在浅浅耳边小声说道。</p>
+	<p class = "firstLineIndent"> “或许我应该生气——假如我们三个人都是普通人的话，”浅浅有些无奈的在我耳边说道，“不过你也要给我收敛点，这一路上你好像净和珊多拉嘀嘀咕咕了！”</p>
+	<p class = "firstLineIndent"> 我只能认错地点头，然后拦过浅浅的肩头。</p>
+	<p class = "firstLineIndent"> “喂，陈俊！”</p>
+	<p class = "firstLineIndent"> 林雪的声音突然从前面传来，我抬起头，正看到她向我挥了挥手，然后一指旁边。</p>
+	<p class = "firstLineIndent"> “咱们去那玩玩吧！”</p>
+	<p class = "firstLineIndent"> 我顺着林雪手指的方向看过去，发现原来那是一座看上去很华丽的高大建筑。</p>
+	<p class = "firstLineIndent"> “赌场？”</p>
+	<p class = "firstLineIndent"> 我回忆了半天，才终于记起来那座建筑门口的几个闪光大字是什么意思。</p>
+	<p class = "firstLineIndent"> 虽然我对赌博一向是敬而远之，但是看林雪的样子明显是玩心高涨，再一想反正只是娱乐性质的异界游项目，于是我便点点头，带领大家进入了这间豪华的赌场。</p>
+	<p class = "firstLineIndent"> 在这个世界，赌博虽然并不被提倡，却也不是被严厉禁止的东西，毕竟在这种混乱而动荡的年代，人们难得能有一两项放松的娱乐活动，即使是奉行圣光之道的奥多帝国，也会有这样大规模的赌场公然存在——当然，那些虔诚的光明神教神职人员是不可能参与这种活动的，赌场里面大多是那些闲钱没处花而且说不定哪天就会没命花的冒险者们。</p>
+	<p class = "firstLineIndent"> 虽然是和地球文化完全不同的异世界，这里的赌博方式却和地球没什么太大的区别，使用的赌具也和地球上的色子和纸牌很类似——当然，其质地和外形还是有很大差别的。</p>
+	<p class = "firstLineIndent"> 在一个赌纸牌的赌台上，林雪正兴奋地将赢来的筹码收拢起来，在她面前已经堆了小山一样的各种筹码，这样的战果足以让任何一个老赌棍惭愧到从此看破红尘遁入空门了。</p>
+	<p class = "firstLineIndent"> 由于这个世界有魔法的存在，赌场里自然设置了可以用来监视魔法作弊的装置，不过很明显，异能这种完全没有魔法元素流动的特殊能力是不可能归类为魔法的……</p>
+	<p class = "firstLineIndent"> 看着林雪面前那几个刚刚输掉了最后一个筹码正一脸沮丧如丧考妣的家伙，我不由得感到一丝同情。</p>
+	<p class = "firstLineIndent"> 和一个先知赌钱，你们还有赢的可能吗？</p>
+	<p class = "firstLineIndent"> 还有，林雪你这家伙真的好意思把那些钱当成自己赌赢的收获吗？你这连规则都没记清楚的野丫头！</p>
+	<p class = "firstLineIndent"> 看着林雪大把大把地赢钱，浅浅突然也来了兴致，她一把将已经被大堆数字冲昏了头脑只知道呵呵傻笑的林雪推开，然后在赌桌边上坐下。</p>
+	<p class = "firstLineIndent"> “换人换人！”浅浅嘻嘻哈哈地说着。</p>
+	<p class = "firstLineIndent"> 荷官开始洗牌。</p>
+	<p class = "firstLineIndent"> 然后，时间停止了……</p>
+	<p class = "firstLineIndent"> 在突然安静下来的赌场中，我们几个无语地看着浅浅认真地将荷官手中的牌一张张调换位置，大叹此种行为的无耻……</p>
+	<p class = "firstLineIndent"> 另外，性格转换之后的冷酷版浅浅居然会做这种事，真是出乎意料地充满了吐槽点呢。</p>
+	<p class = "firstLineIndent"> 等又一批倒霉赌棍输掉了除内裤之外的所有财物之后，姐姐终于在林雪的鼓动下上场了。</p>
+	<p class = "firstLineIndent"> 现在几乎半个赌场的人都已经集中到了我们这一桌上，所有人都得知了这里突然出现美少女赌神的事情。</p>
+	<p class = "firstLineIndent"> 结果是毫无悬念的，试问，有谁能在头晕眼花手脚冰凉肠胃绞痛外加每次固定一手烂牌的情况下赢得了一个阴险狡猾手段毒辣无所不用其极的女魔头呢？</p>
+	<p class = "firstLineIndent"> “总觉得……”正在收拢筹码的姐姐突然停下手中的动作，然后微微皱着眉头，自言自语道，“似乎有人正在背后说我的坏话呢……”</p>
+	<p class = "firstLineIndent"> 令人惊叹的女人的直觉！</p>
+	<p class = "firstLineIndent"> 姐姐赌台之后，珊多拉终于按捺不住上场了。</p>
+	<p class = "firstLineIndent"> “咳咳……珊多拉，每次都让对手直接投牌认输是不是不太好啊……”</p>
+	<p class = "firstLineIndent"> 对方第三次主动认输之后，我实在憋不住通过精神连接对珊多拉说道。</p>
+	<p class = "firstLineIndent"> 总觉得，我们好像太欺负人了点。</p>
+	<p class = "firstLineIndent"> 这时，围拢在我们周围的看客们突然骚动了起来，不知谁喊了一句：“托斯卡少爷来了！”然后周围的人群包括刚刚那几个输掉了全部家当，一脸不甘甚至脸带阴狠的赌徒都一下子散开来。</p>
+	<p class = "firstLineIndent"> 一个衣着华贵、相貌还算英俊但奶油气十足的青年人在十多名护卫簇拥下大踏步走了进来。</p>
+	<p class = "firstLineIndent"> “是什么人在这里捣乱？”</p>
+	<p class = "firstLineIndent"> 青年人一进来便高声喝道，然后在身边某个下人的指点下将视线投向我们这边。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十二章 决斗？哈……</h2>	
+	<p class = "firstLineIndent"> 我用相当无语的表情看着突然出现的这个咄咄逼人服装华丽趾高气扬的年轻人，再一看他身边环绕的十几个散发着强大能量波动装备精良的护卫，顿时感到一阵猛烈的龙套气息扑面而来，眼前出现的可不就是传说中在任何情况下都有可能出现的、专门用来衬托主人公神勇无敌顺便送上丰富经验的万年龙套背景炮灰垫脚石——贵公子某某某吗？</p>
+	<p class = "firstLineIndent"> 此刻，在我的幻想空间中，面前被人称为托斯卡少爷的青年人头顶上已经顶上了金闪闪的三个巨大字母：N－P－C！</p>
+	<p class = "firstLineIndent"> NPC先生……哦，不对，是托斯卡少爷的视线在我们这个方向上略微一扫，毫不犹豫地忽略了我，然后停在几个女孩子身上，脸上露出了惊艳的神色。</p>
+	<p class = "firstLineIndent"> 托斯卡自认为已经见过了天下各种最美的女人，已经不会再有什么人能让他产生这种惊艳的感觉，但是现在托斯卡突然觉得，自己的见识真是太短浅了。</p>
+	<p class = "firstLineIndent"> 眼前的四个各具风情的少女，深深吸引了他的注意力。</p>
+	<p class = "firstLineIndent"> 俏皮可爱的邻家小妹，温柔可亲的漂亮姐姐，顽皮又带着点小坏的天生冤家，还有最引人注目的，拥有一头梦幻般金发、高贵如同女王一般的冷艳少女。</p>
+	<p class = "firstLineIndent"> 托斯卡觉得自己今天真是来对了。</p>
+	<p class = "firstLineIndent"> 如果我会读心术的话，此刻一定泪流满面地感慨上天，究竟什么级别的色狼才能练就这样一双神奇到近乎犯规的火眼金睛，竟然能够在一眼之间从浅浅她们十分微小的举动上看出她们几个的性格和气质！</p>
+	<p class = "firstLineIndent"> 这种强悍的洞察之眼，恐怕已经可以称得上神级能力了吧？恐怕就是林雪的第七感都休想与之相提并论吧？</p>
+	<p class = "firstLineIndent"> 愣愣地看来半晌，托斯卡才终于想起今天自己来这里的目的，于是再次居高临下地问了一句，只是这次他所用的语气却不再是那种仿佛地痞流氓威胁弱者时候的恶狠狠语调，而是带着上位者的威严以及一听就是装模作样的正义感，仿佛他就是一个代表着城市秩序以及法律尊严的骑士，前来惩罚某个利用卑鄙手段干扰商家正常经营活动的老千似的。</p>
+	<p class = "firstLineIndent"> 很明显，这家伙就如同一个积极开平的老孔雀一样，正在竭力向几个美女展示自己绅士和正直的一面。</p>
+	<p class = "firstLineIndent"> “是谁在这里捣乱？刚才我收到报告，有人在这里利用作弊手段非法敛财——”</p>
+	<p class = "firstLineIndent"> 托斯卡继续义正言辞地说着，直到他的视线终于从几个女孩子脸上移开、不小心看到了堆在她们面前的大堆筹码为止。</p>
+	<p class = "firstLineIndent"> 顿时，这位龙套背景反派npc的脸上表情精彩起来。</p>
+	<p class = "firstLineIndent"> 他怎么也没有想到，原来传说中利用出老千这样恶劣的手段大肆敛财的捣乱分子竟然是四个天使般的美少女，此刻他真的很想将自己那个输光了钱财来自己面前哭诉的混账手下一棍子打死，那个混蛋，竟然连这么重要的事情都没有告诉自己！</p>
+	<p class = "firstLineIndent"> 他似乎忘记了，当时那个手下是有些话还要告诉自己的，可惜自己当时急于来这里寻求欺负弱者的乐趣，根本就没有给对方将话说完的机会。</p>
+	<p class = "firstLineIndent"> 我看到对面的年轻人说到一半，突然面带尴尬地停在那里，心中早已经知道这是怎么回事，于是也不开口，带着看好戏地心态等着看这个家伙怎么收场。</p>
+	<p class = "firstLineIndent"> 正找台阶下的托斯卡视线一扫，终于在四位少女身后发现了一个从一开始就被自己忽略掉的不起眼的年轻人，看样子那个年轻人是和这四个少女一起的？</p>
+	<p class = "firstLineIndent"> 一个土里土气的乡下小子而已。</p>
+	<p class = "firstLineIndent"> 托斯卡第一时间将对方定位在背景的位置，他才不相信对方会和那几个天使一样的小姐有什么关系，顶多也就是对方的随从之类的，就是不知道是哪一个的随从呢？难道是那位金发少女的仆人？</p>
+	<p class = "firstLineIndent"> 我丝毫不知道自己已经被眼前的npc当成了背景角色，只是突然有种预感，对方即将作出某种愚蠢的举动了。</p>
+	<p class = "firstLineIndent"> 托斯卡大踏步地走到了我的跟前，用居高临下的态度上上下下扫视了我几眼，然后将手中的马鞭搭在我的肩膀上，故作姿态地说道：“看来是你在这里捣乱？难道你心中根本没有法律与秩序的概念吗？！”</p>
+	<p class = "firstLineIndent"> 托斯卡突然觉得，自己真是太聪明了！</p>
+	<p class = "firstLineIndent"> 面前的乡下小子肯定不是什么大不了的人物，顶多是一个无足轻重的随从，将一切责任推到他身上是最明智的选择，那几位可爱的小姐肯定不会有闲情逸致为他辩护什么，而且这样还成功地摆脱了几位小姐和自己的尴尬，多少也能挽回一些刚才的过错吧？</p>
+	<p class = "firstLineIndent"> 突然被莫名其妙地安置了一个扰乱社会治安的罪名让我愣了一下，这家伙不会是有什么精神问题吧？</p>
+	<p class = "firstLineIndent"> 咳咳，虽然如果他晚来一会的话，我肯定也会手痒赌上一把的……</p>
+	<p class = "firstLineIndent"> 虽然能力不如浅浅他们那样适合，不过以我的精神力强度，稍微干涉一下对方的思想还是可以办到的。</p>
+	<p class = "firstLineIndent"> 恩，果然，跑题了。</p>
+	<p class = "firstLineIndent"> 浅浅是最看不惯有人对我无礼的，她第一个便站了出来，生气地对托斯卡说道：“你这人眼睛怎么长的？！我男朋友根本就没有碰过这些东西……”</p>
+	<p class = "firstLineIndent"> 浅浅话说了一半，我只感到她身上的气质陡然一转，变成了冷酷阴森的语调说道：“……干脆让你短暂而脆弱的生命溺毙在漫长的时间中吧！”</p>
+	<p class = "firstLineIndent"> 真是比珊多拉还要令人无语的性格转变呢。</p>
+	<p class = "firstLineIndent"> 姐姐按着浅浅的肩膀，让她平静下来，然后皱着眉头对托斯卡说道：“这位先生，我想这是很明显的，不论是否有人作弊，刚刚在这里玩的是我们几个才对，还是说……或许，真的让你失去视觉也是一个不错的选择呢……呵呵……”</p>
+	<p class = "firstLineIndent"> 黑化了！果然黑化了！</p>
+	<p class = "firstLineIndent"> 这一刻，我内心内牛满面。</p>
+	<p class = "firstLineIndent"> 林雪突然发现，现在真是捣乱的最佳时机，生命重在搅合是永恒不变的真理，于是她上来一把拉住我的胳膊，用不知什么时候练就的可爱声线气呼呼地对托斯卡说道：“哥哥是个笨蛋，所以哥哥绝对不会出老千的！你冤枉好人！”</p>
+	<p class = "firstLineIndent"> 上帝啊，你劈死我，你劈死我吧！！</p>
+	<p class = "firstLineIndent"> 浅浅这死丫头竟然用这么微妙的方式对我进行不可抵抗的攻击啊！！！</p>
+	<p class = "firstLineIndent"> 托斯卡很明显已经被眼前的变化弄蒙了，根本反应不过来，而珊多拉这时候又恰到好处地加上了最后一根稻草。</p>
+	<p class = "firstLineIndent"> 我们高贵的女王殿下露出得体的微笑，一边优雅而温柔地挽住我的手臂，一边用礼貌但威严地语调对面前已经有些短路的男子说道：“我不喜欢暴力，所以你最好现在就向我的丈夫道歉！”</p>
+	<p class = "firstLineIndent"> ……上帝同学，很抱歉让你白跑一趟了，把我劈死的重任就交给浅浅好了。</p>
+	<p class = "firstLineIndent"> 浅浅杀人的目光在珊多拉和我之间来回扫了数遍，不过最终却落在了对面石化中的托斯卡身上。</p>
+	<p class = "firstLineIndent"> 莫名其妙地仇恨转移现象啊。</p>
+	<p class = "firstLineIndent"> 不过转移到这家伙身上总比留在自己身上要好的多了，黑暗化的浅浅带给我的压力可一点都不比被深渊盯着要小……</p>
+	<p class = "firstLineIndent"> 托斯卡现在觉得整个世界都有些不真实，原以为面前的土包子是最适合欺负的一个，没想到如今看来竟然成了最欺负不得的家伙，自己刚才的一席话很明显已经将四个美女彻底得罪了。</p>
+	<p class = "firstLineIndent"> 而且，想到刚才四个美女对那个土包子的称呼，他就在震惊之余又愤愤不平。</p>
+	<p class = "firstLineIndent"> 哥哥、弟弟倒也算了，竟然还有男友？那个一脸穷酸相呆呆傻傻的家伙凭什么和那么一个美丽可爱的天使在一起？</p>
+	<p class = "firstLineIndent"> 更让人难以置信的，另外一名气质高贵的金发少女竟然是那个家伙的妻子！</p>
+	<p class = "firstLineIndent"> 托斯卡突然觉得很好笑。</p>
+	<p class = "firstLineIndent"> 自己竟然在和一个普普通通的平民小子争风吃醋？</p>
+	<p class = "firstLineIndent"> 在这个城市里往来的贵族和其他重要人物托斯卡都了如指掌，即使是偶尔外来的要人他也能第一时间掌握对方的资料，这当然是为了让自己的前途更加宽阔一些，现在更是让自己能够确信，面前的土气男子根本就是一个低贱的平民而已。</p>
+	<p class = "firstLineIndent"> 那四个气质各异的美少女虽然出众，但也肯定不是什么名门出身，或许眼前高贵的金发少女有些贵族血统，但从她那普通的穿着（这个世界的贵族服饰实在复杂的可以，所以珊多拉出门的时候还是穿着她最喜欢的那套天蓝色连衣裙，在异界人的眼中，这样的装扮虽然漂亮，但绝对称不上什么华贵）来看，这大半是某个没落贵族之后，对付她的话，托斯卡觉得成功几率反而比其他人更高！</p>
+	<p class = "firstLineIndent"> 所以，他根本就不用担心什么，凭借自己的地位和财富，只要一点小小的手段，自然能够得到美人垂青，至于这个穷小子，随便怎么样都能干掉。</p>
+	<p class = "firstLineIndent"> “我要和你决斗。”</p>
+	<p class = "firstLineIndent"> 托斯卡高昂着头说道，仿佛他正在对面前的人施与什么样的恩惠似的。</p>
+	<p class = "firstLineIndent"> “啊？”</p>
+	<p class = "firstLineIndent"> 我愣了一下，这是什么发展？</p>
+	<p class = "firstLineIndent"> 对方却把我的疑问当成了懦弱的表现，不屑地说道：“既然真相难以明了，只有以我手中的剑来代表正义，还是说，其实你已经怕了？放心，身为一个正直的骑士，我是不会伤害你的性命的。”</p>
+	<p class = "firstLineIndent"> 只是会让你生不如死罢了，托斯卡在心中偷偷补充道。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十三章 悲剧的托斯卡</h2>	
+	<p class = "firstLineIndent"> 究竟是面前的龙套先生疯了还是我出现了幻听？这算什么乱七八糟毫无道理的理由啊？</p>
+	<p class = "firstLineIndent"> 可是看到周围的人没有一个露出质疑的神色，甚至还有几个不明真相的妇女露出了一脸被托斯卡装模作样的表情迷倒的花痴神色，我只能无语地感叹，异界的风土人情果然不是我等正常人可以理解的，居然连这么扯淡的决斗都可以名正言顺地提出来，也或许看客们根本不在乎决斗是否有意义，决斗双方究竟谁对谁错，他们想看到的只是热闹而已，在这个动荡而混乱的年代，人们已经没有多少正常而且适合的娱乐项目了。</p>
+	<p class = "firstLineIndent"> 托斯卡现在心中的如意算盘打得山响，他坚信面前的乡下小子不敢接受自己的挑战，到时候自己就可以好好地羞辱一下他，在这个一切以力量为尊的世界里，懦夫永远不可能获得别人的尊重，他的妻子和未婚妻肯定会抛弃这个可怜的家伙，转而投入更加有魅力的自己的怀抱中，假如对方不知天高地厚地接受了自己的挑战，那更好，平民是不可能获得系统的战斗技巧的，而自己却是一个高阶的战士，在决斗场上自己就可以尽情地蹂躏、羞辱对方，只要在最后再摆出一副高手的样子放过那个半死不活的土包子，眼前这几位美女自然会知道谁才是更可靠的一个。</p>
+	<p class = "firstLineIndent"> 对托斯卡脑袋里飞快运转的以异世界价值观为基础的计算公式我自然不可能理解，但是长年在各种流小说中穿梭自如的我早已经将他大致的想法猜到了，虽然感到很难以赞同，不过想到这个世界的现状，托斯卡的举动多少也算有些合理之处。</p>
+	<p class = "firstLineIndent"> 可惜的是，且不说浅浅她们绝对不会因为这点无聊的理由而对托斯卡产生一丁点的好感，就是我也绝对不会如同托斯卡的预料那样容易搞定。</p>
+	<p class = "firstLineIndent"> 看着托斯卡那副趾高气扬的表情，我不由感到一阵不爽，于是升起了好好折腾一下这家伙的想法。</p>
+	<p class = "firstLineIndent"> “决斗？好啊！”</p>
+	<p class = "firstLineIndent"> 我干脆利落地回答道，就好像刚才对方提出的不是一场性命攸关的决斗，而是提议去某间酒吧消遣一下午似的。</p>
+	<p class = "firstLineIndent"> 托斯卡很明显没想到我竟然真的敢应战，而且还答应的这么轻松，但是他只是愣了一下，便将我的反应当成了硬充好汉的表现，于是露出了一个轻松的笑容，眼底的狠色一闪而过，然后大度地说道：“你的勇敢值得称赞，虽然我是一名有着良好教养的骑士，而你却是一个利用小手段坑骗他人的赌棍，不过我还是愿意因你的勇敢而将选择决斗地点和时间的权力让给你。”</p>
+	<p class = "firstLineIndent"> 喵的，这家伙如果扔到地球上一准是每年去奥斯卡捧小金人的主！听他那铿锵有力的话语，看他那正气凌然的表情，就连我自己都不得不说，丫太能装了！</p>
+	<p class = "firstLineIndent"> 可惜的是，手下有一个成天顶着刚正骑士脸的盗版贩子西卡罗，已经让我养成了永远不以貌取人的良好习惯，托斯卡这张装出来的正义面孔跟西卡罗的骑士脸比起来根本就是小怪兽和奥特曼的区别……</p>
+	<p class = "firstLineIndent"> “那就明天傍晚吧，”我装模作样地思考了一下，似乎根本就不明白即将发生的决斗是多么危险的一件事情，“地点在城外二十里的小平原上。”</p>
+	<p class = "firstLineIndent"> 托斯卡听到我的回答愣了一下，他已经知道，明天中午在城外的小平原上将会有希灵使徒和皇家骑士团进行实力交流的事情，不过即使是以他的地位，也很难得到更多的消息，希灵使徒的到访已经被列为了最高机密，托斯卡也是从自己的父亲那里“偶然”听到的相关消息。</p>
+	<p class = "firstLineIndent"> 应该只是一批有些实力的异邦人吧，虽然这次教宗和皇帝陛下如此重视一批异教徒让人感到很难理解，不过那对自己没多大关系，而且决斗的时间设定在傍晚，也错开了中午的时间，倒没什么可担心的。</p>
+	<p class = "firstLineIndent"> 托斯卡如此想着，并没有将突然冒出来的希灵使徒放在心上，只是对方将决斗地点设在城外的平原上让他不由自主地联想到了那些异邦人身上。</p>
+	<p class = "firstLineIndent"> “好吧，那么决斗地点就设定在城外平原，明天傍晚的时候我会在那里等你——希望你不要毁约。”</p>
+	<p class = "firstLineIndent"> 托斯卡绅士地微笑着，似乎已经看到了几位美人投向作为胜利者的自己怀中的情景。</p>
+	<p class = "firstLineIndent"> “不过，”我想了想，还是决定给对方一个机会，于是说道，“其实从我的角度来讲，对决斗兴趣倒不是很大，尤其是这种毫无道理和意义的决斗……”</p>
+	<p class = "firstLineIndent"> “你怕了？”托斯卡嘴角露出一个轻蔑的微笑，似乎早已料到对方不敢接受自己的挑战，至于所谓的决斗的道理和意义，他根本没有这个概念，一个贵族，用这么正式的方式提出决斗，这本来就是一件相当荣耀的事情，只有懦夫才会用各种理由来质疑决斗的神圣性，“你可以直接认输，我将给予你最公正的审判——几位美丽的小姐，希望我的行为不要给你们留下不好的印象，毕竟身为这个城市的守卫者，我必须这么做。”</p>
+	<p class = "firstLineIndent"> “你随便——只要你能承担得起后果。”</p>
+	<p class = "firstLineIndent"> 浅浅看似漠不关心地说着，只是没有人注意到，她脚下的木质地板正以飞快地速度腐烂并且复原着。</p>
+	<p class = "firstLineIndent"> “……”姐姐没有说话，只是用不怀好意的视线上下打量着托斯卡，似乎正在计算着用什么诅咒才能让这家伙受尽痛苦却又能活到决斗的时候。</p>
+	<p class = "firstLineIndent"> “虽然哥哥是个笨蛋，”林雪继续用微妙的方式对我施加着人身攻击，“不过对付你还是很简单的。”</p>
+	<p class = "firstLineIndent"> 这死丫头！你究竟打算玩到什么时候啊？！</p>
+	<p class = "firstLineIndent"> 最后，珊多拉用比托斯卡更加居高临下的态度说道：“所以，现在你可以消失了。”</p>
+	<p class = "firstLineIndent"> “你们……”托斯卡被四个美女一人一句呛了一通，不过考虑到自己的形象问题，还是压住了怒火，生硬地说道，“很好，那么我期待明天在决斗场上见到你……”</p>
+	<p class = "firstLineIndent"> “陈俊，我的名字。”我用人畜无害的表情微笑着回答道。</p>
+	<p class = "firstLineIndent"> “陈俊，这个名字我记下了！”</p>
+	<p class = "firstLineIndent"> 托斯卡抛下这么一句，然后将贪婪的视线投向几个女孩。</p>
+	<p class = "firstLineIndent"> 可惜的是，还没等他来得及再次欣赏美女赏心悦目的俏脸，一件谁也想不到的事情发生了。</p>
+	<p class = "firstLineIndent"> 在众目睽睽之下，托斯卡身上的衣服突然四分五裂，化为了飘落的碎布片……</p>
+	<p class = "firstLineIndent"> 我用我那经过强化的、可以当望远镜使的眼睛清楚地看到，那些碎布边缘有相当明显的腐蚀、风化痕迹。</p>
+	<p class = "firstLineIndent"> “真是不知廉耻的生物，”浅浅毫不客气地挖苦着，“竟然当众……”</p>
+	<p class = "firstLineIndent"> 在一片尖叫声中，只穿着一条短裤（……身为女孩子的浅浅还是有点害羞啊，要是我，连条短裤都不会给他留下）以白嫩光猪形象呆立的托斯卡终于反应过来，一声惊呼之后慌张地将手遮在身上，他身边的护卫也纷纷反应过来，虽然不知道眼前的情况是什么原因，但还是以最快的速度围**墙，将自己的主人保护在其中，不过几个女孩子的恶作剧明显还没完，几秒种后，一股恶臭从护卫形成的人墙之中传出来，而且还伴随着托斯卡高亢嘹亮的歌声……</p>
+	<p class = "firstLineIndent"> “真是的……”已经黑化的姐姐抚着额头，做出一副无可奈何的样子，“就是急着如厕也不必用这么惊心动魄的方式当场解决吧？”</p>
+	<p class = "firstLineIndent"> 珊多拉一段女王三段笑之后，也讽刺道：“就算这样做很刺激，也不必放声高歌吧？”</p>
+	<p class = "firstLineIndent"> ……某人曾经曰过：世界上最可怕的生物不是哥斯拉，而是女人，尤其是漂亮女人。</p>
+	<p class = "firstLineIndent"> 古人诚不欺我——我身边的这三个女孩性格恶劣程度已经达到了最终boss的地步，至于没有出手的林雪，喵的，别以为她的性格有多好，这只是因为这丫头恰好没有合适的能力而已！</p>
+	<p class = "firstLineIndent"> 因为不想招惹更多不必要的麻烦，我和几个女孩趁着混乱离开了这里，只留下史上最悲剧的龙套男继续在众目睽睽之下裸奔拉肚引吭高歌……</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十四章 世上只有萝莉好</h2>	
+	<p class = "firstLineIndent"> 一直回到了阿格纳为我们安排的宫殿之后，几个女孩子嘻嘻哈哈的声音都没有停下。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> “阿俊，你说那个托斯卡会不会今天晚上就羞愤而死啊？”</p>
+	<p class = "firstLineIndent"> 作为第一个出手并且瞬间让托斯卡进入裸奔状态的天才级恶作剧少女，浅浅的创意得到了几个女孩的高度评价，很显然，浅浅自己也很是得意。</p>
+	<p class = "firstLineIndent"> “希望他能坚强一点，”姐姐用一贯的柔和的语调说着一点都不柔和的内容，“最起码也要坚持到明天决斗给我们带来更多的乐趣吧？”</p>
+	<p class = "firstLineIndent"> “你们倒是玩得很开心啊……”</p>
+	<p class = "firstLineIndent"> 能力完全不适合用来恶作剧的林雪很是郁闷地说道——我应该赞美上帝，幸好这丫头的能力是预言和感知，否则这个世界上该多出多少不幸的牺牲者啊！</p>
+	<p class = "firstLineIndent"> 这时候，我突然听到前方传来一阵呼啸而过的破空之声，一个白色的小小身影宛若一道闪电般向我扑来！</p>
+	<p class = "firstLineIndent"> 浅浅等人已经好几次见识过这样的情景，已经见怪不怪，而是默契地对视一眼，各自漠然地后退两步。</p>
+	<p class = "firstLineIndent"> “砰——”</p>
+	<p class = "firstLineIndent"> 一声巨响之后，我被剧烈的冲击力撞得后退了数步，并且呈现出摇摇欲坠的形势，幸好当我将浑身的肌肉以超高的效率调整完身体的重心之后，终于在千钧一发之际避免了摔倒的厄运，稍稍缓了口气，我才终于从胸前撞击产生的窒息感中恢复过来，微微低下头去，正好看到一个穿着白色连衣裙、可爱之极的小女孩正扑在自己的胸前，一双莹白如玉的纤细小手紧紧地抱着我的脖子，小泡泡一边微微眯着眼睛，将小脸在我胸前蹭来蹭去，一边在嘴里发出含混不清的可爱叫声。</p>
+	<p class = "firstLineIndent"> 这，正是希灵帝国最新型号的超级武器，对一切宅男腐女怪蜀黍等宅系生物拥有无穷杀伤力，能让对方心甘情愿被攻击的新一代生化人体炮弹——小泡泡终极人间大炮简体中文限定版！</p>
+	<p class = "firstLineIndent"> 另外说一句，最后的版本描述是我几秒钟前刚刚决定的。</p>
+	<p class = "firstLineIndent"> 我保持着被小泡泡撞得后仰的姿势，一边用手轻轻抚摸着对方的小脑瓜，虽然在刚开始的时候我总是会被这小家伙撞飞出去甚至在地上横掠上好几米，但是现在，经过数次的熟悉和自身的不断锻炼，我已经练就了正面硬抗小泡泡人间大炮而屹立……</p>
+	<p class = "firstLineIndent"> “呀——”</p>
+	<p class = "firstLineIndent"> 一个尖细的叫声自远而近地从前方传来，我抬起头，正看到一个小小的绿色身影划破长空向我的脸部袭来。</p>
+	<p class = "firstLineIndent"> 出现了！竟然是小泡泡人间大炮的高级进化形态——叮当二段连击！</p>
+	<p class = "firstLineIndent"> 啪嗒一声，名为叮当的小生物结结实实地趴在我的脸上，也给某个刚刚被萝莉炸弹撞得重心不稳的倒霉男士加上了最后一根要命的稻草。</p>
+	<p class = "firstLineIndent"> 轰隆一声，某皇帝仰面倒下。</p>
+	<p class = "firstLineIndent"> “喂喂喂！小东西你属狗的啊！别咬！别咬！我错了还不行吗？下次一定带你出去还不行吗？”</p>
+	<p class = "firstLineIndent"> 突然之间和我一起摔倒在地上的小泡泡从撒娇模式中恢复过来，不过她明显并没有被刚刚突然失去平衡而吓到，而是抬起头好奇地看着叮当在我脸上调皮地东咬咬西戳戳，然后突然欢叫一声，也张开小嘴，露出了一对尖利的小小虎牙。</p>
+	<p class = "firstLineIndent"> “停——”</p>
+	<p class = "firstLineIndent"> 看着小泡泡跃跃欲试的表情，我一头冷汗地大叫道。</p>
+	<p class = "firstLineIndent"> 希灵使徒身体素质强悍，从各方面都是，珊多拉能若无其事地将不锈钢刀叉嚼碎咽下去，小泡泡虽然未成年，但也绝对有给我致命一击的能力。</p>
+	<p class = "firstLineIndent"> 我把叮当揪起来放到一边，然后抱着依然不肯离开的小泡泡费力地站了起来，浑身上下的关节立刻发出一阵噼噼啪啪的声音。</p>
+	<p class = "firstLineIndent"> 可真是惊心动魄的欢迎仪式啊。</p>
+	<p class = "firstLineIndent"> “叮当小姐和君主的关系真好，”阿赖耶不知什么时候来到了我们旁边，用羡慕的眼神看着在我头顶嬉笑玩闹的叮当，然后又用同样羡慕的目光看着还在我身上撒娇的小泡泡，“还有小泡泡也是……”</p>
+	<p class = "firstLineIndent"> ……你忘记每天给你梳理羽毛的人是谁了吗？</p>
+	<p class = "firstLineIndent"> “好了好了，”我拍拍手让大家安静下来，同时狠狠地盯了一直在旁边幸灾乐祸地看着我的林雪一眼，“我带了礼物回来！”</p>
+	<p class = "firstLineIndent"> “礼物”两个字立刻吸引了在场所有人的注意力，几个留在家的女孩是好奇我带了什么礼物回来，而跟我一起选礼物的浅浅她们则是想看看自己选的礼物是不是会受到欢迎。</p>
+	<p class = "firstLineIndent"> “首先，是我们的小女神——再捣乱就没你的了！”</p>
+	<p class = "firstLineIndent"> 我决定首先安抚最不安分的小东西，等叮当安静下来并且用悬停在我面前用充满期待的目光盯了我好半天之后，我才充满成就感地掏出了为她准备的礼物——一只棒棒糖。</p>
+	<p class = "firstLineIndent"> 原本我还以为这么一件不起眼的礼物会让叮当大失所望，但出乎我意料的，小东西立刻欢呼一声，便扑了上来。</p>
+	<p class = "firstLineIndent"> 真是个容易满足的小家伙啊，感觉好像随便给她点什么东西就可以让这小不点高兴上半天的样子——也或者她根本就不在乎受到什么东西，她在乎的仅仅是“礼物”而已？</p>
+	<p class = "firstLineIndent"> 我感觉自己已经进入了探讨神族价值观的微妙状态中……</p>
+	<p class = "firstLineIndent"> “小家伙，还有呢。”</p>
+	<p class = "firstLineIndent"> 我用手指揉了揉叮当的小脑袋，然后随手一挥，立刻院子中的空地上便凭空多出了一座散发着浓郁香甜气息的“山”！</p>
+	<p class = "firstLineIndent"> 为叮当准备的礼物绝对不是最贵的，但绝对是最让我们费心的。</p>
+	<p class = "firstLineIndent"> 因为我们用了将近小半天的时间将雷顿城中几乎所有种类的糖果甜品都买了个遍！</p>
+	<p class = "firstLineIndent"> 按照叮当的体积，这些糖果足够她吃上几十年了。</p>
+	<p class = "firstLineIndent"> 之前我怎么也没有想到，世界上竟然会有这么多种类的甜品，更没有想到，原本印象中物质生活匮乏人民生活单调的异世界其实有这么多的消遣食品，经过了一番针对糖果店洗劫式地抢购，我们为叮当准备了一堆山一样高的甜点！这些甜点光是名字的目录写出来就能让我背上三天三夜了！</p>
+	<p class = "firstLineIndent"> ……是谁刚才质疑我的记忆力来着？！</p>
+	<p class = "firstLineIndent"> 小东西明显被面前足够让她当饭吃上几十年的零食吓了一跳，她冷冷地悬停在空中，小小的嘴巴张到了最大，然后突然发出了一声兴奋至极的欢叫，我只看到一道绿光从眼前闪过，便失去了叮当的身影，然后身后的糖果山里面便传出了叮当开心的欢呼：“万岁！万岁！阿俊万岁！糖果万岁！”</p>
+	<p class = "firstLineIndent"> ……真是奇妙的造句能力啊。</p>
+	<p class = "firstLineIndent"> “小泡泡，这是你的。”</p>
+	<p class = "firstLineIndent"> 我笑着按了按用萝莉专属星星眼盯着我看了半天的小泡泡，然后取出了一个透明水晶制成的小天使雕塑。</p>
+	<p class = "firstLineIndent"> 或许是因为诞生在水晶制成的母巢中的原因吧，小泡泡十分喜欢收集各种各样亮闪闪的东西，尤其是水晶制成的物品，更是能让小泡泡欢喜万分，我甚至有些怀疑，这小家伙的内心深处是不是隐藏着一只巨龙的灵魂。</p>
+	<p class = "firstLineIndent"> 果然，看到我拿出的亮闪闪的水晶雕塑，小泡泡立刻松开了紧紧抱着我大腿的手臂，一声欢叫便抓着它奔回了自己的房间，然后又在众人莫名其妙的目光中飞快地跑了回来，拽着我的胳膊让我弯下腰来，还没等我反应过来，小丫头便轻轻地在我脸上印上了一个香吻……</p>
+	<p class = "firstLineIndent"> 果然还是萝莉好啊！</p>
+	<p class = "firstLineIndent"> 这一刻，我在周边一片意义复杂的视线中泪流满面。</p>
+	<p class = "firstLineIndent"> “阿赖耶，过来。”</p>
+	<p class = "firstLineIndent"> 我招手让安静地侍立在一旁的天使妹妹靠近，然后取出了第三件礼物。</p>
+	<p class = "firstLineIndent"> 一把刷子……</p>
+	<p class = "firstLineIndent"> 一把由贵重的水晶和魔鲨软骨制成、通体洁白晶莹的椭圆形刷子，分析一下这把刷子的华贵程度，再看一眼它的大小和形状，一般人绝对想不到这把刷子可以用来干什么。</p>
+	<p class = "firstLineIndent"> 这把花费了无数金币、让四个技艺精湛的珠宝匠手指抽筋地在一小时之内赶工完成的刷子，用来为阿赖耶梳理羽翼内侧的绒毛简直太合适不过了。</p>
+	<p class = "firstLineIndent"> 虽然阿赖耶的羽翼是半能量形成的，但它们却拥有实体的触觉，一个可以起到按摩加清洁作用的刷子绝对可以让阿赖耶高兴半天。</p>
+	<p class = "firstLineIndent"> ……不过，为什么我总认为这件礼物充满了各种各样的吐槽点呢？</p>
+	<p class = "firstLineIndent"> 尽管是一件常人看起来诡异无比的礼物，阿赖耶却很喜欢的样子，看她欢天喜地地将刷子收好，我走向了最后一个目标。</p>
+	<p class = "firstLineIndent"> 从一开始，潘多拉就一直静静地站在离我们不远的地方，她的性格实在做不出像小泡泡和叮当那样飞身扑上来的举动，不过我还是可以从她那几乎毫无变化的表情中读出一丝丝喜悦和对礼物的期待。</p>
+	<p class = "firstLineIndent"> 迟早有一天我会被这丫头训练出比王牌间谍还要牛叉的洞察能力的。</p>
+	<p class = "firstLineIndent"> “这个给我的宝贝妹妹。”</p>
+	<p class = "firstLineIndent"> 我弯下腰，笑着摸了摸潘多拉的小脑袋，然后取出了一个小小的蓝色发卡,对方听到“宝贝妹妹”几个字脸上迅速浮山一丝不易察觉的红润，而当看到我手中的蓝色的发卡时，她的眼中却又浮上了一丝困惑。</p>
+	<p class = "firstLineIndent"> “虽然知道如果给你买一套战争理论方面的书籍你会更高兴一些，不过我果然还是认为那种礼物太过诡异了点……”</p>
+	<p class = "firstLineIndent"> 潘多拉捧着厚厚的战争理论著作研读至深夜的景象刚一浮现，便被我毫不犹豫地扔出了脑海。</p>
+	<p class = "firstLineIndent"> 果然，还是应该尽可能地将潘多拉培养成一个正常的女孩才对。</p>
+	<p class = "firstLineIndent"> 呆呆地看了一会，潘多拉突然露出了一个前所未有的、甜甜的微笑，从我手中接过了发卡，开心地说道：“哥哥送的，我就喜欢……”然后轻轻踮起脚尖，也学着小泡泡的样子，在我脸上印上一吻，同时我也隐约听到了诸如“不能输给那个小丫头”这样低声的自言自语……</p>
+	<p class = "firstLineIndent"> 虽然已经说过了，但是我还是要重申一遍：果然，还是萝莉好啊！</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十五章 圣骑士的威力</h2>	
+	<p class = "firstLineIndent"> 雷顿城外的平原上。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 阿格纳刚刚看到我顶着一双大大的熊猫眼出现时被吓了一大跳，为表示自己对光明神的朋友的无比尊敬，他立刻上来关心地问道：“难道是我给您安排的住所让您休息不好吗？”</p>
+	<p class = "firstLineIndent"> 在他看来，一个能和众神平起平坐的强大文明的统治者，住不惯凡人的宫殿是相当正常的一件事，只是他想不明白为什么在场的只有我一个人顶着大大的黑眼圈，而其他几个女孩都一副精神饱满的样子。</p>
+	<p class = "firstLineIndent"> “没事没事，”我仰天打个哈哈，然后摆手说道，“我只是有点失眠罢了。”</p>
+	<p class = "firstLineIndent"> 失眠啊，我是一晚上没睡好觉啊！</p>
+	<p class = "firstLineIndent"> 或许是突然收到礼物导致的好感度飙升，原本就十分粘人的小泡泡在抱着水晶装饰玩了半天之后表现出了更加粘人的特质，当天晚上竟然做出了要我陪她睡觉的惊人决定，这个决定自然得到了浅浅的强烈反对，但是谁也没有想到，平常最乖巧的小泡泡一旦下定了决心竟然成了最不好对付的小家伙，任谁怎么劝也不肯像平常一样自己乖乖睡觉，最后考虑到小泡泡只是一个离开母亲的小孩子，这样做也是情有可原的事情，浅浅才终于勉强同意，没想到小泡泡这边的事情刚刚解决，第二个麻烦又出现了。</p>
+	<p class = "firstLineIndent"> 竟然是潘多拉……</p>
+	<p class = "firstLineIndent"> 竟然是最不可能添乱的潘多拉！</p>
+	<p class = "firstLineIndent"> 这种感觉就好像是一部粗制滥造外加脑残的影视剧里，某个前半段默默无名中半段毫无作为的常年路人甲角色突然在后半段摇身一变，成了让天地变色世界震动各路英雄云集以对抗的终极反派**oss，从观众到主角都会有种不知所措的感觉。</p>
+	<p class = "firstLineIndent"> 如果说这个世界上还有什么能让潘多拉这样一个对所有事物都漠不关心的小家伙都感到嫉妒的人，那就只有突然出现并且抢走了她一半棒棒糖配额以及一半哥哥怀抱的小泡泡了。</p>
+	<p class = "firstLineIndent"> 以相当强硬的态度，潘多拉强行将自己的床铺扛到了我的房间，并且直接进入了不接收任何外界信息的“防止劝阻模式”。</p>
+	<p class = "firstLineIndent"> 对此，即使是浅浅和姐姐也感到毫无办法。</p>
+	<p class = "firstLineIndent"> 她们谁都不舍得对潘多拉或者小泡泡恶言相向，换句话说，她们唯一舍得欺负的其实就只有我而已……</p>
+	<p class = "firstLineIndent"> 虽然她们两个都是根本没有发育的小萝莉，虽然她们对我而言只是相当于妹妹的存在，虽然其中一个的心智甚至比三岁孩子强不了多少，虽然……即使有这么多的虽然，但是我还是一晚上没能睡着啊！！</p>
+	<p class = "firstLineIndent"> 倒不是我真的会对她们产生什么邪念，而是潘多拉和小泡泡一晚上都在不停地折腾，先是小泡泡缠着我给她讲故事，然后是潘多拉缠着要给我讲故事（军事的……），再然后她们又因为谁应该分到更多的棒棒糖产生了分歧，再然后……就是毫无道理地互相掐架，虽然只是两个小女孩之间玩闹性质的小小冲突，但那也足以彻底消灭我的睡眠了……</p>
+	<p class = "firstLineIndent"> 所以现在我就以国宝的造型出现在大家面前了。</p>
+	<p class = "firstLineIndent"> 小泡泡和潘多拉似乎也意识到自己一时间的怄气造成了不好的后果，现在也一声不吭老老实实地站住我的身后，一副乖宝宝的样子，不过说实话，我倒是一点都没有在意，反而因为潘多拉突然展现出来正常小女孩应该具有的孩子气而高兴万分——当然，假如她们以后能换一种方式玩闹那就更完美了。</p>
+	<p class = "firstLineIndent"> 听到我说自己没有大碍，阿格纳也不好追问什么，便下令让自己这方面的各路高手们做好准备。</p>
+	<p class = "firstLineIndent"> 在这之前阿格纳已经做好了现场的保密工作，不但派军队驱散干净了附近可能经过的平民，还让十几个魔导师级别的宫廷法师释放了一个巨大的幻术结界笼罩了整个小平原，因此他完全不担心这次军演会惊扰到平民。</p>
+	<p class = "firstLineIndent"> 不过我倒是很怀疑那个简陋的幻术结界是否能经得起空间炮和各种希灵能量武器的冲击……</p>
+	<p class = "firstLineIndent"> 说是实力交流，但主要目的就是展现各自的最强战力，方便互相之间的战斗配合是表面上的说法，归根结底其实是奥多帝国的统治者希望能借此亲眼见证希灵使徒的强悍实力，不管怎么说，只要没有亲眼见到，奥多帝国的统治者就不可能完全相信我们真的能够挡住数万的魔化生物和一个能灭亡小型国度的恶魔之源，即使阿格纳本人愿意信任我们，假如我们不能展示出出足够强大的实力，恐怕他手下的将领和大臣们也不会同意将整个国家的未来交到一伙身份可疑的陌生人手中。</p>
+	<p class = "firstLineIndent"> 在几名传令官的指挥下，奥多帝国最引以为傲的皇家近卫力量——铁十字圣骑士团迅速完成了集结，在我们面前形成了一个整齐的方阵。</p>
+	<p class = "firstLineIndent"> 不得不承认，能够被称为奥多帝国第一军事力量，铁十字确实是一支训练有素的精英部队，在我们面前集结的两千人都穿戴着仅露出一双眼睛的厚重银色全身甲，左手持着完全由奥铁打造成的半身盾，右手是长达一米半的银色奥铁锤，由于奥铁的密度比普通钢铁要大，这全身装备加起来据说有足足半吨重，如果不是铁十字的每一个战士都掌握着圣光的力量，能够利用圣光对身体的强化来极大增强自己的体力，根本就不可能有人类用得了这一身虽然强力但自重惊人的装备。</p>
+	<p class = "firstLineIndent"> 这也是铁十字的强大之处，他们每一个人都掌握着圣光。</p>
+	<p class = "firstLineIndent"> 虽然圣光对生命的治愈能力远远比不上生命神力，但那毕竟也是足以起死回生的力量，尽管战士们大部分时间都用于**的锻炼，不可能掌握太高深的光明魔法，不过哪怕是只能使用最简单的强化术和治疗术，也足以让一个普通的战士在战场上发挥出惊人的实力。</p>
+	<p class = "firstLineIndent"> 想想看，一支全部装备板甲巨锤重盾的战士，每一个都拥有惊人的近战攻防能力，而且当你好不容易穿过他们钢板制成的装甲给他们造成一点伤害的时候，他们又能用治疗术迅速地回复伤势，当你打算和他们打持久战的时候，他们又能用圣光力量为自己回复体力，更要命的是，圣光力量是源于信仰的力量，对魔法的消耗几乎可以忽略不计，一个信仰坚定的铁十字战士，甚至可以在圣光的加持下连续高强度战斗三天三夜……</p>
+	<p class = "firstLineIndent"> 能打能加能抗，dps奶妈坦克三位一体，这将是一支多么猥琐……咳咳，强大的部队啊！</p>
+	<p class = "firstLineIndent"> 在传令官的示意下，圣骑士们先是演示了最简单的列阵和搏击技巧，自重达到半吨的厚重装备根本没有影响到这些骑士的行动，巨大的铁锤和盾牌在他们手中挥舞地虎虎生风，如同羽毛一般轻盈，圣光形成的白色光芒浮动在铠甲上，让这些高大的战士犹如战神一般威猛。</p>
+	<p class = "firstLineIndent"> 然后，数千只被捕捉来的魔化生物被释放了出来。</p>
+	<p class = "firstLineIndent"> 数千魔化生物，虽然里面没有腐化龙之类的强悍单位，但也全部都是中阶左右的怪物了，放在别的军队面前，没有城防建筑和魔法师的辅助下，已经足以让上万精锐战士全军覆没，但是在这些圣骑士面前，它们仅仅坚持了不到30分钟！</p>
+	<p class = "firstLineIndent"> 沉重的战锤每一次挥下，都会让一个魔化生物被砸成重伤，然后随之而来的强大圣光力量就会从它们的伤口中进入体内，从内部将深渊力量彻底净化，让这些魔化生物在哀号中化为漫天的黑灰。</p>
+	<p class = "firstLineIndent"> 同时，原本就能抵抗深渊侵蚀的奥铁重甲配合上圣光的加持，也完全抵抗了魔化生物的攻击，可以从**到精神同步腐蚀对方的深渊能量根本无法影响到铁十字的圣骑士们，假如是十几只魔化生物一起上场的话，或许还可以让一名圣骑士受到腐蚀，不过这些已经烧坏脑子的怪物明显没有这样的智力。</p>
+	<p class = "firstLineIndent"> 当所有的怪物被消灭完之后，阿格纳才带着自豪的神情向我点头示意。</p>
+	<p class = "firstLineIndent"> 怪不得奥多帝国能够抵抗住深渊的进攻，比起辅助性质大于攻击性质的生命神力，圣光确实更适合用在这种正面战场上，我粗略地分析了一下，这些强大的圣骑士已经拥有了和普通希灵战士抗衡的资格，不过也仅仅如此而已，他们和希灵帝国的军队还是没有可比性，毕竟圣骑士的训练相当困难并且耗时漫长，而普通的希灵战士却是可以从流水线上生产出来的，更重要的，圣骑士已经可以说是这个世界上除去圣阶怪物们之外最顶尖的战斗力量，而那些没有神智的普通希灵士兵对帝国而言却是子弹一样的消耗品。</p>
+	<p class = "firstLineIndent"> 尽管如此，这些圣骑士的实力还是值得肯定的，他们已经足以对抗寻常的深渊力量，需要希灵帝国大军出动的深渊毕竟还是很少的。</p>
+	<p class = "firstLineIndent"> 更值得欣慰的，由于阿赖耶对教宗梅隆的“教诲”（提到这一点我还是感觉很不自然啊……），顽固的老头终于同意和生命女神教联合起来，共同抵抗深渊的入侵，总算是没有白费了圣骑士这样的bug职业。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十六章 骇人的力量</h2>	
+	<p class = "firstLineIndent"> 两千名圣骑士完成演练之后，阿格纳朝我点头示意。</p>
+	<p class = "firstLineIndent"> “确实是很强大的战士。”我毫不吝啬自己的称赞，对这个世界碳基生物的基本身体强度而言，圣骑士这样的单位已经是相当强大的存在了，要知道，和由半能量半虚空物质构成身体的希灵使徒比起来，碳基生命的身体素质是极端脆弱的，凭借血肉之躯获得堪比希灵战士的战斗力，这样的成果当得起我的称赞。</p>
+	<p class = "firstLineIndent"> 阿格纳微微一笑，显然，刚刚圣骑士们的表现为他挣足了面子，这让他有些飘飘然了。</p>
+	<p class = "firstLineIndent"> 本来按照商定，奥多帝国的皇家法师还将为我们演练多人复合魔法，但是我在之前已经见识过了穆罗那种堪比小型核弹的大型魔法，说实话，我并不认为这个所谓的复合魔法能比穆罗释放出的魔法强大多少，即使再强大，也不可能有希灵帝国的对星武器强悍吧？因此，对奥多帝国之后的演练我已经没有多大兴趣。</p>
+	<p class = "firstLineIndent"> 本来，我的目的就是见识一下传说中的圣光是怎么一回事，现在目的已经达到，我也就没有必要浪费时间。</p>
+	<p class = "firstLineIndent"> 其实原本我还打算着让梅隆亲自示范一下圣光力量的终极招式是什么样子来着，不过想了想，仅仅是为了满足自己的好奇心，就让一个教宗为自己表演烟火似乎有点太装13的了——尽管如果阿赖耶开口的话，梅隆肯定会欢天喜地地答应就是了。</p>
+	<p class = "firstLineIndent"> 看到阿格纳有些飘飘然的神奇，我觉得有必要用更夸张的方式让对方冷静一下，免得这帮整天在光明神的庇护下自我膨胀的家伙轻视了希灵使徒。</p>
+	<p class = "firstLineIndent"> “我想，在见证贵国的皇家法师团实力之前，是否先让我的妹妹活动活动筋骨？”</p>
+	<p class = "firstLineIndent"> 我说着，将正在和小泡泡大眼瞪小眼的潘多拉轻轻往前一推，暂时掐断了两个萝莉之间的无声对决。</p>
+	<p class = "firstLineIndent"> 阿格纳和陪同前来的威廉宰相一下子神情有些呆滞。</p>
+	<p class = "firstLineIndent"> 虽然由于时间紧促而且双方的战斗方式天差地别，我们之间并没有详细商定各自实力展示的方式，不过按照他们原本的猜想，希灵帝国这面大概也就是和他们一样，派出一部分精锐战士，展现一下希灵使徒的力量，根据之前得到的信息，阿格纳知道希灵军队可以通过某种召唤的方式迅速赶到战场上，因此对只有我和几个女孩子来到了现场他们并没有太过惊讶，但是现在看来，真正要出手的竟然是这个小女孩？</p>
+	<p class = "firstLineIndent"> 即使是珊多拉或者我出手，阿格纳都不会有太大的惊讶，但是潘多拉出手就让他感到很不可思议了。</p>
+	<p class = "firstLineIndent"> 原本阿格纳根本就没有将潘多拉放在心上，在他眼中，希灵使徒再怎么神乎其神，这样一个小女孩也不可能是战士吧？顶多是跟着大人出来见世面的孩子。</p>
+	<p class = "firstLineIndent"> 而且，由于潘多拉的强力无存在感属性，我也忘记了向阿格纳介绍潘多拉的身份，这让对方更加坚定了潘多拉并非希灵高层的想法。</p>
+	<p class = "firstLineIndent"> 看到阿格纳和威廉露出的神情，潘多拉脸上虽然没有任何表示，小嘴却立刻微微噘了起来，堂堂的帝国将军，竟然如此被人轻视，这让将军人荣誉看做一切的小家伙感到相当的不爽。</p>
+	<p class = "firstLineIndent"> “我们希灵使徒和人类可是不一样的，”我微笑着抚摸了一下潘多拉的小脑袋，“不要小看我的妹妹，虽然外表看上去是个孩子，不过她可是帝国最强大的将军之一哦！”</p>
+	<p class = "firstLineIndent"> “将军？！”</p>
+	<p class = "firstLineIndent"> 阿格纳和威廉，包括梅隆在内都一脑门子惊叹号地看着面前面无表情地叼着一根棒棒糖的小女孩，露出了你在扯淡的表情——当然，他们没有明说出来就是了。</p>
+	<p class = "firstLineIndent"> 我没有说更多的话，而是轻轻拍了拍潘多拉稚嫩的肩膀。</p>
+	<p class = "firstLineIndent"> 得到我的示意，潘多拉恋恋不舍地吐出了嘴里的棒棒糖，然后郑重地将其收藏在一个银白色的金属盒子里，瞬间转变成了身穿合金战甲的赤瞳战斗形态。</p>
+	<p class = "firstLineIndent"> ……小宝贝，虽然节俭是一种良好的生活习惯，但把吃剩下的棒棒糖藏在能硬抗星爆的紧急档案保存箱中你不觉得有点本末倒置了吗？！</p>
+	<p class = "firstLineIndent"> 我在内心的吐槽潘多拉自然是听不见的，而此时，阿格纳他们已经被这种新奇的战斗武装方式吸引了注意力，自然没有在意棒棒糖和档案箱之间的关系。</p>
+	<p class = "firstLineIndent"> 只见潘多拉眼中的红色数据流一闪而过，随后数个微型发动机喷口在身后依次展开，将她小小的身影托到了一米左右的空中，随后，她弯下腰来，深深地吸了一口气……</p>
+	<p class = "firstLineIndent"> 伴随着突然出现的三个巨大的能量阵列和一声刺耳而持续的尖叫，三道数米粗的黑红色能量束夹杂着混乱而令人不安的轰鸣声喷涌而出，目标——十多公里外的一座小山。</p>
+	<p class = "firstLineIndent"> 终于再度出现了！</p>
+	<p class = "firstLineIndent"> 这就是全称潘多拉三阶充能氦闪，别名萝莉狮子吼，简称地图炮，号称神挡杀神，佛挡杀佛的希灵单兵最强常规类攻击——虽然名为氦闪但我更想将之称为奥特曼光束的……</p>
+	<p class = "firstLineIndent"> 喂喂喂，听我说完啊，关于这种发动方式充满创意的究极能量武器，我还有很多话要说啊……</p>
+	<p class = "firstLineIndent"> 在现场百分之八十的人惊骇的目光中，强大的黑红色光束正面命中了作为靶子的山峰，狂暴的幽能被送入山体核心，然后发生爆炸，伴随着充斥整个天地的轰鸣声和大地的剧烈震动，整座山竟然被整体炸上了天空，然后在空中发生强烈的连锁爆炸，化为了漫天的巨石和尘土。</p>
+	<p class = "firstLineIndent"> 你能想象一座山在自己面前被炸上天，然后在高空支离破碎的景象有多震撼么？</p>
+	<p class = "firstLineIndent"> 至少据我所知，在这个世界上没有任何一种魔法能够产生这么恐怖的效果，即使是被称为浩劫的禁咒，也顶多能把山头轰平，绝对不可能达到这种炸碎一座山的程度！</p>
+	<p class = "firstLineIndent"> 恐怕，只有大当量的核弹才能产生这种效果吧……</p>
+	<p class = "firstLineIndent"> 而这，仅仅是潘多拉一个战吼的结果，算上充能时间也只有十秒钟的常规类攻击……</p>
+	<p class = "firstLineIndent"> 咳咳，当然了，这么剧烈地能量释放，作为小型机的潘多拉还是会受到一些副作用的。</p>
+	<p class = "firstLineIndent"> 我熟练地取出一个小杯子和一瓶酸奶，倒好满满一杯递给了潘多拉，后者立刻捧着杯子喝了个底朝天。</p>
+	<p class = "firstLineIndent"> 嘛，虽然不能立刻恢复语言能力，但是聊胜于无了。</p>
+	<p class = "firstLineIndent"> 然而，这还没有完。</p>
+	<p class = "firstLineIndent"> 当阿格纳等人终于从震惊中稍稍恢复一点的时候，更让他们怀疑自己眼睛出现问题的情景出现了。</p>
+	<p class = "firstLineIndent"> 刚刚灰飞烟灭、只余下漫天尘雾的山峰，竟然奇迹般地恢复了！</p>
+	<p class = "firstLineIndent"> 那是电影胶片倒放一样的景象，只有时间的逆流才能达到的效果。</p>
+	<p class = "firstLineIndent"> 在别人看不到的角度，浅浅悄悄地向我做出了一个胜利的手势，让我为之气结——原本的计划里可没有时间倒流这个场景的……</p>
+	<p class = "firstLineIndent"> 全场静默了将近五分钟，除了我们几个知根知底的，其他所有人都保持着石化的状态。</p>
+	<p class = "firstLineIndent"> 最终，阿格纳和梅隆才突然回神，倒吸了一口冷气，紧接着，四周响起了此起彼伏的倒抽气的声音，大有让这片区域迅速成为真空区的意思。</p>
+	<p class = "firstLineIndent"> “刚刚，那是……”</p>
+	<p class = "firstLineIndent"> 阿格纳颤抖地指向远方那座已经完全恢复原样、甚至更加青翠一些的小山，有些结巴地说道。</p>
+	<p class = "firstLineIndent"> “时间倒流呗，”我瞬间切换忽悠之神形态，神态轻松地说道，“因为我们的力量太强了，偶尔会发生不小心把世界毁灭的事故，这时候就需要通过时间倒流来修复错误了——当然，假如恰好负责时空控制的使徒没空的话，我们也会找几个造物神来帮忙……嘶……”</p>
+	<p class = "firstLineIndent"> ……最后那个“嘶”，是因为珊多拉在我背后用力一拧的原因，貌似我忽悠地兴起，扯得太夸张了点？</p>
+	<p class = "firstLineIndent"> 也是，虽然浅浅的能力比希灵科技的时间控制器还强大，但也绝对达不到让整个世界时间倒流的程度，因此，我的以上言论，纯属扯淡。</p>
+	<p class = "firstLineIndent"> 不过阿格纳倒是完全相信了的样子，看向我们的目光立刻从有些程式化的恭敬转变成了看待神明的那种敬畏。</p>
+	<p class = "firstLineIndent"> 毕竟，希灵使徒的另一个称呼，就是没有神格的众神啊！</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十七章 更加悲剧的托斯卡</h2>	
+	<p class = "firstLineIndent"> 已经没有继续的必要了。</p>
+	<p class = "firstLineIndent"> 潘多拉和浅浅联手产生的震撼场面已经彻底让阿格纳和威廉宰相他们陷入了半痴呆状态，现在在他们看来，这场所谓的实力交流简直就是一场闹剧。</p>
+	<p class = "firstLineIndent"> 一方是举手就能毁天灭地的近乎于神的存在，而另一方只不过是强大一些的凡人，这样的实力“交流”现在看来怪异而可笑。</p>
+	<p class = "firstLineIndent"> 作为这次活动的发起人，威廉宰相现在一张老脸的表情可谓是精彩至极，尴尬，羞愧，不安，还有一丝深深隐藏的恼羞成怒，交织在一起，最后形成了一个相当阴沉的表情。</p>
+	<p class = "firstLineIndent"> 威廉估计到了对方的强大，但他再怎么估计，依然是将希灵使徒放在凡人的层面上估量的，即使希灵使徒和神族有什么千丝万缕的联系，也不可能真的有近乎神族的力量，所以他才提出了要见识一下对方力量的建议，一来是为了确保对方真的有资格拯救这个被光明神庇护的国度好封住下面那些人的嘴，更多的，是为了更加了解希灵使徒的实力，好制定出相对应的对抗手段。</p>
+	<p class = "firstLineIndent"> 毕竟，防人之心不可无。</p>
+	<p class = "firstLineIndent"> 但是现在，威廉突然发现，自己真的很愚蠢。</p>
+	<p class = "firstLineIndent"> 一个能够和神亲密如兄弟的种族，即使没有神一样的力量，至少也有半神的实力。</p>
+	<p class = "firstLineIndent"> 神有多强大？每一个信仰神的人都可以感受到，仅仅是通过祈祷得来的一丝一毫的圣光，一个普通的战士就可以轻而易举地消灭那些能让一个百人大队全军覆没的怪物，再怎么说，希灵使徒的实力也要比掌握了微末圣光的人类要强大的多吧？</p>
+	<p class = "firstLineIndent"> 只是，长期在光明神的庇护下已经有些骄傲自大的奥多人，从根本上不愿意承认自己的弱小罢了。</p>
+	<p class = "firstLineIndent"> “你们非常强大，”面对这种人类无法抗衡的力量，阿格纳不得不心悦诚服地说道，“比我们所能想象的还要强大，请原谅我们之前对你们的质疑……”</p>
+	<p class = "firstLineIndent"> “没关系，”我很大度地摆摆手，“你们的决定我很理解，任谁遇上这样的事情都不可能轻易选择相信，毕竟是事关整个国家的安危，现在，你们只要相信，希灵帝国是为了帮助这个世界而来的就可以了。”</p>
+	<p class = "firstLineIndent"> “关于这一点，我完全相信——因为我是一个坚定的光明神信徒。”</p>
+	<p class = "firstLineIndent"> 阿格纳说话的语气很诚恳，当然这句话是不可能百分之百可信的，如果是梅隆那样纯粹的信徒，这样说自然可信，不过阿格纳坐在那个位置注定他不会有多么虔诚，别说是以光明神友人身份登场的希灵使徒，恐怕就是真的天使军团来帮助他，他也会首先考虑到自己的统治是否会因此而受到冲击。</p>
+	<p class = "firstLineIndent"> 只是现在看来，以希灵使徒的实力，不论他是否反抗，都不可能阻止对方的任何行动，所以他干脆地选择了服从——这是一个很明智的选择。</p>
+	<p class = "firstLineIndent"> 我抬头看了看天上的太阳，现在已经是下午四五点钟的样子，如果那个名叫托斯卡的家伙还没有因为昨天的事情而羞愤而死的话，现在也应该快来了。</p>
+	<p class = "firstLineIndent"> 一般情况下，我是一个很大度的人，但是对待那种仗势欺人的家伙，尤其是对方竟敢打浅浅她们的主意，我就不打算这么轻易地放过对方了。</p>
+	<p class = "firstLineIndent"> 当然，如果说我潜意识中有一点折腾别人的恶劣属性的话我是绝对不会承认的……</p>
+	<p class = "firstLineIndent"> “对了，”我突然觉得应该让更多的人围观一下一会要进行的游戏，于是挑起了话题，“你们这个世界的决斗规则是怎么样的？”</p>
+	<p class = "firstLineIndent"> “决斗？”阿格纳很奇怪我为什么会突然问这个问题，但他还是回答道，“如果是一般的决斗的话，需要双方各自带领一个见证人，决斗前商定好决斗的方式，是否有什么限制，理论上决斗是不可以伤及性命的，不过假如意外出现了死伤的话胜利一方并不会受到法律制裁，相应的，死者的亲友也可以选择复仇而不会受到制裁。”</p>
+	<p class = "firstLineIndent"> 怎么说呢，这样的规定，真是有一点点野蛮的味道在里面。</p>
+	<p class = "firstLineIndent"> “原来是这样啊，那么见证人多一点也没什么吧？”</p>
+	<p class = "firstLineIndent"> “没错，见证人是没有上限的，一名见证人是最少标准。”</p>
+	<p class = "firstLineIndent"> 阿格纳愣了两秒钟，然后才突然反应过来，一副见鬼的表情惊呼道：“难道，您……”</p>
+	<p class = "firstLineIndent"> “啊，就是那个难道，有一个人类向我发起挑战，虽然我尝试拒绝了，不过对方似乎完全没有放弃的意思，而且，看上去，他好像还是个贵族吧。”</p>
+	<p class = "firstLineIndent"> “我们中的一个贵族……”阿格纳张口结舌，“向您发起挑战？！”</p>
+	<p class = "firstLineIndent"> 梅隆更是激动地大叫道：“光明神在上！究竟是谁这么愚蠢？！”</p>
+	<p class = "firstLineIndent"> “谁知道呢？”我不置可否地耸耸肩，一脸无辜地样子。</p>
+	<p class = "firstLineIndent"> 突发的情况让阿格纳头大如斗，他迅速地遣散了所有的相关人员，然后下令撤销了附近的大型结界，现场只留下他、梅隆、威廉三个人和我们几个。</p>
+	<p class = "firstLineIndent"> 阿格纳和威廉一直在努力试图让我收回决斗的意向，他们十分清楚在这种时候，一个不知哪冒出来的蠢货挑起来的这场决斗会带来什么样的后果，现在他们最担心的就是，万一我因此而发怒，干脆来一场世界末日怎么办？虽然我现在看上去一脸微笑毫不生气的样子，但是天知道希灵使徒的思维方式是什么样的！</p>
+	<p class = "firstLineIndent"> 梅隆则是愁眉紧锁，时不时地偷眼看看侍立在我身后的阿赖耶的表情，不过后者完全没有任何生气或是开心的样子，只是一脸平静地站在那里。</p>
+	<p class = "firstLineIndent"> 估计谁也想不到，其实我只是想玩玩而已。</p>
+	<p class = "firstLineIndent"> 就在这时，被众人千呼万唤的托斯卡终于出现了。</p>
+	<p class = "firstLineIndent"> 远远的，我看到了一个穿戴着华丽金色盔甲，手执长剑的风骚身影正大步地向我们这个方向走来，正是昨天嚣张无比的托斯卡，看他那扭曲的神色，很明显昨天发生的事情对他造成的影响还没有消退，说实话，他没有羞愤自尽我已经很惊讶了。</p>
+	<p class = "firstLineIndent"> 在他身后跟着几个死跑龙套的背景男，我们姑且介绍一下，他们分别是：路人甲，路人乙，路人丙……</p>
+	<p class = "firstLineIndent"> “托斯卡？！”</p>
+	<p class = "firstLineIndent"> 看清楚了来人的模样，阿格纳和威廉同时脸上一惊。</p>
+	<p class = "firstLineIndent"> 他们认识？那就更好玩了！</p>
+	<p class = "firstLineIndent"> 托斯卡明显也看到了他的皇帝陛下站在那里，脸上立刻浮现出了十分惊讶的神色，然后快步地来到了我们面前，跪倒在阿格纳脚下，恭敬地说道：“陛下……”</p>
+	<p class = "firstLineIndent"> “滚！”</p>
+	<p class = "firstLineIndent"> 没等托斯卡话音落下，两双脚几乎同时踢在了他的肩膀上，将这个悲剧男踹飞了出去。</p>
+	<p class = "firstLineIndent"> 一双脚是属于阿格纳的，另一双则来自威廉宰相。</p>
+	<p class = "firstLineIndent"> 托斯卡毕竟是一个高阶的战士，虽然因为不敢抵抗而被踹飞了出去，但他还是迅速地调整了自己的重心，避免了啃一嘴的泥土，爬起来之后依然保持着跪在地上的姿势，却惊疑不定地抬起头来，看着阿格纳和威廉宰相，问道：“陛下，父亲大人，为什么……”</p>
+	<p class = "firstLineIndent"> 原来这家伙是威廉的儿子，这还真是扯淡的剧情发展啊……</p>
+	<p class = "firstLineIndent"> “你这个蠢猪！！！”</p>
+	<p class = "firstLineIndent"> 威廉此刻已经是怒发冲冠，涨红了一张老脸，愤怒地吼道：“你都做了什么？！”</p>
+	<p class = "firstLineIndent"> “嘛，也就是对帝国元首发起了挑战而已……”</p>
+	<p class = "firstLineIndent"> 一向唯恐天下不乱的林雪此刻相当及时地火上浇油道，不过她这次的添乱倒是很顺应我的心意。</p>
+	<p class = "firstLineIndent"> 这时，托斯卡才终于看到了我们几个，刚看到我的时候，他脸上明显划过一丝狠毒，再看到浅浅几人的时候，视线又不由地一滞，但是却带上了很多的不解和不安，最后，他看到了正缓缓张开双翼的阿赖耶。</p>
+	<p class = "firstLineIndent"> 托斯卡不是傻子，只是面前发生的事情实在让他无法接受，所以，他很理所当然地呆住了。</p>
+	<p class = "firstLineIndent"> 直到他的父亲再次飞起一脚，将他踹倒为止。</p>
+	<p class = "firstLineIndent"> “啊……噶……”已经大致猜想到发生什么事情的托斯卡张大了嘴，却只能发出这样毫无意义的声音。</p>
+	<p class = "firstLineIndent"> 那件专门为了吸引美人眼光而穿在身上的华丽盔甲似乎都一瞬间黯淡下来。</p>
+	<p class = "firstLineIndent"> 我走上前去，貌似和善地低头说道：“好了，托斯卡先生，决斗的时间快到了，我们是不是商量一下决斗的过程？”</p>
+	<p class = "firstLineIndent"> “等一下……”威廉慌张地说道，虽然托斯卡闯下了如此大的祸害，但他还是不希望亲眼看着自己的孩子送死，“托斯卡他只是……”</p>
+	<p class = "firstLineIndent"> “我知道，我知道，年少气盛嘛，”我理解地点点头，“不过决斗还是要继续的，希灵帝国是绝对尚武的国度，决斗对我们而言是相当神圣的事情，尤其是针对帝国元首发起的挑战，更是不能轻易取消，所以——”</p>
+	<p class = "firstLineIndent"> 我不等威廉再次开口，便一把提起已经瘫软成泥的托斯卡，同时指了指阿赖耶，说道：“这就是我的见证人，一个天使，她将代表众神来裁定这场决斗——你认为怎么样？”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十八章 姐姐画的圈（上）</h2>	
+	<p class = "firstLineIndent"> 我是不可能真的要置托斯卡于死地的。</p>
+	<p class = "firstLineIndent"> 尽管这家伙确实令我很不爽，不过因此就杀了他就有点不必要了，因为从某种角度上来讲，托斯卡只不过充当了一个玩具的角色，仅仅是一个被我戏弄的对象，而且如果真的利用什么决斗的名义杀掉他的话，还会给人留下一个希灵帝国元首小肚鸡肠睚眦必报的印象，那样的形象用来当街头混混的小头目还可以，不过安在一个帝国元首身上可就是丢人至极的个性了。</p>
+	<p class = "firstLineIndent"> 当然，这并不意味着我大度到了多虚伪的程度，因此，一点小小的惩罚还是要有的。</p>
+	<p class = "firstLineIndent"> 经过这次事件，不管托斯卡有什么样的背景，他的前程都已经彻底完蛋，恐怕他的未来不会比一个家破人亡的流浪汉好上多少。</p>
+	<p class = "firstLineIndent"> 即使威廉保下了他的性命，阿格纳也不可能轻饶了这个几乎坏了大事的蠢货。</p>
+	<p class = "firstLineIndent"> 看着眼前已经露出绝望神色的托斯卡，和在他身边一脸阴云的威廉，我终于决定大度地放他一马。</p>
+	<p class = "firstLineIndent"> “算了，本来我就只是想让这个自大的年轻人接受一个教训而已，”我摆摆手，一脸老气横秋地站在那里，绝世高手的气质在我的想象中四处飙飞，“希望他能够记住，谦逊和谨慎是任何时候都应该保持的品德。”</p>
+	<p class = "firstLineIndent"> 浅浅，姐姐，珊多拉整齐地给了我一个白眼。</p>
+	<p class = "firstLineIndent"> 威廉愣了一下，似乎有些不相信我会这么简单地放过严重地冒犯了希灵帝国威严的托斯卡，片刻之后，他才终于确信自己没有听错，立刻激动地说道：“感谢您！仁慈的希灵皇帝，果然，只有具备您这样的品质才能与光明神成为同等的存在……”</p>
+	<p class = "firstLineIndent"> 我懒得听他继续拍马屁，于是摆了摆手表示不耐烦的样子，原本打算继续拍下去的威廉立刻知趣地闭上了嘴。</p>
+	<p class = "firstLineIndent"> “好了，现在该办的事都已经办完了，很明显，我们完全不需要人类力量的支援，那么按照我之前提出的方案，敌人的东路军队交给你们来对付，我和我的伙伴们集中对付敌人的西路大军和那支隐藏起来的主力部队，怎么样？”</p>
+	<p class = "firstLineIndent"> 这已经毫无疑问，刚才潘多拉和浅浅展现出来的夸张力量是很多奥多帝国上层亲眼目睹的，如果说之前他们对希灵使徒还有些质疑和排斥的话，现在这种想法已经一点都不存在，甚至如果不是顾虑到面子问题的话，我觉得甚至会有人算计着让我们全权接手对抗深渊的重任……</p>
+	<p class = "firstLineIndent"> 仔细想想的话，还真是奇怪的事情啊，明明是我们要来帮忙，却还要经过这么麻烦的事情，所以说，我最讨厌的就是顽固的宗教主义者啊……</p>
+	<p class = "firstLineIndent"> **************************************************************************</p>
+	<p class = "firstLineIndent"> 魔化生物最大的特点就是它们完全不需要休息，没有劳累和恐惧感，更不会要求什么伤亡补贴或者提高待遇的问题，只要体内的深渊力量没有被驱散就可以一直活动下去，因此这帮可以不分昼夜不吃不喝连续急行军的怪物大军开进速度是相当快的，几天前的时候它们还只是在潘多拉的警戒雷达边缘处偶尔出现，到了现在，它们已经靠近了奥多帝国的边境。</p>
+	<p class = "firstLineIndent"> 我们此刻就驻扎在奥多边境的一处无名高地上，随时准备着迎战即将进入攻击范围的敌人。</p>
+	<p class = "firstLineIndent"> 考虑到我们几个主力dps的恐怖攻击力和全军远程的战斗方式，一旦和怪物大军发生战斗绝对会波及到相当大范围的人类城镇，所以我们只好选择驻扎在野外地区——怨念啊怨念……</p>
+	<p class = "firstLineIndent"> “如果泡泡在的话就好了。”</p>
+	<p class = "firstLineIndent"> 我看着周围从观赏性到精密性再到坚固性都完全不达标的简陋墙体和面前七扭八歪的“桌子”，不由得抱怨道。</p>
+	<p class = "firstLineIndent"> 身为特殊的可进化的希灵主机，小泡泡有着普通拷贝体完全不具备的学习、创造能力和独立意识，这意味着她也能像她的母亲泡泡一样成为一个可以产生下一代希灵主机的母体机而不是成为一个一次性的复制品，但相对应的，她也有自己的缺点——她的成长过程太缓慢了，甚至比普通的人类幼儿快不了多少。</p>
+	<p class = "firstLineIndent"> 通过一般方式复制出的希灵主机虽然智力低下而且没有任何创造性，但是她们一生下来就掌握了全套的希灵建筑蓝图，可以像预装好了办公软件的电脑一样立刻开始工作，可是小泡泡不一样，她的小脑瓜中虽然有大量的蓝图，但她那三岁幼童的心智根本掌握不了那么高深的东西，也就是说，现在的小泡泡根本不具备一台希灵主机的功能。</p>
+	<p class = "firstLineIndent"> 这一点，从我们现在住的这个儿童积木一样歪歪斜斜的营房和营房外面那座虽然威力可观但每次攻击完都要大检修一次的45°倾斜的防御塔就可以看得出来。</p>
+	<p class = "firstLineIndent"> 悲剧啊，悲剧……</p>
+	<p class = "firstLineIndent"> “唔咕……”</p>
+	<p class = "firstLineIndent"> 小泡泡蜷缩在我的怀中，委屈地发出一声意义不明的叫声，然后小脑袋再次拱来拱去。</p>
+	<p class = "firstLineIndent"> 果然，让一个连话都不会说的的孩子在前线敲基地实在太勉强了点。</p>
+	<p class = "firstLineIndent"> 我揉了揉小泡泡的脑袋，然后再次重申自己的观点：“我还是觉得应该把小泡泡送回去，她太小了，上战场还是有点危险。”</p>
+	<p class = "firstLineIndent"> 珊多拉摇了摇头，说道：“别小看希灵主机，她再小，构建几个单兵炮台还是可以的，而且她也有终极的保命技能，顶多吓一跳，不会发生危险的。”</p>
+	<p class = "firstLineIndent"> 我很清楚珊多拉说的有道理，只是觉得一个这么大的小女孩上阵杀敌实在诡异了点，不过下一秒，潘多拉便将小泡泡挤到了一边，也钻进了我的怀里，我突然想到，在希灵帝国，萝莉这种生物的战斗力可是很强悍的……</p>
+	<p class = "firstLineIndent"> 我花了好大功夫才让两个在怀里不安分地互相挤来挤去的小萝莉安静下来，突然注意到坐在另外一边桌子旁的姐姐似乎正在奋笔疾书着什么。</p>
+	<p class = "firstLineIndent"> ……是我的错觉么？为什么我好像看到姐姐的身后升起了有若实质的黑色怨气呢？还有姐姐不时出现的那种仿佛动画片里老巫婆搅拌毒药锅时才会露出的阴险笑容是什么情况啊？</p>
+	<p class = "firstLineIndent"> 这时候，其他人也注意到了姐姐那边的情况，然后包括珊多拉在内所有人都整齐地一个哆嗦，本来还在天花板上数这座房子究竟有几个窟窿的叮当更是哧溜一声就钻到了我的领子里。</p>
+	<p class = "firstLineIndent"> 虽然姐姐现在背后怨气冲天，但是有必要这么夸张么？</p>
+	<p class = "firstLineIndent"> “完成了！”</p>
+	<p class = "firstLineIndent"> 姐姐突然开心地一声大叫，周围的阴冷怨气一扫而空，然后她举着自己的大作炫耀地向我们走过来。</p>
+	<p class = "firstLineIndent"> 终于可以松口气了。</p>
+	<p class = "firstLineIndent"> 姐姐明显不知道刚才自己的能力辐射范围有多大，她只是将刚刚完成的一摞白纸放在我们面前。</p>
+	<p class = "firstLineIndent"> 哦，现在不是白纸了，因为每张纸上面都有了东西。</p>
+	<p class = "firstLineIndent"> 圈圈，很多圈圈……</p>
+	<p class = "firstLineIndent"> “烧饼？”我说出了自己那点可怜的想象力所能联想到的唯一物品，说实话，我真的有点饿了。</p>
+	<p class = "firstLineIndent"> 姐姐一个爆栗凿在我头上，然后得意洋洋地举着那一摞纸说道：“这是我准备的秘密武器——灾难信标！”</p>
+	<p class = "firstLineIndent"> 好剽悍的名字，不过用在一张画满圈圈的白纸上就显得充满了搞笑意味。</p>
+	<p class = "firstLineIndent"> 看到我们几个的古怪表情，姐姐很是不满地一皱眉头，然后拖着我就往外走，同时一声令下：“跟我来！”，大家立刻紧跟在后面，要看看姐姐究竟研究出了什么伟大成果。</p>
+	<p class = "firstLineIndent"> 在我们的临时驻地外有一块小小的空地，正好适合用来做实验，姐姐从那一摞所谓的灾难信标中抽出一张来，平铺在一块石头上，然后拉着我们赶紧后退。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十九章 姐姐画的圈（下）</h2>	
+	<p class = "firstLineIndent"> 姐姐将那张拥有剽悍名字的纸郑重其事地放在作为试验台的石头上，然后一路小跑地回来，紧张兮兮地躲在我后面，这样的动作让我们也不由得紧张了起来。</p>
+	<p class = "firstLineIndent"> 刚开始的十秒钟，什么也没发生。</p>
+	<p class = "firstLineIndent"> 当我们还以为试验失败的时候，一阵噼噼啪啪的声音从我们上方的天空传来，然后在众人目瞪口呆的表情中，一道婴儿手臂粗细的惨白色闪电凭空出现，轰隆一声轰在那张白纸上。</p>
+	<p class = "firstLineIndent"> 白纸下的石头理所当然地化为了飞灰，但那张白纸却奇迹般地毫发无损。</p>
+	<p class = "firstLineIndent"> 这还只是个开始，紧接着来自四面八方的更多、更强烈的闪电开始连续不断地从晴空万里的天空轰击而下，远远看去这情景就好像一个闪电形成的巨大锥子从天际垂下，而锥子的尖就集中在我们面前的灾难信标上，几秒种后，天空开始乌云密布，拳头大小的冰雹混杂着酸雨倾泻而下，再然后，飓风，地震，岩浆，基本上我们能想得到的各种灾难**件一个接一个地出现，并且全部集中在灾难信标附近，让那片方圆不足百米的小小区域上演了一场浓缩版的世界末日景象，我们这时候已经远远地躲开，躲在小泡泡临时构建起来的一座四四方方的避难室里，用充满惊异的目光看着被各种自然灾害蹂躏的灾难信标，感谢老天，这次小泡泡超常发挥，建立的避难室还算结实，最起码不至于让外面的酸雨漏进来。</p>
+	<p class = "firstLineIndent"> 十几分钟后，自然灾害终于有了减弱的趋势，风雨渐渐停止，地震宣告平息，岩浆也冷却凝固，最后，一大群不知道从哪里出现的猛犸象在我们木然的表情中从避难室前方狂奔而过，彻底摧毁了附近最后一块完整的地面，这场小范围灾难才终于宣告终止。</p>
+	<p class = "firstLineIndent"> 我突然相当同情那张饱经摧残的、被画满了圈圈的白纸，这要多可怕的诅咒才能带来这么一场堪称惊天动地的死刑啊！</p>
+	<p class = "firstLineIndent"> 毫无疑问，姐姐将自己的诅咒力量压缩在了那张白纸上，这可比灵异小说中那些顶多引发一场车祸、几个死亡案件的诅咒物品严重多了，试问，你见过哪部灵异电影中的诅咒物品能让受害人惨到被五雷轰顶天塌地陷火烧水淹最后被一群猛犸象踩成大饼才算完的？</p>
+	<p class = "firstLineIndent"> 这阵仗，我估摸着放到市中心搞一场恐怖袭击效果比911好太多了，而且成功率贼高，因为世界上是不存在专门搜小纸条的安检部门的，就是进总统府都没有严禁携带白纸这样的规定吧？</p>
+	<p class = "firstLineIndent"> YY完了带着一摞白纸摧毁东京的美好景象，我的注意力再次回到研究这几张充满怨念和诅咒力量的“鬼画符”上。</p>
+	<p class = "firstLineIndent"> 首先对姐姐的创造力和黑化后的毒辣手段表示一番敬意，然后我问出了自己的疑问。</p>
+	<p class = "firstLineIndent"> “姐，为什么灾难信标上必须要画这些圈圈呢？”</p>
+	<p class = "firstLineIndent"> 姐姐的脸色一下子变得很尴尬。</p>
+	<p class = "firstLineIndent"> “哦——”常年的朝夕相处让我瞬间大悟，旁边的浅浅也露出了然的微笑</p>
+	<p class = "firstLineIndent"> “有问题，绝对有问题……”林雪看看我，再看看和我相视一笑的浅浅，点头下了结论，然后直勾勾地盯着我，问道：“说，怎么回事？”</p>
+	<p class = "firstLineIndent"> 我看了脸色微红的姐姐一样，好心地劝林雪：“你最好别问了，如果再问下去，我相信姐姐会把那些圈圈画到你身上的。”</p>
+	<p class = "firstLineIndent"> 这样的威胁卓有成效，林雪看了看外面经历过各种自然灾害宛若火星表面的地表，立刻吐了吐舌头，表示自己对这个问题已经一点兴趣都没有。</p>
+	<p class = "firstLineIndent"> 其实这个解释起来相当简单，姐姐的能力根本不是什么魔法或者道术，完全用不着在纸上画符文或者阵法，她要制作这种被诅咒的东西只要对着一张纸念念叨叨把自己的力量封进去就行，但是如果就这么把一张白纸称为什么什么信标的话总觉得怪寒碜的，就和不少名流之辈不管有没有艺术修养总要在家里挂上两幅国画摆几件艺术品是一个道理，姐姐自然也像在纸上画点什么威猛画面好配合灾难信标这个威猛的名字，不过问题就在这里了……</p>
+	<p class = "firstLineIndent"> 记得姐姐还在读大学那时候，有一次帮忙照看一个关系不错的老师家的小孩，那是一个刚刚五岁，还在上幼儿园的小朋友。</p>
+	<p class = "firstLineIndent"> 姐姐是一个很容易被激发出母爱的女孩，从被她捡回家的我到被我捡回家的潘多拉再到随便谁捡回家的小猫小狗，都能让姐姐母爱爆棚，当时的姐姐就母爱爆棚了，兴致勃勃地要教小朋友画画。</p>
+	<p class = "firstLineIndent"> 再次注明一点：当时那个小朋友五岁。</p>
+	<p class = "firstLineIndent"> 当小孩的母亲接自己的孩子回家的时候，小朋友兴冲冲地拿着一叠画纸给自己的母亲看，于是不明真相的年轻妈妈对其中两张涂鸦表示了赤果果的鄙视并且教育自己的孩子不能用这种方式浪费纸张……</p>
+	<p class = "firstLineIndent"> 从那以后，姐姐就发誓，再也不画超过两笔的东西了。</p>
+	<p class = "firstLineIndent"> 我想了想，这个世界上一笔就能画出来并且能让姐姐画好的东西大概除了针就只有圈了……</p>
+	<p class = "firstLineIndent"> 或许是感受到了姐姐身上散发出来的有若实质的黑色怨气，在场的几名不明真相的好奇宝宝都相当明智地选择了沉默，叮当虽然由于身为神族的原因对姐姐的诅咒抵抗能力很强，不过这小东西唯一感兴趣的就是自己空间里面堆着的几千斤各色甜点，于是，姐姐画的圈就成了一个困扰众人许久的谜题。</p>
+	<p class = "firstLineIndent"> 现在外面已经平静，我提议大家干脆就在这个避难室里住下得了，虽然简陋点，但是至少比几百米外那个七扭八歪到处漏洞的2012版营房好得多，不过林雪上上下下看了这个避难室一眼，说了一句：“陈俊，你看这房子像不像口棺材？”</p>
+	<p class = "firstLineIndent"> 于是我们还是决定回去住危房，并且交给了我一个短时间内培养小泡泡基本审美观的重任。</p>
+	<p class = "firstLineIndent"> 姐姐创造性的发明给我们准备了大量出乎意料的军火储备，潘多拉派出了为数众多的量产型战地侦察机器人，每个机器人身上都带着一卷被称为灾难信标的白纸，这些工作效率惊人的苦力按照林雪通过预言能力精确定位的坐标将信标布满了敌人的必经之路，不得不说，林雪的预言能力真的很强悍，她的预知竟然精确到了某个路口几点钟会有什么样的怪物路过，那些在各种刁钻角落隐藏着的灾难信标绝对可以在激发之后让正好路过的怪物们死的无比憋屈，这极大地弥补了姐姐因力量不足而只能让信标引发的灾难范围限定在数百米方圆的缺陷。</p>
+	<p class = "firstLineIndent"> 所以我说，先知真的是一个很猥琐的职业。</p>
+	<p class = "firstLineIndent"> 咳咳，这么形容一个美女真是罪过罪过。</p>
+	<p class = "firstLineIndent"> 战果是显著的。</p>
+	<p class = "firstLineIndent"> 由于林雪的精确预知，所有的灾难信标都在路过的怪物大军最密集的时间和地点被激活，然后成百上千场小范围高强度的自然灾害给那些没脑子的怪物造成了极大的伤亡。</p>
+	<p class = "firstLineIndent"> 尽管魔化生物的体质强悍，寻常的雷劈甚至都不一定能伤到它们，但不管从哪个角度来看，持续经受十几分钟的雷劈火烧水淹最后再被几百头自重达到几十吨的猛犸象碾压而过，再怎么小强的怪物也没道理活下来吧？</p>
+	<p class = "firstLineIndent"> 毕竟圣斗士那样的小强角色虽然适合成为主角，却绝对不适合成为大众脸的炮灰甲乙丙丁。</p>
+	<p class = "firstLineIndent"> 为那些被姐姐的怨念摧残致死的可怜怪物们致以最深沉的哀悼……</p>
+	<p class = "firstLineIndent"> 虽然被陈倩牌圈圈地雷轰杀成渣的怪物不少，不过怪物们的基数太大，一帮本来就昏了头的怪物也不可能再次被炸昏头，这让我打乱敌人进军部署的小算盘宣告破灭——丫的它们根本就没有进军部署！</p>
+	<p class = "firstLineIndent"> 上万怪物大军依然在浩浩荡荡地向我们进发，按照潘多拉的推算，明天，它们就将出现在我们视野中。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='080.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='100.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
