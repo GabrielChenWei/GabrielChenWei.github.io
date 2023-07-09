@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted -------
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.5em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 5%;
+	margin-right: 10%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: 0.5em;
+	margin : 1em;
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+	margin: 2px 4px;
+	*/
+    display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 90%; 
+	
+}
+#_userPanel {
+  position: fixed;
+  bottom: 0.1em;
+  /*
+  top: 0px;
+  */
+  border: 3px solid #73AD21;
+  background-color: powderblue;
+  right: 0.8em;
+  width: 5em;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+
+
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+/****************************** list element template ******************************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   spankbang.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+
+
+<h2>第一章 梦</h2>	
+	<p class = "firstLineIndent"> 那诡异而扭曲的天空此时看上去格外可怕。</p>
+	<p class = "firstLineIndent"> 灰色是这个世界的主色调，灰色的高大建筑，灰色的合金地面，灰色的交通工具，灰色的天空，还有悬挂于天空的那三个无比巨大的灰色球体。</p>
+	<p class = "firstLineIndent"> 一个已经死亡的金属世界。</p>
+	<p class = "firstLineIndent"> 这应该是废墟吧？</p>
+	<p class = "firstLineIndent"> 走在沉寂的钢铁丛林中，我不由得这样想道，但与印象中的废墟不同，这里的一切都没有损毁的痕迹，最起码从外表上看，这些冰冷的钢铁表面没有一丝伤痕，它们似乎并不是因严重破坏而被废弃，而更像是进入了一种休眠状态，沉睡的巨兽——这是我想出的更适合它的称呼。</p>
+	<p class = "firstLineIndent"> 这个沉睡的世界是如此的寂静，以至于脚步声成了耳中唯一的声音，走了不知道多久，我终于感到有些劳累，于是找了一个看上去是某种飞行工具起降平台的地方我便坐了下去。</p>
+	<p class = "firstLineIndent"> 距离离开这里还要一点时间，无聊之余我开始再次打量天空那三个巨大无比的金属球体。它们是如此巨大，以至于几乎占据了整个天空三分之一的面积，在它们的表面隐隐可以看到无数尖锐的突起和网格一般的纹理，给人的感觉就好像科幻片中的巨大行星要塞一般——说实话，这个世界的一切比任何一部科幻片都要科幻。</p>
+	<p class = "firstLineIndent"> 我就这么盯着天上的那三个行星般巨大的金属圆球，直到它们带给我的压迫感使我不得不转移开视线为止。</p>
+	<p class = "firstLineIndent"> 感觉，它们距离地面又近了一些。</p>
+	<p class = "firstLineIndent"> 事实上，它们的确在不断接近地面，在我第一次来到这里的时候，它们还只是高高挂在天空的三个小黑点，但每当我进入一次这个世界，它们就会更加接近地面一点，有时候一次就接近很多，有时候只是很细微的变化，不仔细看的话根本分辨不出它们是不是移动过，但我知道，它们一直在下降，也许终有一天它们会接触到地面也说不定，不知道到那时候这个世界会不会产生一些变化呢？无聊的我对此真是相当期待啊。</p>
+	<p class = "firstLineIndent"> “还没有找到……”一个声音突然响彻整个天空，然后整个世界开始剧烈地晃动，我知道，离开的时候到了。</p>
+	<p class = "firstLineIndent"> ********************************分那个啥线*****************************</p>
+	<p class = "firstLineIndent"> “叮铃铃……”一阵急促的闹铃将我从沉沉的梦境中唤醒，我费力地睁开眼睛，然后用力摇动着昏昏沉沉的脑袋，视野中的东西晃动了好一会才终于稳定下来，然后又过了好久，我才终于从整晚那莫名其妙的怪梦中清醒过来。</p>
+	<p class = "firstLineIndent"> 怪梦啊……</p>
+	<p class = "firstLineIndent"> 不知道从什么时候起，我就一直在做着这个怪梦，梦中我独自一人行走在一个死寂的金属世界之中，周围是宛若未来世界的景象，末日般的苍凉气息是这个世界的主旋律，但尽管周围的景象是那么的令人压抑，在梦中我却丝毫感不到惊慌，就好像那一切都是我早就熟悉的景象一样，每次，当梦境结束的时候，总会有一个声音响起，用似乎很失望的声音说着：“还没有找到……”</p>
+	<p class = "firstLineIndent"> 这个声音，究竟在寻找什么呢？还是说，它在希望我去寻找什么？</p>
+	<p class = "firstLineIndent"> 可惜的是，在梦中我从未找到答案。</p>
+	<p class = "firstLineIndent"> 这个梦我从未对任何人提起过，虽然不知道它意味着什么，但直觉上我总是觉得这个梦有着不同寻常的意义，而贸然将这个秘密告诉其他人将会给我带来巨大的麻烦。</p>
+	<p class = "firstLineIndent"> “周一啊……”我咕哝着，极其不情愿地从被窝里钻了出来，已经初冬的天气让我不由得打了个冷战，不过我最终还是成功地抵抗了温暖的被窝对我的吸引力，因为再不赶快的话，上课就要迟到了。</p>
+	<p class = "firstLineIndent"> 我，陈俊，一名高三的学生，自幼就是孤儿，没有父母兄弟，从小是被一对商人夫妇收养的，自从养父养母去世之后，便只有一个大我五岁没有血缘关系的姐姐和我相依为命，人生就如同一杯白水般淡而无味，唯一值得庆幸的是，我和姐姐从养父养母那里继承了一笔可观的遗产，让我们的生活不像其他的孤儿那样困难，自很小的时候就独自打理家业的姐姐对我也不错，至少我还是能感觉到家的温暖的。</p>
+	<p class = "firstLineIndent"> 在我还在思考昨晚上的梦境是否与往常有什么不同的时候，姐姐的声音在门外响起：“阿俊，起来了么？时间不早了！”</p>
+	<p class = "firstLineIndent"> “哦，这就出来！”我答应着，飞快地穿好衣服，打开房门，在门外的是一个留着长发的漂亮女孩——这就是收养我的姐姐，陈静，一个看上去柔弱实际上非常坚强的女孩子，尽管只比我大五岁，但在她的身边我总能找到一种温暖的感觉。</p>
+	<p class = "firstLineIndent"> “怎么了阿俊，我脸上有什么东西么？”或许是被我看得有些不好意思，姐姐的脸一红，然后有些慌张地问道。</p>
+	<p class = "firstLineIndent"> “啊，没什么，我在想事情……那我去学校了！”</p>
+	<p class = "firstLineIndent"> “诶——等等，你还没吃饭……”</p>
+	<p class = "firstLineIndent"> “来不及了，那我先走了！”</p>
+	<p class = "firstLineIndent"> 沧澜私立高中，这是一座名副其实的贵族学校，除了花费高昂之外其本身的教学素质也远远超出了一般的公立学校，这导致这座声名远播的贵族学校成为了一般平民学生想都不敢想的地方，能够进入这里读书的学生至少也是身家过亿的巨富之后或者权贵之子，要不就是在全国都可以排的上名号的超级天才——毕竟一座学校要想发展光有钱是不够的，一些足以壮门面的优秀学生也是必不可少的。总而言之一句话，这所学校是一个从各个方面都完美地符合了各种青春偶像剧中出现王子与灰姑娘剧情标准的圣地。</p>
+	<p class = "firstLineIndent"> 我之所以要对这个学校介绍这么多，就是因为我正是在这所学校——的对面上学的……</p>
+	<p class = "firstLineIndent"> K市第二中学，这才是我真正就读的学校。</p>
+	<p class = "firstLineIndent"> 不管从哪方面来看都是一个普通到不能再普通的学校，和对面宛若皇家园林一般的沧澜私立高中比起来简直一个是都市一个是乡村，在这里读书的人也是相当普通的学生，我们中的大多数人甚至连对面学校的学生每天穿的衣服都叫不出名字来，这样仅隔着一条大街而对比鲜明的两个学校也成为了这里出名的景观之一。</p>
+	<p class = "firstLineIndent"> 我就是这里的学生之一，毕竟虽然我和姐姐家境还算富裕富裕，但要和沧澜的贵公子们比起来还是差得太远了。</p>
+	<p class = "firstLineIndent"> “阿俊！”一个清脆的声音在我的身后响起，我回过头去，正好看到一个留着短发身材娇小的女孩向我跑来。</p>
+	<p class = "firstLineIndent"> 许浅浅，这是我最要好的朋友之一，从小和我一起长大的青梅竹马，不过在我上初中之后他们一家便搬到了城市的另外一个地方，我们见面的机会也少了很多，不过那并没有影响到我和浅浅的关系，来到这所兼具初中部和高中部的学校之后，我们又突然惊喜地发现对方也选择了这所就在本市的学校，于是我们好像又恢复了从前一起上学的时光。按照一般剧情的发展，这样一个从小一起长大的青梅竹马有大约百分之八十的几率成为我的恋人，而且事实上我们自己也是这么认为的，但是不知道为什么我们始终没有能进一步地发展，就这么维持着介于死党和情侣之间的关系，至于原因——难道是太熟悉了？</p>
+	<p class = "firstLineIndent"> 确实有这方面的原因，毕竟当一个对方是一个连小时候尿过几回床你都知道的女孩时，你是很难将对方当成一个可以恋爱的对象的。</p>
+	<p class = "firstLineIndent"> “阿俊，你在想什么呢？”许浅浅快步走到我面前，小手在我面前用力地晃了晃，不满地说道。</p>
+	<p class = "firstLineIndent"> “哦，我正在向读者介绍你的情况……”</p>
+	<p class = "firstLineIndent"> ……上面那句可以无视……</p>
+	<p class = "firstLineIndent"> 就在这时，不远处突然聚拢起来的人群吸引了我的注意。</p>
+	<p class = "firstLineIndent"> *********************************分还是那个啥线************************</p>
+	<p class = "firstLineIndent"> 我有必要闲扯几句：</p>
+	<p class = "firstLineIndent"> 这是我第一次在网上发文，说实话，心里很没底，如果各位看官不想一个新人被淹死的话，就多少给点回音哈，至少让我知道自己写的东西还是被人看到了，至于更新，我还有工作，所以日更一章基本上就是我的极限了，当然，每个月总有那么几天……咳咳，我会给自己打点鸡血什么的，那就是传说中的爆发了，不过日更十章的牛人我辈还是只能膜拜而不敢效仿。</p>
+	<p class = "firstLineIndent"> 这本书属于科幻魔幻异能都市异世情感yy……文，后期很精彩也很有趣，而且我会尽可能从别的地方收集或原创一些作品图集什么的，另外，我有很丰富的爬格子经验，大家不必担心我会把自己搞晕，只要诸位看官耐着性子认真看下去，你们就会发现一个有趣而……扯淡的世界……</p>
+	
+<h2>第二章 危险的苏醒</h2>	
+	<p class = "firstLineIndent"> 围观的人明显分为两拨，其中一拨是我每天在学校都会遇上的同学们，他们此刻正一脸怒色地看着圈子中间，另外一拨则是很少在这边见到的来自沧澜私立高中的贵族学生们，他们的表情则丰富的多了，有一脸看好戏的，有一脸不屑的，还有几个看上去义愤填膺，不过所有人都没有上前的意思。</p>
+	<p class = "firstLineIndent"> 这两拨人之间留下了相当大的空隙，让我可以毫不费力地看到里面发生了什么事情。</p>
+	<p class = "firstLineIndent"> 首先映入眼帘的是一个一脸傲色的年轻人，从对方的穿着上来看就可以看出对方的家境相当不一般，最起码那身我连牌子都叫不上来的西装就不是我们这边的学生穿得起的，在年轻人身后则站着两个看上去和他年龄差不多的学生，虽然穿着同样不凡，但是从后者一脸谄媚的表情就可以看出他们是前面那个富家子带着的小弟们，在这三人组前面，正站着一个眼神闪躲的男生，我依稀记着对方是我们学校的一个高二学生。</p>
+	<p class = "firstLineIndent"> 很明显，这是一次典型的仗势欺人。</p>
+	<p class = "firstLineIndent"> 这样的事情并不常见，至少从我来到这个学校以来还从来没有看到过，尽管在我们对面的是一座远近闻名的贵族学校，但那里的校训是出了名的严格，而且这些富家子弟也并不像一般人想象的那样不可一世，对这些大家子弟来说，良好的教养是他们必不可少的一部分，但不论在哪里，败类总是存在的，我面前这个带着小弟出来欺负弱者的公子哥就是一个典型的败类。</p>
+	<p class = "firstLineIndent"> 不论这个富家子回去之后是不是会受到他们校方的惩罚，就现在来看，他面前的那个男生今天是要倒霉了。</p>
+	<p class = "firstLineIndent"> 周围的人群议论纷纷，但没有一个人上前，被围在中间的那个男生显然也早就想到了这一点，他只是缩着脖子，静静地等待着对方发泄够了离开。</p>
+	<p class = "firstLineIndent"> 我们这边的学生大部分不敢去触对方的霉头，这并不是懦弱的事，对方都是一些非富即贵的人物。对他们而言，要让我们这样的普通学生从学校里消失简直不费吹灰之力，而对方的人虽然有部分人对那个富家子的行为很不屑，但他们也不打算为了一个普通学生而惹事，毕竟不管怎么说，那个嚣张的年轻人也是他们圈子里的人。</p>
+	<p class = "firstLineIndent"> 没想到啊，一大早就遇上了这么令人不爽的事情。</p>
+	<p class = "firstLineIndent"> “阿俊，”浅浅轻轻拉了拉我的衣服，小声说道，“咱们走吧，别惹事。”</p>
+	<p class = "firstLineIndent"> 我咬了咬牙，但还是点了点头，准备离开。</p>
+	<p class = "firstLineIndent"> 后面将要发生的事情不用猜也可以知道，随随便便一个不成理由的理由就可以上演一场单方面的殴打或者羞辱，然后那个一脸傲色的年轻人就会在这个过程中得到扭曲的乐趣，至于我们学校那个倒霉的男生——谁会帮助他呢？</p>
+	<p class = "firstLineIndent"> 我并不是没有同情心，更不是没有正义感，只是，身为一个普普通通的学生，面对这种情况我实在无能为力，而且如果这时候强出头的话，不但起不到任何作用，还有可能连累到姐姐，那些举足轻重的大人物只要随意动动指头就可以让我和姐姐勉力支撑的家宣告崩溃。</p>
+	<p class = "firstLineIndent"> 只是……真的很不甘心啊。</p>
+	<p class = "firstLineIndent"> 离开人群之前，我再次转过头去，盯了那个富家子一眼，后者此时正在肆无忌惮地辱骂着面前畏缩的男生，不是回过头去，似乎在炫耀自己的威风。</p>
+	<p class = "firstLineIndent"> “人渣，”我低声说道，“真想揍他一顿。”</p>
+	<p class = "firstLineIndent"> 我所不知道的，就在这同时，我们头上的恒星发生了一次小小的太阳风爆发，让某些属于这个星球的信息发生了不大不小的变动，我在这一瞬间的想法被加强了无数倍，然后被某个遥远世界的无时差通信系统所接收了。</p>
+	<p class = "firstLineIndent"> 似乎有什么东西“咔哒”地响了一下，当然，实际上我并没有听到什么声音，那只是印象上的，感觉有什么东西被开启了一样。</p>
+	<p class = "firstLineIndent"> 我突然感到一阵眩晕，每天晚上总是会梦到的那个灰色死寂的金属世界的景象突然滑过脑海，然后一个略有些机械的女声在我的心中里响起。</p>
+	<p class = "firstLineIndent"> “接受外部指令集……权限确认……模糊指令分析……执行……目标确认，调用天顶远程空间打击系统，准备试探性攻击……开始！”</p>
+	<p class = "firstLineIndent"> 随着我脑海中的声音落下，一道手臂粗细、半透明如同水流的能量柱从天空落下，最后无声地消失在人群中央的那个富家子脚下。</p>
+	<p class = "firstLineIndent"> 但似乎没有人注意到那个光柱，所有人的注意力都集中在中间的几个人身上，以至于那道近乎透明的“柱子”被忽略了，原本我也不可能发现这么隐蔽的东西，但不知道为什么，我清楚地看到了这道“水流”的轨迹。</p>
+	<p class = "firstLineIndent"> 然后，我发现那道“水流”消失的地方，原本是装饰用卵石的地面多了一个暗红色的小洞，在小洞周围，融化的地面正缓缓流入因地面汽化而出现的洞口中。</p>
+	<p class = "firstLineIndent"> 惊人的破坏力！</p>
+	<p class = "firstLineIndent"> 我的大脑一下子当机了，面前十有**是由我引起的异状让我不知所措。</p>
+	<p class = "firstLineIndent"> 这究竟是怎么回事？超自然现象？灵异事件？还是我突然拥有了超能力？</p>
+	<p class = "firstLineIndent"> 每一个解释都那么难以置信，但是眼前的景象让我不得不怀疑自己是不是遇上了某些相当戏剧化的事情。</p>
+	<p class = "firstLineIndent"> 或许只是幻觉吧，我这么想着，但是接下来发生的事情让我确认了面前的景象是千真万确的。</p>
+	<p class = "firstLineIndent"> 那名盛气凌人的年轻人突然向前走了一步，似乎是打算亲自动手了，但是他这一抬脚，正好踏在了那一小片岩浆覆盖的地面上。</p>
+	<p class = "firstLineIndent"> 几秒钟过后，杀猪般的惨嚎猛然响起。</p>
+	<p class = "firstLineIndent"> 布料本就是相当容易燃烧的东西，被神秘能量彻底融化的地面更是远超过了布料的燃点，不一会那个年轻人的裤子便燃烧了起来，他慌张地拍打着裤脚上的火焰，可是那条看上去十分名贵的裤子看来真的太适合当燃料了，随着他的拍打，火势非但没有丝毫减弱，反而越来越强，周围的人这时也终于反应了过来，纷纷顺手拿起手边的饮料（这是他们那边的）、衣服（这还是他们那边的）、半截砖（这是我们这边的……）上前帮忙灭火。</p>
+	<p class = "firstLineIndent"> 但是此刻我却顾不上关注面前的混乱场面。</p>
+	<p class = "firstLineIndent"> 脑海中紧接着响起的声音让我惊慌失措。</p>
+	<p class = "firstLineIndent"> “试探性攻击完成……重新计算参数……计算完成，转入正式打击模式……主武器阵列开始充能……副武器阵列开始充能……准备就绪，十秒钟后所有战斗单元自由开火……十，九，八，七……”</p>
+	<p class = "firstLineIndent"> 不论究竟是怎么回事，只有一点是可以确定的：某个相当危险的东西被我唤醒了。</p>
+	<p class = "firstLineIndent"> 根据刚才那次“试探性攻击”就足以将一小片地面融化成岩浆来看，十秒钟后到来的全面自由攻击将毫无疑问地杀死这里的每一个人。</p>
+	<p class = "firstLineIndent"> “可恶，快停下啊！”我在心中呐喊着，可是不论我如何努力，刚才那种奇妙的状态都没有再出现，倒计时仍然在不紧不慢地进行着。</p>
+	<p class = "firstLineIndent"> “阿俊，你怎么了？脸色怎么这么差？”许浅浅发现了我的异常，立刻紧张地问道，但是我却没有时间回答。</p>
+	<p class = "firstLineIndent"> 该死！该死！那究竟是什么东西！为什么这时候不听话了！</p>
+	<p class = "firstLineIndent"> “六，五……”</p>
+	<p class = "firstLineIndent"> 冷汗开始顺着我的脸流下来。</p>
+	<p class = "firstLineIndent"> “四，三……”</p>
+	<p class = "firstLineIndent"> “浅浅！”我猛的大喊了一声，然后拉起她便向外围跑去——尽管我知道以我们的速度实在很难逃离即将到来的全面攻击。</p>
+	<p class = "firstLineIndent"> 但是不论如何，我都不能让浅浅因为我的原因出事！</p>
+	<p class = "firstLineIndent"> “阿俊，怎么……”浅浅被我突然的动作吓了一跳，不由得大叫道。</p>
+	<p class = "firstLineIndent"> “二，一……”</p>
+	<p class = "firstLineIndent"> 混蛋！我不管你究竟是什么！现在赶快给我停下来!</p>
+	<p class = "firstLineIndent"> 一阵眩晕感突然袭来，我感到眼前一黑。</p>
+	<p class = "firstLineIndent"> 浅浅惊慌的叫声模糊地传了过来。</p>
+	<p class = "firstLineIndent"> “严重系统错误，外部指令集异常，失去最高权限许可……天顶远程空间打击系统停止运行……”</p>
+	<p class = "firstLineIndent"> 妈的，究竟是什么东西。</p>
+	<p class = "firstLineIndent"> 这是我彻底晕过去之前最后一个想法。</p>
+	<p class = "firstLineIndent"> ********************************分割************************************</p>
+	<p class = "firstLineIndent"> 这是今天第二更吧？事实上这是我之前存好的稿子，这次就一并放上来了，本来想今天三更的，可是实在有些困了，明天还要上班，今天必须早睡，至于今后究竟是一更还是二更，这个请诸位看官放心，今天的情况纯属意外，我今后一定改，坚决贯彻一更的中心思想……</p>
+	<p class = "firstLineIndent"> ********************************我就不说这是分割线**********************</p>
+	<p class = "firstLineIndent"> 我发现一个很严肃的问题丫！这章必须足够3000字才可以发！那好，以下段落纯属凑字数了，各位可以无视的。</p>
+	<p class = "firstLineIndent"> ……还没来得及凑，已经够字数了……</p>
+	
+<h2>第三章 古老帝国</h2>	
+	<p class = "firstLineIndent"> 头……好痛……</p>
+	<p class = "firstLineIndent"> 发生了什么事？</p>
+	<p class = "firstLineIndent"> 我感觉自己的脑袋里面简直就像一团浆糊，各种各样杂乱的东西被搅和在一起，让我费尽力气都无法从里面找到自己想要的信息。</p>
+	<p class = "firstLineIndent"> 这种状况持续了十几分钟，我才终于渐渐夺回了思考的主动权。</p>
+	<p class = "firstLineIndent"> 啊！对了！想起来了！在我昏迷之前的事情——当时我和许浅浅站在学校门口，有一个贵族学校的学生正在欺负我们的同学，然后不愿惹事的我们准备赶快离开，然后呢？</p>
+	<p class = "firstLineIndent"> 我好像狠狠地盯了那个仗势欺人的富家子弟一眼，并且产生了教训对方一顿的想法。</p>
+	<p class = "firstLineIndent"> 再然后……</p>
+	<p class = "firstLineIndent"> 猛然间，一切事情都清晰地回到了我的脑海中，那个神秘的“天顶远程打击系统”倒计时的声音仿佛再次回响在我的脑海中。</p>
+	<p class = "firstLineIndent"> “浅浅！快跑！”我大叫着，猛然坐了起来。</p>
+	<p class = "firstLineIndent"> “这里是……那个梦？”我环视四周，发现周围都是那些在梦中出现的灰色金属建筑，毫无疑问，失去意识之后我又回到了这个奇怪的地方。</p>
+	<p class = "firstLineIndent"> 我揉了揉额头，环视四周，突然发现周围的景象似乎有些不太对劲，好像，太暗了点……</p>
+	<p class = "firstLineIndent"> 于是我抬起头来……</p>
+	<p class = "firstLineIndent"> 下一秒，我感觉自己的心脏都停掉了几拍！</p>
+	<p class = "firstLineIndent"> 天空中巨大的金属球体竟然已经如此接近地面，几乎已经到了触手可及的地步，巨大的球面遮蔽了将近一半的天空，如同另一片大地一般沉沉地压了下来，我可以清楚地看到它表面复杂的金属结构，它们有的好像是塔楼，有些是武器的发射井，还有些好像是通信设备的凸起，更多的是如同森林般密集的黝黑炮口，在这些金属设施之间，还有些面积庞大的圆形凹陷，似乎是某种起降的平台或者聚能设施，这骇人的钢铁丛林缓缓地在天空移动着，无声地将灭顶的恐惧传达给在它们正下方的我。</p>
+	<p class = "firstLineIndent"> 这究竟是什么东西啊？这种场景也太科幻了点吧？</p>
+	<p class = "firstLineIndent"> 不管在心中如何吐槽，也改变不了我即将被这如同小星星一般的空中要塞压扁的命运——虽然缓慢到完全看不出动静，但我的直觉告诉我，这个巨大的星体要塞，仍然在下降！</p>
+	<p class = "firstLineIndent"> 在这个梦中，我的直觉一向是惊人地准确，就好像我现在直觉地感到，尽管这里是梦境，但是这个世界发生的事情绝对会影响到现实世界中的我。</p>
+	<p class = "firstLineIndent"> 现在怎么办？跑？开玩笑，你知道这个大金属球有多大么？我估计它的半径已经超过了一千公里！这个东西下降的再慢，在我跑出去之前它也足够将我变成一摊饺子馅了！</p>
+	<p class = "firstLineIndent"> 现在当务之急是冷静，冷静！这个金属球下降的很慢，一时半会它还不会压到我，在此之前我必须找到一个可以藏身的建筑，这个建筑一定要足够结实，结实到它可以顶住天上那个简直就是一个小行星的巨大要塞……</p>
+	<p class = "firstLineIndent"> 要去找个这么结实的地方我还不如跑一千公里呢！</p>
+	<p class = "firstLineIndent"> 等等，我好像忘了什么东西……</p>
+	<p class = "firstLineIndent"> 对了，另外两个金属球体呢？原本天空是有三个金属球体的，但现在怎么只能看到一个？难道是躲在这个已经快接触到地面的金属球的背后了？</p>
+	<p class = "firstLineIndent"> ……这都什么时候了，我还有闲心想这些事，一个天体要塞已经足够把我变成饺子馅了，再来两个顶多把馅再压匀一点……</p>
+	<p class = "firstLineIndent"> 但就是这么一闪念间，让我已经有些混乱的思路出现了一瞬间的清明，我想起了在学校门口的时候那道能量柱出现时脑海中响起的声音。</p>
+	<p class = "firstLineIndent"> 不论那是什么东西，超自然现象也好，超能力也罢，似乎，我可以在某种程度上影响到那道能量及其所属的什么天顶攻击系统，或者说，那个攻击系统有极大可能就是被我激活的，现在看来，这个梦中的世界和那个天顶攻击系统之间一定存在着什么联系，也就是说，其实我可以影响到这个梦中世界的东西？</p>
+	<p class = "firstLineIndent"> 一定是这样的！毕竟这是我自己的梦境，怎么说也是我的地盘，我的意志一定可以影响到这个梦境中的东西！</p>
+	<p class = "firstLineIndent"> 话是这么说，但是能不能成功我心里还是有点没底，事到如今我早已经不把这个世界当成是一个普通的怪梦了，这个奇特的梦已经超出了一般梦境的范畴，甚至上升到了灵异事件的高度，天知道究竟是我在做梦还是我被某个幻境吞噬了进去。</p>
+	<p class = "firstLineIndent"> 尽力平静下心情，我开始努力集中起精神，试图控制天空那个即将给我带来灭顶之灾的天体要塞。</p>
+	<p class = "firstLineIndent"> 这，很难，因为我根本不知道应该从哪里入手，我所能做的，只是不停地在脑海里重复让这个巨大球体远离地面的想法。</p>
+	<p class = "firstLineIndent"> 几十分钟过去了，一点动静也没有，寂静的天地间只能听到我越来越沉重的呼吸声，天空的巨大要塞已经明显更加接近了地面，上面原本还有些模糊的金属突起物此刻已经清晰可辨。</p>
+	<p class = "firstLineIndent"> 就在我快要放弃的时候，一种什么东西被连接上的感觉从我的精神深处传来。</p>
+	<p class = "firstLineIndent"> 就是这样！</p>
+	<p class = "firstLineIndent"> 我心中一阵狂喜，刚刚建立的连接又因为我的激动而中断了。</p>
+	<p class = "firstLineIndent"> “集中精力，集中精力！”我心中默念着，强行压下了心中的杂念，将注意力完全集中在一起，将自己的想法尽可能准确地传达出去。</p>
+	<p class = "firstLineIndent"> 不知道过了多久，一个机械的声音终于在我的脑海深处响起：“接收到外部指令集……权限确认……模糊指令分析……警告，您提交的指令内容将改变世界仲裁机关的运转形态，请确认您拥有足够的权限……再次确认，二号世界仲裁机关盖亚改变轨道……”</p>
+	<p class = "firstLineIndent"> 随着这个机械的声音落下，天空中的巨大球体发出了低沉的轰鸣声，开始缓缓的上升，随着低沉的轰鸣声响起，这个寂静的世界猛然发生了天翻地覆的变化！</p>
+	<p class = "firstLineIndent"> 每次离开这个世界的时候都会响起的那个声音突然回响在天地之间，第一次带着喜悦的感觉：“找到了……”</p>
+	<p class = "firstLineIndent"> 然后，这个单调的世界恢复了色彩！</p>
+	<p class = "firstLineIndent"> 死灰色的天空仿佛被点亮的显示屏，迅速披上了瓦蓝色的新装，那完全不似这个钢铁世界所应具有的澄净色彩比我见过的最干净的天空还要美丽，远处模糊的山脉从上至下迅速被绿色覆盖，让人远在千里之外就能感到浓郁的生命的气息，在我身边，冰冷的金属建筑也恢复了活力，淡蓝色的光晕浮现在它们的外壳之上，闪烁的灯光以我为中心逐一亮起，从高空看去，就好像一蓬正在绽放的烟花一般，天上那个巨大的要塞似的球体也发生了变化，不知从哪里涌出的蓝白色光之洪流从它表面的金属沟壑中奔腾而过，各处闪动的光晕让这个庞大的空中堡垒充满了一种神秘而壮观的美感。</p>
+	<p class = "firstLineIndent"> 仅仅十几秒钟，这个死寂的地方就变成了一个充满活力的神奇世界，美丽的自然风光和超现实的未来景象神奇地交融在一起，让我对眼前的景象产生了一种壮美的感觉，我呆呆的站在已经天翻地覆的金属都市中，几乎忘记了呼吸。</p>
+	<p class = "firstLineIndent"> “这……究竟是什么……”我喃喃地说道。</p>
+	<p class = "firstLineIndent"> 一个很好听但是没什么感情波动的女声猛然在我耳边响起：“这是这个泛位面最古老也是最强大的文明，曾经以魔导科技统治宇宙的希灵帝国。”</p>
+	<p class = "firstLineIndent"> 突然响起的声音让我吓了一跳，我立刻向另一边跳去，然后才看到我旁边的“人”。</p>
+	<p class = "firstLineIndent"> 一个淡蓝色、半透明的女孩正漂浮在那里，看上去没有任何焦点的双眸转向了我的方向。</p>
+	<p class = "firstLineIndent"> 幽灵？还是全息影像？</p>
+	<p class = "firstLineIndent"> 根据剧情的发展，我认为是后者……</p>
+	<p class = "firstLineIndent"> “你好，”我露出一个古怪的表情（但愿对方能够从这个已经严重扭曲的表情联想到微笑的意思），“我叫陈俊，那个……你有啥事？”</p>
+	<p class = "firstLineIndent"> “您好，”对面的女孩向我鞠了一躬，说道，“我是世界仲裁机关二号机，盖亚，很高兴见到您，皇帝。”</p>
+	<p class = "firstLineIndent"> ********************************我是那个啥线****************************</p>
+	<p class = "firstLineIndent"> 更新了……</p>
+	<p class = "firstLineIndent"> 小文尚短，要票实在抹不开面子，就希望看官路过的时候冒一个泡，至少让我知道我家孩子还是有人看的，谢谢了~~~~~~</p>
+	
+<h2>第四章 好吧，我服了</h2>	
+	<p class = "firstLineIndent"> 哈？你说啥？神仙姐姐你拿我玩的吧？不管怎么说这个剧情的发展也太夸张了吧？即使是作为一场不靠谱的梦，这种发展也已经超出必要了吧？</p>
+	<p class = "firstLineIndent"> 虽然，现在我已经不敢把这个世界看成一场普通的梦境了……</p>
+	<p class = "firstLineIndent"> 尽管我心中充满了疑惑和震惊，但是对面的不明发光体并没有给我发言质疑的时间，她只是自顾自地说了下去：“世界仲裁机关对您的身份以及对应权限已经做出了最恰当的判断，根据最后一次更新的数据库……”说到这里，对面的投影突然晃动了一下，然后声音一下子变得异常急促：“最高权限个体发生异常，泛空间链接受到干扰……重新校准链接位点失败……很抱歉，皇帝，我们之间的绝对空间距离过远，虚连接就要中断了……我们将会……前往……援助……#@#%……￥￥#￥%……”</p>
+	<p class = "firstLineIndent"> 我看到面前的投影开始剧烈地晃动起来，就好像电视信号受到严重干扰产生的失真一样，与此同时对方的声音也突然变成了我无法理解的语言，这让我吓了一跳。</p>
+	<p class = "firstLineIndent"> “喂！你怎么了？不会是坏掉了吧？”</p>
+	<p class = "firstLineIndent"> 没有人回答我，对面的投影晃动了几下，终于彻底消失，与此同时，整个世界也瞬间回到了寂静之中，唯一不同的是，这个世界已经从单纯的灰色变得充满了各种色彩。</p>
+	<p class = "firstLineIndent"> “阿俊？你怎么了？”</p>
+	<p class = "firstLineIndent"> 耳边突然传来的焦急的呼叫让我回过神来，我晃了晃脑袋，发现自己正站在学校门口，身边的学生正因为现场某个人突然的“自燃”现象而惊慌失措，在我身边的许浅浅一边用力晃动着我的胳膊一边焦急地叫着我的名字。</p>
+	<p class = "firstLineIndent"> 看到我醒来，浅浅终于松了一口气，问道：“阿俊，你怎么了？怎么突然站在那里不动了？怎么叫你都没有反应？”</p>
+	<p class = "firstLineIndent"> “哦，没事，突然走神了……”</p>
+	<p class = "firstLineIndent"> “走神？走神有这么严重？”浅浅对我的说法明显很不相信，但她并没有多问什么，而是拉着我向校内走去，“快走吧，再不走要迟到了。”</p>
+	<p class = "firstLineIndent"> 我顺从地跟着，但脑子里却在飞快地思考。</p>
+	<p class = "firstLineIndent"> 很明显，在梦中经过了那么长的时间，现实中只不过经历了一瞬——这并没有什么奇怪的，我更在意的是梦的内容。</p>
+	<p class = "firstLineIndent"> 出现在梦境中的古老希灵帝国，还有那个神秘女孩告诉我的东西，我关于那个梦境的探索似乎因此前进了一大步，但事实上我只得到了更多的疑问，一直以来困扰着我的那个梦境究竟意味着什么，所谓的希灵帝国是怎么一回事，今天的那次攻击是什么，超能力？超自然现象？一切的一切都变成了一团迷雾，让我无比困惑。</p>
+	<p class = "firstLineIndent"> 事到如今，我已经不可能再将那个世界看成一个单纯的梦境了。</p>
+	<p class = "firstLineIndent"> “阿俊，你怎么了？怎么今天一天你都这么心不在焉的样子？”回家的路上，浅浅有些担忧地问道。</p>
+	<p class = "firstLineIndent"> “没什么，”我露出一个灿烂的笑脸，“我平常好发呆你也是知道的。”</p>
+	<p class = "firstLineIndent"> “真的只是发呆？”浅浅一脸狐疑，“你确定不是在想哪个美女？”</p>
+	<p class = "firstLineIndent"> “……换下一个话题。”</p>
+	<p class = "firstLineIndent"> “哦，那下一个话题，那个美女的名字叫什么？”</p>
+	<p class = "firstLineIndent"> “许浅浅，行了吧？”</p>
+	<p class = "firstLineIndent"> “哼，算你知趣！”</p>
+	<p class = "firstLineIndent"> 真是很奇怪，这种本应是情侣间打情骂俏的话，从我们的嘴里说出来竟然一点都找不到应该有的感觉……难道真的是因为我们实在太熟悉了，以至于我们永远都保持这种近乎于亲情的感情么？</p>
+	<p class = "firstLineIndent"> 今天姐姐要打理公司里的事，预计要很晚才能回来，我一个人吃过晚饭，回到房间里开始梳理今天发生的事情。</p>
+	<p class = "firstLineIndent"> 想了半天，疑团依旧，我决定再次尝试呼唤那个“梦中”的世界。</p>
+	<p class = "firstLineIndent"> 似乎是因为几次的成功连接已经加强了我和那个世界的联系，这次很顺利的，我便感到了那种微妙的连接感。</p>
+	<p class = "firstLineIndent"> 连接成功的第一件事，就是立刻询问关于希灵帝国的事情。</p>
+	<p class = "firstLineIndent"> “希灵母星接收到外部指令集……权限确认……进入远程指令模式……正在上传汇总指令集。”</p>
+	<p class = "firstLineIndent"> 奇怪，这次的声音告诉我的东西似乎有点不一样啊……不过想想也是，那个世界似乎正在苏醒中，随着它的逐步觉醒，我能接收到的信息产生变化也是正常的，但是……</p>
+	<p class = "firstLineIndent"> 这次我接收到的具体信息内容也太不正常了吧？</p>
+	<p class = "firstLineIndent"> 天顶远程空间打击系统，这个有了，pass。</p>
+	<p class = "firstLineIndent"> 希灵军团传送系统，这是啥东西？</p>
+	<p class = "firstLineIndent"> 帕斯维尔幽能回充体系，啥米意思？</p>
+	<p class = "firstLineIndent"> 希灵定向星体湮灭炮？喂喂喂，这个听上去连名字都是犯规的东西是怎么回事啊？</p>
+	<p class = "firstLineIndent"> 潘多拉军体要塞……这是一个身心健康的好青年应该研究的东西吗？</p>
+	<p class = "firstLineIndent"> 泛空间空灵震荡矩阵……难道就没有一个我能听懂的东西么？这些东西怎么看都像三流科幻片中大脑袋外星人的家伙吧？</p>
+	<p class = "firstLineIndent"> 但是，随着进入我精神世界的信息越来越多，我逐渐顾不上对那些稀奇古怪而且严重不和谐的名词吐槽了。</p>
+	<p class = "firstLineIndent"> 庞大的信息洪流终于不再像平静的小河一般流入我的精神世界，暴增的信息量决堤般疯狂地倾泻进来，使我感觉自己就好像陷入了一个泥潭之中，只能无力地渐渐被信息的淤泥没顶，又好像置身于风暴之中，被信息的狂风暴雨吹得摇摇欲坠，渐渐地，我的大脑已经完全放弃了分析涌进来的资料，只是盲目地吸收着大量的信息，刚开始的时候我还能感到大脑传来阵阵刺痛，但很快，麻木感便主宰了我的感官，我在信息的洪流之中摇摇欲坠，心中只剩下一个想法：在这么下去，我就要变成白痴了……</p>
+	<p class = "firstLineIndent"> 不知道过了多久，资料的传递终于结束了，我的精神也已经濒临崩溃边缘。</p>
+	<p class = "firstLineIndent"> 真是好夸张的数量啊，我感觉自己的脑子已经被各种各样乱七八糟的东西填满了，恐怕这辈子我都别指望能再记住其他的事情了……</p>
+	<p class = "firstLineIndent"> 很快我便发现，这些涌入我大脑里的信息并不像正常的记忆那样自由地存在于脑海之中，而是被严格地分类汇总，一点不乱地保存在我的脑子里，使我可以随时随地地调用它们，这种存储方式就好像……电脑硬盘里的文件一样！</p>
+	<p class = "firstLineIndent"> 算了，现在我的神经已经千锤百炼，不管发生什么我都不会感到惊讶了。</p>
+	<p class = "firstLineIndent"> 这种记忆方式自然有它的好处，查询方便，安全可靠，不会出现记混或者忘记的现象，但它的坏处也很明显，你必须提前知道某一个资料确实存在于这个资料库中，才可以对这份资料进行调用，不像正常的记忆方式那样可以通过联想或者“灵光一冒”想起什么东西，也就是说，除了有目的的调用，你根本不可能知道这些资料的内容如何！</p>
+	<p class = "firstLineIndent"> 看来，我还要对这些资料进行一次全面的检索……或者叫全盘扫描？怎么感觉我的大脑被改造成了某种很微妙的状态呢？</p>
+	<p class = "firstLineIndent"> 幸好，只有这部分外来的信息是按照这种方式记忆的，而我原本的人类记忆方式并没有改变，至少，我不用担心自己成为一个人形机器了……</p>
+	<p class = "firstLineIndent"> 不过，这些资料的数量实在超出了我的预期，仅仅检索了不到三分之一，我便对那些看都看不懂的东西失去了兴趣，于是，我直接将目标定位在了这份资料的末尾，最后传来的一则信息。</p>
+	<p class = "firstLineIndent"> “综合分析以上原因，目前已确认的指令集不可执行率为百分之九十九点九九九九九九……”</p>
+	<p class = "firstLineIndent"> 好多九！</p>
+	<p class = "firstLineIndent"> 靠，这不是玩我么！费了这么大功夫，给我传来这么多的东西还差点把我挂掉，最后你告诉我这个东西其实是一份报废产品列表？！</p>
+	<p class = "firstLineIndent"> 我不管你希灵帝国是什么东西，敢这么玩我，我……</p>
+	<p class = "firstLineIndent"> 貌似我也没什么招……那个希灵帝国和我唯一的联系就是在梦境中的投影，除了学校门口那道昙花一现的能量之外，希灵帝国甚至从来没有出现在现实世界之中……</p>
+	<p class = "firstLineIndent"> 恩？说到那个能量攻击，貌似它也在刚才那个不可用指令列表里吧？</p>
+	<p class = "firstLineIndent"> ……好吧，我服了……</p>
+	
+<h2>第五章 潘多拉</h2>	
+	<p class = "firstLineIndent"> 拜昨天的信息洪流所赐，第二天我头痛欲裂，满脑子都是那些充满了超现实意味的所谓指令集，让我精神恍惚地走路都想撞墙，这症状就和宿醉之后一模一样，以至于早上起来的时候姐姐还以为我前天晚上灌了一晚上的酒精。</p>
+	<p class = "firstLineIndent"> “早知道这样我就翘课得了，干什么非要强装好学生啊……”走在去往学校的路上，我心中一阵后悔，这时候我不由地有些羡慕那些家在外地而要住校的学生，至少他们翘课的时候可以没那么麻烦，直接往宿舍一窝门一锁就完事了，而我……姐姐的直觉可是超人般地精准，我可没有胆量在她面前翘课，而且我都已经高三了，本来成绩就不怎么样，如果再翘课……真的很不乐观。</p>
+	<p class = "firstLineIndent"> 有些昏昏沉沉地走在路上，我不时用力甩甩脑袋，试图让自己清醒一点，虽然这条比较偏僻的小路没什么车辆，不过万一遇上什么交通事故乐子可就大了，只是脑袋毕竟不是簸箕，你甩地再用力也不可能把里面乱七八糟的东西甩出去。</p>
+	<p class = "firstLineIndent"> 这时，我突然感到有些异样，好像自己正在被什么人盯着一样，这种感觉让我猛然一个激灵，有些发昏的大脑也清醒了许多。</p>
+	<p class = "firstLineIndent"> 我抬起头，四下打量了一下，然后在右手边不远的一个小巷口发现了一个正看着我这个方向的小女孩。</p>
+	<p class = "firstLineIndent"> 对方看上去只有十三四岁的样子，穿着一身白色的看上去很像风衣的裙装，留着一头披肩的乌黑长发，长的十分可爱，粉嫩的嘴唇轻轻抿着，带着一丝不似微笑却很赏心悦目的弧度，小巧的鼻子微微上翘，显得有一丝调皮的意味，搭配上她那娴静的气质，活脱脱一个漂亮的小萝莉，但是她那双眼睛却让我感到有一丝不协调，乌黑的大眼睛本应该十分有神，但它们看上去却完全没有焦点的样子，只是一双眼珠转向了我这个方向，如果不是感觉她的目光就集中在我身上，我简直都要怀疑这个小萝莉其实是个盲人了。</p>
+	<p class = "firstLineIndent"> 我整了整自己的表情，露出自认为最和善的微笑，走上前去说道：“小妹妹，有什么事么？”</p>
+	<p class = "firstLineIndent"> ……为什么我觉得有人在偷偷说我是一个诱拐萝莉的怪叔叔呢？难道是错觉么？</p>
+	<p class = "firstLineIndent"> 对面的可爱萝莉微微抬起头来，那双完全没有焦点的眼睛似乎并没有转向我身上的任何一个部位，但我立刻感到自己的一举一动都完完全全地被面前的这个小女孩掌握了——这真是相当奇怪的感觉，让人完全不知道怎么去描述。</p>
+	<p class = "firstLineIndent"> 这是一个不寻常的萝莉！我第一时间做出了判断。</p>
+	<p class = "firstLineIndent"> 不过这一阵子我遇上的事情有几件是寻常的？自己的精神世界莫名其妙地就和一个什么希灵帝国扯上了关系，说实话，我现在认为自己的神经强度已经接近航空钢材了……</p>
+	<p class = "firstLineIndent"> 面前的萝莉面无表情地观察了我一会，然后似乎确定了什么，微微点了点头，朝我一鞠躬。</p>
+	<p class = "firstLineIndent"> 不知道是不是错觉，我似乎感到自己脑子里的某种东西和面前的小女孩产生了共鸣。</p>
+	<p class = "firstLineIndent"> “很荣幸见到您，皇帝，”面前的三无萝莉一开口就将我吓了一跳，“我的名字是潘多拉－zero，希灵将军。”</p>
+	<p class = "firstLineIndent"> “哈？”这个震撼性的自我介绍直接让我进入了当机状态，只能发出这样毫无意义的声音，刚才这个小萝莉叫我什么？皇帝？还有她的身份，希灵将军？这剧情的发展也太脱轨了吧？</p>
+	<p class = "firstLineIndent"> 面前的萝莉似乎并没有解答我疑惑的意思，自我介绍完这后，她便静静地站在那里，微微仰着头，没有焦点的双眼看不出一点感情的波动。</p>
+	<p class = "firstLineIndent"> 我定定地看着面前的小女孩，试图从她的表情中找出一丝开恶作剧的意味，但是我失败了，对方的表情沉静，毫无作假的迹象。</p>
+	<p class = "firstLineIndent"> 如果这个小萝莉没有骗我的话（她也不太可能骗我，关于希灵帝国的事情我从来没有向其他人说起过），她就是那个神秘的希灵帝国的成员了，按照那个世界的性质来看，这个小女孩其实是个机器人？</p>
+	<p class = "firstLineIndent"> 一个原本只是存在于梦境中的世界突然变得越来越真实，甚至出现了一个活生生的从那个世界出来的“人”，这让我感到自己的大脑正在接近过载，于是，鬼使神差的，我伸出手去，轻轻捏了捏对面小萝莉的脸蛋。</p>
+	<p class = "firstLineIndent"> ……我不是萝莉控，我真的不是萝莉控，手滑了，我真的只是手滑了一下！</p>
+	<p class = "firstLineIndent"> 突然意识到自己做了什么的我立刻把手抽了回来，但刚刚一瞬间的柔软触感让我否定了对方是个机器人的想法。</p>
+	<p class = "firstLineIndent"> “希灵使徒是魔能构装体生物，”对面的小萝莉根本没有把我的唐突放在眼里，似乎是看出了我在疑惑什么，她用自己那没什么感情波动的声音说道，“我们并非机器人，魔导科技也与您这个世界的自然科技大不相同，尽管看上去它很像自然科技，但其实那是一种基于超现实能量和神秘学的技术，更接近于这个世界传说中的魔法和炼金术，严格来讲，我目前的身体性质以及结构和这个世界的碳基生命十分接近，甚至我现在需要像普通碳基生命一样通过进食来补充能量，这是因为魔能构装体技术使我们可以随意改变自己身体的物质形态，在非战斗状态下，您可以将希灵使徒看作是正常的人类。”</p>
+	<p class = "firstLineIndent"> 真难为她了，能用那么机械的声音向我介绍这么长的一段话。</p>
+	<p class = "firstLineIndent"> 将对方的话在自己的脑子里来来回回过了好多遍，我才终于大致理解了对方的意思，没办法，这件事情实在太超现实了，我能这么冷静地听进去并且分析一番，而不是大叫着“不可能”、“开玩笑”之类的话跑开已经是神经强韧的表现了，只是限于个人智商，我还是有些晕乎……</p>
+	<p class = "firstLineIndent"> “也就是说，你们看上去是高科技的外星生命，其实是会魔法的外星生命？”</p>
+	<p class = "firstLineIndent"> “是。”小萝莉言简意赅。</p>
+	<p class = "firstLineIndent"> 好吧，这个问题pass了，毕竟真正的魔法是什么样子谁也没见过，而且那个世界的东西虽然看上去科学意味很浓，但事实上它们依靠什么运转谁也不知道，我就当它们是魔法和炼金术吧。</p>
+	<p class = "firstLineIndent"> 事实上，从小萝莉宣布自己来自希灵帝国的那一刻起，我就不再奢望剧情可以按照靠谱的方式发展了。</p>
+	<p class = "firstLineIndent"> “那么，希灵帝国究竟是怎么进入我的梦境的？我又为什么会成为你们的皇帝？皇帝这个称号应该不是那么容易就给一个普通人的吧？”</p>
+	<p class = "firstLineIndent"> 这个问题一定要问，虽然被一个貌似很牛叉的帝国称为皇帝是一件很爽的事，但这个名号可不是那么好要的，万一是一场误会到时候自己绝对要倒大霉，而且根据那份百分之九十九点九九九……不可用的指令集来看，这个沉睡了不知道多少年的帝国不一定能给我带来什么好处，麻烦倒是可以肯定的。</p>
+	<p class = "firstLineIndent"> “在距今……时间错误……未知多少年前，希灵帝国遭受了一场巨变，整个帝国陷入沉睡，直到前不久帝国唯一还在运行的对外信息收集系统探测到了一个来自本位面深处的思维波动，根据信息比对，这个思维波动完全符合帝国皇帝的灵魂特征，帝国因此而苏醒，而我则被派来辅佐您，其他的资料由于未知原因损毁已经无法查证，但有一点已经可以肯定，您就是帝国的皇帝之一，这一点已经由目前所有苏醒的希灵使徒确认过了。”</p>
+	<p class = "firstLineIndent"> “等等，你说皇帝之一？”我敏感地注意到了这个词，感情皇帝这种生物在希灵帝国还是量产的？</p>
+	<p class = "firstLineIndent"> “是的，希灵帝国拥有NT级权限的个体被称为皇帝，根据最后一次更新的资料库记载，希灵帝国一共有皇帝135名，分布在整个宇宙的各个统治区，每一个皇帝都拥有对等的权限，而您并不在这135名皇帝之中，具体原因无法解析。”</p>
+	<p class = "firstLineIndent"> 好家伙，皇帝议会！</p>
+	<p class = "firstLineIndent"> “那个……我可不可以不当这个皇帝？”我小心翼翼地说道，开玩笑，135个货真价实的皇帝啊，毫无疑问，他们每一个都比我厉害的多，一旦有另外一个希灵皇帝也苏醒了，发现了我这个冒牌家伙，随便哪个给我来一家伙就不是我这个百分之九十九点九九九九九九……的指令无法使用的菜鸟可以抗衡的！</p>
+	<p class = "firstLineIndent"> “依照希灵法律，放弃NT级权限的个体被认为是放弃本身存在性，您确认要执行这个选择么？这个确认将进行三次。”</p>
+	<p class = "firstLineIndent"> ……那个放弃本身存在性，是不是就是领便当的意思啊？</p>
+	<p class = "firstLineIndent"> “好吧，我当这个皇帝，不过我先说好了，这是你们主动要我当的，到时候有什么事情你们不要找我的麻烦啊！”</p>
+	<p class = "firstLineIndent"> 就这样，我，陈俊，一个原本普通的大学生，在某年某月某日，很扯淡地，成了一个莫名其妙的帝国的莫名其妙的皇帝……</p>
+	<p class = "firstLineIndent"> *************************************************线*************************************************</p>
+	<p class = "firstLineIndent"> 路过的留个声啊，给点建议也好……</p>
+	
+<h2>第六章 妹妹，恩，妹妹</h2>	
+	<p class = "firstLineIndent"> 最终，我还是翘课了。</p>
+	<p class = "firstLineIndent"> 这也是没办法的事，身边带着一个萝莉状的不明生物去上课光想想就是一件很引人注意的事情，而且乐观估计那个已经严重更年期综合症的班主任一定会借此机会好好对我进行一次彻头彻尾的教育，可是要把这个疑似危险分子的不明生物放在一边……根据大部分电影小说的教育，这样的唯一后果就是一大堆的麻烦如影随形，综合分析，最好的选择就是翘课——再说了，我不是身体有些不舒服么？合情合理，合情合理！</p>
+	<p class = "firstLineIndent"> 姐姐已经去上班了，现在家中只有我和潘多拉，我要抓紧时间完成对这个不明生命体的常识性教育。</p>
+	<p class = "firstLineIndent"> “好了，记住了，你现在的名字是潘莉莉，”我再一次重复道，“你是我失散多年的妹妹，除非现场没有任何外人，否则绝对不允许你说起那个不知道在宇宙哪个角落的希灵帝国的事情，恩，再让我看看你胳膊上的那个记号——很好，魔能构装体生命果然厉害，这都能做得到，那只要记住别在我姐姐面前露出破绽就可以了。”</p>
+	<p class = "firstLineIndent"> “是，……哥哥。”潘多拉似乎并不很习惯这个新的称呼，犹豫了一下才说出来。</p>
+	<p class = "firstLineIndent"> 这就是我的计划！让潘多拉冒充我失散多年的妹妹，反正我从小就是被收养的孤儿，没有人知道我的身世，这样一来，突然多出了一个妹妹也没什么人会觉得奇怪，只是，为什么我总觉得还有什么事不太对劲呢？</p>
+	<p class = "firstLineIndent"> 我皱着眉头，上上下下地打量着已经换上一件破旧衣服的潘多拉，总觉得有什么不对劲的地方，可要让我说出来具体是什么地方不对劲我又说不出来……</p>
+	<p class = "firstLineIndent"> 呃，发现了……</p>
+	<p class = "firstLineIndent"> “潘……莉莉，你不会笑么？”</p>
+	<p class = "firstLineIndent"> 这就是问题的关键所在！我现在才想起来，面前的小女孩从一见面开始就没有笑过，不只是没有笑过，应该说她根本没有露出过任何表情，整个人就好像一个精致的人偶一般，另外，除了刚开始向我介绍关于希灵帝国的情况时她说了不少话，在那之后她一直是惜字如金，寡言少语到了令人惊讶的地步，这种性格无论如何都不应该出现在一个只有十四岁的小女孩身上。</p>
+	<p class = "firstLineIndent"> 以上还只是次要的问题，毕竟极度自闭的性格还可以编一个对应的生活经历来对付过去，更要命的是另外一个方面——潘多拉的眼睛！</p>
+	<p class = "firstLineIndent"> 完全没有焦点，根本只是个装饰品（虽然大量地模仿了人类的身体结构，但是潘多拉对外界的感知方式和人类还是有一些不同的，最起码她的视觉就不必依赖眼睛这种简陋的器官。），这样的一双眼睛不论走到哪里都是让人第一眼就注意上的焦点。</p>
+	<p class = "firstLineIndent"> 看来要成功让潘多拉的身份蒙混过关，我还要在忽悠学上多多努力啊。</p>
+	<p class = "firstLineIndent"> **************************************咳咳**************************************</p>
+	<p class = "firstLineIndent"> 一天的时间很快过去，在这一天里我尽己所能地将人类的生活方式告诉了潘多拉，至于对方能不能记得住我倒是完全不担心，在这期间我也从惜字如金的潘多拉口中知道了更多关于希灵帝国的事情，这其中当然包括了我最关心的那份百分之九十九点九九九九九九……不可使用的指令集。</p>
+	<p class = "firstLineIndent"> 按照潘多拉的解释，由于距离最近的虚空节点实在太远，因此我所发出的所有指令信息都要经历一段相当遥远的旅途才能到达最近的希灵殖民地，这个距离是如此之遥远，以至于当这个信号传达到的时候已经衰减到了和宇宙微波背景辐射完全分辨不出的程度，这种信号，当然只能当做噪音了，至于昨天早上我引发的那次远程火力支援则属于十分罕见的巧合，我们伟大的恒星在那一刻赐予了我力量，让我瞬间联络上了远在宇宙另一端的西陵母星。</p>
+	<p class = "firstLineIndent"> “我可以作为应急性的希灵终端机使用，”潘多拉是这么说的，“但通过我的增强只能转发不到百分之十的模糊指令，而且转发条件将十分苛刻，是否需要在这个星球建立一个希灵前哨基地？建立基地之后您可以随时发动战争，将这个世界变成帝国新的边疆。”</p>
+	<p class = "firstLineIndent"> “还是算了，”我流着冷汗拒绝了这个听上去十分诱人的建议，“我又没有征服世界的打算。”</p>
+	<p class = "firstLineIndent"> 开玩笑，建立一个希灵前哨基地？然后呢？大量召唤希灵军队？征服全人类？统治世界？然后像大部分热血小说里说的那样作为一个残暴的征服者被某个不死的热血小强干掉？</p>
+	<p class = "firstLineIndent"> 根据之前粗略的检索来看，昨天晚上我收到的那些乱七八糟的指令基本上全是跟战争有关的命令，那其中包括了军队调集远程轰炸战略打击等各种与当今世界和平格局背道而驰的东西，我怎么也不可能用那些大规模杀伤性武器来对付人类吧？因此那些指令集对我而言可谓是一点用都没有，建立这么一个基地完全是在浪费。</p>
+	<p class = "firstLineIndent"> 至于拿这些听上去就十分生猛的东西当成日后教训某些不开眼的二世祖顺便征服MM芳心的秘密武器……</p>
+	<p class = "firstLineIndent"> 你傻啊？人家碰你一下你就开希灵定向星体湮灭炮轰炸地球？要知道，一个超空间火力支援系统是绝对不适合用来耍帅的……</p>
+	<p class = "firstLineIndent"> “哥哥，有一个碳基生命正在向这里移动，请确认对方的身份。”</p>
+	<p class = "firstLineIndent"> “大概是姐姐回来了，”我看了看墙上的时钟说道，“另外，莉莉，你以后说话不要用这种方式了，必须尽量让人感觉你是一个人类才可以。”</p>
+	<p class = "firstLineIndent"> 我正和潘多拉交代着，开门声已经传来。</p>
+	<p class = "firstLineIndent"> “我回来了，”姐姐略显疲惫地说道，紧接着是有些惊讶的声音：“恩？阿俊，这孩子是？”</p>
+	<p class = "firstLineIndent"> “这是潘莉莉，”我将潘多拉轻轻往前一推，尽量做出激动的样子，“她是我的妹妹！”</p>
+	<p class = "firstLineIndent"> “妹妹？”姐姐吃了一惊，下一刻她便想到了一个可能性，不由的惊呼出来“你说她是你妹妹？你的亲生妹妹？”</p>
+	<p class = "firstLineIndent"> “是的，”我笑着说道，“本以为我原本的亲人都已经不在这个世界了，没想到，我还有一个妹妹。”</p>
+	<p class = "firstLineIndent"> “你好。”潘多拉微微点了点头，用她特有的无感情语调打了声招呼。</p>
+	<p class = "firstLineIndent"> 姐姐皱了皱眉，好像对潘多拉这种冷淡的反应有些介意，见状我立刻解释道：“莉莉从前的生活不是很好，而且……经历了一些不太好的事情，所以她的性格有些古怪。”</p>
+	<p class = "firstLineIndent"> 这时候姐姐才注意到潘多拉身上穿的破旧衣服，眼中立刻带上了一丝同情，但狐疑的目光仍然没有完全消散。</p>
+	<p class = "firstLineIndent"> 我知道她在怀疑什么，当年我被带回来的时候还不到一岁，根本不可能对自己的家人有什么印象，更别提这个看上去就知道当时还没有出生的妹妹了，姐姐这是在担心我被人骗了。</p>
+	<p class = "firstLineIndent"> 我微微笑了笑，拉过潘多拉的胳膊，将她的右手衣袖向上卷起。</p>
+	<p class = "firstLineIndent"> 一个只有指甲大小的近似三角形的胎记——在我的胳膊上一样的地方也有这么一个印记。</p>
+	<p class = "firstLineIndent"> “这好像是我们家的遗传，并不是胎记，而是每一个直系血亲都有的记号，另外，虽然听上去有些玄乎，但我和莉莉之间似乎有某种感应，我完全可以确信她就是我的亲生妹妹。”</p>
+	<p class = "firstLineIndent"> 感谢老天给了姐姐一个在生物学上严重不开窍的脑袋，否则她一定很快就能识破我这个拙劣的谎言——世界上还有这么奇怪的遗传？</p>
+	<p class = "firstLineIndent"> 万幸，老姐从小到大生物就没有及过格，因此她立刻就相信了**分，同时，她也注意到了潘多拉眼睛的不寻常。</p>
+	<p class = "firstLineIndent"> “阿俊，这孩子的眼睛怎么……”</p>
+	<p class = "firstLineIndent"> 我露出怜惜的表情抚摸着潘多拉的头发，说道：“我之前不是说过了么？她经历过一些不太好的事情，从那之后，她便看不见东西了，而且性格也变成了这个样子……”</p>
+	<p class = "firstLineIndent"> 我觉得自己不去拍电影实在是演艺界的一大损失。</p>
+	<p class = "firstLineIndent"> 我完美的演技立刻让姐姐的母性光辉爆发出来，几乎是一瞬间，姐姐便放开了心中的疑虑。</p>
+	<p class = "firstLineIndent"> “可怜的小妹妹……”姐姐的声音已经带上了哽咽，她弯下腰来，将面无表情的潘多拉拥入怀中，“你现在住在哪？如果可以的话你搬过来和我们一起住吧，我会像亲姐姐一样照顾你的……”</p>
+	<p class = "firstLineIndent"> 已经同情心爆棚的姐姐完全忽略了为什么仅仅一天时间我就能对这个妹妹的过去这么了解，她甚至没有想起来应该先带着潘多拉去做个基因鉴定什么的。</p>
+	<p class = "firstLineIndent"> 对不起了老姐，只能先瞒着你了，毕竟事情的真相已经超乎寻常到了完全不适合普通人接触的地步……</p>
+	<p class = "firstLineIndent"> ********************************************分********************************************</p>
+	<p class = "firstLineIndent"> 又是一章，路过的看官如果手头有多余的票就赏一两张吧……</p>
+	
+<h2>第七章 强悍小妹</h2>	
+	<p class = "firstLineIndent"> 就这样，潘多拉顺利地住到了我的家中，尽管关于她的身份还是有很多解释不清的地方，但是姐姐似乎完全没有介意的意思，已然将对方当成了自己的亲妹妹一样看待，同情心爆棚的她根本不会想到自己面前的可怜的小妹妹其实是一个多么可怕的不明生命体。</p>
+	<p class = "firstLineIndent"> 原本我还担心在这个公民身份认证手段相当完善的年代，潘多拉的身份问题将成为一个大麻烦，但是当潘多拉私下向我展示她包包里的全套身份证明履历证明之后，我被彻底折服了。</p>
+	<p class = "firstLineIndent"> “这个世界的信息保存与加密技术原始而落后。”潘多拉用平淡的语气将人类引以为傲的现代计算机技术贬的一文不值。</p>
+	<p class = "firstLineIndent"> 如果一切就这样发展的话，情况还称不上太糟糕，只不过是家里多了一个不怎么说话的妹妹而已，但是很快，我就认识到，这个小萝莉能给我带来的麻烦根本不止这些。</p>
+	<p class = "firstLineIndent"> “潘多拉，你确定要和我一起去学校？”走在上学的路上，我看着潘多拉手中的转学证明感到一阵头痛，这么个不安定因素我实在不想让她呆在人类之中啊——虽然我也希望她能尽快融入人类，但我又有些不放心她独自一人，担心她被人欺负是一方面，但更多的是担心她欺负别人……</p>
+	<p class = "firstLineIndent"> “身为皇帝在这个空间范围内的唯一守护者，我必须尽可能保持在您的身边。”潘多拉表情不变，语气却让人有种不可置疑的感觉。</p>
+	<p class = "firstLineIndent"> “好吧好吧，不过事先告诉你的话你可要好好记着……”</p>
+	<p class = "firstLineIndent"> “阿俊！”</p>
+	<p class = "firstLineIndent"> 突然从身后传来的声音打断了我和潘多拉低声的交谈，我回过头去，正看到许浅浅向我们跑来。</p>
+	<p class = "firstLineIndent"> “阿俊，你昨天怎么没来上课？也没有请假……嗯？这个小女孩是谁啊？”</p>
+	<p class = "firstLineIndent"> “她叫潘莉莉，是我的妹妹。”</p>
+	<p class = "firstLineIndent"> “你的妹妹？”许浅浅惊讶地打量着潘多拉，我的身世她是知道的，因此这个突然多出来的妹妹让她吃了一惊，“你还有个妹妹？”</p>
+	<p class = "firstLineIndent"> “是啊，原本我也没有想到的。”</p>
+	<p class = "firstLineIndent"> 当下，我又将和姐姐说的的关于潘多拉的身份解释向许浅浅讲了一遍，最后说道：“就是这样了，由于我和莉莉都是被人收养，所以我们根本就不知道自己原本应该姓什么，因此我也就放弃了让莉莉改姓的想法，她姓潘，但她确实是我的亲妹妹。”</p>
+	<p class = "firstLineIndent"> “啊——”许浅浅张大了嘴，有些不可思议地应道，像这种失散多年的兄妹意外重逢相认的情节实在太戏剧化了，以至于一般只在电视上才可以看到，如今就这么活生生地发生在她的眼前，实在让她有些不知道该怎么反应，“真的……很不可思议，恭喜你们啊……”</p>
+	<p class = "firstLineIndent"> 浅浅说着，一边弯下腰来，小心地用手摸了摸潘多拉的脸颊，“你的妹妹，真的什么都看不见么？”</p>
+	<p class = "firstLineIndent"> “是的。”，我怜惜地抚摸着潘多拉的头发，不动声色地将她向后拉了一点，虽然潘多拉已经按照我说的假扮成一个盲女以掩饰她那完全无法正确聚焦的眼睛，但是我还是担心离太近的话她会暴露。</p>
+	<p class = "firstLineIndent"> “莉莉的视觉神经完全没有问题，但是可能是由于剧烈的心理刺激，她现在已经完全看不见东西了……”</p>
+	<p class = "firstLineIndent"> 我可不是完全在说假话哦，潘多拉的这双眼睛确实看不见任何东西，但是，除了这双眼睛，她开启的一百三十二种多频段扫描雷达可不是摆样子的……</p>
+	<p class = "firstLineIndent"> “是么……可是这样的话她应该去上盲人学校才是吧？我看她手里拿着的转学证明怎么是到咱们学校的？”</p>
+	<p class = "firstLineIndent"> 如果她不去上学我才更开心呢！</p>
+	<p class = "firstLineIndent"> 但是很明显，这样的话我不能直接说出来。</p>
+	<p class = "firstLineIndent"> “是这样没错，但是莉莉坚持要和我在一起，我也只好由着她了，而且莉莉的自理能力是很强的，虽然困难些，但她在正常的学校里上课还是可以的。”</p>
+	<p class = "firstLineIndent"> 浅浅哦了一声，然后大约是意识到谈论这些事情可能会伤害到面前小女孩的内心，主动将话题转到了别处，我心里也终于松了一口气。</p>
+	<p class = "firstLineIndent"> 如果浅浅真的要对潘多拉的情况究根问底的话，我还真是招架不住了。</p>
+	<p class = "firstLineIndent"> “好了，”到了学校门口，许浅浅高兴地拉着潘多拉的手，说道，“这里就是你以后要就读的学校了，怎么样，还可以吧……啊，抱歉，我忘了你看不见的……”</p>
+	<p class = "firstLineIndent"> “我不介意。”潘多拉平淡地说道，然后轻轻向我这边靠了靠，一副不愿和陌生人在一起的样子。</p>
+	<p class = "firstLineIndent"> 与此同时，在我的脑海里也响起了潘多拉机械的声音：“左前方一百七十五米，出现危险标记的碳基生命，对方有简陋武装，威胁等级极低，是否现在清除？”</p>
+	<p class = "firstLineIndent"> “什么？”我被潘多拉的报告弄懵了，一时没有反应过来。</p>
+	<p class = "firstLineIndent"> 就在这时，从我们左前方传来“砰”的一声，然后我看到有一大群学生从我们旁边的沧澜私立高中跑出来，其中跑在最前面的一个学生还大喊了一句：“快跑啊！他们有枪！”</p>
+	<p class = "firstLineIndent"> 校园枪击案？不会吧？这么扯？</p>
+	<p class = "firstLineIndent"> 但就是这么扯的事情，被我给遇上了，确切地说，是一场发生在贵族学校的校园枪击案被我这个在附近上学的普通学生给遇上了。</p>
+	<p class = "firstLineIndent"> 随着一阵惊叫，我看到对面的学校里冲出来三个高大的男人，他们每个人手中都拿着枪支，当然，那都是真家伙！在中间的一个壮的简直像头牛的男人手上，还拖着一个明显是学生的人，从对方已经湿透了裤子的血迹上来看，这就是刚才那声枪声的受害者。</p>
+	<p class = "firstLineIndent"> 三个持枪的男人一边挟持着人质向不远处的一辆白色轿车冲去，一边胡乱地向着四周开枪，似乎是由于过于紧张，他们射出的子弹完全没有准头，但即便如此，也还是有几个学生被子弹擦中，惊叫着倒地——如果再这么下去，随时都可能有学生中弹身亡的！</p>
+	<p class = "firstLineIndent"> 此刻，我已经顾不上考虑这起发生在贵族学校内的枪击案有什么背后的故事，我只有一个想法：必须阻止那三个男人！否则，这里的每一个学生都有可能发生不测！</p>
+	<p class = "firstLineIndent"> 靠我的力量当然不可能，如果是以前的我，在这种情况下只有逃跑的份，但现在，我有了另一个选择。</p>
+	<p class = "firstLineIndent"> “潘多拉，你不是说希灵使徒是天生的战斗种族么？你有办法解决目前的危机么？”我在心中焦急地询问道。</p>
+	<p class = "firstLineIndent"> “接收外部指令集……模糊指令分析……执行！”</p>
+	<p class = "firstLineIndent"> 随着潘多拉的话音落下，天空突然发生了异变！</p>
+	<p class = "firstLineIndent"> 伴随着令人恐惧的低沉嗡鸣声，天空迅速变成了暗红的颜色，无数金色的条纹逐渐在我们上方的大气中显现出来，最终组成了一个覆盖整个天空的金色时钟，随着时钟的出现，周围的事物突然静止了下来，奔逃的学生成了一动不动的雕像，飞扬的尘土停止在空中，表现出各种精致的粒子云雾，飞舞在半空的纸屑也一同诡异地静止在原地，远远看上去就好像老照片上曝光不均所形成的斑点一样。</p>
+	<p class = "firstLineIndent"> 时间静止的同时，我身边的潘多拉－zero也进入了战斗模式，伴随着绿色的如同科幻片中电脑数据流一样的东西流过，一件银色的贴身合金战甲出现在潘多拉身上，半透明的淡绿色面罩遮住了她鼻梁往下的面容，只留下一双已经变异的、没有瞳仁的紫红色眼睛，冷静地注视着前方。</p>
+	<p class = "firstLineIndent"> 我上下打量了一下穿着紧身合金战甲的潘多拉，鬼使神差地冒出一句：“果然——完全没有发育。”</p>
+	<p class = "firstLineIndent"> 第一次在现实中见到这么夸张的情景，我居然还能这么冷静，应该说我的神经实在粗大么？</p>
+	<p class = "firstLineIndent"> 潘多拉并没有理会我的评价，而是继续用冰冷的视线盯着前方。</p>
+	<p class = "firstLineIndent"> 此情此景之下，我只能感叹：科幻，这景象简直太科幻了……</p>
+	<p class = "firstLineIndent"> ******************************************某某线******************************************</p>
+	<p class = "firstLineIndent"> 睡觉还早，要不我再更一章？话说为什么我感觉没多少人关注呢？</p>
+	
+<h2>第八章 人形兵器</h2>	
+	<p class = "firstLineIndent"> 随着时空的静止，所有人都诡异地停在原地，只有那三个持枪暴徒例外。</p>
+	<p class = "firstLineIndent"> 这是因为时间静止会把目标的所有状态锁定住，也就意味着任何外来打击都不可能伤害到一个时间静止的目标，所以潘多拉将时间静止只是为了保护现场的无辜者不受到牵连而已，至于那三个持枪暴徒就没有保护的必要了。</p>
+	<p class = "firstLineIndent"> 看来潘多拉多少还是知道为我避免麻烦的，尽管她一直很不理解我为什么那么怕麻烦。</p>
+	<p class = "firstLineIndent"> 突然的异变让三个前一秒还无比嚣张的男人一时间呆愣在原地，这种只在电影上才能看到的景象让他们完全懵了。</p>
+	<p class = "firstLineIndent"> 最中间那个壮男首先反应了过来，他发现自己手中挟持的那个瘦弱男生此刻竟然像一座大山般不可撼动，无论他使多大的劲都无法再拖动对方分毫，于是他果断地放开了手中的人质，从腰间掏出另外一把手枪，瞬间变身双枪威猛男，警惕地扫视着四周。</p>
+	<p class = "firstLineIndent"> “皇帝，”潘多拉在的声音通过精神连结传了过来，“由于没有希灵前哨基地的支持，时间静止只能持续十五分钟。”</p>
+	<p class = "firstLineIndent"> “好，”我在心中对潘多拉说道（这种联系方式还真是方便），“现在他们已经方寸大乱，我们下一步的计划是……”</p>
+	<p class = "firstLineIndent"> “为了帝国！”一向毫无感情波动的潘多拉突然很热血地喊了一句，不等我反应过来，她已经如一道白色闪电向对方冲去。</p>
+	<p class = "firstLineIndent"> 啥？这是啥情况？三无萝莉突然变成了暴力热血美少女？不不不，问题的关键不是这里吧……</p>
+	<p class = "firstLineIndent"> 潘多拉这一番大动静立刻引起了三个暴徒的注意，在这种万物静止的状态下，突然跑出来一个穿着奇怪白色铠甲、脸带面罩的小女孩，真是想不注意都难啊！</p>
+	<p class = "firstLineIndent"> 神经已经高度紧绷的他们此时已经顾不上思考现在的异象是怎么回事以及面前的小女孩是什么人，几乎是下意识地，三个人一同举起了枪，指向正冲过来的白色身影。</p>
+	<p class = "firstLineIndent"> “砰砰砰”几声枪响，我脑袋一紧，心想：“糟糕！”</p>
+	<p class = "firstLineIndent"> 高速移动中的潘多拉以完全违反运动定律的方式猛然停在原地，右手五指张开，直直地伸向前方，如一尊静止的雕像一般，一动一静之间强烈的对比几乎让我以为刚才潘多拉猛冲的样子是一场幻觉。</p>
+	<p class = "firstLineIndent"> 好像水波纹一样的波动在潘多拉前方扩散开来，几个已经变形的金属圆柱被这层屏障挡在外面，然后无力地落在地上。</p>
+	<p class = "firstLineIndent"> ……早该想到，远超人类文明几个层次的希灵帝国，怎么可能会惧怕人类简陋原始的热武器？</p>
+	<p class = "firstLineIndent"> 几个嚣张男子彻底傻了，周围的异象和面前的怪萝莉让他们产生了自己已经不生活在现实世界中的错觉。</p>
+	<p class = "firstLineIndent"> 就在这时，潘多拉毫无感情的声音传了过来。</p>
+	<p class = "firstLineIndent"> “确认受到攻击，威胁等级零，采取威慑措施——”</p>
+	<p class = "firstLineIndent"> 伴随着潘多拉毫无感情波动的声音，她向前伸出的右手猛然间发生了变化，空气中迅速浮现出的黑色金属物以令人眼花缭乱的速度组装成了一个足有四米长、半人高的长方形**，在炮身上那堆复杂的零件之间，浅蓝色的能量网线如同血管一般脉动着，这些能量网线从长方形的炮口开始，一直延伸到炮身的尾部，汇聚成数道粗大的线缆，和潘多拉的右半身完全融合在一起。</p>
+	<p class = "firstLineIndent"> “潘多拉1000毫米对舰幽能炮，进入发射预热状态……”</p>
+	<p class = "firstLineIndent"> 现场的三个人完全傻掉了……</p>
+	<p class = "firstLineIndent"> 我也傻掉了……</p>
+	<p class = "firstLineIndent"> “这……怪物啊！”</p>
+	<p class = "firstLineIndent"> 中间的威猛双枪男猛然发出一声惊呼，转身就跑，可是就在他转身的同时，潘多拉的左手迅速组合成了一门三联装六管机炮，伴随着机炮开火时巨大的轰鸣声，双枪男腿一软，瘫倒在地上，当场尿如雨下……</p>
+	<p class = "firstLineIndent"> 毫不理会现场其他人惊骇欲绝的目光，我只是仔细地观察着小萝莉潘多拉手上装备的两件巨大的兵器，先不说那个简直是顶梁柱一样的长方形幽能炮，就光是那门三联装六管机炮就已经比这丫头的身体都大了，现在我终于可以确定，在潘多拉三无的外表下其实隐藏着一颗充斥着暴力与战斗欲的内心啊！</p>
+	<p class = "firstLineIndent"> 另外，萝莉+巨大兵器，这样的场面还真是出人意料的养眼呢……</p>
+	<p class = "firstLineIndent"> “你……你是……什么人……你是……”三人中一名红发的年轻男子语无伦次地说着，手中的枪啪嗒一声掉在地上——那东西和潘多拉这个终极人型兵器比起来甚至连玩具都算不上。</p>
+	<p class = "firstLineIndent"> 潘多拉毫不理会对方的问话，只是将右手一抖，手中的巨大兵器发出咔咔两声响，紧接着那门“潘多拉1000毫米对舰幽能炮”的如同发动机喷口一样的长方形炮口中开始汇聚起耀眼的蓝白色光芒。</p>
+	<p class = "firstLineIndent"> “够了，潘多拉。”我这时终于意识到潘多拉在做什么：身为一个“希灵将军”，杀死敌人对她而言简直是吃饭喝水一样平常的事情，如果我再不出声阻止的话，面前的三个倒霉鬼一定会成为历史上第一批被外星对舰武器汽化的人类。</p>
+	<p class = "firstLineIndent"> 虽然对方是些拿人命不当回事的罪犯，可谓是死有余辜，不过就这么杀死他们的话，一会时间静止效应结束之后一定会引发混乱的。</p>
+	<p class = "firstLineIndent"> “遵命。”</p>
+	<p class = "firstLineIndent"> 随着潘多拉的回答，两个巨大兵器迅速折叠、消散在空气中，潘多拉已经部分机械化的身体也恢复了正常。</p>
+	<p class = "firstLineIndent"> 这时三个已经有些精神失常的男人终于注意到现场还有一个可以活动的人类，虽然看上去平平无奇，但从刚才他命令那个“怪物”的情况来看，对方绝对不可能是什么一般的人物。</p>
+	<p class = "firstLineIndent"> 于是，下一秒三个人就像看到了救星一样向我望过来。</p>
+	<p class = "firstLineIndent"> 被三个虎背熊腰的大老爷们这么直勾勾地盯着……简直就是一场地狱啊！</p>
+	<p class = "firstLineIndent"> 刚才那个被潘多拉一轮扫射吓得失禁的健壮男人此刻已经是涕泪齐下；“饶了我们吧！您大人有大量，一定不会把我们这些普通人类放在眼里的……”</p>
+	<p class = "firstLineIndent"> ……这是在说我不是人么？虽然看到潘多拉那个样子产生这种联想十分正常，但是大哥，我要告诉你的是，你嘲讽了……</p>
+	<p class = "firstLineIndent"> “愚蠢的碳基生命，”潘多拉冷冷的声音传了过来，伴随着诡异的电子颤音，“不要妄图混淆皇帝的判断！”</p>
+	<p class = "firstLineIndent"> 咳咳……潘多拉，你群嘲了……</p>
+	<p class = "firstLineIndent"> 先是被人不小心剔除出了人类的范畴，又被自己的妹妹兼手下不小心鄙视了一下，我有些尴尬地说道：“咱们先不讨论物种的问题，潘多拉，咱们还是不要杀掉他们的好，否则一会时间恢复运行了会有不少的麻烦，你有没有什么办法让他们失去记忆或者……”</p>
+	<p class = "firstLineIndent"> “或者变成傻子什么的？”最后，我切换成了精神连结的方式，在心中对潘多拉说道。</p>
+	<p class = "firstLineIndent"> 毕竟我还是很人道的，如果让对面的三个倒霉鬼知道自己的智商即将和老鼠走在一个水平线上，估计他们会立刻崩溃掉。</p>
+	<p class = "firstLineIndent"> 潘多拉点了点头，然后向三个已经集体失禁的前暴徒走去，一边走着，她的右手一边变成了一支大约一尺长的蓝白相间的锥形物体，在这个锥形物体的前端则是一支闪烁着蓝光的长长探针。</p>
+	<p class = "firstLineIndent"> 三个男人发出了绝望的哀号。</p>
+	<p class = "firstLineIndent"> 从此，这个世界上多了三个傻子。</p>
+	<p class = "firstLineIndent"> *******************************************分割*******************************************</p>
+	<p class = "firstLineIndent"> 今天两更……我发现我一直是两更的……另外，门前冷清让我实在很寒心啊……</p>
+	
+<h2>第九章 人畜无害？</h2>	
+	<p class = "firstLineIndent"> 十五分钟说长不长说短不短，在这十五分钟里我亲眼见识了一段堪比未来科幻大片的景象，而三个倒霉的犯罪分子则完成了从悍匪到白痴的转变，想到刚才潘多拉将长长的金属探针强行刺入对方大脑的景象，我不由地又是一阵反胃……</p>
+	<p class = "firstLineIndent"> 随着潘多拉的体内发出一阵十分轻微的嗡鸣声，时间静止结束了，人群恢复了四散奔逃，空中的纸片继续打着旋下落，半空的尘土秀够了粒子效果又继续扮演着背景的效果，与此同时，寂静的世界也一下子被各种声音所充斥，学生的惊呼声，学生的惊呼声，还有学生的惊呼声……</p>
+	<p class = "firstLineIndent"> 一瞬间我感觉自己的头都快炸了！这前后对比还真是强烈的没话说啊！</p>
+	<p class = "firstLineIndent"> 但是很快，学生的惊呼声就小了下来，因为有人发现，刚才还无比嚣张的三个持枪暴徒已经倒在地上，流着口水翻着白眼，傻呵呵地咬着手指头……</p>
+	<p class = "firstLineIndent"> 其实如果有细心的人注意的话，还是能看出来现场的不协调感的——虽然在之前潘多拉已经尽量将那三名犯罪分子摆放在了合适的位置，但由于时间的不连续，现场的景象还是有些异常的，那种感觉就好像把一段完整的视频删掉了一小段然后又拼起来，让人有明显的跳帧感。</p>
+	<p class = "firstLineIndent"> 只是，所有人都只顾着逃命，没有人注意到这一点点异常。</p>
+	<p class = "firstLineIndent"> 按照一般剧情，现在应该是警察出来扫地的时间。</p>
+	<p class = "firstLineIndent"> 以后要发生什么我没有兴趣，现在我只想赶快离开这个乱糟糟的地方。</p>
+	<p class = "firstLineIndent"> 于是我拉着浅浅的手，快步向校内走去，后者这时候已经有些吓傻了，只知道踉踉跄跄地跟在我后面。</p>
+	<p class = "firstLineIndent"> 没有人注意到，在对面的贵族学生里面，有一双明亮的眼睛正带着惊疑不定的目光注视着我们离开的方向。</p>
+	<p class = "firstLineIndent"> 在校园里的一幢教学楼下休息了好一会，浅浅才终于反应过来，然后长长地出了一口气，拍拍胸脯说道：“呼——真是吓死我了，没想到我们竟然会遇上这种事，还以为只有电视里才会看到的，竟然在现实里发生了。”</p>
+	<p class = "firstLineIndent"> 我不自然地笑了笑，比起你来，刚才我看到的事情才更加不可能在现实中发生呢！</p>
+	<p class = "firstLineIndent"> “喂，阿俊，你说那三个人是为什么要做这种事啊？因为钱么？也是，对面的可都是贵族学生，被盯上也很正常，只是他们最后怎么都变成了那个样子？难道是心脏病同时发作了？”</p>
+	<p class = "firstLineIndent"> 看着已经恢复过来的浅浅，我不由地感叹道：“浅浅，你的神经也太粗了吧？这么快就可以恢复过来？”</p>
+	<p class = "firstLineIndent"> “那是，只是虚惊一场么，有必要落个心理阴影才可以么？”浅浅异常粗大的神经此刻完全体现了它的作用，刚才的枪击案似乎对这个大大咧咧的女孩子没有产生多大影响，现在我们两个冷静的样子和身边不时紧张兮兮地跑过去的学生形成了强烈的对比。</p>
+	<p class = "firstLineIndent"> “对了阿俊，你还要带莉莉去报到吧？时间不早了……莉莉，刚才的事情没吓着你吧？要实在不行的话让你哥哥带你回去吧？”</p>
+	<p class = "firstLineIndent"> 浅浅最后一句话突然提醒了我，我竟然忘了一件很重要的事情！</p>
+	<p class = "firstLineIndent"> 潘多拉！刚才我只顾着带上浅浅，竟然忘记了潘多拉，原来她一直静静地跟在我们身后么？</p>
+	<p class = "firstLineIndent"> 我定定地看着不发一言装扮盲女的小女孩，眼神十分复杂。</p>
+	<p class = "firstLineIndent"> 原本，虽然知道对方不是人类，但由于外表和一般人类全无二致，我总是会不由自主地将她当成是一个性格有些古怪的小妹妹而已，但是刚才，潘多拉那人形兵器的形态，再一次狠狠地提醒我，面前这个被称作我的妹妹的女孩，并非人类，而是一个来自遥远的希灵帝国的战争机器。</p>
+	<p class = "firstLineIndent"> 一时间，我甚至不知道该怎么面对她。</p>
+	<p class = "firstLineIndent"> 我并不讨厌潘多拉，相反地，面对这个唯一一个知道我秘密的、有些冷漠的小女孩，我常常会感到一种发自内心的怜惜，或许正是因为如此，我才难以接受对方并不是人类而更接近一部兵器的事实吧。</p>
+	<p class = "firstLineIndent"> “阿俊，你怎么了？又在发呆？不会是刚才的事请将你吓傻了吧？”浅浅看到我半天不发一言，只是静静地看着自己的妹妹，不由担心地说道，那语气，简直就是已经认定我已经被刚才的事情吓呆了一样。</p>
+	<p class = "firstLineIndent"> 真是太打击我的自尊心了……</p>
+	<p class = "firstLineIndent"> “我没事，我只是在担心莉莉是不是受到了惊吓……你先上课去吧，我已经和老师打过招呼了，等莉莉到了新班级我就过去。”</p>
+	<p class = "firstLineIndent"> 浅浅带着担心的目光看了我几秒钟，见我似乎并没有什么异常，才应了一声：“哦，那我先走了，你一会赶紧来上课。”</p>
+	<p class = "firstLineIndent"> 真是……明明比我还小几个月呢，却总是一副照顾我的样子……</p>
+	<p class = "firstLineIndent"> “皇帝……”</p>
+	<p class = "firstLineIndent"> “不要叫这个称呼了。”我突然坚决地说道。</p>
+	<p class = "firstLineIndent"> 潘多拉似乎被我这句话吓了一跳，那张几乎从未出现过表情的脸上此时竟然也有了一丝惊讶的意味，灰色的眼睛微微张大，看上去更多了几分可爱。</p>
+	<p class = "firstLineIndent"> 愣了两三秒，潘多拉回了神，淡淡地说道：“皇帝是希灵帝国对于最高权限个体的统一称呼，如果您不满意的话，我可以按照这个世界的习惯，在皇帝后面加上陛下两个字。”</p>
+	<p class = "firstLineIndent"> “不，我不是这个意思……你叫我哥哥吧，以后尽量就用这个称呼了。”</p>
+	<p class = "firstLineIndent"> 潘多拉静静地看着我，然后，我听到有“滋滋”的仿佛高压电流过变压器的声音从她的体内传出，没过一会，一丝白烟从她的脑袋顶上升腾起来……</p>
+	<p class = "firstLineIndent"> 喂喂喂，我说，不就是换一个称呼么？难道这就让你产生逻辑故障了么？</p>
+	<p class = "firstLineIndent"> “资料库比对完毕，改变为这个称呼并不违反希灵法律，已经更改了默认的称谓集，但是在战斗形态下仍将维持原有称谓。”</p>
+	<p class = "firstLineIndent"> 潘多拉静静地向我汇报着她思考的结果，然后突然用手一指脑袋，说道：“哥哥，我过载了……”</p>
+	<p class = "firstLineIndent"> 这个样子，好可爱！</p>
+	<p class = "firstLineIndent"> 将潘多拉介绍给新的集体比我预想的还要顺利，从小父母双亡的坚强盲人女孩为了能和自己好不容易才重逢的哥哥在一起而克服重重困难来到学校上学，这个题材立刻就让那帮纯洁的初一学生同情心大发，潘莉莉小妹妹一时间简直成了整个班级的宝贝，所有人都迫不及待地想要向这个不幸的女孩表现自己的一份爱心，同学们洋溢的热情甚至让潘多拉产生了一丝手足无措的感觉。</p>
+	<p class = "firstLineIndent"> 这样我就放心多了，至少我不用担心出现哪个不开眼的学生因为欺负潘多拉是个“盲人”结果被相位冲击炮轰杀成渣——因为潘多拉之前向我表示过，如果有某个无礼的碳基生命试图冒犯她，那么作为一名希灵帝国的高级将领，她必须维护帝**人的荣誉，而这个维护的方式，就是动用武力——这个动用武力的上限真是吓了我一大跳，那里面甚至连启动对星武器的选项都有！</p>
+	<p class = "firstLineIndent"> 因此，我最大的希望就是，千万别出现某个脑残的家伙惹恼了潘多拉。</p>
+	<p class = "firstLineIndent"> 当然，鉴于我目前对希灵帝国的远程指挥能力基本为零，而潘多拉本身又没有希灵前哨基地的支援，对星武器的动用还是不太可能的，顶多就是动用一下军团级兵器罢了……</p>
+	<p class = "firstLineIndent"> 所以，潘多拉的同学们啊，你们可千万别被这个小萝莉那人畜无害的外表给骗了啊！</p>
+	<p class = "firstLineIndent"> ***************************************一条线***************************************</p>
+	<p class = "firstLineIndent"> 今天更新早一点，路过的看官有票的给留张票，没票就留下份收藏，要是连收藏都没有的话就留下几句留言，要是连打字的时间都没有的话……那希望你留下了一个好心情~~~~~</p>
+	
+<h2>第十章 军团降临？</h2>	
+	<p class = "firstLineIndent"> 尽管上午发生了一件相当恶性的校园枪击案件，但令我惊奇的是校方竟然没有因此而停课封校，一切教学活动照常进行，这实在让我感到万分费解，难道某人为了剧情的发展就可以完全不顾逻辑……咳咳，口误……</p>
+	<p class = "firstLineIndent"> 与我们形成鲜明对比的，对面的沧澜私立高中作为枪击案的事发地点倒是被火速封锁了起来，里面的学生也及时被转移到了安全的地点，和我们这个仿佛什么也没发生过的学校比起来真是一个天上一个地下。</p>
+	<p class = "firstLineIndent"> 高三的课程相当枯燥乏味，你要在一年中拼命将各种在你看来根本与自己的世界无关的东西塞进脑子里，为的就是每年七月份将它们默写在一摞纸上然后在未来的四年中把那些东西忘得一干二净。</p>
+	<p class = "firstLineIndent"> 教我们英语的是一个很和善的老太太，据说从前曾在英国一所私立学校教老外中文，这导致我们这个可爱的老师有一个相当个性的习惯：每次上课她总是飞快地说着大段的英文，然后在用中文给我们翻译的时候把速度放得很慢，而且把一个个重音咬的字正腔圆，生怕我们听不懂的样子。</p>
+	<p class = "firstLineIndent"> 总之，这是一件很让人无语的事情。</p>
+	<p class = "firstLineIndent"> 我微微眯着眼睛，努力从周围那地道的伦敦音中分辨出自己能听得懂的部分来把他们拼接成可以理解的句子（这真是一件相当有挑战性的事情，我估计其难度不下于根据半块石板分析古埃及法老早餐食谱的过程），一个小纸团突然从旁边跳了出来，准确地砸在我的头上。</p>
+	<p class = "firstLineIndent"> 我接过纸团，快速地计算了一下纸团飞来的方向仰角速度当时风速当地加速度……好吧，还是打开纸团看看吧。</p>
+	<p class = "firstLineIndent"> 一行经过了高度加密的疑似外星文字的东西出现在我眼前：“阿俊，你妹妹怎么样了？”</p>
+	<p class = "firstLineIndent"> 这种好像梵高灌下二斤二锅头之后用左手写出的中文字迹，毫无疑问是出自浅浅之手，这一手臭字在这个世界上只有包括我在内的寥寥几人可以在短时间内看懂，这也导致每次考试浅浅和我传纸条的时候都不必担心被其他人捡到而便宜了外人——从某种意义上来说，浅浅的字和密码本是有相同作用的。</p>
+	<p class = "firstLineIndent"> “她很好，同学和老师似乎都挺照顾她的，我想也不会有谁狠心欺负一个眼睛看不见的女孩吧？”我用阅读难度丝毫不弱于浅浅字迹的手笔写道。</p>
+	<p class = "firstLineIndent"> “那可不一定，你可要好好关心自己的妹妹，她很可怜的，如果你让她受到欺负了我可饶不了你！”</p>
+	<p class = "firstLineIndent"> ……真没想到，潘多拉可爱的外表和我为她编造的不幸童年竟然拥有这么强的杀伤力，以至于神经组大、大大咧咧的浅浅竟然在这么短的时间里就彻底成了她的铁杆守护者……</p>
+	<p class = "firstLineIndent"> 欺负潘多拉？我想了想上午潘多拉战斗姿态的可怕，然后嘴角抽搐起来。</p>
+	<p class = "firstLineIndent"> 得多少全副武装的正规军才可以欺负得了那个战略级别的战争机器啊？</p>
+	<p class = "firstLineIndent"> 就在我还在想象着战斗状态的潘多拉一手反相位炮一手幽能攻城炮大战人类联合军团的雄姿时，一阵奇特的感觉突然从我的精神深处传来，这种感觉……难道是潘多拉在联系我？</p>
+	<p class = "firstLineIndent"> 不，不是潘多拉，根据潘多拉所说，作为我的首席辅佐官，她和我之间有一种被称为无限制联络频道的联系方式，因此她有什么情况可以直接和我展开精神对话，但现在在我精神深处的这个波动倒好像是一个连接请求——潘多拉是用不着这个的。</p>
+	<p class = "firstLineIndent"> 虽然不知道对方是谁，但可以肯定的是这又跟希灵帝国有关。</p>
+	<p class = "firstLineIndent"> 我低下头，一副认真看书的模样，以掩饰一会可能出现的惊讶神色（根据我的经验，这个希灵帝国只要和我联系就总会给我一些惊喜。），然后同意了这个连接。</p>
+	<p class = "firstLineIndent"> “这里是世界仲裁机关二号机，盖亚，请求与皇帝的直接通话权。”一条表明身份的信息出现在我的脑海中。</p>
+	<p class = "firstLineIndent"> 盖亚？我微微一愣，然后立刻反应过来——对方就是我梦中见过的那个半透明投影。</p>
+	<p class = "firstLineIndent"> 事实上关于那天的梦境我一直有很多疑惑，比如，为什么当时天上只有一个空中要塞（现在我知道了那叫做世界仲裁机关），另外两个去了哪里？为什么它会险些接触地面，所谓的世界仲裁机关究竟是什么东西，更重要的是，那个叫盖亚的女性投影难道就是天上那个巨大要塞的意识体么？</p>
+	<p class = "firstLineIndent"> 虽然有这么多疑惑，不过可惜的是，由于和那颗希灵母星（从潘多拉那里得知，希灵帝国幅员辽阔，母星众多，一直以来我梦境中的那个世界只是众多希灵母星中的一个而已）的联系时断时续，那些在无时差空间隧道中经过了漫长旅途而残存的信号片段根本不可能再次将那个世界的情景同步反映到我的梦境中，就好像网络游戏由于网速过慢而被卡住一样，我梦境中的那个世界一直保持着那晚最后看到的景象，和希灵母星的联系也近乎完全中断，即使是潘多拉也只能得到一些很模糊的信号。</p>
+	<p class = "firstLineIndent"> 而向潘多拉询问，对方却说自己的权限不够，无权调用关于世界仲裁机关的任何资料。</p>
+	<p class = "firstLineIndent"> 现在这个远在希灵母星的人工智能找我有什么事呢？</p>
+	<p class = "firstLineIndent"> 好奇之下，我同意了对方和我直接对话的请求，与此同时，我感到另外一个频段的精神连结也传了过来。</p>
+	<p class = "firstLineIndent"> 这是属于潘多拉的精神信号，由于距离过远，来自盖亚的信号失真情况相当严重，如果没有潘多拉的信息修正，恐怕我听懂这些信息将不会比听懂英语老太那正统的伦敦音简单。</p>
+	<p class = "firstLineIndent"> 虽然是号称无时差的信号传递，但毕竟绝对空间距离在那摆着，而且又经过了潘多拉的修正和过滤，盖亚的声音隔了好几秒才传来，极具希灵特色的平平淡淡地语气，内容却是直接将我吓了一跳。</p>
+	<p class = "firstLineIndent"> “帝国远征军第一军团已经于您的当地时间1小时前进入了空间跳跃，预计将于12小时后到达您所在的星球，请准备接收。”</p>
+	<p class = "firstLineIndent"> 啥？你说啥？等等啊神仙姐姐，你搞错什么了吧？</p>
+	<p class = "firstLineIndent"> 但是我发出的一连串疑问信息完全没有得到答复，精神连结已经中断了。</p>
+	<p class = "firstLineIndent"> 看样子这次连接也是强行建立的不稳定联系，只不过十几秒钟连接便无以为继，只留下我一个人在这边头大如斗。</p>
+	<p class = "firstLineIndent"> 帝国远征军？</p>
+	<p class = "firstLineIndent"> 你们到底打算远征什么啊？</p>
+	<p class = "firstLineIndent"> “喂，潘多拉，你听到了么？帝国远征军的事情。”</p>
+	<p class = "firstLineIndent"> “是的。”</p>
+	<p class = "firstLineIndent"> “你知道是怎么回事么？怎么突然出现这么一支部队？”</p>
+	<p class = "firstLineIndent"> “简单地说，是我的直属部队，重装潘多拉军团。”</p>
+	<p class = "firstLineIndent"> 潘多拉语气平淡地回答道，尽管我们只是进行了精神层面上的连接，但我还是可以很容易地想象出潘多拉在回答这个问题的时候那副云淡风轻、理所当然的表情。</p>
+	<p class = "firstLineIndent"> 或许对她而言，将一支军队派到哪里根本就是一件不值一提的小事吧？</p>
+	<p class = "firstLineIndent"> 但是对我而言，这可是相当了不起的大事啊！</p>
+	<p class = "firstLineIndent"> 只一刻，我仿佛看到自己的平静生活正在迅速地离我而去……</p>
+	<p class = "firstLineIndent"> *********************************************￥￥*********************************************</p>
+	<p class = "firstLineIndent"> 这一章感觉不是很好啊，但是只能如此了，最近工作忙起来了，甚至连过年都有可能回不了家，真是一件很郁闷的事情……</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='000.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='010.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+<script>
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() {
+	document.getElementById("_userInput").value = "";
+	funcShowAllList();
+	funcGotoTop();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>

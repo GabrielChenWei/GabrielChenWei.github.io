@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted -------
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.5em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 5%;
+	margin-right: 10%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: 0.5em;
+	margin : 1em;
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+	margin: 2px 4px;
+	*/
+    display: block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 90%; 
+	
+}
+#_userPanel {
+  position: fixed;
+  bottom: 0.1em;
+  /*
+  top: 0px;
+  */
+  border: 3px solid #73AD21;
+  background-color: powderblue;
+  right: 0.8em;
+  width: 5em;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+
+
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+/****************************** list element template ******************************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   spankbang.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+<div class=container>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h3> 希灵帝国 作者：远瞳 </h3>
+<p class = "firstLineIndent"> 不是帝国争霸，不是异界风云，更不是升级练功，其实，这是一本非常严肃正经认真的硬科幻救世文——你就当真的听。</p>
+<p class = "firstLineIndent"> 好吧，其实这就是一群没溜的领袖和一个坑爹的元首欢乐无节操的救世日常而已。</p>
+<p class = "firstLineIndent"> 混吃等死的伪宅摇身一变成帝国元首，拥有奶爸光环的大叔领养萝莉无数，这就是某宅在获得一个从天而降的蹭饭兵团之后所发生的爆笑故事，再次郑重提示：这是一本非常严肃正经认真的科幻……</p>
+<hr/>
+<ul class="indent-level-1">
+<li><a href="	000.html	">	第一章 梦	 </a></li>
+<li><a href="	000.html	">	第二章 危险的苏醒	 </a></li>
+<li><a href="	000.html	">	第三章 古老帝国	 </a></li>
+<li><a href="	000.html	">	第四章 好吧，我服了	 </a></li>
+<li><a href="	000.html	">	第五章 潘多拉	 </a></li>
+<li><a href="	000.html	">	第六章 妹妹，恩，妹妹	 </a></li>
+<li><a href="	000.html	">	第七章 强悍小妹	 </a></li>
+<li><a href="	000.html	">	第八章 人形兵器	 </a></li>
+<li><a href="	000.html	">	第九章 人畜无害？	 </a></li>
+<li><a href="	010.html	">	第十章 军团降临？	 </a></li>
+<li><a href="	010.html	">	第十一章 蹭饭大军即将到来	 </a></li>
+<li><a href="	010.html	">	第十二章 外星务工人员	 </a></li>
+<li><a href="	010.html	">	第十三章 外星人的先进造假技术	 </a></li>
+<li><a href="	010.html	">	第十四章 外星人入侵？	 </a></li>
+<li><a href="	010.html	">	第十五章 神秘的攻击	 </a></li>
+<li><a href="	010.html	">	第十六章 美女到访	 </a></li>
+<li><a href="	010.html	">	第十七章 林雪	 </a></li>
+<li><a href="	010.html	">	第十八章 异能……组织	 </a></li>
+<li><a href="	010.html	">	第十九章 永别了，我的平静生活	 </a></li>
+<li><a href="	020.html	">	第二十章 失踪	 </a></li>
+<li><a href="	020.html	">	第二十一章 大沙漠	 </a></li>
+<li><a href="	020.html	">	第二十二章 还少个加血的	 </a></li>
+<li><a href="	020.html	">	第二十三章 西卡罗的加入	 </a></li>
+<li><a href="	020.html	">	第二十四章 希灵遗物	 </a></li>
+<li><a href="	020.html	">	第二十五章 战士的坟墓	 </a></li>
+<li><a href="	020.html	">	第二十六章 意外	 </a></li>
+<li><a href="	020.html	">	第二十七章 异世界	 </a></li>
+<li><a href="	020.html	">	第二十八章 萝莉逗饿龙	 </a></li>
+<li><a href="	020.html	">	第二十九章 求援信号	 </a></li>
+<li><a href="	030.html	">	第三十章 萝莉狮子吼	 </a></li>
+<li><a href="	030.html	">	第三十一章 复仇军	 </a></li>
+<li><a href="	030.html	">	第三十二章 珊多拉	 </a></li>
+<li><a href="	030.html	">	第三十三章 被侵蚀的珊多拉	 </a></li>
+<li><a href="	030.html	">	第三十四章 虚惊	 </a></li>
+<li><a href="	030.html	">	第三十五章 回归	 </a></li>
+<li><a href="	030.html	">	第三十六章 又来了……	 </a></li>
+<li><a href="	030.html	">	第三十七章 捣乱的珊多拉	 </a></li>
+<li><a href="	030.html	">	第三十八章 找麻烦的人	 </a></li>
+<li><a href="	030.html	">	第三十九章 撒谎与精神控制	 </a></li>
+<li><a href="	040.html	">	第四十章 大贵族	 </a></li>
+<li><a href="	040.html	">	第四十一章 宴会（上）	 </a></li>
+<li><a href="	040.html	">	第四十二章 宴会（中）	 </a></li>
+<li><a href="	040.html	">	第四十三章 宴会（下）	 </a></li>
+<li><a href="	040.html	">	第四十四章 猪头	 </a></li>
+<li><a href="	040.html	">	第四十五章 绝命萝莉踢	 </a></li>
+<li><a href="	040.html	">	第四十六章 假期来临	 </a></li>
+<li><a href="	040.html	">	第四十七章 突如其来的联系	 </a></li>
+<li><a href="	040.html	">	第四十八掌 世界仲裁机关	 </a></li>
+<li><a href="	040.html	">	第四十九章 阿赖耶	 </a></li>
+<li><a href="	050.html	">	第五十章 倒霉的犯罪分子	 </a></li>
+<li><a href="	050.html	">	第五十一章 吓唬	 </a></li>
+<li><a href="	050.html	">	第五十二章 我是大boss	 </a></li>
+<li><a href="	050.html	">	第五十三章 旅游	 </a></li>
+<li><a href="	050.html	">	第五十四章 麻烦总是伴随着更大的麻烦	 </a></li>
+<li><a href="	050.html	">	第五十五章 大家一起来穿越	 </a></li>
+<li><a href="	050.html	">	第五十六章 失散（上）	 </a></li>
+<li><a href="	050.html	">	第五十七章 失散（中）	 </a></li>
+<li><a href="	050.html	">	第五十八章 失散（下）	 </a></li>
+<li><a href="	050.html	">	第五十九章 叮当	 </a></li>
+<li><a href="	060.html	">	第六十章 双子的能力	 </a></li>
+<li><a href="	060.html	">	第六十一章 坦白	 </a></li>
+<li><a href="	060.html	">	第六十二章 好多大人物	 </a></li>
+<li><a href="	060.html	">	第六十三章 强势	 </a></li>
+<li><a href="	060.html	">	第六十四章 异界观光	 </a></li>
+<li><a href="	060.html	">	第六十五章 火刃佣兵团	 </a></li>
+<li><a href="	060.html	">	第六十六章 难缠的崇拜者	 </a></li>
+<li><a href="	060.html	">	第六十七章 不得不进行的战争	 </a></li>
+<li><a href="	060.html	">	第六十八章 备战	 </a></li>
+<li><a href="	060.html	">	第六十九章 红警魔兽群英传	 </a></li>
+<li><a href="	070.html	">	第七十章 三个监视者	 </a></li>
+<li><a href="	070.html	">	第七十一章 希灵主机	 </a></li>
+<li><a href="	070.html	">	第七十二章 迎战	 </a></li>
+<li><a href="	070.html	">	第七十三章 所谓AOE	 </a></li>
+<li><a href="	070.html	">	第七十四章 僵持	 </a></li>
+<li><a href="	070.html	">	第七十五章 正主上场	 </a></li>
+<li><a href="	070.html	">	第七十六章 曾经的皇帝	 </a></li>
+<li><a href="	070.html	">	第七十七章 异变	 </a></li>
+<li><a href="	070.html	">	第七十八章 辐射？	 </a></li>
+<li><a href="	070.html	">	第七十九章 浅浅的变化	 </a></li>
+<li><a href="	080.html	">	第八十章 强化	 </a></li>
+<li><a href="	080.html	">	第八十一章 人造超人	 </a></li>
+<li><a href="	080.html	">	第八十二章 异界中央异能局	 </a></li>
+<li><a href="	080.html	">	第八十三章 超能力战斗大队	 </a></li>
+<li><a href="	080.html	">	第八十四章 小泡泡	 </a></li>
+<li><a href="	080.html	">	第八十五章 即将到来的大战	 </a></li>
+<li><a href="	080.html	">	第八十六章 一个难缠的国家	 </a></li>
+<li><a href="	080.html	">	第八十七章 其实，我姓上	 </a></li>
+<li><a href="	080.html	">	第八十八章 忽悠，大忽悠	 </a></li>
+<li><a href="	080.html	">	第八十九章 不坚定的信徒	 </a></li>
+<li><a href="	090.html	">	第九十章 礼物	 </a></li>
+<li><a href="	090.html	">	第九十一章 捣乱的人	 </a></li>
+<li><a href="	090.html	">	第九十二章 决斗？哈……	 </a></li>
+<li><a href="	090.html	">	第九十三章 悲剧的托斯卡	 </a></li>
+<li><a href="	090.html	">	第九十四章 世上只有萝莉好	 </a></li>
+<li><a href="	090.html	">	第九十五章 圣骑士的威力	 </a></li>
+<li><a href="	090.html	">	第九十六章 骇人的力量	 </a></li>
+<li><a href="	090.html	">	第九十七章 更加悲剧的托斯卡	 </a></li>
+<li><a href="	090.html	">	第九十八章 姐姐画的圈（上）	 </a></li>
+<li><a href="	090.html	">	第九十九章 姐姐画的圈（下）	 </a></li>
+<li><a href="	100.html	">	第一百章 开战	 </a></li>
+<li><a href="	100.html	">	第一百零一章 强大的珊多拉	 </a></li>
+<li><a href="	100.html	">	第一百零二章 群殴（上）	 </a></li>
+<li><a href="	100.html	">	第一百零三章 群殴（下）	 </a></li>
+<li><a href="	100.html	">	第一百零四章 激战	 </a></li>
+<li><a href="	100.html	">	第一百零五章 珊多拉的愤怒	 </a></li>
+<li><a href="	100.html	">	第一百零六章 终于搞定了	 </a></li>
+<li><a href="	100.html	">	第一百零七章 闹别扭的珊多拉	 </a></li>
+<li><a href="	100.html	">	第一百零八章 收工回家	 </a></li>
+<li><a href="	100.html	">	第一百零九章 人生总是充满了巧合	 </a></li>
+<li><a href="	110.html	">	第一百一十章 撒哈拉大沙漠上的偶遇	 </a></li>
+<li><a href="	110.html	">	第一百一十一章 林雪的同事	 </a></li>
+<li><a href="	110.html	">	第一百一十二章 一车异能者	 </a></li>
+<li><a href="	110.html	">	第一百一十三章 ……首领？	 </a></li>
+<li><a href="	110.html	">	第一百一十四章 小人物……	 </a></li>
+<li><a href="	110.html	">	第一百一十五章 传说	 </a></li>
+<li><a href="	110.html	">	第一百一十六章 林雪的对头？	 </a></li>
+<li><a href="	110.html	">	第一百一十一七章 很好的试验材料	 </a></li>
+<li><a href="	110.html	">	第一百一十八章 告一段落	 </a></li>
+<li><a href="	110.html	">	第一百一十九章 一帮闲人	 </a></li>
+<li><a href="	120.html	">	第一百二十章 大人物们的闲暇时光	 </a></li>
+<li><a href="	120.html	">	第一百二十一章 探险？	 </a></li>
+<li><a href="	120.html	">	第一百二十二章 闹鬼的小岛	 </a></li>
+<li><a href="	120.html	">	第一百二十三章 谁怕谁	 </a></li>
+<li><a href="	120.html	">	第一百二十四章 巨大别墅	 </a></li>
+<li><a href="	120.html	">	第一百二十五章 鬼屋	 </a></li>
+<li><a href="	120.html	">	第一百二十六章 欢迎来到达隆郡	 </a></li>
+<li><a href="	120.html	">	第一百二十七章 探索（上）	 </a></li>
+<li><a href="	120.html	">	第一百二十八章 探索（下）	 </a></li>
+<li><a href="	120.html	">	第一百二十九章 亡灵	 </a></li>
+<li><a href="	130.html	">	第一百三十章 鬼魂女仆	 </a></li>
+<li><a href="	130.html	">	第一百三十一章 安薇娜的请求	 </a></li>
+<li><a href="	130.html	">	第一百三十二章 会圣光的幽灵	 </a></li>
+<li><a href="	130.html	">	第一百三十三章 托尼	 </a></li>
+<li><a href="	130.html	">	第一百三十四章 扭曲的心	 </a></li>
+<li><a href="	130.html	">	第一百三十五章 笨天使，黑石头，小不点	 </a></li>
+<li><a href="	130.html	">	第一百三十六章 神	 </a></li>
+<li><a href="	130.html	">	第一百三十七章 超级家庭	 </a></li>
+<li><a href="	130.html	">	第一百三十八章 本年度最牛叉学生	 </a></li>
+<li><a href="	130.html	">	第一百三十九章 翘课	 </a></li>
+<li><a href="	140.html	">	第一百四十章 石头	 </a></li>
+<li><a href="	140.html	">	第一百四十一章 叮当的重大发现	 </a></li>
+<li><a href="	140.html	">	第一百四十二章 林雪的麻烦	 </a></li>
+<li><a href="	140.html	">	第一百四十三章 关于有钱人	 </a></li>
+<li><a href="	140.html	">	第一百四十四章 瞬间崩坏的人品	 </a></li>
+<li><a href="	140.html	">	第一百四十五章 开放的老头子	 </a></li>
+<li><a href="	140.html	">	第一百四十六章 小小的骚乱	 </a></li>
+<li><a href="	140.html	">	第一百四十七章 了不起的老爷子	 </a></li>
+<li><a href="	140.html	">	第一百四十八章 秘闻	 </a></li>
+<li><a href="	140.html	">	第一百四十九章 我们的“慷慨”	 </a></li>
+<li><a href="	150.html	">	第一百五十章 破车	 </a></li>
+<li><a href="	150.html	">	第一百五十一章 吓唬	 </a></li>
+<li><a href="	150.html	">	第一百五十二章 吓破胆	 </a></li>
+<li><a href="	150.html	">	第一百五十三章 来自外星的超级恶棍	 </a></li>
+<li><a href="	150.html	">	第一百五十四章 坐标的问题	 </a></li>
+<li><a href="	150.html	">	第一百五十五章 游乐场	 </a></li>
+<li><a href="	150.html	">	第一百五十六章 奇怪的女孩	 </a></li>
+<li><a href="	150.html	">	第一百五十七章 让人无语的安薇娜	 </a></li>
+<li><a href="	150.html	">	第一百五十八章 影子城市里的研究中心	 </a></li>
+<li><a href="	150.html	">	第一百五十九章 来自艾泽拉斯	 </a></li>
+<li><a href="	160.html	">	第一百六十章 超现实对话（上）	 </a></li>
+<li><a href="	160.html	">	第一百六十一章 超现实对话（中）	 </a></li>
+<li><a href="	160.html	">	第一百六十二章 超现实对话（下）	 </a></li>
+<li><a href="	160.html	">	第一百六十三章 整装待发	 </a></li>
+<li><a href="	160.html	">	第一百六十四章 好大的船	 </a></li>
+<li><a href="	160.html	">	第一百六十五章 史上最囧着陆	 </a></li>
+<li><a href="	160.html	">	第一百六十六章 脱线版……	 </a></li>
+<li><a href="	160.html	">	第一百六十七章 混乱的剧情	 </a></li>
+<li><a href="	160.html	">	第一百六十八章 燃烧军团的生化试验？	 </a></li>
+<li><a href="	160.html	">	第一百六十九章 先知是种变态职业	 </a></li>
+<li><a href="	170.html	">	第一百七十章 小泡泡的问题	 </a></li>
+<li><a href="	170.html	">	第一百七十一章 守株待兔	 </a></li>
+<li><a href="	170.html	">	第一百七十二章 固定靶	 </a></li>
+<li><a href="	170.html	">	第一百七十三章 无耻流	 </a></li>
+<li><a href="	170.html	">	第一百七十四章 倒霉的恶魔	 </a></li>
+<li><a href="	170.html	">	第一百七十五章 你看，萝莉多可怕	 </a></li>
+<li><a href="	170.html	">	第一百七十六章 优势和劣势	 </a></li>
+<li><a href="	170.html	">	第一百七十七章 郊游化的作战会议	 </a></li>
+<li><a href="	170.html	">	第一百七十八章 林雪的建议	 </a></li>
+<li><a href="	170.html	">	第一百七十九章 超级联军	 </a></li>
+<li><a href="	180.html	">	第一百八十章 有鬼啊！！！	 </a></li>
+<li><a href="	180.html	">	第一百八十一章 丁玲的弱点	 </a></li>
+<li><a href="	180.html	">	第一百八十二章 抓狂的阿赖耶	 </a></li>
+<li><a href="	180.html	">	第一百八十三章 难道他是上帝？	 </a></li>
+<li><a href="	180.html	">	第一百八十四章 你姐姐是救世主	 </a></li>
+<li><a href="	180.html	">	第一百八十五章 小幽灵的大危机	 </a></li>
+<li><a href="	180.html	">	第一百八十六章 诡辩家	 </a></li>
+<li><a href="	180.html	">	第一百八十七章 悲剧的西卡罗	 </a></li>
+<li><a href="	180.html	">	第一百八十八章 艾泽拉斯的盗版贩子	 </a></li>
+<li><a href="	180.html	">	第一百八十九章 分工	 </a></li>
+<li><a href="	190.html	">	第一百九十章 提瑞斯法林地	 </a></li>
+<li><a href="	190.html	">	第一百九十一章 两个古怪组合	 </a></li>
+<li><a href="	190.html	">	第一百九十二章 幽暗城之旅	 </a></li>
+<li><a href="	190.html	">	第一百九十三章 圈圈城	 </a></li>
+<li><a href="	190.html	">	第一百九十四章 无力的瓦利玛萨斯	 </a></li>
+<li><a href="	190.html	">	第一百九十五章 你好，我是救世主	 </a></li>
+<li><a href="	190.html	">	第一百九十六章 诱人的保证	 </a></li>
+<li><a href="	190.html	">	第一百九十七章 超级无聊的城市	 </a></li>
+<li><a href="	190.html	">	第一百九十八章 扎肯的故事	 </a></li>
+<li><a href="	190.html	">	第一百九十九章 你看，这很简单	 </a></li>
+<li><a href="	200.html	">	第二百章 变异恶魔再现	 </a></li>
+<li><a href="	200.html	">	第二百零一章 叛变？	 </a></li>
+<li><a href="	200.html	">	第二百零二章 被困？开玩笑……	 </a></li>
+<li><a href="	200.html	">	第二百零三章 被十门卫星炮轰炸的后果	 </a></li>
+<li><a href="	200.html	">	第二百零四章 都遇袭了	 </a></li>
+<li><a href="	200.html	">	第二百零五章 阴影	 </a></li>
+<li><a href="	200.html	">	第二百零六章 游戏开始	 </a></li>
+<li><a href="	200.html	">	第二百零七章 泡泡塔	 </a></li>
+<li><a href="	200.html	">	第二百零八章 闹哄哄	 </a></li>
+<li><a href="	200.html	">	第二百零九章 齐聚一堂（上）	 </a></li>
+<li><a href="	210.html	">	第二百一十章 齐聚一堂（中）	 </a></li>
+<li><a href="	210.html	">	第二百一十一章 齐聚一堂（下）	 </a></li>
+<li><a href="	210.html	">	第二百一十二章 坏消息	 </a></li>
+<li><a href="	210.html	">	第二百一十三章 维克托的发言	 </a></li>
+<li><a href="	210.html	">	第二百一十四章 帽子，一个压死人的大帽子	 </a></li>
+<li><a href="	210.html	">	第二百一十五章 启程幽暗城	 </a></li>
+<li><a href="	210.html	">	第二百一十六章 语出惊人	 </a></li>
+<li><a href="	210.html	">	第二百一十七章 事实或者假相	 </a></li>
+<li><a href="	210.html	">	第二百一十八章 袭击	 </a></li>
+<li><a href="	210.html	">	第二百一十九章 交战	 </a></li>
+<li><a href="	220.html	">	第二百二十章 敢死队也很难缠	 </a></li>
+<li><a href="	220.html	">	第二百二十一章 复仇者	 </a></li>
+<li><a href="	220.html	">	第二百二十二章 突变	 </a></li>
+<li><a href="	220.html	">	第二百二十三章 很危险	 </a></li>
+<li><a href="	220.html	">	第二百二十四章 这个世界的背面	 </a></li>
+<li><a href="	220.html	">	第二百二十五章 一筹莫展	 </a></li>
+<li><a href="	220.html	">	第二百二十六章 黑影	 </a></li>
+<li><a href="	220.html	">	第二百二十七章 斗篷女孩	 </a></li>
+<li><a href="	220.html	">	第二百二十八章 黑色潘多拉	 </a></li>
+<li><a href="	220.html	">	第二百二十九章 雾水啊雾水	 </a></li>
+<li><a href="	230.html	">	第二百三十章 继续雾水	 </a></li>
+<li><a href="	230.html	">	第二百三十一章 战后	 </a></li>
+<li><a href="	230.html	">	第二百三十二章 不灭者潘多拉	 </a></li>
+<li><a href="	230.html	">	第二百三十三章 可悲的命运	 </a></li>
+<li><a href="	230.html	">	第二百三十四章 神棍的建议	 </a></li>
+<li><a href="	230.html	">	第二百三十五章 被拖延的行程	 </a></li>
+<li><a href="	230.html	">	第二百三十六章 最恶心的敌人	 </a></li>
+<li><a href="	230.html	">	第二百三十七章 raid团和精英怪	 </a></li>
+<li><a href="	230.html	">	第二百三十八章 恐怖的异能	 </a></li>
+<li><a href="	230.html	">	第二百三十九章 瓦利玛萨斯（1）	 </a></li>
+<li><a href="	240.html	">	第二百四十章 瓦利玛萨斯（2）	 </a></li>
+<li><a href="	240.html	">	第二百四十一章 抓捕	 </a></li>
+<li><a href="	240.html	">	第二百四十二章 战后的插曲	 </a></li>
+<li><a href="	240.html	">	第二百四十三章 前哨基地	 </a></li>
+<li><a href="	240.html	">	第二百四十四章 监狱	 </a></li>
+<li><a href="	240.html	">	第二百四十五章 科学家最可怕	 </a></li>
+<li><a href="	240.html	">	第二百四十六章 审讯	 </a></li>
+<li><a href="	240.html	">	第二百四十七章 世界回路	 </a></li>
+<li><a href="	240.html	">	第二百四十八章 亡灵肆虐之地	 </a></li>
+<li><a href="	240.html	">	第二百四十九章 群嘲	 </a></li>
+<li><a href="	250.html	">	第二百五十章 尸群来袭	 </a></li>
+<li><a href="	250.html	">	第二百五十一章 奎尔萨拉斯保卫战（上）	 </a></li>
+<li><a href="	250.html	">	第二百五十二章 奎尔萨拉斯保卫战（中）	 </a></li>
+<li><a href="	250.html	">	第二百五十三章 奎尔萨拉斯保卫战（下）	 </a></li>
+<li><a href="	250.html	">	第二百五十四章 废城	 </a></li>
+<li><a href="	250.html	">	第二百五十五章 日怒之塔	 </a></li>
+<li><a href="	250.html	">	第二百五十六章 魔网	 </a></li>
+<li><a href="	250.html	">	第二百五十七章 大逆转	 </a></li>
+<li><a href="	250.html	">	第二百五十八章 绞肉机	 </a></li>
+<li><a href="	250.html	">	第二百五十九章 对轰	 </a></li>
+<li><a href="	260.html	">	第二百六十章 交火	 </a></li>
+<li><a href="	260.html	">	第二百六十一章 决斗	 </a></li>
+<li><a href="	260.html	">	第二百六十二章 打架……	 </a></li>
+<li><a href="	260.html	">	第二百六十三章 俘获……或许吧……	 </a></li>
+<li><a href="	260.html	">	第二百六十四章 别扭姐妹	 </a></li>
+<li><a href="	260.html	">	第二百六十五章 穿……果然是穿……	 </a></li>
+<li><a href="	260.html	">	第二百六十六章 返程票	 </a></li>
+<li><a href="	260.html	">	第二百六十七章 计划	 </a></li>
+<li><a href="	260.html	">	第二百六十八章 斗篷三人组	 </a></li>
+<li><a href="	260.html	">	第二百六十九章 潜龙谍影？	 </a></li>
+<li><a href="	270.html	">	第二百七十章 遭遇	 </a></li>
+<li><a href="	270.html	">	第二百七十一章 破坏者	 </a></li>
+<li><a href="	270.html	">	第二百七十二章 开挂的能力	 </a></li>
+<li><a href="	270.html	">	第二百七十三章 奇点爆发	 </a></li>
+<li><a href="	270.html	">	第二百七十四章 返程	 </a></li>
+<li><a href="	270.html	">	第二百七十五章 小叮当的大作用	 </a></li>
+<li><a href="	270.html	">	第二百七十六章 叮当的世界之树	 </a></li>
+<li><a href="	270.html	">	第二百七十七章 莉莉娜的新生活	 </a></li>
+<li><a href="	270.html	">	第二百七十八章 偶遇	 </a></li>
+<li><a href="	270.html	">	第二百七十九章 林风的请求	 </a></li>
+<li><a href="	280.html	">	第二百八十章 回家喽	 </a></li>
+<li><a href="	280.html	">	第二百八十一章 一根棒棒糖的损失	 </a></li>
+<li><a href="	280.html	">	第二百八十二章 小泡泡的烦恼	 </a></li>
+<li><a href="	280.html	">	第二百八十三章 拼	 </a></li>
+<li><a href="	280.html	">	第二百八十四章 蝎子？	 </a></li>
+<li><a href="	280.html	">	第二百八十五章 维嘉	 </a></li>
+<li><a href="	280.html	">	第二百八十六章 林雪遇上的麻烦事	 </a></li>
+<li><a href="	280.html	">	第二百八十七章 冰冻	 </a></li>
+<li><a href="	280.html	">	第二百八十八章 林雪来了	 </a></li>
+<li><a href="	280.html	">	第二百八十九章 暗处的敌人	 </a></li>
+<li><a href="	290.html	">	第二百九十章 抢劫	 </a></li>
+<li><a href="	290.html	">	第二百九十一章 围杀与逃窜（上）	 </a></li>
+<li><a href="	290.html	">	第二百九十二章 围杀与逃窜（下）	 </a></li>
+<li><a href="	290.html	">	第二百九十三章 怪物	 </a></li>
+<li><a href="	290.html	">	第二百九十四章 压倒性胜利	 </a></li>
+<li><a href="	290.html	">	第二百九十五章 典藏版林雪同样可怕	 </a></li>
+<li><a href="	290.html	">	第二百九十六章迷路的阿赖耶	 </a></li>
+<li><a href="	290.html	">	第二百九十七章叮当的神秘行动	 </a></li>
+<li><a href="	290.html	">	第二百九十八章邮件炸弹以及叮当的烦恼	 </a></li>
+<li><a href="	290.html	">	第二百九十九章 勇敢的.O	 </a></li>
+<li><a href="	300.html	">	第三百章 进展	 </a></li>
+<li><a href="	300.html	">	第三百零一章和孩子她妈一起行动	 </a></li>
+<li><a href="	300.html	">	第三百零二章游戏开始	 </a></li>
+<li><a href="	300.html	">	第三百零三章 很暴力的	 </a></li>
+<li><a href="	300.html	">	第三百零四章巴别塔	 </a></li>
+<li><a href="	300.html	">	第三百零五章 天使	 </a></li>
+<li><a href="	300.html	">	第三百零六章 大爱无疆	 </a></li>
+<li><a href="	300.html	">	第三百零六章大爱无疆	 </a></li>
+<li><a href="	300.html	">	第三百零七章 委托	 </a></li>
+<li><a href="	300.html	">	第三百零八章 灵异事件	 </a></li>
+<li><a href="	310.html	">	第三百零九章 夜探	 </a></li>
+<li><a href="	310.html	">	第三百一十一章 幽灵的攻击	 </a></li>
+<li><a href="	310.html	">	第三百一十三章 发现	 </a></li>
+<li><a href="	310.html	">	第三百一十四章 救援	 </a></li>
+<li><a href="	310.html	">	第三百一十五章 大条了	 </a></li>
+<li><a href="	310.html	">	第三百一十六章 行动起来	 </a></li>
+<li><a href="	310.html	">	第三百一十七章 开导以及潘多拉的小悲剧	 </a></li>
+<li><a href="	310.html	">	第三百一十八章 日常以及走丢	 </a></li>
+<li><a href="	310.html	">	第三百一十九章 小泡泡V美杜莎（上）	 </a></li>
+<li><a href="	310.html	">	第三百二十章 小泡泡V美杜莎（下）	 </a></li>
+<li><a href="	320.html	">	第三百二十一章 全灭	 </a></li>
+<li><a href="	320.html	">	第三百二十二章 莉莉娜的心理摧毁法	 </a></li>
+<li><a href="	320.html	">	第三百二十三章 奥林匹斯的目的	 </a></li>
+<li><a href="	320.html	">	第三百二十四章 暴风雨前奏	 </a></li>
+<li><a href="	320.html	">	第三百二十五张 你们是玩具	 </a></li>
+<li><a href="	320.html	">	第三百二十六章 奥林匹斯的最后基地	 </a></li>
+<li><a href="	320.html	">	第三百二十七章 拦截	 </a></li>
+<li><a href="	320.html	">	第三百二十八章 深入	 </a></li>
+<li><a href="	320.html	">	第三百二十九章 消失的阿尔忒弥斯	 </a></li>
+<li><a href="	320.html	">	第三百三十章 维斯卡的异常	 </a></li>
+<li><a href="	330.html	">	第三百三十一章 月亮之上	 </a></li>
+<li><a href="	330.html	">	第三百三十二章 我们的月亮	 </a></li>
+<li><a href="	330.html	">	第三百三十三章 控制中枢	 </a></li>
+<li><a href="	330.html	">	第三百三十四章 抓捕	 </a></li>
+<li><a href="	330.html	">	第三百三十四章 抓捕	 </a></li>
+<li><a href="	330.html	">	第三百三十五章 尘埃落定	 </a></li>
+<li><a href="	330.html	">	第三百三十六章 离开	 </a></li>
+<li><a href="	330.html	">	第三百三十七章 相认	 </a></li>
+<li><a href="	330.html	">	第三百三十八章 先知的噩梦	 </a></li>
+<li><a href="	330.html	">	第三百三十九章 不得安生	 </a></li>
+<li><a href="	340.html	">	第三百四十章 久违的烂肉们	 </a></li>
+<li><a href="	340.html	">	第三百四十一章 娱乐精神	 </a></li>
+<li><a href="	340.html	">	第三百四十二章 撤离	 </a></li>
+<li><a href="	340.html	">	第三百四十三章 瞩目	 </a></li>
+<li><a href="	340.html	">	第三百四十四章 大使	 </a></li>
+<li><a href="	340.html	">	第三百四十五章 闹心	 </a></li>
+<li><a href="	340.html	">	第三百四十六章 准备回收	 </a></li>
+<li><a href="	340.html	">	第三百四十七章 回收以及善后	 </a></li>
+<li><a href="	340.html	">	第三百四十八章 烂摊子	 </a></li>
+<li><a href="	340.html	">	第三百四十九章 呦	 </a></li>
+<li><a href="	350.html	">	第三百五十章 泡泡你别冲动	 </a></li>
+<li><a href="	350.html	">	第三百五十一章 研究所以及爆炸	 </a></li>
+<li><a href="	350.html	">	第三百五十二章 史上最扯研究所	 </a></li>
+<li><a href="	350.html	">	第三百五十三章 有所图谋	 </a></li>
+<li><a href="	350.html	">	第三百五十四章 麻烦来了	 </a></li>
+<li><a href="	350.html	">	第三百五十五章 奇怪的一群人	 </a></li>
+<li><a href="	350.html	">	第三百五十六章 来自魔法侧的窥探	 </a></li>
+<li><a href="	350.html	">	第三百五十七章你们是什么人	 </a></li>
+<li><a href="	350.html	">	第三百五十八章找天使啊找天使	 </a></li>
+<li><a href="	350.html	">	第三百五十九章佐天泪子的能力	 </a></li>
+<li><a href="	360.html	">	第三百六十章 风暴指挥官	 </a></li>
+<li><a href="	360.html	">	第三百六十一章 亚雷斯塔	 </a></li>
+<li><a href="	360.html	">	第三百六十二章 预料之外的来客	 </a></li>
+<li><a href="	360.html	">	第三百六十三章 额天国	 </a></li>
+<li><a href="	360.html	">	第三百六十四章 御坂妹妹	 </a></li>
+<li><a href="	360.html	">	第三百六十五章癫狂与毁灭	 </a></li>
+<li><a href="	360.html	">	第三百六十六章 清醒	 </a></li>
+<li><a href="	360.html	">	第三百六十七章 之后	 </a></li>
+<li><a href="	360.html	">	第三百六十八章 慢半拍的家伙	 </a></li>
+<li><a href="	360.html	">	第三百六十九章没有过去	 </a></li>
+<li><a href="	370.html	">	第三百七十章授勋	 </a></li>
+<li><a href="	370.html	">	第三百七十一章烧烤摊前	 </a></li>
+<li><a href="	370.html	">	第三百七十二章被劫走的天使	 </a></li>
+<li><a href="	370.html	">	第三百七十三章 老狐狸的算计	 </a></li>
+<li><a href="	370.html	">	第三百七十四章 幻想御手爆发	 </a></li>
+<li><a href="	370.html	">	第三百七十五章 科学家功夫高	 </a></li>
+<li><a href="	370.html	">	第三百七十六章 功夫再高也怕大炮	 </a></li>
+<li><a href="	370.html	">	第三百七十七章 帮助和我要毙了他	 </a></li>
+<li><a href="	370.html	">	第三百七十八章 罗马正教的行动	 </a></li>
+<li><a href="	370.html	">	第三百七十九章 登舰以及乱入	 </a></li>
+<li><a href="	380.html	">	第三百八十章 帝国拆迁大队	 </a></li>
+<li><a href="	380.html	">	第三百八十一章 浅浅的奇思妙想	 </a></li>
+<li><a href="	380.html	">	第三百八十二章 身份	 </a></li>
+<li><a href="	380.html	">	第三百八十三章 疑团重重的希尔维娅	 </a></li>
+<li><a href="	380.html	">	第三百八十四章 来点氦3吗？	 </a></li>
+<li><a href="	380.html	">	第三百八十五章 烦躁	 </a></li>
+<li><a href="	380.html	">	第三百八十六章 末日倒计时	 </a></li>
+<li><a href="	380.html	">	第三百八十七章 安排	 </a></li>
+<li><a href="	380.html	">	第三百八十八章 区别对待	 </a></li>
+<li><a href="	380.html	">	第三百八十九章 独立日	 </a></li>
+<li><a href="	390.html	">	第三百九十章 撞击	 </a></li>
+<li><a href="	390.html	">	第三百九十一章 太阳你好，太阳再见	 </a></li>
+<li><a href="	390.html	">	第三百九十二章 太空琥珀	 </a></li>
+<li><a href="	390.html	">	第三百九十三章 意外，各种意外	 </a></li>
+<li><a href="	390.html	">	第三百九十四章 突然的危机	 </a></li>
+<li><a href="	390.html	">	第三百九十五章 原来是ta	 </a></li>
+<li><a href="	390.html	">	第三百九十六章 远古的复仇者	 </a></li>
+<li><a href="	390.html	">	第三百九十七章 秘闻	 </a></li>
+<li><a href="	390.html	">	第三百九十八章 惬意	 </a></li>
+<li><a href="	390.html	">	第三百九十九章 意料之外的来客	 </a></li>
+<li><a href="	400.html	">	第四百章 来一发	 </a></li>
+<li><a href="	400.html	">	第四百零一章 一炮搞定，收工回家	 </a></li>
+<li><a href="	400.html	">	第四百零二章 回家之后的一系列事件	 </a></li>
+<li><a href="	400.html	">	第四百零三章 休闲时光	 </a></li>
+<li><a href="	400.html	">	第四百零四章 虫子	 </a></li>
+<li><a href="	400.html	">	第四百零五章 烧杀抢掠团	 </a></li>
+<li><a href="	400.html	">	第四百零六章 紧急救援	 </a></li>
+<li><a href="	400.html	">	第四百零七章 展开	 </a></li>
+<li><a href="	400.html	">	第四百零八章 净化	 </a></li>
+<li><a href="	400.html	">	第四百零九章 欢迎？	 </a></li>
+<li><a href="	410.html	">	第四百一十章 潘多拉和维斯卡的暴力谈判法	 </a></li>
+<li><a href="	410.html	">	第四百一十一章 一个亿	 </a></li>
+<li><a href="	410.html	">	第四百一十二章 塔维尔的研究成果	 </a></li>
+<li><a href="	410.html	">	第四百一十三章 奇效	 </a></li>
+<li><a href="	410.html	">	第四百一十四章 史上最强法师团	 </a></li>
+<li><a href="	410.html	">	第四百一十五章 行星登陆	 </a></li>
+<li><a href="	410.html	">	第四百一十六章 水晶丛林	 </a></li>
+<li><a href="	410.html	">	第四百一十七章 Z叔	 </a></li>
+<li><a href="	410.html	">	第四百一十八章 冲突	 </a></li>
+<li><a href="	410.html	">	第四百一十九章 擦枪走火	 </a></li>
+<li><a href="	420.html	">	第四百二十章 完胜与礼物	 </a></li>
+<li><a href="	420.html	">	第四百二十一章 集结令	 </a></li>
+<li><a href="	420.html	">	第四百二十二章 全面进攻	 </a></li>
+<li><a href="	420.html	">	第四百二十三章 疯了，都疯了	 </a></li>
+<li><a href="	420.html	">	第四百二十四章 大杀器	 </a></li>
+<li><a href="	420.html	">	第四百二十五章 零	 </a></li>
+<li><a href="	420.html	">	第四百二十六章 娱乐节目以及乱入	 </a></li>
+<li><a href="	420.html	">	第四百二十七章 决战？	 </a></li>
+<li><a href="	420.html	">	第四百二十八章 突袭	 </a></li>
+<li><a href="	420.html	">	第四百二十九章 活捉	 </a></li>
+<li><a href="	430.html	">	第四百三十章 内幕	 </a></li>
+<li><a href="	430.html	">	第四百三十一章 阴云	 </a></li>
+<li><a href="	430.html	">	第四百三十二章 绞刑	 </a></li>
+<li><a href="	430.html	">	第四百三十三章 黑太阳	 </a></li>
+<li><a href="	430.html	">	第四百三十四章 战场	 </a></li>
+<li><a href="	430.html	">	第四百三十六章 圈圈	 </a></li>
+<li><a href="	430.html	">	第四百三十五章 大崩塌	 </a></li>
+<li><a href="	430.html	">	第四百三十七章 污染爆发	 </a></li>
+<li><a href="	430.html	">	第四百三十八章 末日计划	 </a></li>
+<li><a href="	430.html	">	第四百三十九章 热启动	 </a></li>
+<li><a href="	440.html	">	第四百四十章 灾难序曲	 </a></li>
+<li><a href="	440.html	">	第四百四十一章 克普鲁大逃亡	 </a></li>
+<li><a href="	440.html	">	第四百四十二章 母星	 </a></li>
+<li><a href="	440.html	">	第四百四十三章 宇宙的终焉	 </a></li>
+<li><a href="	440.html	">	第四百四十四章 创世	 </a></li>
+<li><a href="	440.html	">	第四百四十五章 新家，以及返航	 </a></li>
+<li><a href="	440.html	">	第四百四十六章 影子城市里的人们	 </a></li>
+<li><a href="	440.html	">	第四百四十七章 异常的影子空间	 </a></li>
+<li><a href="	440.html	">	第四百四十八章 扭曲	 </a></li>
+<li><a href="	440.html	">	第四百四十九章 乱世界	 </a></li>
+<li><a href="	450.html	">	第四百五十章 世界碰撞	 </a></li>
+<li><a href="	450.html	">	第四百五十一章 死亡世界	 </a></li>
+<li><a href="	450.html	">	第四百五十二章 苏醒者	 </a></li>
+<li><a href="	450.html	">	第四百五十三章 旧相识	 </a></li>
+<li><a href="	450.html	">	第四百五十四章 噩梦空间	 </a></li>
+<li><a href="	450.html	">	第四百五十五章 两个世界	 </a></li>
+<li><a href="	450.html	">	第四百五十六章 世界的尽头	 </a></li>
+<li><a href="	450.html	">	第四百五十七章 破碎边疆的偶遇	 </a></li>
+<li><a href="	450.html	">	第四百五十八章 生力军还是酱油党	 </a></li>
+<li><a href="	450.html	">	第四百五十九章 痛苦的午餐	 </a></li>
+<li><a href="	460.html	">	第四百六十章 体育馆	 </a></li>
+<li><a href="	460.html	">	第四百六十一章 失踪的xp娘	 </a></li>
+<li><a href="	460.html	">	第四百六十二章 林雪的警告	 </a></li>
+<li><a href="	460.html	">	第四百六十三章 挂载	 </a></li>
+<li><a href="	460.html	">	第四百六十四章 新生	 </a></li>
+<li><a href="	460.html	">	第四百六十五章 珊多拉的高能料理	 </a></li>
+<li><a href="	460.html	">	第四百六十六章 阿瓦隆	 </a></li>
+<li><a href="	460.html	">	第四百六十七章 居委会	 </a></li>
+<li><a href="	460.html	">	第四百六十八章 离世庭园以及百合！？	 </a></li>
+<li><a href="	460.html	">	第四百六十九章 长大，以及麻烦来了	 </a></li>
+<li><a href="	470.html	">	第四百七十章 天降之……	 </a></li>
+<li><a href="	470.html	">	第四百七十一章 来自半人马座的摄影爱好者	 </a></li>
+<li><a href="	470.html	">	第四百七十二章 佐天泪子，变形出发！	 </a></li>
+<li><a href="	470.html	">	第四百七十三章 狂战士	 </a></li>
+<li><a href="	470.html	">	第四百七十四章 啊，好高	 </a></li>
+<li><a href="	470.html	">	第四百七十五章 学校	 </a></li>
+<li><a href="	470.html	">	第四百七十六章 被俘获的英灵	 </a></li>
+<li><a href="	470.html	">	第四百七十七章 野炊吧	 </a></li>
+<li><a href="	470.html	">	第四百七十八章 帝国领袖的抠门精神	 </a></li>
+<li><a href="	470.html	">	第四百七十九章 阿瓦隆之匙	 </a></li>
+<li><a href="	480.html	">	第四百八十章 这算乱入吧？	 </a></li>
+<li><a href="	480.html	">	第四百八十一章 小泡泡VS英雄王？	 </a></li>
+<li><a href="	480.html	">	第四百八十二章 叮当可厉害了	 </a></li>
+<li><a href="	480.html	">	第四百八十三章 夜探，夜谈	 </a></li>
+<li><a href="	480.html	">	第四百八十四章 剑客	 </a></li>
+<li><a href="	480.html	">	第四百八十五章 出乎预料的强敌	 </a></li>
+<li><a href="	480.html	">	第四百八十六章 欺负人，以及擅闯民宅	 </a></li>
+<li><a href="	480.html	">	第四百八十七章 柳洞寺的异常	 </a></li>
+<li><a href="	480.html	">	第四百八十八章 偶遇	 </a></li>
+<li><a href="	480.html	">	第四百八十九章 覆灭，遭遇	 </a></li>
+<li><a href="	490.html	">	第四百九十章 完虐，归来	 </a></li>
+<li><a href="	490.html	">	第四百九十一章 水晶圣母	 </a></li>
+<li><a href="	490.html	">	第四百九十二章 水到渠成	 </a></li>
+<li><a href="	490.html	">	第四百九十三章 惨无人道的围观	 </a></li>
+<li><a href="	490.html	">	第四百九十四章 世界的真相	 </a></li>
+<li><a href="	490.html	">	第四百九十五章 月光下	 </a></li>
+<li><a href="	490.html	">	第四百九十六章 贼船	 </a></li>
+<li><a href="	490.html	">	第四百九十七章 英灵集团军	 </a></li>
+<li><a href="	490.html	">	第四百九十八章 混乱的战场	 </a></li>
+<li><a href="	490.html	">	第四百九十九章 军团对军团	 </a></li>
+<li><a href="	500.html	">	第五百章 蛋蛋的忧伤	 </a></li>
+<li><a href="	500.html	">	第五百零一章 红月奥秘	 </a></li>
+<li><a href="	500.html	">	第五百零二章 举国之兵	 </a></li>
+<li><a href="	500.html	">	第五百零三章 你们已经被包围了	 </a></li>
+<li><a href="	500.html	">	第五百零四章 拦路	 </a></li>
+<li><a href="	500.html	">	第五百零五章 暴走小泡泡	 </a></li>
+<li><a href="	500.html	">	第五百零六章 求道者	 </a></li>
+<li><a href="	500.html	">	第五百零七章 蓝月亮	 </a></li>
+<li><a href="	500.html	">	第五百零八章 能量风暴	 </a></li>
+<li><a href="	500.html	">	第五百零九章 充电器	 </a></li>
+<li><a href="	510.html	">	第五百一十章 太刺激了	 </a></li>
+<li><a href="	510.html	">	第五百一十一章 告别？	 </a></li>
+<li><a href="	510.html	">	第五百一十二章 愿望和欢迎	 </a></li>
+<li><a href="	510.html	">	第五百一十三章 居委会，家的感觉	 </a></li>
+<li><a href="	510.html	">	第五百一十四章 闲暇时光	 </a></li>
+<li><a href="	510.html	">	第五百一十五章 秘辛	 </a></li>
+<li><a href="	510.html	">	第五百一十六章 焦急的林雪	 </a></li>
+<li><a href="	510.html	">	第五百一十七章 异常大小姐	 </a></li>
+<li><a href="	510.html	">	第五百一十八章 谁来了	 </a></li>
+<li><a href="	510.html	">	第五百一十九章 乱套，彻底乱套了	 </a></li>
+<li><a href="	520.html	">	第五百二十章 事实比你想象的还乱	 </a></li>
+<li><a href="	520.html	">	第五百二十一章 很甜	 </a></li>
+<li><a href="	520.html	">	第五百二十二章 准备应付移民潮	 </a></li>
+<li><a href="	520.html	">	第五百二十三章 大移民时代的序曲	 </a></li>
+<li><a href="	520.html	">	第五百二十四章 组个团，穿个越	 </a></li>
+<li><a href="	520.html	">	第五百二十五章 移民潮啊移民潮	 </a></li>
+<li><a href="	520.html	">	第五百二十六章 克普鲁求援	 </a></li>
+<li><a href="	520.html	">	第五百二十七章 关公战秦琼	 </a></li>
+<li><a href="	520.html	">	第五百二十八章 别拿上帝不当干部	 </a></li>
+<li><a href="	520.html	">	第五百二十九章 莉莉娜的星际迷航	 </a></li>
+<li><a href="	530.html	">	第五百三十章 事件	 </a></li>
+<li><a href="	530.html	">	第五百三十一章 斗殴	 </a></li>
+<li><a href="	530.html	">	第五百三十二章 宗教人士在行动	 </a></li>
+<li><a href="	530.html	">	第五百三十三章 行动起来吧	 </a></li>
+<li><a href="	530.html	">	第五百三十四章 英灵们的工作	 </a></li>
+<li><a href="	530.html	">	第五百三十五章 伊利亚的影子城一日游	 </a></li>
+<li><a href="	530.html	">	第五百三十六章 新生，重逢，还有……扯淡	 </a></li>
+<li><a href="	530.html	">	第五百三十七章 另一个世界	 </a></li>
+<li><a href="	530.html	">	第五百三十八章 出个短差	 </a></li>
+<li><a href="	530.html	">	第五百三十九章 又是生化危机位面？才怪……	 </a></li>
+<li><a href="	540.html	">	第五百四十章 小小的震动	 </a></li>
+<li><a href="	540.html	">	第五百四十一章 大灾了一个变	 </a></li>
+<li><a href="	540.html	">	第五百四十二章 和末日赛跑	 </a></li>
+<li><a href="	540.html	">	第五百四十三章 不爽的水银灯	 </a></li>
+<li><a href="	540.html	">	第五百四十四章 真正的灾难，现在开始	 </a></li>
+<li><a href="	540.html	">	第五百四十五章 打炮，各种打炮	 </a></li>
+<li><a href="	540.html	">	第五百四十六章 啊，你这死丫头	 </a></li>
+<li><a href="	540.html	">	第五百四十七章 我就知道，麻烦还没完	 </a></li>
+<li><a href="	540.html	">	第五百四十八章 与神为敌	 </a></li>
+<li><a href="	540.html	">	第五百四十九章 扯淡的战斗	 </a></li>
+<li><a href="	550.html	">	第五百五十章 流氓会神术	 </a></li>
+<li><a href="	550.html	">	第五百五十一章 老相识？	 </a></li>
+<li><a href="	550.html	">	第五百五十二章 冰蒂斯的忠告	 </a></li>
+<li><a href="	550.html	">	第五百五十三章 分道扬镳之火车站作别二表叔版	 </a></li>
+<li><a href="	550.html	">	第五百五十四章 凌乱的一天	 </a></li>
+<li><a href="	550.html	">	第五百五十五章 小狼人登场——水银灯?断牙！	 </a></li>
+<li><a href="	550.html	">	第五百五十六章 倒霉小个子以及收获分析	 </a></li>
+<li><a href="	550.html	">	第五百五十七章 大移民时代落潮	 </a></li>
+<li><a href="	550.html	">	第五百五十八章 浅浅那不太成熟的计划	 </a></li>
+<li><a href="	550.html	">	第五百五十九章 轰轰烈烈的时空管理局终于建立章节名字太长了！	 </a></li>
+<li><a href="	560.html	">	第五百六十章 关于某人偶的闲谈	 </a></li>
+<li><a href="	560.html	">	第五百六十一章 学姐你肿么了	 </a></li>
+<li><a href="	560.html	">	第五百六十二章 最后一天	 </a></li>
+<li><a href="	560.html	">	第五百六十三章 离开水银灯的日子	 </a></li>
+<li><a href="	560.html	">	第五百六十四章 可算找到你了	 </a></li>
+<li><a href="	560.html	">	第五百六十五章 三途河畔的莉莉娜以及病床上的水银灯	 </a></li>
+<li><a href="	560.html	">	第五百六十六章 水银灯的维修计划	 </a></li>
+<li><a href="	560.html	">	第五百六十七章 莉莉娜，我来给你栓项圈了	 </a></li>
+<li><a href="	560.html	">	第五百六十八章 林雪的锦囊妙计……	 </a></li>
+<li><a href="	560.html	">	第五百六十九章 史上最让人头大的乱入	 </a></li>
+<li><a href="	570.html	">	第五百七十章 海盗黑吃黑？	 </a></li>
+<li><a href="	570.html	">	第五百七十一章 又来一波	 </a></li>
+<li><a href="	570.html	">	第五百七十二章 好客的自由王国？	 </a></li>
+<li><a href="	570.html	">	第五百七十三章 陷阱	 </a></li>
+<li><a href="	570.html	">	第五百七十四章 登陆作战	 </a></li>
+<li><a href="	570.html	">	第五百七十五章 貌似，开始坑爹了	 </a></li>
+<li><a href="	570.html	">	第五百七十六章 莉莉娜的消息	 </a></li>
+<li><a href="	570.html	">	第五百七十七章 打酱油的女王	 </a></li>
+<li><a href="	570.html	">	第五百七十八章 迷雾	 </a></li>
+<li><a href="	570.html	">	第五百七十九章 保姆之怒	 </a></li>
+<li><a href="	580.html	">	第五百八十章 胜利，以及拖回去卖废铁？	 </a></li>
+<li><a href="	580.html	">	第五百八十一章 ……人？	 </a></li>
+<li><a href="	580.html	">	第五百八十二章 这个混蛋的世界	 </a></li>
+<li><a href="	580.html	">	第五百八十三章 异变的战争工具	 </a></li>
+<li><a href="	580.html	">	第五百八十四章 庆功会上的酒疯	 </a></li>
+<li><a href="	580.html	">	第五百八十五章 开始蔓延的战火	 </a></li>
+<li><a href="	580.html	">	第五百八十六章 贸然打击	 </a></li>
+<li><a href="	580.html	">	第五百八十七章 大星云	 </a></li>
+<li><a href="	580.html	">	第五百八十八章 破船	 </a></li>
+<li><a href="	580.html	">	第五百八十九章 私掠团	 </a></li>
+<li><a href="	590.html	">	第五百九十章 莉莉娜，看你干的好事	 </a></li>
+<li><a href="	590.html	">	第五百九十一章 私掠团，底层的拾荒者	 </a></li>
+<li><a href="	590.html	">	第五百九十二章 莉莉娜归来	 </a></li>
+<li><a href="	590.html	">	第五百九十三章 火花	 </a></li>
+<li><a href="	590.html	">	第五百九十四章 死星要塞的设想	 </a></li>
+<li><a href="	590.html	">	第五百九十五章 闪电战	 </a></li>
+<li><a href="	590.html	">	第五百九十六章 我惊悚了	 </a></li>
+<li><a href="	590.html	">	第五百九十七章 超鬼畜！无限凶残の水银灯玩具军团	 </a></li>
+<li><a href="	590.html	">	第五百九十八章 凶残的一战	 </a></li>
+<li><a href="	590.html	">	第五百九十九章 星战前夜	 </a></li>
+<li><a href="	600.html	">	第六百章 大范围打击	 </a></li>
+<li><a href="	600.html	">	第六百零一章 古斯塔的恐怖开端	 </a></li>
+<li><a href="	600.html	">	第六百零二章 掌握之中	 </a></li>
+<li><a href="	600.html	">	第六百零三章 东天区，开战	 </a></li>
+<li><a href="	600.html	">	第六百零四章 信号源	 </a></li>
+<li><a href="	600.html	">	第六百零五章 上古神器	 </a></li>
+<li><a href="	600.html	">	第六百零六章 罗兰盖尔财团	 </a></li>
+<li><a href="	600.html	">	第六百零七章 巨头	 </a></li>
+<li><a href="	600.html	">	第六百零八章 阿赖耶的温暖？	 </a></li>
+<li><a href="	600.html	">	第六百零九章 低语	 </a></li>
+<li><a href="	610.html	">	第六百一十章 战火升级	 </a></li>
+<li><a href="	610.html	">	第六百一十一章 有一个帮手……	 </a></li>
+<li><a href="	610.html	">	第六百一十二章 坏消息	 </a></li>
+<li><a href="	610.html	">	第六百一十三章 反抗	 </a></li>
+<li><a href="	610.html	">	第六百一十四章 蝼蚁的力量	 </a></li>
+<li><a href="	610.html	">	第六百一十五章 火线	 </a></li>
+<li><a href="	610.html	">	第六百一十六章 浅浅，你吓死我了	 </a></li>
+<li><a href="	610.html	">	第六百一十七章 反抗军	 </a></li>
+<li><a href="	610.html	">	第六百一十八章 幽能死星	 </a></li>
+<li><a href="	610.html	">	第六百一十九章 何其坑爹的名字……	 </a></li>
+<li><a href="	620.html	">	第六百二十章 进攻	 </a></li>
+<li><a href="	620.html	">	第六百二十一章 大星云突袭战	 </a></li>
+<li><a href="	620.html	">	第六百二十二章 不见了……	 </a></li>
+<li><a href="	620.html	">	第六百二十三章 谢谢，再见，拼音	 </a></li>
+<li><a href="	620.html	">	第六百二十四章 核心防御突破	 </a></li>
+<li><a href="	620.html	">	第六百二十五章 坑爹，往死里坑	 </a></li>
+<li><a href="	620.html	">	第六百二十六章 圣堂，文献馆，首领蜂	 </a></li>
+<li><a href="	620.html	">	第六百二十七章 蜜蜂	 </a></li>
+<li><a href="	620.html	">	第六百二十八章 好久不见	 </a></li>
+<li><a href="	620.html	">	第六百二十九章 坟	 </a></li>
+<li><a href="	630.html	">	第六百三十章 文献馆的终焉	 </a></li>
+<li><a href="	630.html	">	第六百三十一章 尘封的历史	 </a></li>
+<li><a href="	630.html	">	第六百三十二章 你们先欢呼，我们头疼去了……	 </a></li>
+<li><a href="	630.html	">	第六百三十三章 善后	 </a></li>
+<li><a href="	630.html	">	第六百三十四章 回家的日常	 </a></li>
+<li><a href="	630.html	">	第六百三十五章 问罪来了	 </a></li>
+<li><a href="	630.html	">	第六百三十六章 笨蛋的两人	 </a></li>
+<li><a href="	630.html	">	第六百三十七章 每个人都有自己的小心思，92.3也不例外	 </a></li>
+<li><a href="	630.html	">	第六百三十八章 大家一起来玩吧！	 </a></li>
+<li><a href="	630.html	">	第六百三十九章 有神降临	 </a></li>
+<li><a href="	640.html	">	第六百四十章 不坑爹的神族不是好神族	 </a></li>
+<li><a href="	640.html	">	第六百四十一章 于是……他们过来还是有点用的	 </a></li>
+<li><a href="	640.html	">	第六百四十二章 冰蒂斯的影子城一日游	 </a></li>
+<li><a href="	640.html	">	第六百四十三章 计算机也有人权	 </a></li>
+<li><a href="	640.html	">	第六百四十四章 被改变的世界，他们在做什么	 </a></li>
+<li><a href="	640.html	">	第六百四十五章 孩子她妈的怨念	 </a></li>
+<li><a href="	640.html	">	第六百四十六章 调教大成的人偶以及惊悚的妹妹们	 </a></li>
+<li><a href="	640.html	">	第六百四十七章 翘班的女王陛下	 </a></li>
+<li><a href="	640.html	">	第六百四十八章 艾泽拉斯的领袖们……	 </a></li>
+<li><a href="	640.html	">	第六百四十九章 女神教最大的黑历史	 </a></li>
+<li><a href="	650.html	">	第六百五十章 人生就是各种无节操	 </a></li>
+<li><a href="	650.html	">	第六百五十一章 讲故事的洋娃娃	 </a></li>
+<li><a href="	650.html	">	第六百五十二章 被格式化的少女	 </a></li>
+<li><a href="	650.html	">	第六百五十三章 御坂统治世界	 </a></li>
+<li><a href="	650.html	">	第六百五十四章 奥拉的面具	 </a></li>
+<li><a href="	650.html	">	第六百五十五章 帝国的历史也有黑	 </a></li>
+<li><a href="	650.html	">	第六百五十六章 众神微服私访记	 </a></li>
+<li><a href="	650.html	">	第六百五十七章 陪一群神购物是很可怕	 </a></li>
+<li><a href="	650.html	">	第六百五十八章 知道什么叫乱入吗?	 </a></li>
+<li><a href="	650.html	">	第六百五十九章 雪华绮晶不要哭	 </a></li>
+<li><a href="	660.html	">	第六百六十章 前夕	 </a></li>
+<li><a href="	660.html	">	第六百六十一章 节日！	 </a></li>
+<li><a href="	660.html	">	第六百六十二章 还敢更崩坏点吗？	 </a></li>
+<li><a href="	660.html	">	第六百六十三章 舞台剧……	 </a></li>
+<li><a href="	660.html	">	第六百六十四章 大胃王，以及土狼的心理阴影	 </a></li>
+<li><a href="	660.html	">	第六百六十五章 凶残的学园祭，凶残的运动会	 </a></li>
+<li><a href="	660.html	">	第六百六十六章 各种悲剧	 </a></li>
+<li><a href="	660.html	">	第六百六十七章 小泡泡的天赋	 </a></li>
+<li><a href="	660.html	">	第六百六十八章 夜市	 </a></li>
+<li><a href="	660.html	">	第六百六十九章 你醒了？	 </a></li>
+<li><a href="	670.html	">	第六百七十章 第二次见面	 </a></li>
+<li><a href="	670.html	">	第六百七十一章 珍惜生命，远离莉莉娜	 </a></li>
+<li><a href="	670.html	">	第六百七十二章 葱斗士	 </a></li>
+<li><a href="	670.html	">	第六百七十三章 咱们御坂有力量，非常有力量	 </a></li>
+<li><a href="	670.html	">	第六百七十四章 曲终人散架，以及感冒的宰相	 </a></li>
+<li><a href="	670.html	">	第六百七十五章 欢乐的间奏曲	 </a></li>
+<li><a href="	670.html	">	第六百七十六章 旧事重提	 </a></li>
+<li><a href="	670.html	">	第六百七十七章 意外来客	 </a></li>
+<li><a href="	670.html	">	第六百七十八章 我跟你说，古代人一点不傻，真的	 </a></li>
+<li><a href="	670.html	">	第六百七十九章 那就说出来吧	 </a></li>
+<li><a href="	680.html	">	第六百八十章 坑爹事永远不少	 </a></li>
+<li><a href="	680.html	">	第六百八十一章 对不起，您所查找的萝莉不在服务区	 </a></li>
+<li><a href="	680.html	">	第六百八十二章 哪门子竞技！	 </a></li>
+<li><a href="	680.html	">	第六百八十三章 治理文化冲突需要狠招	 </a></li>
+<li><a href="	680.html	">	第六百八十四章 一个设想	 </a></li>
+<li><a href="	680.html	">	第六百八十五章 统合部	 </a></li>
+<li><a href="	680.html	">	第六百八十六章 X傲天以及苏醒的少女	 </a></li>
+<li><a href="	680.html	">	第六百八十七章 麻烦事	 </a></li>
+<li><a href="	680.html	">	第六百八十八章 一份礼物	 </a></li>
+<li><a href="	680.html	">	第六百八十九章 异界来客	 </a></li>
+<li><a href="	690.html	">	第六百九十章 复活	 </a></li>
+<li><a href="	690.html	">	第六百九十一章 小绮晶的爆发，莉莉娜的灾难	 </a></li>
+<li><a href="	690.html	">	第六百九十二章 古代人	 </a></li>
+<li><a href="	690.html	">	第六百九十三章 幸存	 </a></li>
+<li><a href="	690.html	">	第六百九十四章 奔赴前线	 </a></li>
+<li><a href="	690.html	">	第六百九十五章 热烈欢迎，恩，很热烈	 </a></li>
+<li><a href="	690.html	">	第六百九十六章 历史性会晤	 </a></li>
+<li><a href="	690.html	">	第六百九十七章 泰山压顶的妖怪们	 </a></li>
+<li><a href="	690.html	">	第六百九十八章 升空计划？	 </a></li>
+<li><a href="	690.html	">	第六百九十九章 又是碎片	 </a></li>
+<li><a href="	700.html	">	第七百章 笨蛋的游戏时间	 </a></li>
+<li><a href="	700.html	">	第七百零一章 外面的世界	 </a></li>
+<li><a href="	700.html	">	第七百零二章 他们回来了	 </a></li>
+<li><a href="	700.html	">	第七百零三章 登陆战，与阿瑞斯的汇合	 </a></li>
+<li><a href="	700.html	">	第七百零四章 食物中毒——你们是来干嘛的！	 </a></li>
+<li><a href="	700.html	">	第七百零五章 战线推进中的那点事	 </a></li>
+<li><a href="	700.html	">	第七百零六章 叹息墙	 </a></li>
+<li><a href="	700.html	">	第七百零七章 天降流氓团伙	 </a></li>
+<li><a href="	700.html	">	第七百零八章 十六夜的问题	 </a></li>
+<li><a href="	700.html	">	第七百零九章 阿努比斯	 </a></li>
+<li><a href="	710.html	">	第七百一十章 我们夺回了城市——尽管还有点麻烦	 </a></li>
+<li><a href="	710.html	">	第七百一十一章 生的随机，死的剧情	 </a></li>
+<li><a href="	710.html	">	第七百一十二章 最后的战斗	 </a></li>
+<li><a href="	710.html	">	第七百一十三章 完成任务	 </a></li>
+<li><a href="	710.html	">	第七百一十四章 你尽职了	 </a></li>
+<li><a href="	710.html	">	第七百一十五章 后事	 </a></li>
+<li><a href="	710.html	">	第七百一十六章 人偶控终于碰到了人偶们	 </a></li>
+<li><a href="	710.html	">	第七百一十七章 浅浅的好主意和幻想乡旅游团	 </a></li>
+<li><a href="	710.html	">	第七百一十八章 抱歉让你们看到了这个社会的阴暗面	 </a></li>
+<li><a href="	710.html	">	第七百一十九章 一个老骷髅的故事	 </a></li>
+<li><a href="	720.html	">	第七百二十章 挺欢乐的	 </a></li>
+<li><a href="	720.html	">	第七百二十一章 浅浅啊浅浅	 </a></li>
+<li><a href="	720.html	">	第七百二十二章 擂台——吃饱撑着的妖怪们	 </a></li>
+<li><a href="	720.html	">	第七百二十三章 你永远不知道他们的下限在哪里	 </a></li>
+<li><a href="	720.html	">	第七百二十四章 琳的闯祸，管理局的发展	 </a></li>
+<li><a href="	720.html	">	第七百二十五章 偶尔闲着也挺好的	 </a></li>
+<li><a href="	720.html	">	第七百二十六章 日常，来访，终极厨娘	 </a></li>
+<li><a href="	720.html	">	第七百二十七章 史上最凶残的见家长	 </a></li>
+<li><a href="	720.html	">	第七百二十八章 让女神给你补补课	 </a></li>
+<li><a href="	720.html	">	第七百二十九章 神界	 </a></li>
+<li><a href="	730.html	">	第七百三十章 冰蒂斯的家，奇葩的爹妈	 </a></li>
+<li><a href="	730.html	">	第七百三十一章 女流氓一家子	 </a></li>
+<li><a href="	730.html	">	第七百三十二章 女流氓家的图书馆	 </a></li>
+<li><a href="	730.html	">	第七百三十三章 夜晚的聚会，跟四领袖之一的偶遇？	 </a></li>
+<li><a href="	730.html	">	第七百三十四章 叮当？3000	 </a></li>
+<li><a href="	730.html	">	第七百三十五章 神的城市	 </a></li>
+<li><a href="	730.html	">	第七百三十六章 父神	 </a></li>
+<li><a href="	730.html	">	第七百三十七章 他们的行动	 </a></li>
+<li><a href="	730.html	">	第七百三十八章 偶遇的编外公民	 </a></li>
+<li><a href="	730.html	">	第七百三十九章 虚空的秘密	 </a></li>
+<li><a href="	740.html	">	第七百四十章 你的秘密	 </a></li>
+<li><a href="	740.html	">	第七百四十一章 让人凌乱的身份——真的假的？	 </a></li>
+<li><a href="	740.html	">	第七百四十二章 夜晚的独处时间——用来发掘黑历史	 </a></li>
+<li><a href="	740.html	">	第七百四十三章 在神界的日常以及拜访	 </a></li>
+<li><a href="	740.html	">	第七百四十四章 雪原	 </a></li>
+<li><a href="	740.html	">	第七百四十五章 玩雪，闲逛，一个话题	 </a></li>
+<li><a href="	740.html	">	第七百四十六章 魔镜魔镜坑死我	 </a></li>
+<li><a href="	740.html	">	第七百四十七章 不要和龙神说话	 </a></li>
+<li><a href="	740.html	">	第七百四十八章 元首一家多奇葩	 </a></li>
+<li><a href="	740.html	">	第七百四十九章 准备回家吧	 </a></li>
+<li><a href="	750.html	">	第七百五十章 谁都有乱入权，包括不可燃垃圾	 </a></li>
+<li><a href="	750.html	">	第七百五十一章 碎片归位	 </a></li>
+<li><a href="	750.html	">	第七百五十二章 校园生活多欢乐	 </a></li>
+<li><a href="	750.html	">	第七百五十三章 贝拉维拉的再次苏醒	 </a></li>
+<li><a href="	750.html	">	第七百五十四章 琪露诺的冷饮店	 </a></li>
+<li><a href="	750.html	">	第七百五十五章 公事	 </a></li>
+<li><a href="	750.html	">	第七百五十六章 莉莉娜的鬼故事	 </a></li>
+<li><a href="	750.html	">	第七百五十七章 来点余兴活动吗？	 </a></li>
+<li><a href="	750.html	">	第七百五十八章 午夜凶……你妹！！	 </a></li>
+<li><a href="	750.html	">	第七百五十九章 瓷娃娃的故事	 </a></li>
+<li><a href="	760.html	">	第七百六十章 学校是很容易闹鬼的	 </a></li>
+<li><a href="	760.html	">	第七百六十一章 异常空间	 </a></li>
+<li><a href="	760.html	">	第七百六十二章 解除	 </a></li>
+<li><a href="	760.html	">	第七百六十三章 事由心生	 </a></li>
+<li><a href="	760.html	">	第七百六十四章 围捕	 </a></li>
+<li><a href="	760.html	">	第七百六十五章 罪魁祸首？	 </a></li>
+<li><a href="	760.html	">	第七百六十六章 只是个开端	 </a></li>
+<li><a href="	760.html	">	第七百六十七章 解除锁定的遗产	 </a></li>
+<li><a href="	760.html	">	第七百六十八章 她认识这个！	 </a></li>
+<li><a href="	760.html	">	第七百六十九章 战争的警告	 </a></li>
+<li><a href="	770.html	">	第七百七十章 围观你，围观了你也不知道	 </a></li>
+<li><a href="	770.html	">	第七百七十一章 米莉亚的家	 </a></li>
+<li><a href="	770.html	">	第七百七十二章 男人和扎古的联系	 </a></li>
+<li><a href="	770.html	">	第七百七十三章 有些事情是你无法避免的	 </a></li>
+<li><a href="	770.html	">	第七百七十四章 像个敢死队员一般冲向蓝天吧！	 </a></li>
+<li><a href="	770.html	">	第七百七十五章 遗迹	 </a></li>
+<li><a href="	770.html	">	第七百七十六章 珊多拉的回忆	 </a></li>
+<li><a href="	770.html	">	第七百七十七章 摧毁	 </a></li>
+<li><a href="	770.html	">	第七百七十八章 还是开门见山吧	 </a></li>
+<li><a href="	770.html	">	第七百七十九章 战火毁灭的世界	 </a></li>
+<li><a href="	780.html	">	第七百八十章 你曾经的军队	 </a></li>
+<li><a href="	780.html	">	第七百八十一章 你曾经的子民	 </a></li>
+<li><a href="	780.html	">	第七百八十二章 你曾经的帝国	 </a></li>
+<li><a href="	780.html	">	第七百八十三章 你现在的敌人	 </a></li>
+<li><a href="	780.html	">	第七百八十四章 战斗	 </a></li>
+<li><a href="	780.html	">	第七百八十五章 神族……额，应该算很强吧	 </a></li>
+<li><a href="	780.html	">	第七百八十六章 抢救	 </a></li>
+<li><a href="	780.html	">	第七百八十七章 战斗之后	 </a></li>
+<li><a href="	780.html	">	第七百八十八章 信仰上的冲击	 </a></li>
+<li><a href="	780.html	">	第七百八十九章 苍蓝教会的历史	 </a></li>
+<li><a href="	790.html	">	第七百九十章 令人失望的教皇	 </a></li>
+<li><a href="	790.html	">	第七百九十一章 告别你的位置	 </a></li>
+<li><a href="	790.html	">	第七百九十二章 人类之外	 </a></li>
+<li><a href="	790.html	">	第七百九十三章 统治走向终点	 </a></li>
+<li><a href="	790.html	">	第七百九十四章 雾神星基地	 </a></li>
+<li><a href="	790.html	">	第七百九十五章 时间表	 </a></li>
+<li><a href="	790.html	">	第七百九十六章 术业有专攻	 </a></li>
+<li><a href="	790.html	">	第七百九十七章 误导	 </a></li>
+<li><a href="	790.html	">	第七百九十八章 不算战斗的战斗	 </a></li>
+<li><a href="	790.html	">	第七百九十九章 旧帝国遗产	 </a></li>
+<li><a href="	800.html	">	第八百章 幻影计划	 </a></li>
+<li><a href="	800.html	">	第八百零一章 来自莫布拉多的访客	 </a></li>
+<li><a href="	800.html	">	第八百零二章 偶尔干正事的冰蒂斯	 </a></li>
+<li><a href="	800.html	">	第八百零三章 倒时差	 </a></li>
+<li><a href="	800.html	">	第八百零四章 突袭	 </a></li>
+<li><a href="	800.html	">	第八百零五章 突破防线	 </a></li>
+<li><a href="	800.html	">	第八百零六章 抢滩登陆	 </a></li>
+<li><a href="	800.html	">	第八百零七章 无魂	 </a></li>
+<li><a href="	800.html	">	第八百零八章 跳吧	 </a></li>
+<li><a href="	800.html	">	第八百零九章 盒子	 </a></li>
+<li><a href="	810.html	">	第八百一十章 来人了	 </a></li>
+<li><a href="	810.html	">	第八百一十一章 烂泥扶不上墙	 </a></li>
+<li><a href="	810.html	">	第八百一十二章 复仇军的秘密	 </a></li>
+<li><a href="	810.html	">	第八百一十三章 燃烧的一米二的远征	 </a></li>
+<li><a href="	810.html	">	第八百一十四章 米莉亚你肿摸了	 </a></li>
+<li><a href="	810.html	">	第八百一十五章 米莉亚的超展开	 </a></li>
+<li><a href="	810.html	">	第八百一十六章 米莉亚，上传，出发！	 </a></li>
+<li><a href="	810.html	">	第八百一十七章 一米二的暴力美学	 </a></li>
+<li><a href="	810.html	">	第八百一十八章 全面燃烧	 </a></li>
+<li><a href="	810.html	">	第八百一十九章 巨星	 </a></li>
+<li><a href="	820.html	">	第八百二十章 另外一个身份	 </a></li>
+<li><a href="	820.html	">	第八百二十一章 钥匙	 </a></li>
+<li><a href="	820.html	">	第八百二十二章 四十八小时	 </a></li>
+<li><a href="	820.html	">	第八百二十三章 葬礼序曲	 </a></li>
+<li><a href="	820.html	">	第八百二十四章 影子空间	 </a></li>
+<li><a href="	820.html	">	第八百二十五章 猛烈拦截	 </a></li>
+<li><a href="	820.html	">	第八百二十六章 别惹姐姐	 </a></li>
+<li><a href="	820.html	">	第八百二十七章 抽风的防御体系	 </a></li>
+<li><a href="	820.html	">	第八百二十八章 继续叮当球	 </a></li>
+<li><a href="	820.html	">	第八百二十九章 终点	 </a></li>
+<li><a href="	830.html	">	第八百三十章 牢不可摧的牢笼	 </a></li>
+<li><a href="	830.html	">	第八百三十一章 古老的亡灵们	 </a></li>
+<li><a href="	830.html	">	第八百三十二章 解散	 </a></li>
+<li><a href="	830.html	">	第八百三十三章 熊熊燃烧	 </a></li>
+<li><a href="	830.html	">	第八百三十四章 回家啊回家	 </a></li>
+<li><a href="	830.html	">	第八百三十五章 关于身体的难题	 </a></li>
+<li><a href="	830.html	">	第八百三十六章 盖亚的过去	 </a></li>
+<li><a href="	830.html	">	第八百三十七章 全新的复仇军	 </a></li>
+<li><a href="	830.html	">	第八百三十八章 尽忠	 </a></li>
+<li><a href="	830.html	">	第八百三十九章 新生儿	 </a></li>
+<li><a href="	840.html	">	第八百四十章 妖怪们很热情	 </a></li>
+<li><a href="	840.html	">	第八百四十一章 宗教仪式都是麻烦的	 </a></li>
+<li><a href="	840.html	">	第八百四十二章 林雪的死兆星	 </a></li>
+<li><a href="	840.html	">	第八百四十三章 钓鱼	 </a></li>
+<li><a href="	840.html	">	第八百四十四章 日常最高	 </a></li>
+<li><a href="	840.html	">	第八百四十五章 砰	 </a></li>
+<li><a href="	840.html	">	第八百四十六章 陪你去看流星雨落在萝莉的脑袋上	 </a></li>
+<li><a href="	840.html	">	第八百四十七章 检查身体，哦，还有长夜漫漫……	 </a></li>
+<li><a href="	840.html	">	第八百四十八章 维斯卡很乖的	 </a></li>
+<li><a href="	840.html	">	第八百四十九章 掉线	 </a></li>
+<li><a href="	850.html	">	第八百五十章 专业的事交给专业的人	 </a></li>
+<li><a href="	850.html	">	第八百五十一章 余孽？	 </a></li>
+<li><a href="	850.html	">	第八百五十二章 中国通	 </a></li>
+<li><a href="	850.html	">	第八百五十三章 大暴走时代	 </a></li>
+<li><a href="	850.html	">	第八百五十四章 这乱的	 </a></li>
+<li><a href="	850.html	">	第八百五十五章 被坑惨了的狐狸	 </a></li>
+<li><a href="	850.html	">	第八百五十六章 妖怪在行动	 </a></li>
+<li><a href="	850.html	">	第八百五十七章 撞啊撞的就习惯了	 </a></li>
+<li><a href="	850.html	">	第八百五十八章 火星	 </a></li>
+<li><a href="	850.html	">	第八百五十九章 残骸里	 </a></li>
+<li><a href="	860.html	">	第八百六十章 来历不明	 </a></li>
+<li><a href="	860.html	">	第八百六十一章 水煮	 </a></li>
+<li><a href="	860.html	">	第八百六十二章 再腹黑也有吃瘪的时候	 </a></li>
+<li><a href="	860.html	">	第八百六十三章 和平的一天	 </a></li>
+<li><a href="	860.html	">	第八百六十四章 日志	 </a></li>
+<li><a href="	860.html	">	第八百六十五章 珊多拉很饿	 </a></li>
+<li><a href="	860.html	">	第八百六十六章 登月	 </a></li>
+<li><a href="	860.html	">	第八百六十七章 细心的珊多拉？	 </a></li>
+<li><a href="	860.html	">	第八百六十八章 你去月亮上干啥	 </a></li>
+<li><a href="	860.html	">	第八百六十九章 你们并不孤独	 </a></li>
+<li><a href="	870.html	">	第八百七十章 新时代	 </a></li>
+<li><a href="	870.html	">	第八百七十一章 上帝工厂	 </a></li>
+<li><a href="	870.html	">	第八百七十二章 莉莉娜的忽悠	 </a></li>
+<li><a href="	870.html	">	第八百七十三章 史上最强搅局组织，以及自恋去吧，少女！	 </a></li>
+<li><a href="	870.html	">	第八百七十四章 来自神界的情报	 </a></li>
+<li><a href="	870.html	">	第八百七十五章 失去联系	 </a></li>
+<li><a href="	870.html	">	第八百七十六章 看不见的吞噬者	 </a></li>
+<li><a href="	870.html	">	第八百七十七章 花纹，还有父神的宏愿	 </a></li>
+<li><a href="	870.html	">	第八百七十八章 网的背后	 </a></li>
+<li><a href="	870.html	">	第八百七十九章 废墟世界	 </a></li>
+<li><a href="	880.html	">	第八百八十章 脏小孩	 </a></li>
+<li><a href="	880.html	">	第八百八十一章 小镇	 </a></li>
+<li><a href="	880.html	">	第八百八十二章 小窝	 </a></li>
+<li><a href="	880.html	">	第八百八十三章 赞美歌透露的信息	 </a></li>
+<li><a href="	880.html	">	第八百八十四章 未能发现新大陆的哥伦布	 </a></li>
+<li><a href="	880.html	">	第八百八十五章 我们只有这个	 </a></li>
+<li><a href="	880.html	">	第八百八十六章 丰盛的晚餐，还有管道工的胡思乱想	 </a></li>
+<li><a href="	880.html	">	第八百八十七章 幻景	 </a></li>
+<li><a href="	880.html	">	第八百八十八章 暗淡黎明	 </a></li>
+<li><a href="	880.html	">	第八百八十九章 黑暗中	 </a></li>
+<li><a href="	890.html	">	第八百九十章 起风了	 </a></li>
+<li><a href="	890.html	">	第八百九十一章 飓风	 </a></li>
+<li><a href="	890.html	">	第八百九十二章 平静	 </a></li>
+<li><a href="	890.html	">	第八百九十三章 消失的镇子	 </a></li>
+<li><a href="	890.html	">	第八百九十四章 脱离风暴	 </a></li>
+<li><a href="	890.html	">	第八百九十五章 大城	 </a></li>
+<li><a href="	890.html	">	第八百九十六章 地震	 </a></li>
+<li><a href="	890.html	">	第八百九十七章 使命	 </a></li>
+<li><a href="	890.html	">	第八百九十八章 颠覆	 </a></li>
+<li><a href="	890.html	">	第八百九十九章 搜救	 </a></li>
+<li><a href="	900.html	">	第九百章 暂时的安全	 </a></li>
+<li><a href="	900.html	">	第九百零一章 敌袭！敌袭！！	 </a></li>
+<li><a href="	900.html	">	第九百零二章 失援	 </a></li>
+<li><a href="	900.html	">	第九百零三章 圣库	 </a></li>
+<li><a href="	900.html	">	第九百零四章 爆炸和爆炸，还有爆炸	 </a></li>
+<li><a href="	900.html	">	第九百零五章 各种意外	 </a></li>
+<li><a href="	900.html	">	第九百零六章 冲锋！！	 </a></li>
+<li><a href="	900.html	">	第九百零七章 输赢参半	 </a></li>
+<li><a href="	900.html	">	第九百零八章 返航——也要出点状况	 </a></li>
+<li><a href="	900.html	">	第九百零九章 俘虏	 </a></li>
+<li><a href="	910.html	">	第九百一十章 无语的审问	 </a></li>
+<li><a href="	910.html	">	第九百一十一章 只言片语中的推论	 </a></li>
+<li><a href="	910.html	">	第九百一十二章 安居工程	 </a></li>
+<li><a href="	910.html	">	第九百一十三章 生态穹顶	 </a></li>
+<li><a href="	910.html	">	第九百一十四章 你从我鼻子上下来	 </a></li>
+<li><a href="	910.html	">	第九百一十五章 还有一家子给人带来欢乐的家伙	 </a></li>
+<li><a href="	910.html	">	第916章 关于XLTV的初步设想	 </a></li>
+<li><a href="	910.html	">	第917章 家里的日子，以及和某个大智若愚女流氓关于人生的长谈	 </a></li>
+<li><a href="	910.html	">	第918章 日常还是猎奇	 </a></li>
+<li><a href="	910.html	">	第919章 航行于深渊	 </a></li>
+<li><a href="	920.html	">	第920章 和珊多拉在一起的时候	 </a></li>
+<li><a href="	920.html	">	921章 戏剧化，还有混乱的历史	 </a></li>
+<li><a href="	920.html	">	第922章 触及了关键的一环？	 </a></li>
+<li><a href="	920.html	">	第923章 这个世界上有一个突变物种，叫做熊孩子——御坂也不例外	 </a></li>
+<li><a href="	920.html	">	第924章 坑爹的八卦天狗	 </a></li>
+<li><a href="	920.html	">	第925章 今天仍然很热闹的一家子	 </a></li>
+<li><a href="	920.html	">	第926章 囚犯	 </a></li>
+<li><a href="	920.html	">	第927章 要不咱们谈谈生孩子的事？	 </a></li>
+<li><a href="	920.html	">	第九百二十八章 清醒！！	 </a></li>
+<li><a href="	920.html	">	第九百二十九章 复制？	 </a></li>
+<li><a href="	930.html	">	第九百三十章 神界父母多奇葩	 </a></li>
+<li><a href="	930.html	">	第九百三十一章 幽灵船的传言	 </a></li>
+<li><a href="	930.html	">	第九百三十二章 突然就开始举办宴会了？	 </a></li>
+<li><a href="	930.html	">	第九百三十三章 这帮欢乐的家伙，偶尔胡闹一下也挺有趣的	 </a></li>
+<li><a href="	930.html	">	第九百三十四章 知道真相的你眼泪会不会流下来……	 </a></li>
+<li><a href="	930.html	">	第九百三十五章 二十年不变的温暖	 </a></li>
+<li><a href="	930.html	">	第九百三十六章 重启	 </a></li>
+<li><a href="	930.html	">	第九百三十七章 战歌号，能用了——就是有点小毛病	 </a></li>
+<li><a href="	930.html	">	第九百三十八章 下雨的日子——还让不让人安生？	 </a></li>
+<li><a href="	930.html	">	第九百三十九章 抢险	 </a></li>
+<li><a href="	940.html	">	第九百四十章 对付高科技，有时候大榔头也管用——理论上是这样	 </a></li>
+<li><a href="	940.html	">	第941章 和他们说话	 </a></li>
+<li><a href="	940.html	">	第九百四十二章 你把它吃了吧	 </a></li>
+<li><a href="	940.html	">	第九百四十三章 相信我，科学家才是毁灭世界的家伙，你看他们都造了点啥	 </a></li>
+<li><a href="	940.html	">	第九百四十四章 阴影？	 </a></li>
+<li><a href="	940.html	">	第九百四十五章 再度出现	 </a></li>
+<li><a href="	940.html	">	第九百四十六章 差一点没认出来	 </a></li>
+<li><a href="	940.html	">	第九百四十七章 接触	 </a></li>
+<li><a href="	940.html	">	第九百四十八章 幽灵舰队集群	 </a></li>
+<li><a href="	940.html	">	第九百四十九章 星球要塞——这是谁设计的倒霉玩意儿	 </a></li>
+<li><a href="	950.html	">	第九百五十章 袭击	 </a></li>
+<li><a href="	950.html	">	第九百五十一章 逃亡者	 </a></li>
+<li><a href="	950.html	">	第九百五十二章 误会……额，算暂时解除吧	 </a></li>
+<li><a href="	950.html	">	第九百五十三章 历史——当然，是黑的	 </a></li>
+<li><a href="	950.html	">	第九百五十四章 新邻居	 </a></li>
+<li><a href="	950.html	">	第九百五十五章 离奇的梦	 </a></li>
+<li><a href="	950.html	">	第九百五十六章 死暴发户是何等神奇的物种	 </a></li>
+<li><a href="	950.html	">	第九百五十七章 时间表	 </a></li>
+<li><a href="	950.html	">	第九百五十八章 送快递的来了	 </a></li>
+<li><a href="	950.html	">	第九百五十九章 再次来到神界	 </a></li>
+<li><a href="	960.html	">	第九百六十章 一个史上最老的……深渊祖宗	 </a></li>
+<li><a href="	960.html	">	第九百六十一章 乱丢垃圾的最高境界	 </a></li>
+<li><a href="	960.html	">	第九百六十二章 迷途	 </a></li>
+<li><a href="	960.html	">	第九百六十三章 叮当和迦迦的象棋教室	 </a></li>
+<li><a href="	960.html	">	第九百六十四章 过往的某一瞬间	 </a></li>
+<li><a href="	960.html	">	第九百六十五章 另一个理论	 </a></li>
+<li><a href="	960.html	">	第九百六十六章 孽缘啊，孽缘	 </a></li>
+<li><a href="	960.html	">	第九百六十七章 沙滩假期	 </a></li>
+<li><a href="	960.html	">	第九百六十八章 一个大快人心的好消息？	 </a></li>
+<li><a href="	960.html	">	第九百六十九章 第一次主动出击	 </a></li>
+<li><a href="	970.html	">	第九百七十章 侵攻	 </a></li>
+<li><a href="	970.html	">	第九百七十一章 抓人	 </a></li>
+<li><a href="	970.html	">	第九百七十二章 神奇的“复制人”？	 </a></li>
+<li><a href="	970.html	">	第九百七十三章 男女混合双打	 </a></li>
+<li><a href="	970.html	">	第九百七十四章 未来的秘辛	 </a></li>
+<li><a href="	970.html	">	第九百七十五章 熊孩子	 </a></li>
+<li><a href="	970.html	">	第九百七十六章 super熊孩子	 </a></li>
+<li><a href="	970.html	">	第九百七十七章 一家子，更乱了	 </a></li>
+<li><a href="	970.html	">	第九百七十八章 闹别扭	 </a></li>
+<li><a href="	970.html	">	第九百七十九章 贵客	 </a></li>
+<li><a href="	980.html	">	第九百八十章 众神之战的另一个版本	 </a></li>
+<li><a href="	980.html	">	第九百八十一章 出行	 </a></li>
+<li><a href="	980.html	">	第九百八十二章 浅浅的猜测	 </a></li>
+<li><a href="	980.html	">	第九百八十三章 超进化	 </a></li>
+<li><a href="	980.html	">	第九百八十四章 小泡泡，你厉害	 </a></li>
+<li><a href="	980.html	">	第九百八十五章 论熊孩子打架的时候使用核掩体的必要性	 </a></li>
+<li><a href="	980.html	">	第九百八十六章 深渊之底	 </a></li>
+<li><a href="	980.html	">	第九百八十七章 诶呀我去这谁呀	 </a></li>
+<li><a href="	980.html	">	第九百八十八章 疯丫头	 </a></li>
+<li><a href="	980.html	">	第九百八十九章 入侵	 </a></li>
+<li><a href="	990.html	">	第九百九十章 他们永不会如此简单	 </a></li>
+<li><a href="	990.html	">	第九百九十一章 大举入侵，以及亲自动手	 </a></li>
+<li><a href="	990.html	">	第九百九十二章 蒙对了	 </a></li>
+<li><a href="	990.html	">	第九百九十三章 潮水般来袭	 </a></li>
+<li><a href="	990.html	">	第九百九十四章 刺杀	 </a></li>
+<li><a href="	990.html	">	第九百九十五章 你如太阳般耀目	 </a></li>
+<li><a href="	990.html	">	第九百九十六章 满目疮痍	 </a></li>
+<li><a href="	990.html	">	第九百九十七章 绿星，以及战后闹腾	 </a></li>
+<li><a href="	990.html	">	第九百九十八章 盖亚解闷的方式	 </a></li>
+<li><a href="	990.html	">	第九百九十九章 大礼	 </a></li>
+<li><a href="	1000.html	">	第一千章 奇葩的人有奇葩的日常	 </a></li>
+<li><a href="	1000.html	">	第一千零一章 不管未来怎样，至少现在日常	 </a></li>
+<li><a href="	1000.html	">	第一千零二章 君临者的秘密——之一	 </a></li>
+<li><a href="	1000.html	">	第一千零三章 女王归来	 </a></li>
+<li><a href="	1000.html	">	第一千零四章 当年有个大乌龙……	 </a></li>
+<li><a href="	1000.html	">	第一千零五章 累死人的密匙	 </a></li>
+<li><a href="	1000.html	">	第一千零六章 用脸着地	 </a></li>
+<li><a href="	1000.html	">	第一千零七章 地下，更深处	 </a></li>
+<li><a href="	1000.html	">	第一千零八章 他们就在这里	 </a></li>
+<li><a href="	1000.html	">	第一千零九章 不真实的村庄	 </a></li>
+<li><a href="	1010.html	">	第一千零十章 大族长	 </a></li>
+<li><a href="	1010.html	">	第一千零一十一章 最后一支眷族	 </a></li>
+<li><a href="	1010.html	">	第一千零一十二章 一切的秘密和真相	 </a></li>
+<li><a href="	1010.html	">	第一千零一十三章 信	 </a></li>
+<li><a href="	1010.html	">	第一千零一十四章 短信误国	 </a></li>
+<li><a href="	1010.html	">	第一千零一十五章 诶呦我去	 </a></li>
+<li><a href="	1010.html	">	第一千零一十六章 莉莉娜的小尾巴，还有新创造	 </a></li>
+<li><a href="	1010.html	">	第一千零一十七章 莉莉娜的困扰	 </a></li>
+<li><a href="	1010.html	">	第一千零一十八章 掉了，掉了……	 </a></li>
+<li><a href="	1010.html	">	第一千零一十九章 晓雪的第一课？	 </a></li>
+<li><a href="	1020.html	">	第一千零二十章 宏伟工程	 </a></li>
+<li><a href="	1020.html	">	第一千零二十一章 树精灵业务员	 </a></li>
+<li><a href="	1020.html	">	第一千零二十二章 猫	 </a></li>
+<li><a href="	1020.html	">	第一千零二十三章 我找我爸	 </a></li>
+<li><a href="	1020.html	">	第一千零二十四章 突然的变异还是先兆？	 </a></li>
+<li><a href="	1020.html	">	第一千零二十五章 先兆，真的是先兆	 </a></li>
+<li><a href="	1020.html	">	第一千零二十六章 神？苦逼……	 </a></li>
+<li><a href="	1020.html	">	第一千零二十七章 以后最好别让浅浅给起名字	 </a></li>
+<li><a href="	1020.html	">	第一千零二十八章 变异仍在扩大	 </a></li>
+<li><a href="	1020.html	">	第一千零二十九章	 </a></li>
+<li><a href="	1030.html	">	第一千零三十章 深渊的异动	 </a></li>
+<li><a href="	1030.html	">	第一千零三十一章 安薇娜的客人	 </a></li>
+<li><a href="	1030.html	">	第一千零三十二章 麦……麦迪文	 </a></li>
+<li><a href="	1030.html	">	第一千零三十三章 破碎的守护者	 </a></li>
+<li><a href="	1030.html	">	第一千零三十四章 分赃大会	 </a></li>
+<li><a href="	1030.html	">	第一千零三十五章 打捞	 </a></li>
+<li><a href="	1030.html	">	第一千零三十六章 不对劲	 </a></li>
+<li><a href="	1030.html	">	第一千零三十七章 门的对面	 </a></li>
+<li><a href="	1030.html	">	第一千零三十八章 女流氓风姿不减当年	 </a></li>
+<li><a href="	1030.html	">	第一千零三十九章 阴影中的堕落使徒-深渊哨兵	 </a></li>
+<li><a href="	1040.html	">	第一千零四十章 无法休息的塔维尔	 </a></li>
+<li><a href="	1040.html	">	第一千零四十一章 寒冬腊月里的冷汗	 </a></li>
+<li><a href="	1040.html	">	第一千零四十二章 找鸟	 </a></li>
+<li><a href="	1040.html	">	第一千零四十三章 日渐神化的麦迪雯	 </a></li>
+<li><a href="	1040.html	">	第一千零四十四章 乌鸦归来	 </a></li>
+<li><a href="	1040.html	">	第一千零四十五章 香草	 </a></li>
+<li><a href="	1040.html	">	第一千零四十六章 安薇娜确实是当妈了	 </a></li>
+<li><a href="	1040.html	">	第一千零四十七章 不成熟的傻鸟	 </a></li>
+<li><a href="	1040.html	">	第一千零四十八章 你想回家么？	 </a></li>
+<li><a href="	1040.html	">	第一千零四十九章 这就是俺家万神殿	 </a></li>
+<li><a href="	1050.html	">	第一千零五十章 莉莉娜的雄才大略	 </a></li>
+<li><a href="	1050.html	">	第一千零五十一章 关于神职，还有家庭教育问题	 </a></li>
+<li><a href="	1050.html	">	第一千零五十二章 第一次看到影子城的香草	 </a></li>
+<li><a href="	1050.html	">	第一千零五十三章 岔路	 </a></li>
+<li><a href="	1050.html	">	第一千零五十四章 偷得浮生半日闲	 </a></li>
+<li><a href="	1050.html	">	第一千零五十五章 遗迹中的人	 </a></li>
+<li><a href="	1050.html	">	第一千零五十六章 有鳞	 </a></li>
+<li><a href="	1050.html	">	第一千零五十七章 冰封城堡	 </a></li>
+<li><a href="	1050.html	">	第一千零五十八章 半龙人少女的故事	 </a></li>
+<li><a href="	1050.html	">	第一千零五十九章 汇合	 </a></li>
+<li><a href="	1060.html	">	第一千零六十章 一点点历史	 </a></li>
+<li><a href="	1060.html	">	第一千零六十一章 谁说魔法不能便民用	 </a></li>
+<li><a href="	1060.html	">	第一千零六十二章 杂货铺之神小乌鸦	 </a></li>
+<li><a href="	1060.html	">	第一千零六十三章 暗巷区	 </a></li>
+<li><a href="	1060.html	">	第一千零六十四章 拜访	 </a></li>
+<li><a href="	1060.html	">	第一千零六十五章 集市上	 </a></li>
+<li><a href="	1060.html	">	第一千零六十六章 我们是……半龙人	 </a></li>
+<li><a href="	1060.html	">	第一千零六十七章 每一个巨龙都是威严满满的	 </a></li>
+<li><a href="	1060.html	">	第一千零六十八章 全新的着陆方式：嵌入式着陆	 </a></li>
+<li><a href="	1060.html	">	第一千零六十九章 誓约	 </a></li>
+<li><a href="	1070.html	">	第一千零七十章 去往南方	 </a></li>
+<li><a href="	1070.html	">	第一千零七十一章 圣都	 </a></li>
+<li><a href="	1070.html	">	第一千零七十二章 悬空河	 </a></li>
+<li><a href="	1070.html	">	第一千零七十三章 天空之塔	 </a></li>
+<li><a href="	1070.html	">	第一千零七十四章 守卫者	 </a></li>
+<li><a href="	1070.html	">	第一千零七十五章 扑朔迷离	 </a></li>
+<li><a href="	1070.html	">	第一千零七十六章 阿赖耶?诺蕾?科瑞塔	 </a></li>
+<li><a href="	1070.html	">	第一千零七十七章 母星，母星！	 </a></li>
+<li><a href="	1070.html	">	第一千零七十八章 是男人就上够XX层	 </a></li>
+<li><a href="	1070.html	">	第一千零七十九章 分裂的母星	 </a></li>
+<li><a href="	1080.html	">	第一千零八十章 呵呵，这里的防卫系统没坏……	 </a></li>
+<li><a href="	1080.html	">	第一千零八十一章 天使进行时	 </a></li>
+<li><a href="	1080.html	">	第一千零八十二章 脱出	 </a></li>
+<li><a href="	1080.html	">	第一千零八十三章 风筝	 </a></li>
+<li><a href="	1080.html	">	第一千零八十四章 小鸟的待客之道	 </a></li>
+<li><a href="	1080.html	">	第一千零八十五章 银龙	 </a></li>
+<li><a href="	1080.html	">	第一千零八十六章 消散的预兆	 </a></li>
+<li><a href="	1080.html	">	第一千零八十七章 总算能交流了么？	 </a></li>
+<li><a href="	1080.html	">	第一千零八十八章 撕碎的历史	 </a></li>
+<li><a href="	1080.html	">	第一千零八十九章 夜谈	 </a></li>
+<li><a href="	1090.html	">	第一千零九十章 银龙查尔很奇怪	 </a></li>
+<li><a href="	1090.html	">	第一千零九十一章 巨龙王国-世外桃源	 </a></li>
+<li><a href="	1090.html	">	第一千零九十二章 无法解释的意识形态	 </a></li>
+<li><a href="	1090.html	">	第一千零九十三章 守卫长	 </a></li>
+<li><a href="	1090.html	">	第一千零九十四章 浅浅的战斗方式	 </a></li>
+<li><a href="	1090.html	">	第一千零九十五章 天使之城	 </a></li>
+<li><a href="	1090.html	">	第一千零九十六章 集结之厅	 </a></li>
+<li><a href="	1090.html	">	第一千零九十七章 消失	 </a></li>
+<li><a href="	1090.html	">	第一千零九十八章 扭曲之地	 </a></li>
+<li><a href="	1090.html	">	第一千零九十九章 旧日幻影	 </a></li>
+<li><a href="	1100.html	">	第一千一百章 小东西啊小东西	 </a></li>
+<li><a href="	1100.html	">	第一千一百零一章 你看到了什么	 </a></li>
+<li><a href="	1100.html	">	第一千一百零二章 重磅炸弹限量加强周年纪念版（上）	 </a></li>
+<li><a href="	1100.html	">	第一千一百零三章 重磅炸弹限量加强周年纪念版（↓）	 </a></li>
+<li><a href="	1100.html	">	第一千一百零四章 有很多事才刚刚开始	 </a></li>
+<li><a href="	1100.html	">	第一千一百零五章 权限的秘密	 </a></li>
+<li><a href="	1100.html	">	第一千一百零六章 这帮龙族啊……	 </a></li>
+<li><a href="	1100.html	">	第一千一百零七章 龙的宗教庆典……其实就是烧烤大会吧?	 </a></li>
+<li><a href="	1100.html	">	第一千一百零八章 当年你“啊”一声就挂了……	 </a></li>
+<li><a href="	1100.html	">	第一千一百零九章 潜移默化变成孩子她妈的大小姐	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十章 旧时代的终焉？	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十一章 前夕	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十二章 未来规划	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十三章 开工	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十四章 天使之城	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十五章 好兆头	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十六章 物是人非	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十七章 奥德姆修斯的秘密任务	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十八章 给你个圈要不要？	 </a></li>
+<li><a href="	1110.html	">	第一千一百一十九章 临近尾声	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十章 融合开始	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十一章 影子城也不是一天建起来的	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十二章 收工回家	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十三章 大小姐的二三事	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十四章 让他们听着警报过日子吧	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十五章 希灵主机的秘密	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十六章 贝拉维拉的自由行动计划	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十七章 贝拉维拉与渡鸦001的混合体	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十八章 维嘉的忧郁	 </a></li>
+<li><a href="	1120.html	">	第一千一百二十九章 神秘系的知识	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十章 恐怖镜像系统	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十一章 他们的玩意儿真TM太奇妙了……	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十二章 蝎子和渡鸦就应该相爱相杀	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十三章 帝王家	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十四章 莉莉娜的二三事	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十五章 他们可能还活着	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十六章 第五舰队的求救信号	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十七章 搜索	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十八章 流亡者们的现状	 </a></li>
+<li><a href="	1130.html	">	第一千一百三十九章 听到了——也只是听到了	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十章 阔别数百年的再次联系	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十一章 追击者的真面目	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十二章 把你发射出去	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十三章 我这是到哪了？	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十四章 意外的知识	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十五章 我TM这又是到哪了！	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十六章 这里不是交通事故现场……好吧，其实是	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十七章 奇葩老大爷	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十八章 第三类接触	 </a></li>
+<li><a href="	1140.html	">	第一千一百四十九章 你大爷的	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十章 于是发生什么我就一点都不奇怪了	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十一章 有事没事也要跟家里打个电话	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十二章 家里依然很热闹	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十三章 漫漫长夜干点啥不好	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十四章 大闹神殿的神	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十五章 都来了哈	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十六章 神降=游街=示众	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十七章 神和他们的孩子们	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十八章 依尔森的故事	 </a></li>
+<li><a href="	1150.html	">	第一千一百五十九章 它是来找我的	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十章 这TM是啥	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十一章 跟干粮较上劲了	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十二章 迷雾重重中的神秘文明？	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十三章 架桥	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十四章 流亡者的困境	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十五章 超大规模援助计划，还有坏的掉渣的莉莉娜	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十六章 缺心眼是通往成神的必经之路？	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十七章 孵蛋	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十八章 尽管生活乱七八糟	 </a></li>
+<li><a href="	1160.html	">	第一千一百六十九章 它还在工作！！	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十章 深潜技术的突破点？	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十一章 混乱的人生滚滚向前	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十二章 第五舰队的急电	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十三章 迷之棺材	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十四章 遗骸	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十五章 原体	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十六章 一堆活宝	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十七章 唠嗑对象	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十八章 错乱的空间残骸	 </a></li>
+<li><a href="	1170.html	">	第一千一百七十九章 死气沉沉的工作站	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十章 重启的设备	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十一章 另外一个来自对岸的东西？	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十二章 攻击……者？	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十三章 坚守	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十四章 生存环境问题？	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十五章 大业？	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十六章 他们习惯突然出现	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十七章 终极技能	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十八章 突袭的黑色蝎子	 </a></li>
+<li><a href="	1180.html	">	第一千一百八十九章 还是被阴了么？	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十章 辛迪娅做客的第一天	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十一章 安薇娜的……秘密……	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十二章 他们的雷达网？	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十三章 活跃的辛迪娅	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十四章 奢侈的平静	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十五章 诱捕？	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十六章 能力越大，加班越多	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十七章 天界都市的变化	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十八章 半龙人的新家	 </a></li>
+<li><a href="	1190.html	">	第一千一百九十九章 这个掉智商的丫头	 </a></li>
+<li><a href="	1200.html	">	第一千二百章 你们挖出来个什么玩意儿？	 </a></li>
+<li><a href="	1200.html	">	第一千二百零一章 失踪的设备	 </a></li>
+<li><a href="	1200.html	">	第一千二百零二章 被偷走？	 </a></li>
+<li><a href="	1200.html	">	第一千二百零三章 捕获	 </a></li>
+<li><a href="	1200.html	">	第一千二百零四章 第四区	 </a></li>
+<li><a href="	1200.html	">	第一千二百零五章 辛迪娅要回家	 </a></li>
+<li><a href="	1200.html	">	第一千二百零六章 今天早晨是各种孩子她爹的聚会	 </a></li>
+<li><a href="	1200.html	">	第一千二百零七章 坐标到手	 </a></li>
+<li><a href="	1200.html	">	第一千二百零八章 启程	 </a></li>
+<li><a href="	1200.html	">	第一千二百零九章 梅洛瓦世界	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十章 阿奴扎	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十一章 自诩为神	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十二章 阿奴丽丽	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十三章 阴影中无法辨识的真相	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十四章 还有其他人	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十五章 基地	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十六章 导师……卧槽这是导师？！	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十七章 另一段故事	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十八章 图拉佐的合作	 </a></li>
+<li><a href="	1210.html	">	第一千二百一十九章 被发现？	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十章 这丫头就是个祸害	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十一章 监听	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十二章 潜入内部	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十三章 真相	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十四章 播撒病毒	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十五章 战争前夕	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十六章 战争	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十七章 扎根	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十八章 姐姐遇上点麻烦事……	 </a></li>
+<li><a href="	1220.html	">	第一千二百二十九章 火炮，更多火炮	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十章 爆炸，更多爆炸！	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十一章 礼物	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十二章 反抗是智慧生物与生俱来的力量	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十三章 暴君的黄昏	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十四章 最后的战斗	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十五章 这就结束了？	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十六章 破败王者之星	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十七章 我都有点同情了	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十八章 事件结束？不，尚未结束	 </a></li>
+<li><a href="	1230.html	">	第一千二百三十九章 他们需要帮助	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十章 自由的人	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十一章 遗物	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十二章 家里……	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十三章 神化的姐姐	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十四章 不做死就不会死	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十五章 希灵使徒的法律思想	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十六章 小小乌鸦们的日常	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十七章 阿瓦隆一日游以及关于神的秘闻	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十八章 还是得工作	 </a></li>
+<li><a href="	1240.html	">	第一千二百四十九章 沉默的水晶	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十章 奥蕾莉亚的惊喜	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十一章 天使战团	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十二章 她是谁？	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十三章 或许能重新开始	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十四章 议会的协助	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十五章 戒严	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十六章 就这么“抓到”了？	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十七章 希灵	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十八章 一个真实的幽灵	 </a></li>
+<li><a href="	1250.html	">	第一千二百五十九章 那位大人	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十章 检查身体	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十一章 帝国军事学院入学流程的通俗翻译	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十二章 客人	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十三章 偶遇	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十四章 纪念碑	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十五章 阿奴丽丽对影子城的印象	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十六章 先祖	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十七章 即将载入史册的少女	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十八章 边际与裂谷	 </a></li>
+<li><a href="	1260.html	">	第一千二百六十九章 警报	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十章 支援边疆	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十一章 雾	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十二章 不可名状的战场	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十三章 求援信号	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十四章 神秘系军队的战斗方式	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十五章 堕落使徒的新式科技？	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十六章 突然遭遇	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十七章 这帮蝎子啊……	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十八章 驰援	 </a></li>
+<li><a href="	1270.html	">	第一千二百七十九章 不做死的必要性	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十章 史上最强小贩，以及战俘营	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十一章 同时耍了两拨人	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十二章 突发	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十三章 疯狂的哈兰？	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十四章 恶战	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十五章 诅咒仪式	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十六章 祸事了祸事了!	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十七章 珊多拉的决心	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十八章 退敌	 </a></li>
+<li><a href="	1280.html	">	第一千二百八十九章 伤筋动骨	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十章 有啥不合适的	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十一章 小媳妇	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十二章 战后的影子城	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十三章 挣钱是人生大事	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十四章 商人本色是啥	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十五章 镜姬	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十六章 超高能的一家子	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十七章 邪王真眼冰蒂斯	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十八章 拆解发生器	 </a></li>
+<li><a href="	1290.html	">	第一千二百九十九章 新式战舰的展望	 </a></li>
+<li><a href="	1300.html	">	第一千三百章 虚空财团的雏形	 </a></li>
+<li><a href="	1300.html	">	第一千三百零一章 泥版	 </a></li>
+<li><a href="	1300.html	">	第一千三百零二章 石头里有东西	 </a></li>
+<li><a href="	1300.html	">	第一千三百零三章 故乡	 </a></li>
+<li><a href="	1300.html	">	第一千三百零四章 俩奸商的初次合作？	 </a></li>
+<li><a href="	1300.html	">	第一千三百零五章 狐狸吃坏肚子了	 </a></li>
+<li><a href="	1300.html	">	第一千三百零六章 泥板上的秘密	 </a></li>
+<li><a href="	1300.html	">	第一千三百零七章 一团乱麻，扑朔迷离	 </a></li>
+<li><a href="	1300.html	">	第一千三百零八章 屏障？	 </a></li>
+<li><a href="	1300.html	">	第一千三百零九章 关于屏障的猜测	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十章 来自工程队的消息	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十一章 残片	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十二章 小行星带工程基地	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十三章 各种新发现	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十四章 神仙家孩子	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十五章 失事飞船	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十六章 尸骸	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十七章 那些过去的东西	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十八章 哈兰的行踪	 </a></li>
+<li><a href="	1310.html	">	第一千三百一十九章 钓鱼	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十章 围困，以及哈兰的异常	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十一章 末日前的世界	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十二章 神奇的当地人	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十三章 很熟悉的身影	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十四章 维斯卡的……	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十五章 一波流	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十六章 卧槽这群神奇的家伙……	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十七章 特大号的误会	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十八章 维斯卡的宝物库以及熊孩子的战斗力	 </a></li>
+<li><a href="	1320.html	">	第一千三百二十九章 一通混战	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十章 当不成指挥官，就当超级兵吧	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十一章 黑森人的泥沼	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十二章 满血复活	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十三章 终于结束了	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十四章 我也有被浮游炮轰炸的一天!?	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十五章 抓捕归案	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十六章 各种相认……	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十七章 每个人心都挺宽	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十八章 维斯卡的“宝贝”	 </a></li>
+<li><a href="	1330.html	">	第一千三百三十九章 甜品店中的偶遇	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十章 裂谷，希灵，还有狐狸	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十一章 俩皇帝历史性碰面	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十二章 秘密	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十三章 步入正轨的深渊独立团	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十四章 复活试验	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十五章 先祖归来	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十六章 安瑟斯	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十七章 庆功家宴	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十八章 听听老祖宗的故事	 </a></li>
+<li><a href="	1340.html	">	第一千三百四十九章 最初的故事	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十章 那不是深渊之门！	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十一章 一大群	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十二章 这乱哄哄的	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十三章 复活的限制	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十四章 全网预警？	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十五章 深入裂谷的难点	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十六章 灵魂同律	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十七章 上传	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十八章 希灵眼中的世界	 </a></li>
+<li><a href="	1350.html	">	第一千三百五十九章 跳不跳？	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十章 那好，咱俩聊聊	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十一章 难以揣测	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十二章 卡住了	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十三章 讽刺性的事实	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十四章 豆丁们的开心果作用	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十五章 哈兰的筹备	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十六章 先祖……们	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十七章 就像养鸟一样	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十八章 安瑟斯的回忆	 </a></li>
+<li><a href="	1360.html	">	第一千三百六十九章 有点尴尬的信件交流	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十章 去神界串串门	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十一章 要不，去打一架？	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十二章 指导	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十三章 神的资料巨库	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十四章 上古记载中的可疑之处？	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十五章 和女汉子在一起	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十六章 纪念之地	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十七章 折腾人的一宿	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十八章 不朽的代价	 </a></li>
+<li><a href="	1370.html	">	第一千三百七十九章 看你妹啊	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十章 还魂	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十一章 科学家有力量	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十二章 定名	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十三章 冰蒂斯的事故	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十四章 前无古人冰蒂斯	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十五章 城市特色，城市特色	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十六章 茶馆半日闲	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十七章 幽灵船	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十八章 葬礼和事故	 </a></li>
+<li><a href="	1380.html	">	第一千三百八十九章 现场	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十章 破洞？	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十一章 第二枚探测器	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十二章 谁在计划这一切？	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十三章 倔性子的老祖宗	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十四章 易燃点	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十五章 火药桶	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十六章 瞒天过海	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十七章 傻大个	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十八章 林边的小村	 </a></li>
+<li><a href="	1390.html	">	第一千三百九十九章 不太平	 </a></li>
+<li><a href="	1400.html	">	第一千四百章 黯月	 </a></li>
+<li><a href="	1400.html	">	第一千四百零一章 村长和司祭	 </a></li>
+<li><a href="	1400.html	">	第一千四百零二章 黯月战争以及传说 上	 </a></li>
+<li><a href="	1400.html	">	第一千四百零三章 黯月战争以及传说（下）	 </a></li>
+<li><a href="	1400.html	">	第一千四百零四章 这个世界要变天	 </a></li>
+<li><a href="	1400.html	">	第一千四百零五章 通天桥的故事以及傻大个的过去	 </a></li>
+<li><a href="	1400.html	">	第一千四百零六章 可疑的黯月战争,可疑的女神	 </a></li>
+<li><a href="	1400.html	">	第一千四百零七章 征召?	 </a></li>
+<li><a href="	1400.html	">	第一千四百零八章 “可爱”的募兵官	 </a></li>
+<li><a href="	1400.html	">	第一千四百零九章 恪守骑士道的三人组	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十章 北要塞	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十一章 被宗教篡改的历史?	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十二章 “天国时代”的真相	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十三章 要塞&amp;城市	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十四章 女龙王	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十五章 信息量超大	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十六章 血公主	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十七章 黯月之上	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十八章 尊敬的用户，我是你爹	 </a></li>
+<li><a href="	1410.html	">	第一千四百一十九章 猛兽，以及……熟悉的东西！	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十章 所谓的黯月“恶魔”？	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十一章 喵斯卡	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十二章 地上人的城市	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十三章 安洁丽将军	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十四章 安洁丽所知的历史	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十五章 神罚?	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十六章 五个人的故事（上）	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十七章 五个人的故事 下	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十八章 真相大白	 </a></li>
+<li><a href="	1420.html	">	第一千四百二十九章 黯月皇宫	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十章 黯月大君和血公主	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十一章 苏醒	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十二章 最后一件事	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十三章 历史悠久一个球	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十四章 安提尔	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十五章 以神之名	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十六章 收工……啊咧?	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十七章 借用深渊的力量	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十八章 偷天换日	 </a></li>
+<li><a href="	1430.html	">	第一千四百三十九章 不速之客	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十章 无人	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十一章 未来的打算	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十二章 回归,以及迎接	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十三章 对,没错,众神就这德性	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十四章 家有二货	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十五章 深潜进展	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十六章 初级免疫	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十七章 草本	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十八章 幽灵船事故	 </a></li>
+<li><a href="	1440.html	">	第一千四百四十九章 线索	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十章 林精	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十一章 姐姐和浅浅的教会	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十二章 奇怪的幽灵船	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十三章 留言	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十四章 日记	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十五章 孤独之旅	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十六章 沃伦?菲尔德	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十七章 舰载主机	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十八章 竟然是她?	 </a></li>
+<li><a href="	1450.html	">	第一千四百五十九章 关于深渊希灵的推测	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十章 重大发现?	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十一章 迫近	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十二章 预判系统	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十三章 先兆	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十四章 闲游，以及双子星后记	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十五章 堕落使徒的异动	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十六章 推测与亲往	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十七章 箭在弦上	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十八章 阴谋论	 </a></li>
+<li><a href="	1460.html	">	第一千四百六十九章 神界那道门	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十章 冷却，固化	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十一章 折腾	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十二章 抽风	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十三章 乱	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十四章 趁他病要他命	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十五章 暴风雨前夕	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十六章 大规模挺近	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十七章 鏖战	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十八章 方案	 </a></li>
+<li><a href="	1470.html	">	第一千四百七十九章 蜂群	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十章 混乱与强袭	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十一章 占领与预感	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十二章 信息量能有多大？	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十三章 兵分三路	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十四章 一切顺利？	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十五章 路标	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十六章 意料之内的碰面	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十七章 大业的真相?	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十八章 撤退	 </a></li>
+<li><a href="	1480.html	">	第一千四百八十九章 飞禽走兽二人组	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十章 公园的意外相遇	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十一章 状况不断，各种意义上的	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十二章 故障？	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十三章 禽兽双煞	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十四章 消协来人	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十五章 惊人的猜测	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十六章 有访客？	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十七章 棺材板	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十八章 矿井下面的特殊遗迹	 </a></li>
+<li><a href="	1490.html	">	第一千四百九十九章 偶尔回自己的棺材里看看	 </a></li>
+<li><a href="	1500.html	">	第一千五百章 又见面了	 </a></li>
+<li><a href="	1500.html	">	第一千五百零一章 命运是一团乱麻	 </a></li>
+<li><a href="	1500.html	">	第一千五百零二章 珊多拉的“状况”	 </a></li>
+<li><a href="	1500.html	">	第一千五百零三章 深渊希灵，鬼魅般的家伙	 </a></li>
+<li><a href="	1500.html	">	第一千五百零四章 深渊里的残骸	 </a></li>
+<li><a href="	1500.html	">	第一千五百零五章 诶呀你好	 </a></li>
+<li><a href="	1500.html	">	第一千五百零六章 态度古怪的家伙	 </a></li>
+<li><a href="	1500.html	">	第一千五百零七章 希灵意志(上)	 </a></li>
+<li><a href="	1500.html	">	第一千五百零八章 希灵意志（下）	 </a></li>
+<li><a href="	1500.html	">	第一千五百零九章 大业的另一面	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十章 合作	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十一章 这就是你家啊？	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十二章 检查	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十三章 让这热闹永存	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十四章 当年的计划？	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十五章 信徒到了？	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十六章 看看人家的教皇	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十七章 乱糟糟一屋子	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十八章 迫近	 </a></li>
+<li><a href="	1510.html	">	第一千五百一十九章 万神殿的结论	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十章 神的时间，沧海桑田	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十一章 招待	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十二章 聚头	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十三章 四方会谈	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十四章 虚空宣言	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十五章 休伦王的生孩子野望	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十六章 神殿区的偶遇	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十七章 交接	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十八章 第一批物资到位	 </a></li>
+<li><a href="	1520.html	">	第一千五百二十九章 某人的爱情长跑	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十章 树精灵的情报	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十一章 做梦一样	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十二章 联合I号	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十三章 接触不连续带	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十四章 起航	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十五章 好的猜想	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十六章 信号	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十七章 顺风顺水	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十八章 最初指令	 </a></li>
+<li><a href="	1530.html	">	第一千五百三十九章 剧变	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十章 终焉之战？	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十一章 新军的危险之处	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十二章 曾经的敌人	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十三章 集结与进攻	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十四章 交通要道	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十五章 向宁静核心,前进!	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十六章 急转直下	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十七章 纠缠	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十八章 歪曲的世界	 </a></li>
+<li><a href="	1540.html	">	第一千五百四十九章 速度	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十章 顶住，我们都有盾墙！	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十一章 跃入光芒	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十二章 身处何地？	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十三章 世外桃源	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十四章 奇怪的地方	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十五章 大梦初醒	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十六章 梦境外泄	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十七章 复活的飞船	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十八章 怪异文明	 </a></li>
+<li><a href="	1550.html	">	第一千五百五十九章 艾露	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十章 当地人	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十一章 故事,以及一个神	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十二章 双神	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十三章 赛琳的奇怪行动	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十四章 古文明的覆灭原因？	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十五章 赛琳的工作	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十六章 失控的天线	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十七章 精灵……卧槽？	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十八章 爆炸的遗迹	 </a></li>
+<li><a href="	1560.html	">	第一千五百六十九章 神秘的黑斗篷，而且貌似不友好	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十章 恐灾	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十一章 天神锻炉的传说	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十二章 进展	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十三章 一夜间消失的文明	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十四章 一点点真相	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十五章 深空废墟	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十六章 被隐藏起来的东西	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十七章 那些碎片？！	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十八章 山中的城市	 </a></li>
+<li><a href="	1570.html	">	第一千五百七十九章 直面教皇	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十章 历史的帷幕	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十一章 牢	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十二章 开启	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十三章 诶呀,又一个	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十四章 真相大白	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十五章 寒冬结束,恢复联系	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十六章 团聚了	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十七章 重逢的将军与士兵	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十八章 后续的一些事情	 </a></li>
+<li><a href="	1580.html	">	第一千五百八十九章 呵呵，去TM的三观	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十章 我们要面对的麻烦	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十一章 崩裂的“原材料”	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十二章 先知给你减减压	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十三章 熊孩子什么都知道，但她就是不说！	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十四章 点火试验	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十五章 boom	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十六章 停滞	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十七章 还真在眼皮子底下	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十八章 最初之物	 </a></li>
+<li><a href="	1590.html	">	第一千五百九十九章 一块大石头落了地	 </a></li>
+<li><a href="	1600.html	">	第一千六百章 这不更严重了么!	 </a></li>
+<li><a href="	1600.html	">	第一千六百零一章 女汉子的思维你学不来	 </a></li>
+<li><a href="	1600.html	">	第一千六百零二章 嫁出去的女汉子泼出去的王水	 </a></li>
+<li><a href="	1600.html	">	第一千六百零三章 宁静核心的解决之道	 </a></li>
+<li><a href="	1600.html	">	第一千六百零四章 让一让让一让,历史的车轮碾过来啦!	 </a></li>
+<li><a href="	1600.html	">	第一千六百零五章 启程,去那最初之地	 </a></li>
+<li><a href="	1600.html	">	第一千六百零六章 苍凉之地	 </a></li>
+<li><a href="	1600.html	">	第一千六百零七章 虚空大撞车	 </a></li>
+<li><a href="	1600.html	">	第一千六百零八章 好兆头	 </a></li>
+<li><a href="	1600.html	">	第一千六百零九章 这里，是起源	 </a></li>
+<li><a href="	1610.html	">	第一千六百一十章 母星，母星！	 </a></li>
+<li><a href="	1610.html	">	第一千六百一十一章 永不消亡	 </a></li>
+<li><a href="	1610.html	">	第一千六百一十二章 工程的开启	 </a></li>
+<li><a href="	1610.html	">	第一千六百一十三章 那道光（结局）	 </a></li>
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='HI-Key-000.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='HI-Key-index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='HI-Key-002.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+<script>
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() {
+	document.getElementById("_userInput").value = "";
+	funcShowAllList();
+	funcGotoTop();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
