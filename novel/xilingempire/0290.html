@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel"><p>
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</p></div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h2>第二百九十章 抢劫</h2>	
+	<p class = "firstLineIndent"> 这里是城市中最繁华的地段，商业街，购物天堂，步行者乐园，随便什么称呼都很适合，作为一个消费密集型的区域，这里还没有高档到只有社会名流达官贵人才能进入，但其商品又恰恰足以迎合中产阶级心中那点稍稍膨胀起来的物质**和炫耀心理，因此占据了整个城市人口百分之七十的中产阶级人群都会对这样拥有档次但又不至于无法接受的消费区域产生兴趣。</p>
+	<p class = "firstLineIndent"> 密集的人流，鳞次的卖场，商厦，还有偶尔的小小摩擦，这样的地方真的不适合产生某种需要高度保密才能成功的犯罪。</p>
+	<p class = "firstLineIndent"> “但在我的预感中，他们的交易地点必然是在这附近。”</p>
+	<p class = "firstLineIndent"> 对我的质疑，林雪却是毫不妥协的自信。</p>
+	<p class = "firstLineIndent"> “还是说，你这家伙在质疑本先知的直觉？”</p>
+	<p class = "firstLineIndent"> “这还用说，这两天你的直觉根本也没产生多大作用……喂喂喂！冷静！克制！”</p>
+	<p class = "firstLineIndent"> “砰！”</p>
+	<p class = "firstLineIndent"> 切，真是个小心眼的暴力女。</p>
+	<p class = "firstLineIndent"> 没错，就好像经历过无数次的情况一样，无比熟练地和林雪对拆十招之后，我终于还是依照惯例被一记凌厉的直拳命中……</p>
+	<p class = "firstLineIndent"> 心满意足地收回拳头，林雪突然张牙舞爪地对围观群众甲乙丙丁咆哮起来：</p>
+	<p class = "firstLineIndent"> “看什么看！没见过逛街啊！”</p>
+	<p class = "firstLineIndent"> ……你见过哪个逛街冷不丁就对旁边人来一阵炫目指数四个星真人快打的！</p>
+	<p class = "firstLineIndent"> 正在这时候，我的脑海中突然传来了浅浅的声音：“阿俊，阿俊，这里是第三组，听到回话。”</p>
+	<p class = "firstLineIndent"> “听到了……话说用得着这个程序吗？”</p>
+	<p class = "firstLineIndent"> “这听着专业不是……不说这个了，你们那边有什么发现没？”</p>
+	<p class = "firstLineIndent"> “人流很多，天气晴朗，商厦好高，林雪挺暴力，没了，你那边呢？”</p>
+	<p class = "firstLineIndent"> “前三条同上，最后说一句，小泡泡很让人头疼……”</p>
+	<p class = "firstLineIndent"> “珊多拉那边呢？”</p>
+	<p class = "firstLineIndent"> “……”</p>
+	<p class = "firstLineIndent"> “珊多拉？”</p>
+	<p class = "firstLineIndent"> “……啊？”</p>
+	<p class = "firstLineIndent"> 不用说，这丫头又钻到某个美食城里乐不思蜀了。</p>
+	<p class = "firstLineIndent"> “发现什么没有？”</p>
+	<p class = "firstLineIndent"> “没……呃，有有有，这里的灌汤包真好吃！阿俊你们一会过来啊！”</p>
+	<p class = "firstLineIndent"> “话说你们究竟是来帮忙还是来砸场子的？”林雪咬牙切齿的声音响彻整个公共频道，“我怎么就不能确定你们过来的真实目的呢？”</p>
+	<p class = "firstLineIndent"> 浅浅：“逛街！”</p>
+	<p class = "firstLineIndent"> 珊多拉：“吃饭！”</p>
+	<p class = "firstLineIndent"> 姐姐：“采购！”</p>
+	<p class = "firstLineIndent"> 我：“然后顺便帮忙。”</p>
+	<p class = "firstLineIndent"> “我真是脑子进水了才让你们这帮不靠谱的家伙一起出来巡逻……”</p>
+	<p class = "firstLineIndent"> “好了好了，”看着林雪脸上的憋屈，我也知道该适可而止，这家伙的耐心一样都是相当有限的，“放心吧，外围那么多专业的帝**官和巡逻小队看着，里层又是我们这些首领级人物，这天罗地网的你觉得对手还能长翅膀飞了？”</p>
+	<p class = "firstLineIndent"> 林雪叹了口气，说道：“我当然知道你们这次调动的部队都很强力，但说实话，你也知道希灵军人最擅长的从来都是正面摧毁战，他们一动手就肯定死一片，要那些大头兵在不伤到脆弱的普通人的情况下完成这样的任务……我总有种极端的不安全感……而且这阵子一连串的事件已经让爷爷他很头疼了，要是今天再出个乌龙的意外，我真不知道该怎么面对他老人家……”</p>
+	<p class = "firstLineIndent"> 我带着诧异的眼神看着突然面露忧色的林雪，这个从来自信满满而且强势无匹的大小姐什么时候也会有这种感性的表现了？</p>
+	<p class = "firstLineIndent"> “这里是地球诶，”林雪看着我疑惑的眼神，直觉本来就超人一等的她自然能想到我在诧异什么，“那些可能受到伤害的可都是我的人类同胞，而且这次是直接压在我们异能组肩膀上的担子，你这个大神当然没压力了……”</p>
+	<p class = "firstLineIndent"> 喂喂喂，刚才你是很微妙地把我排除到人类的圈子外了吧？另外之前一起的行动完全是因为主要担子都在我们希灵军身上所以你才从来都毫无压力的是吧？</p>
+	<p class = "firstLineIndent"> 话说今天我怎么就倒霉到和林雪这个冤大头抽成一组……哪怕是跟莉莉娜那个伪萝莉分在一起都比现在强的多……</p>
+	<p class = "firstLineIndent"> 而与此同时，距离我们数百米远的某个商厦里面。</p>
+	<p class = "firstLineIndent"> 跟姐姐大人分在一组的维斯卡和潘多拉正大眼瞪小眼地进行日常斗气。</p>
+	<p class = "firstLineIndent"> “为什么我要跟这家伙分在一起！？”</p>
+	<p class = "firstLineIndent"> 维斯卡气鼓鼓地指着自己的双生姐姐，满脸不情愿地对姐姐大人说道。</p>
+	<p class = "firstLineIndent"> 而后者带着治愈的微笑轻轻拍了拍生气中小女孩的脑袋，全然没有在意对方流露出“别拿我当小孩子”这样的抗议眼神：“维斯卡听话，抽签决定的时候你可是同意了的。”</p>
+	<p class = "firstLineIndent"> “暗箱操作！你们一定是暗箱操作！”维斯卡立刻用上了昨天才新从电视上学来的词汇。</p>
+	<p class = "firstLineIndent"> “啊咧？当时负责准备签的人可是我和阿俊呢，”姐姐大人依然带着温和的笑容，但在维斯卡的幻觉中，四周好像突然被某种不祥的黑紫色浓雾笼罩一样，甚至连微笑着的姐姐大人身后都渐渐浮现出了某种名为厉鬼的可怕生物，“难道小维斯卡怀疑你最喜欢的哥哥或者是我在暗——箱——操——作？”</p>
+	<p class = "firstLineIndent"> “不不不！”即使是天不怕地不怕而且时常疯癫的维斯卡也一下子搞清楚了现在最适合的反应应该是什么，“我完全没有这样的想法！”说着，她甚至毫不犹豫地一把抓住旁边被自己视为“敌人”的潘多拉的手臂，貌似亲密地抱着说道：“我非常高兴可以和潘多拉姐姐分在一起，呐，是吧，姐姐？”</p>
+	<p class = "firstLineIndent"> 潘多拉慢慢扭过头看了看维斯卡僵硬的笑脸，又看了看突然散发出很危险气息的姐姐大人，然后浑身猛然一个哆嗦。</p>
+	<p class = "firstLineIndent"> 点头，点头。</p>
+	<p class = "firstLineIndent"> “嗯，这样才乖嘛，”拥有强悍的无视任何属性防御而且对萝莉正太类生物拥有一击必杀能力之“姐姐光环”的陈倩姐满意地按了按两个小萝莉的脑袋，然后站起身来，“好吧，现在继续买……巡逻！巡逻！”</p>
+	<p class = "firstLineIndent"> 姐姐大人两眼放光地扫视着四周围的店面，在她扭头的一瞬间，潘多拉和维斯卡果断地开始对掐。</p>
+	<p class = "firstLineIndent"> “对了，”姐姐突然想起什么似的说道，然后潘多拉和维斯卡在一微秒之内从掐架状态脱离，以普通人完全无法理解的速度整理好衣服，貌似乖巧地站在那里，“刚才看到一个卖工艺品的小摊位呢，要不咱们去那边看看？”</p>
+	<p class = "firstLineIndent"> 一瞬间，姐姐大人就原形毕露了……</p>
+	<p class = "firstLineIndent"> 但就在这时，一阵骚乱突然从前方不远处的通道处传来。</p>
+	<p class = "firstLineIndent"> “砰！”</p>
+	<p class = "firstLineIndent"> 突然响起的声音让有些喧闹的购物区瞬间安静了大约一秒钟，只剩下原本被淹没在人声鼎沸之中的几家店铺播放的音乐突兀地回荡在空气中，然后，就如同电影里时常出现的镜头，以一个女人惊声的尖叫为开端，混乱瞬间爆发，整个楼层在同一时刻进入沸腾，刚刚出现了不到一秒钟的音乐声瞬间再次被淹没。</p>
+	<p class = "firstLineIndent"> “砰！砰！！”</p>
+	<p class = "firstLineIndent"> 连续的两声枪响，伴随着一个粗犷的男人声音回荡在整个楼层：“全他妈安静！现在开始有一声尖叫老子就杀一个人！”</p>
+	<p class = "firstLineIndent"> 突然而来的恐慌虽然暂时让人群陷入了混乱，但至少他们还没有被吓的变成白痴，沸腾了几秒钟的人群又瞬间陷入了死一般的寂静，被淹没的音乐声再次突兀地响起，连续动－静的极端切换加上仿佛出来打酱油一样的DJ舞曲让这场突如其来的事件变得更加戏剧化。</p>
+	<p class = "firstLineIndent"> 随手按住了一旁跃跃欲试的两个危险分子，姐姐低声说道：“等一下，装作普通人。”</p>
+	<p class = "firstLineIndent"> “都老老实实蹲在地上！”</p>
+	<p class = "firstLineIndent"> 粗犷的男声从人群后面响起，然后众人在惶恐中纷纷散开，听话地蹲在地上，一个高大壮硕、留着乱发和一副络腮胡子的男人举着手枪走了过来，在他身后，两个跟班一样的人同样举着手枪，用凶狠的眼神不断吓唬着已经惊恐不已的顾客们，和他们的头领不一样的是，这两个跟班都带着看上去很可笑的怪兽面具，俨然是那种在大街上五块钱两个的便宜货色。</p>
+	<p class = "firstLineIndent"> 壮硕的胡子男大踏步地走到了中央的空地上，视线在蹲在面前不远处、揽着两个小毛丫头、仿佛害怕一样低着头的长发女孩身上微微停留：对后者他倒没有太过在意，但那两个完全没有表情，依然用仿佛好奇一样的眼神看着自己的小毛丫头却微微让人有点在意。</p>
+	<p class = "firstLineIndent"> 不过那不值得倾注太多注意力。</p>
+	<p class = "firstLineIndent"> “听着，我们只求钱财，不伤性命！”胡子男仿佛丝毫没有记住刚开始自己那“一声尖叫杀一人”的宣言，“都把值钱的东西拿出来！”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十一章 围杀与逃窜（上）</h2>	
+	<p class = "firstLineIndent"> “抢劫？”</p>
+	<p class = "firstLineIndent"> 接到姐姐传过来的精神连接并且共享了那段时间姐姐视野中发生的情景之后，我和林雪面面相觑。</p>
+	<p class = "firstLineIndent"> “啊，就是抢劫，”姐姐的声音听上去倒很有些兴致盎然，遇上抢劫这样的事件想必让已经无聊了好几天的姐姐大人终于找到了提起劲头的目标，“我正想用什么办法能在不引起异象的情况下解决他们呢……”</p>
+	<p class = "firstLineIndent"> “不太对劲呢。”</p>
+	<p class = "firstLineIndent"> 林雪突然自言自语了一句。</p>
+	<p class = "firstLineIndent"> 和我们这些虽然厉害但没什么经验的门外汉比起来，林雪毕竟算得上是专业人士，因此当林雪对这场看起来没什么疑点的抢劫事件发表产生疑问的时候，我们都竖起了耳朵。</p>
+	<p class = "firstLineIndent"> 林雪将视线集中在不远处的商厦上，用不了多久，里面所发生的事情就将打破现在这条街区的平静，当然，到那时候十有**是发生了三个倒霉劫匪遇罕见意外惨遭横死这样的乌龙事件。</p>
+	<p class = "firstLineIndent"> “商厦……”林雪皱着眉头说道，“那座商厦应该是我们家里的产业……”</p>
+	<p class = "firstLineIndent"> “你们家的产业？”虽然知道林雪家大业大，不过遇上这样有一定巧合性质的事件我还是决定稍微配合地表现惊讶一点。</p>
+	<p class = "firstLineIndent"> “恩，”林雪点点头，“这条街区大概有一半是我们家里的产业。”</p>
+	<p class = "firstLineIndent"> ……这回我是真的惊讶了……</p>
+	<p class = "firstLineIndent"> “别露出那种表情，”林雪看着我脸上的惊奇神色立刻表现出了万恶的志得意满，“跟整个林氏家族的财富比起来，这样的一条街区都不算什么……恩，没错，我想起来了，那座商厦确实是我们家族的产业没错，难怪会这么熟悉……”</p>
+	<p class = "firstLineIndent"> “好吧，你家名下的商厦发生了性质恶劣的持枪抢劫事件，现在身为家族直系成员的你正在无比淡定地回忆自己家在这条街区究竟有多少财富，对此我不发表意见……不过，这能证明抢劫案的异常吗？”</p>
+	<p class = "firstLineIndent"> 林雪用右手拇指抵着自己的下巴做出思考状，慢慢回忆着，同时通过精神连接的公共频道广播着自己的分析：“我记得那座商厦的基本结构……陈倩姐现在所处的楼层主要都是贩卖工艺品和各种民俗装饰的门店，而在那层楼层的上面则是珠宝区……如果你是劫匪的话，你会放弃应该更容易发大财的珠宝区而找一个卖工艺品的地方打劫吗？”</p>
+	<p class = "firstLineIndent"> “这是其一，其二……那座商厦的结构并不适合打劫啊……”</p>
+	<p class = "firstLineIndent"> ……我没听说过建筑设计里还有“适合打劫”这样一条理念的……</p>
+	<p class = "firstLineIndent"> “好吧，我知道你这个木头脑袋想不明白，简单地说，那地方的通道很多，人流量大，而且不少摊位互相交错，在那里打劫的话有百分之百的几率会发生人质逃逸的情况，一旦有人逃出去，事情就会开始失控，更重要的，那里属于人员密集型而不是资金密集型区域，一个专业的劫匪肯定不会找那种地方下手的……相比起打劫，我倒觉得那里更适合进行恐－怖袭击之类的事情……”</p>
+	<p class = "firstLineIndent"> 你不觉得如此冷静地分析在自己家的地盘上用哪种方式进行犯罪更划算本身是一件相当诡异的事情吗？大姐，那是你家的产业啊！你家的商厦里面发生了持枪抢劫案啊！</p>
+	<p class = "firstLineIndent"> 另外，麻烦你不要在公共频道里还强调“木头脑袋”这样的词汇了……下面可有几百个帝**官听着呢……麻烦你就稍微给洒家留一点点薄面吧……</p>
+	<p class = "firstLineIndent"> 但很明显，我的脑内吐槽并没有传入林雪的脑子里，这个化身淡定帝的半仙仍然在冷静地分析着事件：“更重要的，刚才你也共享到了那些画面，注意到没，两个跟班都带着掩饰用的面具，而身为领头人的胡子大叔却没有——他不怕暴露！”</p>
+	<p class = "firstLineIndent"> “所以，这场打劫太不专业了，那些不专业的家伙倒更像是……专门来引发混乱的，假如我没有猜错，用不了多久，当更多的视线被吸引到那座商厦之后，他们就要开枪杀人了……”</p>
+	<p class = "firstLineIndent"> 疑兵。</p>
+	<p class = "firstLineIndent"> 这样的分析完全是在精神连接的层面上进行的，因此直到林雪说完最后一个字，时间也才过去不到两秒钟，而大厦里，持枪胡子男的“只求财”的宣言也才刚刚落下话音。</p>
+	<p class = "firstLineIndent"> 完全不用我吩咐，始终挂在公共频道上并且担任行动指挥的珊多拉已经开始有条不紊地分派任务：“一至八小组注意，密切关注第八号建筑物周边五百米范围内人员动向，外围士兵开始制造道路意外，阻断行动范围内全部常规交通，阿西达－阿西多拉，准备投放快速反应部队……老板，再来两笼包子……啊，用错频道了……”</p>
+	<p class = "firstLineIndent"> 这丫头还在吃啊！你会把店老板吓趴下的！！一定会被吓趴下的！</p>
+	<p class = "firstLineIndent"> 此时，在抢劫案发生的现场。</p>
+	<p class = "firstLineIndent"> “很好，都老实点，要是你们配合，就能活命！”</p>
+	<p class = "firstLineIndent"> “活命才怪！”</p>
+	<p class = "firstLineIndent"> 早已经通过精神连接知道了林雪分析结果的姐姐心下说道，然后集中起精神，紧密地关注着那三个人的动静。</p>
+	<p class = "firstLineIndent"> 只要一个随便的触发点，混乱，就会爆发。</p>
+	<p class = "firstLineIndent"> 很快，这个触发点便产生了。</p>
+	<p class = "firstLineIndent"> 人群中响起了一个被压抑的啜泣声，那是一个看上去还在上初中的小女孩，在巨大的压力下终于无法抑制地发出了声音。</p>
+	<p class = "firstLineIndent"> “好吧，这是你自愿的，”络腮胡子的抢匪装模作样地耸耸肩，“我这个人一向都是说话算话的……”</p>
+	<p class = "firstLineIndent"> 他用遗憾的语调说着，仿佛真的为自己即将采取的行动而有所抱歉似的，然后，抬起了手中的枪，指向人群。</p>
+	<p class = "firstLineIndent"> 然后，“砰——”</p>
+	<p class = "firstLineIndent"> 突然的炸响让所有人一个哆嗦，不少人甚至险些惊呼出来，但很快，人们就发现了情况和自己预想中的不太一样。</p>
+	<p class = "firstLineIndent"> 那个小女孩依然安然无恙地蹲在地上。</p>
+	<p class = "firstLineIndent"> 枪炸膛了。</p>
+	<p class = "firstLineIndent"> 已经报废的手枪啪嗒一声掉在地上，前一秒还气焰嚣张的络腮胡愣愣地看着鲜血淋漓的右手，仿佛还没有反应过来发生了什么事情。</p>
+	<p class = "firstLineIndent"> “吱嘎嘎……”</p>
+	<p class = "firstLineIndent"> 在所有人都短暂地陷入沉寂的时候，这样异常的声音却突然在上方响起，心头猛然闪现出的强烈危机感让络腮胡不由自主地向旁边狼狈地扑了过去，就在下一秒，一盏作为装饰品的巨大水晶灯“哗啦”一声掉在他原先站立的地方，飞散的玻璃碴子礼花一般绽放，有百分之八十都砸向了几个劫匪的方向——但是后者明显并非普通人，他们相当敏捷地躲开了那些漂亮但致命的晶莹礼花。</p>
+	<p class = "firstLineIndent"> 危机还没有结束！</p>
+	<p class = "firstLineIndent"> 险之又险地躲开了巨大水晶吊灯的络腮胡心头猛然划过这样的直觉，多年在生死之间锻炼出来的对危机的绝强感知让他预告到下一次致命的意外即将发生，尽管不知道那将来自何方，他还是果断地原地一个驴打滚，以最快的速度逃脱了自己原本的位置。</p>
+	<p class = "firstLineIndent"> 危机感稍稍减弱了，但……下一秒再次袭来！</p>
+	<p class = "firstLineIndent"> 原本看上去坚固无匹的大理石地面突然出现了数道宽大的裂缝，就在络腮胡离开的一瞬间，“轰隆”一声塌下一个大洞，然后从洞口中传来了下一层爆发出的阵阵惊呼，但听上去也仅仅是惊呼，似乎并没有人在这场意外中受伤。</p>
+	<p class = "firstLineIndent"> 似乎这一连串的意外都是针对一个人的。</p>
+	<p class = "firstLineIndent"> 这一切都是在几秒钟内发生的事情，当有人反应过来的时候，络腮胡已经接连遭遇了数次足以让普通人丧命的致命危机。</p>
+	<p class = "firstLineIndent"> “黑蛇……”</p>
+	<p class = "firstLineIndent"> 一个带着怪兽面具的劫匪刚一开口，被称为黑蛇的络腮胡便猛然一声大喝：“快跑！他们可能已经进来了！”</p>
+	<p class = "firstLineIndent"> 假如第一次枪支炸膛还可以用倒霉来形容的话，那接下来的吊灯便已经有些引人怀疑，而刚刚地面就在自己脚下塌陷的事故更说明了某些事情。</p>
+	<p class = "firstLineIndent"> 如果是普通人的话，或许还会勉强将这一切当成意外，但络腮胡不是普通人，他也知道今天有极大可能会引出另外一批不普通的人物，所以当接二连三地被厄运缠上的时候，他立刻便联想到：坏事了！</p>
+	<p class = "firstLineIndent"> 两个怪兽面具互相对视一眼，然后毫不犹豫地分头逃散。</p>
+	<p class = "firstLineIndent"> 这时候周围的普通人也反应了过来，虽然对发生的一连串事故感到发懵，不过除了某个能在自家的商厦发生抢劫案件之后还可以淡定地思考罪犯应如何才能更有效率地完成犯罪活动的半仙之外，谁也不会脑残到在这种时候探讨概率学和XX商厦建筑物的质量问题，瞬间，混乱彻底爆发。</p>
+	<p class = "firstLineIndent"> 人群惊呼着四散奔逃，而且不少人还在逃跑的同时不无担心地抬头看看上方是不是会从天而降一个吊灯或脚下的地面会不会凭空出现一个大洞，不到十秒钟，这片不大的区域便已经冷清下来。</p>
+	<p class = "firstLineIndent"> 只剩下如临大敌地站在中央，摆出随时躲闪姿势的络腮胡男子，以及已经站起身来，牵着两个小女孩的长发女子。</p>
+	<p class = "firstLineIndent"> 神秘系能力，络腮胡知道自己十有**是被神秘系能力者给盯上了，面对这种无形无级的能力种类，只要被锁定，靠逃避就已经解决不了任何问题，唯一的办法就只剩下正面击败对方。</p>
+	<p class = "firstLineIndent"> 现在看来，那个能力者应该就是面前这个始终带着温柔微笑的长发女孩了，但那两个小丫头是怎么回事？</p>
+	<p class = "firstLineIndent"> 异能组难道又新增加了两个这么小年纪的异能者吗？而且被带来执行这样的任务……她们也很强吗？</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十二章 围杀与逃窜（下）</h2>	
+	<p class = "firstLineIndent"> “今天出门之前你应该看看黄历的，”长发的美丽女孩牵着两个甜美的小天使缓缓走向一脸如临大敌的络腮胡，但那始终温柔的微笑却带着一种让人深入骨子里的森森寒意，那并非任何**或心理的作用，而是多年来生死之间养成的惊人直觉在疯狂报警，“看看，你现在真倒霉呢……”</p>
+	<p class = "firstLineIndent"> “喝啊！”</p>
+	<p class = "firstLineIndent"> 黑蛇没有给对方说完话的机会，而是直接一声大喝，提起拳头狠狠地砸向面前的女子。</p>
+	<p class = "firstLineIndent"> 神秘系能力者的**脆弱，这是所有异能者都知道的、近乎真理的事实，因为他们的能力完全没有可以强化**的可能。</p>
+	<p class = "firstLineIndent"> 但下一秒，他便感觉到了后悔：一只看上去白皙柔弱的纤纤细手轻松地抓住了自己的拳头，然后，天旋地转。</p>
+	<p class = "firstLineIndent"> 难道对方不是那个神秘系的能力者？自己上当了？</p>
+	<p class = "firstLineIndent"> 看着像炮弹一样飞出去而且砸断了两根柱子的“劫匪”，姐姐大人吐出一口气，然后开心地笑了起来：“嗯，基因强化剂果然有效……刚才那一下肯定很专业！潘多拉，拍下来没有？”</p>
+	<p class = "firstLineIndent"> 你看，即使平常再成熟知性的姐姐大人也会有小孩子气的时候……</p>
+	<p class = "firstLineIndent"> 潘多拉闻言点点头，然后眨了眨眼睛，前方不远处的空地上立刻呈现出了清晰的三维投影，正是刚才姐姐大人轰飞“劫匪”的一幕。</p>
+	<p class = "firstLineIndent"> 假如潘多拉军团的指挥官们看到自己昔日铁血严苛的将军竟然会跟着干这样无聊的事情的话，他们肯定会哭出来的……</p>
+	<p class = "firstLineIndent"> 但就当姐姐准备收工走人的时候，维斯卡却突然张开了眼睛，一双血红色的猫瞳死死地盯着前方：“还有生命反应！”</p>
+	<p class = "firstLineIndent"> 话音刚落，就只见从对面那还未完全散去的烟尘之中突然冲出了一个迅猛无比的高大身影，如闪电般向看上去毫无防备的姐姐大人袭来。</p>
+	<p class = "firstLineIndent"> 大意了——姐姐大人心中瞬间闪过这样的念头，看来自己的对敌经验还是不够，对方既然是异能者，怎么可能在还没有使用能力的情况下就被自己用肉搏给这么轻松地秒杀掉，看来刚才对方被自己轰飞的一瞬间就已经在用假死来迷惑自己了。</p>
+	<p class = "firstLineIndent"> 不过尽管产生了一瞬间的诧异，姐姐大人却丝毫没有惊慌，从对方连续用近身肉搏的战术来进攻的情况分析，那个叫做黑蛇的男人很可能是**强化型的异能者，刚才在交手的时候也察觉到这个人的力气大得出奇，现在看来，他应该还具备更强大的抗打击能力和速度，虽然来自希灵科技的基因强化让自己轻而易举地揍飞了对方，不过那也是凭借了出其不意和对方轻敌的优势，真要拼近战，除了力气大之外恐怕自己并不是这个专门强化身体的异能者的对手。</p>
+	<p class = "firstLineIndent"> 但那并不是问题，自己的战斗方式本来就不是近战嘛……</p>
+	<p class = "firstLineIndent"> 已经因为异能发动的原因而渐渐黑化的姐姐大人嘴角勾起一个阴险的微笑，然后打了个响指，轻松地向旁边跳开一步。</p>
+	<p class = "firstLineIndent"> 黑蛇在半空中突然失去了平衡，然后就这么狼狈不堪地摔到地上，一直滑到了姐姐大人的脚下，浑身因剧烈的疼痛而弯曲地像只虾米。</p>
+	<p class = "firstLineIndent"> 抽筋了……浑身至少有一百多块肌肉同时抽筋了，甚至包括了舌头和胃壁，乃至于肠道里的括约肌……这充分证明，黑化之后的姐姐大人是绝对不可以招惹的存在……</p>
+	<p class = "firstLineIndent"> “你有强大的身体，”姐姐大人居高临下地说着，脸上依然带着柔和的微笑，“所以对付你最好的办法还是用你自己的肌肉……最好老老实实地躺在这里，然后等着我们的人来把你接收回去，现在你就是一个招引厄运的信标，你的每一个动作都将把自己遭遇意外的可能无限提高……好吧，我提醒过你的。”</p>
+	<p class = "firstLineIndent"> 看着刚刚因为尝试爬起来而突然双臂骨折、惨嚎不已的黑蛇，姐姐大人遗憾地说道。</p>
+	<p class = "firstLineIndent"> 而在此同时，两名已经逃出了商厦，扔掉面具之后混在人群中的劫匪也再次汇合在一起。</p>
+	<p class = "firstLineIndent"> “黑蛇完了。”</p>
+	<p class = "firstLineIndent"> 其中瘦高个的男人低声说了一句，然后率先朝原定的撤退点走去。</p>
+	<p class = "firstLineIndent"> “异能组里好像没有这么奇怪能力的干部级人物啊……”另外一个看上去斯斯文文的男子也低声嘟囔了一句，然后紧随其后。</p>
+	<p class = "firstLineIndent"> 即使是最繁华的地方，肯定也会有人迹罕至甚至是被人遗忘的角落，几分钟之后，两个人已经钻到了一个阴暗的小过道里面，这里是一座大型娱乐中心的背后，曾经的用途早已经无人知道，但现在它明显被当成了丢弃建筑废料的地方，荒废已久的过道里面到处堆满了锈迹斑斑而且已经严重变形、断裂的金属支架，想必是旁边的娱乐中心正在进行某种改建，这都是拆下来没人要的废钢铁了。</p>
+	<p class = "firstLineIndent"> 或许拾荒者会把这里当成难得的圣地，但现在明显还没有人注意到这么一个“资源丰富”的好地方。</p>
+	<p class = "firstLineIndent"> 撤退的路线就是这里，前面不远的地方会有一扇小门，从那里就可以……</p>
+	<p class = "firstLineIndent"> 但就在两人以为一切顺利，很快就可以结束这次倒霉任务的时候，在他们面前却突然凭空出现了两个人：一个留着刚到脖颈的黑亮短发、长相甜美的少女，和一个看上去顶多十岁，正咬着手指睁着水汪汪的大眼睛好奇地看向这边的小丫头。</p>
+	<p class = "firstLineIndent"> 浅浅和小泡泡当然不会瞬移，之所以凭空出现，完全是突然玩心高涨的浅浅在捣乱：她先停止了周围相当大面积范围内的时间，然后拉着小泡泡慢慢悠悠地从对方后面走过去，站在他们面前大约十米远的地方，期间小泡泡因为好奇而跑出去拽那些奇形怪状的铁架子三次，浅浅把小泡泡抱回来三次，然后又领着手上沾满了铁锈的小泡泡去不远处找水管洗了把手，用手机给洗完手之后举着双手伸到自己面前检查的小泡泡照了张可爱的照片，在废弃过道的入口处写上了“许浅浅携小泡泡到此一游”一行字，因为写的不好看还把时间倒退重新写了一边，再然后才到两个傻呆呆地站了好久的“劫匪”面前话三分钟选择造型……</p>
+	<p class = "firstLineIndent"> 最后的最后，两个被当成玩具的倒霉家伙看到了面前“瞬间出现”的少女和萝莉……</p>
+	<p class = "firstLineIndent"> 完全不知道这两个闲极无聊的人在刚才究竟做了多少乱七八糟的事情……</p>
+	<p class = "firstLineIndent"> “今天天气不错，”浅浅抬头看了看天空，然后耸耸肩“黄泉路上晴朗乌云日照强度中，很适宜转世轮回呢”</p>
+	<p class = "firstLineIndent"> 两个男人对视一眼，然后斯文男子猛然抬起了右手，四周堆放着的钢筋和铁架立刻随之上浮到空中，朝着面前少女的方向猛烈地砸了过去，而另一个瘦高个的男子却仿佛没什么动作，只是握紧了双拳，那空气中漂浮的钢铁便立刻缠绕上了无数耀眼的蓝白色电光，分毫不差的默契证明了他们两个肯定是经常进行这种配合的老搭档。</p>
+	<p class = "firstLineIndent"> 前面已经说过，这里早已经堆满了废旧的钢筋和铁件，对一个操纵物体的异能者而言，这里的“弹药”简直充沛地令人发指，而一条堆满杂物的小小过道本身你也不能指望它有多么宽阔，因此当这数不尽的钢铁残骸浮空而起，带着闪耀的电光朝一个方向汹涌过去的时候，简直就好像一堵闪电和刀剑组成的钢铁墙壁平移过去一样，场面自然壮观，而造成这一切的两个男人也是这样认为的，他们欣赏着自己联手创造的恐怖之潮，仿佛已经开始想象对面的两个女孩在锋利的金属尖刺和肆虐的高压电中香消玉殒的场景。</p>
+	<p class = "firstLineIndent"> 对方可能是空间系能力者——这是他们的判断，不过尽管空间系能力者十分强大，他们却并不十分担心，斯文男子掌握的能力：电磁力场可以说是空间系能力的克星，在混乱的磁场作用下，空间能力相当容易受到干扰，尽管这种干扰并不足够强大，但以人的**凡胎来操纵空间本就是一件相当危险的事情，任何正面的干扰都足以产生灾难性的后果，因此当那铺天盖地的金属风暴夹杂着滋滋的电光汹涌而去的时候，他们便以为一切都搞定了。</p>
+	<p class = "firstLineIndent"> 但就在这时，那个冷冰冰的声音却突然从他们的身后响了起来：“说实话，你们的反抗从视觉效果上还算可以，但那只是浪费我的时间……”</p>
+	<p class = "firstLineIndent"> 对面的两个女孩，消失了……</p>
+	<p class = "firstLineIndent"> “不可……”斯文男子刚刚蹦出两个字，便感到浑身上下每一处都传来了令人发疯的痛楚。</p>
+	<p class = "firstLineIndent"> “别说不可能，”浅浅拉着小泡泡退后两步，任由已经被割断了全身肌腱的敌人倒在地上，“在时间面前，一切都是可能的。”</p>
+	<p class = "firstLineIndent"> 一个沾满血迹的薄铁皮被浅浅随手扔在地上，刚才她就是用这东西慢慢把对手身上的肌肉撕开的——好吧，我们已经可以预见，未来的几天里，恢复了正常性格的浅浅必将陷入严重的食欲不振状态……</p>
+	<p class = "firstLineIndent"> 彻底变成残废的斯文男子声嘶力竭地惨嚎着，但尽管痛彻心扉，他却连自尽都已经办不到，藏在牙齿中的剧毒药物不知什么时候已经消失不见，剧烈的疼痛甚至已经让他无法再思考任何东西。</p>
+	<p class = "firstLineIndent"> “真烦人……”浅浅嘟囔一声，然后一脚揣在对方的后脑上，顿时，世界清静了……</p>
+	<p class = "firstLineIndent"> 然后，她将视线放到了另外一人身上。</p>
+	<p class = "firstLineIndent"> 瘦高个的男子此刻才终于意识到，死亡已经逼近。</p>
+	<p class = "firstLineIndent"> 面前的少女依然是那副邻家小妹一样的容貌，但现在，他才猛然发现对方隐藏在那甜美笑容下的残忍和眼神中的疯狂。</p>
+	<p class = "firstLineIndent"> 逃命啊！</p>
+	<p class = "firstLineIndent"> 瘦高个心中闪过这样的念头，然后便摔倒在地——倒下之前还是一个二十岁的壮年男子，但最终倒在地上的却是一个白发苍苍、行将就木的老人。</p>
+	<p class = "firstLineIndent"> “好吧，果然是老死……可是按照我的预估你应该是先饿死才对吧……时间这东西还真是矛盾重重呢……”浅浅一边疑惑地自言自语着，一边在对方身上踢来踢去。</p>
+	<p class = "firstLineIndent"> “咿呀……老了……呀……”</p>
+	<p class = "firstLineIndent"> 小泡泡伸着小手，在地上老人那流露出惊恐不已表情的脸上按了两下，然后惊奇地说道。</p>
+	<p class = "firstLineIndent"> “呃……”浅浅这时候才终于想起什么似的，即使是性格逆转状态下也失声惊呼出来，“糟糕了！让阿俊知道我让小泡泡看见这种场面……他一定会生气的！”</p>
+	<p class = "firstLineIndent"> 后知后觉的黑暗少女被突然冒出头的巨大危机弄得苦恼不已，然后泄愤一样地狠狠踢了地上奄奄一息的老头一脚，赌气说道：“哼，原本还想都留下活口呢……现在你们必须死一个！”</p>
+	<p class = "firstLineIndent"> 说完，她取出一枚亮闪闪的硬币，轻轻一抛。</p>
+	<p class = "firstLineIndent"> “叮——”一声轻响，硬币落地。</p>
+	<p class = "firstLineIndent"> “真遗憾。”浅浅耸耸肩，然后一脚踢断了全身肌腱断裂的青年人的脊椎。</p>
+	<p class = "firstLineIndent"> “至于你……”浅浅凑近了倒在地上、惊骇欲绝的“老人”，“恭喜你，获得了72小时的额外生命……”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十三章 怪物</h2>	
+	<p class = "firstLineIndent"> 当黑蛇刚刚受到袭击的那一刻，这消息便已经通过某种渠道传到了今天的正主手上。</p>
+	<p class = "firstLineIndent"> 在一个看上去毫不起眼的咖啡屋里，临窗的位置上，正坐着一对看上去十分平常，仿佛仅仅是为了消耗下午的无聊时光而坐在这里的年轻男女。</p>
+	<p class = "firstLineIndent"> 如果非要说他们有什么值得关注的地方的话，那就是其中的男子是一个金发碧眼的外国人，而坐在他对面的年轻女人则始终给人一种十分妖艳的感觉这样而已。</p>
+	<p class = "firstLineIndent"> “美杜莎小姐，我想我们不得不暂时分别了。”</p>
+	<p class = "firstLineIndent"> 金发的洋人帅哥露出一个十分有风度的微笑，然后将手中的一个小盒放在桌子上，轻轻向前一推——就好像非常要好的朋友在临别时互相留下纪念物一样。</p>
+	<p class = "firstLineIndent"> “这仅仅是那东西上的一个小部件而已，我想，这已经可以证明我们的诚意，至于剩下的部分，我想还是等你们拿出了足够与之交换的代价之后再拿出来比较合适。”</p>
+	<p class = "firstLineIndent"> “没想到他们这次的反应会这么敏捷呢……而且如此快速地解决了三个人，虽然只是外围成员，却也是很强大的异能者……看来又要好好检查一下我们的情报渠道了，”美杜莎撇了撇嘴，然后接过小盒，“另外，文森特先生，如此重要的东西，你不认为放在这样的小盒子里太过轻率了吗？这可是对神明的不敬呢。”</p>
+	<p class = "firstLineIndent"> “神明不会在乎这样的细节，”金发男子微微一笑，然后站起身来，“恐怕他们已经开始收缩包围圈了，希望下次的合作我们能有一个更愉快的氛围。”</p>
+	<p class = "firstLineIndent"> “当然……哦，还有一件事我必须要提醒你，最好的脱身方式是以最快的速度直线逃脱，因为有一只眼睛可以很容易看穿你的迷雾……”</p>
+	<p class = "firstLineIndent"> 当文森特离开咖啡屋之后，美杜莎才站起身来，小心翼翼地打开了手中精致的小盒子。</p>
+	<p class = "firstLineIndent"> 一块看上去毫不起眼的三角形金属块，上面有两个小小的凹槽，这证明了它应该还可以和什么别的东西组装在一起，美杜莎将左手上带着的一个小戒指靠近这金属块，立刻，后者便微微散发出了淡蓝色的光晕。</p>
+	<p class = "firstLineIndent"> ************************************************************一闪一闪亮晶晶************************************************************</p>
+	<p class = "firstLineIndent"> 在商业街出口附近的一个无人值守地下停车场中，一个金发的欧洲男子正在手忙脚乱地发动着自己的汽车，一边不住地低声嘟囔：“这就是那个女人所说的眼睛？这感觉可不怎么好……”</p>
+	<p class = "firstLineIndent"> 正是和美杜莎分开之后的文森特。</p>
+	<p class = "firstLineIndent"> 自从离开了那间咖啡屋之后，一种被人窥探的感觉便突然出现，不论自己如何改变行动路线，做迷惑性行动，甚至是更换衣服和易容，那种感觉都如同寄生在自己的心灵之中一样挥之不去，就真的如同对方所说，“那只眼睛可以很容易看穿自己的迷雾”。</p>
+	<p class = "firstLineIndent"> “那个女人肯定有某种办法阻挡这种窥探，”费了好大的劲才将有些不听话的汽车发动起来之后，文森特狠狠地一拍方向盘，妈的，她肯定早就算到了。”</p>
+	<p class = "firstLineIndent"> 这是毫无疑问的事情，当自己和美杜莎在一起的时候，这种感觉还没有出息，但当自己一离开了咖啡屋，那只眼睛就立刻盯上了自己，除了“美杜莎有办法阻挡眼睛的窥探”这样的理由之外，文森特实在想不出任何别的解释。</p>
+	<p class = "firstLineIndent"> 但他不知道的是，美杜莎并非是真的有意要摆自己一道，而是那种干扰器的效果实在有限，事实上，自两人分开后没几分钟，美杜莎那边也已经暴露了……</p>
+	<p class = "firstLineIndent"> 但即使同样是暴露，文森特的情况也只能更早，毕竟说到根基，这里可是美杜莎的地盘，哪怕是被人盯上，她也有充分的机会逃跑，而自己……</p>
+	<p class = "firstLineIndent"> “妈的！**倒是动啊！”</p>
+	<p class = "firstLineIndent"> 文森特再次在方向盘上拍了一下，然后，空转了好几分钟的发动机终于停了……</p>
+	<p class = "firstLineIndent"> 你看，拥有逆反心理的不一定都是九零后，是吧？</p>
+	<p class = "firstLineIndent"> 汽车的突然罢工让文森特呆了一下，然后终于爆发出来，开始狠命地摧残那已经伤痕累累的方向盘——直到咔嚓一声，整个方向盘被他直接拽了下来。</p>
+	<p class = "firstLineIndent"> 然后，发动机终于启动了……</p>
+	<p class = "firstLineIndent"> 不久前还彬彬有礼的欧洲大帅哥现在已经快哭出来了……</p>
+	<p class = "firstLineIndent"> “不带这么玩的……”文森特眼含着热泪把方向盘扔到一旁，对上方伸出中指，“上帝，我顶你个肺啊！”</p>
+	<p class = "firstLineIndent"> 就当这位对中国国骂文化十分精通的国际友人已经快要疯掉的时候，一阵奇怪而有规律的声音突然在空旷的地下停车场里回响起来。</p>
+	<p class = "firstLineIndent"> 咔嚓……咔嚓……咔嚓……</p>
+	<p class = "firstLineIndent"> 那是有节奏的金属摩擦声，仿佛脚步一样由远而近。</p>
+	<p class = "firstLineIndent"> 突然席卷而来的致命威胁感随着这声音的猝然停止紧紧地摄住了几乎停掉的心脏，幻觉中就仿佛一柄冰冷的长刀已经划过了自己的身体一样。</p>
+	<p class = "firstLineIndent"> 文森特飞快地打开了旁边的车门，以惊人的敏捷纵身跳了出去。</p>
+	<p class = "firstLineIndent"> “嗡——”</p>
+	<p class = "firstLineIndent"> 一声尖利的金属颤鸣划过耳膜，让身上全部的汗毛一瞬间集体立正，然后文森特看到半截车身从自己的眼前飞掠而过，同时，在他的脑后也传来了一阵凌厉的风声。</p>
+	<p class = "firstLineIndent"> ……真整齐……</p>
+	<p class = "firstLineIndent"> 这是有些宕机的大脑突然冒出来的第一个词汇。</p>
+	<p class = "firstLineIndent"> “任务开始！”</p>
+	<p class = "firstLineIndent"> 一个机械冰冷的女声在身后响起，紧随其后的是第二道攻击，但已经有所准备的文森特再次成功地躲闪了开来，他纵身一跃，直接跳过了将近二十米的距离，而当他落地之后，手中已经出现了一把半米长的短刀。</p>
+	<p class = "firstLineIndent"> 带着这么个东西出来可真够难为他了……丫就不咯得慌吗？</p>
+	<p class = "firstLineIndent"> “……哦……老天……那是什么东西……”</p>
+	<p class = "firstLineIndent"> 当文森特终于有机会会有看看攻击自己的是什么人的时候，他却不由发出了这样的惊呼。</p>
+	<p class = "firstLineIndent"> 一个……怪物？</p>
+	<p class = "firstLineIndent"> 一个女人和蝎子组合成的机械怪兽——这就是文森特脑海中一瞬间闪过的词汇。</p>
+	<p class = "firstLineIndent"> 作为“巴别塔”组织的一员，文森特自认为已经面对过任何一种诡异的战场和绝大多数稀奇古怪的敌人，但这一刻出现在他面前的机械蝎子女人——好吧，这个形容方式真复杂——却让他产生了片刻的失神。</p>
+	<p class = "firstLineIndent"> 而这片刻的失神则被那只诡异的机器蝎子准确地抓住，几乎是在一微秒之内，原本还在几十米之外的机械蝎子便已经来到了自己的眼前，在被那两米多高的身影笼罩同时，两把长度令人发指的巨型砍刀也劈头盖脸地斩杀下来。</p>
+	<p class = "firstLineIndent"> “轰！”</p>
+	<p class = "firstLineIndent"> 巨大的爆炸瞬间引发了整个停车场一片的汽车报警声，那两把始终被一种诡异光晕包裹着的长刀竟然带有惊人的电能，惊险之极地躲闪开来的文森特不由庆幸刚才自己没有试图进行格挡，否则即使自己挡住了那两柄致命的杀人凶器，能否在电磁爆炸的冲击下生还也将是个未知数。</p>
+	<p class = "firstLineIndent"> 巨大的蝎化女子一击不中，缓缓收回了手中的长刀，然后向自己转过头来。</p>
+	<p class = "firstLineIndent"> 假如换个环境换个方式的话，恐怕某个总是标榜绅士的老帅哥还有兴趣称赞一番对面野性美女的姣好面容，但这一刻，文森特只感到一种彻骨的森寒。</p>
+	<p class = "firstLineIndent"> 那绝对不是属于生物的眼睛——那双眼睛中完全没有任何可能出现在人类双眼中的感情，没有怜悯。没有犹豫，甚至也没有杀意和敌视，那仅仅是一个用来完成“看”这个任务的器官而已，仅仅从那双眼睛中，文森特便得出了不可能和对方交流的结论。</p>
+	<p class = "firstLineIndent"> 不可能交流的……那根本不是人类，甚至不是任何一种生物，她毫无感情，没有逻辑和理智，仅仅是为了杀戮和破坏而造出来的兵器，一块正在执行命令的钢板，一堆正准备杀死自己的金属，仅此而已。</p>
+	<p class = "firstLineIndent"> 文森特的心头划过这许多的想法，但身上的动作却完全没有停下，对方的速度已经远远超出了常理，甚至自己在发动异能的情况下也仅仅能狼狈逃窜而已，面对这样的敌人，虽说逃跑不一定有用，但呆着不动肯定更加要命。</p>
+	<p class = "firstLineIndent"> 瞅准一个空当，文森特猛然发力向一旁跑去，完全没有加速的过程，他便化为一道虚影跑出了近百米，同时以完全违反物理常识的方式在急速奔跑中连续拐过几个直角，穿过了一大片的停车区域——这已经足够证明，他不是普通人类。</p>
+	<p class = "firstLineIndent"> 但这样的速度和他寄予厚望的障碍物都没有意义，巨大的机械蝎子只是一瞬间便出现在他的面前。</p>
+	<p class = "firstLineIndent"> “啊！”</p>
+	<p class = "firstLineIndent"> 突然和这么一个诡异而可怕的敌人面对面靠近，即使是身经百战的“巴别塔”特派员也难以抑制自己的惊呼，他以完全不可能的方式瞬间停下，然后向后跳出了十几米的距离。</p>
+	<p class = "firstLineIndent"> “音速”文森特，那极限的敏捷和速度现在也仅仅能用来逃命而已。</p>
+	<p class = "firstLineIndent"> “吱……嘎……吱……嘎……”</p>
+	<p class = "firstLineIndent"> 杂乱的物体断裂声渐次响起，在文森特的背后，那只蝎子冲过来的路径上，十几辆汽车和两个一米多粗的柱子现在才仿佛刚从“暂停键”中解脱出来一样，开始分崩离析。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十四章 压倒性胜利</h2>	
+	<p class = "firstLineIndent"> 狂风骤雨一般的攻击下，手持短刀的男子已经伤痕累累。</p>
+	<p class = "firstLineIndent"> 原先体面的西装变成了破烂的布条，被淋漓的鲜血染成深红，下面忽隐忽现的是深可见骨的骇人伤口，满脸的血污几乎要遮盖住视线，却丝毫不敢分心擦拭。</p>
+	<p class = "firstLineIndent"> 而这些伤痕却没有一处是因为被对方正面击中，仅仅是交战产生的风压和音爆，就让自己浑身上下布满了这样对普通人而言近乎致命的伤口。</p>
+	<p class = "firstLineIndent"> 自己竟然能一直躲闪到现在还没有被正面斩杀，这是不是应该被归类为奇迹？</p>
+	<p class = "firstLineIndent"> 文森特竟然在生死之间还冒出了这样古怪的想法，然后，死亡的强烈心里压迫感便再次席卷心头。</p>
+	<p class = "firstLineIndent"> 面前的机甲怪物是单纯的杀人机器，她全部的逻辑都只是为了计算出最高效的破坏方式，文森特曾面对过各种冷酷的杀手和强大的异能战士，但当面对一个真正意义上的冷血兵器的时候，他竟然觉得那些曾经的敌人都是如此的温和有礼。</p>
+	<p class = "firstLineIndent"> 剧烈地喘息着，文森特觉得自己的肺部已经开始燃烧，甚至连带着要将自己的心脏和其他的组织器官化成灰烬，体力早已经所剩无，而更致命的则是心理上的疲惫，机器蝎子的攻击就如同永不休止的风暴一般，她不需要回力，不需要思考和犹豫，甚至不需要呼吸，由人类进行的攻击必然会有中断的时候，但对一部机器而言，再大强度的动作也仅仅是一系列简单的往复运动，而文森特的体力就在和这样一部不知疲惫的战斗机器的交锋下飞快消耗。</p>
+	<p class = "firstLineIndent"> 一次上挑被躲闪开之后，面容冰冷的蝎子女交叉着举起手中的双刀，如同怒马般将半个身子高高扬起，刀锋上刺眼的蓝白色电光劈啪作响，已经见识过这招威力的文森特毫不迟疑地向旁边跳开，但这一次，对方的招式却发生了变化，电磁爆炸并没有如预期中那样爆发，致命的长刀在落下一半的时候瞬间变向，向着自己腰斩而来。</p>
+	<p class = "firstLineIndent"> 下意识地，文森特举起了手中的短刀做出了格挡的姿势——这是从交手以来自己第一次做出这样的动作，因为那两柄长刀带给自己的危险感实在太过强烈，甚至强烈到产生了格挡就将死无全尸这样的感觉，</p>
+	<p class = "firstLineIndent"> 而下一秒发生的事情证明，这样的感觉并非虚幻。</p>
+	<p class = "firstLineIndent"> 在刺耳的音爆和金属爆鸣声中，特殊合金锻造的短刀瞬间化为一蓬乱糟糟的金属丝，紧随其后的，是还来不及反应就变成血雾的整条手臂。</p>
+	<p class = "firstLineIndent"> 连惨呼的机会都没有，文森特便看到一个黑影急速袭来，而后便被狠狠击飞。</p>
+	<p class = "firstLineIndent"> 机器蝎子扭转了身体，用自己那条诡异的金属尾巴抽飞了对手。</p>
+	<p class = "firstLineIndent"> 被横着抽飞的男人在空中划过了一百多米的抛物线，然后轰然撞碎了一扇写着“闲人免进”字样的木门，消失在一片隐晦的黑暗中。</p>
+	<p class = "firstLineIndent"> 造成这一切的蝎化女子偏了偏脑袋，无意识地抖了抖刚刚添乱的尾巴，略微郁闷地扁了扁嘴。</p>
+	<p class = "firstLineIndent"> 貌似……用力过度了……这个世界的人造物质真脆弱……</p>
+	<p class = "firstLineIndent"> “咔擦……咔擦……咔擦……”</p>
+	<p class = "firstLineIndent"> 机械肢体运动的声音在远方隐隐约约地响起，宛若死神的脚步狠狠地踏在自己的心脏上，躲藏在杂物间中的文森特满怀绝望，仅剩的鲜血淋漓的左手狠命地砸着自己的脑袋，试图用这种方式来让自己远离那催命的脚步声。</p>
+	<p class = "firstLineIndent"> 那只怪物……来了……</p>
+	<p class = "firstLineIndent"> 曾几何时，自己也曾扮演过将无助的弱者逼到死亡边缘的角色，但谁又能想到，这一切会在今天发生在自己身上……</p>
+	<p class = "firstLineIndent"> 对方在玩猫捉老鼠的游戏，这是自己刚刚才发觉到的事情，那只机械怪物是如此强大，她的冲锋速度甚至达到了十几倍的音速，钢铁的汽车和钢筋混凝土的墙壁连让对方稍微分心的资格都没有，那两柄巨大的长刀威力是如此巨大，自己胆大妄为的唯一一次格挡所带来的结果就是整条右臂瞬间被切成了肉酱，连自己那柄号称由最坚固的X合金锻造的短刀也变成了一团乱糟糟的金属丝。</p>
+	<p class = "firstLineIndent"> 想到短刀变成金属丝的诡异一幕，文森特起初还感到一些疑惑，但很快，这疑惑便被一个惊人的事实所冲散：</p>
+	<p class = "firstLineIndent"> 难道那个机械蝎子每一次的挥刀，事实上就是近千次的瞬间劈砍？</p>
+	<p class = "firstLineIndent"> 究竟是什么样的技术才能造出这样违背了物理学常识的杀人兵器！？</p>
+	<p class = "firstLineIndent"> 面对这样的敌人，自己能坚持这么久？</p>
+	<p class = "firstLineIndent"> 而在这样可怕的怪物的追杀下，自己却仍然活到了现在，除了对方在戏弄自己之外，文森特想不到任何足够合理的解释。</p>
+	<p class = "firstLineIndent"> 带着微微无聊的感觉，维嘉以一个相当轻微的幅度晃动着自己的尾巴，一边向前方的杂物间走去，在她的扫描视野中，瑟瑟发抖的敌人身影在墙后清晰可见。</p>
+	<p class = "firstLineIndent"> 愚蠢的生命形式……尽管战斗力勉强入目。</p>
+	<p class = "firstLineIndent"> 差不多可以结束对方的生命了，假如要收集这种新类型的敌人的情报的话，几分钟前就已经完成，这个敌人的力量仅止于此，他的精神濒临崩溃，继续施加压力已经没有意义，更多的资料……就在以后的战斗中……</p>
+	<p class = "firstLineIndent"> “维嘉，听到没？”</p>
+	<p class = "firstLineIndent"> 就在维嘉已经站定，背后的尾巴尖端缓缓打开，露出了里面用来狙击的红色晶体的时候，脑海中突然想起的声音却让她立刻停下了动作。</p>
+	<p class = "firstLineIndent"> “待命！长官！”</p>
+	<p class = "firstLineIndent"> “敌人消灭了吗？”</p>
+	<p class = "firstLineIndent"> “没有，长官！”</p>
+	<p class = "firstLineIndent"> “怎么这么久？”</p>
+	<p class = "firstLineIndent"> “收集资料，长官！”</p>
+	<p class = "firstLineIndent"> “……其实你可以多说几句话的……至少不用我问一句你答一句……”</p>
+	<p class = "firstLineIndent"> “明白，长官！”</p>
+	<p class = "firstLineIndent"> 对面沉默了片刻，只剩下一阵貌似砸墙的砰砰声。</p>
+	<p class = "firstLineIndent"> “……好吧，回来吧……”</p>
+	<p class = "firstLineIndent"> “遵命，长官！”</p>
+	<p class = "firstLineIndent"> “……你至少应该质疑一下那个还活着的敌人怎么办啊！你难道一点诧异都没有吗？！”</p>
+	<p class = "firstLineIndent"> “维嘉执行命令，长官！”</p>
+	<p class = "firstLineIndent"> 然后响起的貌似是一片人同时砸墙的声音……</p>
+	<p class = "firstLineIndent"> 在死亡的阴影下颤抖了数分钟之后，文森特听到的却是那“咔擦……咔擦”的金属肢体移动渐行渐远的声音。</p>
+	<p class = "firstLineIndent"> 走了？</p>
+	<p class = "firstLineIndent"> 走了！</p>
+	<p class = "firstLineIndent"> 先是诧异，当事实被确认之后则是巨大的惊喜。</p>
+	<p class = "firstLineIndent"> 那个神秘的机器怪物，真的撤退了！</p>
+	<p class = "firstLineIndent"> 文森特当然不会认为对方是因为找不到目标而撤退，那样已经远远超出了人类想象的先进机器，不可能没有扫描到自己的方法，事实上，躲进杂物间中也仅仅是为了寻求一点心理上的安慰感而已，那个机器女子放过自己肯定是另有原因……但原因什么的已经没有意义，重要的是……自己活下来了……从一个诡异的机器怪物追杀下侥幸逃生了……</p>
+	<p class = "firstLineIndent"> 对，要赶紧把今天发生的事情报告给上级，这样一只明显不属于人类世界的机器怪物出现在城市里绝对意味着什么，即使自己想不明白，组织的高层也有可能掌握着什么情报……</p>
+	<p class = "firstLineIndent"> 但是在那之前……自己还有更多的麻烦要解决……紧急药剂的效果很快就将结束，右臂处的大出血很可能要了自己的性命……而且异能组的人也在搜索这边，能不能逃出去根本就是个不用回答的问题……异能组……那只蝎子会不会……怎么可能，那根本不是人类的科技能造出来的东西……妈的，头好晕……</p>
+	<p class = "firstLineIndent"> ***************************************************************************</p>
+	<p class = "firstLineIndent"> “哐当”一声，林雪用力地关上了厚重的红色木门，将门外隐隐约约的音乐声彻底掐死，然后轻快地回到了自己的位置。</p>
+	<p class = "firstLineIndent"> 这里是一间面积很大的办公室，灯光明亮，布局考究，满载的书架中堆放着的是令人目眩的大量卷宗，观赏性的室内景观树上却悬挂着非常不搭调的毛绒熊玩偶，在我旁边的咖啡壶里正咕嘟咕嘟地冒着热气，而我面前那张宽大**到令人发指的半圆形老板桌后面则坐着名为林雪的半仙。</p>
+	<p class = "firstLineIndent"> 任谁也想不到这样一个除了残念的毛绒玩具之外处处透露着某大领导办公室味道的地方会是建立在KTV地下的异能组据点。</p>
+	<p class = "firstLineIndent"> 好吧，事实上我很想吐槽异能组的据点究竟已经无处不在到了什么程度以及为什么从我家左拐三百米然后下拐十五米也能挖出个异能组联络点这样令人远目的事实。</p>
+	<p class = "firstLineIndent"> 感觉异能组就好像某种被称为“传送员”的理论上是相当稀少的空间魔法师但事实上却是可以出现在任何一个犄角旮旯的小村庄里的神奇生物一样。</p>
+	<p class = "firstLineIndent"> 好吧，我都被自己绕晕了……</p>
+	<p class = "firstLineIndent"> “首先，我们应该庆祝一下这次行动我们终于没有扑空！”</p>
+	<p class = "firstLineIndent"> 一脸终于回到了自己的地盘上而小人得志表情的林雪得意洋洋地坐在自己的真皮座椅上，脸上灿烂的仿佛早上**点钟的太阳。</p>
+	<p class = "firstLineIndent"> 光凭这一点就可以想象在我们帮忙之前这家伙究竟扑空了多少回——由此你应该感谢我这个大恩人而不是一照面就凌空给我一个飞踹然后再毫无诚意地表示这仅仅是个习惯动作实在抱歉下次选个更好的动作什么什么的啊死丫头！</p>
+	<p class = "firstLineIndent"> “然后，让我们来声讨某根大木头突然抽筋地放跑敌人这样脑残的举动……”</p>
+	<p class = "firstLineIndent"> ……就知道你要说这个……</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十五章 典藏版林雪同样可怕</h2>	
+	<p class = "firstLineIndent"> 对我最终决定放走那个金发老外的举动，林雪表示出了万分的不理解。</p>
+	<p class = "firstLineIndent"> “不是你说的嘛……”看着面前张牙舞爪的先知童鞋，我表情相当无奈，“‘鸟已离巢’，这可是你亲眼‘看’到的情况，而且你还能确定对方在最后关头将立刻自杀，既然东西已经不在那家伙手里，而且对方还将在被俘的一瞬间自尽身亡，还抓他干什么？”</p>
+	<p class = "firstLineIndent"> “那你把对方放掉那不是更坏事吗！？那家伙可是看到了蝎子啊！”</p>
+	<p class = "firstLineIndent"> “好吧，换作是你，假如突然有一天被一个闻所未闻的机器蝎子追杀，然后莫名其妙地虎口脱险，那么你能推断出什么？”</p>
+	<p class = "firstLineIndent"> “当然是……”</p>
+	<p class = "firstLineIndent"> “在没有预言能力的情况下。”</p>
+	<p class = "firstLineIndent"> “呃……除了一团乱麻，什么也推断不出来……”</p>
+	<p class = "firstLineIndent"> “这就是了，蝎子的出现并没有暴露我们一丝一毫的底牌，他们甚至无法将维嘉和任何在地球上已有的势力联想起来，而且即使产生了联想，他们也多半会得出错误的结论，混乱中的对手最容易露出马脚，让维嘉放跑一个惊慌失措的敌人，我们就相当于给对方扔过去成堆毫无意义的混乱情报，他们要么不分析，那对我们没有任何影响，要么分析出成吨的错误资讯，比如外星人入侵黑组织毁灭世界赛博坦人过来打酱油什么的……你看，从一个神秘出现在人类城市中的机甲蝎子身上，你只能得到这样乱七八糟的东西，这还是其一，其二，这个世界上存在很多神秘组织，但他们没有一个暴露在普通人的视线中，世界背面的东西永远会被背面的力量约束，机甲蝎子也不例外，超现实的力量暴露在一个幕后组织面前和暴露在普通人面前是不一样的，到最后会被维嘉闹腾起来的也仅仅是那些见不得人的幕后势力而已，这不正是我们的目的吗？”</p>
+	<p class = "firstLineIndent"> “而且，假如以后我们要有什么行动的话，将部分希灵使徒暴露在地球人面前几乎是不可避免的事情，既然迟早要浮出水面，借这个机会给对方造成一些困惑更加合适。”</p>
+	<p class = "firstLineIndent"> “所以，放跑那个家伙比起把他干掉能给我们带来更大的好处，明白？”</p>
+	<p class = "firstLineIndent"> “用这种方式来给敌人提供冲击性的情报，好让他们有更大的几率露出尾巴……然后看看哪个组织会产生异常的举动……”林雪点着下巴一脸思索，然后突然抬起头来，“话说这个主意真是你想出来的？！”</p>
+	<p class = "firstLineIndent"> “……当……当然……你怎么会怀疑这样显而易见的……啊，哈哈……哈哈哈……”</p>
+	<p class = "firstLineIndent"> “果然……你这个智商无下限的家伙连谎都说不好……”</p>
+	<p class = "firstLineIndent"> “……好吧，是珊多拉的建议……”</p>
+	<p class = "firstLineIndent"> “呼……世界终于恢复正常了……”</p>
+	<p class = "firstLineIndent"> 我想了想，然后勃然大怒：“你的意思是假如我能自己想出这样的策略那简直就是世界末日一样的可怕事件吧？你的意思就是这样吧？！”</p>
+	<p class = "firstLineIndent"> 浅浅过来安慰地抱着我的胳膊，顺便送上少女香吻一个，低声说道：“别生气嘛阿俊，你只是不太擅长这样的谋略而已，别的方面你也有很多天才的地方呢……”</p>
+	<p class = "firstLineIndent"> “真的？比如？”</p>
+	<p class = "firstLineIndent"> 我立刻一脸期待地看着浅浅。</p>
+	<p class = "firstLineIndent"> 微笑着的少女瞬间卡壳，不远处的林雪继续毒舌：“反正你就当真的听……”</p>
+	<p class = "firstLineIndent"> ……好吧，反正我就是一个混吃等死脑筋死板毫无特点死打酱油的废柴宅男……</p>
+	<p class = "firstLineIndent"> 正当某人已经被各种各样的打击逐渐变成化石的时候，办公室的门突然被敲响了。</p>
+	<p class = "firstLineIndent"> 一个看上去很精明能干但……好吧，以下省略的无脸男走了进来。</p>
+	<p class = "firstLineIndent"> 带着微微惊讶和好奇的眼神看了我们几个仿佛在自己家一样以各种各样懒散姿势瘫在沙发上的可疑人物之后，无脸男走向林雪的办公桌，恭敬地说道：“林队长，两个俘虏的口供已经记录完了。”</p>
+	<p class = "firstLineIndent"> 然后，他将夹在胳膊下的一叠文件放在林雪的面前。</p>
+	<p class = "firstLineIndent"> 林雪正襟危坐着，微微点了点头，表情严肃地接过文件。</p>
+	<p class = "firstLineIndent"> 于是我们就都喷了。</p>
+	<p class = "firstLineIndent"> 这这这……这个面容严峻一丝不苟状似教导处主任的神秘人士A，她怎么可能长着林雪那个疯疯癫癫暴力毒舌而且装神弄鬼的野丫头的面容！</p>
+	<p class = "firstLineIndent"> “真是相当严重犀利的吐槽呢。”</p>
+	<p class = "firstLineIndent"> 珊多拉突然俯身过来，在我耳边说道。</p>
+	<p class = "firstLineIndent"> 我立刻浑身一阵冷汗：“……刚才我群发了？”</p>
+	<p class = "firstLineIndent"> “没错，所以一会你自求多福吧，我和浅浅绝对会为你默默祈祷的……”</p>
+	<p class = "firstLineIndent"> 林雪很明显已经听到了我群发出去的灾难性信息，远远地看着，我都能发现这丫头低着头隐藏在头发阴影下的眼睛处猛然向这边袭来一道凌厉的寒光，弥漫的杀气聚集成束，“嗖”地一声将我钉在沙发上。</p>
+	<p class = "firstLineIndent"> 但从外表看来，内心深处已经严重黑暗化的女孩并没有丝毫的异状，林雪依然认真地低着头，在自己的下属面前保持着完美形象——好吧，即使一会被满清十大酷刑，这次能看到一个典藏版本的林雪也算意外收获了……</p>
+	<p class = "firstLineIndent"> “就这些？”</p>
+	<p class = "firstLineIndent"> 将手中的文件一目十行地看过之后，林雪抬起头来，食指轻轻敲打着桌面，眉目之间微微有些不满。</p>
+	<p class = "firstLineIndent"> 同时在我的视角中，一道寒光再次袭来。</p>
+	<p class = "firstLineIndent"> 这种在一双眼睛中从各种不同的角度散发截然不同眼神的神奇技巧也亏得林雪这个无聊的家伙能掌握得了……</p>
+	<p class = "firstLineIndent"> “我们已经尝试了深度催眠，而且两个俘虏的情况……总之，他们的心理防线已经完全不存在，因此这些应该就是全部的情报了。”</p>
+	<p class = "firstLineIndent"> “恩……两个外围成员……外围成员就已经是B级的异能者吗，看来真是一个了不得的组织呢……那么对他们交代的这个代号为美杜莎的女人追查下去吧，虽然有所收获的几率并不大，不过我们总算取得了不错的进展。”</p>
+	<p class = "firstLineIndent"> “是……”</p>
+	<p class = "firstLineIndent"> 男子答应了一声，然后露出了欲言又止的表情。</p>
+	<p class = "firstLineIndent"> 多年的下属，林雪当然知道对方是什么意思：“说吧。”</p>
+	<p class = "firstLineIndent"> “是这样的，我们对那两名俘虏的情况进行了分析，已经可以确认不是任何一种已知的异能造成的伤害，而且两个人的精神都受到了很大的冲击，似乎是被极强的精神场压迫过，保守估计，这样的精神场至少超过了A+的异能者，甚至可能是S级的异能者所为，我们调集了目前所有的在册的异能组织的档案……”</p>
+	<p class = "firstLineIndent"> “不用查了，”林雪突然打断了对方已经逐渐急速起来的话语，然后坚定地摆摆手，“是盟友，与组织的最高层进行的直接接触，因此不必调查了。”</p>
+	<p class = "firstLineIndent"> “呃……是。”</p>
+	<p class = "firstLineIndent"> 无脸男接到林雪斩钉截铁的指示，不由得再次将好奇的目光投向了我们几个懒散的可疑人员，神色中似乎有一点了然。</p>
+	<p class = "firstLineIndent"> “疯疯癫癫，是吧？”当自己的下属终于离开之后，装了半天严肃领导的林雪缓缓站起，然后向我这边迈步走来，浑身的黑暗气息有若实质，“暴力毒舌，是吧？还有装神弄鬼……是吧？”</p>
+	<p class = "firstLineIndent"> “这个……这个……冷静，一定要冷静！无意义的争斗是人类的原罪啊原罪！我们一定可以找到更和谐的解决方法的！”</p>
+	<p class = "firstLineIndent"> 尽管我提出了如此具有建设性的建议，但最终，林雪还是选择了一个很不和谐的解决方法……</p>
+	<p class = "firstLineIndent"> “说实话，你真是活该……”</p>
+	<p class = "firstLineIndent"> 从异能组那无处不在的联络点中出来之后，浅浅拽着我的手一脸的无奈，而珊多拉则在另一边带着乐呵呵的傻笑帮我整理着鸡窝一样的头发。</p>
+	<p class = "firstLineIndent"> ……我承认，连续十几次因为同样的低级错误而且还是在自己主动嘴欠的情况下被暴打一顿实在已经活该到了极点……</p>
+	<p class = "firstLineIndent"> 但这也不能掩盖林雪极端暴力的事实吧？你们完全不能否认一个会在办公室里凌空将人踹飞的女孩是个彻头彻尾的暴力狂吧？</p>
+	<p class = "firstLineIndent"> “说起来，蝎子今天的表现不错呢。”</p>
+	<p class = "firstLineIndent"> 珊多拉终于完成了自己的伟大工作，将我本来已经惨不忍睹的头发变得更加惨不忍睹，然后微微偏过头去，带着赞赏的表情对默不作声地跟在我们身后的维嘉点点头说道。</p>
+	<p class = "firstLineIndent"> 已经换装了常规身体、化身为冷漠美女的维嘉立刻原地立正，啪地一个军礼，表情严肃地大声喊道：“感谢您的赞赏，长官！”</p>
+	<p class = "firstLineIndent"> “好吧，前言收回，你回影子城里接着学习去……”</p>
+	<p class = "firstLineIndent"> “维嘉执行命令，长官！”</p>
+	<p class = "firstLineIndent"> ……我觉得这只脑筋不怎么好使的蝎子需要的不是系统的学习，而是一次返厂大修……</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第二百九十六章迷路的阿赖耶</h2>	
+	<p class = "firstLineIndent"> 推门进入客厅，浅浅一如既往地用充满元气的声音大声招呼道。</p>
+	<p class = "firstLineIndent"> 然后一个翠绿翠绿的小东西闪电般地从天花板上激射下来，“啪。地一声粘在我的脸上。</p>
+	<p class = "firstLineIndent"> “欢迎回来欢迎回来！叮当的糖果呢？。</p>
+	<p class = "firstLineIndent"> ，，你确认你欢迎的是我而不是糖果？</p>
+	<p class = "firstLineIndent"> 好不容易将橡皮糖一样粘在脸上的小东西拽下来之后，我带着无奈的表情敲了敲对方的小脑袋，然后从兜里掏出早已预备好的糖果小不点立方一声欢呼，举着“巨大”的糖果袋哧溜一声消失在我们面前。</p>
+	<p class = "firstLineIndent"> 你看，她欢迎的果然是糖果吧？</p>
+	<p class = "firstLineIndent"> “欢迎回来，主人，一切顺利吗？”</p>
+	<p class = "firstLineIndent"> 温和而空灵的问候声在旁边响起，带着治愈度六个加号的浓浓关切，啊，果然。拥有一个如此善解人意而且温柔体贴的女仆真是身为一个宅男最幸福的事情帆，，</p>
+	<p class = "firstLineIndent"> 带着一个宅男能露出的最大限度的幸福微笑，我转过头去。</p>
+	<p class = "firstLineIndent"> “安薇娜，以后不要从墙里探出半个身子来跟人打招呼”</p>
+	<p class = "firstLineIndent"> 大家可以现，严格来讲，我刚刚已经经历了两次能让每一个宅男羡慕到死的妹妹式欢迎，但为什么我反而有一点微妙的不爽感觉呢？</p>
+	<p class = "firstLineIndent"> 舒舒服服地冲了个热水澡之后，惬意地靠在客厅的沙上看着小泡泡和潘多拉之间为最后一根棒棒糖的归属问题而进行的日常对峙，我却总觉得少了点什么，苦思冥想了半天，才恍然现原来是平常在这个时候总会准时坐在我的脚边，把一双大翅膀放在我腿上要求梳理羽毛的阿赖耶不见了。</p>
+	<p class = "firstLineIndent"> “说起来，阿赖耶呢？”</p>
+	<p class = "firstLineIndent"> “不知道叫”。在我面前的茶几上小不点叮当趴在一只大个苹果上像小动物一样飞快地啃着。一边含混不清地回答，“阿赖耶早上说去平流层兜风的，现在还没回来的说</p>
+	<p class = "firstLineIndent"> 叮当说着，声音越来越闷一小东西把苹果啃出了一个巨大的空洞。现在差不多已经钻进去了，”难道智商真的跟脑子的大小有关系吗？</p>
+	<p class = "firstLineIndent"> 正在为大家准备晚餐的安薇娜突然从厨房的门上探出头来，一脸的担忧：“阿赖耶姐姐不会有事吧？”</p>
+	<p class = "firstLineIndent"> 我面无表情地走到厨房门口小把小幽灵的脑袋按回去，木然说道：“你觉得地球上有什么东西能威胁到一个天使？”</p>
+	<p class = "firstLineIndent"> 下一秒小幽灵的脑袋穿过了我的手掌。坚定地再次出现在我面前：“可是阿赖耶姐姐是那种即使天下太平也会让自己麻烦缠身的类型呢”想不到这个历来以“最最听话懂事温和有礼的精英级女仆。自居的点光源也会有这种出人意料的吐槽时废呢，难道说我们这个等同于各种吐槽研中心的危险团伙的污染能力真的已经强大到这种程度了吗？</p>
+	<p class = "firstLineIndent"> 不过，虽然知道以阿赖耶的实力，这个呆猫天使在地球上遇到意外的几率不大于。丁当突然放弃棒棒糖或者林雪不再是暴力狂，我还是对她竟然直到晚饭时间还没回家感到很好奇，稍微集中一下精神之后。我出了广域的心灵搜索：“阿赖耶！回家吃饭了！”</p>
+	<p class = "firstLineIndent"> 半分钟后，一个听上去就呆呆的而且有点焦急的声音回响在我的脑海中：“君主哥哥我迷路了</p>
+	<p class = "firstLineIndent"> 呃，算了，反正也不是第一次生，</p>
+	<p class = "firstLineIndent"> 阿赖耶出去兜风的时候会迷路，对此我完全不感到意外，尽管也身为希灵使徒的一员，但这个纯天然的笨天使似乎并不具备完善的寻路功能和记忆模块，这直接导致了我们在很多时候不得不从整个世界的每一个犄角者旯里寻找阿赖耶那没头苍蝇一样乱撞的身影，比如喜马拉雅山脉啊。比如南极圈内的某个企鹅岛啊。比如北冰洋里的无名浮冰上啊，说实话。现在我对这家伙迷路的现象已经习惯到了见到她在平地上摔跤一样的程度。</p>
+	<p class = "firstLineIndent"> “好吧，说说你周围的情况，我们去找你”</p>
+	<p class = "firstLineIndent"> 大概是天性使然，阿赖耶平常不习惯使用科技物品。因此她身上从来没有导航仪之类可以为自己准确定位的东西，而且身为纯光元素形成的能量生物，她本身的干扰也足以阻断任六另程定位，因此每次泣丫头迷路之后，我们都只能选钾笨办法来把她找回来。</p>
+	<p class = "firstLineIndent"> “嗯天空很黑。星星很多</p>
+	<p class = "firstLineIndent"> 哦，看来已经横跨时区了。</p>
+	<p class = "firstLineIndent"> 扭头看了看外面才刚刚夕阳西下的天际。我的表情逐渐微妙起来。</p>
+	<p class = "firstLineIndent"> “还有，四周都是很细的沙子和尘土”</p>
+	<p class = "firstLineIndent"> 沙漠？这是一条很重要的线索，我立亥吩咐潘多拉开始搜索地球上目前正处于夜间而且空气能见度较高的沙漠都是什么地方。</p>
+	<p class = "firstLineIndent"> “还有还有，很多大坑。圆形大坑，地也有不少石块。”</p>
+	<p class = "firstLineIndent"> ，这叮，这会是哪里的景观呢？哪里的沙漠里会有这样的地方出现呢？</p>
+	<p class = "firstLineIndent"> “君主哥哥，还有呢，我在这里觉得自己轻飘飘的”</p>
+	<p class = "firstLineIndent"> ，，啊？</p>
+	<p class = "firstLineIndent"> “周围似乎是真空呢，，啥！？</p>
+	<p class = "firstLineIndent"> “而且，天上的月亮变成了蓝白相间的样子，体积也大了好多倍呢”。</p>
+	<p class = "firstLineIndent"> 我靠！</p>
+	<p class = "firstLineIndent"> “你这死丫头怎么到月亮上去了！</p>
+	<p class = "firstLineIndent"> 不对不对！这不是重点吧！即使阿赖耶再怎么笨蛋，身为一个希灵人，她也不可能觉不了自己在月球上吧？这应该是地球人都具备的常识吧？一个出身在高科技帝国的领级使徒无论如何也不应该在这种时候生这种乌龙事件吧？阿赖耶的脑子里至少应该有这点知识的吧？！</p>
+	<p class = "firstLineIndent"> 这个死丫头让我情何以堪啊！</p>
+	<p class = "firstLineIndent"> 但是听完了我的描述之后。潘多拉却一脸淡定地点了点头：“这很正常</p>
+	<p class = "firstLineIndent"> 很正常？</p>
+	<p class = "firstLineIndent"> 出门兜风迷路到月球上去。而且身为希灵使徒连这么浅显的事实都察觉不到，这很正常？话说对阿赖耶而言这个“正常”的下限也太广泛了点吧！？</p>
+	<p class = "firstLineIndent"> “因为阿赖耶是个笨蛋”。潘多拉一脸的理所当然，而且她说出的对阿赖耶而言那么失礼的话在我们听起来更加的理所当然这真是一种微妙的感觉呢，“她经常这样的”</p>
+	<p class = "firstLineIndent"> 好吧，我就不追究这个从基础的逻辑上便陷入了一团乱麻的话题还有什么合理性了，只要知道阿赖耶是个笨蛋那么所有的问题就都迎刃而解好了。</p>
+	<p class = "firstLineIndent"> 一个天然到这种程度的家伙。你还指望她的行为能具备多大的合理性呢？</p>
+	<p class = "firstLineIndent"> 几分钟后，迷路迷到月亮上去的阿赖耶终于被闻讯赶来帮忙的双子姐妹给接了回来，看着满头满脸都灰扑扑而且表情依然呆呆的笨蛋天使，我们真是快憋不住了</p>
+	<p class = "firstLineIndent"> “总觉得噗总觉得这时候要是笑出来肯定会非常失有，吧，，噗”</p>
+	<p class = "firstLineIndent"> “浅浅你就不要一边笑着一边这么说了噗”</p>
+	<p class = "firstLineIndent"> “君主哥哥，我回来了”。狼狈不堪的阿赖耶困惑地眨着眼睛，似乎丝毫没有意识到自己这次究竟闹了多大的乌龙，然后微微一鞠躬，像每天兜风回家之后一样地对我说道，与此同时，地面上再次落下了一层的月尘？</p>
+	<p class = "firstLineIndent"> 所以所以这个样子的阿赖耶果然才最有笑点啊！</p>
+	<p class = "firstLineIndent"> “行了，你先把身上清理干净吧”</p>
+	<p class = "firstLineIndent"> 好不容易憋住了笑，我扯着嘴角指了指阿赖耶身上，示意对方也注意一下自己现在的造型。</p>
+	<p class = "firstLineIndent"> 浅浅则在一旁圃圃有神地感叹：“都是月尘呐这要卖到中央科学院去得多少钱呐”</p>
+	<p class = "firstLineIndent"> “哦？阿赖耶点点头。然后张开翅膀</p>
+	<p class = "firstLineIndent"> “别”</p>
+	<p class = "firstLineIndent"> 谢天谢地。预想中的烟雾弥漫并没有生，阿赖耶张开翅膀之后并没有像往常一样扑打，而是瞬间化为点点金光消失在客厅中。</p>
+	<p class = "firstLineIndent"> 顿时，整斤，客厅明亮起来。而在我们面前的地面上则落了一片灰尘。</p>
+	<p class = "firstLineIndent"> 几秒种后，客厅渐渐恢复了正常的光照。浑身焕然一新闪闪亮的阿赖耶再度出现在我们面前。</p>
+	<p class = "firstLineIndent"> “没有人可以污染世界上最纯粹的光芒。”珊多拉耸耸肩，“但为什么我觉得对于阿赖耶而言这一切仅仅相当于省去了洗澡的麻烦呢？”</p>
+	<p class = "firstLineIndent"> 应该就是这样没错吧，对这个呆头天使而言</p>
+	
+<h2>第二百九十七章叮当的神秘行动</h2>	
+	<p class = "firstLineIndent"> “管出现了一个在人类世界中势力可能相当庞大而且目的丁视的异能组织，但除了一开始的那次围捕行动之外，我们的日常生活并没有因此受到任何冲击。</p>
+	<p class = "firstLineIndent"> 或者说，这样一个组织哪怕就是突然打算掀起第三次世界大战都很难对我们造成什么冲击毕竟单论军事力量，我们随便哪支部队都足够将整个地球捏扁搓圆好几遍了。</p>
+	<p class = "firstLineIndent"> 因此对于这样一个组织，虽然已经列入了敌对势力的名单，我们却并没有太过于上心，除了派出一些受过刮练的希灵特工混到人类社会中稍微注意一下有没有不开眼的异能者在扰乱社会治安之外，我们还是将其它的事交给了异能组来头疼。</p>
+	<p class = "firstLineIndent"> 毕竟那也是他们自己的工作，帮忙规帮忙，但真要一把全揽过来”恐怕异能组的人反而会不乐意了。</p>
+	<p class = "firstLineIndent"> 嘛，虽然林雪那个人品无下限、脸皮无上限的家伙倒是一点都不脸红地表示打算把自己的工作都扔到我们头上来着，，</p>
+	<p class = "firstLineIndent"> 要说唯一值得一讲的事情，也就是关于异能组的领，林雪的爷爷那边，虽然隐瞒了大多数的细节，但林雪还是向老人家汇报了这次行动的大概经过，包括那两斤。俘虏是被我们抓捕这样的事实，对我们的实力，林老爷子自然产生了很大的好奇，毕竟在之前的几次行动中，异能组始终没有取得任何进展，甚至连正面对决的机会都没有几次，而这次我们一出手就取得了这样的战果，不但成功地抓获了两个俘虏，而且看上去，我们搞定的还很轻松小估计只要智商过两个数，都要开始怀疑我们一开始自称的“俱乐部式小组织”这样的说法，当然，林老爷子毕竟不是八卦爱好者，既然并不是敌人，他自然也不至于对我们的真实情况纠根问底不过据我猜想，一些暗地里的调查还是少不了的。嘛，反正他肯定只能得到成吨的假情报而已，，</p>
+	<p class = "firstLineIndent"> 大概是实在闲得无聊，姐姐和浅浅两个人这几天突然心血来潮地创办了一斤。莫名其妙的工作室，据说专门承接各种“灵异事件，麻烦缠身，天灾**，事业不顺，心理疾病。医疗保健，爱心工程，就业指导，建筑装修，教育文化”等等等等工作，用浅浅的话来说就是，既然有条件，自己就应该为大众排忧解难，于是一个名为“大爱无疆”的神秘工作室便在一帮同样蛋疼的帝**官的帮助下挂牌营业，打的旗号就是解决一切问题，摆平任何麻烦，不过虽然招牌相当响亮而且浅浅对我的解释也充满爱心人士的风范，但我还是有充足的理由怀疑这丫头和姐姐大人仅仅是太过无聊了而已，，</p>
+	<p class = "firstLineIndent"> 算了，反正也不是颠覆人类社会这样的事情，就放手让她们折腾去吧，只要能看好潘多拉这个随时打算征服地球的家伙，这个世界还是可以很安全的。</p>
+	<p class = "firstLineIndent"> 而除去这两个突然投身于“世界上最伟大的公益事业”中去的女孩之外，还有一介。人这两天也总是忙忙呼呼的不见踪影。</p>
+	<p class = "firstLineIndent"> 叮当。</p>
+	<p class = "firstLineIndent"> 没错。叮当！</p>
+	<p class = "firstLineIndent"> 那个通体三寸五左右成天无所事事地在家里飞来飞去人生最大爱好就是吃各种糖果以及在空中进行难度系数十个星的自由体操虽然号称宇宙中最高统治神但事实上直到现在都在消极怠工的小不点，她这几天竟然有事情忙了！</p>
+	<p class = "firstLineIndent"> 除去固定的吃饭时间和找我讨要糖果的时间之外，这个精力过剩的小家伙已经很久没有在我们面前活力十足地表演自己的空中特技，而是每天都要回到影子城的世界之树里面，大结界一开，不知道在里面捣鼓什么东西。</p>
+	<p class = "firstLineIndent"> 这也导致了最近几天来影子城里随处可见成群结队的奇怪生物来回游荡，让负责城市巡逻的士兵们苦不堪那些被神灵直接创造出来的元祖生物各个都带着神性，真要把它们全都抓住实在困难了点，但又不得不抓，影子城市里拥有世界之树的限制还没什么，但假如真有一两个带着神性的元祖生物跑到人类世界我们的罪过可就太大了，</p>
+	<p class = "firstLineIndent"> 不过每次问到她在干什么”丁当都总是立刻露出尴尬的表情，然后“嗖”的一声消失在我们面前。</p>
+	<p class = "firstLineIndent"> 这当然极大地刺激了我的好奇心，因为我实在想不到叮当这样一介。拥有宠物属性的小不点会有什么正事需要她花出好几天的时间都还在忙活一对这小家伙的耐心我可是再清楚不过了。</p>
+	<p class = "firstLineIndent"> “问冉</p>
+	<p class = "firstLineIndent"> 这是姐姐大人的建议，对于叮当这两天神秘的举止，好奇的可不只是我一个人，基本上家里每个人都知道叮当平常是个什么德行，想想一个平常总是窝在家里看电视打游戏上网聊天搜集工口物的死宅突然西装革履出现在你面前野心勃勃地声称要用自己的双手开创出自己人生辉煌的明天就可以了当然，不排除这是宅类生物受咽小说荼毒太过严重产生的阵性暴走症什么的，，”</p>
+	<p class = "firstLineIndent"> 问问莉莉娜，这是个不错的主意，身为叮当在这个世界“最完美”的创造物，某个装着成年人灵魂的伪萝莉现在竟然被孩子气的女神大人安上了“生命神殿席女祭司。这样一个闪闪亮的头衔，每天也要像模像样地回到生命之树的核心殿堂里面进行所谓的“祷告”嘛，我估计也就是交流交流最近哪家甜点店的东西比较美味之类的事情，如果说有谁可能知道叮当最近在干什么的话，也就只有可以随时随地无限制进入神殿核心的莉莉娜了。</p>
+	<p class = "firstLineIndent"> 但是比起所侍奉的神明来，这个顶着“席女祭司”头衔的伪萝莉貌似更加不靠谱一点。</p>
+	<p class = "firstLineIndent"> 为了“补偿过去数十年来在异界挣扎求生而荒废的美好青春以及找回在故乡的珍贵回忆。”莉莉娜出现在我们面前的时间甚至比叮当还少。</p>
+	<p class = "firstLineIndent"> 简而言之，除了吃饭和晚上回生命之树睡觉之外，莉莉娜现在每天几乎要花上十几个小小时在外面到处乱逛，出没于各大广场，各大商场，各大游乐场，各大，，场，只要是人多的地方，就一定能看到莉莉娜兴致勃勃的身影，这不但证明研究心理学的人就是懂得快调节自己的心态，也证明拥有成*人灵魂的伪萝莉果然比一般的萝莉还要能找麻烦。</p>
+	<p class = "firstLineIndent"> 除了一些特殊的体质和那点根本不成气候的生命天赋之外，莉莉娜并不比普通人类强大多少，在能够完全掌握自己的新身体之前，她绝对是我们中最弱的一个，虽然小萝莉独自上游乐场然后被怪叔叔诱拐这种事情生的几率实在不大，不过介于荷菲娜整天出没的地方实在复杂，我还是不得不每天派整整一打的希灵官兵乔装打扮跟在这丫头身后负责保护这也是为什么薪莉娜经过的地方用不了多久就会生城管密度激增这样神秘事件的原因，话说负责保护“祭司大人”的是西卡罗来着。</p>
+	<p class = "firstLineIndent"> 这么一个不着家门的家伙，要找到机会向她打听点事还真困难，也就是趁着今天早上这家伙出来觅食的时候，我才逮着时间向她打听了一下叮当最近的情况。</p>
+	<p class = "firstLineIndent"> 面对我的询问和周围一帮姐姐们期待的眼神，莉莉娜露出了神秘而优雅的微笑：“女神大人的行动不是凡人可以探知的。”</p>
+	<p class = "firstLineIndent"> 然后我们联合宣布，莉莉娜下个月的零花钱减半。</p>
+	<p class = "firstLineIndent"> “不要这样子嘛”莉莉娜立刻露出了完美的楚楚可怜表情，一双大眼睛里星河灿烂，用骗死人不偿命的甜美嗓音说道，“人家怎么说也是神殿祭司的说，”假如不这样的话会被女神大人责罚的，”</p>
+	<p class = "firstLineIndent"> 我果断地把这个伪萝莉的脑袋按回去。义正词严：“再装下去你剩下的零花钱也没了</p>
+	<p class = "firstLineIndent"> “切，真无趣百试百灵的诡计失效，莉莉娜立亥露出了真面目，“说实话，我真的不知道哦，我就知道叮当每天都把自己关在神殿里，貌似做实验的样子，恩，偶尔有爆炸生，，就这样，没了。”还真是简短的情报，，</p>
+	<p class = "firstLineIndent"> 虽然网开始的时候还带着很大的畏惧和恭敬，但自从现我们这一大帮子头衔高的吓人的家伙除了实力强大之外其本质上就是一群无组织无纪律的散人之后，莉莉娜现在真是越来越放肆了，，</p>
+	<p class = "firstLineIndent"> 要说起，丁当做试验，，这个倒是有点可能小东西拥有和她的体型完全相反的好奇心，平常的时候偶尔也会鼓捣一些莫名其妙的试验，大多数时候这些试验都是在研究生命创造之类虽然听上去相当伟大但事实上只会引一连串的爆炸的事情（话说我应该对创造生命的试验竟然会伴随大爆炸这样的诡异事实进行吐槽吗？</p>
+	
+<h2>第二百九十八章邮件炸弹以及叮当的烦恼</h2>	
+	<p class = "firstLineIndent"> 才刚刚是入秋不到一芥。月，城市的街道上便开始陆陆续续出现了穿着薄绒衫的行人，丝丝的寒意逐渐弥散在空气中，夏天的气息似乎已经毫不犹豫地离开了这座城市。</p>
+	<p class = "firstLineIndent"> 而在这样初秋微凉的上午。躺在阳台的躺椅上享受着和煦但并不令人感到燥热的阳光，旁边还侍立着一个乖巧的小女仆为你备上可口的茶点，这样的生活，果然太惬意了”，</p>
+	<p class = "firstLineIndent"> 猜菲娜此刻也是一脸堕落的样子，叼着根吸管躺在旁边的躺椅上，不时偏过头去吸溜一口安薇娜递上来的橙汁。可惜十岁萝菲的外形配合上现在这副大人的举止怎么看怎么让人觉得古怪。</p>
+	<p class = "firstLineIndent"> 静静地享受着悠闲的上午时光，莉莉娜突然长长地伸了个懒腰。然后在躺椅上扭了扭身子，脸朝向我这边：“只是有一点很可惜呐，令色狼们为之迷醉的清凉夏日胜景就要这么一去不复返了。”</p>
+	<p class = "firstLineIndent"> “是啊是啊…不对！”</p>
+	<p class = "firstLineIndent"> 在阳光照耀和秋困气息下昏昏欲睡的某人下意识地答应了一句。然后悚然惊醒。</p>
+	<p class = "firstLineIndent"> 好险，差点被这咋，黑到骨子里的伪萝瓮给绕进去，话说这家伙果然是越来越嚣张了！</p>
+	<p class = "firstLineIndent"> “已经绕进去了哦。”</p>
+	<p class = "firstLineIndent"> 莉菲娜拽着躺椅的扶手让自己已经快滑到底的身子回到原来的位置。然后微笑着晃了晃手指，指着我的身后说道。</p>
+	<p class = "firstLineIndent"> 与此同时，浅浅“温柔”的声音在我身后响起：“阿俊”可不能对街边的野花野草倾注注意力哦”，我是不是应该找个机会把旁边那个一脸贼笑的伪萝菲给扔物质回收炉里好为社会作点贡献啊！</p>
+	<p class = "firstLineIndent"> 面对语带不满的浅浅，我果断地转移话题。扭头看了看旁边再次从光滑的竹制躺椅上滑下去目前正在扭动着身子往回爬升的莉藉娜。疑惑地问道：“莉菲娜，你今天怎么没有出去逛街？”</p>
+	<p class = "firstLineIndent"> “总是逛街的话很无聊呢。果然还是呆在家里舒服些”</p>
+	<p class = "firstLineIndent"> 这种话从任何人嘴里说出来都应该比你更有说服力吧！？你这家伙完全是因为连续一咋。月出去疯跑结果累趴下实在跑不动了是吧？今天休息过来之后你还打算接着逛是吧？！</p>
+	<p class = "firstLineIndent"> “吱嘎”一声，阳台上的们被从对面推开，姐姐抱着一个看上去颇有分量的邮包走了过来，脸上带着疑惑的神情：“有包裹！阿俊你买什么东西了吗？”</p>
+	<p class = "firstLineIndent"> “没有亦…”</p>
+	<p class = "firstLineIndent"> 我顺手接过了姐姐手中四四方方大约有三个电脑硬盘摞在一起大小的邮包，现上面的收件人果然是自己的名字，不过什么时候订了东西我还真没印象，</p>
+	<p class = "firstLineIndent"> “打开看看？”莉菲娜在一旁怂恿道。</p>
+	<p class = "firstLineIndent"> 我刚刚伸向邮包封口处的手瞬间僵在原地，然后扭头用疑惑的目光，看着某个一脸纯真表情的伪萝菲：“为什么你提出的建议会让我不由自主地产生一阵阵危险感呢？”</p>
+	<p class = "firstLineIndent"> “嘛嘛，不要在意不要在意，反正邮件炸弹炭疽病毒什么的对你也没有威胁嘛”唔，我稍微离开点，万一挂掉了复活起来很麻烦的”</p>
+	<p class = "firstLineIndent"> 这个仗着有世界之树撑腰能无限复活的可恶家伙”糟糕，让她这么一鼓动我还真产生非打开看看不可的好奇感了”</p>
+	<p class = "firstLineIndent"> “刺啦”</p>
+	<p class = "firstLineIndent"> 邮包的封口被轻而易举地撕开。</p>
+	<p class = "firstLineIndent"> 我随手将一团殉丽的东西递到旁边一脸我好怕表情的菲菲娜面前。说道：“看看你的乌鸦嘴。”</p>
+	<p class = "firstLineIndent"> “喂喂喂！不耍把这么危险的东西拿过来啊！我会死掉的！我真的会死掉的！”</p>
+	<p class = "firstLineIndent"> “反正你也能复活”</p>
+	<p class = "firstLineIndent"> 我嘀咕了一句，然后抬头对姐姐问道：“姐，你怎么看？”</p>
+	<p class = "firstLineIndent"> “看来被盯上了。”姐姐大人无所谓地耸耸肩，“在外界看来是一个实力不济而且又没有警惧性的小组织，正好在他们的目标范围内不是吗？”</p>
+	<p class = "firstLineIndent"> 在我手中的。是一枚炸弹。</p>
+	<p class = "firstLineIndent"> 严格来讲，是已经起爆的炸弹：一个外壳已经开始扭曲翻卷、里面正喷涌出明亮光芒的黑色铁盒。凝固的火焰呈现出刚刚迸那一刻的爆炸感，而这一团徇丽焰火的外围则是一层透明的薄膜一样的东西，将整个炸弹包裹地仿佛一块古怪的果冻，这层薄膜就是将内外时间流互相截断的东西。在薄膜的内部，“时间”这个概念已经被删除了。</p>
+	<p class = "firstLineIndent"> 看着很漂亮。仿佛某种后现代的工艺品。不过却是货真价实的杀人凶器。</p>
+	<p class = "firstLineIndent"> 当然，对我们没有威胁罢了。</p>
+	<p class = "firstLineIndent"> “浅浅，这东西能维持多久？”</p>
+	<p class = "firstLineIndent"> 上下抛了抛已经被静止的邮件炸弹，我扭头问身边刚刚阻</p>
+	<p class = "firstLineIndent"> “要多久有多久。等到世界末日引爆也没问题。”</p>
+	<p class = "firstLineIndent"> 小心翼翼地凑过来捅了捅那团处于静止状态因而带着绝对坚硬感的火焰之后，荷莉娜的脸上带上了貌似后怕的表情：“看来以后对这种莫名其妙出现的神秘物品都要扫描一下才行呢”刚才你还怂恿我打开包裹的是吧？</p>
+	<p class = "firstLineIndent"> 珊多拉从我手中接过正处于爆炸状态的邮件炸弹，在我无语的注视中习惯性地将后者放在嘴里咔嚓咔嚓啃了两口，然后说道：“欺负到头上了呢，阿俊。怎么办？。</p>
+	<p class = "firstLineIndent"> 在此之前我可以稍微吐槽一下你对外界信息的收集方式吗？</p>
+	<p class = "firstLineIndent"> “就当为人类社会做贡献吧小清扫一下垃圾</p>
+	<p class = "firstLineIndent"> 我一向自认为自己是咋。与世无争的人，爱好和平，平易近人，恩，完全没有自夸的意思，不过现在看来，有必耍教育一下某些不安分的家伙，好让他们知道，我的与世无争是建立在与我有争的家伙已经死干净这个基础上的，，</p>
+	<p class = "firstLineIndent"> “开饭开饭”。珊多拉突然咋咋呼呼起来，“先开饭，其他的事情以后再说！””我很想知道那些送来邮件炸弹的家伙假如得知了他们精心策划的袭击竟然连让我们的午饭稍稍推迟的成果都没有达成会露出一副怎样微妙的表情呢，”</p>
+	<p class = "firstLineIndent"> 不过今天的午餐却和平常有点不一样。</p>
+	<p class = "firstLineIndent"> 当平常最拖拉的泡泡都被珊多拉揪着耳朵从二次元世界中拖出来之后”丁当却始终没有出现。</p>
+	<p class = "firstLineIndent"> 珊多拉咬着勺子看着桌子上一块特制的小小餐布，现在上面空空如也：“虽然这半咋。月，丁当一直神秘兮兮的，不过只要一开饭，她总会出现吧？”</p>
+	<p class = "firstLineIndent"> 数道目光同时转向同一个人。</p>
+	<p class = "firstLineIndent"> “好吧好吧”。莉莉娜举着双手一脸委屈，“真是的，连饭都吃不安生</p>
+	<p class = "firstLineIndent"> 话音网落，莉菲娜已经化为一片绿色的光点，逐渐消散在空气中。</p>
+	<p class = "firstLineIndent"> 身为世界之树中直接诞生的生命，她拥有直接将自己传送到生命神殿内的能力，这也可以说是菲菲娜目前唯一的本事了。</p>
+	<p class = "firstLineIndent"> 片刻之后，菲莉娜出现在我们面前，手中提溜着一团黑乎乎的东西。</p>
+	<p class = "firstLineIndent"> “在神殿的创造之台上现的菲莉娜说着，将手中的东西啪嗒一声扔在我面前的盘子上。</p>
+	<p class = "firstLineIndent"> 总觉得从形状上来看的话。有种似曾相识感啊，</p>
+	<p class = "firstLineIndent"> 额头上挂着冷汗。我将这团黑色的东西放在手边的水杯里，加上水。捂住杯口，然后上上下下左左右右换个方向再来一次。</p>
+	<p class = "firstLineIndent"> 一个闪闪亮的叮当！“丁当咬你！，丁当绝对咬你！放叮当下来呀！”</p>
+	<p class = "firstLineIndent"> 被揪着翅膀提溜在半空而且眼睛仍然没能成功对焦的小东西对着面前那个晃晃悠悠的三重人影张牙舞爪中。</p>
+	<p class = "firstLineIndent"> “话说你这阵子到底折腾什么呢？”我轻轻晃了晃手中的小小女神。语带困惑，“这次还把自己折腾的这么狼狈</p>
+	<p class = "firstLineIndent"> “叮当才不要你管！你放叮当下来呀”。</p>
+	<p class = "firstLineIndent"> 我沉默地从桌子上拿起对付叮当专用神器：大水杯！</p>
+	<p class = "firstLineIndent"> “啊，别，真的好晕的！别再晃了”。</p>
+	<p class = "firstLineIndent"> “那就老实交代！这几天你到底在干吗？听莉菲娜说你还经常在神殿里搞试验？这次还生了大爆炸？你是不是在弄什么危险的东西。”</p>
+	<p class = "firstLineIndent"> 我的语气十分坚决，脸上也是不老实交待今天就绝对别想蒙混过关的坚定表情，倒不是我不讲情面，而是最近叮当的行动实在奇怪，好奇心是一方面，更重要的是对这个总是不十分可靠的小不点的担心，人类科学家搞吓。试验都有生生化危机的危险，一个女神搞的试验就更马虎不得尤其是在这咋。女神还经常出现各种各样的状况并且智商严垂飘忽不定的情况下，看看今天的情况，叮当明显就是被自己的试验给搞到这么狼狈的，</p>
+	<p class = "firstLineIndent"> 而且更重要的，万一，丁当试验的东西脱离了世界之树屏障的限制，从影子城市中跑出一两个来，，</p>
+	<p class = "firstLineIndent"> 那可就真有乐子了，怎么想那都应该是远比哥斯拉事件还要严重的人类危机呢，”</p>
+	<p class = "firstLineIndent"> 看着我以及周围几个女孩坚决的眼神，顽抗了好一会的叮当终于宣告投降。小家伙一撇嘴，眼角带着泪光，一副气急败坏的样子叫道：“好吧好吧！叮当就是咋。笨蛋！叮当就是什么都做不好！！叮当就是补考了十四次都没有考上初级造物证的无可救药的差学生！！！呜哇</p>
+	
+<h2>第二百九十九章 勇敢的.O</h2>	
+	<p class = "firstLineIndent"> 品滥溜在空中受到二堂会审的叮当眼见再也隐瞒不住，帜小破罐子破摔地大声说道：“好吧好吧！叮当就是个笨蛋！叮当就是什么都做不好！！，丁当就是补考了十四次都没有考上初级造物证的无可救药的差学生！！！呜哇</p>
+	<p class = "firstLineIndent"> 说到最后，大概是觉得太委屈”丁当竟然“哇”地一声大哭起来。</p>
+	<p class = "firstLineIndent"> 叮当这一声大哭威力巨大。我瞬间就从正义的**官变成了人民的敌人，在一众同情心爆棚的女孩们凌厉的视线中遍体鳞伤”</p>
+	<p class = "firstLineIndent"> “你看看你，把叮当都气哭了。”</p>
+	<p class = "firstLineIndent"> 浅浅不客气地白了我一眼，然后从我手中抢过嚎啕大哭的小不点，两眼放光地捧在手里安慰起话说为什么要两眼放光呢？</p>
+	<p class = "firstLineIndent"> “总觉得”我僵硬地扭转脖子，对旁边同样有点呆滞的珊多拉说道，“总觉得听到了某些十分微妙而且充满吐槽点的东西呢</p>
+	<p class = "firstLineIndent"> 珊多拉“咔嚓”一声咬断了手里的筷子。嘴角微微抽搐。</p>
+	<p class = "firstLineIndent"> “我誓”。丁当绝对是我见过的最不靠谱的神明”</p>
+	<p class = "firstLineIndent"> 这已经不是靠不靠谱的问题了！话说那个初级造物证才应该是最值得吐槽的东西吧？神明的世界到底是一种怎样令人无语的社会状态啊？难不成那些高高在上强大无比的神明平常都在折腾这样乱七八糟的事情吗？</p>
+	<p class = "firstLineIndent"> 在浅浅的安慰下”丁当终于平静下来，然后毫无记性和教地再次回到前一秒还是大恶人的我的肩膀上，一边不疼不痒噼噼啪啪地敲打着我的脑袋，一边气鼓鼓地说道：“丁当在准备创世神四级考试的说，可是叮当现在连初级造物证都没有考下来，没有初级造物证，根本连四级考试的准考证都办不下来的说！叮当都补考了十四次了，要是这次补考还通不过”丁当一定会被那些可恶的后辈们笑话的，尤其是那只脑子里长满肌肉的大笨蜥蜴，连那个大笨蛋都一次考过了的说”巫。真不公平，为什么创世神的资格认证非要拿造物证当成基础资格啊！能量创造学，法则概论，灵魂创造学和空间创造学这些东西叮当都很擅长的！为什么它们不能成为基本证件啊”。</p>
+	<p class = "firstLineIndent"> 我”我到底该从哪里开始吐槽比较合适啊混蛋！</p>
+	<p class = "firstLineIndent"> 环视四周，果然，不止是我。连浅浅她们几个在内也都集体变成了风中苍白的石膏像。</p>
+	<p class = "firstLineIndent"> 叮当却毫无自觉地继续诉着苦，然后突然从异空间中取出一本厚厚的金皮大书来，然后得意洋洋地举着那本足够装下十几个她的巨大：“不过叮当现在已经有希望了！就是这本书。叮当花了好大功夫才从一个学姐那里借到的典藏版哦，只要能把这本书里说的几个重点试验完成”丁当一定可以在第十五次补考中通过的！”</p>
+	<p class = "firstLineIndent"> 已经在天雷滚滚中进化成淡定帝的家人看了一眼书皮上的神秘符文。然后木然抬头：“这个，，谁给翻泽一下？”</p>
+	<p class = "firstLineIndent"> 珊多拉凑过来看了看，接过那本华丽丽的大：“《小心博士教你创世纪造世界的二十二个经典实验》。落款是神界造物学研究协会，第三百八十六次修订版</p>
+	<p class = "firstLineIndent"> “轰像”</p>
+	<p class = "firstLineIndent"> 最后一道天雷落下，我们终于，，成佛了，，</p>
+	<p class = "firstLineIndent"> “继续努力吧”。我眼含热泪敲了敲叮当的小脑瓜，然后郑重其事地将那本记载着整咋。世界最终极奥秘但不知为什么总有种让人热泪盈眶之感的金皮大书交给，丁当，“你一定会成为一个伟大的造物神的</p>
+	<p class = "firstLineIndent"> 叮当双手高举着巨大的书本。呼呼地点着小脑袋：“嗯嗯！叮当一定会成功的！叮当的笔试成绩很好的！只要能把实验课通过就完全没有问题啦！而且。丁当决定了，这一次哪怕是要贿赔监考官也必须通过！所以完全没问题的”。</p>
+	<p class = "firstLineIndent"> 我已经，，无力吐槽了”</p>
+	<p class = "firstLineIndent"> 在那咋，仅仅三百米之外的令人残念的地下基地里，我们找到了已经好几天没见的林半仙，和我们这帮无所事事的闲人相比，后者明显要忙活的多，这一点从对方那已经隐隐浮现的黑眼圈就可以看得出来。</p>
+	<p class = "firstLineIndent"> “你纯粹找打是吧！？眼影啊！眼影”。</p>
+	<p class = "firstLineIndent"> “你就承认长黑眼圈得了，眼影画到这种程度对女孩子而言那更加悲剧。</p>
+	<p class = "firstLineIndent"> 例行公事的见面拌嘴，然后是姐姐早已习惯性地从中劝解：“你们两个，怎么每次见面都要吵架</p>
+	<p class = "firstLineIndent"> 林雪磨着牙横了我一眼，然后坐回她那张无比**的奢侈办公桌后面。双手抱胸：“说吧，你们姐弟俩今天过来有什么事？难道你终于大彻大悟决定帮我</p>
+	<p class = "firstLineIndent"> 正在这时候。丁玲正好推门进来，将林雪的话听了个真真切切，立刻一脸无奈地抱怨起来：“麻烦你有一点异能组高级干部的节操好不好！就给组织挣点脸吧！”</p>
+	<p class = "firstLineIndent"> “找这根木头帮忙我觉得一点都不丢人。嗯，身为苦力就应该有苦力的觉悟是吧？”</p>
+	<p class = "firstLineIndent"> 是吧你妹啊！你能搞清楚现在是谁在求助吗？！</p>
+	<p class = "firstLineIndent"> 早己知道自己这位密友是个什么德行，丁玲对林雪毫无自觉的言果断选择了无视。而是径直走到了后者的办公桌前，将怀里一直抱着的某东西放在桌子上。</p>
+	<p class = "firstLineIndent"> 一只看上去黑不溜秋的小狗，从脸型上就仿佛写满了“我是土狗”这样的字样，完全是最常见的家养品种，虽然没有畸形到缺眼睛掉鼻子的地步，但也没有任何出彩的地方。</p>
+	<p class = "firstLineIndent"> 话说这样一只从头土到脚的小狗出现在这样高级别的地方果然充满了违和感的说”</p>
+	<p class = "firstLineIndent"> 看上去已经不是第一次被无良的主人给带到这里，小狗被放在桌子上之后非但没有一点胆怯的样子，反而立刻开始好奇地四下张望，最后。耷拉着耳朵将滴溜溜的小眼睛放到了我这边，尾巴开始抽风一样地摇晃起来。</p>
+	<p class = "firstLineIndent"> “除了亲和力之外一无是处的家伙，”</p>
+	<p class = "firstLineIndent"> 林雪撇撇嘴，然后开始折腾那只果断地对陌生人表示好感的无节操卜黑狗。</p>
+	<p class = "firstLineIndent"> “这是”我无视了林雪的评价，而是将好奇的视线投向丁玲，话说异能组的人都是这类型？工作时间领着宠物来上班？还是单纯因为对方是林雪的朋友这样微妙的事实？</p>
+	<p class = "firstLineIndent"> “我的宠物。”丁玲倒是一点都没有觉得不对，反而大大方方地承认，“名字叫”</p>
+	<p class = "firstLineIndent"> 对可爱事物的抵抗力极端低下的姐姐上去逗弄了几下那只貌似对任何人都能和善无比的无节操小黑狗，然后回过头来：“引这名字怎么这么奇怪”</p>
+	<p class = "firstLineIndent"> 丁玲指点着自己的宠物狗对我们介绍：“这个名字是很有来历的，你看，它的前腿是个型，但后腿是个o型”</p>
+	<p class = "firstLineIndent"> 你就直说这狗小时候被你虐待出残疾就行了”</p>
+	<p class = "firstLineIndent"> 林雪折腾了一会好友的宠物。然后才终于想起什么似的抬起头：“说起来，你这个无下限猥琐男今天怎么有时间过来？貌似这时间你应该还在家等着霉吧？”</p>
+	<p class = "firstLineIndent"> 话说你有必要每次都在称呼我的时候在前面添加那么多的语气助词吗？！</p>
+	<p class = "firstLineIndent"> “混吃等死的生活确实我的人生目标，不过有些人非要捣乱。”</p>
+	<p class = "firstLineIndent"> 我说着，随手从随身空间中掏出一团殉丽的“果冻”扔在林雪的办公桌上。“我们让邮件炸弹袭击了，初步判定可能是那个正在到处找异能者麻烦的神秘组织在捣鬼，因此本元感觉些微不爽，现打算进行打击报复，所以来看看你们这个亚洲最大的异能组织到底找到对方的踪迹没有。”</p>
+	<p class = "firstLineIndent"> “汪！汪汪！！”</p>
+	<p class = "firstLineIndent"> 勇敢的o立刻对突然出现的神秘道具起挑战。</p>
+	<p class = "firstLineIndent"> “这是什么？挺漂亮的。”丁玲好奇地凑过来，伸手去碰那个看上去瑰丽无比的后现代“果凉”</p>
+	<p class = "firstLineIndent"> “这就是那咋，都件炸弹。”姐姐指点着说道。</p>
+	<p class = "firstLineIndent"> 丁玲的手“嗖”一下缩了回来，“炸弹？你还真别说，看上去确实”误？这个…”这个炸弹怎么”</p>
+	<p class = "firstLineIndent"> 我在一旁解释道：“因为它已经引爆了，不过被浅浅停滞掉了时间，所以目前是安全的。”</p>
+	<p class = "firstLineIndent"> 丁玲听完，眼睛立刻睁地老大，半的才扯着嘴角说道：“真逆天，”</p>
+	<p class = "firstLineIndent"> “汪！汪汪！！”</p>
+	<p class = "firstLineIndent"> o仍然勇敢地挑衅中。</p>
+	<p class = "firstLineIndent"> 然后，我大致讲述了这个邮件炸弹的来历其实也没什么好讲的，除了最后的解决方式相当玄幻之外，这东西的出现方式完全符合最正常不过的宅急送流程，对一个颇有实力的异能组织而言，准备这么一个邮件炸弹并将其混入正常的邮件包裹中还真不是什么难事。</p>
+	<p class = "firstLineIndent"> “你们也真够粗心的”听完了我的讲述，林雪只能无奈叹气，“手下多少专业军人，竟然还让一个炸弹给混到大本营里”好吧好吧。看在陈倩姐的面子上我就不教育你了，那么也就是说，你现在心情不爽，很想打击报复，所以来找我要线索？异能组什么时候成打杂的了”不过也没什么，难得你终于有了点苦力的觉悟，那就好好扮演本小姐金牌打手这个光辉的角色吧！”</p>
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0280.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0300.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>

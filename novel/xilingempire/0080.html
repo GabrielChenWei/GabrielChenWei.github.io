@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel"><p>
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</p></div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h2>第八十一章 人造超人</h2>	
+	<p class = "firstLineIndent"> 虽然已经同意，但我对珊多拉的计划还是抱有一定的疑虑。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 总感觉自己就好像那些拿活人做实验的变态科学家一样……</p>
+	<p class = "firstLineIndent"> “放心吧，不会有什么问题的。”珊多拉再一次向我保证道，“这种辐射即使不能激发异能也不会对身体造成什么危害，再说了，那些佣兵虽然没什么实力，但他们的抵抗能力总要强过身为普通人的浅浅和陈倩，你还有什么可以担心的？要知道，像他们这样有一定抵抗能力但又不会完全免疫辐射的人可是相当罕见的实验素材啊！”</p>
+	<p class = "firstLineIndent"> 我看了看一脸研究狂热的珊多拉，又看了看不远处正抱着一大堆古怪零部件神游状态的林雪，总感觉她们两个在某些方面发生了重合啊。</p>
+	<p class = "firstLineIndent"> “好吧，让他们经受辐射也不是不可以，不过要和他们说明情况以及可能会有的危险性，绝对不能强迫他们。”</p>
+	<p class = "firstLineIndent"> “他们一定会哭着喊着同意的！”</p>
+	<p class = "firstLineIndent"> 珊多拉一脸自信地说道。</p>
+	<p class = "firstLineIndent"> 在基地西南方向一个临时建立起来的营房内，我和珊多拉见到了正在好奇地打量这间合金房间的雷克。</p>
+	<p class = "firstLineIndent"> 除了当日领回潘多拉的时候见过一次面之外，我和雷克这仅仅是第二次见面，我对这个健壮而且面相忠厚的中年人印象并不怎么深刻，不过后者的记忆力明显比我要强的多，他一下子就认出了有过一面之缘的我们，只是我和珊多拉的名字对于这个异界人来说回忆起来似乎有些困难。</p>
+	<p class = "firstLineIndent"> “那么，重新自我介绍一下，”我示意有些激动地站起身来的雷克重新坐下，然后指了指珊多拉说道，“我们就是这里的首领，我叫陈俊，这位是珊多拉·凯尔薇·尤拉西斯。”</p>
+	<p class = "firstLineIndent"> 雷克的脸上并没有太过惊讶的神色，其实在来到这个神奇的地方并且见识到了各种不可思议的事物之后，他已经有些麻木了，以至于我这样貌不惊人的家伙竟然会是这个基地的首领他也一点都不感到意外。</p>
+	<p class = "firstLineIndent"> “首先，你要知道的是，我们并不属于这个世界。”</p>
+	<p class = "firstLineIndent"> 我单刀直入地切入了话题，然后脑子里不知怎么突然闪过“其实我是一个外星人”这样扯淡的台词……</p>
+	<p class = "firstLineIndent"> “其实我已经猜到一些了，”雷克脸上只是划过一丝微微的惊讶，便了然地点点头说道，“你们和这个世界的人类真是有很多的不同——你们是来自那些大魔导师所说的异位面么？”</p>
+	<p class = "firstLineIndent"> “你们这个世界的魔法文明很不完善，”珊多拉在外人面前已经完全恢复成了那个高傲的希灵征服者，说话完全不留一点情面，“你们的魔导师推论出了异位面的存在，但是他们对异位面的理解偏差太大，我们所来自的世界比你所能理解的要更加遥远而且不可想象，你只要知道一件事就可以：我们希灵帝国从很久以前就一直在猎杀着深渊力量——就是你们所说的恶魔力量，我们追猎这种力量跨越了无数个位面，而你们这个被侵蚀的世界只是其中最微不足道的一个战场而已。”</p>
+	<p class = "firstLineIndent"> 嘛，怎么说呢，其实要说真实情况的话，我们刚开始的时候只不过是出来旅游而已……</p>
+	<p class = "firstLineIndent"> 恩，大过年的跑到撒哈拉沙漠去旅游……</p>
+	<p class = "firstLineIndent"> 珊多拉的介绍对雷克造成的冲击是巨大的，他大张着嘴，半天没有反应过来。</p>
+	<p class = "firstLineIndent"> 在之前他就已经才想过无数遍这些来自异世界的强大生命究竟是为什么来到这个世界，从最好的设想一直到最坏的可能他都想到了，但偏偏没有想到，对方竟然是专门为了追杀那些恶魔力量而来的！</p>
+	<p class = "firstLineIndent"> 竟然存在专门猎杀那种恐怖力量的人？</p>
+	<p class = "firstLineIndent"> 不过，想到了对方强悍的实力以及对魔化生物格外有效的攻击方式，雷克还是接受了这个说法。</p>
+	<p class = "firstLineIndent"> 于是，一下子，我和珊多拉的形象在雷克的心目中无限膨胀了起来，几秒钟内就达到了近乎救世主的程度……</p>
+	<p class = "firstLineIndent"> 看着雷克越来越灼热的目光，恐怕就是猪都能想的到这家伙的心思了，不过，这对于我和珊多拉接下来要做的事却是一个很好的帮助。</p>
+	<p class = "firstLineIndent"> “那么，请问我们可以帮上什么忙吗？”</p>
+	<p class = "firstLineIndent"> 雷克急切地问道，尽管他知道自己的佣兵团实力低微，但既然今天对方将火刃佣兵团的人叫到了这里，那就证明火刃佣兵团肯定有什么能够帮的上忙的地方！</p>
+	<p class = "firstLineIndent"> 于是，我便将之前和珊多拉商定的计划告诉了雷克，当然，为了让雷克能够更好地理解，我还是稍稍做了一些修饰。</p>
+	<p class = "firstLineIndent"> “也就是说，为了能更容易地消灭这个世界的深渊力量，并且让这个世界的土著居民能够有能力独自对抗未来可能发生的二次侵蚀，我们正在尝试强化这个世界人类的各种力量，目前已经取得了相当大的成功，但是我们需要一批志愿者来帮助我们完成这个试验。”</p>
+	<p class = "firstLineIndent"> 我最后如此总结道。</p>
+	<p class = "firstLineIndent"> 雷克陷入了沉思中。</p>
+	<p class = "firstLineIndent"> 虽然没有听懂“志愿者”的意思，但是很明显，自己和自己的同伴们是作为试验品被带来的，但是对方并没有使用强硬的手段来让自己屈服，反而在征求自己的意见，这最起码证明了对方并没有什么恶意，而是真的想要消灭那些恶魔力量。</p>
+	<p class = "firstLineIndent"> 雷克渴求力量，这个世界的每一个人都深知力量的重要性，但是他也知道，天下没有免费的午餐，平白得来力量肯定不会那么一帆风顺。</p>
+	<p class = "firstLineIndent"> 看到雷克的脸上闪过了一丝犹豫之情，我知道他在顾虑什么，于是坦白道：“这个过程可能会有意外，也有可能失败或者产生一点小小的副作用，但是我可以保证，即使失败了，你们也不会受到什么伤害，我们采用的技术手段是以安全为第一位的。”</p>
+	<p class = "firstLineIndent"> 听到我的话，雷克打消了最后一点疑虑，既然我已经坦白了这个试验有失败的可能，那么我的话反而更加可信了。</p>
+	<p class = "firstLineIndent"> “我个人没有意见，而且即使有风险，我也愿意承担，”雷克坚定地点了点头，“不过我要征求一下同伴们的意见。”</p>
+	<p class = "firstLineIndent"> “这个当然。”我点头说道。</p>
+	<p class = "firstLineIndent"> 当天晚上，我便见到了火刃佣兵团的全体成员站在我的面前，从他们脸上的坚定表情，我已经知道了他们的决定。</p>
+	<p class = "firstLineIndent"> 然后，我注意到在雷克身后扔着的一个看上去很沉重的麻袋，里面似乎有什么东西还在动着。</p>
+	<p class = "firstLineIndent"> “这是什么？”我好奇地走上前去。</p>
+	<p class = "firstLineIndent"> “这只是一点随身的行李，您就不用……”雷克还没有说完，麻袋突然被从里面用力挣开，一个留着褐色短发、皮肤黑黝黝的、看上去二十出头的瘦瘦小小的男子露了出来，然后开始用力将口中的破布掏出来。</p>
+	<p class = "firstLineIndent"> “不会吧？你们已经被生计逼迫到这种地步了？”</p>
+	<p class = "firstLineIndent"> 我大惊失色道。</p>
+	<p class = "firstLineIndent"> 一旁不知什么时候变成腹黑性质的姐姐掩口而笑：“呵呵，我还以为这里面是一个小姑娘呢……看来你们对这方面的生意还是不够了解啊，这样的商品可不好出手哦……嘛嘛，也说不定，我听说还是有一些贵族喜欢这口的……”</p>
+	<p class = "firstLineIndent"> “不是的！”被我当成拐卖案件受害人的男子终于恢复了语言能力，“我只是不愿意参加这个危险的……唔……”</p>
+	<p class = "firstLineIndent"> 雷克收回了刚刚将对方打晕的拳头，对我嘿嘿一笑，说道：“我们全团通过，全团通过……”</p>
+	<p class = "firstLineIndent"> ……大叔，你这是在犯罪啊……</p>
+	<p class = "firstLineIndent"> 虽然发生了这么一个小小的插曲，异界第一批人造超人部队的制造计划还是正式展开，反正这个过程的安全系数也很高，我也就不关心那个瘦子的抗议问题了。</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十二章 异界中央异能局</h2>	
+	<p class = "firstLineIndent"> 对火刃佣兵团众人的异能激发试验设计的相当简单，其实就是让他们躺在大量的母巢水晶中央，考虑到他们每个人都拥有斗气或者魔法这样的力量，可能会对接受辐射产生一定的干扰，我还特意让泡泡加大了水晶能量的输出功率，泡泡的做法是立刻连线和两千多人来了一场游戏嘉年华，母巢水晶的能量流动就是她的思维过程，这种做法当然无可厚非，不过这个宅到出神入化的贪玩萝莉有没有借这个机会徇私偷懒就有待商榷了……</p>
+	<p class = "firstLineIndent"> 母巢对整个希灵基地都是相当重要的地方，自然不可能让外人随便进入，所以我们让泡泡对母巢进行了一定程度的改变，在附近建立了一个小型的水晶“孵化器”，然后将母巢中的能量分流一部分进入这个孵化器中，看着那个怎么看怎么像棺材的孵化器我不禁感叹，泡泡的审美观果然不是我等凡人可以揣摩的，怪不得珊多拉之前一直严禁泡泡私自修改基地的建筑蓝图……</p>
+	<p class = "firstLineIndent"> 雷克等人依照我们的吩咐，都换上了特制的强化辐射的“反防护服”进入了孵化器中，然后收敛全身的魔法和斗气，躺在水晶制成的平台上，当然，有一个人是例外的，那个被雷克称为“猴子”的胆小盗贼一直没有放弃反抗，并且在进入孵化器中之后死活也不肯停止斗气护体，这严重影响了整个试验的正常流程，值得庆幸的是，最后雷克还是展现出了身为团长雷厉风行的一面，他果断地一拳揍晕了“猴子”，并且号召全团成员在猴子身上进行了大约十五分钟的热身运动……</p>
+	<p class = "firstLineIndent"> 我颇有些头疼地看着眼前站着的三个面色不善的临时盟友。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 穆罗，沐，还有维诺亚。</p>
+	<p class = "firstLineIndent"> 刚一发现我们的行动，并且看到十几个人类换上了古怪的灰袍子被我们关进了那座新出现的长方形建筑中，他们便带着这种兴师问罪的表情来到了我面前。</p>
+	<p class = "firstLineIndent"> “我们怀疑你们在利用这个世界的人类进行某种试验。”</p>
+	<p class = "firstLineIndent"> 身为精灵族的沐说话从来不知道委婉，这一点即使他在人类世界中生活了数百年也没有产生丝毫的改变。</p>
+	<p class = "firstLineIndent"> “没错，”珊多拉承认地相当痛快，一点思想负担也没有的样子，“每到一个新的世界，帝国的研究小组都会采集这个世界上的生命来进行研究，这个世界的人类正好是最适合的研究对象而已。”</p>
+	<p class = "firstLineIndent"> 恐怕这才是你力主进行这次异能催化试验的真正原因吧？你终于说出来了是吧？</p>
+	<p class = "firstLineIndent"> 沐的脸色一下子变得相当难看，精灵本来是一种生性淡泊的种族，他们不会有太多的感情流露，但是他们对生命有着常人难以想象的感情，一旦有人触犯到了这点，精灵就会变成一种相当顽固而且令人头疼的生物，很明显，珊多拉的话已经从种族的高度严重触犯了精灵的生命哲学。</p>
+	<p class = "firstLineIndent"> 穆罗和维诺亚的表情也好不到那里去，人类对生命没有精灵那种近乎顽固的执着，但是现在他们的同胞被人当成了试验品，这一点谁都接受不了。</p>
+	<p class = "firstLineIndent"> 如果不是顾虑到周围到处都是战斗力堪比人类中级强者的希灵士兵而且面前的两个皇帝实力稳胜自己，恐怕他们三个现在就要来一场狗血的人类反击战了。</p>
+	<p class = "firstLineIndent"> “还是我来说吧。”</p>
+	<p class = "firstLineIndent"> 我将在这种情况下只能用来添乱的珊多拉拖到了身后，并且随手塞给她一块足有六斤重的巨大蛋糕，以她的性格，是不可能花费时间去对面前几个在她看来无足轻重的人解释清楚的，这种事情只能交给我来解决。</p>
+	<p class = "firstLineIndent"> 话说，珊多拉怀抱巨大蛋糕的吃相还挺可爱的，嗯，和叮当抱着巨大棒棒糖的时候有一拼……</p>
+	<p class = "firstLineIndent"> “简单地说，我们正在试图让这个世界的人类获得可以对抗深渊的力量——注意，我说的是全人类，而不仅仅是你们这样的强者，如果我们的试验成功的话，即使是最普通的平民也将拥有足以一个人对抗魔化生物的力量。”</p>
+	<p class = "firstLineIndent"> 穆罗三人的眼睛一下子睁的老大。</p>
+	<p class = "firstLineIndent"> 独自对抗魔化生物？！</p>
+	<p class = "firstLineIndent"> 魔化生物的强大是总所周知的，它们皮糙肉厚，悍不畏死，而且攻击力惊人，如果没有生命女神赐福的护身饰品保护，一个心智坚定的战士将在几分钟内被它们身上的恶魔气息腐化成一个见人就杀的疯子，不要说平民，就是身经百战的战士也不敢百分之百地肯定自己能单独对抗一个最普通的魔化生物，如果不是人类拥有魔化生物们永远无法研究出来的坚固装备和森严要塞，恐怕现在人类早已经灭亡了。</p>
+	<p class = "firstLineIndent"> 现在，面前这个希灵皇帝竟然说，他们可以让普通平民也拥有对抗深渊的力量？</p>
+	<p class = "firstLineIndent"> “你们不必担心我们另有所图，”我接着说道，“我们的唯一目标就是消灭深渊……”</p>
+	<p class = "firstLineIndent"> “你们这个世界被侵蚀太久，已经没有多少占领价值，”珊多拉舔舔手指，瞬间女王化说道，“帝国不会浪费时间征服一个没有利用价值的世界。”</p>
+	<p class = "firstLineIndent"> 六斤重的特制蛋糕啊！珊多拉你的喉咙是什么规格的？</p>
+	<p class = "firstLineIndent"> 不管怎么说，最终穆罗三人还是暂时打消了对我们行动的疑虑，当然，表面上是这样，背后他们肯定会向莫迪斯三世汇报，但到那时候，我们的目的已经达到了。</p>
+	<p class = "firstLineIndent"> 火刃佣兵团的众人都是拥有一定实力的人，虽然他们的实力比起这个世界的大多数强者来说只能充当炮灰，但是已经比身为普通地球人的浅浅和姐姐要强太多了，因此辐射催化对他们起到的效果肯定没有对浅浅和姐姐那么逆天，不过平白得来的力量，即使再怎么不济，也足够让这些视力量为生命的佣兵们高兴了。</p>
+	<p class = "firstLineIndent"> 第二天早晨，我们便见到了已经从辐射昏迷中恢复过来的雷克众人。</p>
+	<p class = "firstLineIndent"> 看他们一个个笑逐颜开的样子，我就知道，试验成功了。</p>
+	<p class = "firstLineIndent"> 或许是本身的能量抵抗了辐射的负面作用，雷克等人并没有像浅浅和姐姐那样发生性格的巨大转变，但是相对的，他们也没有产生控制时间之类的恐怖能力，他们获得的新力量基本上都是根据他们已有的能力延伸、强化出来的，虽然没有浅浅或者姐姐的能力强大，但是已经让这些原本只能当炮灰的佣兵们整体提升了一大截！</p>
+	<p class = "firstLineIndent"> 身为战士的雷克获得了将身体部分石化来换取惊人防御力以及近战攻击力的异能，我见到他的时候这家伙正一脸炫耀地在自己的胳膊上磨刀——我很不能理解，一条完全由石头构成的胳膊是怎么拥有活动能力的……</p>
+	<p class = "firstLineIndent"> 由于雷克本身的实力已经很高，所以异能在他身上的价值虽然大，但还远远比不上他那些实力平庸的团员们。</p>
+	<p class = "firstLineIndent"> 佣兵团中的法师凯瑟琳获得了能量虹吸的异能，这个能力每过五分钟就可以发动一次，能够将周围方圆百米的空间内的各种能量吸收并贮存起来，同时形成一个瞬间的能量真空区域，这些吸收来的能量种类参差不一，所以不能用来施法，但是却可以在指定的范围释放一次强烈的足以媲美高阶魔法的能量爆炸或者形成一个持续性的能量护盾，而这些过程全部都是不用任何释放时间的！这就意味着，每过五分钟，凯瑟琳就可以瞬发一次高阶魔法，这一点，就是魔导师都不一定能够做到！</p>
+	<p class = "firstLineIndent"> 看到凯瑟琳一次能量虹吸使周围百米的空间成为了在瞬间内无法使用任何斗气和魔法的“禁武区域”，触动最大的就是维诺亚，她一下子就想到了这种能力的可怕之处：先是利用能量虹吸将对方全身上下所有的能量剥夺干净，然后在瞬间释放出强大的能量爆炸，即使是身体强度已经达到人类顶峰的自己，也不敢保证能在完全没有斗气和魔法保护的情况下从这种爆炸中全身而退——虽然她自信可以在凯瑟琳动手之前脱离虹吸力场或者干脆击杀对方，但那已经证明，一个刚刚脱离了学徒阶段的低级魔法师，拥有了重创顶级强者的可能！</p>
+	<p class = "firstLineIndent"> 之前一直拒绝参加试验的“猴子”，现在也是一脸的灿烂，并且开始深深地后怕万一当时自己再坚定点的话恐怕就会错过了这次好机会，他获得的能力连我都感到不可思议——水拟态！</p>
+	<p class = "firstLineIndent"> 将自己变成一滩水！</p>
+	<p class = "firstLineIndent"> 这种能力一旦使用得当，将是多么可怕的事情！“猴子”将成为这个世界上最强大的刺客，潜行者，间谍，还有澡堂**者……</p>
+	<p class = "firstLineIndent"> 得知了“猴子”这项能力之后凯瑟琳做的第一件事就是将对方按在地上，逼他发誓绝对不将自己的能力应用在某些不该用的方面——这时我才知道，原来他们两个是一对情侣！</p>
+	<p class = "firstLineIndent"> 虽然据雷克所说，“猴子”的人品相当值得信任，但凯瑟琳还是对自己的恋人进行了长达半小时的刑讯，直到对方向生命女神发誓，只要自己利用异能干坏事就被人当水喝掉才算了事。</p>
+	<p class = "firstLineIndent"> “好了，”我拍拍手让激动万分的新晋超人们安静下来，然后宣布道，“从今天开始，异界中央异能局就算正式成立了！”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十三章 超能力战斗大队</h2>	
+	<p class = "firstLineIndent"> 其实我本来想说龙组的……</p>
+	<p class = "firstLineIndent"> 但是被冰化的浅浅和黑化的姐姐集体鄙视了长达二十分钟并且连潘多拉都表示无语之后，我放弃了这个很有前途的称呼。</p>
+	<p class = "firstLineIndent"> 我想到的第二个称呼是“土著居民本土防御别动队”，这个绕口的名字以其扯淡性深的我的喜爱，但是当潘多拉告诉我一个简称为“土别队”的部队会令人产生很多歧义之后，我只好再次宣布放弃好不容易想出来的称呼。</p>
+	<p class = "firstLineIndent"> 之后我提出的各种气派招摇的名字都被大家以各种理由顶了回去，无奈，我只好同意了由林雪提出来的，最没有创意的名字：</p>
+	<p class = "firstLineIndent"> 中央异能局。</p>
+	<p class = "firstLineIndent"> 雷克等人自然对“中央异能局”这个新奇的称呼很感兴趣，纷纷上前打听这是什么意思，突然获得了强大异能的他们现在对我们这些来自异世界的朋友已经感激到近乎膜拜的程度，看他们那狂热的表情我就知道，忽悠人的时候到了。</p>
+	<p class = "firstLineIndent"> “这是我们帝国设立在各个世界的本土防御机关的统一称号，”我说的一脸严肃，并且竭力忽略珊多拉在我背后猛拧的举动，“为了防止世界受到深渊力量的侵蚀并且严密监视他们的一举一动，我们要在每个世界设立前线机关，如此庞大的前线部队不可能全部由帝国的战士构成，所以我们会选取当地世界的土著居民来组建防御部队，考虑到各个世界的独立主权问题，这些防御部队不必成为帝国的公民，而是类似于外籍部队，但是我们将视其为帝国的一员，我决定由你们——第一批帝国培养出来的异能战士来组建这个部队，当然，这只是我的建议，你们可以拒绝，也不必担心有任何后果。”</p>
+	<p class = "firstLineIndent"> “我们当然愿意！”雷克激动地说道，“我们非常荣幸能够担此重任！”</p>
+	<p class = "firstLineIndent"> 他当然愿意！见识到了希灵帝国的强大，他们早就想有个机会和对方打上交道了，更何况现在整个世界都处于那种“深渊力量”的威胁下，而自己和自己的团员们即将成为这个世界上最能够和深渊力量对抗的战士，这将是何等的荣耀！</p>
+	<p class = "firstLineIndent"> “你倒真能忽悠，”珊多拉继续保持在我腰间拧来拧去的动作，一边用精神连接说道，“军饷津贴支援什么都不说，就借着人家的头脑发热忽悠来这么一支前线敢死队……不过这种利用当地居民组建深渊对抗部队的方式倒是挺好的，为什么我以前就没有想到呢？虽然他们的实力比不上帝国正规军，但是也是一股不小的战力了，这样能节省不少的士兵呢……”</p>
+	<p class = "firstLineIndent"> “你能赞同我的做法令我很高兴，”我同样用精神连接回答道，“但是为什么你还要拧我呢？”</p>
+	<p class = "firstLineIndent"> “哦，手感不错，你接着忽悠你的，我再拧会……”</p>
+	<p class = "firstLineIndent"> ……</p>
+	<p class = "firstLineIndent"> 姑且无视突然淘气起来的珊多拉，异界第一支超能力战斗大队便在这种一点都严肃不起来的气氛中成立了，雷克和他的火刃佣兵团也成为了第一批由普通土著智慧生物组成的帝国前线部队，在以后的岁月里，他们也逐渐成长成为了一个近乎传奇的队伍，在所有世界的本土防御部队中享有极高的声誉。</p>
+	<p class = "firstLineIndent"> 当然，那都是后话了。</p>
+	<p class = "firstLineIndent"> 等刚刚成为中央异能局工作人员的火刃佣兵团众人安静下来之后，我将闲游到我身后的林雪一把抓了过来。</p>
+	<p class = "firstLineIndent"> “从今天开始，她就是你们的教官，你们在完成异能训练之前必须完全服从她的命令！”</p>
+	<p class = "firstLineIndent"> 虽然对一个女孩子竟然是他们的教官感到有些吃惊，但雷克众人还是轰然应诺。</p>
+	<p class = "firstLineIndent"> “等等！”林雪终于反应过来，慌忙抗议道，“我什么时候……”</p>
+	<p class = "firstLineIndent"> 我不等她说完便一把捂住了她的嘴，在她耳边低声威胁道：“三天拆坏我四台幽能反应炉——如果你不答应今后就休想再碰基地里的任何东西！”</p>
+	<p class = "firstLineIndent"> 林雪在基地里已经闲了很久了，每天无所事事的她除了到处拆拆卸卸基地里的高科技设备之外就是利用自己的预言能力发布诸如“明天天气不错”、“今天晚上风力三到四级”之类的天气预报，我都替她闲得慌，现在再不给她找点正事干的话用不了多久这丫头就要成为一个彻彻底底的米虫了。</p>
+	<p class = "firstLineIndent"> 搞定了林雪这边，我就要面对另外三个对帝国的强化人技术产生高度兴趣的临时盟友了。</p>
+	<p class = "firstLineIndent"> 穆罗三人是这场“奇迹”的见证人。</p>
+	<p class = "firstLineIndent"> 他们亲眼见到，几个原本连跑回都算不上的二流佣兵，仅仅一天过去，便获得了足以对抗中阶甚至是高阶强者的力量，甚至，他们那诡异的新能力运用得当的话，要侥幸击杀超阶的强者都不是梦想，面对这样令人骇然的事情，没有人能不受触动。</p>
+	<p class = "firstLineIndent"> 身为站在凡人力量巅峰的人物，穆罗和维诺亚（身为精灵的沐可以算作一个例外？）深知力量的获得有多么不易，看到几个佣兵不付出一丝一毫的代价便成为强者多少让他们心中有些不舒服，但是与这点不快比起来，他们更关注这种技术对整个人类的影响！</p>
+	<p class = "firstLineIndent"> 使最普通的人类都拥有足以对抗恶魔力量的战斗力！</p>
+	<p class = "firstLineIndent"> 他们不奢望希灵帝国的这两位皇帝能将整个大陆的人类都变成这种强者，但只要有五分之一，不，十分之一的人类获得了这样的力量，所谓的魔化生物将变成待宰的羔羊！人类将轻而易举地净化整个世界的恶魔力量！</p>
+	<p class = "firstLineIndent"> “这当然可以。”</p>
+	<p class = "firstLineIndent"> 面对三双热切期盼的眼睛，我干脆地承认道。</p>
+	<p class = "firstLineIndent"> 被穆罗这么一个大老爷们用这种热情的眼神直视，那简直就是一种折磨！</p>
+	<p class = "firstLineIndent"> 加上沐这样一个俊美到不像男人的精灵，这种折磨就更加可怕……</p>
+	<p class = "firstLineIndent"> 至于维诺亚投过来的热烈眼神……嘛，如果浅浅可以将手中不断凋谢又复活的花束放下的话，我还是可以享受一下的……</p>
+	<p class = "firstLineIndent"> 听到我的话，穆罗三人立刻露出了毫不掩饰的喜悦，但我下面的话立刻让他们冷静下来。</p>
+	<p class = "firstLineIndent"> “只是，我们需要你们付出一点点代价。”</p>
+	<p class = "firstLineIndent"> 天下没有免费的午餐，这一点谁都知道，但是或许是在那个位置太久了，穆罗几乎都忘掉了求人办事所需要的最基本的条件——也是，为他这样传说级的人物办事，那是一般人求都求不来的事情，还有谁敢提条件呢？即使莫迪斯三世都没有和穆罗他们谈过条件！</p>
+	<p class = "firstLineIndent"> 不过，在他面前的可不是一般人。</p>
+	<p class = "firstLineIndent"> 统治整个宇宙、远征无数世界的终极帝国，据说这个帝国的一个村子就有整个大陆那么大！姑且不论这种说法是不是自夸，但是穆罗可以肯定，对方是绝对有资格狠宰自己一顿的。</p>
+	<p class = "firstLineIndent"> “请说出你们的条件，”穆罗点点头说道，“只要不是危及到这个世界的要求，我们都可以答应。”</p>
+	<p class = "firstLineIndent"> “我们要这个——”我拿出一块灰扑扑的铁块，在穆罗眼前晃了晃，说道，“有多少要多少。”</p>
+	<p class = "firstLineIndent"> “奥铁？”穆罗一眼就看出了我手中的金属是什么。</p>
+	<p class = "firstLineIndent"> 这就是西卡罗带回来的那种金属，拥有不被深渊力量侵蚀的神奇特性的奥铁。</p>
+	<p class = "firstLineIndent"> “这种金属拥有永远不会被恶魔力量侵蚀的特性，制成武器盔甲之后可以让我们的战士能在恶魔气息的包围下支撑更长的时间，多亏了这种金属的存在，我们才可以和魔化生物对抗到今天，这种金属在我们的大路上储量确实不少，但是……”</p>
+	<p class = "firstLineIndent"> 穆罗有些犹豫，奥铁是人类对抗魔化生物的唯一依仗，大陆上的奥铁虽然还算丰富，但是就这么贸然交给对方——</p>
+	<p class = "firstLineIndent"> 一直呆在我身后当乖萝莉的潘多拉突然上前一步，平静地陈述道：“发动战争，我们将得到整个世界所有的奥铁。”</p>
+	<p class = "firstLineIndent"> 说完这句，潘多拉突然一下子扑到我怀里说道：“哥哥，打仗好不好？”</p>
+	<p class = "firstLineIndent"> 好你个头啊！别以为偷偷和珊多拉学习怎么撒娇就能搞定你英明神武的哥哥！</p>
+	<p class = "firstLineIndent"> 我一把将正计划征服整个世界的小萝莉提了起来，然后按到旁边的椅子上，一边对穆罗说道：“别理她，咱们继续。”</p>
+	<p class = "firstLineIndent"> ……已经不用继续了，看他们三个人的脸色就可以知道。</p>
+	<p class = "firstLineIndent"> 虽然我一再重申自己没有强迫和威胁的意思，但穆罗还是在私下和我说道：“我相信您是一个爱好和平的皇帝，但您身边很明显有更多喜欢战争的人物……再说了，在这个交易中，我们也没有吃亏不是？”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十四章 小泡泡</h2>	
+	<p class = "firstLineIndent"> 一切都进行的相当顺利。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 莫迪斯三世在第二天便派来了和我们谈判奥铁交换强化人技术的人，并且很快同意了我们要求其每年向帝国供应百分之四十奥铁开采量的苛刻条件，这让我深深地后悔当时为什么没有把这个数字再提高一点……</p>
+	<p class = "firstLineIndent"> 对莫迪斯三世为什么能够这么轻易地就答应我们的狮子大开口，珊多拉倒是分析地很透彻：</p>
+	<p class = "firstLineIndent"> “如果获得了大量的异能战士，魔化生物对人类而言根本算不上什么威胁，对付一般的怪物，一个异能者完全能够在自己被深渊力量影响前就消灭对方，即使是腐化龙族那样的怪物，十个左右的异能者也能够轻松地搞定，到时候奥铁这种除了不会被深渊力量腐蚀没有任何特殊用途的金属对人类而言作用将大大降低，用一种即将成为废物的高储量矿石来换取整个人类从根本上不再害怕魔化生物，你说这样的买卖究竟谁才是赢家？”</p>
+	<p class = "firstLineIndent"> “……你知道的这么清楚，为什么不早告诉我？”</p>
+	<p class = "firstLineIndent"> 等莫迪斯三世的使者走后，我听完了珊多拉的分析，立刻一把捏住后者的脸蛋揉来揉去，一边“恶狠狠”地质问道。</p>
+	<p class = "firstLineIndent"> 随着相互之间越来越熟络，而且拥有近乎异体同心的心灵同步，我和珊多拉之间现在经常会出现这样肆无忌惮的亲昵行为，连浅浅都不得不默认了自己和我之间的联系还没有珊多拉来的紧密的事实——毕竟心灵同步这种夸张的联系是别的什么东西都无法替代的。</p>
+	<p class = "firstLineIndent"> “反正我们只是拿这些金属用来分析研究的，要那么多干什么？”</p>
+	<p class = "firstLineIndent"> 珊多拉揉着被捏的有些发红的脸颊说道。</p>
+	<p class = "firstLineIndent"> 你永远都不会理解一个资深老抠门的内心世界啊！</p>
+	<p class = "firstLineIndent"> 这里毕竟不是地球，我们不可能永远呆在这个世界，等到这个世界的深渊力量被削弱到一定程度之后，我和浅浅她们自然要尽快回去，因此最终我和珊多拉决定在这个世界留下一个前哨基地，作为中央异能局的组织据点，同时让雷克作为希灵帝国和莫迪斯三世的中间人，通过基地中的空间传送设备将收集来的奥铁送到潘多拉设立在地球上的影子世界里面，同时我们也会派专人通过这个前哨基地和雷克的“中央异能局”接洽，随时了解和深渊力量的战斗情况，泡泡自然也会跟我们一起回到地球，但是她会留下一个可以自动运转并且产生新母巢水晶的“孵化器”，由于没有泡泡的随时控制，这个自动孵化器的效果肯定没有用来强化火刃佣兵团的那个好，但已经足以让普通人获得足以对抗魔化生物的力量了。</p>
+	<p class = "firstLineIndent"> 突然从一个默默无闻的小佣兵团团长变成这样一个关系到世界命运的大人物让雷克激动万分，他和他的团员们几乎是声泪俱下地发誓要为希灵帝国鞠躬尽瘁……</p>
+	<p class = "firstLineIndent"> 这让在场的维迪斯帝国使者脸色绿的跟菠菜叶子有的一拼。</p>
+	<p class = "firstLineIndent"> 安排好了异能者的事情，我和基地里的一大帮女孩子们一起来到了母巢中。</p>
+	<p class = "firstLineIndent"> ……我到现在才突然发现，原来我身边是如此严重的阴盛阳衰啊！</p>
+	<p class = "firstLineIndent"> 珊多拉，潘多拉，浅浅，姐姐，林雪，啊，对了，还有一个不知道算不算数的叮当……</p>
+	<p class = "firstLineIndent"> 并且我还更加悲哀地发现，这些女孩子里面没有一个是正常人的，原本仅有的两个普通女孩，浅浅和姐姐还摇身一变成为了强大的异能者……</p>
+	<p class = "firstLineIndent"> “阿俊？”浅浅的声音将我从胡思乱想中唤醒，我转过头，正好看到对方关心的表情，“你怎么了？又在发呆？”</p>
+	<p class = "firstLineIndent"> “啊，没事，”我回神之后慌忙说道，要是让浅浅知道我刚刚把她也归为了不正常的行列中去，恐怕又免不了要受点皮肉之苦，“对了，珊多拉，你说泡泡给我们准备了个惊喜，究竟是什么？”</p>
+	<p class = "firstLineIndent"> “很快你就知道了！”</p>
+	<p class = "firstLineIndent"> 珊多拉捧着蛋糕神秘兮兮地笑着说道。</p>
+	<p class = "firstLineIndent"> 在母巢的核心控制室中，我们终于见到了泡泡给我们准备的惊喜。</p>
+	<p class = "firstLineIndent"> 常年躲在水晶棱柱中和人打游戏的资深宅女兼职游戏发烧友泡泡小萝莉此刻终于离开了她的宝贝水晶柱，站在控制数的入口处带着开心的笑容看着我们，而在她身边，站着一只同样穿着简洁白色连衣裙、容貌和泡泡几乎一模一样但看上去要更稚嫩一些的小罗莉。</p>
+	<p class = "firstLineIndent"> “泡泡，辛苦你了。”</p>
+	<p class = "firstLineIndent"> 珊多拉来到泡泡面前，轻轻揉揉对方的小脑袋，看样子她很喜欢这个可爱的小家伙，并没有像面对其他希灵使徒时一样带着虽然亲近但令人不敢直视的感觉——尽管后者是一个成天就知道联网打游戏几乎二十四小时处于半休眠状态的小宅女。</p>
+	<p class = "firstLineIndent"> 泡泡享受了一会珊多拉的抚摸，然后将身边的小女孩推到了我的面前，说道：“陈俊皇帝，这是泡泡的礼物！”</p>
+	<p class = "firstLineIndent"> 我立刻感到身后传来数道凌厉的视线，姐姐瞬间黑化，呵呵笑道：“诶呀呀，没想到我的弟弟竟然会有这种爱好呢，这个小女孩应该还不到十岁吧……”</p>
+	<p class = "firstLineIndent"> 我一头冷汗，急忙对泡泡说道：“等等……这是怎么回事？！她是谁我都不知道啊！”</p>
+	<p class = "firstLineIndent"> 林雪突然想起了什么，用拳头在自己的手掌上一砸，恍然大悟道：“啊，我想起来了！今天是泡泡完成复制的日子！”</p>
+	<p class = "firstLineIndent"> 原来是这样！</p>
+	<p class = "firstLineIndent"> 原本按照珊多拉的说法，一台希灵主机完成本体资料的拷贝是需要大约七天时间的，但是由于泡泡比较贪玩，这个过程被延长了好几天，结果我就忘了这茬了！</p>
+	<p class = "firstLineIndent"> “也就是说……”</p>
+	<p class = "firstLineIndent"> 我看着被推到面前、脸上还有一丝呆滞的小女孩，心中感到万分的不可思议，一台希灵主机？就这么复制出来了？这个神奇的过程究竟是怎么完成的？！</p>
+	<p class = "firstLineIndent"> 我还想到了另外一件事：这座前哨基地就是依靠泡泡这一台希灵主机建设完成的，现在不过十几天过去，第二台希灵主机便出现在我的眼前，而且这种复制还可以无限地进行下去——希灵帝国的军队真可以称得上是战争瘟疫了……</p>
+	<p class = "firstLineIndent"> 泡泡带着自豪地笑容对我点点头，说道：“这就是泡泡的孩子！”</p>
+	<p class = "firstLineIndent"> “噗——”</p>
+	<p class = "firstLineIndent"> 除了珊多拉和潘多拉，我们全都喷了。</p>
+	<p class = "firstLineIndent"> 一个还不到十一岁的小女孩，指着一个十岁左右的双胞胎妹妹一样的小女孩说：“这是我的孩子。”这种事情的诡异程度简直已经达到了四个加号的程度啊！</p>
+	<p class = "firstLineIndent"> 虽然我们都知道，她说的完全是事实……</p>
+	<p class = "firstLineIndent"> 叮当好奇地落在小一号的泡泡头顶，伸出小手拍拍对方的脑袋说道：“好奇怪的……呜啊！”</p>
+	<p class = "firstLineIndent"> 只见还有些懵懂的小女孩一把就抓住了自己头顶上的“古怪生物”，然后就要向自己的小嘴里放去！</p>
+	<p class = "firstLineIndent"> “呜哇哇……不要吃叮当啊！叮当不好吃的！”</p>
+	<p class = "firstLineIndent"> 眼看就要成为零食的小东西惊慌失措地大叫道，全然忘记了以自己的实力要逃脱魔爪根本是易如反掌的事情，还好我手疾眼快，赶在叮当被当成点心吃掉之前将一根棒棒糖塞进了对方的嘴里。</p>
+	<p class = "firstLineIndent"> 小女孩愣了一下，然后尝出了糖果的香甜，立刻开心地吃了起来，也放开了几乎要哭出来的叮当。</p>
+	<p class = "firstLineIndent"> 果然，不管脑子里被拷贝了多少知识，心性上还只是一个孩子啊。</p>
+	<p class = "firstLineIndent"> “泡泡，这孩子叫什么名字？”</p>
+	<p class = "firstLineIndent"> 我摸了摸正将棒棒糖咬的嘎吱嘎吱响的小女孩，向她的……母亲询问道。</p>
+	<p class = "firstLineIndent"> “小泡泡！”</p>
+	<p class = "firstLineIndent"> 泡泡一脸得意地回答，活脱脱一个为孩子感到自豪的母亲的表情。</p>
+	<p class = "firstLineIndent"> 这个名字……真是囧囧有神啊！</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十五章 即将到来的大战</h2>	
+	<p class = "firstLineIndent"> 泡泡起名字的能力确实值得商榷……</p>
+	<p class = "firstLineIndent"> 但是不管我们怎么明示暗示，泡泡始终坚持自己起的这个名字是最适合自己女儿的，最终，我们只能选择妥协。</p>
+	<p class = "firstLineIndent"> 谁让泡泡是小家伙的母亲呢……</p>
+	<p class = "firstLineIndent"> 完成隶属关系移交之后，泡泡便回到了她的水晶柱中继续进行她未竟的**争霸完美破解汉化珍藏白金正式版全职业制霸事业，而我们则带着小泡泡离开了母巢。</p>
+	<p class = "firstLineIndent"> 这样说来，泡泡还真是个不负责任的母亲呢。</p>
+	<p class = "firstLineIndent"> “难道我今后还要学着带孩子？”</p>
+	<p class = "firstLineIndent"> 看着身边一边舔着棒棒糖，一边用小手紧紧抓着我的衣角的小泡泡，我无奈地说道。</p>
+	<p class = "firstLineIndent"> “那是当然，”珊多拉一脸理所当然的神情，“你就偷着乐吧，这个小女孩可不是一般的希灵主机，一般情况下，希灵主机的本体复制只会产生一个简单的拷贝，就好像那些没有独立人格的下级士兵一样，但这个小家伙明显是泡泡专门培养出来的完全体，她不但拥有一般希灵主机都有的建筑能力，还拥有像泡泡那样的创造性，这可是相当罕见的，现在小泡泡已经归属在你的名下，你就是她的监护人，好好照顾她吧，希灵主机和一般的希灵使徒可是不太一样的，她们的幼体成长起来比普通的人类快不了多少——嘛，就当充分满足你怪叔叔的萝莉养成梦想了。”</p>
+	<p class = "firstLineIndent"> 原来小泡泡还是这么不得了的人物？完全体，一听就是很难产生的个体吧？可是……</p>
+	<p class = "firstLineIndent"> “这个……这个不一样啊……”</p>
+	<p class = "firstLineIndent"> 我用有些欲哭无泪的语调说道，从小泡泡刚才差点把叮当当成食物吃下去来看，现在的她完全就是一个懵懵懂懂的孩子，虽然有母亲灌输给她的基础知识，她比一般的人类幼儿好养活的多，但是那毕竟是一个巨大的麻烦啊！</p>
+	<p class = "firstLineIndent"> 而且，说到萝莉养成的话，我身边已经有一个用来养成的萝莉了……</p>
+	<p class = "firstLineIndent"> 我微微侧过脸，看了看另一边的潘多拉，不知道从什么时候开始，她也学着小泡泡的样子，紧紧地抓住了我的衣角，同时偶尔用充满敌意的目光扫视一眼小泡泡，然后将嘴里的棒棒糖咬的嘎吱嘎吱乱响。</p>
+	<p class = "firstLineIndent"> ……她在嫉妒，虽然这很不可思议，但事实就是如此，一向清冷不在乎周围事情的潘多拉现在表现出了明显的嫉妒之情，尽管连她自己都没有意识到这一点。</p>
+	<p class = "firstLineIndent"> 在之后的几天中，一切都相当平静。</p>
+	<p class = "firstLineIndent"> 上次凯撒斯被我们摆了一道之后便再没有出现，虽然我们每一个人都知道他正在某个角落偷偷计划着什么，但对方有所举动之前，我们也只能静观其变，雷克和他的异能战士们每天都在林雪的操练下累的半死不活，但是看上去他们似乎都很乐在其中，莫迪斯三世已经挑选出了第一批适合进行异能激发的人，他们都有不错的发展潜力而且现阶段实力低微，只要泡泡建立在王都不远处的自动化孵化器开始运转，他们就能立刻进行激发，当然，我们也可以同时得到大量的奥铁，姐姐偶尔会突然黑化，然后威逼利诱着浅浅发动自己的异能，于是第二天早上我们就能看到恢复过来的浅浅在整个基地里到处找人道歉的身影……</p>
+	<p class = "firstLineIndent"> 我意外地发现，这个叫小泡泡的新萝莉真是相当的好养，简直好养到了令人惊讶的地步。</p>
+	<p class = "firstLineIndent"> 她从来不哭不闹，按时吃饭乖乖睡觉，没人理她的时候，她就会安安静静地自己找地方玩去，虽然粘我，但是如果我正在做事，她就会听话地呆在一边，用天真的笑脸陪伴着我……呃，直到我不得不去陪她为止……</p>
+	<p class = "firstLineIndent"> 简而言之，她就是一个完全可以被当成空气的安静孩子，即使被扔在一边也不会有任何问题，好养到了极点！</p>
+	<p class = "firstLineIndent"> 更让我欣慰的是，小泡泡竟然对童话故事和布娃娃有兴趣！</p>
+	<p class = "firstLineIndent"> 我还以为每一个希灵帝国的小孩都只会对枪支弹药和行军打仗产生兴趣呢！</p>
+	<p class = "firstLineIndent"> 我放在随身空间中的原本用来给潘多拉的大堆故事书和玩偶终于有了用武之地，小泡泡的房间几乎被这些萝莉用品给填满了！</p>
+	<p class = "firstLineIndent"> 一个爱心爆棚无处释放的伪怪叔叔。</p>
+	<p class = "firstLineIndent"> 这是黑化的姐姐看到我正干劲十足地为小泡泡布置房间时做出的最中肯的评价，而潘多拉则在一边目无表情地将手中的棒棒糖咬的山响，直到我捧着她的小脸在自己脸上好好蹭了半天才终于多云转晴。</p>
+	<p class = "firstLineIndent"> 不过，平静的日子是不可能就这么持续下去的。</p>
+	<p class = "firstLineIndent"> 中央异能局的第一批常规异能部队完成训练之后不久，我便收到了西卡罗通过加密频道传来的消息。</p>
+	<p class = "firstLineIndent"> 魔化生物大量出现并集结在临近的奥多帝国，伴随着出现的还有强度超过普通深渊生物的强大能量反应。</p>
+	<p class = "firstLineIndent"> 几乎不用分析我们就能得出结论，那些脑子烧坏的魔化生物又要开始新一轮的攻城战，而且这次他们还有一个头目级别的深渊坐镇指挥。</p>
+	<p class = "firstLineIndent"> “绝对不可能是凯撒斯亲自指挥。”</p>
+	<p class = "firstLineIndent"> 珊多拉相当肯定地说道，并且做出了自己的分析。</p>
+	<p class = "firstLineIndent"> “他的行事风格我再清楚不过，这个狡猾的家伙从来不会用直来直去的战斗方式，奥多边境出现的深渊很可能是他用来调虎离山的疑兵，作为曾经的希灵皇帝，他相当清楚帝国的军事扩张速度，现在正是我们的前哨基地刚刚完成建设、新的希灵主机暂时还无法激活的关键时刻，假如我们不支援奥多，那么这个世界的人类力量必将受到严重的打击，希灵帝国在这个大陆上立足也将遇到很大的困难，而假如我们前去支援，就意味着我们的大本营将直接面对凯撒斯亲自率领的深渊大军的威胁，到时候泡泡一个人加上还不成熟的小泡泡，根本抵挡不住对方的进攻。”</p>
+	<p class = "firstLineIndent"> “也就是说，如果我们完全按照希灵帝国最常用的行动方式进行扩张的话，这次绝对会受到凯撒斯的致命一击，但是——”我露出了一丝微笑，看着正抱着一块能量水晶蹭来蹭去已经陷入幻想状态的林雪说道，“现在我们拥有一支凯撒斯绝对想不到的奇兵！”</p>
+	<p class = "firstLineIndent"> “那些异能者？”林雪从幻想状态中清醒过来，然后摇了摇头说道，“他们确实比地球的那些没有经过水晶辐射的异能者强大一些，但是人数太少，面对一大群由深渊亲自指挥的魔兽大军，恐怕起不了多大作用。”</p>
+	<p class = "firstLineIndent"> “所以他们是奇兵啊，”珊多拉竖起一根手指在空中摇了摇说道，“我不是让他们来对付奥多边境的深渊大军的，而是让他们来对付这里的**oss——凯撒斯！”</p>
+	<p class = "firstLineIndent"> “不会吧？！”</p>
+	<p class = "firstLineIndent"> 浅浅和姐姐一同表示不可置信，然后同时性格转换，一起点头道：“嗯，可以一试……”</p>
+	<p class = "firstLineIndent"> 这回连珊多拉都露出了有些接受不了的表情。</p>
+	<p class = "firstLineIndent"> 自从浅浅和姐姐获得了异能，她们便成为了基地中的主力战斗人员，尽管我十分不想让两个女孩身陷险境，但是浅浅和姐姐的坚持实在出乎我的意料，而且按照她们的说法，自己冒险接受辐射就是为了能帮上我的忙，现在不让她们参与这些事情，那一切不就没有意义了吗？</p>
+	<p class = "firstLineIndent"> 无奈之下，我只好同意，在保证安全的情况下，可以允许她们参与到帝国的军事行动中，并且给她们每个人都配置了相当数量的希灵精英部队。</p>
+	<p class = "firstLineIndent"> 这样做的直接结果就是林雪大为嫉妒，并且死缠烂打甚至不惜承认自己的主母身份从我这里要了一支相同规模的军队过去。</p>
+	<p class = "firstLineIndent"> 林雪听到珊多拉打算让那些刚刚脱离了炮灰地位的异能者对付凯撒斯，立刻把头摇的拨浪鼓一样，坚决地反对道：“不行，绝对不行！那个凯撒斯可是你们几个联手都没能搞定的家伙，让那些新兵蛋子上，那不是送死吗？”</p>
+	<p class = "firstLineIndent"> “这个，你就放心好了，”珊多拉神秘地一笑，“那个凯撒斯的疑心相当重，一旦他发现自己面对的是一帮从来没有看到过的新型战士，而且我们的主力全部跑到了另外一个战场上，他一定会怀疑自己中了我们的圈套并且前去奥多帮助自己的深渊同伴，所以那些异能者只要用他们那些千奇百怪的能力拖延一下就可以了，而你要做的，就是用自己的预言能力告诉我们敌人的下一步动向——我想，这样的事情对你而言应该已经不成问题了吧？”</p>
+	<p class = "firstLineIndent"> 听到珊多拉的解释，众人露出了恍然的表情，这个计划虽然有些冒险，但还是值得一试的，林雪也点点头，自信满满地说道：“只是一小段时间的精确预言的话，还难不倒我！”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十六章 一个难缠的国家</h2>	
+	<p class = "firstLineIndent"> “奥多帝国？那可是一个相当难缠的国家。”</p>
+	<p class = "firstLineIndent"> 当我找穆罗希望了解一下即将赶赴的战场的相关情况的时候，他这么对我说道。</p>
+	<p class = "firstLineIndent"> “首先，他们并不信仰生命女神。”</p>
+	<p class = "firstLineIndent"> 穆罗这句话一下子让我的精神高度集中——要知道，自从几百年前叮当发动神迹净化了半个大陆之后，生命女神就成为这个世界公认的最高神明，人类和世界上的其他幸存智慧种族也是依靠信仰生命女神得来的力量才能和深渊对抗这么长时间，现在竟然冒出来一个不信仰生命女神的国度，这怎么能不让我感到诧异——不信仰生命女神，他们从哪来的实力在大陆最前线和深渊对抗这么长时间？难道他们举国都是中阶以上的强者不成？</p>
+	<p class = "firstLineIndent"> 这当然是不可能的……</p>
+	<p class = "firstLineIndent"> 知道现在不是卖关子的时候，穆罗并没有让我的疑惑持续太长时间，他紧接着说道：“生命女神的伟大是整个大陆所有人公认的，奥多帝国的人民也承认生命女神是一个伟大的真神，但是他们信仰的是另外一个神明，而且这个神明也能赐予他们对抗恶魔侵蚀的力量——他们信仰的是光明之神。”</p>
+	<p class = "firstLineIndent"> “噗——”</p>
+	<p class = "firstLineIndent"> 我喷了。</p>
+	<p class = "firstLineIndent"> “怎么了？”</p>
+	<p class = "firstLineIndent"> 穆罗被我的举动吓了一跳。</p>
+	<p class = "firstLineIndent"> “没事没事，”我连连摆手，“你接着说，我就是喝水呛到了。”</p>
+	<p class = "firstLineIndent"> 估计像穆罗这样的异界人永远都不会想到光明神大大在另外一个世界是怎样的一个恶俗性质的小说人物吧？</p>
+	<p class = "firstLineIndent"> “哦……”穆罗充满狐疑地看了我一眼，然后以异界人的思想可能和这个世界有些不同这个理由解释了我偶然出乎意料的行为，“奥多帝国的国教是光明神教，他们的每一个国民都是狂热的光明神信徒，并且长期以来他们都一直拒绝其他势力的援助，包括生命女神教徒在内，当然，他们的教义中并没有排斥生命女神的部分，但是这些狂信徒顽固地坚信，只有光明神才能拯救这个世界，简单地说，他们就是一堆坚硬的石头，不会主动招惹你，但是油盐不进，我估计你们的军队前去支援的话连他们的前哨都过不去——当然，假如你们动用武力的话，那就当我什么也没说。”</p>
+	<p class = "firstLineIndent"> “这可真是最糟糕的情况。”我摇头叹道，狂热的宗教信徒永远都是最不安定的因素，没想到我还有和这种人打交道的一天，现在唯一的好消息恐怕就是这些宗教分子并不是除了光明神便排斥一切的疯子，不过就算如此，如果希灵帝国的军队过去的话也会被当成异端吧？</p>
+	<p class = "firstLineIndent"> “那他们就靠着所谓光明神赐予的力量，和深渊一直对抗到现在？”</p>
+	<p class = "firstLineIndent"> 我好奇道，自从认识了叮当，我已经知道真正的神明是存在的，既然奥多帝国的人能够依靠光明神的赐福和深渊独自对抗，至少证明了那个光明神是存在的。</p>
+	<p class = "firstLineIndent"> “就是如此，”穆罗点点头，“光明神赐予了他们圣光的力量，这种力量虽然不像生命神力一样拥有极端强悍的治愈效果，但是却可以极大增强凡人的各项身体素质尤其是防御力，并且能够对恶魔力量造成恐怖的伤害，同时圣光也有一定的治疗能力以及和生命神力不相上下的对恶魔侵蚀的抵抗力，综合起来讲，圣光并不比生命神力弱，并且在和魔化生物正面战斗的时候往往能够产生更加明显的作用。”</p>
+	<p class = "firstLineIndent"> “如果那些光明神信徒能开明一点，和外界合作的话该多好啊！”</p>
+	<p class = "firstLineIndent"> 我喟然长叹道。</p>
+	<p class = "firstLineIndent"> 一个是强力的dps兼职坦克，一个是强力的奶妈，这两者如果可以结合起来的话，恐怕深渊早就被这个世界的人类打败了……</p>
+	<p class = "firstLineIndent"> 穆罗对我的话也是深表赞同，虽然他没有想到dps之类的高精尖词汇，但是圣光和生命神力联合起来的威力能有多大他还是知道的，不过现实不以个人意志为转移，我们的设想很好，但现实中我们还要想办法搞定一帮坚决捍卫圣光盲目排外的狂信徒们。</p>
+	<p class = "firstLineIndent"> 这个问题让我很头疼。</p>
+	<p class = "firstLineIndent"> 涉及到宗教信仰甚至是神明这样的终极单位，我等凡人力量终究浅薄，于是我决定找这里唯一的一个宗教专家商量对策。</p>
+	<p class = "firstLineIndent"> 我指的当然不是整天在自己的房间里对女神祈祷一脸超然物外的沐，我们这里有更专业的人士存在——我们可有一个货真价实的女神！</p>
+	<p class = "firstLineIndent"> 尽管这个女神的规格小了一点。</p>
+	<p class = "firstLineIndent"> 这时候叮当正和潘多拉在一起，不知道什么原因一向对人很冷淡的潘多拉和叮当的关系却是很好，经常能看到两个人在一起聊天的景象——准确地讲是潘多拉听叮当滔滔不绝的景象，而且我也经常能看到潘多拉好心地将自己的棒棒糖分给叮当吃，当然，潘多拉这么大度的原因有相当大一部分是因为叮当这个小不点好几天也不一定能吃掉她一根棒棒糖，如果是小泡泡跟她要糖的话，潘多拉不欺负她就已经是好事了。</p>
+	<p class = "firstLineIndent"> 当我见到她们的时候，叮当正坐在潘多拉的手上，和对方分吃一根棒棒糖，叮当上前去舔一下，然后潘多拉再舔一下，然后如果叮当吃的太投入而潘多拉又没有注意的话，潘多拉就会舔叮当一下……</p>
+	<p class = "firstLineIndent"> 真是一对可爱的小家伙！</p>
+	<p class = "firstLineIndent"> 难得能看到潘多拉这么文静可爱的一面，贸然上去打扰实在让我有些遗憾，但正事还是要办的。</p>
+	<p class = "firstLineIndent"> 我轻轻捏住了叮当的小翅膀，将对方从棒棒糖的诱惑中提溜出来，然后问道：“叮当，问你点事。”</p>
+	<p class = "firstLineIndent"> 几分钟后，我将奥多帝国的情况详详细细地解释清楚了。</p>
+	<p class = "firstLineIndent"> 潘多拉两眼放光道：“哥哥，看来我们只有……”</p>
+	<p class = "firstLineIndent"> 我一回手，准确地将小家伙的嘴巴堵上，然后耐心等待叮当的分析。</p>
+	<p class = "firstLineIndent"> “唔……使用圣光的神明啊……”</p>
+	<p class = "firstLineIndent"> 叮当悬停在空中，小小的手指点着自己的嘴唇，似乎在努力回忆自己认识不认识这么一个神明。</p>
+	<p class = "firstLineIndent"> “神族里确实有很多成员掌控着圣光力量，父神就是一个非常强大的圣光掌控者，不过如果是父神的话，这个世界的深渊应该早就被净化干净了，所以他们获得力量的源泉应该是另一个神明，叮当要好好想想……应该不是住在叮当隔壁的那个大个子，那家伙虽然是光明神族，但是他一直在应聘永夜宫黑暗卫队长的职位，还有住在东部殿堂区的金娜姐姐也不太可能，金娜姐姐只对做各种各样的烧烤有兴趣，从来不招收信徒，威力克哥哥也不像，他追求金娜姐姐好久了，据说最近去了某个世界帮金娜姐姐找烧烤材料，没有几千年是不会回神界的……恩恩，排除了三个，现在还剩下一万七千八百六十九个……”</p>
+	<p class = "firstLineIndent"> 额……额滴众神啊！</p>
+	<p class = "firstLineIndent"> 如果某个坚定的有神论者在这里的话，他的人生观价值观世界观以及各种各样的观一定会在瞬间崩溃的！</p>
+	<p class = "firstLineIndent"> 叮当分析了半天，最后终于得出了结论：</p>
+	<p class = "firstLineIndent"> “叮当不知道吖~~”</p>
+	<p class = "firstLineIndent"> ……</p>
+	<p class = "firstLineIndent"> 按照叮当的说法，神族的数量其实很多，其中有资格招收信徒并且能够为信徒提供力量的成员自然也不少，虽然确定奥多帝国信仰的是一个来自星域神界的神族，但叮当根本分析不出对方究竟是哪一个，自然也很难通过寻找对方的教义漏洞来让帝国的军队开进奥多的领地。</p>
+	<p class = "firstLineIndent"> 等等！</p>
+	<p class = "firstLineIndent"> 一个身影突然划过了我的脑海，让我福至心灵。</p>
+	<p class = "firstLineIndent"> 我怎么忘了还有这么一个大人物存在！</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十七章 其实，我姓上</h2>	
+	<p class = "firstLineIndent"> 当第二天早上阿赖耶伴随着飘飞的洁白羽毛从金色阳光中缓缓走下的时候，正在睁着惺忪的睡眼满基地找人道歉的浅浅一下子被惊呆了。</p>
+	<p class = "firstLineIndent"> 浅浅这丫头有一个很奇怪的属性，那就是她见到很奇怪的东西的时候，偶尔会陷入精神亢奋的状态。</p>
+	<p class = "firstLineIndent"> 于是脑袋受到严重冲击的女孩便大呼小叫着“阿俊快出来看天使”这样疯疯癫癫的话语去找某个还在睡懒觉的希灵皇帝去了，全然没有注意到站在天使身后的两个已经快累趴下的双胞胎姐妹。</p>
+	<p class = "firstLineIndent"> 身为世界仲裁机关之一，阿赖耶的个体能量强度是相当惊人的，再加上现在深渊力量全力封锁这个世界的空间传送端口，地球和这个世界之间还隔着一个坚固的位面屏障，阿西达和阿西多拉将阿赖耶传送过来的难度甚至比同时传送两个希灵皇帝还要高上数倍，估计整个希灵帝国里，有能力完成这种空间传送的人也只有这一对特殊的双子姐妹了。</p>
+	<p class = "firstLineIndent"> 我被一路横着从卧室里拖到了基地中央的广场上，浅浅这丫头明显想让我赶快看到天使这种稀罕生物（虽然最近一段时间她已经见识过了不少只存在于传说中的生物，但看上去她一点都没审美疲劳的意思），所以她选择了几乎是完全直线前进的方式，在这个过程中我共计撞上马路牙子三次，隔离墩两个，导航地灯四个，未知设备若干，以及早上出来梦游的小泡泡一只……</p>
+	<p class = "firstLineIndent"> 当我站在阿赖耶面前的时候，已经衣衫褴褛满头大包了……（貌似夸张了一点？）</p>
+	<p class = "firstLineIndent"> “呦，早啊，阿赖耶。”我随意整理了一下衣服，然后露出灿烂的笑脸，对面前的天使妹妹打招呼道。</p>
+	<p class = "firstLineIndent"> “很高兴再次见到您，我的君主。”</p>
+	<p class = "firstLineIndent"> 阿赖耶依然用她那轻柔而纯净的声线说道，然后将自己的手放在我的头上，开始用一种洁白带有一丝丝金色的光晕为我治疗一路上撞出来的大包。</p>
+	<p class = "firstLineIndent"> 立刻，我便感到那些伤口在以惊人的速度愈合。</p>
+	<p class = "firstLineIndent"> “叮当，你说这种力量是不是圣光？”</p>
+	<p class = "firstLineIndent"> 我叫住正好从旁边飞过的小不点问道。</p>
+	<p class = "firstLineIndent"> “咦——”小东西浮在空中认真观察了一会阿赖耶，然后肯定地点点头，说道，“果然是希灵使徒中掌管神秘与未知力量的成员，这种希灵使徒是完全仿照光明神族设计的，和真正的天使没有任何分别！甚至，比同级别的双翼天使还要更强大一些！”</p>
+	<p class = "firstLineIndent"> 果然可行！</p>
+	<p class = "firstLineIndent"> “阿俊？”浅浅终于反应了过来，用迷茫的视线在我和阿赖耶之间扫来扫去，“这怎么回事？你认识天使？”</p>
+	<p class = "firstLineIndent"> “我还认识女神呢！”</p>
+	<p class = "firstLineIndent"> 我说着，一把将在自己头顶跳来跳去的叮当揪了下来。</p>
+	<p class = "firstLineIndent"> 看着浅浅越来越糊涂的神奇，我突然正色道：“其实，我姓上，你可以叫我上帝或者上先生……”</p>
+	<p class = "firstLineIndent"> “不是这个……”浅浅现在已经陷入了严重的迷糊状态，以至于都忘了应该怎么完整地说出自己的想法。</p>
+	<p class = "firstLineIndent"> 看到浅浅迷糊的可爱表情，我心中成就感爆棚，也不好再逗她，于是解释道：“好了好了，她叫阿赖耶，也是一名希灵使徒，是仿照神族设计出来的高级希灵单位，从另一方面来讲，其实她也可以算作是一个真正的天使呢！”</p>
+	<p class = "firstLineIndent"> 用了好大一会，浅浅才终于勉强从希灵使徒=天使这个震撼**实中恢复过来，转而开始充满好奇地研究面前天使妹妹背后漂亮的羽翼，让后者一脸尴尬却又不好躲开，只能将求助的目光不断地投向我。</p>
+	<p class = "firstLineIndent"> 唉，天使妹妹，我是爱莫能助啊，你不知道，在日常生活里，一直是姐姐老大，浅浅老二，潘多拉老三，至于我老几，那得看珊多拉心情决定……</p>
+	<p class = "firstLineIndent"> 在以前和珊多拉的闲聊中我已经得知，希灵使徒中向阿赖耶这样的个体都是仿制星域神族成员的，既然奥多帝国信仰光明神，而那个光明神十有**就是星域神族的一员，阿赖耶对付他们简直是再合适不过了。</p>
+	<p class = "firstLineIndent"> 我也担心过假如胡乱冒用真神的名义会不会遭遇天罚之类恐怖的事情，但叮当打消了我的疑虑：虽然这个世界的人类信仰光明神并且从那位神明获得了力量，但这并不意味着光明神就知道这个世界上发生的一切事情，单纯依靠信仰与祈祷建立起来的联系是相当薄弱的，大部分天神都有若干的下属世界，他们不可能详细知道自己的信徒的情况，除非事态严重到一定程度，神明不会干涉任何世界，根本不要说是这样一个偏远的“荒土世界”了。</p>
+	<p class = "firstLineIndent"> 当然，假如我假借神的名义干坏事的话……</p>
+	<p class = "firstLineIndent"> 恐怕第一个对我发起天罚的就是叮当了，不要看她平常嘻嘻哈哈人畜无害，那毕竟是一个接受了两百年女神训练的神族啊……</p>
+	<p class = "firstLineIndent"> “好了浅浅，别玩了。”我说着将好奇心爆棚的浅浅拖到了自己身边，总算挽救了阿赖耶可怜的翅膀，另一个有翼生物叮当立刻同情地飞到后者身边，开始小心地帮忙整理对方有些凌乱的羽毛——想当初，她的翅膀也没少受浅浅的折腾啊！</p>
+	<p class = "firstLineIndent"> “阿赖耶，我先带你在基地里转转，然后告诉你我的计划——哼哼，我一向对呆板的狂信徒看不上眼，这次说什么也要好好折腾一下他们！”</p>
+	<p class = "firstLineIndent"> “恩！”</p>
+	<p class = "firstLineIndent"> 阿赖耶答应一声，然后举步跟上——啪！</p>
+	<p class = "firstLineIndent"> 我和浅浅闻声回头，正好看到阿赖耶狼狈地趴在地上，正在手忙脚乱地试图爬起来。</p>
+	<p class = "firstLineIndent"> “这怎么回事？”我连忙上前将对方扶起来，忍着脸上的抽搐问道，一个圣洁优雅的天使狼狈地摔在地上，这个情景真是太搞笑了。</p>
+	<p class = "firstLineIndent"> “过多使用飞行能力，不会走路了。”珊多拉的声音从我身后传来，我回过头，正好看到后者玩味的笑容，“没想到啊，陈俊，你的鬼点子还真多——有阿赖耶这张王牌，你想怎么折腾奥多帝国都行啊，不过还是要先看看阿赖耶对这个世界的人有多大冲击再下定论。”</p>
+	<p class = "firstLineIndent"> 我点点头，小心翼翼地拉着阿赖耶熟悉怎么走路……</p>
+	<p class = "firstLineIndent"> 然后我发现，原来阿赖耶并不像珊多拉说的那样经常飞来飞去结果忘掉了怎么走路，一般情况下，她走的相当平稳，也就是说，平地摔跤的属性是她天生的……</p>
+	<p class = "firstLineIndent"> 果然，人不可貌相的古训是有道理的，谁说圣洁的天使就不可以是天然呆的？！</p>
+	<p class = "firstLineIndent"> 事实证明，阿赖耶对这个世界人类的冲击是相当巨大的。</p>
+	<p class = "firstLineIndent"> 当天使出现在穆罗三人面前的时候，他们的嘴巴大的简直能放进去一个鸭蛋——沐身为精灵还是比较矜持一些，基本上能放进去一个鸡蛋吧。</p>
+	<p class = "firstLineIndent"> “天……天使？！”</p>
+	<p class = "firstLineIndent"> 穆罗的反应不比我当初第一次见到阿赖耶要好上多少。</p>
+	<p class = "firstLineIndent"> 尽管他不信仰光明神，但是天使的形象他还是知道的，不管怎么说，奥多帝国也是在光明神的恩赐下才得以坚持这么长时间，看着眼前银发金瞳、背生双翼的圣洁少女，感受身边如有实质的神圣力量，他毫不怀疑自己面对的就是传说中的天使。</p>
+	<p class = "firstLineIndent"> “恩，”我点着头说道，“确实是个天使，你可以叫她阿赖耶，听说奥多帝国都是光明神的狂热信徒，我担心他们会拒绝希灵军队的进入，所以叫她来帮忙的。”</p>
+	<p class = "firstLineIndent"> 我的语气轻松的就好像出门没钱找熟人借两个银币一样，让穆罗他们一个个神情呆滞的仿佛被石化了一样。</p>
+	<p class = "firstLineIndent"> 似乎是觉得这样的冲击还不够强力，一直跟在我身后的浅浅添乱似的说道：“本来我们是打算找几个天神亲自去说说的，不过最近神界搞文明市民评比活动，几个天神去当评委了，阿赖耶正好没事，被我们抓了过来，她大小能说的上话吧？”</p>
+	<p class = "firstLineIndent"> ……扯，浅浅你还真能扯啊！</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十八章 忽悠，大忽悠</h2>	
+	<p class = "firstLineIndent"> 浅浅的惊人之语让三个人间的顶级高手彻底陷入了痴呆状态，一直以来被人类崇拜、不敢亵渎的神明，在这些异界人口中竟然就像邻居王大爷一样熟络，这让他们顿时生出了世界真疯狂这样的感慨。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> “你们很惊讶？”</p>
+	<p class = "firstLineIndent"> 我强忍着笑意，故作惊奇地问道，仿佛突然发现邻居王大爷竟然也有崇拜者而感到万分诧异一样，让几个实力超凡入圣的绝世高手露出这种表情让我心中的成就感爆棚。</p>
+	<p class = "firstLineIndent"> “你……你们刚才提到神……”维诺亚嘴角抽搐，完全不知道应该怎么完整地描述出自己心中的想法。</p>
+	<p class = "firstLineIndent"> “恩，”我点点头，“帝国和神界联系挺紧密的，要知道，深渊并不是简单的敌人，在与深渊对抗的漫长岁月中，我们和神族建立起了坚固的友谊……”</p>
+	<p class = "firstLineIndent"> 看着穆罗他们脸上的表情从震惊到敬畏的转变，我知道，忽悠已经成功达到了目的。</p>
+	<p class = "firstLineIndent"> 见好就收是我的原则，于是我赶在自己被缠住之前明智地选择了离开。</p>
+	<p class = "firstLineIndent"> 假如再留在这里的话，恐怕我的忽悠就要出岔子了，别的不说，光看沐越来越激动的神情，我深怕过一会他拉着我去找生命女神怎么办……</p>
+	<p class = "firstLineIndent"> 一切就和我们预料的一样，奥多帝国毫不犹豫地拒绝了我们通过莫迪斯三世发出的支援意向，并且高傲地表示，有光明神的庇护，他们将战胜一切污秽的邪恶力量。</p>
+	<p class = "firstLineIndent"> 假如他们遇上的还是一般的魔化生物的话，这种嚣张的宣言倒也没什么不对，掌握圣光的人类要消灭魔化生物还是相当容易的，但是现在敌人中出现了首领级别的深渊坐镇，没有外援的奥多帝国可就凶多吉少了，历史上很多和深渊力量长期对抗的帝国都是在面对真正的深渊时被毁灭的，可惜，奥多帝国并不知道这次他们将面对什么样的敌人。</p>
+	<p class = "firstLineIndent"> “迟早有一天，他们会因为自己的傲慢自大而招致毁灭。”</p>
+	<p class = "firstLineIndent"> 莫迪斯三世坐在我面前，义愤填膺地说道，一边不由自主地将有些敬畏的视线投向侍立在我身后的阿赖耶。</p>
+	<p class = "firstLineIndent"> 从穆罗那里传来的情报让这个雄才大略的帝王第一次乱了方寸，神族亲临人间一向只有在神话传说中才会出现，但是如今，竟然让他碰上了这样的事情，老皇帝实在不知道这是一件好事还是坏事。</p>
+	<p class = "firstLineIndent"> 或许是好事吧，作为一个统治者来说，在自己的统治时期有神族降临人世，怎么看都是一件相当值得自豪并且载入史册的事情——前提是假如之前他对希灵帝国的态度能更友好一点的话。</p>
+	<p class = "firstLineIndent"> 莫迪斯三世自己相当清楚自己对希灵帝国的态度是怎么样的，对这些来自异世界，自称为盟友的神秘种族，他虽然表面上做出了友好大度的态度，但背地里可没少干些见不得人的勾当，监视刺探自不必说，他甚至还试图抓获一个希灵战士来研究对方强大力量之源的秘密，尽管那次行动莫名其妙地失败了，莫迪斯三世却可以确信，自己的举动已经完全被对方知晓。</p>
+	<p class = "firstLineIndent"> 现在，一个惊人的事实摆在他的眼前：这些来自异世界的希灵使徒是一个可以和众神平起平坐的强大种族，而且他们和众神之间的关系亲密的简直如同兄弟姐妹一样，这一点就从刚才他看到那位天使在喂一个希灵小女孩吃饭便可以看出来。</p>
+	<p class = "firstLineIndent"> 莫迪斯三世已经彻底打消了研究这些希灵使徒究竟有多强大、他们目的如何的打算，他现在能做的就是尽可能地表现出自己的善意，并且以近乎恭维的方式来弥补之前自己的冒犯。</p>
+	<p class = "firstLineIndent"> 尽管目前看来，这个名叫陈俊的希灵皇帝很好说话，但糟糕的是，除了他之外，几乎所有的希灵使徒都是明显的好战分子，那位名为珊多拉的少女皇帝更是坦言自己征服世界的野心，假如他现在不能挽回自己和希灵帝国之间的关系，到时候谁也说不准天神降世是好事还是坏事，一个搞不好，恐怕自己要面对的将不仅仅是希灵帝国的威胁，甚至还会有神族的怒火。</p>
+	<p class = "firstLineIndent"> 莫迪斯三世在想什么我大致可以猜到，不过那并不是我所关心的，我现在只想尽快消灭掉那个烦人的凯撒斯，据泡泡最新的计算结果，凯撒斯死亡之后这个世界的深渊力量将被削弱至少百分之三十，那已经足以让军团传送器重新找到地球的时空坐标，也就是说，只要在下一场大战中取得胜利，我们就可以回家，剩下的敌人，这个世界的原住民已经可以对付。</p>
+	<p class = "firstLineIndent"> *************************************************************</p>
+	<p class = "firstLineIndent"> 奥多帝国的首都，雷顿城。</p>
+	<p class = "firstLineIndent"> 这座恢弘的城市中最醒目最重要的建筑并不是奥多皇帝的宫殿，而是一座大小几乎和皇宫一样、全部由洁白大理石建筑而成的大教堂，那里是奥多国教：光明神教的总部所在，也是所有奥多国民心中的精神支柱，只要靠近这座宏伟的白色建筑，周围空气中充沛的圣光力量甚至能让人产生光明神就在自己身边的错觉。</p>
+	<p class = "firstLineIndent"> 在大教堂内部最大的一个私人祈祷室中，梅隆教宗刚刚完成祈祷。</p>
+	<p class = "firstLineIndent"> 这是一个睿智而博学的老人，并且拥有强大的力量，尽管他已经强大到了可以长久保持青春的程度，但他还是没有改变自己已经苍老的容貌，因为他将自己的全身心都奉献给了光明神，只要能够履行自己驱散世间邪恶的职责，外表什么的他根本就不会在意。</p>
+	<p class = "firstLineIndent"> 梅隆教宗待人和善，宽厚仁爱，但是就和这座大教堂里面所有其他的人一样，他也是一个顽固的光明神信徒，因此他昨天毫不犹豫地就拒绝了来自维迪斯帝国的支援意向，尽管他自己也已经察觉到了正逐渐聚集在边境的邪恶能量。</p>
+	<p class = "firstLineIndent"> 他对那个来历不明的希灵帝国忧心忡忡。</p>
+	<p class = "firstLineIndent"> 尽管从目前得到的情报来看，对方是来帮助这个世界消灭恶魔力量的，但希灵帝国展现出的强大实力以及他们令人不安的军事扩张方式都让人不寒而栗，一个来自异世界、可以以瘟疫一般的速度席卷整个世界的战争物种，即使不是出于宗教考虑，梅隆也绝对不能允许他们进入奥多的境内。</p>
+	<p class = "firstLineIndent"> 他坚信自己做的是对的。</p>
+	<p class = "firstLineIndent"> “宽容的光明之神一定会理解我的做法。”</p>
+	<p class = "firstLineIndent"> 梅隆在胸前划了一个十字，低声说道。</p>
+	<p class = "firstLineIndent"> “尽管他理解你的做法，但你的行为令神感到难堪。”</p>
+	<p class = "firstLineIndent"> 一个威严的女声突兀地在祈祷室中响起，紧接着梅隆便感到铺天盖地的圣光力量席卷而来。</p>
+	<p class = "firstLineIndent"> 老教宗下意识地就做出了防御的姿势，同时对有人竟然能够潜入这个可以说是整个奥多帝国防守力量最强大的祈祷室感到万分震惊，但是紧接着出现在面前的景象立刻让他短时间内失去了思考的能力，甚至连手中的祈祷书掉在地上都没有察觉。</p>
+	<p class = "firstLineIndent"> 在明亮但毫不刺眼的圣光笼罩下，一个银发金瞳、背生双翼的天使从上方缓缓落下，然后站立在他面前数米之外、离地半米高的空中，柔和的光晕遮挡了天使的容貌，让他无法直视对方，但梅隆还是可以清晰地感到一双充满了威严与慈爱的眼睛正在看着自己。</p>
+	<p class = "firstLineIndent"> 阿赖耶牢记了我交待她的事情：要么飞行，要么悬停在半空，就是不可以落地，因为我实在不敢想象这个隐藏天然呆属性的天使妹妹一旦在光明神信徒面前做出平地摔跤壮举的话会造成多么糟糕的后果。</p>
+	<p class = "firstLineIndent"> 五秒钟后，梅隆终于意识到发生了什么事情，他猛地扑倒在地，激动地高呼道：“赞美光明之神！尊贵的神使！”</p>
+	<p class = "firstLineIndent"> 阿赖耶趁着梅隆正低头行礼，飞快地从包包里掏出一张纸条扫了一眼，然后酝酿了一下感情，威严地说道：“你拒绝了希灵帝国的援助？”</p>
+	<p class = "firstLineIndent"> 这时候，她突然有点嫉妒那些采用程式化记忆系统的希灵同胞，如果自己的记忆力更好一些的话，当时君主也不至于笑到肚子抽筋了……</p>
+	<p class = "firstLineIndent"> 梅隆自然不可能看到阿赖耶的动作，他只感到一阵迷惑，说道：“尊贵的神使，您刚才提到……希灵帝国？”</p>
+	<p class = "firstLineIndent"> “没错，希灵帝国，我……他们跨越了无数位面前来协助你们，却被你拒之门外——这令神感到很难堪。”</p>
+	<p class = "firstLineIndent"> “难道……难道这个希灵帝国……”</p>
+	<p class = "firstLineIndent"> 梅隆感到自己的脑袋上正在冒出冷汗。</p>
+	<p class = "firstLineIndent"> “来自异界的希灵使徒是一个和众神有着广泛交流的强大种族，他们的皇帝之一和光明神熟识，因此才会前来协助你们——而你，却将他们拒之门外！”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第八十九章 不坚定的信徒</h2>	
+	<p class = "firstLineIndent"> 雷顿城，圣光大教堂。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 在一间朴素但处处充满了威严感、洋溢着充沛的圣光力量的会客厅中，两个国度的当权者正在商谈着备战事宜。</p>
+	<p class = "firstLineIndent"> 我舒服地坐在铺着厚厚软垫的宽大座椅中，周围温暖的光明力量并没有激发我对于光明神的什么感悟，倒是充分地激发了我的睡意，如果不是同样昏昏欲睡但还在强打精神的珊多拉时不时偷偷在我腿上拧一把的话，这时候我恐怕已经睡着了——话说，为什么她犯困的时候要在我的腿上拧一下啊？</p>
+	<p class = "firstLineIndent"> 在我另一边，浅浅，姐姐，林雪，小泡泡一字睡开……</p>
+	<p class = "firstLineIndent"> 除此之外，现场还保有充沛精力的也就只有恪尽职守的潘多拉、本身对光明力量抵抗力高的吓人的阿赖耶和永远精力过剩的叮当三人了。</p>
+	<p class = "firstLineIndent"> 不得不说，这种会面景象实在诡异的可以。</p>
+	<p class = "firstLineIndent"> 尽管如此，在我面前的人却丝毫不敢因为对方有将近一半的人在会场上公然睡觉而有丝毫的懈怠。</p>
+	<p class = "firstLineIndent"> 这次与我们会面的是光明神教的教宗梅隆、奥多帝国的皇帝阿格纳以及龙套甲乙丙丁若干，他们每一个人都正襟危坐，面容严肃，与我们这边形成了鲜明的对比，尤其是梅隆，不但神色严肃，而且脸上写满了不安与惭愧，时不时用充满敬畏和惶恐的目光看一眼我身后的阿赖耶，如果不是知道事情经过的话，我十有**会将他当成一个心怀不轨的色老头了。</p>
+	<p class = "firstLineIndent"> 从阿赖耶那里我知道了当时的情景，猛然得知来自异世界的希灵使徒们竟然是光明神用自己的人情从朋友那里借来的援军，这几乎吓破了这个虔诚老人的胆，如果不是圣阶强者的身体素质实在强悍，恐怕梅隆就要成为第一个死于心脏病发作的教宗了，不过尽管心脏挺了过去，他的精神却受到了严重的冲击，多亏了阿赖耶及时拦住了梅隆自杀谢罪的举动，否则今天的会面我们就看不到这个虽然顽固但还算和善的老头了。</p>
+	<p class = "firstLineIndent"> “也就是说，根据你们收集到的情报，魔化生物的军团已经兵分两路，并且将在四天后抵达你们的边境？”</p>
+	<p class = "firstLineIndent"> 我昏昏欲睡地听完了奥多皇帝阿格纳告诉我的最新情报，其实这个信息我们早已经掌握，泡泡在二十四小时前将六颗微型卫星送入了太空，目前所有怪物的动向都已经清楚地被我们掌握，而且我们还可以百分之百地肯定，这两支怪物大军中并没有首领级深渊的能量反应。</p>
+	<p class = "firstLineIndent"> 那个最强大的深渊反应在十多个小时前便突然从泡泡的监视中消失了。</p>
+	<p class = "firstLineIndent"> 也就是说，其实这次前来进攻的怪物其实是兵分三路的，其中最具有威胁的一路不知用什么方法躲过了我们的侦查，尽管希灵帝国的侦察卫星相当先进，但作为和帝国交战了无数年的敌人，深渊力量明显也不是省油的灯。</p>
+	<p class = "firstLineIndent"> “说实话，你们可以对付多少？”</p>
+	<p class = "firstLineIndent"> 珊多拉直视着阿格纳的眼睛，严肃地说道，同时释放出了一丝试探性的精神压力。</p>
+	<p class = "firstLineIndent"> “一半，”阿格纳略一沉思，便自信地说道，丝毫没有因为自己的战士不能对抗全部的敌人而自惭或是因为珊多拉的压力而有任何不自然，“我们承认，这次魔化生物的规模之大是前所未有的，如果没有贵国的援助，我们很难抵挡。”</p>
+	<p class = "firstLineIndent"> 阿格纳痛快地承认了自己的窘况，如果是面对别的国家使节，他是说什么也不会如此露短的，但是眼前的几个“人”可不是一般的人物，阿格纳十分清楚，在他们面前，根本没有任何掩饰的必要。</p>
+	<p class = "firstLineIndent"> “很好，你们的实力已经出乎我们意料了，”珊多拉毫不吝啬自己的赞扬，“那么敌人的东路大军就交给你们对付，我们几个来对付敌人的西路大军和那支隐藏起来的主力部队！”</p>
+	<p class = "firstLineIndent"> “什么？你说……”阿格纳惊呼道。</p>
+	<p class = "firstLineIndent"> “主力部队……”珊多拉保持着得体的微笑，似乎自己提到的是一件相当微不足道的小事一样，“深渊永远比你想象的要难对付，他们总是会给你带来意想不到的麻烦，有一个最强大的深渊隐藏了起来，连同他亲自率领的部队——那才是真正麻烦的敌人。”</p>
+	<p class = "firstLineIndent"> 阿格纳和梅隆的脸色一下子变得相当难看，本已经相当严峻的形式现在更加雪上加霜，甚至比雪上加霜还要严重无数倍，珊多拉提到的“最强大的深渊”他们知道指的是什么，在那种恶魔之源，拥有最强大的恶魔力量，腐蚀世界的罪魁祸首，即使最坚定的圣骑士面对他也会在几分钟内变成失心者，历史上每一次成功消灭恶魔之源的记录都附带着一份令人胆寒地阵亡者名单，而更多的则是倾全国之力抵抗依然被敌人毁灭的记载。</p>
+	<p class = "firstLineIndent"> “请恕我冒昧，”阿格纳认真斟酌着用词，虽然同样是一国君主，但自己是凡人的领袖，而面前的却是与众神平等的强大物种的帝王，这不能不让他说每一句话都小心谨慎，“我不怀疑您的信息准确度以及希灵战士的强大，但敌人的强大实在出乎我们之前的意料……”</p>
+	<p class = "firstLineIndent"> “你是想说我们这几个人能不能对付得了他们吧？”</p>
+	<p class = "firstLineIndent"> 珊多拉直截了当地说出了阿格纳不太好说出口的话。</p>
+	<p class = "firstLineIndent"> “虽然这样做很失礼，”这时一直被我当成是背景颜色龙套甲的某中年华服男子开口了，“但我还是认为我们互相了解一下对方的实力比较好，毕竟我们即将共同对抗一个相当强大的敌人。”</p>
+	<p class = "firstLineIndent"> “威廉宰相！”一直没有开口的梅隆教宗突然将视线转向那个中年人，语气中带着毫不掩饰的严厉，“希灵使徒是与众神对等的伟大存在，难道你的信仰有所动摇了么？”</p>
+	<p class = "firstLineIndent"> 面对梅隆的指责威廉宰相毫不退缩：“我对光明神的信仰从不动摇，可是希灵使徒毕竟也是凡人，我承认他们的强大并且对他们无私的援助表示感激，但我们必须清楚地知道一件事情：他们不是神——尽管他们与神的联系及其紧密。所以我认为，必要的实力展示是必要的。”</p>
+	<p class = "firstLineIndent"> “顶楼上。”我迷迷糊糊地点了点头说道。</p>
+	<p class = "firstLineIndent"> 阿格纳和梅隆自然不会理解“顶楼上”是什么意思，于是他们自动把这句话当成了某种异世界方言，不过我点头的动作他们倒是看懂了，考虑到威廉宰相说的话并没有错，阿格纳也点了点头，说道：“威廉爱卿说的也有道理。”</p>
+	<p class = "firstLineIndent"> “尊贵的神使大人，我很抱歉……”梅隆一脸尴尬和不安地对阿赖耶说道。</p>
+	<p class = "firstLineIndent"> “我们没有你们想象的那样严厉，”阿赖耶温和地说道，同时不忘再次教育对方“你们也应该学着更加宽容和友善——即使对方是异教徒也一样。”</p>
+	<p class = "firstLineIndent"> “是的，您的教诲我铭记在心，”梅隆一脸受教地说道，“我们再也不会盲目而自大地排斥外界了。”</p>
+	<p class = "firstLineIndent"> 看着一个满脸白胡子的老头对一个外表不超过十八岁的少女露出这种表情，真是相当的令人无语啊……</p>
+	<p class = "firstLineIndent"> 最终，我们和阿格纳商定，后天中午的时候，在城外的一处平原上各自展示一下实力和战斗方式，也好在未来的战斗中方便配合——尽管我和珊多拉一直认为其实我们根本没有和异界人配合的必要，这倒不是说看不起他们的实力，而是因为两者的战斗方式差距太大，配合起来恐怕不用敌人动手，我们自己就先互相轰杀大半了。</p>
+	<p class = "firstLineIndent"> 晚饭过后，大家都集中在我的房间之中。</p>
+	<p class = "firstLineIndent"> 虽然光明神教的教义中有戒奢这么一条，不过毕竟是皇家宫殿，阿格纳为我们安排的房间相当豪华，这巨大而且到处是华贵装饰品的卧室竟然让我想到了“奢侈品博物馆”这么一个名词。</p>
+	<p class = "firstLineIndent"> 我此刻正坐在宽大的床上，阿赖耶趴在我的旁边，将一只巨大的羽翼搭在我的膝头，舒舒服服地让我为她梳理羽毛，温顺地像一只小猫一样。</p>
+	<p class = "firstLineIndent"> 如果这个景象被梅隆看到的话，他一定会被刺激地晕过去吧？</p>
+	<p class = "firstLineIndent"> 自从前天我因为好奇而帮她梳理了一次之后，天使妹妹便彻底喜欢上了这种按摩服务……</p>
+	<p class = "firstLineIndent"> 当然，浅浅再一次地醋意大发，不过或许是已经被珊多拉磨炼出了接受能力，她竟然默许了阿赖耶的行为，这让我不由暗暗窃喜……咳咳……</p>
+	<p class = "firstLineIndent"> 林雪一边好奇地研究着小泡泡变出来的各种希灵装置，一边嘀咕道：“我就不信，那个威廉没有受到阿格纳的指使——否则他怎么敢当着阿赖耶的面说出那么大胆的话！”</p>
+	<p class = "firstLineIndent"> 珊多拉点点头，说道：“梅隆的态度是没有假的，不过阿格纳和威廉宰相就有点耐人寻味了，虽然表面上处处充满了恭敬，不过似乎对我们的质疑很严重啊——倒也不是不能理解，身处他们那个位置，是不可能像梅隆那样单纯的，考虑的事情多了，信仰也不可能再纯粹，一个真正的帝王永远不可能是虔诚的信徒，神对他们没有多少约束力。”</p>
+	<p class = "firstLineIndent"> “那就用实力让他们闭嘴好了，我也正好看看圣光力量有多强大——呃，阿赖耶，我好像又拔掉一根……”</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+	
+<h2>第九十章 礼物</h2>	
+	<p class = "firstLineIndent"> 我为什么要答应陪浅浅出来逛街呢……</p>
+	<p class = "firstLineIndent"> 为什么浅浅出来逛街的时候非要拉上姐姐一起呢……</p>
+	<p class = "firstLineIndent"> 最后的最后，为什么出门的时候碰上林雪我还要脑残地邀请这丫头一起过来啊！！！</p>
+	<p class = "firstLineIndent"> 以上三个疑问，估计不可能有人回答的出来，因为即使是身为世界仲裁机关的阿赖耶分析了半个小时之后也仅仅得出了“君主大人好笨”这么一个结论。</p>
+	<p class = "firstLineIndent"> 现在唯一值得庆幸的就是，我们每个人包括浅浅她们在内都已经被绑定了一个巨大的随身空间，我至少不用像大多数陪女生上街的倒霉男士一样力抗千斤。</p>
+	<p class = "firstLineIndent"> “我宁可现在就去找几个深渊打一架，”跟在我旁边的珊多拉一脸苦兮兮地说道，同时扫了一眼前面三个兴致勃勃的人类女孩，“真不知道她们三个哪里来这么强的精力，碳基生物真是一种很不可思议的物种啊……”</p>
+	<p class = "firstLineIndent"> “是啊，”我苦笑着点头，“看来人类女孩和希灵女孩还是有本质不同的，最起码你对逛街没什么兴趣——欣慰啊！”</p>
+	<p class = "firstLineIndent"> “哼哼，你终于看出我的优点了！”</p>
+	<p class = "firstLineIndent"> 珊多拉立刻高兴地哼哼道，把我的话当成了夸奖来听，然后立刻有些紧张地问道：“你不会因为我不喜欢逛街就把我当成不正常的女孩看待吧？”</p>
+	<p class = "firstLineIndent"> “呃，这个……”</p>
+	<p class = "firstLineIndent"> 我立刻感到有些无语，怎么说呢，一个能将整个世界**于股掌之中、掠夺灵魂如同探囊取物的希灵女帝，不管喜不喜欢逛街，都不可能归类为正常女孩吧？</p>
+	<p class = "firstLineIndent"> 还有，珊多拉怎么会突然担心这个问题？似乎她在这方面一向缺乏自觉的……</p>
+	<p class = "firstLineIndent"> 看到我古怪的脸色，珊多拉立刻大受打击，可怜兮兮地低头说道：“果然……在你眼中我根本算不上女孩……”</p>
+	<p class = "firstLineIndent"> 汗……这丫头怎么……难不成和浅浅她们在一起时间长了，已经人类化到了这种程度？还是说，这丫头已经对我产生了超越友谊之外的感情，所以才在意在我面前的形象问题？</p>
+	<p class = "firstLineIndent"> 不管怎么说，看着一个美女被自己打击成这样，总不能没有一点表示，于是我只好安慰道：“怎么说呢，你应该算是一个比较，恩，比较有个性的女孩吧，我觉得你也有可爱的一面啊……”</p>
+	<p class = "firstLineIndent"> 最后这句话可不是瞎说的，非女王形态下的珊多拉确实是个很可爱的女孩子——假如刨除了她有意无意带给我的麻烦的话。</p>
+	<p class = "firstLineIndent"> “真的？”珊多拉闻言立刻抬起头来，大大的眼睛闪闪发亮，带着调皮的弧度，一点都看不出刚刚不开心的样子，难道我又被忽悠了？</p>
+	<p class = "firstLineIndent"> “嘛，既然如此，你就送我一件礼物好了，就当作是你的赔罪了——反正那个阿格纳给的钱，不花白不花，到地球就作废了。”珊多拉很大度地说着，同时眼底闪过了一道很不易察觉的不安光芒。</p>
+	<p class = "firstLineIndent"> 有问题，绝对有问题，根据我在起点浸淫多年的经验来看，一个平常精明无比的女孩突然用这么笨拙的方法向一个男孩讨要礼物，只有两个可能，第一个可能就是，这个女孩喜欢上了那个男孩，第二个可能，参考第一个……</p>
+	<p class = "firstLineIndent"> 要说到好感的话，虽然感觉有点对不起浅浅，可是我对珊多拉确实存在一定的好感，刚开始的时候是因为我们之间先天的心灵交融，然后在相处中，这种好感便渐渐明显起来，只是我一直在回避而已——毕竟，我已经有浅浅了。</p>
+	<p class = "firstLineIndent"> 看着珊多拉有些期待的眼神，我还是不忍心拒绝，只好折中地说道：“好好好，说起来我确实没有送过你礼物呢，正好顺便给浅浅她们都挑一件礼物吧……”</p>
+	<p class = "firstLineIndent"> 听到我的话，珊多拉眼中闪过一丝失落，不过立刻又想明白了什么似的，眼中失落一扫而光，转而开心地抱住我的胳膊，一边对前面的浅浅她们喊道：“喂，好消息！陈俊这个抠门要给大家买礼物了！”</p>
+	<p class = "firstLineIndent"> 立刻，大街上百分之八十的好奇目光都集中在我身上，当看到我身边的金发少女以及正向我走来的浅浅三人的时候，这其中一半的目光立刻转变成了杀气……</p>
+	<p class = "firstLineIndent"> 用脚趾头都可以想到，这是珊多拉恶作剧似的报复行为。</p>
+	<p class = "firstLineIndent"> 注意到这些恼人的视线，姐姐不由有些不满，她来到我身边，低低地哼了一声，然后小声说了些什么。</p>
+	<p class = "firstLineIndent"> 三秒钟后，人群忽然骚乱起来，然后以惊人的速度散开，我们身边一下子变得空空荡荡，只有少数几个行人和路边的商人们在茫然四顾。</p>
+	<p class = "firstLineIndent"> “但愿这个雷顿城内的公厕够用……”</p>
+	<p class = "firstLineIndent"> 已经黑化的姐姐用恶狠狠的语调说道，让我冒了一身的冷汗——从某种意义上来说，招惹姐姐的下场绝对比招惹一头龙还要可怕，后者是斩立决，前者可是凌迟处死啊。</p>
+	<p class = "firstLineIndent"> 半条街的人集体拉肚子的好处是显而易见的，这让女孩子们挑选礼物的过程顺利了许多，虽然我们之前从阿格纳那里敲诈了很多金币，不过浅浅她们对那些价值不菲的奢侈品明显没有什么兴趣，难得来异界旅游，她们看上的是充满了异界风情的土特产。</p>
+	<p class = "firstLineIndent"> 浅浅选中了一双淡绿色的水晶手镯，据说是用某种低阶风系魔兽的魔晶制成的，拥有可以让佩戴者速度略微加快的作用，不过对于可以随意支配时间的浅浅而言根本没有任何作用，浅浅只是看中了它漂亮的外形和闪闪发亮的质地而已，姐姐挑中了一个漂亮的紫水晶戒指，号称是可以让佩戴者的诅咒系法术强化百分之十的好东西，不过姐姐的能力本来就不是法术，这个戒指对她而言也没什么作用，她挑中这个戒指的原因自然和浅浅一样，珊多拉在一堆漂亮的首饰中挑花了眼，最后选中了一对小巧的天蓝色耳坠，倒是和她非女王时的气质很相配，而且看她的表情对这对耳坠也很是喜欢——虽然曾经是将战争与恐惧带到宇宙各个角落的希灵女帝，但珊多拉还是有正常女孩子的一面啊。</p>
+	<p class = "firstLineIndent"> 最后，轮到了林雪。</p>
+	<p class = "firstLineIndent"> 从一开始，她就没有参与挑选，而我也好像忘掉了她的样子，等所有人都拿到了礼物之后，浅浅才突然发现，林雪的手中还是空空如也。</p>
+	<p class = "firstLineIndent"> 不过林雪倒是一点委屈的神色都没有，而是似笑非笑地看着我。</p>
+	<p class = "firstLineIndent"> “别藏着了，你以为就凭你也能瞒过目光如炬的本小姐？”</p>
+	<p class = "firstLineIndent"> 林雪说着，然后伸出手来，毫不客气地说道：“拿来！”</p>
+	<p class = "firstLineIndent"> ……本来还想逗逗这个家伙呢，可是我早就该想到，在一个先知面前藏东西是一件多么脑残的事情。</p>
+	<p class = "firstLineIndent"> 我讪讪地笑着，拿出了一早藏在手里的东西——一个浅绿色、表面有能量光晕流动的六芒星吊坠，据说这东西是经过了生命女神祭祀祝福的护身符，可以使佩戴者免生疾病，不过想到被我们留在家陪着小泡泡的叮当，估计林雪看上的也是这东西的外表吧……</p>
+	<p class = "firstLineIndent"> 刚才的时候，我就看到林雪的注意力始终集中在这个吊坠上了。</p>
+	<p class = "firstLineIndent"> 林雪看到吊坠，脸上露出了满意的笑容，点点头说道：“没想到你还是有些优点嘛，竟然真的注意到了……”</p>
+	<p class = "firstLineIndent"> “恩？”</p>
+	<p class = "firstLineIndent"> 我好奇地问道，她的后半句话我没有听清。</p>
+	<p class = "firstLineIndent"> “没什么，”林雪一把抓过吊坠，说道，“再给家里的四个女孩子挑点礼物，然后去别的地方转转——诶，说起来，好像你身边全是女孩子啊？！”</p>
+	<p class = "firstLineIndent"> “好像是哦……”浅浅似乎突然反应过来一样，“我突然觉得自己好失败……”</p>
+	<p class = "firstLineIndent"> 不会吧浅浅，两个身高一米多点的小不点，还有一个巴掌大的小东西，剩下的一个还是个天使，你把她们也算上了？</p>
+	<p class = "firstLineIndent"> 16977小游戏每天更新好玩的小游戏，等你来发现！</p>
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0070.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0090.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>

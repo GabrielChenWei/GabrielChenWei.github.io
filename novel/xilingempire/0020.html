@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel"><p>
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</p></div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+
+<h2>第二十一章 大沙漠</h2>	
+	<p class = "firstLineIndent"> 从飞机上下来的时候，我还觉的脑子有点晕忽忽的。</p>
+	<p class = "firstLineIndent"> 当然，并不是晕机的原因，而是出于对林雪那个组织的惊奇。</p>
+	<p class = "firstLineIndent"> 真没想到，他们竟然可以在那么隐蔽的地方建立一个地下机场！当进入那个充满了未来气息的地下建筑时，我甚至以为自己来到了科幻片中，而稍后我们所登上的这架梭形的“飞机”更是让我惊叹人类的科技竟然已经发达到了这种程度！</p>
+	<p class = "firstLineIndent"> 林雪的解释是：“事实上，有很多在科幻片中才出现的科技早已经被人类所掌握，只是为了不对人类已有的生活造成太大冲击，这部分科技被小心地限制起来，只有非常重要的军事部门和像我们这样特殊的组织才能享受到这种‘未来’科技，另外，一些比较特殊的势力也掌握着一些特殊的技术，那就不是你我应该讨论的了。”</p>
+	<p class = "firstLineIndent"> 相对于我的惊奇，浅浅反而没那么失态，虽然一路上也是充满好奇地左看看右看看，但估计是知道异能者的存在之后就对稍后发生的事情产生了免疫力，她反而比我镇静多了。</p>
+	<p class = "firstLineIndent"> 至于潘多拉……用她的话来说，就是过惯了现代化的生活，关注一下古代人的原始科技还是很有乐趣的……</p>
+	<p class = "firstLineIndent"> 好像就我一个人是土包子啊？</p>
+	<p class = "firstLineIndent"> 我们乘坐的那架梭形的飞机直接飞进了一个巨大的建筑物里，然后停在一个宽敞的大厅中，林雪告诉我，这里是他们组织设在塔克拉玛干大沙漠深处的一个秘密基地。</p>
+	<p class = "firstLineIndent"> “林雪，看上去你的地位很高啊？”看到一路过来，每一个路过的工作人员都恭恭敬敬地停下来跟林雪打招呼，我不由惊奇地说道。</p>
+	<p class = "firstLineIndent"> “那是当然，”林雪有些自豪地说道，“你忘了我跟你说过的？我们整个组织才20多个异能者，也就是说，我们这20多人就是整个组织的领导人！”</p>
+	<p class = "firstLineIndent"> 差点忘了，异能者可是这个世界的珍稀物种，那种拿异能者当杂兵使的事情怎么可能发生在现实世界里。</p>
+	<p class = "firstLineIndent"> “怎么样，陈俊，你要不要再考虑一下加入我们？你也看到了，我们很厉害的。”</p>
+	<p class = "firstLineIndent"> “很抱歉……”为了全人类的生死存亡，我是绝对不会参加任何人类组织的。</p>
+	<p class = "firstLineIndent"> “那个，”在这样一个戒备森严的基地中，浅浅终于收敛了自己的性格，有些拘束地说道，“我们什么时候去找我爸爸？”</p>
+	<p class = "firstLineIndent"> “不，我们先休息一天，明天我们会去见一个很特殊的老人，然后我们再一起出发。”</p>
+	<p class = "firstLineIndent"> “我们要去的地方，很危险？”我敏锐地注意到，林雪的表情中带着一丝凝重的神色。</p>
+	<p class = "firstLineIndent"> “不是很危险，”林雪摇了摇头，“确切地说，是有些怪异。”</p>
+	<p class = "firstLineIndent"> “怪异？”</p>
+	<p class = "firstLineIndent"> “你认为需要异能者出马才能摆平的事情，有可能不怪异么？”林雪说着，白了我一眼，“自从我加入组织，便一直和各种怪异的东西打交道，只不过，这次更加奇怪一点而已——好了，前面就是你们的房间了，先进去休息一下吧，晚饭时间我来找你们——陈俊，你傻笑什么，里面是分开的几个隔间，你别以为我连这都想不到！”</p>
+	<p class = "firstLineIndent"> *********************************************************休息中*********************************************************</p>
+	<p class = "firstLineIndent"> 我和潘多拉无所事事地坐在客厅里，浅浅洗澡的声音从旁边房间传来。</p>
+	<p class = "firstLineIndent"> “哥哥想看么？”潘多拉静静地问道。</p>
+	<p class = "firstLineIndent"> 我的视线向一旁的浴室飘去，然后坚定地点点头。</p>
+	<p class = "firstLineIndent"> 潘多拉站起身，走到浴室门口，敲了敲玻璃门，说道：“浅浅姐姐，哥哥说想……唔……”</p>
+	<p class = "firstLineIndent"> 我捂着潘多拉的嘴巴将她拖回到沙发上，然后似乎看到一丝恶作剧得逞的笑容从潘多拉很少出现表情的小脸上浮现出来，但当我认真去看时，潘多拉又恢复了往常冷冰冰的表情。</p>
+	<p class = "firstLineIndent"> 是错觉么？</p>
+	<p class = "firstLineIndent"> 坐定之后我不再想那些乱七八糟的事，而是向潘多拉询问：“找到许叔了么？那些卫星有没有传回来什么线索？”</p>
+	<p class = "firstLineIndent"> 面前的小萝莉摇了摇头，声音中有一丝不易察觉的不甘：“没有任何线索，在林雪所提供的模糊坐标附近没有发现任何人类活动的痕迹，能量探测也没有发现不正常的能量波动。”</p>
+	<p class = "firstLineIndent"> “你说的那几个十分擅长搜索的指挥官呢？他们有没有什么发现？”</p>
+	<p class = "firstLineIndent"> “毫无发现，他们释放出去的探测端子已经深入到地下岩浆层，但是尚未发现有人类活动的痕迹。”</p>
+	<p class = "firstLineIndent"> ……岩浆层，你认为有必要那么夸张么？</p>
+	<p class = "firstLineIndent"> 现在，我突然有些觉得，这次的事情没那么简单。</p>
+	<p class = "firstLineIndent"> 依靠希灵帝国的技术，在这段时间里潘多拉的手下们已经将整个塔克拉玛干大沙漠南部地区探测了一遍，现在潘多拉甚至可以向我精确地汇报出大沙漠南部地区的地下究竟有多少只沙蝎，其中有多少公的多少母的，但是他们竟然发现不了一个失踪不到两天的人类考察队？！</p>
+	<p class = "firstLineIndent"> 这时候，浅浅已经洗好了澡，换上了一件林雪准备的、白色的基地工作人员穿的宽大外衣，这种衣服据说是由特殊材料制成，拥有相当程度的防护能力，而且可以在沙漠中很好地抵御昼夜的温差变化，只可惜这种好东西里面的某种物质会对异能者的能力产生干扰，对林雪来说完全就是个累赘，不过对于浅浅倒是正好。</p>
+	<p class = "firstLineIndent"> “阿俊，刚才莉莉说你想什么？”浅浅一边擦着还有些潮湿的头发一边问道。</p>
+	<p class = "firstLineIndent"> “别理她，小丫头无聊了，倒是你——浅浅，你明天真的要跟着我们去么？”</p>
+	<p class = "firstLineIndent"> “当然，都已经来到这里了，我怎么能不去，那可是我的爸爸啊！而且，林雪不是也说了么，这次行动，需要我帮忙的。”</p>
+	<p class = "firstLineIndent"> “是么……”我不置可否，对林雪的这个说法我一直抱有疑问，浅浅不管怎么看都只是一个很普通的女孩子，她跟这次事件唯一的联系恐怕就是失踪的人员中有一个是她的父亲罢了，可是林雪为什么坚持说浅浅会在这次事件中起到作用呢？实在让人很怀疑啊。</p>
+	<p class = "firstLineIndent"> 我和浅浅正聊着，敲门声传了过来，林雪的声音在门外响起：“浅浅，莉莉，还有那个谁，没事的话跟我过来一下，让你们见识见识大沙漠！”</p>
+	<p class = "firstLineIndent"> ……为什么我觉得林雪刚才对我进行了某种形式的鄙视呢？</p>
+	<p class = "firstLineIndent"> 跟在林雪的身后，我们终于离开了这个内部结构简直和迷宫一样的秘密基地，来到了地表的出口处。</p>
+	<p class = "firstLineIndent"> “啊——”浅浅惊呼道，“这就是大沙漠？！”</p>
+	<p class = "firstLineIndent"> “真壮观！”我由衷地赞叹。</p>
+	<p class = "firstLineIndent"> “……”潘多拉表情不变，完美地扮演了盲女的角色。</p>
+	<p class = "firstLineIndent"> 在我们面前，是一望无际的金色沙丘，绵延不绝的沙丘仿若静止的海浪，在夕阳下折射出美丽的金红色光芒，遥远的天边，地平线的方向，无际的黄沙仿佛和天空连接在一起，就好像整个世界都被这漫无边际的沙漠所填满，让我们不由得感到此身的渺小，自然的伟大，在地平线附近我还观察到有一些隐隐约约的黑色短线，不由有些好奇地问道：“林雪，那些是什么？”</p>
+	<p class = "firstLineIndent"> “胡杨林，”林雪带着莫名的敬意说道，“生而千年不死，死而千年不倒，倒而千年不烂，沙漠中的英雄之树。”</p>
+	<p class = "firstLineIndent"> “沙漠真壮观！”浅浅带着惊叹的语气，“不仅仅是壮观——应该说是壮美吧！”</p>
+	<p class = "firstLineIndent"> “是么，”林雪轻轻地笑了笑，“现在是沙漠安静的时候，当沙漠躁动起来，你就不会这么说了，甚至不用等沙漠躁动起来，你面前的这些沙丘本身就是在不断移动中的，它们有的一晚上甚至可以移动几百米，如果不是这个基地周围有特殊的设备可以干涉到沙丘移动的路线，只怕只要一天，这个地下基地就会变成一个大墓**了……我现在真的很感叹自己的运气，幸好没有被分派到这个鬼地方当负责人……好了，时间不早了，咱们先回去吃饭吧。”</p>
+	<p class = "firstLineIndent"> ********************************************************恩，二更********************************************************</p>
+	<p class = "firstLineIndent"> 二更完成，另外我发现最近精神有点很难集中，如果有不小心犯下的错误欢迎指正——假如有人在看的话……</p>
+	
+<h2>第二十二章 还少个加血的</h2>	
+	<p class = "firstLineIndent"> 精彩剧情就要展开！！！路过的不要错过啊！！！</p>
+	<p class = "firstLineIndent"> **************************************************************************</p>
+	<p class = "firstLineIndent"> 第二天早上，在基地的休息厅里，我们见到了林雪所说的那个擅长防御的异能者。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 一个看上去毫不起眼的年轻人，大约20岁上下，穿着身一看就是地摊货的休闲装，脸色有些偏白，中短发梳的一丝不苟，似乎不是很喜欢说话，见到我们三人只是点了点头，便坐在一旁。</p>
+	<p class = "firstLineIndent"> 林雪站了起来，开始为我们介绍：“这是郑一鸣，我们组织中最擅长防御能力的异能者，虽然不是很喜欢说话，但其实是个很热心的人。”</p>
+	<p class = "firstLineIndent"> “你们好。”郑一鸣露出一个礼貌的微笑，点点头说道。</p>
+	<p class = "firstLineIndent"> “这位是我的弟弟，林风，能力是操纵压缩空气进行攻击。”林雪旁边的一个看上去很腼腆的男生站了起来，向我和潘多拉一鞠躬，说道：“上次攻击你们真是万分抱歉，那都是姐姐的主意，你们可以尽情报复不用留情。”</p>
+	<p class = "firstLineIndent"> ……真不愧是林雪的弟弟，腼腆的外表下隐藏的是一颗腹黑的内心啊！</p>
+	<p class = "firstLineIndent"> “小风，有时间我会揍你的。”林雪面对林风微微一笑，然后指着浅浅介绍道：“这是许浅浅，这次失踪的考察队中有一个叫做许峰的考古学家是她的父亲，在之后的行动中她将和我们一同行动，郑一鸣的主要任务就是保护她的安全。”</p>
+	<p class = "firstLineIndent"> “你好，”浅浅微笑着对郑一鸣说道，“虽然我还不知道自己能帮上什么忙，不过我一定会努力的！”</p>
+	<p class = "firstLineIndent"> “林雪，你一直在说浅浅将在之后的行动中帮上忙，现在可以告诉我她究竟能办到什么吗？我可不希望她因此而陷入险境。”</p>
+	<p class = "firstLineIndent"> “这个很快你就会知道了，浅浅的安全你大可以放心，郑一鸣的防护能力可不是说笑的。”</p>
+	<p class = "firstLineIndent"> 防护能力？能正面硬抗希灵对星反相位冲击炮么？</p>
+	<p class = "firstLineIndent"> 我已经决定了，不论那个郑一鸣有什么本事，在之后的行动中我都将把保护浅浅作为第一要务，即使因此而导致任务失败也没关系，有希灵远征军的将士们帮忙，我实在不必要让浅浅亲自冒这个险。</p>
+	<p class = "firstLineIndent"> “这两人，”林雪指着我和潘多拉说道，“是一对兄妹，都是很强力的异能者。”</p>
+	<p class = "firstLineIndent"> “异能者？！”表情一直很淡然的郑一鸣终于露出了惊讶的神色，然后他突然用和当初的林雪一样的期待目光看着我们。</p>
+	<p class = "firstLineIndent"> “别想了，”林雪摆摆手说道，“我早就和他们说过了，可惜啊，他们很坚决地拒绝了加入组织，不过他们倒是答应了在有需要的时候可以帮我们的忙——就像现在这样。”</p>
+	<p class = "firstLineIndent"> “哦。”郑一鸣带着失望的表情点了点头，林雪则继续介绍到：“这是妹妹潘莉莉，特殊能力是心灵对话，在之后的团队行动中将起到不小的作用。”</p>
+	<p class = "firstLineIndent"> 郑一鸣的眼睛一亮，称赞道：“很好的能力……嗯？你的眼睛。”</p>
+	<p class = "firstLineIndent"> “看不见。”潘多拉平静地说道，郑一鸣顿时有些尴尬地说道：“啊，抱歉……”</p>
+	<p class = "firstLineIndent"> “还有这个，龙套甲，能力是在局部产生高温能量攻击，并且似乎具有远程遥控这种攻击的能力，战斗力很强。”</p>
+	<p class = "firstLineIndent"> “你好，龙套甲。”郑一鸣很配合地说道。</p>
+	<p class = "firstLineIndent"> ……我应该生气么？！</p>
+	<p class = "firstLineIndent"> “好了好了，不开玩笑了，”林雪看到我的脸色已经有发绿的趋势，见好就收地说道，“他的名字是陈俊——至于为什么和他妹妹不一个姓，那是因为他们两个都是孤儿，从小被不同的家庭收养，长大之后才终于相认，他们的能力也是在相认之后才觉醒的。”</p>
+	<p class = "firstLineIndent"> 等逐一介绍完之后，林雪提议道：“现在大家都互相认识了，为了之后行动的方便，咱们最好可以互相熟悉一下同伴的能力。”</p>
+	<p class = "firstLineIndent"> “就是说，展示一下各自的异能吧？”我点点头，这倒是一个见识真正异能的好机会。</p>
+	<p class = "firstLineIndent"> 浅浅一听要展示异能，也来了兴趣，兴奋地叫道：“好啊好啊！让我也开开眼界，一直听你们说异能异能的，可是除了莉莉的能力，我还没有见过你们的异能呢！”</p>
+	<p class = "firstLineIndent"> “这里有一个封闭的演练场，”林雪说道，“我们可以在那里……”</p>
+	<p class = "firstLineIndent"> “等等，”我打断了林雪的话，“我的能力影响范围比较大，能不能在户外进行？”</p>
+	<p class = "firstLineIndent"> 当然要在户外进行了，希灵空间武器都是从外太空直接发射的，要是在演练场中发动的话，把这个基地打个窟窿我赔得起么？</p>
+	<p class = "firstLineIndent"> “那也好，反正这里是沙漠，户外空间有的是。”</p>
+	<p class = "firstLineIndent"> 在基地之外，我们五个异能者还有一个看热闹的浅浅已经做好了准备。</p>
+	<p class = "firstLineIndent"> “首先，我的能力是感知，”林雪说道，“我可以精确地感知到周围的环境以及能量的流动，并且根据第六感判断一小段时间内将发生的事情——当然还没有达到预言那么夸张的能力，只是大致得出某件事情发生的概率而已，比如——3秒后将有一阵大风刮过，浅浅的帽子会被吹掉。”</p>
+	<p class = "firstLineIndent"> “啊？”浅浅下意识地将头上的帽子压住。</p>
+	<p class = "firstLineIndent"> 3秒钟是一段很短的时间，几乎是浅浅刚把帽子压住，一阵不小的风便呼啸而过，当然，由于浅浅已经把帽子压住，这场风并没有起到林雪所说的效果。</p>
+	<p class = "firstLineIndent"> “就是这样，我能预感到3秒钟后发生大风并且风力足够将浅浅的帽子刮掉，可是事实还是会与我的直觉产生偏差，至于我的观察能力——刚才浅浅压住帽子这个动作消耗的能量是0.132千焦，可惜这个数据我没办法证明。”</p>
+	<p class = "firstLineIndent"> 潘多拉的声音通过精神连接传了过来：“是0.13185千焦，单论对能量的感知，林雪的能力已经达到了一般希灵探索者的程度，而她的短期预知能力比感知能力更加强大。”</p>
+	<p class = "firstLineIndent"> 真是厉害的异能！这简直就是半个先知啊！</p>
+	<p class = "firstLineIndent"> 看到浅浅和我惊讶的神情，林雪得意地一笑，说道：“好了，下一个是谁？”</p>
+	<p class = "firstLineIndent"> “这是我的能力。”潘多拉的声音在现场诸人心中同时响起，然后就没了下文。</p>
+	<p class = "firstLineIndent"> ……真是符合潘多拉个性的简短展示。</p>
+	<p class = "firstLineIndent"> “我的能力是风刃——一鸣，你过来配合我一下。”</p>
+	<p class = "firstLineIndent"> 郑一鸣点点头，站到了离我们十几米远的地方，然后向这边点点头，示意自己已经准备好了。</p>
+	<p class = "firstLineIndent"> 林风略一沉气，然后猛地将右手向前挥出！</p>
+	<p class = "firstLineIndent"> “风刃！”</p>
+	<p class = "firstLineIndent"> 只见数道近乎透明的扭曲空气以极高的速度向郑一鸣的方向飞去，与此同时，郑一鸣的身前也出现了一层淡青色、半透明的薄膜一样的防护层，风刃撞击在防护层上激发出了一阵阵如同水波纹一样的波动便归于平静，而几道林风故意打偏的风刃则从郑一鸣的身边飞过，将几百米外的一座沙丘直接分成了两半！</p>
+	<p class = "firstLineIndent"> 可不要以为沙丘质地松软就轻视了这几道风刃的攻击力，要知道，沙子对各种外力的损耗能力是相当强的，一座半径足有上百米的沙丘，那可是连最强大的狙击步枪都打不穿的东西！</p>
+	<p class = "firstLineIndent"> “就像拍电影一样……”浅浅看到眼前宛如特技一样的景象，不由得喃喃自语道。</p>
+	<p class = "firstLineIndent"> “如果单论攻击力的话，我还不算最厉害的。”林风谦虚地一笑，然后带着些后怕的表情说道：“一会你要看到陈俊的能力就不会觉得我强大了……”</p>
+	<p class = "firstLineIndent"> 我微微一笑，然后上前几步。</p>
+	<p class = "firstLineIndent"> 自从潘多拉重装军团来到这个世界，我和希灵母星的连接便被加强了许多，虽然还没有达到能每天和盖亚聊天的地步，但要想让那份百分之九十九点九九九九九九……不能用的指令集产生点效果还是可以的。</p>
+	<p class = "firstLineIndent"> 确认已经顺利连线之后，我面色一正，眼观鼻鼻观口口观心，身如劲松，一瞬间XX之气以我为……</p>
+	<p class = "firstLineIndent"> “你要再摆poss我们就回去了。”林雪在一边不咸不淡地说道。</p>
+	<p class = "firstLineIndent"> “天照！”我相当牛叉地大叫一声，右手向前一挥，同时心中说道：“请求跨空间支援。”</p>
+	<p class = "firstLineIndent"> 只见一道足有数米粗的耀眼白色光柱带着嗡嗡的低鸣声从天而降，随后迅速没入前方百米处的沙地中。</p>
+	<p class = "firstLineIndent"> 一个直径将近十米的岩浆池……</p>
+	<p class = "firstLineIndent"> 我的身后传来一阵吸凉气的声音。</p>
+	<p class = "firstLineIndent"> 糟！玩大了！</p>
+	<p class = "firstLineIndent"> “陈俊……这是你的真实实力？”林雪嘴角抽搐着问道，在她的心中早已经翻起了滔天巨浪：老天，这种力量，这还是异能可以解释的么？真亏那天自己没有真的惹恼了这位主，要不然……</p>
+	<p class = "firstLineIndent"> 林风也是一脸的冷汗，当天他可是被追杀了整整一天一夜啊！（他和林雪根本想不到当时攻击他们的并不是我，而是看上去人畜无害的小萝莉潘多拉。）</p>
+	<p class = "firstLineIndent"> 郑一鸣也傻了眼，原本他对自己的防御能力还很有自信，但是现在看来……自己能在这种攻击下撑过一秒钟么？</p>
+	<p class = "firstLineIndent"> 只有没心没肺的许浅浅还意识不到这种力量有多夸张，反而只顾着一脸崇拜地看着我。</p>
+	<p class = "firstLineIndent"> “这个……其实我这种程度的攻击是受到很多限制的，”我干笑着解释道，“首先消耗太大，我不能连续使用，而且范围很不好控制，每次发动都要蓄力好长时间——就是刚才我摆poss的时候……”</p>
+	<p class = "firstLineIndent"> “哦——”众人点头，看样子心里终于平衡了一些。</p>
+	<p class = "firstLineIndent"> 林雪似乎从一开始就担当了队长的角色，等所有人都从刚才的景象中回过神来之后，她大声说道：“好了，现在大家都已经互相有了一定的了解，谁还有疑问么？”</p>
+	<p class = "firstLineIndent"> 我环视了一下四周。</p>
+	<p class = "firstLineIndent"> 潘多拉，利用心灵对话来传递情报，林雪，利用侦测能力和短期预知能力来趟地图，郑一鸣利用防御能力担当团队的主T，我和林风是团队的主力dps，再加上浅浅这个关键性NPC，恩……</p>
+	<p class = "firstLineIndent"> “林雪，”我举了举手说道，“咱们还少个加血的！”</p>
+	<p class = "firstLineIndent"> *******************************************************咳咳*******************************************************</p>
+	<p class = "firstLineIndent"> 虽然人气不是很高，但我还是要吼一句：精彩剧情就要展开了！！！！！！</p>
+	
+<h2>第二十三章 西卡罗的加入</h2>	
+	<p class = "firstLineIndent"> 召唤支持！！！路过留声！！！另外有票的就不要藏着了！！！</p>
+	<p class = "firstLineIndent"> ******************************************************************************</p>
+	<p class = "firstLineIndent"> 在出发去那片考察队失踪的遗迹之前，林雪先带我们来到了一个距离基地不远的小城镇。</p>
+	<p class = "firstLineIndent"> 镇子不大，大约只有几千人的规模，可是街道旁边的建筑看上去却很整齐而且现代化，完全不像一个与世隔绝的沙漠小镇。</p>
+	<p class = "firstLineIndent"> 对我们的到来镇上的人似乎并没有什么反应，他们只是看了我们这些外来者一眼，然后便各自做着自己的事情。</p>
+	<p class = "firstLineIndent"> 不知道为什么，走在这个城镇中，我总有一种奇怪的感觉。</p>
+	<p class = "firstLineIndent"> “没想到在沙漠中还有这样的城镇。”看着周围来来往往的人流浅浅不由得有些惊奇，虽然知道在沙漠中也有人居住生活，可问题是——这里可是塔克拉玛干沙漠的中央地带啊！人迹罕至，资源贫乏，就连最基本的饮水都无法解决，在这个地方出现一座城镇怎么能不让她好奇。</p>
+	<p class = "firstLineIndent"> 对这个地方郑一鸣似乎很熟悉，他一边在我们面前带路一边介绍道：“这个城镇可不是一般的地方，事实上这里是一座避难所——也可以称之为流放地。”</p>
+	<p class = "firstLineIndent"> “什么？”我的八卦之魂一下子燃烧起来。</p>
+	<p class = "firstLineIndent"> “国际头号的走私贩，军火商，被驱逐的大家族后代，被仇家追杀的隐士高人，甚至还有一两个犯下错误终生不允许离开这片沙漠的异能者，不要小看这里的每一个人，他们中随便哪个走出去都能让整个世界抖上一抖。”</p>
+	<p class = "firstLineIndent"> “啊！”浅浅一声惊呼，然后紧紧地抓住我的胳膊，周围原本看上去一脸和善的沙漠住民在她眼中似乎一下子变成了凶神恶煞的暴徒。</p>
+	<p class = "firstLineIndent"> “放心，”林雪安慰地拍了拍浅浅的肩膀，“不管是什么大人物，到了这个流放镇都要老老实实的，在这个地方呢，有几个规矩，第一：不管你在外面犯下了多大的错，到了这里，都将被一笔勾销，就是说，你已经‘死了’。第二：一旦来到这里，没有组织的允许，谁都休想离开这里，除非你自信有能力可以逃脱整个组织的追杀。第三：任何人在这里都不要想惹是生非，任你在外面多么不可一世，在这里都只是一个普普通通的镇民，否则——呵呵，总之会发生一些很不和谐的事情。另外，这个小镇也不是完全和外界隔绝的，偶尔这里也会有一些得到许可的外人进来，只是他们并不知道这个镇子的真相，能够知道真相的，除了组织里的人就只有像陈俊你们这样的特殊人物了。”</p>
+	<p class = "firstLineIndent"> “厉害，”我咂咂嘴，说道，“怎么感觉你们像一个无法无天的恐怖组织？”</p>
+	<p class = "firstLineIndent"> “切——我们这是为世界做贡献！”林雪习惯性地反驳我，“这些家伙中绝大部分只要活在世界上就会对人类造成危害，但是杀掉又可惜了他们的本事，所以我们采取了这种做法。</p>
+	<p class = "firstLineIndent"> “组织为他们提供庇护，让他们不至于被仇家或者其他的什么人撕成碎片，相应的，他们老老实实地呆在这里，用自己的能力为组织效劳，不管你相信不相信，你面前的人中就有这样的例子：他们通过网络或者其他的手段指挥着外面世界几十亿的资金流动，只是为了能够在这里安安稳稳地吃上一顿饱饭，所以这里是避难所，同时也是流放地……”</p>
+	<p class = "firstLineIndent"> 避难所……流放地……</p>
+	<p class = "firstLineIndent"> 我细细体会着林雪的话，再次认真观察那些看上去平平无奇的沙漠住民们。</p>
+	<p class = "firstLineIndent"> 从外表看上去他们都只不过是最普通的居民，但当我认真观察的时候，还是发现了他们眼神中的不同。</p>
+	<p class = "firstLineIndent"> 有的冷漠，有的麻木，有的不甘，有的则对我们投来**裸的嫉妒之色。</p>
+	<p class = "firstLineIndent"> 可是在这里他们只能将这些情感深深地压在心底，努力让自己成为一个平凡的沙漠住民。</p>
+	<p class = "firstLineIndent"> 就在这时，“大哥，要盘么？”一个有些熟悉的男低音从不远处传来。</p>
+	<p class = "firstLineIndent"> “嘎吱——”我的身子瞬间石化。</p>
+	<p class = "firstLineIndent"> 伴随着“吱吱咯咯”的声音，我将自己已经僵硬的脖子转过去，然后一个穿着打扮宛若黑客帝国的骑士脸大叔向路人推销盗版盘的身影映入眼帘。</p>
+	<p class = "firstLineIndent"> ……西卡罗，帝国的优秀指挥官，于公元2010年12月6日被帝国皇帝处以死刑，罪名：太过白痴。</p>
+	<p class = "firstLineIndent"> 开玩笑的……</p>
+	<p class = "firstLineIndent"> 不过我真的很想这么做啊混蛋！你这家伙真的是希灵帝国的指挥官么？你真的不是专门出来搞笑的群众演员或者敌方派来砸场子的卧底么？难道你在军队中就没有接受过一点情报人员的培训么？除了一路穿着黑客帝国套装卖光盘你就不能想一个更好点的掩饰身份的方法么？！</p>
+	<p class = "firstLineIndent"> 这一刻，我对这位骑士脸大叔的智商已经不抱任何希望。</p>
+	<p class = "firstLineIndent"> “咦？我怎么觉得这个买盘的大叔这么脸熟啊？”曾经在汽车里偶然看到过西卡罗身影的林雪有些奇怪地自言自语。</p>
+	<p class = "firstLineIndent"> 问题的关键不是这里吧？问题的关键是在这个地方怎么可能出现一个买盗版盘的大叔才对吧？</p>
+	<p class = "firstLineIndent"> “不对——这里怎么会出现这么一个人？！”郑一鸣首先反应了过来，“抓住他！”</p>
+	<p class = "firstLineIndent"> “等等！”我急忙阻止。</p>
+	<p class = "firstLineIndent"> “怎么了？”林雪奇怪地问我，“你认识这个人么？”</p>
+	<p class = "firstLineIndent"> 我真脑残，干什么出声啊！</p>
+	<p class = "firstLineIndent"> 面对林雪探寻的目光，我飞快地组织着内心的语言，可是究竟怎么才能解释这位在流放镇推销盗版光盘的大叔和我之间的关系呢？</p>
+	<p class = "firstLineIndent"> “他是哥哥的朋友。”潘多拉突然开口了。</p>
+	<p class = "firstLineIndent"> ……潘多拉，你知不知道我正在想办法和这个一眼看上去就是可疑人物的大叔撇清关系啊！</p>
+	<p class = "firstLineIndent"> “也是一个异能者。”潘多拉继续爆料。</p>
+	<p class = "firstLineIndent"> “什么？！”林雪、林风还有郑一鸣齐声惊呼，这年头，难道异能者已经不值钱了么？怎么大街上遇见一个买盗版盘的可疑大叔都能成为异能者？</p>
+	<p class = "firstLineIndent"> 这时，潘多拉的声音通过精神连接传了过来：“西卡罗是一个十分擅长阵地防御战的帝**官，他本身的战斗力也不容忽视，我希望可以让他加入我们稍后的行动——我觉得这次的事件没那么简单，多一层保险总是好的。”</p>
+	<p class = "firstLineIndent"> “陈俊，”林雪的声音打断了我和潘多拉的对话，“这个人你认识么？他真的是异能者？”</p>
+	<p class = "firstLineIndent"> “恩……没错！”我有些慌张地回答道，然后灵机一动地说道：“他会加血！”</p>
+	<p class = "firstLineIndent"> “哈？”</p>
+	<p class = "firstLineIndent"> 几分钟后，号称会加血……咳咳，就是会治疗异能的西卡罗和我们走在一起。</p>
+	<p class = "firstLineIndent"> “陈俊，这家伙真的没问题么？”林雪一边看着沿途推销盗版盘的骑士脸大叔一边有些担忧地问道，“突然让一个来历不明的人加入。”</p>
+	<p class = "firstLineIndent"> “我可以用自己的人格担保，他绝对可靠！”</p>
+	<p class = "firstLineIndent"> “一个喜欢旅行的异能者在游览塔克拉玛干大沙漠时不慎迷路误入了被异能组层层保护的流放镇并沦落到卖盗版光盘为生——你觉得我应该相信么？还有那个古怪的名字，西卡罗，这一听就不是真名字吧？”林雪对这个胆敢在流放镇推销盗版光盘的大叔还是充满了不信任，不过最终她叹了口气，说道：“算了，反正我的直觉告诉我这个人是可以信任的，希望我的能力这一次没有骗我吧。”</p>
+	<p class = "firstLineIndent"> “咱们到底要去找谁啊？”浅浅终于有些按捺不住，“已经快走到镇子尽头了，我们到底什么时候出发去那个遗迹？迟一天，我的爸爸就多一分危险啊！”</p>
+	<p class = "firstLineIndent"> “别着急，”林风温和地笑笑，“现在我们要找的这个人是十分重要的，如果没有他的帮助，恐怕我们也会和你的父亲一样失踪在那片遗迹中的。”</p>
+	<p class = "firstLineIndent"> “什么人这么厉害？”我好奇道，“难道是异能者？”</p>
+	<p class = "firstLineIndent"> 林雪摇了摇头，说道：“不，他只是一个普通的老人，但是他有一件不普通的东西，那个东西拥有让遗迹安定下来的力量——可惜那支考察队实在太相信所谓的现代科学了，他们对神秘力量的不屑一顾导致了意外的发生。”</p>
+	
+<h2>第二十四章 希灵遗物</h2>	
+	<p class = "firstLineIndent"> 路过的看官请留下只言片语……</p>
+	<p class = "firstLineIndent"> **************************************************************************************************************</p>
+	<p class = "firstLineIndent"> “林雪……这就是你说的那个神秘老人？”</p>
+	<p class = "firstLineIndent"> “我什么时候说过他是一个神秘老人了？”林雪一翻白眼，“我只是说他有一件不普通的东西。”</p>
+	<p class = "firstLineIndent"> “即使只是神秘物品的保管NPC，他也该有点特殊之处吧……这个形象……”</p>
+	<p class = "firstLineIndent"> 在我们面前，一个皮肤黝黑、上身一件脏兮兮的衬衫、下身一条灰色裤子、裤脚挽到膝盖的老头正捧着一个大海碗，以仿佛一辈子没有吃过饭的样子拼命地吸溜着面条，还不时伸出手在自己毛茸茸的小腿上抓抓痒，看样子他已经完全沉浸在自己的面条世界里，对我们的到来丝毫没有注意到。</p>
+	<p class = "firstLineIndent"> “你可不要小看了这个老人，”林雪低声说道，“顾正峰，曾经是中国最鼎鼎有名的盗墓贼，他盗过的墓比你进过的超市还多，而且几乎从未空手而归，可惜的是在他最后一次盗墓的时候动了不该动的东西，让一个他绝对惹不起的人给追杀，最后不得已才躲到了这个地方逃过一劫。”</p>
+	<p class = "firstLineIndent"> “是吗……”我再次认真打量面前这个正在和面条奋战的邋遢老头，怎么也想不到对方竟然是这么厉害的人物。</p>
+	<p class = "firstLineIndent"> 林风有点神秘兮兮地凑了过来，说道：“不止如此，据说躲到这个流放镇的第二天，那个追杀他的仇家就被一个四喜丸子活活噎死了……”</p>
+	<p class = "firstLineIndent"> “臭小子，你今天过来是诚心给我添堵是不是！”邋遢老头不知什么时候已经将最后一根面条吸溜进嘴里，瞪着眼睛对林风叫道，原来他早就听到了我们的对话，只是懒得搭理我们。</p>
+	<p class = "firstLineIndent"> “不敢不敢！”林风一拱手，嘿嘿笑道，“今天我们是来找您老人家有要事相求，不知可否进屋详谈？”</p>
+	<p class = "firstLineIndent"> “少废话，”老头捧起海碗，咕咚咕咚地将里面的面汤倒进肚里，然后一抹嘴说道，“反正你们不会让我离开，在你们的地头上我还能反对什么？”</p>
+	<p class = "firstLineIndent"> 跟在老头身后，我们进到了这间从外表看上去平平无常的土房里。</p>
+	<p class = "firstLineIndent"> 里面的景象大大出乎我的意料。</p>
+	<p class = "firstLineIndent"> 不大的房间里到处摆满了破旧的瓶瓶罐罐和看不出用途的工具，让人几乎没有下脚的地方，就连墙壁上也挂满了脏兮兮的貌似文物的东西，本就不怎么明亮的房间让这些被历史的长河打磨的乌黑发亮的前人遗物遮挡地更加阴暗，刚一进到这个房间我甚至产生了一脚踏进某个刚刚挖掘开的墓室的感觉。</p>
+	<p class = "firstLineIndent"> “就是这些东西把我害成这个样子，”老盗墓贼轻车熟路地在满地的“破烂”中穿行着，“可是我还是舍不得把他们丢掉。”</p>
+	<p class = "firstLineIndent"> “这里随便哪样东西拿出去卖都应该是价值连城吧？”浅浅小心翼翼地跨过一个看上去碰一下就会化成满地碎片的旧陶罐子，轻声说道。</p>
+	<p class = "firstLineIndent"> “你可不要打这些东西的主意，”林雪低声说道，“否则顾老肯定会找你拼命的，当初他来到这个镇子的时候一共捐出了二百二十七件文物和自己的全部家产，并且提出了一个要求，那就是这里剩下的这些东西到他死前都不允许任何人乱动。”</p>
+	<p class = "firstLineIndent"> 老盗墓贼的听力明显很好，林雪轻声说话也没能逃得过他的耳朵，只听他嘿嘿一笑，说道：“我死后这些东西自然会随便你们怎么处理，但真到了死的那一天，我希望能躺在这堆宝贝里面——老顾这辈子挖了不计其数王公贵族的坟，死的时候我也要像他们一样，躺在这宝贝堆里！”</p>
+	<p class = "firstLineIndent"> 听到老头的话，我们所有人都只能朝天翻个白眼，完全无可奈何。</p>
+	<p class = "firstLineIndent"> “好了，坐吧。”经过了一段艰难的跋涉，我们终于来到了房间中唯一的一处空地，老头随手抽出几把看上去已经快散架的椅子招呼我们坐下。</p>
+	<p class = "firstLineIndent"> 坐在这些老祖宗的宝贝中间，我们突然有一种在坟墓里开会的感觉……</p>
+	<p class = "firstLineIndent"> “说吧，你们来找我是不是为了那个东西？”老头似乎早已经知道我们的来意。</p>
+	<p class = "firstLineIndent"> “没错。”林雪爽快地回答道。</p>
+	<p class = "firstLineIndent"> “把那个东西给你们倒不是不可以，”老头的眼中闪过一道精光，原本的邋遢之气似乎一下子消失地无影无踪，似乎他又恢复了当年那个精明能干的盗墓贼的神采，“当年要不是一时贪心把它带了出来我也不至于落到如今这个田地，对我而言那就是个灾星，不过我也不能那么轻易地把东西给你们——你们知道我的规矩。”</p>
+	<p class = "firstLineIndent"> 这时我终于听出来，林雪找这个老盗墓贼要的正是当年险些给他带来杀身之祸的东西，这时连我也对那个神秘的物品产生了浓厚的好奇心。</p>
+	<p class = "firstLineIndent"> 林雪似乎对老头提到的规矩完全没有放在心上，她把正在一边好奇地观察古董的浅浅往前一推，说道：“这是许峰的女儿，许浅浅，如果你的说法没错，那这个女孩就拥有启动那个东西的资格——怎么样，把东西拿出来试试？”</p>
+	<p class = "firstLineIndent"> “喂——”我认为林雪要让浅浅做什么危险的事情，不由得出声阻止。</p>
+	<p class = "firstLineIndent"> “放心，我不会伤害到你的心上人的，只是需要她配合做个试验而已。”</p>
+	<p class = "firstLineIndent"> 老盗墓贼上上下下打量了浅浅一会，然后嘿嘿笑道：“嘿，那个失踪的男人的女儿？她老爸可是个鉴定的唯物主义者，连你们的异能都不愿意相信，还把我大骂了一通，怎么，他的女儿愿意相信这些乱七八糟的东西？你们等着，我去给你们拿……”</p>
+	<p class = "firstLineIndent"> 等老头起身去后面翻找那个神秘的东西，我和浅浅一起问道：“许叔（爸爸）也来过这里？”</p>
+	<p class = "firstLineIndent"> “是的，”这次回答我们的是郑一鸣，“因为他们要去探察的那个遗迹有些特殊，因此在出发之前我们安排考察队的几个主要人员来过这里，希望他们能从顾正峰手中得到那个重要物品，幸运的是，许先生顺利地和那个东西产生了共鸣，不过我们没想到的是，徐先生不但完全不相信我们的话，还把我们的建议斥为伪科学，把盗墓出身的顾老痛骂了一通……”</p>
+	<p class = "firstLineIndent"> 浅浅不好意思地看了我们一眼，似乎对自己父亲的顽固早有所料。</p>
+	<p class = "firstLineIndent"> 听到郑一鸣的描述，我对他们口中的那个神秘物品更加好奇：“你说那个东西可以和许叔产生‘共鸣’，而且浅浅作为许叔的女儿，也可以产生你说的那个什么‘共鸣’？那究竟是什么东西？”</p>
+	<p class = "firstLineIndent"> “你自己看看就知道了，有一点可以确定，那是比我们异能者的力量都难以解释清楚的神奇物品。”</p>
+	<p class = "firstLineIndent"> 就在这时侯，我听到身后传来一阵响动，老盗墓贼已经将那件东西拿了过来。</p>
+	<p class = "firstLineIndent"> “就是这个？”我诧异地看着老头手中毫不起眼的东西，那是一个手掌大小的六边形金属板，不知是什么材料制成，外表是一层仿佛铁锈一般的黑红色污垢，隐隐约约还可以看到这个金属板表面有一些残缺不全的符号，除此之外，这东西简直和垃圾场上的废品无异。</p>
+	<p class = "firstLineIndent"> 这个看上去和破铁片一样的东西就是那个被吹得神乎其神的神秘物品？</p>
+	<p class = "firstLineIndent"> 就在我还以为自己被一个喜欢装神弄鬼的老头骗了的时候，潘多拉的声音通过精神连接传了过来：“这是一枚空灵信标！”</p>
+	<p class = "firstLineIndent"> “什么？！”我大惊，“潘多拉，你认识这个东西？”</p>
+	<p class = "firstLineIndent"> “空灵信标，帝**团成员在危急情况下用来进行紧急传送以撤离战场时使用的东西，同时也可以作为小规模空间跃迁的导航器使用，我就有一个类似的装置，对一个希灵战士而言，空灵信标是相当重要的东西……这个世界怎么会有……”</p>
+	<p class = "firstLineIndent"> 就在这时，现场发生的事情打断了我和潘多拉的心灵对话。</p>
+	<p class = "firstLineIndent"> 按照顾正峰的吩咐，浅浅将自己的左手放在了那个被潘多拉称作“空灵信标”的黑色金属板上，立刻，那块金属板便发出了轻微的嗡鸣声。</p>
+	<p class = "firstLineIndent"> “怎么可能！”潘多拉充满惊讶的声音从我的精神世界中传来，我从未看到她会有这么剧烈的感情波动，“希灵帝国的东西怎么可能和一个碳基生命产生共鸣？”</p>
+	
+<h2>第二十五章 战士的坟墓</h2>	
+	<p class = "firstLineIndent"> 有什么事情能比得知外星人存在更加令人惊讶呢？</p>
+	<p class = "firstLineIndent"> 当然有！那就是得知某个老盗墓贼从一座不知名的古墓里挖出了外星人的遗物。</p>
+	<p class = "firstLineIndent"> 看着面前正不断震动的并且发出微微嗡鸣声的黑色金属板，我的大脑瞬间被各种电影小说占满，一个个稀奇古怪的故事源源不断地涌出。</p>
+	<p class = "firstLineIndent"> 来自宇宙深处的强大战士历经无数惨烈战斗，身负重伤坠落在当时尚处于未开化时期的地球，已经无法返回家乡的战士被当地土著尊为神明，带领着地球人一次次与暴政和独裁斗争，最终在这颗遥远的星球度完了他孤独的一生，他所遗留的物品被满怀敬意的地球人当成圣物，掩埋在历史的长河之中，直到有一天，一个名叫……呃，忘了叫什么了，反正是一个猥琐的老头发现了一座被人遗忘的墓**，这位外星战士的故事才终于露出冰山一角，然后出字幕……</p>
+	<p class = "firstLineIndent"> “阿俊？”浅浅的声音猛然在我耳边响起，让已经进入妄想模式的我迅速回神。</p>
+	<p class = "firstLineIndent"> “啊？”</p>
+	<p class = "firstLineIndent"> “你干什么，怎么又发呆了？”浅浅有些不满地看着我，似乎对我总是时不时地发呆很是无可奈何，林雪更是爆出一句：“你该不会是被这里的古代物品给诅咒了吧？据我所知有些上古神秘物品是可以让人的精神恍惚的——要不送你去检查一下？”</p>
+	<p class = "firstLineIndent"> “呃……不必了，我只是在想事情……怎么样，现在可以确认那件物品可以和浅浅产生共鸣了，那么这东西究竟是什么啊？”</p>
+	<p class = "firstLineIndent"> 所有人的视线集中在顾正峰身上。</p>
+	<p class = "firstLineIndent"> 老盗墓贼干咳了一声，说道：“其实我也不是很清楚……”</p>
+	<p class = "firstLineIndent"> 我们所有人一起恶狠狠地瞪他。</p>
+	<p class = "firstLineIndent"> 老盗墓贼赶紧一缩脖子，说道：“但是我可以确认这个东西有用——当年我和几个朋友一起找到那个遗迹，在里面的一个墓**深处发现了这个东西，当时墓**墙壁上有对这个东西的介绍，说这是‘迷途者的信标’，只有被选中的人才可以拿走它，当时我一时贪心，没有听同伴的劝阻就出手把它从盒子里拿了出来，结果引动了机关，几个同伴都死在了墓**里，只有我靠着这个东西的指引才逃了出来，可是却被人追杀，落到这个田地……”</p>
+	<p class = "firstLineIndent"> 听完顾正峰的讲述，我大致明白了这枚“空灵信标”的历史，说道：“所以你就立下规矩，只有可以和这个‘迷途者的信标’产生某种联系的人才可以取走它？”</p>
+	<p class = "firstLineIndent"> 老头点点头，说道：“就是这样，其实一开始的时候我也没想到真的有人可以和这东西产生共鸣，只是抱着试一试的心态委托异能组，如果有要去遗迹考察的人，就把他们带到我这里来，结果竟然真的遇到了一个姓许的考古学家……可惜啊，那个人没听我的劝告，反而臭骂了我一通……唉，我老顾难得这辈子做件好事……”</p>
+	<p class = "firstLineIndent"> 林雪不以为然地哼了一声，说道：“如果我是你的话，就趁早把这东西给扔了。”</p>
+	<p class = "firstLineIndent"> “如果他真的把这东西扔掉的话咱们的麻烦不就大了？”</p>
+	<p class = "firstLineIndent"> 林雪再次冷哼，但是这次竟然没有习惯性地反驳我说的话，而是站起身来转移话题道：“不管怎么说，这东西已经到手了，咱们还是赶快出发吧，在这里呆了这么长时间我都快有种被人埋在坟墓里的感觉了。”</p>
+	<p class = "firstLineIndent"> *********************************************前往遗迹中*********************************************</p>
+	<p class = "firstLineIndent"> “就是那里了。”从特制的沙漠越野车里出来，林雪指着前面不远处说道。</p>
+	<p class = "firstLineIndent"> “在哪？我怎么看不到？”我环视四周，除了一座沙丘什么也没有发现。</p>
+	<p class = "firstLineIndent"> 林雪一马当先地向前走去，说道：“笨啊，那么神秘的遗迹怎么可能放在被人一眼就能看到的地方——它在这片沙漠下面！”</p>
+	<p class = "firstLineIndent"> 又是地下？难道古人也有和林雪他们一样的爱好，喜欢建造地下基地？</p>
+	<p class = "firstLineIndent"> 在沙丘的底部，我们看到了那个遗迹的入口。</p>
+	<p class = "firstLineIndent"> 一个两三米高、由灰白色石块支撑的甬道，站在甬道的入口向里看去，只能看到脚下长长的石头台阶不断向下延伸，逐渐被深沉的黑暗所吞没，让人产生一种“这里不会直接通到地狱吧”这样的错觉。</p>
+	<p class = "firstLineIndent"> 林雪闭上眼睛，似乎在认真感受着周围的环境，然后说道：“果然——这里的沙丘是静止的，所以这个洞口才没有被流沙所淹没。”</p>
+	<p class = "firstLineIndent"> 不用林雪提醒，我早已经从潘多拉那里得到了更加准确的描述。</p>
+	<p class = "firstLineIndent"> 以这个洞口为中心，方圆一公里内的沙子全部呈现一种奇怪的“伪静止”状态，之所以说是“伪静止”，是因为它们并非真的完全静止在原地，而是仍然会因为风力的作用缓缓移动，但是每过一段时间，这些沙子就会在一种神秘力量的作用下回到它们原本的位置，因此，这个洞口在这里存在了不知多少年，却始终没有被流动的沙漠吞噬掉。</p>
+	<p class = "firstLineIndent"> 一个充满诡异的地方。</p>
+	<p class = "firstLineIndent"> “西卡罗，”我通过精神连接对一旁的骑士脸大叔说道，“提高注意力，发生意外优先保护浅浅和林雪，她们两个的自保能力是最弱的。”</p>
+	<p class = "firstLineIndent"> 这时候，林雪也完成了对周围情况的感知，她睁开眼睛，说道：“前面安全，大家进去吧。”</p>
+	<p class = "firstLineIndent"> 我感到自己的衣服被人从后面拽住，于是回过头去轻声安慰道：“别怕，浅浅，这里可是有六个异能者保护着你呢。”</p>
+	<p class = "firstLineIndent"> 这条甬道不知道已经存在了多少年，我们脚下的石头台阶已经被岁月摔打地坑坑洼洼，不少地方甚至一踩就会塌下去一块，然后破碎的石块就会在一阵哗啦声中滚下无边的黑暗之中，我们扶着粗糙的石壁，借着蓝白色冷光灯管发出的略显暗淡的光芒，小心翼翼地向前走着，林雪在最前面开路，用自己的能力感知着周围随时可能出现的危险。</p>
+	<p class = "firstLineIndent"> “奇怪……”林雪突然出声道，“咱们已经走了多久了？”</p>
+	<p class = "firstLineIndent"> “大概有一个小时了吧。”我不太确定地说道，因为环境的阴暗和气氛的压抑，我觉得自己已经在这个诡异的地方走了很久的样子。</p>
+	<p class = "firstLineIndent"> “二十多分钟，”潘多拉平静的声音在我们所有人的脑海中响起。</p>
+	<p class = "firstLineIndent"> “恩……”林雪低吟道，“在这种压抑的环境下，人对于时间流逝的感觉会发生错误，莉莉本来就是盲人所以不受影响，也就是说我们已经在这里走了将近半个小时……”</p>
+	<p class = "firstLineIndent"> “姐姐，你发现什么了？”林风问道。</p>
+	<p class = "firstLineIndent"> “空气——我们已经走了这么深，这个甬道里的空气丝毫没有变得稀薄，也没有变得浑浊——这在一个古老的地**里绝对是一件不正常的事情。”</p>
+	<p class = "firstLineIndent"> 又是那种奇怪的“伪静止”现象么？</p>
+	<p class = "firstLineIndent"> “虽然是个很不正常的现象，但是总比没有空气好，最起码我们携带的呼吸器是暂时用不上了。”林雪说着，加快脚步向前走去，我们紧随其后。</p>
+	<p class = "firstLineIndent"> 不知道又走了多久，就当我都要怀疑这条几乎没有尽头的阶梯是不是能一直通到地心里的时候，一丝亮光突然出现在我们前方。</p>
+	<p class = "firstLineIndent"> 在林雪确认过前方没有危险之后，我们立刻快步奔赴那道隐隐约约的光芒。</p>
+	<p class = "firstLineIndent"> “啊——这是……”林雪看着眼前的景象惊呼道。</p>
+	<p class = "firstLineIndent"> 出现在我们面前的，是一个巨大的石质大厅！</p>
+	<p class = "firstLineIndent"> 潘多拉的声音突然响起在我的脑海中，带着明显的激动：“这是希灵战士的墓地！”</p>
+	
+<h2>第二十六章 意外</h2>	
+	<p class = "firstLineIndent"> 突如其来的爆炸性消息让我瞬间不知道该作何反应，这个消息带给我的冲击比起当时潘多拉告诉我那个破金属板是“空灵信标”时还要大的多，以至于我不由有些怀疑作者究竟知不知道自己在写些什么……口胡！口误了……</p>
+	<p class = "firstLineIndent"> 我环视四周，发现这个地下空间没有任何光源，但却亮如白昼，我们可以清晰地看到大厅中的一切。</p>
+	<p class = "firstLineIndent"> 整个大厅大概有一个足球场那么大，完全由巨大的石块构成，地面的方石砖上刻满了奇奇怪怪的花纹和图案，而我们旁边的墙壁上则有着意义不明的浮雕，看上去好像是某种祭祀的场面，在大厅里平均每隔20米左右便有一根粗大的方形石柱支撑着屋顶，在这些石柱上同样布满了貌似象形文字的痕迹。</p>
+	<p class = "firstLineIndent"> 除了我们进来的这个入口，在大厅每一个方向的墙壁上都有着一个差不多大小的出入口，加上我们这边一共有着四个通道和这个大厅相连。</p>
+	<p class = "firstLineIndent"> 作为一个古代遗迹，这个大厅的建筑水准已经可以称得上非常之高，但这里却和我所见过的充满了未来气息的希灵建筑没有一点共通之处。</p>
+	<p class = "firstLineIndent"> “潘多拉，你确认这里是希灵战士的墓地？这地方可一台先进设备都没有啊。”</p>
+	<p class = "firstLineIndent"> “这个地方确实充满了古代碳基文明的气息，但这种建筑格局却和希灵战士的安息之地一模一样，这里遍布的浮雕和文字虽然被碳基生命按照他们的理解肆意修改，但还是可以看得出一丝希灵文字的原型……更重要的，这里还有一个正在工作的希灵设备……”</p>
+	<p class = "firstLineIndent"> “什么？！”我一惊，正想详细询问下去，却听到林雪惊讶地叫道：“大家把眼睛闭上！”</p>
+	<p class = "firstLineIndent"> 虽然不知道林雪是什么意思，但我们还是不疑有他，一起闭上了眼睛。</p>
+	<p class = "firstLineIndent"> “啊——”</p>
+	<p class = "firstLineIndent"> “这是怎么回事……”</p>
+	<p class = "firstLineIndent"> “怎么可能……”</p>
+	<p class = "firstLineIndent"> “还能看见……”</p>
+	<p class = "firstLineIndent"> “……别凑字数了……唔……”</p>
+	<p class = "firstLineIndent"> 各种各样的惊呼声此起彼伏。</p>
+	<p class = "firstLineIndent"> 我们惊讶地发现，即使自己闭上了眼睛，大厅中的景象仍然清晰地浮现在我们眼前。</p>
+	<p class = "firstLineIndent"> 几乎是同时，我们不约而同地抬起手向自己的脸上摸去以确认自己的眼皮是不是还存在。</p>
+	<p class = "firstLineIndent"> “心灵成像系统，可以将影像直接切入到进入作用范围内的生物的思考回路中，还原程度可以达到百分之九十九点九九以上，我们通常将这种技术和虚拟现实技术结合起来对士兵们进行特种作战演练……”</p>
+	<p class = "firstLineIndent"> “也就是说，这里的一切都是幻象？！”我心中一凌，便要出声提醒大家。</p>
+	<p class = "firstLineIndent"> “不……在这里安置的心灵成像系统似乎只是为了让进入的人可以顺利地看到大厅里的景象，传输过来的图像和大厅的真实情况是完全一样的。”</p>
+	<p class = "firstLineIndent"> 这时候，林雪也通过自己的能力发现了这一点，挥手让有些不安的同伴们安静下来，说道：“大家不用担心，这不是幻觉，似乎是这个遗迹的某种装置让我们可以不用通过常规手段就能够看到大厅里的景象。”</p>
+	<p class = "firstLineIndent"> “……这地方真的是一个古代遗迹么？”林风说出了在场大多数人的心声。</p>
+	<p class = "firstLineIndent"> 遗迹的诡异让大家更加谨慎，林雪将自己的感知能力开到了最大，郑一鸣走到了队伍的最前面，以应付随时可能出现的危险，林风的右手环绕着一圈淡淡的青色风刃，西卡罗则小心地把自己装满了盗版盘的包裹抱在怀里……</p>
+	<p class = "firstLineIndent"> ……这位大叔，你真的不是敌对势力派过来捣乱的卧底么？还是说你来这里的真实目的就是将自己盗版盘的用户群扩展到古墓僵尸之中？</p>
+	<p class = "firstLineIndent"> “等一下……”从一开始就没怎么说话只是小心地跟在大家身后的浅浅突然出声提醒道，我们回过头去，看到浅浅一路捧着的那个六边形金属板正在微微地颤动着，其中的一条边还发出了黯淡的红光。</p>
+	<p class = "firstLineIndent"> “突然就变成了这样……”</p>
+	<p class = "firstLineIndent"> 我们对视了一眼，然后我提议道：“你把这个东西转动一下方向试试。”</p>
+	<p class = "firstLineIndent"> 浅浅依言将金属板转了一下，我们看到发出红光的那条边也随之改变，犹如指南针一样。</p>
+	<p class = "firstLineIndent"> “按照红光指示的方向走。”</p>
+	<p class = "firstLineIndent"> 林雪颇为意外地看了我一眼，说道：“没想到你除了破坏力强之外，脑子也挺聪明的。”</p>
+	<p class = "firstLineIndent"> ……假如你身边也有一个像小潘多拉那样的“空灵信标”**说明书的话你也能很容易地提出这个建议的。</p>
+	<p class = "firstLineIndent"> 跟在林雪身后，我们来到了大厅一侧的出口附近，一条黑沉沉的甬道出现在我们面前。</p>
+	<p class = "firstLineIndent"> 我通过精神连接向潘多拉抱怨：“这是哪个抠门的希灵使徒建立的地方，多安装几个‘心灵成像系统’会死啊，实在不行安个灯泡也可以嘛……”</p>
+	<p class = "firstLineIndent"> “如果哥哥对此感到不满的话，我们会想办法找出这个地下墓**的建造者并给与其相应的惩罚。”</p>
+	<p class = "firstLineIndent"> “呃……难道你没听出来我在开玩笑么？”</p>
+	<p class = "firstLineIndent"> “等一下！”就在我们打开随身的冷光灯管准备进入这个黑沉沉的甬道时，林雪突然叫道。</p>
+	<p class = "firstLineIndent"> “怎么了老姐？会吓出毛病的！”林风差点被吓了一个跟头，有点不满地说道。</p>
+	<p class = "firstLineIndent"> 林雪带着不安的神色看着面前黑沉沉的甬道，低声说道：“突然有一种相当不安的感觉……”</p>
+	<p class = "firstLineIndent"> 我心中一惊，立刻提高了警惕——对林雪的话我没有半点怀疑，那可是连潘多拉都称之为强力的技能啊！</p>
+	<p class = "firstLineIndent"> “大家小心！”郑一鸣低喝一声，随后一层半透明的保护层迅速将所有人保护起来，几乎就在同时，上百道暗红色的光束从大厅地面的方石砖之间射出，沿着地面上的砖缝向我们这里移来。</p>
+	<p class = "firstLineIndent"> “快，大家退到通道里去！我挡不下全部的攻击！”郑一鸣看到自己的防御层在挡下了开头几束光之后就有些摇摇欲坠，急忙大喊道。</p>
+	<p class = "firstLineIndent"> “不行……进不去！”浅浅试图躲到身后的甬道里面，却发现自己被一层看不见的屏障挡在外面，不由惊呼道。</p>
+	<p class = "firstLineIndent"> “潘多拉，”我立刻用精神连接询问道，“这是怎么回事？！”</p>
+	<p class = "firstLineIndent"> “正在解析——确认攻击者身份——EL－305型自动防御反击系统，正在请求连线——请求被拒绝——提交高权限标记——对方拒绝接受权限识别……哥哥，这是一种希灵帝国常用的阻击型防御反击系统，似乎由于时间过长已经发生了故障，我无法通过正常手段对其执行终止操作。”</p>
+	<p class = "firstLineIndent"> “有什么办法没？”看到郑一鸣的防御屏障已经出现了明显的裂纹，我开始有些着急了。</p>
+	<p class = "firstLineIndent"> “无法准确定位这套防御反击系统的主机位置，应对方案有两个：西卡罗军团的捍卫者战车可以完全防御这种能量攻击，我的重定型光子浮游炮阵列可以通过全面摧毁这个遗迹来终止攻击，以上两个方案都将产生巨大能量波动以及明显的可观测现象，被这个星球的碳基生命观察到的几率为百分之九十九点九一五。”</p>
+	<p class = "firstLineIndent"> “……有没有隐蔽一点的方案啊？”</p>
+	<p class = "firstLineIndent"> 虽然情况已经十分危急，潘多拉的声音仍然平静：“有一套备选方案，但是可能产生不可预知的后果——使用我携带的空灵信标，将大家传送出这个地方，但是我无法确定这里是否有空间干涉系统，因此传送不一定能够完成。”</p>
+	<p class = "firstLineIndent"> “先试试，如果传送失败再动用你们的超级武器。”</p>
+	<p class = "firstLineIndent"> 潘多拉点了点头，然后闭上了眼睛，以掩饰自己即将变色的瞳仁。</p>
+	<p class = "firstLineIndent"> 就在这时，我看到，浅浅手中那枚从顾正峰那里得来的、已经基本上报废的空灵信标猛然发出了耀眼的红光！</p>
+	
+<h2>第二十六章 意外</h2>	
+	<p class = "firstLineIndent"> 突如其来的爆炸性消息让我瞬间不知道该作何反应，这个消息带给我的冲击比起当时潘多拉告诉我那个破金属板是“空灵信标”时还要大的多，以至于我不由有些怀疑作者究竟知不知道自己在写些什么……口胡！口误了……</p>
+	<p class = "firstLineIndent"> 我环视四周，发现这个地下空间没有任何光源，但却亮如白昼，我们可以清晰地看到大厅中的一切。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 整个大厅大概有一个足球场那么大，完全由巨大的石块构成，地面的方石砖上刻满了奇奇怪怪的花纹和图案，而我们旁边的墙壁上则有着意义不明的浮雕，看上去好像是某种祭祀的场面，在大厅里平均每隔20米左右便有一根粗大的方形石柱支撑着屋顶，在这些石柱上同样布满了貌似象形文字的痕迹。</p>
+	<p class = "firstLineIndent"> 除了我们进来的这个入口，在大厅每一个方向的墙壁上都有着一个差不多大小的出入口，加上我们这边一共有着四个通道和这个大厅相连。</p>
+	<p class = "firstLineIndent"> 作为一个古代遗迹，这个大厅的建筑水准已经可以称得上非常之高，但这里却和我所见过的充满了未来气息的希灵建筑没有一点共通之处。</p>
+	<p class = "firstLineIndent"> “潘多拉，你确认这里是希灵战士的墓地？这地方可一台先进设备都没有啊。”</p>
+	<p class = "firstLineIndent"> “这个地方确实充满了古代碳基文明的气息，但这种建筑格局却和希灵战士的安息之地一模一样，这里遍布的浮雕和文字虽然被碳基生命按照他们的理解肆意修改，但还是可以看得出一丝希灵文字的原型……更重要的，这里还有一个正在工作的希灵设备……”</p>
+	<p class = "firstLineIndent"> “什么？！”我一惊，正想详细询问下去，却听到林雪惊讶地叫道：“大家把眼睛闭上！”</p>
+	<p class = "firstLineIndent"> 虽然不知道林雪是什么意思，但我们还是不疑有他，一起闭上了眼睛。</p>
+	<p class = "firstLineIndent"> “啊——”</p>
+	<p class = "firstLineIndent"> “这是怎么回事……”</p>
+	<p class = "firstLineIndent"> “怎么可能……”</p>
+	<p class = "firstLineIndent"> “还能看见……”</p>
+	<p class = "firstLineIndent"> “……别凑字数了……唔……”</p>
+	<p class = "firstLineIndent"> 各种各样的惊呼声此起彼伏。</p>
+	<p class = "firstLineIndent"> 我们惊讶地发现，即使自己闭上了眼睛，大厅中的景象仍然清晰地浮现在我们眼前。</p>
+	<p class = "firstLineIndent"> 几乎是同时，我们不约而同地抬起手向自己的脸上摸去以确认自己的眼皮是不是还存在。</p>
+	<p class = "firstLineIndent"> “心灵成像系统，可以将影像直接切入到进入作用范围内的生物的思考回路中，还原程度可以达到百分之九十九点九九以上，我们通常将这种技术和虚拟现实技术结合起来对士兵们进行特种作战演练……”</p>
+	<p class = "firstLineIndent"> “也就是说，这里的一切都是幻象？！”我心中一凌，便要出声提醒大家。</p>
+	<p class = "firstLineIndent"> “不……在这里安置的心灵成像系统似乎只是为了让进入的人可以顺利地看到大厅里的景象，传输过来的图像和大厅的真实情况是完全一样的。”</p>
+	<p class = "firstLineIndent"> 这时候，林雪也通过自己的能力发现了这一点，挥手让有些不安的同伴们安静下来，说道：“大家不用担心，这不是幻觉，似乎是这个遗迹的某种装置让我们可以不用通过常规手段就能够看到大厅里的景象。”</p>
+	<p class = "firstLineIndent"> “……这地方真的是一个古代遗迹么？”林风说出了在场大多数人的心声。</p>
+	<p class = "firstLineIndent"> 遗迹的诡异让大家更加谨慎，林雪将自己的感知能力开到了最大，郑一鸣走到了队伍的最前面，以应付随时可能出现的危险，林风的右手环绕着一圈淡淡的青色风刃，西卡罗则小心地把自己装满了盗版盘的包裹抱在怀里……</p>
+	<p class = "firstLineIndent"> ……这位大叔，你真的不是敌对势力派过来捣乱的卧底么？还是说你来这里的真实目的就是将自己盗版盘的用户群扩展到古墓僵尸之中？</p>
+	<p class = "firstLineIndent"> “等一下……”从一开始就没怎么说话只是小心地跟在大家身后的浅浅突然出声提醒道，我们回过头去，看到浅浅一路捧着的那个六边形金属板正在微微地颤动着，其中的一条边还发出了黯淡的红光。</p>
+	<p class = "firstLineIndent"> “突然就变成了这样……”</p>
+	<p class = "firstLineIndent"> 我们对视了一眼，然后我提议道：“你把这个东西转动一下方向试试。”</p>
+	<p class = "firstLineIndent"> 浅浅依言将金属板转了一下，我们看到发出红光的那条边也随之改变，犹如指南针一样。</p>
+	<p class = "firstLineIndent"> “按照红光指示的方向走。”</p>
+	<p class = "firstLineIndent"> 林雪颇为意外地看了我一眼，说道：“没想到你除了破坏力强之外，脑子也挺聪明的。”</p>
+	<p class = "firstLineIndent"> ……假如你身边也有一个像小潘多拉那样的“空灵信标”**说明书的话你也能很容易地提出这个建议的。</p>
+	<p class = "firstLineIndent"> 跟在林雪身后，我们来到了大厅一侧的出口附近，一条黑沉沉的甬道出现在我们面前。</p>
+	<p class = "firstLineIndent"> 我通过精神连接向潘多拉抱怨：“这是哪个抠门的希灵使徒建立的地方，多安装几个‘心灵成像系统’会死啊，实在不行安个灯泡也可以嘛……”</p>
+	<p class = "firstLineIndent"> “如果哥哥对此感到不满的话，我们会想办法找出这个地下墓**的建造者并给与其相应的惩罚。”</p>
+	<p class = "firstLineIndent"> “呃……难道你没听出来我在开玩笑么？”</p>
+	<p class = "firstLineIndent"> “等一下！”就在我们打开随身的冷光灯管准备进入这个黑沉沉的甬道时，林雪突然叫道。</p>
+	<p class = "firstLineIndent"> “怎么了老姐？会吓出毛病的！”林风差点被吓了一个跟头，有点不满地说道。</p>
+	<p class = "firstLineIndent"> 林雪带着不安的神色看着面前黑沉沉的甬道，低声说道：“突然有一种相当不安的感觉……”</p>
+	<p class = "firstLineIndent"> 我心中一惊，立刻提高了警惕——对林雪的话我没有半点怀疑，那可是连潘多拉都称之为强力的技能啊！</p>
+	<p class = "firstLineIndent"> “大家小心！”郑一鸣低喝一声，随后一层半透明的保护层迅速将所有人保护起来，几乎就在同时，上百道暗红色的光束从大厅地面的方石砖之间射出，沿着地面上的砖缝向我们这里移来。</p>
+	<p class = "firstLineIndent"> “快，大家退到通道里去！我挡不下全部的攻击！”郑一鸣看到自己的防御层在挡下了开头几束光之后就有些摇摇欲坠，急忙大喊道。</p>
+	<p class = "firstLineIndent"> “不行……进不去！”浅浅试图躲到身后的甬道里面，却发现自己被一层看不见的屏障挡在外面，不由惊呼道。</p>
+	<p class = "firstLineIndent"> “潘多拉，”我立刻用精神连接询问道，“这是怎么回事？！”</p>
+	<p class = "firstLineIndent"> “正在解析——确认攻击者身份——EL－305型自动防御反击系统，正在请求连线——请求被拒绝——提交高权限标记——对方拒绝接受权限识别……哥哥，这是一种希灵帝国常用的阻击型防御反击系统，似乎由于时间过长已经发生了故障，我无法通过正常手段对其执行终止操作。”</p>
+	<p class = "firstLineIndent"> “有什么办法没？”看到郑一鸣的防御屏障已经出现了明显的裂纹，我开始有些着急了。</p>
+	<p class = "firstLineIndent"> “无法准确定位这套防御反击系统的主机位置，应对方案有两个：西卡罗军团的捍卫者战车可以完全防御这种能量攻击，我的重定型光子浮游炮阵列可以通过全面摧毁这个遗迹来终止攻击，以上两个方案都将产生巨大能量波动以及明显的可观测现象，被这个星球的碳基生命观察到的几率为百分之九十九点九一五。”</p>
+	<p class = "firstLineIndent"> “……有没有隐蔽一点的方案啊？”</p>
+	<p class = "firstLineIndent"> 虽然情况已经十分危急，潘多拉的声音仍然平静：“有一套备选方案，但是可能产生不可预知的后果——使用我携带的空灵信标，将大家传送出这个地方，但是我无法确定这里是否有空间干涉系统，因此传送不一定能够完成。”</p>
+	<p class = "firstLineIndent"> “先试试，如果传送失败再动用你们的超级武器。”</p>
+	<p class = "firstLineIndent"> 潘多拉点了点头，然后闭上了眼睛，以掩饰自己即将变色的瞳仁。</p>
+	<p class = "firstLineIndent"> 就在这时，我看到，浅浅手中那枚从顾正峰那里得来的、已经基本上报废的空灵信标猛然发出了耀眼的红光！</p>
+	
+<h2>第二十七章 异世界</h2>	
+	<p class = "firstLineIndent"> 突如其来的爆炸性消息让我瞬间不知道该作何反应，这个消息带给我的冲击比起当时潘多拉告诉我那个破金属板是“空灵信标”时还要大的多，以至于我不由有些怀疑作者究竟知不知道自己在写些什么……口胡！口误了……</p>
+	<p class = "firstLineIndent"> 我环视四周，发现这个地下空间没有任何光源，但却亮如白昼，我们可以清晰地看到大厅中的一切。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 整个大厅大概有一个足球场那么大，完全由巨大的石块构成，地面的方石砖上刻满了奇奇怪怪的花纹和图案，而我们旁边的墙壁上则有着意义不明的浮雕，看上去好像是某种祭祀的场面，在大厅里平均每隔20米左右便有一根粗大的方形石柱支撑着屋顶，在这些石柱上同样布满了貌似象形文字的痕迹。</p>
+	<p class = "firstLineIndent"> 除了我们进来的这个入口，在大厅每一个方向的墙壁上都有着一个差不多大小的出入口，加上我们这边一共有着四个通道和这个大厅相连。</p>
+	<p class = "firstLineIndent"> 作为一个古代遗迹，这个大厅的建筑水准已经可以称得上非常之高，但这里却和我所见过的充满了未来气息的希灵建筑没有一点共通之处。</p>
+	<p class = "firstLineIndent"> “潘多拉，你确认这里是希灵战士的墓地？这地方可一台先进设备都没有啊。”</p>
+	<p class = "firstLineIndent"> “这个地方确实充满了古代碳基文明的气息，但这种建筑格局却和希灵战士的安息之地一模一样，这里遍布的浮雕和文字虽然被碳基生命按照他们的理解肆意修改，但还是可以看得出一丝希灵文字的原型……更重要的，这里还有一个正在工作的希灵设备……”</p>
+	<p class = "firstLineIndent"> “什么？！”我一惊，正想详细询问下去，却听到林雪惊讶地叫道：“大家把眼睛闭上！”</p>
+	<p class = "firstLineIndent"> 虽然不知道林雪是什么意思，但我们还是不疑有他，一起闭上了眼睛。</p>
+	<p class = "firstLineIndent"> “啊——”</p>
+	<p class = "firstLineIndent"> “这是怎么回事……”</p>
+	<p class = "firstLineIndent"> “怎么可能……”</p>
+	<p class = "firstLineIndent"> “还能看见……”</p>
+	<p class = "firstLineIndent"> “……别凑字数了……唔……”</p>
+	<p class = "firstLineIndent"> 各种各样的惊呼声此起彼伏。</p>
+	<p class = "firstLineIndent"> 我们惊讶地发现，即使自己闭上了眼睛，大厅中的景象仍然清晰地浮现在我们眼前。</p>
+	<p class = "firstLineIndent"> 几乎是同时，我们不约而同地抬起手向自己的脸上摸去以确认自己的眼皮是不是还存在。</p>
+	<p class = "firstLineIndent"> “心灵成像系统，可以将影像直接切入到进入作用范围内的生物的思考回路中，还原程度可以达到百分之九十九点九九以上，我们通常将这种技术和虚拟现实技术结合起来对士兵们进行特种作战演练……”</p>
+	<p class = "firstLineIndent"> “也就是说，这里的一切都是幻象？！”我心中一凌，便要出声提醒大家。</p>
+	<p class = "firstLineIndent"> “不……在这里安置的心灵成像系统似乎只是为了让进入的人可以顺利地看到大厅里的景象，传输过来的图像和大厅的真实情况是完全一样的。”</p>
+	<p class = "firstLineIndent"> 这时候，林雪也通过自己的能力发现了这一点，挥手让有些不安的同伴们安静下来，说道：“大家不用担心，这不是幻觉，似乎是这个遗迹的某种装置让我们可以不用通过常规手段就能够看到大厅里的景象。”</p>
+	<p class = "firstLineIndent"> “……这地方真的是一个古代遗迹么？”林风说出了在场大多数人的心声。</p>
+	<p class = "firstLineIndent"> 遗迹的诡异让大家更加谨慎，林雪将自己的感知能力开到了最大，郑一鸣走到了队伍的最前面，以应付随时可能出现的危险，林风的右手环绕着一圈淡淡的青色风刃，西卡罗则小心地把自己装满了盗版盘的包裹抱在怀里……</p>
+	<p class = "firstLineIndent"> ……这位大叔，你真的不是敌对势力派过来捣乱的卧底么？还是说你来这里的真实目的就是将自己盗版盘的用户群扩展到古墓僵尸之中？</p>
+	<p class = "firstLineIndent"> “等一下……”从一开始就没怎么说话只是小心地跟在大家身后的浅浅突然出声提醒道，我们回过头去，看到浅浅一路捧着的那个六边形金属板正在微微地颤动着，其中的一条边还发出了黯淡的红光。</p>
+	<p class = "firstLineIndent"> “突然就变成了这样……”</p>
+	<p class = "firstLineIndent"> 我们对视了一眼，然后我提议道：“你把这个东西转动一下方向试试。”</p>
+	<p class = "firstLineIndent"> 浅浅依言将金属板转了一下，我们看到发出红光的那条边也随之改变，犹如指南针一样。</p>
+	<p class = "firstLineIndent"> “按照红光指示的方向走。”</p>
+	<p class = "firstLineIndent"> 林雪颇为意外地看了我一眼，说道：“没想到你除了破坏力强之外，脑子也挺聪明的。”</p>
+	<p class = "firstLineIndent"> ……假如你身边也有一个像小潘多拉那样的“空灵信标”**说明书的话你也能很容易地提出这个建议的。</p>
+	<p class = "firstLineIndent"> 跟在林雪身后，我们来到了大厅一侧的出口附近，一条黑沉沉的甬道出现在我们面前。</p>
+	<p class = "firstLineIndent"> 我通过精神连接向潘多拉抱怨：“这是哪个抠门的希灵使徒建立的地方，多安装几个‘心灵成像系统’会死啊，实在不行安个灯泡也可以嘛……”</p>
+	<p class = "firstLineIndent"> “如果哥哥对此感到不满的话，我们会想办法找出这个地下墓**的建造者并给与其相应的惩罚。”</p>
+	<p class = "firstLineIndent"> “呃……难道你没听出来我在开玩笑么？”</p>
+	<p class = "firstLineIndent"> “等一下！”就在我们打开随身的冷光灯管准备进入这个黑沉沉的甬道时，林雪突然叫道。</p>
+	<p class = "firstLineIndent"> “怎么了老姐？会吓出毛病的！”林风差点被吓了一个跟头，有点不满地说道。</p>
+	<p class = "firstLineIndent"> 林雪带着不安的神色看着面前黑沉沉的甬道，低声说道：“突然有一种相当不安的感觉……”</p>
+	<p class = "firstLineIndent"> 我心中一惊，立刻提高了警惕——对林雪的话我没有半点怀疑，那可是连潘多拉都称之为强力的技能啊！</p>
+	<p class = "firstLineIndent"> “大家小心！”郑一鸣低喝一声，随后一层半透明的保护层迅速将所有人保护起来，几乎就在同时，上百道暗红色的光束从大厅地面的方石砖之间射出，沿着地面上的砖缝向我们这里移来。</p>
+	<p class = "firstLineIndent"> “快，大家退到通道里去！我挡不下全部的攻击！”郑一鸣看到自己的防御层在挡下了开头几束光之后就有些摇摇欲坠，急忙大喊道。</p>
+	<p class = "firstLineIndent"> “不行……进不去！”浅浅试图躲到身后的甬道里面，却发现自己被一层看不见的屏障挡在外面，不由惊呼道。</p>
+	<p class = "firstLineIndent"> “潘多拉，”我立刻用精神连接询问道，“这是怎么回事？！”</p>
+	<p class = "firstLineIndent"> “正在解析——确认攻击者身份——EL－305型自动防御反击系统，正在请求连线——请求被拒绝——提交高权限标记——对方拒绝接受权限识别……哥哥，这是一种希灵帝国常用的阻击型防御反击系统，似乎由于时间过长已经发生了故障，我无法通过正常手段对其执行终止操作。”</p>
+	<p class = "firstLineIndent"> “有什么办法没？”看到郑一鸣的防御屏障已经出现了明显的裂纹，我开始有些着急了。</p>
+	<p class = "firstLineIndent"> “无法准确定位这套防御反击系统的主机位置，应对方案有两个：西卡罗军团的捍卫者战车可以完全防御这种能量攻击，我的重定型光子浮游炮阵列可以通过全面摧毁这个遗迹来终止攻击，以上两个方案都将产生巨大能量波动以及明显的可观测现象，被这个星球的碳基生命观察到的几率为百分之九十九点九一五。”</p>
+	<p class = "firstLineIndent"> “……有没有隐蔽一点的方案啊？”</p>
+	<p class = "firstLineIndent"> 虽然情况已经十分危急，潘多拉的声音仍然平静：“有一套备选方案，但是可能产生不可预知的后果——使用我携带的空灵信标，将大家传送出这个地方，但是我无法确定这里是否有空间干涉系统，因此传送不一定能够完成。”</p>
+	<p class = "firstLineIndent"> “先试试，如果传送失败再动用你们的超级武器。”</p>
+	<p class = "firstLineIndent"> 潘多拉点了点头，然后闭上了眼睛，以掩饰自己即将变色的瞳仁。</p>
+	<p class = "firstLineIndent"> 就在这时，我看到，浅浅手中那枚从顾正峰那里得来的、已经基本上报废的空灵信标猛然发出了耀眼的红光！</p>
+	
+<h2>第二十八章 萝莉逗饿龙</h2>	
+	<p class = "firstLineIndent"> 认真想想的话，我发现潘多拉在我身边真的挺委屈，她是什么人？帝国的高级将领，曾经率领潘多拉军团扫平了无数个文明的征服者，但是在我身边的时候她却只能变成一个文文静静的小萝莉，忍受那些“原始”、“愚昧”的初中老师传授给她的漏洞百出的基础知识，还要耐着性子和这个世界的碳基生命和平共处，虽然小家伙没有说出来，不过我估摸着再这么下去她就要憋出内伤了……</p>
+	<p class = "firstLineIndent"> 因此，我那一声命令对潘多拉而言简直就是解放的宣言，看着小萝莉身后几乎实体化的斗志之火，我暗自抹了抹其实并不存在的冷汗，心下想到了那个关于潘多拉魔盒的传说，不同的是，那个潘多拉打开的是盒子，而我打开的是潘多拉……</p>
+	<p class = "firstLineIndent"> 另外，上面那句话真的没有语病。</p>
+	<p class = "firstLineIndent"> 在林雪震惊的目光中，潘多拉身上迅速覆盖了一层银白色的贴身合金战甲，一个淡绿色的半透明面罩遮住了她鼻梁以下的面容，只露出一双没有瞳仁的紫红色眼眸，那双诡异的眼睛此刻正用充满食欲（看来不止是我和林雪两个人饿了……）的目光盯着天上的大蜥蜴。</p>
+	<p class = "firstLineIndent"> 完全不似人声的冰冷机械音从面罩后传了出来“反质子浮游炮矩阵——”</p>
+	<p class = "firstLineIndent"> 随着潘多拉的声音落下，周围的空气中迅速出现了几十处半透明如同水波纹般的漩涡，紧接着几十门汽车大小的银白色浮游炮从这些漩涡中探出了炮身。</p>
+	<p class = "firstLineIndent"> “扩散射击！”</p>
+	<p class = "firstLineIndent"> 所有的浮游炮同时发出高能量流动时特有的尖啸声，几十道刺眼的白色光柱带着惊人的热量向天上的巨龙冲去，瞬间将对方可能逃跑的路线全部封住。</p>
+	<p class = "firstLineIndent"> 突如其来的攻击让巨龙呆了一下，就这一愣神间，几十门浮游炮迅速飞上天空，从各个方向将它包围起来。</p>
+	<p class = "firstLineIndent"> “潘多拉1000毫米对舰幽能炮！”</p>
+	<p class = "firstLineIndent"> 只见潘多拉的右半身迅速和一个出现在空气中的长方体能量大炮融为一体，粗大的能量管线从潘多拉的体内一直延伸到大炮的尾部，将大量的能量源源不断地提供给那件严重犯规的人间凶器，伴随着低沉的嗡嗡声，幽能炮的炮口处快速积聚起了蓝白色的光芒，3秒钟后，一道直径足有一米的能量束向着天上正处于呆滞状态的巨龙呼啸而去，与此同时，在后座力的作用下，潘多拉脚下的土地也立即布满了蛛网般的裂纹。</p>
+	<p class = "firstLineIndent"> 由于四面八方的浮游炮，那只先前还耀武扬威的大蜥蜴已经毫无躲避的余地，貌似除了硬抗已经没有别的办法。</p>
+	<p class = "firstLineIndent"> 但是毕竟身为碳基生命中十分强大的存在，我们面前的这只大蜥蜴还是有它的绝活的。只见巨龙大口一张，一团隔夜饭……咳咳，一团炽热的火焰便迎上了潘多拉的攻击。</p>
+	<p class = "firstLineIndent"> 两股强大的能量猛地撞击在一起，爆发出一阵强烈的光芒，在这道让人无法直视的光芒之后传来了震耳欲聋的咆哮，很明显，虽然有强大的龙息挡住了攻击，巨龙还是受到了不小的伤害。</p>
+	<p class = "firstLineIndent"> 等眼前因强光而出现的十几只飞天蜥蜴终于渐渐组合成一个之后，我才发现，原来那只巨龙并没有被潘多拉的幽能炮击中——这家伙被强光晃花了眼，结果一头钻进了浮游炮的射击范围内，翅膀上被打出了一个整整齐齐的北斗七星图案……</p>
+	<p class = "firstLineIndent"> 面前“食物”的强悍明显出乎巨龙的意料，原本的食欲此时已经消失的无影无踪，现在这头巨龙只想尽快脱离这个危险的地方，可惜翅膀漏风的它根本就不可能躲得过无处不在的浮游炮的攻击，不一会，北斗七星就变成了黄道十二宫，并且有向星条旗进化的趋势……</p>
+	<p class = "firstLineIndent"> 潘多拉似乎并不急于杀死那只已经乱了阵脚四处乱飞的巨龙，而是收起了幽能炮，专心控制天上的浮游炮台在巨龙身上留下各种艺术涂鸦。</p>
+	<p class = "firstLineIndent"> 看着我们头顶上疲于奔命的巨龙，我不由得联想到了十三年前在南府大街某胡同口被马蜂追逐的隔壁二胖……</p>
+	<p class = "firstLineIndent"> 早已经被吓呆的林雪此时终于有了点反应，她指着宛如未来战士的潘多拉结结巴巴地说道：“莉……莉莉……机……机器人……变成了……”</p>
+	<p class = "firstLineIndent"> 我打断了林雪肆意亵渎汉语语法的行为，说道：“那是假名，她的真实名字是潘多拉－zero，我刚才好像提到过这个名字吧？”</p>
+	<p class = "firstLineIndent"> “陈俊！”林雪一脸快崩溃的样子叫道，“这究竟是怎么回事？这已经不能用异能来形容了吧？难道莉莉是未来人？机器战士？你不会也是……”</p>
+	<p class = "firstLineIndent"> 我见林雪已经有把我当成非人类的趋势，赶忙打断道：“打住打住！我是货真价实的人类，至于潘多拉的身份……还是有时间再告诉你吧，别忘了之前你答应我的，要保守秘密，否则我和潘多拉就都有麻烦了。”</p>
+	<p class = "firstLineIndent"> 林雪毕竟不是一般的女孩子，尽管还没有完全从潘多拉变身超级战士的冲击中恢复，可她还是努力让自己镇静下来，然后用古怪的目光注视着不远处正指挥浮游炮欺负巨龙的潘多拉。</p>
+	<p class = "firstLineIndent"> “陈俊……我知道你们有很多秘密，我也不打算刨根问底，但是你可不可以告诉我，莉莉……潘多拉这是在干什么？”</p>
+	<p class = "firstLineIndent"> 我看了看开心地和巨龙做着烧烤游戏的潘多拉，不由大汗：“额……谁知道，大概是在玩吧……这丫头的爱好和一般人是不一样的。”</p>
+	<p class = "firstLineIndent"> 看样子潘多拉真的有戏弄对手的恶劣兴趣，这点从当日她花了一天一夜来折腾林雪林风两姐弟就可以看得出来，现在，她似乎又迷上了萝莉逗饿龙的游戏……</p>
+	<p class = "firstLineIndent"> 天上的黑色巨龙此时已经完全失去了战意，从一开始它就被潘多拉的浮游炮死死地压制住，唯一的一次防守反击为自己换来的却是一副整齐的北斗七星，现在它根本就不敢停下来释放龙息，那些无比敏捷的浮游炮连喘气的机会都不会给它留下，巨龙一族最引以为傲的肉搏能力更是在潘多拉的远程压制下成了一个笑话。</p>
+	<p class = "firstLineIndent"> 这样的游戏持续了大约一个小时，森林中已经开始弥漫一股烤肉的香气……</p>
+	<p class = "firstLineIndent"> 话说，这该不会就是潘多拉的真实意图吧？</p>
+	<p class = "firstLineIndent"> 就在这时，天上的巨龙不知道是精疲力竭还是被四周耀眼的光束晃花了眼睛，竟然一头向浮游炮攻击最密集的地方冲了过去。</p>
+	<p class = "firstLineIndent"> 仔细观察，我发现那只倒霉的飞天蜥蜴眼中含着热泪……</p>
+	<p class = "firstLineIndent"> 永别了，已经五分熟的炮灰乙，我们会永远记住你憋屈的背影的……</p>
+	<p class = "firstLineIndent"> 就在我们以为对方即将脱离苦海功德圆满时，一道扭曲的光幕突然出现在空中，将眼看就要英勇就义的巨龙包裹在其中。</p>
+	<p class = "firstLineIndent"> 在被光幕完全笼罩之前，我似乎看到巨龙的大眼睛中带上了一丝劫后余生的神情。</p>
+	<p class = "firstLineIndent"> 光幕散去，我们的准口粮失去了踪影。</p>
+	<p class = "firstLineIndent"> 失算啊失算，我竟然忘记了，在各种小说中，龙族都是掌握着很多神秘而强大的魔法的，没想到面前这个倒霉巨龙最后的保命手段竟然是空间传送……</p>
+	<p class = "firstLineIndent"> 潘多拉略微怔了一下，随后便收起了自己的浮游炮台，带着一丝不甘的表情向我走来。</p>
+	<p class = "firstLineIndent"> “真可惜，还有三十分钟就可以吃了……”林雪低声叹息道。</p>
+	<p class = "firstLineIndent"> “别说了……”我一头冷汗，“你比潘多拉厉害多了。”</p>
+	<p class = "firstLineIndent"> 这时候潘多拉已经解除了战斗状态，双眼也恢复了那种没有焦点的“盲女状态”，她轻轻拉了拉我的衣袖，说道：“哥哥，我饿……”</p>
+	<p class = "firstLineIndent"> 实话实说，这一刻，我被潘多拉的小鸟依人+萝莉音萌到了……</p>
+	<p class = "firstLineIndent"> 然而，萌是不能当饭吃的……</p>
+	
+<h2>第二十九章 求援信号</h2>	
+	<p class = "firstLineIndent"> 异世界，下午，某无名森林的林间空地。</p>
+	<p class = "firstLineIndent"> 饥肠辘辘的我和林雪正等待着潘多拉打猎归来。</p>
+	<p class = "firstLineIndent"> 一声短促的惨嚎过后，战斗武装状态的潘多拉拖着一只看上去像山猪却长着弯角的野兽从不远处的密林中走了出来，看样子是接受了刚才口粮逃跑的教训，小家伙终于不再和食物浪费时间，选择了干脆利落的解决方法。</p>
+	<p class = "firstLineIndent"> 就从作为食物的资格来说，一只山猪明显比巨龙更合格的多，起码我们不用面对一座巨大的肉山而感到无从下口，而且面对一块刀枪不入的龙肉我们脆弱的牙齿能不能在肉搏战中取得胜利还是个未知数，更何况，要等到把几十吨重的巨龙烤熟恐怕我们早就饿死了……好吧，我承认，以上只是我对没能吃上龙肉而进行的小小自我安慰罢了……</p>
+	<p class = "firstLineIndent"> 等潘多拉将那只体积比她还大的无名野兽放在我们面前的时候，林雪突然说道：“对了，陈俊，你会烧烤么？”</p>
+	<p class = "firstLineIndent"> “……不会，你呢？”</p>
+	<p class = "firstLineIndent"> “我很擅长泡康师傅……”</p>
+	<p class = "firstLineIndent"> “潘多拉。”我把头转向正用充满食欲的目光注视着无名野兽的小萝莉。</p>
+	<p class = "firstLineIndent"> “咔咔”两声，潘多拉沉默地变出两支两米长的黑色炮管。</p>
+	<p class = "firstLineIndent"> 难道你想用对付巨龙的办法来进行林间烧烤么？你确信完全碳化的食物吃下去不会要了你老哥的命么？</p>
+	<p class = "firstLineIndent"> 接下来，我们三人一起对着面前的准口粮发呆。</p>
+	<p class = "firstLineIndent"> “哥哥，”潘多拉扯扯我的衣袖，“好饿……”</p>
+	<p class = "firstLineIndent"> 不管了，不就是烧烤么？！我就不信堂堂一个希灵皇帝竟然会被一只已经挂掉的猪给打败！</p>
+	<p class = "firstLineIndent"> “潘多拉，帮我把这家伙切了，”我一捋袖子说道，“烧烤的问题交给我！”</p>
+	<p class = "firstLineIndent"> 事实证明，是不是希灵皇帝跟烧烤技术好坏之间是没有任何必然联系的。</p>
+	<p class = "firstLineIndent"> “陈俊，这东西真的可以吃么？”看着面前一半半生不熟一半漆黑如炭的艺术烤肉，林雪表示了严重的质疑。</p>
+	<p class = "firstLineIndent"> 潘多拉一言不发地拿起一块肉，大大地咬了一口。</p>
+	<p class = "firstLineIndent"> “可以吃，”潘多拉带着有些惊奇的语调说道，“少量食用并不会产生致命危害。”</p>
+	<p class = "firstLineIndent"> 555……被鄙视了，被很微妙地鄙视了……</p>
+	<p class = "firstLineIndent"> 尽管这些烤肉的质量实在令人不敢恭维，但为了不至于被饿死，我们也只能凑合着吃，这见鬼的地方除了各种不知是魔兽还是野兽的动物就剩下那些不知道名字的高大树木，如果不打算吃这些诡异的烤肉，那我们就只剩下吃树叶了。</p>
+	<p class = "firstLineIndent"> 在剧烈的心理斗争和生理斗争中，我们终于完成了这场地狱般的进餐。</p>
+	<p class = "firstLineIndent"> “我今后再也不吃烧烤了……”勉强吃了个半饱就再也吃不下去的林雪仰头倒在地上，长长地出了口气说道。</p>
+	<p class = "firstLineIndent"> 其实我也是这么想的……</p>
+	<p class = "firstLineIndent"> “如果不是亲眼看见，我真的不敢相信这么可爱的小妹妹竟然会是那种可怕的战士……”林雪看到潘多拉乖巧地让我擦去脸上粘着的油污，不由得感叹，“潘多拉－zero，这是她的真正名字么？”</p>
+	<p class = "firstLineIndent"> “恩，”我点点头，“这个名字让你想到了什么？”</p>
+	<p class = "firstLineIndent"> “……那个神话传说，潘多拉打开了盒子，将诸般灾厄释放到了人间，只有希望被留在最后而没能被放出来——难不成潘多拉还真和那个神话有关系？”</p>
+	<p class = "firstLineIndent"> “想不想知道潘多拉的真正身份？”我静静地看着林雪的眼睛，事到如今林雪已经知道了不少东西，让她知道更多也没什么影响，也省得她一头雾水胡思乱想——当然，我也不会将所有秘密一股脑全告诉她。</p>
+	<p class = "firstLineIndent"> 林雪显然也对这个问题很感兴趣，急忙问道：“你真的可以告诉我？”</p>
+	<p class = "firstLineIndent"> “如果你能保密的话。”</p>
+	<p class = "firstLineIndent"> “我能保密！”林雪大声说道，然后又仿佛怕我不相信似的说道：“我可是异能组织的高级成员，我的保密能力你尽可以管放心！实在不行我发誓……”</p>
+	<p class = "firstLineIndent"> “发誓倒用不上，”我摆了摆手，“就是怕你接受不了——潘多拉，是一个帝国将军！”</p>
+	<p class = "firstLineIndent"> “帝国将军？”林雪傻了，“一个小女孩？呃……她确实不能用小女孩来形容，而且你之前也说了一句‘为了帝国’什么的……说实话，陈俊，你这个解释让我更糊涂了，你提到的那个帝国究竟是什么意思？我猜应该不是这个世界上的帝国吧？现在的人类世界中绝对没有哪个国家拥有潘多拉这种战士……”</p>
+	<p class = "firstLineIndent"> “如果我说是一个外星帝国你信不信？”</p>
+	<p class = "firstLineIndent"> 林雪盯着我的眼睛，看出我不是在说谎，终于耸耸肩说道：“好吧，我信了……原本我还以为异能者的存在就已经够科幻了，没想到现在连外星人都出现了——而且还是从外表看上去和人类完全一样的外星人……等等，陈俊，你说潘多拉是一个外星将军，那你是什么身份？”</p>
+	<p class = "firstLineIndent"> 我长身而起，面对夕阳，神情庄重，缓缓道：“其实，我是一个古老帝国的元首……”</p>
+	<p class = "firstLineIndent"> “切——”林雪明显地不相信，“说潘多拉是个外星将军就已经够离奇了，你现在还自称帝国元首——之前为了把你和潘多拉拉入组织我可是认真调查过你们的，除了突然出现的潘多拉我们查不到她的过去，对你的资料我可是了如指掌……”</p>
+	<p class = "firstLineIndent"> “收到联络信号。”潘多拉突然打断了林雪的话。</p>
+	<p class = "firstLineIndent"> 我惊讶地问道：“联络信号？”</p>
+	<p class = "firstLineIndent"> 潘多拉的眼睛此时已经变成了冰蓝色，她一边凝神分析着不知从什么地方来的信号一边回答道：“来自西卡罗的联络……已经找到了失踪的考察队，对方是被遗迹中的防御系统困住了，当空灵信标启动之后防御系统受到了破坏，他们才得以逃生，目前他们和西卡罗一起呆在异能组的基地里。”</p>
+	<p class = "firstLineIndent"> ……好么，考察队顺利返程了，我们却倒霉地被扔到了异世界。</p>
+	<p class = "firstLineIndent"> 就在我还在感慨的时候，潘多拉又说道：“收到联络信号。”</p>
+	<p class = "firstLineIndent"> “又是联络信号？”</p>
+	<p class = "firstLineIndent"> 潘多拉点点头，说道：“来自中央二套……可能是与西卡罗联络的信号波动中掺杂了意外的噪音。”</p>
+	<p class = "firstLineIndent"> 小萝莉串台了……</p>
+	<p class = "firstLineIndent"> 就在我和林雪大汗的时候，潘多拉又开口了：“收到联络信号。”</p>
+	<p class = "firstLineIndent"> 怎么信号一个接一个的，潘多拉现在是信号中转站么？</p>
+	<p class = "firstLineIndent"> “确认为求救信号。”潘多拉突然说出了一个出乎我们意料的事情。</p>
+	<p class = "firstLineIndent"> “分析来源……坐标确定……分析求救者身份……希灵作战分队，编号未知，权限界定……B级战地紧急情况，建议前往支援。”</p>
+	<p class = "firstLineIndent"> “你说求救的是一支希灵作战分队？！”我吃惊地说道。</p>
+	<p class = "firstLineIndent"> 潘多拉静静地点了点头，然后问道：“是否前往支援？”</p>
+	<p class = "firstLineIndent"> “等等！”我说道，“你确定是帝国的军队？不是说帝国苏醒的母星只有我所控制的那一颗么？我不记得自己曾经向外派遣过军队。”</p>
+	<p class = "firstLineIndent"> 潘多拉答道：“对方的帝**身份已经可以确定，但目前无法确定对方来自哪一个军团，不排除有在我们之前苏醒的希灵母星存在，但因未知原因无法从对方得到更多资料。”</p>
+	<p class = "firstLineIndent"> 林雪这时候已经被我们的对话弄懵了，她的视线在我们之间扫来扫去，然后问道：“你们到底在说什么？外星暗号？”</p>
+	<p class = "firstLineIndent"> “潘多拉刚才接收到一个来自帝**的求援信号，但对方不是我的军队，我正纠结到底去不去呢。”</p>
+	<p class = "firstLineIndent"> 林雪瞪大了眼睛：“……陈俊，难道你刚才说自己是帝国元首不是在开玩笑？”</p>
+	<p class = "firstLineIndent"> “我什么时候说过假话？”</p>
+	<p class = "firstLineIndent"> “第一次给我介绍潘多拉的时候！”</p>
+	<p class = "firstLineIndent"> ……被瞬间反击了。</p>
+	<p class = "firstLineIndent"> 我懒得再和林雪浪费时间，于是转向一边安静地等待命令的潘多拉说道：“潘多拉，如果对方和你发生冲突的话，你能带我们安全撤退么？”</p>
+	<p class = "firstLineIndent"> “解除一切限制的情况下我能够紧急展开潘多拉军体要塞，可以对抗中等规模的希灵军团——但是哥哥，我不认为对方有攻击我们的可能，在任何情况下一个希灵使徒都不可能对皇帝发动攻击，那是重罪。”</p>
+	<p class = "firstLineIndent"> 你说的或许没错，但是我可是一个半吊子的希灵皇帝啊，万一对方到时候不认我这个“最高权限者”怎么办？</p>
+	<p class = "firstLineIndent"> 权衡再三，我还是决定过去看看。</p>
+	<p class = "firstLineIndent"> 虽然对方来历不明而且我也不敢保证自己的“皇帝”权限能不能生效，不过就这么放着不管实在不是我的作风，毕竟不论怎么说，对方也是潘多拉的族人啊。</p>
+	<p class = "firstLineIndent"> “前往支援。”我说道。</p>
+	<p class = "firstLineIndent"> 潘多拉点点头，然后轻车熟路地将我和林雪一边一个扛在肩上，由于小家伙的个子不够，我和林雪的脚都搭着地，不过没关系，一会速度上来了我们的身体自然会被拉直的……</p>
+	<p class = "firstLineIndent"> 等等，问题的关键不是这里吧？为什么每次我都要用这种方式被潘多拉运到目的地啊？！难道我就不能用一个更帅一点的出场方式吗？</p>
+	<p class = "firstLineIndent"> 可惜的是，潘多拉似乎并没有给我反对的时间。</p>
+	<p class = "firstLineIndent"> 于是，在林雪的尖叫声中，潘多拉牌萝莉战车绝尘而去……</p>
+	
+<h2>第三十章 萝莉狮子吼</h2>	
+	<p class = "firstLineIndent"> 有谁知道什么事情比被一个时速210公里的女超人扛在肩上飞奔3小时更可怕么？</p>
+	<p class = "firstLineIndent"> 那么让我来告诉你吧，那就是当这个女超人把速度提升到300公里的时候。</p>
+	<p class = "firstLineIndent"> 我和林雪都深为自己竟然能够活下来而感到惊奇，感开始的时候我还以为自己将在300公里/小时的风速中窒息而死，但事实证明人类的生存能力总能够爆发出奇迹的力量——尽管我和林雪都已经有些严重缺氧了。</p>
+	<p class = "firstLineIndent"> 我们现在头晕目眩，浑身酸痛，满身的关节肌肉如同被灌入了水泥般僵硬，稍微动一下就疼得我们呲牙咧嘴，被300公里/小时的大风迎面吹了3小时，我们的头发都一根根笔直地向后竖着，脸上的脂肪和肌肉严重偏离了它们原来的位置，堆积在耳朵根子附近，形成起伏的波纹，我们对视一眼，然后同时被面前的陌生人吓了一跳……</p>
+	<p class = "firstLineIndent"> “你……妹妹……真厉害……”林雪磕磕巴巴地说道。</p>
+	<p class = "firstLineIndent"> “……活着真好……”</p>
+	<p class = "firstLineIndent"> 我就想不明白了，为什么平常对我的安危无比关心的潘多拉一到了这个时候就这么马虎大意，难道她还不明白，身为一个碳基生物，她老哥是不能和希灵使徒比较的？或者说，潘多拉已经将这当成了一种很有趣的游戏？</p>
+	<p class = "firstLineIndent"> 想想这个隐藏暴力属性的古怪萝莉的兴趣，说不定还真有可能……</p>
+	<p class = "firstLineIndent"> 在地上休息了大约十分钟，我和林雪终于艰难地站了起来，开始观察周围的环境。</p>
+	<p class = "firstLineIndent"> 现在我们已经来到了森林的边缘，再往前是一道深深的山谷，不断有爆炸声和嘶吼声从下面传来，切换为战斗形态的潘多拉正静静地注视着山谷下面。</p>
+	<p class = "firstLineIndent"> 我和林雪踩着僵尸步来到潘多拉旁边，也一起向下看去。</p>
+	<p class = "firstLineIndent"> 这一眼看下去，我和林雪同时倒吸了一口冷气。</p>
+	<p class = "firstLineIndent"> 魔兽，整整一个山谷都是各种魔兽！黑压压的宛若奔涌的黑色潮水，尽管叫不出名字，但从那巨大的体型和不断释放的声光电效果齐全的各色魔法可以看出，它们中随便哪个到了地球都是不亚于哥斯拉的灾难，在这成千上万的魔兽群中间，包围着大约50名已经将大半个身体变成巨大兵器宛若人形战车的希灵战士，这悬殊的对比就好像滔天洪水中一只随时可能倾覆的小舟一般，尽管变**形兵器的希灵战士拥有恐怖的攻击能力和强大的防御力，但面对魔兽群压倒性的数量，他们的败亡只是迟早的问题——我甚至可以想象出这些战士能量耗尽的一瞬间便被饥饿的魔兽吞进肚子里的景象，甚至连那之后魔兽们闹肚子的情景也……咳咳，想多了。</p>
+	<p class = "firstLineIndent"> 尽管都是第一次见到这种景象，之前对于希灵帝国毫无了解的林雪表现的明显比我更加吃惊，她目瞪口呆地看着眼前好莱坞大片一般的景象，过了好一会才回过神来，用看怪物的目光注视着我，冒出一句：“你真是这个希灵帝国的皇帝？”</p>
+	<p class = "firstLineIndent"> 我点头。</p>
+	<p class = "firstLineIndent"> “你不会是打算征服地球吧？”</p>
+	<p class = "firstLineIndent"> 旁听中的潘多拉眼中精光一闪——话说你这小战争疯子激动个什么劲啊？！</p>
+	<p class = "firstLineIndent"> 为了防止被思想已经开始乱飞的林雪扔到人类的对立面去，我慌忙试图转移她的注意力，对一边的潘多拉说道：“潘多拉，你有什么计划么？这么多魔兽，对付起来可不容易啊……”</p>
+	<p class = "firstLineIndent"> 潘多拉轻轻点点头，回答道：“可以对付。”</p>
+	<p class = "firstLineIndent"> ……希灵将军的战斗力真的有这么夸张么？</p>
+	<p class = "firstLineIndent"> 不只是我，林雪也一脸的不相信，但是潘多拉并没有多说什么，而是伸手在自己的耳朵边按了一下，“滋——”的一声，她脸上的绿色面罩便被收了回去。</p>
+	<p class = "firstLineIndent"> 在我和林雪不解的目光中，潘多拉将双手交叉在胸前，然后慢慢弯下身子，与此同时，一阵阵仿佛电流流动的“滋滋”声从她的体内传了出来，这证明潘多拉正在努力将强大的能量压缩起来。</p>
+	<p class = "firstLineIndent"> 这姿势，怎么那么像格斗游戏里的暴气呢？</p>
+	<p class = "firstLineIndent"> 过了将近十秒钟，潘多拉似乎终于完成了暴气……咳咳，充能，只见她猛地直起身子，迅速浮空到离地面大约半米的高度，与此同时，她身上那件银白色战甲的各个关节处纷纷探出了小型的喷气口，喷发出强烈的高温烈焰，烈焰的高温甚至让我和林雪不得不连连倒退了好几步才勉强能够承受。</p>
+	<p class = "firstLineIndent"> 只见浮在空中的潘多拉深深吸了一口气，立刻三个直径足有十多米、发出耀眼红光的圆形图案便浮现在空气中，成品字形分布在潘多拉前方大约一米的地方，这些有着复杂结构的圆形图案让我不由的想到了玄幻小说中的魔法阵。</p>
+	<p class = "firstLineIndent"> 伴随着潘多拉一声刺耳的尖叫（笔者现在很好奇为什么这一招必须尖叫出来……），三个巨大的红色能量阵发出了刺眼的光芒，下一秒，从能量阵中奔涌而出的暗红色光束便带着令人胆寒的低沉嗡鸣声向山谷下的魔兽群冲去……</p>
+	<p class = "firstLineIndent"> 在刺目的光芒中，我和林雪不由自主地闭上了眼睛，耳边只能听到震耳欲聋的轰鸣声还有魔兽被大群屠杀时发出的惨烈嘶吼。</p>
+	<p class = "firstLineIndent"> 这一击，直接消灭了魔兽群的三分之一，附带的，还有大半个山谷的完全坍塌。</p>
+	<p class = "firstLineIndent"> 这时，我终于明白过来为什么潘多拉要上浮到空中并且打开小型喷气发动机——如此强大的能量爆发，其后坐力必然十分恐怖，如果是站在地上发动的话，恐怕现在我们脚下的地面就要彻底塌方了。</p>
+	<p class = "firstLineIndent"> 林雪有些颤抖的声音传了过来：“陈俊，你们真的不会对人类出手吧？”</p>
+	<p class = "firstLineIndent"> 我都快哭出来了：“林大小姐，我真的是个人类啊……”</p>
+	<p class = "firstLineIndent"> 潘多拉的攻击起到了相当明显的作用，那些魔兽受到如此强烈的打击立刻乱了阵脚，纵使智商再高，它们仍然是兽类，此刻面对完全无法抗拒的强大敌人它们立刻便失去了战意，临时凝聚起来的魔兽军团开始了全面的溃败，由于山谷已经塌掉了大半，成千上万的魔兽只能向一个方向逃散，在这个过程中被踩死踩伤的魔兽更是不计其数，幸好那50来个希灵战士提前浮上了半空，否则我们的援助就要变成借刀杀人了……</p>
+	<p class = "firstLineIndent"> 立下大功的潘多拉静静地走到我身边，身上的银白战甲露出了许多散热孔，呼呼的热风从里面吹将出来——这丫头还真是个耗能大户啊。</p>
+	<p class = "firstLineIndent"> 我好奇地摸了摸潘多拉的头发——滚烫！</p>
+	<p class = "firstLineIndent"> “潘多拉，刚才你那一招是什么啊？威力也太夸张了吧？”看着宛若世界末日降临之后的山谷，我不由咋舌。</p>
+	<p class = "firstLineIndent"> 潘多拉举起一块不知从哪拿出来的牌子，上面写了两个大字：“氦闪。”</p>
+	<p class = "firstLineIndent"> 刚才那一嗓子过去，这丫头已经说不出话来了。</p>
+	<p class = "firstLineIndent"> 氦闪么？我还以为这叫萝莉狮子吼呢……</p>
+	<p class = "firstLineIndent"> 等魔兽群带着漫天的尘土彻底消失在我们视线里之后，那50名侥幸逃生的希灵战士来到了我们面前。</p>
+
+
+
+
+
+
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0010.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0030.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
