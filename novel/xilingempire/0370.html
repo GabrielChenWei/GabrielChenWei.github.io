@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+
+<h2>第三百七十章授勋</h2>	
+	<p class = "firstLineIndent"> 在是初夏。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 某日的十午十点。</p>
+	<p class = "firstLineIndent"> 位千异世界的帝国临时地下设施。</p>
+	<p class = "firstLineIndent"> 在一众帝国高级将领及领导人见证下。</p>
+	<p class = "firstLineIndent"> 元首即将为一位对帝国做出了杰出贡献且实力强大的新晋指挥官举行授勋仪式，历史学家如此记载着。</p>
+	<p class = "firstLineIndent"> 在可预见的未来中，一颗璀璨的新星将在帝**中冉冉升起”上面那当然是官方版本的。</p>
+	<p class = "firstLineIndent"> 现在是上午九点，希灵研究所地下试验场中，某宅即将任命某黑长直为已经沦落成蛋疼战队的帝**其数百名笨蛋指挥官之一，从这一刻起，原本只是个，普通地球少女的佐天泪子将获得新的身份，她将成为在暗地里为异世界帝国效劳的神秘指挥官，成为在每天晚上无人的角落对着某个可疑的全息投影偷偷汇报地球人动态的异次元侦察兵，成为在普通人视线之外，在世界的阴暗面中率领着超时空兵团奋勇作战，消灭各种神秘生命体包括小怪兽和小怪兽以及小怪兽的奥特曼先锋官，成为”“你那四散横流的思维给我稍微聚拢一下啊混蛋！”“啪”地一个手刀，我总算将陷入朋状态的佐天泪子从某个奇怪的平行世界中给拽了回来。</p>
+	<p class = "firstLineIndent"> 这家伙貌似从一大早等候在研究所门口的时候就陷入了莫名的亢奋状态，脸上不断浮现着各种各样可疑的笑容。</p>
+	<p class = "firstLineIndent"> 让浅浅猛一见到的时候都被吓了一跳。</p>
+	<p class = "firstLineIndent"> 好吧好吧，我理解我理解。</p>
+	<p class = "firstLineIndent"> 万田的普通少女突然遇上了这种小说动漫里才有的事情并且成为了“女主角”之后的兴奋之情，即将摆脱平凡而步入“不普通”行列的小女生心中产生了对未来生活的憧憬。</p>
+	<p class = "firstLineIndent"> 这些都很正常。</p>
+	<p class = "firstLineIndent"> 但是”但是你这丫头就没发现刚才描述的帝国形象已经发生了某种微妙的的差吗？！那地方是希灵帝国不是四星云啊混蛋！“好痛”被手刀正面命中的泪子噙着眼泪，可怜兮兮地抬头望着我，充分发挥着自己的萌杀力量，但很可惜。</p>
+	<p class = "firstLineIndent"> 已经在萝莉海中被每日萌杀的本人早就免瘦了如此等级的星星眼第二个手刀毫不犹豫地再次落下：“回去换军装！”然后黑发的少女便欢呼一声兴高采烈地跟着维嘉换军装去了一我就没见过把自己卖给外晏帝国之后还能高兴成这样的！“这个授勋仪式必须进行啊？”等佐天泪子消失在视线中之后，我才苦兮兮地扭过头去，对旁边早就切换成华丽银白色演礼战袍的潘多拉低声问道。</p>
+	<p class = "firstLineIndent"> “投勋仪式是中阶帝**官就任必须举行的仪式，除非是浅浅姐姐她们那样的特殊权限者，所有的帝**官必须要经过授勋仪式才能获得自己的随身空间使用权以及军队调度权。</p>
+	<p class = "firstLineIndent"> 而且佐天泪子身份特殊哥哥来亲自进行仪式的话更好一些。”</p>
+	<p class = "firstLineIndent"> “真是……充满了违和感的说。</p>
+	<p class = "firstLineIndent"> 我刚感叹完旁边因为好奇加添乱也换上了白色军装的林雪就立刻接道：“我觉得也是尤其是你这个木头竟然要以帝国元首的身份给一个十三岁的地球小女孩授勋，这个过程我觉得太扯了。”</p>
+	<p class = "firstLineIndent"> 不吐槽会死啊！“呼，不过哥哥大人真是很厉害呢”在我另一边，身穿和潘多拉形式一样但颜色却是漆黑战袍的维斯卡突然仰起脸来，满眼都是兴奋和自豪的光芒。</p>
+	<p class = "firstLineIndent"> “好像只要和哥哥大人有关的人类，在接受了母巢水晶辐射之后就都会变得非常强大呢。</p>
+	<p class = "firstLineIndent"> 当初亚特兰蒂斯文明那些人造出来的神明最强也就相当于普通的希灵军官，可是哥哥大人身边，不管是浅浅姐姐。</p>
+	<p class = "firstLineIndent"> 陈倩姐姐还是林雪姐姐好像只要一觉醒就会变得相当厉害呢！尤其是现在的佐天泪子，她竟然变成了希灵使徒，这真是很神奇的事情呢！”维斯卡这么一说，我也觉得有点奇怪了嘿虽然母巢水晶能让人类觉醒超能力，不过我身边这些人貌似强化效果也太夸张了点，从普通人类一夜之间就能变身大罗金仙，一个两个倒也罢了，结果不但人人如此，现在甚至还造出个山塞使徒出来，连泡泡都无法演算这样事件发生的原因，貌似，太戏剧化了？“误，姐，你看我身边是不是有个主角光环什么的东西？”姐姐大人没回答，旁边林雪就赶苍蝇一样挥手道：“一边去一边去，帝国元首就你这样？整个人生过的跟本则小说似的你还问自己有光环没。</p>
+	<p class = "firstLineIndent"> 活该东奔西跑拯救世界。”</p>
+	<p class = "firstLineIndent"> 我们这里有一句没一句地闲聊着，跟着维嘉去换军装的泪子终于回来了。</p>
+	<p class = "firstLineIndent"> “怎各样，合适吗？是不是很神气的样子？”注意到大家的视线都集中在自己身上。</p>
+	<p class = "firstLineIndent"> 佐天泪子先是有些不好意思。</p>
+	<p class = "firstLineIndent"> 不过很快小女孩心性便占据了上风，开始扭动着身子摆军阀造型，一边微红着脸向我们征求意见。</p>
+	<p class = "firstLineIndent"> “嘛假如你别穿着帝**装敬纳粹军礼的话，还是挺威风的”我擦着额头冷汗，表示压丰甚大。</p>
+	<p class = "firstLineIndent"> 佐天泪子的制服和普通的希灵指挥官并无二致，那是由一种带着丝金属质感的特种材料制造而成的小仿佛风衣和长袍结合而成的整体的垂煮调是银白动缘外装饰有金煮的复杂花纹明战袍主人隶属哪一个皇帝统治，而战袍前襟则是相当大气的夸张翻领。</p>
+	<p class = "firstLineIndent"> 衣领一侧是代表泪子等级的几颗蓝色水晶图案：新晋中阶，比初级指挥官实力强大但因经验不足而暂时位于预备役的中阶指挥官，衣领的另一侧则绘制着闪电和眼睛的徽章。</p>
+	<p class = "firstLineIndent"> 那是风暴指挥官的独有标记，代表洞察与掌控的力量，而战袍的背面则是覆盖了整个背部的帝**徽：由四个菱形水晶组成的神秘纹章。</p>
+	<p class = "firstLineIndent"> 这一系列设计自然处处体现着很慎重的感觉。</p>
+	<p class = "firstLineIndent"> 而且含义丰富，不过在十三岁的小女孩看来，它最大的意义还是在于漂亮和威风吧？佐天泪子现在唯一感觉遗憾的地方。</p>
+	<p class = "firstLineIndent"> 恐怕就是不能穿着这样拉风的衣服去列面乱逛一恩也不一定，赶哪里有比似叫社团的话参加一下应该没问题”当帝国最强大的时候，这样的制服在很多星际文明中甚至被当成“移动的法律”就连他们的军队看到了这样的徽记都会立刻选择规避，不过现在却只能让某个小女生用来满足自己的拉风愿望了。</p>
+	<p class = "firstLineIndent"> 最初的新鲜感过去之后，佐天泪子的表情也慢慢认真起来，尽管之前很是兴奋了一把，不过现在真的要进行严肃的授勋仪式，她也迅速镇静下来开始意识到这并非玩笑的场合，甚至从对方脸上我还看到了一丝迟来的紧张。</p>
+	<p class = "firstLineIndent"> “一切从简，咱就不整那些乱七八糟的过程了。”</p>
+	<p class = "firstLineIndent"> 我这么说着，直接枪毙了潘多拉试图按照正规授勋仪式进行大阅兵的打算。</p>
+	<p class = "firstLineIndent"> 然后示意负责全息投影系统的某个大兵启动设备。</p>
+	<p class = "firstLineIndent"> “嗡”一阵仪器工作的低鸣从试验场的每个角落传来，然后四周的景色在扭曲中骤然变幻，化为一片虚空。</p>
+	<p class = "firstLineIndent"> “呀！”佐天泪子下意识地惊呼了一声，身子摇晃了一下才终于站稳。</p>
+	<p class = "firstLineIndent"> 然后开始好奇地四下打量。</p>
+	<p class = "firstLineIndent"> “咳咳”我尴尬地咳嗽了两声，示意正准备接收帝**衔的某黑长直严肃点，不过下一秒我就发现，旁边浅浅已经趴在地上研究这种置入式全息投影了，潘多拉身子一颤。</p>
+	<p class = "firstLineIndent"> 然后小脸绷了起来。</p>
+	<p class = "firstLineIndent"> 另一边的林雪则立刻以手加额：“我有种强烈而且糟糕的既视感”“那什么，严肃点”我努力半天终于让自己的表情威严起来然后低头。</p>
+	<p class = "firstLineIndent"> “潘多拉。</p>
+	<p class = "firstLineIndent"> 第一步干啥？”正努力严肃的小萝菲身子一晃，然后深吸一口气：“宣若授职。”</p>
+	<p class = "firstLineIndent"> “”我恍然头小终于记起了之前背过的台词，然后将头转向好奇地看着这边的佐天泪子，“第刚巫号世界人类。</p>
+	<p class = "firstLineIndent"> 佐天泪子。</p>
+	<p class = "firstLineIndent"> 你已通过帝国考验，获得属于自己的力量，并为帝国带来了荣耀与胜利。</p>
+	<p class = "firstLineIndent"> 作为帝国，靠，这么说话真麻烦。</p>
+	<p class = "firstLineIndent"> 总之我觉得你表现不错，打算让你入伙，担任我的指挥官，明白了吗？”身后一片吸气，磨牙。</p>
+	<p class = "firstLineIndent"> 佐天泪子嘴角扭曲，呆然点头。</p>
+	<p class = "firstLineIndent"> “潘妾拉，然后呢？”小萝莉闭上了眼睛，尽量保持语气平静。</p>
+	<p class = "firstLineIndent"> 不过头发上却已经开始微微冒起热气：“授予武器。</p>
+	<p class = "firstLineIndent"> 宣誓”“对了对了，维嘉，把家伙抬上来！”我刚回头招呼。</p>
+	<p class = "firstLineIndent"> 后面林雪一个不稳差点趴下：“哥！你是我亲哥。</p>
+	<p class = "firstLineIndent"> 打个商量你换我来行不！？”装甲蝎形态的维嘉将装有指挥官授勋演礼武器的托盘递上来，我能看到蝎子姐的六条腿迈动幅度相当僵硬。</p>
+	<p class = "firstLineIndent"> “死木荆棘”我从托盘上首先拿起了两把特大号的黑白双色长管手枪。</p>
+	<p class = "firstLineIndent"> 虽然是演礼用的装饰兵器，不过风暴指挥斗方式特别。</p>
+	<p class = "firstLineIndent"> 本身战斗的情况很少，而且他们也用不了那些大威力的规格外兵器，因此其演礼武器也就是其固定装备。</p>
+	<p class = "firstLineIndent"> 这两把手枪便是他们最常用的兵器之一，“黑色死木，白色荆棘。</p>
+	<p class = "firstLineIndent"> 愿你在它们的陪伴下奋勇作战。”</p>
+	<p class = "firstLineIndent"> 佐天泪子用力点头，然后费力地将两把对她而言明显过于沉重的巨大双枪接过来。</p>
+	<p class = "firstLineIndent"> “风暴指挥刀。”</p>
+	<p class = "firstLineIndent"> 我抬手从托盘上拿过了另外一把武器，长度一点五米的银白色直刃指挥刀，整体充满着刚硬的线条，简洁的装饰处处体现着简约精悍的味道，攻击力乃齿。</p>
+	<p class = "firstLineIndent"> 攻击速度口，攻击距离为近战，对护甲破坏能力加倍，提高使用者力量坠点，提高使用者敏捷匆点。</p>
+	<p class = "firstLineIndent"> 大幅度强化使用者精力恢复速度，击中敌人有一定概率，哦。</p>
+	<p class = "firstLineIndent"> 这本书里不兴这个，“愿你以这战刀的锋刃所向披靡。”</p>
+	<p class = "firstLineIndent"> 佐天泪子郑重地点头，然后准备将手中的黑白双枪收入自己的随身空间中，好空出手来接战刀。</p>
+	<p class = "firstLineIndent"> 三秒钟后“啊咧？这个随身空间为什么打不开呢？”由人类转变成半吊子希灵使徒而且还不太擅长控制天赋技能的佐天泪子脸上带着问号向我发出询问。</p>
+	<p class = "firstLineIndent"> 有正在接受授勋的黑发少女将手中的双枪颠来到去地摆弄了半天。</p>
+	<p class = "firstLineIndent"> 随身空间却总是在她身边毫不相干打开出入口，如此折腾了会连向和气的泪子肃恼了。</p>
+	<p class = "firstLineIndent"> “所长哥哥，你先等一下哈，我一会就能搞定了！”我们：。</p>
+	<p class = "firstLineIndent"> “潘多拉，这个授勋仪式是不是可以结束了”林雪突然有气无力地对某个已经快暴走的小萝莉说道，“我怕一会自己会疯掉，。</p>
+	<p class = "firstLineIndent"> 潘多拉闭着眼睛，然后深深吸气，点头。</p>
+	<p class = "firstLineIndent"> 我还以为你要深深吸气，氦闪呢，原本计划挺好的授勋仪式就在两个不着调的黄金组合手中变成了如此令人无语的过程，最后我几乎是在潘多拉的一路头槌和林雪的一路数落下回到地上的。</p>
+	<p class = "firstLineIndent"> 至于刚刚变成指挥官的佐天泪子，她还要跟维嘉接着学习开启随身空间的技能最起码她得知道怎么把自己的指挥刀和手枪收回去即使是学园都市这地方，作为一个初中女生要是上课的时候扛着战刀和手枪也是不太礼貌的，回到研究所地上之后，我却迎来了口个意料之外的客人。</p>
+	<p class = "firstLineIndent"> 身材爆棚的少女安静地坐在沙发上，目不转睛地和面前三米之外的盆栽坐着对视。</p>
+	<p class = "firstLineIndent"> 当听到门口传来的动静之后她才终于回过神来。</p>
+	<p class = "firstLineIndent"> 然后慌忙起身，冲这边夸张地一个深鞠躬。</p>
+	<p class = "firstLineIndent"> “哈俟？神裂？你怎么过来了？”这少女不是别人，正是有过一面之缘并且被我完胜的武器战。</p>
+	<p class = "firstLineIndent"> 原天草十字凄教的女教皇，神裂火织。</p>
+	<p class = "firstLineIndent"> “非常抱歉来此打扰您的休息”。</p>
+	<p class = "firstLineIndent"> 与上次见面完全不同的方式。</p>
+	<p class = "firstLineIndent"> 此刻身份为十字教派来与“神使。</p>
+	<p class = "firstLineIndent"> 接触的使者。</p>
+	<p class = "firstLineIndent"> 神裂火织的态度简直是过敏性的恭敬。”</p>
+	<p class = "firstLineIndent"> 但我肩负着最大主教下达的使命。”</p>
+	<p class = "firstLineIndent"> “坐坐坐。”</p>
+	<p class = "firstLineIndent"> 我被面前这个曾打过一架的女孩现在夸张的反应吓了一跳然后赶紧招手让对方坐下。”</p>
+	<p class = "firstLineIndent"> 吃了没？”神裂一呆，木然摇头：“还办，”“哦，那一会留下吃饭吧，佐天泪子应该能赶在饭点之前上来一你刚才说啥？”“是最大主教派我前来”神裂这时候才终于想起自己的使命。</p>
+	<p class = "firstLineIndent"> 刚才那微妙的违和感也一瞬间被洗刷干净，“因为发生了一些可能很糟糕的事情，而此事件与这学园都市有关，最大主教认为最好能够和身处此地的神使们商谈一下，。</p>
+	<p class = "firstLineIndent"> 小“狐狸额，罗拉？。</p>
+	<p class = "firstLineIndent"> 小我脑狸女，“她有什么事？”“是这样的”神裂组织了一下语享。</p>
+	<p class = "firstLineIndent"> “事情跟罗马正教那边有关。</p>
+	<p class = "firstLineIndent"> 根据我们掌握的情报，最近他们的举动有点奇怪，”“仅仅是奇怪的举动这种程度需要来麻烦我们？”我打断了神裂的话，也不知道是对方不擅长说谎还是怎么着。</p>
+	<p class = "firstLineIndent"> 如此容易拆穿的遮掩还不如将情况说明呢，反正我从一开始就预料到迟早有一天那个，狐狸女会扔给我们这些“神的使者。</p>
+	<p class = "firstLineIndent"> 一堆麻烦的。</p>
+	<p class = "firstLineIndent"> “是这样的，罗马正教那边已经得到了，天使，降临的消息他们现在似乎正在尝试侵入学园都市，而且“而且？。</p>
+	<p class = "firstLineIndent"> “而且他们的首要目的似乎并不仅仅是寻找那位天使，而是，学园都市”呃，那帮烦人的苍蝇，，因为天使被滞留在学园都市，因此想要趁着这个机会对这座科学侧的大本营做一点不和谐的事情吗？罗马正教。</p>
+	<p class = "firstLineIndent"> 还真是一群典型疯子呢。</p>
+	<p class = "firstLineIndent"> “没有更多的情报了？。</p>
+	<p class = "firstLineIndent"> 小看到神裂火织一副汇报完毕等待命令的样子，我好奇地问道。</p>
+	<p class = "firstLineIndent"> “我想先知道您对这事件的看法神裂老老实实地说出了自己的想法。</p>
+	<p class = "firstLineIndent"> “罗马正教吗？”我沉吟了一下，英国清教和罗马正教一直是争斗中的状态，而神裂火织身为英国清教的一员。</p>
+	<p class = "firstLineIndent"> 我这个所谓的“神之侧”对罗马正教和英国清教哪个，更偏爱一些，想必也是她极端想要知道的事情。</p>
+	<p class = "firstLineIndent"> “我不太喜欢他们，尽管他们是上帝的信徒，不过说实话，上帝那家伙一别露出那样的眼神，我们天国比你们传说中的和谐多了一上帝那家伙的性格绝对属于极端厌恶狂信徒的类型，假如他们想在这地方捣乱的话，那么我绝对会出手的，而且对这个学园都市我印象不错，因此只要是在学园都市里面发生的事情，就交给我们好了我的回答明显让神裂有些喜出望外，不过她紧接着便有些诧异地说道：“请恕我冒昧，作为神的使者，您为何要如此偏爱这些科学侧的异教徒呢？而且，您甚至在这样的研究所”好吧，我理解，当得知作为“神之侧。</p>
+	<p class = "firstLineIndent"> 的存在竟然在学园都市里搞科研之后，这位爆的少女圣人肯定就好像在驴肉饺子馆看到我佛如来在大快朵颐的唐三藏一样震惊，现在她这已经算淡定状态了话说唐三藏为什么会出现在驴肉饺子馆也是个问题哈。</p>
+	<p class = "firstLineIndent"> “科学侧和魔法侧的对立么”。</p>
+	<p class = "firstLineIndent"> 我低声自言自语了一句，“那跟我们神界有什么关系？”（未完待续）</p>
+	
+<h2>第三百七十一章烧烤摊前</h2>	
+	<p class = "firstLineIndent"> 汁学侧和魔法侧的对跟神界有什么关系。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 这句话一出，神裂火织差点一口气没顺上来就抽抽过去。</p>
+	<p class = "firstLineIndent"> “神裂，在你看来，科学和魔法的根本目的分别是什么呢？。</p>
+	<p class = "firstLineIndent"> 看到面前少女圣人脸上纠结的表悚，我瞬间教育帝附身起来。</p>
+	<p class = "firstLineIndent"> “科学和魔法的根本目的？”神裂明显没有考虑过这个问题。</p>
+	<p class = "firstLineIndent"> 因此她脸上露出了迷茫的神色，“如果说将魔法的力量发展到极致的话，应该就是，，神的领域，，吧？”“科学也一样哦”。</p>
+	<p class = "firstLineIndent"> 我在表情愈发困惑的神裂面前晃了晃手指，，“尽管说法不一样，魔法侧将其称之为神的奥秘，而科学侧的人则更习惯将其称之为各种真理，定律，科学和魔法，他们都是身为凡人去探寻世界终极真理所用的工具，也就是说，科学和魔法的分别，完全是建立在探寻真理的方式上的“您的教诲很有益！”神裂立刻恭敬地点头道。</p>
+	<p class = "firstLineIndent"> “那么，对我们而言科学和魔法的分别和对立就没有意义了一因为我们就是真理。</p>
+	<p class = "firstLineIndent"> “作为最终的答案，就不必在意解题的过程，作为最终的真理，也不必在意探寻这真理时所用的方法，你们或许认为天使是神话生物，是魔法侧的力量体现，但说到底，这个世界的根源与魔法和科学都没有任何关系，它仅仅是单纯地存在着，作为这世界的根基而从最初到最后，即使世界上所有的科学和魔法力量全部消失，这个世界的真理也不会产生丝毫改变，所以我说，在代表真理的“神，眼中，科学和魔法都是一样的东西，那都是凡人制造的工具，用来理解世界时所用的密码本，而神明的力量，是高于科学和魔法任何一种力量的，明白了吗？。</p>
+	<p class = "firstLineIndent"> 神裂沉默半晌，终于缓缓开口：“虽然听懂了，而且您的教诲似乎令人无从辩驳，但是”果然还是很难接受啊“那倒是”。</p>
+	<p class = "firstLineIndent"> 我点点头，“而且大部分天使确实都是机械白痴（阿赖耶那个笨蛋现在竟然连用个通讯器都要捧着说明书比划半天！），毕竟你从小接受的教育就是科学魔法绝对对立的学说，因此这个世界的人类才仅仅处于文明初级阶段啊“是吗神裂低声说了一句，仿佛是一时半会接受不了这样与她一直以来的常识完全违背的东西，就如她自己所说，尽管理论听上去无从辩驳，但事实接受起来却相当困难。</p>
+	<p class = "firstLineIndent"> “好了，不想这些头疼的事了”看到神裂即将陷入哲人的矛盾思维模式，感觉胃部抗议愈发严重的我果断选择了转移注意力，“留下吃饭吧，让你尝尝我老姐的手艺小你那眼神是什么意思？”神裂用古怪的眼神看着我，半晌才低声冒出一句话来：，“天使平常”也是做饭的吗？”“你就给我把一切当成正常的就行了！再说我们过来是度假的，哪怕是体验生活也得过人类的日子不是？。</p>
+	<p class = "firstLineIndent"> 我这边话刚说完，门口就传来了一个相当有活办的声音：“所长哥哥！指挥官佐天泪子前来报道！！”我一回头，正好看到依然穿着帝**装的佐天泪子正站在门口。</p>
+	<p class = "firstLineIndent"> 满脸调皮的笑容。</p>
+	<p class = "firstLineIndent"> 一边可爱地对我敬了个”他嘴的！还是个纳粹军礼！“啊好痛！”被我果断爆栗凿中脑门的佐天泪子抱着脑袋，然后用省的纯洁眼神仰视嗯，仰视另一边因为好奇而走过来的少女圣人，没办法，从各方面来讲，神裂火织的瞩目程度都太高了。</p>
+	<p class = "firstLineIndent"> “误？有客人吗？”佐天泪子立刻站直了身体，礼貌地鞠躬“你好，初次见面，我是佐天泪子，是在这里进行能力开发试验的能力者，请多多指教“哦，你好”神裂火织顿了一下。</p>
+	<p class = "firstLineIndent"> 然后犹豫着开口道，“初次见面，神裂火织，是”，恩，是这里的似乎真是一个完全不会说谎的家伙呢，神裂纠结了半天，最终还是一指我：“是他的仆人！”我顿时一口气没上来：“仆你妹啊”。</p>
+	<p class = "firstLineIndent"> 不过已经晚了，佐天泪子看向我的目光顿时诡异起来，嘴里意味深长地“哦。</p>
+	<p class = "firstLineIndent"> 起来。</p>
+	<p class = "firstLineIndent"> 我赶紧转移话题：“对了神裂，正好有个东西给你。”</p>
+	<p class = "firstLineIndent"> 尽管这种转移方式相当笨蛋小不过神裂还是立刻将注意力集中到了我的手上。</p>
+	<p class = "firstLineIndent"> 被我从随身空间中拿出来的，是一柄将近两米长的银白色长刀。</p>
+	<p class = "firstLineIndent"> 刀的式样有些奇怪，拥有唐刀那种长而平行的刀身，但却比一般的唐刀要略微宽大，而且弧度要更加明显。</p>
+	<p class = "firstLineIndent"> 刀柄处的护手则比较窄，而且刀鞘上还雕刻着一连串的复杂符文，单从样式来看的话，实在让人很难分辨这是哪种风格的武器。</p>
+	<p class = "firstLineIndent"> 这当然不是人类设计出来的东西，甚至也不是希灵指挥官用的礼仪军刀，而是叮当从神界带来的某种武器的仿制品。</p>
+	<p class = "firstLineIndent"> 真正由神族制造出来的兵器连我用着都有点费劲，更别提给神裂用了，这把刀是神族皇家刀锋卫士常用武器的仿制版，而且根据人类使用习惯进行了一住二凶变形。</p>
+	<p class = "firstLineIndent"> 所用的材料是希灵使徒能合成出来的最高愧世背矿并混入了微量的星金石粉末，尽管和神界兵器比起来完全不在一个档次，但从锋锐度和破魔力等各种属性上来看，这已经是人类绝对无法想象的神兵利器了。</p>
+	<p class = "firstLineIndent"> 本来造出来是为了满足自己那点属于宅男的冷兵器爱好的，结果等真的拿到这东西我才发现它除了当装饰品之外一点用都没有，没想到现在反而便宜了神裂。</p>
+	<p class = "firstLineIndent"> “上次不是把你的刀给弄坏了吗”小我将手中的长刀递给微微有些发呆的神裂，“挺不好意思的，这是根据神界兵器仿造出来的东西，应该符合你的使用习惯。”</p>
+	<p class = "firstLineIndent"> 神裂有些迟疑地将长刀接过来，微微掂了掂，立刻露出了惊讶和喜出望外的表情，但还是不好意思地说道：“这个”礼物太贵重了。</p>
+	<p class = "firstLineIndent"> “让你拿着你就拿着，我不习惯欠人东西”我不由分说地将神裂的手推了回去，“这刀除了锋利坚固之外还有个特性，它能破坏任何形式的魔力，甚至能迎面切割圣人级的纯魔办攻击，假如用来对付魔法师的话甚至是个普通人都能轻易取胜，因此我给它取名为破法者，不过你要不喜欢这名字的话也可以换掉“不，我非常喜欢！”神裂脸上带着惊喜的表情，大声如此回答道，上次爱刀被我掰成碎片之后她可是狠狠地失落了好几天，只因为对方是自己理应崇拜的对象，这失落也只能咽进肚里，没想到今天竟然得到了如此巨大的“补偿。”</p>
+	<p class = "firstLineIndent"> 若不是考虑到礼节的问题。</p>
+	<p class = "firstLineIndent"> 这时候她恐怕都要立刻冲出去找个没人的地方试刀了恩，史提尔的魔法水平不错，或许可以用来试验一下这刀的破法属性，，神裂过来当然不仅仅是为了给我通风报信，她似乎还肩负着什么别的使命，想来是某只狐狸女为了不让自己的属下清闲而下达的麻烦任务。</p>
+	<p class = "firstLineIndent"> 看神裂满脸不情愿的样子我也能猜出个大概，不过她不说我也没问，中午午饭过后，得到宝刀而稍稍缓解了郁闷的少女圣人便起身告辞了。</p>
+	<p class = "firstLineIndent"> 捣乱的罗马正教，真是麻烦的家伙。</p>
+	<p class = "firstLineIndent"> 对那帮宗教疯子，打从一开始就看不过眼，现在竟然还打算借着这次机会对学园都市下手吗？不过我好奇的是。</p>
+	<p class = "firstLineIndent"> 亚雷斯塔怎么会完全没有反应。</p>
+	<p class = "firstLineIndent"> 作为能够掌控学园都市一切角落的“人类。”</p>
+	<p class = "firstLineIndent"> 他没有道理发现不了罗马正教的活动，即使无法短时间内找到那些实力不俗而且已经混入人群的罗马正教成员，也不可能在事前对此一无所知，不过在潘多拉的监控下，亚雷斯塔近期确实没有对此作出任何反应，英国清教和学园都市之间有高层的，“协议”存在那还好说，可是罗马正教这样一个恨不得整个科学侧全部死光的势力，亚雷斯塔打算让他们干什么呢？心中带着这样层出不穷的田惑，我和浅浅慢慢走在第七学区附近的城市运河岸边。</p>
+	<p class = "firstLineIndent"> “感觉好久没有这样两人独处的时间了呢”最近一直很忙很忙的样子”软软的声音突然在身边响起，浅浅勾着我的手，一甩一甩地向前走着，除了平日里那种古灵精怪活力无穷的样子之外，她也会有如此文静乖巧的一面呢。</p>
+	<p class = "firstLineIndent"> 想那些麻烦事情干什么，现在就应该好好享受陪在浅浅身边的时光嘛。</p>
+	<p class = "firstLineIndent"> 心中如此自嘲地想着，我突然一把将浅浅揽进了怀中，然后一个公主抱将惊呼中的少女给抱了起来。</p>
+	<p class = "firstLineIndent"> “呀！阿俊你干什么啊”。</p>
+	<p class = "firstLineIndent"> 浅浅尖叫一声，但很快便安静下来，将头轻轻靠在我的怀中，低声说道：“下次再这样吓唬我。</p>
+	<p class = "firstLineIndent"> 咬你哦。””你跟叮当走地太近了。</p>
+	<p class = "firstLineIndent"> 我低下头，在浅浅唇边轻轻印上一吻，然后意气风发地面朝夕阳，豪气干云：“宝贝，想去哪？。</p>
+	<p class = "firstLineIndent"> 浅浅立刻拱了拱身子：“我儿乞麻辣烫！还有炸酱面！”麻辣烫和炸酱面，这就是我和这个始终将自己的位置定义在普通女生的少女之间最真实的幸福了，从一起在胡同口玩泥巴的日子，到如今在异世界假日旅游，浅浅从来没有过一丝一毫的改变，这才是我最喜欢她的地方呢。</p>
+	<p class = "firstLineIndent"> 不过学园都市这地方”真的能找到麻辣烫和炸酱面吗？“嗯姆！烧烤也不错呢”。</p>
+	<p class = "firstLineIndent"> 麻辣烫没找到，烧烤的摊位到是被我们发现一个，应该概叹戏剧化吗？这位在原著中出现了许多次的神奇烧烤大叔，号称是机器猫穿越过来的万能摊主，竟然真的被我和浅浅给碰上了。</p>
+	<p class = "firstLineIndent"> “哈唔。</p>
+	<p class = "firstLineIndent"> 阿俊，这个鲸鱼串真的很好吃呢！”浅浅吃的满嘴油光，一边含混不清地说道。</p>
+	<p class = "firstLineIndent"> 我咽下浅浅递过来的鳃鱼串小一边伸手招呼道：“老板！再来两份烤羊排！”“哦！这就好！”“还要两份烤山芋”。</p>
+	<p class = "firstLineIndent"> “哦！这就好！”，那烤粉条呢？”“哦！这就好！”“大叔，你这里有烤抹香鲸肋骨吗？。</p>
+	<p class = "firstLineIndent"> “哦！这就好”。</p>
+	<p class = "firstLineIndent"> 然后我就震惊了。</p>
+	<p class = "firstLineIndent"> “呐，门。</p>
+	<p class = "firstLineIndent"> 浅浅突然悄悄凑了讨来，低声问道你说咱亿毋狙龙翅膀会不会“那个需要稍等一下哦，始祖龙的肉不是很容易熟呢”哈哈，开玩笑的，我可不是魔法师，始祖龙什么的可是变不出来呢烧烤大叔一边爽朗地笑着，一边将我和浅浅点的那堆稀奇古怪的东西烤好后端了上来。</p>
+	<p class = "firstLineIndent"> 正在这时，从我们身后却传来了一个很熟悉的声音：“谈，所长大叔？还要浅浅姐姐。</p>
+	<p class = "firstLineIndent"> 你们怎么会在这里呢？”“黑子？还有美琴？”我回过头，待看清来人之后不由诧异地叫了出来，然后才慢半拍地反应过来，一个手刀命中某双马尾的百合女：“要叫哥哥啊混蛋！你这差别待遇究竟是怎么回事！？。</p>
+	<p class = "firstLineIndent"> 白井黑子抱着脑袋，偷偷横了我一眼，然后突然带上了夸张的妄想表情，闭着眼睛双手捧心道：“啊，今天是黑子和姐姐大人难得的约会时间呢，为了这好不容易到来的幸福时光不被打扰，黑子才会和姐姐大人一起来到这里”谈，说起来所长大”咳咳，所长哥哥和浅浅姐姐也是约会的吗？这样说起来我们是两对情侣了呢，真是有纪念意义的相遇呢但是你不觉得一男三女被称为两对情侣不管怎么分组都会陷入很奇怪的境地吗？相比于我的吐槽，御圾美琴的解决方法更加简便：噼啪一声雷响，黑子倒飞出场。</p>
+	<p class = "firstLineIndent"> “不是你强拉着我出来的吗！？什么时候成了约会啊你这个猎奇的家伙”。</p>
+	<p class = "firstLineIndent"> 浑身萦绕着雷光，御圾美琴气急败坏地对不远处地面上正在冒烟的白井黑子大声叫道，然后突然将脸孔转向了看好戏的我这边，，“还有你这个家伙！那天究竟发生了什么事啊！为什么突然把我一个人抛下，然后又是管道爆炸又是某个工厂锅炉失控之类的事件，是不是跟你们有关啊？”说到最后一句的时候，原本处于暴走状态的御圾美琴也放低了音量，转而凑过来小声地问道。</p>
+	<p class = "firstLineIndent"> 锅炉失控？管道爆炸？亚雷斯塔你还敢再偷懒点吗？那么一大片的区域变成了盆地，数个边远建筑遭受毁灭性袭击，甚至到现在那里的医疗机构还处于爆满状态，你竟然说是因为锅炉失控？学园都市的锅炉都是烧铀2石的吗！？嘛，反正善后的问题已经推给那个老狐狸了，爱咋咋地，他就是说有人非法燃放烟花爆竹导致半个城区被炸上天我也没意见。</p>
+	<p class = "firstLineIndent"> 看着御圾美琴一边气呼呼却还带着倔强的关心的面容，我微微笑了笑，然后低声说道：“妹妹们已经安全了。”</p>
+	<p class = "firstLineIndent"> “什么？。</p>
+	<p class = "firstLineIndent"> 这样的回答显然是御圾美琴完全没有想到的，尽管那天提到了御圾妹妹的事情，但她可没想到仅仅是提了一下，我们这头就连恐怖袭击都用上了（她自己联想的）给摆平了整件事情，于是少女惊悚中。</p>
+	<p class = "firstLineIndent"> “你那是行每眼神？”我不爽地看着御圾美琴，“我们用的可是正当合法的手段通过人道主义感化来让学园都市的掌权者改变了他对人生的看法，并且谨慎友好地教育了整个试验的主要参与者一方同学”浅浅在一旁点头，补充：“虽然过程中用上了爆炸，爆炸，还有爆炸这样的手段啦“但那都是以爱与和平的名义进行的”小“喂喂喂，你们不是开玩笑吧！？”御圾美琴这时候不知道已经将我们的行为脑补到了什么程度，看向我的眼神完全就是跟塔利班正面谈判的美国特使，“一定是开玩笑没错吧？”。</p>
+	<p class = "firstLineIndent"> “反正过程你就不要操心了”。</p>
+	<p class = "firstLineIndent"> 我微笑着按了按御圾美琴的脑袋，“我们的身份，怎么说呢，比较特殊，昨天采取一些特殊手段之后，“绝对能力者计划也算是安全终止了，御圾们应该在这几天就会被转移到我的研究所名下进行身体调整，到时候你可以随时来看看她“这是真的吗”御板美琴低着头突然低声问了一句，我还没有回答，她已经借着说了下去。</p>
+	<p class = "firstLineIndent"> “这是真的吗”真的结束了吗”真“是真的我将双手放在御圾美琴的肩膀上，微微用力，“所以，不要哭了”“没有，我才没有呢！御板美琴猛地抬起头来，尽管眼眶仍然有些发红，却已经止住了泪水。</p>
+	<p class = "firstLineIndent"> “只是有点。</p>
+	<p class = "firstLineIndent"> 有点激动而已，才没有哭呢！”“好好好，没有哭，没有哭小”看着这个样子的御圾美琴，不知怎的我竟然产生了平常那种哄小泡泡一样的感觉，“那为了表示庆祝，请你吃烧烤怎么样？”“大叔。</p>
+	<p class = "firstLineIndent"> 这时候一个阴惨惨的声音却突然从我们身后传了过来，被众人遗忘许久的白井黑子竟然满血原地复活，此刻正浑身缭绕着黑烟地站在我身后”“不可原谅”竟然将姐姐大人弄哭”不可原谅啊啊啊！！！”“喂喂！不要突然扑上来啊！我是你的前辈吧，至少给我”喂！”（未完待续）</p>
+	
+<h2>第三百七十二章被劫走的天使</h2>	
+	<p class = "firstLineIndent"> ，静的日子度讨了两天，第一批御技妹妹终千送到了我付捌圳究所中。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 那是一辆运送集装箱的载重卡车，通行证上写着“研究设备运送”的字样。</p>
+	<p class = "firstLineIndent"> 从研究所的后门处送了过来，开车的司机甚至都不知道自己运送的是什么东西，在依照命令将“研究设备。</p>
+	<p class = "firstLineIndent"> 送到目的地并确认我们将集装箱卸下车之后，便一言不发地离开了。</p>
+	<p class = "firstLineIndent"> “活生生的人啊勺。</p>
+	<p class = "firstLineIndent"> 姐姐大人心酸地感叹了一句，然后上前打开了集装箱的门。</p>
+	<p class = "firstLineIndent"> 伴随着“吱嘎。</p>
+	<p class = "firstLineIndent"> 的金属饺动声，集装箱被从外面打开，里面互相面对面坐着的是上百名拥有一模一样的精致容貌，统一规格的长盘台校服，身高体重分毫不差，连头上戴着的夜视仪也被卡在完全相同位置的女孩。</p>
+	<p class = "firstLineIndent"> 上百名御板妹妹就好像从生产线上组装起来的玩偶一样，被如同货物一般挤放在大集装箱中，当密封的大门打开的同时，所有的御圾妹妹都整齐地将视线转移到了亮光照进来的方向，被数百只木偶一般毫无感情的眼睛同时盯住，我的心中咯噔一下。</p>
+	<p class = "firstLineIndent"> 被华的”在御圾奶,的指挥下，一百多名御板妹妹鱼贯从集装箱中走出来，然后迅速按照体检编号在我们面前站成两排。</p>
+	<p class = "firstLineIndent"> “咳咳，首先，欢迎你们加入”恩。</p>
+	<p class = "firstLineIndent"> 加入我们这个大家庭。</p>
+	<p class = "firstLineIndent"> 按照习惯被推上来进行演讲的仍然是倒霉的本人，思考再三。</p>
+	<p class = "firstLineIndent"> 我还是决定用“家人”来描述我们之间的关系。</p>
+	<p class = "firstLineIndent"> 正所谓虱子多了不痒债多了不愁，既然接收了这些身世可怜的御圾复制人，那么就应该将她们当成自己的妹妹一样看待，反正我旁边一大帮妹子也不差这一万多人一话说一万人果然还是太夸张了点啊混蛋！面对我的开场白，一百多御板妹妹完全没有任何反应，她们只是安静地听着，然后等待我接下来的命令。</p>
+	<p class = "firstLineIndent"> 待机，接受命令，执行，死亡，这已经成为她们本能的一部分了。</p>
+	<p class = "firstLineIndent"> 当然，要除了已经和我们在一起生活了几天时间的御坡奶,之外，尽管表情和其他妹妹一样都是木然的三无状态。</p>
+	<p class = "firstLineIndent"> 御板,馏,还是立刻带头鼓起掌来，一边还面无表情地抬头看了我一眼：“御板们正在等待命令，否则她们不会产生任何行动。</p>
+	<p class = "firstLineIndent"> 御圾,馏,看到所长哥哥有些尴尬立刻很好心地解释道你这么一解释我就更尴尬了。</p>
+	<p class = "firstLineIndent"> “恩，那就先这样吧，你们需要熟悉一下环境，然后适应一下我们的生体修复仓，更多的就让御坡四引给你们介绍好了，没了，解散！”御板妹妹们立刻改变了队形。</p>
+	<p class = "firstLineIndent"> 然后安静地跟在御板馏,后面离开了这里。”</p>
+	<p class = "firstLineIndent"> 跟她们说话压力真大。”</p>
+	<p class = "firstLineIndent"> 我由衷地松了口气后说道。</p>
+	<p class = "firstLineIndent"> 旁边林雪搭话：“所以才让你上去当冤大头啊。”</p>
+	<p class = "firstLineIndent"> 御圾克隆体的数量足足有一万多名，要将她们一次全部接收下来明显是不可能的，说实话，一开始亚雷斯塔甚至怀疑我们这小小的研究所能不能容纳下一万多个克隆人在里面生活而且还不被外界所知，不过我已经明白告诉他，这件事情我们自己能解决，他只要动用自己的力量，将一万名御圾妹妹安全隐蔽地送到“希灵研究所”就行，现在这一百多人仅仅是第一批，除了作为第一次交接的尝试之外，她们也将成生体修复仓的实验者，之后的几天里剩下的御板妹妹还将逐批送来。</p>
+	<p class = "firstLineIndent"> 然后被我们转移到口影子城市里。</p>
+	<p class = "firstLineIndent"> 这个冰冷的世界从未给过妹妹们一丝一毫的温暖，我宁愿为她们建立一个新的天堂。</p>
+	<p class = "firstLineIndent"> 尽管那个天堂目前的环境猎奇了点”得跟泡泡说说，看完猎奇动漫之后别再拿影子城市玩场景模拟了。</p>
+	<p class = "firstLineIndent"> “不知道亚雷斯塔那个老狐狸会不会对一万多人凭空消失产生疑惑呢？。</p>
+	<p class = "firstLineIndent"> 目送着妹妹们跟在御板奶,的身后排着队消失在研究所的地下入口处，姐姐大人在我旁边低声说道。</p>
+	<p class = "firstLineIndent"> “而且。</p>
+	<p class = "firstLineIndent"> 总觉得那个狡猾的家伙反应似乎有点奇怪啊，面对“异邦人”他的举动似乎并不像是个疑心重重的领导者。””谁知道呢”嗯？姐，刚才那阵能量波动“能量波动？。</p>
+	<p class = "firstLineIndent"> 姐姐大人好奇地眨了眨眼睛，“我没感觉出来啊？。</p>
+	<p class = "firstLineIndent"> 错姿？看到姐姐困惑的样子，我也有点怀疑自己是不是产生了错觉，但紧接着，另外一阵微弱的能量波动再次传来。</p>
+	<p class = "firstLineIndent"> 却让我坚定了自己的感觉没有错。</p>
+	<p class = "firstLineIndent"> 看来是波动太过微弱而且并不是姐姐大人熟悉的东西因此导致只有我一个人觉察到吗？“我也察觉到了”正当我这么想着的时候，林雪却在旁边幽幽地说了一句，差点忘了，这里除了我因为能力原因而对异常能量的感知距离很远之外，还有一个堪称作弊器的少女先知也是个超视距的雷达来着。”</p>
+	<p class = "firstLineIndent"> 是这个世界魔法的味道，距离这里不是很远林雪看了我一眼，脸上带着好奇：“哦？这就是这个世界的魔法吗？真是很奇怪的能量运行方式呢，完全没有精神力参与其中刀花二尔所说的那种依靠偶像崇拜或者神话传说赋予力量来联糊巩击元素运行的方式呢，木头，要不要去看看？”第七学区的步行街附近，一条无人的小巷中，地面被焦黑的颜色覆盖着，墙壁上也布满了纵横交错的高温烧烤痕迹，地上有几处被烧焦的物质仍然在缓缓地冒着青烟，不断散发出刺鼻的焦糊气味，很明显，这里刚刚经历了一场瞬间的高温。</p>
+	<p class = "firstLineIndent"> 尽管残留的魔力波动已经相当微弱，依然可以从中分辨出这是魔未师们的手笔。</p>
+	<p class = "firstLineIndent"> 而且其中一个还相当熟悉。</p>
+	<p class = "firstLineIndent"> “史提尔的魔力残留么”微微闭着眼睛感知了一下之后，我便轻而易举地分辨出了某个能迎风送出三十里香烟味的老烟枪所独有的那种魔法波动”似乎他的对手很注意隐蔽行踪，某种可以极大限制魔法波动散发的术式始终在这条小巷中运行着，否则的话，以史提尔主教级别的实力。</p>
+	<p class = "firstLineIndent"> 战斗起来可不止是这么点动静了“有受伤吗？”浅浅一边用手在鼻子前扇着那刺鼻的味道，一边皱着眉头对我说道。</p>
+	<p class = "firstLineIndent"> “你老公是雷达，不是吧？”林雪一直没有出声，她只是闭着眼睛，在空气中感知着什么。</p>
+	<p class = "firstLineIndent"> 然后肯定地说道：“没有受伤者，两人仅仅是试探性地接触了一下，那个红发的神父在追逐某个目标，但对方无心恋战“你现在都能看到过去发生的事情了？天赋都点上了？”注意到林雪眼中银白色的光晕流转，我不由诧异地问道。</p>
+	<p class = "firstLineIndent"> “你的思维方式还敢再扭曲一点吗？。</p>
+	<p class = "firstLineIndent"> 林雪表情为之一圃，一边扯着嘴角一边说道，“另外，看到一个地方过去不久曾经发生过的事情，这本来就是我的能力之一，这个比预言能力简单太多了吧？。</p>
+	<p class = "firstLineIndent"> “好好好，我的先知大人，那么您老人家刚才看到史提尔在追谁没？另外现在他们上哪去了？。</p>
+	<p class = "firstLineIndent"> “你等等”林雪说着。</p>
+	<p class = "firstLineIndent"> 再次闭上了眼睛。</p>
+	<p class = "firstLineIndent"> 几秒钟后睁开眼摇了摇头，“没有见过的目标，无法对其进行精确探察，图像的分辨率太低了“恩，”应该是罗马正教那边的人，”什么人在那边？”浅浅和林雪随着我话音落下跟着回头，然后一起看到了出线在小巷口的人影，不由惊讶地叫道：“神裂火织？。</p>
+	<p class = "firstLineIndent"> “天使大人们？”看样子也是匆忙赶来的少女圣人明显并没有料到我们会出现在这里，也跟着惊呼了一声。</p>
+	<p class = "firstLineIndent"> 神裂的到来总算结束了我们没有多大帮助的瞎想。</p>
+	<p class = "firstLineIndent"> 从对方口中，我大致知道了事情的经过。</p>
+	<p class = "firstLineIndent"> 史提尔在追的。</p>
+	<p class = "firstLineIndent"> 果然是罗马正教的人。</p>
+	<p class = "firstLineIndent"> “一见面就直接交手？你们必要之恶教会都是这样不经大脑的单细胞吗？”听完神裂的叙述，我不由发出了这样无奈的感叹。</p>
+	<p class = "firstLineIndent"> 连对方要干什么都还没搞清楚，竟然一见面就交上了手，现在还让对方跑掉了，必要之恶教会果然不愧是英国清教方面最大的暴力机关啊”“非常抱歉天使大人。</p>
+	<p class = "firstLineIndent"> 但当时的情况可能非常紧急，史提尔仅仅给我发出了一个魔法通讯，甚至没有等我赶到便发动了攻击，他平常不会如此冲动的”小好好好。</p>
+	<p class = "firstLineIndent"> 我知道我知道，那个老烟枪是个冷静睿智的好青年，我已经通知手下的人跟踪过去了，那么你们这几天到底查探到什么没有？罗马正教的人究竟在这里搞什么飞机呢？”说到正事，神裂表情立刻严肃起来：“他们可能已经发现了那名迷途天使的线索，而且似乎打算借助那位天使大人的力量来对付学园都市，”不，有可能是整个科学侧我和浅浅对视一眼，然后异口同声：“他们吃饱撑的！”“我就想不明白了，罗马正教为什么要如此针对科学侧，他们真以为科学这种东西。</p>
+	<p class = "firstLineIndent"> 一旦萌芽之后还可以从世界上清除掉吗？”“科学和宗教的对立是从一开始就存在的”神裂摇了摇头。</p>
+	<p class = "firstLineIndent"> 尽管作为魔法侧的一员，她的评判却比很多人宗教人士都要可观的多，“宗教为人民塑造了一个崇高的偶像，以绝对的信仰放牧着信徒们的灵魂，但科学的出现打破了这一切，在科学的眼中，宗教所坚持的一切都被毫不留情地否定，甚至狂妄地试图以凡人之躯来达到神的高度，这当然是不能被宗教容忍的事情，但尽管宗教势力根基深厚力量强大，科学却可以以最快的速度和最便捷的方式融入普通民众，到现在，尽管罗马正教号称拥有二十亿信徒。</p>
+	<p class = "firstLineIndent"> 但这二十亿信徒却同样享受着科学带来的便捷，可以说，宗教世界的根基早已经在科学力量的冲击下摇摇欲坠了。</p>
+	<p class = "firstLineIndent"> 罗马正教的行动，可以说是为了信仰而战，但用自我拯救来形容也并无不可呢”当然了，对疯狂的信徒而言，理由什么的，应该一开始就没有意义吧？。</p>
+	<p class = "firstLineIndent"> 看着哲人模式全开的神裂火织。</p>
+	<p class = "firstLineIndent"> 我由衷地感叹：“我觉得你应该是科学侧的卧底神裂：“我只是受到了前几天和天使大人您谈话的影响而已正在这时，被我派出去追踪任何可疑目标的希灵特工队终于发来了回信，亦；二二大兵在靠近学园都市边缘的地带发现了史提尔的踪出川一片被某种大力砸碎的水泥地面上，红发的神父已经失去知觉倒在地上，写有符文的硬纸片散落一地，而除了地面上破碎的水泥块之外。</p>
+	<p class = "firstLineIndent"> 周围并没有高温灼烧过的痕迹。</p>
+	<p class = "firstLineIndent"> 也就是说。</p>
+	<p class = "firstLineIndent"> 史提尔甚至没来得及发出攻击，就被对方给秒杀了。</p>
+	<p class = "firstLineIndent"> “史提尔！”看到自己的搭档生死不明地倒在地上，神裂立刻冲了上去，待确认对方并无生命危险之后才松了口气。</p>
+	<p class = "firstLineIndent"> “避开了要害，仅仅是失去了知觉，这个老烟枪还真是命大呢”林雪们当专业地检查着对方的伤势，“不过至少被砸断了六块骨头，还有严重的内出血木头，开结界，放阿赖耶。”</p>
+	<p class = "firstLineIndent"> 为什么我感觉你刚才把天使妹妹放在了一个很微妙的位置上了呢？不管林雪的说法多么奇怪。</p>
+	<p class = "firstLineIndent"> 我还是立刻启动了能量屏障。</p>
+	<p class = "firstLineIndent"> 干扰掉了可能存在的任何窥探，然后放出了天使妹妹。</p>
+	<p class = "firstLineIndent"> 在圣光能量的冲击下，即使是死人都能复活，史提尔自然也飞快地瘙愈了，而旁边的神裂则眼神有些诡异：她还是第一次见到这位天使真正出手，和前几次那种单纯被圣光力量威慑的感觉不同，这一次。</p>
+	<p class = "firstLineIndent"> 她从这个大人身上感受到的是真正应该属于天国的那种宁静祥和的力量。</p>
+	<p class = "firstLineIndent"> 在圣洁柔和的白光作用下，史提尔伤痕累累的身体一肉眼可见的速度迅速恢复了健康，甚至连他身上的血迹和破烂的衣服都神奇地被修复一新。</p>
+	<p class = "firstLineIndent"> 阿赖耶甚至还顺便治好了这个老烟枪的肺炎”你做了多余的事情啊笨蛋！“史提尔，你怎么样？，小当红发神父悠悠醒转，神裂立刻上前一步，扶起了对方的身子问道。</p>
+	<p class = "firstLineIndent"> 如此倒霉情况的原因，“他们竟然敢在学园都市做这么出格的事情，实在出乎我的预料我顺手将正忙着数自己羽毛的阿赖耶给塞回了精神海，一边问道：“究竟怎么回事？罗马正教的人在干什么？。</p>
+	<p class = "firstLineIndent"> “他们带走了天使史提尔语出惊人。</p>
+	<p class = "firstLineIndent"> “好嘛，你们提前多少天就进来，结果现在竟然被后知后觉的罗马正教给抢了先？”。</p>
+	<p class = "firstLineIndent"> 非常抱歉天使大人”小面对我的牢骚，神裂和史提尔立刻低头道歉，“我们无能”“算了算了”。</p>
+	<p class = "firstLineIndent"> 顶着虚假的“天使”名头我当然不能这么理直气壮地斥这两位魔法师”除非亚雷斯塔脑抽，现在罗马正教的人应该还没有离开学园都市，史提尔。</p>
+	<p class = "firstLineIndent"> 给我们描述一下对方的特征，或许我的人能找到他们。”</p>
+	<p class = "firstLineIndent"> “恩”。</p>
+	<p class = "firstLineIndent"> 史提尔点点头，“被我发现的那家伙是个女人，穿着传统的白色修道服。</p>
+	<p class = "firstLineIndent"> 擅长的术式不明。</p>
+	<p class = "firstLineIndent"> 一直在逃跑，埋伏并偷袭了我的是一个高大的金发男人，身穿非常华丽的白色修道服，使用的术式是利用空气产生巨大的锤子来进行攻击，速度很快，而且威力强大，更多的就不知道了”我将史提尔描述的两人形象在脑海中刷屏半天，搜索无果之后才问道：“天使呢？你见到没？“是的”史提尔一如既往地掏出香烟，从指间迸发出一团火花将其点燃，“被那个女人带在身边，是一个银发的年轻女孩，但她的情况相当奇怪，表现出来的就好像是一个受到惊吓的普通人一样，完全没有天使的样子，甚至从她的身上感受不到一丝一毫的力量，连那个白袍的修女都没有对其表现出丝毫的敬意，对了，那名天使丝毫的确符合您所说的迷路的样子她的反应似乎比普通人还迟钝”。</p>
+	<p class = "firstLineIndent"> 银发的女孩？。</p>
+	<p class = "firstLineIndent"> 我看看林雪。</p>
+	<p class = "firstLineIndent"> “完全没有力量的普通人？。</p>
+	<p class = "firstLineIndent"> 林雪同样将若有所思的目光投向这边。</p>
+	<p class = "firstLineIndent"> 然后我们异口同声：“而且还是个慢半拍！？”。</p>
+	<p class = "firstLineIndent"> 呃”是的”。</p>
+	<p class = "firstLineIndent"> 史提尔犹疑地说着，将好奇的目光在我们身上扫来扫去。</p>
+	<p class = "firstLineIndent"> “就是那位天使吗？。</p>
+	<p class = "firstLineIndent"> “没想到”。</p>
+	<p class = "firstLineIndent"> 我刚要说出某个名字，然后突然意识到面前两人正处于被忽悠的状态，立刻改口道小“没想到那家伙竟然会这么笨蛋”恩，就是她了，我们会抓紧时间找到她，史提尔你就先休整一下吧，圣光虽然可以修复你的身体。</p>
+	<p class = "firstLineIndent"> 但生命力却需要静养来恢复。</p>
+	<p class = "firstLineIndent"> “恩”。</p>
+	<p class = "firstLineIndent"> 尽管不情愿，史提尔还是不得不点头同意我的说法，“那么我会先回到我们的落脚点休整。</p>
+	<p class = "firstLineIndent"> 神裂你“我会继续追踪他们的。”</p>
+	<p class = "firstLineIndent"> 神裂带着坚定的语气说道。</p>
+	<p class = "firstLineIndent"> “那么我们就兵分两路吧。</p>
+	<p class = "firstLineIndent"> 他们应该跑不远”。</p>
+	<p class = "firstLineIndent"> 我说着，将一块小的水晶交给神裂，“发现对方的踪迹就摔碎它，我们立刻赶到。”</p>
+	<p class = "firstLineIndent"> 神裂点点头，接过水晶之后迅速离开了此地。</p>
+	<p class = "firstLineIndent"> 等史提尔也离开之后，我和林雪同时一声长叹，而浅浅则感慨起来：“真没想到，那个天使竟然真的是希尔维亚一一失之交臂啊失之交</p>
+	
+<h2>第三百七十三章 老狐狸的算计</h2>	
+	<p class = "firstLineIndent"> 川原本的设想不同，哉们的行动似乎瞬间陷入了困坟※劫走了天使的罗马正肃戍员如月凭空馆失了一样完全不见踪影,不仅仅是种桑火织,甚至连我们派出的希灵特工都无法友现对方的踪迹,潘多拉巳径入侵了整个学园都市的全部监书系琉,除了那咋带空回栈”因为其屑牲特殊而无法极简单控制之外,可以说整个学园都市在我们面前巳经变咸了比被珊多拉扫荡过的餐厅还要一目了然的东西,但耶侦如此,那些罗马教徒也没才露出踪迹,就连某些监扫设备的历史记录里面都没留下东西，很明显,邯使是普遍机械白痴的魔法侧成员,在行动之芹也会对高科枝的监腔牧术进行一定程皮布局的。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 这真是今人不可思议。</p>
+	<p class = "firstLineIndent"> 而另外一件基本上巳经可以确定的事桔就是那个失踪的天使，确实是性半拍的希尔菲亚无疑乙尽管只见过两次面但由于那女孩亲和的性格,她巳经成了我和林雪的朋友,因此当看到已经人去屋空的小希饰品店亡后,哉们都感到相当烦闷。</p>
+	<p class = "firstLineIndent"> 天使！？扯淡！那种笨蛋怎么可能是天使？阿赖耶无辜她从我面首飘边”咳咳我的意恩是,那么普通的家伙，甚至仅仅是一个被学园都市牧养的孤儿,她怎么就梅身一变成为了天使呢？不过这都是之后要思考的问题，现在的当务之急，就是我到希尔作妊的下蒂。</p>
+	<p class = "firstLineIndent"> 尽管经商的本事不怎么样，不过由于天生的亲善性格，希尔锥亚在这各宵店崭上的人缘相当不错在伪装成调查人员之后，我们很帜侦在几名热心人的拈引下找到了希尔诈亚居住的小公寓。”</p>
+	<p class = "firstLineIndent"> 送里就是那个孩子住的拈方了带哉们过来的某育店老板热心她拈点着当初她一直记不住自巳的门牌号，成天找我们问路，结果”箭务么安合她将那孩子带回来！。</p>
+	<p class = "firstLineIndent"> 正沓我们感慨的时候,面相大众的育店老根突然大声地说道，然后深深鞠躬,”希尔哗亚虽然总是很笨扯的样乎,但她真是一个相当善良而且热心的女孩,尽管搬过来才只才几个月的时间,却让我们这里所才人都感到了那孩子的泌暖,所以,拜扛了！””当然这就是载们的职责。”</p>
+	<p class = "firstLineIndent"> 带着令人放心的撒笑林雪送走了店长大叔,然后反身锁上了房门。</p>
+	<p class = "firstLineIndent"> 从罗马正教手中寻栈天使的下落啊”我感慨一声,然后拽着林雪句里屋走去,”丫头你一会好好闻闻，者能不能找到西尔菲妊的下件陆着一声巨响传来的，还才某抓枉先知的恕吼：”你这个混蛋月的是什么形容方式啊！！”希尔撰亚的房间看上去相当整浩也异费的简扑,除了一张白色的单人床，一张写宇台,一咋，床头柜和两把椅手之外别无他物，甚至连在这学园都市中艳不会缺少的人类必备品：电肚都没才，这让我不得不杯疑对方究竞是因为天生性格使然还是因为那悲催的经育能力导致自己贫穷到了这种地步，不过想来后者的可能性也不高，能在学园都市的核心执区开店铺,学园都市对她的照顽巳轻显而易见，到这种程座恐怕就是依靠救济合她都能过上不错的生活吧？天生的请修者吗？这还真符合她”天使”的身份呢。</p>
+	<p class = "firstLineIndent"> 尽管还不知道为什么拥才从小被牧养的孤儿身份的希尔菲亚会突然变成天使”,不过现在突然莫名她认月了她的新身份了呢。”</p>
+	<p class = "firstLineIndent"> 没才挣扎的恋迹也没才特殊能量波动的残留林雪在小小的单人卧室中转着圈,”才陌生人的味道，但她是主动跟着对方出去的，结合希尔菲亚的脑力，看来这是一场难皮系煮０四的诱拐事件呢口”哉立刻召唤出了阿赖耶对表特帐幢的笨蛋天使认真说道乖,然后正在分析时间栈的浅浅就上来络了我一个爆粟：。</p>
+	<p class = "firstLineIndent"> 别把咱宗天使真的当戍笨蛋啊！！。</p>
+	<p class = "firstLineIndent"> 阿赖耶继续迷茫中。</p>
+	<p class = "firstLineIndent"> 汽浅通过对此拈时间的回溯同样也是一无所获希尔菲亚明显已经被带走了很长时间,而对时间的操牲存在着跨度越大则妆制难皮将以立方级沮增的特点，更何况以目前汽汽的能力还无法做到对巳经发生的历史进行扭曲，因此最稳,我们只能将希望放在神裂身上。</p>
+	<p class = "firstLineIndent"> 不过很明显，连我们都无法发现的袄，种裴能发现的几率就更门、了。</p>
+	<p class = "firstLineIndent"> 件随着搬辙的破空声拥才御姐身村和少女年纪的”圣人。</p>
+	<p class = "firstLineIndent"> 侦出现在了窗户外面，然后通过泪开的窗户跳进了屋里。”</p>
+	<p class = "firstLineIndent"> 你一般都是从窗户进出别人家的吗？”林雪带着十二万分的认真表特问道。”</p>
+	<p class = "firstLineIndent"> 咖”耶使淡定如神裂面对林雪的嘴饱也毫无括架之北嘛。</p>
+	<p class = "firstLineIndent"> 之首就没才极受到对方发来的信号现在看着她脸上又带着郁闷的表桔,我早巳精到了结果。</p>
+	<p class = "firstLineIndent"> 神桑默不作声执点点头，低声说道：，他们可能早已经掌握了某种途径不但顺利执潜入了学园都市,而且还轻私地离开了此她，也可能是某积可以无视障碍瞬间够动的木式,我巳经通知了其他的月事们，他们将通过各种途径来寻找对方的残索，而且最大圭教应该也会从上层的渠道和罗马正教进行按触,不过这样做的意义不大，获得了一名实质上的天使,罗马正教在自己的目的达成之淤是绝对不会才任何妥协的,而且那些自闭正琉的疯子也从来没才妥协的习惯。”</p>
+	<p class = "firstLineIndent"> 那可就才些麻蚜了借助潘多拉的系琉入伎和希灵特工们的活动,耍说在学园都市内,我将占据绝无疑问的主场,但现在对方却是在这械市之外,甚至才可能巳轻进入了罗马正嵌的庇护之下，要憋帖无声息她解决事件就才点不可能了乙”获得了一名实质上的天使啊”浅浅的悲法却和哉才点不太一样”罗马正教以为自己掌程了巨大的优势，但他们能想到英目请教这边才一大垛天使在愁腰吗？。”</p>
+	<p class = "firstLineIndent"> 您的意思是？。</p>
+	<p class = "firstLineIndent"> 听到浅浅的估神裂立剖露出了喜出望外的表特，而浅浅则将目毙，转向了我：”阿讼,我看罗马正肃不爽了口””我也不爽”载鱼耸肩，略微悼念了一下自己刚冈被松毙掉的悠闲假日”那咱们就唯备姬挨那帮热血上头的弥乎吧”呵”呵”呵呵”种裂表桔僵硬帖干笑着对面首”天使大人”的说姑方式表示自己什么都没听见口”那么哉会将这个好诣息忌帜通知洛大圭教那边的”少女圣人对亥们一鞠躬说道”我们将在最短的时间内找到迷途天使的下落,相信以罗马正教的一贯行事方法,根帜他们就将才大动作,而在那之芹,那位迷途天使应该不会受到任何仿害。””但愿吧。”</p>
+	<p class = "firstLineIndent"> 我不太确定她说道，心中隐合着一韭担忧，希尔撰亚，尽管突然顶上了天使的名号,但她却实打实是一咋，没才力量而且天然呆的”人类”女孩，罗马正炙那些为了宣传”主的荣光”而不借一切代价的疯子虽煞可能不合仿害希尔诈亚，但就如月臆弱的艺术品耶使是在收藏家手中也会失坏，那些枉热的罗马教徒为了实现自己的”大义”真的可能不伤害希尔作妊吗？在回去研宛所加路上我一直在思考一个问题刁亚雷斯搭那嘶究竟在想些什么？尽管雅老狐狸的悲法时我这样不棺阴谋的人而言是一件相当困难的事桔，不过至少才一点是可以肯定的，就如月某只狐狸女一样，管子里的倒吊男绝对是一个为了自已的目的不择手段的人也就是说，他艳对不会允许会妨害到自己目标的事精发生,让罗马正肃获得一位天使从而才可能极大她增强具力量，这不管怎么想都应该是绝对禁止事顶。</p>
+	<p class = "firstLineIndent"> 这整件事桔的背后某介”,个知个能。</p>
+	<p class = "firstLineIndent"> 的管乎男枪演了什么群的角色？仅仅是在纵容这一切还是说,这压根就是他计扑之内的事特？在那个习惯将一切掌握在自己手中的宗伙的执盘上,发生的这一连串事特，假如都是他在默许的话、那么也就说明了，这都是亚雷斯搭设计好的事特口那个梗半拍的女孩自己说过，她本身侦是学园都市从小牧养起来的狐儿，也就是说她的存在,其实从一开始就是亚雷斯搭的某种计划？不对这才点太奇迹了，亚雷斯搭是老弧狸不假,但他应该还没才先知先觉到为了一个可能在十几年后才才可能出现的契机而牧养一个女孩，仅仅是为了让她在长大后的某一天冒充天使,然后被罗马正教的人带走,不管怎么悲,能冒天使。</p>
+	<p class = "firstLineIndent"> 并在某个阴供中起到至关重耍的作月，这角色都不是从群众演员中陆侦抓一个就能用的，要从十几年首侦开始这样的设计,如果换林雪来进行那还靠谱一点。</p>
+	<p class = "firstLineIndent"> 或春说，其实亚雷斯搭最初打算进行的其实是光源氏养成计女？！糟糕思悲又失妆了。”</p>
+	<p class = "firstLineIndent"> 木头你脸上表桔阴睛不定眼神飘忽目光偶尔根琐她究竟在想什么呢？”林雪注意到了我的异常好奇她停下了脚步,用相当认真严肃执口吻如此说道。</p>
+	<p class = "firstLineIndent"> 你丹才加进去了根多糙妙的东西啊识蛋！”没什么”我拇了拇头，压下了这就去找亚雷斯搭的冲动，那样太社动了”浅浅,从影乎城里调集一扯专业特工过来,在罗马正教的势力范围内个面拙索希尔菲亚的下落,我会派阿赖耶去栈那只狐狸女，咱们在这人生她不熟的，希灵特工再厉害肯定也比不上这世界的土暮们,林雪,这几天就麻烦你了，哉知道你看不见和希尔菲亚相关的东“就只能全面扫妆整咋，罗马正教来从侧面了解特况咀，我知遏我知道所以你这个木头感恩戴德就行了,”林雪习惯性她跟哉绊着啃,然后突然语乞糙搬严肃起来。</p>
+	<p class = "firstLineIndent"> 估说,从来没想到你也才认真起来的时候呢。”</p>
+	<p class = "firstLineIndent"> “杜人当朴使了当然才些辙的不爽口”我耸耸肩将目光转向远处共个黑色的高大建筑。</p>
+	<p class = "firstLineIndent"> “虽然不知道才什么目的，不过才一点可以肯定某个管乎男打算让咱们出头了。”</p>
+	<p class = "firstLineIndent"> 帮学园都市解决麻烦，这我侄没意见，其至是很乐意去做的事桔，但是假如这麻炬是某个管子男设下的套，而且还打算将我们都算计进去那可乐意不起来了。</p>
+	<p class = "firstLineIndent"> 林雪点点头，然后突然想起什么，笑着说道：“假如是雷要特工的姑我倒是能给你个建议一一个十分适合在这种桔况下渗透到罗马正教每个角落的天才。”</p>
+	<p class = "firstLineIndent"> 表立耶表特惊抹：“咱们手下还才此等人物？”林大小姐辙糙一笑：“西卡罗那家伙能把自己的盗版市场推广到梵蒂冈的教皇宫去！”我６浅汽：好主意口”于是，当天傍晚，一个加强营编制的崩希灵特工侦在某城管杀手的带领下从影子城市浩浩荡荡她开赴到这世界的每一个角落人手一个黑色小挎刨…第一秋过来体验生活的御扳妹妹已超完咸了为时两个小时的身体调整拭验，在希灵枚师的努力下我们制造出了一种可以棋仿世界回路的空间装置，从而将研宛所的部分她下空间和影乎城市进行了重叠，这种简化版本的“世界回路”极大执方侦了我们的超时空运轿，包括,奶,在内的一百多个郸扳妹妹就是这损术的第一扯受益人,她们是在设备完善人手充足的影子基她里接受的治里巳经唯备子将近三十个特制的辐射式生体调节卜,而且两台希灵主机还在加班加点她亲自督造剩余的七千咋，口而除了悲受调整时耍进入影乎械市之外，廊咀妹妹们平常仍然要在研究所里生活，这是为了防止太过异常的现象让某个老狐狸过皮关注这里一虽然现在他可能巳径开始对这边过度关注了。</p>
+	<p class = "firstLineIndent"> 不过在潘多拉的强能量场干涉下，那家伙最近巳经被烧毁无数的监控设备了吧？“证说这场面还真觉异啊”晚饭的时候因为心血来溯而集体到食堂就餐的欺世组们如此感叹着。</p>
+	<p class = "firstLineIndent"> 一百多咋，长相身材衣着完全加月的邯扳妹妹整整齐齐她坐在宽大的餐桌旁，进含整齐划一，表特严肃认真，场面蔚为壮观。</p>
+	<p class = "firstLineIndent"> “嘿嘿亚雷斯搭那老家伙的计戈巾，御极网络可是相当重要的一环，但他绝对料不到我们竟然才办法将这一万个廊扳妹妹俗转够到异世界去，假如能悲到这点的育，恐怕他宁死也不会月意让哉们来帮忙,治疗，掷扳妹妹们吧口”突然想到了相当才趣的事桔汽浅漆在煮耳边嘻嘻农农她低声哨咕起来，然后我浑身就起了一层的鸡皮疙瘩口这丫头对着我耳朵眼吹气！“毒到哥哥和姐姐们过来，御板心囚非常高兴御植心别刚才就站起身来试着和哥哥打括呼，但似乎没才引起注意，御植,奶,才些失落她齐充道口”正当戒忙着镇压身上鸡皮疙瘩的时候，一个机械化的声音突然在旁边响起，让哉转够了注意力。</p>
+	<p class = "firstLineIndent"> “扼”抱歉，只我才些旭杭执转过头来正对上某个鄂扳妹妹面无表特的注犯,也不知道这孩子巳经站起来多久了,“那什么,身体感觉怎么样？”“现在感觉良好但刚从治疗设备里出来的时候脊桩才些发痒的感觉,御巩旧蚓认真她汇报道乙”看来那边希灵枚师研究出来的东西果然可靠，脊桩发痒的韶就证明整个过程巳经咸功启动了。</p>
+	<p class = "firstLineIndent"> “在这里生活还习惯吧？“哉微笑着拣了旗鄂扳旧蚓的屉袋，“现在先凑合着过两天会给你们安桥一个更好的她方的,那是一个全新的城市哦。”</p>
+	<p class = "firstLineIndent"> 非常罕见的御植妹妹脸上竟然辙撒带极了红晕,然后飞快执点着头说道：“御植在这里生活感觉非常非常高兴,而且御扳很喜欢这里亲切的人们，这里的鄂板妹妹们也让我代为表示感谢,其他的御植妹妹也希望能尽帜过来”御圾,奶,感觉才很多韶耍说但一时栈不到合适的形容饲，因此才些急切执涨红了脸”“好好好”亥明白了，“带着笑意拍了拍这冈冈从噩梦中脱身迎来新生活而才些敬动的小女孩,疚回身对姐姐说道,“姐,下一扯郸植妹妹应该也快来了吧？”“明天就会送到”姐姐大人点点头，“假如亚雷斯搭不打算继犊稿些小动作的估。”</p>
+	
+<h2>第三百七十四章 幻想御手爆发</h2>	
+	<p class = "firstLineIndent"> 二忘的学习点后仰来的周末时米。</p>
+	<p class = "firstLineIndent"> 对每个怀外千校园的生而言，都是相当值得期待的事情吧。</p>
+	<p class = "firstLineIndent"> 地点是某个。</p>
+	<p class = "firstLineIndent"> 在这夏日中最受人欢迎的湖畔公园，几名少女正躲在树荫下惬意地享受着冰激凌带来的清凉。</p>
+	<p class = "firstLineIndent"> “呼”炎炎夏日的午后在公园的树荫下吃冰激凌，人生最大的幸福也不过如此嘛！”。</p>
+	<p class = "firstLineIndent"> 三两口将最后已经半融化的冰激凌塞进嘴里之后，某个留有黑色长，头上还带着樱花饰的女孩用相当夸张的语气说道，一边将剩下的冰激凌空桶向远在二十米之外的垃圾桶里一抛。</p>
+	<p class = "firstLineIndent"> “打击者标记！”“哐当！”准确命中！“佐天同学”你的能力还真是充满了各种各样诡异的地方呢”白井黑子嘴角微微抽接，然后长叹了口气说道。</p>
+	<p class = "firstLineIndent"> “假如是为目标附加各种特殊属性的话，适用范围确实相当广泛呢”不过至少希望你不要在作为风纪委员的我面前这样乱用自己的能力好吗？”“哈”抱歉抱歉”小佐天泪子后知后觉地挠着头，“因为所长哥哥说我的能力提升太快所以有些不稳定，平常生活中在不影响他人的前提下最好能经常使用它们，结果养成习惯了呢”“哦，是这样啊”。</p>
+	<p class = "firstLineIndent"> 听到是这样的特殊情况，白井黑子也只能点点头，虽然学园都市有不允许学生随意使用自己能力的规定，但事实上，只要不造成太大的麻烦，连风纪委员和警备队都是对其睁一眼闭一眼的，不过白井黑子刚点完头就猛然意识到了一件事，扭过脸来用相当诡异的目光扫描着佐天泪子。</p>
+	<p class = "firstLineIndent"> “所哥？你终于成功被那个拥有一群妹妹的家伙给攻略掉，也成为妹妹们的一员了吗？”“哈误？”佐天泪子先是一愣，然后立刻将从某人那里学来的手刀攻击学以致用，敲在面前的百合女脑袋上，“你乱说什么呢！他只是哥哥啊！而且已经有浅浅姐姐了不是吗？，小正当佐天和白井忙着进行格斗的时候。</p>
+	<p class = "firstLineIndent"> 旁边一直在想着事情的御圾美琴突然缓缓开口了：，“不过说起来的话，虽然一开始以为他是个阴谋家，但现在看来那还是个好人呢。”</p>
+	<p class = "firstLineIndent"> 因为刚才白井黑子的一句“妹妹们”而让自己想到了某些事情，御圾美琴此刻心中有些思绪万千。</p>
+	<p class = "firstLineIndent"> 那个试验果然被停止了，而且停止的方式相当令人怀疑：几乎是一夜之间，所有和，“绝对能力者”有关的计划全部停止，连很多的关联研究机构也是连夜解散，妹妹们紧接着被交接到了“希灵研究所。</p>
+	<p class = "firstLineIndent"> 名下，这一系列的变动都说明了一件事，“绝对能力者计划”是在某种强大外力的正面冲击下被强行破坏掉的，学园都市的上层甚至连象征性的反抗都没有便匆忙地交出了相关的东西，包括“妹妹们”的监护权。</p>
+	<p class = "firstLineIndent"> 而造成这一切的，便是“希灵研究所。</p>
+	<p class = "firstLineIndent"> 无疑，更确切地说，应该就是那个最近认识的“所长”一个自己完全看不透的男人。</p>
+	<p class = "firstLineIndent"> 他的一切行动都是自己看不透的，简直就好像在游戏一样，但唯一值得庆幸的是，对方是个好人。</p>
+	<p class = "firstLineIndent"> 御板美琴想起了昨天去研究所探望妹妹们的时候，那次探望让她彻底打消了自己的疑虑，尽管名义上是一座从事能力开试验当然还有成吨各种各样令人无语的其他“研究范围。</p>
+	<p class = "firstLineIndent"> 的研究所，不过似乎除了佐天泪子参与的那个项目之外，那座研究所并没有进行任何其他研究，妹妹们在那里生活的相当轻松，某个。</p>
+	<p class = "firstLineIndent"> “所长大叔”甚至还组织了几个。</p>
+	<p class = "firstLineIndent"> 研究员在兴致勃勃地给她们上音乐课”好吧，虽然那有点令人无语，但至少妹妹们是被很好地照顾着。</p>
+	<p class = "firstLineIndent"> 并没有如自己预想的那样，被卷入新的试验中。</p>
+	<p class = "firstLineIndent"> “姐姐大人？”“姐姐大“姐姐大人！！”猛然爆在耳边的一声大叫让御圾美琴迅回神，然后便感到一个娇小的身躯突然间挂在了自己的身上，紧接着便是白井黑子那夸张的惊呼，“为什么在提到那位所长大叔之后姐姐大人会突然陷入这种诡异的出神状态！？难道最糟糕的事情终于生？难道黑子即将迎接的挑战竟然会是这样半路杀出的成熟神秘男？难道姐姐大人已经被”啊哦，”伴随着突然爆出来的炫目电光，名为白井黑子的物体已经浑身冒烟地从长椅上缓缓滑落地面。</p>
+	<p class = "firstLineIndent"> 御圾美琴额头上依然闪烁着游移不定的电光，脸色不知是气的还是被白井黑子的劲爆言刺激的布满了红晕，她紧紧地捏着拳头，低着头浑身抖，也不知道是不是打算给正在地上抽筋的白井黑子再来上一次强力电击。</p>
+	<p class = "firstLineIndent"> “呃，白井同学的生命力还真是顽强呢。”</p>
+	<p class = "firstLineIndent"> 看着惯例一样被电击到瘫痪的白井黑子，头上顶着花环的初春饰利尴尬地笑笑，却丝毫没有上前搀扶的意思，很明显，对于如此的情况，所有人都已经可以做到毫不犹豫地淡定围观了。</p>
+	<p class = "firstLineIndent"> “对了，知知。</p>
+	<p class = "firstLineIndent"> 刁想御手事件巳经解决了吗。</p>
+	<p class = "firstLineIndent"> 我记着风纪委员们众的联背以泳很忙才对吧？”佐天泪子突然想起了前几天让白井和初春大为头痛的某件事，不由好奇地问了出来说起来，当初自己也差点就产生了寻找幻想御手来提高自己能力的想法呢，幸亏及时遇上了那群好心的“异次元救世主。</p>
+	<p class = "firstLineIndent"> 们，现在自己还有些梦幻般的不真切感。</p>
+	<p class = "firstLineIndent"> “幻想御手事件的话”小提到工作，初春饰利立刻露出了严肃的表情，“虽然还没有查到幕后元凶，但最近已经平息了很多，而且在确定了幻想御手的实质是一段音频文件之后我们也通过计算机网络对其传播进行了封堵和追踪，所以工作取得了很大的进展“也正是因此，我和初春才得以在加班加点地完成了风纪委员的工作之后享受到这难得的假日，然后和姐姐大人一同，呃，虽然是打折的约余，”满血满状态原地复活的白井黑子挺着胸脯，再次陷入了某种诡异莫名而且让御圾美琴浑身汗毛倒竖的妄想状态中。</p>
+	<p class = "firstLineIndent"> 看着自己那令人头痛的的学妹又开始向四面八方散极端危险的百合气息，茶色短的少女心中不禁暗自庆幸：“这家伙”幸好我有先见之明，叫上了初春和佐天她们，要不天知道她又有什么样的糟糕计划准备实施了此时放松小憩的女孩们，根本没有想到就在第二天，便生了一件波及到尖万学生的灾难**件，甚至让她们接触到了这学园都市中最黑暗的部分。</p>
+	<p class = "firstLineIndent"> 事件是从第一个使用了幻想御手强行提升能力的学生突然陷入昏迷作为开端的，然后便如同猛然间爆的瘦瘦一般迅蔓延开来，大批的学生突然无缘无故地陷入深度昏迷，不管用任何手段都无法检查出他们身体上的异常，唯一的线索，就是他们都是使用过”幻想御手。</p>
+	<p class = "firstLineIndent"> 的人员。</p>
+	<p class = "firstLineIndent"> 短短的两天时间，昏迷事件涉及的受害者便已经激增到了上万人，而这个数字仍然在急飙升着。</p>
+	<p class = "firstLineIndent"> 面对突如其来的事件，警备队和风纪委员却陷入了极大的被动之中，一来他们到现在为止还没能找到“幻想御手”事件的元凶，自然也无从谈起从根源上解决问题，二来除了幻想御手事件的爆可能和四扩散力场有关之外，对其原理以及造成昏迷的原因却没有人能说得清，如此复杂而且条理难辨，波及范围又如此之广的事件，实在已经出了警备队和风纪委员的处理能力。</p>
+	<p class = "firstLineIndent"> 风纪委员会部，同时也是白井黑子和初春饰利所在的工作地点，几个女生正围在一起，每个人的表情都愁云密布。</p>
+	<p class = "firstLineIndent"> 虽然并非风纪委员，但御圾美琴和佐天泪子由于各种各样的原因此刻也出现在这里，在调查幻想御手事件时，她们两人也是出了不少力的。</p>
+	<p class = "firstLineIndent"> “那些陷入昏迷的学生已经可以确定没有身体上的问题”说话的是一个看上去比较成熟稳重的学姐，黑色的齐颈短，知性的女式眼睛，以及严肃认真的表情，这位虽然看上去只是个，学生的少女身上却处处带着一种果断而可靠的感觉，“昏迷的原因现在还无法查明，只能确定一点，那就是这些学生的大脑都已经无法对外界的信息作出任何反应，也就是类似于深度休克的状态。”</p>
+	<p class = "firstLineIndent"> “假如我们能找到幻想御手的原始文件或者它的制造者最初的研究资料，才有可能唤醒这些学生，但是现在，，一点办法都没有。”</p>
+	<p class = "firstLineIndent"> “那样的话学生们岂不是要永远昏迷下去！？”初春饰利听完了学姐告知的情况，立刻惊呼了出来。</p>
+	<p class = "firstLineIndent"> “怎么会那样”佐天泪子听到初春饰利的话，立刻露出了无法接受的表情，而同时一个让她感到后怕的念头也袭上心来：假如当时没有遇到那些和善的“异世界人”的话，现在在医院中昏迷的人是不是也将包括自己呢？“泪子”。</p>
+	<p class = "firstLineIndent"> 正在佐天泪子正陷入这样糟糕的设想中之时，一旁的白井黑子突然开口了”“假如可以的话，咱们可以请研究所的人帮帮忙啊”。</p>
+	<p class = "firstLineIndent"> “误？”刚刚出神的佐天泪子并没有听清黑子的话，不由诧异地叫了一声。</p>
+	<p class = "firstLineIndent"> “对了，研究所啊”初春饰利也立刻高兴起来，“你可以让希灵研究所的人帮忙啊，你不是在那里进行的能力开研究吗？所以提出一些小小的要求应该也是可以的吧？作为正规的研究机构，而且主要的研究方向还是能力开，他们肯定会对这样的事情有办法的，虽然现在和我们合作的一些研究机构已经开始了对昏迷事件的分析，但能多一份力量终究是好的不是吗？”“这样再，那我毒跟所长哥哥说说好了“等一下”固法美伟终于找到了插话的机会，“你们说的研究所，是哪里啊？你们还能动用到研究所这样的力量吗？”“不是我们啦”御圾美琴现面前的学姐正在将疑惑的目光投向自己这个身为学园都市七曰灭一的电磁炮身上，立刻晃了晃手，然后指石臼八月子，“是泪子哦。</p>
+	<p class = "firstLineIndent"> 她正在和一个研究所合作能州赏双的项目，那个研究所似乎很有实力的样子，让他们帮忙的话，或许能有办法让那些陷入昏迷的学生苏醒过来。”</p>
+	<p class = "firstLineIndent"> “真的？”固法美伟立刻露出了喜出望外的表情，“那真是太好了，没想到一直默默无闻的佐天泪子竟然会如此深藏不露呢，这样的话，就都拜托你了！不过”研究所这样的大型机构，会因为你一句话就答应帮忙吗？”“这个没关系的”。</p>
+	<p class = "firstLineIndent"> 白井黑子立刻双手抱胸，点着头说道”那里的所长是个妹控，所以佐天同学出马的话”众人：总之，最后名为佐天泪子的帝国指挥官就来大本营请求支援了”“事情的经过就是这样。”</p>
+	<p class = "firstLineIndent"> 一大就赶过来的佐天泪子为我们带来了一个不怎么令人愉快的消息。</p>
+	<p class = "firstLineIndent"> “呼”还以为这件事情不会生了呢。”</p>
+	<p class = "firstLineIndent"> 听完泪子的讲述之后，我挠了挠头，将视线转到身后御圾奶,正在那里十分投入地和维斯卡研究着怎么在３分钟内成功拆卸组装一台矢量线圈，貌似某猫眼萝莉终于找到自己的好朋友了呢。</p>
+	<p class = "firstLineIndent"> 这几天一直忙于处理御圾妹妹们的事情，因此在我们看来不怎么重要的幻想御手时间就被暂时搁置了，但谁也没想到，原本以为已经渐渐平息的事情，竟然会在一夜之间突然爆出来。</p>
+	<p class = "firstLineIndent"> “误？。</p>
+	<p class = "firstLineIndent"> 听到我的感叹，佐天泪子立刻露出了惊讶的神色，“难道”你是知道这件事的吗？。</p>
+	<p class = "firstLineIndent"> “呃，算是吧我尴尬地摸摸头，看到泪子的表情急转直下立刻解释道：“只是稍微探察到了一点消息而已，但是后来又生了另一件很麻烦的事情，注意力就被转移了，没想到幻想御手会突然爆出来啊！”听到这样的解释，佐天泪子的表情才和缓下来，要是让她知道我们早就掌握了，“剧情。</p>
+	<p class = "firstLineIndent"> 却还眼睁睁看着数万学生陷入昏迷的话，这个善良的女孩八成得别扭起来，虽然这是我们的无心之失。</p>
+	<p class = "firstLineIndent"> “那么，那些陷入昏迷的学生们，你们可以治疗吗？”迎着泪子急切的目光，我仰天翻了个白眼：“你这不是废话吗？你忘了我们的身份？还是连自己的身份都给忘光了？”要是连几个陷入昏迷的人类都治不好，那希灵科技可就真没脸见人了。</p>
+	<p class = "firstLineIndent"> 不过治疗那些学生虽然容易，却不是根治问题的途径。</p>
+	<p class = "firstLineIndent"> 幻想御手的制造者，木山春生的目标是利用能力者们在无意识情况下散出来的散力场来形成一个无线网络，利用这个无线网络将数万名学生的大脑连接起来，从而获得近乎树形图设计者的计算能力，然后借以找寻唤醒那些已经沉睡了数年的孩子们的方法，而为了让，“互不兼容。</p>
+	<p class = "firstLineIndent"> 的人类大脑能够成为这一网络的客户端，木山春生利用“幻想御手”来强行改变了数万名学生的部分脑电波结构，也就相当于在他们的脑袋里留下了无数下载器型的木马，这些木马在每一个学生的脑袋里协同运作，并不是解救了其中几个就可以搞定的根据泡泡的演算，这些“木马程序”具备互相补充的能力，也就是说，除非我们同时将所有学生大脑中的病毒删除掉，否的他们总能通过大脑网络互相重新下载，这样下去治疗过程恐怕得没玩没了了，而且即使我们能利用科技优势来整体摧毁这个大脑网络，也难保会不会对那些学生脆弱的脑神经造成损伤。</p>
+	<p class = "firstLineIndent"> 最简单可行的办法当然是编造一个同样可以在这个网络中迅传播的杀毒软件，这对泡泡而言不是什么难事，但唯一的麻烦就在于，我们没有木山春生手中的那份“原始样本”。</p>
+	<p class = "firstLineIndent"> 人的大脑是相当精密的，即使它的性能比不上希灵人们的量子运算核心，却也不是可以用榔头和改锥来修补的东西，假如没有“原始样本。</p>
+	<p class = "firstLineIndent"> 的话，即使泡泡也只能通过最笨拙的方法来模拟那数万名学生现在的大脑状态，从而在“虚拟机。</p>
+	<p class = "firstLineIndent"> 中编制杀毒软件，那可能需要几天时间一已经可以被称之为神，但恐怕木山春生已经有点迫不及待了。</p>
+	<p class = "firstLineIndent"> 既然如此，那我们干脆选择了以静制动的办法：反正木山春生迟早要浮出水面，那我们就安安静静地等到最后来个神兵天降好了，高达的故事告诉我们，在最后关头上场干掉饷蹦永远只能是基拉大和，一路累死累活还被人抢戏份的都是量产渣古话说我是不是又看串行了？然后在第一个昏迷者出现之后的第三天早上，事件终于爆了。</p>
+	<p class = "firstLineIndent"> 我知道这种说法听上去相当之操蛋，但命运的车轮肯定是安装在十六缸的动机下面的，木山春生果然被一帮初中小女生组成的暴力机关给揪出来了，而唯一和原本“剧情”不同的，也就是某个本来应该沦为营救任的花盆女侥幸逃过了一劫吧”</p>
+	
+<h2>第三百七十五章 科学家功夫高</h2>	
+	<p class = "firstLineIndent"> 我突然现，原来不知不觉间，自己那满怀希望的悠闲假日早已经灰飞烟灭了。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 佐天泪子调……咳咳，能力赋予计划，御坂妹妹救赎计划，幻想御手事件，希尔维娅失踪事件……某人仿佛具备天生的悲剧光环一般，在降临于此世界的同时便将各种各样令人无语远目的麻烦时间给吸引到了自己身上，而相对应的，在蛋疼地派出几名希灵特工特意监视之后我却现，原本应该作为各种麻烦事件主角的上条少年现在却过上了和自己的银白袍小宠物一起没羞没臊的幸福生活，这充分证明了……“世界上的悲剧是有限的，当你倒霉了，就会有其他人变得幸福，所以木头啊，你应该怀着一颗慈悲的心迎接接下来的挑战才对——把酱油拿来。”</p>
+	<p class = "firstLineIndent"> 我点头，递酱油……酱油你妹啊！你的人生观需要矫正啊丫头！“我相当怀疑自己是因为带上了你这个麻烦聚合体才导致这么一连串的麻烦事生在自己身上，”我无语地看着林大小姐全无千金风度地跟维斯卡比赛吃螃蟹（珊多拉不在这丫头倒是成餐桌上一大霸王了），一边认真感叹，“从某种意义上来讲，你比上条少年的把妹手还要能给我惹麻烦。”</p>
+	<p class = "firstLineIndent"> 进食中的林大小姐白了我一眼，然后飞快地将我面前最后一颗丸子抢走，说道：“你还有脸说？貌似真正在一连串事件中把妹的是你这个鬼畜的家伙才对吧？”“哈诶？是这样吗？”“而且仅有的一个和把妹无关的事件还被你推给自己刚把到的妹子去解决了……”我完败了……对林雪的话我心中充满了反驳的野望，但影子城市里那为了妹妹们而准备的一万个培养槽却让我无语望天，说实话，一万个妹妹啊……上次跟泡泡视频的时候那丫头看我的眼神都变了，嘟囔着“孩子她爸需要人文关怀”之类可疑的东西让我出了一脑门子的冷汗。</p>
+	<p class = "firstLineIndent"> “佐天泪子现在的能力的话，对付那个什么幻想猛兽应该不成问题，而且那是她自己的要求，对这样的想法，我多少也能理解一点呢……”浅浅当然不会真的如思维狂飙的林雪一样思考自己男朋友是不是在以营为单位把妹的问题，她在想的是另外的事情。</p>
+	<p class = "firstLineIndent"> “曾经因为自己的无力而痛苦，所以现在才想证明自己，证明已经拥有力量的自己不再是朋友们的拖累，佐天泪子现在的想法虽然不一定正确，但却必须尊重，当初我也是抱着这样的想法才去母巢里接受剂量的辐射来着……”亏这丫头还敢说，当时听说她和姐姐晕倒在母巢里差点没把我吓出心肌梗死来。</p>
+	<p class = "firstLineIndent"> 不过就如同浅浅说的那样，佐天泪子想要依靠自己的力量来帮助同伴解决幻想御手事件，以证明自己的价值，尽管这其中有着学园都市不合理的等级制在影响，却也是一个值得尊重的选择，以风暴指挥官的绝对控场力，即使她不知道自己将面对的幻想猛兽是什么样的东西想必也不会有**烦吧？恩，是这样……我看还是稍微准备点应急预案的好，说实话，现在我对自己的幸运指数可是一点都不敢相信了。</p>
+	<p class = "firstLineIndent"> 当真正的幕后黑手被找出来之后，风纪委员177支部的女孩们感到了万分的难以置信。</p>
+	<p class = "firstLineIndent"> 木山春生，那个虽然有点点奇怪和脱线，但一直表现的很平易近人，而且在研究上颇有建树的女研究员，竟然会是幻想御手的制造者和散播者？但是尽管难以置信，事实却不容否认。</p>
+	<p class = "firstLineIndent"> 在觉昏迷中的学生脑电波产生了部分重叠之后，通过对这一段变异的脑电波进行检索，学园书库中登陆的唯…个名字，便是木山春生。</p>
+	<p class = "firstLineIndent"> “木山老师……竟然会是这一切的元凶？！”看着显示屏上出现的人，不只是御坂美琴出了惊呼，连一直很镇定的固法美伟都露出了惊讶的神色。</p>
+	<p class = "firstLineIndent"> “aIm扩散力场……”白井黑子低声说出了这个名词，当一个线索出现，之后一连串的事件便渐渐清晰了起来，假如木山春生研究的主方向就是aIm扩散力场的应用的话，那么所有使用过幻想御手的学生会同时陷入昏迷似乎就可以解释了。</p>
+	<p class = "firstLineIndent"> “也就是说，利用aIm扩散力场充当网络的电缆，然后用自己的脑波担任网络协议的角色，构筑出数万个大脑的平行运算系统……”作为几人中计算机水平最高的成员，初春饰利在明白了这一点之后，立刻便想通了整个幻想御手网络的原理，“这样的话，就可以获得惊人的计算能力……甚至足以媲美树形图设计者的计算能力！”“但是这样做有什么意义呢？！”御坂美琴不解地问道，“木山春生应该只是个没有经过能力开的研究人员吧？这些能力者的计算力对她而言……”“不管她的目标是什么，我们都必须立即阻止她！”白井黑子果断地打断了御坂美琴的话，然后将头转向固法美伟：“固法前辈，可以向警备队请求支援吗？”尽管和警备队一起作为整个学园都市的治安机构之一，风纪委员的成员毕竟还是学生，尽管他们拥有着各种足以匹敌正规军的能力，在这种需要进行武装抓捕的任务中，风纪委员还是要向具备正规军事力量的警备队求助的。</p>
+	<p class = "firstLineIndent"> 木山春生可能完全没有想到自己的身份这么快便被几个小女生给识破，也可能是她早就料到了这一刻的到来而且有恃无恐，几乎就在警备队接受了固法美伟的求援请求之后几分钟，初春饰利便通过学园都市的监控系统找到了木山春生的行踪。</p>
+	<p class = "firstLineIndent"> 一辆蓝色的兰博基尼跑车，由于在学园都市中很少有人开这样的车子，而且之前帮木山春生找停车场的时候见过一次，御坂美琴一瞬间便将其认了出来。</p>
+	<p class = "firstLineIndent"> “黄泉川老师！已经现目标的动向了！”初春饰利立刻联络了担任本地区警备队支队长的黄泉川，飞快地汇报着自己掌握的情报。</p>
+	<p class = "firstLineIndent"> “是一辆蓝色的跑车，正在你们后面的三号公路上！大概十五分钟后就会离开主干道！”“有警备队的老师们出马的话，问题应该很快就能解决了……”看到警备队的武装人员已经逐渐封锁了第三号公路的出入口，御坂美琴拍拍胸口，长出了一口气说道。</p>
+	<p class = "firstLineIndent"> 那些可都是接受过正规军事训练而且配备了枪械和警戒机器人的老师呢，对手只是一个研究员的话，只要一瞬间就能抓住她吧？然后……就要问问她为什么要如此做，为什么要利用那些无辜的学生们。</p>
+	<p class = "firstLineIndent"> 御坂美琴是这样想的，但在她身后的佐天泪子却渐渐皱起了眉头。</p>
+	<p class = "firstLineIndent"> 一句话在她的心头回荡着，尽管还不明白那句话的意义，但却本能地感到，那是所长哥哥在为自己提醒着什么：“科学家会武术，流氓也挡不住。”</p>
+	<p class = "firstLineIndent"> 这句话一定是有着什么深意的！！然后佐天泪子就知道了这句话的深意是什么。</p>
+	<p class = "firstLineIndent"> 前去对木山春生进行抓捕的警备队员们，竟然在一个照面便被全部打倒了！能力者，木山春生竟然是个能力者？！看着屏幕上传回来的画面片段，风纪委员支部的办公室中一下子陷入了沉寂。</p>
+	<p class = "firstLineIndent"> “怎么会……木山春生她不是一个普通的研究员吗？而且书库中也完全没有对方接受过能力开的记录……”初春饰利飞快地翻找着计算机上的资料，不可置信地喃喃自语着。</p>
+	<p class = "firstLineIndent"> “喂！姐姐大人，你这是——”白井黑子突然的惊呼打断了初春的诧异，她愕然抬头，看到御坂美琴正被她的百合学妹紧紧地拽着胳膊，却依然保持着向外冲刺的动作。</p>
+	<p class = "firstLineIndent"> “当然是去阻止木山春生啊！”御坂美琴一脸理所当然地说道。</p>
+	<p class = "firstLineIndent"> “姐姐大人就是太冲动了，”白井黑子一脸无奈地说道，“这种事情当然是要靠我们风纪委员出马才对！”“但是……”御坂美琴刚开口，后面的固法美伟已经站了起来：“虽然不想牵连到一般市民，但是假如作为能力者的御坂美琴你可以帮忙的话，那当然是再好不过——黑子，现在是紧急事态，而且你认为，以自己现在的身体状态，还适合出去执行任务，尤其是对抗这样一个能力者么？”固法美伟说着，将桌上的液晶屏转了过来，上面显示的画面正是警备队的队员们在木山春生层出不穷的能力攻击下节节败退的景象。</p>
+	<p class = "firstLineIndent"> “固法前辈！”自己一直在姐姐大人面前保守的秘密被毫不犹豫地说出来，白井立刻紧张地大叫了出来，但随之脑门上便被美琴不轻不重地弹了一下：“黑子，你以为自己身上的伤真的能瞒过我吗？”前几日不断爆的能力者袭击事件中，作为177支部战斗力最强的能力者，白井黑子几乎一个人承担了将近百分之八十的迎击任务，即便拥有1eVe14的空间能力，在不断的任务中挂彩也是不可避免的事情，直到现在，她身上的伤还是没有痊愈的。</p>
+	<p class = "firstLineIndent"> “你应该找个时间去研究所那边看看，至少他们的身体修复技术还是很可靠的。”</p>
+	<p class = "firstLineIndent"> 几乎完全没有犹豫的，御坂美琴便将某个打酱油的研究所给卖掉了。</p>
+	<p class = "firstLineIndent"> 旁听的固法美伟以手加额：“总觉得你们说的那个研究所是个很不可思议的地方呢……貌似从能力开到心理咨询再到疑难杂症无所不包的样子……”“还承接拯救世界，保护和平……”泪子在心中暗暗补充道。</p>
+	<p class = "firstLineIndent"> “总之，这次就让我出马好了，”打消了学妹逞强的心意之后，御坂美琴自信满满地说道，“黑子你这次就和初春她们一起担任我的后勤支援就好，在支部里等着我的好消息吧！即使木山春生再厉害，我可是电磁炮啊！”“还有我！我也和御坂学姐一起过去！”佐天泪子的声音突然插了进来。</p>
+	<p class = "firstLineIndent"> “泪子？你……”御坂美琴刚想说没有战斗力的人应该留在支部，却突然想起了面前的密友已经是1eVe13的能力者这样的事实，不由噎住了。</p>
+	<p class = "firstLineIndent"> “我的能力非常适合战斗支援的！”泪子趁热打铁地说道，同时心中那唯恐天下不乱的里人格诡异地热血沸腾起来，“所以务必要带上我！”“啊，”御坂美琴稍一犹豫便痛头，“差点忘掉了，泪子现在也是独当一面的能力者了呢。”</p>
+	<p class = "firstLineIndent"> 在一片已经因能力爆而彻底坍塌的道路旁边，一辆带有风纪委员特殊标志的信号车吱嘎一声稳稳地停住，从上面下来三个娇小的人影。</p>
+	<p class = "firstLineIndent"> 御坂美琴，佐天泪子，还有一个人却是并无什么战斗力的初春饰利。</p>
+	<p class = "firstLineIndent"> 原本没有战斗力的花盆女应该是留在支部里充当后援才对，但考虑到假如能从木山春生手中夺得幻想御手最初样本的话必须在第一时间进行处理，擅长计算机的初春饰利也就跟了过来。</p>
+	<p class = "firstLineIndent"> “初春，一会你就留在信号车上，”御坂美琴匆匆地交代着，“那么重要的研究资料，木山一定会带在身上，等我们抢到手之后，就全看你的了！”“嗯！”头戴花环的女孩用力点点头，然后将担心的目光投向泪子：“佐天同学，你千万要小心啊！”“安心安心，虽然还不熟练，但我毕竟已经是1eVe13的能力者嘛，自保可是没问题的哦。”</p>
+	<p class = "firstLineIndent"> 虽然警备队已经被木山春生全灭，但那些武装人员的阻拦还是起到一定效果的，当美琴赶到的时候，那名有着浓重黑眼圈的女研究员还没来得及离开现场。</p>
+	<p class = "firstLineIndent"> “到此为止了！”当被雷电围绕的少女突然出现在自己面前并大声对自己喊出这句话之后，木山春生却只是不屑地哼笑了一声。</p>
+	<p class = "firstLineIndent"> “哼，你也要来阻拦我吗？”御坂美琴的手臂上缠绕着电光，却并没有立即动攻击，而且静静地看着面前的女人。</p>
+	<p class = "firstLineIndent"> “你为什么要这样做？为什么要利用那些无辜的学生！”木山春生沉默了三秒，然后低声说道：“因为我有不得不做的事情啊……”“可以不要阻拦我吗？只要很快，就可以结束，然后所有人都会苏醒过来，不会有任何人受到伤害的……”“开什么玩笑！”御坂美琴愤怒地大声叫道，“不会有人受到伤害？！你可是——已经将数万名无辜者牵连进去了啊！”“哧喇——”一声刺破空气的爆鸣，亮白色的闪电之枪猛然从美琴的额前爆出来，然后一瞬间跨越了数十米的距离，袭向站立不动的木山春生。</p>
+	<p class = "firstLineIndent"> 但一直无往不利的数万伏电击这一次却失去了作用，木山春生只是看似随意地将手伸到面前，刺眼的闪电之枪便如同撞上了无形的屏障一般四散崩溃。</p>
+	<p class = "firstLineIndent"> 利用操纵空气的能力在身前形成一片真空的电容屏障，然后利用潮湿空气在屏障前形成类似避雷针的散流通道将无法释放的高压电分散到大地和四周的大气之中，只需要1eVe13的能力，就可以抵消一次1eVe15的电击——尽管那并非御坂美琴的全力。</p>
+	<p class = "firstLineIndent"> 这充分证明了，科学家会武术是一件相当可怕的事情。</p>
+	<p class = "firstLineIndent"> 第一次攻击的失败并没有让御坂美琴惊慌，她飞快地利用电磁效应将自己拉到不远处的一根路灯上面，然后取出了一枚游戏代币。</p>
+	<p class = "firstLineIndent"> 电磁炮，这赫赫有名的攻击其原理其实很简单，利用导磁体在磁场中会不断加的效应，借助自己所能精确控制的十万伏特电流产生一连串的加“线圈”，将金属制的硬币当做炮弹以音射出去，而硬币本身在飞行的过程中还会不断融化蒸，形成的磁力轨迹会引导剩余的电力以电浆射流的方式产生第二阶段攻击，尽管由于硬币的融化，电磁炮的攻击射程仅有区区5o米，但在这5o米的范围内，即使是主战坦克也将被轻易贯穿。</p>
+	<p class = "firstLineIndent"> 可惜的是，木山春生所掌握的并非单一的能力。</p>
+	<p class = "firstLineIndent"> 就在“电磁炮”即将射的一瞬间，木山春生陡然消失在美琴的视野范围中。</p>
+	<p class = "firstLineIndent"> “空间转移！”美琴刚来得及出这样的惊呼，便感到脚下剧烈地晃动起来。</p>
+	<p class = "firstLineIndent"> 沥青质的路面就如同融化一般，开始不断翻滚，而她脚下的路灯也迅地倾斜下去。</p>
+	<p class = "firstLineIndent"> 再次利用电磁效应将自己转移到不远处的水泥桥墩上并借助磁场紧紧地吸附住桥墩内部的钢筋之后，她总算是暂时脱离了陷阱，可自己的敌人却始终没有出现在自己面前。</p>
+	<p class = "firstLineIndent"> 就在这时，另外一个声音突然响起在战场上：“军团之敌！”是佐天泪子的声音，在看到好友陷入苦战之后，她终于不再考虑保密之类的事情，而是直接上了指挥官的能力。</p>
+	<p class = "firstLineIndent"> 大片的资讯扫描瞬间覆盖了整个战场，然后利用能力隐形并准备动偷袭的木山春生便突然出现在美琴身前不远处，而她的头顶则悬浮着一个奇怪的标记，看上去仿佛是瞄准框，但却写着无法识别的符号。</p>
+	<p class = "firstLineIndent"> “泪子！？”美琴诧异地叫了一声，这种情况，似乎已经和学园都市的能力不太一样了。</p>
+	<p class = "firstLineIndent"> “没有时间解释了！”泪子远远地喊道，“趁现在攻击她！这个能力的持续时间是有限的！”V</p>
+	
+<h2>第三百七十六章 功夫再高也怕大炮</h2>	
+	<p class = "firstLineIndent"> 尽管不明白泪子为什么会突然出现这样诡异的能力，美琴还是将这份疑惑暂时压在心底，然后对面前的木山春生发动了攻击。</p>
+	<p class = "firstLineIndent"> 依然是威力强大的闪电之枪，尽管知道对方的空间转移相当难缠，可是在没有更好的办法阻止对方使用能力之前，美琴也只能利用自己发动速度最快的技能来换取和空间转移冷却时间上的优势，这种战术一般被我们称作cd流……哦，这里不兴这个。</p>
+	<p class = "firstLineIndent"> “这种招式是没用的。”</p>
+	<p class = "firstLineIndent"> 木山春生无聊地摇摇头，然后再次发动空间转移，瞬间消失在美琴面前。</p>
+	<p class = "firstLineIndent"> 一同消失还有美琴发出的闪电之枪。</p>
+	<p class = "firstLineIndent"> “什……”</p>
+	<p class = "firstLineIndent"> 仅仅来得及发出这样一声惊呼，木山春生便正面迎上了那具备跨空间导航能力的闪电攻击，尽管在最后一刻还是利用真空屏障有惊无险地打散了这道闪电，却让她惊出了一身的冷汗。</p>
+	<p class = "firstLineIndent"> “这个标记？！”</p>
+	<p class = "firstLineIndent"> 瞬间便联想到了发生这样异常情况的原因，木山春生立刻抬起头来，然后挥着手试图摆脱掉头上那个可疑的锁定图标，但紧接着来到的攻击让她不得不终止了自己的动作。</p>
+	<p class = "firstLineIndent"> 战斗，仍然在持续着。</p>
+	<p class = "firstLineIndent"> 佐天泪子却没有继续发动自己那些逆天的能力，因为她接收到了一个来自上层网络的指令：检测到幻想御手网络发生不稳定波动，保存力量，准备应对突发况。</p>
+	<p class = "firstLineIndent"> 而失去泪子的能力辅助，“军团之敌”的作用时间也宣告结束，御坂美琴立刻再度落入了下风。</p>
+	<p class = "firstLineIndent"> 借助大脑网络的超强计算力，木山春生可以说同时掌握了上万名能力者的力量，尽管他们中大多都是无能力者或低能力者，但其中的强者也不在小数，再加上量变引起的质变，现在的木山春生其战斗力几乎相当于一只完全由能力者组成的小军队，各种能力同时发动的场景宛若yy小说般荡漾，而相对应的，头一次遇上这种敌人的御坂美琴却情况愈发不利。</p>
+	<p class = "firstLineIndent"> 空间转移结合量子变速，木山春生将大片原本被埋藏在地面废墟中的铝制品全部传送到了美琴身边，然后将这铺天盖地的铝罐瞬间转化成了危险的炸弹。</p>
+	<p class = "firstLineIndent"> “轰轰轰！”</p>
+	<p class = "firstLineIndent"> 一连串的爆炸瞬间淹没了御坂美琴的身影，然后伤痕累累的女孩便被爆炸的冲击波远远地甩了出去。</p>
+	<p class = "firstLineIndent"> 尽管用强电磁场排除了一部分爆炸的威力，冲击波还是对她造成不小伤害。</p>
+	<p class = "firstLineIndent"> “可恶……”</p>
+	<p class = "firstLineIndent"> 美琴低声说着，然后突然张开右手。</p>
+	<p class = "firstLineIndent"> 电磁场迅速扩散开来，蔓延至地下，然后大片黑色的沙粒便纷纷破开地表聚集到了她的手中。</p>
+	<p class = "firstLineIndent"> “利用电磁效应来控制地下的铁砂形成武器吗？”白袍的女研究员露出了微微意外的表情，“level5的超能力者，果然不是傻蛋呢，但这样的东西能有什么作用？”</p>
+	<p class = "firstLineIndent"> 丝毫没有理会对方挑衅的话语，美琴握紧了手中的铁砂长剑，然后带着一往无前的气势猛然前冲。</p>
+	<p class = "firstLineIndent"> “说过了，没用的。”</p>
+	<p class = "firstLineIndent"> 木山春生不屑地说着，然后伸出右手，在自己面前形成了一道高压风组成的屏障，即使是被强磁场凝结在一起的铁砂，面对这其中无数超高速旋转的空气漩涡，恐怕也将瞬间溃散吧？</p>
+	<p class = "firstLineIndent"> 但当御坂美琴冲到她面前的时候，她却从对方脸上看到了一丝计谋得逞之后的微笑。</p>
+	<p class = "firstLineIndent"> 笔直的铁砂长剑竟然在半空中瞬间解体，然后一下子变形成了数条黑色的长鞭，从四面八方绕过了高压风组成的屏障，将木山春生一下子包围在里面。</p>
+	<p class = "firstLineIndent"> “所谓的能力，就是因为可以灵活应用才具备价值啊！”</p>
+	<p class = "firstLineIndent"> 控电的少女高声说着，然后猛然抖动手腕，铁砂形成的长鞭随之迅速收紧，亮白色的电光也紧接着顺着这些优良导体交织成了大片的电磁网。</p>
+	<p class = "firstLineIndent"> 但就在美琴认为自己的攻击即将奏效的同时，木山春生却再一次从她的视线中消失了。</p>
+	<p class = "firstLineIndent"> 空间传送！</p>
+	<p class = "firstLineIndent"> “看样子不能再在这里浪费时间了呢，”木山春生突然出现在美琴的身后，将手指点向对方的后颈，“抱歉了，小姑娘，你就在这里睡一会吧……”</p>
+	<p class = "firstLineIndent"> “风暴拦截！”</p>
+	<p class = "firstLineIndent"> 一声突然响起的清喝打断了木山的动作，眼角的余光中，一抹银白色的亮光正在疾速靠近，她还没看清那是什么，便下意识地发动了空间传送，逃离了这致命的一击。</p>
+	<p class = "firstLineIndent"> 此刻，御坂美琴才终于从攻击落空的僵直中缓过神来，她飞快地转身，然后不由惊呼出声：“泪子？你……”</p>
+	<p class = "firstLineIndent"> 眼前的女孩，正是本应该担任援助而在战场之外的佐天，但此刻的泪子却完全是另外一幅模样，那身作为校服的水手服不见了，取而代之的却是一件看上去就好像电影里才出现或者lay爱好者才会收藏的银白色战袍，她依然保持着挥刀下劈的姿势，而其手中，则握着一柄和战袍同样银白色的长刀。</p>
+	<p class = "firstLineIndent"> 楞了两秒，美琴才终于问出了自己的问题：“你换衣服怎么这么快？！”</p>
+	<p class = "firstLineIndent"> 泪子：“……”</p>
+	<p class = "firstLineIndent"> 现在应该考虑这个问题吗？！</p>
+	<p class = "firstLineIndent"> “御坂学姐，你没事吧？”</p>
+	<p class = "firstLineIndent"> 甩开了心中汹涌而出的吐槽**，泪子握紧了手中的指挥刀，一边警惕着远处玩味地看着这边的木山春生，一边抽空问道。</p>
+	<p class = "firstLineIndent"> “额……嗯，没什么大碍。”</p>
+	<p class = "firstLineIndent"> 美琴感觉还是有些茫然，不过现在明显不是问问题的时候，她将注意力转移到木山春生的身上，而对方此刻看向这边的眼光则充满了好奇。</p>
+	<p class = "firstLineIndent"> “没有见过的能力呢，”白袍的研究员脸上带着极大的探索兴趣，“不，似乎并非能力，刚才你是通过空间传送来到我身边然后挥刀的吧？但事实上，根据树形图设计者的演算，除了像我这样利用幻想御手网络产生的能力之外，多重能力者是不可能出现的，你的力量十分可疑呢。”</p>
+	<p class = "firstLineIndent"> “是吗，”泪子不置可否地说着，然后缓缓站直身子，将指挥刀交到左手，右手则平伸向空中，“御坂学姐，之后的事情可以请你保密吗？”</p>
+	<p class = "firstLineIndent"> 尽管不知道对方是什么意思，美琴还是立刻点了点头，然后她便惊讶地看到，佐天泪子的右手中，某些金属结构正在凭空出现。</p>
+	<p class = "firstLineIndent"> 一把超大号的黑色华丽手枪。</p>
+	<p class = "firstLineIndent"> “送葬！”</p>
+	<p class = "firstLineIndent"> 泪子右脚猛然前踏一步，以仿佛击剑时的直刺姿势将手中黑枪向前猛刺，然后扣动扳机。</p>
+	<p class = "firstLineIndent"> “死木”前端迸发出了黑红色的光焰，木山春生身后突然爆发出了一个混沌的灰色能量球，当这能量球消散之后，地面上留下的只是一个半径达数米的半球形深坑，里面原本的钢筋水泥就如同奶油上被挖走了一块般只剩下整齐的切口。</p>
+	<p class = "firstLineIndent"> 送葬，这是风暴指挥官为数不多的单兵战斗技能，利用自己的力量将“死木”中的一颗子弹转换为微型空间内爆弹，这枚子弹的发射将忽略和目标之间的空间距离以及任何实体障碍物，假如不是手下留情的话，现在木山春生早已经化为虚空中的一团待分解物质了。</p>
+	<p class = "firstLineIndent"> 希灵科技造出来的超级武器，可不是普通的能力者可以对抗的。</p>
+	<p class = "firstLineIndent"> “这……这究竟是……”</p>
+	<p class = "firstLineIndent"> 面对这样超出认知的攻击方式，木山春生终于不复一开始的淡然，而佐天泪子则将微微顿了一下手中的“死木”，咔哒一声，一枚黯淡的红色水晶体便从枪膛中退了出来。</p>
+	<p class = "firstLineIndent"> “木山老师，假如可以的话，希望你现在可以就此放弃抵抗，我不想伤害你。”</p>
+	<p class = "firstLineIndent"> 泪子如此说着，将左手中的指挥刀微微挥动，在相位移刀锋的作用下，空气中瞬间出现了数条空间被切开的黑色痕迹。</p>
+	<p class = "firstLineIndent"> “开什么玩笑！”</p>
+	<p class = "firstLineIndent"> 出乎佐天的预料，木山春生竟然歇斯底里地咆哮起来。</p>
+	<p class = "firstLineIndent"> “已经到了这一步，怎么可能放弃？为了救回他们……不管是谁，都不可能让我放弃，不要说你们，哪怕是和整座城市为敌，我也……啊！”</p>
+	<p class = "firstLineIndent"> 愤怒的喊叫戛然而止，木山春生突然用力抱住了自己的脑袋，然后发出了痛苦的叫声。</p>
+	<p class = "firstLineIndent"> “喂，你……没事吧？”</p>
+	<p class = "firstLineIndent"> 看到眼前的“敌人”突然抱着脑袋跪在地上，御坂美琴犹豫着开口了，但紧接着，从对方身后浮现出来的某样“东西”却让她震惊到无法言语。</p>
+	<p class = "firstLineIndent"> 半透明仿佛果冻一样的物质，从木山春生身后的空气中浮现出来，如同一条条的触须般扭动着在空中交缠在一起，然后汇聚成一个膨胀的球体，这球体剧烈地扭曲着，不断发出令人毛骨悚然的声音，渐渐显现出了它的形状。</p>
+	<p class = "firstLineIndent"> 一个畸形的婴儿，一个由半透明的莫名物质形成，拥有狰狞表情的畸形胎儿！！</p>
+	<p class = "firstLineIndent"> 这怪物漂浮在空中，那令人不安的红色巨眼无意识地动荡着，就宛若被数条脐带缠绕起来的人类胎儿一般，看到这样惊悚的一幕，即使是学园都市的超电磁炮，也不禁惊呼出声。</p>
+	<p class = "firstLineIndent"> “这是……什么东西？！”</p>
+	<p class = "firstLineIndent"> “幻想网络……”木山春生捂着因能力暴走而受到冲击的左眼，摇摇晃晃地站了起来，“暴走了……那个网络，已经失去了我的控制……”</p>
+	<p class = "firstLineIndent"> “不会吧！？”美琴惊呼出声，“这样的发展，还有这样的怪物，这是在拍什么低成本而且老掉牙的科幻电影吗？”</p>
+	<p class = "firstLineIndent"> “军团打击！”</p>
+	<p class = "firstLineIndent"> 佐天泪子突然上前一步，手中黑色的奇形手枪爆发出了明亮的火花，伴随着经过能力强化的弹头飞出枪膛，半空中那已经开始活动的“胎儿”身上立刻爆发出了十几处爆炸，撕裂出了一连串的大空洞。</p>
+	<p class = "firstLineIndent"> 但下一秒，那些刚刚出现的空洞便被凭空出现的透明物质给修复一新，甚至，那怪物本身都随之增大了将近一倍。</p>
+	<p class = "firstLineIndent"> “没用的，那是数万名学生的意识所形成的整体，这样的攻击根本不可能消灭它的，”木山春生踉跄地走到了一旁，然后无力地靠在布满裂痕的水泥桥墩上，“数万名因能力歧视而受到痛苦的学生，他们的负面情绪凝结起来形成了这幻想猛兽，即使你那古怪的力量再强大，能一瞬间抹销掉数万民学生的怨念吗？”</p>
+	<p class = "firstLineIndent"> 看着正不断膨胀起来的“幻想猛兽”，连佐天泪子都陷入了茫然之中，她的能力大多擅长辅助，而本身的攻击能力——刚才已经被证明了并没有太好的效果。</p>
+	<p class = "firstLineIndent"> 而且看那怪物已经膨胀起来的身躯，恐怕即使是御坂美琴的超电磁炮也很难将其一击必杀吧？</p>
+	<p class = "firstLineIndent"> “一定还有什么办法的！”</p>
+	<p class = "firstLineIndent"> 此刻美琴却丝毫没有放弃的想法，她立刻跑到了木山身旁，用力摇晃着后者的肩膀。</p>
+	<p class = "firstLineIndent"> “这是你创造出来的，那么你一定有对付它的办法吧？”</p>
+	<p class = "firstLineIndent"> “这是幻想网络……不，是那些昏迷中的学生所创造出来的东西，完全不在我的计划中呢。”</p>
+	<p class = "firstLineIndent"> 看着那正不断膨胀起来，而且已经开始向着某个方向移动的巨大“胎儿”，木山春生的表情迷茫起来。</p>
+	<p class = "firstLineIndent"> “哭泣的胎儿吗？这就是你们内心的真实写照，或者是这学园都市阴暗面的具现呢。”</p>
+	<p class = "firstLineIndent"> “喂，现在不是说这些的时候吧！”说完这句话，美琴也不再理会似乎已经放弃的木山春生，“希望的话，只有不放弃的时候才有意义啊！”</p>
+	<p class = "firstLineIndent"> 取出一枚游戏代币，御坂美琴对不远处的黑发少女喊道：“泪子，可以加强我的攻击吗？”</p>
+	<p class = "firstLineIndent"> “包在我身上！”</p>
+	<p class = "firstLineIndent"> 泪子自信满满地点点头，然后利用战袍本身装备的跃迁发生器瞬移到了美琴身边，“荣耀突击！”</p>
+	<p class = "firstLineIndent"> 惊奇地看着身上突然浮现出的几道能量光环，美琴诧异道：“这是什么？”</p>
+	<p class = "firstLineIndent"> “可以将定向类伤害提升一倍的辅助能量阵列，而且可以让你在不受任何伤害的情况下将自身力量提升到极限。”</p>
+	<p class = "firstLineIndent"> “看样子这次结束之后你真的需要跟我好好解释一下呢。”</p>
+	<p class = "firstLineIndent"> 美琴半开玩笑地说着，然后将手中的代币轻轻抛起。</p>
+	<p class = "firstLineIndent"> “轰！”</p>
+	<p class = "firstLineIndent"> 巨大的光柱刺破了空气，毫无意外地正面击中了那狰狞的怪物。</p>
+	<p class = "firstLineIndent"> 消灭了吗？</p>
+	<p class = "firstLineIndent"> 假如美琴＆泪子组合在那怪物一出现就用了这招的话，或许一切真的会如此顺利地结束，但很遗憾，现在看来，加料版超电磁炮的出现似乎晚了一些。</p>
+	<p class = "firstLineIndent"> 空中的幻想猛兽此刻已经成长到将近百米的直径，如同一座漂浮的山岳般大小，超电磁炮的威力虽然惊人，但它毕竟属于单体定向类攻击，从半径上来讲，它顶多能给那团棉花糖上打个洞。</p>
+	<p class = "firstLineIndent"> 洞再大，也没用。</p>
+	<p class = "firstLineIndent"> 在剧烈的嘶吼中，受到重创的幻想猛兽剧烈地翻滚了一番，然后再次满血满状态原地复活并且顺便起了一身的buff。</p>
+	<p class = "firstLineIndent"> 它更强大了。</p>
+	<p class = "firstLineIndent"> “御坂学姐！佐天同学！必须赶快阻止它！”</p>
+	<p class = "firstLineIndent"> “初春？！”泪子惊讶地回过头去，“你怎么过来了？这里很危险！”</p>
+	<p class = "firstLineIndent"> “佐天同学？”看到面前这个穿着古怪战袍的少女，初春饰利先是呆了一下，然后用力甩甩脑袋，“现在管不了这么多了，必须赶快阻止这个东西，它前进的方向，是学园都市的原子力实验炉啊！”</p>
+	<p class = "firstLineIndent"> “不会吧？！”</p>
+	<p class = "firstLineIndent"> 御坂美琴惊讶地大叫了出来，但此刻她却已经想不出消灭那东西的办法。</p>
+	<p class = "firstLineIndent"> 已经错过了最好的时机，而且体力在刚才和木山春生的战斗中也消耗甚大，现在要消灭它的话……但是却不能放弃。</p>
+	<p class = "firstLineIndent"> “是的指挥中心，我明白了。”</p>
+	<p class = "firstLineIndent"> 正在这时，佐天泪子的声音却突然打断了美琴的下一步动作，后者愕然回的少女正缓缓抽出银白色的长刀，遥遥地指向已经渐行渐远的幻想猛兽。</p>
+	<p class = "firstLineIndent"> 刀锋上，蓝白色的能量火花劈啪作响。</p>
+	<p class = "firstLineIndent"> “连线指挥中心，请求发射代码Az-689……”</p>
+	<p class = "firstLineIndent"> “风暴指挥官hz-309，呼叫火力支援！”</p>
+	<p class = "firstLineIndent"> 白光，从天而降。</p>
+	<p class = "firstLineIndent"> 轰鸣的爆炸声震撼了整个大地，这一击的威力惊动了无数蛰伏在学园都市中的势力，但那已经不是这里的三名少女所要关心的事情了</p>
+	<p class = "firstLineIndent"> 几乎是能正面将人的眼睛刺瞎的耀目闪光，就如同传说中的核爆炸一般，紧接着到来的是猛烈的冲击波和整个大地的震颤，当然，还有席卷而来的高温。</p>
+	<p class = "firstLineIndent"> 佐天泪子明显是个菜鸟，她压根就没看过说明书里关于超时空卫星火力支援的伤害范围介绍——当然，这也跟那说明书规定的“安全范围”是以希灵使徒的身体素质来计算有一定关系，但幸好，在最后关头，指挥官的特质战袍还是起到了作用，一个巨大的能量墙壁瞬间出现，阻挡了全部的冲击和高温，而且还顺便让同样在现场的木山春生幸免于难。</p>
+	<p class = "firstLineIndent"> “好……好厉害……”</p>
+	<p class = "firstLineIndent"> 连发动这次攻击的佐天泪子看到面前的大片熔浆都发出了如此的低呼，心中总算明白，为什么直到最后指挥链路才允许自己使用这种规模的攻击，而且发动的时候还要连续认证三次发射密码，这样的威力……</p>
+	<p class = "firstLineIndent"> 换算成学园都市计算方法的话，至少也是level5以上吧？</p>
+	<p class = "firstLineIndent"> 幻想猛兽当然也在这一击中灰飞烟灭，不管它的弱点在哪一部分，反正现在它哪部分都没剩下，而且它也不会再有重新从网络中生成的机会了：两分钟后，从木山春生手中得到的治疗程序便回响在学园都市的每一个角落，庞大的大脑计算网络，这一刻土崩瓦解。</p>
+	<p class = "firstLineIndent"> 不过貌似另一段麻烦才刚刚开始，短短六秒钟的幽能炮击，恐怕会让某些人在未来的几天里有得忙喽。</p>
+	
+<h2>第三百七十七章 帮助和我要毙了他</h2>	
+	<p class = "firstLineIndent"> 这……这是什么诡异的东西……”</p>
+	<p class = "firstLineIndent"> 看着眼前那从各种角度看都令人泪流满面的巨大白色金属牌，木山春生面容扭曲，状如崩溃。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 佐天泪子摸着下巴，一下子凑到了牌子前，认真地看着上面的文字，一边不住点头：“嗯，嗯，内容又增加了，看来这几天小维斯卡心情不错啊，浅浅姐姐或许也参与了哦。”</p>
+	<p class = "firstLineIndent"> “本研究所承接各项目，涉及领域包括人类学，生物学，量子力学，植物学，高等化学，宗教理论，微积分，普通话推广，植树造林环境保护，军火出租代收保护费，教育学课题研究帮小孩子写家庭作业，可代开家长会帮人要债红白喜事航母上油导弹零售批发各类枪炮设计组装训练军队刺杀元首另剿灭黑手党，按营编制出租雇佣兵承包土建工程单片机开发cAd制图载人航天市内出租高价收售二手自行车帮忙欺负女同学代写匿名信，另特价承接保护世界和平任务量大从优，拯救世界最低五折起（新老用户皆可享受包月服务）……呃，感觉再念下去就会永远被隔离于这个世界之外的样子……”</p>
+	<p class = "firstLineIndent"> “白井同学能念到这里已经相当了不起了呢，”一旁仅仅是看了那个牌子一眼便差点倒地的初春饰利由衷地对白井黑子表现出崇高的敬意，“小维斯卡真的是个很调皮的孩子啊……”</p>
+	<p class = "firstLineIndent"> “她比人类文明都年长好几圈的说。”</p>
+	<p class = "firstLineIndent"> 佐天泪子一声长叹，低声提醒道，同时对自己竟然在为这样一群不靠谱的救世主工作而感到万分抱歉……</p>
+	<p class = "firstLineIndent"> 昨天在狙杀幻想猛兽的时候，泪字最终向上级武装部门申请了火力支援，这样一来，风暴指挥官的身份也就不可能保密了，但幸运的是，“异次元来的救世主们”似乎比预想的还要和善宽容很多倍，在他们的同意下，现在几个和她关系很好的女孩也已经大致知道了关于“异世界人（话说非要用这样的词汇吗？）”的事情，因此才有了泪子提醒初春的这一句话。</p>
+	<p class = "firstLineIndent"> 当然，并非“自己人”的木山春生是不可能知道这一切的，她被带来仅仅是因为希灵研究所以某种手段从亚雷斯塔那里直接取得了对她的监外执行权而已，换句话说，就是虽然已经因罪行而被判处了拘禁，但木山春生的牢狱生活却要在一座这样的研究所中经过，她所要付出的劳动教养自然也就被日常的研究代替。</p>
+	<p class = "firstLineIndent"> 很好听的说法，其实除了一个“嫌疑犯”的名号之外，她等于已经被无罪释放了。</p>
+	<p class = "firstLineIndent"> 在几名少女的努力，尤其是某个菜鸟指挥官超水平发挥呼叫来的犯规火力轰炸下，幻想网络暴走所产生的幻想猛兽被以相当暴力的方式给彻底消灭，而暴走的网络也在木山春生提供治疗程序并全学园都市播放之后获得了解决，现在整个事件可以说是完美落幕了，而将这位虽然选择了错误的道路但却无法不令人同情的“木山老师”接到研究所中，则是得知了一切真相之后佐天泪子的愿望。</p>
+	<p class = "firstLineIndent"> 她希望“异次元的技术”可以帮助这位已经走上极端的老师来拯救她的学生，不过现在看来，尽管泪子的想法不错，她的受益人却似乎有点不领情的样子……</p>
+	<p class = "firstLineIndent"> “要在这里进行研究工作的话，我宁可回监狱里去。”</p>
+	<p class = "firstLineIndent"> 木山春生盯着那可疑的告示牌，说出了每一个正常的研究人员在看到那东西之后所会产生的第一想法。</p>
+	<p class = "firstLineIndent"> “虽然不想承认，但你说的相当有道理。”</p>
+	<p class = "firstLineIndent"> 突然在不远处响起的声音让泪子立刻回过头来，然后冲这边开心地招手：“所长哥哥！你又被抓去买菜啊？”</p>
+	<p class = "firstLineIndent"> ……我突然发现还是潘多拉可爱点，虽然她一直在考虑征服世界，但至少在征服世界之前那丫头不会这么没大脑地在众人面前说到如此令人泪目的事情。</p>
+	<p class = "firstLineIndent"> “诶？这里就是异次元生物的大本营吗？看上去好像很普通的研究所啊，异形的培养槽在哪里？可以按一下就能让人失去记忆的自动铅在哪里生产？这后面的公寓楼是不是你们的宇宙船变形的啊？还有还有，为什么走了这么久我还没有看到铁甲奥特曼和红色有角三倍速呢……”</p>
+	<p class = "firstLineIndent"> 你各种串行啊花盆！！</p>
+	<p class = "firstLineIndent"> 连佐天泪子都看不过去，尴尬无比地扯着自己好友的袖子：“那个……初春，你好像产生了一点微妙的误解呢。”</p>
+	<p class = "firstLineIndent"> “反正你连自己的事情都跟我们说的不清不楚的，佐天同学才是不坦率的一个哦。”花盆女双手抱胸，一脸我才是正义使者的模样。</p>
+	<p class = "firstLineIndent"> 泪字将为难的视线抛向我，而我则对她点点头：“没关系的，我们不怕泄密。”</p>
+	<p class = "firstLineIndent"> 本来我的意思是，身为“和这个世界没多大关系的异次元生物”，即使你泄密多少，到时候我们一走人也就不怕了，只要你自己不怕麻烦就行，但很明显几个少女都错误地理解了我的话语，不仅仅是初春饰利，就连御坂美琴和她的百合妹妹都跟着浑身一个哆嗦，连连摆手：“不用了不用了，我们对这件事情一点兴趣都没有！！”</p>
+	<p class = "firstLineIndent"> 也不知道她们究竟脑补了多少不和谐的东西。</p>
+	<p class = "firstLineIndent"> “呐，所长大……哥哥，”御坂美琴突然凑过来，然后差点将某个令人无限悲叹的称呼顺嘴说出来，不过最后还是转变成了令人满意的称号，“这样的话，那些妹妹们……”</p>
+	<p class = "firstLineIndent"> 她不傻，事到如今，她已经猜出了御坂妹妹们的获救恐怕另有隐情，一群“异次元生物”，不管他们再五讲四美，放土著眼里那都是不定时炸弹来着。</p>
+	<p class = "firstLineIndent"> “这个世界不适合她们，也给不了她们任何温暖，所以我将带妹妹们离开——不要露出那样的表情，我们是出于善意的，到时候我会想办法让你可以随时去看看她们。”</p>
+	<p class = "firstLineIndent"> 得到了这样令人喜出望外的答复，御坂美琴脸上立刻多云转晴，而我则将头转向另一边正忙着跟几个小丫头嘻嘻哈哈的浅浅（话说这丫头最适合的交流对象果然是十四岁以下吗？）：“浅浅，御坂妹妹们的接收进程如何了？”</p>
+	<p class = "firstLineIndent"> “顺利进行，亚雷斯塔那家伙还算信守承诺，也没有搞什么小动作，现在影子城市正在进行最后一批调整设备的安装工作，而第一批妹妹们也开始实验性地那里生活了——哦，泡泡有一份报告，提出应该在影子城市里适当增加娱乐项目，因为缺乏童年的御坂妹妹需要这样的补偿。”</p>
+	<p class = "firstLineIndent"> “泡泡的报告很重要，但你最好驳回她筹建大型同人会和每个月一次Acg狂欢节的建议。”</p>
+	<p class = "firstLineIndent"> “哦，阿俊，那就不剩什么了。”</p>
+	<p class = "firstLineIndent"> 我：“……”</p>
+	<p class = "firstLineIndent"> 将几个女孩交给姐姐和浅浅这对照顾小孩的黄金搭档之后，我领着木山春生向基地的下层走去。</p>
+	<p class = "firstLineIndent"> “你要带我去哪里？”</p>
+	<p class = "firstLineIndent"> 从升降机中出来，并跟着我越走越深，木山春生终于忍不住问出了声。</p>
+	<p class = "firstLineIndent"> 因为四周的景象明显已经开始变化，正常研究所的设备全部消失不见，反而多了很多闻所未闻的东西，毫无疑问的，这里已经是研究所中相当特殊的地区，甚至可能是对学园都市都可称之为绝密的区域。</p>
+	<p class = "firstLineIndent"> 难道这里也在进行某种阴暗的实验，所以才需要我这样的罪人参与？</p>
+	<p class = "firstLineIndent"> 见识多了学园都市阴暗面的女研究员心中理所当然地闪过了这样的念头。</p>
+	<p class = "firstLineIndent"> 虽然没有读心术，不过看对方脸上闪动不定的表情，她的想法我大致也明白了。</p>
+	<p class = "firstLineIndent"> 佐天泪子并没有将事情告诉这个女人，因为在她看来，木山春生明显是不值得信任的，但是我很清楚，这个看似危险的女人，实际上要让她配合相当容易。</p>
+	<p class = "firstLineIndent"> “那些孩子们应该还好吧？”</p>
+	<p class = "firstLineIndent"> 在悠长的通道中走了良久，我突然打破沉默道。</p>
+	<p class = "firstLineIndent"> 几秒钟的沉默，木山春生淡然开口：“我不明白你说的什么，假如是指幻想御手事件中昏迷的孩子，他们现在应该都已经痊愈了，这一点你应该没有疑问吧？”</p>
+	<p class = "firstLineIndent"> “当然，我对幻想御手事件的经过一直相当关注，不过我指的是另外的孩子们，在几年前的那次试验中昏迷的孩子们，他们现在情况怎么样了？”</p>
+	<p class = "firstLineIndent"> 一直稳定的脚步声戛然而止，我微微回头，看到的是木山春生已经些微扭曲的面容。</p>
+	<p class = "firstLineIndent"> “……你这家伙……究竟是什么身份！？”</p>
+	<p class = "firstLineIndent"> “我？只是一个外人而已，因为看不惯某些东西，而打算插手一下——呦，维嘉，小家伙们都就位了吗？”</p>
+	<p class = "firstLineIndent"> 这时木山春生才注意到，我们已经来到了这看上去长的有些夸张的走廊的尽头，四周的建筑风格已经与学园都市的常见建筑大相迥异，她甚至不知道这种在墙上布满闪光纹路和游动光线的建筑方式是不是跟邪教挂上了边，而在走廊的尽头，一个穿着警卫制服，身材爆棚的严肃长发女正看着这边。</p>
+	<p class = "firstLineIndent"> “报告长官，一至三号机组调试完毕，插槽供能将在一分钟后完成，附属运算模组和支援模块正在等待您的命令！”</p>
+	<p class = "firstLineIndent"> 我点点头，对旁边的木山春生说：“请跟我来，并保持适当的镇静——那里面的孩子长途跋涉，而且她们很容易受惊。”</p>
+	<p class = "firstLineIndent"> 走廊尽头的大门打开，露出了一个极为宽广的大厅，假如木山春生的空间记忆力和构图能力强大的话，她应该瞬间就能判断出，在研究所地下的这个区域，是不可能存在一个如此广大的地下建筑的——因为这里正好是城市运河以及运河下管道的通过区。</p>
+	<p class = "firstLineIndent"> “孩子？”</p>
+	<p class = "firstLineIndent"> 木山春生疑惑地问了一句，然后紧跟着我步入大厅。</p>
+	<p class = "firstLineIndent"> “你需要树形图设计者的计算力来找寻治疗那些孩子的途径，而对我们而言，这不是问题，但是我认为这一切还是你来亲自完成比较好，”我转过身来，背对着大厅中央的庞大结构体，张开双手，大声说道，“这里是世界上最强大的运算中心，她们是远超你所能理解极限的终极演算机器，这就是我送给你的礼物，三台超超超超级计算机！”</p>
+	<p class = "firstLineIndent"> 木山春生震惊地看着那庞大的机械结构和明显作为结构核心的三个水晶棱柱，然后眼神突然充满了杀意，整个人就疯狂地扑了过来：“你这混蛋！你在利用这些孩子做什么！？”</p>
+	<p class = "firstLineIndent"> 在这一瞬间，我想到了很多，邱少云黄继光董存瑞刘胡兰的身影在我脑海中滚屏播出，但很快我就发现，这些令人钦佩的英雄人物没有一个是死在御姐的飞扑下的……</p>
+	<p class = "firstLineIndent"> 最终我想到的是——靠，果然和那帮希灵大神们在一起时间太长了出毛病，我竟然都快把人类的世界观给忘了！</p>
+	<p class = "firstLineIndent"> “别别别！这是个误会！”</p>
+	<p class = "firstLineIndent"> “混蛋！我早就该想到，你和他们都是同一类人！你究竟想利用孩子们干什么！？这里的这些孩子究竟……难道她们是你制造出来的克隆体工具吗！？”</p>
+	<p class = "firstLineIndent"> 靠！不就是见到三个并联起来的希灵主机嘛！你怎么脑补地这么厉害！</p>
+	<p class = "firstLineIndent"> 眼看通过常规的语言交流解决不了问题，我最终还是无奈地冻结了木山春生的动作，然后迎着对方愤恨的目光，良久，却向对方露出了善意的微笑。</p>
+	<p class = "firstLineIndent"> “木山老师，你确实是个令我钦佩的人，”我诚恳地说着，“不管你做了什么，为了找出唤醒自己学生的方法而抛弃一切，这一点令我折服。”</p>
+	<p class = "firstLineIndent"> “错在我，没有跟你解释清楚。”</p>
+	<p class = "firstLineIndent"> 在木山春生困惑不已的目光中，我向旁边走了两步，来到了成品字形分布的三个水晶棱柱之一旁边，然后轻轻敲了敲它的外壳。</p>
+	<p class = "firstLineIndent"> 水晶棱柱中的小女孩立刻张开眼睛，木然地向四周扫视了一下，然后转向我的方向，鞠躬。</p>
+	<p class = "firstLineIndent"> “你的编号，小家伙，然后资讯化一下让我看看。”</p>
+	<p class = "firstLineIndent"> “xl-028量产型主机向您报到，伟大的皇帝陛下。”小家伙立刻清脆地回答道，随后在一阵眩目的光晕中，编号为028的希灵主机便从脚底开始逐渐化为了四散的莹白光点，渐渐消失在空气中，整个场景凄美的就跟韩剧一样——当初泡泡就拿这招吓唬过我！</p>
+	<p class = "firstLineIndent"> 几秒种后，莹白色的光点再次出现，消失的小女孩重新出现在水晶棱柱中。</p>
+	<p class = "firstLineIndent"> “很棒，辛苦你了。”</p>
+	<p class = "firstLineIndent"> 我随口称赞了一句，然后扭头对呆若木鸡的木山春生说：“如你所见，她们都不是人类，而是资讯孕育出的计算机器，在这个主机插槽中进行海量运算本来就是她们的工作和最大的乐趣，当然，虽然物种被归类为机器，她们也是我们的伙伴。”</p>
+	<p class = "firstLineIndent"> “我知道你满腔疑虑，但你什么都不用知道，就拿这当成不开眼的老天终于开了一次眼，派几个活雷锋下来，这些强大的运算机器足以匹敌无数树形图设计者，即使她们在担负着其他更繁杂的运算任务，也有余力帮你处理任何东西，当那些孩子苏醒之后，我会考虑告诉你更多东西，更多的情况028会告诉你，恩，另外那孩子是支持usB的……”</p>
+	<p class = "firstLineIndent"> 从地下信息中心回来之后，我遇到了正一个人安静地坐在客厅中喝茶的姐姐大人，她似乎正有事等我。</p>
+	<p class = "firstLineIndent"> “为什么要这么做呢？阿俊，让一个陌生人使用希灵主机，即使由于主机的高智能性，这样做并没有什么风险，但从各方面来讲，这样的选择都不怎么冷静啊。”</p>
+	<p class = "firstLineIndent"> 我呼地一下坐在姐姐大人身旁，然后自顾自地给自己倒上红茶：“姐，你说木山春生这个人怎么样？”</p>
+	<p class = "firstLineIndent"> 姐姐大人偏着头，微微笑着说道：“一个疯狂而伟大的老师，虽然没怎么看泡泡传过来的那些东西，但大致的剧情还是知道的，她曾经因为研究工作而被安排成一批特殊学生的班导师，之后那些学生却在一次有所预谋的超能力开发实验中陷入了沉睡，到现在还未能醒来，木山春生为了唤醒他们几乎用尽了一切办法，在连续23次申请树形图设计者的使用许可都被驳回之后，她才铤而走险地选择了这最错误的一条道路，但是……我敬佩她。”</p>
+	<p class = "firstLineIndent"> “我也是，”我吸溜着红茶，微微眯起眼睛，“所以我就是想帮她了，反正世界都拯救了，也不差顺手帮忙图个心里高兴，咱们强大嘛！”</p>
+	<p class = "firstLineIndent"> 姐姐大人看了我一会，然后扑哧一声笑了出来，开始拼命揉着我的头发：“还真是我弟弟！烂好人到一定阶段了。”</p>
+	<p class = "firstLineIndent"> 我郁闷地抓着头发：“姐，我都多大了！”</p>
+	<p class = "firstLineIndent"> 姐姐大人一挺胸：“那我还是你姐！”</p>
+	<p class = "firstLineIndent"> 我嘿嘿一笑，低头品茶。</p>
+	<p class = "firstLineIndent"> 在姐姐身边，真的很安逸呢，这个总是能包容我一切，容忍我一切胡闹的姐姐。</p>
+	<p class = "firstLineIndent"> 不过姐姐大人却突然打破了这份安详。</p>
+	<p class = "firstLineIndent"> “阿俊，西卡罗那边传过来消息了。”</p>
+	<p class = "firstLineIndent"> 我耳朵激灵一下子竖了起来，前天派他领着特工们去罗马正教的地盘上查探情况，没想到他竟然还真能给我传回消息来！那家伙难道还有利用价值吗？</p>
+	<p class = "firstLineIndent"> “由于天使只是一个普通人类，所以特工们很难发现她的行踪，不过西卡罗还是察觉到意大利方面的罗马教徒最近有些异动，而且雷达观测中，意大利周边曾闪现过隐晦的能量波动，相信与魔法使用有关，他猜测，希尔维娅现在应该已经被转移到了意大利附近，而且近期可能被送到罗马教皇城。”</p>
+	<p class = "firstLineIndent"> 听完之后我笑着说：“没想到那家伙还真能起到点作用，等他回来了嘉奖一下。”</p>
+	<p class = "firstLineIndent"> 姐姐大人沉默了一下，然后开口：“那家伙在梵蒂冈教皇宫门口倒腾手表，在整个欧洲地区建立盗版业供销网，结果让欧洲三十七国联合驱逐，现在已经被遣返回来了，就在会议室那边让潘多拉踹着解气呢，你要不要过去嘉奖他？”</p>
+	<p class = "firstLineIndent"> 我：“……我过去毙了他！！！”</p>
+	
+<h2>第三百七十八章 罗马正教的行动</h2>	
+	<p class = "firstLineIndent"> 当来到会议室门口的时候，我看到的是某黑西装大叔猛然间破门而出，然后深深地嵌入墙里面的惊悚一幕。２３Ｈｈ．ｃｏｍ</p>
+	<p class = "firstLineIndent"> 不过当我的脚步声靠近之后，前一秒还在让路人担心他会不会已经干脆挂掉好为社会作贡献的西卡罗突然就满血复活了，他“噗”地一声将脑袋从墙壁里拔出来，然后两秒钟内整理好自己那身永远不换的黑超制服，将已经变成尸骨的墨镜换掉，冲这边啪地一个军礼。</p>
+	<p class = "firstLineIndent"> “头儿！指挥官西卡罗任务完成！前来报道！”</p>
+	<p class = "firstLineIndent"> 任务完成你妹啊！你丫在教皇宫门口倒腾手表让人给遣返回国这算哪门子任务完成啊！？你丫为了省张飞机票犯得上给我把人都丢到梵蒂冈去吗混蛋！</p>
+	<p class = "firstLineIndent"> 当下我毫不犹豫地冲上去一个扫堂腿——没扫动，然后又一个左勾拳——没打飞，这混蛋太抗打了，不上真功夫是不行了，当下咱迈步拧腰，气沉丹田，一个寸拳——没出去，西卡罗赶紧低头道歉了。</p>
+	<p class = "firstLineIndent"> “头儿，我承认错误接受处罚！”</p>
+	<p class = "firstLineIndent"> 寸拳没打出去我差点岔了气，不过真正让我岔气的是——这家伙终于认错了？</p>
+	<p class = "firstLineIndent"> “头儿，我不该在教皇宫前面倒腾手表的——可是那破地方都是罗马教徒，盘实在卖不出去啊！不倒腾两块表我实在不好意思回来说自己跟外国城管……诶，头儿！室内不能用对舰武器啊头儿！”</p>
+	<p class = "firstLineIndent"> 我再也受不了了！你们看看我平常身边都是啥人？！指挥官一个个不是倒腾盗版盘就是卖羊肉串，要不就是开着自己的店还整天穷的揭不开锅上我家蹭一顿发就感动的热泪盈眶，刚训练出来的蝎子兵成天分不清自动售货机和幽能补充端的区别，养个天使智商都没上过平均线，家里还有个刚到我腰的孩子她妈！</p>
+	<p class = "firstLineIndent"> 这屋里还坐着一个打算征服世界的主！潘多拉你别藏了！你刚才是在研究世界地图吧？</p>
+	<p class = "firstLineIndent"> “只是在确认行动目标的地理位置而已，”一米二的小将军面容僵硬地仰视着我，“意大利周边的零星岛屿和人类国度情况很复杂……”</p>
+	<p class = "firstLineIndent"> 意大利情况复杂你为毛在南极上空给我画封锁线啊！</p>
+	<p class = "firstLineIndent"> 呃，意大利？</p>
+	<p class = "firstLineIndent"> 一瞬间，我貌似联想到了什么东西，不过一闪而过的思绪是比时间还让人抓不住的，现在再回忆的话，好像啥都没剩下。</p>
+	<p class = "firstLineIndent"> 不过似乎老天并不想让我迷茫太久，没过多长时间，我便接到了一份意料之外的邀请。</p>
+	<p class = "firstLineIndent"> 来自老狐狸，亚雷斯塔那家伙邀请我去古墓中与他一叙——反正我是觉得那没门没窗的鬼地方跟古墓也没啥区别。</p>
+	<p class = "firstLineIndent"> 见识过了上次我和林雪突然从房间中消失的能力之后，亚雷斯塔这次甚至连给我当引路人的小萝莉都没给派，直接就摆出了一副我在这里等着你的架势，态度极为不恭谨——刚在西卡罗那我可憋了一肚子的火呢！</p>
+	<p class = "firstLineIndent"> “呦，老狐狸，又见面了。”</p>
+	<p class = "firstLineIndent"> 轻车熟路地利用随身空间里的传送装置破除了这个死气沉沉的建筑内外那些乱七八糟的空间干扰之后，我站在某根管子面前，大大咧咧地跟对方打着招呼。</p>
+	<p class = "firstLineIndent"> “看上去你的心情似乎并不怎么好，难道我的邀请到达的不是时候吗？”</p>
+	<p class = "firstLineIndent"> 亚雷斯塔保持着自己的僵尸脸纹丝不动，低沉平和的声音从四面八方传来。</p>
+	<p class = "firstLineIndent"> “你的邀请什么时候过来都不是时候，因为我从来都不习惯被人指使。”我没好气地对管子里的男人摆摆手，然后掏出了一如既往的马扎，喵的，咱可不是林雪那个死富二代，而且当老板的总要和员工不一样不是？</p>
+	<p class = "firstLineIndent"> “那么，希望我带给你的消息能让你稍微开心一点。”</p>
+	<p class = "firstLineIndent"> 亚雷斯塔似乎低声笑了一下，然后如此说道。</p>
+	<p class = "firstLineIndent"> “嗯？”</p>
+	<p class = "firstLineIndent"> 我皱了皱眉头，不知这个老狐狸在打什么主意。</p>
+	<p class = "firstLineIndent"> “原本对这都市中的其他人而言应该是绝对保密的东西，不过作为神秘而强大的‘外来者’，我想这样的保密从一开始应该就没什么意义……”</p>
+	<p class = "firstLineIndent"> “说重点，要不我就直接下一页……呃，你说重点就行。”</p>
+	<p class = "firstLineIndent"> 亚雷斯塔呆了一下，捋了捋自己的神经之后说道：“根据我最近才得知的消息，你们似乎在寻找一个人的下落？”</p>
+	<p class = "firstLineIndent"> 气氛一瞬间僵硬下来，然后我站起身，上前两步。</p>
+	<p class = "firstLineIndent"> “你在窥探不应该知道的东西，人类。”</p>
+	<p class = "firstLineIndent"> 你看这句话，多！</p>
+	<p class = "firstLineIndent"> 亚雷斯塔并未对我的冰冷态度表现出丝毫波动，而是缓缓说道：“那只是无意中得知的事情而已，我总有很多很广的消息渠道，那些情报来到这里也不一定是我的意志，我要说的仅仅是，不管你们为何要对一个人类如此在意，我都有个好消息——那个人类的下落已经被我的渠道掌握了。”</p>
+	<p class = "firstLineIndent"> “我知道，”这样说着，我晃着膀子再度回到马扎上坐下，话说上次占领了林丫头那张龙椅之后还真有点向往的说，要不赶明让泡泡给我造个全硬化氪金的，“希尔维娅现在应该在意大利附近，罗马正教的人正在转移她，虽然目的不明，不过我对看不顺眼的家伙一向是不会管他目的如何的。”</p>
+	<p class = "firstLineIndent"> “看来虽然是外来者，但你们的情报收集能力相当强大呢，不过除此之外，我这里应该还有一些你们感兴趣的东西，比如——你们所在意的那个人类究竟现在在什么地方，对这一点我相当自信，我掌握的是第一手的资料。”</p>
+	<p class = "firstLineIndent"> “大名鼎鼎的亚雷斯塔现在宛若一个二手的情报贩子，不过你成功了——现在你可以说了。”</p>
+	<p class = "firstLineIndent"> “威尼斯，罗马正教在那里准备着一次针对学园都市的攻击——我能提供的情报仅此而已，但应该相当有用了。”</p>
+	<p class = "firstLineIndent"> 原来如此，一瞬间，事情的前因后果就清楚了。</p>
+	<p class = "firstLineIndent"> “看来罗马正教要考虑摧毁整个科学侧了呢，”我云淡风轻地笑着，之前那个曾在脑海中闪现了一下的想法浮出水面，“老狐狸，你再一次地算计了我们，没错，假如是这样的话，我们就不得不出手，从罗马正教手中抢回那个女孩。”</p>
+	<p class = "firstLineIndent"> 至此，一切似乎都清楚了，自从上次和希尔维娅接触之后，亚雷斯塔就将后者当成了自己的棋子，当然，在此之前那个奇怪的女孩应该也属于他手中的牌之一，而这一次她被劫走，应该只是让他能顺便实行自己的计划，或许我们在学园都市中寻找某个存在的动静已经让这个老奸巨猾的家伙有所察觉，反正当她被劫走之后，老狐狸觉得自己似乎可以让我们松松筋骨了。</p>
+	<p class = "firstLineIndent"> 而这，只能让我对他更加厌恶。</p>
+	<p class = "firstLineIndent"> 御坂妹妹们的惨剧，被卷入各种灾难中的上条当麻，木山春生经历的一切，甚至是最近爆发的幻想御手背后恐怕都有他在参与，他算计着一切人，将所有人都当成了自己可以摆布的东西，而这次，他竟然不但算计了我们，甚至还将原本无辜的希尔维娅当成了一次性的牺牲品！？</p>
+	<p class = "firstLineIndent"> 或许，应该找个时候让他清醒一下了……</p>
+	<p class = "firstLineIndent"> 不过现在，当务之急还是解决希尔维娅的问题。</p>
+	<p class = "firstLineIndent"> 亚雷斯塔轻轻地笑着，语气一如既往的平和：“请不要如此急躁，这仅仅是我们当初交易的一部分，不是吗？你们将保护学园都市的安全，以作为在这里安然生活的保障，而这次的事件应该是突发的情况，那个女孩会被卷入其中也是我始料未及的，因为阵营之间的微妙的关系，我不能直接动用学园都市的力量来阻止罗马正教，那么，也只能求助于作为外援的各位了。”</p>
+	<p class = "firstLineIndent"> 我带着和煦的微笑，走到管子男面前：“没错，我们会保护学园都市的安全，即使罗马正教打算用亚德里亚海女王来摧毁学园都市，我们也会搞定那个数世纪以前的老古董，不过既然一切都是你计划好的，连希尔维娅都仅仅是一个诱饵，就麻烦你不要再带着这种假惺惺的态度来和我说话，如何？”</p>
+	<p class = "firstLineIndent"> 对方沉默了一下，然后平静地说：“果然，‘外来者’，你们并不简单，但是我们之间仅仅是在交易而已，在互不侵犯利益的前提下，无谓的对立只能让我们彼此削弱……”</p>
+	<p class = "firstLineIndent"> “当然，我现在不会对付你，”我和善地笑着，打了个响指，“我只是告诉你一件事，主动权，从来不在你手上。”</p>
+	<p class = "firstLineIndent"> 说完这句话，我没有等他的回答，转瞬消失在房间中。</p>
+	<p class = "firstLineIndent"> 足足十分钟之后，房间中熄灭的仪器灯光才逐一恢复，然后某个低沉柔和带着些奇异颤动的声音响了起来：“亚雷斯塔，我并没有建议你用这种方式来请求异邦人的帮助。”</p>
+	<p class = "firstLineIndent"> “让你都忌惮吗？”亚雷斯塔低沉地说了一句，不再言语。</p>
+	<p class = "firstLineIndent"> 结合原本剧情的话，罗马正教现在打算干什么已经大致可以猜出来。</p>
+	<p class = "firstLineIndent"> 威尼斯附近的行动，隐晦的魔法波动，还有罗马教徒的不正常聚集，他们在那地方需要如此大动静的东西只有一个，亚德里亚海女王舰队。</p>
+	<p class = "firstLineIndent"> 原本应该是上条少年的悲剧性命运，现在竟然麻烦到我们头上，难道真跟林丫头说的一样，世界的公平之处就在于，假如你倒霉的话，这个世界上就肯定有一个人能享受幸福吗？</p>
+	<p class = "firstLineIndent"> 问题是为什么我的倒霉系数要比上条那个把妹手还要犯规啊混蛋！</p>
+	<p class = "firstLineIndent"> 回到研究所之后，我们先送走了已经快把这地方当成她们娱乐中心的几个小女生，考虑一下也没有让佐天泪子参与进来，虽然名义上是帝国指挥官，不过那都是意外情况，不能真的让她为此而卷进来，在确认了木山春生已经开始熟悉希灵主机的存在而且老老实实地呆在地下信息中心之后，我召集了浅浅她们一起讨论。</p>
+	<p class = "firstLineIndent"> “亚德里亚海女王舰队，或者简称女王舰队，那是好几个世纪以前的老古董了，”闲着没事就跟我一起看动漫的浅浅对这段剧情相当了解，“那是在威尼斯还未归属于罗马正教甚至与其对立时期，为了对抗拥有亚德里亚海女王美誉的强大水都，罗马正教制造出来的战略性兵器，整个舰队存在的意义不但是要迎击威尼斯强大的海上力量，同时也是为了保护它们的母舰，亚德里亚海女王号，那东西上装载着罗马正教创造出来的最强大的威慑性魔术，对威尼斯专用大规模都市歼灭用术式。和圣彼得十字并称为罗马都市自豪的『圣灵十式』之一。以两阶段发动，第一阶段将都市全体化为灰烬，第二阶段将於此都市发展的人、物品、文化连根破坏……原本为了防止这样的武器落入敌手导致被拿来对付自己，罗马正教给它安装了瞄准锁定装置，使其只能用来针对威尼斯发动攻击，不过原本的剧情里……”</p>
+	<p class = "firstLineIndent"> 林雪接过了话茬：“原本的剧情里，罗马正教利用刻限的十字架解除了这个瞄准，让它能用来对付任何一个城市，比如……学园都市。”</p>
+	<p class = "firstLineIndent"> 我耸耸肩：“我们都知道，剧情已经消失了，天草十字凄教还没有出现，那个被作为祭品的雅尼斯修女也不知道在哪里打酱油。”</p>
+	<p class = "firstLineIndent"> “这就是糟糕的地方了，”林雪揉了揉额头，似乎很累的样子，“我刚才看了下未来，发现一件事——罗马正教这次的攻击目标竟然连我都看不见。”</p>
+	<p class = "firstLineIndent"> 然后我们就很惊悚地看着她。</p>
+	<p class = "firstLineIndent"> “你不会是要说……希尔维娅被当成瞄准镜了吧？”</p>
+	<p class = "firstLineIndent"> 很糟糕的情况，林雪的预言貌似从来没有失准过。</p>
+	<p class = "firstLineIndent"> 天知道为什么剧情会暴走到这个地步，但现在我们的当务之急是阻止罗马正教的行动，不论是他们即将毁灭学园都市的行为，还是希尔维娅即将因为这样无聊的势力交锋而被牺牲掉，这都是我们不能容忍的。</p>
+	<p class = "firstLineIndent"> 立刻我就联系上了英国清教那边，狐狸女罗拉，虽然是个和亚雷斯塔一样狡猾的家伙，但至少她对我们是忠诚可靠的，要处理魔法侧的事情，最好还是跟专家咨询一下，说实话，我觉得自家天使不老可靠的。</p>
+	<p class = "firstLineIndent"> 得知了罗马正教的打算，就连同为十字架成员而且一贯稳重的罗拉也忍不住说了一句“那些家伙真是疯子”，即使和科学侧对立，英国清教也从未起过这样疯狂的想法，而罗马正教的人还真干得出来！</p>
+	<p class = "firstLineIndent"> “虽然是罗马正教的绝密资料，但对于那东西，我还是有些了解的。”</p>
+	<p class = "firstLineIndent"> 就和我的猜想一样，那只狐狸女对亚德里亚海女王舰队并非一无所知。</p>
+	<p class = "firstLineIndent"> 在原本的故事中，就连茵蒂克丝那个吃货女都能涉猎到亚德里亚海女王舰队的知识，那么作为整个英国清教实质上的最高掌权者，罗拉肯定知道更多秘辛，而在“主的使者”面前，她肯定是不会隐瞒了。</p>
+	<p class = "firstLineIndent"> 视频上的罗拉似乎正在忙着梳理自己那可以用来上吊还能富余地打个蝴蝶结的超级长发，她一边摆弄着一把精致的银色小梳子，一边对我慢慢道来，而在我身后不远处，充当光源和背景娘的阿赖耶看着那把似乎用起来很舒适的梳子口水横流。</p>
+	<p class = "firstLineIndent"> “关于它的基本情况，您似乎已经了解了，那么现在要说的就是它的旗舰，为了防止被一击破坏，那艘旗舰的构成方式是特殊的块状结构，它的每一部分都是单独的模块，具备独立的魔力结构，也就是说，要摧毁它除非是将整体一次性轰成碎片，否则就会相当麻烦，当然，我想这一点对于您而言并不是问题，它可能的麻烦在另外一点——整艘亚德里亚海女王号上布满了各种警戒术式，尽管是上个实际的老古董，但魔法的东西往往并不会因为时间流逝而价值稍有降低，那些东西在现今仍然好用，罗马正教方面负责这支女王舰队指挥的人是彼亚吉欧大主教，那是一个看上去虔诚正直但事实上不择手段的家伙，假如是为了消灭异教徒，他什么都敢做，甚至是对抗天使——只要不是罗马正教登记在册的天使。”</p>
+	<p class = "firstLineIndent"> “也就是说，他很可能在发觉我们潜入之后大举进攻，甚至不惜以希尔维娅作为要挟，这件事情似乎你也帮不上忙了呢。”</p>
+	<p class = "firstLineIndent"> “很抱歉，天使大人，”狐狸女露出了尴尬的神色，将手中的银色小梳子扭来扭去，“虽然罗马正教的过度壮大可能会在日后影响到英国清教的安危，但从十字教的立场上，我无法公然对主的信徒出手。”</p>
+	<p class = "firstLineIndent"> “哦，那就让主亲自动手好了，话说，”我摸着下巴，然后眉毛微微抽搐，“罗拉，你能别折磨那梳子了吗？”</p>
+	<p class = "firstLineIndent"> 你折磨那梳子阿赖耶就在后面掐我啊混蛋！这丫头这几天是不是还打算换毛呢怎么成天折腾起自己的翅膀来了？！</p>
+	<p class = "firstLineIndent"> 罗拉：“……有新情报我会再通知您的……”</p>
+	<p class = "firstLineIndent"> 说完这句话，面容几乎忍不住要开始扭曲的最大主教慌张地关掉了视频——我估计她是回去背圣经好重建对主的崇敬了。</p>
+	<p class = "firstLineIndent"> 而我们则开始准备意大利之行——代替某个已经从悲剧帝位置上退隐的把妹之神去解决科学侧遇上的烦</p>
+	
+<h2>第三百七十九章 登舰以及乱入</h2>	
+	<p class = "firstLineIndent"> 水都威尼斯，人类创造出来的奇迹之都，一个凝聚了无数智慧和文化的地方，一颗在运河上璀璨的明珠，在这里，有天才创造的歌剧院……呃，那个是悉尼的，有建筑史上的奇迹埃菲尔铁塔……呃，那个是法国的，有闻名遐迩的巴特农神庙……咳咳，总之，威尼斯是个老牛B的地方，因为高三毕业的时候要我能填上这仨字的话说不定文科综合就过了……</p>
+	<p class = "firstLineIndent"> “哗！阿俊，这里还真的到处都是运河啊，你说这地方家乐福怎么开哦？”</p>
+	<p class = "firstLineIndent"> 不用说，思维方式如此特立独行而且元气十足的发言，毫无疑问是出自咱家浅浅之口，第一次来到威尼斯这样风情特异的海外城市，这丫头浑身的活力细胞就跟加了氦3一样在充分反应着。</p>
+	<p class = "firstLineIndent"> 相比之下，小潘多拉就乖巧多了，小家伙跟维斯卡一人一根棒棒糖这时候正忙着跟我身边比个呢，话说她俩真的有这种比试的必要吗？</p>
+	<p class = "firstLineIndent"> “丫头，能看到吗？”</p>
+	<p class = "firstLineIndent"> 心中确定旁边某个忙着四处练习自己掌握的十三个意大利词汇的超元气少女已经完全不可指望之后，我将视线转移到了林雪身上，在罗马正教的家伙们不主动现身的情况下，就只有这个移动雷达能起作用了。</p>
+	<p class = "firstLineIndent"> 一身华贵长裙，带着宽边的白色遮阳帽，不紧不慢地行走在威尼斯运河旁边的街道上，就如同偶尔出来散心的千金大小姐一般优雅，林雪这丫头在外人前面总是很注意自己的形象的，听到我的问话，咱们高贵的大小姐只是微微眨了眨眼睛，然后轻轻凑过来：“到处都是明显的能量波动，我早就把它们挨个标记好了，假如希尔维娅不在他们手上的话，三连发的卫星炮就能搞定这个罗马正教创造出来的最强战争兵器。”</p>
+	<p class = "firstLineIndent"> 这丫头净出馊主意。</p>
+	<p class = "firstLineIndent"> 根据罗拉帮忙提供的情报，亚德里亚海女王的最佳发动时间已经被确定是在四天之后，而考虑到那些老古董的最大移动速度和其最大射程，罗马教廷要想顺利摧毁学园都市的话就要在今天或者明天晚上之前让整个女王舰队进入公海，时间相当紧迫，但那不是问题，希灵人对闪电战相当在行，我们要头疼的就是保证希尔维娅的安全——敌人是不择手段的，尤其是在对抗“异教徒”的时候。</p>
+	<p class = "firstLineIndent"> 这真可笑，在罗拉面前，我们用的身份是“天使”，但为了防止刺激到这个世界微妙的势力平衡，在对付罗马正教的时候，我们这帮“天使”却要以异教徒的身份登场，关于这一点，就连那个狐狸女都只能仰天长叹。</p>
+	<p class = "firstLineIndent"> 所以我不喜欢政治，要不高三那时候文综我还真就过了……</p>
+	<p class = "firstLineIndent"> 虽然过来的主要目的是对付罗马正教的猴们，但毕竟好不容易来威尼斯一趟，浅浅又是个闲不下来的主，最终我们的敌情勘察还是演变成了正式的旅游，而且浅浅那丫头说的一句话还特有内涵：学园都市那地方一点异域风情都没有，还不如在威尼斯转转有穿越异界的感觉呢！</p>
+	<p class = "firstLineIndent"> 于是我才想起来，原来这是在异界哦……</p>
+	<p class = "firstLineIndent"> 可惜的是因为不能让研究所全部空下来，而且还要注意学园都市那边的动静，姐姐大人没能跟着过来，现在我身边除了浅浅和林大小姐之外，就剩潘多拉跟维斯卡这俩小的，四个女孩，俩是小孩，剩下俩是大小孩，咱虽然被称为奶爸但对付孩可真不在行，这一路上让一帮大小美女给折腾的差点直接穿越喽。</p>
+	<p class = "firstLineIndent"> 尤其是浅浅这长不大的家伙竟然跟维斯卡抢糖吃！当时我差点扭头举身赴清池来着……</p>
+	<p class = "firstLineIndent"> 但是还是有点好消息的，我们五个人中，虽然有四个都是不折不扣的路盲，却也没因为找不到向导而陷入迷路的窘境，林大小姐，虽然不想承认，但这次还真是这丫头给了我个小小的惊喜，这个身家亿万的豪门千金在十六岁以前就差不多周游了世界，因为到各地求学或者干脆说被自己老爸扔到各地上学，她的各国历史人文知识丰富到了令人发指的程度，而意大利正是她当时停留过的地方之一，一路上，林雪就仿佛一个真正的威尼斯人一样，对我们讲解着路过的每一个有意义的建筑，比专业导游还要周到地领着我们逛遍了附近的每一个景点，说实话，当气质优雅高贵谈吐不凡的林雪操着流利的意大利语跟一个当地警察问路的时候，我还真觉得……</p>
+	<p class = "firstLineIndent"> 这丫头被谁穿越了……</p>
+	<p class = "firstLineIndent"> 咳咳，是印象改观了。</p>
+	<p class = "firstLineIndent"> “话说，丫头，没想到你还有不疯的时候啊。”</p>
+	<p class = "firstLineIndent"> 随性地走在沿岸的石板路上，我突然这么说了一句，然后紧接着感叹：“但是为什么你就不能对我客气一下呢……”</p>
+	<p class = "firstLineIndent"> 你跟一路人甲都微笑来着。</p>
+	<p class = "firstLineIndent"> 对方沉默了两秒不到，然后嘟囔起来：“因为你是根木头，对你微笑浪费葡萄糖！”</p>
+	<p class = "firstLineIndent"> 于是我就对林雪能在我面前转性彻底放弃了。</p>
+	<p class = "firstLineIndent"> “哥哥，哥哥！”连续两声的招牌式呼叫，维斯卡在后面轻轻拽着我的衣角，“维斯卡无聊了！”</p>
+	<p class = "firstLineIndent"> 也是，对这小家伙而言，除了棒棒糖之外，人类文明就不剩什么了，因此走了这一路的水城景点她也就相当于消化了半斤糖……</p>
+	<p class = "firstLineIndent"> “去坐贡多拉吧！”</p>
+	<p class = "firstLineIndent"> 林雪立刻一指不远处小码头上刚刚靠过来的一艘威尼斯特有的尖舟。</p>
+	<p class = "firstLineIndent"> “真正的威尼斯是水上，没有乘坐过贡多拉的话可不算来过水都哦！”</p>
+	<p class = "firstLineIndent"> 听专家的——我一直以为那小船是用来买菜的流动摊呢……</p>
+	<p class = "firstLineIndent"> 在林雪这个威尼斯通的带领下，我们这帮精力无限的救世主差不多游遍了半个水城，连一开始就没在游览路线上的叹息桥都专门跑过去转悠了一圈，果然就如同林雪所说，真正的威尼斯在水上，只有从那纵横交错如同蜘蛛网一般的河道上游览了整个威尼斯，你才能对这座闻名世界的水上乐园有一个确切的了解，这曾经让整个罗马正教的庞然大物都为之忌惮的强大城市直到现在还留有一丝曾经的辉煌，而林雪在轻快形式的贡多拉上为我们侃侃而谈路过的每一个具有历史意义的痕迹，古老的码头残迹，已经被湮灭在桥梁下的城市主运河，变成了大广场的老教堂，她一边说给我们掌舟的那个威尼斯小伙就一边惊悚，等傍晚靠岸之后那倒霉孩把船一栓就跑着找他中学时候的历史老师补课去了……</p>
+	<p class = "firstLineIndent"> 然后我们就一起鄙视这个恶作剧的大小姐——她刚才一路翻着资料库咋呼人呢！</p>
+	<p class = "firstLineIndent"> “好了，心情放松，精力充沛，”在夕阳下的某座小桥上，浅浅乐呵呵地放松着浑身的筋骨，一天的游览下来也就是让这个女超人放松了下心情而已，“下面就准备干正事喽，阿俊，一会是不是只对付他们的旗舰就可以了？”</p>
+	<p class = "firstLineIndent"> 我白了这个终于想起正事的疯丫头一眼：“你觉得自己能力发动之后还能留几个活口？”</p>
+	<p class = "firstLineIndent"> 然后浅浅就蔫了。</p>
+	<p class = "firstLineIndent"> 在游览这座城市的过程中，林雪已经通过自己超强悍的生物雷达和无视任何干扰的未来视野标记了方圆几千公里内的每一个魔法单位，女王舰队的一百多艘战舰在我们的小地图上闪闪发亮，这就是开透视挂的好处了，我们可以在敌人还忙着隐秘行动的时候设计好每一个损招，现在除了希尔维娅的具体位置林雪还无法观察之外，罗马正教的这里的一举一动都处于我们的监控之下。</p>
+	<p class = "firstLineIndent"> 罗拉的情报相当准确，罗马正教的活动看来就在今晚深夜，因为遥远的公海之下，某些巨大的东西已经开始行动了。</p>
+	<p class = "firstLineIndent"> 而我们就在街角某个不引人注意的角落里，张开了伪装力场等待着夜幕降临。</p>
+	<p class = "firstLineIndent"> 天色渐渐黯淡下来，四周的游人和居民早已经不见了踪影，遥远传来的隐隐声音也终于消失下去，威尼斯的夜晚比我们想象的还要安静，这座以旅游业闻名的水上都市拥有完全不符合这个时代的夜晚倒是我始料未及的——当然，也有可能是罗马正教的人采用了某种“小手段”，毕竟他们今天晚上是要在威尼斯人的眼皮底下开出一支航母编队的……</p>
+	<p class = "firstLineIndent"> 大约晚上十点半的时候，当浅浅已经急地抓耳挠腮就差抱着我的脖咬着玩的时候，他们终于有了动静。</p>
+	<p class = "firstLineIndent"> 某种大范围的能量场扫过了潘多拉的感应雷达，然后四周所有的生命反应强度就全部降低了两个能量级。</p>
+	<p class = "firstLineIndent"> “这是可以大范围让人陷入感知迟钝以及精神恍惚状态的东西，”阿赖耶的声音在我的脑海中想起，这个天使这几天差不多已经将我的精神海当成她家了，“君主哥哥！他们来了！”</p>
+	<p class = "firstLineIndent"> 就在阿赖耶话音落下的一瞬间，我也听到了前方那条最宽阔的运河中发出了异样的骚动声。</p>
+	<p class = "firstLineIndent"> “咔擦擦……”</p>
+	<p class = "firstLineIndent"> 硬物摩擦的声音越来越强，运河中平静的水面剧烈波动起来，然后，白色的巨大战舰终于伴随着磅礴的气势破水而出！</p>
+	<p class = "firstLineIndent"> 那是中世纪最经典的帆船战舰造型，但却整体由冰块打造而成，晶莹华丽如同山岳般的冰雕，大气而精致，甚至每一个铆钉，每一根缆绳的结扣，都由冰雕刻出了最栩栩如生的细节，简直就好比是将一艘来自中世纪的战舰施了魔法，让它整个转化成了一块巨冰一般，看着那巨大的寒冰战舰换换从运河中驶过，我真的感叹——罗马正教从中世纪开始就是这么蛋疼啊……</p>
+	<p class = "firstLineIndent"> 你说一整块冰上面你需要那么多铆钉吗？！那东西你钉什么啊混蛋！</p>
+	<p class = "firstLineIndent"> “哇哦~~”浅浅小声地凑过来说到，“阿俊，你说这东西是怎么藏在运河下面的啊？魔法真有意思嘿，我也要学魔法！”</p>
+	<p class = "firstLineIndent"> 我翻个白眼：“你就给魔法师们留条生路吧超人大姐！”</p>
+	<p class = "firstLineIndent"> 当这艘冰之战舰终于完全浮出了水面之后，林雪立刻拉了拉我的衣袖，凑过来说到：“一会保护好我。”</p>
+	<p class = "firstLineIndent"> “你不会也要上去吧？雷达站还上前线？”</p>
+	<p class = "firstLineIndent"> 林雪沉默了一下，说：“偶尔也想亲自战斗一下嘛。”</p>
+	<p class = "firstLineIndent"> “你个战斗力只有5的家伙绝对不能上去，”我毫不犹豫地拒绝，“哪有先知上战场抡板砖的！你老老实实和维斯卡呆在一起，绝对不准乱动！”</p>
+	<p class = "firstLineIndent"> 林雪愣了一下，然后语调古怪地嘀咕：“你是关心……呃，好吧，这次就算了，我会和你随时精神连线的，保证透视挂永不掉线。”</p>
+	<p class = "firstLineIndent"> 不知是不是错觉，刚才这丫头脸红了一下？</p>
+	<p class = "firstLineIndent"> “维斯卡，保护好林雪，随时待命——不准撅嘴！回去给你买糖吃。”</p>
+	<p class = "firstLineIndent"> 然后我的将军就被糖果收买了……</p>
+	<p class = "firstLineIndent"> 在潘多拉的伪装力场笼罩下，我和浅浅则轻轻松松地尾随在那艘寒冰护卫舰后面，等它撞破了出海口的最后一条石桥进入公海之后，我们三人便无惊无险地落在了它的甲板上。</p>
+	<p class = "firstLineIndent"> 摸着手边那虽然有着木头的纹理但晶莹剔透的晶体，浅浅微微露出了惊讶的神色。</p>
+	<p class = "firstLineIndent"> 这些东西，似乎并不是真正的冰呢。</p>
+	<p class = "firstLineIndent"> 阿赖耶是这方面的专家，她立刻便看出了冰之战舰的秘密：“这些只是有冰之形态的水而已，利用魔法的力量将冰所具有的‘坚固，稳定’这样的属性直接加到水上，但却忽略了其中的温度差异，塑造出了这种极端类似冰但温度却与寻常河水无异的晶体，因此这整艘战舰随时需要魔力的流动来保证它的形态，设计虽然粗糙，但很巧妙地从下面的海洋中汲取了所需要的魔力，因此它才没有解体。”</p>
+	<p class = "firstLineIndent"> 魔法这东西还真神奇，竟然还能这么践踏物理法则——也就是说，现在这艘冰船是因为时刻处于魔力的维持下，所以它上面的“冰块”才能保持形态稳定吗？</p>
+	<p class = "firstLineIndent"> 这样的话，不论是我们中的哪一个，似乎都能完克这东西呢——虽然不用克制也可以很轻松地消灭这东西。</p>
+	<p class = "firstLineIndent"> 由于罗马教徒们已经利用某种术式将威尼斯整个“催眠”，因此即使是如此巨大的动静，威尼斯城中也没有受到任何惊扰，壮观的冰之战舰在魔力的推动下安静地驶入了入海口，然后渐渐远离着城市的港口。</p>
+	<p class = "firstLineIndent"> 没一会，我们便感到更多的能量波动开始在四周爆发开来，因为阿赖耶的介绍，我们已经知道那就是让冰之战舰们形态稳定所需要的特殊魔力，说实话，这一瞬间我还真差点一个冲动将这个舰队给整体覆灭掉呢！</p>
+	<p class = "firstLineIndent"> 林雪传来的小地图上，闪动的红点一共多达上百个，一百多艘冰块铸造的巨大战舰就在我们身边破水而出，这样的场面，果然壮观！</p>
+	<p class = "firstLineIndent"> 感觉就好像给养鱼的池里撒了一把鱼食之后那动静似的……</p>
+	<p class = "firstLineIndent"> “前面最大的那艘战舰，应该就是女王舰队的旗舰了，”浅浅遥遥地望着远方那漂浮的冰山一样的东西，手搭凉棚，“除了个大也看不出特殊的地方啊。”</p>
+	<p class = "firstLineIndent"> 你以为旗舰旁边还会有一个光圈或者旁边加个气泡上面写着“boss”吗？</p>
+	<p class = "firstLineIndent"> 就在我们正计算着怎么靠近那艘旗舰更加方便的时候，身后却突然传来了一阵说话的声音，还有大约四五个人靠近的脚步声，立刻安静地站在原地之后，几个身穿全身教士袍，连脸都被兜帽完全遮住的罗马教徒从我们后面的舱门里走了过来。</p>
+	<p class = "firstLineIndent"> 不过由于有伪装力场的作用，他们对近在咫尺的入侵者完全没有发觉，而是自顾自地交谈着渐行渐远。</p>
+	<p class = "firstLineIndent"> “阿俊，阿俊，”浅浅又高兴了，“这样还真有点潜龙谍影的意思呢！好玩哦！”</p>
+	<p class = "firstLineIndent"> ……这丫头的心态怎么就能一直这么出人意料呢？</p>
+	<p class = "firstLineIndent"> 在这波例行巡逻的罗马教徒离开之后，我们又连续遇上了好几次巡逻的人员，虽然有伪装力场的保护，但就这么一次次的撞上敌人还是让我一惊一乍的，这要是没有bug设备，光凭我和浅浅这两个菜鸟玩潜龙谍影，这时候恐怕连梵蒂冈都知道我们的动静了……</p>
+	<p class = "firstLineIndent"> “喵的，文学作品果然都是扯淡，”再次告别了一群巡逻兵ABC之后，我没好气地说道，“那上面的主角怎么就能百十来米不遇敌呢？”</p>
+	<p class = "firstLineIndent"> “他们开着挂，”林雪的声音突然插了进来，“木头，告诉你个不怎么好的消息，貌似我发现了另外一种魔力波动正在靠近你那边，而且人数还不少。”</p>
+	<p class = "firstLineIndent"> “啥？”我大吃一惊，怎么还有过来蹭架打的？</p>
+	<p class = "firstLineIndent"> 林雪的声音听上去也挺郁闷：“不是敌人，但是让你很郁闷的人——他们就要出现了，你自己看吧。”</p>
+	<p class = "firstLineIndent"> 我也感觉到了，某种古怪的能量波动正在靠近，似乎是魔法的气息，但却和目前见过的几种魔法派系都不一样。</p>
+	<p class = "firstLineIndent"> 还没当我猜想起来，船舷外的水面已经哗啦一声大响，然后一个矫捷的身影便在夜色中闪电般地跃上了甲板，然后无声地落在不远处。</p>
+	<p class = "firstLineIndent"> 一个男人，穿着非常宽大的T恤，下身是一条彰显风格的休闲长裤，耳环，乱发，不羁的眼神，以及领口敞开露出的镀铜铁链，特像街角派出所暖气片上铐着的主——哦，这地方咱应该叫不良，就是这么一个看上去仿佛不良青年的男人，跃上了冰之战舰的甲板，肩膀上则扛着一把造型奇异，剑身仿佛失控的火焰一样在剑柄处扭曲缠绕的古怪武器。</p>
+	<p class = "firstLineIndent"> 天草十字凄教的人……(！)</p>
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0360.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0380.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
