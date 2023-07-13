@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 3em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">🔝</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h2>第五百六十章 关于某人偶的闲谈</h2>	
+	<p class = "firstLineIndent"> 第五百六十章关于某人偶的闲谈</p>
+	<p class = "firstLineIndent"> 一座整体呈现出梯形，高约300米，上底边长100米，下底边长200米，通体银灰sè夹杂蓝sè水晶质条纹的古怪大楼，这就是昨天刚刚建立起来（友情提示：建造工期三小时）的时空管理局总部，从规模上讲，这个拥有级战略价值的地方和那些规模庞大的星港完全不具备可比xìng，却是我们建立的有史以来最庞大的时空监控网络的核心所在。</p>
+	<p class = "firstLineIndent"> 时空管理局正式建立，第二天。</p>
+	<p class = "firstLineIndent"> 希灵人的超级效率永远让人叹为观止，他们让这个机构运行起来只用了不到十二小时，假如在人类社会，一个部门从设想到正式运行至少需要半个月的时间，而如果这是一个国家级的机密部门，其建立完善周期甚至可能长达数年，至于一个像“宏世界”这样夸张的超级结构，即使有足够的科技实力，我也怀疑人类在文明灭亡之前能不能把它的行政体系建立起来——在有关部门的努力下，此种规模的计划从诞生就意味着扯淡。</p>
+	<p class = "firstLineIndent"> 而那帮帝国变态，他们竟然在第二天早上就开始从塞伯坦星发来贺电表示节点状态良好了……</p>
+	<p class = "firstLineIndent"> “我们第一步是巩固已有世界的联络并以其为基础进行试验，艾泽拉斯世界、学园都市、维迪斯等等世界之间的军事连通已经非常成熟，它们可以作为次元枢纽的试验品，通过超大批量地互相运输，我希望可以实测出那种临时xìng的民用次元枢纽能够承载的单个世界流量上限，”在那刚刚完成建立，有些地方的建筑结构还在自我生长变形的时空管理局大办公室里，珊多拉在一大堆曲线图中间对我弹琴，“虽然只是一个民用通道，但由于同时连接了成千上万个世界，‘宏世界’网络所承载的流量压力和其技术复杂度要求甚至比我们现有的军事通道还要苛刻，而且它是一个影响巨大的体系，必须谨慎行事。从明天凌晨开始，第一批次‘热点’会被接通，哦，热点指的是被选中的异界人身边两百米的空间，这些初次获选者包括以下几人：夏娜，今日明日姐妹，萨弗南大公，格兰勒特骑士，五更琉璃，艾茜娅，C.C.以及谏山黄泉，这些第一代审查官会帮我们检测昨天新建立的超大规模跨位面通讯网的信号情况，目前这个网络功能有限，只能通过扫描审查官周围的‘热点’空间来大致判断目标世界是否受到了外来侵染，以及帮助审查官自身和他们所选定的个体进行跨位面传送，但很快，它就能完善起来了。”</p>
+	<p class = "firstLineIndent"> 总觉得刚才珊多拉提到了很多让人非常在意的名字呢，果然是昨天休息不好导致出现了幻觉吗？</p>
+	<p class = "firstLineIndent"> 昨天晚上啊……现在想起来，仍然让人非常怨念，那是一场意志力的拉锯战，一场捣乱与反捣乱的持久战，而与我进行战斗的，正是大半夜不睡觉到处扑腾的水银灯。</p>
+	<p class = "firstLineIndent"> 早知道说什么也不能同意那家伙把自己的大箱子搬到自己房间了。</p>
+	<p class = "firstLineIndent"> 和我们这帮已经将出远差当成习惯的专业人士不同，水银灯是第一次（不算她莫名其妙穿越到这里的时候）进行跨世界的旅游，所导致的结果就是，那丫头一天内完全倒不过时差来，大白天在自己的包装盒里呼呼大睡了六个多小时，到下午才起chuáng的后果就是晚上她完全睡不着了，我得说，虽然拥有完美的容貌和极高的人气，但这位主席大人在有些情况下完全就是个麻烦，夜深人静的午夜十二点精神气十足地在房间里窜来窜去，甚至会冷不丁跳到chuáng上，生物钟跟我小时候邻居王大爷家养的大白猫一个样，拜这个一点都不知道考虑他人的人偶所赐，我整宿没合眼。</p>
+	<p class = "firstLineIndent"> 虽然以自己的体质和精神力，原本是不在意这一天不睡觉的，但问题是——某现在还是伤员啊哪怕有叮当补魔（我就是让你们想歪的），也是伤员啊</p>
+	<p class = "firstLineIndent"> “阿——俊”当我再次噗通一声趴在桌子上之后，终于连珊多拉都有点受不了了，拿着手中的投影屏啪啪地敲打着我的脑袋，女王陛下碎碎念起来，“阿俊你昨天晚上到底干什么了从三十分钟之前你就一直在打瞌睡啊”</p>
+	<p class = "firstLineIndent"> 你错了宝贝，事实上从一个小时前我就开始打盹了。</p>
+	<p class = "firstLineIndent"> 别说昨天晚上没睡好了，哪怕我精力充沛到跟浅浅一样，也经不住您老人家连续一个小时的理论轰炸呀这些曲线图在我眼中不比小泡泡的涂鸦容易理解啊可恶，明明连潘多拉那个满脑子爆盐的小丫头片子都能看着若有所思的说</p>
+	<p class = "firstLineIndent"> “呼——好吧好吧，我知道了，”珊多拉终于认命地收回了已经投影一屋子的曲线图，算是让我精神为之一振，“阿俊永远也看不懂这些东西，那‘宏世界’体系至少也是你的计划诶，偶尔关心一下总可以吧？”</p>
+	<p class = "firstLineIndent"> 这个没问题，我会摘着我能看懂的来指导工作的。</p>
+	<p class = "firstLineIndent"> ……为什么刚才那个想法一出现我就有种“啊，这下什么都不用干了”这样的感觉？</p>
+	<p class = "firstLineIndent"> “对了，现在影子城剩下的异界人情况怎么样？遣返工作应该没受影响吧？”想了想，我还是觉得果然太过甩手掌柜也不好，还是关心一下工作吧。</p>
+	<p class = "firstLineIndent"> “居民遣返和时空管理局建设同步进行，首批审查官只会登记一百人次，其他的异界人基本上都只是候选人而已，他们可以先回家等着我们的特派员过去测试，也可以选择在这里留下，等结果出来，反正不会影响到正常的遣返流程，倒是有些特殊的穿越者出了点问题……”</p>
+	<p class = "firstLineIndent"> 看到珊多拉脸sè古怪，我立刻紧张起来：“赛亚人又跟蜀山弟子打起来了？”</p>
+	<p class = "firstLineIndent"> “什么乱七八糟的”珊多拉立刻白了我一眼，“是那些天顶星人……咱们现在的次元枢纽是专为人员运输设计的，那些跟奥特曼一样的大个子……额，阿俊我被你传染了，总之，他们无法从常规的世界之门通过，运输舱太小，所以那些超级大个子暂时被滞留了下来，现在那些希灵技师正忙着给天顶星人改建一座原本用来给小飞船准备的传送门，而正是由于这个原因，几名天顶星人访客目前的情绪比较低落。”</p>
+	<p class = "firstLineIndent"> 我纠结了一下，然后犹豫道：“我想我明白今天早起维斯卡跟我嘀咕的那句话啥意思了。”</p>
+	<p class = "firstLineIndent"> 珊多拉：“？”</p>
+	<p class = "firstLineIndent"> “那丫头说：‘……可以分成一小块一小块地运回去嘛那些可恶的大个子……’”</p>
+	<p class = "firstLineIndent"> 珊多拉：“阿俊，这段掐了别播啊对小孩子不好”</p>
+	<p class = "firstLineIndent"> 从珊多拉这里了解了时空管理局和“宏世界”网络的建立情况之后，我看也就没自己啥事了，委婉地表达了一下自己完全听不懂那些报告之后，我在珊多拉无奈的注视下离开了办公室。</p>
+	<p class = "firstLineIndent"> “哦，傻蛋人类，你出来了”</p>
+	<p class = "firstLineIndent"> 结果，在办公室门口的休息椅上，见到了某个一脸不爽的人偶。</p>
+	<p class = "firstLineIndent"> 自从上次断牙之恨，跟水银灯一直处于这种微妙的对立状态，之所以说微妙，就是这样：明明见面就冷着脸一副不愿搭理你的样子，要么就是恶言相向，但这个别扭的人偶还是坚持不懈地跟在自己旁边，甚至在我忙着正事没办法搭理她的时候——</p>
+	<p class = "firstLineIndent"> “一直在这里等着？”</p>
+	<p class = "firstLineIndent"> 我伸出手去要mō水银灯的头发，对方立刻如同示威的小猫一般张开嘴要咬人，但刚一lù出那断掉一半的虎牙，哥特人偶就蔫了下去，最后抓着我的手，借劲一跳，稳稳当当地坐到了我的肩膀上。</p>
+	<p class = "firstLineIndent"> “走吧，坐骑。”</p>
+	<p class = "firstLineIndent"> ……这个可恶的人偶刚才是不是说了什么很微妙的名词？</p>
+	<p class = "firstLineIndent"> “其实也不是很麻烦，找个牙医补上就可以，”扛着水银灯离开了时空管理局那梯形的古怪大楼，走在大街上我突然想起了这茬，“我们的补牙技术可和人类医学不一样，绝对原生质重塑，就如同你本来的牙齿……”</p>
+	<p class = "firstLineIndent"> “傻蛋说的跟那牙科诊所门口的牌子上一模一样”</p>
+	<p class = "firstLineIndent"> “嘿嘿，那个就是我给写的广告词。”</p>
+	<p class = "firstLineIndent"> “不要在这个话题上浪费口水了，”水银灯啪啪地在我脑袋上敲了两下，现在这丫头是彻底不敢动用自己的钢牙了，单从耐久度上讲，水银灯的牙跟叮当都没有可比xìng，“你这个可恶的傻蛋人类……”</p>
+	<p class = "firstLineIndent"> “是是是，”扛着水银灯走在大街上，自然引起了不少行sè匆匆的穿越者的关注，不过现在属于○运高峰期，人人都在忙着赶车，“帝国元首肩扛玩偶娃娃暴走街头”已经不会引发太多围观，“父亲大人赐予的身体绝对不能损伤，是吧？”</p>
+	<p class = "firstLineIndent"> “……哼，知道就好。”水银灯似乎愣了一下，然后才哼了一声，下一秒就张开小嘴打起了哈欠，“天亮了，好困……”</p>
+	<p class = "firstLineIndent"> 喂你上辈子不会真是邻居王大爷养着的吧？给我赶紧把生物钟调节过来啊</p>
+	<p class = "firstLineIndent"> “既然这么困干脆回去乖乖睡觉不得了，还非要跟着出来。”</p>
+	<p class = "firstLineIndent"> “啰嗦啰嗦啰嗦”水银灯立刻夏娜附体，精确的三段萌杀，然后又是一个哈欠——我就不知道蔷薇少女的呼吸究竟是干啥用的，润滑？反正罗真我现在是真佩服，从技术宅的领域来讲，丫已经算前无古人后无来者了，“喂，坐骑，不要乱晃，我睡觉了。”</p>
+	<p class = "firstLineIndent"> 就撂下这么句话，完全不给我反驳的机会，水银灯已经坚定地抱住了我的脑袋，低头，秒睡。</p>
+	<p class = "firstLineIndent"> 今天晚上得找个笼子把这家伙关起来，要不我的生物钟非得跟她同步不可。</p>
+	<p class = "firstLineIndent"> 说实话，我现在是越来越看不透水银灯的想法了，这个人偶的行事方式在我看来几乎可以用怪僻来形容，偏偏她平常又谁也不搭理，更不会对自己的举动有什么解释，因此大部分情况下我都只能靠对她的了解以及猜测来判断水银灯的想法，不过最近这个手段已经没什么作用：事情显然产生了某些变化，让这个人偶少女的思维复杂起来，她脑子里想的已经不仅仅是找自己的老爹，而是在思考什么让她都很困扰的事情。</p>
+	<p class = "firstLineIndent"> 那是还在学园默示录世界的时候，就已经发现水银灯经常会一个人坐着发呆，一脸茫然的样子，但只要有人靠近，她就会立刻掩饰过去，我原打算问问她在想什么，不过估计回应自己的也就是一通敲头吧——虽然她的力气对我而言完全可以当按摩来享受。</p>
+	<p class = "firstLineIndent"> 也没什么事做，肩膀上扛着一个轻若无物的微型少女，我晃晃dàngdàng地来到了远离市中心的地方，应该是北部吧，这里是影子城尚未开发的地带，四周高大密集却又死气沉沉寂静无声的高楼大厦还保持着和表世界一样的状态，看不到帝**事建筑，也看不到各种先进的希灵设施，就连那宏伟的，几乎覆盖了半座城市的世界之树树冠在这里也显得有些稀薄，lù出了影子城的湛蓝天空，以及天空漂浮着的硕大待机图标。</p>
+	<p class = "firstLineIndent"> ……我要不要去告诉孩子她妈游戏机忘关了？</p>
+	<p class = "firstLineIndent"> 影子城所有的设施都是一尘不染的，我在路边的一个小公园里随便找了张长椅，打算靠在上面补个回笼觉，顺便跟周公商量商量孩子她**再教育问题，但就在我刚伸了个长长地懒腰，并对在这种状态下都能紧紧地抱着自己脑袋稳如泰山的水银灯表示佩服的时候，一个温和而有些惊讶的声音突然在身后响了起来：“老板？您怎么回来这？”</p>
+	<p class = "firstLineIndent"> 我有些意外地循声望去，正好看到一身便服，上身是一件贴身的薄毛衣，下身着一条修饰修长身材的牛仔kù的Rider站在自己身后不到十米处。</p>
+	<p class = "firstLineIndent"> 额，看来精神真是不集中，这么近的距离都没发觉她——不过也跟Rider的英灵身份有关，在世界树扎根的影子城中，这些隶属于叮当侧（……）的英灵就跟精灵进了森林，滴水汇入大海，潘多拉进了小学部一样，那叫一个如鱼得水浑然天成，要不仔细分辨的话，他们几乎是和这整个空间融为一体的。</p>
+	<p class = "firstLineIndent"> “Rider，”我小心翼翼地想把水银灯放到旁边，结果后者抱着我的头就跟个树懒一样，稍一动她就是一阵低声咆哮，只好作罢，“吃了没？”</p>
+	<p class = "firstLineIndent"> “……吃了，老板吃了没？”</p>
+	<p class = "firstLineIndent"> “吃了……”</p>
+	<p class = "firstLineIndent"> 木然对视了一会，Rider终于一声长叹，悲哀地别过脸去，隐隐约约，听到了“黑历史”之类的词汇。</p>
+	<p class = "firstLineIndent"> 果然，连R姐都学坏了。</p>
+	<p class = "firstLineIndent"> “是带着水银灯出来散心么？”Rider在旁边坐下，看到正坐在我肩膀上，抱着一个大脑袋睡的昏天黑地的小人偶，微微有些在意地问道。</p>
+	<p class = "firstLineIndent"> “不，就是闲逛到这了——倒是你，不在阿瓦隆呆着，怎么来这个无人区了？”</p>
+	<p class = "firstLineIndent"> Rider微微笑笑，扬了扬手中一直拿着的书：“这里是最清净的地方，在无人的街道静静读书，有一种很特殊的感觉。”</p>
+	<p class = "firstLineIndent"> 啊，对了，差点忘记了Rider还有这么个“设定”，和她美杜莎的身份有点不搭配的，喜欢读书的爱好。</p>
+	<p class = "firstLineIndent"> 原来以为在泡泡的腐蚀下，R姐已经彻底化为了某种掌机魔人一样古怪的存在，没想到在安静下来的时候她还是保留着这个恬静的喜好，真是可喜可……</p>
+	<p class = "firstLineIndent"> “这上面的攻略都很详细呢，真是好想跟它们的作者比试一下”</p>
+	<p class = "firstLineIndent"> ……没注意看封面真是我的一大失误。</p>
+	<p class = "firstLineIndent"> “老板，你的表情看上去好奇怪”</p>
+	<p class = "firstLineIndent"> 就那么一愣神的功夫，Rider突然好奇地凑了过来，一双诡异的方形瞳孔在视线中急剧放大，然后悬停在面前不足十厘米处，“我刚才说了什么奇怪的话吗？”</p>
+	<p class = "firstLineIndent"> “不，我只是觉得一个热爱掌机和游戏攻略的Rider太奇怪了而已……”</p>
+	<p class = "firstLineIndent"> 直言不讳地表达了自己的纠结，虽然这样属xìng的R姐也很可爱，但……那层出不穷的违和感简直是坑爹啊</p>
+	<p class = "firstLineIndent"> “但我很喜欢现在的状态啊，”Rider耸耸肩，“没有那么多烦心事，也不必像从前的英灵生活一样苦闷，有很多可以做的事，很多有趣的朋友，还有个比抑制力贴心无数倍的老板，闲着无聊打打游戏看看书，也可以经常和樱见面聊天，有工作的时候就跟一群同样有趣的同事一起热热闹闹地去完成，虽然我不是很喜欢热闹啦……不过这种生活却是我非常喜欢的。”</p>
+	<p class = "firstLineIndent"> 那是，比起传统英灵的苦逼劳工命运，在阿瓦隆的英灵们简直可以用hún吃等死来形容了——友情提示，这是一个褒义词。</p>
+	<p class = "firstLineIndent"> “说起来，听说这个叫水银灯的炼金生物一开始和您的关系非常糟糕，现在对比真是强烈。”</p>
+	<p class = "firstLineIndent"> 我看了看另一边肩膀上那张稀里糊涂的小脸，安静状态的水银灯总是让我忍不住想起天使这样的生物——请注意和阿赖耶区分开——唉，明明是这么可爱善良的孩子，怎么就扭曲成那样了呢？</p>
+	<p class = "firstLineIndent"> “天知道怎么回事，”我耸了耸另一半的肩膀，由于水银灯的关系，这种看上去跟半身不遂一样的单边耸肩我已经轻车熟路，“我觉得平常跟她拌嘴tǐng厉害的，结果这丫头反而越来越粘人了。”</p>
+	<p class = "firstLineIndent"> “拌嘴么……”Rider不置可否地笑笑，“或许连您自己都没察觉对周围人那习惯xìng的关心吧，但是对有些人来讲，这种不经意的关心却是非常宝贵的东西，因为他们在冷漠和孤独中已经生存太久了……”</p>
+	<p class = "firstLineIndent"> “……我可以承认自己没听懂吗？”</p>
+	<p class = "firstLineIndent"> R姐当时就囧了。</p>
+	<p class = "firstLineIndent"> “好吧，换个您可能能听懂的，”Rider认命地叹了口气，一副被打败的样子，“水银灯也来自异世界，而现在……穿越者们都该回家了。</p>
+	<p class = "firstLineIndent"> “她已经没有多少跟您在一起的时间了。”</p>
+	
+<h2>第五百六十一章 学姐你肿么了</h2>	
+	<p class = "firstLineIndent"> Rider的话有道理，水银灯毕竟是异世界的过客，在所有穿越者纷纷被遣返的现在，她的离去，最多也就是一个月内的事情。</p>
+	<p class = "firstLineIndent"> 当然，或许她的世界会永远都无法发现，无尽虚空中有数不清的世界存在于我们目前无法探知的角落，但这个可能性太小了，微乎其微——那样遥远的世界，几乎是不可能和本宇宙之间发生穿越情况的。</p>
+	<p class = "firstLineIndent"> 穿越的发生，就意味着两个世界的靠近，而两个相互靠近的世界，无论如何也不可能逃过我们目前日趋强大的时空探测。</p>
+	<p class = "firstLineIndent"> 而且水银灯和毒岛冴子他们不一样，对这个依靠一腔执念生存下来的人偶少女而言，那个不知道已经死掉多少年的罗真（我坚信丫已经挂了）有着非同一般的意义，哪怕永远找不到那个人参赢家，水银灯也要回到她曾生活的世界，这是她从来到这里之后就一直坚持的，恐怕到现在也没有改变。</p>
+	<p class = "firstLineIndent"> 按照这家伙的性格，她多半也不会对那个蛋疼的时空管理局审查官工作有兴趣，隐隐约约的，我已经知道水银灯在矛盾什么了。</p>
+	<p class = "firstLineIndent"> 即使是野鸟，养了几天之后离开前也会知道告别，水银灯知道自己离开的日子已经迫近，所以最近突然表现得这么粘人么？</p>
+	<p class = "firstLineIndent"> 这可不像她应有的性格啊……</p>
+	<p class = "firstLineIndent"> “不要小看我作为女人的直觉，以及您的亲和力，”面对我不太相信的表情，R姐非常严肃地说道，手里的《掌机X》被卷成了一个看上去威力颇大的纸筒，啪啪地在手心拍打着，“我相信，任何一个在您身边的人在这种亲和力下都会很快产生依赖，假如突然要离开的话，谁都会不舍的，不仅仅是水银灯，还有我们每一个人。”</p>
+	<p class = "firstLineIndent"> 你指的是奶爸光环吗？对你这种御姐同样有效吗？对B叔同样有效吗？对红A那个闷骚男同样有效吗？光环的本质已经彻底鬼畜化了好不好</p>
+	<p class = "firstLineIndent"> 可惜Rider已经重新回到攻略世界中去，对我的吐槽表情视而不见。</p>
+	<p class = "firstLineIndent"> 你就淹死在版边擦弹和三段跳的领域吧</p>
+	<p class = "firstLineIndent"> 不过Rider关于水银灯的发言还是让我在意了很长一段时间，大概一个多小时吧，一直持续到回家为止，然后，某就被一个更加具备冲击性而且令人纠结的事件完全打懵了。</p>
+	<p class = "firstLineIndent"> “毒——岛——冴——子你搞毛啊”</p>
+	<p class = "firstLineIndent"> 从影子城传送门出来，进入自家客厅之后，我的第一句话就是这个：用高八度的声音。</p>
+	<p class = "firstLineIndent"> 而站在自己面前，和安薇娜并排的女仆二号，紫发爆X的女子高中生面对家主的惊悚只是露出了淡淡的微笑，然后得体地鞠躬：“欢迎回家，主人，另外，作为皇室成员请时刻保持有风度的言谈哦。”</p>
+	<p class = "firstLineIndent"> 风度你妹安薇娜你给我解释一下</p>
+	<p class = "firstLineIndent"> “主人，我一定会好好完成任务，努力让毒岛成为一个优秀女仆的，”安薇娜双手交叠放在小腹位置，脸上绽放着短波光的灿烂微笑，“虽然安薇娜自己也远远没有达到完美女仆的标准……但是安薇娜会努力的”</p>
+	<p class = "firstLineIndent"> 说到最后，这个脑袋有点一根筋的小女仆还用力挥了挥毫无力度的小拳头，做出一副努力中的姿态。</p>
+	<p class = "firstLineIndent"> 而在她旁边，一身和安薇娜款式相同的黑色短裙式女仆装，只是在衣服的下摆处没有装饰用的纹章（安薇娜的女仆装下摆处有阿赖耶帮忙能量蚀刻上的帝国十字章，对这种无聊的奥术技巧我始终表示蛋疼），正有模有样地学着前者侍立的，正是……毒岛冴子。</p>
+	<p class = "firstLineIndent"> 女仆状态的毒岛冴子。</p>
+	<p class = "firstLineIndent"> 安薇娜你个傻蛋一根筋呆乌鸦冷光灯管努力毛啊你知道我在纠结什么吧？家里每天已经够地动山摇了，你还想让这里变成军团前线吗？</p>
+	<p class = "firstLineIndent"> “唔哦~~原来这就是毒岛冴子提到的，感谢的方法啊，”客厅南边的沙发上，正跟个懒猫一样蜷缩成一团看电视的林雪头也不抬地说道，“一开始还真是吓了一跳呢，木头，没想到你是这种爱好——话说本大小姐明天也需要进行这种打扮来满足你吗？长丝袜你喜欢黑色的还是白色的？毒岛是黑色的哦~~”</p>
+	<p class = "firstLineIndent"> “老实看电视别插嘴蹭饭无人权你不知道？”我远远地叫了一声，然后郁闷地看着毒岛，“说实话，你真不是来捣乱的？”</p>
+	<p class = "firstLineIndent"> “被这样说还真是伤心呐，”冴子立刻夸张地长叹一声，“我只是希望用自己仅有的方法来报恩罢了，和你们比起来，我没有力量，没有学识（很抱歉我也没有），更没有见识（同样很抱歉，我仍然没有），几乎是个一无是处的人，但我不想让自己成为你们供养下的一个包袱，所以……”</p>
+	<p class = "firstLineIndent"> 所以果断决定来卖身……呃，来当女仆了吗？话说这种剧情你是从哪来的灵感以身报恩之类的事情从金莲姐姐之后我就再也不相信了有木有</p>
+	<p class = "firstLineIndent"> 啊，刚才混进去非常可疑的东西了……</p>
+	<p class = "firstLineIndent"> 毒岛冴子的突然之举不但对我是个老大的冲击，也让浅浅她们目瞪口呆——能让浅浅都目瞪口呆，从某方面看毒岛你也是个强人了，家里一帮大大小小的美女对这个突然冒出来的女仆自然是持各种各样的……围观态度，知道我是什么型号，她们自然不会跟林雪一样吐槽这是“某个变态木头蓄谋已久的阴谋”之类，这些围观中的无聊份子在某方面达成了统一意见：安薇娜这个规格外的女仆就让我们无视好了，毒岛这个普普通通的女生在家务事方面能做到什么地步呢？</p>
+	<p class = "firstLineIndent"> 不得不说，这是一种非常糟糕的恶趣味，但我却完全不敢否定——这个恶趣味的发起人是姐姐大人。</p>
+	<p class = "firstLineIndent"> “阿俊，就让冴子试试呗，”带着一贯的温柔微笑，姐姐大人趴在沙发上抬头看着这边，“正好家里一直只有安薇娜一个人在忙活，现在她能多一个帮手也是很好的。”</p>
+	<p class = "firstLineIndent"> 你确认安薇娜这种恐怖的规格外女仆会缺这么个帮手吗？</p>
+	<p class = "firstLineIndent"> 不过我也知道，毒岛冴子在认定了一件事情之后的执拗究竟有多大，她不会心甘情愿成为一个被我们保护的“包袱”，就像她说的那样，这个坚强自主的少女要用自己唯一的途径来“支付”她现在的生活，而且既然是姐姐大人的意思……</p>
+	<p class = "firstLineIndent"> 我点了点头，转向毒岛：“那就这样吧，既然冴子你如此坚持，就先跟着安薇娜熟悉一下家里的事情，不过也就是帮忙做做家务罢了，女仆……咳咳，女仆什么的，还是免了……”</p>
+	<p class = "firstLineIndent"> 虽然女仆版的毒岛冴子充满各种各样的萌点，但我怕珊多拉吃味的话再一个心血来潮给我准备点高能料理之类，那样绝对会死的，不管吃不吃都会死掉的。</p>
+	<p class = "firstLineIndent"> 但很遗憾，我低估了毒岛的顽固，严格来讲，是低估了安薇娜这个皇牌女仆对“女仆事业”的执着程度，我的话被完全无视了，不管是毒岛冴子还是她的“师傅”安薇娜，都已经沉浸到教导新女仆的工作中去不可自拔。</p>
+	<p class = "firstLineIndent"> 结果是让人意外的，让我和姐姐大人以及林雪包括珊多拉都相当意外。</p>
+	<p class = "firstLineIndent"> 打扫，满分——二十分钟内将小泡泡在门口墙上所有的涂鸦擦掉。</p>
+	<p class = "firstLineIndent"> 整顿，满分——十五分钟内将小泡泡房间里到处乱扔的玩具摆放整齐并且让小公主满意。</p>
+	<p class = "firstLineIndent"> 礼仪和茶道，满分——这个我完全不懂，给分的是珊多拉。</p>
+	<p class = "firstLineIndent"> 厨艺，满分——这个分值我表示怀疑，因为负责试吃和给分的同样是珊多拉，而后者是个只要是元素周期表上的东西就都能吃给你看的主，我很怀疑她嘴里能吃出什么等级来，不过按照我的标准，**十分还是没问题的。</p>
+	<p class = "firstLineIndent"> 完全没看出来，毒岛冴子在家务事上竟然这么强悍，以一个高中女生的标准，你已然突破天际——这年头十八岁出去除了张嘴吃饭连洗完都不会的女生可是满坑满谷，林大小姐现在的最高厨艺还是康师傅呢，当然，珊多拉的高能料理属于另一种艺术形式我们不做讨论。</p>
+	<p class = "firstLineIndent"> 因此可见一个家务娴熟温柔贤惠的毒岛冴子是多么奇葩了，我原来以为她就是用来各种摇动的吉祥物呢……没办法，原著里我能留下印象的东西确实不多。</p>
+	<p class = "firstLineIndent"> 当然，这里需要说明的是，上述满分完全是以人类为标准评判的，当毒岛冴子获得了一堆满分的成绩而有些得意的时候，安薇娜用实际行动向她展示了一个传奇级LV99女仆应具备的实力——真正的满分。</p>
+	<p class = "firstLineIndent"> 打扫，EX，将自身化为圣光震荡体从墙上划过，解决小泡泡在整个走廊上的全部涂鸦，其中包括理论上绝对洗不掉的离子墨水，耗时零点三秒。</p>
+	<p class = "firstLineIndent"> 整顿，EX，能量化后和房间融为一体，同时借助奥术中的心灵传动技巧，将地下室小泡泡宝物库（二号分库）的全部玩具摆放到符合黄金比例的位置，耗时零点六秒。</p>
+	<p class = "firstLineIndent"> 礼仪和茶道，EX，虽然完全看不懂，但觉得安薇娜摆出那副在大户人家中担任侍女，从小经受精英教育的姿态之后真是好厉害的样子，而且她用天知道哪采来的狗尾巴草泡出了龙井的味道，并将货真价实的大小姐林雪忽悠成功了（小幽灵，goodjob）。</p>
+	<p class = "firstLineIndent"> 厨艺，EX，这个请允许我崇拜一下，如果说珊多拉的高能料理会让人看到三途河对岸莉莉娜灿烂的微笑的话，安薇娜一个西红柿炒鸡蛋都能让开膛手杰克眼含热泪地在伊甸园门口聆听哈利路亚了，这个我认为已经违反了物理定律，不过……嘛，管它呢。</p>
+	<p class = "firstLineIndent"> “要成为一个合格的女仆，你还要多多努力哦”</p>
+	<p class = "firstLineIndent"> 完成了那些在我看来比十二试炼还恐怖的壮举之后，我们魔武双修法力高强武艺无双的安薇娜女仆长大气不喘地站在客厅门口，光辉万丈地对眼前已经变成丰碑的毒岛冴子说道。</p>
+	<p class = "firstLineIndent"> 那表情跟耶稣基督似的。</p>
+	<p class = "firstLineIndent"> “震……被震撼了……”毒岛冴子看着眼前闪闪发亮的女仆长——这个称号没错吧，从亮度到职称应该都没问题——嘴里喃喃自语，“原来女仆是这么恐怖的生物吗？”</p>
+	<p class = "firstLineIndent"> 不，这么恐怖的女仆世界上只有这个手电筒才是，而且千万不要试图模仿，除非你打算跟这个发光体一样先死一遍。</p>
+	<p class = "firstLineIndent"> “呼，这些都是女仆的基本技能，”因为家里终于多了一个女仆而荣升为女仆长的小幽灵显然还有些意犹未尽的感觉，舔了舔嘴唇，这个兴致勃勃的发光体安慰着已经被打击到言语不能的毒岛冴子，“只要勤加练习的话你也能掌握的，然后是身为一个王牌女仆的进阶技能哦，等你学会一千道料理之后就可以开始练习了，恩……或许有几个技能可以提前教给你”</p>
+	<p class = "firstLineIndent"> 毒岛冴子茫然地抬起头，看着漂浮在半空微微泛光的安薇娜，如同迷茫的信徒目见耶稣一般。</p>
+	<p class = "firstLineIndent"> 你还真别说，安薇娜这副光芒万丈悬浮半空的造型还真有点那味道——女仆之神？要不我回头找叮当商量一下，在本宇宙设置这么个神职？</p>
+	<p class = "firstLineIndent"> “恩，进阶技能，”安薇娜用力点点头，指着毒岛冴子的眼睛，“先练习从眼睛里发射死光吧”</p>
+	<p class = "firstLineIndent"> “哈诶？”成熟稳重的毒岛这一刻也傻眼了，然后不可置信地看着安薇娜表演用眼棱光线削苹果的独门绝技。</p>
+	<p class = "firstLineIndent"> 我也差不多：这个跳脱的小幽灵绝对打算各种跑偏了吧？</p>
+	<p class = "firstLineIndent"> “然后是熟练使用侍女服后面的缎带哦，要用它们发动一百米的远程攻击才可以，然后是负重训练，枪械组装，驾驶学，心理学，医疗，指挥，经济，徒手格斗和各种兵器，变身魔法X女，这些都可以去影子城的军事学院补课，不过在此之前还有一些基本功，比如单手挥动大约七百公斤的巨锤，用时速三百英里的速度冲锋去给忘带便当的主人送饭，因工作需要在水下潜伏七天七夜，因工作需要徒步穿越撒哈拉大沙漠，因工作需要帮助主人平定军事暴*，因工作需要……”</p>
+	<p class = "firstLineIndent"> “冴子，”我突然重重的拍在毒岛肩膀上，将石化状态中的少女解救出来，然后语重心长地说，“别当女仆了，跟潘多拉一起学开高达吧，那个拯救世界效率更高点。”</p>
+	<p class = "firstLineIndent"> “唔……”毒岛不自然地偷眼看了看正陷入某种莫名狂热状态的安薇娜，缩了缩脖子，“我觉得一千道料理的话，自己还是能学会的……”</p>
+	<p class = "firstLineIndent"> 算了，不管这两个已经进入某种诡异回路的家伙了，总感觉这俩其实在合计着制造终结者的说。</p>
+	<p class = "firstLineIndent"> “傻蛋人类身边的人果然都是一群傻蛋”</p>
+	<p class = "firstLineIndent"> 骑在自己肩膀上从头观战到尾的某人偶给出了中肯的评价，太悲哀了，完全找不到反驳的余地。</p>
+	<p class = "firstLineIndent"> 我说这个人偶是不是已经成自己的绑定装备了？名为“秘法之水银灯纹饰板层甲（紫色）”护肩这样坑爹的装备？每天几个小家伙热闹起来的时候肩扛水银灯，正面挂着小泡泡，背面挂着孩子她妈，左手牵着潘多拉，右手拽着维斯卡，头上顶着小叮当，旁边浅浅抓耳挠腮的状况实在坑爹啊你换个不知道的，还以为哥那是一身板甲准备去抗死亡之翼呢</p>
+	<p class = "firstLineIndent"> “喂，傻蛋人类，”水银灯突然敲了敲我的脑袋，“明天带我出去吧”</p>
+	<p class = "firstLineIndent"> “恩？”我还以为这家伙有什么大事，没想到她竟然提了这么个要求。</p>
+	<p class = "firstLineIndent"> “自从来到这个世界，被从一个大房子里转移到另一个大房子，从影子城到另一个空间，却从来没出去看看这座房子的外面，”水银灯抱着我的脑袋，眼神飘忽地望向了阳光灿烂的窗外，“我想知道，自己莫名其妙闯进来的这个世界，外面究竟是什么样的。”</p>
+	<p class = "firstLineIndent"> “外面？”我挠了挠头发，“跟你原来的世界差不多啦，而且影子城的北城区就和外面的世界完全一样……”</p>
+	<p class = "firstLineIndent"> 话只说到一半，我突然明白了过来。</p>
+	<p class = "firstLineIndent"> 哪怕站在门外，看看自己生活了一个月的这座大屋是什么样也会满意，是吗？</p>
+	<p class = "firstLineIndent"> “好吧，明天带你出去，”沉默两三秒钟，我伸手揉了揉水银灯的头发，这次，对方完全没有躲避，也没有抗议，“看看K市的江山如画大好河山——不过你得当一个乖乖的人偶，而且估计大部分时间你得呆在旅行包里。”</p>
+	<p class = "firstLineIndent"> “哼”水银灯立刻不满地哼哼起来，然后噼里啪啦在我脑袋上一阵敲打，似乎在掩饰什么。</p>
+	<p class = "firstLineIndent"> “陛下，这里是时空管理中心向您报告。”</p>
+	<p class = "firstLineIndent"> 突然在通讯链路中响起的声音打断了我对水银灯突然攻击的反击，而浅浅她们也是一愣，显然所有人都接到了这个信号，珊多拉打开了客厅空气中潜藏的三维成像装置，立刻，一个身着白袍的帝国人形象出现在我们面前。</p>
+	<p class = "firstLineIndent"> “怎么回事？”我努力将正在自己肩膀上扭来扭去的水银灯安抚下来，一边抽空问道。</p>
+	<p class = "firstLineIndent"> “编号WER421DF154E，通用名称‘蔷薇少女世界’已经发现，稳定时空通道将在二十四小时后建立，我们希望得到水银灯小姐离开的确切时间。”</p>
+	<p class = "firstLineIndent"> 图像中的希灵使徒面无表情，只是例行公事一样地向我们汇报着自己的工作。</p>
+	<p class = "firstLineIndent"> 打闹的动作瞬间静止在半空，水银灯前所未有地安静了下来。</p>
+	<p class = "firstLineIndent"> “小个子……你可以回家了。”</p>
+	<p class = "firstLineIndent"> 我沉默了一下，静静地说道。</p>
+	<p class = "firstLineIndent"> “…</p>
+	
+<h2>第五百六十二章 最后一天</h2>	
+	<p class = "firstLineIndent"> 第五百六十二章最后一天</p>
+	<p class = "firstLineIndent"> 是日，阳光晴好，有薄云，风力较大但无扬沙，天气凉爽干燥，紫外线强度低，适宜出游。</p>
+	<p class = "firstLineIndent"> 因为我们把积雨云**在距K市三百公里的半道上了。</p>
+	<p class = "firstLineIndent"> 让那帮气象学家纠结去吧今天是水银灯出门游玩的日子我就不信在天气控制器和叮当同时坐镇下还能下起雨来</p>
+	<p class = "firstLineIndent"> 而在这样晴好适宜出游的天气状态中，背着个巨大的旅行包漫步街头应该……呃，应该不会太引人瞩目吧？</p>
+	<p class = "firstLineIndent"> 我只是个城市登山爱好者没错，城市登山爱好者</p>
+	<p class = "firstLineIndent"> 都是水银灯这家伙，好不容易连哄带骗地把她塞进大包里，要求还tǐng多，不但得带着一堆零食还要求有包内照明，空气循环系统，环绕音响，潜望镜，手机，文学名著，电动玩具，全套厨具，装满酸奶的冰箱一个，舒服的单人小chuáng，按摩椅，乘凉用的阳伞和躺椅（？），一艘sī人游艇以及两个听话的仆人，最后还要一个随行乐团……</p>
+	<p class = "firstLineIndent"> 我大致估算了一下，发现自己必须把房子地基刨掉，然后拖着家出去。</p>
+	<p class = "firstLineIndent"> 这个恶劣人偶完全是在坑爹。</p>
+	<p class = "firstLineIndent"> 但哪怕刨除掉那些空气循环环绕音响家居日用冰箱彩电，一个用来装水银灯和野餐食物的巨型登山包也实在有够夸张了。</p>
+	<p class = "firstLineIndent"> “没办法，水银灯又不能暴lù在普通人面前，”姐姐大人低声安慰着我，“哪怕装成洋娃娃她也太引人瞩目了。”</p>
+	<p class = "firstLineIndent"> “说实话，出来的时候真该听林雪的劝，”我抓着大背包的带子一脸纠结，“不管这家伙怎么抗议，往七千亿的后备箱一塞不就完了。”</p>
+	<p class = "firstLineIndent"> “那我就砸碎车窗户跑出去”</p>
+	<p class = "firstLineIndent"> 从登山包里传出了某人偶闷闷的声音。</p>
+	<p class = "firstLineIndent"> 我翻了个白眼，然后伸手把肩膀上架着的潜望镜捂上，立刻，背后传来了的闹腾。</p>
+	<p class = "firstLineIndent"> “看不见啦什么都看不见啦”</p>
+	<p class = "firstLineIndent"> 真能折腾人，这家伙。</p>
+	<p class = "firstLineIndent"> 不愿意坐车，不愿意带着隐形装置，不愿意进行空间传送，非要让我一路背着，哪怕要钻进旅行包里闷着也一样，想折腾人就明说呗，这个闹脾气毫无道理的家伙。</p>
+	<p class = "firstLineIndent"> 不过，不管是我，还是姐姐大人，还是永远处于脱线状态的浅浅……我们所有人这次都默许了水银灯的任xìng，今天这个小人偶的一切愿望都会得到满足，她是帝国今日的宠儿。</p>
+	<p class = "firstLineIndent"> 当然复活罗真除外。</p>
+	<p class = "firstLineIndent"> 嘛，虽然我还很想补充一句，不管你们今天如何默认她的任xìng，最终倒霉的人貌似都只有我自己吧？其实你们都只是很欢乐地在看我跟一个的小个子打打闹闹而已吧？</p>
+	<p class = "firstLineIndent"> 尽管努力选择了人流稀少的路线，这一路还是让人非常纠结，你得理解，不管是成群结队从萝莉到御姐全年龄段制霸的美女集团军，还是背着一个长宽高一米的巨型包裹跟个法国大蜗牛一样在马路牙子上艰难跋涉的无名男子，都是非常值得人关注的东西，尤其在这个优质萝莉资源和优质御姐资源稀缺，人口失衡下大老爷们纷纷光棍的年代，大街上看妹子已经成了广大人民群众喜闻乐见的一项娱乐活动，在妹子团和蜗牛男之间，路人甲乙丙丁带着中彩票的心态欣赏前者，带着看行为艺术的目光瞻仰后者，一个个乐呵的跟啥似的。</p>
+	<p class = "firstLineIndent"> 每当我们这个庞大而引人瞩目的团队引发太多围观的时候，姐姐大人就会面带微笑跟四周频频致意，每一个动人心魄的笑容总会让当事人顿感一股热气从脚底直达涌泉穴，然后再从涌泉穴倒灌回下丹田，在下丹田晃dàng两圈便化为令人难以自禁的充实感——俗称尿急。</p>
+	<p class = "firstLineIndent"> 姐，你的微笑真利尿——帝国元首，作于公园20XX年XX月XX日。</p>
+	<p class = "firstLineIndent"> 在姐姐大人的诅咒下，通常情况只要十秒钟众人就会作鸟兽散，要是还能坚持的就算倒了血霉了，让姐姐盯上的家伙最好的选择是在最近的公厕办个月票，带着铺盖卷包个黄金摊位别挪窝是最省事的办法。</p>
+	<p class = "firstLineIndent"> 据说这一天后来还被一个社会学家列为疑难案例，那个倒霉催的学者在马桶上写完了一篇名为《人类集中行为的群体趋向xìng——排泄》的蛋疼文章，用诧异和幽默的笔调表达了自己在长期霸占家中厕所长达一个月之后所产生的顿悟，并提出一个惊人的猜想：针对近两年本市出现的不止一次大量市民集中上厕所并导致公厕行业火爆，大街上平均每五家商店中间就夹着一间公厕的现象，人类可能已经进入下一步进化的预备期：心灵融合，木错，群体行为趋向xìng爆发式提升或许意味着人类的大脑已经初步具备了互相进行精神同步的条件……</p>
+	<p class = "firstLineIndent"> 反正后来这位宣称人类消除精神壁垒，达成群体补完势在必行的蛋疼星人不久之后就因夫妻不和而离婚了，原因是那一个月的非致命xìng腹泻和马桶上写成的学术论文让其产生了很严重的心理障碍……</p>
+	<p class = "firstLineIndent"> 他老婆无法接受一个需要坐在马桶上才能睡着的男人。</p>
+	<p class = "firstLineIndent"> 果断跑题到千里之外了。</p>
+	<p class = "firstLineIndent"> “阿俊，我觉得……咱们是不是有什么奇怪的地方？”</p>
+	<p class = "firstLineIndent"> 当周围或诧异或好奇或新鲜或尿急的围观群众渐渐消散之后，就连脑袋缺根筋的浅浅也反应过来，神秘兮兮地凑到近前说道。</p>
+	<p class = "firstLineIndent"> “你看看我背后这包，”我扭了扭肩膀，“再看看这组团一样的队伍，要换你，你不围观？”</p>
+	<p class = "firstLineIndent"> 所以我从来不敢让家里的一帮大小美女成群结队地出去，一个美女不可怕，可怕的是一群美女，尤其是这群美女还包括了潘多拉和维斯卡，泡泡和小泡泡这样宛若一个模子里出来的两对珍稀萝莉，她们是移动的焦点访谈，走路的新闻栏，在这个群体xìng蛋疼的年代威力非凡。</p>
+	<p class = "firstLineIndent"> “好了，到站”</p>
+	<p class = "firstLineIndent"> 终于，我们到达了目的地，K市最大的生态公园，而我们现在所处的地方，就是这个依托天然地势建立的生态公园的中央，一片无人的山顶空地。</p>
+	<p class = "firstLineIndent"> 虽然一路上由于回头率而艰辛异常，但西天取经都有走到头的时候，昨天晚上九点半坐车去西天的唐长老在车票上给我们留下了“前路虽坎坷，取经终有涯”的警示名言让我觉得受益匪浅。</p>
+	<p class = "firstLineIndent"> 当然，在写下这么一句貌似灰常励志的名言之后，唐长老就坐着特快专列直达天竺取经去鸟……</p>
+	<p class = "firstLineIndent"> “就是这里吗？”</p>
+	<p class = "firstLineIndent"> 巨大的旅行包被放在地上，一阵诡异的蠕动之后，白嫩的小手从里面推开了拉练，水银灯小小的脑袋探头探脑地四下张望了一番之后颇有点毫不在意地说道。</p>
+	<p class = "firstLineIndent"> “跟我原来见过的东西也没什么区别嘛，而且品位低俗的可以。”</p>
+	<p class = "firstLineIndent"> “咳咳……”强势推荐这座生态公园为目的地的林大小姐立刻尴尬地咳嗽起来，“至少这里的环境还不错吧，那边还有欧式园林哦……”</p>
+	<p class = "firstLineIndent"> “嘁，”水银灯看了看林雪指示的方向，“我曾经见过真正的欧洲贵族园林，那里比这里……”</p>
+	<p class = "firstLineIndent"> “行了行了，你还指望这个常年让工业废气和尘沙天气笼罩的现代化都市里能出现中世纪田园风光不成，真要找皇家园林，阿瓦隆绯sè平原已经快让那帮吃饱撑着的英灵造成阿房宫了，你自己要在城里玩的，”我在挑挑拣拣的水银灯脑袋上敲了一下，结果突然发现了有趣的东西，“小家伙，你脑袋上这是啥？”</p>
+	<p class = "firstLineIndent"> “不许叫我小家伙”水银灯立刻如被踩到尾巴的猫咪一样一跃而起，跳出了旅行包的身高出现的一瞬间，潘多拉和维斯卡就肉眼可见地扬起了小脑袋——对这俩万年矮冬瓜而言，世界上再没有比水银灯更和蔼可亲的生物了，就连泡泡和小泡泡都略逊一筹。</p>
+	<p class = "firstLineIndent"> “薯片”</p>
+	<p class = "firstLineIndent"> 珊多拉在水银灯起跳的一瞬间就眼睛一亮，爪子一挥，水银灯脑袋上顶着的神秘物体——半块薯片已然消失在女王陛下嘴里。</p>
+	<p class = "firstLineIndent"> 然后……我开始嘴角抽筋地观察这个小人偶究竟带了多少东西出来。</p>
+	<p class = "firstLineIndent"> 肩膀上有两根虾条，脸上沾着白sè的糖粒，xiōng前的蔷薇装饰旁边挂着半根香辣丝，袖口上的蕾丝被果酱染上了斑斑点点的绿sè，裙子上都是薯条的残渣，腰带里还别着一小块鲜贝，这，难道就是传说中的零食战士？</p>
+	<p class = "firstLineIndent"> 在我们的注视下，水银灯不自然地别过脸去：“在大包里闷着很无聊嘛……”</p>
+	<p class = "firstLineIndent"> 而旁边的珊多拉则猝然之间如迅影般冲了出去，在水银灯身边掀起一阵狂风之后如同没事人一样回到了我身旁，轻轻舔舔嘴chún，打个可爱的小嗝：不是饱嗝，刚才吃猛了。</p>
+	<p class = "firstLineIndent"> 身上挂满零食残渣的水银灯一愣神间便恢复了一尘不染状态，此刻正两眼发愣地看着前方，浑身上下干干净净，我甚至不无恶意地猜想，珊多拉是不是还帮这个人偶进行了一次除尘灭菌——用舌头。</p>
+	<p class = "firstLineIndent"> 虽然看不太清楚，不过知道自己这位女王恋人一贯生活习xìng的我还是猜到，处于饥饿状态的珊多拉在刚才不到一秒钟的时间里恐怕已经将偷吃零食的小人偶全身上下都“清洁”了一遍，不知道水银灯日后会不会留下心理yīn影之类。</p>
+	<p class = "firstLineIndent"> “哇都被撕开了”</p>
+	<p class = "firstLineIndent"> 神经粗大的浅浅可不管珊多拉刚才干了什么，此刻她正趴在地上的旅行包旁边，从里面一包一包地往外掏已经被撕开的食品袋，一边掏一边悲鸣不已，“我的薯片……我的薯条……阿俊的鲜贝……姐姐大人的鱿鱼丝……小泡泡的蛋糕……除了珊多拉的零食之外全部被撕开了……”</p>
+	<p class = "firstLineIndent"> 那是，珊多拉的零食里你说不定能吃出什么玩意，水银灯已经半个断牙了，她得保护自己剩下的另一个虎牙。</p>
+	<p class = "firstLineIndent"> “而且还没有一包是好好吃完的。”</p>
+	<p class = "firstLineIndent"> 姐姐大人脸上带着意味不明的微笑，看着仍然强行表示“我不在乎”的水银灯步步逼近，“很浪费哦，水银灯。”</p>
+	<p class = "firstLineIndent"> “哼，我只是想……只是想提前吃一点点……里面太黑了，看不清楚，所以撕开了很多”</p>
+	<p class = "firstLineIndent"> 看不清你妹包里没灯吗？</p>
+	<p class = "firstLineIndent"> 话说给旅行包里安装照明器具的我简直是太闲了吧</p>
+	<p class = "firstLineIndent"> “哼谁让你这个傻蛋人类把我塞进旅行包的”最终，被我们三堂会审一样盯了半天，连水银灯脸上也忍不住微微泛红，但很快她就找到了最适合在这种情况下中枪的某元首，“都是你的错在里面无聊死了”</p>
+	<p class = "firstLineIndent"> 好吧，都是我的错，我不应该把水银灯和零食关在一个包裹里——但哪个知道传说中的水主席会干这种小女孩才会干的事儿啊？我说水银灯你现在被驯化的也太厉害了吧？如果仅仅是在我们身边想流lù出本心的话麻烦你先找回昔日自己那份温柔善良而不是小孩子的怄气啊</p>
+	<p class = "firstLineIndent"> 而且貌似一开始就是你说的，宁可钻进旅行包里也要让我背着吧？</p>
+	<p class = "firstLineIndent"> 很可惜，别扭状态的水银灯是免疫任何讲道理行为的，我的抗议在她耳边就跟昨晚上的天气预报一样毫无意义扭头就又钻进旅行包了，等出来的时候手里捧着本老厚老厚的黑皮大书。</p>
+	<p class = "firstLineIndent"> “你这是干啥？”</p>
+	<p class = "firstLineIndent"> 看着水银灯捧着书向一棵大树走去，我好奇地叫道。</p>
+	<p class = "firstLineIndent"> “找个没人的地方，把这本书看完，”水银灯轻巧地飞上树梢，居高临下地看着我们，“然后回家。”</p>
+	<p class = "firstLineIndent"> “这就是你要求的游玩？”我顿时产生种一拳揍在棉huā上的感觉，早知道这样把水银灯挂在门口晾一天让她看书那效果不一样嘛，“不去玩点有意思的？你让我们一帮天下第一第二第三围着棵歪脖老树围观你看书？”</p>
+	<p class = "firstLineIndent"> “你不是不希望我被人看到吗？”水银灯淡淡地说了一句，“最后一天，我不会再给你找麻烦……这样已经很好了。”</p>
+	<p class = "firstLineIndent"> “不，你完全不需要如此担心，”知道了水银灯的意图，我不知怎的，竟然有点小小感动，就好像看到一贯惹自己着急上火调皮捣蛋的女儿终于温柔地为自己碰上一杯热茶一样令人热泪盈眶，但下一秒这份感动就转化成了对某个万恶的资本家赤luo裸的羡慕嫉妒恨，“因为这座公园里不会有任何人的。”</p>
+	<p class = "firstLineIndent"> “诶？”水银灯大为好奇，“外面的这个世界应该不是你的领土吧？”</p>
+	<p class = "firstLineIndent"> “但这里是林雪家的地盘，”我在某个已经快把天灵盖翘到原本后脑勺位置的大先知脑袋上啪的一个手刀，“资本家都是万恶的，永远不要忘记这一点”</p>
+	<p class = "firstLineIndent"> 林雪立刻给我一个寸拳：“自己占有整个帝国却羡慕一个乡下财主，皇室成员果然贪得无厌”</p>
+	<p class = "firstLineIndent"> “这算是封建王族和资本主义商人之间的初期矛盾吗？”姐姐大人有点无语地望天，然后我和浅浅俩历史傻蛋就一起茫然地看着她。</p>
+	<p class = "firstLineIndent"> 资本家是万恶的，但他们的资本往往能给我们带来利益，林雪这个宛若女频主角一样的家伙很好地为我们证明了这一点，在她的安排下，巨大的城市中央生态公园以临时整顿的名义对所有游人关闭，她甚至下令遣散了整个公园所有的工作人员，这个举动让这座隶属于她名下的产业一天内损失了至少两个三室一厅（浅浅的货币单位），但目的却仅仅是让某个人偶开心一下。</p>
+	<p class = "firstLineIndent"> 即使是水银灯，也无法无动于衷，在浅浅这个超级气氛调节机的作用下，原本应该生xìng恬淡的人偶少女终于跟我们打成一片，热热闹闹地玩了一整天。</p>
+	<p class = "firstLineIndent"> 额，我得说，这是真正意义上的打成一片，一开始还玩得好好的，但在潘多拉和维斯卡就身高问题向水银灯表示了委婉的优越感（这俩帝国将军也就这点出息了）之后，我们重现了水银灯刚来到这个大家庭的一幕。</p>
+	<p class = "firstLineIndent"> 弹幕，爆炸，轰鸣，以及拆迁办。</p>
+	<p class = "firstLineIndent"> “你看，现在至少你不用跟林老爷子解释为什么要说谎关停公园了，”当林雪面对已经变成废墟的一大片公园设施黯然神伤的时候，我觉得自己应该说点什么，“这地方真的需要几天时间来整修一下。”</p>
+	<p class = "firstLineIndent"> “没事，我早料到会有这一幕了，”林雪站在一片建筑废料上仰天长叹，“修缮费用你出吧，刚才你姐已经答应了。”</p>
+	<p class = "firstLineIndent"> ……天然黑有两种，一种是莉莉娜那样捡回家切开之后才发现里面是黑的，一种是林雪这样，你不切开都知道已经从里到外黑透了的。</p>
+	<p class = "firstLineIndent"> 我真的很想用文字记录下今天的一切，一直严肃冷漠的水银灯被我们拉着到处疯玩，展lù出开心欢笑，和潘多拉她们一起在空中飞来飞去，互相发射弹幕和训练弹的欢乐一幕（最后两句纯属坑爹），但僵硬的文字却毫无价值，当夕阳终于缓缓下坠的时候，回家的时间到了。</p>
+	<p class = "firstLineIndent"> 水银灯回家的时间。</p>
+	<p class = "firstLineIndent"> 说实话，拥有随意穿越世界的技术，拥有时空管理局这样的机关，我对异界分隔之类的别离几乎已经没有了感觉，就好像伊利亚和远坂凛那样，即使现在跨越两个世界，我也随时可以去找她们，这样的分别几乎没有让人伤感的地方，但水银灯，却完全不同。</p>
+	<p class = "firstLineIndent"> 当离开我们身边，回到那个世界之后，她还会是我们所认识的这个总是生气，总是恶言，总是倒霉，却也总是闹别扭耍脾气撒娇的水银灯吗？</p>
+	<p class = "firstLineIndent"> 伊利亚和我现在远隔一个位面，但我知道，不论什么时候自己出现在她眼前，对方都会欢呼着扑上来找她的“大哥哥”，而水银灯回到她的世界之后，我却很担心自己将再也看不到她欢笑的一面，当水银灯坚持无论如何也要回到自己世界的时候，我就有了这样的预感。</p>
+	<p class = "firstLineIndent"> 一旦分别，她和我们的距离将不是空间的阻隔，而是另一种更加无法跨越的鸿沟。</p>
+	<p class = "firstLineIndent"> 深知蔷薇少女别扭xìng格的我，对此坚信不疑。</p>
+	
+<h2>第五百六十三章 离开水银灯的日子</h2>	
+	<p class = "firstLineIndent"> 第五百六十三章离开水银灯的日子</p>
+	<p class = "firstLineIndent"> 最后，我还是放弃了使用强制手段这个想法。</p>
+	<p class = "firstLineIndent"> 必须尊重水银灯的意见，这是我从一开始做出的决定，对这个执拗的蔷薇少nv而言，强迫，毫无意义。</p>
+	<p class = "firstLineIndent"> 看得出来，水银灯之前也一直在矛盾，让她产生这样的苦恼已经不是我的本意，既然现在她已经做出了决定，不要再给她更多压力就是我们应该做的，或许回到自己的世界，重新回到和那六个妹妹的对立中，回到孤单一人的寂寞里之后水银灯会重拾她冰冷的外壳，但真到那时候的话，我领着一帮帝国高层再去重新融化她就好了，我是ni爸我怕谁，迟早有一天我得让水银灯心甘情愿地被自己抱回家养……</p>
+	<p class = "firstLineIndent"> “你这家伙还真是什么都能想得开呢，”仿佛完全看透了我的想法，林雪在后面悠悠地说道，“这种时候应该是你这个男主出马，送别我们的i公主吧？”</p>
+	<p class = "firstLineIndent"> 被林雪推上前去，我倒也没什么尴尬的，而是大大方方地走到了水银灯身后，看着眼前娇i的人偶站在脚下这块高出地面数米的巨石边缘，迎着夕阳默然远望。</p>
+	<p class = "firstLineIndent"> 身高再拔上去半米跟个nv主似的。</p>
+	<p class = "firstLineIndent"> 说实话，我真担心她掉下去……i时候姐姐大人就教导我，不能站在高的地方，尤其不能站在这类地方的边缘……</p>
+	<p class = "firstLineIndent"> “看什么呢？”</p>
+	<p class = "firstLineIndent"> “太阳，”水银灯语气平淡，“和那个世界一样的太阳。”</p>
+	<p class = "firstLineIndent"> “今天晚上，你就能回家了。”</p>
+	<p class = "firstLineIndent"> “恩，我要见i惠一面。”</p>
+	<p class = "firstLineIndent"> 惠？指的是那个与你签订契约成为魔法少……你妹的这时候跑m的题啊</p>
+	<p class = "firstLineIndent"> 另起一行：指的是那个和水银灯缔结了契约，由于身患先天心脏病而被后者都关心着的那个人类nv孩吧？看来水银灯对对方真的很上心呢，你回家的首要目标不是找那个已经挂掉不知道多少年的老爸吗？</p>
+	<p class = "firstLineIndent"> “留下来吗？”用非常平静的口气，我淡淡说道。</p>
+	<p class = "firstLineIndent"> “不，”这次是毫不迟疑的回应，看来水银灯下定决心之后是不会那么轻易改变的。</p>
+	<p class = "firstLineIndent"> “如果我用强制手段会怎么样？”我只是开玩笑地说着，“我掌有一切的权力，封闭这个宇宙，我可以让任何人都无法离开。”</p>
+	<p class = "firstLineIndent"> “你不会那么做的，”水银灯这次回应的更干脆利落，并且在我反问之前做出了解答，“因为你只是个老好人到不可救y的傻蛋”</p>
+	<p class = "firstLineIndent"> 我就把这句话当成褒义来听了。</p>
+	<p class = "firstLineIndent"> “好吧，我尊重你的想法，”挠了挠头发，虽然有点不爽，但我还是ǐng认同对方那令人火大的评价，“不过你也应该能想到，我会去找你的，到时候希望你别摆着一张臭脸迎接我就好。”</p>
+	<p class = "firstLineIndent"> “哼，区区傻蛋人类……”水银灯招牌式的恶言之后，突然转过身来，让我始料不及的是，对方脸上竟然带着和她平日形象截然不符的淡淡微笑，“不过假如正好我心情不错的话，或许会用红茶招待你吧”</p>
+	<p class = "firstLineIndent"> 出了脆弱的一面呢，虽然说着这样强势的话语，带着那样安静的表情，她眼中瞬间划过的一点炫光却让我突然感觉到了这个家伙的脆弱一面，水银灯，就如她的名字一样，银白è的坚强华丽之下，却是水一样的脆弱，这个被制作者不负责任地抛弃在挤满灰尘的架子上，受尽了苦难却最终得到一个“废物”称号的nv孩用她的执念和意志为自己编织了坚固的外壳，但现在外壳已经被融化了一个大dng，里面lù出的，是水银样纯白脆弱的内心。</p>
+	<p class = "firstLineIndent"> 有这句承诺我就放心了，但愿你别真的变回那个让人心疼的傻蛋人偶，我期待着你用那的身高为我捧上茶杯的时刻哦。</p>
+	<p class = "firstLineIndent"> 带着这样的想法，我微微眯起了眼睛，四周的空气仿佛也要送别一般，突然刮起了一阵急促的风，当再次张开双眼的时候，水银灯已经消失在自己视线中了。</p>
+	<p class = "firstLineIndent"> 这样离开吗？还真是符合你那让人永远抓不住的心……</p>
+	<p class = "firstLineIndent"> “阿俊，”浅浅突然跑过来捅了捅我的胳膊，“刚才水银灯让风给刮下去了”</p>
+	<p class = "firstLineIndent"> 我：“……”</p>
+	<p class = "firstLineIndent"> 虽然我知道是这么回事但你就不能让我在湿人的领域里多徘徊一会儿吗？还有，我刚才就说过吧，不能站在太高的地方，不能站在太靠边的地方，要不容易掉下去的，姐姐诚不欺我。</p>
+	<p class = "firstLineIndent"> 在这天地萧瑟气氛忧伤众人悲凉背景音放两段i提琴能直接扔电影节搬i金人回来的桥段里，正在跟男一号话别的nv一号竟然是因为风大给刮下去的，整个情景就立刻从悲剧片跳跃到了生活喜剧，于是还不是十分适应这种无节剧本变化的水银灯整整三个i时里都呈现出了微微的呆滞状态，也不知道是不是那几米的高度摔到了这个i人偶的脑袋：话说她也够倒霉的，几米的高度刚好不够她反应过来张开翅膀，石头要再高一点说不定水银灯就能表演一个锐角爬升了。</p>
+	<p class = "firstLineIndent"> 果然，直到离开前的最后一个长镜头里，这个倒霉无极限的i家伙也要为我们贡献一个欢乐的回忆吗？话说这丫头是不是跟库丘林有血缘关系啊？</p>
+	<p class = "firstLineIndent"> 那个枪兵前两天钓鱼的时候还差点lng丢自己的魔枪来着。</p>
+	<p class = "firstLineIndent"> 过程在此省略，总之，水银灯最后还是离开了。</p>
+	<p class = "firstLineIndent"> 一张签满了帝国高层大名的，能让次元枢纽守备官直接uǐ软的超强车票，一辆仅仅承载一名乘客的特快专列，带着一个的人偶和她那如山一样的行李（都是我们给准备的）离开了这个世界，水银灯婉拒了所有人的送行，坚持一个人离开，于是，就这样，家里少了个闹闹腾腾的i不点。</p>
+	<p class = "firstLineIndent"> “真无聊啊……”</p>
+	<p class = "firstLineIndent"> 第一个感叹起来的当然是浅浅，这个最受不了分别的丫头每次和其他人告别都要消沉好久，哪怕拥有穿越位面的能力也是如此，在她看来，离开就是离开，不存在ji通便利不便利的问题，水银灯回到了那个遥远的世界，这就足够这个傻妞伤感了。</p>
+	<p class = "firstLineIndent"> 她只是缺根筋，却不是没心没肺。</p>
+	<p class = "firstLineIndent"> “阿俊，咱们什么时候去找水银灯啊？要不咱们去那边定居吧？”</p>
+	<p class = "firstLineIndent"> 好吧，或许是有点没心没肺。</p>
+	<p class = "firstLineIndent"> “我说，平常送走伊利亚，送走罗拉，送走凯恩，送走萨尔……送走那么多人都没见你反应这么大，怎么这次才十分钟不见就要去找那个人偶了？”</p>
+	<p class = "firstLineIndent"> 虽然也感觉有点空的，但我还是对浅浅的反应非常不解。</p>
+	<p class = "firstLineIndent"> “不一样啊，因为已经把水银灯当成家人看待了呢，”浅浅一句话说出了我们所有人的心声，“伊利亚他们只是朋友，离开也很正常，可是水银灯是家人……”</p>
+	<p class = "firstLineIndent"> 家人……原来如此，我们在不知不觉中已经将水银灯当成家人看待了，所以哪怕明确地知道随时有见到对方的能力，心里也会如此牵挂。</p>
+	<p class = "firstLineIndent"> 没想到，这样当局者mí的情况却是被浅浅这个粗神经第一个点破了，我应该说缺根筋的人果然很容易跳出mí局，以一个局外人的身份看透一切吗？浅浅你的天赋太凶残了</p>
+	<p class = "firstLineIndent"> 夜已经很深，城市中的灯光依然闪耀，遥远的街灯让房间中仍然保持了微弱的光照，加上是夜月光分外明亮，躺在上的我有点睡不着觉。</p>
+	<p class = "firstLineIndent"> ……借口罢了。</p>
+	<p class = "firstLineIndent"> 头上的灯罩里传出的是某nv神微弱而有节奏的i呼噜声，如若不是强化过后的听力根本无法分辨，中间还夹杂着一两句意义不明的嘀咕，想必是叮当睡梦中在和谁说话，我有些出神地望着窗口方向，在那里，曾经有一个身高不到一米的孩，站在月光的背景中用紫红è的双眸凝视这边，仿佛遗世独立的黑è蔷薇。</p>
+	<p class = "firstLineIndent"> 视线下移，窗户下面的地板上，黑è的巨大皮箱仍然安静地躺在那里，被月光披上了一层曼妙的轻纱。</p>
+	<p class = "firstLineIndent"> ……</p>
+	<p class = "firstLineIndent"> 箱子水银灯你把包装盒忘了</p>
+	<p class = "firstLineIndent"> ……那个傻蛋人偶，拉走了我们准备的半吨纪念品，却忘掉了自己的箱子……这一刻，我在充满湿意的蓝调感伤中直接就凌lun了。</p>
+	<p class = "firstLineIndent"> 等等……不是忘掉的，不可能忘掉——水银灯曾经提起过，蔷薇少nv的箱子和她们之间存在灵魂共鸣一样的关联，那就是为了让拥有炼金灵魂的蔷薇少nv可以恢复灵魂消耗而制作的容器，几乎是她们的另一幅“身体”，这样重要的东西，水银灯怎么可能忘掉？</p>
+	<p class = "firstLineIndent"> “啪嗒”一声，我突然按亮了头上的台灯，静待三秒之后，一个尖尖细细而又有点惊慌的声音响了起来：“哇啊啊天怎么突然亮了？太阳的运行又出现问题了吗？叮当明明昨天才检查了整个宇宙的恒星参数的说……”</p>
+	<p class = "firstLineIndent"> 早就该注意到这个问题了，只是因为某人的宠物属而让自己完全遗忘了其智慧生物的设定而已：叮当是我们中最多愁善感的一个（不管你信不信，反正我是信了），这i东西曾经因为要和我们分开，回神界述职而在我手中大哭不已，但今天送别水银灯的时候，她却完全像个缺心眼一样疯玩了一整天</p>
+	<p class = "firstLineIndent"> 而且不止一次用困的视线看着有些玩的不尽兴的我们……</p>
+	<p class = "firstLineIndent"> “啊？阿俊啊糊糊从灯罩里掉出来的i不点抬头困地看着我，半晌才清醒过来，然后蹦蹦跳跳地爬到我肩膀上，“要带叮当出去玩咩？”</p>
+	<p class = "firstLineIndent"> 我都不知道她脑子怎么长的。</p>
+	<p class = "firstLineIndent"> 东西，”我严肃地把i不点抓在手里，“水银灯离开前跟你说什么来着？”</p>
+	<p class = "firstLineIndent"> “水银灯啊，”叮当微微回忆了一下，“她跟我要了世界树的两i片嫩芽，说是回来的时候用她那个世界的糖跟我ji换”</p>
+	<p class = "firstLineIndent"> “好了，你可以回去睡觉了。”</p>
+	<p class = "firstLineIndent"> 东西点点头，乖乖地爬回灯罩，立刻又蹦了出来：“那阿俊你为神马吵醒叮当？”</p>
+	<p class = "firstLineIndent"> “因为你这个晕晕乎乎的家伙真需要清醒一下”我一个的脑瓜崩将叮当弹的一个晃这个傻乎乎的家伙，竟然从头至尾都跟我们处于不同的位面（这个形容词毫无违和），水银灯都能把她忽悠的找不到北了</p>
+	<p class = "firstLineIndent"> 世界树的嫩芽？一根糖？叮当你个败家丫头真能算账。</p>
+	<p class = "firstLineIndent"> 我这时候已经猜到水银灯要那东西干什么了，世界树的嫩芽，是世界树本身最“无用”的部分，刚长出的它们几乎没来得及积累任何能量，莉莉娜那家伙天天用那玩意涮锅也没见长个子就是个铁证，但即使是在我们眼中用处不大的嫩芽，对普通人而言却也是筑基丹一样的玩意。</p>
+	<p class = "firstLineIndent"> 起死回生有点难度，包治百病绝不含糊，七碗水熬成一碗水掺和点冰糖趁热送服让霍金一拳干翻施瓦辛格跟玩似的，当然，治疗心脏病也很容易。</p>
+	<p class = "firstLineIndent"> 而且，最后的最后，世界树嫩芽还有一个非常重要的的功能：作为这个宇宙最本源力量的一部分，在时空管理局建立之后它被我们当成了一种特殊车票，只要是在影子城登记在案的穿越者都可以jī活它以备不时之需，它们能启动管理局的自动伺服传送，每一个审查官身上都有几枚这种“内部券”，那么，水银灯要两片嫩芽的目的也就不用怀疑了。</p>
+	<p class = "firstLineIndent"> 返程车票，而且是不经我手的返程票……</p>
+	<p class = "firstLineIndent"> 这个世纪发现我当然没有独享，下一秒，全家都知道水银灯的恶作剧了。</p>
+	<p class = "firstLineIndent"> 于是，第二天早上天还没亮的时候，在我那原本还算宽敞的卧室里一下子挤满了帝国高层，一群让那个人偶忽悠成功的世界第一第二第三们摩拳擦掌，就等着吓唬那家伙一跳了。</p>
+	<p class = "firstLineIndent"> “水银灯那个死丫头竟然连伟大的先知都敢忽悠”林雪是我们中积极最高的一个，这个很好理解，作为先知竟然让一个洋娃娃给忽悠成功，这简直就是对她职业守的侮辱，就好像同样打架打输了，一个废宅让泰森打翻就连郁闷都郁闷不起来，但要是泰森让废宅一脚踹飞——你别说泰森了，派出所暖气片上拷着的都受不了这个气。</p>
+	<p class = "firstLineIndent"> 更何况头天晚上被水银灯忽悠成功的林雪大人那个唉声叹气的样现在已经成了毫无疑问的黑历史，林大i姐认为不报此仇她就无颜面对林家列祖列宗了，而我则一直的反思一个问题：</p>
+	<p class = "firstLineIndent"> 当初那么高傲圣洁遗世独立的水银灯究竟是怎么让我们给染成这样黑黢黢的？那丫头现在是彻底学坏了。</p>
+	<p class = "firstLineIndent"> “行了行了，你又不是二十四i时开机，”我拍了拍林雪的肩膀，“那丫头也真是幸运，这么多漏dng她还差点成功——林丫头，你确认她一会从这儿跳进来？”</p>
+	<p class = "firstLineIndent"> 林雪冲我一呲牙：“放心吧，我整整半宿没睡觉。”</p>
+	<p class = "firstLineIndent"> 我说你这么大工夫就为了折腾一个洋娃娃你亏心不？</p>
+	<p class = "firstLineIndent"> “诶别闹，来了来了”</p>
+	<p class = "firstLineIndent"> 我正准备给林雪一个手刀，对方突然低声嚷嚷起来，立刻，众人互相ji换了一堆眼神。</p>
+	<p class = "firstLineIndent"> “群体隐形力场启动，空间破片翘曲开始”</p>
+	<p class = "firstLineIndent"> 珊多拉话音落下，眨眼间，原本稍显拥挤的房间变得空无一人。</p>
+	<p class = "firstLineIndent"> 半分钟后，在我们猥琐隐身党屏息静气之中，一个的身影出现在窗外，她先是i心翼翼地看了看周围的情况，确认没人发现才轻轻地推开了窗户，跟i偷一样跳到地上。</p>
+	<p class = "firstLineIndent"> 我们围一圈都快憋岔气了。</p>
+	<p class = "firstLineIndent"> “分散，分散，别碰着她按计划行动”</p>
+	<p class = "firstLineIndent"> 我赶紧用jing神连接跟其他人分派着任务，然后偷偷mōmō地蹭到水银灯背后，呼地吹了口气。</p>
+	<p class = "firstLineIndent"> 家伙jī灵一下子就窜起来了，亏我躲得快，要不也得断牙。</p>
+	<p class = "firstLineIndent"> “奇怪，没人？”</p>
+	<p class = "firstLineIndent"> 水银灯诧异地环视四周，一种虽然空无一人却处处被人窥探着的感觉肯定让人m骨悚然，但这个胆大的人偶却只是有点疑</p>
+	<p class = "firstLineIndent"> 夜幕已经渐渐退去，东方的地平线上稍稍明亮起来，出现模糊的鱼肚白，房间中笼罩在恰到好处的昏暗光芒中，我赶紧对浅浅比划个手势：“暂停”</p>
+	<p class = "firstLineIndent"> 宅院附近的时间就此停止。</p>
+	<p class = "firstLineIndent"> 人偶少nv当然不知道发生了什么，只是颇为遗憾地看了看空的铺：“嘁，还以为能吓那个傻蛋人类一跳呢，大早起干什么去了？”</p>
+	<p class = "firstLineIndent"> 嘟嘟囔囔地说着，水银灯轻手轻脚地推开了房men，我们也i心翼翼地跟着出去——这时候我真是嫉妒安薇娜，她直接就穿墙出去进入工作岗位了。</p>
+	<p class = "firstLineIndent"> “也没人……都还没睡醒？”水银灯在空无一人的走廊上嗒嗒地走着，“虽然时间是早了点，但这时候那个叫安薇娜的大乌鸦应该已经开始洗地了。”</p>
+	<p class = "firstLineIndent"> 我立刻恶狠狠地看着某无辜nv仆，感情每天早上四点半满屋子yīn风阵阵是你干的？</p>
+	<p class = "firstLineIndent"> 在一路的困中，水银灯慢慢下到了客厅，当然，这里也是一片寂静。</p>
+	<p class = "firstLineIndent"> 只有客厅一面墙上的电视机仍然开着，上面冒着一片错lun的雪uā点。</p>
+	<p class = "firstLineIndent"> 水银灯不明所以地看着似乎开了一晚的电视机，突然跳到沙发上，静静地坐在那里。</p>
+	<p class = "firstLineIndent"> 我们一圈人顿时就傻眼了——嘉宾不配合，这咋办？</p>
+	<p class = "firstLineIndent"> 更让我傻眼的是，过了不到几分钟，水银灯竟然呼呼地睡着了……</p>
+	<p class = "firstLineIndent"> 不会吧一大帮帝国领袖合计了大半宿研究出的计划，还没来得及实施就完蛋了？这个人偶怎么一点都不按常理出牌捏？正常人你在这种情况下应该惊慌失措地挨个推开楼上房间才对吧？应该到处招呼我们的名字吧？应该去关掉那台沙沙作响的电视机吧？安薇娜在屏幕后面窝着现在都快冒烟了有木有你竟然直接找个软和地方睡着了</p>
+	<p class = "firstLineIndent"> 你让历史上一大票恐怖悬疑片导演情何以堪A！~！</p>
+	
+<h2>第五百六十四章 可算找到你了</h2>	
+	<p class = "firstLineIndent"> 第五百六十四章可算找到你了</p>
+	<p class = "firstLineIndent"> 我们一开始的计划非常简单，想必聪明的各位也已经猜到了。</p>
+	<p class = "firstLineIndent"> 装神lng鬼吓唬吓唬那欺骗我们感情（这个是不是严重了？）的i丫头而已，绝对没有恶意，而这个计划的第一步就是营造个空dng大宅的气氛，所以水银灯来的时候我们都调成了震动……呃，隐身。</p>
+	<p class = "firstLineIndent"> 第二步……好吧，第一步就完蛋了。</p>
+	<p class = "firstLineIndent"> 按理说安薇娜这时候应该从电视机里钻出来的，虽然这个主意非常老套而且对水银灯这样能利用秘法从镜子空间里钻来钻去的主而言可能不算什么，但毕竟算个开场白不是，结果我jing心计划的开胃菜还没揭盘就成了可燃垃圾——水银灯这家伙竟然没心没肺地在沙发上睡着了。</p>
+	<p class = "firstLineIndent"> 这让一客厅等着看午夜凶铃的帝国高层们抓耳挠腮气急败坏。</p>
+	<p class = "firstLineIndent"> 而我则再次思考，为什么理论上只能在原装包装箱里充电的蔷薇少nv里会出现水银灯这样一个支持万能充电宝的例外？在我肩膀上睡觉可以看成是依靠我这个巨型蓄电池充能，但随便找个沙发都能睡着这不是坑爹吗？这不是坑所有蔷薇少nv的亲爹吗？</p>
+	<p class = "firstLineIndent"> “我要lng醒她。”</p>
+	<p class = "firstLineIndent"> 面面相觑地围着沙发愣了半晌，帝国领袖们的表情一个比一个微妙，这时候浅浅提出了如上建设的建议，同时拿出了建设的工具：目测起码一百多斤的大铁锤。</p>
+	<p class = "firstLineIndent"> 虎虎生风地就要砸下去。</p>
+	<p class = "firstLineIndent"> 这丫头竟然能随身mō出这样的玩意，她原本到底是打算拿这个干啥的？</p>
+	<p class = "firstLineIndent"> “收回去”我瞬间就把大铁锤塞回了浅浅的随身空间，“你以为是个人都跟咱几个一样刀枪不入啊？”</p>
+	<p class = "firstLineIndent"> “诶等等，她好像快醒了”</p>
+	<p class = "firstLineIndent"> 神连接中突然入了林雪的提醒，一大圈人立刻紧张起来，然后唰唰唰地后退了两米多。</p>
+	<p class = "firstLineIndent"> 果然，就在我们后撤开的同时，躺在沙发上的水银灯眼睫m突然微微颤动了两下，然后不负众望地张开了玫瑰è的眼睛糊糊地坐了起来。</p>
+	<p class = "firstLineIndent"> “嗯？”似乎发现了什么违和之处的人偶少nv皱着眉头环视四周，我则赶紧检查谁刚才有没有把东西落在地上，不过很快我就发现，水银灯在注意别的东西。</p>
+	<p class = "firstLineIndent"> 她突然跑到了窗前，呆呆地看着外面仍然处于黎明将至却无朝阳的昏暗天空，良久，又跑了回来，看着墙上那静止在早晨四点半的挂钟。</p>
+	<p class = "firstLineIndent"> 浅浅还静止着时间……呃，我想我明白为什么刚才浅浅会毫不犹豫地掏出一个巨大铁锤了，现在的浅浅是能量全开状态下的魔人变身版，虽然现在这丫头已经可以将变身状态下的心理巨变压制大半，但就跟五十步之于百步一样，张飞削弱成李逵你扔邻居王大爷面前那同样是个杀神，浅浅在完全克服变身人格之前永远都是应该谨慎使用的规格外兵器。</p>
+	<p class = "firstLineIndent"> “安薇娜，现在该看你的了”</p>
+	<p class = "firstLineIndent"> 水银灯已经醒来，时间也没有损失，计划自然继续进行，我赶紧通过jing神连接呼叫某个预定了贞子名额的i幽灵。</p>
+	<p class = "firstLineIndent"> 回应自己的是一连串轻微的呼噜声。</p>
+	<p class = "firstLineIndent"> 那家伙直接在液晶屏里睡着了。</p>
+	<p class = "firstLineIndent"> “这个坏事丫头”我差点一口胆汁喷出来，然后跟大家一挥手，“原计划取消，执行B计划”</p>
+	<p class = "firstLineIndent"> “咱有B计划？”浅浅不明所以地看着我。</p>
+	<p class = "firstLineIndent"> 我老脸一红：“这不是为了烘托气氛嘛，林雪，你去开灯”</p>
+	<p class = "firstLineIndent"> 在这里我想抒发一下自己目前的体会，装神lng鬼果然是一件非常没有技术含量的事，尤其是在你获得了隐形的能力之后，从视觉上能欺骗别人就意味着你差不多已经能在任何一件事情上捣lun，近年来随着广大人民群众的jing神文化水平日益提高，不少热心于YY妄想鬼畜爱情i电影的前辈已经在这个幻想领域为我们创造了大量可以借鉴的例子，隐身之类的作品如雨后un笋……话说我这是想什么呢。</p>
+	<p class = "firstLineIndent"> 不过领着一屋子的大i美nv调戏一个的人偶，我这说不定也算开一派之先河了。</p>
+	<p class = "firstLineIndent"> “啪”的一声轻响，客厅中吊灯毫无预兆地点亮，就连水银灯都被吓了一条，啪嗒啪嗒地跑到了吊灯开关的位置，已经有点严肃的人偶少nv紧紧地盯着面前墙壁上那个的突起，而林雪则jī灵一下子贴到了墙上，在我们惨无人道的围观中肌ru紧绷，大气也不敢喘地踮着脚尖一寸寸侧移着，一边侧移一边那目光凌迟我们一帮看戏党，在水银灯面前十厘米处完成这一系列动作看来难度不i，往常泰山崩于眼前面不改è的先知大人现在脸都憋红了，眼看就要成功脱离，一件谁也预想不到的事情突然发生：水银灯毫无预兆地抬起手要去捅捅那个开关：开关前面挡着的是林大i姐的C罩杯。</p>
+	<p class = "firstLineIndent"> 瞬间林大i姐就贴着墙变成了型——我已经快笑出腹肌来了。</p>
+	<p class = "firstLineIndent"> “你这个傻蛋木头要再不想办法帮本大i姐，明天我就把你强ěn我的事捅出来”</p>
+	<p class = "firstLineIndent"> 神连接中传来了林大i姐如此蛮不讲理的威胁，话说当时强ěn别人的是你吧？虽然认真分析的话占便宜的还是我……</p>
+	<p class = "firstLineIndent"> 考虑到林雪这家伙移动麻烦聚合体的质，我也不含糊，随手就把手边的电视关掉，果然，水银灯的注意力被吸引过去了。</p>
+	<p class = "firstLineIndent"> 这一幕让我想起了i时候玩捉mí藏的年代，当年自己跟浅浅强强联手可谓所向披靡，我们通常的战术是：先让那倒霉蛋把眼睛上，然后我负责往老远的地方扔一块石头，最后跟浅浅一起回家吃饭。</p>
+	<p class = "firstLineIndent"> 四年级以后就没人跟我俩玩了。</p>
+	<p class = "firstLineIndent"> 现在，我在林雪身上仿佛找到了童年的影子，这难道就是坑爹的命运？</p>
+	<p class = "firstLineIndent"> 连续遇到诡异的事情已经让水银灯面è凝重起来，不过令人遗憾的是，这丫头根本没lù出惊慌的神之前的担心果然成真：对一个能熟练发e弹幕并且跟天使打过一架的蔷薇少nv而言，普通的午夜凶铃猛鬼街之流根本就是浮云。</p>
+	<p class = "firstLineIndent"> 水银灯仍然在空无一人的客厅中跑来跑去，试图找到异常的源头，她开始尝试打开大men离开这里，当然，失败了，推men出去的她在下一秒就从客厅另一面的墙壁上走了进来，整个房子已经进入空间翘曲状态，自我封闭，连续这样尝试了几次之后，水银灯似乎明白了尝试的徒劳，开始站在men口进入思考状态。</p>
+	<p class = "firstLineIndent"> 还是一点惊慌的表情都没有。</p>
+	<p class = "firstLineIndent"> “我发现一件事，”姐姐大人突然叹了口气，用jing神连接说道，“水银灯这丫头，已经将这座房子里出现的任何情况当做理所当然了。”</p>
+	<p class = "firstLineIndent"> 不用你说，我也发现了这点。</p>
+	<p class = "firstLineIndent"> 希灵万能的思想深入水银灯的内心，即使我们折腾出寂静岭的氛围，她也只会产生“那帮家伙又在家里折腾什么”的困而绝对不会有一丁点惊慌，在这个大前提下，我们大半宿的努力根本就是吃饱撑着了。</p>
+	<p class = "firstLineIndent"> 而且还有一点，本质上讲，水银灯这个可以自主活动的人偶扔现实世界就已经可以被归类为灵异事件了，虽然看着可爱，但条件合适的时候这丫头恐怕也有半夜吓人一跳的资质，对这样一个主而言我们设计的鬼宅还有多大功能也就很值得商榷了，就好像生化危机系列，我第一次看的时候差点把年夜饭吐出来，但希尔瓦娜斯看完之后就给了个生活片的评价——她产生了浓浓的亲切感。</p>
+	<p class = "firstLineIndent"> 所以，一般程度的灵异鬼宅扔水银灯面前还真不算啥事，而相对应的，我们这一大帮子除了安薇娜有点实践经验之外，谁都不是灵异事件方面的专家学者，我们水平就这样儿了……</p>
+	<p class = "firstLineIndent"> “林丫头，要不一会我把你挂吊灯上，咱试试凭空出现一句尸体管用不？”眼看水银灯连墙上突然出现的血手印都当成了很有趣的涂鸦，开始跟着涂鸦蹦来蹦去，我有点意兴阑珊地用jing神连接说道。</p>
+	<p class = "firstLineIndent"> “滚”林大先知心情不怎么好，“失误啊，我用了大半宿来研究怎么吓唬这丫头，竟然偏偏忘了看看那些计划会产生什么效果……”</p>
+	<p class = "firstLineIndent"> 唉，你也不是二十四i时开机的，而且说实话，咱们uā大半宿来研究怎么欺负一个人偶，还真是有点亏心。</p>
+	<p class = "firstLineIndent"> 就在我已经放弃，准备提前lù面的时候，意外却发生了，客厅的电视机突然凭空亮了起来，并将水银灯的注意力一下子吸引过去。</p>
+	<p class = "firstLineIndent"> 的雪uā点在逐渐明亮起来的屏幕上毫无规律地闪动着，液晶电视本不应该出现的磁干扰纹逐渐ji织成了诡异扭曲的血è符号，在暗淡的光晕下，一个长发掩盖了全部面容的nv人突然从屏幕下方探出头来，然后探出了屏幕，缓缓向外爬出……</p>
+	<p class = "firstLineIndent"> 生物钟非常诡异的i幽灵睡了二十分钟，再次进入了清醒期，并开始她的工作，她醒的太不是时候了。</p>
+	<p class = "firstLineIndent"> 而且确认了水银灯对这个家里的灵异事件接受力之强之后，我已经准备好看i幽灵如何倒霉了，珊多拉和姐姐大人则是双双扭过头去，一副不忍目睹的样子。</p>
+	<p class = "firstLineIndent"> “师傅不会出什么问题吧？”在我旁边，固执地套着一身nv仆装，已经在这个家当了两天专职nv仆的毒岛冴子有点担心地说道，那个“师傅”的称号大家都知道什么意思也就不解释了。</p>
+	<p class = "firstLineIndent"> 我面无表情地耸耸肩：“她在电视机前卡住过三次，从冰箱里出来的时候经常冻僵，偶尔会从兴致勃勃地钻水管，不过出来之后一个i时内都会变成细细长长的样子，还有一次这家伙看了两本恐怖i说致力要成为一个合格的附身鬼，结果不i心钻进只苍蝇体内，因此绝食七天……”</p>
+	<p class = "firstLineIndent"> “我以后不怕灵异片了……”毒岛非常认真地说道。</p>
+	<p class = "firstLineIndent"> 事实上我平常都是当喜剧片来看的。</p>
+	<p class = "firstLineIndent"> 而就在我们心灵对话的时候，安薇娜已经不负众望地——卡住了。</p>
+	<p class = "firstLineIndent"> 将气氛酝酿了个十成十的某亡灵仅仅从电视里钻出到了iōng口位置，便发出一声悲鸣，屏幕上由于能量干涉形成的雪uā点立刻还原成了漆黑一片，而安薇娜则撑着电视机的边缘努力把自己往外拔，在她面前不到三米处，水银灯表情木然地看着这一切。</p>
+	<p class = "firstLineIndent"> 至此，全体帝国领袖，这个宇宙拥有最大权柄和最高智慧（？）的统治阶层，合计了一晚上的“调皮人偶惩戒计划”完全崩坏，一切终于从惊声尖叫变成了惊声尖笑。</p>
+	<p class = "firstLineIndent"> 安薇娜还在努力往外拔自己中……</p>
+	<p class = "firstLineIndent"> “解除隐形吧，顺便把空间翘曲关闭，浅浅你释放时间，冴子帮姐姐大人做饭去，”我挥了挥手宣布本次行动完全失败，一帮宇宙帝王将相在恐怖影视片方面的才艺简直惨不忍睹，连个的洋娃娃都吓唬不住，“呦，i灯~~”</p>
+	<p class = "firstLineIndent"> 我正等着对方跟自己打招呼呢，迎面一个旋风uǐ就过来了。</p>
+	<p class = "firstLineIndent"> “你这个傻蛋人类”</p>
+	<p class = "firstLineIndent"> 声音里带着不知道是不是错觉的委屈——诶？刚才她不是一点都不惊慌的样子吗？</p>
+	<p class = "firstLineIndent"> 一把抓住了水银灯娇i的身躯，顺手夹在胳肢窝下面，我不轻不重地在她脑袋上弹了一下：“本来打算惩罚你的，真是个闹心的丫头，以为那么傻蛋的手段就能瞒过目光如炬的天下第一们吗？”</p>
+	<p class = "firstLineIndent"> 水银灯一边抗议一边手舞足蹈地试图接着攻击我：“本来就只想瞒一晚上，第二天早晨吓唬你一跳的，没想到连一晚上也……啊，忘记那个先知了”</p>
+	<p class = "firstLineIndent"> 你恰恰说错了，这次先知没开机，是目光如炬的本大爷看穿你那傻蛋一样的i把戏的。</p>
+	<p class = "firstLineIndent"> “主人……安薇娜还卡着呢……”</p>
+	<p class = "firstLineIndent"> 已经被众人故意遗忘在旁边的安薇娜终于委委屈屈地叫了出来，一边双手用力撑着电视外框，结果一下子摁在开关上，原本漆黑一片的屏幕刷刷哆嗦了两下，i幽灵后背上方就突然浮现出一中年大叔，举着个i盒子在那嚷嚷：“咽喉炎，顽固炎症……”</p>
+	<p class = "firstLineIndent"> “噌”的一声，我一边还夹着水银灯，一边却上前把安薇娜一把拽了出来：丫的，这大叔一脸褶子还敢跟我家nv仆背后位？</p>
+	<p class = "firstLineIndent"> “这根木头已经没救了。”</p>
+	<p class = "firstLineIndent"> 林雪立刻嘀嘀咕咕起来，旁边浅浅一头雾水地跟着点头，前者永远jing明的可怕，后者永远处于一头雾水，我家怎么净是这种奇葩？我说林雪你稍微傻蛋点能死啊？</p>
+	<p class = "firstLineIndent"> 浅浅已经释放了时间，迅速回到主要时间河流中导致客厅里在几分钟内便经历完了从夜è到清晨的转换，就跟经费不足只好屏幕一黑写上一夜过去（当然有时候打这行字也不一定是经费不足……）的生硬切换一样，前一刻还在午夜凶铃的陈家大院，现在已经在和煦的阳光中准备早饭了。</p>
+	<p class = "firstLineIndent"> “浅浅，你帮忙看着珊多拉别让她溜进厨房”</p>
+	<p class = "firstLineIndent"> 我回头ji待了一声，将视线转回沙发上的人偶正老老实实地坐在那出了前所未有的懂事表情，看得出来，计划全部失败还被抓了个现行让这个天不怕地不怕的家伙都有点尴尬，昔日公主般高贵冷漠的水银灯殿下现在完全变成i狼人水银灯?断牙了。</p>
+	<p class = "firstLineIndent"> “知道错不？”</p>
+	<p class = "firstLineIndent"> 我语重心长地循循善语法是不是错了？）道。</p>
+	<p class = "firstLineIndent"> “不就是开个玩笑嘛，”水银灯i孩子一样一偏头，“就是想看看你这个傻蛋人类……会不会觉得是甩掉了一个包袱……”</p>
+	<p class = "firstLineIndent"> “傻蛋”我上前就是一个脑瓜崩，“事情解决了？”</p>
+	<p class = "firstLineIndent"> 我指的是那个先天心脏病的人类nv孩，水银灯这次坚持要回去一趟有很大原因就是为了她。</p>
+	<p class = "firstLineIndent"> “嗯，现在i惠可以普普通通地生活下去了……傻蛋人类，我可以偶尔回去看看她吧？”</p>
+	<p class = "firstLineIndent"> “当然——另外有没有回去看看自己的妹妹们？”我突然有点好奇，不知道现在这个变化天翻地覆的水银灯出现在如临大敌的苍星石翠星石她们面前会引发什么样的轰动效应，大致不逊于蓝染唱着东方红一路高歌猛进突袭静灵庭吧——要是蓝大人敢那么干说不定丫大事就成了，人们对扭曲的事物总是充满敬畏的。</p>
+	<p class = "firstLineIndent"> “本来不打算去见她们，”水银灯有点疲惫地趴在茶几上，“可是不i心被真红碰到了……”</p>
+	<p class = "firstLineIndent"> 你要不是故意的能被碰到？</p>
+	<p class = "firstLineIndent"> “然后呢？jing武风云还是使命召唤？”</p>
+	<p class = "firstLineIndent"> 意思就是正面格斗还是拼了会弹幕，水银灯跟真红这对有史以来最别扭的百合友（我自重）见面没有不对掐的。</p>
+	<p class = "firstLineIndent"> “我吓了她一跳”水银灯闷闷地说道，带着我不敢确信的恶作剧成功的欢乐感觉，“我叫了她一声妹妹，然后当着她的面传送回来了~~”</p>
+	<p class = "firstLineIndent"> 我：“……”</p>
+	<p class = "firstLineIndent"> 完全可以确信，这个人偶已经被我们彻底染黑了。</p>
+	<p class = "firstLineIndent"> 不过，嘛，这样也不错呢，回去一趟之后的水银灯似乎总算放下了什么包袱，被我们潜移默化了这么长时间，量变终于在此刻产生了质变，某人偶一只脚陷入帝国无节泥潭看来是别想爬出来了。</p>
+	<p class = "firstLineIndent"> 然后是不知道算不算欢迎会的早餐时间，所有人仿佛达成了默契，对水银灯这一次恶作剧般的“分离闹剧”都选择了无视，像往常一样地吃早餐，聊天，看珊多拉in盘子，围观水银灯喝酸ni，其乐融融，就如同过去二十四i时什么都没发生一样，只有在早餐结束之后姐姐大人说了一句：“我想就家里有人夜不归宿的现象提两点意见……”</p>
+	<p class = "firstLineIndent"> 然后某倒霉人偶就被拖去接受批评教育了。</p>
+	<p class = "firstLineIndent"> “恭喜你哦，”早饭之后，林大i姐一点风度都没有地横在沙发上，看着姐姐大人将垂头丧气的水银灯带去楼上，一边揶揄着我，“ni爸光环最终还是战胜了节下限，你居然能让水银灯这样的家伙沦陷——我都不理解你怎么办到的。”</p>
+	<p class = "firstLineIndent"> 别说你，我也不理解——堂堂水主席你怎么就让我们污染成这样了呢？</p>
+	<p class = "firstLineIndent"> “木头，跟你说件事，”看我一副困倦不已的样子，仍然jing神满满的林大i姐突然打了个响指，“还记得当年三途河畔的莉莉娜吗？”</p>
+	<p class = "firstLineIndent"> 我脑海中立刻浮现出了某天然黑在彼岸uā掩映下恬静的脸庞。</p>
+	<p class = "firstLineIndent"> 那丫头现在都快被我们归类为战争失踪人口了，还有个说法就叫非确定阵亡。</p>
+	<p class = "firstLineIndent"> 看到客厅里除了正玩魔方的浅浅和正眼泪汪汪地看着自己被夺走的魔方的i泡泡之外，所有人都支棱起耳朵看着自己，林半仙得意洋洋地说道：“情报部最新消息路的i魔nv找到了。”A！~！</p>
+	
+<h2>第五百六十五章 三途河畔的莉莉娜以及病床上的水银灯</h2>	
+	<p class = "firstLineIndent"> 帝**团目前的情报负责人是林雪，这是顺理成章的事情，放着这么一个双眼偷窥天下脑补祸害苍生的主不用那就是对人才的极大浪费，反正就是我不让她管这丫头闲着没事也会到处乱看，所以为了防止闲极无聊的林雪给自己找麻烦我就让她担任了情报局局长，另外由于无聊的时候会免费给我们做天气预报，她还兼任着气象局局长的职责，当然，第二个职务就是扯淡用的。</p>
+	<p class = "firstLineIndent"> 现在我们的情报局局长总算在自己的位置上起到了点作用，给我带来个不知道算不算好的消息：那个天然黑到骨子里的伪萝莉有下落了。</p>
+	<p class = "firstLineIndent"> 这同时也就意味着，一度陷入极大混乱的时空体系已经完全平静下来，一度被停止的超远程模糊世界传送现在可以重新启动了。</p>
+	<p class = "firstLineIndent"> 当来到影子城的时候，我能明显地发现这里有了某种变化，最明显的就是覆盖大半个天空的世界之树树冠正散发着一种极为黯淡的彩色光晕，某种庞大的信息洪流正在一个隐秘的通讯频率高速离开这个世界，叮当告诉我，那是世界管理终端正在向它的上级节点发送本次事件的汇总数据，毕竟是波及成千上万个世界的位面震荡，即使在神族眼中，那也是了不得的大事件，当事件结束之后身为当事人和负责人的叮当自然需要写个报告，虽然我们还研究不出这次时空混乱事故的原因，但想必那些势力庞大的神族能查清真相，恐怕经历了这次事件，这一片在虚空中极为偏远的世界也会被神明们牢牢记住吧。</p>
+	<p class = "firstLineIndent"> 而经历了这一大事件的叮当，估计很快也要出点小名，万年吊车尾的傻蛋女神成功力挽狂澜，在虚空多地发生非法移民偷渡偷住的情况下依然维持了本宇宙的秩序和谐，并在短短的一个多月里恢复了当地治安，这绝对能让小东西保住她的年终奖，然后叮当就有机会给自己的世界管理终端换一套正版操作系统——现在小不点就等着上级给她下达进一步指示，据她本人自信满满地宣布，多半会有福利待遇上的提高，小东西对此深表期待。</p>
+	<p class = "firstLineIndent"> 据说一般情况下这种大事件需要半个多月才能有初步调查结果，不过有了叮当提供的报告，这个时间可能得再延长上个把月，而假如小东西写报告的时候发挥超常的话，恐怕两三个月之后那帮神明还会一头雾水，我完全无法理解父神派这么个上帝来到底是打算干啥的，但有一点可以肯定，他老人家绝对没本着让世界更美好的良好初衷——这么个上帝扔出去当灭世神器都还嫌威力过大呢。</p>
+	<p class = "firstLineIndent"> 但也正好，叮当的上司还要两个多月才会把进一步工作指示分派下来，叮当就有时间跟着我们一起去把某个迷路的女神官接回来了。</p>
+	<p class = "firstLineIndent"> 次元枢纽广场上仍然是人山人海，帝国交通部门正在经历着其建立以来的第一个旅游黄金周，穿越者返程的高峰期恐怕要三天以后才会回落，经过广场的时候我还专门注意了一下，发现自从西卡罗被关禁闭之后这里已经秩序了很多——主要是买盘的和倒火车票的少了，群龙无首的西卡罗盗版团伙在其领袖蹲班房之后遭到了帝国城管惨无人道的扑灭，虽然战场上都是战友，但在平常的时候后者可一点都不给前者面子，而让人比较忧心的是，虽然盗版贩和票贩子数量锐减，广场上卖茶叶蛋和煎饼果子的却数量激增，中间夹杂着牛头人和地精的小商贩几乎呈泛滥成灾之势，一问我才知道，原来是西卡罗集团的倒台让穿越者们将更多的注意力集中到了这些实实在在的摊子上，林大先知管这个叫行业交叉状态下的经济形态，反正我从广场过去之后整个人都快成移动丰碑了，时空管理局究竟能走多远以及最后会变成啥样让我完全无法想象。</p>
+	<p class = "firstLineIndent"> 直到进入时空管理中心才算把外面的唐丰汽车站忘在脑后……</p>
+	<p class = "firstLineIndent"> “这个就是我们定位到的世界，”一直呆在管理中心的塔维尔当然不知道近在咫尺的次元枢纽已经变成了何等藏污纳垢的地方，或者说即使知道，这个醉心于工作的女研究员也没兴趣关心，她见到领导们匆匆前来立刻就进入了工作状态，在管理中心的“信标大厅”中为我们展示着一个宇宙模型，“模糊扫描的结果并不十分精确，但信息量还是不少，初步判断那是一个类似于本宇宙，但在总体结构和部分物理常数方面十分诡异的地方，而且它的规模比本宇宙小很多，形成时间也非常短——这个是它的几项特征码。”</p>
+	<p class = "firstLineIndent"> 我抓着叮当跟扫码枪一样在投影仪的特征码上晃荡了两下，道：“小东西，是你们神界出产的不？”</p>
+	<p class = "firstLineIndent"> 叮当努力辨认了半天，突然从随身空间里掏出一本大书来：“阿俊你等会，我找找。”</p>
+	<p class = "firstLineIndent"> 敢情你还得现翻，我说你们神界出品上面就不写个madeinheaven啊？</p>
+	<p class = "firstLineIndent"> 成事不足败事有余的上帝大人在那本名称不明但多半十分坑爹的大书上翻腾了半天，终于得出结论：“不是我们造的书上说神族出产的世界会在基础法则末尾加上madeinheaven的脚标以保护版权，这个世界应该是自然生成，而且没有管理员登录窗口，这个世界貌似也没人管理呢。”</p>
+	<p class = "firstLineIndent"> 我承认这一刻自己凌乱了，难不成除了目光如炬之外我还是个隐藏的先知类角色？这不跟林半仙属性重复了吗？</p>
+	<p class = "firstLineIndent"> “看来不是你们的地盘。”我这一刻可算松了口气，莉莉娜那个危险物种领着她的打砸抢烧团在异世界搅风搅雨，我最怕的就是她闹腾到神族的地盘上，毕竟是盟友关系，你放一个疯丫头过去把人家场子砸了面子上多说不过去，我可不是冰蒂斯那种流氓……</p>
+	<p class = "firstLineIndent"> “我们得多久能准备好军队？”我一边把不知道什么时候溜进信标大厅并开始到处乱跑的小泡泡按住，一边问道。</p>
+	<p class = "firstLineIndent"> 珊多拉回答道：“帝国主力部队已经从宇宙各处返航，只是现在时空管理中心的空间输送压力太大，我们得等穿越者高峰期过去，不过也就两三天的事，莉莉娜在那个世界明显卷入了一场战争，我们要做好全面开战的准备。”</p>
+	<p class = "firstLineIndent"> “是得准备一下，我得多带点换洗的衣服。”姐姐跟着点了点头。</p>
+	<p class = "firstLineIndent"> 浅浅抱着我的胳膊哼哼唧唧：“阿俊这次我也过去好咩？”</p>
+	<p class = "firstLineIndent"> 林雪则冲我一摆手：“懒得动弹，我对打仗没兴趣，不过带点土特产回来，我对那个世界的机器挺感兴趣，想拆两个玩玩。”</p>
+	<p class = "firstLineIndent"> 视线最后落在潘多拉姐妹身上，完全不用猜想，维斯卡乐得都快抽过去了，潘多拉则在吭哧吭哧磨她那把丈八蛇矛……咳咳，检查火炮。</p>
+	<p class = "firstLineIndent"> 原打算去解救异界人民于水火之中的，现在看看说不定我们不过去他们还能多活些天。</p>
+	<p class = "firstLineIndent"> “喂，”一直默不作声地趴在我肩膀上看戏的水银灯突然敲了敲我的脑袋，语气困惑，“我怎么听你们说话不像去打仗啊？”</p>
+	<p class = "firstLineIndent"> 我赶紧跟她解释：“其实这次已经算严肃的了。”</p>
+	<p class = "firstLineIndent"> 往常姐姐大人别说换洗衣物了，她每次出征都要带个移动厨房的。</p>
+	<p class = "firstLineIndent"> “呼——反正我对你们这帮家伙已经习惯了，”水银灯仍然保持着那副懒洋洋的样子在我肩膀上趴着，小腿一边有一下没一下地来回晃荡，她对这些事情全无兴趣，“哇”</p>
+	<p class = "firstLineIndent"> 晃荡地太厉害，这家伙差点掉下来。</p>
+	<p class = "firstLineIndent"> “让你抓紧点。”我把水银灯扶正，结果刚一松手，对方又开始往下出溜——我发现不对劲了。</p>
+	<p class = "firstLineIndent"> “水银灯？你怎么回事？”</p>
+	<p class = "firstLineIndent"> “我……我不知道”天不怕地不怕的人偶现在说话竟然微微有点打颤，她现在已经有点坐不直身子，只能抱着我的脑袋勉强不滑下去，“突然没有力气了”</p>
+	<p class = "firstLineIndent"> 我一把将水银灯抱了下来，想来个公主抱，结果发现尺寸不对，就改成了儿童抱（竖着），由于人偶的体质关系，对方的脸色仍然看不出变化，但我发现水银灯的眼神已经有点飘忽了，而且就跟睡眠不足一样，往常大大的眼睛现在几乎张不开，总是强势无比的人偶少女现在就好像无助的小动物一样窝在自己怀中，轻的简直感觉不出重量。</p>
+	<p class = "firstLineIndent"> “我有点……困……”</p>
+	<p class = "firstLineIndent"> 水银灯迷迷糊糊地说了几个字，浑身的球形关节立刻发出阵阵吱吱嘎嘎的声音，跟常年没上油一样。</p>
+	<p class = "firstLineIndent"> “医务兵”我立刻高声招呼起来，转念一想不对，赶紧改口，“维修兵……还不对，后勤兵更不对了……有谁是材料学出身的？”</p>
+	<p class = "firstLineIndent"> “你就别添乱了，”林雪毫不客气地白了我一眼，先知大小姐眼睛中白光一闪，“先送到世界之树神殿，任何生命在那里都不会消亡。”</p>
+	<p class = "firstLineIndent"> 手忙脚乱，想当初克普鲁星区差点让一个黑太阳搞爆的时候我们这帮灭世神器都没手忙脚乱过，但现在水银灯一阵发冷却让我们集体着慌起来，幸好林雪看到了什么，她及时的提醒让水银灯获得了宝贵的抢救时间。</p>
+	<p class = "firstLineIndent"> 世界之树神殿，名为神殿但其实是世界之树内部的一个独立空间，从那些密密麻麻的枝桠穿过，进入树冠的根部，在叮当的力量维持下有一个始终保持开启的传送门，传送门背后是一个看不到边际的异空间，而生命女神的神殿群就是这异空间唯一的建筑物，我一直认为一个身高三寸的小不点住这么大的房子是史上最大的浪费，现在房价多贵啊，叮当这样的你找个花盆种下去经济环保，非折腾一个跟阿房宫似的的神殿群就显摆你们神族楼市调控好是怎么的？</p>
+	<p class = "firstLineIndent"> 我的怨念不是没有道理，直到三年前我跟姐姐最大的心愿还是三室一厅来着，而浅浅到现在还没放弃三室一厅的愿望……</p>
+	<p class = "firstLineIndent"> 穿过悠长的走廊，还有各种名字稀奇古怪，据说象征意义足够让整个世界结构改变的房间，我们直接将水银灯安置在神殿的“万王宝座”，也就是女神办公的地方，从一堆糖果玩具垃圾杂物和稀奇古怪的试验用品之间找一块能落脚的地方真是困难，牛皮烘烘的“万王宝座”跟小泡泡床底下的景象一样，我们不得不将那些可能价值连城的东西统统扔到异空间里才腾出让水银灯躺下的地方，而在小小的人偶少女身边，从医学家到机械学家到材料学家到电子工程师到……反正能想出的学科我挨个找了个领军人物，这些都是最优秀的希灵技师，随便哪个脑子里的一星半点知识都足够让人类社会冲出银河走向宇宙，而他们现在的任务就是让水银灯恢复过来。</p>
+	<p class = "firstLineIndent"> 我承认，上述专家学者里能跟“治病”沾边的实在没几个，但……</p>
+	<p class = "firstLineIndent"> 谁他娘的知道一个人偶生病了该怎么治啊？水银灯连各种器官都没有，你说她抬不起胳膊来我是该找个骨科的医生还是找个机械学的学者还是该找个材料学的专家？</p>
+	<p class = "firstLineIndent"> 一群站在知识顶点的白袍研究员们以平台为中心组成了圆环套圆环形，跟瞻仰遗体一样围着中间的水银灯——这什么比喻？</p>
+	<p class = "firstLineIndent"> 小人偶现在已经快彻底失去活动能力，浑身僵硬的就好像个普通木偶一样，除了眼睛还能微微眨动以及说话之外，水银灯已经与雕塑无异。</p>
+	<p class = "firstLineIndent"> 我一度想起了《蔷薇少女》原版剧情中的雏莓，那个人偶少女在失去了蔷薇圣母，也就是蔷薇少女的人工灵魂（猜测可能是贤者之石的碎片）之后也曾产生了和水银灯现在相近的状况，逐渐僵化，失去活动能力，最终变成普通的木偶，但水银灯现在的恶化速度明显比对方更快，而且通过试验，我们也排除了其蔷薇圣母受损的猜想：蔷薇圣母充其量是贤者之石的碎片，那东西虽然对普通人而言是奇迹之物，但在生命神殿里却什么也算不上，“万王宝座”用来铺地的石板都拥有比贤者之石更加高等的神秘度，但神殿里所有可以充当人工灵魂的东西却没有一个可以让水银灯恢复过来，就连叮当也看不出后者发生了什么异常</p>
+	<p class = "firstLineIndent"> 灵魂完整，身体也没异常（当然要排除掉她腹部缺失的部分……），但水银灯偏偏在不断衰弱着。</p>
+	<p class = "firstLineIndent"> 不是说以叮当的力量连治疗这样一个小小的人偶少女都办不到，而是在找到确切的病因之前，任何治疗都只是治标不治本，就好像房子漏雨，让Caster站房顶上撑着魔法盾固然管用，但归根结底你需要的还是俩补房顶的，我总不能把叮当绑在水银灯脖子上当个固定式蓄电池吧……</p>
+	<p class = "firstLineIndent"> 不知道葛木宗一郎会修房子不……</p>
+	<p class = "firstLineIndent"> “怎么样？谁能看出来是怎么回事？”</p>
+	<p class = "firstLineIndent"> 一群专家学者会诊了一个小时，在生命神殿的力量支撑下水银灯虽然没有继续恶化，却也丝毫没有改观，我不禁有点抓狂了。</p>
+	<p class = "firstLineIndent"> “陛下，理论上讲，这个小女孩现在的身体状况和她在健康状况下的身体没有任何区别……”</p>
+	<p class = "firstLineIndent"> 回答我的是主治医师某某某，他的意思通俗来讲就是：患者一切生命体征良好，但她就是快不行了。</p>
+	<p class = "firstLineIndent"> “你们都是帝国最优秀的研究者，工程师，现在竟然连一个中世纪造出来的人偶都修不好？”我当场就要发飙，一干专家学者立刻面有惭色地低下头去，但我自己也知道，这种情况并不是这些研究员的专业领域，你让一帮搞战舰动力学的去分析洋娃娃为啥不能动了这本来就是赶鸭子上架，“渡鸦们，你们能看出什么？”</p>
+	<p class = "firstLineIndent"> “灵魂完整无缺，精神力量充足，”渡鸦001表情困惑，“按理说应该比谁都活蹦乱跳。”</p>
+	<p class = "firstLineIndent"> 我的视线又投到叮当身上，后者在水银灯身上蹦来蹦去，注意到我的目光立刻回答道：“叮当可以让水银灯恢复活动，但找不到她失去力量的原因的话，一旦失去叮当的神力供应，她还会变成这样。”</p>
+	<p class = "firstLineIndent"> 好么，一群多元宇宙最顶尖的专家学者，魔法大师，甚至加上一个生命女神，现在竟然连个洋娃娃都修不好，这传出去……不过也没办法，你从理论上讲水银灯现在各项指标都是正常，再好的专家学者也无从下手，华佗在世也治不好一个没病的人——不过跟叮当比，华佗什么的弱爆了。</p>
+	<p class = "firstLineIndent"> “水银灯，你现在感觉咋样？”</p>
+	<p class = "firstLineIndent"> 我趴在水银灯耳边说道，她当时的体质恶化速度惊人，被送到神殿的时候，她的听觉已经衰弱大半了。</p>
+	<p class = "firstLineIndent"> “好困……身体……感觉不到……身体……”</p>
+	<p class = "firstLineIndent"> 水银灯精神状态非常糟糕，只是嘀嘀咕咕地回答了只言片语，便再次陷入迷糊状态，但她还是下意识地移动手臂试图抓住我的胳膊——当然，这个动作失败了。</p>
+	<p class = "firstLineIndent"> “没事，放松点，这里聚集了宇宙中最强大的家伙，很快就能修好你的……”</p>
+	<p class = "firstLineIndent"> 总感觉刚才那句安慰在最后混进了非常可疑的动词来着。</p>
+	<p class = "firstLineIndent"> 我轻轻拂去了水银灯额头上的发丝，发现一个糟糕的情况：小人偶原本柔软有弹性的皮肤现在已经有点僵硬，手感……正在接近无生命的涂料。</p>
+	<p class = "firstLineIndent"> “阿俊。”姐姐的声音突然在身后响起，我回头一看，她正露出有话要说的表情。</p>
+	<p class = "firstLineIndent"> “怎么了，姐？”稍微远离了水银灯躺着的地方，我困惑道。</p>
+	<p class = "firstLineIndent"> “阿俊，”姐姐大人担忧地看了水银灯的方向一眼，“你还记着那孩子最初是如何活动起来的么？”V！~！</p>
+	
+<h2>第五百六十六章 水银灯的维修计划</h2>	
+	<p class = "firstLineIndent"> 第五百六十六章水银灯的维修计划</p>
+	<p class = "firstLineIndent"> 水银灯是如何活动起来的？</p>
+	<p class = "firstLineIndent"> 姐姐大人这个问题刚抛出来的时候让我愣了一下，因为它涉及的东西太多了，仅明面上的就包括了机械学能量学灵魂学材料学以及仿生学，脑海里跟走马灯一样把十几个学科过了一遍之后我才猛然醒悟：想多了。</p>
+	<p class = "firstLineIndent"> 我不知道这时候自己该哭还是该笑……平常我都是想少了的。</p>
+	<p class = "firstLineIndent"> “因为蔷薇圣母？”</p>
+	<p class = "firstLineIndent"> 用的是疑问句，但我的语气却非常肯定，这没什么不确定的，水银灯的动力来源跟那丫头背后的发条无关——虽然平常我会闲着无聊拧两下但对方从没因此爆发出十万马力就是个铁证，发条对她而言顶如是个钥匙，真正驱动那个人偶身体活动并且让她获得如活人一般机能的，是隐藏在其体内的蔷薇圣母。</p>
+	<p class = "firstLineIndent"> 那东西本质上是贤者之石的碎片，而贤者之石是炼金师们穷其一生也难窥见的终极奇迹之物，在传说中可以创造生命的逆转因果之石，其所蕴含魔力和神秘度足以扭曲世界的万法之源，叮当神殿前面的“辉煌阶梯”上用来铺地的一把一把都是那玩意……你可见多牛逼了。</p>
+	<p class = "firstLineIndent"> 算上刚才那最后一句仍然牛逼。</p>
+	<p class = "firstLineIndent"> 贤者之石的碎片当然会比完整的贤者之石弱一点，它们不能凭空捏造出真正的灵魂，但在有媒介的情况下，也能模拟出人工灵魂，那就是蔷薇少女的“心”，蔷薇圣母为那些活动的人偶提供能量以及灵魂，赋予她们模拟“生物”机能的能力——当然，这些都是我按照自己的理解在分析，叮当针对这种人工灵魂技术为我找出来的相关资料重达三十多斤还不算插图，我看了一眼连死的心都有了……</p>
+	<p class = "firstLineIndent"> 可以肯定的是，作为初号机的水银灯也应用了这样的能量核心——我怎么感觉自己已经把那个小个子当成某种诡异的东西了？</p>
+	<p class = "firstLineIndent"> “蔷薇圣母是水银灯的灵魂能源不假，但渡鸦和叮当都检查过了，那个东西没坏啊。”</p>
+	<p class = "firstLineIndent"> 我有些丈二和尚mō不着头脑，姐姐大人提到的这个问题是我们一开始就排除过的，她现在提出来干啥？</p>
+	<p class = "firstLineIndent"> “蔷薇圣母正常，身体也没有损伤，但水银灯就是无法活动，问题只有可能出在前者和后者的交互环节了，”姐姐大人食指抵着下巴画着圈圈，每划一个圈我就哆嗦一下——纯属条件反射，“其实你应该早猜到才对，连平常不看动漫的姐姐都想到了哦。</p>
+	<p class = "firstLineIndent"> “水银灯的身体本来是有缺陷的，腹部缺失，我听一个血精灵奥术师说起过，炼金生物都是非常精密的系统，它们甚至有可能因为身上的一个符号错位而自我崩溃，水银灯这样致命的残缺意味着什么不言而喻，即使她拥有完整的人工灵魂，那具身体也不可能活动……”</p>
+	<p class = "firstLineIndent"> “我明白了，”姐姐大人提示到这个地步傻子也该听懂了，“就好像一台有毛病的电脑，即使我们手头有几百美刀整来的正版系统，但电脑的PCI插槽要没插显卡的话照样没法用，对吧？”</p>
+	<p class = "firstLineIndent"> “集显的能用。”姐姐大人非常严肃地纠正道。</p>
+	<p class = "firstLineIndent"> 我顿时一个趔趄：“姐，你就别关心这个了”</p>
+	<p class = "firstLineIndent"> 不过姐姐大人的意思我是明白了，水银灯身体本来就是残缺的，硬件出了毛病，导致即使她有软件也没法运行，人工灵魂无法为一个不完整的载体提供能量，因为后者驱动可能装不上……</p>
+	<p class = "firstLineIndent"> 但水银灯之前一直活蹦乱跳甚至有力气跟阿赖耶玩东方弹幕战是为啥？</p>
+	<p class = "firstLineIndent"> 答案让我黯然神伤：因为对她爹的执着。</p>
+	<p class = "firstLineIndent"> 执念这种东西说不清道不明，三年以前我一直认为那玩意顶多可以给一个人钻牛角尖的勇气，撑死了造就一代元首希特勒最后还自杀了，但后来我知道，执念也是可以化为实质xìng力量的——比如安薇娜。</p>
+	<p class = "firstLineIndent"> 不管你信与不信，安薇娜转化为亡灵很大一部分是执念的作用，是生命在遭遇突然死亡之后犹不自知，顽固地相信自己仍然活着并顽固地渴望永远活下去的那种执念，它是灵魂的本能力量，连安薇娜自己都不会察觉这份执念的存在，大部分亡灵类生物都是这么来的，他们有很多甚至不知道自己已经死了，就跟当初的安薇娜一样，这个我们留待以后走灵异路线再讨论……</p>
+	<p class = "firstLineIndent"> 而水银灯也有执念，这份执念源于她意识诞生的那天，我不知道罗真是不是给每一个蔷薇少女都提前编写了类似“三定律”一样的东西，水银灯产生意识之后仅仅看过罗真弃坑前的最后一个背影，就此便不可自拔，矢志不渝地要找爸爸，这在我看来全无道理——那老小子撑死算给小灯造了个身体，可还是残缺的，连驱动都没装上，并且少了好些零件，要换我早翻脸了，可对水银灯而言，就是这么一副残破的身躯，以及罗真彻底抛弃自己之前留下的那个模糊的背影就让她钻了牛角尖，她居然硬生生凭着一腔执念弥补了身体结构上的巨大缺陷，在“寻找父亲”这个执着信念的驱动下，以残破之身爬了起来……</p>
+	<p class = "firstLineIndent"> 我甚至不敢想象，在最初的日子里，被孤零零地扔在堆满了人偶残肢的房间中，被灰尘逐渐覆盖时，水银灯是怎么熬过来的，她究竟要付出多大的努力才能让那断成两截的身躯活动起来，那身黑sè的华丽衣裙，是她付出多大努力才独自穿上……</p>
+	<p class = "firstLineIndent"> 罗真啊罗真，你逆天改命修习禁术违反自然平衡之道对元素无敬畏之心让暗影腐蚀灵魂还与武林正道为敌，最终渡劫失败在闪电风暴下化为一缕青烟实在不亏啊……反正按叮当推算那老小子已经挂点了，我估计随便怎么说丫也不能回来抗议吧？</p>
+	<p class = "firstLineIndent"> 这么说纯属替水银灯抱不平发泄一下，说到底还得感谢那个史无前例的坑王，虽然他弃坑了，但水银灯毕竟是由他才诞生，而且我知道，水银灯不喜欢被人同情……</p>
+	<p class = "firstLineIndent"> 说到小说]就来这里一切真相也就大白，水银灯残破的身体本无法运行，它无法和正常的蔷薇圣母达成400%的同步率，但水银灯用自己“寻找父亲大人”的执念弥补了身体上的不足，就相当于给身体打了个补丁，这份精神力量让她能和正常人偶一样活动，但现在……</p>
+	<p class = "firstLineIndent"> 补丁被删除了，而且重建不能。</p>
+	<p class = "firstLineIndent"> 在决定回来的那一刻，这个人偶心中“寻找父亲大人”的执念便宣告终结了。</p>
+	<p class = "firstLineIndent"> 想到这里，我才发现，对此事第一个需要反省的，就是我自己，让水银灯“寻找父亲”的执念出现第一次崩塌的人正是我，我告诉了她罗真可能已经由于窥探真理之门而受到了法则的惩罚，而且提起了不止一遍，每一次都会让水银灯暴跳如雷，但同时，每一次也会让她更加接受现实。</p>
+	<p class = "firstLineIndent"> “现在怎么办？除非叮当翻箱倒柜找出来的世界法则维护条例有印刷错误，否则罗真是百分之一万已经挂掉了，而且水银灯最终选择回来，她也不可能再产生当年的那份执念，这情况已经不属于任何一个学科的专家能搞定了，”想通了个中环节，我对姐姐大人只能这样苦闷地一耸肩，“小灯她爸真不厚道。”</p>
+	<p class = "firstLineIndent"> 罗真不厚道，非常不厚道，我从前怎么就不知道学炼金和工程的都那么别扭呢，你说你做到一半弃坑也就罢了，大不了我帮你照顾着点，走同人路线把水银灯养着，结果这头眼看成功了，罗真那老小子yīn魂不散地跳出来非要保护版权了……想当年曹雪芹《红楼梦》没写完一个黄泉遁差点太监掉，高鹗给帮忙写了续集《红楼梦续》，晋朝陈寿写《三国志》完本，到明朝罗贯中给写了个同人《三国演义》，这都没出什么事啊，由此可见，西方炼金师就是没东方文学家气量大……</p>
+	<p class = "firstLineIndent"> 这么乱七八糟地想着当然于事无补，不过除了胡思乱想之外在这个节骨眼上我这个门外汉是真没什么能干的了，而我旁边站着珊多拉，跟我一样，她也不懂炼金术……</p>
+	<p class = "firstLineIndent"> “陛下，现在的方案有三个，都具备可行xìng，但都不保证成功。”一帮专家学者围着人偶少女合计了快有俩钟头，这时候终于派出个代表来跟我和珊多拉汇报。</p>
+	<p class = "firstLineIndent"> 这时候我才终于lù出松一口气的表情，专家就是专家，别看围了一圈一个多小时才拿出方案，但人家开口就是三更——我现在特想知道他们憋到现在才发布，而且一发布就是三更是不是为了冲榜……</p>
+	<p class = "firstLineIndent"> “从成功几率最高的开始讲。”我赶在珊多拉开口之前赶紧说道，后者习惯先听坏消息，让自己的精神提前做好应付一切困难的准备，但我更喜欢先听好的，一来给自己个良好的心态好应付后面的麻烦，二来……要这个最好的消息都让人绝望的话，后面两条我就可以直接睡过去了。</p>
+	<p class = "firstLineIndent"> “成功几率最高的是身体重塑，以及灵魂重组，将水银灯小姐的精神部分完全抽取出来，并从那种被称为蔷薇圣母的人工灵魂载体中剥离开，叮当女神会把这些精神体封装为一个新的灵魂，然后我们将新灵魂放进一个健康的身体中，这样的成功率几乎是百分之百的，我们有非常丰富的相关经验……”</p>
+	<p class = "firstLineIndent"> “但是在这个过程中水银灯原有的身体和她的蔷薇圣母会被毁弃，”我有些难办地摇摇头，“你们无法理解她的感情，水银灯不会接受这种事情的，哪怕罗真已经完蛋了，她也不可能同意这个提案。”</p>
+	<p class = "firstLineIndent"> 毕竟，假如连“父亲大人”留给自己的人工灵魂都毁掉的话，那可就不只是损失一颗牙的问题了……水银灯会跟我拼命的。</p>
+	<p class = "firstLineIndent"> 但假如剩下的两个方案都不靠谱的话，这也只能是唯一的选择。</p>
+	<p class = "firstLineIndent"> “第二个方案是身体修补，”说话的是一名渡鸦，所有渡鸦在我眼里都是一个样——她们在谁眼里都是一个样，所以就不说名字了，“水银灯是炼金生物，她的身体发生缺损导致了其人造灵魂无法和载体同契，只要我们能修好她腹部缺失的一环，说不定她就能以一个普通蔷薇少女的形态恢复过来。”</p>
+	<p class = "firstLineIndent"> “这个办法好啊”我当即一拍手，“这么简单的法子既然可行你们怎么还合计了半天？直接给做一节身子不得了？说吧，用烤瓷的还是钛合金的？”</p>
+	<p class = "firstLineIndent"> 话音刚落我就感觉身旁一阵杀气，扭脸一看，水银灯半昏mí中都开始咬牙切齿了……这是何等凶残的第六感？</p>
+	<p class = "firstLineIndent"> “情况没有那么简单，”魔法少女……呃，渡鸦某某某面有忧sè，“比起创造一个炼金生物，修复后者要更加麻烦，因为每一个炼金师在制造自己炼金生命的时候都会有很多个人技巧和习惯融入作品，而后人修复就必须mō透这每一个特殊之处，蔷薇少女毕竟不是生产线上下来的……”</p>
+	<p class = "firstLineIndent"> 这个我表示理解，宋朝一个烧瓷的伙计做一炉盘子估计也就几张大饼的工钱，但那些盘子现在随便摔坏一个我们就得用几十万的月薪找专家来把它们粘回去……</p>
+	<p class = "firstLineIndent"> “也就是说，以你们的技术都无法保证对水银灯的修复可以百分之百达到原装效果？”我眉头皱了起来，“对你们而言炼金术应该不算高端技巧吧？”</p>
+	<p class = "firstLineIndent"> “我们不擅长炼金术……”</p>
+	<p class = "firstLineIndent"> 眼前那跟希尔维亚长相一模一样的渡鸦不好意思地说道，看惯了缺心眼版的银发慢半拍，现在突然看到一个脑筋开窍的让我特不习惯。</p>
+	<p class = "firstLineIndent"> “啥？”我当场就凌乱了，“你们一只手能把达拉然拽下来，竟然不会炼金术？”</p>
+	<p class = "firstLineIndent"> 那渡鸦更郁闷了：“现代人类不也没多少会钻木取火的吗？”</p>
+	<p class = "firstLineIndent"> 我：“……”</p>
+	<p class = "firstLineIndent"> 这个渡鸦嘴怎么这么损呢？</p>
+	<p class = "firstLineIndent"> “你们不会这种‘低等’炼金术，那怎么修复水银灯的身体？”</p>
+	<p class = "firstLineIndent"> “从艾泽拉斯世界找一个擅长炼金术的魔法师并不困难，但艾泽拉斯世界的炼金术更加偏重于对各种法力药剂和魔力结晶的制造，我不知道他们的炼金师在物品炼成方面技巧如何，甚至不敢保证两个世界的炼金术原理可以互通，所以这第二个方法成功率待定，但这个方法反而是最安全的一个，因为整个过程都不涉及水银灯的灵魂，即使试验失败了，她也不会受到任何伤害。”</p>
+	<p class = "firstLineIndent"> “这个方案可行。”我当场就对第二方案产生了信心，而看珊多拉脸上的表情，她也是这么认为的。</p>
+	<p class = "firstLineIndent"> 最主要的是零风险啊，试验多少次都不会伤到水银灯的本体，实在不行我可以从万千世界招募几个师的炼金专家，我就不信这么强大的跨位面帝国，连个蔷薇少女都修不好</p>
+	<p class = "firstLineIndent"> 就是怕等他们修好之后水银灯会不会变成水银猛犸兽、水银哥斯拉、水银霸天虎之类的奇怪存在……</p>
+	<p class = "firstLineIndent"> “第三种方案……呃，这是泡泡刚才下发的信息，本来并不在我们考虑之内，您要听吗？”</p>
+	<p class = "firstLineIndent"> “听，”我点点头，“那丫头成天研究二次元，说不定有什么见解，我们也好有个备选。”</p>
+	<p class = "firstLineIndent"> “她建议我们去找七颗龙珠……”</p>
+	<p class = "firstLineIndent"> 我早应该想到的……</p>
+	<p class = "firstLineIndent"> 来到“万王宝座”中间的平台旁，水银灯正在那里昏昏沉沉地睡着，对我的到来前者似乎有所感应，睫毛颤动两下，人偶少女微微张开了眼睛，有点茫然地看着我的方向。</p>
+	<p class = "firstLineIndent"> 完了，这丫头都不认识人了</p>
+	<p class = "firstLineIndent"> “笨蛋人类，你脸凑太近了”</p>
+	<p class = "firstLineIndent"> 我当场尴尬地咳嗽出来，赶紧后撤。</p>
+	<p class = "firstLineIndent"> “治疗方案出来了，”趁着水银灯进入了清醒状态，我赶紧将渡鸦的两个方案告诉了她——没错，就是两个方案孩子她妈退散——水银灯认真地听完，脸上平淡的表情看不出悲喜。</p>
+	<p class = "firstLineIndent"> 我有些把不准地补充了一句：“两个法子恐怕你都不太喜欢，要实在不行我再让他们想办法，反正我们牛人多。”</p>
+	<p class = "firstLineIndent"> “不用了，”水银灯晃了晃脑袋，微微闭着眼睛，“我知道，如果不是顾及到我的任xìng，以你们的力量，根本不用这么麻烦的，对吧？对你们而言，即使是制造新生命也只要片刻功夫，所以就这样好了……我大概也能猜到自己身体发生了什么……笨蛋人类，修好我吧。”</p>
+	<p class = "firstLineIndent"> 看着突然切换到诡异病娇状态的水主席，我心中顿时冒出巨大的疑huò：这丫头，不会是回来的时候路上捡什么奇奇怪怪的东西吃下去了吧？这不是你的xìng格啊喂</p>
+	<p class = "firstLineIndent"> 当我将自己的疑huò说出来的时候，立刻引发了小人偶的强烈怨念：“要不是现在我没力气，绝对不会放过你的”</p>
+	<p class = "firstLineIndent"> 治疗水银灯的方案最后选择的是第二种，凯尔萨斯和吉安娜接到了我们的命令，开始在全世界招募最优秀的炼金大师，维迪斯帝国虽然也以魔法为主要力量之一，但他们的世界并未发展炼金技术，所以帮不上忙，罗拉倒是能提供点帮助，她那个世界也存在炼金术，虽然不一定能找到炼金大师，但她提供的技术资料肯定会很有用，而更远的新世界，那些刚刚建立“宏世界”网络的地方，新晋的审查官们也正愁接不到提升声望的任务，现在得到消息一个个也是踊跃报名，拼命搜集他们世界的炼金知识……</p>
+	<p class = "firstLineIndent"> 小小的一个人偶牵动了无数世界无数人的心，我隐隐觉得，这已经不是一次普通治疗了……</p>
+	
+<h2>第五百六十七章 莉莉娜，我来给你栓项圈了</h2>	
+	<p class = "firstLineIndent"> 为水银灯修复身体刻不容缓，从帝国最高层直接下达的一连串命令让我们势力下的各个世界统治者都嗅到了异样的感觉，那些最优秀最强大的炼金术师几乎是让他们着急上火的国王陛下一个个踹进传送门的，同时，在时空管理局的运作下，来自其他世界的专家学者（他们大部分都是此前刚刚回去的穿越者，还有几个是最近吸收进组织的下线人员……呃，这个说法怎么这么怪？）也于两天内完成了集结，组建起一支支精悍的医疗小队，不少无法赶到现场或者专业不对口的热心人士还组成了远程声援团体，助威小队，比如“水银灯加油-碧阳学院应援团”、“玛法大陆助威团”、“天门派一百二十八壮士助阵团”等等等性质可疑成分扯淡的民间爱心团体，刚刚建立的“宏世界”网络在四十八小时内变得乌烟瘴气，无聊的人民群众在参与这种活动时爆发出来的八卦精神总是如此火爆，珊多拉连连感叹，要他们把这份热情都用来为国捐躯诸界早就统一了……</p>
+	<p class = "firstLineIndent"> 百分之八十的人都在添乱，剩下百分之二十在被添乱，这就是林雪总结出的现状。</p>
+	<p class = "firstLineIndent"> 反正我是没想到水银灯在那帮穿越者中的人气会高到这样恐怖的程度，她俨然已经成了精神偶像一样的存在，后来让姐姐大人一提醒我算明白了：总是坐在帝国元首肩膀上，和后者一起出现在各种公共场合，疑似娱乐用玩偶的水银灯在那帮穿越党眼里就是跟吉祥物划等号的，无聊的大众总是有相通的地方，那就是会轻易将自己过剩的爱心挥洒给这种莫名其妙的存在，比如元首的洋娃娃。</p>
+	<p class = "firstLineIndent"> 一帮被虚假表象所蒙蔽的普通人啊，你们是没让水银灯的金属风暴打成过鸡毛掸子，等那小家伙知道你们曾把她当成吉祥物，一个个就等着溺毙在鸡毛枕头的海洋里吧</p>
+	<p class = "firstLineIndent"> 不过外面的沸反盈天和一帮热情过剩的应援团都已经无法干扰水银灯的休息，身体不能行动精神却还算清醒的小人偶已经在神殿躺了快两天多，严重无聊的小家伙每天能干的就剩下吃饭睡觉，连Rider都表示同情——这可怜孩子连魂斗罗都打不了。</p>
+	<p class = "firstLineIndent"> 有了外面两个师的炼金专家坐镇，我也不再担心水银灯的“病情”，事实上，也就是当时她突然倒下让人有点过于紧张了而已，现在想想，手下连生命女神都有，我紧张个毛啊……</p>
+	<p class = "firstLineIndent"> “我到底还要在这里躺多久……”</p>
+	<p class = "firstLineIndent"> 嘴里塞着半块橘子，水银灯靠在我腿上含混不清地嘀咕道，略显苍白的小脸上全是无聊和愤懑，能把冰山一样的水主席调教到这种程度，我都有点佩服自己了。</p>
+	<p class = "firstLineIndent"> “也就两三天时间，他们已经开始研究罗真的炼金方式，”我塞给水银灯一块橘子，然后在对方咬自己之前飞快抽手，“你老爸或许是个炼金天才，但我召集来的这些规格外一大半都比他强，到时候你只管按着个人喜好选零件就行，一天一个腰围你能换到世界末日……”</p>
+	<p class = "firstLineIndent"> “咯吱——咔嚓”</p>
+	<p class = "firstLineIndent"> “啊靠重症肌无力你都有力气咬人啊？”</p>
+	<p class = "firstLineIndent"> “你什么时候走？”重重地咬了我一口，水银灯无力地躺了回去，嘀嘀咕咕起来。</p>
+	<p class = "firstLineIndent"> “明天上午——要不莉莉娜该灭世了。”</p>
+	<p class = "firstLineIndent"> 水银灯的身体需要两三天才能修好，而莉莉娜已经迷航了一个多月，按理说一个多月都过来了，多等两三天也不算个事，但我恐怕等不及了，那天然黑现在就是个脱缰的EVA，说不定什么时候一暴走就会把整个世界番茄酱化，我得赶紧去给那丫头戴上项圈。</p>
+	<p class = "firstLineIndent"> 昨天下午两点半西维斯截获过一段疑似与圣殿军团有关的信号，信号内容除了一嗓子声嘶力竭的骂娘就是长达三分钟的火炮轰鸣，我们判断它跟圣殿军团有关的唯一依据就是它显然经过了帝**用算法的加密……这段信号极大坚定了我赶紧去把那小疯子绑回来的决心。</p>
+	<p class = "firstLineIndent"> 而且有一件事也很值得人在意，虽然我们找到了莉莉娜迷失的世界，但那个世界外围的资讯屏障仍然牢固地守护着其内部的秘密，除了偶尔截获一点信息片段之外，影子要塞和圣殿军团之间的联系完全无法建立，这样一个奇怪的世界，而且还是自然生成，当然引起了我们的巨大好奇，这其中又尤以塔维尔最为激动，在连续二十多个超时空探测器有去无回之后，这位女研究员甚至一度产生了亲自去那个世界看看的想法，而林雪在谈及那个世界的时候也不止一次皱眉冥想，显然我们的半仙大人是“看”到了什么神神叨叨的东西却又不能明白告诉大家，这林林总总的原因让我最终决定，不管那边发生了什么，都要先过去看看。</p>
+	<p class = "firstLineIndent"> 至少先把末日使者莉莉娜回收过来……</p>
+	<p class = "firstLineIndent"> “走吧走吧，谁让你是大人物，你还有自己的帝业要操心呢”</p>
+	<p class = "firstLineIndent"> 在我想到那些乱七八糟事情的时候，水银灯却不知想到了什么，突然闹起别扭来，引得我轻轻捏了捏对方有些僵硬的小脸：“放心，我可不会一去不回……呃，我不是意有所指啊。”</p>
+	<p class = "firstLineIndent"> 嘁，我说的就是罗真，有本事你咬我啊，你现在就剩一颗虎牙了</p>
+	<p class = "firstLineIndent"> 然后我就后悔了，她真咬人</p>
+	<p class = "firstLineIndent"> 而且对方现在是病号，我都不好意思反抗的。</p>
+	<p class = "firstLineIndent"> 断牙攻击持续了不到三秒钟，水银灯毕竟体力不足，呼地一下躺了回去，而我则有一下没一下地摸着那小小的脑袋：“放心吧，我不会抛下你，这里是你的家，永远都是……”</p>
+	<p class = "firstLineIndent"> 我的保证掷地有声，水银灯已经被抛弃了一次，这次她如此下定了决心回来，没相聚几天我却又要出征，难保她会不会产生什么不必要的焦虑，比如再次被抛弃之类，虽然这种焦虑有点毫无道理，我却必须让她安心，而且咱如此煽情的一句保证，想必小个子跟自己的好感度也该提升不少吧？</p>
+	<p class = "firstLineIndent"> 念及此，我低头一看，顿时泪目：</p>
+	<p class = "firstLineIndent"> 得到我一句保证，这家伙安安生生地睡着了。</p>
+	<p class = "firstLineIndent"> 你还真是吃了睡睡了吃啊</p>
+	<p class = "firstLineIndent"> 不管怎么说，最后水银灯还是被我们暂时安置在神殿里等着，她对此颇有微词，却只能乖乖听话，现在小人偶唯一的选择就是老老实实配合治疗，等她身体修复完，而那个世界也没什么危险的话说不定我会同意她跟过去凑热闹的。</p>
+	<p class = "firstLineIndent"> 影子空间上层部，帝国星港整备区。</p>
+	<p class = "firstLineIndent"> 星港送别——刚开始的时候这对我而言还算壮怀激烈的事，勇士出征，娇妻相送，来点背景音乐就能给我整出威廉华莱士的感觉来，但现在，从星港出发领军远征对我们一大家子而言已经变得跟出门打酱油一样稀松平常，甚至在未来恐怕将比打酱油更加平常：家里用的油盐酱醋现在都是最近转职全职女仆的毒岛冴子负责采购了。</p>
+	<p class = "firstLineIndent"> 顺带一提，那是个体力活，珊多拉一天吃下去的调料比普通人家的干粮都多……</p>
+	<p class = "firstLineIndent"> “珊多拉，你不过去凑凑热闹？”</p>
+	<p class = "firstLineIndent"> 在身边的珊多拉脑袋上顺手按了按，我问道。</p>
+	<p class = "firstLineIndent"> “‘宏世界’网络和时空管理局都正在运转初期，我得亲自坐镇，”当着全体将士的面，又是出征前的送行会，珊多拉现在又是那个精明睿智的女王陛下了，对我的亲昵举动她只是微微一笑，“此行多加小心，虽然只是一个连莉莉娜都能横扫的低等位面，但林雪的警告还是要在意。”</p>
+	<p class = "firstLineIndent"> 我将视线投向正在磨指甲的林大先知，后者冲我呲牙一乐：“不能说就是不能说，但是听我的准没错，呶，这个给你。”</p>
+	<p class = "firstLineIndent"> 林雪说着，将三个小包塞在我手里，“等三天后再打开看看。”</p>
+	<p class = "firstLineIndent"> “这算啥？”我上下掂了掂手中做工异常粗糙，显然是某大小姐亲自制作的三个布包，“锦囊妙计？”</p>
+	<p class = "firstLineIndent"> “我比那个姓诸的强多了”林雪一脸自豪地拍着自己的胸脯，我不无恶意地猜想这丫头会不会拍平了，“指导性的东西哦。”</p>
+	<p class = "firstLineIndent"> “行了行了，”我一个脑瓜崩弹在林雪脑门上，“先是让我带上一半的新伊甸联邦仆从军，然后又是这种锦囊妙计，你这丫头就不能别成天神神叨叨的？”</p>
+	<p class = "firstLineIndent"> 而旁边珊多拉则是有点疑惑地说了一句：“用锦囊妙计的那个好像姓诸葛吧？”</p>
+	<p class = "firstLineIndent"> ……我都不知道这里究竟谁是地球出品了。</p>
+	<p class = "firstLineIndent"> “阿俊阿俊走啦走啦”</p>
+	<p class = "firstLineIndent"> 正跟林雪讨论着孔明先生祖上三代到底姓诸还是姓诸葛，后面突然传来了浅浅兴高采烈的呼叫，一回头，我们的主母大人一身精神勃发的登山装，正拖着个巨大无比的旅行箱滚滚而来，在她旁边，则是一身宛若豪门千金般的优雅长裙，款款走来的姐姐大人，好吧，其实姐姐只不过是穿了件素色的连衣裙而已，豪门千金优雅仪态之类全是让旁边那个傻丫头衬托的。</p>
+	<p class = "firstLineIndent"> 而在她们身后，则是两个出来送行的专职女仆，安薇娜和毒岛。</p>
+	<p class = "firstLineIndent"> 让安薇娜离开家真不容易，虽然从外面大宅转入影子城严格意义来讲也没离开家门……</p>
+	<p class = "firstLineIndent"> 看着浅浅拖着旅行箱一边招呼一边向登机坪走来的模样，我得说，那个远房二表叔的联想又冒出来了。</p>
+	<p class = "firstLineIndent"> “你这是干啥？”急匆匆上前两步帮浅浅拽住旅行箱，我腾出手来在这丫头脑袋上啪嗒一敲，“有随身空间不用你非要拖个大箱子？”</p>
+	<p class = "firstLineIndent"> “这样才有出门旅游的感觉嘛好久没和阿俊一起旅游了”浅浅乐呵呵地回答道，“而且姐姐大人也带了好多东西哦，虽然都放在随身空间里，但那些换洗衣物厨房用品零食饮料相机电池比我还夸张，整整半吨呢”</p>
+	<p class = "firstLineIndent"> 我当场让这个重量吓的一个哆嗦，姐姐大人则有点尴尬地笑笑：“我忘了珊多拉不跟着一起来，那大部分都是吃的。”</p>
+	<p class = "firstLineIndent"> 不，对珊多拉而言，那全部都是吃的。</p>
+	<p class = "firstLineIndent"> 而且浅浅你刚才说好久没有一起旅游是怎么回事？我到底是应该先吐槽你把远征当成旅游好呢，还是该吐槽你这么快就把上个月千里驰援学园默示录给忘掉好呢？</p>
+	<p class = "firstLineIndent"> “潘多拉跟维斯卡在哪？”</p>
+	<p class = "firstLineIndent"> 左右看看没发现两个小家伙的身影，我不由问道，这俩小的现在还不出现实在反常，明明一个小时前还见姐妹俩跟人来疯一样在星港上空来回乱窜呢。</p>
+	<p class = "firstLineIndent"> “她们要整顿舰队，亲自监督军团离港，”浅浅说着，顺便白了我一眼，“以为都像你一样无所事事地到处乱逛啊，人家可是将军”</p>
+	<p class = "firstLineIndent"> 全世界谁都有资格说我但惟独你这丫头除外啊</p>
+	<p class = "firstLineIndent"> “老板，我们整顿完了”</p>
+	<p class = "firstLineIndent"> 这是谁呀？这么没礼貌？没看见你家老板正跟自家妹子交流感情呢？</p>
+	<p class = "firstLineIndent"> 我循声回头，一个蓝瓦瓦的身影出现在自己眼前，顿时我就没教训对方的脾气了。</p>
+	<p class = "firstLineIndent"> 爱尔兰光之子，库丘林，叮当侧英灵。</p>
+	<p class = "firstLineIndent"> 陈氏家训，第一条，对一个倒霉蛋应该宽容对待，因为丫已经够倒霉了，而宽容可以让他稍微恢复点hp，以利于接着倒霉，娱乐你身心。</p>
+	<p class = "firstLineIndent"> 库丘林这个幸运值达到惊人的E等级，但我更怀疑是不是上辈子得罪过姐姐大人而被诅咒为幸运负EX的家伙，每天遭遇的不幸已经够多了，天雷轰炸，走路摔跤都是轻的，最倒霉的时候他还钓鱼碰上过九头蛇，散步遭遇过奇美拉，躺着睡觉都被巨象踩到过——那可都是阿瓦隆的生物，一个个标准的神造体，虽然由于身为世界之神的卫兵，库丘林最后都能化险为夷，不过现在这倒霉孩子已经在阿瓦隆远近皆知了……</p>
+	<p class = "firstLineIndent"> 库丘林扛着长枪站在我身前，在他后面是奉命参加本次行动的一帮英灵们，阿尔托利亚，海格力斯，英灵卫宫，美狄亚，美杜莎，佐佐木小次郎，以及一圈我都叫不上名字的英灵ABCD，那些ABCD每次执行任务都会换人，只有阿尔托利亚他们几个熟悉的英灵每次都要列队整齐地出现在我面前，对此库丘林也曾小小地抗议过一次，认为自家老板有虐待少数员工的嫌疑，但是没办法，谁让我就认识你们几个呢，要恨，就恨你们自己为啥要参加那倒霉催的第五次战争吧。</p>
+	<p class = "firstLineIndent"> “嗯，嗯，都站整齐啦”</p>
+	<p class = "firstLineIndent"> 叮当突然从我上衣的口袋里跳了出来，像模像样地站在我头顶上，跟个将军一样检视着自己的士兵们，我能想象这个小东西一脸严肃频频点头的可爱样子，而且……哪怕憋的再辛苦这时候也绝对不能笑出来。</p>
+	<p class = "firstLineIndent"> 不过，和我们这边几个忍俊不禁的表情不同，库丘林那边一帮英灵却瞬间都绷直了身体，脸上表情一个比一个庄重紧张，叮当是货真价实的世界管理神，也是这群英灵现在的力量之源以及信仰核心，小东西本身的“存在”就可以让这些英灵骨子里泛出敬畏和服从，于是，我更加好奇库丘林当时是怎么脑子抽筋招惹自家上帝了。</p>
+	<p class = "firstLineIndent"> “你们明白自己的任务吧？”</p>
+	<p class = "firstLineIndent"> 知道小东西除了检阅士兵的时候能装装样子之外，开口训话根本不成样子，我以集团董事长的身份对面前一群刚度过试用期的新员工说道。</p>
+	<p class = "firstLineIndent"> “全力守护水晶圣母”</p>
+	<p class = "firstLineIndent"> 海格力斯，你不必那么大声的，你家上帝都被震到地上了。</p>
+	<p class = "firstLineIndent"> 让海格力斯一嗓子吼下来的叮当歪歪斜斜地回到我肩膀上，开始眼睛发愣地掏着自己的耳朵，而被英灵们保护在中间的某紫发弱气少女则有些发颤地举手发言：“那个，陈哥哥，我真的可以办到吗？”</p>
+	<p class = "firstLineIndent"> “其实你什么都不用干，”我安慰着首次参加这种行动而有点信心不足的樱，“变成水晶圣母之后一切都交给功放电路就可以了。”</p>
+	<p class = "firstLineIndent"> 莉莉娜迷航的世界存在资讯隔离，目前我们尝试的任何一种探测机都无法在那层屏障后面发回信息，但整个帝国舰队总不能在和总部失去联络的情况下远征，所以，拥有诸界渗透功能的阿瓦隆就成了我们的特殊电台，樱的水晶圣母形态作为阿瓦隆延伸体则是天线，借助她和阿瓦隆之间那种可以烧蚀位面障碍而保持联络的关系，我们就能在那个世界和影子要塞保持联系了。</p>
+	<p class = "firstLineIndent"> 就是不知道樱的上行带宽是多少，这么强悍的无线路由，在线电影应该不卡吧……</p>
+	<p class = "firstLineIndent"> 就在这时候，星港上空突然响起了广播：“舰队充能已完成，各部组运行正常，正在进行主战装备次序点名，请所有指挥官登舰，重复一次……”</p>
+	<p class = "firstLineIndent"> “该走了该走了，”已经抓耳挠腮在一边激动了半天的浅浅轰隆一声就蹦跶到了我面前——为啥轰隆一声？你看那个被她甩飞的巨大旅行箱就知道了，“珊多拉，我们出发了哦，安薇娜毒岛你们好好看家~~”</p>
+	<p class = "firstLineIndent"> 这丫头可算有点一家主母的自觉了吗？</p>
+	<p class = "firstLineIndent"> 登舰过程自不必多言，本次星际联军的总旗舰仍然是已经快被我们一次次改装成怪物舰的帝国上将号，伴随着影子空间内一阵剧烈的次元扭曲，舰队，已经来到一片陌生的星空中。V！~！</p>
+	
+<h2>第五百六十八章 林雪的锦囊妙计……</h2>	
+	<p class = "firstLineIndent"> “空间传送停止，各部组状态良好，位面接驳驱动器正在停机中，三号主动力引擎组准备离开静默运行状态，胜利与你我常在。”</p>
+	<p class = "firstLineIndent"> 帝国上将号舰载主机完成了引航阶段的最后一段播音，然后，就是我们从未在舰桥上听到过的一片杂音。</p>
+	<p class = "firstLineIndent"> “果然受到了资讯屏障干扰，”我敲了敲指挥官坐席前的控制水晶，“通讯塔情况如何？”</p>
+	<p class = "firstLineIndent"> 主通讯塔是一片建立在帝国上将号左臂中部的大规模建筑群，作为专精指挥和战地司令部功能的非战斗旗舰，帝国上将号的通讯建筑是它最重要的地方，但刚才响彻舰桥的一阵杂音说明，这个通讯中心可能已经报废了——正常情况下，这时候响起的应该是来自后方要塞的通讯才对。</p>
+	<p class = "firstLineIndent"> “荣耀归于您，陛下，”座位前的全息投影上浮现出了驻守在通讯塔区域的指挥官形象，一个脸型消瘦的中年人，“舰队间通讯链路一切正常，与影子要塞通信全部沉默，塔群主机硬件没有受损，但所有记忆载体中存储的世界坐标以及帝国时空传送网资料已经被不知名力量清空，同时，我们也丢失了和圣殿军团的通讯协议，恐怕需要很长时间修复。”</p>
+	<p class = "firstLineIndent"> “嗯，耐心等待，我会尽快回复和影子要塞的联系。”</p>
+	<p class = "firstLineIndent"> 挂断了和通信塔的联络，我从座位上站起身来。</p>
+	<p class = "firstLineIndent"> 看来这就是当初莉莉娜进入这个世界之后遭遇的情况了，先是被那层古怪的资讯屏障阻拦了和总部的通信，然后飞船内存储的所有空间坐标和上层协议也在穿越位面的过程中被清零，以圣殿军团所装备的联络装置，要在这种情况下重建通讯网根本就是不可能的。</p>
+	<p class = "firstLineIndent"> “樱，感觉怎么样？”</p>
+	<p class = "firstLineIndent"> 我扭过头，关心地问着旁边仍然无力地瘫坐在椅子上的紫发少女。</p>
+	<p class = "firstLineIndent"> 虽然已经被强化成了水晶圣母这样的精英单位，但间桐樱的本体还是比较脆弱的（相比那些希灵使徒），而且她平常也没经常跟着我们到处乱转，对超时空传送，这个女孩并不习惯。</p>
+	<p class = "firstLineIndent"> “看来没让卫宫前辈跟过来真是明智的决定，呕……”间桐樱一脸菜色地皱着眉头，“‘超远程模糊坐标传送’果然比走过世界之门还难受，恐怕要习惯这个还得很久。”</p>
+	<p class = "firstLineIndent"> 我尴尬地笑笑，由于对这个世界之内的情况我们无法知晓，进行空间传送也不可能精确定位，所以在跨位面传送进来的时候舰载主机只能随便选一个空旷的宇宙空间进行停靠，这个震动……确实严重了点。</p>
+	<p class = "firstLineIndent"> 由于樱正忙着吐酸水，顾不上变身无线路由好让我们恢复通信，趁这个空挡，我一边让各军事单位释放探针，一边对浅浅跟姐姐招招手，顺便从兜里掏出三个小布包来……</p>
+	<p class = "firstLineIndent"> 赫赫赫，林半仙啊林半仙，仗着自己有预言能力，学诸葛亮玩锦囊妙计是吧？还说什么要等我们完成传送之后三天再打开，说的神神叨叨，不就是那么回事？你啥都看好了而已。</p>
+	<p class = "firstLineIndent"> “阿俊，你是想现在就打开它们，然后让林雪‘三天之后’的说法不攻自破吧？”</p>
+	<p class = "firstLineIndent"> 姐姐大人过来一看就知道我的想法，慢悠悠地点破道。</p>
+	<p class = "firstLineIndent"> 我也不介意，大大咧咧地点点头，这里补充一句，我一直觉得当初刘备受锦囊妙计其中必有蹊跷，反正你要是换我，等诸葛亮一扭脸我就拆开了——人都是有好奇心的。</p>
+	<p class = "firstLineIndent"> 所以我坚持认为，当初诸葛亮把锦囊交给刘备的时候，他早就知道丫会拆着偷看了</p>
+	<p class = "firstLineIndent"> “林雪会不会已经知道你会提前偷看了？”</p>
+	<p class = "firstLineIndent"> 往常总是很少开窍的浅浅这次竟然也难得开窍了一次，不过对她的猜想，我只是高深莫测地摇摇头。</p>
+	<p class = "firstLineIndent"> “那丫头肯定知道我知道她已经知道我要偷看，常理考量我就肯定不会钻这个套，所以，现在拆开才是出乎她的意料啊”</p>
+	<p class = "firstLineIndent"> “但假如林雪知道你知道她知道你知道她知道你要偷看呢？”</p>
+	<p class = "firstLineIndent"> 冷不丁的，头顶上突然响起了某小东西脆生生的质疑声。</p>
+	<p class = "firstLineIndent"> 我脸色一僵：“但是也说不定她知道我知道她知道我知道她知道我知道她知道……”</p>
+	<p class = "firstLineIndent"> 小东西继续孜孜不倦：“也有可能她知道你知道她知道你知道她知啊嘚嘚……好痛，又咬到舌头了”</p>
+	<p class = "firstLineIndent"> 对这个一旦说不清楚就会宣布咬到舌头耍赖卖萌的小不点我已经失去吐槽**了，但她说的貌似很有道理诶，万一林雪真的知道我知道她知道我知道她知道……你们要不嫌凑字数我还能循环出三十多行去。</p>
+	<p class = "firstLineIndent"> 不过话说回来我跟一个先知在这方面折腾啥米啊这种争斗有一毛钱的意义吗？我觉得自己简直跟发誓要在掰腕子比赛中战胜龙神的叮当一样脑抽了。</p>
+	<p class = "firstLineIndent"> 当下我不管三七二十七，在浅浅好奇，姐姐大人玩味，叮当趴着头偷看的氛围中，郑重其事地打开了——歪歪扭扭标着布包。</p>
+	<p class = "firstLineIndent"> 感觉咋这么像在命运之手下垂死挣扎呢？</p>
+	<p class = "firstLineIndent"> 里头一张小纸条，浅浅已经迫不及待地把它抽了出来，大声读道：“木头你果然提前偷看了，另外浅浅你手指头压住一行字”</p>
+	<p class = "firstLineIndent"> 众人：“……”</p>
+	<p class = "firstLineIndent"> 这是多凶残的预言精度，我说林大先知你不至于又是一晚上没睡净倒腾这点吃饱撑着的事情了吧？有这功夫你去把中国福彩折腾倒闭了不比啥强？</p>
+	<p class = "firstLineIndent"> 浅浅挠挠头发，不好意思地接着读刚才被自己指头压住的字：“现在请打开第二个锦囊~~”</p>
+	<p class = "firstLineIndent"> 我叹了口气，然后打开了——标着布包，切，我能听那疯丫头调遣？</p>
+	<p class = "firstLineIndent"> 结果第一个布包里面还是张小纸条，仍然是被浅浅抢了过去，上面斗大一行字：“说过啦，应该打开第二个~~~”</p>
+	<p class = "firstLineIndent"> 后面还画了个傻乎乎的笑脸，那水平也就比姐姐大人强点有限。</p>
+	<p class = "firstLineIndent"> 我又叹了口气，打开第二个，配合就配合，我倒要看看那丫头究竟还能折腾出多无聊的东西。</p>
+	<p class = "firstLineIndent"> 结果我震惊了，她还真有更无聊的：编号为2的小包里还是张纸条，上面一行字：“嘿嘿，木头，你第一次打开的那个锦囊还没扔吧？其实我把字写在它里子上了……”</p>
+	<p class = "firstLineIndent"> 我欲哭无泪地抬头：“尼玛，不带这么玩人的……这绕来绕去的跟百度一样了……”</p>
+	<p class = "firstLineIndent"> 彻底无语地拿起最初的锦囊，整个翻过来，那里子上的一行字却突然换了口气，让我差点来不及把心态调整过来：“让所有帝国战舰和帝国兵进入相位隐形，就近寻找无人天体隐藏自身，你们暂时换乘新伊甸联邦的战舰，原因我也不太清楚，但应该很快就会明了。”</p>
+	<p class = "firstLineIndent"> “怎么了？阿俊？”看到我脸色突然从蛋疼切换成严肃，姐姐大人立刻好奇地抓过“锦囊”，看到上面一行字之后也皱起眉头。</p>
+	<p class = "firstLineIndent"> “她让我们把帝国舰队隐藏起来，”我随手把另外两个纯属林雪捣乱用的布包扔在一边，“那丫头可能是收到了什么隐喻——舰载主机，整编帝国单位，搜索一下附近有没有合适的孤立无人天体。”</p>
+	<p class = "firstLineIndent"> “主机明白，超时空探针返回情报，静态航线前方一点五三光年外发现一颗高亮度红巨星，红巨星隐藏在一片强辐射云雾气团中，附近未发现生命星球，是否停靠？”</p>
+	<p class = "firstLineIndent"> “藏在红巨星里面？”我嘴角上翘，“听起来有点意思——樱，身体恢复的怎么样了？恐怕我们还得稍微震动一下。”</p>
+	<p class = "firstLineIndent"> 某水晶圣母立刻苦兮兮地摆摆手：“我觉得自己还得吐会……”</p>
+	<p class = "firstLineIndent"> 让间桐樱稍微休息了一会，我下达了舰队起航的命令，现在所有帝国飞船已经按照林雪的提示进入相位隐形，暴露在可观测范围内的只剩下一群来自联邦政府军的战巡舰以及普罗托斯航母，这让本打算领着一群虎狼之师横扫星空的潘多拉姐妹颇为丧气。</p>
+	<p class = "firstLineIndent"> 舰载主机扫描到的红巨星是一颗体积足足有太阳十亿倍，光芒明亮而且已然年迈的衰退期恒星，一些数据表明，这颗老迈恒星的前身可能是一个肥胖的“太阳”，在经历了数百万年的内部核燃烧之后膨胀到了这种程度，它是一颗孤独的宇宙独行者，在其周围没有发现任何伴生天体，当然，也有可能存在过，但现在那些天体已经被这个暴君吞进了肚子，在这片荒凉天区迎接我们的，只有一大片正在不断扩散的暗淡热星云，以及一个正在逐渐冷却的红色巨星。</p>
+	<p class = "firstLineIndent"> 当然，在舰队靠近红巨星之后，出现在我们眼前的已然不是一颗天体，而是扑入视野的无边赤海，相当于太阳十亿倍大小的天体，就意味着你在几亿公里之外也不可能看到它边缘的任何弧度，而帝国舰队是直接跃迁到这颗星球附近不足两百万公里位置的，这让我们一眨眼就发现自己已经进入了一片赤红的天地之中。</p>
+	<p class = "firstLineIndent"> 即使飞船的成像系统已经调弱了外景亮度，舰桥上仍然被全息投影中的火海映的一片通红。</p>
+	<p class = "firstLineIndent"> 红巨星的表面是稀薄的氢燃料气云，如同沸腾的浓汤上漂浮着一层火焰般壮丽，于是，间桐樱和她的英灵卫队们就趴在舰桥的栏杆上看着前面的实景全息投影跟合唱团一样此起彼伏地感叹着。</p>
+	<p class = "firstLineIndent"> 他们根本没看到红巨星真正惊心动魄的壮丽一面，事实上，充满局限性的肉眼不论在哪个角度都无法窥探到这宇宙巨汉的全部壮观之处，但仅仅是一片红色世界，就已经足够让他们惊叹了。</p>
+	<p class = "firstLineIndent"> 这里我突然想到了之前偶然跟潘多拉聊天的时候知道的小秘密，那丫头的氦闪，其实跟红巨星的形成原理就有一定关系。</p>
+	<p class = "firstLineIndent"> 恒星的平衡是由其巨大的引力和内部核反应向外的猛烈冲击共同维持，而当一颗恒星步入晚年，其燃料消耗殆尽，这个平衡就会被打破，由于燃料匮乏，恒星中心核反应产生的冲击将迅速减弱，在引力的作用下恒星会开始坍缩，随着坍缩的进行，原本在恒星表面不参与燃烧的氢元素也会由于高压高温而产生核聚变，这种表层的能量释放会让坍缩过程进一步加剧，渐至疯狂，一部分质量合适的恒星会演变为黑洞，而还有一些恒星会走上另一个极端，由于重元素在引力作用下沉降，恒星在这个阶段通常会具有一个巨大的氦核，这些沉积下来的核燃料在恒星壮年时不参与燃烧，但在恒星即将挂掉的时候，它们在一亿度的高温下开始聚变，与恒星在数十亿年中的缓慢燃烧不同，这个过程极端迅捷，如同闪电一般让整个恒星内核爆燃起来，促使坍缩过程中的恒星爆炸般膨胀，最终形成红巨星，而那种超高速的氦聚变则被称为氦闪耀，简称氦闪——搁我这儿就叫萝莉狮子吼。</p>
+	<p class = "firstLineIndent"> 当然，潘多拉的氦闪跟红巨星爆发没法比，那丫头1.2米的悲催身高里也藏不下一颗爆炸中的太阳，她只是利用幽能模拟了那一过程而已，威力也下降了不知多少个数量级，毕竟一个是恒星历经亿万年积累才瞬间爆发的数兆吨核爆燃，一个是矮冬瓜几秒钟充能就能吼出来的镭射，后者的威力要是能跟前者比的话……希灵使徒再逆天也不带这么玩的。</p>
+	<p class = "firstLineIndent"> “探针在这颗红巨星内部探测到一个正在形成的白矮星，帝国舰队会在它周边建立一个环状基地，作为我们在这个宇宙的哨站，同时，他们也会尝试和莉莉娜建立连接，圣殿军团的通讯系统恐怕也被格式化了，咱们得挨个尝试他们现在可能正在使用的加密频段才能恢复和那个天然黑之间的联系，”我拍了拍间桐樱的肩膀，让仍然忙着惊叹的少女还魂过来，“别看了，这颗星球可不仅仅好看，它更危险，联邦军的飞船幽能有限，在红巨星上坚持不了太久，咱们先去艾尔之光号上吧。”</p>
+	<p class = "firstLineIndent"> 虽然不知道林雪在搞什么名堂，但无数血淋淋的故事告诉我们，在关键时刻不听先知的话是会吃大亏的，阿尔萨斯他爹就是个铁证。</p>
+	<p class = "firstLineIndent"> 艾尔之光是在克普鲁大灾难时期最后撤离“热启动”范围，又第一个接受帝国科技改良的普罗托斯圣母舰，这个已经运行了数世纪的老古董飞船处处洋溢着普罗托斯辉煌时期的骄傲和强大光芒，在挂载了大量帝国科技组件之后可以说是目前新伊甸联邦最强大的飞船（那几座帝国赠送给联邦充作殖民星和能源宝的“零”式星球战舰不算）之一，虽然打不过荣耀级之类的规格外战舰，但和永恒级也差不多了，这个巨大的圆盘状空间堡垒被数层强大的幽能护盾保护着，其内部有一座以巨型灵能水晶为中心建立的军事“城镇”，而这个城镇中有一座圆柱形建筑最为显眼，那就是澎湃着比中央灵能水晶还要强大的能量，被所有普罗托斯战士当成神殿看待的幽能发生器——帝国友情赠送。</p>
+	<p class = "firstLineIndent"> 我真的很想吐槽这些普罗托斯人将指挥中心建立在幽能发生器上的举动，这不是核弹上蹦极——扯淡要死吗？</p>
+	<p class = "firstLineIndent"> “假如你们的造物都会发生能量泄露，那恐怕整个宇宙也没有安全的设备了，”面对我的强烈质疑，亲自担任本次联邦方面军总指挥的雷诺只是哈哈一笑，虽然这间会议室就建立在威力绝伦的幽能发生器上方，但他好像一点都不担心，看来是没见识过福岛事件啊……咳咳，“不过在红巨星内部建立前哨，你们还当成稀松平常的事情，这真是让我大开眼界。”</p>
+	<p class = "firstLineIndent"> “马马虎虎吧，倒是你，还有泽拉图，两个联邦最高议长亲自跟着我出来打仗，你们就不管政务的吗？”</p>
+	<p class = "firstLineIndent"> 我话音刚落，泽拉图低沉沙哑的声音就从旁边响了起来：“伟大导师，身为帝国元首的您都能亲自远征，我们更应如此……”</p>
+	<p class = "firstLineIndent"> 我当场汗都下来了，这要知道的，泽拉图只是实话实说，要不知道的，你这不是讽刺我呢嘛，就因为成天御驾亲征，林雪现在都快挤兑死我了……</p>
+	<p class = "firstLineIndent"> 尴尬地咳嗽了两声，我开始转移话题：“说起来，樱应该已经准备完了吧？”</p>
+	<p class = "firstLineIndent"> 我是跟美杜莎说的，后者微不可察地点点头：“樱切换成了水晶圣母形态，正在调试和阿瓦隆的共鸣，我们已经可以接收到来自影子要塞断断续续的信息了。”</p>
+	<p class = "firstLineIndent"> 这句话翻译过来就是，樱已经安上天线，现在正拨号呢。</p>
+	<p class = "firstLineIndent"> 樱的工作效率确实不错，十几分钟后，在联邦舰队通过超时空跳跃远离了红巨星并进入一片小行星带的时候，我们终于恢复了和影子要塞的联系，接收到的第一条信息显然是林雪编写，当头五个大字：天王盖地虎，我想也没想就回了个：往来有鸿儒……反正起码押韵了。</p>
+	<p class = "firstLineIndent"> 借助一个水晶圣母建立起来的通讯自然在带宽上很受限制，虽然看电影肯定不卡但我仍然要将私人会晤让位给军事通讯，由于樱就在艾尔之光号上，这座普罗托斯圣母舰也就成了本宇宙的通讯信标，正停泊在红巨星核心的帝国上将号将进入本宇宙之后收集到的海量世界常数信息以这艘圣母舰为跳板源源不断地上传给影子要塞，而同时，我们也在高速下载着影子城发来的虚空坐标，以复原被删除一空的舰队星图，这个过程用了足足两个多小时，樱的上行和下行带宽一度达到5TB/s，这个凶残的网速让我差点一口气上不来把自己呛死，但珊多拉那边还一直抱怨服务器太卡了……</p>
+	<p class = "firstLineIndent"> “林丫头，现在能说了吧，你到底在搞什么名堂呢？”</p>
+	<p class = "firstLineIndent"> 在等星图修复的时候，我也终于有时间问问那个大仙，她那三个蛋疼的锦囊妙计到底是啥意思了。V！~！</p>
+	
+<h2>第五百六十九章 史上最让人头大的乱入</h2>	
+	<p class = "firstLineIndent"> 刚听到锦囊妙计三个……四个字，林雪那头就爆发出一阵抽风般的大笑，虽然投影上看不到林雪在干啥，但听那稀里哗啦的背景音我都能想象出那丫头满地打滚的场景了，人类历史上的先知何其多，基本上中世纪随便一个精神分裂的主都敢说自己是先知，但这么几个加强旅的先知里也没见有跟林雪这一样恶劣的，当年诸葛亮要在锦囊里写个“主公请阅锦囊二号”我估计后世也就没三国的说法了……</p>
+	<p class = "firstLineIndent"> “哦呵呵呵~~~~木头你果然上当了哦本大小姐果然是你的克星哈哈”林雪那边抽风的跟吃多了兴奋剂一样，我这边是一个劲的黑线：“行了行了，你觉得这样很有意思哈？”</p>
+	<p class = "firstLineIndent"> “人生就应该充满欢乐嘛，”林雪噗噗地憋住了笑，扶着腰回到了通讯器前，一本正经地回答，“恩，木头你应该看到最后写在包包里面的字了吧？”</p>
+	<p class = "firstLineIndent"> “你还能不知道？”</p>
+	<p class = "firstLineIndent"> 我翻了个白眼，这丫头，啥都能看见还跟我装。</p>
+	<p class = "firstLineIndent"> “我确实没看见，”林雪老老实实地承认，“折腾了一宿，就看见你看完第三个纸条那步了，那个世界干扰太严重……”</p>
+	<p class = "firstLineIndent"> 有这个功夫你就不能干点有用的？</p>
+	<p class = "firstLineIndent"> “对了，木头，”仿佛知道我下一步就要教训她，林雪赶紧转移话题，“现在帝国舰队应该已经隐蔽了吧？”</p>
+	<p class = "firstLineIndent"> “嗯，他们现在在一个红巨星内建立了前哨站，”我点点头，“倒是你得告诉我，这么做有什么意义吗？”</p>
+	<p class = "firstLineIndent"> “我看的也不十分清楚，”林雪看上去挺认真严肃，“但有一点可以确认，大规模帝国舰队出现在这个世界会引发很麻烦的事情……啊，珊多拉找你有事。”</p>
+	<p class = "firstLineIndent"> 通讯器前出现了珊多拉的身影，她的表情看上去非常古怪，有点担心，但更多的是无可奈何。</p>
+	<p class = "firstLineIndent"> “小泡泡说她的亮晶晶丢了。”</p>
+	<p class = "firstLineIndent"> 珊多拉开头第一句话就是这个，让我一时没转过弯来：“她又把玩具弄丢了？”</p>
+	<p class = "firstLineIndent"> “要是玩具丢了还好点，”珊多拉叹口气，“这次是她的玩具管理员不见了。”</p>
+	<p class = "firstLineIndent"> 顿时一个金光闪闪的身影就跃入了我的脑海。</p>
+	<p class = "firstLineIndent"> “那个金光乱冒的家伙不见了？她不是一直跟小泡泡在一块吗？”</p>
+	<p class = "firstLineIndent"> “而且……希尔维亚也不见了……”</p>
+	<p class = "firstLineIndent"> 珊多拉前一句话还只是让我有点错愕，可是她后一句话就直接让我跟遭雷劈一样了。</p>
+	<p class = "firstLineIndent"> 慢半拍？她也跟着失踪了？我说影子城难道发生暴动了不成？</p>
+	<p class = "firstLineIndent"> 不带这么玩的啊希尔维亚怎么可能走丢</p>
+	<p class = "firstLineIndent"> 虽然脑子慢，但希尔维亚却从来没有走丢的时候，当然这不是说她在认路方面有什么天赋，而是由于她实在太脱线了，几乎每次出门都会在离开自己住的那条街之前就忘掉要去哪里，然后晃晃悠悠地回来，这导致希尔维亚就跟从不离开自己地盘的鼹鼠一样，绝无走丢的可能，不过这次是怎么回事？听珊多拉的口气，她跟金闪闪一起失踪的？</p>
+	<p class = "firstLineIndent"> “阿俊，你要挺住——”珊多拉看我脸上表情跟刷屏一样滚动播出，有点犹豫地说道，“她们俩……可能偷偷溜到了你的某艘战巡舰上……”</p>
+	<p class = "firstLineIndent"> 当场我就石化成丰碑了。</p>
+	<p class = "firstLineIndent"> “雷诺，通知你所有的舰长，两个巨大的麻烦分子已经混进了舰队”</p>
+	<p class = "firstLineIndent"> 胡子茬大叔从刚才开始就旁听着我们的通讯，当然知道发生了什么事情，而且那个银发慢半拍由于其几乎不属于现实时间线的思维速度和其神秘的身份而非常有名气，这让雷诺瞬间就明白了事情的严重程度：“我这就让他们出动幽灵特工和黑暗圣堂武士——那个，万一她们反抗，我们好像压制不住啊？”</p>
+	<p class = "firstLineIndent"> “所以不要惊动她们，我亲自过去。”</p>
+	<p class = "firstLineIndent"> 命令一瞬间下达到了整个舰队，一千多艘战巡舰里立刻热闹起来，到处都是跑来跑去的幽灵特工和黑暗圣堂武士，雷诺跟泽拉图这俩老基友现在是真着急上火：两个无关人员混进了自己的部队，而自己竟然直到后面的基地提醒才知道这点，这搁谁脸上都是颜面无光的事，虽然由于金闪闪是个英灵，而且实力高强，可以瞒过联邦军的安检措施，但还有个慢悠悠傻乎乎的希尔维亚也混了进来这个就属于打脸了，后者的思考回路一直是被我们列为绝对无害品种的……</p>
+	<p class = "firstLineIndent"> 对两个偷渡分子的搜查竟然出乎预料的顺利，或者说，这俩平均智商在⑨上下的笨呆根本就没有隐藏行踪的概念，当一名黑暗圣堂武士在“量子号”战巡舰的主动力炉附近撞见这俩傻丫头的时候，吉尔妹妹正拉着个一脸无辜的操作员问路呢，她们已经绕着动力炉转悠十几分钟了。</p>
+	<p class = "firstLineIndent"> 接到我们稳住对方的指示，这名黑暗圣堂武士随便就给吉尔指了条路，俩笨呆就兴高采烈地继续自己舰内探险之旅了。</p>
+	<p class = "firstLineIndent"> 那名黑暗圣堂武士当时就被雷了一下，然后表情纠结地给我们发出了信息，同时指明了两个傻蛋前往的方向。</p>
+	<p class = "firstLineIndent"> 于是，一切就这么简单。</p>
+	<p class = "firstLineIndent"> 希尔维亚和吉尔妹妹，一对让人彻底无语的傻蛋组合，前者是整个帝国反应最慢的家伙，而后者则是声名远播的“泡泡-叮当-金闪闪”傻蛋三人组之老2，这俩智商平均都在⑨上下的主奇迹般地混进了远征军，自然不可能跟计谋什么的有关，全是那个金光闪闪的家伙在作弊而已。</p>
+	<p class = "firstLineIndent"> “哈，真是轻松愉快，本王怎么可能一直陪着个小丫头片子玩耍，”说话的是娘闪闪，顶着一身醒目程度六个加号的铠甲走在空荡荡的舰内通道里，虽然没有阿赖耶那样自发光的能力，吉尔妹妹还是如此光芒万丈，“这次总算成功逃出来了，真是的，明明所有的上位英灵都要参加远征，本王却还要跟个小女孩打打闹闹，他们都执行了多少次任务了……喂，白头发的，你抠摸什么呢”</p>
+	<p class = "firstLineIndent"> 正微微张着小嘴趴在通道走廊上，眯着一只眼睛凑到走廊的通气孔上向里看的希尔维亚轻轻“啊”了一声，然后慢悠悠地回头：“好神奇的地方哦……没想到还有这样的地方，嗯——那个——这里是哪啊——”</p>
+	<p class = "firstLineIndent"> 直到现在她还没反应过来，仍然处于迷迷糊糊的状态呢，好吧，事实上她从来都没有在某件事上反应过来的时候。</p>
+	<p class = "firstLineIndent"> “嘁，”吉尔妹妹立刻不耐烦地哼哼，“带上你这么个傻蛋真是本王最大的失误，看你在岗哨附近溜达还以为你是军方的人，费好大劲绑架过来竟然只是个傻蛋而已……喂，白头发的你听着，本王在进行非常重要的军事行动，一会不论发生什么你都别拖本王后退，否则别怪本王关键时刻抛下你”</p>
+	<p class = "firstLineIndent"> 这句话还有一个民间版本：你要再这样我就不带你玩了</p>
+	<p class = "firstLineIndent"> 以上，就是我直接通过传送装置来到两个偷渡者背后所看到听到的一切，这俩傻蛋组合在一块简直都无敌了。</p>
+	<p class = "firstLineIndent"> “咳咳”眼看两个连一点警惕心都没有的傻蛋就要无视突然传送过来的本人而且越走越远，我立刻重重地咳嗽两声，让前面一个金毛一个银毛激灵一下子，这里需要说明一下，激灵一下子的是吉尔妹妹，希尔维亚是看见吉尔哆嗦了一下之后又愣了半天才想起来哆嗦的……</p>
+	<p class = "firstLineIndent"> “你们两个，探险结束了。”</p>
+	<p class = "firstLineIndent"> 我带着boss的微笑，在两个惊疑不定（我严重怀疑希尔维亚那张呆呆的小脸上是不是惊疑不定的表情）的女孩注视下一步一步向前走去，而随着我的话音落下，空无一人的主通道也迅速闪耀起了报警的红光，在阵阵警笛声中，沉重的隔离门从两个女孩身后由远而近一道道落下，每一道门闭合之后都会在四周激发出一阵蓝色火花，显然是已经施加电场，突然出现的终极boss，闪耀红光的钢铁通道，刺耳的警笛，因惊慌而紧紧靠在一起的少女，以及从远而近逐一下落的沉重闸门，这场景，真是太好莱坞了。</p>
+	<p class = "firstLineIndent"> “啊咧——是陈君呢——”</p>
+	<p class = "firstLineIndent"> 仿佛完全没有意识到周围气氛的诡异，希尔维亚立刻乐呵呵地跟我举手打招呼，而与此同时，距离她们大约二十米外的沉重闸门已经闭合。</p>
+	<p class = "firstLineIndent"> “啊是你这个黑心肠的贱民……呃，老板”</p>
+	<p class = "firstLineIndent"> 跟没心没肺的希尔维亚不同，吉尔妹妹完全是惊呼了出来，而随着话音落下，她背后最近的闸门也重重关闭。</p>
+	<p class = "firstLineIndent"> “这次看你们怎么跑，我就不信金闪闪你敢当着老板的面在战舰上开个洞出来。”</p>
+	<p class = "firstLineIndent"> 带着十足胜利者的表情，我冲吉尔妹妹绽放出佳洁士全优七效的璀璨微笑，然后，一道闸门从天而降……</p>
+	<p class = "firstLineIndent"> 拦在我和俩傻蛋中间……</p>
+	<p class = "firstLineIndent"> 胜利者的微笑瞬间变成浮雕，当时我就傻了，而且理论上，我觉得对面俩傻妞也傻了——谁能想到刚才还是一对无助的惊慌少女被逐渐逼近的隔离门逼入绝境的场景，下一秒一路不停的隔离门就把**oss顺手关在了外面，这一幕太他喵的有帝国风格了……</p>
+	<p class = "firstLineIndent"> 我叉叉你个圈圈的刚才完全没注意自己和她俩中间还有一道隔离门啊谁能告诉我哪部电影里最后出场的boss自己也要被隔离门隔离开的</p>
+	<p class = "firstLineIndent"> “轰隆”一声震天价的巨响，刚刚闭合的闸门被从正中间直接开了个大洞，我被呛地喷嚏连天咳嗽不断，天知道这层星际合金究竟是什么材料做的，只不过加个热而已，味道竟然就跟珊多拉的高能料理差不多了，从大洞里跳了出来，我发现还没有从一连串的巨变中缓过神来的希尔维亚和吉尔伽美什正一脸目瞪口呆地抱在一起，看着浓烟滚滚的闸门良久无语。</p>
+	<p class = "firstLineIndent"> “老……老板，”吉尔妹妹就是比希尔维亚反应快，“你不是说不能在战舰上开个洞吗？”</p>
+	<p class = "firstLineIndent"> “我是不准你开洞但这是你老板的船”</p>
+	<p class = "firstLineIndent"> 公共频道里立刻传来了雷诺哭笑不得的声音：“皇帝陛下，但这是联邦财产……”，背景音是泽拉图一阵地动山摇的咳嗽。</p>
+	<p class = "firstLineIndent"> 切，看来是平常太没威严了，昔日对帝国敬若神明的胡茬叔都开始吐槽帝国元首了。</p>
+	<p class = "firstLineIndent"> 希尔维亚可能是让近在咫尺的爆炸给吓傻了，这丫头空顶着个希灵皇帝的职称，但实际上就是个靠政府救济金度日在军事管制区开甜品店身处外星军事基地还坚持认为自己只是搬家到了学园都市另一个学区的天然呆之神而已，眼前十米开外一座拍下来能把东京塔摁到地里的金属闸门就这么瞬间变成了洞，可能会让这个笨呆就此对所有金属制品产生不可磨灭的心理阴影了……</p>
+	<p class = "firstLineIndent"> 结果就在我想着应该怎么安抚这家伙的时候，她就慢悠悠地说了一句：“哇（这个‘哇’用了两秒）——陈君原来会魔术吗？”</p>
+	<p class = "firstLineIndent"> 吉尔妹当场“噗通”就趴地上了，脑袋在钛合金钢板上撞地“哐哐”直响：“神一样的敌人和猪一样的队友全遇上了，本王上辈子究竟招谁惹谁了”</p>
+	<p class = "firstLineIndent"> 你节哀吧，你跟希尔维亚还是刚认识，我都让这傻妞折磨不止一次了，现在阿赖耶都能在希尔维亚身上找优越感你想想这人还有救吗？</p>
+	<p class = "firstLineIndent"> 将脸上的肌肉一阵哆嗦，我切换到了严肃形态，指着有点眼神飘忽的娘闪闪义正词严：“好了，现在给我解释一下，你到底是怎么混进来的——不是让你当保姆的吗？”</p>
+	<p class = "firstLineIndent"> “你在侮辱本王的尊严吗？”娘闪闪让保姆俩字一刺激立刻浑身的毛都炸起来了，“本王是人类最古老的王，是最伟大的……”</p>
+	<p class = "firstLineIndent"> 我咚地一声敲在她脑门上：“行了行了，我手下英雄帝王都按营编制的，恩，希尔维亚你要不要找个房间先休息一下？”</p>
+	<p class = "firstLineIndent"> 我突然想起这里还有个应该最先被排除出去的家伙，希尔维亚的脑子下限究竟在哪至今还是个谜，虽然现在看来她已经神奇地无视了四周的科幻飞船场景和被洞穿的合金闸门，但我生怕这家伙会不会突然对四周的环境产生好奇，呃，其实现在希尔维亚迟钝的反应已经是个奇迹了。</p>
+	<p class = "firstLineIndent"> “啊，可是我并不累呢——”希尔维亚慢悠悠地晃了晃脑袋，“陈君，这里是什么地方啊？好像墙壁都是钢铁的呢……”</p>
+	<p class = "firstLineIndent"> 我脑门一紧，没想到这家伙竟然还真有思考能力。</p>
+	<p class = "firstLineIndent"> “咳咳，这是秘密，不要乱问”</p>
+	<p class = "firstLineIndent"> 对这样明显不负责任的回答，希尔维亚奇迹般地没有进行任何思考，只是了然地点点头：“哦，知道了——”</p>
+	<p class = "firstLineIndent"> 然后就带着纯纯的微笑，站一边进入了花瓶状态。</p>
+	<p class = "firstLineIndent"> 这简直都是个可以用奇迹来形容的生物了她要是平常也跟小泡泡她们混在一块，傻蛋三人组里哪有娘闪闪的份啊？</p>
+	<p class = "firstLineIndent"> 说到娘闪闪，我还挺好奇呢，她到底是怎么进来的？</p>
+	<p class = "firstLineIndent"> 知道已经瞒不过去，吉尔妹坦白的倒是爽快，其实也没什么惊心动魄的过程，作为上位英灵，又由于身为“小公主御用宠物”的关系，吉尔妹妹在帝**事体系中也算个不大不小的特权阶级，因为大部分情况下没有人能限制神出鬼没小泡泡的行动，所以大部分时候也没人限制身为小泡泡绑定装备的吉尔妹妹的行动，就是在这个有利条件的鼓动下，在得知自己的老相识们即将作为本次远征的钦点卫兵随军行动的那一刻起，吉尔妹就认为，自己逃脱苦海重新回到那白衣如雪来去如风日子的时机已经来临了。</p>
+	<p class = "firstLineIndent"> 用一个巨大的布娃娃和一堆自己收集来的财宝吸引小公主的注意力，用大量棒棒糖让小公主在相当长一段时间里没空注意自己，脱掉身上的铠甲，换成便服做出要去外面房间睡觉的样子，然后成功脱离“魔窟”，不得不说，长达数个月的宠物+保姆+收藏品生涯让昔日乌鲁克最古之王学会了很多微妙的技巧，她就这么成功逃脱了魔王小泡泡的掌控，重新呼吸到阳光下自由的空气，然后……撒丫子向影子要塞星港传送门奔去。</p>
+	<p class = "firstLineIndent"> 因为小泡泡随时都会发现自己的收藏品少了最大的一个，而且那无处不在的小魔王说不定什么时候就会突然出现在自己眼前，虽然最多也就是被小公主欢天喜地抱回家接着养而已并不会受到惩罚，但感觉在过去的几个月里已经节操尽失的英雄王陛下实在是不想回到那身心俱辱的日常了。</p>
+	<p class = "firstLineIndent"> 即使不能保住为王的尊严，至少也要做为战士征伐沙场</p>
+	<p class = "firstLineIndent"> 以上是金闪闪向我坦白的自己内心真实想法，这个天真的家伙看来是没意识到，随我们出征跟战士的荣耀是一毛钱关系都不会产生的。</p>
+	<p class = "firstLineIndent"> “至于这个傻蛋白头发的家伙，”说完了自己逃离魔窟的血泪史，娘闪闪挥手一指旁边一脸恬静微笑看上去就跟大家闺秀一样秀丽可人但实际上就是在发呆当花瓶的希尔维亚，后者立刻乐呵呵地冲吉尔妹点头微笑，“本来我都冲过军事封锁线了，结果竟然正面撞上了这个在军事禁区溜达的家伙，我知道你手下越是厉害的指挥官平常看起来就越是不像个军人，所以还以为她是军方人员呢费了好大力气才把她绑架过来，没想到，竟然是个猪一样的队友啊”</p>
+	<p class = "firstLineIndent"> 吉尔妹成功绑架希尔维亚，我应该说这是智商10对智商⑨的胜利吗？V！~！</p>
+
+
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0550.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0570.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
