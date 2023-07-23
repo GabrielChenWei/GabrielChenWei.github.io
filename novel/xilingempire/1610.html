@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 2.2em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">⬆️</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+	<span style="display:inline-block;"><button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>><<<< Start, insert new list item below this line >>>> -->
+
+<h2>第一千六百一十章 母星，母星！</h2>	
+	<p class = "firstLineIndent"> 在舰队扫描到那个深渊之门前，我们先和对岸的先祖联系上了。</p>
+	<p class = "firstLineIndent"> 如今本岸和对岸的联系已经更加方便，由于星环联邦不计代价地连续在深渊临界层上投放了好几个大功率继站，而且先祖带着帝国设备抵达对岸之后星环联邦也改进了他们的通讯系统以更好地兼容我们这边的设备，所以两岸的联系从一开始只能断断续续发送一些本慢慢发展到可以传输较大的数据包，再到现在几乎已经可以进行即时通讯，可以说前进了好几大步。不过一些受限于虚空结构的问题还是没法解决，比如两岸的通讯延迟——即便我们把解码设备的运算速度提升到极限，两岸的信号兼容程度也提升到极限，延迟问题仍然存在，这是由那层特异的虚空结构决定的。不过这个情况也有所缓解，在把各种技术都用上之后，两岸的延迟已经被降低到可以忍受的地步了，简单对话还是没有问题的。</p>
+	<p class = "firstLineIndent"> 这是舰队出发以来将近一个月的时间里我们第一次联络对岸，在这之前对岸的先祖们甚至压根不知道我们启程寻找故乡世界的情况。这是因为在没有得到确切成果之前，珊多拉不打算让老祖宗们担心太多，而且说实话……在今天之前我们所有人心里都还没底呢，能不能找到故乡世界其实是个碰运气的事，只有确确实实抵达目的地之后我们才敢跟对岸提这件事。希望越大失望越大，老祖宗盼这天已经太久了，要给就给他们个实打实的惊喜，提心吊胆对老人家可不好。</p>
+	<p class = "firstLineIndent"> 塔维尔很快设置好了和对岸的联络信道，这套高度加密+高强度转播的系统可以说是帝国上将号里面最高jīng尖的玩意儿之一了（另外一个高jīng尖玩意儿是深渊希灵的箱子）。通讯信号被转接到军官平台的通讯器上，众人眼前的全息投影抖动着，随后慢慢变得清晰起来，和对岸联络时特有的那种杂波一点点褪去，随后一个身影出现在画面上。伴随着略有点失真的女声：“这里是值守站，值班员洛。”</p>
+	<p class = "firstLineIndent"> 全息投影上出现的是一位留着短发的年轻女xìng，名字叫“洛”，也是抵达对岸的先祖之一，而且是当年方舟上的生态系统维护员，我对她不太熟悉但也认识。洛仍然穿着那身帝国制服，显然即便到了对岸先祖们也从未忘记自己的来处。而她脸上的神sè则略有点疲惫，看上去是值班挺长时间了。</p>
+	<p class = "firstLineIndent"> 为了随时能接到这边的联络，再加上肩负着“大使”一般的重任，先祖们在对岸也没有丝毫放松工作上的事，他们在星环联邦的帮助下修复了深潜船，并直接在船上建立了一个值守站。一天二十四小时（首府时间尺度）都有人在通讯器前待命。洛显然是正在值班。</p>
+	<p class = "firstLineIndent"> “老祖宗！”浅浅真是个心直口快的姑娘，当场就高兴地打起招呼来，不过她话音落下不到片刻（算上延迟时间），通讯器对面的短发女xìng就有些抓狂地叫起来：“不要叫老祖宗！要叫就去叫我们老船长，我还年轻，而且还没嫁人呢！”</p>
+	<p class = "firstLineIndent"> 女xìng先祖跟男xìng先祖最大的不同就是比较活络，而且貌似普遍很在意自己那可以把神族都吓个跟头的年龄——先祖最年轻的论辈分都可以给冰蒂斯当祖祖祖祖爷爷。神界也就号称老头联盟的万神殿和父神身边那帮老古董们（充满恶意地提醒一下：包括迦迦）可以在年龄上压先祖一截。</p>
+	<p class = "firstLineIndent"> 这真是个不能深究，细思恐极的故事。</p>
+	<p class = "firstLineIndent"> 我摁着浅浅的脑袋防止这个思维跟蹦极一样的姑娘乱说话，然后努力整顿表情想用尽可能轻松的方式把现在的情况说出来：“洛，你猜我们现在在哪呢？”</p>
+	<p class = "firstLineIndent"> 冰蒂斯默默看了我一眼：“……这么严肃的场合你这么说话合适么？”</p>
+	<p class = "firstLineIndent"> 我脸sè不变眼神不动，jīng神连接里却无奈地解释起来：“没办法，事实太富有冲击xìng，先铺垫一下气氛防止把对面的老祖宗刺激的抽过去。我突然有点后悔这时候才给先祖们‘惊喜’了，你说这喜倒是够分量。可‘惊’的是不是狠了点？”</p>
+	<p class = "firstLineIndent"> 冰蒂斯在jīng神连接里嘿嘿冷笑，蔫坏蔫坏也不帮忙解围，而洛那边则愣了一下：“猜猜你们在什么地方？你们专程接通这个频道，就为了给我开这个玩笑？”</p>
+	<p class = "firstLineIndent"> “我们在故乡世界，”珊多拉突然站了出来，我还没想到该怎么展开话题呢，女王陛下雷厉风行的一面就发威了。“舰队在一个月前出发，但因为不确定是否会成功所以没有通知你们。现在我们已经成功抵达故乡世界，而且……准备在这里展开架桥作业。”</p>
+	<p class = "firstLineIndent"> 洛的脸sè丝毫没变，但并非是镇定。而是已经完全僵在那了，她愣愣地看着这边，良久才试探xìng地问道：“你……是担心我们在这边无聊，所以决定开这个玩笑么？”</p>
+	<p class = "firstLineIndent"> “她哪会开玩笑，而且这个话题哪适合开玩笑啊，”冰蒂斯一膀子把珊多拉挤到一边去，笑吟吟地看着通讯器，“我们真找到故乡世界了，千真万确，不信等会我们就把视频信号给你转接过去。”</p>
+	<p class = "firstLineIndent"> 洛低头沉吟了一下，随后就在我们的视线身子慢慢歪倒，悄无声息地出溜到画面外边去了。</p>
+	<p class = "firstLineIndent"> 众人集体大惊：“！”</p>
+	<p class = "firstLineIndent"> “叮了个当的看你们这干的好事！”我整个人蹦起来一米多高，然后气急败坏地指着珊多拉和冰蒂斯，“你们以为是个人都跟希灵使徒一样神经坚韧或者跟神族一样缺心眼呐？！”</p>
+	<p class = "firstLineIndent"> “神族不缺心眼儿！”冰蒂斯竟然还认真反驳起来，“妾身只是长歪了，不能代表其他人。”</p>
+	<p class = "firstLineIndent"> 作为一个女汉子，你能别在这种情况下萌萌哒么？</p>
+	<p class = "firstLineIndent"> “洛！你怎么样？！快醒醒！”我们在这边也帮不上对岸的忙，只能看着空无一人的通讯画面干着急，姐姐大人连续呼喊了好几遍我才看到通讯器上突然冒出来一只手，随后这只手摸来摸去地抓住了桌沿，使劲一撑，洛才狼狈地爬了起来，这位形象尽失的“老祖宗”（趁着她老人家听不到，多念叨几遍不算罪过吧？）爬起来第一件事就是把整个身子扑到通讯器上：“你们刚才说的都是真的！？”</p>
+	<p class = "firstLineIndent"> 珊多拉没说话。只是默默地把外面太空的视频信号转接过去，尤其重点拍摄了那道横跨整个宇宙的暗淡光环。故乡世界由于处于凝滞状态，这么多年基本上还保持着原样，所以这片宇宙和其的星空仍然是老祖宗们逃亡之时所牢记的景象，或许星空因为观察角度不同而难以被认出来，但那道宏伟云带是每一个方舟遗民都牢记于内心，铭刻于灵魂的。</p>
+	<p class = "firstLineIndent"> 通讯器对面半天没动静。珊多拉补充了一句：“如果你觉得这道光环不算故乡世界的唯一特sè，那我们还可以把观测数据给你传过去。”</p>
+	<p class = "firstLineIndent"> 通讯器对面照样沉默着，不过就在我以为洛又打算晕过去的时候，一个惊天动地的大叫突然从通讯器传来，吓了人一大跳：“舰长！安娜！指令长！大家都快来人啊！快来啊！！故乡世界……他们找到咱们的家了！找到了！找到家了！”</p>
+	<p class = "firstLineIndent"> 接下来完全是混乱的数分钟，惊天动地的数分钟。让人提心吊胆的数分钟，互相抢救的数分钟——因为通讯器对面的老祖宗们一个比一个激动，全程我都在担心他们互相抢救是否足够及时，手边的急救设备是否给力，不过最终一切还是安全下来：老祖宗们只是晕过去几个，但又都顽强地醒过来了。</p>
+	<p class = "firstLineIndent"> 按理说训练有素的军人不应该如此失态，但我们必须知道两点：首先并非每一个方舟成员都是经受士兵训练的。虽然他们都是军人，但其也有生态区管理员和档案员这样的职人员，你不能拿帝**的标准来要求这些即是凡人又是职的人（而且说实话刚找到这个宇宙的时候不是连珊多拉都激动了半天么？）；其次，故乡世界对每一个希灵人和希灵使徒的意义实在太重大了，这已经远远超出一般事件，面对此情此景，先祖们如何激动都是正常的。</p>
+	<p class = "firstLineIndent"> 而等到老祖宗们都冷静下来之后，我和珊多拉才慢慢把这一个月的航行娓娓道来。</p>
+	<p class = "firstLineIndent"> 安瑟斯静静听我们说完。脸上的激动神sè也慢慢沉静下来，他深吸了口气，微微笑着：“看样子还不能就这么离开啊，我们现在有更重要的事情可做了，不管怎样至少要回老家看看。”</p>
+	<p class = "firstLineIndent"> “离开？”我顿时一愣，貌似听到了什么很不得了的字眼？！</p>
+	<p class = "firstLineIndent"> “啊，还没跟你们说。”安瑟斯依然笑着，脸上的皱纹舒展开来，有点像是藏着点小秘密但却被后辈突然发现时的无奈，“其实我们都计划着要离开星环联邦了。我们把这边的事情都安排妥当，你们可以和星环联邦继续研究架桥的事情，而我们则打算出去……走走。”</p>
+	<p class = "firstLineIndent"> 老祖宗之前可绝没提过这件事！</p>
+	<p class = "firstLineIndent"> “出去走走？”珊多拉目瞪口呆，“你们能去哪？”</p>
+	<p class = "firstLineIndent"> “去哪都行，”安瑟斯点点头，“我们觉得自己留在星环联邦这边的作用已经不大，现在两岸已经联系起来，数据交换和语言解码都很顺利，而且在架桥这件事上两岸所有秩序阵营都是同心协力的，根本用不着什么斡旋，我们留在这儿看上去只能当个传话的，所有人都窝在这里有些浪费时间。所以我们打算再次起航，去虚空深处找一个无人打扰的新世界。飞船上新建了一个生态工厂，我们随身空间里也带着当初方舟乘员的组织样本和其他各种生命的种子库，虽然是没办法把当初的本人复活过来了，但还是能创造一个新生态圈的吧……”</p>
+	<p class = "firstLineIndent"> “你们打算在对岸重建一个‘故乡世界’？”珊多拉一语道破了安瑟斯的想法。</p>
+	<p class = "firstLineIndent"> 老祖宗也没打算隐瞒，他坦然地笑着：“是啊，实在太想家了，但光想家也没什么用，总要自己做点什么才行。原先在帝国区的时候有了新家还不觉得，但到了对岸这边一切都是陌生的，虽然星环联邦的人都不错，但毕竟这不是自己家，时间长了就有点受不了。我们担心短时间内回不去，甚至担心永远回不去……不是对你们没信心。只是这么担心罢了。所以我们打算去找个新世界，创造一个和故乡差不多的地方出来，说不定我们还能在对岸这边重建个希灵母星和希灵明呢，反正我们已经不会死了，有充足的时间用生态工厂制造出母星生物，然后慢慢把知识教给他们，这看上去挺能消磨时光的。”</p>
+	<p class = "firstLineIndent"> 我愕然地听着。完全没想到先祖这些rì子竟然在计划这样的事情。但虽然意外却也不是不能想象，或许任何一个明遗民都会有这种想法吧——只要条件充足，谁不想重建故乡呢？</p>
+	<p class = "firstLineIndent"> 他们应该是从星环联邦那里借到了生态工厂（原本的深潜船可不是殖民船，里面有生态循环系统，但没有大规模创造物种用的生态工厂），而且他们随身空间里有母星生物样本也很正常。这些生物样本是当初从方舟里采集到的。都已经死亡而且无法复活，不过根据这些样本来强行进行物质拼凑的话照样可以制造出同样的生物，你可以说它们不具备母星的“灵魂”所以只是空壳，也可以说这是另一种意义上的复活，反正对先祖而言都一样，只是求个纪念罢了。塔维尔用这些样本还原了几样母星生物，不过因为我们也没打算重建个假的起源母星所以就没继续下去。而现在看来老祖宗们是打算在对岸展开这项可能会耗时很久的工作——就如安瑟斯所说的，这“看上去挺能消磨时光”，他们需要消磨时光。</p>
+	<p class = "firstLineIndent"> “你们不会是打算一声不吭就离开吧？”浅浅突然想到了什么，一下子蹦到通讯器前面，“我可是看过很多小说电视剧的，你们肯定是这么打算的吧？！要不怎么到现在才说出来！”</p>
+	<p class = "firstLineIndent"> “其实……有点这个打算，”安瑟斯旁边的洛挠挠脸，看上去有些尴尬。“舰长说你们肯定不会答应，他说你们可能会无法理解这种‘毫无意义’而且风险太大的事情，所以我们打算直接起航离开。不过我们也不是一走了之啊，我们起航之后就会跟你们联系的，飞船上有通讯器嘛，而且星环联邦这边也给我们建立了长久的专用转播塔，到时候保持联络不就没事了？”</p>
+	<p class = "firstLineIndent"> “要对自己的后裔有点信心好么。”深渊希灵飘了过来，脸上表情有些无奈，这位集群意识在面对老祖宗们的时候还是颇为恭谨的（理论上是这样），“我们不会不理解你们重建家园的想法。其实你们在帝国区的时候提出这件事大家也会帮忙啊……额，我说这个好像不合适……”</p>
+	<p class = "firstLineIndent"> 这家伙总算想起来自己其实是深渊区统帅，管不了帝国区的事儿了。</p>
+	<p class = "firstLineIndent"> “现在追究这个也没必要，”冰蒂斯摆了摆手，“那你们现在不打算走了吧？”</p>
+	<p class = "firstLineIndent"> “当然不走了，”安瑟斯略带尴尬地点点头，“我们还打算回家看看呢，或许能重建那个地方。多亏你们联系的早啊，其实过两天我们就要出发了……”</p>
+	<p class = "firstLineIndent"> 我顿时出了一头冷汗：幸好没等过两天再联系！</p>
+	<p class = "firstLineIndent"> 结束和先祖的通讯，我们最后要做的事也做完了，接下来……就去那座大门吧。</p>
+	<p class = "firstLineIndent"> 扫描深渊之门并没费多少时间，事实上它就如同莉莉娜身上的节cāo，在一片荒芜显得异常醒目，它是这个老迈世界最大的信息源，在它周围纠缠起来的信息如同井喷一样在整个宇宙熠熠生辉，比灯塔还要瞩目。</p>
+	<p class = "firstLineIndent"> 舰队跃迁到了深渊之门附近，那座仅存在于传说的古老裂隙呈现在众人眼前。</p>
+	<p class = "firstLineIndent"> “就是这东西……”</p>
+	<p class = "firstLineIndent"> 看着全息投影上显示出的景象，珊多拉喃喃自语，但后半句话怎么也说不出来了。</p>
+	<p class = "firstLineIndent"> 就如先祖记忆的那样，这座太古大门与我们所见过的任何深渊之门都不同，它是一个规模巨大的狭长裂缝，形状好似一只眼睛，整个裂缝的长度达到五光年，已经远远超过任何正常天体，当然也超过任何深渊之门的尺寸。由于舰队是直接传送到大门正“上”方的，所以我们可以以俯视视角直面这气势惊人的宏伟裂痕——黑暗与压抑的气氛铺天盖地而来，充满深渊的狂乱和危险气息，但就如预料的那样，这是惰xìng深渊。</p>
+	<p class = "firstLineIndent"> 对凡俗之物而言仍然致命，但对任何超凡产物而言都只是有点气氛不佳而已，帝国舰队不会受到这座深渊之门的丝毫影响，甚至单兵战机这样脆弱的单位都能直接降落在大门上。</p>
+	<p class = "firstLineIndent"> 可惜昔rì的希灵明只是凡人，他们还是被这惰xìng大门给吞噬了。</p>
+	<p class = "firstLineIndent"> 深渊之门的光线扭曲交错，并且不是寻常引力场产生的那种扭曲，星光以一种错乱的折线方式在大门附近纠缠着，透过深渊之门的边缘观察远方太空给人的感觉就好像在看万花筒一样。这让我想起了宁静核心的奇特景象，看样子两者之间果然是有共同点的。</p>
+	<p class = "firstLineIndent"> “按计划开始采集数据，测试通过的话就把启动端安置下去。另外二至六组工作队现在开始建设幽能井，为充能做好准备。”珊多拉有些出神，但还是下意识分配起任务来，不过她的话刚说到一半就被指令区的一声惊呼给打断了：</p>
+	<p class = "firstLineIndent"> “陛下！母星！母星！母星还在！！”</p>
+	<p class = "firstLineIndent"> （完本前最后一次求月票！使徒们啊，让我有点信心吧！</p>
+	<p class = "firstLineIndent"> 另外公布一件事：实体书预计在七月五号前后上市，之前参与团购的同学也可以准备等收货了，目前团购还在进行，大家不要错过。当然，五号是出版方那边的时间，由于物流经销等环节以及漫王杂志社的一贯慢王属xìng……具体各地到货rì期可能会顺延一些。</p>
+	<p class = "firstLineIndent"> 周边也将在近期上市，由点娘官方发布。</p>
+	<p class = "firstLineIndent"> 大家，在最后一个月热闹起来吧！让我瞅见点响动可以么~~）</p>
+	
+<h2>第一千六百一十一章 永不消亡</h2>	
+	<p class = "firstLineIndent"> 突然从指令区传来的惊呼让军官平台上所有人都愣住了，包括珊多拉都陷入失神的状态，然而我们的愣神并没有持续太久，冰蒂斯这个女流氓用她强大的神经抗住这个震撼xìng消息并第一个反应过来，她呼一下子扑到军官平台边缘的护壁上：“啥！？谁在开玩笑呢！？”</p>
+	<p class = "firstLineIndent"> “不是玩笑！”塔维尔突然出声，她的语气激动，而且同样带着压抑不住的惊讶，“真的是母星！或者说……十有**是母星，出现在这里的天体不可能是其他什么东西。”</p>
+	<p class = "firstLineIndent"> 珊多拉此刻终于反应过来，她语气急促地下令：“把画面转过来，我看看到底怎么回事。”</p>
+	<p class = "firstLineIndent"> 外部监视器的画面很快被转接到军官平台上，我们终于看到了那令人难以置信的一幕：一颗看上去死气沉沉的暗褐sè星体在空旷死寂的黑暗太空中孤零零地悬浮着，它表面坑坑洼洼，而且完全看不出有任何生命迹象，但那遍布星体的笔直沟壑和巨大恐怖的地壳裂痕似乎蕴含着令人惊叹的秘密。这颗星球的体积比地球要大两倍，也或许更多，我们无法确定——因为这颗星球遭遇了可怕而且明显的星体灾难：它几乎要碎裂开来，巨大的裂谷似乎已经深达地核，一些贯穿行星的空洞狰狞可怖，这些伤痕让整个行星的形态完全改变，以至于我们不敢确定它是不是因此而“松散”了一些或者坍缩了一些。但不管怎么说，这颗行星仍然保持着完整，而且目测已经保持了无数年。</p>
+	<p class = "firstLineIndent"> 在这颗暗褐sè并且近乎解体的星球上空，可以看到大量漂浮的黑sè碎块，这些东西有一部分应该是星球崩裂出去的岩石圈。但其中也有一些显得形态过于规整，我怀疑它们是某种人造产物，不过大概是当年那场灾难的缘故吧，已经完全看不出它们曾经的原貌了。</p>
+	<p class = "firstLineIndent"> 时间无法改变这个宇宙的形态，所以导致那些人造物形容难辨的只可能是末rì时刻的冲击。</p>
+	<p class = "firstLineIndent"> 我调阅了探测器传回来的数据，确定这颗星球位于深渊之门大裂痕的其中一个“尖角”尽头，还记着那个古怪深渊之门的形状吧？狭长的眼睛形状。所以它两端是两个“尖角”，而星球距深渊之门最近点有大约半光年的距离，和总长度五光年的大裂缝比起来，这真的是紧邻了。</p>
+	<p class = "firstLineIndent"> 探测器当然也扫描了这颗暗褐sè星球的周边，它试图寻找昔rì的太阳或者母星恒星系里的其他行星，古老的史料记载母星恒星系还有一个巨大的气态星球，是当年希灵人刚刚踏入宇宙时重要的能源产地，但这些意义重大的东西似乎都没了。探测器只在距离暗褐sè星球不到三十个天文单位的地方发现一堆已经彻底冷却的重元素余烬，它曾经可能是希灵人的太阳。不过现在只是一堆熄灭多年的矿渣，或许随着这个世界诡异的“凝滞态”，这堆矿渣将在不久后突然再燃，然后轮回一般继续明灭，不过我们对这个世界的“凝滞态”实在了解不多，也只能这般猜想一下罢了。</p>
+	<p class = "firstLineIndent"> 起码在可以预测的最近一段时间里。我们是看不到希灵人的太阳再度燃烧的。</p>
+	<p class = "firstLineIndent"> “这就是母星？你们可以确定？”冰蒂斯不可思议地看着那颗近乎碎裂但又勉强凝聚成一团的行星，“你们又没见过它——而且群星位置也不固定，说不定它是从其他地方飘来的。”</p>
+	<p class = "firstLineIndent"> “这个宇宙处于凝滞态。天体的位置不会有太大变动，”珊多拉下意识地抓着我的手，语气平静，但根据她的手劲我判断女王陛下现在绝对平静不到哪去，“这里周边数光年都没有别的天体，而先祖留下的古代记录里提到过母星和深渊之门是相邻的，所以它肯定就是母星。对了，先祖给过我们一些有关母星最后时刻的记录，我还记着……塔维尔，扫描这颗星球的内部结构。快！”</p>
+	<p class = "firstLineIndent"> 塔维尔二话不说便投入工作，很快那颗暗褐sè星体的扫描结果便呈现在众人眼前，我毫不意外地发现了足以证明其身份的东西：大规模的人工改造痕迹。</p>
+	<p class = "firstLineIndent"> 整颗星球就如表面可以看到的那样已经处处开裂。巨大的裂谷和空洞真的直达地核，深渊的力量让星球几乎把自己撕碎，但最终它还是保持完整：因为星体内到处都是巨大到让人惊异的合金巨梁！</p>
+	<p class = "firstLineIndent"> 庞大的支撑梁、超合金缆索、成分不明的壳质物、岩石巨柱以及明显和周围地质成分不同的填充物将这颗星球强行约束在一起，它们就如同陆地崩塌之后支撑万物的大地支柱，如同世界开裂之后力挽狂澜的神之锁链，用原始粗暴但又大气的方式“缝补”着这颗星球。整个行星有将近三分之一的结构其实已经完全和周围脱离开，然而那些不可思议的人造修补措施将它们强行捆住了。</p>
+	<p class = "firstLineIndent"> 而且我们还在星球内部发现了巨大的空洞，这些空洞或许是自然形成的，但明显也被人工改造过，所有空洞都在内层建造有坚固的壳层，变成规模巨大的合金舱室，而空洞之间则有中空的巨梁连接。那些合金结构和壳层中密密麻麻的管网一眼就能看出意味着什么：堡垒，末rì之后的堡垒！</p>
+	<p class = "firstLineIndent"> “史料记载，灾难爆发之后先祖们顽强抵抗了很久，而且有一部分人誓死不愿放弃母星——即便深渊之门就在母星旁边，他们也不愿放弃这个地方。深渊的力量照shè在母星上，让大地开裂，裂谷每天都加深数百米，星球即将分崩离析，于是先祖们便用巨大的合金梁和其他东西来修补自己的星球，深渊甚至能破坏这些修补措施本身，于是先祖们就一遍遍地重修一切。最后整个母星几乎被改造成一颗星球要塞：崩裂开来的行星碎块被合金缆索连接在一起，岩石圈下的空洞中住满了视死如归的战士，大地覆盖着一遍遍开裂又一遍遍重补的合金装甲。母星上的驻军到死都没有撤退，并且在方舟起航的时候拼命拦截从深渊之门流向宇宙各地的shè流，为方舟舰队争取到了宝贵的时间。直到这里的部队全部牺牲。安瑟斯曾经这么描述：母星面目全非，但直到最后一刻，它都是我们的母星。”</p>
+	<p class = "firstLineIndent"> 珊多拉默默复述着先祖们留下的母星记载，随后轻轻放开我的手：“抱歉，我有些激动。”</p>
+	<p class = "firstLineIndent"> 我对此并不在意，只是出神地望着太空中那颗星球。它表面的合金装甲已经被完全剥离，或许星球上空漂浮的那些黑sè碎块就是这些装甲的残骸。而星球内部的巨梁缆索也随处可见损毁的痕迹。整个行星真的是面目全非，甚至面目全非到已经无法再被称作是一颗自然天体，但它仍然屹立在茫茫太空中，死守着距离深渊之门最近的一道关隘，而且似乎仍然在对那道裂痕怒目而视。</p>
+	<p class = "firstLineIndent"> 就如先祖留下的那句话：母星面目全非，但直到最后一刻，它都是我们的母星。</p>
+	<p class = "firstLineIndent"> 先祖们最终还是撤离了这个世界，包括这颗支离破碎的母星也没能守住，但我觉得……他们还是守住了。因为直到今天，直到新帝国的舰队停靠在这片宇宙中，这颗星球的阵地依然在，它还是希灵文明的母星！</p>
+	<p class = "firstLineIndent"> “没人能从一个活着的希灵使徒手中夺走他的阵地，”冰蒂斯突然自言自语了一句，随后微微垂下眼帘。“你们从凡人时代就是这样的一根筋，真是……让人无话可说。”</p>
+	<p class = "firstLineIndent"> “于是可以确定这就是母星了，”深渊希灵有些出神地看着那颗满目疮痍的沧桑星球。“它怎么幸存下来的？明明一直被破坏，但最终……好像活着撑到了整个星球被惰xìng深渊完全改造的时刻？”</p>
+	<p class = "firstLineIndent"> “只能说是个奇迹吧，一切皆有可能，”冰蒂斯咂咂嘴，“而且希灵先祖的抵抗也让这颗星球多坚持了很长时间，惰xìng深渊毕竟不是纯深渊，它有可以缓和的一面，既然整个宇宙都能坚持到改造完成，为什么一颗星球不可以？虽然看上去这场改造确实很痛苦……”</p>
+	<p class = "firstLineIndent"> “这里其他天体看样子是没坚持下来，”林雪看了看探测器传回的报告。“附近只有一颗恒星的余烬，还有一些已经分不出是星体残骸还是太空气团的稀薄物质，这里只有这孤零零一颗星球了。”</p>
+	<p class = "firstLineIndent"> 我想了想。有个建议：“或许应该在这里建一座纪念馆，或者别的什么纪念标志，这是希灵文明的起源地，没有比它更特殊的地方了。”</p>
+	<p class = "firstLineIndent"> “确实需要特殊纪念，但不需要额外建造什么东西，”珊多拉摇摇头，“母星本身就是一座丰碑，我们只要重新强化它的结构，然后就让它永远存续下去，这就足够了。当然，假如先祖们回来之后有别的安排就听他们的，没人比他们更具备对这颗星球的处置权。”</p>
+	<p class = "firstLineIndent"> 现场所有人都无异议，于是事情就暂且这么定下了。</p>
+	<p class = "firstLineIndent"> 工程队还在采集深渊之门的数据，以检定它是否可以立即作为承载大桥的“桥墩”，而处于沉睡状态的启动端也需要一点时间来激活和检测（毕竟被拖着跑了这么远的路，而且还是唯一一个启动端，不小心对待可不行），于是我们决定先去母星上看看。</p>
+	<p class = "firstLineIndent"> 一架穿梭机从帝国上将号发shè出来，皇家舰队所有统帅，包括原本正在指挥工程部队的哈兰和正在沉睡养jīng蓄锐的贝拉维拉都跟过来准备一起登陆母星。银sè的飞行器在登陆之前绕着这颗相当于地球两倍大小的古老行星转了一整圈，期望可以在地表找到一些文明痕迹，毕竟这里处于凝滞态，很多东西并不会消亡，而当初的最后一次冲击应该也不至于把整个星球的地表完全剥离出去。事实证明我们的猜测是正确的：母星地表确实存在疑似人造痕迹的东西，尽管整个星球上貌似只有这么一处地表遗迹，而且已经坍塌破败到近乎无法和周围焦黑的大地分辨开来，可我们还是发现了它。</p>
+	<p class = "firstLineIndent"> 这地方位于星球表面一条地势较高的冲积带的边缘，根据周围地势判断它曾经应该是某条海岸线的组成部分，曾经是谁驻扎在这里已经不可能考证，我们只能确定这里有过一个基地。</p>
+	<p class = "firstLineIndent"> 高地上是一片较为平整的区域。大致呈梯形的开阔地周边能看到几乎已经跟周围岩石没什么区别的人造物，它们似乎是被融化过，而且在最后一次冲击以及深渊力量的长时间照shè下完全失去了原有xìng质，如果不是其分布过于工整恐怕谁都想不到这里会跟文明遗迹有关。而在开阔地的一些地表还能找到差不多和泥土岩石融合在一起的融化金属，以上这就是整个遗迹所有的东西了，也是这颗星球暴露在地表上的所有先祖遗物。</p>
+	<p class = "firstLineIndent"> 珊多拉第一个走下穿梭机，她站在这片先祖们曾经繁衍生息并为之奋战的大地上。满脸惊奇。</p>
+	<p class = "firstLineIndent"> “从思维核心开始运转那天起，我都从没想到自己有一天会站在这座最初母星的土地上，”珊多拉环视着四周苍凉破败的景象，又有些不真切地蹲下去捏了一把粗劣的沙石泥土，看着它们在指缝间慢慢滑落，“这就是我们起源的地方……我……希灵使徒不擅长感xìng的思维方式，但我觉得现在的心情很奇怪，明明只是一颗星球而已，一个原始的战斗堡垒。为什么给人的感觉如此奇妙？”</p>
+	<p class = "firstLineIndent"> “触动人心的并不是这颗星球本身，而是你想起了从这刻星球诞生出的东西，”冰蒂斯很专业地分析了一下，随后抬头看着太空：那里yīn沉黑暗，母星恒星系的太阳以及希灵人赖以生存的气态巨行星都早已熄灭，能映亮天空的唯有那不甚明亮的遥远星光。以及位于轨道上的帝国舰队发出的光辉，而那些遥远的星光看上去都不正常，它们偏斜扭曲。在太空中形成一道道古怪的曲线：因为我们是在透过深渊之门的边缘扭曲场观测星星。从这里正好可以看到那座巨大裂缝的一角，即便只是一个小小的尖角部分也占据了三分之一的天空，星光扭曲成花边一样的东西勾勒出这个尖角的边际，望之令人生畏。</p>
+	<p class = "firstLineIndent"> 珊多拉再次回忆起那些古老的资料：“史料记载，深渊大门打开时的第一个异象就是星空扭曲，先祖们发现天上的星光全都错了位，随后便探测到自己恒星系旁边有一个巨大的扭曲空间正在打开，紧接着就是深渊之门出现在世人面前，它永久改变了母星人抬头所能望见的群星景象——我们现在所见的，就是先祖当年所见的。”</p>
+	<p class = "firstLineIndent"> “同一幅景象。跨越这么多年之后落在后人眼中还是这幅模样，真不可思议，”冰蒂斯眨眨眼。在jīng神连接里嘀咕着，“看看吧，当年毁天灭地的深渊之门……其实妾身一个人就能把它关上。”</p>
+	<p class = "firstLineIndent"> 珊多拉立刻瞪了她一眼：“别开这种玩笑，整个虚空的命运可就压在这座大门身上了。”</p>
+	<p class = "firstLineIndent"> 正在我们感叹自己竟然真的站在先祖母星上的时候，浅浅突然指着高空在jīng神连接里惊呼起来：“诶诶，你们看那是什么！？”</p>
+	<p class = "firstLineIndent"> 我愕然地顺着浅浅手指方向望过去，发现太空深处有一片淡蓝sè的光团正在向大地靠拢，那是一团仿佛空气凝胶一般的怪异东西，而且散发着远比星光强烈的光芒，其形状近似椭圆，但表面起伏不定似乎随时可以变形，这团光芒中应该没有实体，不过还是可以看到一些明亮的光点和线条在它内部游走，说明它内部是有复杂结构的。这团怪东西不知道距离地面有多远，但我本能认为它规模小不了，而且看上去这东西是从太空“游”过来的？</p>
+	<p class = "firstLineIndent"> “母舰，那团光是什么东西？”我立刻询问正停泊在太空中的帝国上将号。</p>
+	<p class = "firstLineIndent"> “陛下，我们正在检查。这似乎是一个灵体生物……但又不像正常的生命形式，它应该具备空间跳跃能力，刚才突然出现在母星上空，现在正向你们的方向过去了。要拦截它么？”</p>
+	<p class = "firstLineIndent"> “不，等等！”珊多拉赶忙喝止，随后一脸震惊，“生物？你们确定这是个生物？”</p>
+	<p class = "firstLineIndent"> “不是很确定，”这次传来的是塔维尔的声音，“很难界定它到底是什么东西，跟我们已知的任何生命形式都不一样，甚至和灵体生物都不一样，这个宇宙已经凝滞，按理说是不会产生新生命的……但它确实有局部的演化现象，所以可能产生一些奇怪东西。这团光芒看上去有意识，它自己调节飞行方向，并刚才还绕开了我们投放出去的轨道站……它或许将母星当做一个落脚点？理论上……啊，又有更多的空间信号！”</p>
+	<p class = "firstLineIndent"> “不要封锁这里，让它们过来，”珊多拉的语气莫名急促，“我要看看这到底是什么东西。对了，舰队隐形规避，不要吓到这些……生物。”</p>
+	<p class = "firstLineIndent"> 天上的舰队辉光立刻暗淡下去，所有飞船很快完全消失在太空中，随后我们看到了令人惊叹的一幕：</p>
+	<p class = "firstLineIndent"> 无数淡蓝sè的光团从太空深处跳跃出来，如同游鱼一般轻盈敏捷地飘向母星大地，当这些光团变成集群的时候我们便能很容易看出它们的生物群落特征：它们结成编队，互相追逐，而且从太空落向大地的过程中不断划出一系列复杂的轨迹，这显然是某种有意识的举动。</p>
+	<p class = "firstLineIndent"> 这些云雾一般的奇特东西没有直接接触地面，最终它们悬停在离地有数百米高的高空中，刚开始只是一小片一小片地离散分布，但很快它们便越聚越多，最终整个天空都被它们笼罩起来！</p>
+	
+<h2>第一千六百一十二章 工程的开启</h2>	
+	<p class = "firstLineIndent"> .，为您提供。</p>
+	<p class = "firstLineIndent"> “好漂亮……”浅浅用力仰着头，被这奇妙而壮美的一幕深深吸引，“好像海面倒垂下来。”</p>
+	<p class = "firstLineIndent"> 浅浅说的没错，这一幕真的很像海面倒垂，或者说一片海洋漂浮在众人头顶，这些光团汇聚起来不断起伏的模样与大海几无二致，而那些在光团之间不断跳跃的光点和光线则更像是海面上粼粼波光。母星上已经没有大气层，因此听不到任何声音，但看着那倒垂下来的蓝sè天空，我几乎要脑补出海浪翻涌的声音来。</p>
+	<p class = "firstLineIndent"> “这些云团已经笼罩了整个母星，而且还在加厚，”珊多拉惊奇地看着手中的数据终端，数据终端上方的全息投影显示的是帝国上将号从太空拍摄下来的俯视图，在这幅图像上，母星已经变成一个波光粼粼的蓝sè光球，幻光为它披上一层外衣，以至于我们几乎要误以为母星曾经的海洋回归了，“云团的来源地已经查明了，有两个空间信号，分别来自一百二十六光年和一百三十光年之外的两个恒星系，这些云团从那么远的地方空间跳跃到这里，就好像两个相隔甚远的族群前来聚会一样。”</p>
+	<p class = "firstLineIndent"> “它们到底是什么东西？”冰蒂斯惊奇地仰着脖子，这个学识渊博的女流氓此刻也显得有些无措。或许眼前的景象本身对她而言并不算离奇，但这一幕发生在本应已经彻底死寂、凝滞多年的故乡世界，就由不得我们不惊叹了。“生命？这个世界真的还能诞生生命？”</p>
+	<p class = "firstLineIndent"> “是生命哦。”一个细细小小的声音在我脑海中响起，随后我感觉胸前的口袋被人从里面顶开了。原来是正在睡觉的叮当被外面的气息所吸引。小东西从口袋里探出半个脑袋观望半天，突然露出很高兴的样子，顺着衣服褶子爬到我肩膀上，对着天空挥舞起小胳膊来，在公共频道里大声欢呼：“生命！生命！虽然很原始而且很弱小，但它们是生命！连女神姐姐都没创造过这种生命！”</p>
+	<p class = "firstLineIndent"> 连叮当都钻出来为这些光团定xìng，它们的xìng质已经不用怀疑了。尽管塔维尔还是搞不明白这种连灵体生物都不像的家伙到底是怎么诞生的，但这不重要，重要的是……它们真的活着。</p>
+	<p class = "firstLineIndent"> 我脑海中突然冒出一句话：</p>
+	<p class = "firstLineIndent"> 这就是希灵文明的故乡，它和它的子民一样永不消亡。即便死去，也要让自己的灵魂继续前进——生命，在这里再次诞生了！</p>
+	<p class = "firstLineIndent"> “叮当要研究这些生命是怎么运作的！”小小的生命女神在我肩膀上手舞足蹈了一番，突然露出异常严肃认真的表情，“叮当能听到它们在呼喊。它们为自己生存的这个宇宙古怪的状态困惑，而且为自己无法继续进化的现状感到困惑，它们感觉到生命女神的力量，所以在求救……叮当去帮它们！”</p>
+	<p class = "firstLineIndent"> 撂下这句话，叮当已经一挥翅膀冲向天空：真空中挥舞翅膀是没什么意义的。不过叮当扇翅膀好像是个下意识举动，跟琳在虚空中飞行照样需要展翅是一个道理。而随着那道小小的绿光冲向天空，我惊讶地看到那“蔚蓝云海”也跟着涌动起来，就好像在欢迎叮当一样。果然如……额，忘记是谁说的了，总之意思就是生命女神是一切生命形式的监护者，无论你是碳基还是硅基，无论你是实体还是灵体，但凡符合神明认定的生命定义，就会被纳入生命女神的庇护范围。那些蓝sè云团显然是故乡世界土生土长的，而且它们在这个凝滞的深渊世界中诞生，自然不太可能属于任何已知的生命形式，但它们照样为叮当的力量欢欣鼓舞——不过话又说回来，叮当那个干啥都不可靠的小家伙到底打算怎么帮忙？总感觉那小东西好像是热血上头就直接冲过去的样子，理论上没计划……</p>
+	<p class = "firstLineIndent"> “然后咱们干点啥？”我看看四周，感觉天上的异象一时半会也不会结束，留在这里看风景虽然不错，但貌似自己一行人责任重大来着，“话说母星好像被这些新生命当成中转站了。”</p>
+	<p class = "firstLineIndent"> “没关系，我想先祖也不会介意，”珊多拉这位帝国统治者此刻倒是意外的开明大义，她收起数据终端，转身打开一道传送门，“咱们的正事还多着呢，准备把启动端安置就位。”</p>
+	<p class = "firstLineIndent"> 众人传送回帝国上将号，舰队在隐形状态下悄悄离开了这颗古老但看上去已经不再死寂的星球，我们重新来到深渊之门上空，开始为架桥做一些前期准备。</p>
+	<p class = "firstLineIndent"> 相关数据的采集已经差不多了。由于深渊希灵已经搞过“宁静核心一号”，而且当初新军强行架桥的时候也意外地做了点好事，给我们留下不少宝贵的第一手资料，所以我们带来的这些专家团几乎可以说是熟练工——起码在启动端正式激活之前的步骤方面是熟练工。我们用了小半天的时间来布置探测器，这些探测器都是在航行路上制造好的，一次xìng但很好用，专门用于探测深渊之门的惰xìng化程度以及安定度，并且功率很小，即便在深渊之门上空爆炸也不会影响整个试验场的安全。具体数据在今天晚些时候便送到众人面前，意料之中：我们面前是一个空前完美的“桥墩”。</p>
+	<p class = "firstLineIndent"> 惰xìng化程度从一开始就不用担心，这座深渊之门的规模超乎想象，却能安然维持而不会自我崩溃，这就足以说明它是一个极端惰xìng化的大门，倒是安定度让人稍微揪心了一把：这座大门从打开到今天已经度过了无数岁月，冰蒂斯的祖祖祖祖爷爷穿开裆裤的时候就有这座大门了（话说为什么我再次用到了冰蒂斯的祖祖祖祖爷爷这个梗？）。很难说在这么漫长的岁月中大门会不会有些什么变化，比如年久失修稳定度下降什么的……不过万幸，一切都异常完美。</p>
+	<p class = "firstLineIndent"> 深渊希灵坦言。哪怕再给她千八百年而且让她随意毁灭世界去收集材料，她也折腾不出像故乡世界一样好使的宁静核心了。</p>
+	<p class = "firstLineIndent"> 看着眼前的报告。珊多拉心满意足地咽下了最后一口辣粽子：“当初那个架桥失败的文明虽然搞错很多东西，但至少他们开启的这扇门质量不错。”随后她将报告打上已阅标记回传给工作组：“立即开始施工，另外麻烦哈兰你负责联络对岸，我们要随时和对方保持工程同步。”</p>
+	<p class = "firstLineIndent"> 能在军官平台上吃个不停的也只有珊多拉，其他人是没有女王这么好的胃口的，哈兰这个兢兢业业老大哥型的帝国好领袖当然更有节cāo，他全程都在专注于关心工程队的进度。并且以资深技术顾问的身份和位于施工第一线的伊凡塞恩保持联系（内行领导的优越xìng就体现在这儿了，负责指导架桥的两位皇dì dū是技术型人才）。听到珊多拉的话，哈兰只是点点头，便继续忙活自己的事情。倒是冰蒂斯有事没事总想说两句：“话说……当初架桥的那个文明给人的感觉还真复杂啊，珊多拉你是恨他们呢还是该谢谢他们？”</p>
+	<p class = "firstLineIndent"> 珊多拉抬起眼皮看了冰蒂斯一眼：“这个问题没意义，他们已经灭亡了。”</p>
+	<p class = "firstLineIndent"> 贝拉维拉正处于一天中难得的清醒期，她见珊多拉不想正面回答这件事，便自己接过话题：“这种仇恨真的已经没有意义了。跟死人追究这个只是浪费时间。我们的复仇已经结束，现在是向前看的时候——而且说实话，如果没有当初的大灾难，或许也没有如今的希灵帝国，因果传承。时间罔替，就这么回事。当初贸然架桥的文明啊……自毁于自己的失误，算是清算了。”</p>
+	<p class = "firstLineIndent"> 冰蒂斯耸耸肩，不再作声。</p>
+	<p class = "firstLineIndent"> 大批工程舰已经在深渊之门附近建造起临时的工作基站，这些基站基本上就是工程舰自身解体、变形、重组之后的产物，所以压根不费什么时间。帝国先进的战地展开技术还真是个万能手段，除了让影子城那帮混蛋黑超们可以随时随地扔出一个占地好几平米而且展架货柜小推车齐全的大摊子之外最好用的果然就是现场造基地了。珊多拉下令工程开始之后不到几个小时，我们便拥有了一片跨度数万公里的分散式作业场，因为太空中施工没那么紧凑的占地拘束，而且后期我们也需要很大空间来安放那些大型设施，所以各个建筑物之间的距离都挺远。这个作业场由数百个仿佛星港一般的站点组成，每个“星港”都有六边形的zhōng yāng平台和十几条探向太空的合金“长臂”，zhōng yāng平台是承载重工厂和大型计算核心的地方，而那些“长臂”则真的是停泊港，供作业飞船在其间起降。</p>
+	<p class = "firstLineIndent"> 如上面所说的，每个工作基站都有一个大型计算核心，这是因为架桥过程需要令人震惊的数据吞吐量——即便亲自处理这些数据都忙不过来，所以我们必须在所有工作站上加载额外的计算单元，好组建一个前哨计算网络。这些额外的计算单元由一个简化版的希灵母巢+一个量产+两台伺服器组成，为了让它们运转起来，我们在出发前就准备了好几百个量产主机。</p>
+	<p class = "firstLineIndent"> 现在作业场已经在深渊之门上空十五万公里处定锚完毕（和整个深渊之门比起来，它简直小的像个小石子，叮了个当的，五光年的深渊之门啊！这大桥架起来得算多少车道的？），那帮量产小姑娘也就准备奔赴自己的“战场”了。此刻正站在帝国上将号的上层平台对着自己那数百个一模一样的闺女训话，一米一的母体主机满脸严肃：“我那令人自豪的女儿们啊，考验你们的时候到了！这将是新帝国……不，这将是整个虚空最重大的时刻，你们肩负着无上崇高的使命！我会和你们并肩作战，一同进行为期数天至半个月的高强度运算，这取决于那个启动端的饭量到底多大。以及咱们的能量炉给不给力。记住你们的母亲此刻告诉你们的话：影分身就是力量！奥义多重闺女分身术！乌拉\^o^/！”</p>
+	<p class = "firstLineIndent"> 然后好几百个量产表情呆滞地用平板声线一起喊：“奥义多重闺女分身术！乌拉\^o^/！”话说最后那个颜文字你们是怎么欢呼出来的？</p>
+	<p class = "firstLineIndent"> 看着领着她的闺女影分身们消失在一片传送光幕中，我感觉……这个工程恐怕是不会失败了。这是有多年经验的：每次家里这帮坑货发神经的时候我们要做的事情就会令人意外地全面成功，我至今未能搞明白其中原理。但多半是因为虚空脑洞太大……</p>
+	<p class = "firstLineIndent"> 当作业场慢慢运转起来的时候，启动端也被送到了它的预定位置。</p>
+	<p class = "firstLineIndent"> 现在的启动端还处于“沉睡”状态。不过已经在慢慢苏醒。我们把它从帝国区一路拉到这里可不容易，这玩意儿哪怕收束起来的时候也相当于地球三分之二大小，而且由于各种古怪的xìng质它无法被任何空间设备折叠、压缩或者收藏，于是塔维尔只能在它外面增设了一个丑啦唧的大型框架，而且给它安装了一大圈虚空引擎好让这东西可以自己张开秩序场，最后算是勉强将其改装成了一个具备虚空航行能力的星球战舰。可以说这个庞大的设备就是导致帝国舰队用了将近一个月才航行至此的最重要原因：一个月啊！我几乎无法想象先进的虚空舰队竟然也有需要航行一个月才能到站的情况，都是被这个大家伙给坑的。不过现在这东西还是到位了。咱们也就别嘀咕什么了。</p>
+	<p class = "firstLineIndent"> 全面激活的启动端是一个光辉灿烂又霸气的白sè光球，但现在它只是出于“半睡不醒”的状态，所以这东西看着更像是个昏黄虚弱的矮星。它外面的丑陋框架和各种临时设备正在被工作船拆除干净，它本身也正在从一个丑啦唧的杀马特矮星变成一个丑啦唧的……土包子矮星。我不知道为什么自己这么想吐槽这东西，大概是因为自己当初被它炸飞过一次，那可不是什么好的回忆，萌萌哒的珊多拉球可以说是那一个多月仅有的亮点——就此打住，不能继续跑题了。</p>
+	<p class = "firstLineIndent"> 启动端被安置在深渊之门（或者应该叫深渊之眼或者深渊裂缝？）的zhōng yāng。距离裂缝本体只有数百公里的距离，可以说是紧贴在裂口表面，虽然知道这不会有任何问题但哈兰还是下令在它周围安置了大量定锚力场发生器，以防止这东西提前“掉”到大门里去。</p>
+	<p class = "firstLineIndent"> 嗯，假如这件事真的发生。那绝对是虚空诸界自打诞生以来最不好笑的笑话，我得哭出来，而且我也得承认哈兰的考虑有其道理：深渊之门附近的时空是错乱的，虽然它本身没有引力，但谁也说不准它会不会把时空搅乱成一团糟然后把启动端给拽进去，取经路上千难万险如今已经迎来最后一哆嗦，我们必须把这最后一下哆嗦到位。</p>
+	<p class = "firstLineIndent"> 比地球还小一圈的启动端被安置在长达五光年的深渊之门zhōng yāng，显得相当不起眼，原本我还联想着球形启动端放在眼睛形状的深渊之门zhōng yāng会不会恰好像是个眼球，但现在看来这顶多就是个沙眼嘛……但即便两者的体型差距悬殊，我们还是顺利把安装工作搞定了，目前看来这套系统兼容xìng良好。</p>
+	<p class = "firstLineIndent"> 而在启动端安装到位的时候，在外面跑了一大圈的叮当也终于回来了，顺便带来了有关那些蓝sè光团的情报。</p>
+	<p class = "firstLineIndent"> 那些淡蓝sè的奇特太空生物仍然在母星上方盘踞着，而且不断有新的“云团”从宇宙深处传送过来加入到这次聚会中，这些生物明显有观察能力，它们有一部分稍稍往深渊之门这边移动，似乎是对帝**的施工现场很感兴趣，但它们明显又对深渊力量充满忌惮，所以最后就没靠近。</p>
+	<p class = "firstLineIndent"> 叮当将它们称作“畸熵行者”。</p>
+	<p class = "firstLineIndent"> 从远方归来的小东西一脸兴奋，似乎是因为发现了新的生命形式而雀跃不已，她在我手心里蹦来蹦去，让我不得不将注意力从作业场上收回来（此刻我正和珊多拉等人在太空基站观察工程进度呢），叮当细细小小的声音传入耳中：“它们是畸熵行者，是根据生命形式起的名字！它们不是能量生物也不是实体生物哦，而是跟所有生命形式都沾点边的东西——它们是在这个宇宙的所有物种都灭绝之后很多年才诞生的，因深渊之门所引发的信息乱流而产生，本身是大团信息的纠缠体，也就是从纯粹数学空间进入现实空间的奇特生物，叮当还没搞明白它们的生存方式，只知道它们把母星当做‘晒太阳’的地方，它们在这里汲取信息洪流，每次晒太阳都能产生新后代……”</p>
+	<p class = "firstLineIndent"> 晒太阳？是晒深渊！</p>
+	<p class = "firstLineIndent"> 天下之大，真是无奇不有。</p>
+	
+<h2>第一千六百一十三章 那道光（结局）</h2>	
+	<p class = "firstLineIndent"> .，为您提供。</p>
+	<p class = "firstLineIndent"> 叮当用自己的天赋力量和这些奇特的信息-虚拟-灵体三元混合生物（其实不叫这个名字，但我实在不知道该怎么形容它们了）进行了许多次交流，尽管畸熵行者甚至没有自己的语言体系，也没有任何和其他生物交流的器官，但它们照样可以和生命的守护者交谈，叮当由此知道了这些神奇生物的习xìng：它们居住在遥远的太空深处（距离此地有数百光年），平时依靠太空中游离的能量来维持形体，但却要依靠吞食“信息”才能繁衍或者让自己成长变大，这就是为什么它们可以在这个凝滞的宇宙中生存下来，但外表看着又和灵体生物很相像。</p>
+	<p class = "firstLineIndent"> 畸熵行者对我们而言很弱小，在帝国兵面前它们甚至连攻击力都没有，但对大多数普通种族而言这些生物大概诡异又危险，因为它们天生就能吞食信息，甚至能吞吃掉一个种族的“知识”和“历史”，即便吞食过程非常缓慢，对普通种族而言却是完全无法防范的，可以说天生就是近乎神话生物的东西，所以叮当给它们编写了一套生命形态修正代码，好让畸熵行者安全一些，起码不会随意伤害到外界环境——故乡世界即将和帝国区连接起来，我们不能随意灭绝一个物种，但也不能让它们变成威胁。</p>
+	<p class = "firstLineIndent"> 而畸熵行者来到母星的原因就和之前说的一样：这是它们的繁殖季节。这些太空浮灵每数百年（首府标准时间尺度）就前来母星接受“照shè”。繁殖往往会持续数个月之久。深渊之门附近是一个信息涌动非常频繁的地区，深渊环境削弱了这里的世界屏障，导致物质外泄和信息交换频繁发生，这里是故乡世界的“破洞”之一（在宇宙深处也有其他破洞，是当年大灾难留下的），也是这个凝滞宇宙中仅有几个会产生新“信息”的地方之一。畸熵行者们在这里聚会，庆祝。饕餮大餐，用它们懵懵懂懂的思维来理解这个宇宙，当足够的畸熵行者聚集起来它们甚至会产生很高的智慧——足以用来对自己的生存意义产生困惑，叮当就是听到了它们整个种族在困惑中的喃喃自语才被吸引过去的。</p>
+	<p class = "firstLineIndent"> 如果是在别的世界，一群这样处于原始时期而且没什么威胁的土著生物是不会引起帝**注意的，但在这里，连珊多拉都在百忙之中对畸熵行者们投以了极大关注：尽管希灵使徒不擅长感xìng方面，但跟故乡有关的事情是个例外。帝国的将军和皇帝们认为这些发出蓝光的太空浮灵是故乡世界永不退让的jīng神体现，甚至它们身上发出的蓝光都让人联想到幽能（深渊希灵抗议了一下不过被无视了。变sè的幽能没人权），于是一部分在架桥工程上帮不上忙的家伙便开始研究这些生物，浅浅甚至建议把几个畸熵行者带回去当宠物——大家想必还记着浅浅是个逮啥养啥的爱心姑娘。不过最终浅浅还是放弃了这个想法，因为她发现畸熵行者没脖子，没脖子=没办法栓绳=没办法遛弯=没办法当宠物养，于是放弃。</p>
+	<p class = "firstLineIndent"> 反正我是不太理解浅浅的逻辑是怎么运作的。</p>
+	<p class = "firstLineIndent"> 而在这些畸熵行者的“陪伴”下。架桥工程也以极高的效率顺利进展到了关键时刻。</p>
+	<p class = "firstLineIndent"> 或许是我们这些年实在经历了太多波折，几乎做的每一件事都要遭遇成倍的阻力，于是多年积攒下来的人品终于在此刻得到偿付：没有叛军来打秋风。没有敌对种族来掀起战争，没有遇上坑爹而突发的技术xìng问题，那座巨型深渊之门也没突然崩掉，一切会导致工程失败的因素都已经提前排除或者压根不会发生，再也没什么东西可以阻止我们将桥架起来了。</p>
+	<p class = "firstLineIndent"> 帝国舰队抵达故乡世界的第二个月。</p>
+	<p class = "firstLineIndent"> 启动端周围的所有设施早已全功率运转起来，原先松散的作业场在后期增建的大量太空工厂填充下变成了一大片密集的人工天体群。这个天体群半径零点三个天文单位，大体呈不规则的环形，由大量工厂和计算核心组成，无数工作飞船（其中有百分之八十都是我们在这里新制造出来的，赞美帝国先进的战地展开技术）在其中穿梭。让这个庞大环带变成一个繁忙而生机勃勃的地方。作业场距离启动端有很远的一段距离，它不直接和启动端接触，而是为启动端提供额外计算力和能量中转的“后勤设施”。两者之间依靠大量空间门和快速往返的飞船来联通。</p>
+	<p class = "firstLineIndent"> 而在距离作业场更遥远的地方，则是至关重要的——能量站。</p>
+	<p class = "firstLineIndent"> 所有人都还记着启动端是个需要多少能量的恐怖家伙，当初我们跟新军争抢启动端，说实话就是多亏了这玩意儿充个能都要十天半个月，帝**才在最后一刻赶上从而没让新军得逞。当初新军发现常规的幽能井出力不足甚至丧心病狂地引爆了他们自己的领土宇宙，但就这也没能及时让启动端动起来，这东西丧心病狂的耗能级别可见一斑。</p>
+	<p class = "firstLineIndent"> 因此我们到这儿之后做的最重要一件事就是立刻开始建造大规模的幽能井，从第一个工作基站在深渊之门上空展开那一刻起，就有一千座幽能井同步开工建设。帝国舰队在出发之前就准备好了大量建造者和预制模块，那些量产主机也将自己大部分计算力分流出来以指挥建造（反正启动端还没激活，量产们也有空闲），在全力开工的情况下，新帝国有史以来规模最大的能源阵列就这么堆起来了。</p>
+	<p class = "firstLineIndent"> 这是由一千座幽能井、三座幽能深渊以及不计其数的幽能反应炉共同组成的庞大建筑群。这些幽能设施的原理大家是知道的，其主体位于虚空临界层。从虚空中抽取衰变能量来传送到现实世界。幽能反应炉的外部接口被连接在一起，形成了大片大片的太空浮岛一样的建筑群，而幽能井的输出端则是看起来仿佛一个圆筒形空间站的巨大设施，无尽幽能深渊则是新帝国刚刚掌握不久的旧rì科技，最强大的终极反应炉，稍有不慎就足够炸毁整个宇宙——它们的输出端看上去像是一个巨大的墓碑，表面灰白。毫无装饰，方方正正……好，其实就是像个棺材，但我实在不想这么说……</p>
+	<p class = "firstLineIndent"> 这片建筑群漂浮在距离深渊之门上百个天文单位之外的地方，之所以离这么远就是担心过于庞大的能量浪涌会刺激到大门，导致不可预测的事故发生，而它们所产生的巨量能量则通过超空间装置以及作业场上的转换、聚焦设备传送到启动端内，由此形成一个高效的能量传输体系。</p>
+	<p class = "firstLineIndent"> 澎湃的幽能充盈着这些设备，映亮了黑沉沉的宇宙。整个能量站因此被一片蓝sè雾霭包裹，看上去就好像一片模模糊糊的云中城市，而能量站每有一个建筑完工，就会立刻投入使用，所以它对启动端的充能其实已经持续一个月了，后者如今终于展露出那令人熟悉的壮观身姿：一大团辉煌白光。</p>
+	<p class = "firstLineIndent"> 昔rì我们所看过的那道通天彻地的白sè光柱也再度出现。它贯穿了整个故乡世界，将全宇宙的光学现象都搅合的一团糟——不过这只是暂时的，据说启动端正常启动之后一切就会恢复。</p>
+	<p class = "firstLineIndent"> 这道白sè光柱还在继续成长。并逐渐将启动端吞噬进去，最终启动端会暂时消失在我们眼前，只余下一道光芒映亮太空，那就是充能临近尾声的迹象。而当启动端完全激活的时候这一过程就会反向，白sè光柱会慢慢收缩，启动端那团白光会再度出现，就如同昔rì宁静核心大决战时那一幕。</p>
+	<p class = "firstLineIndent"> 嗯，虽然回忆起来不太美好，不过我现在迫切期盼它能快点开始——目测真的很快了。</p>
+	<p class = "firstLineIndent"> 在帝国上将号的上层平台，深渊希灵和我们一起观望着太空中那道辉煌的光柱。它和深渊大裂缝平行，看上去就好像一道从宇宙开端shè来，并延伸向宇宙终端的辉光长桥。蔚为壮观。</p>
+	<p class = "firstLineIndent"> “在架桥的最后一步，进入巅峰状态的启动端会被释放，然后它将和这道深渊之门融合，”深渊希灵不紧不慢地说着，“到那一步就不用咱们参与了，如果资料和计算都没错……长桥会就此架起，虚空两侧将永远连接起来，大桥本身会变成虚空的自有结构因而非常坚固，除非还有我们不知道的虚空大大灾变和虚空大大大灾变，否则它就将永远存在下去。嘛，理论上都不可能的事情。”</p>
+	<p class = "firstLineIndent"> 我怀抱小，顶着小叮当，扛着小人偶，左边挂着潘多拉右边挂着维斯卡（这俩将军绝不是搞研究的料，她们这几天比浅浅还闲呢），一如既往很壮观很忙碌地坐着，听到深渊希灵的话，我从几个熊孩子的缝隙中探出脑袋：“万一长桥有害——我是说万一啊，真的就没一点办法可以拆除么？”</p>
+	<p class = "firstLineIndent"> “当然没那么好拆，否则新军当初也不至于把长桥当做必胜法宝，不惜一切代价也要占据它了，”深渊希灵看了我一眼，“当然世事无绝对，虚空既然蕴含一切可能，那就得假设长桥可以被摧毁，不过或许这需要五个虚空生物集体冲上去自爆？谁知道呢，我不关注这些，纯猜测无法计算的事物是无意义的，起码对我而言无意义。另外父亲大人你能别这么失态么？让这些理应作为军队统帅的皇室成员像这样挂在身上是非常不妥当的。”</p>
+	<p class = "firstLineIndent"> 我努力保持着平衡，对深渊希灵嘿嘿一笑：“你羡慕了？你也可以来挂啊，理论上你也是我膝下熊孩子。叮了个当的，一开始真不习惯，不过现在我真是接受这种设定了，发现也挺带感的。”</p>
+	<p class = "firstLineIndent"> 深渊希灵眼睛中有诡异的光芒划过，随后她扭头看看自己身边那个一人高的大箱子，作势准备把这个箱子砸在我肩膀上：“父亲大人，你是认真的？”</p>
+	<p class = "firstLineIndent"> 我一看顿时就蔫了：“算算算。你熊起来不比晓雪差。”</p>
+	<p class = "firstLineIndent"> 这时候哈兰突然来到了平台上，他看着是有事通知，这位老大哥看到我身上那热闹一幕丝毫不感觉惊讶，只是很见怪不怪地笑了笑，随后对我点点头：“陈，对岸那边已经一切就绪，他们的启动端完全充好能了。只等着咱们的点火消息。”</p>
+	<p class = "firstLineIndent"> “这边……应该也就两三天了，”我回头看看太空中那道光柱，“如果把幽能死星拖过来就好了，那东西绝对比什么反应炉都好使。”</p>
+	<p class = "firstLineIndent"> “但你得花半年时间把它从帝国区拖过来，”哈兰耸耸肩，“知足，这么大的工程能平平安安进行到尾声就实属不易。”</p>
+	<p class = "firstLineIndent"> 我听到这里也颇为感叹地叹口气：“是啊，真不容易，一切……终于快尘埃落定了。”</p>
+	<p class = "firstLineIndent"> 三天后。启动端完成充能。</p>
+	<p class = "firstLineIndent"> 那道通天彻地的辉煌光柱正在收束，只要一个指令就可以完全凝聚到启动端内部，而在光柱zhōng yāng，刺眼的白sè光球已经在进行呼吸一般的涨缩。</p>
+	<p class = "firstLineIndent"> 所有准备工作都完成了，启动端充能完毕，外围计算阵列有着充裕的负载余额。安全措施和系统制御经过数百次检验确保万无一失，深渊希灵根据她手头的资料对启动端、能量站、外接式计算阵列等系统进行了大检测，确定这些东西完全按照设计指标在运作着。</p>
+	<p class = "firstLineIndent"> 而且更重要的是。我们和对岸的联络畅通，位于深渊临界层的几个中继站工作情况良好，星环联邦那边甚至在过去几天里不计代价地又发shè了两个载人中继站以确保架桥能顺利进行。</p>
+	<p class = "firstLineIndent"> 如果架桥失败，载人中继站里的工作员将不太可能生还，星环联邦的深潜船也不敢保证可以在深渊深处长期生存而且穿越不连续带两次——可见对岸是下了多大的决心。</p>
+	<p class = "firstLineIndent"> 只能成功，不能失败。</p>
+	<p class = "firstLineIndent"> 架桥的激活控制端就在帝国上将号的军官平台上，指令大厅里的巨型全息投影扩张到最大，让我们可以身临其境一般地看到远处的启动端。后者周围的附属设施都已经被拆卸干净，现在除了最zhōng yāng的白sè光球，就只有光球周边的几个定锚力场发生器还在运作。</p>
+	<p class = "firstLineIndent"> 一切准备就绪。只需要激活系统就可以。用于激活系统的是一排水晶板，我，珊多拉。姐姐，哈兰，贝拉维拉，深渊希灵，伊凡塞恩，不管是前代皇帝还是现任皇帝或者奇怪生物（特指深渊希灵），总之有必要列席的每个人面前都有一个控制器，将这些水晶板同时启动，长桥就会建立。</p>
+	<p class = "firstLineIndent"> “真想不到，平平安安走到这步了，”珊多拉看着浮现出“就绪”字样的水晶板，语气颇为感慨，“话说需要这种象征xìng大过实用xìng的步骤么？”</p>
+	<p class = "firstLineIndent"> “历史一刻，你总要让那些历史学家有点可以用来记录的东西嘛。”我咧嘴一笑，看着眼前的倒计时慢慢走向零位，其实这个倒计时也不怎么必要——容错时间差可是有整整一个小时，这是长桥两个启动端单独支撑系统的承受极限，只要我们和对岸在一个小时内先后激活系统就没问题。</p>
+	<p class = "firstLineIndent"> 倒计时还在持续，那历史性的时刻即将到来，姐姐已经将手放在控制器上，她微笑着说了一句：“起码看上去很庄严嘛，浅浅没机会碰这个她还不乐意呢。”</p>
+	<p class = "firstLineIndent"> 倒计时已经进入三十秒，我也和其他人一样把手放在水晶板上：“那就让历史滚滚向前——这句话可以加到今后帝国学院的考试考点里。现在听我倒计时：五，四，三，二，一，零，激……诶哈兰你怎么提前摁了？”</p>
+	<p class = "firstLineIndent"> 系统发出一声cāo作失败的报jǐng音，哈兰无辜地举起手：“我以为数到零就行了，没想到你还有个‘激活’。”</p>
+	<p class = "firstLineIndent"> 我愕然一下，使劲挥手：“重来重来，三，二，一，零，激活！诶姐姐你怎么没摁？”</p>
+	<p class = "firstLineIndent"> “刚才不是倒计时五个数么，怎么从三开始了？”</p>
+	<p class = "firstLineIndent"> “不要在意细节问题了好么！”我伸手指着倒计时器，上面已经越过零点，现在正-1，-2，-3地数着，“咱赶时间，这多严肃的事儿啊！”</p>
+	<p class = "firstLineIndent"> “我来数我来数，”深渊希灵嚷嚷起来，“三，二，一，零……诶你们怎么都没动啊！”</p>
+	<p class = "firstLineIndent"> 所有人异口同声：“你怎么不喊‘激活’？！”</p>
+	<p class = "firstLineIndent"> 我的冷汗以肉眼可见的速度流了一鞋：“算了算了，这个不靠谱，咱们还是用jīng神连接，这个同步率比较……”</p>
+	<p class = "firstLineIndent"> “我的jīng神连接有延迟，”深渊希灵一举手，“别这么看我啊，我跟你们网络不兼容，需要转译一次的。”</p>
+	<p class = "firstLineIndent"> “我就觉得我不用参加这个也可以，”姐姐也举起手，“我都退位七万年了。”</p>
+	<p class = "firstLineIndent"> “哈兰你又什么情况？”</p>
+	<p class = "firstLineIndent"> “我就是提醒你们倒计时已经负一百三十多秒了。”</p>
+	<p class = "firstLineIndent"> “诶别管了大家一起按！”</p>
+	<p class = "firstLineIndent"> “伊凡塞恩你怎么不声不响就摁下去了！”</p>
+	<p class = "firstLineIndent"> “不是说别管了么？”</p>
+	<p class = "firstLineIndent"> “停！！”</p>
+	<p class = "firstLineIndent"> 最后珊多拉完全看不下去了，女王陛下霸气地把所有人推开，一把撤掉眼前这个临时改装上去的联合控制器，露出下面唯一一个启动晶板，一巴掌拍上去的同时嘴里还气急败坏：“我就知道浅浅出的主意从来不靠谱！”</p>
+	<p class = "firstLineIndent"> 遥远的太空中，一团白光骤然扩大成一道规模空前的大门。</p>
+	<p class = "firstLineIndent"> 系统发出一声悦耳的提示音，表示启动成功，我表情僵硬地喃喃自语：“这历史性的一刻……好不容易历史性的一刻……怎么就这样儿了呢？”</p>
+	<p class = "firstLineIndent"> 冰蒂斯在旁边不爽地看了半天，这时候终于爽了，yīn阳怪气地扔一句嘲讽：</p>
+	<p class = "firstLineIndent"> “呵呵，起码这次历史学家们真的有内容可写了！”</p>
+	<p class = "firstLineIndent"> （嗯，就写到这儿，大家可以开始撒花了）</p>
+	<p class = "firstLineIndent"> ——咱连结局ps都与众不同</p>
+	<p class = "firstLineIndent"> 最后说一下，希灵的世界架构注定了它是可以永远写下去，也可以随时随地找个暂停点完本的故事，所以思前想后决定满足自己的强迫症，压着六月最后一天完本了=。=</p>
+	<p class = "firstLineIndent"> 希灵的故事还没结束（因为本身就是个没法结束的故事），以后的发展嘛……容我想想。</p>
+	<p class = "firstLineIndent"> 兴许会有番外，也兴许会更新一些2.0故事，也兴许会修改前面的章节，当然也兴许会用别的方式继续构建希灵这个世界观，让它不止用圣爹这一个视角来展开，而是多路线建造，变成一个巨大的体系，总之有很多计划。大家也请继续关注这里，这里会发布一些东西的。</p>
+	<p class = "firstLineIndent"> 新书大概一个月后发布，不过在那之前我得休息一阵子——真累啊。</p>
+	<p class = "firstLineIndent"> 最后：大家踊跃支持实体书和周边项目嗷！下个月就都出来啦！继续关注这里有惊喜！</p>
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='1600.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='1610.html';"> Next </button>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
