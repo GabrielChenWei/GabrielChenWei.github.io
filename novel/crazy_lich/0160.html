@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 2.2em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">⬆️</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+	<span style="display:inline-block;"><button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>> -->
+
+<h2>第160章 背叛之战</h2>	
+	<p class = 'firstLineIndent'>谁也没有料到，在这被后世誉为“毫无廉耻心的背叛之战”的史诗级战争中，当雪花刚刚落下，最先发起突袭的，会是四个北地精灵王国军队组成的联军。</p>
+	<p class = 'firstLineIndent'>是的，首先打破僵局的，既不是作为侵略方突袭的兽人，也不是守护自己的家乡的人类，而是急于向某些存在表面立场的精灵。</p>
+	<p class = 'firstLineIndent'>凌晨六点，不宣而战的弩箭和魔法送来了精灵的问候，人类联军派出主力迎战，七国联军（不包括东岚，包括圣安东里奥），累积兵力超过五十万，出战军力超过四十万。</p>
+	<p class = 'firstLineIndent'>精灵总兵力十六万七千，在超级帝国眼前大概只是一个大型城市的驻军，但实力绝对不可小看。</p>
+	<p class = 'firstLineIndent'>上位精灵是白银种族，成年后最弱的都有白银阶战力，而下位精灵配上精灵特有的豪华战具，达到人类的综合白银级也不是难度，再加上精灵极其出色的魔法工艺和法师比率，或许这些精灵的人数并不多，但实力绝对不可小看。</p>
+	<p class = 'firstLineIndent'>“……我们还以为是往日一样普通的战争演练，但谁也没有料到那些长耳朵会不顾过去的情面，一开始就用战略魔法洗地，我们的人受伤惨重，他们居然还用了附魔重弩和精灵古树，他们是玩真的！”</p>
+	<p class = 'firstLineIndent'>或许，这位自己的部下近乎全军覆没的军官，可以解释一下为什么会败的如此之惨，傲慢的人类，与其说是没有料到，不如说是一开始就小看了精灵的决心。</p>
+	<p class = 'firstLineIndent'>积怨多年的精灵一开始就抱着决战的心来的，作为掌控者的诸位精灵王既然做出了选择，自然知道自己已经没有了回头路，而骄傲的安东里奥人，却似乎把这又当做了一场愚蠢的边境冲突。</p>
+	<p class = 'firstLineIndent'>当精灵们发起突袭的时候，他们居然正在等候教会和政治外交的结果，总指挥部做出的战争预案中，甚至没有遭到精灵攻击如何应对的预案。</p>
+	<p class = 'firstLineIndent'>至于其他的北地国家，他们以为既然圣安东里奥来了，自然天塌了有个高的定着，却没有多想想，当大难临头的时候，最先倒霉却往往是跑的最慢的弱者。</p>
+	<p class = 'firstLineIndent'>于是，当双方交锋的同时，对于战争的理解和态度，就让遭到了突袭的人类联军全面陷入劣势。</p>
+	<p class = 'firstLineIndent'>高大的战争古树冲击骑兵联队，庞大的根须每次都能抽飞数个倒霉蛋，而人类的骑枪对这种生物作用不大，而当骑士们摆出了应对巨人的环绕牵网战术的时候，那突然扎根化身遮天大树的庞然大物更加让人不知所措。</p>
+	<p class = 'firstLineIndent'>狮鹫骑士则遭遇角鹰兽射手的挑战，这些强悍的空中狮虎终于遇到了自己的天敌，弹无虚发的精灵射手很擅长骑射，射穿狮鹫骑士厚重头盔中的空隙对他们毫无难度，而另一方面，即使在近战能力上全面占优，被对方研究的很透彻的狮鹫骑士们，很难把战斗拉倒自己最适合的距离，往往是在不断的追逐和反追逐中被击落。</p>
+	<p class = 'firstLineIndent'>而当战斗陷入了僵局之后，精灵们精确而狠毒的魔法支援又成了打破战场平衡的重锤。</p>
+	<p class = 'firstLineIndent'>法师需要时间和知识的积累，长寿种在这方面的优势得天独厚，面对倾巢而出的精灵，人类法师的大法术大半都被压制，双方的法术力量根本不在一个档次。</p>
+	<p class = 'firstLineIndent'>人类的牧师、圣骑士或许是混战之中的亮点，但缺乏强力攻击术法的他们，也起不到巨大的作用。</p>
+	<p class = 'firstLineIndent'>一直以来作为同盟的精灵兵种，恐怕人类最缺乏对战经验、应对方案的对手，而北地的精灵们，则一直把人类作为假想敌。</p>
+	<p class = 'firstLineIndent'>而当第一波对决陷入僵局后，兽人们第二把尖刀，却依旧不是自己亲手挥出的。</p>
+	<p class = 'firstLineIndent'>担任军阵右翼箭头的安索罗帝国的部队阵前倒戈，直接刀刃转向，那一刀狠狠的劈向了自己的盟友。</p>
+	<p class = 'firstLineIndent'>作为中军的圣安东里奥根本没想到自己的右翼会突然倒戈，早有准备的刺客同时爆发，在战场的乱局中遭到盟友的刺杀，圣安东里奥的统帅，当代名将排行榜第九十八位的阿伦·雷姆遇刺身亡，整个战场陷入僵局。</p>
+	<p class = 'firstLineIndent'>而当腹背受敌和主帅遇刺的消息传开，各国联军开始动摇的关键时刻，兽人的大军开始移动了，当庞大的比斯巨兽载着敲着战鼓的萨满祭司进场的时候，人类方的败局已定。</p>
+	<p class = 'firstLineIndent'>擅长杀戮的兽人给人类好好的上了一课，什么叫单兵碾压，什么叫与兽狂奔。</p>
+	<p class = 'firstLineIndent'>“两个人类战士可以对付一个兽人？当兽人们披上土元素加护的铠甲，被萨满的战歌送入了狂暴状态之中后，一个普通的兽人老兵就能化身战争杀戮装置，一个标准小队（12人）都未必杀的了一只这样攻防翻倍的精英兽人。”</p>
+	<p class = 'firstLineIndent'>此役，在三方的合力下，混沌方布置下的陷阱终于开始收线，人类方惨败，首战告负。</p>
+	<p class = 'firstLineIndent'>出场迎战的四十万大军，活着回到红枫城的败军不到一半，且大部分带伤，人类联军必然从战略进攻转到防御。</p>
+	<p class = 'firstLineIndent'>而当伊丽莎得知这个消息的时候，也很是惊讶了一番。</p>
+	<p class = 'firstLineIndent'>“一个人类国家居然背叛了整个人类世界？他们不打算混了？”</p>
+	<p class = 'firstLineIndent'>“从某种意义上，安索罗帝国和过去的岚之国颇有些相似，大概也受够了委屈吧。不过这次直接爆发的导火索，应该还是圣安东里奥的那群混蛋拿他们当炮灰使用吧。”</p>
+	<p class = 'firstLineIndent'>“是啊，太过分了，我都有些同情安索罗了，我们小国力微，这次安索罗都拿出了棺材本了，若是拼完了无话可说，但作为炮灰牺牲掉，那就太过分了。也难怪他们选择了极端处理方式。”</p>
+	<p class = 'firstLineIndent'>果不其然，很快，一封措辞强硬的宣战通告就被公布。</p>
+	<p class = 'firstLineIndent'>通告中，作为宣战国的安索罗帝国怒斥作为主导者的圣安东里奥拿其他国家军力当炮灰的恶劣行径，并把宣战目标锁定到圣安东尼奥，表示自己并没有背叛秩序侧和人类主流社会的意思。</p>
+	<p class = 'firstLineIndent'>当然，不管他怎么说，该信的还是会信，不该信的说什么也没有意义，实际行动是最直白的表示。</p>
+	<p class = 'firstLineIndent'>“说的好听，那为啥还有兽人、精灵混在一起。”</p>
+	<p class = 'firstLineIndent'>而随着安索罗帝国的背叛，此时的红枫城，却陷入一片混乱之中，清理残留势力和奸细的，趁着混乱展开刺杀的潜伏刺客们，甚至还有中高等战力直接在城里袭杀重要人物的。</p>
+	<p class = 'firstLineIndent'>原本的城主也战死沙场，而在一场突然而然的政治风暴即将到来之前，一个叫辛德勒的商会却站了出来，成为这座城市新的主导者，他们主要由本地人构成，口号是‘用双手来找回自己过去的美好生活’。</p>
+	<p class = 'firstLineIndent'>他们不是军人，对外界的大军毫无意义，他们努力的方向很简单，打击那些无法无天的暴徒，让这座城市依旧保有秩序和活力。</p>
+	<p class = 'firstLineIndent'>而很少有人知道，有奴隶买卖背景的商会，却只是个用来让平民兽人活下来的组织，而他的领导人都是一个外国人。</p>
+	<p class = 'firstLineIndent'>“联军军部一片混乱，城中官方机构全部瘫痪，机能停止，商会上明面的资金也快到底了，这真的快撑不住了，罗兰你快回来吧。”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>“呜呜呜，太可怜了，居然有这么狠心的父母。放心吧，安利雅我会帮你的，只要他敢出现在你面前，安利雅就帮忙踢飞他，四个蹄子一起踢哦。哦，还要一个支点，那就勉强三个吧。”</p>
+	<p class = 'firstLineIndent'>在地下城出口所在的森林之中，一个篝火旁，来自三个种族的姑娘们却在愉快的交谈。</p>
+	<p class = 'firstLineIndent'>“你……你们不怕我吗？我可是女妖。”</p>
+	<p class = 'firstLineIndent'>面对淡白色虚影的疑虑，安妮和安利雅相对一视，然后都捂着嘴巴笑了。</p>
+	<p class = 'firstLineIndent'>“安妮姐喜欢的人就是一个巫妖，嗯，现在大概不是巫妖了。但我们对亡灵并无偏见。而且姐姐貌似是自然亡灵，那可只有极其特殊的人才能够被转换，不是特别善良就是怨念特别深，我又怎么会怕。”</p>
+	<p class = 'firstLineIndent'>“是啊，苏安娜殿下，要不和我们一起走吧。我们正要去一个对亡灵没有偏见的国度。或许，您可以在那里，找到您一生追寻的关于和平的答卷。”</p>
+	
+	
+<h2>第161章 自然亡灵</h2>	
+	<p class = 'firstLineIndent'>成为一个亡灵倒是简单，任何一个亡灵法师都会唤醒死灵（招魂术），而若是想保持住理智的话，也是可能办到的。</p>
+	<p class = 'firstLineIndent'>低阶亡灵是没有智慧的，但若是某个传奇剑圣、大法师选择转化亡灵，只要躯体完好、灵魂完整，想跌入白银阶位以下都有难度。</p>
+	<p class = 'firstLineIndent'>在招魂术被普及之后，最简单的不朽之路就出现了，达到了一定程度的强者，在寿命将尽的时候找个亡灵大师，签订一份私密协议就够了。</p>
+	<p class = 'firstLineIndent'>因此，面对不朽的诱惑，每一年西罗帝国都有无数的黑斗篷剑士、灰袍法师秘密前来，而其中在各国大名鼎鼎的名字并不在少数，原本默默无闻但出现时就颇为强大的新生亡灵君主年年都有。</p>
+	<p class = 'firstLineIndent'>而即使是作为半神亡灵大帝的我，即使面对最顶级的材料，也不可能担保每次亡灵转化都能够成功，但提高转化概率的手法倒不是秘密。</p>
+	<p class = 'firstLineIndent'>灵魂，一切力量源于灵魂，是这个世界最基本的规律，而提高亡灵转化率的核心，也在灵魂之上。</p>
+	<p class = 'firstLineIndent'>生和死的转化，听起来很奇幻、很魔法，但在眼中，却是完全可以用逻辑和知识解释的。</p>
+	<p class = 'firstLineIndent'>生者是肉身加灵魂，其实亡者也是一般的构成，只是那灵魂和肉身未必是原装。</p>
+	<p class = 'firstLineIndent'>若是打个比方的话，若把一个完整的个体看做一台个人电脑的话，生者就是一厂出产的原装货，他的软体（灵魂）和硬件（肉体）完美契合，且具备配套的自动升级功能（生命成长）。</p>
+	<p class = 'firstLineIndent'>而对于被复生的亡者来说，那软体未必有变，但原来的硬件是肯定不能用了，新的肉身就是拼凑起来的兼容机，或许性能会很强，但系统冲突、莫名死机之类的，却再正常不过。</p>
+	<p class = 'firstLineIndent'>那么，死灵转化失败的原因就很明显了，要么就是软硬件系统冲突，不合用，要么就是软件（灵魂）数据缺失。</p>
+	<p class = 'firstLineIndent'>前者的话再修订肉身就行了，后者则基本没法救，毕竟再好的电脑也不可能读出缺了一块的光盘，不管那光盘中承载着多么有价值的数据，艺人的表演有多么热情奔放……咳，只是个比喻，别想歪了。</p>
+	<p class = 'firstLineIndent'>当然，亡灵法师也可以用其他灵魂来拼凑补齐，但那还是不是本人就不用多说了，而且这样的灵魂毛病更多，现在技术根本做不到长期保存灵魂活性和记忆，拼凑起来变弱智的可能性在九成以上。</p>
+	<p class = 'firstLineIndent'>因此，要成功完成亡灵转化最根本、最重要的一项因素就很明显了——完整保存灵魂。</p>
+	<p class = 'firstLineIndent'>这也是往往亡灵都是些怨念深刻的灵魂的根本，怨念（没有完成的遗憾）无疑是让灵魂不散的缘由，而坚定的意志、纯净的性格，都会让灵魂更加凝固，可以提高转化成功率。</p>
+	<p class = 'firstLineIndent'>那么，结论就出来了。</p>
+	<p class = 'firstLineIndent'>按照我和现在主流思想相驳的研究理论，灵魂转化率实际上和灵魂身前的实力无关，只是身经百战的强者意志不可能薄弱，自然转化率高些。</p>
+	<p class = 'firstLineIndent'>死亡不可能毫无损失，死者能够保存八成以上的记忆就算不错，若还是用光盘比喻的话，就是至少丢掉了20%以上的数据，光盘（灵魂）中也有了20%不可使用的坏道。</p>
+	<p class = 'firstLineIndent'>说到这，自然苏醒的亡灵和招魂术唤醒的亡灵的区别也出来了。</p>
+	<p class = 'firstLineIndent'>实际上他们的原理都是一样的，只不过自然苏醒的灵魂往往意志特别坚定、性格纯净到没有杂物，临死前怨念足以引起六月飞雪。</p>
+	<p class = 'firstLineIndent'>他们的灵魂即使身死也不肯堕入轮回，他们的灵魂没有一丝消散，不需要亡灵法师的引导，他们就自行实现了生和死的转化。</p>
+	<p class = 'firstLineIndent'>这也是自然亡灵潜力惊人的原因，他们的灵魂没有丝毫消散，和身前基本一致，相反，经过了生和死的界限，接触到了自己灵魂的奥秘，反而能够更加深刻的理解力量的本质。</p>
+	<p class = 'firstLineIndent'>普通的亡灵失去了部分灵魂，成长率自然就变的很低，但我的七宗罪，却是例外，他们都是开始并不强大，但成长率却很高。</p>
+	<p class = 'firstLineIndent'>和普通的亡灵法师专注于强大亡灵肉身的制造上（硬件工程师），我却把目光投向了作为根源的灵魂（软件工程师），当然，这也和我自身是自然亡灵，还数次泡过冥河水有关，其他的亡灵法师就是想向灵魂动手，恐怕也不知道该如何开始，他们的水平还是停留在照本宣科的转移灵魂上，创造、拼凑全新灵魂之类的，在他们的眼中，应该归于创世神的权限了。</p>
+	<p class = 'firstLineIndent'>而我创造、改造的灵魂却已不在少数了，偏执而扭曲的灵魂、完美新生且本能成才的灵魂、忠诚不屈的灵魂、其中不少甚至是我以其他灵魂为原料，完全从新创造的灵魂，奥玛和阿当称呼我父亲，从某种意义上的确没错。</p>
+	<p class = 'firstLineIndent'>完整而偏执的灵魂，这也是七宗罪匪夷所思的强大的根本，作为我研究成果的结晶，他们的灵魂都是完整的，再加上专门为其准备的肉身，甚至比普通的活人还要完整和偏执，从某种意义上，他们就是人工的自然亡灵。</p>
+	<p class = 'firstLineIndent'>但实际上，由于我的能力也有迹象，比起真正的自然亡灵，他们在潜力上还是要差上一筹，毕竟我认识的自然亡灵都是些超级怪物，其中包括我本人、海洛依丝、艾耶。</p>
+	<p class = 'firstLineIndent'>不是说古代有女武神来引导英灵前往英灵殿吗，说实话，那其实和亡灵法师没有本质的区别，而近代的那些神座下的英灵，实际上和人工亡灵没有本质区别，无非是出手招魂者是神明，在神力的影响下，还能保有更多的人生记忆和战斗技巧而已。</p>
+	<p class = 'firstLineIndent'>一切源于灵魂，英灵的灵魂基本固化到他最强的一刻，看似很好，但实际上英灵却因此基本无法进步，而亡灵也是如此，从某种意义上抛开那耀眼的光环，英灵和亡灵太多相近之处，和自然亡灵是没法比的。</p>
+	<p class = 'firstLineIndent'>上古还有些自然亡灵，但到了近代，自然亡灵苏醒率完全可以忽略，现代人脆弱的灵魂根本无法抵御轮回的吸引，更不要提包有灵魂完整苏醒了，而且，光具备这些还不够，那不甘心到毁天灭地的怨念才是最难达成的条件。</p>
+	<p class = 'firstLineIndent'>我和海洛依丝都是被灭国，还是看着自己国民和王国走入灭亡的王室末裔，可以说，我们都是为了复仇而留在世间的怨灵，艾耶遭遇了什么他没说，但多半也不会是好事。</p>
+	<p class = 'firstLineIndent'>而即使条件完全具备，还需要足够的运气，那也是要从小数点后开始计算的成功率。</p>
+	<p class = 'firstLineIndent'>因此，对于现在的人来说，亡灵就等于亡灵法师召唤的亡灵，自然亡灵一开始就在选择项之外，有点亡灵法师自己都不知道还有自然亡灵这回事。</p>
+	<p class = 'firstLineIndent'>因此，当苏安娜以女妖的姿态复苏的时候，无人知晓，无人预测，恐怕就是策划着一切的精灵神明，也没有料到会发生这种小概率的事情。</p>
+	<p class = 'firstLineIndent'>纯洁的灵魂偏向转化为灵体亡灵，女精灵是最容易成为女妖的种族之一，苏安娜复苏成女妖之后，女妖之王的称号恐怕将不再是海洛依丝的专属。</p>
+	<p class = 'firstLineIndent'>从某种意义上，海洛依丝和苏安娜相似的地方不少，都是精灵公主出生，都遭遇了最信任的族人和神明的背叛，她们的死亡都是重要的历史事件——战争的活祭品。</p>
+	<p class = 'firstLineIndent'>讽刺的是，当年如日中天的精灵诸神一手制造海洛依丝这样的神敌，而亡灵绝对有足够的时间来查明真相，当一切最终露在阳光之下，恐怕苏安娜也会成为神敌。</p>
+	<p class = 'firstLineIndent'>不过，挖坑自己跳也是精灵和精灵神的传统了，当年的黄金精灵、罗丝都是最典型的例子，他们是精灵盛极转衰的导火索，而这次，若精灵诸神转入了混沌邪神，以超级记恨名扬艾希的罗丝会做出些什么，还是颇让人期待的。</p>
+	<p class = 'firstLineIndent'>言归正传，即使人类方已经开始收缩防御，作为核心区的红枫城更是防备森严，但却依旧阻碍不了一位传奇战士、一位黄金射手、一位自然亡灵女妖的组团围观。</p>
+	<p class = 'firstLineIndent'>“啊。骨头叔不在啊。伊丽莎姐，你又是怎么回来的？”</p>
+	<p class = 'firstLineIndent'>安妮摆明了的失望叹息，不仅包括罗兰不在的现实，恐怕有更有对伊丽莎返回的失望，这自然熟让伊丽莎眉毛连跳，这一见面就摆明了问自己男友是什么意思，还有上次才打了一架，就这么无所谓了？</p>
+	<p class = 'firstLineIndent'>“我还以为你会先问亚当他们了，前几天他们还来过这里。”</p>
+	<p class = 'firstLineIndent'>“义父和玛格丽特姐姐我知道啊，我一直在和他们通信。对了，义父没有转告你们我要来吗？”</p>
+	<p class = 'firstLineIndent'>“亚当，一如既往的混蛋啊……”</p>
+	<p class = 'firstLineIndent'>瞬间，伊丽莎脑海中浮现那个男人一如既往的比着大拇指，露出摆明了看热闹的笑容——“这是我应该做的，不要谢我”</p>
+	<p class = 'firstLineIndent'>“好了，你们来我自然欢迎，不过我们现在很忙你们也看到了，恐怕没时间招待你们了。若有得罪，还请多多包涵。”</p>
+	<p class = 'firstLineIndent'>伊丽莎面上如此说道，但嘴角却刻意“小声”的抱怨道。</p>
+	<p class = 'firstLineIndent'>“一个地下霸主，一个地下兽人皇，就这么溜出来了？这么大人了，说跑就跑，也不知道轻重。”</p>
+	<p class = 'firstLineIndent'>显然，从过往的经验判断，伊丽莎认为这两个家伙不是来干正事的，多半是被公事烦的够呛，直接甩掉了随从离家出走。</p>
+	<p class = 'firstLineIndent'>但预期之中的难堪表情没有看到，相反，安妮还是颇为得意的笑了。</p>
+	<p class = 'firstLineIndent'>“我们这次来可是有正事的，对了，还记得那个‘地下居民也应享有阳光’的宣言吗？我们就是为了这个来的！”</p>
+	<p class = 'firstLineIndent'>“要打仗了吗？”</p>
+	<p class = 'firstLineIndent'>这是伊丽莎听到这句话的第一反应，这要求“享用阳光的权利”，不是罗兰预期中的地底联军入侵吗？</p>
+	<p class = 'firstLineIndent'>考虑到罗兰所在东岚的现状，绝对受不了双线战争，当即伊丽莎的表情不好了。</p>
+	<p class = 'firstLineIndent'>但幸好，安利雅的及时插话，才没有让气氛直接恶化。</p>
+	<p class = 'firstLineIndent'>“大部分兽人酋长都要求组成联军进攻，但我们却在考虑租界的可能性。”</p>
+	<p class = 'firstLineIndent'>“租界？”</p>
+	<p class = 'firstLineIndent'>“嗯，买、租都行，无主之地也行。这也是罗兰殿下的意思，而首要的一部分，就是组织一个考察团联系可能的卖家了，而我们，就是考察团的前锋。”</p>
+	<p class = 'firstLineIndent'>或许这的确是一个可能性，点了点头，伊丽莎没有多说什么了，倒是那个进门一直很拘谨的女妖终于不再沉默了。</p>
+	<p class = 'firstLineIndent'>“罗兰？请问您说的是传奇圣骑士罗兰殿下吗？”</p>
+	<p class = 'firstLineIndent'>“你是？”</p>
+	<p class = 'firstLineIndent'>原本伊丽莎还以为对方是来自硫磺山城的女妖，但现在看显然不对，女妖可是高阶亡灵，很难遇到野生的，难道这位是西罗方面的特使？</p>
+	<p class = 'firstLineIndent'>“我是苏安娜，苏安娜·新叶。”</p>
+	<p class = 'firstLineIndent'>这个名字可是最近的头条，甚至是战争的导火索，伊丽莎当然知道。</p>
+	<p class = 'firstLineIndent'>她闻言先是一惊，但接着，却想起了什么，笑着点了点头。</p>
+	<p class = 'firstLineIndent'>“……这还真是有趣啊。或许那个狡猾的罗兰会很高兴看到您的到来。噢，还真是失礼，我还没有回答公主殿下的问话。是的，我们说的就是罗兰，三百多年那位圣骑士罗兰。”</p>
+	<p class = 'firstLineIndent'>“请别叫我公主……现在的我，已经不是流苏王国的王室成员，更不是什么精灵公主了。”</p>
+	<p class = 'firstLineIndent'>看着黯然伤神的苏安娜，伊丽莎还打算说些什么，但门外的侍从却突然闯了进来，满脸激动，显然有重要信息要通报。</p>
+	<p class = 'firstLineIndent'>“伊丽莎大人，我们的援军终于来了！”</p>
+	
+	
+<h2>第162章 死卵</h2>	
+	<p class = 'firstLineIndent'>大雪山的深处，难得遇到了一个有阳光的日子，阳光在雪地上反射，更是白茫茫的一片，让人看花了眼。</p>
+	<p class = 'firstLineIndent'>童年是最值得回味的美好记忆，孩子们的天职就是好好玩耍，好好成长，在游戏中锻炼未来的生活能力，这是生命的本能，更是不同种族幼崽相同的必经之路。</p>
+	<p class = 'firstLineIndent'>此时，而在雪地之中，雪国的孩子们正在打闹嬉戏。</p>
+	<p class = 'firstLineIndent'>“啊，小雪。别跑。”</p>
+	<p class = 'firstLineIndent'>“傻瓜才不跑啊，快追我啊！”</p>
+	<p class = 'firstLineIndent'>“别跑了，我跑不动了。”</p>
+	<p class = 'firstLineIndent'>“哇哈哈，小罗罗没体力，短腿跑的慢，是没用鬼，没用鬼。”</p>
+	<p class = 'firstLineIndent'>似乎，这是一群天真活泼的孩子正在抓迷藏，而其中做鬼的那位，却已经跑不动了。</p>
+	<p class = 'firstLineIndent'>而那些依旧精力旺盛的孩子们，则围着他打转，而当他拼起最后的气力又开始追逐的时候，却突然一哄而散。</p>
+	<p class = 'firstLineIndent'>也难怪他追不上了，虽然都是孩子，但雪人孩子、冰独角兽幼崽的体力能够一样吗？还有雪龙幼龙、雪凤幼崽，他们会飞！</p>
+	<p class = 'firstLineIndent'>看着越跑越远的小伙伴们，当鬼的小朋友却大笑起来，他已经追了一个上午，此时又累又饿。</p>
+	<p class = 'firstLineIndent'>“哈哈哈哈，真是太好玩了，我的眼泪都出来了……熊孩子们，继续跑啊，鬼要来抓你们了。永恒的冰河带来永恒的毁灭，永恒的夜幕已经降临，冰河的世纪终将到来……”</p>
+	<p class = 'firstLineIndent'>毁灭性的咒文带起可怕至极的魔力波动，暴风雪如期而至，歇斯底里般狂笑着的“鬼”开始准备毁灭一切的禁咒，目标却只是一群怎么追都追不上的熊孩子。</p>
+	<p class = 'firstLineIndent'>“嘻嘻嘻，熊孩子分两种，会动的和不会动，只有不会动的熊孩子才是好孩子，马上所有的熊孩子都要变得不会动，真是太好了……”</p>
+	<p class = 'firstLineIndent'>“人格修正踢！”</p>
+	<p class = 'firstLineIndent'>随着冰晶大拳突然落下，冰河世纪的禁咒被突然横飞出来的狮子头打断了，而明明被击飞，那“鬼”却能够留下最后的吐糟。</p>
+	<p class = 'firstLineIndent'>“什么踢？你这是拳头！难道你前后四个爪子都是脚吗？难道你用脚吃饭？”</p>
+	<p class = 'firstLineIndent'>好吧，我承认，这个被迫当鬼的倒霉蛋就是我本人，而这三天，我一直在我这辈子最痛恨的事情——和熊孩子一起玩！</p>
+	<p class = 'firstLineIndent'>“多大的人了，还和小孩子计较，亏你还说要继承瑞文戴特的意志，这才坚持几天？现在的岚之后裔越来越没用了。”</p>
+	<p class = 'firstLineIndent'>“我……我受不住了！我已经陪那群熊孩子玩了两天了，我都快疯掉了，静心？我都快爆心了！你确定真的对我有帮助吗，我只觉得更加焦躁啊。”</p>
+	<p class = 'firstLineIndent'>当初听这狮子头的胡话本身就是一个错误，带着笑容陪孩子玩就能静心？或许对其他人事这样的，但对我来说，这简直是炼狱的煎熬，实在太让人不爽了。</p>
+	<p class = 'firstLineIndent'>“……三天了吗？哦，那就进入下一个阶段吧。”</p>
+	<p class = 'firstLineIndent'>狮子摇头晃脑之间，就下了新的决定。</p>
+	<p class = 'firstLineIndent'>“归冥……你确定不是糊弄我，我怎么感觉这么随意啊。”</p>
+	<p class = 'firstLineIndent'>这只庞大的冰晶狮子却有个颇为东方的名字，这奇怪的命名方式，似乎是初代岚之王的爱好。</p>
+	<p class = 'firstLineIndent'>“嗯，其实和孩子玩能够静心什么的，只是糊弄你的，真正的目标沾染冰之幼兽的气息，昨天就已经实现了。”</p>
+	<p class = 'firstLineIndent'>好了，光听到糊弄我，那火气就上来了。</p>
+	<p class = 'firstLineIndent'>“那为什么不通知我！你知道假装和很喜欢推雪人、打雪仗、抓迷藏有多让人难受吗，尤其是这群熊孩子一点都不讲理，什么危险偏偏玩什么，怎么说都不听，还把我当小伙伴……我恨不得把这群熊孩子全部丢进大炮打出去！”</p>
+	<p class = 'firstLineIndent'>“啊。大家还以为你和他们玩的很开心了，毕竟你比他们还要小得多，他们的父母也很高兴有一个外来的玩伴，看你们玩的这么开心，所以才让他们多陪你玩了一天……你拔剑做什么？念咒干什么？”</p>
+	<p class = 'firstLineIndent'>而此时的我，脑中却只有“玩的开心，才让他们陪你多玩了一天”在回荡。</p>
+	<p class = 'firstLineIndent'>“果然每一个熊孩子都有毫无公德心的家长啊，那么，都给我化作渣渣吧，永恒的冰河啊，凝听我的愤怒吧……”</p>
+	<p class = 'firstLineIndent'>“啊哈！岚之王亲传，专打非正常人的人格修正拳！”</p>
+	<p class = 'firstLineIndent'>“啊！”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>援军？这无疑完全出乎伊丽莎意料之外。</p>
+	<p class = 'firstLineIndent'>败战的消息刚刚传出，圣安东里奥的援军还在千里之外，极北五国的主力都在这里了，第二波集结动员可不是一时半会的事情，这那里会有援军来。</p>
+	<p class = 'firstLineIndent'>“诸位大人正在等候您的到来，他们希望你能参加援兵的迎接仪式。”</p>
+	<p class = 'firstLineIndent'>闻言，伊丽莎更是吃惊了，现在联军之中东岚的处境并不好，摆明是被边缘化的局面，那些眼高于顶的大国将军怎会把自己和岚之国放在眼中。</p>
+	<p class = 'firstLineIndent'>“……众位将军都请您去，据说，这是援兵的要求，必须看到东岚的代表，要不援军不肯进城。”</p>
+	<p class = 'firstLineIndent'>而接着，诸多消息纷纷而至，她才理清了到底是什么回事。</p>
+	<p class = 'firstLineIndent'>在那场败战之中，圣安东里奥那个领军的将军据说伤的不轻，同为圣安东里奥人的‘黑熊’安因洛因此接手了指挥权。</p>
+	<p class = 'firstLineIndent'>但即使折损过半，圣安东里奥人却依旧是联军中最大的势力，而考量到一些特殊的意义，联军反而更加边缘化了东岚。</p>
+	<p class = 'firstLineIndent'>而现在新来的援军，却摆明了不给他们面子，只认东岚的账，自然让联军将领心底很受伤，但偏偏别人援军送上们，还没有拒绝拒绝的余地。</p>
+	<p class = 'firstLineIndent'>至少不能在新援军面前这么快暴露联军的不合，于是只有打肿脸充胖子，赶快让伊丽莎代表东岚过去凑数。</p>
+	<p class = 'firstLineIndent'>“那里来的援军？东岚国内的军力应付兽潮都很勉强了，这援军还这么给我面子，难道……”</p>
+	<p class = 'firstLineIndent'>怀疑的目光投向了室内的两人，从某种意义上来说，这两位都是超级大佬，当然，从正在傻笑的表情是看不出她们有多尊贵的。</p>
+	<p class = 'firstLineIndent'>“不是我，我随行的军团和龙族护卫都还在通道里面待着了，没有我的命令他们不会出来的。”</p>
+	<p class = 'firstLineIndent'>好吧，随行军团？龙族护卫？从某种意义上，安妮现在混得比她义父强多了。</p>
+	<p class = 'firstLineIndent'>有龙后艾因美修斯的支持，她从某种意义上也是龙公主，再加上魔鬼势力在地下世界的退宿，安妮和硫磺山城成为代表人类势力的地下霸主，安妮已经越来越有地下女皇的模样了。</p>
+	<p class = 'firstLineIndent'>伊丽莎的目光投向了另外一边，这位前段时间还是厨房毁灭者和厄运避雷针的半人马娘也是一脸傻笑，现在的她还是地下兽人的共主、四大地下霸主之一，至少现在来说，还和安妮是对等的存在。</p>
+	<p class = 'firstLineIndent'>“我的游骑兵军团和部落勇士也在通道中休整，有安妮姐在就很安全了，我可不想惹麻烦，带着军团什么都做不了吧。”</p>
+	<p class = 'firstLineIndent'>好吧，这位就算不诈也说了实话，她也带来了自己的军团，她说带了军团什么都不能做的时候，多半是向着人多了不方便自己逛街。</p>
+	<p class = 'firstLineIndent'>“你们……”</p>
+	<p class = 'firstLineIndent'>一时之间，伊丽莎为之语塞，她能够说什么，这两位现在还真是名副其实的地下霸主，既然来到地表，手下没几个军团随行反而不像样。</p>
+	<p class = 'firstLineIndent'>“你们就不怕惹出大麻烦？地表出现地底联军，还出现在战场上，这往阴谋论靠一下的话，可以写出好几本传奇小说了。比如《地下霸主和兽人的惊天阴谋》、《圣战中的两面间谍——牵线搭桥的墙头草黑暗精灵》，嗯，若是主人在的话，一定会这么吐糟的。”</p>
+	<p class = 'firstLineIndent'>“……我们也没有料到正好遇到了战争，所以才把大家留在了通道之中，现在局面这么乱，应该没事吧。”</p>
+	<p class = 'firstLineIndent'>“放心吧，只要不出地下通道，没有人会去那里的。那里是临近精灵王室的墓穴，普通上位精灵都无法靠近的。但实际上，它也是一直被王室控制的秘密通道，也正是因此，我才会在那里驻留躲避族人。”</p>
+	<p class = 'firstLineIndent'>苏安娜的话语总算让在场诸位松了一口气，但接着，新的疑问也出来了，既然援军不是地下联军，那么，会是谁。</p>
+	<p class = 'firstLineIndent'>“援军有两批，只是正好遇到了结伴而行，一批是沙文自治领和野蛮人部落的联军，他们是来支援罗兰殿下的。”</p>
+	<p class = 'firstLineIndent'>闻言，伊丽莎点了点头，罗兰的确提过那三地的秘密合约，但却没有过高的期盼他们正在的派兵支援，毕竟现在盟约还是试探期，诸多因素都很不明朗，沙文本身的麻烦也不小。</p>
+	<p class = 'firstLineIndent'>“第二波援军是来支援蕾妮殿下的，他们是奥兰人。说是达索斯陛下派出了的援军，感谢殿下如期履行了关于‘钥匙’的协议。”</p>
+	<p class = 'firstLineIndent'>“噗。”闻言，伊丽莎不禁莞尔，安妮却直接笑喷了。</p>
+	<p class = 'firstLineIndent'>有些事即使罗兰不说，也瞒不住神通广大的伊丽莎，但一直在地下的安妮也知道，就很有点奇怪了。</p>
+	<p class = 'firstLineIndent'>“义父和我提过啊，就是那个看上了骨头叔的眼神不好的皇帝陛下吗？看来他对骨头叔还真是专情啊。不过，也难怪，骨头叔活着的模样好可爱啊，小小的时候，真的很像可爱的女孩子，好像抱抱啊。”</p>
+	<p class = 'firstLineIndent'>闻言，在感叹亚当不愧是罗兰的第一损友，真心不做好事的同时，伊丽莎也忍不住笑了。</p>
+	<p class = 'firstLineIndent'>“安妮，别在罗兰面前说这话哦，否则，他真的会哭给你看啊。”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>“你再逼我，我真的哭给你看哦！”</p>
+	<p class = 'firstLineIndent'>“孵蛋？你疯了还是我疯了，别看我长这德性，这只能怪我妈，我真的是公的啊……不对，我是男的！看你都把我绕那里去了！我是男的，怎么可能会孵蛋。”</p>
+	<p class = 'firstLineIndent'>我的怒吼在洞穴中回荡，一直传得很远，原因？就是眼前的狮子头提出的新训练计划了。</p>
+	<p class = 'firstLineIndent'>“当它孵化，是你的训练的第二个步骤。也就是为了这个目的，才让你去沾染冰雪幼兽的气息。”</p>
+	<p class = 'firstLineIndent'>那是一颗漆黑的冰晶，从那微微的寒气和外层的那些魔纹来看，他应该是冰噩的卵，但冰噩卵不都应该是白色的吗。</p>
+	<p class = 'firstLineIndent'>“这是个死卵，一直没有孵化成功，按理说，他应该已经死了，但你看些魔纹和冰晶，就知道他还活着。”</p>
+	<p class = 'firstLineIndent'>“这不是你们的族人吗？你们自己无法孵化吗？”</p>
+	<p class = 'firstLineIndent'>“三百七十多年前，他曾经一度近乎孵化，而之后，不管我们做什么，他都没有任何反应。”</p>
+	<p class = 'firstLineIndent'>闻言，我却是一愣，这个时间点，总让我想起些什么不好的事情。</p>
+	<p class = 'firstLineIndent'>“双生子是这个世界上最奇妙的存在，他们之中也分为很多类型，而其中有一类最稀少，却是双生子中的双生子，他们的灵魂波动都是相同的，就仿若他们原本就是一个人，而只是一个灵魂被撕裂成了两部分……”</p>
+	<p class = 'firstLineIndent'>“够了！”我先是怒吼，然后自己却愣住了，我到底在生气什么，是什么让我心底如此慌张。</p>
+	<p class = 'firstLineIndent'>狮子头却仿若什么都没有听到，只是自顾自的依旧在解说。</p>
+	<p class = 'firstLineIndent'>“厄运的双子星吗？应该是幸运的双子星吧，他们之间往往有着奇特的联动方式，更是最契合的搭档。对了，顺带一提，这个卵也是艾琳贝拉的兄弟，当然，姐妹也是可能的。而也是一个岚之后裔把这个送来的，他的名字，我也应该不用废话了吧。”</p>
+	<p class = 'firstLineIndent'>此时，若有镜子的话，恐怕我的面色会非常难看。</p>
+	<p class = 'firstLineIndent'>“该说的都说完了，剩下的，就看你怎么决绝了。”</p>
+	
+	
+<h2>第163章 老兵</h2>	
+	<p class = 'firstLineIndent'>“呜呜呜！”</p>
+	<p class = 'firstLineIndent'>当苍茫的号角声在凛冽的寒风中响起的时候，这座中型城市中的市民面容上却是一片茫然。</p>
+	<p class = 'firstLineIndent'>联军败战的消息虽然已经传开，但谁也没有料到兽人居然会来的这么快，还会选择在进军的路线上，拔掉自己这枚钉子。</p>
+	<p class = 'firstLineIndent'>庞大的战兽从阴影中走了出来，小山般的龙裔战龟带着地震波靠近城下，庞大的壳上居然还驮着一个灰白色的战争堡垒，战鼓声和号角声从中传出。</p>
+	<p class = 'firstLineIndent'>巨大的战龟有着四分之一的巨龙血脉，庞大的身躯展开不会比城墙低，这是兽人最为可怕的攻城利器。</p>
+	<p class = 'firstLineIndent'>“末日战龟！熊王来了。是他的白尾战熊军团。”</p>
+	<p class = 'firstLineIndent'>龙龟恐怕整个世界都不多，而在北地驮着要塞的，却只有熊王的座驾“末日战龟”黑背，它既是熊王隆德的坐骑，也是他的移动堡垒。</p>
+	<p class = 'firstLineIndent'>而在他背后，保持诡异沉默的比蒙巨兽却怎么都无法忽略，他们一个接着一个走出阴影，化作了真实存在的噩梦。</p>
+	<p class = 'firstLineIndent'>从一开始就派出了恐怖巨兽，恐怕兽人是打着速战速决的注意。</p>
+	<p class = 'firstLineIndent'>“比蒙！！比蒙军团！完了，都完了……大家快逃吧。”</p>
+	<p class = 'firstLineIndent'>明明攻城龙龟是第一威胁，但带来最大恐惧的，却是那些看似温顺的比斯巨兽。</p>
+	<p class = 'firstLineIndent'>他们看起来远没有龙龟那个健壮，沉默的他们甚至没有如野兽般发出咆哮的习惯，他们任由三米多长的利爪直接在地上拖出来客沟渠，沉默的直立行进，就仿若列队行进的士兵。</p>
+	<p class = 'firstLineIndent'>忽略到强壮到畸形的巨手，浑身厚毛的他们看起来很像直立的大猩猩，厚毛下只有两个眼珠在散发凶光，只看外表，他们远没有带着菱角和獠牙的龙龟那么恐怕，相反还有点憨态可掬，但若论起名声来，恐怕没有人会忽略这些可怕的大个子。</p>
+	<p class = 'firstLineIndent'>沉默只是为了爆发时积累气力，真正的战争巨兽没有嘶吼的习惯，他们只是在享受巨爪上的血肉的时候，会露出满意的笑容。</p>
+	<p class = 'firstLineIndent'>“此世最为疯狂的战兽，陆战第一的物种。”</p>
+	<p class = 'firstLineIndent'>虽然那个陆战第一还有很多诸多不服的竞争者，但最为疯狂的战兽却绝对名副其实。</p>
+	<p class = 'firstLineIndent'>仅仅只是出现，就引起了城市中人的恐慌，即使那所谓的军团也只有三只比蒙巨兽，但足以横扫北地。</p>
+	<p class = 'firstLineIndent'>“铛！”</p>
+	<p class = 'firstLineIndent'>“呜！”</p>
+	<p class = 'firstLineIndent'>庞大的巨兽居然踏上了龙龟的后背，猛地一踩，就接着反作用力顺着城墙一猜，就登上了城墙，轻松的就能爬上树梢的猿猴。</p>
+	<p class = 'firstLineIndent'>比城墙矮不了多少的巨兽居然如猿猴一般敏捷，凶残的战兽就这么越过了坚固的城墙，但从那城墙上被践踏出来的足印来看，坚实的三层混合土城墙在比蒙巨兽的巨力面前，和泥巴桩子没有本质的区别。</p>
+	<p class = 'firstLineIndent'>而当庞大的巨兽进城后，一直沉默的它们终于开始狞笑了，那扭曲的面容下露出的怪齿足足有一人高，让每个看到的人为之胆寒。</p>
+	<p class = 'firstLineIndent'>中间开花，内部破坏，虽然简单，但的确有效。</p>
+	<p class = 'firstLineIndent'>而这也是白尾军团的拿手好戏，他们并没与使用常规的添油战术，反而直接强行突破，面对这强悍的比蒙先锋，当大门被巨兽打开，兽人大军进城后，个体实力的差距就会自然造成碾压，一路上已经有十余个城市就这么稀里糊涂的覆灭了。</p>
+	<p class = 'firstLineIndent'>当其中一只金丝比蒙开始从内打开城门的时候，另外两只银毛的巨兽就开始破坏了，瑟瑟发抖的人类根本拿不出阻止比蒙的强手，或许的确有强手在城中，但面对大军压境的绝境，恐怕他们也会假装不在。</p>
+	<p class = 'firstLineIndent'>狞笑的兽人们已经看到了未来，和其他的城市一般，可怕的战争巨兽所及之处，人类尖叫的四散逃窜，而当强大的兽人大军入城后。</p>
+	<p class = 'firstLineIndent'>但这次，却有些不同，依旧有人没有离开的意思。</p>
+	<p class = 'firstLineIndent'>一个老兵站在了城门处，锈迹斑斑的锁子甲上还满是污迹，酒糟鼻在寒风中冻得发红。</p>
+	<p class = 'firstLineIndent'>老兵并没有疯狂的迎着巨兽冲锋，也没有试图阻拦对方，但仅仅只是留守在原地，在一片混乱之中，却依旧打眼。</p>
+	<p class = 'firstLineIndent'>那是因为，他现在的位置，却正好是金丝比蒙的必经之路。</p>
+	<p class = 'firstLineIndent'>庞大的巨兽似乎发觉自己遇到了挑战，暴跳如雷的巨兽血红着眼，向老将杀来。</p>
+	<p class = 'firstLineIndent'>“老酒鬼，你疯了！快逃啊！”</p>
+	<p class = 'firstLineIndent'>他并不是这座城市的将军，只是城防军队的一个老兵。</p>
+	<p class = 'firstLineIndent'>“老酒鬼”艾克，嗯，这就是他的绰号，也是他的代名词，原因只是因为他总喜欢在下岗以后去酒馆喝上几杯，即使在岗哨上执勤的同时，怀中也必然兜着劣酒。</p>
+	<p class = 'firstLineIndent'>“老酒鬼，你就不怕哪天喝醉死在阴沟里。”</p>
+	<p class = 'firstLineIndent'>每次，有人开着这么过分的玩笑的时候，老酒鬼却总是拍了拍肚子，张开满嘴老黄牙笑道。</p>
+	<p class = 'firstLineIndent'>“好啊，只要老巴克的松子酒管饱，明天我就死在你家的阴沟里。”</p>
+	<p class = 'firstLineIndent'>这时，似乎对同僚的惊呼没有听到，老酒鬼艾克抽了抽鼻子，浑浊的目光还盯着自己的酒罐。</p>
+	<p class = 'firstLineIndent'>“呸，这酒还真是一如既往的难喝啊，小巴克那小子到底给里面掺了多少水啊。或者，根本就是水里搀点酒。哎，越来也没有良心了，还是老巴克厚道啊。”</p>
+	<p class = 'firstLineIndent'>茗了口这三铜币一大壶的水酒，艾克眯着眼，似乎又回到了过去，那个时候，自己的兄弟和老伴还都在。巴克酒吧的松子酒虽然也很难喝，但至少分量足的多。</p>
+	<p class = 'firstLineIndent'>不过，那时自己可不叫什么老酒鬼，“喀什之箭”艾克可是出了名的精锐游侠，直到自己膝盖受伤转到城防部队前，自己可是出了名的狠角色。</p>
+	<p class = 'firstLineIndent'>“总觉得，有什么改变了啊。”</p>
+	<p class = 'firstLineIndent'>虽然天气一样寒冷，薪酬一样少的可怜，“老巴克酒吧”的酒水一样难喝，但那个时候，自己的小日子却总是过得不错，或许，是因为那些和自己一路走过的老混蛋、老酒鬼们都在吧。</p>
+	<p class = 'firstLineIndent'>“草，都是那群该死的兽人！还有没用的贵族！还没开战居然都开溜了，小辛德恩，等我见到你挂掉的领主老爸，看我怎么向他告状，一定要让他打花你屁股。就像以前一样。哎，人老了就是总爱回忆那些有的没的。”</p>
+	<p class = 'firstLineIndent'>老兵一边想着如何要和老上级告状，一边抽出那由于疏于打理而锈迹斑斑的制式铁剑。</p>
+	<p class = 'firstLineIndent'>“噗。”</p>
+	<p class = 'firstLineIndent'>一口酒水就全部喷了上去，湿漉漉的长剑总算带出一丝寒光，巨兽已经到了面前，被地震震的摇摇晃晃的老酒鬼却慢条斯理的开始整理自己的头盔。</p>
+	<p class = 'firstLineIndent'>“老辛德恩可是说过，我们这些士兵是他这个领主的面子，冲锋的时候也要注意形象。对了，我记得，这个时候应该还要念下冲锋口号，念什么好了？”</p>
+	<p class = 'firstLineIndent'>可以轻松捏碎桥梁的巨手就在面前了，老兵也停下了思索，喊着号子开始挥剑冲锋，那全心全德的一剑，那豁出自己一切一剑，带着了一丝弧光，隐隐约约居然出现了剑气，也到了艾克此世的最高水平。</p>
+	<p class = 'firstLineIndent'>“啪！”</p>
+	<p class = 'firstLineIndent'>但绝对实力的差距，却不是能够用斗志弥补的，比斯巨兽的钢爪落下，留在原地的，却只有那团肉泥和血迹了。</p>
+	<p class = 'firstLineIndent'>或是被老兵突然的行为吓到了，或许，老兵那一剑，最终还是割伤巨兽的皮肤，金丝比蒙慢了下来，顿了一下，瞟了一眼老兵的尸体，才继续追杀其他的逃兵。</p>
+	<p class = 'firstLineIndent'>老酒鬼死了。死的很彻底，他既没有突生神力斩杀敌手，也没用自己的性命鼓舞士气最终扭转战局。</p>
+	<p class = 'firstLineIndent'>这就是战争，没有主角，没有奇迹，只有血淋淋的弱肉强食。</p>
+	<p class = 'firstLineIndent'>只是他人死了，那最后的冲锋口号却依旧在空气中回荡，被寒风带去了很远……</p>
+	<p class = 'firstLineIndent'>“……岚之意志，永不屈服！”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>“你们这是在谋杀！你们都是兽人的帮凶！！”</p>
+	<p class = 'firstLineIndent'>依旧是那个充当会场的老剧院，但这次，却是愤怒的蕾妮气急败坏对着诸位联军将领怒吼。</p>
+	<p class = 'firstLineIndent'>自从兽人再度侵袭的消息传来，各国军事主官的联席会议已经开了一个上午了，但却仅仅只是从互相推诿责任进步到开始研究如何加固红枫城的防御，却依旧没有在、出兵救援其他遇袭城市的意思。</p>
+	<p class = 'firstLineIndent'>“咳，殿下，您应该保持冷静和王室成员的风度。您看，现在敌强我弱，暂时的退缩是战略上的需要，你看，我们加固防御，击中兵力准备决战才是正确的现在。”</p>
+	<p class = 'firstLineIndent'>“那兽人进军沿线周遭的城市和居民怎么办，他们还在等着我们的救援吧。我们难道就这么看着他们去死。”</p>
+	<p class = 'firstLineIndent'>但她的提议，却没有人应声，相反，还有人出言讽刺。</p>
+	<p class = 'firstLineIndent'>“别国的事情你这么激动做什么，小心被人说别有用心。”</p>
+	<p class = 'firstLineIndent'>“哼，这局势都看不清楚，也难怪被边缘化了。若不是罗兰殿下不在，恐怕都没有权限出席吧。”</p>
+	<p class = 'firstLineIndent'>“公主这种东西，乖乖做花瓶就够了，打仗还是别瞎指挥了。救援？我们现在足以决战的可用之兵马”</p>
+	<p class = 'firstLineIndent'>国小势弱，人又年轻没有名声，自然很容易碰壁了，会议开到现在，即使是主战派，却依旧把注意力投向了如何加固红枫城的防务上来，主张救援的蕾妮早被无视的不止一次了。</p>
+	<p class = 'firstLineIndent'>她被气的俏脸通红，却依旧没有丝毫办法，最终，还是负气离去。</p>
+	<p class = 'firstLineIndent'>“被边缘化吗？最近到底发生了什么？”</p>
+	<p class = 'firstLineIndent'>从某种意义上，那人胡乱猜测却接近了，被边缘化，这无疑踩到了蕾妮的痛脚。</p>
+	<p class = 'firstLineIndent'>从某个时间节点开始，罗兰有意识的让蕾妮远离要事，已经在东岚内部引起了不少猜测。</p>
+	<p class = 'firstLineIndent'>若是其他人这么处理的话，蕾妮比如会怀疑是否别有用心，似乎有谋权上位的野望，但本身对权位毫无兴趣的罗兰这么做，就让人无法理解了。</p>
+	<p class = 'firstLineIndent'>“最近，还真是轻松啊。”</p>
+	<p class = 'firstLineIndent'>想起自己在各个方面忙碌异常的师弟、师妹们，而自己却明显被闲置了，怎么能够让人不多想。</p>
+	<p class = 'firstLineIndent'>“似乎，是从哪个伊丽莎姐姐来之后变成这样的，他们到底谈了些什么。若仅仅只是坏话的话，罗兰大哥可不是那么容易改变。而且，他对我的态度也没有改变啊，为什么却把我一个人隔绝在外面。”</p>
+	<p class = 'firstLineIndent'>思索着，蕾妮隐隐约约的想到些什么，却很难得到证实。</p>
+	<p class = 'firstLineIndent'>而突然变黑的天色，去让她没有多想的余暇了，连忙找掩体躲避。</p>
+	<p class = 'firstLineIndent'>短短数秒后，刚才还是平静的天空也是一片混乱了，大批鸟身女妖投下焦油燃烧弹就此退走，而城市中的救火队却陷入了忙碌之中。</p>
+	<p class = 'firstLineIndent'>而与此同时，城中的空骑已经上路，能打下多少算多少。</p>
+	<p class = 'firstLineIndent'>虽然无法彻底除掉对方，但至少不能让她们如此轻轻松松的来往战场。</p>
+	<p class = 'firstLineIndent'>“……殿下，诸位将领请你回去议事，兽人的大军正在合拢，恐怕，他们即将绕过屏障，直接攻城了。”</p>
+	
+	
+<h2>第164章 伪王</h2>	
+	<p class = 'firstLineIndent'>“元素魔法是什么？繁琐的咒文和莫名其妙的规则总结？若这么麻烦的话，我们这些连文字传承都没有的魔兽们，又怎么能够使用？”</p>
+	<p class = 'firstLineIndent'>暖洋洋的嗓音在大厅中响起，周遭的听众却很是瞩目，庞大的身躯展开让人看不到边境，闭目的冰之龙在缓缓讲述自己对于魔力的理解。</p>
+	<p class = 'firstLineIndent'>“魔法，魔既奇异、匪夷所思，而法怎是代表着规则，对现世的影响，合起来的话，就是通过不可思议的手法改变现实。现在的主流魔法大成者，无疑是人类的大法师们，而他们的魔法却源于精灵，当然，和精灵时代四大元素为主相比，他们已经不知道进步变化了多少，但那研究手段和技法却是一脉相传的，最为明显的证明，就是他们都强调各种繁琐的手势和咒文、仪式了。但要我说，那些乱七八糟的东西真的很多余。”</p>
+	<p class = 'firstLineIndent'>悠扬的嗓音仿若带着音符，冰之凤凰停在巨大冰龙额上，但作为冰雪精灵的顶端，她仅仅只是存在与此，就让天空之中的雪花缓缓飘落。</p>
+	<p class = 'firstLineIndent'>“那群长耳朵就是一群偏执狂，他们敏感而偏执，执着的认为魔法也是一种可以可以用来解释的工艺，搞了一大堆乱七八糟的符文，但别说，他们还真搞出些东西。但可惜的是，他们却从一开始就失去了魔法的源头。”</p>
+	<p class = 'firstLineIndent'>浑厚的嗓音中满是讥讽和不屑，冰之魔狮趴在冰凤的背上，明明巨人般的庞大身躯，在更加巨大的庞然大物的对比之下，却仿若一只小花猫。</p>
+	<p class = 'firstLineIndent'>“人类学习精灵，精灵学习自然……呵呵，所谓的自然，不就是我们这些天生天长的魔物和元素生物吗。可惜，他们却没有学到根本，但他们采取研究而不是领悟的那刻起，他们就离真相越来越远。”</p>
+	<p class = 'firstLineIndent'>“神明的意志就是神术，恶魔君王的狂怒足以改造整个世界，而我冰凤爱斯雅丽纹，也可以用一个眼神就造就蔓延整座山脉的大风雪，这难道就不是用匪夷所思的力量来改变现实吗？”</p>
+	<p class = 'firstLineIndent'>“那群长耳朵就是习惯把事情弄的复杂，反而失落了根本。到了所谓的传奇才能够凝结自己的意志之印？到了所谓的圣阶才能用意志改变世界？哈哈哈哈，真是好笑，饶了一圈回到了原点，我们从一开始就能够做到了。”</p>
+	<p class = 'firstLineIndent'>“带着异类血统的术士、各种奇异种族天赋的特殊种族，难道他们的奇迹之力就不是魔法了吗？精灵的定义，未免太过偏执。”</p>
+	<p class = 'firstLineIndent'>“所以，小辈们，抛开了那些无谓的繁杂和奥秘吧，那并不适合你们，你们所要做的，只是下定改变世界的意志而已。就像这样……liz Slen Nus！”</p>
+	<p class = 'firstLineIndent'>随着莫名的言语落下，冰龙的意志降临了，空气中的威势让人窒息，那无尽的威势让在场所有的生命感到本能的恐惧，那是源自远古的震怒。</p>
+	<p class = 'firstLineIndent'>“末日龙威？那是什么？我只是释放了自己的存在而已，那些小爬虫的恐惧关我何事。我看到了，所有的弱者就要闭目，我降临了，所有的残渣都要低头，我愤怒了，所有卑劣者都要跪下。我的意志即我的存在，吾即终末之龙艾科修西斯！吾既是毁灭，吾之冰翼之下，既是末日降临之地。”</p>
+	<p class = 'firstLineIndent'>庞大的巨龙似乎怒吼，他在昭示自己的存在，而整个山脉都在用恐惧的颤抖来回应他。</p>
+	<p class = 'firstLineIndent'>“一切源于灵魂，凝听你的灵魂之音，你就会得到属于自己的魔法，那是最适合你的奥秘。或许那只是一个魔法，但当你真正领悟的时候，它却可以是任何一个魔法。”</p>
+	<p class = 'firstLineIndent'>冰凤挥动双翼，那漫天的雪花却开始改变自己的形态，雪陨石、雪花、雪刀，幸好落到地上的时候，却已经成了一个个可爱的雪娃娃，这些活蹦乱跳的雪娃娃居然直接开始用自己堆起雪人了，那些冰雪精灵已经活了。</p>
+	<p class = 'firstLineIndent'>“而为了和那些愚蠢的精灵区分开来，我们却称呼其为源魔法。当然，你也可以称呼其为天赋魔法。普通的人类法师是无法掌握的，但凝结了灵魂徽印的存在也可以和魔物一般用意志干涉世界，倒是可以尝试直抵根源。罗兰，你懂了吗？”</p>
+	<p class = 'firstLineIndent'>狂狮的怒吼在整个世界激荡，声波居然开始震碎冰川，冰噩中的王者正在向后辈传授魔力的真谛。</p>
+	<p class = 'firstLineIndent'>在终于知道为什么其他的小鬼一听到上课就跑的没影没踪的同时，也开始能够理解为什么三位大佬会如此的开心了，作为唯一的听众，我面子上却一直若有所思的模样，我的确有些思考了。</p>
+	<p class = 'firstLineIndent'>“那个，可以问个问题吗？”</p>
+	<p class = 'firstLineIndent'>“问吧，我知道你现在肯定很多疑虑，我们的魔法理论应该和你过去接触的完全是两回事。”</p>
+	<p class = 'firstLineIndent'>“孩子，放松身心，我们并不可怕，从某种意义上，我们都是亲人。”</p>
+	<p class = 'firstLineIndent'>“我说过，人间的礼仪对我们毫无意义，直接说吧。”</p>
+	<p class = 'firstLineIndent'>在得到肯定的答案后，我点了点头，下定决心，把从上课开始就一直很注意的问题提了出来。</p>
+	<p class = 'firstLineIndent'>“那个，我稍微有点强迫症，恐怕不知道这个问题的答案今晚都会睡不好……”</p>
+	<p class = 'firstLineIndent'>三位顶级存在的目光让空气仿若冻结，好吧，是真的在结冰了，于是，我终于问出来了。</p>
+	<p class = 'firstLineIndent'>“你们为什么要叠在一起叠罗汉？难得是觉得这样很帅吗？那个，突然觉得很有意思，我可以站在最高点吗？我很轻的。”</p>
+	<p class = 'firstLineIndent'>“这是重点吗？！”</p>
+	<p class = 'firstLineIndent'>巨龙微微一颤，大地也微微震动。</p>
+	<p class = 'firstLineIndent'>“两个傻货，还什么金字塔三贤者模式，还要湖里的那只老龟加入组成四天王，我就说这姿势丑毙了！”</p>
+	<p class = 'firstLineIndent'>“这思维回路，还真是和当年的岚之王一样，不愧岚之后裔，但……绝对不行！我头上怎么能站人了。”</p>
+	<p class = 'firstLineIndent'>“狮子头！那我们头上就能站了吗？你当年提出这个，就是为了站我们头上？”</p>
+	<p class = 'firstLineIndent'>下面异口同声的两人，然后就是喜闻乐见的互掐时间了。</p>
+	<p class = 'firstLineIndent'>“咳，小辈面前，顾下脸面，除了这个，还领悟了些什么没？”</p>
+	<p class = 'firstLineIndent'>冰凤化作流光，瞬间就到了我的面前。</p>
+	<p class = 'firstLineIndent'>“……其绰号要谨慎，想出场台词更要谨慎。噗，终末之龙什么的，太让人羞耻了‘吾既是毁灭，吾之翼……’好吧，大人，请收敛龙息，这名字真棒，一点都不中二。”</p>
+	<p class = 'firstLineIndent'>“不知道什么是中二？那是外界人类的说法，就是指那人帅到惨不忍睹的瞬间，嗯，那一段时间对个人很重要，是最闪光的时间，往往回忆起来会‘兴奋’的满头打滚。我觉得中二之翼这绰号非常配您……您喜欢？！那就太好了，中二之翼大人。”</p>
+	<p class = 'firstLineIndent'>在糊弄了新出炉的“中二之翼大人”后，而面对这只面前的狮子头，我却笑着挥了手。</p>
+	<p class = 'firstLineIndent'>无形无色的寒气散开，没有耀眼的魔法光华，没有震撼人心的巨响，只是那淡蓝色的冰之结晶在我掌心舞动。</p>
+	<p class = 'firstLineIndent'>“嗯，感谢诸位前辈的指点，我已经找到了，原来它一直在我的身边……”</p>
+	<p class = 'firstLineIndent'>从某种意义上，我的确收获不少，三位冰之顶端为我指明了一条新的道路，一条和传统的元素魔法完全不同的道路，我已经迫不及待的尝试新掌握的能力了。</p>
+	<p class = 'firstLineIndent'>而当我正在得意述说自己新的体悟和理解的时候，突然手指上银环却在微微震动，传递过来的消息，却让我整个人都不好了。</p>
+	<p class = 'firstLineIndent'>“该死的小混蛋！不肖子孙！蠢货！我要弄死他！”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>当战争的秃鹫在北地上空盘旋的时候，在诸军环绕的安图恩，却悄然发生着变化。</p>
+	<p class = 'firstLineIndent'>借着夜幕的黑雾，披着黑斗篷的身影悄然潜进进了城中，他们在皇家侍者的引领之下，默默进入了皇宫，而当他们在天亮前，挂着满足的笑容离去的时候，很多事情都会变得不同。</p>
+	<p class = 'firstLineIndent'>“岚之意志？呵呵。永不屈服？呸！”</p>
+	<p class = 'firstLineIndent'>黑袍人的不屑还在风中，而在附近的窗台之上，一队年轻的情侣却在小声的交谈，他们的目光，却透过了这些阻拦的建筑物。</p>
+	<p class = 'firstLineIndent'>“怎么会这样，我们不是和那死胖子说了会保住他吗？”</p>
+	<p class = 'firstLineIndent'>“哼，他现在连神明都不信，还会信任我们。”</p>
+	<p class = 'firstLineIndent'>“该死，怎么会这样，这完全超出罗兰的预期，要不，我去杀了他们。”</p>
+	<p class = 'firstLineIndent'>“有用吗？除非你杀掉那个带着皇冠的死胖子，否则无法再派出一个使者的问题。不，就算杀了他，也毫无意义。倒是赶紧和罗兰联系吧……没有必要了，若没有料错，很快，这个消息就会让整个世界为之震惊。”</p>
+	<p class = 'firstLineIndent'>“听到这消息，罗兰会怎么样？这就是仿若自己豁出性命保护的东西别人踩在脚下，还吐了口痰在上面，恐怕他怎个人都会不好吧。”</p>
+	<p class = 'firstLineIndent'>“还能怎样？你应该问北地会怎么样。从某种意义上，道德和明面上的规则是束缚罗兰的锁链，他若是真疯起来……恐怕不仅整个北地会换个天，整个世界都会受不住。”</p>
+	<p class = 'firstLineIndent'>而正如玛格丽特预期的，一天后，一个突然而然的消息震撼了整个世界。</p>
+	<p class = 'firstLineIndent'>【司璐威尔王国宣布无条件投降，称其原意向归于兽人大酋长的统治下，并认埃孟·血斧为义父，国王菲姆尔·卡索向还在其领土上的人类各国提出严重交涉，要求其迅速撤兵，否则就视同侵略。】</p>
+	<p class = 'firstLineIndent'>“无耻！怎么能这么无耻，现在各国在救援他啊！侵略？”</p>
+	<p class = 'firstLineIndent'>“怎么可能？岚之民这千多年就没有投降的历史，即使数次近乎灭国，都撑着了下来了。这绝对是假消息，岚之国根本没有可能投降的。”</p>
+	<p class = 'firstLineIndent'>各国的援军很有些茫然了，前一刻自己不是前来救援盟友的吗，怎么转眼间自己就成为了侵略者了，这仗还有没有打的必要，我们的鲜血和牺牲到底是为了什么？</p>
+	<p class = 'firstLineIndent'>而更受打击的，却是司璐威尔的民众，当他们决定抗战到底的时候，至高的国王陛下却已经投降，他们不知不觉中居然成了亡国者，居然还要驱逐那些救援自己的友军。</p>
+	<p class = 'firstLineIndent'>那是最深刻的绝望，以坚韧不屈的民族性为豪的岚之民，从没有如此羞耻过，他们第一次体会到了什么叫做背叛和绝望，什么叫做羞辱，“烂泥敷在面子都不觉得脏”有人如此说着，有的人，第二天就选择了自我了断，他们不愿意接受祖国已经投降的现实。</p>
+	<p class = 'firstLineIndent'>宁折不弯的脾性看似愚蠢，却是这个民族的根骨，也是他们一次又一次能够在被击倒后重新站起来的根本，即使在最黑暗的绝境，他们依旧毫无考虑投降的可能，即使三百多年前岚之国因此覆灭，他们依旧从新组成了自己的岚国。</p>
+	<p class = 'firstLineIndent'>“你可以杀了我，但绝对不可能让我跪下！岚族人根本不会弯下脊梁骨，吾等永不屈服，永不为奴！”</p>
+	<p class = 'firstLineIndent'>多少年来，面对兽人、恶魔、精灵、其他国家的入侵者，面对诸次绝境，岚国人都是这么吼叫的，他们也是用性命来履行自己的承诺，而也正是因为这个特性，他们才一直屹立在大陆的北方。</p>
+	<p class = 'firstLineIndent'>这次，战争的苦难和压境的兽人虽然难以对付，却没有让岚之民失去了抵抗到底的决心，即使已经近乎绝境，他们依旧相信自己和自己的国家会获得最终的胜利。</p>
+	<p class = 'firstLineIndent'>即使在现在的绝境中，乐观的民众们依旧能够对照历史谈古论今，大笑着说“这样的绝境算什么，我们已经经历过无数次”，他们依旧坚信最终会取得胜利，保护他们的骑士和王室会让他们再度获得辉煌和荣耀的胜利。</p>
+	<p class = 'firstLineIndent'>“那群北方佬根本不知道什么叫做绝望，他们又臭又硬，就如北地的冻石头，毫无征服的可能。”</p>
+	<p class = 'firstLineIndent'>岚族人把南方佬的评价当做了荣光，不管眼前的苦难有多难以应对，他们依旧不理解绝望是什么，他们坚信自己最终会获得胜利。</p>
+	<p class = 'firstLineIndent'>世人一直认为，岚族人根本不会投降，要让他们屈服，但远处的国王陛下的一纸降书却开创了新的历史，有史以来第一次，岚之民失去了对于胜利的渴望，那麻木而绝望的眼神，让人看着心痛。</p>
+	<p class = 'firstLineIndent'>有的民众绝望的选择了自我了断，而有的人，却把仇视的目光投向了那个王位上的人。</p>
+	<p class = 'firstLineIndent'>“我们都不可能屈服，岚之王室不可能屈服，果然那个人根本不配当我们的王！传言是真的，他根本只是假王。”</p>
+	<p class = 'firstLineIndent'>而随之，另外一个消息，却同样飞快的传遍了整个北地，震撼了整个世界，却也让岚之民重新找回了自信和希望。</p>
+	<p class = 'firstLineIndent'>“吾乃岚之末裔罗兰·岚，特此宣告，菲姆尔·卡索为伪王，其所做决议毫无公信力可言。吾在此立下讨伐令，誓言讨伐！吾等将扬起岚之战旗，期望所有岚之民随我讨伐伪王！岚之意志，永不屈服！”</p>
+	<p class = 'firstLineIndent'>翻译成白话的话，大概就是：</p>
+	<p class = 'firstLineIndent'>“丫的，那厮说的都不算，菲姆尔，你个小混蛋，等着，哥要削你！”</p>
+	<p class = 'firstLineIndent'>通告很短，也毫无法律上的正当性，但很快，司璐威尔王国的岚之民们，却撕下了过去的国徽和国王画像，默默的挂上了新的画像。</p>
+	<p class = 'firstLineIndent'>不清楚模特的容貌特征？在各个城市中心广场上的雕塑就是，这么多年，他和他的兄弟一直没有离开。</p>
+	<p class = 'firstLineIndent'>重新升起的旗帜之上，依旧是那个在狂风中屹立不倒的要塞，只是这次民众们却在念叨一个名字。</p>
+	<p class = 'firstLineIndent'>“岚之王罗兰，我们的国王就要回来了，我们的真正的国王就要回来了，我们还没有投降！岚之民，永不屈服！”</p>
+	
+	
+<h2>第165章 背信者的盛宴</h2>	
+	<p class = 'firstLineIndent'>苍茫的冰原之上，满目都是萧条的景色，当冬日的朝阳升起之时，那黑色的地平线却是战马和战士的集结。</p>
+	<p class = 'firstLineIndent'>“兽人来了！”</p>
+	<p class = 'firstLineIndent'>简单的通告下，第一波投石器和战略魔法就开始履行自己的战场职责，巨大的碎石带着可怕的风声冲向天空，每次落下，都能夺去十数条性命。</p>
+	<p class = 'firstLineIndent'>原本的红枫城只是内外双层城墙的普通城镇，但经历了诸国不计成本的投入之后，已经变成了四层城墙的坚城，而各类守城设备更是不计其数。</p>
+	<p class = 'firstLineIndent'>土系魔法师或许没有其他元素法师那么强大而华丽的攻击性魔法，但在土建和工程作业方面，却有其他元素法师无法比拟的优势。</p>
+	<p class = 'firstLineIndent'>一个个高墙被瞬间竖起，护城河随着“化土为泥”的施法声被硬生生的拉宽了七八米，其中流淌的炼金毒液或许毒性不算强，但让进。</p>
+	<p class = 'firstLineIndent'>至少城墙足足高了三倍有余，高耸的城墙上方满是弩车和工程重炮，狮鹫骑士们在上空来回盘旋巡查，找寻有可能出现漏洞的死角。</p>
+	<p class = 'firstLineIndent'>城墙的各个平台之上，无数的投石器被搭建起来，这种历史悠久的攻城、守城利器，只要有足够的学者和工匠，就能够发挥让人满意的威力，而高空落下的巨石和陨石术有什么区别，反正一砸就死一片。</p>
+	<p class = 'firstLineIndent'>简单，粗暴，有效，成本低廉见效好，就是投石车成为战场必备的缘由了。</p>
+	<p class = 'firstLineIndent'>但这次，刚刚进入最大型投石器的射程内，离得这么远，根本不可能造成精确打击的威胁，但更多的，却是一种威慑。</p>
+	<p class = 'firstLineIndent'>“战场上，可没有那里是安全的。”</p>
+	<p class = 'firstLineIndent'>而兽人们不甘示弱的反击，能够移动的投石车射程有限，最大型的那个的投石却也只是勉强撞到了城墙，激起了一阵灰尘和碎石，但更得到了守军们的耻笑。</p>
+	<p class = 'firstLineIndent'>在不久前，城外的碎石、巨石都已经被清理过，能够使用的石头都被当做石弹储备在城内，兽人要找合适自己用的，恐怕就只有远程借力运送了。</p>
+	<p class = 'firstLineIndent'>而此时，在西城门，被分配到这来作为防守任务的东岚人开始备战，而作为临时领袖，蕾妮的掌心满是汗水，这还是她第二次遭遇战争，却是第一次以军人的身份参与战争。</p>
+	<p class = 'firstLineIndent'>“坚持住，坚持住，蕾妮，你行的，当年罗兰大哥上战场的时候比你现在还小。”</p>
+	<p class = 'firstLineIndent'>而她不知道的，却是在她默默打气的时候，不少有心人正在悄悄的盯着她，而某些存在，却通过她的眼睛，不断窥探这个世界的奥秘。</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>有句话叫做好心办坏事，这很常见，但也有句话叫做坏心办了好事，这就的确少见了。</p>
+	<p class = 'firstLineIndent'>“怯弱者”菲姆尔·卡索的投降，直接让司璐威尔王国蒙受了巨大的耻辱，而作为第一个投降的岚之后裔（名义上的），他在让自己被挂上了历史耻辱柱的同时，却对战局起到了极为诡异而重要的影响。</p>
+	<p class = 'firstLineIndent'>首先的，就是由于整个王国的陷落和王室的投降，名义上的司璐威尔一夜之间变成了兽人部落的从属，一时之间，各个城市、城镇的城主、领主无所适从，但兽人大军却因此绕过了各个城邦，直抵最深处的红枫城。</p>
+	<p class = 'firstLineIndent'>“都已经投降了，还打什么。”</p>
+	<p class = 'firstLineIndent'>第二个影响颇深的，就是精灵对兽人宣战了。</p>
+	<p class = 'firstLineIndent'>是的，他们宣战了，那无声的盟友关系仅仅持续了不到半个月，就直接化作了敌对关系。</p>
+	<p class = 'firstLineIndent'>这次流苏王国的精灵王做的很绝，他选中作为导火索的那个人类混蛋是圣安东里奥人，更有卡索米公国的贵族身份，而作为牵线人和奴隶贩子的，却是司璐威尔的贵族，据说还与菲姆尔有些关系。</p>
+	<p class = 'firstLineIndent'>于是，一下子就把战争的目标锁定到了司璐威尔王国、卡索米公国身上，那后面的圣安东里奥也自然无法摆脱关系。</p>
+	<p class = 'firstLineIndent'>他的计划是好的，只要战事顺利的话，就用这导火索一路升级，不断激起民怨，让战争蔓延下去，既然是为反战派的领袖苏安娜公主复仇，国内的和平派和反战派也说不出反对的话来。</p>
+	<p class = 'firstLineIndent'>但若是最为罪魁祸首的标靶的司璐威尔向兽人投降了，结果反而受到了兽人的庇护，他们应该向那边复仇？</p>
+	<p class = 'firstLineIndent'>名将‘黑熊’安因洛粗中有细，也颇有魄力，在得知“和平鸽之死”事件后，第一时间就从周嗅到了阴谋的味道，当即把那混蛋贵族的家族在卡索米除名，把他的兄弟绑着送给了精灵，并附赠了一封情真意切的道歉信。</p>
+	<p class = 'firstLineIndent'>“……惊问惨剧，在痛心疾首的同时，深表遗憾，我们绝不姑息凶手，既然他本人已经身死，送上他的兄弟、妻女作为祭品，以慰苏安娜殿下的在天之灵……”</p>
+	<p class = 'firstLineIndent'>好吧，这的确非常不厚道，也很不要脸，但从某种意义上，对于出名了认死理的精灵却的确有效，人类王国也摸透了这些精灵吃软不吃硬，死要面子活受罪的脾性。</p>
+	<p class = 'firstLineIndent'>“谁家没有几个不肖子孙，诚恳的道歉，卡索米公国做的已经很不错了，用罪人的妻儿做祭品的话，简直和野蛮的兽人一个德行，传出去对流苏王国和精灵族的名声也不好吧。”</p>
+	<p class = 'firstLineIndent'>当这种消息流传开来，流苏王国的主战派就知道情况有些不妙了。</p>
+	<p class = 'firstLineIndent'>精灵王国可是执政官制度和议会制度的发源地，是世人眼中的平等、自由象征，被誉为自由王国的精灵诸国政体不一，但王权偏弱却是现实。</p>
+	<p class = 'firstLineIndent'>在战争派的主使者眼中，若是大部分精灵满足了报仇的欲求，要求停止和“盟友”的战争，那么，苏安娜的“牺牲”不就白费了，这样莫名其妙的结局怎么能够接受，他们怎么想向要求激化矛盾的精灵诸神交待。</p>
+	<p class = 'firstLineIndent'>而精灵们却非常非常讲究面子和名义的，没有大义的战争不就成了邪恶的入侵者了吗？善良而热爱主持和平的精灵怎么可以成为罪恶的入侵者，我们一定要成为正义的一方，我们攻击的目标一定是十恶不赦的恶徒。</p>
+	<p class = 'firstLineIndent'>于是，一份言之凿凿的资料被翻出了，其中有近年来精灵被拐卖的证据，那些精灵贩子和捕奴队居然有官方背景，罪魁祸首，或者幕后黑手都直指司璐威尔和他的贵族、王室。</p>
+	<p class = 'firstLineIndent'>实际上既然罪恶的奴隶贸易发生在这个国度，而且官方居然也对其睁半只眼闭半只眼，当血腥的利益链条被建立起来后，这个国度的上层又怎么干净的了。</p>
+	<p class = 'firstLineIndent'>好吧，接下来就是全部都是国王菲姆尔的错了，但说句实话，以他皇宫中储备的上百个精灵舞姬来看，还真没怪错人。</p>
+	<p class = 'firstLineIndent'>于是在精灵眼中，他们根本不是在侵略，他们是在复仇和主持正义，罪恶的司璐威尔王国必须付出代价，邪恶的人类将从此被驱离精灵的国度。</p>
+	<p class = 'firstLineIndent'>但眼下，精灵们又遇到了些许小麻烦，司璐威尔投降了，从没有屈服的岚族人居然会投降？在这些长寿族眼中，这和精灵突然变得开朗大度，矮人变得干净整洁，兽人变得知书达理一样不可思议。</p>
+	<p class = 'firstLineIndent'>但司璐威尔的确投降了不说，那么，现在精灵是否还应该复仇就成了大问题了。</p>
+	<p class = 'firstLineIndent'>若不复仇的话咽不下这口气，也没法和某些存在交待，但复仇的话，难道是向兽人统治下的菲姆尔复仇吗？兽人好不容易获得的重大战果，他们会愿意吐出来吗？</p>
+	<p class = 'firstLineIndent'>“愚蠢的兽蛮子，交出那个菲姆尔和他满手血腥的手下，我们还有的谈……等下，你们拖着我干什么。啊！”</p>
+	<p class = 'firstLineIndent'>精灵使节一如既往的傲慢，让九成会失败的交涉变成了绝对会失败，但这也是某位精灵王需要的结果。</p>
+	<p class = 'firstLineIndent'>“诸位祭师大人，请转告那位大人，他的意志一定会得到贯彻。”</p>
+	<p class = 'firstLineIndent'>安索罗·修斯塔·阿德尔班，这冗长的名字，却已经是省略了十几个短词的简称，生平事迹非常繁多，创下的名号也不在少数，但有一个形容词却能够很好的形容他的特征——精灵主神。</p>
+	<p class = 'firstLineIndent'>秩序诸神是由诸多神系混合构成的，而其中主神级的存在，却只有七位，足以证明他的强大，顺带一提，也正是他放逐了罗丝，导致了黑暗精灵的集体堕落，海洛依丝誓言复仇的目标之中，也以其为首。</p>
+	<p class = 'firstLineIndent'>作为精灵主神和整个精灵种族的守护神，安索罗的意志又怎么可能被违逆，于是，精灵们直接向兽人宣战了，他们向“企图”庇护菲姆尔的兽人宣战了。</p>
+	<p class = 'firstLineIndent'>“不愧是精灵，这脑袋结构……貌似没有精灵专家评估出这种变化，恐怕我们的精灵学教材又要修编了。哼，打的越激烈越好，同归于尽最好了。”</p>
+	<p class = 'firstLineIndent'>当诸多人类王国的军事家在大跌眼镜的同时，却热心期待看到一场狗咬狗的喜剧，但很快，他们就发现这宣战却只是一个幌子。</p>
+	<p class = 'firstLineIndent'>当兽人们放弃其他的城镇，专心准备决战的时候，精灵们却开始接手这屠杀好戏，当然，他们引以为豪的精灵语中没有屠杀这样污秽的词汇，他们用的是净化。</p>
+	<p class = 'firstLineIndent'>过溢的仇恨是会传染的，嗜血的疯狂是会扩散的，很快，审判就失控了，从一个贵族哪里搜出来其祖辈参与精灵奴隶的证据，就足以让那一家被吊死。</p>
+	<p class = 'firstLineIndent'>“什么？祖父居然曾经当雇佣兵？你也说不清他曾经在那里讨生活？那么，抱歉了，你既然无法证明他无罪，就是有罪了，而他有罪，就等于你有罪。”</p>
+	<p class = 'firstLineIndent'>担任审判者的精灵牧师们也陷入了莫名的狂热，在他们满是有罪推定和牵连犯的审判中，很少有人全身而退，和兽人相比唯一的优点，大概就是他们暂时没有动平民，或者应该说没有主动去动平民。</p>
+	<p class = 'firstLineIndent'>而且，战争之中怎么可能没有死伤，面对自己的损失，所谓的精灵的优雅，大概是给那些守城将士选择一个不至于太过难看的死法。</p>
+	<p class = 'firstLineIndent'>于是，被攻陷的城池上挂满了人头，侥幸活下来的平民看这些长耳朵的眼神中满是仇恨。</p>
+	<p class = 'firstLineIndent'>“还真是丧心病狂的投名状啊，恐怕，北地精灵再也无法回到过去的模样了，说不准，这次浩劫过后，就没有精灵族了。”</p>
+	<p class = 'firstLineIndent'>而我，却从精灵的疯狂中看出了悲哀，能够主导牧师意志的，只有可能是真神，既然真神们已经不顾颜面，恐怕他们自己也已经陷入了绝境和疯狂之中。</p>
+	<p class = 'firstLineIndent'>选择第一时间背弃秩序诸神，充当神战的先锋，在这个先锋和炮灰近乎同义词的时代，恐怕之后不久就是精灵诸神的集体陨落了。</p>
+	<p class = 'firstLineIndent'>“还真是背叛者的盛宴啊。”</p>
+	<p class = 'firstLineIndent'>说着这样的话，我却在反复检查写给另外一个背叛者的信函，这位背叛者是否有重新选择立场的打算，直接关系到这场战争的胜利。</p>
+	<p class = 'firstLineIndent'>“亲爱的罗丝女士，您好，我是您忠实的Fans罗兰·岚，您或许也听说过我，我个人早就对您的拷问艺术颇为期待，一直想找机会和您讨教一下（下省马屁5000字）……您也听说过了最近发生的一系列的事情，我这里有个小小的建议……”</p>
+	
+	
+<h2>第166章 无人永生</h2>	
+	<p class = 'firstLineIndent'>“No one lives forever（无人永生）！”</p>
+	<p class = 'firstLineIndent'>漫天冰雪之中，带着诡异的怪笑，口中低念着无人能够听懂的古怪词汇，银袍的访客敲响了皇宫的大门。</p>
+	<p class = 'firstLineIndent'>“铛，铛，铛！”</p>
+	<p class = 'firstLineIndent'>扣环撞击的声音响亮的不可思议，听到市民耳中，却让人莫名想起了那突如其来的送葬丧钟。</p>
+	<p class = 'firstLineIndent'>“铛，铛，铛！”</p>
+	<p class = 'firstLineIndent'>敲击的门环声在来回激荡，其中满是不详的魔力，让人越发心烦意乱。</p>
+	<p class = 'firstLineIndent'>“小菲姆尔，你在吗？嘻嘻，我来找你玩了。”</p>
+	<p class = 'firstLineIndent'>城墙下的不速之客似乎在低吟，但他的述说，却通过莫名的媒介，辗转到了皇宫的每个房间。</p>
+	<p class = 'firstLineIndent'>国王菲姆尔猛地从梦中惊醒，他刚刚做了一个被厉鬼追命的噩梦，但接着，那回荡的低沉嗓音和怪笑，却在肥胖的国王耳边响起。</p>
+	<p class = 'firstLineIndent'>“嘻嘻，小菲姆尔，我来找你玩了。”</p>
+	<p class = 'firstLineIndent'>那诡异的腔调就在背后，菲姆尔猛地回头，哪里却是一面墙壁，自然空无一人。</p>
+	<p class = 'firstLineIndent'>“小菲姆尔，我知道你在家，不要躲了！”</p>
+	<p class = 'firstLineIndent'>这次，声音却从耳边响起，菲姆尔暴起，抽出枕头下的宝剑就想发声处砍去，但剑刃所指着的对象，却只有吓愣住的精灵妃子。</p>
+	<p class = 'firstLineIndent'>当肥胖的菲姆尔被眼前的诡异一幕吓住了，大口吸气的时候，背后“梆梆梆”的敲门声，却让他暴跳如雷。</p>
+	<p class = 'firstLineIndent'>“谁啊！！谁敢在这个时候打扰我。”</p>
+	<p class = 'firstLineIndent'>“我，找，到，了！一，起，来，玩，吧。”</p>
+	<p class = 'firstLineIndent'>那让人倒吸一口凉气的嗓音却再度响起，这时菲姆尔才想到，自己房间的门在面前，背后的……</p>
+	<p class = 'firstLineIndent'>“啪啪啪。”窗户被莫名的白色的手印敲得啪啪作响，一张苍白的笑脸贴在了窗户之上，那月牙形的眼睛中闪着点点红光。</p>
+	<p class = 'firstLineIndent'>“等，着，我，小，菲，姆，尔，我，马，上，就，来，找，你！”</p>
+	<p class = 'firstLineIndent'>笑脸越说，笑的越是开心，最后嘴角一直拉到脸颊处，就变成了可怕的鬼脸了。</p>
+	<p class = 'firstLineIndent'>那绝对不是人类的脸！</p>
+	<p class = 'firstLineIndent'>霎时，一股莫名的恶寒从脊梁骨一直往上升，边上的妃子已经直接吓晕，而恐惧至极的菲姆尔·卡索丢出了自己随身保命的杀手锏。</p>
+	<p class = 'firstLineIndent'>“轰隆！”</p>
+	<p class = 'firstLineIndent'>珍贵的炼金药剂瞬间被激发，火光四射，半个房间直接被炸上了天。</p>
+	<p class = 'firstLineIndent'>“飕飕飕。”在缭绕的烟雾消散后来，冷风倒灌进来，眼前却空无一物。</p>
+	<p class = 'firstLineIndent'>而看着已经变成露天平台的剩余房间，只有雪花不断飘落进来，那个出声的人却没有一丝踪影。</p>
+	<p class = 'firstLineIndent'>而菲姆尔耳边，却再度响起了嘶哑的低笑声。</p>
+	<p class = 'firstLineIndent'>“No one lives forever（无人永生）。你可以跑，但你绝对跑不掉！”</p>
+	<p class = 'firstLineIndent'>终于，始终摆脱不了的奇异声音依旧在耳边，本就胆子不大的菲姆尔近乎崩溃，发出了女人一般的刺耳尖叫。</p>
+	<p class = 'firstLineIndent'>“卫兵！卫兵！有刺客！有人要杀我！”</p>
+	<p class = 'firstLineIndent'>他赤裸着身子冲到走廊上，赶来的守卫不可思议的看着失礼的君王。</p>
+	<p class = 'firstLineIndent'>肥硕的身躯跑不了几下，就瘫了下来大口喘气，接着，尖叫的菲姆尔猛地从守卫哪里拔过剑，对着随风而动的窗帘就是一段乱砍。</p>
+	<p class = 'firstLineIndent'>“你们都愣住看什么！有刺客啊！你们这些废物，难道你们也被那人收买了，想害死我。我告诉你们，我若是死了，绝对会拉你们陪葬，绝对！”</p>
+	<p class = 'firstLineIndent'>眼前的一幕，在让守卫和骑士们惊讶的同时，却都对菲姆尔露出憎恶中带着怜悯的表情，在他们眼中，这个嘲讽自己为废物的男人，多半已经疯掉了。</p>
+	<p class = 'firstLineIndent'>“你们这么看着我做什么？你们这群没用的东西，若不是你们这么没用，我会被逼到投靠那些肮脏没用的兽人？都是你们的错，都是你们这些蠢货没用！”</p>
+	<p class = 'firstLineIndent'>愤怒的君王狂舞手中的利剑，年轻时候留下来的那点底子还勉强能看，但对于骑士们来说，这鲁钝的挥剑毫无意义，只是让他们轻松避开攻击后，更加怜悯的注视已经疯狂的君主。</p>
+	<p class = 'firstLineIndent'>“……哈，哈。”很快，被酒色掏空了根底的菲姆尔，就无奈再度坐了下来，大口喘气的他感觉很有效互相不畅。</p>
+	<p class = 'firstLineIndent'>他下意识的扯了扯越来越难以互相的脖子，触摸到的，却不是预料之内的肉体。</p>
+	<p class = 'firstLineIndent'>那是一双冰冷的手臂，正死死的掐住自己的脖子，而冰冷的吐息却已经在耳后根，依旧是那个沙哑深沉的声音。</p>
+	<p class = 'firstLineIndent'>“抓，住，你，了！”</p>
+	<p class = 'firstLineIndent'>“啊啊啊啊啊！”</p>
+	<p class = 'firstLineIndent'>君王吓得疯狂的尖叫，但守卫们却越发莫名其妙了，他们可没有看到奇怪的东西，只看到菲姆尔正在独自发疯。</p>
+	<p class = 'firstLineIndent'>在他们的眼中，菲姆尔突然掐住自己的脖子尖叫，还在地上打滚，自己的舌头都被掐出来了，却还在用更大的力，似乎深怕自己死不掉。</p>
+	<p class = 'firstLineIndent'>即使有人露出了兴灾惹祸的笑容，但大部分守卫都赶快过来帮忙，毕竟，作为国王的守卫，若自己效忠的君王死的如此莫名其妙，恐怕他们的荣誉也会扫地。</p>
+	<p class = 'firstLineIndent'>但这次，他们很快就知道菲姆尔陛下并不是发疯了。</p>
+	<p class = 'firstLineIndent'>“轰隆！”</p>
+	<p class = 'firstLineIndent'>整栋墙被蛮力撞开，寒冰构成的巨狮伸进来了头颅，莫名的威严和蔓延的寒气一样致命，那那狮背上的那个银袍客，不正是刚才那位在敲门的不速之客吗。</p>
+	<p class = 'firstLineIndent'>“哟，等了半天没人开门，所以我自己上来了。对了，小家伙，我说过，你可以逃，但逃不掉！”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>面对如临大敌的守卫们，我信手一招，幽灵一般蓝色鬼影就从菲姆尔那里飞起，绕着我打转，仿若期盼得到奖赏的孩子。</p>
+	<p class = 'firstLineIndent'>背后遮天的火光升起，魔法的闪光点亮了半个星空，看来亚当和玛格丽特正如预期吸引那些强者的注意，但我也要抓紧了。</p>
+	<p class = 'firstLineIndent'>于是，我拔剑，蓝色幽影返喜悦的缠绕着罗兰圣剑之上，化作熊熊燃烧的寒冰圣焰。</p>
+	<p class = 'firstLineIndent'>很显然，我拔剑的行动让眼前的观众很是紧张，但接下来，我摇了摇头，重新把圣剑插回剑鞘中。</p>
+	<p class = 'firstLineIndent'>而随着圣剑归鞘，苍蓝色的冰焰终于熄灭，诡异的鬼影重新进入沉眠，就是我自己也松了一口气，这新生的能力实在太过诡异，就是我自己也很不好受。</p>
+	<p class = 'firstLineIndent'>“哎呦，没想到这个能力用来找人、吓人，居然会这么好用。”</p>
+	<p class = 'firstLineIndent'>但此时，却不是总结的事的时候，皇家卫队永远是一国最精锐的战士，眼前围着我们的，更是精锐中的精锐，他们组成了战阵，把菲姆尔护在了中心。</p>
+	<p class = 'firstLineIndent'>来者不善善者不来，我来的时候声势太大，他们现在不求有功但求无过，以保护自己的君王等候援军为第一优先。</p>
+	<p class = 'firstLineIndent'>“你……你是谁？是那个家伙要他来杀我的吗？”</p>
+	<p class = 'firstLineIndent'>似乎护卫给了他勇气，菲姆尔居然对着我怒吼了。</p>
+	<p class = 'firstLineIndent'>“你说对了一半，我的确是来杀你的，不过，我也可没有让人代劳的打算，自己的烂摊子自己收拾，也是我一贯的行为准则。”</p>
+	<p class = 'firstLineIndent'>于是，我脱下了兜帽，抖了抖雪，对着他笑了。</p>
+	<p class = 'firstLineIndent'>“啊啊啊啊啊啊，罗兰！”</p>
+	<p class = 'firstLineIndent'>但他很不礼貌的发出了更高分贝的尖叫，让人甚是不快，于是，我伸手了，甘蓝色的魔力在掌心。</p>
+	<p class = 'firstLineIndent'>掐住菲姆尔脖子上的了蓝色手印再度出现，这次，更是直接把他拖了过来。</p>
+	<p class = 'firstLineIndent'>转眼之间，菲姆尔就被鬼手拖到到了我的面前，而其他的守卫大惊失色的同时，却连忙过来抢人。</p>
+	<p class = 'firstLineIndent'>作为皇家守卫，面前的有几位黄金阶的好手，此时全力冲锋，杀气腾腾，但他们面对的，却不仅仅是我一个人。</p>
+	<p class = 'firstLineIndent'>“蠢货们，给我安静！”</p>
+	<p class = 'firstLineIndent'>归冥，作为冰噩的元老之一，第一代岚之王的伙伴，至少有一千七百多岁了，实力深不见底。</p>
+	<p class = 'firstLineIndent'>而此时，却是仅仅只是用咆哮，就把一个个倒霉的骑士印在了墙上。</p>
+	<p class = 'firstLineIndent'>看着这个满目恐惧的废物，无名火烧，我不由怒从心起。</p>
+	<p class = 'firstLineIndent'>“你也配被称为岚之后裔？混蛋，你也配称为岚之王。”</p>
+	<p class = 'firstLineIndent'>都是因为他的软弱和自私，让一切都向最坏的方向发展，若他能够早点听劝，做好迎战的准备，这一切有怎么会发生，兽人大军怎么可能如入无人之地般侵入腹地。</p>
+	<p class = 'firstLineIndent'>一念之差，血流成河！</p>
+	<p class = 'firstLineIndent'>“磅！”</p>
+	<p class = 'firstLineIndent'>想起那无数的牺牲，我再也按耐不住，狠狠的一拳打在他脸上。</p>
+	<p class = 'firstLineIndent'>“任用小人，不听箴言，坐视兽人入……傲慢无知，肆意妄为，你配为王？”</p>
+	<p class = 'firstLineIndent'>“磅！”</p>
+	<p class = 'firstLineIndent'>又是一拳，朝着右脸狠狠的落下。</p>
+	<p class = 'firstLineIndent'>这次掉下了几颗牙齿，菲姆尔满口都是血，呜咽哭泣，似乎在求饶。</p>
+	<p class = 'firstLineIndent'>但看到他求饶，我却更加火大了。</p>
+	<p class = 'firstLineIndent'>在这场战争中，我已经看到了无数挂在树上的人头，他们恐怕也哭泣求饶的机会都没有，不，他们中不少人根本不可能求饶，他们拼上一切，只为了保护自己的家人和家园，而眼前的死胖子……</p>
+	<p class = 'firstLineIndent'>“坐看国土沦陷，收敛所有兵力保护自己，一丝兵力都不用于求援其他城镇……胆怯自私，愚蠢短视，你配为王？”</p>
+	<p class = 'firstLineIndent'>“轰！”</p>
+	<p class = 'firstLineIndent'>这次，带着狠狠的一拳打在他的肚子上，剧痛如虾米一般弯了下来。</p>
+	<p class = 'firstLineIndent'>“……纵淫败度，淫乱宫廷，你配为王？”</p>
+	<p class = 'firstLineIndent'>看着眼前那些慌乱的精灵侍妾，我不由得想起那些，若不是作为国王的菲姆尔都参与奴隶买卖，怎么会积累这么多仇怨，让事情变得一发不可收拾。</p>
+	<p class = 'firstLineIndent'>“……勾结异族，残害族裔，你配为王？”</p>
+	<p class = 'firstLineIndent'>为了和兽人酋长交换兽人女子，居然调离守军，让兽人抢走颇有名声的人类美女，我听到这个情报的时候，完全无法想象居然会有如此无耻的君王。</p>
+	<p class = 'firstLineIndent'>“……杀戮亲族，谋夺皇位，你配为王？”</p>
+	<p class = 'firstLineIndent'>和那些年的岚之王室完全不同，菲姆尔的兄弟姐妹全部死的凄惨无比，和那些让人作呕的罪行比较起来，我自己遇刺都只能算小事了。</p>
+	<p class = 'firstLineIndent'>一拳又一拳，但我却越打越怒，若不是眼前的超级蠢材，事态怎么会发展到这个地步，我们豁出一切守护的岚之意志怎么会遭受如此巨大的侮辱。</p>
+	<p class = 'firstLineIndent'>“当所有人都为了活下来拼死的时候，你居然投降！你居然敢投降！你居然狗胆包天的去投降！岚国近两千年历史中第一位投降的君王……贪生怕死，背信弃义，你配为王？要你何用！”</p>
+	<p class = 'firstLineIndent'>“啊！”</p>
+	<p class = 'firstLineIndent'>狠狠的一肘子，一脚，让菲姆尔背脊折断，趴在地上有出气没进气。</p>
+	<p class = 'firstLineIndent'>但我该做的，却只是开始。</p>
+	<p class = 'firstLineIndent'>“为君失信，为王失民，为人失德，我以岚之末裔罗兰·岚的名义，要求免除菲姆尔·卡索的国王职位！”</p>
+	<p class = 'firstLineIndent'>“吾，冰噩归冥，以初代岚之王王室成员的身份，通过免除菲姆尔·卡索的提案，并提议罗兰·岚暂代岚之王王位。”</p>
+	
+	
+<h2>第167章 历史</h2>	
+	<p class = 'firstLineIndent'>“为君失信，为王失民，为人失德，我以岚之末裔罗兰·岚的名义，免除菲姆尔·卡索的国王之位！”</p>
+	<p class = 'firstLineIndent'>先王的狮子做了一个手势，在这位精通音波能力的上古冰噩的天赋能力的帮助下，我的怒吼能够传到了整座城市的每一个角落。</p>
+	<p class = 'firstLineIndent'>血肉模糊的王者躺在地上，而愤怒至极的我，却在皇宫的高台上，在向世人宣布我的决定。</p>
+	<p class = 'firstLineIndent'>早就有准备的羊皮纸被摊开，一项项鲜为人知的罪行被公布于众，神奇的魔法伎俩让这些血一般的文字漂浮在空中，分外醒目！</p>
+	<p class = 'firstLineIndent'>“其罪一，冷血无情，心毒弑亲……”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>“其罪十四，奢侈无度，浪费资财，坐看居民饿死，自己却享受锦衣美食！”</p>
+	<p class = 'firstLineIndent'>“其罪十五，勾结异族，养虎为患，引狼入室……”</p>
+	<p class = 'firstLineIndent'>而一条条触目惊心的罪行，让所有的房屋打开了窗户，凝听那来自皇宫的广播。</p>
+	<p class = 'firstLineIndent'>我越念越是生气，看着这后面的数十条，都不想念了，干脆直接撕烂了它，直接开始发自心底的怒诉。</p>
+	<p class = 'firstLineIndent'>“这些七乱八糟的我们就管了，最重要的，我只是看你这个软蛋不爽！所以，要你在岚之王的位置上滚蛋！”</p>
+	<p class = 'firstLineIndent'>“一千七百多年前，北地是块烂地方，天寒地冻，魔兽丛生，现在有的坏条件都有，但当时，这里也是著名的流放之地，各国流放罪人往这里一丢，用不了三五年就会一命呜呼。而若是没死的话，就更麻烦了，没有生活能力的他们，多半化作游荡抢劫着的恶徒。”</p>
+	<p class = 'firstLineIndent'>“天灾、人祸、兽灾都一起了来了，当时的北地即使不是人间地狱，也差不了多少！”</p>
+	<p class = 'firstLineIndent'>随着罗兰的描述，对比现在的场景，岚族人都隐隐约约的猜到了些什么。</p>
+	<p class = 'firstLineIndent'>“那时，深受北地苦楚的先王瑞文戴特，在意外获得了冰噩契约拥有力量后，他决心在这块贫瘠的土地上建立属于自己的国家，他从没有说自己要为整个人类社会守卫边境这么伟大，他只是受够了这朝不保夕的日子，他期望为了自己和族人开创一个属于自己的家园，一个不用遭受外族羞辱和欺压的新家园。”</p>
+	<p class = 'firstLineIndent'>伴随着朝阳升起，那怒吼声也响彻全城，而市民们在短暂的惊愕之后，那罗兰王子的名号和厚重的嗓音却让路人驻足，耐心聆听。</p>
+	<p class = 'firstLineIndent'>“当初，所有人都嘲笑他的不自量力，都觉得他在痴人说梦，毕竟在当时，上次圣战刚刚落幕，百足之虫死而不僵，兽人依旧强势，而这里建国，就等于兽人和人类战场的前线建立要塞，必然会遭受兽人的疯狂反弹，而且，他一个穷小子，连自己的吃喝都要想办法解决，去哪里找资源和粮食来实现自给自足。”</p>
+	<p class = 'firstLineIndent'>“但世上没有绝对不可能，瑞文戴特他在历尽艰辛，硬是把不可能化作可能，在这片冻土中建立了自己的家园。”</p>
+	<p class = 'firstLineIndent'>“没有值钱的特产和财富？他相信天无绝人之路，他找到了自己的矮人朋友，组织了土著们的工程队，一寸一寸的量，一锹一锹的挖，硬是在这块贫瘠的土地上找到了自己的特产——魔法矿产。”</p>
+	<p class = 'firstLineIndent'>“没有坚固城防来应对外界威胁？在边境上，而他和他的跟随者，用双手挖出了沟壑和岗哨，用双足代替巡守边境的游骑，用血肉建筑其守护自己族人的城墙！”</p>
+	<p class = 'firstLineIndent'>刚刚准备开工的年轻人，正在准备一家口粮的妇女，散步中的老年人，当他们听到这历史书中没有记载的先王往事后，不由自主的停下了脚步。</p>
+	<p class = 'firstLineIndent'>“赞美先王！是您，为我们开创了家园，让我们能够有尊严的活着。”</p>
+	<p class = 'firstLineIndent'>“‘我们承认自己的生活很苦，我们的兜里什么都没有，我也不能担保跟着我奋斗后会不会有改观，但是，我确信的却是，若以不一定能够做到的什么都不做都不能改变，做了也有可能什么都无法改变。但若一定要在饥寒交迫中饿死、冻死，我至少期望自己已经尽到最后一份力’先王是这么说着。面对严苛的自然，没有不知所谓的天降奇迹，没有莫名其妙的期盼，能依靠的只是自己和伙伴，这就是所谓的岚之意志。而先王还有那些选择跟随他的北地人，也就成了最早的岚族人。”</p>
+	<p class = 'firstLineIndent'>“和那些古老的传承民族不同，我们甚至大部分都是混血儿。但区分岚族与否的，从来不是血脉肤色，只要具备岚之意志的北地人，就是岚族人！这是先王的原话，也是我们岚之后裔一直信奉的真理！”</p>
+	<p class = 'firstLineIndent'>“一千四百二十三年前，那是岚之国第一次接近灭国，噩梦一般的恶魔大军打开了通往下位面大门，无数的恶魔、魔鬼冲出了大门，一夜之间，岚之国被连下十七座城市，首都迪芬德告急，当岚族人并没有绝望，他们为了保护自己的家园，付出了无数的牺牲，硬是把恶魔扫回了老家。”</p>
+	<p class = 'firstLineIndent'>“而当时留下的痕迹现在还在，就是安威玛的恶魔深渊。不，留下的最重要的痕迹和遗产，还是那面在狂风中升起的战旗吧，在那时，岚之意志和岚之战旗第一次染上了鲜血的风采，我们走上了和中原北地完全不同的发展路径，毫无风趣和古板无趣成了我们最明显的民族特征，永不屈服的意志和脾性成为了我们骄傲的勋章。”</p>
+	<p class = 'firstLineIndent'>市民们默默的看着随处可见的岚之战旗，隐隐约约有了新的感悟，或许，传承下来的不仅仅是血脉，还有更深层次的秘密等待发掘。</p>
+	<p class = 'firstLineIndent'>“一千一百二十九年前，那是一场牵连了无数种族的混战，不敢就此沉寂下去的兽人入侵了北地，那也是一个谁都没料到会发生的战争的残酷寒冬，但那场战争持续了整整十二年，岚族人战死一百三十七万，伤者不计其数，十室九空，而作为守护国土的主人，岚之王室战死了四位君王，七位王室成员。其中最年轻的才五岁，他继位到战死才十二天。从那时起，以王子为将就成了我们的传统，每个年轻的孩子都要接受剑术和骑术训练，因为谁也不知道他是否会有用到的一天，而一旦他上了战场，不管性别还是年龄，他就只有两个选择——要么胜利而归，要么，光荣的战死！”</p>
+	<p class = 'firstLineIndent'>“而另外一个新的传统，就是战争时期国王战死王子顶上，王子战死公主顶上，公主战死王后顶上。王室不灭，抵抗不止。自始，在战场上，我们这些岚之血脉根本就会被俘虏，因为我们的敌人都知道俘虏毫无意义，毕竟，已经还有太多的前辈表面了自己的选择，投降？被俘虏？我们这些后辈那丢的起这个人，找个柱子撞死都好。”</p>
+	<p class = 'firstLineIndent'>“七百年前，那次突然而然的战争却是来自背后的匕首，突然兴起的异族奴隶贸易代表着无尽的血腥，却也代表着无尽的财富。而我们的岚国，却挡住了发财的黄金路上，于是，大量精良的武器居然运到了兽人手中，那场残酷的兽人战争后，我们却不顾满目怆然的国土，直接向幕后数国宣战。”</p>
+	<p class = 'firstLineIndent'>“结果？哼，那些软弱的南方佬怎么可能是我们经历过无数战火历练的铁骑，当我们的骑士拖着那些带着王冠的愚蠢尸体在各个城市游街的时候，在也没有国家敢小看我们的岚族人。当然，从那开始，我们和人类各国的关系就一直不好了，而我们也从不后悔！”</p>
+	<p class = 'firstLineIndent'>“一次又一次，我们多灾多难的国度遭遇了无数的洗劫和战争，但不知不觉之中，我们却成了历史悠久的‘古国’，这无疑不是让人惊讶的绝妙讽刺。我们这些无人看护的野花在北地的寒风中活了下来，那些南方温室受到精心护理的小树苗却一个个莫名其妙的枯死。”</p>
+	<p class = 'firstLineIndent'>“三百多年前那次，是我亲身经历过的，凶悍好战的兽人、狡诈强大的恶魔、还有那总是背信弃义的人类盟友，我们祖先面对过的，全部一起来了。那次，都是我的错，我们没顶住，我们就因此灭国了……”</p>
+	<p class = 'firstLineIndent'>低沉的嗓音中带着些许呜咽，那无声的痛苦和自责反而让人分外心痛，但城中的岚族人都会重复着同一个回答，他们有不同的看法。</p>
+	<p class = 'firstLineIndent'>“不，我们的王子，您已经做得很好了，我们以您为荣，请不要在自责。而且，我们没有灭亡！只要岚之民还在，岚国又怎么可能无法复苏。”</p>
+	<p class = 'firstLineIndent'>“是的，我们没有灭亡！岚之意志永不灭亡！但即使岚国已经灭亡了，我们岚族人没有灭亡！知道吗？当得知北地又有了岚族人组成的岚国的时候，我开心的不知所以，整宿无法安眠。即使他已经不是我所知的国度，更已经分裂出几块，但只要他还屹立在北方，我就很满足了。”</p>
+	<p class = 'firstLineIndent'>“无数次，我想起故土，昼夜难眠，但一想起那灭国之恨，我就立下誓言，若不报仇，让幕后凶手付出十倍的代价，我就绝对不会让自己沉浸在安逸的生活中，而当我好不容易复仇后，却已经没有返回了故土的勇气。我认识的人已经都死了，那边国土的所有者也面目全非。”</p>
+	<p class = 'firstLineIndent'>“亲爱的王子殿下，请不要犹豫徘徊，这里永远是您的家园，我们都是家人，随时欢迎您的归来！”</p>
+	<p class = 'firstLineIndent'>我笑了，面对这么可爱的人们，我怎么能够不开心的笑出来，但一看到眼前的软泥版般的男人，我就由喜转怒，气不打一处来。</p>
+	<p class = 'firstLineIndent'>“但是……你，菲姆尔·卡索，明明流淌着岚之意志的血脉，却做出如此荒唐的事情。”</p>
+	<p class = 'firstLineIndent'>我曾经期待这只是个和岚之王室无关的冒牌货，但当面接触后，投过那家族流传的秘法，我却惊讶的发现他居然还真是岚之王室的血脉，岚之后裔居然堕落到这种地步？</p>
+	<p class = 'firstLineIndent'>“你，骄奢淫欲，恬不知耻！司璐威尔懂得变通是好事，我们当年就吃够了不懂变通的苦，但变通不等于腐化堕落，沾染了罪恶至极的奴隶贸易，把族人送去给兽人糟蹋，你还配称自己为守护国民的国王？你，不配为王！”</p>
+	<p class = 'firstLineIndent'>“你，忘恩负义，贪婪自私！让我们的家园饱受凌辱，而你却躲在皇宫中享受美酒佳肴和美人。我给你的警告被你当做废纸，无数本该活下来的人应你而死，你却开开心心的享受族人的奉献，你还有脸说自己是诸领主之上担负守卫国土重责的君王？你，不配为王！”</p>
+	<p class = 'firstLineIndent'>“你，胆怯卑劣，无视荣耀！先祖的意志从来没有泯灭，祖先的英灵一直在看着我们。而若他们泉下有灵，英灵也能够下凡，早就该把你这个混蛋掐死！居然敢投降？岚之王室一千七百年历史，战死沙场的王者不计其数，就没有一个胆小鬼会投降！你……”</p>
+	<p class = 'firstLineIndent'>“……你，不配为王！”</p>
+	<p class = 'firstLineIndent'>“我，罗兰·岚，以岚国第五十六任君王的名义，剥夺后世子孙罪王菲姆尔·卡索的王位！”</p>
+	<p class = 'firstLineIndent'>“我，上古冰噩归冥·阿罗因，先王的伙伴，最初的王室成员，在此见证旧王退位，并推举有罗兰·岚暂代此地岚之王职责！由我本人担任监督官职责。”</p>
+	<p class = 'firstLineIndent'>市民和皇家守卫们先是一愣，接着，却不知道有人谁先喊出了一句“罗兰陛下，万岁！”，所有一切都为之沸腾。</p>
+	<p class = 'firstLineIndent'>“罗兰殿下，不，罗兰陛下，欢迎您的归来！”</p>
+	<p class = 'firstLineIndent'>“罗兰殿下，轻摇多虑，我们随时欢迎你的到来。”</p>
+	<p class = 'firstLineIndent'>很快，在有心人的驱动之下，欢呼声就响彻云霄，能够如此轻易的获得民众的支持，从某种意义上，还要感谢菲姆尔的胡作非为。</p>
+	<p class = 'firstLineIndent'>而在人群之中，一对年轻的情侣却在埋怨彼此。</p>
+	<p class = 'firstLineIndent'>“……为什么非要逼着我喊，我的嗓音罗兰熟悉，他肯定会听出了的，到时候肯定会取笑我。”</p>
+	<p class = 'firstLineIndent'>“你都坑了他这么多次，就让他笑笑你吧。对了，右臂的伤怎么样？”</p>
+	<p class = 'firstLineIndent'>“没事，那个兽人萨满伤的比我重，其他几个家伙都在虚应故事，根本没受伤。”</p>
+	<p class = 'firstLineIndent'>而当这一切的一切都被公布于众，当大局已定的时候，我也毫不留情的将只剩半口气的菲姆尔丢了下去。</p>
+	<p class = 'firstLineIndent'>“啊啊啊啊啊！”</p>
+	<p class = 'firstLineIndent'>菲姆尔尖锐的惨叫声在空中激荡，若他落到地上绝对活不了，有女人和孩子已经闭上了双目，不忍心看到这化作肉泥的悲惨一幕发生，而我却牢牢锁定了菲姆尔，一点都没有发松。</p>
+	<p class = 'firstLineIndent'>“哗啦！”</p>
+	<p class = 'firstLineIndent'>果不其然，当菲姆尔即将落地摔死的时候，突然他的后背伸出了两个蝙蝠肉翼，猛地一扇，化坠落为滑翔，向着城外飞去。</p>
+	<p class = 'firstLineIndent'>“该死！居然真是魔裔！”</p>
+	<p class = 'firstLineIndent'>预料之中的猜测被证实，但却一点都不是好消息，岚之后裔配上恶魔的血脉，怎么想，都只有那一个可能性。</p>
+	<p class = 'firstLineIndent'>“卡文斯……这都是你做的吗？这全部是你布置下的局吗？”</p>
+	
+	
+<h2>第168章 魔裔</h2>	
+	<p class = 'firstLineIndent'>魔裔是什么？恐怕对这个问题最后发言权的，就是圣堂教会了。</p>
+	<p class = 'firstLineIndent'>“那群混血杂碎，天生会破坏和策划阴谋，应该全部拉到广场火刑架上烧死。”</p>
+	<p class = 'firstLineIndent'>好吧，貌似问错了人，这位慷概激昂的发言牧师，显然是一位“复古派”，到了近代百年，由于某些原因，圣堂教会进行了内部改革，对魔裔的态度也从“看见了就烧死”转换成“看见了就终身囚禁”。</p>
+	<p class = 'firstLineIndent'>虽然圣堂教会的改进大概只能用百步笑五十步来形容，但要我说的话，从某些层面上，这种做法真的没有错。</p>
+	<p class = 'firstLineIndent'>魔裔，顾名思义就是恶魔和魔鬼的后裔，他们血统中有着奇异的力量，能够使用奇异的超自然能力，是天生的术士好手，据说现存的恶魔术士中有一大半都是体内流淌着下位面混血的魔裔。</p>
+	<p class = 'firstLineIndent'>沉睡的异族血脉若在控制之中，就可以成为天生术士，但若是失控到出现恶魔特征，或许半恶魔、半魔鬼的名称，更适合这些明显不适合在主位面生活的存在。</p>
+	<p class = 'firstLineIndent'>和上位面受人欢迎乃至憧憬的血统（天使）相比，魔裔往往是一个大麻烦，除了他们血脉中的噬血、混沌倾向外，更大的麻烦，就是他们血脉的源头，往往还在下位面胡作非为。</p>
+	<p class = 'firstLineIndent'>天使们然倾向秩序、服务神灵，但本身意志就不算强的他们并不会干涉自己后裔的生活，也很难干涉到，而在恶魔眼中，自己那些混血的后裔，就是自己血脉分出去的活财富，那源自自己的血脉和力量就是最好的标记和绳索。</p>
+	<p class = 'firstLineIndent'>魔裔或许天性善良，或许英勇善战，但在恶魔先祖永不停歇的轻声低语之中，总会潜移默化的出现偏向混沌的变化。</p>
+	<p class = 'firstLineIndent'>对于大恶魔来说，一个有着自己血统的后裔怎么看都是一个战场上的好苗子，他们会发出源自血脉的召唤，让这些后裔在兴奋的发现自己越来越强的时候，却无法控制自己的恶魔天赋，化身半恶魔，最终只能返回下位面，成为新生恶魔的骨干。</p>
+	<p class = 'firstLineIndent'>而在无尽战争的深渊，这些受自己控制影响的“年轻人”，无疑是最好用的棋子和战争精锐。</p>
+	<p class = 'firstLineIndent'>“注定要堕落的混血杂种”，是这些魔裔们在世人口中的另外一个名字，在诸位面中，这群混血的名声可从没有好过，或许某个可怜的魔裔心地善良，做了半辈子好事，深受民众好评，而说不准她就是某位恶魔大君用百年时光布下的一枚棋子，在关键时刻就会起到重要的效用。</p>
+	<p class = 'firstLineIndent'>是的，说道这里，很多事情的来龙去脉已经很清白了，伊丽莎从深渊回来的消息，就是这个了——北方岚国后裔，是某个恶魔大佬的直系血脉。</p>
+	<p class = 'firstLineIndent'>现在岚国分裂成好几块，最大的是东岚和司璐威尔，那个魔裔应该是其中一个，但具体是那个，就不清楚了，所以无奈之下，我只能加强了对蕾妮的戒备，把她空置了一段时间。</p>
+	<p class = 'firstLineIndent'>而现在看来，应该就是司璐威尔王国的王室了，即使局面依旧不容乐观，在内心深处，我却莫名的松了口气，然后，就更是板起脸来。</p>
+	<p class = 'firstLineIndent'>“卡文斯，你到底想要什么！”</p>
+	<p class = 'firstLineIndent'>我的怒吼响彻云霄，那菲姆尔·卡索就是多出十二个翅膀，又怎么能够逃出我的追索，此时的他，被罗兰圣剑插在墙上，捂着胸口满是不敢置信。</p>
+	<p class = 'firstLineIndent'>“不，不，我还不能回去，我不要回去！我要享受这个世界的美好，主位面美人和美食太多了，我还不想回去！我还没有满足！我还要当国王，我不想死！”</p>
+	<p class = 'firstLineIndent'>浑身的鳞片上带着白玉般的诡异光华，赤红的双瞳中多出些昏黄，这是大恶魔的标志，在不知不觉中，菲姆尔早已经完成了从魔裔到半恶魔的转化。</p>
+	<p class = 'firstLineIndent'>大恶魔可以通过血缘上的联系，建立灵魂上的链接，对后裔进劝诱。</p>
+	<p class = 'firstLineIndent'>恐怕在那些被恶魔交织出来的虚假噩梦之中，菲姆尔已经无数次返回了下位面，甚至生出了错觉，自己早就是恶魔的一员了。</p>
+	<p class = 'firstLineIndent'>看着那彻底魔化的昏黄双瞳，我知道，他已经彻底没救了，像他这样堕落的灵魂只可能重返冥河。</p>
+	<p class = 'firstLineIndent'>“恶魔！陛下……不，该死的伪王是恶魔！”</p>
+	<p class = 'firstLineIndent'>在众人的惊呼之中，皇家守卫们也惊讶的放下了武器，再也没有人愿意为菲姆尔而战了，毕竟，恶魔的名声怎么看像是类公敌。</p>
+	<p class = 'firstLineIndent'>“回答我，卡文斯，你到底打算做什么！”</p>
+	<p class = 'firstLineIndent'>即使菲姆尔已经快死亡，但我却依旧扯着脖子质问，我质问的目标，却是那个躲在后面的人。</p>
+	<p class = 'firstLineIndent'>“赫赫。”</p>
+	<p class = 'firstLineIndent'>那熟悉的轻笑声之中，菲姆尔身边燃起了黑色的火焰，感应到了我的愤怒，恶魔大君的意志终于降临。</p>
+	<p class = 'firstLineIndent'>随着那奇异的轻笑声的，却是突然聚集起来的乌云，阳光被挡在乌云之上，刚刚升起的朝阳已经看不到了，仿若天上的诸神也不想看到眼前的一幕。</p>
+	<p class = 'firstLineIndent'>这并不是什么魔法，仅仅只是恶魔王子的意志降临对世界造成的影响，看到这个威势，我心中却有些惊讶了，卡文斯比预期的还要强。</p>
+	<p class = 'firstLineIndent'>“仅仅意志降临就改变天象？这恐怕是主神级的存在了吧。”</p>
+	<p class = 'firstLineIndent'>在我的眼中，卡文斯的实力现在恐怕现在已经深不见底了，绝对不会逊色任何一个混沌侧的主神级人物。</p>
+	<p class = 'firstLineIndent'>“罗兰，没想到居然这么快就会见面。你居然问我想做什么？”</p>
+	<p class = 'firstLineIndent'>此时的菲姆尔的身躯已经开始燃烧，他脆弱的肉身即使魔化，依旧无法承受降临恶魔王子的庞大力量。</p>
+	<p class = 'firstLineIndent'>那菲姆尔扭曲的面容，却突然做出了让人熟悉的表情，那是带着童真的恶作剧。</p>
+	<p class = 'firstLineIndent'>“既然是你诚心问了，我就大发慈悲的告诉你吧……你当我会这么说嘛？想知道？你猜。”</p>
+	<p class = 'firstLineIndent'>“我猜你妹！”</p>
+	<p class = 'firstLineIndent'>“呵呵，你妹不就是我妹吗？可惜了，比起哥哥，我到是比较期待一个可爱的妹妹……而且你问我我就说，这多不给我面子，我怎么都是一个恶魔王子，传出去我怎么当老大。还是和过往一样把，好吃的留在后面，谜局要在结尾揭晓才有意思……”</p>
+	<p class = 'firstLineIndent'>随着魔火的熊熊燃烧，菲姆尔的残躯已经化作了灰烬，而最后的留音却传了过来。</p>
+	<p class = 'firstLineIndent'>“罗兰，看来，我们很快就会见面了。哎呦，我是不是该叫你哥了，但貌似还是当面叫不出口。啊，时间到了啊……这次就算了，这次圣战才刚刚开始，我们有的是机会慢慢玩的。”</p>
+	<p class = 'firstLineIndent'>随着飞灰湮灭的，是菲姆尔的肉体，当谈心甚浓的恶魔大佬的意志失去了承载体后，一切恢复了平静，乌云也自动开始散开，阳光重新投下，一切恢复了平静。</p>
+	<p class = 'firstLineIndent'>“该死！”</p>
+	<p class = 'firstLineIndent'>狠狠的一拳击碎了地面，但我的无名怒火，却注定等不到回报。</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>当北方的战争还在刚刚步入高潮的时候，西罗的内战已经接近了尾声。</p>
+	<p class = 'firstLineIndent'>胜利者？根本没有胜利者，即使一直保持中立的王权派突然选择了奥玛一方，但这次战争依旧保持着残酷的均势。</p>
+	<p class = 'firstLineIndent'>之所以用残酷来形容均势，就是因为在这种情况下，比如双方不断添油加力，最后基本都是拼到两败俱伤，没有胜利者。</p>
+	<p class = 'firstLineIndent'>不管结局如何，双方已经战死的精锐已经不计其数，亡灵之间的战争往往已彻底摧毁对方的灵魂为结束，在折损了大量骨干后，西罗帝国注定从超级帝国沦为普通强国。</p>
+	<p class = 'firstLineIndent'>但当一小队骑兵团突然加入战局的时候，奇袭暗夜议会本部的时候，胜利的天平彻底倾斜了。</p>
+	<p class = 'firstLineIndent'>那倒不是他们有多厉害，只是那扬起的岚之战旗只代表这一个人，而那赤红的狂犬也只为他们的主人而战——永夜大帝。</p>
+	<p class = 'firstLineIndent'>刚开始，诸位亡灵君主还以为对方是假货，毕竟历史记载赤红猎犬军团已经莫名其妙的陨落在内战之中了，但当骸骨骑士们中出现了那让人恐惧颤抖的巨大黑狗的时候，所有的疑惑都变得没有必要了。</p>
+	<p class = 'firstLineIndent'>“虚空魔犬贝斯特！是他回来了，只有那位大人才能驱”</p>
+	<p class = 'firstLineIndent'>更有阴谋论者，自认为看穿了一切。</p>
+	<p class = 'firstLineIndent'>“果然这一切都是那位阴谋，奥玛、莱茵哈特、肉食者、歌莉娅都曾经是那位大人的手下，肯定是大人诱使第二执政官解开封印，然后用他的能力引起内战，王权派在关键时刻插手夺回皇权！真相只有一个，剧情肯定是这样的！”</p>
+	<p class = 'firstLineIndent'>好吧，就不提这个迷之侦探是怎么把一切都归于阴谋的，赤红猎犬的出现，无疑成为了压在胸口的大石，毕竟永夜大帝归来的消息已经传遍了，而当这位王者真的回来了。恐怕所有人都要考虑该如何站队了。</p>
+	<p class = 'firstLineIndent'>近代唯一的半神级亡灵大帝，这个旗号若不够吓人的话，那么，他身上还有当代最强亡灵法师的耀眼光环，这比什么都实在的多。</p>
+	<p class = 'firstLineIndent'>一个亡灵法师或巫妖本身的实力再强也有上限，估算亡灵法师战力前是必然要加上他手下的亡灵战士的，而永夜大帝手下的赤红猎犬的底限还没有获得评估，因为他们根本没有败过，也就是说，根本还没有人看到过永夜大帝的底限。</p>
+	<p class = 'firstLineIndent'>事实上正是如此，“永不陷落的迪芬德”就是罗兰藏住的杀手锏之一，在刻意的保密下，罗兰总共才用过两次，见过的对手基本都死了。</p>
+	<p class = 'firstLineIndent'>亡灵法师的标准战术，就是用自己最强大的亡灵战士作为护卫和战争尖兵，拖着自己的敌人，然后用最强悍的大魔法轰炸整个战场，争取一锤定音。</p>
+	<p class = 'firstLineIndent'>永夜大帝也是如此做的，但当护卫和担任前锋的换做不败的赤红猎犬，当那奠定胜局的大魔法换做举世罕见的“冰河世纪”的时候，就很让人觉得无解了。</p>
+	<p class = 'firstLineIndent'>半神级法师本就不多，能够使用这种等级的毁灭性禁咒的知名法师，一个手能够数完，但把禁咒当白菜丢，完全不顾禁咒后果和对自己肉体损害的，这么多年大概就只有永夜大帝一位了。</p>
+	<p class = 'firstLineIndent'>数十个的王国用自己的覆灭见证了这种战术的强大而无耻，若不能在永夜大帝完成禁咒前冲破赤红猎犬的封锁，恐怕就是直接连城市加军团陷入了永眠。</p>
+	<p class = 'firstLineIndent'>当年的永夜军团连攻城都不用，永夜大帝一开始持咒，战争就直接进入了最后决战，还多半是生者疯狂进攻，亡灵拼死防御的野战。</p>
+	<p class = 'firstLineIndent'>而和无边无际的亡灵大军打消耗战，还是一场附带死亡竞赛的限时战争……那些曾经有辉煌历史的王牌战团往往筋疲力尽的倒在脆弱的骷髅兵手上，就是这种无耻战术组合最好佐证了。</p>
+	<p class = 'firstLineIndent'>而在暗夜议会混得不少骨干也是过去永夜军团的主力，他们怎么不了解永夜大帝谋定而后动的习性。</p>
+	<p class = 'firstLineIndent'>“没有六成以上胜率，就绝对不要打决战，让所有的战争胜负在战争开始前被决定，让对手最憋屈的方式灭亡。”</p>
+	<p class = 'firstLineIndent'>这位大帝就是这么猥琐的战争风格，而当赤红猎犬在战场上冲锋的时候，恐怕就是永夜大帝决定亲手收获战果的时候了。</p>
+	<p class = 'firstLineIndent'>对于亡灵大君们来说，过去看着敌手的灭亡自然很让人开心，现在站在这位大帝的对面，搞不好永夜大帝正在准备禁咒……</p>
+	<p class = 'firstLineIndent'>“我觉得有些肚子痛，出去方便下。”</p>
+	<p class = 'firstLineIndent'>喂喂，你是骷髅法师吧，你什么时候有肚子了。</p>
+	<p class = 'firstLineIndent'>“我老婆快生了，我要回去”</p>
+	<p class = 'firstLineIndent'>某个死亡骑士如此说道，虽然这话很短，但这隐藏的信息量实在太大了，当场听众都愣住了。</p>
+	<p class = 'firstLineIndent'>“我情人也快生了，我也要回去。”</p>
+	<p class = 'firstLineIndent'>好吧，另外一个死亡骑士领主也不要脸了，但接着，本应互搏的两人，却露出了惺惺相惜的表情。</p>
+	<p class = 'firstLineIndent'>“你怎么能够这么无耻啊。”</p>
+	<p class = 'firstLineIndent'>“啊，都是跟你学的。”</p>
+	<p class = 'firstLineIndent'>好吧，一切都在不言中。</p>
+	<p class = 'firstLineIndent'>结果，当永夜大帝的威压重新压在头上，暗夜议会好不容易构成的凝聚力就彻底散了，而当赤红猎犬真正杀到了本部的时候，却发现了空无一人的总部。</p>
+	<p class = 'firstLineIndent'>西罗帝国内战结束，第二执政官费特兰带着绝大部分兵力远遁亡灵位面的消息成了最重要的新闻，很快传遍了整个世界。</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>而当罗兰为眼中的乱局焦头烂额的时候，在某个位面，有人却正笑着很是开心。</p>
+	<p class = 'firstLineIndent'>“做了什么？呵呵，我什么都没做，只是在玩而已。菲姆尔是我后裔，自然是魔裔。哎，原本还是个不错的角色的，只是叫来陪我下了两盘棋，居然变成了这样，凡人还真是脆弱啊。”</p>
+	<p class = 'firstLineIndent'>嬉笑中的年轻男子颇为俊秀，笑着也颇为自然，但若叫上所处的环境，就很不正常了。</p>
+	<p class = 'firstLineIndent'>“哈，看老哥当时的表情，完全傻眼了啊。猜？我自己都没想到答案，老哥你又怎么猜得到。”</p>
+	<p class = 'firstLineIndent'>他躺在虚空之中，虚空之中什么都没有，唯一醒目的，只有一个庞大的棋盘，而上面的棋子却分外吸引注意力。</p>
+	<p class = 'firstLineIndent'>棋子都是活的，那是一个个正在哀嚎的灵魂，而其中每一个存在，实力都不低于传奇，恐怕都是凡间的英雄人物。</p>
+	<p class = 'firstLineIndent'>而他对面坐着的位置，却空无一人，只是那棋子在自己移动。</p>
+	<p class = 'firstLineIndent'>“北地？岚国？阴谋？关我吊事，我只是期望玩的开心而已。我的小可爱们啊，让我看看你们的潜力吧，期望不会和菲姆尔那样让我失望。”</p>
+	<p class = 'firstLineIndent'>或许，凭着心性肆意妄为，这就是卡文斯这么快就能晋升到如此这种地步的原因。</p>
+	<p class = 'firstLineIndent'>没有善恶，只有有趣与否，兴致来了，就丢下两个种子，派出几位得力干将，让岚国重建，心情不好了，就掀桌子不干，从某种意义上，卡文斯这种性格，才是真正的混沌本质。</p>
+	<p class = 'firstLineIndent'>“最完美的混沌恶魔”、“混沌的宠儿”、“混沌女神的私生子（敢叫这个的都挂了）”这就是卡文斯在下位面创下的绰号。</p>
+	<p class = 'firstLineIndent'>行事风格完全无法预测，以孩子般的天真笑容做出让恶魔都不忍目睹的惨剧，完全符合混沌本质的深渊之子，只用了三百多年，就立下了无数的功勋，踏着无数的尸骨步入了至高的殿堂。</p>
+	<p class = 'firstLineIndent'>现在他有了一个更加响亮的称号——混沌至高者，混沌侧第十四位主神级存在。</p>
+	<p class = 'firstLineIndent'>罗兰的猜测完全是错误的，就连卡文斯自己都不知道自己下一刻打算做什么。</p>
+	<p class = 'firstLineIndent'>而现在的卡文斯，除了沉睡中的混沌女神，已经可以不受任何指挥了，当他的玩性上来的时候，已经没有任何存在能够阻拦卡文斯的游戏了。</p>
+	<p class = 'firstLineIndent'>“这次有老哥陪我玩，应该会很让人开心吧。呵呵，玩智谋类游戏玩赢哥哥，这可是我过去的梦想之一。老哥，你的确很会猜，但就猜猜我下一步打算怎么做吧，那可是连我自己都没有想好啊。”</p>
+	
+	
+<h2>第169章 傲慢</h2>	
+	<p class = 'firstLineIndent'>“愚蠢的碳基猴子，居然敢藐视我的存在，我是无所不知的魔镜。”</p>
+	<p class = 'firstLineIndent'>“是吗？1692321乘以768392等于多少，三秒内速答！”</p>
+	<p class = 'firstLineIndent'>“十万三千零三亿六千五百九十一万七千八百三十二。小样，傻眼了吧，你以为我那全能的创造者会忘记给我加个计算器？”</p>
+	<p class = 'firstLineIndent'>银发的壮男闻言一愣，却没有回答，他自己都还在算。</p>
+	<p class = 'firstLineIndent'>“……就算你对吧，先说好，我才不是算不清楚啊，父亲教过我乘法的。”</p>
+	<p class = 'firstLineIndent'>只看外表的话，这个肌肉壮硕的俊男简直是古典神话中走出的活英雄，他高大健美，虎背熊腰且眉清目秀……好吧，我知道这很矛盾，这世界不是还有一种叫做李狗蛋的诡异生物吗。</p>
+	<p class = 'firstLineIndent'>“那么，下个问题，这世界上除了我的父亲，谁是最美丽的人。”</p>
+	<p class = 'firstLineIndent'>“当然是您了，尊敬的奥玛大人，您的美丽仅次于罗兰殿下。”</p>
+	<p class = 'firstLineIndent'>“哈哈。你真是太老实了，我有点喜欢你了。你吃午饭了吗？要不我们等下一起吃？”</p>
+	<p class = 'firstLineIndent'>“哈哈，你虽然长得俊美无比，但显然脑袋有些问题。我是个镜子，用什么吃饭？”</p>
+	<p class = 'firstLineIndent'>看着这一边扳着指头数数，一边对着镜子摆出各种健美姿势的半裸壮男，即使已经没有胃了，莱因哈特也是一阵反胃。</p>
+	<p class = 'firstLineIndent'>“……这……这应该说是绝配吗？真不愧是罗兰陛下啊，仅仅只是一份小礼物，就让油盐不进的奥玛温顺多了。”</p>
+	<p class = 'firstLineIndent'>满是肌肉散发出健康过度的油光，而偏偏面容上却是眉清目秀的软妹面孔，偏偏还和罗兰本人有七成相似，从某种意义上，奥玛存在本身，就是罗兰的黑历史。</p>
+	<p class = 'firstLineIndent'>是的，眼前的“李狗蛋”就是七宗罪的傲慢，实际上长着这种样子，还真的不能怪他自己。</p>
+	<p class = 'firstLineIndent'>罗兰是以亡灵标准模板为基础构建自己的七宗罪的，妒忌和暴食都是以憎恶缝合怪为基础，而七宗罪中的傲慢，则是贪婪一样，以女妖为基础模板的变异灵体生物。</p>
+	<p class = 'firstLineIndent'>按照最初的设计，他是没有面容、没有肉身、没有性别的人造灵魂体，但随着他的成长，他居然自发的选择了这幅模样作为自己的外表，就让人很是无法理解了，但实际上，这全部源于罗兰在他刚刚诞生时候的胡说八道。</p>
+	<p class = 'firstLineIndent'>“作为一个男人，壮硕的身体有才是真正的美丽。”</p>
+	<p class = 'firstLineIndent'>好吧，于是懵懂中的傲慢就把他视作了真理，而作为生命视自己母亲为最美的本能，他又毫不犹豫的用上了罗兰肉身的面容，而众所周知，罗兰死的太早，他留下的画像以十一、二岁的时候为主，结果，就是这个审美观偏差的孩子诞生了。</p>
+	<p class = 'firstLineIndent'>本来，稍微有些理解错误还是可以纠正的，但当年的罗兰太忙（忙的开战），其他人的话奥玛根本不会理会，结果就越走越差，最后变成了他心目中最美丽的模样。</p>
+	<p class = 'firstLineIndent'>孩子的父母甚至被孩子本人更了解他，没有人比罗兰更了解奥玛的性格喜好，所以罗兰只为其定制了一个花言巧语的魔镜，就非常容易的收买了这个才几岁大的孩子。</p>
+	<p class = 'firstLineIndent'>是的，才几岁大，出生才几年就造反被封印，在封印中又感受不到年月，刚被封印的时候是啥性子，出来的时候自然也一样。</p>
+	<p class = 'firstLineIndent'>既然西罗内战已经结束，作为唯一的胜利者，恐怕奥玛将很快就彻底掌握这个国家，而依他的能力，必然会让自己和这个国家再上一个台阶。</p>
+	<p class = 'firstLineIndent'>傲慢奥玛的能力？其实解说起来非常复杂，那是一个特殊的能力系统，而不是单独的一个能力。</p>
+	<p class = 'firstLineIndent'>“傲慢”源自等级高低，在罗兰的理解中，作为主导下位者生死存亡的上位者，他们往往对下位者根本不讲理，自以为站在至高点的存在看待下位者就仿若看蚂蚁一般，就是傲慢作为原罪的根本。</p>
+	<p class = 'firstLineIndent'>亡灵也是有等级的，那么是不是有可能制造一个天生的亡灵统治者了，让他天生就具备统治不朽亡灵的能力？</p>
+	<p class = 'firstLineIndent'>这无疑是一种匪夷所思的课题，但罗兰却是从女皇蜂、蚁后对族群的天然统治得到了灵感，她们用奇特的信息素构成特殊的网络，以奇妙的交流方式控制整个族群，让整个族群为其奉献乃至死亡。</p>
+	<p class = 'firstLineIndent'>而之所以选择女妖作为基本模版，无非是女妖是少数根本没有低阶存在的亡灵类别，纯粹是灵魂构成的她们，也很适合用来勾结心灵的网络。</p>
+	<p class = 'firstLineIndent'>最后，研究的最终成果，就是奥玛本人了，他也是唯一一个没有用任何额外的材料，全部由罗兰亲手制造的亡灵，从这个意义上说，他称呼罗兰为父亲一点错都没有。</p>
+	<p class = 'firstLineIndent'>“亡灵网络的最高权限者”，就是奥玛综合能力的名称，他可以把自己麾下的亡灵构建成一个不断交换信息的心灵网络，而自己作为拥有最高权限的网络管理员，掌控了麾下亡灵的一切。</p>
+	<p class = 'firstLineIndent'>这是奥玛唯一的能力，听起来似乎不怎么强力，但用起来却强的一塌糊涂。</p>
+	<p class = 'firstLineIndent'>低阶亡灵并没有智慧，他却能够赋予其虚假智慧，在战场上，他就仿若一个无形的指挥之手，可以指挥麾下亡灵做出那怕手指轻移的微小动作，普通亡灵要拥有意识至少要到白银阶，而他可以让无数的亡灵拥有虚假的自我意识，可以说，在他的控制之下，原本只能用来充当炮灰的低阶亡灵，战力至少要翻上三倍。</p>
+	<p class = 'firstLineIndent'>这还只是开始，奥玛的能力远没有这么简单。</p>
+	<p class = 'firstLineIndent'>灵魂就是力量，低阶亡灵、高阶亡灵的灵魂都会在那个亡灵网络上被其链接，掌控了其他亡灵灵魂的他，又怎么可能弱小。</p>
+	<p class = 'firstLineIndent'>赋予虚假意识并不会给其增添负担，相反，这反而让他能够抽取灵魂之力对自己进行加成强化。</p>
+	<p class = 'firstLineIndent'>当手下有三百低阶亡灵的时候，奥玛大概才青铜阶战力，当手下有三千亡灵的时候，奥玛就能和白银阶战士对垒，当手下有三万的时候，人类的黄金阶只会被他秒杀……若手下是一个亡灵帝国的时候，他具体会变得多强，就是作为创作者的罗兰本人，也是无法估量的。</p>
+	<p class = 'firstLineIndent'>从这里就可以看出了，奥玛的能力明显偏向于军团作战，从一开始，“傲慢”奥玛就是作为亡灵大军的统帅而设计出来的，罗兰所花的精力也是其他七宗罪的数倍，他的预期设计并没有失败，之所以最后会走到那一步，更多还是由于性格的原因。</p>
+	<p class = 'firstLineIndent'>“我天生就是父亲麾下的最高者，凭什么要听你们这些老家伙的。那只蠢狗凭什么坐上我的位置，统领原该由我掌控的军团！我要夺回我的亡灵军团，建立属于亡灵的国度，这才是我天生的职责，也是父亲对我的期望。吾等天生为王！”</p>
+	<p class = 'firstLineIndent'>好吧，对满是怨念构成的亡灵来说，越是偏执的灵魂越有无可限量的潜力，但个性过头了，自然就没法管教了，最后，自然就是反抗期的熊孩子造反了。</p>
+	<p class = 'firstLineIndent'>但从某种意义上，当年的罗兰并没有把有些事情做绝，相反还留下了余地，才有了现在的沟通可能。</p>
+	<p class = 'firstLineIndent'>奥玛的真实能力只有七宗罪和罗兰本人知道，其他亡灵大君只以为他具备很强的亡灵控制能力，低估了他的费特兰在把亡灵军团交给他的那一瞬间，就注定了西罗内战迟早爆发。</p>
+	<p class = 'firstLineIndent'>连自己的兄弟贝斯特的排位在自己之上都无法耐受，眼高于顶的奥玛怎么可能接受一个老巫妖在自己之上，因此在罗兰的预估之中，西罗第二执政官费特兰释放奥玛的时候，就等于埋下了自取灭亡的结局。</p>
+	<p class = 'firstLineIndent'>如今西罗内战到了这种地步，也到了必须做出选择的时候。</p>
+	<p class = 'firstLineIndent'>所以，罗兰提前做出了选择，让奥玛登上了王位，把费特兰赶进了诸亡灵位面。</p>
+	<p class = 'firstLineIndent'>此时，就到了奥玛做出回报的时候了。</p>
+	<p class = 'firstLineIndent'>“父亲的心意我了解了，礼物我也很喜欢，等我稍微整顿，我会履行自己的承诺，派出大军到北地帮助父亲了结那场战争。”</p>
+	<p class = 'firstLineIndent'>原本是罗兰亲手封印了奥玛，莱因哈特还以为沟通会很困难，如今这么好打交道，简直不可思议。</p>
+	<p class = 'firstLineIndent'>听到这话，莱因哈特反而犹豫了，他在担心奥玛会不会有什么阴谋。</p>
+	<p class = 'firstLineIndent'>似乎看出了莱茵哈特的犹豫，奥玛却补充道。</p>
+	<p class = 'firstLineIndent'>“在封印之中，我也考虑了很多，或许当年我的确有些做的过分了。而且一贯对待背叛者杀无赦的父亲大人，对我却网开一面，我怎么也要领一份情。”</p>
+	<p class = 'firstLineIndent'>网开一面？罗兰陛下不是说奥玛能力特殊，只能封印无法杀死吗？莱茵哈特满是疑虑。</p>
+	<p class = 'firstLineIndent'>“只能封印无法杀死？呵呵，对于无所不能的父亲大人来说，怎么可能有这种事。七宗罪都是他创造出来的，我们都有被他留下的后门，至少无法控制其他的七宗罪，就是我的死穴之一。而且……”</p>
+	<p class = 'firstLineIndent'>明明在说着自己的弱点，那满脸自豪的模样却仿若这是得天独厚的恩赐，而突然，李狗蛋……哦，奥玛却有点不好意思起来。</p>
+	<p class = 'firstLineIndent'>庞大健美的身躯却扭扭捏捏的像个女人，清秀俊美的面庞上满是谜一样的红晕。</p>
+	<p class = 'firstLineIndent'>“……而且，我还期望父亲大人帮个忙，为我创造一个同类。人家今年刚刚进入青春期，人家也想要谈恋爱！”</p>
+	<p class = 'firstLineIndent'>边说，那李狗蛋还边激动的抖动、扭动自己的庞大的身躯，红着脸，闭着眼睛陷入了遐想之中，似乎想起什么羞人的事情。</p>
+	<p class = 'firstLineIndent'>“人家的要求一点都不高，不要那些矮小的豆芽菜，和人家一样高一样壮一样美丽就够了，嗯，比人家更壮的也行，但面容一定不能丑陋，虎背熊腰配上眉清目秀什么的，最有爱了！”</p>
+	<p class = 'firstLineIndent'>“噗！”</p>
+	<p class = 'firstLineIndent'>莱因哈特此时无比羡慕弱小的人类了，至少他们吐血而亡的功能，而他自己却只能苦撑眼前的滚滚天雷了。</p>
+	<p class = 'firstLineIndent'>“虽然有点不好意思，但人家也是一国之君了，多几个选择应该不算过分吧。人家早就梦想在月下组织‘我有姿势我自豪’的比美大会了。啊啊，说出来，还有点不好意思啊。”</p>
+	<p class = 'firstLineIndent'>那一霎，莱因哈特无比后悔自己出色的想象能力，他想起若当这个要求被达成，以后恐怕会天天都有一群眉清目秀的肌肉兄贵，在月下摆出各种健美姿势，还一个一个自称“人家”、“奴家”，莱因哈特就有一股撞墙而亡的冲动。</p>
+	<p class = 'firstLineIndent'>“呕！”</p>
+	<p class = 'firstLineIndent'>而接着，那一段莫名的反胃感，还有背后已经开始倒地干呕的同僚，就证明了就算是亡灵，也有耐受恶心的极限！</p>
+	<p class = 'firstLineIndent'>“我……我会转告陛下的。然后，请奥玛大人离我远点！！我对肌肉无爱！”</p>
+
+
+<!-- <<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='0150.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0170.html';"> Next </button>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>

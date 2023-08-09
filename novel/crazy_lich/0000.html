@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 2.2em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">⬆️</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+	<span style="display:inline-block;"><button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>> -->
+
+<h2>第001章 我真的是好人呀</h2>	
+	<p class = 'firstLineIndent'>“我是个好人。”</p>
+	<p class = 'firstLineIndent'>“很奇怪，明明大家都知道我是好人，是个遵纪守法的好市民，为什么眼前的治安官，还纠缠不休。”</p>
+	<p class = 'firstLineIndent'>“作为硫磺山城的守法居民，准时缴纳税款，热心工作，在工作部门是好员工，在社区是好邻居，好伙伴。你看，我还是热爱宠物的好人。这个奖牌，我的阿宝还是社区宠物明星大赛冠军！”</p>
+	<p class = 'firstLineIndent'>作为证据的奖牌和绶带，挂在一旁的墙上，上面还写的“第七届硫磺山城宠物大赛优胜”“祝我们健壮可爱的阿宝永远健康”。</p>
+	<p class = 'firstLineIndent'>而为我获得荣耀的阿宝，就在墙下享受自己的晚餐。</p>
+	<p class = 'firstLineIndent'>可惜，不管我怎么解释，那个暗精灵城市治安官，就是一言不发的死死的盯着我，似乎认定我在撒谎。</p>
+	<p class = 'firstLineIndent'>“宠物？阿宝？你说是那个可怕的怪物，他就是你被投诉的原因之一！洛甫一家控告你的宠物袭击了他们的儿子！”</p>
+	<p class = 'firstLineIndent'>墙角的奖状下，被污蔑的阿宝正在流着口水舔着骨头，看到主人看向自己，还流出口水傻笑，真是可爱呀。</p>
+	<p class = 'firstLineIndent'>洛甫？是谁？记忆里面没有真没有。</p>
+	<p class = 'firstLineIndent'>在我犹豫是否要使用侦察法术回溯自己越来越差的记忆之前，似乎看出了我的茫然，那个暗精灵治安官冷笑道。</p>
+	<p class = 'firstLineIndent'>“……你不觉得这话很没说服力吗？你养的怪物口里还有他儿子的胫骨。”</p>
+	<p class = 'firstLineIndent'>“哦？噢！原来是临街的骷髅兵家，他们家特别喜欢和阿宝一起玩，真是好人呀。”</p>
+	<p class = 'firstLineIndent'>连忙飘了过去，从死死抓住胫骨不放的阿宝口中抽出骨头，无奈，我只有挥起拳头，敲这只笨狗的脑袋。</p>
+	<p class = 'firstLineIndent'>“放开，放开，你个笨蛋。不想被关进检疫所就给我放开。”</p>
+	<p class = 'firstLineIndent'>真是只听话的好狗，看到我如此坚持，可爱的阿宝呜咽着，用让人心疼的表情放弃了自己的宝贝。</p>
+	<p class = 'firstLineIndent'>“放心吧，阿宝，等打发这眼前的臭娘们，我就让洛甫一家都陪你玩，玩满整整一年。”我小声承诺着。</p>
+	<p class = 'firstLineIndent'>这胫骨被抓了罪证，还真不好辩驳，我在脸上挤出笑容，努力讨好眼前的治安官，献媚的笑了。</p>
+	<p class = 'firstLineIndent'>“误会，都是误会。阿宝只是太热情了。它总是喜欢交新朋友，离别时又总是依依不舍，从好友那里那点纪念品，不是太正常了吗？”</p>
+	<p class = 'firstLineIndent'>我试图把骨头递过去，那治安官却猛地一退。</p>
+	<p class = 'firstLineIndent'>“别过来。保持安全距离，谁知道你在里面下了什么邪恶的咒法。我的同僚还在外面，我回不去的话，你打算面对整个城市治安管理部队（简称城管）的愤怒吗。”</p>
+	<p class = 'firstLineIndent'>我已经够低声下气了，这小娘们居然不给面子，我好心递上胫骨，居然像是看到什么恶心的东西一样，后退了两步，还摆出了戒备满满的死鱼脸。</p>
+	<p class = 'firstLineIndent'>“我可是代表城市的治安官，你知道袭警的后果吗。”</p>
+	<p class = 'firstLineIndent'>“误会，误会，我真是个好人。”暗叹暗精灵对魔力的敏感和警惕，无奈，我只有悄然散去胫骨中的催眠术和毒蛇诅咒，让恶毒的魔力无声散去。</p>
+	<p class = 'firstLineIndent'>“我不管你是不是好人，按照硫磺山城市治安管理条例，赔偿款50金币和上门道歉都不能少，限期三天内完成。”</p>
+	<p class = 'firstLineIndent'>那娘们，丢下狠话，夺回胫骨，居然直接转身就走。</p>
+	<p class = 'firstLineIndent'>“若不想我再找上门，记住，三天内到城管大队来报到！”</p>
+	<p class = 'firstLineIndent'>关上门，我的脸色就不好看了。</p>
+	<p class = 'firstLineIndent'>“臭娘们，小心那天被人敲了闷棍，被卖到奴隶市场去，在这地下城世界，暗精灵一直都是最畅销，最值钱的商品。”</p>
+	<p class = 'firstLineIndent'>心理恶毒的诅咒，却没有说出口，因为一旦出口，若那娘们真被卖掉了，我不是成了第一嫌疑犯了，我才没有那傻了。</p>
+	<p class = 'firstLineIndent'>“大姐头，你太了不起了。居然敢和这么可怕的怪物执法，我一看到他，就吓得魂不守舍了。”</p>
+	<p class = 'firstLineIndent'>“哼，阿敏，这些家伙其实都一样。外强中干，作为硫磺山城一名光荣的城管，你要知道……”</p>
+	<p class = 'firstLineIndent'>不远处，依旧传来两个暗精灵的交谈。</p>
+	<p class = 'firstLineIndent'>“切，居然敢小看我，若不是我已经洗心革面，打算做个好人，你今晚就会被卖到窑子里面去。”</p>
+	<p class = 'firstLineIndent'>可爱的阿宝看到他的主人有些沮丧，还凑过来，用来带着毒刺巨大舌头添了我的脸。</p>
+	<p class = 'firstLineIndent'>“好了，好了，阿宝，记住你是高贵的克洛玛古斯，不是只会到处流口水的蠢家犬。走，我们去找‘洛甫’一家道歉去，顺便吃顿晚餐。恩，吃顿‘晚餐’。”</p>
+	<p class = 'firstLineIndent'>这只笨狗听到晚上有的吃，两个头同时流出口水，越发高兴的抱着我拼命的舔。</p>
+	<p class = 'firstLineIndent'>狗果然是人类的好伙伴，双头地狱犬更是如此，就是这饲料费有些昂贵，嘛，带着魔力的骨头对他们可是最好的粮食，不过有洛甫一家的热心支援，大概又可以节省一个月的饲料费了。</p>
+	<p class = 'firstLineIndent'>对了，忘记自我介绍了，我，罗兰·岚，今年三百七十六岁，是个好人，哦，不，正确的说，是个好巫妖。</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>若要问下世人对巫妖的看法，恐怕，没有会没有多少好评。</p>
+	<p class = 'firstLineIndent'>“十恶不赦的恶徒。”“亡灵和黑暗魔法的终极存在。”“生者的噩梦，不死者的君王。”</p>
+	<p class = 'firstLineIndent'>虽然我一直把其当做平庸者的羡慕和伪君子的诬陷，但不能否认的，有时候，这些偏见者的歧视，的确带来不少麻烦。</p>
+	<p class = 'firstLineIndent'>至少，即使在禁止内斗的硫磺城，每个月我都要处理几个“组团打击邪恶的勇者”，或是“独创邪恶老宅的冒险者。”</p>
+	<p class = 'firstLineIndent'>虽然大部分时间他们连这座老宅的防护法阵都无法突破，但有的时候，我还是欢迎他们的到来的，比如说缺乏实验品的时候，比如说现在……</p>
+	<p class = 'firstLineIndent'>“……我一定要……了你……别摸哪里！该死的触手魔！……这里也不行！！我的哪里很敏感的。哈……哈……不要……求求你了，杀了我，杀了我！！有胆你就杀了我。”</p>
+	<p class = 'firstLineIndent'>眼前那个要死要活的半精灵游侠，上周还嚣杂的威胁要替天行道除掉我这个恶徒，现在，却只能瘫在污浊的地牢地步上呻吟。</p>
+	<p class = 'firstLineIndent'>“放过我，至少……杀了我……不要呀！！”多次的积累终于到了顶端，一声激烈的呻吟后，达到某个高潮的她先是全身紧绷，下一秒，整个无力的瘫了下去。</p>
+	<p class = 'firstLineIndent'>那原本满是恨意的双眸，即使已经失去了焦点，但依旧本能的死死地看着我，死气沉沉的双目，过于半天才重新灌满仇恨。</p>
+	<p class = 'firstLineIndent'>“哎呦，别这么看着我，兴奋过度对身体不好。”</p>
+	<p class = 'firstLineIndent'>“混蛋！！混蛋！！混蛋！！”</p>
+	<p class = 'firstLineIndent'>“……是精灵语中骂人的话语太少了，还是你的语言老师死的太早，同样的词语给不足以让我兴奋。”</p>
+	<p class = 'firstLineIndent'>“无赖，流氓……”数天的牢狱和折磨磨破了女游侠的意志，但高精灵始终高昂的头颅和她的骄傲却还没有被抹去，即使过度消耗体力，金发的女经历依旧自言自语的诅咒我。</p>
+	<p class = 'firstLineIndent'>“好吧，休息够了，下一轮再来吧！”</p>
+	<p class = 'firstLineIndent'>“哒！”随着一个响指，无数的黑触手再度行动起来，这些被粉红之书招呼出来的使魔们，已经压抑不住自己与女性亲近的欲望。</p>
+	<p class = 'firstLineIndent'>“不要！！！……求求你，放了我！！”</p>
+	<p class = 'firstLineIndent'>但可惜，我的使魔又怎么听从囚犯的求饶。</p>
+	<p class = 'firstLineIndent'>“我怕痒！！”</p>
+	<p class = 'firstLineIndent'>是的，只是挠痒而已。我可是好人，什么注定要被和谐的事情我可不会做。</p>
+	<p class = 'firstLineIndent'>“由不得你了，触手们，给我重点招呼她腰间和脖子下的痒痒肉！那是她的弱点！”</p>
+	<p class = 'firstLineIndent'>“哈……嘻嘻……了我，你个混蛋！！……哈哈”</p>
+	<p class = 'firstLineIndent'>不愧是女游侠最怕的处罚，很快，在无数的触手之下，她在地上笑的直打滚。</p>
+	<p class = 'firstLineIndent'>“哼！活该，谁叫你居然擅自闯入我的家，这是明显的犯罪行为，不好好收拾你，还都以为我是软柿子呀！”</p>
+	<p class = 'firstLineIndent'>当然，我可不会说损人不利已的事情，仅仅只是为了处罚她，就浪费我的魔力，怎么可能。</p>
+	<p class = 'firstLineIndent'>“求你了，我认输，我投降……我什么条件都会答应！！”</p>
+	<p class = 'firstLineIndent'>“不用了，你这样吊着难受，就是对我的贡献了。”</p>
+	<p class = 'firstLineIndent'>看着自己面板上缓缓增长的数字，我不由得感叹起来。</p>
+	<p class = 'firstLineIndent'>“哎，都三天了，才给了2点邪恶点数，这要凑足复活肉身的十万点数，要等到那一年呀。”</p>
+	<p class = 'firstLineIndent'>想起转说中万众向往的性福生活，又低头看了看自己只剩下骨头的肉身，很快，目光就投向了牢房的倒霉们。</p>
+	<p class = 'firstLineIndent'>“惩恶也是扬善，为了点数……不，为了正义，为了咱的性福生活……不，为了成为一个好人。你们的苦难就是我的财富，认命吧！”</p>
+	<p class = 'firstLineIndent'>一个个笼子里，是各种囚犯，有牛头人、有精灵，最多的，还是人类。</p>
+	<p class = 'firstLineIndent'>“放我出去！！”“我没有罪！”“别过来！！”哀嚎声、求饶声此起彼伏，但巫妖却无视了不说，若是叫的狠了，那作为看守的骷髅兵，会狠狠的一鞭子让他们闭嘴。</p>
+	<p class = 'firstLineIndent'>“鲁尔，人类，强奸犯，犯案六起，被抓了三次，但由于有个码头区黑帮老大的好哥哥，受害者都被威胁不敢报案，结果硫磺城最高法院两次因为证据不足释放。”</p>
+	<p class = 'firstLineIndent'>只是此刻，这个黑帮大少却是叫的最惨的。</p>
+	<p class = 'firstLineIndent'>“你这么喜欢交配，我就让你交配个够吧。”</p>
+	<p class = 'firstLineIndent'>于是，我找了几个三米多高的食人魔，天天陪他玩……不过，是公的，还是那话儿比人类小腿粗的……</p>
+	<p class = 'firstLineIndent'>好吧，现在他囚笼里实在惨不忍睹，我说起来也觉得恶心，我们还是谈谈他的邻居吧。</p>
+	<p class = 'firstLineIndent'>“迪亚·金，地精族职业骗子，虽然被数十个案件同时指控，但手法非常高超，被害人往往缺乏决定性的证据，这厮又舍得花钱起硫磺城最好的大律师，所以，至今还在逍遥法外。”</p>
+	<p class = 'firstLineIndent'>此时，这个赌徒正两眼血丝的对赌中。</p>
+	<p class = 'firstLineIndent'>“我……我赢了！！你的钱都是我的，你要按约定放我走！！我是四个K！！”</p>
+	<p class = 'firstLineIndent'>对面的亡灵牌手却笑了，他摊开底牌，四个A，正好比对方大上一点。</p>
+	<p class = 'firstLineIndent'>“不，不，不，不可能的！你已经连赢了767把！你作弊！！”</p>
+	<p class = 'firstLineIndent'>“没有被抓住的作弊就是正当手段，这不正是你的名言吗？好吧，说出你最后隐藏的财产和秘密吧！”</p>
+	<p class = 'firstLineIndent'>“我……我，我下把一定要翻身！！”</p>
+	<p class = 'firstLineIndent'>那个亡灵牌手当然在作弊，这是我特别附魔的魔术牌，他想要那张就可以来那张，那迪亚又怎么赢得了。</p>
+	<p class = 'firstLineIndent'>而若是常人，连输几百场，早就气馁了，但迪亚这个早就输红了眼的赌徒，看着眼前有获得自由和财富的机会，又怎么肯放手。</p>
+	<p class = 'firstLineIndent'>亡灵牌手根本不用劝迪亚上当，他只用在哪里自己玩玩牌，地精赌徒那从骨头里的贪欲，就会让囚笼中无所事事的迪亚自己凑上来。</p>
+	<p class = 'firstLineIndent'>“万一……万一我能赢一把，不就能回本了。”</p>
+	<p class = 'firstLineIndent'>于是，这厮就如同过去被他欺骗的受害者一样，被贪欲带上了无底深渊，已经把那点家当全部输了出来。</p>
+	<p class = 'firstLineIndent'>实际上我对他的骗术和秘密毫无兴趣，但每一次他输掉，那发自心底的不甘和愤怒，就会给我更多的邪恶点数，而他邻居那个已经麻木的家伙，却越来越少。</p>
+	<p class = 'firstLineIndent'>这里是监狱，属于我个人的监狱，这里的囚犯，大多都是出于某些原因硫磺城官方无法进行刑罚，但又的确罪不可赦的混蛋。</p>
+	<p class = 'firstLineIndent'>我那不靠谱的系统，可以从别人的痛苦和不幸中获得力量，而为了做一个好人，无奈，我只有选择除恶扬善这条路。</p>
+	<p class = 'firstLineIndent'>于是，我通过某些关系，把这些混蛋弄到这里来，作为我那‘邪恶巫妖系统’的粮食。</p>
+	<p class = 'firstLineIndent'>那个“独闯地狱”的勇者的待遇算是最好的了，反正她就只砸坏了几个花瓶，弄散几个骷髅园丁，逗她玩个几天，就会扔出去。</p>
+	<p class = 'firstLineIndent'>其他的，都是够判死刑的杂碎，所以，我让他们享受下自己曾经对别人做的，或者说，自食恶果者。</p>
+	<p class = 'firstLineIndent'>比如，让强奸犯尝尝被强奸的滋味，让骗者尝尝被骗的倾家荡产的滋味，让抢劫、盗窃者尝尝被抢走、偷走所有的滋味，让恶意囤货居奇制造饥荒的奸商享受睡到金山之上却买不到一片面包。</p>
+	<p class = 'firstLineIndent'>“疯子！！你个疯子！”</p>
+	<p class = 'firstLineIndent'>“求求你，放了我！”</p>
+	<p class = 'firstLineIndent'>损人不利己的事情做起来多没意思，他们的痛苦，将通过那无名的系统，化作我的力量，化作我复活的基石。</p>
+	<p class = 'firstLineIndent'>“我才没疯掉，你才疯掉了！”</p>
+	<p class = 'firstLineIndent'>“疯巫妖！！求求你放了我，我什么都愿意！”</p>
+	<p class = 'firstLineIndent'>疯巫妖？的确，有不少人说我早就疯掉了，但最早，是那位说的。</p>
+	<p class = 'firstLineIndent'>我指骨抚摸着下巴，仔细回忆起来。</p>
+	<p class = 'firstLineIndent'>“我到底是什么时候开始疯掉的？是前世作为一个坚持公平和正义的法官，被不法官员剥掉公职，最终被排挤到连律师都当不下去的时候？”</p>
+	<p class = 'firstLineIndent'>“是带着那个奇怪的系统转世到这个世界，以为自己是天命主角，誓言让国民和亲人过的更加幸福，却发现残酷命运不可扭转，一步一步失去了国家、家庭和所有亲人的时候？”</p>
+	<p class = 'firstLineIndent'>“是发誓向众神和伪善者报仇，带着残缺的身躯组成亡者的大军，却发现在复仇路途之中，自己背后，已经是一片尸骸和废墟，自己已经和伪善者、野心家一般，打着冠冕堂皇的旗号，不断制造灾难和惨剧的时候？”</p>
+	<p class = 'firstLineIndent'>“呵呵，或许，从一开始，有两世记忆的我，在发现世界的真相后，就已经疯了吧。”</p>
+	
+	
+<h2>第002章 邪恶巫妖系统</h2>	
+	<p class = 'firstLineIndent'>传说中，每一个打破时间和空间界线的超越者，都会得到一份来自世界的馈赠……嗯，俗称穿越者必备金手指。</p>
+	<p class = 'firstLineIndent'>邪恶巫妖系统……就是我那坑爹至极的金手指。</p>
+	<p class = 'firstLineIndent'>曾经，它不是叫这个名字，他有一个光辉骑士王养成系统这样的好名字，但可惜，只从我抛弃圣骑士身份，开始学习黑魔法，他就变成了这个名字。</p>
+	<p class = 'firstLineIndent'>曾经，他给的日常任务，都是上街扶老太太、帮小女孩找丢失的小猫之类的助人为乐的任务，而不是如今这么坑爹的展开。</p>
+	<p class = 'firstLineIndent'>“看下本日的日常……又是这坑爹的两选一，毁灭任意一座三万人以上的城镇，奖励10000点邪恶点数。抢三个小朋友的棒棒糖，奖励1点。若两个都没有完成，那么，扣2点。”</p>
+	<p class = 'firstLineIndent'>“呸！当老子是傻的呀，真毁了一个城镇，保证刷出一个全员史诗的中古圣骑士团来讨伐我，到时有的赚，没的花。”</p>
+	<p class = 'firstLineIndent'>顺手从路过的牛头人小萝莉抽过她的棒棒糖，看着小女孩哭着被她妈妈拉走，刚放入口中，却听到了棒棒糖和骨头撞击的脆响，才想起自己已经没有了味觉。</p>
+	<p class = 'firstLineIndent'>“哎，啥时候才能再享受美食的滋味，魔力虽然管饱，但实在不美味呀。”</p>
+	<p class = 'firstLineIndent'>即使那女孩的妈妈拖着熊孩子走，那小女孩似乎还不愿意放弃，那水汪汪的大眼盯着我，似乎发现我无法吃食物，在期望什么。</p>
+	<p class = 'firstLineIndent'>以为路过的巫妖叔叔只是恶作剧？马上就会把棒棒糖还给自己。</p>
+	<p class = 'firstLineIndent'>好吧，为了不辜负对方的期望，我咔吧咔吧的把糖块咬碎，然后一块块的吐到地上。</p>
+	<p class = 'firstLineIndent'>“呜呜呜！！妈妈。怪叔叔抢了我的糖。”</p>
+	<p class = 'firstLineIndent'>“别看，快走。”</p>
+	<p class = 'firstLineIndent'>于是，不出意外的收获了一阵悦耳的哭声，当时，我的心情就好了很多，因为，我想起了某个无法无天的熊孩子。</p>
+	<p class = 'firstLineIndent'>“亡灵就没有人权了吗？上古魔法卷轴被当做涂鸦的画纸，龙血墨水被当成了颜料，辛辛苦苦制造的炼金药剂被当做汽水，甚至连我的肋骨被偷偷拆下来玩拼图，我才睡了两个小时，实验室就变成了废墟，熊孩子的破坏力太可怕了……”</p>
+	<p class = 'firstLineIndent'>“哎，啥时候才能报仇呀。”想起那些无法无天的熊孩子，特别某只野性未训的大龄熊孩子，我就恨得牙痒痒。</p>
+	<p class = 'firstLineIndent'>突然，但却意外的听到一个系统提示。</p>
+	<p class = 'firstLineIndent'>“叮，恭喜宿主累积弄哭第一百个小萝莉/正太，奖励邪恶点数10点。——看似六岁实则二十多的合法萝莉？不在统计范围内，过期的伪萝莉是邪道！”</p>
+	<p class = 'firstLineIndent'>看到突然的成就不由得一阵欣喜，成就系统最次的奖励都是十个点数，这可抵得上我十天的日常任务了。</p>
+	<p class = 'firstLineIndent'>“按照惯例，弄哭100个有成就的话，弄哭1000个也会有，而且奖励最少翻倍……”</p>
+	<p class = 'firstLineIndent'>于是，我两眼放光的看向街上的小女孩、小正太……</p>
+	<p class = 'firstLineIndent'>“哼，就算没有日常，让熊孩子懂点规矩，让大家避免同样的厄运，也是吾辈好人的职责。”</p>
+	<p class = 'firstLineIndent'>“怎么玩比较好了？对了，活化造物，让熊孩子的玩具到处乱跑的恶心怪物，魔法涂料，把熊海子的棒棒糖变成恶性的屎黄色！”</p>
+	<p class = 'firstLineIndent'>作为饱受熊孩子祸害的受害者，一想起能够为我被毁掉的魔法卷轴和珍贵典籍报仇雪恨，坏点子创意就一个个冒出来。</p>
+	<p class = 'firstLineIndent'>“不，不，那不够劲，把枕头套子变成吃人的魔物吧，让熊孩子以后看到枕头就怕。对了，还有艾伐黑触手，让你们也享受一下痒痒地狱吧。”</p>
+	<p class = 'firstLineIndent'>“对了，熊孩子不是怕鬼怪吗？呵呵，是时候重建亡灵大军了，苏醒吧，我的亡灵天灾！！”</p>
+	<p class = 'firstLineIndent'>那天，我终于知道，我们这边街区总共才不到200个熊孩子……</p>
+	<p class = 'firstLineIndent'>带着几千骷髅、憎恶、僵尸游街的我，实在有些浪费……</p>
+	<p class = 'firstLineIndent'>那天，在城管大队接到报案抵达现场前，在被一个暗精灵大队按倒逮进去之前，我已经走遍了这个街区，才弄哭一百六十个……</p>
+	<p class = 'firstLineIndent'>而在得知我召唤亡灵大军是为了报复熊孩子的时候，城管们那混杂哭笑不得和鄙视的表情，也成为了我新的黑历史。</p>
+	<p class = 'firstLineIndent'>“恭喜宿主一次性被百个女性鄙视，获得特殊成就‘这娃子脑袋到底是进水还是进浆糊了’，奖励荣誉称号‘弱智儿童’装备后，一定几率获得女性的同情，但女性对装备者的异性好感降低100。”</p>
+	<p class = 'firstLineIndent'>……反正已经被系统坑习惯了，名声也臭到了下限，以我那系统承认的负88魅力为证，异性人缘就算再降低100点也没什么大不了……反正结果一样，都是找不到女友。</p>
+	<p class = 'firstLineIndent'>为什么明明是理智分析，说出这种话的时候，我感觉眼眶中流出的全是血泪……好吧，我就是个单身了三百年的大魔法师，但此刻，至少，我完成了对宿敌熊孩子的复仇！</p>
+	<p class = 'firstLineIndent'>回忆起那些嚎啕大哭的熊孩子，我得意的笑了，我已经想好了今天的日志该怎么写了。</p>
+	<p class = 'firstLineIndent'>AD1896年巨龙之夏，三月六日，注定永远铭刻在硫磺城熊孩子的记忆之中，史称“棒棒糖狩猎者事件。”“枕头怪物吃人事件”</p>
+	<p class = 'firstLineIndent'>“那一天，孩子们回想起了，受那家伙支配的恐怖……被肆意夺走心爱之物的屈辱，被自己的玩具弄一口吞下的绝望，被亡灵们环绕的恐惧……”</p>
+	<p class = 'firstLineIndent'>在我联想翩翩的时候，系统提示音居然又来了。</p>
+	<p class = 'firstLineIndent'>“叮！”一天之内弄哭一百个熊孩子成就达成！奖励邪恶点数10点，恭喜宿主获得荣誉头衔‘熊孩子克星’，装备后对十二岁以下萝莉/正太有天然的威胁感。温馨提示，一次性弄哭五百个熊孩子，奖励荣誉称号‘熊孩子杀手’一次性弄哭一千个……</p>
+	<p class = 'firstLineIndent'>系统提示音到了此刻，居然顿了一下，我不由得有些期待了，虽然是恶搞的头衔，但若能让熊孩子自此远离我，也算是意外之喜了。</p>
+	<p class = 'firstLineIndent'>“……一次性弄哭一千个，奖励荣誉称号‘这么大了还和小孩一般计较，你还能更无聊点吗’哦。宿主，感谢我吧，实际上这才是你现在最适合的头衔称号。”</p>
+	<p class = 'firstLineIndent'>“我操，这真不能忍了，该死的系统，这不都是你害的吗！！本好人跟你拼了！！”</p>
+	<p class = 'firstLineIndent'>……</p>
+	<p class = 'firstLineIndent'>“主人，这次因为抢棒棒糖入狱……下次，会不会因为偷女孩子内衣入狱。到时，我可真不想来接变态了。”</p>
+	<p class = 'firstLineIndent'>说话的，是我最忠实的狗腿子，我大宅的半恶魔女仆长，银发的伊丽莎。</p>
+	<p class = 'firstLineIndent'>黑金眼镜框、银色双马尾、小虎牙、打着紫色蝴蝶结的小尾巴，巴洛克风格的女仆服把小恶魔俏皮的性格尽显无疑，也把巫妖的恶趣味暴露无遗……</p>
+	<p class = 'firstLineIndent'>一直以来，我对伊丽莎的外貌很满意，若能改掉这冷面毒舌的性格，就更好了。</p>
+	<p class = 'firstLineIndent'>“你又不是不知道我那坑爹的系统呀，只是弄哭几个小女孩就给点数，这才是好人应该做的事情呀。”</p>
+	<p class = 'firstLineIndent'>“给！”</p>
+	<p class = 'firstLineIndent'>她把一个厚重的相册递给我。</p>
+	<p class = 'firstLineIndent'>“这是……哦，干得好，伊丽莎！不愧是我最忠实的狗腿子！”</p>
+	<p class = 'firstLineIndent'>“发生了什么，我大概也能够猜到。这是硫磺山城最大的幼稚园的联系手册，上面有我精心挑选的名单，应该能够方便主人完成任务。”</p>
+	<p class = 'firstLineIndent'>“干得好！我还以为你期盼我早点挂点，还你的自由，都是我误会了。太好了，你也是大好人呀。”</p>
+	<p class = 'firstLineIndent'>“我看看！”翻开联系录，但脸色却越来越难看。</p>
+	<p class = 'firstLineIndent'>“硫磺城圣光大主教的三个子女的联系方式，狩龙者阿姆罗才上幼稚园的小女儿，战神辛修士的宝贝儿子……你确定是帮我，而不是想送我回归冥府！”</p>
+	<p class = 'firstLineIndent'>我的怒视却一如既往的被对方无视了，半恶魔少女推了一下眼镜框，寒光在镜片上闪烁。</p>
+	<p class = 'firstLineIndent'>“棒棒糖狩猎者的美誉已经传遍整个硫磺城，连我从大宅出门都会被指指点点。为了淑女的名声着想，我也的确想换份工作。或者，主人您也应该付我那拖欠了十年的薪水了。”</p>
+	<p class = 'firstLineIndent'>“哈，哈。提钱多伤感情。快走吧，我已经等不及回到我们温暖的家。”</p>
+	<p class = 'firstLineIndent'>“逃避可不是绅士应该的作为，还有，请您不要转移话题……为什么拉着我跑，您又做了什么？”</p>
+	<p class = 'firstLineIndent'>“不愧是跟我这么久的小伊丽莎，今天的日常任务是一场华丽的爆炸，你懂的……”</p>
+	<p class = 'firstLineIndent'>“我懂了，请您抓好，我这就转移魔法跑路！”</p>
+	<p class = 'firstLineIndent'>银色的任意门被打开，主仆两人连忙进入，而随着短程瞬移的魔法散去后，这里已经空无一人，而作为背景的，却是一声惊天大爆炸，及其其后的火警声。</p>
+	<p class = 'firstLineIndent'>“延时炎爆炸弹吗？被城管逮捕的囚犯不是会被封魔吗。”</p>
+	<p class = 'firstLineIndent'>“不，只是看起来像而已，面粉配上辣椒粉，才加上一点点灰尘，就成了粉尘炸弹，威力不大，死不了人，但绝对找不到证据。”</p>
+	<p class = 'firstLineIndent'>“您真不愧是‘智慧’的巫妖呀，囚犯带着封魔环，无法释法，居然还用食堂材料做出手制炸弹。”</p>
+	<p class = 'firstLineIndent'>“谢谢，你这么夸我，我会不好意思的。”</p>
+	<p class = 'firstLineIndent'>“没人夸你……好吧，至少作为一个巫妖，这应该是夸奖吧。”</p>
+	<p class = 'firstLineIndent'>巫妖是啥？</p>
+	<p class = 'firstLineIndent'>“不是好人，是最可怕的妖魔。”大概是维尔拉所有生物听到这个名词的第一感觉。</p>
+	<p class = 'firstLineIndent'>“那骨头看的人发毛，那鬼火一样的眼睛好吓人，总觉得在做什么坏事。”这是普通民众的看法。</p>
+	<p class = 'firstLineIndent'>“邪恶的终极存在，阴谋家和恶徒！”这是教会圣骑士的看法。</p>
+	<p class = 'firstLineIndent'>作为亡灵、黑暗法师们的最终归属，只剩骷髅架子的巫妖们，往往名声的确不佳，但……</p>
+	<p class = 'firstLineIndent'>“污蔑，都是偏见！怎么能够因为种族而对个体进行判断！我一直认为，种族、肤色、出身等歧视和偏见是人类愚蠢的标志。世上只有低贱的歧视和偏见，没有低贱的种族、肤色、出身。我真的是个好人呀。”</p>
+	<p class = 'firstLineIndent'>“如果您这样都算好人的话，那城东的那些嗜血亡灵们都算圣人了？”</p>
+	<p class = 'firstLineIndent'>“圣人说不上，大家都是面冷心热的和平主义者。你看，亡灵多节省粮食呀，又不占地方，一个墓地可以住一个家族。不吃不喝热心工作，只奉献不索取，大家都是大好人呀。”</p>
+	<p class = 'firstLineIndent'>半恶魔女仆被逗笑了，那传说只要生命整块进去，就会零碎出来的生命禁区，居然在自家主人眼中也是好人聚集地。</p>
+	<p class = 'firstLineIndent'>“呵呵，主人你真会说笑。嗜血亡灵是好人？那教堂区那些饱受市民好评的圣堂牧师是什么？他们可是会对市民进行免费治疗的。每周日还会发放免费的圣餐救济穷人。”</p>
+	<p class = 'firstLineIndent'>“一群伪君子和恋童癖，伊丽莎，你看，人都是有欲望和需求的，过度压抑，不是变态也憋成变态了，他们一口一个欲望是原罪，私下肯定都是变态基佬。你看哪些老男人对小正太这么和蔼可亲，没问题才怪。还有那些一路货色的单细胞圣骑士，都是一群见了我就喊打喊杀的野蛮人！”</p>
+	<p class = 'firstLineIndent'>“好吧，我差不多知道主人又犯病了。硫磺山脉中那头被誉为贝隆之厄，曾经独自毁灭了一个帝国的古代红龙，大概在主人眼中只是温顺的小可爱吧。”</p>
+	<p class = 'firstLineIndent'>“不不，小红最近太不注意饮食了，有些胖过头了。若再瘦个二三十吨，把小肚子减掉，把曲线廋出来，就更可爱了。”</p>
+	<p class = 'firstLineIndent'>“我们那威名赫赫，维护治安，善于助人的硫磺城暗精灵城管大队了？您应该和她们很熟了吧，这两个月，我都去领了你五次了。”</p>
+	<p class = 'firstLineIndent'>“……你可以去问问被她们镇压的倒霉摊贩，我的意见基本和他们一致。呸，一群疯娘们。我们绅士自由联盟和她们是天敌。”</p>
+	<p class = 'firstLineIndent'>无奈的摇了摇头，刻意无视了主人口中的可疑组织，伊丽莎继续问道。</p>
+	<p class = 'firstLineIndent'>“……我们那曾经拯救世界，声名远扬的英雄城主？他举着众种族平等的旗号，硬是在混乱的地下城世界中，建立了众种族混居的硫磺山城，让混战不停的地下世界，有了一片净土。”</p>
+	<p class = 'firstLineIndent'>“中二了几百年的重度中二病患者。什么年代了，还玩勇者讨伐魔王拯救世界的老掉牙剧目，活该他单身撸一辈子。”</p>
+	<p class = 'firstLineIndent'>“……您还真敢说呀，他两次婚礼都被你搅和了，现在都说他命中孤星。出生克父母，出来混克兄弟，结婚克老婆，搞得明明条件这么好，长得这么帅，硫磺城都没女孩敢接受他的求婚了。”</p>
+	<p class = 'firstLineIndent'>“……我又不是故意的，至于记恨这么久吗……”</p>
+	<p class = 'firstLineIndent'>“不是故意的？是有意的吧。先不提那天煞孤星的谣言就是您让我散播的。在别人婚礼上玩亡灵天灾、百鬼夜行，您知道当时就吓哭了多少女孩。”</p>
+	<p class = 'firstLineIndent'>“我这不是给他婚礼助兴吗？看到那老光棍终于结婚了，大家只是太高兴了，来了段百鬼机械舞。谁知道那新娘子小姑娘居然这么不禁吓，居然当场尿了。”</p>
+	<p class = 'firstLineIndent'>虽然口中说着不是故意的，但我暗地里却很得意。“哼，咱都还没复活拥有肉身，怎么会让你舒舒服服的享受性福生活。”</p>
+	<p class = 'firstLineIndent'>“老爷，您每次得意，都会叉着手跺脚，现在您的恶意都溢出来了。好吧，不提您的‘丰功伟绩’了。您那些在亡灵之都西罗的巫妖同类？那些家伙在各国的通缉令，都是按打来计算的吧，出去一个，世界就会大乱。”</p>
+	<p class = 'firstLineIndent'>“……其实大家对我们有点误解，生和死轮回一体，我们研究生命的奥妙，不就是为了世人能够活得更好吗？我们其实也很擅长治疗的，论疗效，论后遗症，比牧师的圣光好多了，他们那圣光看似方便，实际上是对生命寿命的透支，我们的生命改造技术，无毒无害无污染，一次性从根本上解决问题。”</p>
+	<p class = 'firstLineIndent'>“……那您为什么还要指望系统给你复活，直接做个身体不就完了。”</p>
+	<p class = 'firstLineIndent'>“我可不想变成三只手、六只脚的畸形怪物，就算是完好的人形，迟早有问题……”</p>
+	<p class = 'firstLineIndent'>看到巫妖自己都不放心自己的生命改造技术，伊丽莎还能说些什么。</p>
+	<p class = 'firstLineIndent'>“好吧，好吧，让在您眼中，我算什么。”</p>
+	<p class = 'firstLineIndent'>“……冷面毒舌的鬼婆婆？平胸的少女A？”我当然不会傻的说出口。</p>
+	<p class = 'firstLineIndent'>“噢，伊丽莎，你当然是我最信任的部下了？我们曾经一同立下征服星辰大海的伟大理想。”</p>
+	<p class = 'firstLineIndent'>“在您实现你的星辰之梦之前，是不是先记得付清可怜小孤女拖欠了十年多的工资？”</p>
+	<p class = 'firstLineIndent'>知道自家的主人再度发病，银发的半恶魔推了一下眼睛，寒芒在眼睛上一闪，冰冷的话语从牙缝中一字一句的挤了出来。</p>
+	<p class = 'firstLineIndent'>“若您还是这么不正经，您的收藏品是不打算……”</p>
+	<p class = 'firstLineIndent'>“好的，伊丽莎，我道歉。”想到自己的宝贝们，某巫妖当即服软了。</p>
+	<p class = 'firstLineIndent'>“哼。”成功下克上的堕天使哼着小曲，往门外走去。</p>
+	<p class = 'firstLineIndent'>作为这个公寓的管家，她可没时间和自己中二病主人浪费时间。</p>
+	<p class = 'firstLineIndent'>但从对方那始终低垂的尾巴来看，似乎心情并不怎么好。</p>
+	<p class = 'firstLineIndent'>而直到她走出门外，过了一会，我才想起来了些过去的回忆，于是，我小声的自言自语。</p>
+	<p class = 'firstLineIndent'>“……大概，勉强，可能算是家人吧，我现在还记得，那个在绝境的冥河废墟中依旧不愿意就此死去，在绝望的雪夜中独自狩猎求生的小女孩。捡你回来，算是此世最大的幸运，这辈子唯一做对了的事情。”</p>
+	<p class = 'firstLineIndent'>突然，门后探出一张俏脸。</p>
+	<p class = 'firstLineIndent'>往日冰冷的脸颊红的发烫，红霞一直延伸在微微颤抖的长耳上。</p>
+	<p class = 'firstLineIndent'>然后，她就唆的一声，再次消失在门后。</p>
+	<p class = 'firstLineIndent'>“呵呵，你了解我，我就不了解你了吗？蠢笨的恶婆婆，就是你狡猾到家，也要乖乖欠我人情债，给我做牛做马到死。”</p>
+	<p class = 'firstLineIndent'>我大声抖着狠话，得意的狂笑，心理却有些慌张。</p>
+	<p class = 'firstLineIndent'>“……被听到了呀！绝对被听到了呀！！！”</p>
+	
+	
+<h2>第003章 抽奖</h2>	
+	<p class = 'firstLineIndent'>“九阴白骨爪！！”</p>
+	<p class = 'firstLineIndent'>本着绝招一定要喊出来的定律。我一身怒吼，接着，重重的一抓抓到了那个骷髅兵的身上。</p>
+	<p class = 'firstLineIndent'>然后，咔嚓一身脆响，两个骨头同时骨折。</p>
+	<p class = 'firstLineIndent'>看着眼前名为“九阴白骨抓”的异界魔法秘笈，我一边用魔力再生受损的手骨，无奈的叹了一口气。</p>
+	<p class = 'firstLineIndent'>“又是没法使用的东西呀。明明白骨有了，爪子有了，九阴也用寒冰属性的魔力代替了，这复合属性的魔法，却依旧无法使用。”</p>
+	<p class = 'firstLineIndent'>于是，我顺手一丢，让他和它同样来自异界的前辈一起，沦为无人问津的收藏品。</p>
+	<p class = 'firstLineIndent'>是的，这是来自异界的产物，说秘笈上的介绍来看，那似乎是个很强力的攻击魔法，无坚不摧，无往不利。</p>
+	<p class = 'firstLineIndent'>“到底是哪里错了。解读应该没错呀。阴不就是冰和负属性吗？九是很多的意思，‘很多冰’有了，‘白骨抓’也有了，为什么起不到作用。”</p>
+	<p class = 'firstLineIndent'>但显然，或者是换了一个世界，这些复合魔法就成了废渣。</p>
+	<p class = 'firstLineIndent'>“降龙十八掌，传说中的屠龙魔法呀。本来还以为终于可以找小红（龙）报仇雪恨，结果，因为差点被她一巴掌扇死，还被她耻笑来跳骷髅舞的。”</p>
+	<p class = 'firstLineIndent'>“如来神掌，听起来就很威猛，但这明显是驱邪性质的圣光法术，我若真是去学，或许我真该去让圣光牧师洗洗脑了。”</p>
+	<p class = 'firstLineIndent'>这些异界秘笈，都是我那不靠谱的系统抽奖弄来的。</p>
+	<p class = 'firstLineIndent'>每个月初，那个系统就有一次抽奖机会，让我从神功秘笈、神器武器、奇珍异宝三类中选择一样，进行抽奖。</p>
+	<p class = 'firstLineIndent'>而之所以明明九成以上机会都不靠谱，我依旧还是次次选择抽神功秘笈，无非是因为那不到一成的机会，却可以获得真正的宝库。</p>
+	<p class = 'firstLineIndent'>在那堆无法使用的秘笈旁边，有一个老旧的书架，上面，却是那偶然获得珍宝。</p>
+	<p class = 'firstLineIndent'>“论亡灵军团的组织结构和人事编制，发掘盲点，教你从理论角度最大化你亡灵军团战力——克尔苏加德。”</p>
+	<p class = 'firstLineIndent'>“过去和现实的奥秘，时间和空间的拘束？毫无意义！吾等法师才是时间和空间的主人——雷斯林·马哲理。”</p>
+	<p class = 'firstLineIndent'>“魂器和命匣的制作方法。一个回合就被击倒你还该称自己是最终BOSS。转职不死系，复活个十几二十次，恶心死你的对手吧。——汤姆·马沃罗·里德尔。”</p>
+	<p class = 'firstLineIndent'>“法师护身术经典十八招——让魔邓肯大叔手把手教你如何肉搏！谁说法师不会武术了！阿打！！WAGHHHH！”</p>
+	<p class = 'firstLineIndent'>“魔偶军团和大规模战略魔法——依文捷琳的优雅魔术选略，真正的大法师才不会弄脏自己的双手，让下仆淹没你的对手吧，让你的对手在视距外泯灭吧”</p>
+	<p class = 'firstLineIndent'>此类的魔法典籍，放满了半个书架，这些来自异界的魔法奥秘和知识，就是我视作比生命更重要的收藏品。</p>
+	<p class = 'firstLineIndent'>对于为了无尽的知识，舍弃了自己的肉体的巫妖来说，这些来自异界的宝贵魔法知识，比什么都重要。</p>
+	<p class = 'firstLineIndent'>虽然鉴别这些魔法到底有没有用，的确是很麻烦。</p>
+	<p class = 'firstLineIndent'>很明显，这些知识来自不同的世界，而鉴别的唯一方式，就是自己学着掌握。</p>
+	<p class = 'firstLineIndent'>“六脉神剑段誉版……这不就是简单版的灼热射线吗？虽然用五个指头发射光剑很有创意，但一定几率起效是什么意义？时灵时不灵，那不是拿自己的性命开玩笑。这种不靠谱的东西，大概只适合主角这种靠幸运值吃饭的家伙了。”</p>
+	<p class = 'firstLineIndent'>“最扯的还是那一苇渡江了，什么无耗能漂浮魔法，什么体重越轻越好，我都轻的只剩骨头了，还不是直接沉了。还害的伊丽莎还要去找鱼人们把我从江里捞出来，真是丢脸丢到了。”</p>
+	<p class = 'firstLineIndent'>“主人，地下监狱的本月邪恶点数已经收割到位，总计三十九点，比上个月还要少两点。监狱中有两个囚犯已经无法产生点数了，建议更换。”</p>
+	<p class = 'firstLineIndent'>伊丽莎的提醒，让我想起，如今又到了月初，这次，我一定要抽到想要的东西。</p>
+	<p class = 'firstLineIndent'>“超级巫妖系统！”</p>
+	<p class = 'firstLineIndent'>随着一声令下，一个金色的面板出现在了我的眼前。</p>
+	<p class = 'firstLineIndent'>它只有三个选项，“抽奖”、“任务”、“强化”。</p>
+	<p class = 'firstLineIndent'>任务分为日常任务和剧情任务，日常任务大多比较扯淡，给的也少，而剧情任务那一栏现在是灰色，显然由于某种原因无法使用。</p>
+	<p class = 'firstLineIndent'>强化我以前倒是用过，上面有我个人的信息，但此刻，却也是无法使用的灰色。</p>
+	<p class = 'firstLineIndent'>这倒不是系统问题，而是我个人的问题。</p>
+	<p class = 'firstLineIndent'>罗兰·岚，男性巫妖（命匣受损，在修复前无法强化）</p>
+	<p class = 'firstLineIndent'>力量5敏捷5体质5智力30魅力－88意志5（10点为正常人基本属性，除了施法者的主属性智力，其他都是战斗力5的渣）</p>
+	<p class = 'firstLineIndent'>职业：60级法师/1级巫妖/20级法咒使（总等级81，综合战力评价79黄金级巅峰法系职业）</p>
+	<p class = 'firstLineIndent'>灵魂徽印：公正法印、亡者之冠（破损）、寒冰行者（破损）、光耀之子（毁灭）</p>
+	<p class = 'firstLineIndent'>“啊啊，实力大幅下降呀，黑铁血脉、青铜之躯、白银威严、黄金意志，传奇尊者、人间圣者、不朽史诗、不灭半神，居然一下子从八阶巅峰掉到了四阶黄金……”</p>
+	<p class = 'firstLineIndent'>灵魂徽印，是凡人突破传奇领域的结晶，是他毕生经验和力量的汇聚，是他步入更高境界的基石，一个人只有一次人生，所以，也只有可能有一个灵魂徽印。</p>
+	<p class = 'firstLineIndent'>但我却有四个，缘由无他，和短命的凡人不同，我曾经有四次人生，我这四个灵魂徽印，却也代表了我的三次死亡和四次进入传奇的辉煌过去。</p>
+	<p class = 'firstLineIndent'>寒冰的冠冕、死者的君王、圣光的眷顾者，都曾经是我的荣耀，但如今，却已经残缺不全。</p>
+	<p class = 'firstLineIndent'>不过，死了三次还能够活蹦乱跳，也应该知足了吧，连灵魂徽印都已经破损，别说无法寸进了，就算现在还活着，都很不可思议了。</p>
+	<p class = 'firstLineIndent'>而正如那个外号伏地魔的异界同僚所说的，不复活个十几次、变身个三五次怎么能够算最终BOSS。</p>
+	<p class = 'firstLineIndent'>虽然每次死亡都让我损失颇多，但跨过死亡重返人间，收获也不会少。</p>
+	<p class = 'firstLineIndent'>最近一次由于命匣受损，实力狂跌，但第一次战死时，我才刚刚步入传奇，第二次战死时，我才第六阶圣域巅峰，上次一百多年前挂掉时，我已经达到了八阶半神。</p>
+	<p class = 'firstLineIndent'>“……珍贵的知识和过去记忆的损失的确让人心疼，总的来说，还是有进步的……不过，这死来死去，也太丢了。次次都扑街，名声也臭了，害的我又要换马甲了。”</p>
+	<p class = 'firstLineIndent'>反正被打回原形也不是第一次了，我也不气馁，只要赚够点数成功修复命匣，或者干脆重塑肉身，有系统的帮助，重练反而是步入更高峰的捷径。</p>
+	<p class = 'firstLineIndent'>“就算只有骨头，我也要等到哪一天的，当然，巫妖我也当够了，虽然在亡灵和寒冰上天赋惊人，但属性实在太过偏激，想再上一层楼，一个完好的肉体是不可或缺的。咳，才不是看到别人成双成对，不想再当老光棍了。”</p>
+	<p class = 'firstLineIndent'>“嗯？谁敢鄙视我？？东城区那些亡灵结婚的也不少呀，血族都成了家族了，为啥同样是亡灵生物的巫妖就不必须当光棍了？巫妖也要谈恋爱啊！！”</p>
+	<p class = 'firstLineIndent'>巫妖这种生物比较特殊，灵魂不是在肉体内，而是放在叫命匣的宝物之内。</p>
+	<p class = 'firstLineIndent'>命匣不灭的话，就是死掉了，过段时间也能原地复活，但若是命匣出了问题……像我这样跌落境界，然后一百多年无法寸进的，还算是运气好的。</p>
+	<p class = 'firstLineIndent'>不过，对于法师来说，知识就是力量，就算由于命匣受损，实力无法长进，但这些异界的知识，却让我收获颇丰。</p>
+	<p class = 'firstLineIndent'>“修复命匣要八万点数，重新制造一个肉体也只要十万点数，我要多傻，才会把点数用在修复命匣上。”</p>
+	<p class = 'firstLineIndent'>看了一眼面板上的49762点数，感叹自己复活的进度还没过半，我只好收拾心情，把目标放在最后一个选项——抽奖。</p>
+	<p class = 'firstLineIndent'>抽奖一个月才有一次机会，除了秘笈宝典外，还有“神兵利器”和“奇珍异宝”两个选项，但由于过往的经验，我一般是不会选择的。</p>
+	<p class = 'firstLineIndent'>“上次抽到把破邪光耀圣剑差点弄死自己，生命之泉这种东西居然自带驱邪圣光，东方异宝朱果？看起来很不错，延年益寿且全天然，但连嘴都没有怎么吃，果断和生命之泉一同喂狗……算了，知识就是力量，我还是抽秘笈宝典吧。”</p>
+	<p class = 'firstLineIndent'>随着我一声令下，那个硕大的金色转盘开始缓缓转动。</p>
+	<p class = 'firstLineIndent'>“大转移术、大裂解术、御兽秘法……快停下！”</p>
+	<p class = 'firstLineIndent'>转盘越来越快……</p>
+	<p class = 'firstLineIndent'>“圣光裁决！命运制裁！圣堂教会的不传秘珍！就算用不了也可以拿出去卖，这次好货不少，快停下呀！”</p>
+	<p class = 'firstLineIndent'>转盘更快了……</p>
+	<p class = 'firstLineIndent'>“FFF团火焰魔法烧烤手册！听名字就感觉很适合我，快停下呀！”</p>
+	<p class = 'firstLineIndent'>好吧，已经看不清上面的图案了。</p>
+	<p class = 'firstLineIndent'>每次抽奖最让人郁闷的就是这里了，宝物在眼前流过，但轮盘却不停。</p>
+	<p class = 'firstLineIndent'>但一个月才一次机会，闭上眼等待又很让人不甘心，终于，在难熬的十余秒过去，在流过的那一系列珍贵秘笈后，残酷的轮盘终于停下了。</p>
+	<p class = 'firstLineIndent'>“‘葵花宝典，让东方姐姐教你如何绣花。’这是啥呀！？连绣花的针法都可以成为秘笈吗？”</p>
+	<p class = 'firstLineIndent'>即使如此，我依旧抱有一丝期望，不是说自古高手多怪人吗，说不定那个裁缝也是传说级的高手。</p>
+	<p class = 'firstLineIndent'>但很快，残酷的现实又给了我狠狠一击。</p>
+	<p class = 'firstLineIndent'>“不是说没有‘欲望之根’就可以修行吗？我都只剩骨头了，怎么也无法修炼。”</p>
+	
+	
+<h2>第004章 无眠者</h2>	
+	<p class = 'firstLineIndent'>因果，或者说命运的确存在，若是没有外界的影响，苹果终将落地、腐朽、化作来年的种子。</p>
+	<p class = 'firstLineIndent'>而若是有个农夫来收走了苹果，那么，对于果园和苹果本身来说，却是理所当然的命运，因为那农夫也是果园的一部分，而被收获，正是苹果预定的命运。</p>
+	<p class = 'firstLineIndent'>但若是有个外地的旅者，路过果园，顺手拿走了苹果，那么，苹果随着旅者离开，农夫摘不到那颗苹果，所有人的命运都因为旅者的行为而扭转。</p>
+	<p class = 'firstLineIndent'>而异界的旅客，就是那个随手而行，就改变了所有人命运轨迹的旅者。</p>
+	<p class = 'firstLineIndent'>他的行动却不在这个世界的线上，他对原本应该不变命运的更改，最终起到了一系列连锁影响。</p>
+	<p class = 'firstLineIndent'>冤有头债有主，随之而来的因果命运，则被穿越者背负。</p>
+	<p class = 'firstLineIndent'>而我那系统，则将其收集转化为邪恶/善良点数，然后在我个人的意愿下，以类似许愿术一般的发生机制，起到影响世界的作用。</p>
+	<p class = 'firstLineIndent'>当然，这只是我自己的研究，可能正确，可能错误，但一个偶然，一本从异界来的游戏攻略书，却让这个猜想多出些可能性。</p>
+	<p class = 'firstLineIndent'>“艾希炼狱大战，是这个游戏的名字，而这本从抽奖系统的攻略书，记载了这个已经经历了三十年运营的经典游戏的点点滴滴。”</p>
+	<p class = 'firstLineIndent'>而我现在所在大陆的名字……就是艾希。</p>
+	<p class = 'firstLineIndent'>我们所在的世界，只是异世界的一场游戏？我没有感叹或者惊讶，平行世界观、梦到异界的梦见者，穿越时间和空间限制的预言家之类的早有先例，就是艾希大陆上的常识，也足以解释这一切。</p>
+	<p class = 'firstLineIndent'>而炼狱……七次大规模版本更新，代表着这个世界的七次颠覆。</p>
+	<p class = 'firstLineIndent'>在七次灭世浩劫之中，大陆变成了人间炼狱，而当满怀信心的我认为自己是异世界来的天命勇者，足以改变这一切之时，却惊讶的发现了在第三个版本的更新后，罗兰·岚，居然是最后BOSS的大名。</p>
+	<p class = 'firstLineIndent'>“恶魔大君罗兰·岚。带着他的恶魔军团，从深渊地狱中归来，他们誓言向所有生命复仇，无尽的亡者军团和恶魔，洗劫了整块大陆，无数的生命因此消逝，无数国家因此毁灭。”</p>
+	<p class = 'firstLineIndent'>罗兰·岚？这不是我的名字吗？我居然成了毁灭世界的最后BOSS！？</p>
+	<p class = 'firstLineIndent'>现实可不是游戏，魔王不一定能够被打倒，或者说，当时被誉为光辉之子的我，又什么理由会成为邪恶混沌的恶魔。</p>
+	<p class = 'firstLineIndent'>但这一切还是发生了，圣堂教会最深处的黑暗、信任人的背叛、皇室和贵族的落井下石，让身为英雄圣骑士的我，逐渐背离了信仰，步入了黑暗。</p>
+	<p class = 'firstLineIndent'>但既然知道了那操蛋的命运轨迹，作为掌控自己命运的穿越者，我又怎么会看到这一切发生。</p>
+	<p class = 'firstLineIndent'>于是，我做了更多事情，企图改变命运。</p>
+	<p class = 'firstLineIndent'>作为担负因果之力的穿越者，改变个人的命运并不难，但改变整个世界的轨迹，却不是那么容易的事情。</p>
+	<p class = 'firstLineIndent'>在一系列“巧合”之后，我的努力被白费，我失败了，历史的洪流，在轻轻松松碾压了我后，更让一切回归了远点。</p>
+	<p class = 'firstLineIndent'>如今的我，在死了又死之后，以巫妖的身份苟活于世，自然无法成为企图毁灭世界的魔王，但可惜，我那愚蠢的孪生弟弟，卡文斯·岚，却代替我这个不成器的兄长，做了不少惊天大事，最终，独自步入了地狱之门。</p>
+	<p class = 'firstLineIndent'>或许，过不了多久，我就要面对那名为卡文斯·岚的恶魔君王了。</p>
+	<p class = 'firstLineIndent'>因此，无论如何，我都要活下去，即使抱着这残缺不全、灵魂受损的残缺，也要活到卡文斯重返的那一天。</p>
+	<p class = 'firstLineIndent'>因此，无论如何，我都需要力量，不管那力量来自哪个世界，不管那力量是否光明正义……</p>
+	<p class = 'firstLineIndent'>“这是我罗兰·岚的誓言，自己的烂摊子一定要自己收拾！所以，即使弄脏双手，即使不择手段，我也要弄到足够的邪恶点数，复活自己，增长力量，好好收拾那个蠢弟弟。”</p>
+	<p class = 'firstLineIndent'>“巫妖大人，打扰一下，请问这和现状有关吗？在慷慨激昂之前，麻烦您回到现实，先回头看下后面吧。”</p>
+	<p class = 'firstLineIndent'>当我感慨激昂之时，边上的同伴却一盆冷水泼了下来。</p>
+	<p class = 'firstLineIndent'>我回头看了一眼，那些追来的暗精灵娘们已经逼近了，她们一夜没睡的眼睛里全是血丝，原本俏媚的瓜子脸上满是仇恨的扭转，看这仇恨至极的目光，现在似乎不是讲道理的时候。</p>
+	<p class = 'firstLineIndent'>“别跑，你们这些混蛋！”</p>
+	<p class = 'firstLineIndent'>“老娘一定要生撕了你们。”</p>
+	<p class = 'firstLineIndent'>“呵呵呵……那个骨头交给我，交给我呀！老娘的嫁妆呀，辛苦三十年，一夜回到解放前！”</p>
+	<p class = 'firstLineIndent'>“莫莫我已经买了海带和辣椒，今晚要吃排骨汤……前面的排骨，听到没，你就是今天的主菜！给莫莫停下！”</p>
+	<p class = 'firstLineIndent'>看来昨天的大爆炸仇恨值还真不低，不跑才是傻子，于是，我给自己加一个漂浮术，变相的加快了脚步。</p>
+	<p class = 'firstLineIndent'>这次玩的比较大，若这次被全副武装的城管大队抓住，就算只剩骨头不能被生撕，搞不好也会被拆掉喂狗。</p>
+	<p class = 'firstLineIndent'>但被追的，却不止我一个。</p>
+	<p class = 'firstLineIndent'>“贝亚兄弟，为什么她们也在追你们？你们又卖假货了？”</p>
+	<p class = 'firstLineIndent'>贝亚兄弟在贪财的地精族内部都是出名的奸商，只要给钱、违禁品、假货啥的都卖，而且，为了省钱和逃税，连营业执照都没办。</p>
+	<p class = 'firstLineIndent'>当然，这样的不法商人，至少遭到了城管大队的多次打击，而在对抗之中，我们也建立了深厚的革命友情。</p>
+	<p class = 'firstLineIndent'>“谁知道这群娘们怎么了，貌似有傻货把这群疯娘们得罪狠了，从昨天下午，她们开始对整个城市进行拉网搜捕整风，什么‘为依法从重从快，严厉打击刑事犯罪分子’‘狠狠打击非法商人和变态，还硫磺城一个美好蓝天’，我呸！”</p>
+	<p class = 'firstLineIndent'>身为工程学大师的金牙·贝亚是哥哥，此时茂密的头发被削平，似乎很不爽遭到无妄之灾。</p>
+	<p class = 'firstLineIndent'>而在我的视野之中，虽然其貌不扬，但赫然表示了他已经是59级大地精工程师，离60级的黄金阶只差一步。</p>
+	<p class = 'firstLineIndent'>“这群娘们太厉害了，一个小小的城管大队，居然全员都是圣殿骑士、圣剑骑士这样的板甲职业，装备又好。全身矮人秘银重甲不说，再加上暗精灵抗魔的种族天赋，本来就硬的像钢铁罐头，几个队长居然人手一把神器，这样的装备和阵容，拉去参加神魔大战都够了。做什么城管。”</p>
+	<p class = 'firstLineIndent'>银钩·贝亚是弟弟，他衣服都被烧着了，在被抓捕中，视若珍宝的炼金器皿全毁，他现在也是异常恼火。</p>
+	<p class = 'firstLineIndent'>57级大炼金师本来应该擅长治病救人，不过，和地精挂钩的，多少有些不靠谱。</p>
+	<p class = 'firstLineIndent'>至少在我的记忆之中，银钩那小子配的药，吃掉的话一半都会爆炸，另外一半？不吃也会爆炸！</p>
+	<p class = 'firstLineIndent'>“忍忍吧，硫磺城三千城管平天下的传闻也不是一天两天了。该诅咒的金币，以前她们的装备还没这么变态！等老子查到是谁断兄弟的后路，为了点蝇头小利卖给她们这么牛逼的装备，我绝对要让他在硫磺城混不下去。”</p>
+	<p class = 'firstLineIndent'>“还有谁？除了花柳街的大橘子头矮子，除了他这个护甲专精的铁匠大师，谁能作出这种等级的秘银重甲，等老子闲下来，就去砸了他的店，让他祸害兄弟！”</p>
+	<p class = 'firstLineIndent'>于是，我没说话了，若战友们知道她们的圣剑都是从我这里买的，卖重甲还给了我中介费，甚至给她们重甲附魔也是放我一马的司法交易，恐怕，朋友都没法做了。</p>
+	<p class = 'firstLineIndent'>“老牛，你怎么了？她们不是一向不怎么管你的，怎么，最近又犯案了？”</p>
+	<p class = 'firstLineIndent'>一旁跑着的，还有个高大的牛头人战士，国字脸上是憨憨的笑容，淳朴的眼神中满是正直和茫然，似乎还不知道自己为什么会惨遭追杀。</p>
+	<p class = 'firstLineIndent'>“没有呀，只是找她们要了点奶吃而已。她们奶子这么大，奶水肯定不少，牛头人吃奶不是很正常吗？热爱自然的牛头人不穿衣服不是很正常吗？为什么要追着我砍。”</p>
+	<p class = 'firstLineIndent'>虽然国字脸看起来很刚正不阿，纯朴的嗓音之中还带着蒙冤的委屈，但他是个变态，虽然现在他满脸正气和茫然，但他依旧是个酷爱裸奔的变态。</p>
+	<p class = 'firstLineIndent'>此刻，他依旧不着片缕，那健壮而野性的肉体不断激起路边女性的尖叫，而他，也不住挥动手臂和某个物体致意……</p>
+	<p class = 'firstLineIndent'>“变态牛魔王又出来了！”</p>
+	<p class = 'firstLineIndent'>“妈妈！好吓人！我嫁不出去了！”</p>
+	<p class = 'firstLineIndent'>“哪里？哪里？让老娘看下什么尺寸的小牙签居然随便晃。噢噢噢，不愧是牛头人，原来不是小牙签，是狼牙棒呀。前面的牛头人站住，让老娘试试。”</p>
+	<p class = 'firstLineIndent'>背后传来的尖叫和谜之声，让他更得意了，一边跑，一边还做出各种健美动作，引起各种尖叫。</p>
+	<p class = 'firstLineIndent'>虽然他是变态，不过，别人或许不知道，但在我的眼中，牛头人雪蹄居然是89级的传奇大战士，恐怕在这强手如云的硫磺城中，也算得上最顶尖的一批了。</p>
+	<p class = 'firstLineIndent'>但不管他多强，依旧是个变态……因为很重要，所以要说两次。</p>
+	<p class = 'firstLineIndent'>“该死！她们居然有受过祝福的银箭！奥罗斯的帝皇圣剑、斩杀天使之剑，我X，居然有十几把无名的对邪圣剑，以奢华著称的奥兰帝国都没有她们离谱吧。”</p>
+	<p class = 'firstLineIndent'>跑到最前面的，是有暗夜贵公子美称的莉莉丝·米兰，她以多情而不滥情享誉全城，是硫磺城无数贵妇小姐的地下情人或梦中情人。</p>
+	<p class = 'firstLineIndent'>只是，往日视风度为性命的她也极其狼狈，即使是72级黄金阶的血族剑客，在一群钢铁罐头面前，也只有被碾压的下场。</p>
+	<p class = 'firstLineIndent'>对，是她，而不是他……人送外号，疯狂野百合，多情的米兰，移动的淫秽物，女变态。</p>
+	<p class = 'firstLineIndent'>由于一同遭受城管大队的镇压，我们组成了自由绅士联盟（江湖人称变态联盟），裸奔牛头王、活动的淫秽物、爆炸狂兄弟，就是我们的另外一个称号。</p>
+	<p class = 'firstLineIndent'>而当我们的同伴们都在这次为“依法从重从快，严厉打击刑事犯罪分子”活动，简称严打行动中一一落网后，我们这些实力较强的联盟高层，成为了最后的幸存者。</p>
+	<p class = 'firstLineIndent'>“脑子进水的疯巫妖！巫妖最弱的都是一个传奇，回头一个大裂解术干掉那些娘们呀。”</p>
+	<p class = 'firstLineIndent'>“若是三百年前我还可以试试……现在我命匣受损，控制力下降。大裂解倒是能用，就是不好控制施法目标，我是死不了的，你确定吗？”</p>
+	<p class = 'firstLineIndent'>大裂解可是顶尖法师的杀手锏，传说中逮谁灭谁，但我对常规法术无爱，现在更是命匣受损，当然无法使用，但输人不输阵，我可不会嘴软。</p>
+	<p class = 'firstLineIndent'>“切，没用鬼！”</p>
+	<p class = 'firstLineIndent'>果然，我提到有失控的危险，怕死的他们都不会让我使用。</p>
+	<p class = 'firstLineIndent'>但这样继续被城管追下去，恐怕我好人的名声就要付之东流了，于是，我行动起来了。</p>
+	<p class = 'firstLineIndent'>“油腻术！”</p>
+	<p class = 'firstLineIndent'>瞬发的一环奥术，一下子在我们面前铺了一大层滑溜的薄油，但作为巫妖，利用魔力悬浮是基本，于是我就直接飘了过去。</p>
+	<p class = 'firstLineIndent'>“……一环奥术有个毛用，背后那些家伙最弱也是个青铜位。”</p>
+	<p class = 'firstLineIndent'>在不爽的金牙眼中，一环奥术对稍微有点实力的战士来说，都毫无意义。</p>
+	<p class = 'firstLineIndent'>但这常识是针对普通法师来说，我可不是普通的法师。</p>
+	<p class = 'firstLineIndent'>“嘭！”</p>
+	<p class = 'firstLineIndent'>刚刚说完大话，金牙就一脚摔倒在地，然后双脚不住打滑，死活站不起来。</p>
+	<p class = 'firstLineIndent'>“金牙，你就是嘴皮厉害，看我……不对呀，这么这么滑！！”</p>
+	<p class = 'firstLineIndent'>而接着，他的弟弟银钩，刚刚嘲笑完他的兄长，也步了后尘。</p>
+	<p class = 'firstLineIndent'>“我改良的了。”</p>
+	<p class = 'firstLineIndent'>何止是改良，根本是重造。</p>
+	<p class = 'firstLineIndent'>普通油腻术制造的，只是由动物油脂提炼的平滑油脂，而我所制造的，却是来自异界的机械润滑油，而且，还对路面摩擦力进行了调校，保证零摩擦力。</p>
+	<p class = 'firstLineIndent'>在等级被锁死后，无法掌握更高阶的法术后，我自然在现有法术上下了大力气。</p>
+	<p class = 'firstLineIndent'>普通的油腻术稍微老练的战士就能无视，而新的超，油腻术，虽然只是个二环奥术，但就是超越黄金阶的大战士也要小心。</p>
+	<p class = 'firstLineIndent'>但我的自傲马上就被残酷的现实打脸了。</p>
+	<p class = 'firstLineIndent'>“哈！”</p>
+	<p class = 'firstLineIndent'>那只牛居然把自己的蹄子当做滑板，滑雪一般的滑了过去，一边滑，还一边抛媚眼，那看似笨重的身躯，实际平衡性非常好。</p>
+	<p class = 'firstLineIndent'>“干的不错，疯巫妖偶然脑袋也不会进水呀。”</p>
+	<p class = 'firstLineIndent'>而狡猾的吸血鬼色女，则跳到了笨牛的背上，搭了一场顺风车。</p>
+	<p class = 'firstLineIndent'>“快走！”</p>
+	<p class = 'firstLineIndent'>看到城管大队逼近了，我们无视了还在了油里打滚捡肥皂的贝亚兄弟，加速离去。</p>
+	<p class = 'firstLineIndent'>而意料之中，那群暗精灵骑士城管，重甲在身，一个个在油上摔成了一片。</p>
+	<p class = 'firstLineIndent'>“该死，怎么这么滑！！”</p>
+	<p class = 'firstLineIndent'>带队的副队长维多利亚勉强站起来，刚抱怨两句，就再度滑到。</p>
+	<p class = 'firstLineIndent'>“救我！”贝亚兄弟的求救声，传了过来。</p>
+	<p class = 'firstLineIndent'>那牛头还打算秀秀自己的肌肉，过去救人，却被莉莉丝拉着快跑。</p>
+	<p class = 'firstLineIndent'>“那些家伙穿着重甲，过不来……”</p>
+	<p class = 'firstLineIndent'>“我不是担心她们，若是发现自己跑不掉了，贝亚兄弟身上带着什么，你不会忘记了吧？”</p>
+	<p class = 'firstLineIndent'>牛头只是反应慢，又不傻，一拍脑袋，低头接着跑。</p>
+	<p class = 'firstLineIndent'>“轰隆！！”背后的爆炸声，却证明了我们的判断无比正确。</p>
+	<p class = 'firstLineIndent'>工程学和炼金学本就擅长爆炸，若在前面加上地精工程学这样的前缀，爆炸的几率至少增加十倍，别说贝亚兄弟走投无路会同归于尽了，他们身上的乱七八糟的玩意太多，多撞几下、多摔几下，搞不好就会直接爆炸。</p>
+	<p class = 'firstLineIndent'>“混蛋，抓住这两个笨蛋。”</p>
+	<p class = 'firstLineIndent'>“他们跑了，快追！”</p>
+	<p class = 'firstLineIndent'>背后的烟雾缭绕，油腻术制造的润滑油更增添了火势，但从背后骂声来看，这样非预谋的小规模爆炸，对这样全身秘银重甲的大骑士来说，只能算是小麻烦。</p>
+	<p class = 'firstLineIndent'>不过……</p>
+	<p class = 'firstLineIndent'>“油腻术！”“油腻术！”“油腻术”</p>
+	<p class = 'firstLineIndent'>于是，我们背后光滑一片了，愚蠢的精灵们，你们就背着重甲，慢慢考量自己的平衡技巧吧。</p>
+	<p class = 'firstLineIndent'>“受死！！”</p>
+	<p class = 'firstLineIndent'>随着一声娇喝，我发现自己高兴的太早。</p>
+	<p class = 'firstLineIndent'>那从街角传过来的，不正是城管大队的大队长戴安娜，她手上的圣剑银色复仇者，还是我之前卖给她的呀。</p>
+	<p class = 'firstLineIndent'>而在我们连忙转了个方向，却发现另外一个街角，冲出来了一队暗精灵骑士，带头的，是城管副队长雅雯。</p>
+	<p class = 'firstLineIndent'>“该死，是陷阱！”</p>
+	<p class = 'firstLineIndent'>三方汇合，我们被堵死了！</p>
+	<p class = 'firstLineIndent'>“混蛋！还以为你真是个好人，结果……我刚买的裙子全部报销了！”</p>
+	<p class = 'firstLineIndent'>“还有我的零食！”</p>
+	<p class = 'firstLineIndent'>“我的化妆品！”</p>
+	<p class = 'firstLineIndent'>“还有莫莫的咪咪！”</p>
+	<p class = 'firstLineIndent'>“你的咪咪不是一直这么小吗？”</p>
+	<p class = 'firstLineIndent'>“不是！是我的宠物猫咪咪！还有，我的胸围至少比你大吧。”</p>
+	<p class = 'firstLineIndent'>“老子是男的，和我比，你好意思？”</p>
+	<p class = 'firstLineIndent'>“抱歉了，小弟你长的实在太娘们了，我还真忘记你是男性了。”</p>
+	<p class = 'firstLineIndent'>吵吵嚷嚷的暗精灵骑士从三个方向围住了我们，无视了那已经自己争吵的暗精灵姐弟，从那摩拳擦掌的状态，他们磨刀霍霍。</p>
+	<p class = 'firstLineIndent'>而这种状况，也在我的预期之中，现在首要的，就是……</p>
+	<p class = 'firstLineIndent'>我一个驴打滚，躲过了来自背后的斩击，再一个漂浮术，硬是原地拔高了一尺，躲过了追击的细剑。</p>
+	<p class = 'firstLineIndent'>“混蛋，果然又是你拖累我们！这是你第几次拖累我们了？！”</p>
+	<p class = 'firstLineIndent'>不出意外的，背后的，是那一脸歉意下手却毫不留情的老牛，和骂骂咧咧的疯婆子吸血鬼。</p>
+	<p class = 'firstLineIndent'>……果然现在首要的，就是摆脱这两个习惯卖队友的傻货，他们可比这些暗精灵狡猾难缠多了，在发现这次被追杀是我害的后，更会毫不留情的卖掉我。</p>
+	<p class = 'firstLineIndent'>若这次被抓进监牢，就算暗精灵依法不虐待囚犯，这样同囚的家伙也会好好关照我的。</p>
+	<p class = 'firstLineIndent'>“啊，绝对不能被抓！”</p>
+	<p class = 'firstLineIndent'>在两个硫磺城排名前十的顶尖战士的围殴之中，我异常狼狈的躲避，而边上的骑士们，也乐于看到狗咬狗，已经有搬着凳子看戏的趋势了。</p>
+	<p class = 'firstLineIndent'>“机会！”</p>
+	<p class = 'firstLineIndent'>但这些娘们那能够理解我们被压迫中缔结的坚固兄弟情谊，一个眼神，我们之间，已经领悟于心。</p>
+	<p class = 'firstLineIndent'>牛头一把抓住我，一把抓住莉莉丝，然后就把我们投掷出来。</p>
+	<p class = 'firstLineIndent'>“混蛋！”</p>
+	<p class = 'firstLineIndent'>等暗精灵骑士醒悟过来，我们已经脱离了包围，而可怜的老牛，明明实力最强，但由于不喜欢打女人的无谓原则，被一群女骑士按倒在地。</p>
+	<p class = 'firstLineIndent'>“老牛，我会记得你的牺牲的！”</p>
+	<p class = 'firstLineIndent'>“巫妖，你做了什么！！”</p>
+	<p class = 'firstLineIndent'>“昨天她们抓了我，我炸了她们的营房。”</p>
+	<p class = 'firstLineIndent'>“干得好！我早就想这么做了。”</p>
+	<p class = 'firstLineIndent'>我呵呵一下，似乎很得意，然后顺手一指。</p>
+	<p class = 'firstLineIndent'>“真言术·定！”</p>
+	<p class = 'firstLineIndent'>于是，在我突袭之下，毫无防备的女吸血鬼就僵住了。</p>
+	<p class = 'firstLineIndent'>虽然我的真言术大概只能定着她几秒，但已经足够了。</p>
+	<p class = 'firstLineIndent'>她的秀目中满是不解，明明已经逃了出来，为什么还要陷害她。</p>
+	<p class = 'firstLineIndent'>但接着，就恍然大悟了，这疯巫妖罗兰，不就是以莫名其妙的损人不利己闻名全城吗，要不，作为恐怖化身的巫妖，又怎么会得到脑袋进水的雅号。</p>
+	<p class = 'firstLineIndent'>但随着追兵的到来，被按倒的莉莉丝·米兰即使千般愤怒和无解，都化作了空谈。</p>
+	<p class = 'firstLineIndent'>在她被追来的暗精灵骑士们按到之后，预期之中的系统提示音终于来到。</p>
+	<p class = 'firstLineIndent'>“日常任务：背叛已完成。任务目标：背叛三个信任你的战友/朋友/队友，奖励根据背叛者实力确定。</p>
+	<p class = 'firstLineIndent'>任务完成情况：金牙·贝亚、银钩·贝亚、莉莉丝·米兰，三位综合战力都在黄金阶以上，总战力远超宿主现在实力水准，任务完成情况完美，超额奖励10点邪恶点数。”</p>
+	<p class = 'firstLineIndent'>“果然，陷害你们是最值得呀。”</p>
+	<p class = 'firstLineIndent'>好了，日常任务做完，奖励到手，剩下的，就是真正的跑路时间了。</p>
+	<p class = 'firstLineIndent'>走到一个僻静的转角，我披着了一身特殊的银色金丝法袍，带上了一个无面的银色铁面具，就在那里静静的站着，等候追兵的到来。</p>
+	<p class = 'firstLineIndent'>“我……X。抱歉，大人！！”</p>
+	<p class = 'firstLineIndent'>转过墙角，瞬间，刚才还义愤填膺的城管大队在我面前，一个个变成了乖乖听话的小女孩。</p>
+	<p class = 'firstLineIndent'>很快，当戴安娜她们过来了，看到我，刚才的嚣张就消失无形，仿若看到顶头上司一般，一个个静如寒蝉，不敢发言，终于，作为领队的她鼓起勇气。</p>
+	<p class = 'firstLineIndent'>“最高法官无眠者大人，您怎么会在这？”</p>
+	<p class = 'firstLineIndent'>是的，我，巫妖罗兰·岚的另外一个身份，就是这座城市最高执法者无眠者大法官，我不是她们的顶头上司，却是她们上司的上司的上司的上司。</p>
+	
+	
+<h2>第005章 最高法官</h2>	
+	<p class = 'firstLineIndent'>硫磺山城是个好地方。这是整个地下世界公认的。</p>
+	<p class = 'firstLineIndent'>要说清楚硫磺山城到底是怎么样一个地方，恐怕，就必须先说清地下世界是什么地方。</p>
+	<p class = 'firstLineIndent'>放逐之地，这大概是所有地面种族的共识。</p>
+	<p class = 'firstLineIndent'>地下世界是艾希大陆地下的空洞区，它的面积无法计算，地形更是复杂到无法测量，据说其中有直抵地狱深渊的通道。</p>
+	<p class = 'firstLineIndent'>最初，其中并没有多少居民，但随着时代的变革，它成为被驱逐者的聚集地。</p>
+	<p class = 'firstLineIndent'>精灵在这里放逐了暗精灵，矮人放逐了灰矮人，侏儒放逐了野侏儒，兽人族更是近四成分支都被其他种族赶进了这里，甚至连强大的巨龙都在这里放逐了凶残的红龙和狡诈的黑龙，这里据说还有被泰坦放逐的火山巨人。</p>
+	<p class = 'firstLineIndent'>地表的霸主人类当然也不例外，他们虽然放逐的都是同类，但成分却是最杂的，魔女、异端、邪教徒、男巫、亡灵法师、革命家、恶魔崇拜者、科学家，似乎这地下世界成了他们的垃圾堆。</p>
+	<p class = 'firstLineIndent'>时光流逝，到了今日，地下世界种族复杂的无法统计，但有一点，却是公认的。</p>
+	<p class = 'firstLineIndent'>在这里，没有秩序，拳头最大、胜者为王，败者为奴。</p>
+	<p class = 'firstLineIndent'>即使在混乱的混沌阵营，这里也是最乱的，地下世界连年征战，地下城主们攻城伐地，打个不停。</p>
+	<p class = 'firstLineIndent'>他们掠夺领地、夺取粮食，攻陷城镇，让居民变成奴隶，当然，地表上各个国家也是差不多的，但由于秩序众神教会和王国议会的克制，毕竟是以和平为主旋律，而地下世界，这神弃之地，却没停战过。</p>
+	<p class = 'firstLineIndent'>而能够在混乱的地下城活下去的，放在地面上，都不是弱者。</p>
+	<p class = 'firstLineIndent'>嘛，用游戏攻略上的说法，地下世界是游戏中期才开放的高级危险地域，四十级以上的玩家，才被允许组队进入。</p>
+	<p class = 'firstLineIndent'>大部分地下城，由于种族成分实在太过复杂，往往以某个种族高压统治其他种族。</p>
+	<p class = 'firstLineIndent'>而硫磺山城，却有些不同。</p>
+	<p class = 'firstLineIndent'>这座坐落于硫磺河边的山城，历史并不长，满打满算不过一百三，在长寿种族眼中，只是一瞬之光。</p>
+	<p class = 'firstLineIndent'>而他们，却做到了周遭地下领主几千年来做不到的事情。</p>
+	<p class = 'firstLineIndent'>这里没有战争，没有贵族，没有压迫。</p>
+	<p class = 'firstLineIndent'>这里甚至没有统治种族，城主亚当·汉虽然曾经是非常著名的英雄，但作为人类的他，却是孤身一人担任城主，人类在这里算是少数种族，这个城市居然连作为统治阶级的贵族阶级都没有。</p>
+	<p class = 'firstLineIndent'>而这个被戏称为脑袋里面都是肌肉的家伙，更是出名了对权力和领地没有兴趣。</p>
+	<p class = 'firstLineIndent'>和其他地下城动不动过万的常规军不同，硫磺山城居然只有几百仪仗队和治安部队，最强大的武装力量，就是主要有暗精灵组成的城市管理执法大队，简称城管大队，但那满编人数也不过800。</p>
+	<p class = 'firstLineIndent'>在混乱的地下世界，期待和平和软弱可是同义词，背靠硫磺矿山矿脉，硫磺山城这样弱小的防御能力，自然招到了其他地下城主的攻击。</p>
+	<p class = 'firstLineIndent'>但当几场战争打下来，再也没有多余的眼光瞄向哪里了。</p>
+	<p class = 'firstLineIndent'>原因？拳头够硬而已。</p>
+	<p class = 'firstLineIndent'>没有军队？实际上是没有必要。</p>
+	<p class = 'firstLineIndent'>艾因美修斯，有贝隆之厄“美誉”的上古红龙，住在硫磺山城背后的硫磺矿脉之中，这位曾经毁灭了数个人类帝国的恶龙，不知为何，却成为这座城市的了守护兽。</p>
+	<p class = 'firstLineIndent'>亚当·汉，当代最有名的英雄之一，曾经击杀亡灵大帝永夜大君，拯救了世界，即使到了地下城市，也曾经孤身一人，硬生生的敲掉了一个暗精灵地下城，那里，可是有四五万的暗精灵，十几万的其他种族，他本人，大概是最著名的万人敌。</p>
+	<p class = 'firstLineIndent'>传说，永夜大帝是近代唯一一个半神级的亡灵君主，那么，能够战胜他的亚当，自然也是半神存在，于是，亚当也是当代最强的有力候选之一。</p>
+	<p class = 'firstLineIndent'>大贤者玛格丽特，荣誉头衔“天堂之子”，和亚当一起封印永夜大君的大贤者，据说可以独自召唤一整个天使军团的不可思议存在。</p>
+	<p class = 'firstLineIndent'>据说，曾经攻击硫磺山城的地下领主，都是连硫磺山城城墙都没见到，就被一个巨头‘劝退’……</p>
+	<p class = 'firstLineIndent'>据说，只要这硫磺城三巨头还存在一天，硫磺山城就是无法攻陷的。</p>
+	<p class = 'firstLineIndent'>在我的系统之中，这三个家伙，都是两三百级带着完美模板的超级BOSS，别说现在，就是三四个资料片版本之后，也算是超级强力人物，远不是周遭那几个八九十级，勉强进入传奇的城主能够对付的。</p>
+	<p class = 'firstLineIndent'>而正是由于这强力的庇护，又没有压迫阶级的存在，这里成了混乱地下世界的一片净土。</p>
+	<p class = 'firstLineIndent'>只有武力是不够的，大贤者作为行政官，把这里管的井井有条，而作为大法官的无眠者，恩，就是我，更一手创立了整个艾希最公平、公正的法典。</p>
+	<p class = 'firstLineIndent'>至于作为城主的亚当，大部分时间只用当他的老本行，做个无所事事的吉祥物就够了。</p>
+	<p class = 'firstLineIndent'>而因缘巧合之下，和三巨头颇熟的我，也是硫磺山城的创始人之一。</p>
+	<p class = 'firstLineIndent'>之前被城管质问的时候，我可没有说谎，我可是有正经工作的好员工，我有硫磺山城最高法官这份正规职业！</p>
+	<p class = 'firstLineIndent'>虽然随着三次死亡，大部分记忆已经变得零零散散，但记忆无可挽回，知识所需要的载体却不多，大部分被留了下来。</p>
+	<p class = 'firstLineIndent'>前世作为律师和法官的法律知识，让我在理论和经验上领先了这个时代，于是，我为硫磺山城制定的法典和司法制度，已经成了整个地下世界的法典典范，甚至地面世界都派学者来学习参考。</p>
+	<p class = 'firstLineIndent'>多种族混居造就的种族矛盾？我抄了马丁路德金的“我有一个梦”，刻在了城市广场和城门上，每个人进出城都要看一篇，这只是第一步。</p>
+	<p class = 'firstLineIndent'>而在法律层次上，我设立种族歧视为重罪，然后借鉴了一系列种族矛盾处理政策，然后用几个不长眼的二傻子杀鸡儆猴，至少表面上，硫磺山城实现了整个艾希大陆都不可思议的种族平等。</p>
+	<p class = 'firstLineIndent'>而对社会学颇有兴趣的我知道，只要一个规则在表面上获得认可和承认，然后运行足够的时间，当世人已经习惯他的存在，就会成为真正的道德和法律。</p>
+	<p class = 'firstLineIndent'>作为不死亡灵，我最不缺的就是时间和精力，通过多年潜移默化，至少在硫磺城形成了大家都一样的潜意识。</p>
+	<p class = 'firstLineIndent'>而相对和谐的族群关系，是硫磺山城繁荣的基石，而下一步，就是治安了。</p>
+	<p class = 'firstLineIndent'>杀人抢劫等重犯？在其他的地下城，杀人只要赔钱就够了，不少富商和贵族根本不把外族当人看。而在我这里，在这座没有贵族的城市里，却是没有宽恕的死刑，于是，重典之下，治安有效的好转。</p>
+	<p class = 'firstLineIndent'>当然，必要的暴力是不可或缺的，一个由于信仰圣光被逐出故乡的奇葩暗精灵骑士团，成了治安部队最好的根基，而我，也投入了大量资源，让其成为了市民信任的保卫官。</p>
+	<p class = 'firstLineIndent'>虽然有时候我也会后悔，由于把城管部队弄得装备太好，实力太强，我的日常任务也变得越来越难做，被关进去的频率也越来越高……咳咳，搬起石头砸自己的脚的事情就不用多谈了，我们继续谈谈这座凝聚了穿越者心血的新时代地下城。</p>
+	<p class = 'firstLineIndent'>其他地域最让人头疼的信仰冲突？呵呵，对其他城市的确很难处理，因为在有真神存在的艾希大陆，他们的统治者往往已经是某个神明的信徒，预设了立场后，怎么能够保持公正，而若是成为一方对另外一方的压迫，自然就冲突不断了。</p>
+	<p class = 'firstLineIndent'>而在这座城市……三巨头中，红龙艾因美修斯信仰的是金币，城主亚当·汉是非常有名的无信仰者，贤者大人信仰的知识和亚当……</p>
+	<p class = 'firstLineIndent'>恩，没说错，贤者大人“暗恋”勇者大人很久了，暗恋到世人皆知，暗恋到那根木头呆的我和小红都看不下去了，才有了我们两次的大闹婚礼。</p>
+	<p class = 'firstLineIndent'>当然，我也不否认是自己有私心的，除了造成巨大混乱的邪恶点数外，看到亚当那张快哭出来的蠢脸，才是最让人心情愉快的。</p>
+	<p class = 'firstLineIndent'>好吧，又偏题了，继续说我们的地下城吧。</p>
+	<p class = 'firstLineIndent'>三巨头本身信仰都不靠谱，而我若要勉强说有信仰的话，也是“让犯罪者罪有应得”“让无辜者受到法律保护”之类的前世法制精神，于是，我跨时代的规定了硫磺山城让人匪夷所思的信仰自由。</p>
+	<p class = 'firstLineIndent'>“信仰自由是个人的意愿，城内允许传道，但任何宗教机构都不能使用武力逼人信教，违者逐出硫磺山城。”</p>
+	<p class = 'firstLineIndent'>这里信仰恶魔、信仰圣光、信仰大地母亲的都有，各类祭坛和神庙已经数不清了，但只要打着信仰的旗号欺压他人，一样是刑法重罚。</p>
+	<p class = 'firstLineIndent'>而当其他的地下城动不动就是勾心斗角、你死我活的政治夺权、教会之间不断上演的信仰战争、强者对弱者的肆意掠夺，我们的硫磺山城的统治极端稳定，法制健全，行政效率颇高，和平而又秩序井然，更吸引了无数的居民和商人，让其更加繁荣，自然成为了所谓的地下天堂。</p>
+	<p class = 'firstLineIndent'>实际上，并不代表这里真的很好，只是其他地下城实在太乱，把这里衬托的比较好而已。</p>
+	<p class = 'firstLineIndent'>而作为混乱象征的地下城和地下世界，又不断让资源和人才主动流入我们的城邦，于是硫磺山城就更加繁荣了。</p>
+	<p class = 'firstLineIndent'>甚至，地面上的圣堂教会，都惊讶这混乱之地的和平，派出圣骑士和牧师前来取经，而有的圣骑士被多种族共处的状态震惊，甚至愿意常驻此地，一边学习“圣光恩赐的宝典”，一边传播圣光的光辉，感化“邪恶的地下居民”。</p>
+	<p class = 'firstLineIndent'>而这些圣骑士、牧师，却是身为巫妖的我最讨厌的，有时，我都恨不得摘下面具，告诉他们，你们视作“圣光恩赐的秩序宝典”，是一个邪恶混乱的巫妖亲手制作的，会不会因此有人信仰崩溃了。</p>
+	<p class = 'firstLineIndent'>而此时，被抓捕中，这身皮，却成了我最好的屏障。</p>
+	<p class = 'firstLineIndent'>任何人都不会料到，那公正廉明，永远不会犯错的最高法官无眠者，实际上和那个总是胡来闹事、甚至被当做脑袋进水的巫妖罗兰是同一人。</p>
+	<p class = 'firstLineIndent'>在担任最高法院院长之时，我无论如何都坚持要戴上面具，因为由于这不靠谱的邪恶巫妖系统的存在，我注定无法保持威严，而作为执掌天平的裁判者，威严和权威是最重要的。</p>
+	<p class = 'firstLineIndent'>没有权威和恐惧的法典，只是废纸。</p>
+	<p class = 'firstLineIndent'>而此刻，这多年积累的威严，就起到了作用。</p>
+	<p class = 'firstLineIndent'>如今，我站在这里，一言不发，多年的积威下城管大队们别说敢不敢验验真假，脚肚子都在打颤。</p>
+	<p class = 'firstLineIndent'>我转身，看向带头的成功队长戴安娜·斯芬克。</p>
+	<p class = 'firstLineIndent'>“大……大人！！”</p>
+	<p class = 'firstLineIndent'>不错，声音也在发颤，果然心虚了。</p>
+	<p class = 'firstLineIndent'>我是她们上司的上司的上司的上司，却绝对不是仅仅官衔比她们高而已，她们是城管执法大队的成员，而城管执法大队，则是执法厅的下属机构，而执法厅，则是最高法院的下属机构，而我，无眠者，则是最高法院的最高法官兼院长。</p>
+	<p class = 'firstLineIndent'>在我制定的法典之中，作为下级执法机关的城管执法大队是没有独立的执法权的，她们只能听从上级机构的指挥，而若是要开展“严打”这种大型执法行动，就必须上报执法厅，而执法厅，至少要向最高法院报备。</p>
+	<p class = 'firstLineIndent'>而我，作为最高法院的院长，至今却没有收到报备的文书！</p>
+	<p class = 'firstLineIndent'>“……越权行为？”</p>
+	<p class = 'firstLineIndent'>当然是越权行为，我昨天炸掉的城管驻地，今天就开始严打，怎么来得及逐级申报和批准，就算要申报，首先要从废墟里整理出申请文书吧，这可是大工程！</p>
+	<p class = 'firstLineIndent'>我那似乎是自言自语的呢喃，但戴安娜的脸色霎时苍白一片。</p>
+	<p class = 'firstLineIndent'>“不管修辞的话语多么华丽，执法权即公权力的暴力行为，而执法者，就是统治者的暴力工具，若这工具自己有了大脑，肆意妄为，那么，这工具也到了报废的时候。”</p>
+	<p class = 'firstLineIndent'>这可是我的名言，更是每个城管人员的工作手册上第一页的警示。</p>
+	<p class = 'firstLineIndent'>估计，她们是打算先突然袭击，然后事后再补程序，而往日，执法厅和最高法院也会睁只眼闭只眼，但可惜，却没有料到我的突然出现，被上司逮了个正着。</p>
+	<p class = 'firstLineIndent'>我只是静静看着她们，原本黑黝黝的暗精灵们，面色已经苍白的可以和亡灵去比美。</p>
+	<p class = 'firstLineIndent'>越权执法？不管后果如何，原因如何，执法部队擅自行动这一行为性质是极为恶劣的，你今天可以越权严打，明天是不是可以越权围攻城主府？</p>
+	<p class = 'firstLineIndent'>按照硫磺城的法律，这些越权执法的家伙，最便宜的下场，就是被驱逐出硫磺山城。</p>
+	<p class = 'firstLineIndent'>暗精灵们陷入了绝境，若是遇到其他的长官还可以通融，事后处理也可大可小，眼前这位，把虚无的法典正义，化作圣光般实实在在的力量的奇迹创造者，他本人，就是法典的象征，可从没有听说他有过放水和通融的先例。</p>
+	<p class = 'firstLineIndent'>城防部队队长戴安娜满脸苦涩，却到了必须站出来的时候。</p>
+	<p class = 'firstLineIndent'>“难道努力了这么久，‘邪恶’的暗精灵好不容易受到了市民的认可，就这么功亏一篑了吗？离开了城市，又要到外面去过那血腥残杀的日子……我该怎么和信任我的姐妹交代。”</p>
+	<p class = 'firstLineIndent'>少女红唇已经咬出了血，紫色的双瞳中满是泪花，想起了过去在外面拼杀的日子，想到自己和族人即将被逐出好不容易找到的幸福家园和好日子，暗精灵俏媚的面庞满是痛苦的扭曲。</p>
+	<p class = 'firstLineIndent'>“大人……都是我个人擅自做出的决定！若要处罚的话，请只处罚我一个人！”坚强的城管大队长，丢下了尊严，跪下求情。</p>
+	<p class = 'firstLineIndent'>“戴安娜大姐头！”</p>
+	<p class = 'firstLineIndent'>“不是大姐头的错，我们也是为了硫磺山城的治安！”</p>
+	<p class = 'firstLineIndent'>“是呀，凭什么处罚我们！”</p>
+	<p class = 'firstLineIndent'>围着她们的队长，周围的城管骑士们群情激奋，有人已经开始怒视我，似乎有成为抗命或暴动的趋势，于是……</p>
+	<p class = 'firstLineIndent'>“法咒：肃静！！”</p>
+	<p class = 'firstLineIndent'>随着我的言语落下，莫名的法力起到作用，虚空之中，银色的法槌落下，整块大地都在因此震撼。</p>
+	<p class = 'firstLineIndent'>而随着银色的波纹散开，不仅所有的声音消失，众人激昂愤怒的情绪，也化作了泡影。</p>
+	<p class = 'firstLineIndent'>在这个神奇的世界，当秩序和圣光这种概念的信仰都能够成为力量之源的时候，对法典和公正的信仰，又怎么会缺乏超自然力量的支持。</p>
+	<p class = 'firstLineIndent'>虽然，当我在审判之中，第四个灵魂徽记公正法印凝聚之时，最吃惊的，恐怕是我本人了，这无疑说明了我一手创立的公正法典，已经被这个世界的根源所承认，成为了秩序之力的一部分。</p>
+	<p class = 'firstLineIndent'>法则既力量，言语既存在，此世之规则为法律，吾等执掌规则和法典，吾之言，既此世之规则。</p>
+	<p class = 'firstLineIndent'>此乃，法咒术。</p>
+	<p class = 'firstLineIndent'>结合法理和魔法所独创的法咒术，虽然脱胎于法师的真言类法术和牧师的戒律系神术，但只要符合使用苛刻的使用条件，威力却大的多。</p>
+	<p class = 'firstLineIndent'>此刻，我正在断案，这些城管就是被告，而这狭小的小巷，就是我的法庭。</p>
+	<p class = 'firstLineIndent'>我说肃静，众生就必须静下来，凝听我的真言法咒。</p>
+	<p class = 'firstLineIndent'>暗精灵天生的抗魔天赋在我的法咒之言面前毫无意义，她们的言语无人听晓，身心仿若浸入了冰水一般，从背心发凉，一下子冷静下来。</p>
+	<p class = 'firstLineIndent'>她们这才想起，眼前的不仅是最高大法官，更是一位实力不见底的大法师。</p>
+	<p class = 'firstLineIndent'>他结合魔法和法律制定的法咒魔法，已经成为了一门独到的规则类魔法，声名远扬，甚至引来了地表的大主教和贤者学习，最高法院更是成了黄金强者才能修行法咒奥秘的圣地。</p>
+	<p class = 'firstLineIndent'>他创立的公正骑士、审判者、法咒使三种进阶职业，足以媲美圣堂教会引以为傲的圣光骑士、红衣大主教、苦修者。</p>
+	<p class = 'firstLineIndent'>“好可怕……我的抗魔皮肤被无视了。”</p>
+	<p class = 'firstLineIndent'>“无法分析魔力等级，甚至感觉不到魔力波动，但最少也是圣域。”</p>
+	<p class = 'firstLineIndent'>在她们眼中，抗命等于挑战整个硫磺山城的公权力，就是逃跑，也未必能从大法官手中逃掉，摆在暗精灵面前的，似乎是必定被放逐的绝境。</p>
+	<p class = 'firstLineIndent'>在绝境面前，所有人低垂着头，等着我发落。</p>
+	<p class = 'firstLineIndent'>“大人！看在我为硫磺山城效劳了这么多年面上，请只处罚我一个吧！”带着哭腔，戴安娜跪下了。</p>
+	<p class = 'firstLineIndent'>德高望重的女骑士长一跪，其他骑士又怎么站得住，于是，眼前跪了一片。</p>
+	<p class = 'firstLineIndent'>哎呦，看到如今姐妹情深的一幕，我都有些感动了。</p>
+	<p class = 'firstLineIndent'>实际上城管大队队长戴安娜也是81级的传奇大骑士，绝对实力还在现在的我之上，之所以如此不堪，除了心虚以外，更多的，还是神器的作用。</p>
+	<p class = 'firstLineIndent'>这身银色法袍的附魔是我全盛期做的，本来就是专门用来吓人，后来当了法官，就用来给罪犯压力，领悟了法咒之后，当时穿着的精良级法袍，居然莫名其妙的成了件亚神器。</p>
+	<p class = 'firstLineIndent'>【亚神器：司法的威严（已绑定）】</p>
+	<p class = 'firstLineIndent'>【防御：10点（钢铁板甲也只有5点防御，布甲法袍达到这个等级的防御很离谱了。】</p>
+	<p class = 'firstLineIndent'>【特效之一罪人的自审：让罪行者心虚、内疚，并随着时间推移，越发显然陷入恐惧、无助状态，罪行越重、内疚越多，效果越好，无罪者无视该效果。】</p>
+	<p class = 'firstLineIndent'>【特效之二法官的铁面：穿戴者魅力恒定为一百，对抗魅惑、侦查、幻术类法术效果+20。】</p>
+	<p class = 'firstLineIndent'>【特效之三穿戴者条件不足以开启。】</p>
+	<p class = 'firstLineIndent'>【特效之四穿戴者实力不足以开启。】</p>
+	<p class = 'firstLineIndent'>【神器诅咒法槌的重量：穿戴者必须具备司法者、执法者身份，一并公正履行职责，一旦因私枉法，口出妄言，法袍会化作永不熄灭的神火，毁灭穿戴者的灵魂和肉身。】</p>
+	<p class = 'firstLineIndent'>【“请谨慎运用手中的权利，法槌落下所决定的，绝不仅仅是个体的兴衰，更是司法和公正的威严——最高法院无眠者。”】</p>
+	<p class = 'firstLineIndent'>在艾希大陆，亚神器以上的装备就是如此麻烦，效果单一而强大，而也必然附带麻烦的神器诅咒。</p>
+	<p class = 'firstLineIndent'>这件法袍就是如此，正常法袍近乎必然增加的法术效果、智力加值一点都没用，但却附加了几个极其强力的特效。</p>
+	<p class = 'firstLineIndent'>特效之一让我在审判之中省了不少事，不管是什么连环杀人凶手，还是黑道巨枭，只要还有一丝良知，在我面前，就是缩成一团的小鸡，效果之二，等于直接无视了对我真实身份的探查。</p>
+	<p class = 'firstLineIndent'>至于神器诅咒的无法违反法条、无法撒谎，对我来说却没有什么大不了，首先我本来就是光棍一条，何来因私枉法之说。</p>
+	<p class = 'firstLineIndent'>退一步来说，若要骗人的话，文字游戏般的误导就够用了，随时可能拆穿的谎言，反而落入了下层。</p>
+	<p class = 'firstLineIndent'>“我从来不说谎，但也不代表你就能理解我话中的真意，自己误解了可不要怪我。”亚神器的诅咒对我无效后，但威力却实打实。</p>
+	<p class = 'firstLineIndent'>如今，信仰圣光的执法者却越权执法，心中的愧疚，在亚神器的威能之下，化作了无形的枷锁和重担，压着她们直不起身子来。</p>
+	<p class = 'firstLineIndent'>我估计，仅仅只是站在那里，我给对方的压力就不会低于龙威，还会随着审判进一步加深，不过现在若再逼下去的话，搞不好就可以看到女孩们当街尿裤子了。</p>
+	<p class = 'firstLineIndent'>差不多就够了，真逼急了，狗也会跳墙，我也没打算赶她们出城。</p>
+	<p class = 'firstLineIndent'>于是，我转身离去，丢下一句。</p>
+	<p class = 'firstLineIndent'>“我只是来顺路经过，什么都没有看到。明天让你们大队长来补办手续。”</p>
+	<p class = 'firstLineIndent'>话音刚落，背后就传来了喜极而泣的哭声和道谢声。</p>
+	<p class = 'firstLineIndent'>“谢谢大人！！”</p>
+	<p class = 'firstLineIndent'>而我刚刚转过街角，那精灵们已经瘫倒了一片，有的已经抱着一起哭泣，庆祝度过危机，而我面具下，却笑开了颜。</p>
+	<p class = 'firstLineIndent'>“无眠者大人看起来很吓人，实际上也是好人呀。”</p>
+	<p class = 'firstLineIndent'>“刚才好吓人呀！莫莫感觉都快窒息了，阿娜姐姐让莫莫靠一下。”</p>
+	<p class = 'firstLineIndent'>“死丫头，别乱摸，这么色，去找那个莉莉丝·米兰去。”</p>
+	<p class = 'firstLineIndent'>我留下的窃听小玩意……咳，调皮的风儿却把她们的议论传到我的耳边。</p>
+	<p class = 'firstLineIndent'>“认真听取下属的抱怨，也是上司的职责呀，不知道谁说我的坏话，万一小鞋穿错了人怎么办……这小妞叫黛西吧？真会说话。我当然是好人。”于是，我心情好了很多，决定处罚再轻一点，但马上，我就知道自己心情又会变差。</p>
+	<p class = 'firstLineIndent'>因为，在那街角处，我那忠实的女仆伊丽莎已经早已久候多时。</p>
+	<p class = 'firstLineIndent'>“主人，您转性了？居然会放过她们？”</p>
+	<p class = 'firstLineIndent'>“法律是死的，人是活得，没有弹性和人情味的法律迟早逼得天怒人怨，她们本身的行为和动机都无罪，只是程序上非法，放逐就太过头了，看本大爷的处置多么得当，杀威棍高高抬起，轻轻落下，这才是上位者的为官之道，多学着点。”</p>
+	<p class = 'firstLineIndent'>“真话？”不屑的歪了歪嘴，毒舌的女仆，我最忠实的狗腿一号，再度无视了我的场面话和得意。</p>
+	<p class = 'firstLineIndent'>“……一次玩死多没意思，哈哈，今天真是大丰收，不仅日常任务大成功，城管大队的把柄和人情都到手，呵，小娘们，看我明天怎么收拾你，居然敢夺走我阿宝口中的粮食。”</p>
+	<p class = 'firstLineIndent'>我当然记得那个叫戴安娜的小妞，那个从我手中夺走阿宝骨头的恶婆娘。</p>
+	<p class = 'firstLineIndent'>明天，等你到最高院报备的时候，我就让你知道什么叫上司的刁难，什么叫非暴力性骚扰，什么叫办公室无惨！</p>
+	<p class = 'firstLineIndent'>把你赶出城？信仰圣光的黑暗精灵圣骑士大概整个地下世界都独一份，那我不是少了难得的玩具和好用的工具。</p>
+	<p class = 'firstLineIndent'>而伊丽莎却无奈的叹了口气。</p>
+	<p class = 'firstLineIndent'>“果然，实在不能对您的良心保有期望，您还真是坏到家了呀。”</p>
+	<p class = 'firstLineIndent'>“不，我是好人！总有一天，我要让邪恶点数变成正义点数，然后努力行善，那我也可以有个好名声了！”</p>
+	<p class = 'firstLineIndent'>从某种意义上，这也是被那个乱七八糟的系统逼得……要赚点数就必须做坏事，但做坏事怎么好名声，害的我连上班也要戴个铁面具……</p>
+	<p class = 'firstLineIndent'>这就算了，真不能忍的，还是……</p>
+	<p class = 'firstLineIndent'>“……都是那该死的面具和法袍，居然还是神器套装，让美女看到我都像刚才一样要么吓得半死，要么脚哆嗦吓尿，害的我都一把年纪了，还一个女朋友都没有。”</p>
+	<p class = 'firstLineIndent'>“不，有毛病的不是面具和打扮，而是您的脑袋，不死生物的巫妖找女友？……呵呵，这笑话实在让人笑不出来，对了，据说当您还是人类的时候，也是一直光棍……虽然现实很残酷，但请主人不要逃避现实。”</p>
+	<p class = 'firstLineIndent'>“哼，不怕吓到你，还是有女孩说要嫁给我的。”</p>
+	<p class = 'firstLineIndent'>“哎呦，哪家的恋尸癖如此重口味……不，我懂了，肯定是不懂事的小萝莉吧，给个糖就答应嫁人，不过不受欢迎到需要骗小萝莉来满足自己尊严，也太可怜了吧……哎呀呀，主人，为什么您的脸色这么难看，难道伊丽莎又猜对了。”</p>
+	<p class = 'firstLineIndent'>“混蛋伊丽莎！我……我也要当好人呀！我也要女朋友呀！”</p>
+	<p class = 'firstLineIndent'>于是……这次硫磺山城的居民，有幸见到他们的最高法院院长泪奔了。</p>
+	
+	
+<h2>第006章 工作</h2>	
+	<p class = 'firstLineIndent'>“大人！我们半羊人代代牧羊为生，那天，我们好不容易找到了一片肥沃的草场，刚刚帮我们宝贝们松开缰绳，这些魔鬼们就来了！！”</p>
+	<p class = 'firstLineIndent'>“是呀，她们抢走了我们的宝贝，居然还要向我们抢劫，您看，她们居然还说自己是执法者，天下那里有如此强盗般的执法者。”</p>
+	<p class = 'firstLineIndent'>眼前的，是一群义愤填膺的半羊人，这些矮小的半兽人，以嘴碎和狡猾闻名，此时，它们面颊饱含泪水，神情愤慨，像是受到了天大的委屈一般。</p>
+	<p class = 'firstLineIndent'>“大人呀，你要我们做主呀！我们的全部家当，都被这些恶魔夺走了。”</p>
+	<p class = 'firstLineIndent'>“是呀，我那可怜的小夏尔，才出生2个月，都没断奶，就被这些恶魔带离了他母亲那里，这还这么活呀。”</p>
+	<p class = 'firstLineIndent'>“北方那个吹，雪花那个飘，我家小羊羔那么小，这狠心的狼儿呀，来到了我们家……”</p>
+	<p class = 'firstLineIndent'>法庭上悲天悯人的见多，但现在哭成一片、唱成一片的，还真是少见，不愧颇为艺术细胞的半羊人了，已经打算唱出来了。</p>
+	<p class = 'firstLineIndent'>我很感动，看了半天，然后发现水平不算高，反反复复都是这两句唱词，于是失去了兴趣，打了一个哈欠，下了判决。</p>
+	<p class = 'firstLineIndent'>“执法者无执法不当的情况，卡姆辛半羊人部落在缴纳完罚款后，可以取回被扣押的羊羔。二审终极，不得上诉。”</p>
+	<p class = 'firstLineIndent'>“大人呀！！”</p>
+	<p class = 'firstLineIndent'>“冤屈呀！！”</p>
+	<p class = 'firstLineIndent'>被告席上的城管副队长雅雯松了一口气，原告席上却哭天喊天的一片，但我却依旧不为所动。</p>
+	<p class = 'firstLineIndent'>“法警，带下去吧，下一个。”</p>
+	<p class = 'firstLineIndent'>“贪官横行，司法不公呀！！愚官果然护着恶官！！”</p>
+	<p class = 'firstLineIndent'>哎，每次都是这样，但被当面说是愚官，我有些不爽了。</p>
+	<p class = 'firstLineIndent'>“恶意攻击法官，罚金10金币。顺便说下，下次再在城市绿化草坪上放牧，直接没收你们的羊群。”</p>
+	<p class = 'firstLineIndent'>是的，它们的确有放牧的权利，但盯着硫磺山城的城市绿化带放牧，已经从个人自由变成损坏公共财产的罪行了。</p>
+	<p class = 'firstLineIndent'>这半年来，被其损坏的草坪和花园，光修复费用和人工费，就要花上几十万金币，而他们所获的，大概只有省下几百金币的草料费了。</p>
+	<p class = 'firstLineIndent'>这次半羊人最擅长的就是颠倒黑白了，现在居然控告城管们恶意执法，真当我是傻子呀。</p>
+	<p class = 'firstLineIndent'>“对了，刚才说我是愚官的，自己自觉到社区接受两个月的免费劳役。谁还废话的，和他一样。以后去草场买草料或者出城放牧，若再度随意放牧，整个族群驱逐出硫磺山城。”</p>
+	<p class = 'firstLineIndent'>对于狡诈而懒惰的半羊人来说，带着羊群放牧，自己在一旁睡觉，已经是最辛苦的劳作了。</p>
+	<p class = 'firstLineIndent'>让他们像其他种族一般劳动，就已经是酷刑了，而让贪财自私的他们免费为他人劳作，绝对比死刑还惨。</p>
+	<p class = 'firstLineIndent'>多话的被严惩，瞬间，哭声没了，唱曲也没了，他们自觉排队出场。</p>
+	<p class = 'firstLineIndent'>于是，我满意的点了点头。</p>
+	<p class = 'firstLineIndent'>“下一个！”</p>
+	<p class = 'firstLineIndent'>接着，看着案宗，盯着眼前笑容可掬的被告人，我却皱起了眉，难怪下级法官把这个案子丢个我，这个案子还真不好判。</p>
+	<p class = 'firstLineIndent'>“被告，埃罗·悲风，半龙人猎人，罪行，诱拐和性犯罪。”</p>
+	<p class = 'firstLineIndent'>这厮犯罪证据确凿，自己也供认不讳，但判案起来，却让人颇为头痛。</p>
+	<p class = 'firstLineIndent'>虽然手段很肮脏，但猎人悲风完成了猎人的梦想，成功抓了个德鲁伊做宠物，可是成功之后，却数次在公共场所猥亵自己的“宠物”，而且，时而是熊，时而是豹，时而是鸟，就是没有人形态的时候……而且。那个德鲁伊，还是雄性，悲风本人也是雄性……</p>
+	<p class = 'firstLineIndent'>“太污浊了！太恶心了，严重影响整个硫磺山城的社会风气，强烈要求处死这个兽交癖兼同性恋，以正硫磺山城风气”地精检察官在原告席上慷慨激昂，这个案子一层层上诉，到最高法官这里，已经了最后关键了。</p>
+	<p class = 'firstLineIndent'>“我们要注意被告半龙人的身份，在它们眼中，‘与兽同行’是一种传统，是理所当然的。而对于其他种族的传统予以容忍，是硫磺山城市民一直以其为荣的传统。何况，法无明文规定不为罪是我们法典最基本的原则，我们的法典中，有不许和野兽和同性发生性行为吗？既然没有禁止，那么，就不是犯罪，就不能判罪，就更不能处刑！”</p>
+	<p class = 'firstLineIndent'>凭着对法条的解读，精灵辩护官科罗斯却再次占了上方，虽然，他看自己辩护人的眼神中，全是鄙视和不屑。</p>
+	<p class = 'firstLineIndent'>在崇敬自然的精灵眼中，猎人悲风之这样的变态，早该死一万遍了，但现在自己在法庭上，却不能因自己的喜好，懈怠自己作为作为辩护官的职责。</p>
+	<p class = 'firstLineIndent'>而正如科罗斯所述，由于没有法条规定的罪行，检控方连罪名都无法确定，又怎么能够确定最后的处罚。</p>
+	<p class = 'firstLineIndent'>“那条法律会规定兽交这么恶心的罪行呀！！若这样的混蛋都无罪的话，我们还怎么维护法律的尊严和公正！”</p>
+	<p class = 'firstLineIndent'>闻言，地精检察官罗维·金币暴跳如雷，即使戴着银色的铁面具无法看到表情，但从那愤怒至极的语气和面具下的暴起的青筋来看，他气的够呛。</p>
+	<p class = 'firstLineIndent'>也是，为了这个案子，他花了无数的精力，审了两次，最后到了最高法官面前，更不是为了让这变态逃脱法律的制裁的。</p>
+	<p class = 'firstLineIndent'>我看着那个长着蜥蜴头的变态，他也看着我，神色坦然，毫无登上被告席应有的拘束和不安。</p>
+	<p class = 'firstLineIndent'>而我那亚神器法袍还在发挥着作用，猎人悲风在神器之威下如此坦然，却只说明他真的不认为自己有错，心中没有丝毫内疚，神器也无效。</p>
+	<p class = 'firstLineIndent'>“价值观不同吗？不，其他的半龙人可没有这么变态。他应该是知道法条或被告知了，这里无法判罚他有罪。呵呵，果然，异世界总是可以遇到有趣的罪行，真是有趣呀。”</p>
+	<p class = 'firstLineIndent'>“呵呵，我可以回去了吗？我的宠物们还等着我喂食呀。”</p>
+	<p class = 'firstLineIndent'>我呵呵笑了，那半龙人也傻傻的笑了。</p>
+	<p class = 'firstLineIndent'>对我来说，这看似坦然的表情和笑声，却是颇有趣的挑衅了。</p>
+	<p class = 'firstLineIndent'>“咚！”</p>
+	<p class = 'firstLineIndent'>法槌落下，我做出了宣判。</p>
+	<p class = 'firstLineIndent'>“无罪，当庭释放。”</p>
+	<p class = 'firstLineIndent'>法无明令禁止不为罪，既然我制定的法条有这个漏洞，这把，我就认输了吧。</p>
+	<p class = 'firstLineIndent'>闻言，那埃罗·悲风憨厚的笑了，笑容中全是得意。</p>
+	<p class = 'firstLineIndent'>“果然，硫磺山城市司法是最公正的。”</p>
+	<p class = 'firstLineIndent'>但……</p>
+	<p class = 'firstLineIndent'>“罗维检察官，别生气了，你也应该早知道，既然法条不规定有罪，吾等不可能枉法判其有罪。”</p>
+	<p class = 'firstLineIndent'>罗维当然知道，就是因为知道，他才如此生气，让一个罪人逍遥法外，简直是最高法院和法律本身的嘲笑。</p>
+	<p class = 'firstLineIndent'>“可是，大人……”</p>
+	<p class = 'firstLineIndent'>“下周法王厅的立法会议准备好了吗？”</p>
+	<p class = 'firstLineIndent'>“咦？！哦，我懂了！！”</p>
+	<p class = 'firstLineIndent'>我突然问起了无关紧要的事情，罗维先是一愣，然后恍然大悟，满脸喜色。</p>
+	<p class = 'firstLineIndent'>我们最高法院可不是仅仅只是司法机构，其下属四厅中的法王厅，更负责了新法律的起草工作，最高法院，除了担负终审意外，可是有立法和司法解释权的哦。</p>
+	<p class = 'firstLineIndent'>“嗯，既然这位埃罗小友帮我们找到了法律的漏洞，我们就补上它吧。科罗斯，等新法条通过了，就派几个大潜行者经常和这位小友聊聊天吧。让他早点再进来，我们好感谢他。”</p>
+	<p class = 'firstLineIndent'>这些话，都没有瞒过埃罗·悲风，此刻，他一脸铁青，似乎已经想象到自己再度被逮进来的时候。</p>
+	<p class = 'firstLineIndent'>至于从此不再做此恶心的恶行？那从一开始，就不在视“与兽同行”为人生最大爱好的他的选择项之中。</p>
+	<p class = 'firstLineIndent'>闻言，即使是获胜的辩护官科罗斯也是满脸欣喜。</p>
+	<p class = 'firstLineIndent'>“是的，大人，我会立刻照办，‘与兽同行’这种非自然的恶心行为，理应受到严惩！公开进行，更要受到加重处罚！”</p>
+	<p class = 'firstLineIndent'>“对了，记得加入禁止虐待宠物罪条案，像这种行为，应该剥夺抚养宠物的资格。从另外一个侧面堵死这些变态行径吧，做个双保险。”</p>
+	<p class = 'firstLineIndent'>作为硫磺山城爱宠协会的荣誉会员，我怎么会让这种人继续欺压可爱的小动物，直接剥夺他养育宠物的资格吧。</p>
+	<p class = 'firstLineIndent'>终于，埃罗·悲风哭了起来，若他还选择待在硫磺山城，那么，与兽同行的爱好，算是从此要被禁止了。</p>
+	<p class = 'firstLineIndent'>于是，在我的操控下，法律的尊严也得到了维护。</p>
+	<p class = 'firstLineIndent'>若那家伙从此改邪归正？先不谈我个人认为他很难纠正自己的性癖，若他真能就此改掉，不也是一件好事吗。</p>
+	<p class = 'firstLineIndent'>“下一个……”虽然这些案子很繁琐无趣，不过，工作不正是如此吗。</p>
+	<p class = 'firstLineIndent'>无聊，无趣，但有的时候，却颇有意味和意义。</p>
+	
+	
+<h2>第007章 带狗散步</h2>	
+	<p class = 'firstLineIndent'>“奥库，半精灵半兽人，青铜阶职业杀手，手下性命无数，特别喜爱猎杀幼童，在硫磺城执行任务时被暗精灵城管抓获，被硫磺城法院判处有期徒刑三百七十六年，终生不得保释。啧啧。”</p>
+	<p class = 'firstLineIndent'>一边看着资料，对着笼子里半精灵杀手，我啧啧称奇，半兽人可是罕见的东西，混血的另外一半是兽人的死敌精灵，就更少见了。</p>
+	<p class = 'firstLineIndent'>“巫妖？等下，别杀我，也别拿我做实验，你一定也有很多仇敌吧，我可以免费帮你杀人！”</p>
+	<p class = 'firstLineIndent'>发现自己被送到巫妖这里来，奥库先是震惊，因为巫妖最弱也是传奇级的法师，然后，却是安心了，因为同样属于混沌阵营的巫妖，至少比义正言辞的法官和脑袋打铁的圣骑士好对付，那些秩序阵营的伪君子，从来不知道交易和妥协，是多么美妙的事情。</p>
+	<p class = 'firstLineIndent'>但此刻，我似笑非笑的盯着他，从硫磺城监狱把他弄过来，可不是为了找个打手。</p>
+	<p class = 'firstLineIndent'>枯骨般的手指放在半精灵额头，即使是十恶不赦的变态杀手，生灵那温暖的体温依旧让人眷顾。</p>
+	<p class = 'firstLineIndent'>只是对方的脸色却不怎么好，或许是想起了巫妖那些玩弄灵魂和尸体的传说，那白骨的冰冷之触下，脸色越发苍白。</p>
+	<p class = 'firstLineIndent'>“……真是有趣，原本以为只是普通的杀人犯，居然还是个隐藏的血肉祭者，肮脏的恶魔崇拜者，你用幼童的生命和九狱下的魔鬼交易，换取自己的阴寿和力量。”</p>
+	<p class = 'firstLineIndent'>果然，随着我的言语，潜藏在潜意识中的记忆越发明显，那肮脏的记忆越发明显，而随之而来的，却是他越发恐惧的记忆。</p>
+	<p class = 'firstLineIndent'>“告诉我，有趣的小家伙，你最害怕什么。”</p>
+	<p class = 'firstLineIndent'>人脑是很有趣的，越是努力让自己不去想的东西，潜意识反而越会主动去想。</p>
+	<p class = 'firstLineIndent'>四环奥术记忆读取并不是高深的法术，也算不上什么好用的能力，越是秘密的东西藏在脑海中越深处，而记忆读取却只能看到最上层的那部分。</p>
+	<p class = 'firstLineIndent'>但我，却有自己的独门秘法。</p>
+	<p class = 'firstLineIndent'>问你“你到底隐藏了什么秘密？”，那么，那人往往会下意识的去思考自己有什么东西必须背隐藏，那在那一霎那，秘密付出水面，我的记忆读取法术，就会把他思考的内容揭晓。</p>
+	<p class = 'firstLineIndent'>“……最怕的居然是真实身份揭晓？有趣？你的真实身份是什么？”</p>
+	<p class = 'firstLineIndent'>“卡隆城的奸细？真是有趣呀。”连锁询问之下，他隐藏的目的自然一清二楚。</p>
+	<p class = 'firstLineIndent'>今天运气实在不错，本来只是更换两个囚犯刷邪恶点数，但刚刚试探一下，最却发现了他居然还是其他城市派遣来的奸细。</p>
+	<p class = 'firstLineIndent'>地下城卡隆斯坦波尔，大概算是离硫磺山城最近的地下城了，但显然，比起繁荣的硫磺山城来，他的人口和面积都要小很多。</p>
+	<p class = 'firstLineIndent'>该地下城以兽人和灰矮人为主，城主是个信奉暴君之神班恩的蠢兽人，矿业颇为发达，但其他产业就不怎么景气了。</p>
+	<p class = 'firstLineIndent'>这个奸细是他在卡隆城被对方聘用的，任务只是最最简单的收集情报，最多只能算是兼职打零工的，但足以说明，卡隆城应该又在打什么鬼主意了。</p>
+	<p class = 'firstLineIndent'>“伊丽莎？”</p>
+	<p class = 'firstLineIndent'>“嗯？”果然，神出鬼没的女仆长，下一秒，就出现在我的背后。</p>
+	<p class = 'firstLineIndent'>“认真拷问下，把他秘密榨干，然后给玛格丽特一份。就说她不管的话，我就丢给亚当管。”</p>
+	<p class = 'firstLineIndent'>我的记忆中，抓到了奸细=阴沟里的秘密=大人物的野心=一大串的麻烦……等于没钱来的义工呀！</p>
+	<p class = 'firstLineIndent'>没有好处可怜捞，这么烦人的事情我才不想管，既然碰到了，就丢给有可能有兴趣的人吧，主管内政的大贤者玛格丽特，会顺着线索一点一滴剥开真相的。</p>
+	<p class = 'firstLineIndent'>至于这个囚犯？在送到我这里来之前，已经说明了其罪不可赦，既然进来了，就不要出去了。</p>
+	<p class = 'firstLineIndent'>“砰！”</p>
+	<p class = 'firstLineIndent'>随着两声巨响，整间老宅都在微微震荡，而在此之后，天花板落下的灰尘，在地牢中蔓延。</p>
+	<p class = 'firstLineIndent'>囚犯们被呛着不住咳嗽，连我的骨头上都蒙上了一层灰，而伊丽莎却事先早有预备，用手巾封住了嘴。</p>
+	<p class = 'firstLineIndent'>“看来，阿宝已经等不及了。”</p>
+	<p class = 'firstLineIndent'>这地震，就是我可爱的阿宝，由于过了平日的散步时间主人还没出现，就用跳跃的方式在催我了。</p>
+	<p class = 'firstLineIndent'>于是，不负责任的把所有工作丢给伊丽莎，工作时间到此结束，现在是和阿宝的散步时间。</p>
+	<p class = 'firstLineIndent'>或者说，是我被庞大双头地狱犬，拖着到处跑的时间……</p>
+	<p class = 'firstLineIndent'>和其他的笨狗一般，刚刚离开家门，阿宝就忘记了自己的主人，近乎疯狂的四处撒欢，乱窜起来，而带着缰绳的我，全身骨架加起来都没三十斤，力量不过5，自然会反被数十吨重的巨兽拖着飞起。</p>
+	<p class = 'firstLineIndent'>当然，这个时候，吃过几次亏后，我一般会给自己加个漂浮术，然后把缰绳栓在最坚固的那根肋骨上，做一个合格的风筝……</p>
+	<p class = 'firstLineIndent'>而这种散步方式，却有了意外的收获……</p>
+	<p class = 'firstLineIndent'>“骨头旗升起来了，大狗快来了，大家快收摊子呀！”</p>
+	<p class = 'firstLineIndent'>“城管了？快叫城管！”</p>
+	<p class = 'firstLineIndent'>“大家加油。构建防线，死守肉铺，今天休想夺走我的新鲜排骨！”</p>
+	<p class = 'firstLineIndent'>好吧，被拖着高高悬浮的我，反而成了阿宝的标志，为了避免被横冲蛮撞的笨狗波及，隔着两条街区的小摊小贩，都开始收摊让道。</p>
+	<p class = 'firstLineIndent'>“去城东亡灵区，那里不该城管管！”</p>
+	<p class = 'firstLineIndent'>听到这些话，我连忙下令，使劲拉缰绳，让阿宝转头。</p>
+	<p class = 'firstLineIndent'>往日阿宝散步，最多只会造成交通混乱，也没有伤人的过往（骷髅兵不算人！）</p>
+	<p class = 'firstLineIndent'>城管往日要处理更严重的刑事案件，等她们到了，我也差不多结散步返回了，但现在，而作为绅士联盟唯一的幸存者，当我们联盟不在给他们制造麻烦时，我绝对不会低估她们的出动速度，和一劳永逸端掉我们的决心。</p>
+	<p class = 'firstLineIndent'>“汪！”</p>
+	<p class = 'firstLineIndent'>而在我指挥下，阿宝一脚踢开挡路的牛头人，再用大屁股坐塌挡路的路障，一路绝尘的向着城东奔去。</p>
+	<p class = 'firstLineIndent'>“站住！！”</p>
+	<p class = 'firstLineIndent'>“给莫莫站住，都是你，害莫莫昨天无眠者大人面前尿裤子了！”</p>
+	<p class = 'firstLineIndent'>好吧，我还是低估对方拿下我的决心，城管大队居然在设下了埋伏。</p>
+	<p class = 'firstLineIndent'>不过……“跳，阿宝！”</p>
+	<p class = 'firstLineIndent'>庞大的地狱犬，一个跳跃，就迈过了眼前的路障。</p>
+	<p class = 'firstLineIndent'>而跟在后面的城管们，却无奈的停下了脚步。</p>
+	<p class = 'firstLineIndent'>一个六米多高的骸骨巨人，把金刚制的城门当做了盾牌，站在了她们面前。</p>
+	<p class = 'firstLineIndent'>空洞的眼洞中没有一丝情绪，但却没有人敢于越雷池一步。</p>
+	<p class = 'firstLineIndent'>这里已经是城东的亡灵区了，可不在城管的管辖范围内，她们若想进去执法，可是必须要打报告走程序的，而真走完那套繁琐的官僚程序，这巫妖早就找不到人了。</p>
+	<p class = 'firstLineIndent'>而我，也到了今天的目的地，送开阿宝，让他自己的去觅食……咳，去玩。</p>
+	<p class = 'firstLineIndent'>然后，和眼前每一个亡灵打招呼。</p>
+	<p class = 'firstLineIndent'>“嗨，好久不见，大家，想我了吗？大块头，你的腐肉更臭了呀。小骨头，头骨真亮，那个牌子的抛光剂？阿卡大叔，你的骨头都锈了呀，要不，试试我新研究出来的润滑剂，全天然制造，无公害、无副作用哦……”</p>
+	<p class = 'firstLineIndent'>但我眼前，刚刚还在活泼乱跳了亡灵们，看到我了，先是集体一愣，然后……</p>
+	<p class = 'firstLineIndent'>“快跑呀！！那疯子又来了！！吓死鬼了！”</p>
+	<p class = 'firstLineIndent'>……让人伤心的做了鸟兽散。</p>
+	<p class = 'firstLineIndent'>巨人骸骨带着自己的战斧，跳过房屋，无头骑士一窝蜂的带走自己的脑袋，就是可怜的骸骨战士，也打着滚开溜。</p>
+	<p class = 'firstLineIndent'>眼前的一幕，还真是让人伤心呀……</p>
+	<p class = 'firstLineIndent'>“喂喂，有这么欢迎族人的吗？不就是拿你们做了亡灵魔法的行新实验，做了穷折腾的日常，试验了圣剑的威力……”</p>
+	<p class = 'firstLineIndent'>我越说越没底气，一个熟悉的嗓音却在背后想起。</p>
+	<p class = 'firstLineIndent'>“殿下，您都说出了理由，我也不用废话了。您这次来，是我们出战的时间快到了吗？”</p>
+	<p class = 'firstLineIndent'>“不，我可是和平主义者，战争之类的，最讨厌了。不过，约定的时间的确快到了，我们的军团，是否已经准备就绪？”</p>
+	<p class = 'firstLineIndent'>“当然，殿下，您的军团，不管是三百七十六年前，还是二百五十年前。还是以一百三十年前，那次让您失望过！？赤红猎犬二万四千六百二残兵败将，在和平中磨砺呲牙，随时等候调遣，我们已经迫不及待的重归战场了。”</p>
+	<p class = 'firstLineIndent'>厚重的嗓音中满是战意，我的将军果然如过去一般可靠。</p>
+	<p class = 'firstLineIndent'>“今来您是要阅兵还是观看新的瘟疫试验？我们的炼金术师发明了一种全新的战争兵器。他同时具备了高破坏力……”</p>
+	<p class = 'firstLineIndent'>“不，我都说了我是和平主义者了，打打杀杀多没意思，今天，我是来看件事的准备工作的。”</p>
+	<p class = 'firstLineIndent'>“您是说那件蠢……不，那件要事吗？已经准备完毕，随时可以启动。”</p>
+	<p class = 'firstLineIndent'>我满意的点了点头，回头，却看不到一人。</p>
+	<p class = 'firstLineIndent'>“汪汪！下面。汪汪，在下面，殿下！您是故意的吧？逗我很有趣吗？我可是您最强大的将军之一！”</p>
+	<p class = 'firstLineIndent'>低头望去，果然是我那可爱的小贝，他正本能的追着自己的尾巴在打圈。</p>
+	<p class = 'firstLineIndent'>他是阿宝的哥哥，我过去最信任的将军之一，如今，却是一只可爱的小骷髅狗。</p>
+	<p class = 'firstLineIndent'>“我不是小贝！我是贝斯特，虚空魔犬贝斯特！！”</p>
+	<p class = 'firstLineIndent'>“是的，阿贝。”</p>
+	<p class = 'firstLineIndent'>“贝斯特！！我可是您的将军呀，您战无不胜的军团的副指挥官呀！”</p>
+	<p class = 'firstLineIndent'>“好的，小贝。不用强调了，我一直都觉得你很了不起。恩，最重要的，是很可爱！果然呀，宠物是人类最好的朋友，而熊孩子则是最坏的敌人。”</p>
+	<p class = 'firstLineIndent'>听着我那仿若哄不听话小孩的语气，和越发不靠谱的宣言，垂着尾巴和眉头，小贝捂着自己的脸趴下了，它知道，只要主人陷入这种人来疯状态，说什么都没用了。</p>
+	<p class = 'firstLineIndent'>一张骷髅犬脸是怎么做出绝望的神情的，今天我算是看到了。</p>
+	<p class = 'firstLineIndent'>“好了，不逗你了，小贝。准备工作做好了吗？”</p>
+	<p class = 'firstLineIndent'>“随便你吧。虽然我一直觉得这是个馊主意，但您不正是从来不靠谱而著称，就当哄您开心了……”</p>
+	<p class = 'firstLineIndent'>“咳！”一声轻咳，打断了它的牢骚。</p>
+	<p class = 'firstLineIndent'>“那么，我，巫妖罗兰，宣布，本次硫磺山城亡灵旅游周活动正式开启，死亡皇冠主题乐园，正式投入营运！！”</p>
+	<p class = 'firstLineIndent'>是的，打打杀杀多没意思，现在这年头，拼的是经济，是民生！我们亡灵区，也要推出自己新的支柱产业——亡灵主题乐园。</p>
+	<p class = 'firstLineIndent'>无头骑士马球竞赛，骷髅拼图王者游戏，鬼节狂舞大赛，骑着酷酷骨龙环游整个硫磺山城，我已经准备了一系列的卖点节目。</p>
+	<p class = 'firstLineIndent'>而背后，随之旋转的，是主题乐园最大的卖点，无数个骷髅累积而成的巨大摩天轮，他高三百多米，转起来带动的邪风如飞舞的黑龙，巨大无比的它仿若一个泰坦巨人般，连硫磺山城外都可以看到。</p>
+	<p class = 'firstLineIndent'>虽然我当时花了很大的口舌，说服生者那并不是什么可怕的战斗机器，也不是什么可怕的阴谋……但这一切，都是值得的！</p>
+	<p class = 'firstLineIndent'>这就是主题乐园的活广告，很快，就有无数的观光客慕名前来，而我，也将大赚一笔。</p>
+	<p class = 'firstLineIndent'>此刻，我骷髅侍从们，也穿着小丑的衣服，在门口开始敲锣打鼓，我也耐心的等候顾客上门。</p>
+	<p class = 'firstLineIndent'>当让人意外的，半个小时过去了，一个游客都没有来，于是，我问起趴在我脑袋上的阿贝。</p>
+	<p class = 'firstLineIndent'>“传单发出去了吗？”</p>
+	<p class = 'firstLineIndent'>“早就发出去了。”</p>
+	<p class = 'firstLineIndent'>“给那些地精矮子的广告费了吗？”</p>
+	<p class = 'firstLineIndent'>“给了。”</p>
+	<p class = 'firstLineIndent'>“最高法院的安全担保放入了广告中吗？”</p>
+	<p class = 'firstLineIndent'>“当然，亏您搞到了行政院，最高法院的许可和担保，没这个，估计谁都不敢来吧。”</p>
+	<p class = 'firstLineIndent'>“我的广告词写的不好吗？”</p>
+	<p class = 'firstLineIndent'>“不，非常有文采，非常有吸引力‘见识您未来的处境，和未来的邻居打个招呼吧。和幻境中的鬼怪共舞，享受从未有过的新奇体验。前三天免费，前一百顾客还有神秘礼物！绝对安全！绝对有趣。’”</p>
+	<p class = 'firstLineIndent'>“那为什么没有人来！！”</p>
+	<p class = 'firstLineIndent'>我死死的盯着这只笨狗，它却笑了。</p>
+	<p class = 'firstLineIndent'>“呵呵，大人，您忘记了，这里可是亡灵区。生命的禁区呀。你认为，在生者眼前，我们亡灵是什么？”</p>
+	<p class = 'firstLineIndent'>闻言，我一下子愣住了。“亡灵是什么？”</p>
+	
+	
+<h2>第008章 亡灵游乐场</h2>	
+	<p class = 'firstLineIndent'>亡灵是什么？恐怕，在绝大多数生物眼中，第一个想起的，就是无尽的死亡。</p>
+	<p class = 'firstLineIndent'>事实上，这种说法也没有说错，当在秩序众神和混沌魔神的战场上，恶魔大君们发明了将死者再度复苏的法术那天起，亡灵天灾，就成了生者的噩梦。</p>
+	<p class = 'firstLineIndent'>实际上，这大多，却是不能归咎于亡灵本身。</p>
+	<p class = 'firstLineIndent'>在这片大陆，亡灵的产生实际上是有两个原因的，第一个，就是当死者有莫大的冤屈、不甘、理想，不愿就此死去，那么，有极小的几率死而复生。</p>
+	<p class = 'firstLineIndent'>这种自然产生的亡灵，产生的几率极小，但往往极其强大，毕竟，抗拒死亡的召唤，想要的意志和怨气都非常不普通，据说，死神艾耶，就是最高老的自然亡灵。</p>
+	<p class = 'firstLineIndent'>由极大怨气产生的亡灵的确会有些扭曲，但单纯凭借自己意志抗拒死亡的，为了某个遗憾而留着人间的，却往往能够保存自我。</p>
+	<p class = 'firstLineIndent'>当然，其中最强大、高尚的一批，是英雄们死后意志的化身，他们被秩序众神承认，甚至被重新赋予了不朽的灵体，还有个好听的名字——英灵。</p>
+	<p class = 'firstLineIndent'>而除了自然亡灵外，另外一种亡灵，就是异常常见的亡灵天灾了，邪恶的亡灵法师，强行奴役死者，制造更多的死亡。</p>
+	<p class = 'firstLineIndent'>这种召唤死者的魔法最初由恶魔发明，但如今，却已经有了无数的变种和发展。</p>
+	<p class = 'firstLineIndent'>最早的，只是缓慢行进的尸体，之后，有了更加快捷的骸骨战士，有了血肉拼凑的增恶缝合怪，有了掌握黑暗魔法的尸巫，有了擅长武技的黑骑士，有了最强的亡灵法师——巫妖。</p>
+	<p class = 'firstLineIndent'>随着亡灵法术的变化，如今的亡灵种族已多的无以复加了，比巫妖强大的个体也不少了，但巫妖这种天生的亡灵法术大师，却始终是族群的核心，无他，只是狡猾的他们掌握了亡灵进化的方向，他们最擅长的，就是研究制造新的亡灵和亡灵魔法。</p>
+	<p class = 'firstLineIndent'>现存的亡灵，九成九是这样的后天亡灵，他们只有在白银阶位以上，才有可能产生自我意识，而即使最强大的亡灵英雄，在刚刚被亡灵魔法唤醒的时期，也是六亲不认的魔物，对鲜血的和灵魂的饥饿，会让他们袭击自己最亲密的爱人，而一旦尝到了杀戮和吞噬美味灵魂的味道后，就很难回头了。</p>
+	<p class = 'firstLineIndent'>嗜血的亡灵天灾，还真没说错。</p>
+	<p class = 'firstLineIndent'>以混沌阵营的恶魔那专门搬起石头砸自己的脚的脾性，诱骗高山氏族集体堕落，反而造就了自己的宿敌魔鬼，发明了亡灵法术，却造就了一个敌视自己的族群。</p>
+	<p class = 'firstLineIndent'>获得了自由的亡灵们毫不犹豫的反抗自己的造物主，组成了自己的国度，如今的亡灵之都布罗利和亡灵之国西罗，反而成了反恶魔的急先锋。</p>
+	<p class = 'firstLineIndent'>而在死者构成的西罗帝国，由巫妖组成暗夜议会掌权，生者只是最下贱的奴隶，再加上一百多年钱那场差点造成世界末日的亡灵天灾永夜浩劫，更是让亡灵的名声在泛秩序阵营变得极差。</p>
+	<p class = 'firstLineIndent'>英灵、自然亡灵、幻想种、具备自我意识的高阶亡灵、本能嗜血的低阶亡灵等等差异，普通的市民可没有分辨的知识和能力，在他们眼中，东边亡灵区住着的，都是一片可怕的恶魔。</p>
+	<p class = 'firstLineIndent'>“也就是说，不管我们说什么，做什么，都是白费的吗？”</p>
+	<p class = 'firstLineIndent'>“当然，生者有生者的世界，死者有死者的世界，虽然殿下您可以无视这中间的界限，但让普通的市民越过，却明显强人所难了。”</p>
+	<p class = 'firstLineIndent'>趴在我头上的阿贝如此说道，虽然是只狗，但此刻，却颇为些看破生死的哲学家味道。</p>
+	<p class = 'firstLineIndent'>而在不远处，阿宝正抱着一堆骨头舔来舔去，甚是满足。</p>
+	<p class = 'firstLineIndent'>放眼望去，尽是一片群魔乱舞的景象，但在我眼中，却是一幅再正常无比的生活场景。</p>
+	<p class = 'firstLineIndent'>亡灵的确不想要饮食，但却不代表拥有自我意识的高阶亡灵无欲无求，这里，是东区最大的集市之一，一家家店铺正在开张经营。</p>
+	<p class = 'firstLineIndent'>“这个防腐剂怎么卖？再来个驱虫剂，不要含硫磺的，我皮肤太敏感了，过敏。”这是个尸巫大姐，她正为自己空空如也的脑洞中越发多的虫族居民难受。</p>
+	<p class = 'firstLineIndent'>“黑暗绷带，诅咒绷带，保证你的魔力和肠子一样稳固。有木乃伊和僵尸大叔要吗？奥法之环的最新款，还有蘑菇和小熊图案供选择哦。”</p>
+	<p class = 'firstLineIndent'>“各类鲜血新鲜售卖，人类、精灵、矮人各种族都有，处女、处男、不男不女各性别都有，一次2000CC的大客户的话，还可以享受长期登门送血服务哦。”</p>
+	<p class = 'firstLineIndent'>跑来跑去的小红帽女孩甚是可爱，但她卖的货物，却分外可恐。</p>
+	<p class = 'firstLineIndent'>“骷髅头专卖，金玉的，青铜的，石雕的，龙骨的，应有尽有，有人想换个脑袋吗？巫妖大叔，你要换个脑袋吗？有黑色ISO质量验证的，保证魔力贯通，质量过硬无假货，三天试用，可以无理由退换的。”</p>
+	<p class = 'firstLineIndent'>挥手驱走哪烦人的红帽小血族，我把注意力投向了远方，那担任大门守卫的骸骨巨人克罗因正在向我挥手示意。</p>
+	<p class = 'firstLineIndent'>“哟，那些城管总算回去了，我总算可以回去了。”</p>
+	<p class = 'firstLineIndent'>亡灵区在整个硫磺山城很特殊，是个相对独立的特区，城管们是没有执法权的。</p>
+	<p class = 'firstLineIndent'>我算是低估了她们围捕我的决心，居然堵着门口，看样子是打算长期埋伏，准备等我出去了以后再抓我报仇解恨。</p>
+	<p class = 'firstLineIndent'>猝不及防的我，差点被她们伏击成功，幸好，克罗因在此，挡住了她们。</p>
+	<p class = 'firstLineIndent'>在亡灵区门口袭击亡灵，本来这种越界行为很容易引起冲突，但我这个大好人，却主题提出了化干戈于玉帛的提议。</p>
+	<p class = 'firstLineIndent'>“听说现在最高法官阁下对城管部队很不满？不不，当然不是威胁，我不会向执法厅提出申诉，也不会在最高法院门口拉条幅喊冤。不，我可是好人，这绝不是恐吓，只要你们愿意帮我做一下试验，我还愿意跟着你们走。”</p>
+	<p class = 'firstLineIndent'>“呵呵。我跟你们打交道又不是第一次，放心吧，这试验不是什么邪恶的魔法了。你们也应该知道，作为今年的重点旅游项目亡灵乐园今天开业，我是承包人呀。但你看，现在都没有什么人来玩，我只是邀请你们成为第一批游客，若玩的好的话，顺便帮我宣传一下。”</p>
+	<p class = 'firstLineIndent'>我搓着手，献媚地说道。</p>
+	<p class = 'firstLineIndent'>“当然免费，完全免费，作为第一批旅客，还有神秘礼物附赠哦！！”</p>
+	<p class = 'firstLineIndent'>“耍赖？我可是法律和公正之神的信徒，你这是侮辱我的信仰！没有这个神？以后就会有了。放心吧，我一向说到做到，只要你们帮我做完所有娱乐项目的测试，我立马跟着你们走。”</p>
+	<p class = 'firstLineIndent'>于是，她们就答应了我的要求……</p>
+	<p class = 'firstLineIndent'>然后，她们就后悔了……</p>
+	<p class = 'firstLineIndent'>“啊啊啊啊啊啊！臭骨头！放莫莫下去！！莫莫全身好痛！！莫莫要死了。”</p>
+	<p class = 'firstLineIndent'>……眼前的，是被一根绳子吊着，呼啸而过的某位女骑士。</p>
+	<p class = 'firstLineIndent'>然后，安静了，因为……绳子断了……</p>
+	<p class = 'firstLineIndent'>“……阿贝，下次记得在蹦极台上写个标语，蹦极前先脱下铠甲。”</p>
+	<p class = 'firstLineIndent'>看着眼前的大坑，我深表同情。</p>
+	<p class = 'firstLineIndent'>“啊啊啊啊啊啊！我就记得你这个骨头没安好心！！放我下来。”</p>
+	<p class = 'firstLineIndent'>一边咆哮，一边呼啸而过的，是不久前还见过面的雅雯副队长，此刻，她的黝黑面庞铁青一片，仿若随时就要呕吐出来，显然不适合过车山的高速旋转。</p>
+	<p class = 'firstLineIndent'>“放我下来，你们这些魔鬼！接受圣光的制裁吧！！”</p>
+	<p class = 'firstLineIndent'>“别，别！！别在过山车上召唤圣光呀！……算了，又晚了一步，阿贝，记得写在标牌上。‘绝对不要在游乐设施上召唤圣光’。”</p>
+	<p class = 'firstLineIndent'>我的提醒还是晚了一步，不管如何兼顾，这些器具还是亡灵魔法的产物，而一旦遇到了亡灵天敌的圣光……</p>
+	<p class = 'firstLineIndent'>当过山车从一百多米的高坡上，高速下滑的时候，车体解体是什么场景，今天我算是见识了……</p>
+	<p class = 'firstLineIndent'>“飞的还真是远呀……”</p>
+	<p class = 'firstLineIndent'>我发誓，我绝对不是故意的……</p>
+	<p class = 'firstLineIndent'>“呕！混蛋！”</p>
+	<p class = 'firstLineIndent'>精灵美女们很没风度的围成了一圈呕吐，那场景……</p>
+	<p class = 'firstLineIndent'>“阿贝，地狱摇摇杯速度降低300%吧。”</p>
+	<p class = 'firstLineIndent'>看来，这次我忘记了生者原地转快了会头晕，嗯，嗯，果断降低转速就好了。</p>
+	<p class = 'firstLineIndent'>“我的脑袋！！！！我什么都看不到了，老娘和你拼了！！”</p>
+	<p class = 'firstLineIndent'>“宇宙飞碟180度旋转就够了，360度还是算了吧。”</p>
+	<p class = 'firstLineIndent'>看来，这次我是忘记了生者头部朝下太久会暂时失明，而再倒挂久点会要人命的。</p>
+	<p class = 'firstLineIndent'>“好高，好可怕呀，天地都在摇晃！放我下去，求求你了。”</p>
+	<p class = 'firstLineIndent'>“摩天轮上下缓缓移动就够了，内部就不用转了。”</p>
+	<p class = 'firstLineIndent'>“邪恶退散！！圣光呀，这么多的恶灵，我就到此为止吗？”</p>
+	<p class = 'firstLineIndent'>“鬼屋的还是不要用真实的幽灵吗？那就不够吓人了呀。但若用真的，职业战士们本能的动真格的怎么办。哎呦，暂时鬼屋还是封存吧。”</p>
+	<p class = 'firstLineIndent'>“停下，求求你停下！我头昏……不要！啊！”</p>
+	<p class = 'firstLineIndent'>“啪！”这响亮的撞墙声，听着就让人觉得痛呀。</p>
+	<p class = 'firstLineIndent'>“幽灵马可以穿墙，生者……”</p>
+	<p class = 'firstLineIndent'>“幸好有她们做测试！太好了，没闹出人命。圣骑士是出名的皮糙肉厚，都这么惨，若是普通的市民……”</p>
+	<p class = 'firstLineIndent'>看着眼前的惨剧，听着尖叫和惨叫，我不由得有些后怕，生搬硬套异界的游乐设施的结果，就是严重的水土不服，若不是有这些“好心人”的测试，恐怕，会出大乱子。</p>
+	<p class = 'firstLineIndent'>而我为了感谢她们，打算履行自己的承诺，在她们作为测试后，和她们回城管部队驻地的时候，却……</p>
+	<p class = 'firstLineIndent'>“今天真是辛苦大家了，还有一百二十项，做完测试，我们就一起去城管大队报道，我绝对不逃跑。”</p>
+	<p class = 'firstLineIndent'>“你……你给我们记住，今天算是你赢了，但总有一天，我们要把你绳之以法！”</p>
+	<p class = 'firstLineIndent'>她们却跑了……</p>
+	<p class = 'firstLineIndent'>“别忘记带走你们的神秘礼物呀，亡灵乐园的年票，一年份免费哦，下次记得再来玩！”</p>
+	
+	
+<h2>第009章 魔王</h2>	
+	<p class = 'firstLineIndent'>泥泞的沙场上，一个孤独的身影正在奔跑。</p>
+	<p class = 'firstLineIndent'>煤渣构成的跑道，赤足跑上去，扎的生痛，而当背上还背着上百公斤的重甲后，这早就不是训练，而是刑罚了。</p>
+	<p class = 'firstLineIndent'>洒过水的煤渣路，虽然黑灰不会翻起，但却满是恶意的泥渣，原本光滑的赤足上面已经全是创口。</p>
+	<p class = 'firstLineIndent'>每跑几百米，那纤细的身影就要摔到一次，即使浑身都是伤迹和泥污，少女也会离开挣扎起身，想往前跑去，然后……</p>
+	<p class = 'firstLineIndent'>再次摔到……</p>
+	<p class = 'firstLineIndent'>那双赤足上流淌的鲜血在路途上形成了血线，一路延伸开来……</p>
+	<p class = 'firstLineIndent'>而对她本人来说，身体上的痛苦不算什么，周遭人刺骨的眼光，才是最让人痛苦的。</p>
+	<p class = 'firstLineIndent'>路过的人有些不忍，却没有人阻止。</p>
+	<p class = 'firstLineIndent'>因为这里，就是硫磺城最高法院，在市民眼中，这里是最神圣和公正的地方，有人受罚，就自然有相对应的罪行。</p>
+	<p class = 'firstLineIndent'>而在跑道边，两个法袍银面的法官小声议论开来。</p>
+	<p class = 'firstLineIndent'>“那是城管大队的戴安娜大队长吗？怎么在这里跑圈，赤足单衣，还背着重甲，似乎在受刑呀。”</p>
+	<p class = 'firstLineIndent'>“无眠者大人早上不是吩咐给跑道浇水了，看来，就是为了这位准备的？”</p>
+	<p class = 'firstLineIndent'>“她做了什么？”</p>
+	<p class = 'firstLineIndent'>“前些天城管大队不是擅自行动了？没有报备就开展了新一波的严打行动，好像被无眠者大人撞了个正着。”</p>
+	<p class = 'firstLineIndent'>“擅自出动？那不是超级重罪吗？最少都是放逐呀……哦，我懂了！”</p>
+	<p class = 'firstLineIndent'>“是呀，判全体放逐明显就重了，但完全不受罚也不可能。所以，这几天这位女士来补办手续，但无眠者大人都没有见她，今天倒是愿意见了，只是‘随口’说了句想看下城管大队的重物越野跑训练，这位女士就自觉的去跑了。”</p>
+	<p class = 'firstLineIndent'>“……若按程序办，丢给法庭判决，擅自出动暴力机构，最少就是一个放逐，但却明显量刑过重，但若是完全不受罚，肯定有人效仿，以后处罚其他人也没有底气。”</p>
+	<p class = 'firstLineIndent'>“是呀，最好的处理方式，大概就是现在这样，先冷处理几天，让她知道事件的严重性，然后让其‘自觉’受罚，以儆效尤。法条是死的，人是活的，这样既维护了法律的威严，又没有处罚不当，让该有罪者逃过处罚，这之间的平衡把握值得学习研究，无眠者大人真是厉害呀。”</p>
+	<p class = 'firstLineIndent'>“……我们还是快去工作，我感觉无眠者大人正在塔尖观看这边，若留下不认真工作的影响，就麻烦了。”</p>
+	<p class = 'firstLineIndent'>两人急冲冲的离去，现在已经到了上班时间，身披法袍的他们，也有自己的案子要忙。</p>
+	<p class = 'firstLineIndent'>暗精灵的耳朵是很灵敏的，两个法官的议论并没有逃过戴安娜的耳朵，于是，咬咬牙，她再度站起来，摇摇欲坠撑起了那百斤重铠，继续受罚。</p>
+	<p class = 'firstLineIndent'>而在不远处的塔楼顶尖，无眠者的办公室内，无良的最高大法官正在举起望远镜观看这边的，只是和法官们的猜测不同的，他并不是抱着监督而是抱着欣赏美景的心态。</p>
+	<p class = 'firstLineIndent'>“果然，湿漉漉的单衣把美女的身材全部展露出了，泥污反把运动的胴体衬的更加肉感十足，下次，不管那些家伙如何反对！我一定要把美女泥潭摔跤纳入运动会项目！！”</p>
+	<p class = 'firstLineIndent'>放下望远镜，我认真思考其让这个政策通过议会的可能性。</p>
+	<p class = 'firstLineIndent'>至于处罚？法律的尊严？那玩意很重要吗？</p>
+	<p class = 'firstLineIndent'>“虽然议会那些老顽固或许不会允许，但我批准了！！”</p>
+	<p class = 'firstLineIndent'>和我一同欣赏美景的，却是个满脸淫笑的中年男人，虽然相貌颇为不俗，但却从骨子里透出些许疲惫。</p>
+	<p class = 'firstLineIndent'>红色的轻甲，火红色的双手大剑，火焰一般熊熊燃烧红发，整个人如同火焰一般熊熊燃烧，虽然在和平的城内，却是一如既往的全服武装，腰间别着的那把银色断剑，或许是他身上唯一其他色彩。</p>
+	<p class = 'firstLineIndent'>“东文之凤”，“不死身的男人”，之类的称号一大堆，但最为人熟知的，却还是他红莲剑圣的勇者身份。</p>
+	<p class = 'firstLineIndent'>一百三十年前，他带着他的冒险团，奇袭永夜大君的亡灵军团，并成功斩首亡灵大帝的永夜大君，让整个亡灵军团崩溃，简直是勇者斩杀魔王拯救世界的经典剧集。</p>
+	<p class = 'firstLineIndent'>而之后，更是谢绝了诸国的招揽和谢礼，匪夷所思的来到了无人问津的地下城世界，建立了这座奇特的城市。</p>
+	<p class = 'firstLineIndent'>而当硫磺山城的奇特名声再度传到地面后，这位英雄的名声再度高涨。</p>
+	<p class = 'firstLineIndent'>“活着的史诗”，“最完美的英雄”，地上的人类，已经这么称呼他们的英雄。</p>
+	<p class = 'firstLineIndent'>但此刻，面对湿润单衣下若隐若现的性感曲线，那双刚正不阿的国字脸上，同样是一脸男人都懂的猥琐。</p>
+	<p class = 'firstLineIndent'>“干脆搞个马拉松泥潭长跑大会吧，让城管那群暗精灵，教会的那群女牧师都参加，只许穿内衣，哈哈，光卖门票就可以赚翻了。”</p>
+	<p class = 'firstLineIndent'>红莲剑圣亚当·汉，作为我的顶头上司，硫磺山的城主，平身最大的乐趣，就是给下属添乱和给民政议会添堵，我那必然会让议会那些老家伙暴跳如雷的提案，他怎么会不喜欢。</p>
+	<p class = 'firstLineIndent'>别看如此老不正经，而在我的系统之中，这厮赫然是个262级的半神存在，放在地面世界，最少也是一国之君。</p>
+	<p class = 'firstLineIndent'>“哎呦，老光棍，你又变强了呀。”</p>
+	<p class = 'firstLineIndent'>上周见面的时候才260级，对于这种等级的存在，进一步都难，一周涨两级，简直不可思议。</p>
+	<p class = 'firstLineIndent'>“是呀，老光棍，你眼睛还是这么毒。火凤凰这东西，越老越强呀，现在的我，凤凰之心已经燃烧到极致，应该可以独自揍全盛期的你了吧。”</p>
+	<p class = 'firstLineIndent'>“呵呵，即使你已经天下无敌，还不是一个中二的老光棍。”</p>
+	<p class = 'firstLineIndent'>“是呀，和你一个用骷髅充当宠物一样的老光棍。”</p>
+	<p class = 'firstLineIndent'>两个光棍了几百年的老家伙习惯性互相伤害后，却各种叹了一口气。</p>
+	<p class = 'firstLineIndent'>“这光棍日子啥时候才是个头，要想找个女朋友……”</p>
+	<p class = 'firstLineIndent'>“我对小左（左手）和小右都已经麻木了，若不是你们搅局，我也早该有女人了，搞不好连儿子、孙子也该有了。”</p>
+	<p class = 'firstLineIndent'>“你这是在炫耀吗？有肉身就这么值得炫耀吗？我的小左小右都只剩骨头了！”</p>
+	<p class = 'firstLineIndent'>“炫耀？炫耀你一脸呀。还有你那些谣言，说我命犯孤星，害的城里的美女都绕着我走！上周和我‘不小心’撞到一起那个美女，明明是美好的相识，居然跑去圣堂教会驱逐诅咒，居然当做撞邪……你知道我当时什么心情吗！”</p>
+	<p class = 'firstLineIndent'>“当然知道，这就是我告诉那个沙漠美人你命中孤星的原因！”</p>
+	<p class = 'firstLineIndent'>“我就说一个外来者怎么会知道这些传言，果然是你这个混蛋！！”</p>
+	<p class = 'firstLineIndent'>好吧，接下来，最完美的人类英雄亚当，和硫磺山城最威严的最高法官无眠者，如同小孩子打架般打成了一团。</p>
+	<p class = 'firstLineIndent'>但一如既往，这种毫无意义的战斗很快就结束了。</p>
+	<p class = 'firstLineIndent'>虽然半神战士很容易就收拾了我这个战斗力不足五的渣，但没有痛觉的我又怎么会怕他。各类关于光棍的讽刺，连接不断。</p>
+	<p class = 'firstLineIndent'>“活该撸一辈子的老光棍。”</p>
+	<p class = 'firstLineIndent'>“传说单身30岁就是大魔法师，你都快200岁了，难道已经升级终极大魔导了，来，放个火球我看看。”</p>
+	<p class = 'firstLineIndent'>“要不要我用魔法帮你把小左、小右变成妹子？保证超可爱哦，噢噢噢，你动摇了，你居然动摇了。别傻了，若魔法做得到这点，我现在还会单身？”</p>
+	<p class = 'firstLineIndent'>当然，在我用言语伤害他的同时，我的内心也在滴血。</p>
+	<p class = 'firstLineIndent'>“我都376岁了，还是单身……我要复活呀！！”</p>
+	<p class = 'firstLineIndent'>等我们想起今天还有正事要处理的时候，已经到了日落西山的时候，果然，正如某位哲人所说，彼此伤害后之剩下空虚。</p>
+	<p class = 'firstLineIndent'>“喂，你今天到我这里来，总不会来找我打架的吧？”</p>
+	<p class = 'firstLineIndent'>“当然不是，玛格丽特要我来做正事的，是什么了？让我想想！”</p>
+	<p class = 'firstLineIndent'>“果然老年痴呆了。”</p>
+	<p class = 'firstLineIndent'>“别吵！我就快想到了！哦哦，对了，今天有两件事，不，其实是一件事。”</p>
+	<p class = 'firstLineIndent'>“嗯？”</p>
+	<p class = 'firstLineIndent'>“我快挂了，你应该知道吧。”</p>
+	<p class = 'firstLineIndent'>明明说自己的死讯，这木头却仿若说明天去哪里玩一般轻描淡写。</p>
+	<p class = 'firstLineIndent'>“当然，最短一年，最长三年，你就该挂掉了。”</p>
+	<p class = 'firstLineIndent'>我当然知道，系统提示的人物信息之中，他的名字旁有个红色边框（寿命将近），他离死期已经不远。</p>
+	<p class = 'firstLineIndent'>“157年，我已经活得够久了，也没有什么遗憾。”</p>
+	<p class = 'firstLineIndent'>是吗？没什么遗憾？也是，艾希大陆上正常人类的寿命是60－80年，这厮仗着实力惊人，硬是撑到了近两百，也的确算是长寿了。</p>
+	<p class = 'firstLineIndent'>“若你还想活得更久，实际上没什么难度的。”</p>
+	<p class = 'firstLineIndent'>当然没难度，这么强大的战士，只要愿意信仰众神，随便一个使徒身份，就能让其寿命无尽，而若是不想为人效劳的话，转生其他长寿种族，比如天使、恶魔、亡灵，对他来说，都不是难事。</p>
+	<p class = 'firstLineIndent'>但亚当却笑了，笑的云淡风轻，笑的一无牵挂，明明依旧年轻，却仿若已经看穿了世事无常的老者。</p>
+	<p class = 'firstLineIndent'>“不，150年作为短命的人类太长了，我已经活够了。一个一无所获的乡村少年，已经完成了他的英雄梦。现在认识的都死的差不多了，想做的都做完了，也该到了休息的时候了。再说了，老不死的总站在上面，也很难看，也该到了给新人上位的时候了。”</p>
+	<p class = 'firstLineIndent'>“……你还在惦记莉莎呀。”而他的豁然却骗不过我。</p>
+	<p class = 'firstLineIndent'>莉莎·格兰特，亚当过去的同伴，也是暗恋的对象，不过，早在一百多年前死在对永夜大君的战斗之中。</p>
+	<p class = 'firstLineIndent'>凭着这厮的能力，若真想找个女友，又怎么会找不到，那两次婚礼，若他真的坚持到底，凭他的战力，又怎么会看着被我们闹场。</p>
+	<p class = 'firstLineIndent'>“哎呦，你还真是情圣大人呀。不过，太自私了点吧。”</p>
+	<p class = 'firstLineIndent'>“是的，我很自私。”他居然点头承认了。“我对不起玛格丽特，作为不朽者的她还很年轻，她应该有更好的选择。”</p>
+	<p class = 'firstLineIndent'>大贤者玛格丽特痴恋亚当，亚当却放不下死掉的前女友，已经是硫磺山城高层公开的秘密了。</p>
+	<p class = 'firstLineIndent'>那所谓的两次婚礼，更多的，只是期望玛格丽特能够放弃自己吧，当然，玛格丽特毫不犹豫了联系了我，要我给亚当的婚礼上赠送“礼物”，无疑也表明了她死不放弃的态度。</p>
+	<p class = 'firstLineIndent'>谣言这种东西，可以散播，自然可以驱散，之所以已经转变了人人都知道的秘密，大概只是作为城主的亚当，乐于看到这些吧。</p>
+	<p class = 'firstLineIndent'>“愚蠢的三角关系呀。好吧，这种事情作为外人的我不想插嘴，不过既然你想死了，那么，另外一件事我也猜到了。”</p>
+	<p class = 'firstLineIndent'>“当然，我这个狱卒既然要死了，那么你这个囚犯，也到了刑满释放的时候。恭喜你了，永夜大君，即将获得自由的滋味感觉如何？”</p>
+	<p class = 'firstLineIndent'>是的，这座硫磺山城，其实就是监狱，勇者亚当、大贤者玛格丽特、上古红龙小红三巨头都是狱卒。</p>
+	<p class = 'firstLineIndent'>而我，曾经的亡灵大帝永夜大君，就是这座监狱的唯一囚犯！</p>
+	<p class = 'firstLineIndent'>“那么，勇者亚当，你确定要放我出去毁灭世界？”</p>
+	<p class = 'firstLineIndent'>“随你，没有莉莎的世界，要毁灭就毁灭吧。”</p>
+
+
+<!-- <<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='index.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='0010.html';"> Next </button>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
