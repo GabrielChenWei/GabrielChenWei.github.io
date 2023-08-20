@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!--disable viewpoint meta content below disables the font changing feature-->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!--ddisable viewpoint meta content above disables the font changing feature-->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 32px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0.1em;
+	margin-right: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 2.2em; 
+	
+}
+#_userPanel {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	border: 3px solid #73AD21;
+	border-radius: 1em;
+	background-color: powderblue;
+	width: auto;
+}
+#_userInput {
+	position: fixed;
+	top: 1em;
+	right: 4em;
+	font-size: 1.2em;
+	width: 20em;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+
+/******* changeFontSizeUserPanel element *********/
+
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+
+<div id="_userPanel">
+	<span style="display:inline-block;"><button id="_backToContent" onclick="funcGotoTop()">⬆️</button></span>
+	<span style="display:inline-block;"><button id="_biggify">A+</button></span>
+	<span style="display:inline-block;"><button id="_reset">A</button></span>
+	<span style="display:inline-block;"><button id="_smallify">A-</button></span>
+	<span style="display:inline-block;"><button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button></span>
+</div>
+
+<div class=container><a id="TocTop"></a>
+
+<!-- <<<< Start, insert new list item below this line >>>> -->
+
+<h2>第一千七百七十章 直面疯嚣</h2>	
+	<p class = "firstLineIndent">所有幻觉烟消云散，郝仁看了看已经恢复正常的飞船舱室，莉亚和薇薇安的身影重新出现在他身旁，而且两人脸上的表情一切如常——看样子受到幻觉影响的也只有他一个人。</p>
+	<p class = "firstLineIndent">或者说，灭世女神-疯嚣之主仅仅是找到他说了一堆莫名其妙的话而已。</p>
+	<p class = "firstLineIndent">他忍不住摇摇头，低声咕哝：“故弄玄虚。”</p>
+	<p class = "firstLineIndent">“她已经知道我们来了，”莉亚脸上的表情一片平静，她看向舱室内的某个方向——那里只有银白色的金属墙壁，但她的视线却仿佛穿透了舱壁，看到了遥远太空中的景象，“大家做好准备……”</p>
+	<p class = "firstLineIndent">几乎就在莉亚话音刚落的同时，一股强大的压迫力突然涌上郝仁和薇薇安的心头。</p>
+	<p class = "firstLineIndent">那种感觉，就如同直面一匹足以吞噬万物的巨兽，自己所有的力量在那巨兽面前都毫无意义，再强大的强者也会被视作巨兽的食物，并毫无反抗之力地被撕成碎片。</p>
+	<p class = "firstLineIndent">莉亚毫不犹豫地张开了自己的神性防护，并取出那本神圣的笔记，随着笔记的书页翻开，记载着千万种秩序与规则的神文浮现在半空中，将整艘飞船都包裹在其中。</p>
+	<p class = "firstLineIndent">短暂的心智影响被莉亚抵消了，郝仁立刻取出随身空间中的两把长剑，同时扭头对薇薇安喊道：“等会你集中精力就好，不用管我们俩！”</p>
+	<p class = "firstLineIndent">几道传送的闪光在三人身上一闪而过，下一秒，三人便已经来到了巨龟岩台号的上层甲板区，广袤无垠而又充斥着混乱的黑暗宇宙瞬间扑面而来。</p>
+	<p class = "firstLineIndent">随着混乱时空的瓦解，黑暗深渊的深层区和其它各层重新成为连续结构，遥远太空中那些巨大的混沌结构体就好像漂浮在黑暗中的一道道山脉般映入郝仁的眼帘，而在所有混沌结构体的中心，则是一片广阔的区域，那里漂浮着上古时代的残骸与废墟，都是早就被破坏的监狱设施。</p>
+	<p class = "firstLineIndent">在所有废墟的中央，一颗黑暗的天体正静静悬浮在那里。</p>
+	<p class = "firstLineIndent">它被浓雾包裹着，表面起伏不定，并不断浮现出各种不可名状的漩涡与面孔，暗红色的闪电与流光在那浓雾的深处游走，就仿佛随时会流淌出来的血液一般，而在这颗黑暗天体与巨龟岩台号之间，则有一个苍白的身影正安静地站立在太空之中。</p>
+	<p class = "firstLineIndent">那个身影静静地看着闯入的不速之客，脸上突然露出了微笑：“欢迎来到世界之末，你们是这里的第一批访客——很快，也将是最后一批。”</p>
+	<p class = "firstLineIndent">真空环境中本来是无法传播声音的，但对于站在这里的人而言，交流并不需要真正发声——所有的声音都直接在每一个人的脑海中响起。</p>
+	<p class = "firstLineIndent">在看到那个苍白身影的一瞬间，郝仁就知道对方的融合已经彻底完成了。</p>
+	<p class = "firstLineIndent">她仍然是当初在黑暗领域中曾见过的那副模样，但那同样的身体中却蕴藏着完全异化的本质——如果说当初的灭世女神还有那么一丁点的理智与感性存在的话，那么现如今在这幅躯壳中充斥的便只有纯粹的癫狂与毁灭欲.望，尽管她在微笑，尽管她在说话，但她那每一个看似“正常”的言行中都带给郝仁巨大的违和感。</p>
+	<p class = "firstLineIndent">那是一个套着人形外皮的……不可名状之物，肉眼所能见到的身体只是她展露在现实空间中的一个“拟态”，她真正的形态隐藏在茫茫宇宙的无穷黑暗之中，那是一大团令人作呕的、不断蠕动的东西，郝仁用自己的特殊视野可以很清楚地看到那些东西——它们充斥了这里的整个空间，从灭世女神的身体延伸出去，连接着她背后的黑暗天体，并向四面八法无限蔓延。</p>
+	<p class = "firstLineIndent">“跟一个终极疯子合体之后，你倒是变得比以前诗意起来了。”面对自己的邪恶分身，莉亚没有愤怒，也没有退缩，而是带着不屑嘲讽道，“怎么样？变成怪物的感觉是不是比之前更好了？”</p>
+	<p class = "firstLineIndent">面对来自自己另外半身的嘲讽，灭世女神只是面无表情地抬起手指，指向巨龟岩台号的方向。</p>
+	<p class = "firstLineIndent">而在她采取动作的一瞬间，诺兰便已经做出反应，仅存的部分推进器将出力调到最大，飞船瞬间离开了原本的位置，而郝仁三人也一下子传送到了数千米之外。</p>
+	<p class = "firstLineIndent">一个苍白的巨大球体悄无声息地出现在他们原本所处的位置，那球体转瞬即逝，但却在消散之后留下了一团巨大的黑暗空洞，光线在那空洞周围不正常地扭曲，并统统塌陷向空洞中心的某个点。</p>
+	<p class = "firstLineIndent">尽管空洞转瞬即逝，郝仁还是立刻意识到那里发生了什么：梦位面宇宙的一部分被永久地删除了。</p>
+	<p class = "firstLineIndent">“这种简单招数……你以为只有你一个人会？！”莉亚笑了起来，漂浮在面前的大书再次翻开，神文闪耀之间，灭世女神周围的空间立刻开始扭曲，大片大片的时空被从宇宙的整体结构中撕裂开来，“知识就是力量！”</p>
+	<p class = "firstLineIndent">在莉亚采取进攻的一瞬间，郝仁也举起了手中长剑，一边念诵着渡鸦12345的名字，一边冲向太空中那个苍白的身影。</p>
+	<p class = "firstLineIndent">在巨大的能量冲击中，空间结构开始摇摇欲坠，以双方的交战点为中心，所有的光影都显得朦胧而错乱起来，就好像一层模糊的透镜笼罩了整片区域一般。</p>
+	<p class = "firstLineIndent">已经失去大半推进机组，能源系统也严重受创的巨龟岩台号无法继续参与战斗，她趁着混乱爆发的瞬间便飞速离开了破坏最严重的区域，以防止给郝仁他们造成干扰——她冲向战场边缘一片漂浮在黑暗中的远古残骸，那是曾经监狱守卫系统的一部分，那些残骸群中残留的能量可以掩盖住飞船本身的信息波动。</p>
+	<p class = "firstLineIndent">而薇薇安同样没有参与正面进攻，在郝仁和莉亚吸引了灭世女神几乎全部精力的时候，她却张开了双手，仰望着混沌黑暗的太空。</p>
+	<p class = "firstLineIndent">“准备沐浴月光吧……”她低声自语道，“真正的……月光……”</p>
+	<p class = "firstLineIndent">……</p>
+	<p class = "firstLineIndent">一道强大的冲击从侧面袭来，郝仁身上的护盾闪烁了一下，他的身影随之出现在数千米外的太空中，数据终端趴在他肩头尖叫着：“搭档！集中注意力！”</p>
+	<p class = "firstLineIndent">“我已经够集中了！”郝仁双剑交叉，劈开那些在太空中到处乱飞的混乱能量团，“闪避比不过对面的命中能有什么办法！”</p>
+	<p class = "firstLineIndent">“为何挣扎不休？”灭世女神的声音在每一个人脑海中响起，她站在虚无之中，双手张开，仿佛布道一般说道，而无穷无尽的苍白射线与光球便在她周围浮现，一点点吞噬着战场上的每一寸空间，“宇宙终将湮灭，就如这狭窄的空间终将被我完全吞噬，你们只是在有限的倒计时中浪费体力而已！”</p>
+	<p class = "firstLineIndent">莉亚的身影在数千米外重新凝聚出来，她的身体笼罩着一层淡金色的光芒，圣典的书页已经解离开来，化为无数纸页漂浮在她周围：“宇宙终将湮灭？好啊，我又没说不承认这点！”</p>
+	<p class = "firstLineIndent">灭世女神看了莉亚一眼，仿佛有些意外对方为何会突然说出这句话：“哦？”</p>
+	<p class = "firstLineIndent">“宇宙确实终将湮灭……但那关你蛋事！！”莉亚高高举起右手，接着用力挥下，无数神文从她身边的纸页中浮现，将那些四处乱飞、吞噬空间的苍白射线逐一挡下，“世界的寿命是有限的——但那关你蛋事！众生是会死亡的——但那关你蛋事！万物都有被虚空吞噬的一天——但那又关你蛋事！”</p>
+	<p class = "firstLineIndent">一片金色的光霞以莉亚为中心迅速扩展，无序的宇宙空间在光霞照耀下迅速得到梳理，那些因时空错位而扭曲的古老残骸也短暂地恢复了本来面貌。</p>
+	<p class = "firstLineIndent">“人不能因为总有一天会死就放弃生存，宇宙不会因为终有一天灭亡而不再诞生，死是万物轮回中的一环，难道生就不是了？！</p>
+	<p class = "firstLineIndent">“这个宇宙总有一天会灭亡，如今的我甚至可以将那一刻到来的时间精确计算到毫秒，但那又怎样？它自有它的死期，你却要出手去提前它——你算个什么东西？</p>
+	<p class = "firstLineIndent">“疯嚣之主算个什么东西！！”</p>
+	<p class = "firstLineIndent">一团盛大的光辉从虚空中凭空产生，光辉笼罩之下，一切混沌与错位的信息都瞬间复原，而这种“修复”对于掌握疯嚣之力的灭世女神而言却不亚于洪水猛兽一般的伤害，她终于没办法再淡定地站在原地，而是略显狼狈地一个空间传送离开了“秩序之光”照耀的范围。</p>
+	<p class = "firstLineIndent">她怒吼着：“你竟然……”</p>
+	<p class = "firstLineIndent">“我说的有一个字不对么？”莉亚身边的书页急速旋转着，在光辉照耀中，她的身影都好像被放大了几分，“口口声声说世间众生挣扎求生是违背了什么自然规律，你提前毁灭一切倒是不违背了？掌握点破坏力就真以为自己代表着万物归亡的命运了——你自己还终有消亡的一天呢，怎么不见你先死一个！”</p>
+	<p class = "firstLineIndent">莉亚很少有这样爆发的时候，但此时此刻面对疯嚣之主和她的邪恶半身，她想到了这个宇宙从上古年代便遭受的灾厄，想到了自己所创造的无数生命被一朝毁灭的惨剧，于是滔天怒火顿时引燃，看到她此刻的表现，郝仁才意识到原来在此之前这位创世女神的平静和淡然全都是自我压制的结果，真正释放出怒火的她……</p>
+	<p class = "firstLineIndent">“骂街超厉害啊。”</p>
+	<p class = "firstLineIndent">数据终端漂浮在郝仁脑袋旁边，发自肺腑地感叹。</p>
+	
+	
+<h2>第一千七百七十一章 惊不惊喜</h2>	
+	<p class = "firstLineIndent">郝仁也没想到莉亚进入战斗状态之后直接就切换了狂暴模式——身边环绕着无数神文，身前还飘着一本发金光的圣典，但本人却杵在半空中跟人对着骂街，骂的整个宙域都地动山摇，莉亚现在这画风要是扔给那帮创世女神信徒十有八九就又是一轮信仰崩盘……</p>
+	<p class = "firstLineIndent">毕竟，前不久那帮信徒们才好不容易接受了自己的女神是个插着腰剪刀手一脸傻乐的萝莉来着……</p>
+	<p class = "firstLineIndent">而莉亚的这番爆发显然也大大出乎灭世女神的预料，她一时间显得狼狈不堪，但却并不是因为莉亚言语上的攻击有什么效果——她已经完全与疯嚣之主融合，混沌与破坏就是她的本质，哪怕莉亚骂街功夫再厉害也无法在这方面动摇她，真正让灭世女神手忙脚乱的是莉亚那层出不穷的新攻击方式。</p>
+	<p class = "firstLineIndent">不管是直接修改局部法则来抵消混沌之力，还是用神文来复原时空秩序的手法，都是她不曾知晓的。她原以为自己和莉亚系出同源，便能够掌握后者的战斗节奏，但现在她却发现自己从一开始就出现了失误。</p>
+	<p class = "firstLineIndent">“你这些力量……都是从哪来的？！”灭世女神再一次被迫传送到莉亚的攻击范围之外，她失去了一开始的从容和淡定，转而有些气急败坏，“你在这短短的几个月时间里……到底做了什么？”</p>
+	<p class = "firstLineIndent">莉亚露出笑容，手中的小抄再次翻到新的篇章：“我做了什么？我在学习，我一刻不停地学习，一刻不停地做题，一刻不停地写作业！你永远都不懂什么叫知识就是力量，但是现在……一课一练了解一下！”</p>
+	<p class = "firstLineIndent">无数符文凭空出现在数百万公里范围内的宇宙空间中，那些被灭世女神吞噬和撕裂的时空结构在符文运作下迅速平复，但就在符文运作到一半的时候，一股无形的力量拂过了战场，将所有符文瞬间抹消。</p>
+	<p class = "firstLineIndent">“我对你的力量来源毫无兴趣，你这些小把戏确实比以前厉害很多，但这根本毫无意义，”灭世女神的身影再度出现在宇宙中，而在她身后，那颗笼罩着混沌迷雾的黑暗天体渐渐有了变化，无数道暗红色的光流在云雾深处涌动，云雾本身则渐渐被光流吸收，变得稀薄起来，“要谢谢你的配合，如果你没有这么肆无忌惮地挥洒自己的神力，引擎恐怕还没这么快做好准备……”</p>
+	<p class = "firstLineIndent">那颗黑暗天体周围环绕的云层终于消失了，它狰狞可怖、令人憎恶的本体出现在所有人面前，郝仁看到它就像一团随意捏起来的金属、岩石、血肉与骨骼，这些相互之间区别甚大的物质堆叠成了星球的主体：角质层一样的厚重地壳呈现出龟裂状态，裂缝下是溃烂的血肉，血肉之间则充填着复杂的金属结构，所有东西都在一刻不停的蠕动着，而这些蠕动之物则在星球表面形成了仿佛人脸般怪异的结构。</p>
+	<p class = "firstLineIndent">比起创世引擎完工时通过“共鸣现象”看到的景象，亲眼目睹“灭世引擎”所带来的视觉冲击明显更加强烈。</p>
+	<p class = "firstLineIndent">在看到那灭世引擎的一瞬间，莉亚便沉默下来，良久才开口：“我早就知道你已经把它造完了。”</p>
+	<p class = "firstLineIndent">“但你根本无力阻止，”灭世女神站立在太空中，她张开双手，那苍白的身影在黑暗天体的背景中仿佛形成了一个符号，“你们只能像这样偷偷摸摸地渗透进来，但渗透进来之后却根本不可能摧毁或阻止引擎的启动。我的‘姐妹’……你应该很清楚这东西的原理……”</p>
+	<p class = "firstLineIndent">黑暗天体表面的面孔愈发清晰起来，那面容中似乎蕴藏着无尽的苦难与仇恨，莉亚看着它，却丝毫没有闪躲或者防御的动作：“只要捕捉到我的神性，它就会启动真神歼灭模式，对吧。”</p>
+	<p class = "firstLineIndent">“说再见吧，”灭世女神微笑起来，“这个宇宙湮灭之后，不会有任何人再记得你了。”</p>
+	<p class = "firstLineIndent">那黑暗天体启动了。</p>
+	<p class = "firstLineIndent">无穷无尽的能量被约束，集中，然后化为足以影响宇宙运行、足以抹消神明的威能，大量黑暗的延伸物从天体表面逸散出来并消失在太空中，与这个宇宙的底层数据建立着连接，随后它开始在整个宇宙的底层数据中检索“创世女神”的信息特征，并准备将这部分数据从宇宙范围内删除。</p>
+	<p class = "firstLineIndent">但灭世女神脸上却有了表情变化，她显得有点困惑：因为莉亚此刻竟然完全没有采取行动，郝仁也只是手持长剑在远离战斗中心的地方专心划水——事实上从开战到现在郝仁都没怎么出过力，战斗的主角一直都只是莉亚和灭世女神而已。</p>
+	<p class = "firstLineIndent">而至于薇薇安……薇薇安从很早以前就好像不知躲到了哪里，现在战场上完全看不到她的影子。</p>
+	<p class = "firstLineIndent">但灭世女神的困惑也只持续了一会，因为那黑暗天体表面流动的暗红色光芒已经达到了顶峰，不管创世女神有什么计划，这时候执行都已经迟了。</p>
+	<p class = "firstLineIndent">引擎完成了对创世女神的信息检索。</p>
+	<p class = "firstLineIndent">但是却返回一个404。</p>
+	<p class = "firstLineIndent">黑暗天体表面的暗红色流光迅速黯淡下去，那些蠕动的不可名状之物一瞬间就好像通了电流一样剧烈震颤起来，一连串的爆炸从地壳下层爆发，掀飞了那些厚重的角质与岩石，在太空中喷发出无数道壮观的物质射流。</p>
+	<p class = "firstLineIndent">寂静，但又壮观绝伦。</p>
+	<p class = "firstLineIndent">“什么……这怎么可能？！”</p>
+	<p class = "firstLineIndent">即便是之前莉亚一边骂街一边打出一套超必杀的时候都没有让灭世女神如此失态，她在这一刻所感受到的震惊远超之前，她精心准备了无数年来窃取那些黄金圆盘，又耗费巨大心力才造出的灭世引擎，此刻竟然没有发挥出任何作用。</p>
+	<p class = "firstLineIndent">她可以想象莉亚用别的什么花招硬抗这一下攻击，甚至可以接受引擎因本身的架构缺陷而无法启动，但却无法接受引擎在启动之后就这么莫名奇妙地……宕机了！</p>
+	<p class = "firstLineIndent">而就她愣神的这么一瞬间，无数淡金色的神文便突然出现在她周围，将她的所有行动路线一下子封死，之前始终游弋在战场外缘的郝仁也突然间冲了上来，两把宇宙裂片长剑毫不留情地斩下。</p>
+	<p class = "firstLineIndent">长剑确实斩中了目标，但一股仿佛无可抵抗的力量却突然反馈回来，郝仁顿时被弹飞出去，而莉亚制造的神文束缚也在闪烁了数次之后熄灭。</p>
+	<p class = "firstLineIndent">灭世女神也并非毫发无损，她的手臂上终于多出一条伤痕，但她对此毫不关心，只是怒视着莉亚：“你到底做了什么？！”</p>
+	<p class = "firstLineIndent">“改个户口而已，”莉亚淡淡一笑，更多的神文从她身边浮现出来，“但是对你而言，大概是没法理解的吧。”</p>
+	<p class = "firstLineIndent">“毫无意义……毫无意义……”灭世女神的声音在每个人脑海中回荡着，宇宙空间中狂暴的混乱力量随着她的暴怒而愈发强大，之前被莉亚修复并稳定住的时空结构再一次变得脆弱起来，本来还打算再砍一剑的郝仁立刻止住了自己的动作，因为他看到灭世女神背后的那个黑暗天体再一次有了变化。</p>
+	<p class = "firstLineIndent">“无所谓……引擎杀不死你，但我可以……只不过是让这个可悲的世界再多几次呼吸而已……”</p>
+	<p class = "firstLineIndent">灭世女神与黑暗天体之间隐隐约约浮现出了无数漆黑中透着血色的光流，在之前启动过程中受到反噬损伤的灭世引擎再一次被强行启动了——对于这个庞大而蕴含着无穷力量的神器而言，之前那些小小的爆炸其实根本不值一提，事实证明，它修复的速度远比损伤的还要快。</p>
+	<p class = "firstLineIndent">暗红色仿佛血液一般的光流再次出现在天体表面，那些蠕动的地壳和血肉也再次形成仿佛面孔一般的结构，但这一次，它所浮现出的却是灭世女神那已经开始扭曲的面容。</p>
+	<p class = "firstLineIndent">哪怕“真神歼灭”的功能失效了，灭世引擎本身也仍然是一件强大的兵器。</p>
+	<p class = "firstLineIndent">一瞬间，时空的秩序开始动摇、崩溃，原本被黑暗与混沌包裹起来的黑暗深渊竟然出现了无穷无尽的星光——来自梦位面各处的星辰景象被扭曲的时空结构投影到了这个宙域，大大小小的星系与气云以完全不正常的比例浮现在黑暗深渊的各处，刹那间，这个疯狂的地方竟然也星光璀璨。</p>
+	<p class = "firstLineIndent">而在这些不正常的星光中，一道道黑暗的洪流从灭世引擎周围的虚无中凭空生成，向着莉亚和郝仁涌去。</p>
+	<p class = "firstLineIndent">“你们就湮灭在混沌中吧！！”</p>
+	<p class = "firstLineIndent">灭世女神的声音在郝仁脑海中吼叫着，伴随而来的精神污染让他头痛欲裂，甚至灵魂都变得动摇起来，然而一阵突然响起的钟声却平复了这一切。</p>
+	<p class = "firstLineIndent">那钟声突兀地回荡在本应真空、寂静无声的宇宙中，仿佛无处不在般难以判断其来源，并带着一种隽永而神秘的气息。</p>
+	<p class = "firstLineIndent">与钟声一同出现的，还有骤然间充塞了整片宙域的血色月光。</p>
+	<p class = "firstLineIndent">灭世女神惊愕地抬起头，看到一轮血红色的月亮不知何时已经出现在遥远的太空中，它仿佛实实在在的天体，但又好像不存于世般呈现出朦胧的质感，仅凭肉眼根本难以判断它真实的位置与距离，但她能清晰地感觉到，从那轮红月中散发出的某种“力量”正在干扰并压制灭世引擎的运转。</p>
+	<p class = "firstLineIndent">“那是……”灭世女神忍不住喃喃自语，因为她有着和莉亚近乎一样的记忆，因此她很容易便联想到了这轮红月的来历，“红月……我想起来了，是你扔到另一个世界的那个小家伙……但她那羸弱的力量怎么可能……”</p>
+	<p class = "firstLineIndent">“你当然不会知道，因为我给你看的，只是我一部分的记忆而已，”莉亚终于能得意地笑起来了，“因此你也肯定不会知道，你所建造的那个引擎……只不过是个半成品。”</p>
+	<p class = "firstLineIndent">红月高悬在莉亚身后，她也张开了双手，同样仿佛化身为一个符号。</p>
+	<p class = "firstLineIndent">“真正的创世引擎，是需要封装的……”</p>
+	
+	
+<h2>第一千七百七十二章 意不意外</h2>	
+	<p class = "firstLineIndent">在充盈着光辉的无垠空间之中，漂浮着无以计数的符号与图像，一道道光束就好像虚空中的桥梁一般在巨大的晶柱之间连接着，交织成了多重同心圆的结构，而那些巨大的晶柱则呈现出近乎透明的淡金色，这让它们本身看上去也仿佛光铸一般——整个空间，便是光铸的世界。</p>
+	<p class = "firstLineIndent">而在那多重同心圆的中央，则立着一根高高的水晶塔，薇薇安站在水晶塔的顶部，眼神冷漠地注视着自己眼前的符文列表与全息影像。</p>
+	<p class = "firstLineIndent">一道道漂浮的光流从她后背延伸出来，一端连接着脊椎，另一端则逸散在空气之中，与那些飘浮在空中的符文隐隐呼应，大量光流与符文交织在一起，就仿佛数千米长的羽翼一般灿烂夺目。</p>
+	<p class = "firstLineIndent">“创世引擎已启动，红月系统转入二级处理模式，系统同步率百分之九十六……”</p>
+	<p class = "firstLineIndent">“E型数据流转入最高指令节点，操控响应率百分之百。”</p>
+	<p class = "firstLineIndent">“各系统状态良好，引擎基础单元限制器解除。”</p>
+	<p class = "firstLineIndent">“这里是薇薇安·安塞斯塔，创世引擎已进场，月光祝福所有人。”</p>
+	<p class = "firstLineIndent">冷漠而茫然的目光稍稍褪去，薇薇安的双眼重新灵动起来，她吸了口气，让自己略有些动荡的精神力恢复平静：虽然已经模拟测试了几次，但一次性驱动红月和创世引擎两套系统，并将两套系统进行嵌合的操作还是会带来一定的运算负担，哪怕有妖精们帮忙分担计算任务，她这个“女王节点”要承受的压力仍然是极大的。</p>
+	<p class = "firstLineIndent">这时候她便不得不认同郝仁说的一句话：学霸就是学霸，天赋型选手就是没有道理可讲的，一个失学失忆还精神分裂的萝莉女神竟然能设计出这么一堆复杂的系统……她那脑子咋长的？</p>
+	<p class = "firstLineIndent">在薇薇安身后的流光中，小妖精们一个接一个地冒出头来，这些叽叽喳喳的小家伙根本不知紧张为何物，此刻在黑暗深渊的最中心他们竟反而兴奋起来了：“女王女王！系统启动啦系统启动啦！”“女王好厉害！”“女王要不要把所有限制器打开试试？可好玩啦！”“谁看见我的灵能调节器啦？”</p>
+	<p class = "firstLineIndent">薇薇安挥了挥手：“现在不是玩闹的时候，盯住各个系统——我对它们还不够熟悉，必须依靠你们的本能才能操控好这个东西。”</p>
+	<p class = "firstLineIndent">妖精们轰然答应，然后化作一道道流光飞向远方那些发出淡金色光芒的晶柱，一瞬间，薇薇安眼前的符文阵列与图表也显得简洁清晰了许多。</p>
+	<p class = "firstLineIndent">她将视线投向眼前的全息投影，在那里，莉亚正张开双手，一脸得意地告诉处于惊愕状态的灭世女神：“真正的创世引擎，是需要封装的！”</p>
+	<p class = "firstLineIndent">是的，创世引擎是需要封装的，尽管从蓝图上看它已经是个可以独立运作的完成品，但事实上，那些蓝图只是引擎的二分之一罢了。</p>
+	<p class = "firstLineIndent">另外二分之一，是红月，严格来讲——是薇薇安。</p>
+	<p class = "firstLineIndent">就如莉亚之前说过的，薇薇安是她所有计划的核心，这些计划包括尤古多拉希尔方舟、终焉网络、弑神战争，当然也要包括创世引擎。</p>
+	<p class = "firstLineIndent">在将郝仁和薇薇安的灵魂相互补全之后，这些最至关重要的隐藏部分才终于得以彰显，那是就连莉亚本人都已经遗忘的“计划关键”，也是薇薇安“召唤红月”能力的真相。</p>
+	<p class = "firstLineIndent">她的红月并不是什么进攻技能，也不是简简单单的“创始之星的投影”，那红月的强大威力仅仅是它作为一个超凡事物本身所具备的属性而已，根本算不上什么“本质”。红月的本质，其实是创世引擎的“容器”。</p>
+	<p class = "firstLineIndent">而薇薇安也不仅仅是终焉网络的最高节点，她同时也是创世引擎的控制者，是引擎的指令源。</p>
+	<p class = "firstLineIndent">没有这个指令源，创世引擎仅仅依靠黄金圆盘（或神之心）也可以运行，但却只能作为一个自律兵器而运行，只有当薇薇安作为“女王节点”接入引擎的控制系统，这个神器才算是完整的。</p>
+	<p class = "firstLineIndent">事实上莉亚当初设计创世引擎的时候便计划好了这一步——创世引擎在完成“使命”之后也不会销毁，它将成为薇薇安的备用座舰，终焉网络的“移动服务器”而继续存在下去，如果有朝一日终焉枢纽出了问题，创世引擎就是新的终焉枢纽。</p>
+	<p class = "firstLineIndent">不过这些计划如今都已经不再重要，重要的是完整版的创世引擎终于启动了，而且几乎一出场就完全压制了灭世女神所建造起来的那个黑暗天体。</p>
+	<p class = "firstLineIndent">“你竟然……”苍白的邪神怒视着已经完全降临的红月，后者虽然仍充满血色，但那血色中却时不时会流露出一缕金色的光辉，这让它在令人畏惧之余也多了一丝神圣的味道，“为了制造这个东西，你竟然欺骗了自己？！”</p>
+	<p class = "firstLineIndent">莉亚云淡风轻：“要对付你这种擅长钻人心灵漏洞的对手，欺骗自己不是很正常的手段么？”</p>
+	<p class = "firstLineIndent">“别以为你这就赢了！”灭世女神勃然大怒，“我如今已经与疯嚣之主融为一体，它的力量就是我的力量！不只是你能变强——在这里，我比你们所有人都要强大！”</p>
+	<p class = "firstLineIndent">随着灭世女神的暴怒，本已经被红月-创世引擎压制、开始逐渐崩坏的黑暗天体再次运转起来，来自黑暗深渊各处的混沌力量涌入了这个已经失控的灾难之星，硬生生让它挣脱了红月-创世引擎的控制。</p>
+	<p class = "firstLineIndent">空间再一次开始动荡，而与此同时，郝仁也收到了数据终端转发来的紧急情报：</p>
+	<p class = "firstLineIndent">“各防线告急！疯嚣之力的活动开始剧烈增强——守望要塞已经陷落，S-4区防线陷落，无人机军团第172至第268梯队全灭了！</p>
+	<p class = "firstLineIndent">“守护者舰队正在后撤至第二要塞群重建防线。</p>
+	<p class = "firstLineIndent">“瓦尔基里发来消息，所有生态行星均出现侵蚀点，最大规模的一次入侵已经开始！”</p>
+	<p class = "firstLineIndent">莉亚张开手，引导着红月的光芒聚焦在黑暗天体的周围，努力想要压制那个已经暴走的腐化神器：“你这样搞，你的‘灭世引擎’用不了几个小时就会自我解体！”</p>
+	<p class = "firstLineIndent">“但在引擎自毁之前，我可以把混沌的力量洒满整个宇宙……你所珍视的这个世界，你终究是保不住的……”那道苍白的身影冲向了莉亚，“而在这之前，我会先把你解决掉！”</p>
+	<p class = "firstLineIndent">两个神明再次开始了盛大的交锋，苍白的混沌之力与淡金色的神文在宇宙中不断构筑出一个个阵地，然后又在转瞬间相互碰撞湮灭，在短短的几分钟内，整片宙域就仿佛经历了无数次宇宙重生与毁灭。</p>
+	<p class = "firstLineIndent">物质被创造出来，然后归于虚无，秩序被建立起来，然后毁于混乱，空间与时间起起伏伏，纠缠在一起，几乎碾碎了漂浮在这一宙域的所有古代残骸。</p>
+	<p class = "firstLineIndent">就连躲藏在残骸群里的诺兰都不得不开始到处转移，以躲避那逸散的混沌力量。</p>
+	<p class = "firstLineIndent">而郝仁……他只是紧握着手中的两把长剑，在旁关注战斗的进展，却没有参与战局的意思。</p>
+	<p class = "firstLineIndent">在两位神明的伟力碰撞之下，战场上还能发挥威力的便是那两件神器：黑暗天体-灭世引擎，以及红月-创世引擎，但是这两个人造天体此刻也在相互牵制，根本没有余力去支援任何一方。</p>
+	<p class = "firstLineIndent">在强大力量的牵引与撕扯下，黑暗天体的地壳正在裂开无数巨大的伤口，那些臃肿的血肉组织与金属就好像融化一般从裂口中流淌出来，而红月却也并非毫发无伤，它表面掀起了一阵阵血色巨浪，那原本静止的“源血海洋”就好像沸腾一样疯狂起伏着，而在巨浪起伏之间，则可以看到有淡金色的、介于虚实之间的事物时不时闪过。</p>
+	<p class = "firstLineIndent">那淡金色的虚影便是创世引擎，每当红月与引擎的同步率下降，二者的融合就会减弱，创世引擎便会显露出来，而那金色虚影出现的越多，就意味着红月的状态越不稳定。</p>
+	<p class = "firstLineIndent">完全体的创世引擎虽然强大，但薇薇安对它的控制却并不熟练，再加上灭世女神用疯嚣之力强行“催化”了那个黑暗的引擎，这直接导致二者的对决格外艰难。</p>
+	<p class = "firstLineIndent">“同步率已经下降到百分之七十啦！女王女王快想想办法！”</p>
+	<p class = "firstLineIndent">“数据量太大了！要晕过去了！”</p>
+	<p class = "firstLineIndent">妖精们的声音在精神连接中回响着，不断报告各种各样的坏消息，薇薇安努力地安抚着他们，并告诉妖精们——那黑暗天体的崩溃速度要比红月更快，它一定会是首先坚持不住的。</p>
+	<p class = "firstLineIndent">妖精们因此稍微冷静下来，但薇薇安却一点都不感觉放松，因为她知道决定这个宇宙最终命运的，并不仅仅只是创世引擎和灭世引擎之间的对决而已。</p>
+	<p class = "firstLineIndent">她的视线不由得投向了旁边，在那里有着一个独立的全息影像，影像上所呈现出的是郝仁的身影。</p>
+	<p class = "firstLineIndent">一个不起眼的进度条正在这个投影的下方缓缓前进着。</p>
+	<p class = "firstLineIndent">而在太空中，随着大量金色神文破碎开来，莉亚和灭世女神的身影再一次变得凝实。</p>
+	<p class = "firstLineIndent">她们骤然分开，遥相对峙，莉亚身边漂浮的书页与神文已经比之前稀少了很多，丝丝缕缕带着金红色的血液漂浮在她附近；灭世女神的身体上同样有着大大小小的伤痕，只是在那伤口中流出的却不是鲜血，而是一团团黑色的烟尘雾气。</p>
+	<p class = "firstLineIndent">郝仁脑海中突然响起了莉亚的声音：“见鬼，这家伙比我想象的难缠。”</p>
+	<p class = "firstLineIndent">郝仁立刻询问：“你能暂时困住她么？”</p>
+	<p class = "firstLineIndent">“能，但你有什么计划？”</p>
+	<p class = "firstLineIndent">“守望要塞所控制的第一层防线正在全面崩溃，所有无人机和守护者舰队都在退向第二防线——所以我准备让第一防线残存的湮灭长矛发挥点作用。”</p>
+	<p class = "firstLineIndent">“这么远，能管用么？”</p>
+	<p class = "firstLineIndent">“反正最后一次发射了，把所有限制器解除不就得了？”</p>
+	<p class = "firstLineIndent">“……好，有你的风格，那就照着办吧！”</p>
+	<p class = "firstLineIndent">莉亚身边再次涌动起神力，准备进行下一轮进攻，而郝仁则在精神连接中呼叫着诺兰：“诺兰——信标系统还能用么？”</p>
+	<p class = "firstLineIndent">“本舰炸掉的是腰子，不是脑子——当然能用！”</p>
+	<p class = "firstLineIndent">“很好，等会你引导一下湮灭长矛的发射——我要来个超远程火力投射。”</p>
+	
+	
+<h2>第一千七百七十三章 弑神者（终章）</h2>	
+	<p class = "firstLineIndent">当黑暗深渊的中心爆发出这个宇宙有史以来最大规模的神力冲击时，在黑暗深渊的外围，秩序与混沌的战场也进入了开战以来最惨烈的阶段。</p>
+	<p class = "firstLineIndent">防线开始逐层崩溃。</p>
+	<p class = "firstLineIndent">随着灭世引擎以近乎自毁的方式进入过载状态，来自黑暗深渊的疯嚣之力便瞬间暴走起来，混沌的爪牙不再是一批一批地从那些扭曲结构体中涌出来，而是几乎瞬间便充斥了整片宙域——在黑暗深渊周边的每一寸空间中，每分每秒都有数不尽的衍生体凭空出现，就如颜料泼洒进水塘中一样迅速地污染着秩序的防线。</p>
+	<p class = "firstLineIndent">在这样骤然剧变的攻势面前，以守望要塞为核心的第一层防线几乎没抵挡多久便开始出现漏洞，随后整条防线以这些漏洞为中心逐渐崩溃。</p>
+	<p class = "firstLineIndent">强大的联合护盾被混沌怪物腐蚀瓦解，无人机群被淹没在黑暗的潮水中，一颗颗被改造成要塞和堡垒的天体在爆炸中四分五裂，无人机巢穴用密集的固定式炮台抵挡了一阵子，但很快便一个个地与集群意识失去了连接。</p>
+	<p class = "firstLineIndent">在不可阻挡的攻势面前，守护者舰队与守夜人舰队只能暂时向着第二层防线后撤，准备借助第二层防线上尚且完整的工事重新组织防御。</p>
+	<p class = "firstLineIndent">无数星民和守护者为了掩护大部队的转移而化为了宇宙中的微尘。</p>
+	<p class = "firstLineIndent">一连串的爆炸从中央控制塔向着四周蔓延，而除了中央建筑群之外，守望要塞的大部分建筑物都已经彻底熄灭，从四面八方冒出来的疯嚣衍生体越过那些已经报废的护盾发生器，仿佛饕餮巨兽般吞噬着它们眼前的一切物质，甚至时空本身，这座在不久前还灯火辉煌的雄伟堡垒此刻正如被海浪冲垮的沙堡般迅速消失。</p>
+	<p class = "firstLineIndent">在中央控制塔的上层控制室内，还有着最后一点残存的光明，那是数台大型终端机所发出的的光芒。这间控制室如今已经空无一人，只有AI在维持着最后的机能运作，在其中一台终端机的上方，全息投影上正显示着要塞内残存炮台的数量。</p>
+	<p class = "firstLineIndent">那数量已经跌破了两位数。</p>
+	<p class = "firstLineIndent">但是突然间，一条新的指令出现了，要塞AI立刻切换了自己的工作进程，那些用于监控要塞运行情况的程序被全部关闭，所有的全息投影上都只剩下一样事物：那是位于要塞核心区、还未被完全破坏的湮灭长矛矩阵。</p>
+	<p class = "firstLineIndent">“指令一：激活湮灭长矛，向XX坐标投送火力。”</p>
+	<p class = "firstLineIndent">“指令二：自爆。”</p>
+	<p class = "firstLineIndent">“开始执行。”</p>
+	<p class = "firstLineIndent">控制室内的光芒剧烈闪烁着，很快，又有两台终端机在一连串的火花之后陷入黑暗，但在要塞中心，那些仿佛奇特建筑物一般的湮灭长矛矩阵已经开始缓缓组合。</p>
+	<p class = "firstLineIndent">四具湮灭长矛发射器，有两具已经彻底损毁，另外两具则在注入能量之后重新明亮起来，刺眼的白色火花在那些水晶和线圈之间跳跃着，并渐渐汇聚在阵列的最前端。</p>
+	<p class = "firstLineIndent">一群疯嚣衍生体被这突然出现的能量浪涌所吸引，就像闻到血腥味的鲨鱼一般蜂拥而至，但那能量已经进入临界点，随着开火指令的下达，两道刺眼的光束划破了正逐渐聚拢起来的黑暗，并在遥远的太空中打开一条空间裂隙，随后消失于其中。</p>
+	<p class = "firstLineIndent">“发射成功，进入自爆流程。很高兴为您服务，本次服役结束。”</p>
+	<p class = "firstLineIndent">要塞各处残存的能量熔炉与弹药库同时被引爆，空前巨大的爆炸在宇宙中爆发开来，就仿佛一颗新星在烈焰与闪光中诞生，那夺目的光芒甚至短暂地压制了黑暗与混沌的侵蚀，并将无以计数的疯嚣衍生体撕成了碎片。</p>
+	<p class = "firstLineIndent">而在同一时刻，在第一防线的各个节点，同样出现了这般盛大的爆炸，无数要塞的连锁自毁甚至在短时间内压制住了疯嚣力量的活动，为刚刚撤退到第二防线的主力军团们留出了宝贵的喘息时间。</p>
+	<p class = "firstLineIndent">在黑暗深渊的最深处，金色与苍白的身影再一次分开。</p>
+	<p class = "firstLineIndent">周围的空间结构已经分崩离析，无数或明或暗的带状物就好像游弋的梦魇般漂浮在太空中，那些在战场上四处飘散的残骸一旦接触到它们，便会立刻瓦解成为最基础的数据元，消散在时间与空间的无尽混乱中。</p>
+	<p class = "firstLineIndent">灭世女神终于意识到了阴谋的存在，她停下疯狂的进攻，打量着这个已经崩溃的战场。</p>
+	<p class = "firstLineIndent">那苍白的脸上浮现出了惊愕。</p>
+	<p class = "firstLineIndent">在莉亚的有意识控制下，无以计数的淡金色符文留在了战场上，这些看似随意布设的符文原本只是自由地飘散着，但此时此刻，它们却全都静止了下来，并正在散发出越来越明亮的金色光芒。</p>
+	<p class = "firstLineIndent">时空结构的所属权瞬间被转移，这片宙域的权柄暂时性地落到了莉亚手上。</p>
+	<p class = "firstLineIndent">灭世女神怒吼着：“你想做什么？！”</p>
+	<p class = "firstLineIndent">莉亚没有回答，她张开了双手，身边漂浮的书页随之重新整理成圣典的模样，而那些漂浮在整个战场上的神文则同时发出更加明亮的光辉，从遥远的太空看去，可以很清晰地看到那些文字已经形成了一个有着复杂多层结构的球体——灭世女神正位于这个球体的中央。</p>
+	<p class = "firstLineIndent">直到这时，莉亚才终于开口：“我命令，万物停止运转。”</p>
+	<p class = "firstLineIndent">于是在金色符文所覆盖的宙域，一切都停止了。</p>
+	<p class = "firstLineIndent">不只是物质停止了运动，时间也一并静止下来，信息的流动消失了，宇宙的演化也随之停滞。</p>
+	<p class = "firstLineIndent">首先降临的是绝对零度，随后便是无边无际的黑暗——因为就连光的运动也陷入了静止。</p>
+	<p class = "firstLineIndent">在黑暗之中，唯有那无数的金色符文在闪闪发亮。</p>
+	<p class = "firstLineIndent">但一切都只持续了很短暂的瞬间，拥有同等位阶的灭世女神在疯嚣之力的加持下有着充足的力量对抗掌握了许多新神术的莉亚，在混沌力量的反扑中，静止的宇宙重新开始运转，黑暗褪去之后，位于符文阵列最中心的灭世女神抬起头来：“你以为这样就……”</p>
+	<p class = "firstLineIndent">“我可没说就只有这样。”莉亚淡淡地说道，而在她身后的太空中，巨龟岩台号正从阴影中浮现出来。</p>
+	<p class = "firstLineIndent">那艘银白色战舰的上层甲板已经打开，一个特制的天线装置从里面升了起来，在随着天线装置被激活，无数大大小小的空间裂隙浮现在她的身后。</p>
+	<p class = "firstLineIndent">湮灭长矛的光辉跨越了时空，轰然降临在灭世女神身上。</p>
+	<p class = "firstLineIndent">暴雨般的高能光束轰击持续了整整半分钟，就连莉亚在注视那光芒洪流的时候都忍不住眯起眼睛，当轰击临近结束的时候，灭世女神附近的区域已经仿佛被洗刷过一般变得“干干净净”。</p>
+	<p class = "firstLineIndent">所有的残骸碎片与空间裂隙都被湮灭长矛的力量抹平了。</p>
+	<p class = "firstLineIndent">“能解决么？”数据终端紧张地问道。</p>
+	<p class = "firstLineIndent">“不会这么容易。”郝仁回答。</p>
+	<p class = "firstLineIndent">而几乎就在郝仁话音落下的同时，轰击也结束了，在那逐渐消散的光焰深处，一个苍白的身影果然再度出现——她确实狼狈不堪，身上到处都是冒着黑色烟尘的伤口，甚至连一半的面孔都消失了，只余下一个狰狞的漆黑轮廓留在那里，但她仍然活着。</p>
+	<p class = "firstLineIndent">或者说，她压根就不会死。</p>
+	<p class = "firstLineIndent">“这就是你们的底牌了？”灭世女神的身体开始以惊人的速度恢复，她的声音甚至听不出任何虚弱，“可笑啊，我甚至都……”</p>
+	<p class = "firstLineIndent">她的话音未落，便被莉亚打断：“那如果加上这个呢！”</p>
+	<p class = "firstLineIndent">只见那些四处飘散的神文符号不知何时已经汇聚在一起，在莉亚身旁形成了仿佛一柄长矛般的朦胧幻影，而那本厚重的大书则在某种力量的牵引下分化瓦解成为漫天的光粒子，并飞快地“流淌”到那柄长矛的矛尖上，几乎是转瞬间，原本虚幻的长矛便成为了犹若实体的光铸武器。</p>
+	<p class = "firstLineIndent">莉亚从侧面抱住这根比她要大好几倍的武器，整个人都化为了武器的推进力，仿佛一道流星般冲向因恢复伤势而暂时无法移动位置的灭世女神。</p>
+	<p class = "firstLineIndent">她的声音几乎传遍整个宙域：“如果加上我呢！？”</p>
+	<p class = "firstLineIndent">金色的长矛瞬间贯穿了那个苍白的身影。</p>
+	<p class = "firstLineIndent">这一切都是瞬间发生，但却又好像跨越了无数的时光流转，郝仁感觉仿佛有一个世纪过去，金色与苍白的两团光芒才再度分开。</p>
+	<p class = "firstLineIndent">那柄淡金色的长矛无声无息地在宇宙中化为漫天光粒，而那本黑皮大书则再次出现在莉亚身旁——比起之前，这本圣典表面游动的光芒明显要微弱了数倍。</p>
+	<p class = "firstLineIndent">而灭世女神那苍白的身影则静止了几秒种，随后砰然化为无数飘散的碎片消失在宇宙中。</p>
+	<p class = "firstLineIndent">莉亚死死地盯着灭世女神消散的地方，力量上的过度损耗让她的身体忍不住有些发抖，丝丝缕缕的金红色血液从她的伤口中飘散出来，她却顾不上处理它们。</p>
+	<p class = "firstLineIndent">下一刻，她的瞳孔瞬间收缩。</p>
+	<p class = "firstLineIndent">一小片苍白的事物凭空浮现在太空中，紧接着，更多的苍白碎片凭空出现。</p>
+	<p class = "firstLineIndent">就仿佛是刚才那一刻的倒放，灭世女神的形体在太空里迅速重塑，几乎是眨眼间，她便完好无损地重新出现在那里。</p>
+	<p class = "firstLineIndent">“啊……欣赏你现在的表情感觉还不赖……”灭世女神低头看了看自己已经复原的双手，又抬头看向莉亚，“有意思……你们还真是准备了不少的惊喜……”</p>
+	<p class = "firstLineIndent">莉亚死死地盯着灭世女神的眼睛，可是突然间，她那紧张惊愕的表情全都消失了。</p>
+	<p class = "firstLineIndent">取而代之的是一个努力掩饰了很久的笑意：“可是真正的惊喜你还没见着呢。”</p>
+	<p class = "firstLineIndent">“什……”</p>
+	<p class = "firstLineIndent">灭世女神只来得及发出一个音节，便猛然转过身去，以毫厘只差挡住了两把劈砍到她面前的宇宙裂片长剑。</p>
+	<p class = "firstLineIndent">郝仁紧握着弑神剑与裂世之刃，一层来自渡鸦12345赐福的神性光辉笼罩在他周围，以保护他不受灭世女神所逸散出来的混沌力量的侵蚀，他拼尽全力将长剑进一步向前压下：“好戏才刚开始呐！”</p>
+	<p class = "firstLineIndent">“这就是所谓的惊喜？”灭世女神面前张开了一道苍白的光幕，弑神剑的锋刃在光幕上不断迸发出明亮的火花，但却无法前进一步，“你们真以为我没注意到？这个从刚才开始便在旁边游荡，但却压根没怎么出手的人类……”</p>
+	<p class = "firstLineIndent">说着，她甚至打了个哈欠：“结果你们的惊喜就是这个？让一个如此弱小的人类来‘偷袭’我？这种羸弱无力的攻击……即便偷袭了又能怎样？”</p>
+	<p class = "firstLineIndent">郝仁咧开嘴，再度增大了自己的力量：“放在前面的这把剑，你真的不认识么？！”</p>
+	<p class = "firstLineIndent">“这把剑？！”到这里，灭世女神似乎才第一次注意到了郝仁手上两把长剑那鲜明的特征，并注意到了其中一把剑所散发的、令人熟悉的气息，“这……这是当年……”</p>
+	<p class = "firstLineIndent">“这就是当年‘杀死’过创世女神一次的剑，”随着承受的压力越来越大，郝仁的表情变得愈发狰狞，但他的眼神仍然毫无动摇，“怎么样？有没有一种往事即将重演的感觉？”</p>
+	<p class = "firstLineIndent">两把剑再度压下，而其中的弑神剑表面那层星光则渐渐浮上了一层血色，在那层血色的侵染下，灭世女神面前的苍白护盾开始出现细密的裂纹。</p>
+	<p class = "firstLineIndent">“我们当年……可是费了很大功夫……才打造出一把足以弑神的武器啊！”</p>
+	<p class = "firstLineIndent">弑神剑表面的星光终于完全转为血色，而那层苍白护盾也砰然破碎，可是在剑刃即将接触到灭世女神的身体前，后者却突然抬起手，直接握住了两把剑的剑刃。</p>
+	<p class = "firstLineIndent">“打造了足以弑神的武器？”灭世女神握着弑神剑与裂世之刃的锋刃，那足以斩断时空的剑刃此刻竟好像失去了威力，甚至划不破她手上的皮肤，“啊，原来是这样，我总算搞明白你们在想些什么了……但是太让人失望了……”</p>
+	<p class = "firstLineIndent">灭世女神笑了起来，笑容中却满是疯狂与恶意：“你们竟然寄希望于一把剑！你们以为我真的什么都不知道？你们以为我真的没有提防这把古怪的剑？早在一万年前，早在这把剑将我重创的时候，我就猜到那个创世女神肯定会在剑上动手脚了！”</p>
+	<p class = "firstLineIndent">她用力握紧了双手，裂世之刃与弑神剑表面的星光顿时疯狂闪烁起来，仿佛不堪重负，而邪神的声音则在郝仁脑海中继续响起：“这把剑根本杀不了我！”</p>
+	<p class = "firstLineIndent">郝仁死死地盯着灭世女神的眼睛，在他身后的太空中，红月已经完全压制住黑暗天体的运行，而一缕月光则从红月表面分离出来，正好照耀在他身上。</p>
+	<p class = "firstLineIndent">在那缕温柔的月光中，传来了薇薇安仿佛呢喃般的轻声细语。</p>
+	<p class = "firstLineIndent">下一秒，金色与红色的光芒从月光中浮现，就仿佛某种流体般流上了郝仁的四肢，并迅速凝结成为一身金红色的甲胄，随着灵魂中某道限制的解除，他的面容甚至也开始渐渐变化。</p>
+	<p class = "firstLineIndent">看着那熟悉的金红色甲胄，以及郝仁正在变化的容貌，灭世女神终于隐约意识到了什么。</p>
+	<p class = "firstLineIndent">郝仁的声音在她的脑海中回响着：</p>
+	<p class = "firstLineIndent">“谁告诉你……我们打造的武器是那把剑！”</p>
+	<p class = "firstLineIndent">看着眼前的弑神者，灭世女神终于意识到了那个真正的武器是什么。</p>
+	<p class = "firstLineIndent">随后，长剑斩下。</p>
+	<p class = "firstLineIndent">不管是弑神剑，还是裂世之刃，二者其实都没有任何区别，当它们被握在弑神者手中的时候，它们便都是弑神剑。</p>
+	<p class = "firstLineIndent">剑刃毫无阻滞地斩中了目标，那个苍白的身影竟砰然破碎，脆弱的仿佛是件一触即碎的玻璃制品。</p>
+	<p class = "firstLineIndent">但郝仁很清楚，这一击来的有多么不易——</p>
+	<p class = "firstLineIndent">如果没有莉亚和灭世女神的死斗，后者便不会把所有力量都聚焦在一起，给他留下将其彻底消灭的机会；</p>
+	<p class = "firstLineIndent">如果没有薇薇安借助创世引擎的力量在战场上收集数据，重设灭世女神的特征码，那么即便他解除了灵魂上的限制，也无法对灭世女神造成有效的杀伤；</p>
+	<p class = "firstLineIndent">如果从一万年前弑神战争中的那一剑开始计算，他如今的这一击，已经酝酿了一万年。</p>
+	<p class = "firstLineIndent">苍白的碎片在太空中四散开来，在郝仁的特殊视野中，他能看到那些在宇宙深处四处涌动的黑暗“物质”也正在以飞快的速度消散。</p>
+	<p class = "firstLineIndent">在红月光芒照耀下已经彻底停止运转的黑暗天体终于开始崩溃，它表面那些狰狞的巨大裂痕迅速演化为足以令行星四分五裂的深谷壕沟，大块大块的天体碎片因其内部压力而从行星上剥离出来，伴随着连续不断的爆炸，那天体内部的暗红色光芒也渐渐熄灭。</p>
+	<p class = "firstLineIndent">遥远太空中那些扭曲的黑暗结构体也渐渐烟消云散，混沌褪去之后，正常的星光终于照进了这个亘古长夜的地方。</p>
+	<p class = "firstLineIndent">莉亚紧紧地盯着灭世女神消散的地方，她仍然不敢掉以轻心，因为疯嚣之主那难以消灭的特质带给她的麻烦已经太多了，她不敢有一丝一毫的大意，以防给敌人留下一丝一毫苟延残喘的机会。</p>
+	<p class = "firstLineIndent">她就这样死死地盯着，直到她看见太空中浮现出了丝丝缕缕的金色微光，那微光慢慢凝聚起来，形成了一团模模糊糊、变幻不定的“气团”，这才终于舒了口气。</p>
+	<p class = "firstLineIndent">那一缕神性力量便是她当初分离出去的部分，也是“灭世女神”的本质，它的重现以及净化，意味着疯嚣力量的真正消散。</p>
+	<p class = "firstLineIndent">“这算结束了么？”郝仁紧张地看着莉亚的反应，见对方半天不吭声，他终于忍不住问道。</p>
+	<p class = "firstLineIndent">随着弑神之力退去，他已经恢复成了原本的模样。</p>
+	<p class = "firstLineIndent">莉亚将那团金色微光招来，并小心翼翼地把它捧在手中，她微笑着点点头：“结束了。”</p>
+	<p class = "firstLineIndent">随后她抬起头，仰望着宇宙中无穷无尽的群星。</p>
+	<p class = "firstLineIndent">“孩子们，都结束了！”</p>
+	<p class = "firstLineIndent">在塔纳古斯，在艾欧，在霍尔莱塔，在科洛……在每一个有生命存在的星球上，那些来自噩梦的扭曲混沌生物正一个接一个地倒在地上。</p>
+	<p class = "firstLineIndent">烟尘从它们体表喷发出来，让这些怪物就仿佛蒸发一般迅速消散，在战斗中精疲力竭的战士们略有些茫然地看着这一切，仿佛还无法确定发生了什么。</p>
+	<p class = "firstLineIndent">奥芙拉甩掉长剑上沾染的污物——那些污物在被甩掉之前便开始化为烟尘消失——她抬起头，看到天上那些不详的漆黑云团正在淡去，而一缕阳光穿透了由混沌力量形成的浓云，照射在每一个人身上。</p>
+	<p class = "firstLineIndent">与阳光一同照进心中的，还有一个带着喜悦与慈爱的声音：“孩子们，都结束了！”</p>
+	<p class = "firstLineIndent">片刻之后，她听到了震耳欲聋的欢呼声。</p>
+	<p class = "firstLineIndent">……</p>
+	<p class = "firstLineIndent">在得到莉亚的确认之后，郝仁终于放松下来，他摊开手脚，以彻底咸鱼的姿态在茫茫太空中漂浮着。</p>
+	<p class = "firstLineIndent">数据终端在他脑袋旁边绕来绕去：“嘿……搭档，注意下帝国员工的形象！”</p>
+	<p class = "firstLineIndent">“随便吧……我现在就想飘着，让我就这么飘下去吧……”</p>
+	<p class = "firstLineIndent">巨龟岩台号在远方逡巡着：“Boss，你要飘我不拦你，但你记着给我报工伤啊！回头我打算换个功率更大的腰子……”</p>
+	<p class = "firstLineIndent">“好好好，换腰子换腰子……妈蛋，好好一个舰娘怎么画风就变成这样了？”</p>
+	<p class = "firstLineIndent">莉莉的声音也通过数据终端的转发在郝仁脑海中响起：“房东房东！打完啦打完啦！什么时候回家吃饭啊？”</p>
+	<p class = "firstLineIndent">接着是五月的声音：“房东！我这次可没怂啊！等会我发战斗录像给你……”</p>
+	<p class = "firstLineIndent">然后是伊扎克斯：“我这儿也有录像，不过我得先把拉尼娜送回去……”</p>
+	<p class = "firstLineIndent">在伊扎克斯的声音中，还隐隐约约能听到伊丽莎白叽叽喳喳的叫嚷声。</p>
+	<p class = "firstLineIndent">朋友们的声音在脑海中喧闹着，郝仁一边听着一边忍不住眯起眼睛，微笑起来。</p>
+	<p class = "firstLineIndent">一道月光在他身旁聚焦，薇薇安从月光中走了出来，她身后仍然漂浮着仿佛羽翼般的金色符文流——那是因为她与红月-创世引擎的连接还未中断，而她身旁则环绕着几只兴奋的小妖精，小家伙们正在嚷嚷着有关庆祝会的事情。</p>
+	<p class = "firstLineIndent">“你这个造型挺拉风的。”郝仁看了薇薇安一眼，笑着说道。</p>
+	<p class = "firstLineIndent">薇薇安同样微笑着，并调整了一下自己的位置，和郝仁一起“躺”在宇宙中，沐浴着漫天星光。</p>
+	<p class = "firstLineIndent">“这时候再说应该不算flag了吧？”</p>
+	<p class = "firstLineIndent">“我觉得不算。”</p>
+	<p class = "firstLineIndent">“那……回去之后，嫁给我吧？”</p>
+	<p class = "firstLineIndent">薇薇安仔细想了想：“虽然我挺高兴的，但总觉得吧……求婚是不是应该有点礼物才行？毕竟这么严肃的事情……”</p>
+	<p class = "firstLineIndent">郝仁忍不住笑了起来：“那你要什么？”</p>
+	<p class = "firstLineIndent">薇薇安用手指抵着下巴：“总感觉你这么厉害的家伙，跟你要什么你都能搞到的样子……要不，你送我个星星？”</p>
+	<p class = "firstLineIndent">郝仁想了想，伸手招呼正在不远处的太空中同样飘着假装咸鱼的莉亚：“莉亚！过来一下，给你留个手工作业！”</p>
+	<p class = "firstLineIndent">（正篇大结局）</p>
+	<p class = "firstLineIndent">（异常生物见闻录这本书到这里就算告一段落了，谢谢大家一直以来的支持，也谢谢版主黯离愁等人常年帮我这个甩手掌柜管着书评区……不过书已结束，异常生物们的故事却会永远继续下去。接下来我需要稍微休息休息，给自己放个假什么的，顺便为新书做好准备，如果有精力的话……说不定还会有点番外或者后日谈出来。</p>
+	<p class = "firstLineIndent">当然，别太过期待……万一我懒癌发作没治好呢？</p>
+	<p class = "firstLineIndent">大家不如更加期待一下有关《异常生物见闻录》的大新闻……</p>
+	<p class = "firstLineIndent">另外大家猜猜，我下本书会写啥？</p>
+	<p class = "firstLineIndent">还是那句话：不要急着走开，精彩马上回来。</p>
+	<p class = "firstLineIndent">PS：都完本了，打赏啥的走一波呗？）
+
+
+<!-- <<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='1760.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='1780.html';"> Next </button>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+
+
+</script>
+
+
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
