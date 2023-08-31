@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Vis.js Gantt Chart, 14-Jun-2023, 9.30 AM</title>
+
+    <style>
+        body,
+        html {
+            font-family: arial, sans-serif;
+            font-size: 11pt;
+        }
+        
+        #visualization {
+            box-sizing: border-box;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+    <!-- note: moment.js must be loaded before vis-timeline-graph2d or the embedded version of moment.js is used -->
+    <script src="./NTU WP4 Gantt Chart- r3_files/moment.min.js"></script>
+    <script src="./NTU WP4 Gantt Chart- r3_files/vis-timeline-graph2d.min.js"></script>
+    <link href="./NTU WP4 Gantt Chart- r3_files/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+    <p>
+        Press and Hold [Ctrl] + wheel to Zoom <button onclick="showAllGroups()">Restore Hidden</button>
+    </p>
+    <div id="visualization" style="position: relative;"></div>
+
+    <script>
+        var sdt = [{
+            /* (14-Jun-2023, 9.16 AM) if need to use group3, resume below lines
+			"group3": [
+                {
+                id: 1243,
+                treeLevel: 3,
+                content: "Level 3 1243"
+            }, {
+                id: 1525,
+                treeLevel: 3,
+                content: "Level 3 1525"
+            }, {
+                id: 1624,
+                treeLevel: 3,
+                content: "Level 3 1624"
+            }, {
+                id: 2076,
+                treeLevel: 3,
+                content: "Level 3 2076"
+            }, {
+                id: 1345,
+                treeLevel: 3,
+                content: "Level 3 1345"
+            }, {
+                id: 2078,
+                treeLevel: 3,
+                content: "Level 3 2078"
+            }, {
+                id: 1826,
+                treeLevel: 3,
+                content: "Level 3 1826"
+            }, {
+                id: 2107,
+                treeLevel: 3,
+                content: "Level 3 2107"
+            }],
+			(14-Jun-2023, 9.16 AM) if need to use group3, resume above lines
+			*/
+            "groups": [{
+                id: 1,
+                title: "M0. Kick off - Benchmarking and project requirement analysis; -> Conducting Platform Benchmarking Analysis, Green Nudges frameworks, Data standards, Gateways and Sensor recommendations -> Note : This has to be quantitatively differentiated atleast by end of 1st year after completion of tests by NTU team.",
+                content: "M0. Kick off - Benchmarking and project requirement analysis; M0. Kick off - Benchmarking and project requirement analysis; M0. Kick off - Benchmarking and project requirement analysis;M0. Kick off - Benchmarking and project requirement analysis",
+                treeLevel: 1,
+                //nestedGroups: [1.1, 1.2, 1.3, 1.4, 1.5]
+				nestedGroups: [1.3, 1.4, 1.5]
+            /*
+			}, {
+                id: 1.1,
+                content: "Conducting Platform Benchmarking Analysis, Green Nudges frameworks, Data standards, Gateways and Sensor recommendations",
+                treeLevel: 2,
+                //nestedGroups: [1243, 1525, 1624, 1345, 2078, 1826, 2076, 2107]
+            }, {
+                id: 1.2,
+                treeLevel: 2,
+                content: "Note : This has to be quantitatively differentiated atleast by end of 1st year after completion of tests by NTU team."
+			*/
+            }, {
+                id: 1.3,
+                treeLevel: 2,
+                content: "Benchmark Report (Planned)"
+            }, {
+                id: 1.4,
+                treeLevel: 2,
+                content: "Benchmark Report (Actual)"
+            }, {
+                id: 1.5,
+                treeLevel: 2,
+                content: "LITEON Validation And Acceptance"
+			}, {
+                id: 2,
+                treeLevel: 1,
+                content: "M1. Functional Requirement Specification (Project Requirement Document)",
+				nestedGroups: [2.1, 2.2, 2.3, 2.4, 2.5]
+			}, {
+                id: 2.1,
+                treeLevel: 2,
+                content: "Note : A PRD document stating the contents agreeable by both parties to cover all the functional aspects of Data fusion core platform and its architecture, smart home fusion use case, smart grid fusion use cases, supported protocols, UI requirements, deliverables in detail."
+			}, {
+                id: 2.2,
+                treeLevel: 2,
+                content: "PRD V1.0, covers : M5, M8, M9, M10, M11, M12, M13"
+			}, {
+                id: 2.3,
+                treeLevel: 2,
+                content: "LITEON Validation And Acceptance"
+			}, {
+                id: 2.4,
+                treeLevel: 2,
+                content: "PRD V2.0, covers : M14, M15, M16"
+			}, {
+                id: 2.5,
+                treeLevel: 2,
+                content: "LITEON Validation And Acceptance"
+
+            }],
+        }];
+
+var items = new vis.DataSet([
+	{id: 1, group: 1, className: 'green-white', content: '', start: '2023-06-11', end: '2023-06-25'},
+	{id: 2, group: 1.2, className: 'green', content: 'xxx', start: '2023-06-14',  end: '2023-06-19'},
+	{id: 3, group: 1.3, className: 'orange-white', content: 'abcdefghijklmnopqrstuvwxyz', start: '2023-06-18',  end: '2023-06-19'},
+	{id: 4, group: 1.4, className: 'orange', content: 'xxx', start: '2023-06-16', end: '2023-06-19'},
+	{id: 5, group: 1.5, className: 'pink', content: 'pink', start: '2023-06-25',  end: '2023-06-29'},
+	{id: 6, group: 2, className: 'pink-white', content: 'pink-white', start: '2023-06-27',  end: '2023-06-29'}
+]);
+
+
+
+        function randomIntFromInterval(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        let startDay = moment().startOf("month").startOf("week").isoWeekday(1);
+
+        // DOM element where the Timeline will be attached
+        var container = document.getElementById('visualization');
+
+        // Create a DataSet (allows two way data-binding)
+        //var items = new vis.DataSet(data.result);
+
+        var now = moment().minutes(0).seconds(0).milliseconds(0);
+        var itemCount = 60;
+
+        // create a data set with groups
+        var groups = new vis.DataSet();
+
+        groups.add(sdt[0].groups);
+        //groups.add(sdt[0].group3); // (14-Jun-2023, 9.16 AM) if need to use group3, resume this line
+
+        // create a dataset with items
+        /*
+		var items = new vis.DataSet();
+        var groupIds = groups.getIds();
+        var types = ['box', 'point', 'range', 'background']
+        for (var i = 0; i < itemCount; i++) {
+            var rInt = randomIntFromInterval(1, 30);
+            var start = startDay.clone().add(rInt, 'days');
+            var end = start.clone().add(24, 'hours');
+            var randomGroupId = groupIds[randomIntFromInterval(1, groupIds.length)];
+            var type = types[randomIntFromInterval(0, 3)]
+
+            items.add({
+                id: i,
+                group: randomGroupId,
+                content: 'item ' + i + ' ' + rInt,
+                start: start,
+                end: end,
+                type: type
+            });
+        }
+		*/
+		
+		// --- (14-Jun-2023, 9.28 AM) hide group row function : resume all hidden groups --- //
+		  // function to make all groups visible again
+		function showAllGroups(){ // (14-Jun-2023, 9.29 AM) there is a button on top to invoke this function
+			groups.forEach(function(group){
+			  groups.update({id: group.id, visible: true});
+			})
+		};
+		// --- (14-Jun-2023, 9.28 AM) hide group row function : resume all hidden groups --- //
+		
+		
+        // specify options
+        let options = {
+            //start: startDay.toDate(),
+            start: now.toDate(),
+			end: new Date(1000 * 60 * 60 * 24 + (new Date()).valueOf()),
+			
+			// --- (14-Jun-2023, 9.28 AM) hide group row function : hide group row button --- //
+			groupTemplate: function(group){
+			  var container = document.createElement('div');
+			  var label = document.createElement('span');
+			  label.innerHTML = group.content + ' ';
+			  container.insertAdjacentElement('afterBegin',label);
+			  var hide = document.createElement('button');
+			  hide.innerHTML = 'hide';
+			  hide.style.fontSize = 'small';
+			  hide.addEventListener('click',function(){
+				groups.update({id: group.id, visible: false});
+			  });
+			  container.insertAdjacentElement('beforeEnd',hide);
+			  return container;
+			},
+			// --- (14-Jun-2023, 9.28 AM) hide group row function : hide group row button --- //
+			
+			//showWeekScale:true,
+			maxMinorChars:3,
+            horizontalScroll: true,
+            zoomKey: 'ctrlKey',
+            orientation: 'both',
+            zoomMin: 1000 * 60 * 60 * 240
+        };
+
+        // create a Timeline
+        var timeline = new vis.Timeline(container, items, groups, options);
+    </script>
+
+
+</div></body></html>
