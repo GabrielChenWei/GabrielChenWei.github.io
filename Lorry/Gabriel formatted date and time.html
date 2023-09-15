@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Gabriel format date and time</p>
+
+<button onclick = "showDate()"> show date</button>
+<p id="dateDemo"></p>
+
+<button onclick = "showTime()"> show time</button>
+<p id="timeDemo"></p>
+
+<button onclick = "showDateTime()"> show date and time</button>
+<p id="dateTimeDemo"></p>
+
+<script>
+
+
+function getMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function formattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = getMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function formattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function showDate() {
+	document.getElementById("dateDemo").innerHTML = formattedToday();
+}
+
+function showTime() {
+	document.getElementById("timeDemo").innerHTML = formattedCurrentTime();
+}
+
+function showDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = formattedToday() + ", " + formattedCurrentTime();
+}
+
+</script>
+
+</body>
+</html>
