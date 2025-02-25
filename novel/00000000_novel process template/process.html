@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatter</title>
+    <style>
+        textarea {
+            width: 100%;
+            height: 140px;
+        }
+        button {
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Formatter, 25-Feb-2025, 12.55 PM</h1>
+    <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+    <button onclick="formatText()">Format Text</button>
+    <button onclick="copyText()">Copy Formatted Text</button>
+    <textarea id="outputText" placeholder="Formatted text will appear here..."></textarea>
+
+    <script>
+        function formatText() {
+            const inputText = document.getElementById('inputText').value;
+            lines = inputText.split('\n');
+            let outputLines = [];
+            let idCounter = 1;
+            let firstTitle = true;
+
+            lines.forEach(line => {
+                if (!line.startsWith('\t') && line.trim()) {
+                    if (!firstTitle) {
+                        outputLines.push('</details></li>');
+                    }
+                    const title = line.trim();
+                    if (title) {
+                        outputLines.push(`<li id='_primaryli'><details class='detailsSwitch' id='_details_${idCounter.toString().padStart(4, '0')}'><summary><a>${title}</a></summary>`);
+                        idCounter++;
+                        firstTitle = false;
+                    }
+                } else if (line.trim()) {
+                    const content = line.trim();
+                    outputLines.push(`\t<p class='firstLineIndent'>${content}</p>`);
+                }
+            });
+
+            // Close the last details tag
+            if (!firstTitle) {
+                outputLines.push('</details></li>');
+            }
+
+            document.getElementById('outputText').value = outputLines.join('\n');
+        }
+
+        function copyText() {
+            const outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+            alert('Formatted text copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
