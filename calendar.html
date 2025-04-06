@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2025 & 2026 Calendar - Singapore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+    .month-title {
+      grid-column: span 7;
+      text-align: center;
+      background: #333;
+      color: white;
+      padding: 10px 0;
+      font-size: 1.5em;
+    }
+    .day-name, .day {
+      text-align: center;
+      padding: 8px 0;
+    }
+    .day-name {
+      background: #eee;
+      font-weight: bold;
+    }
+    .day {
+      background: #fff;
+      position: relative;
+    }
+    .weekend {
+      background: #e0e0e0;
+    }
+    .holiday {
+      background: MediumSpringGreen !important;
+      font-weight: bold;
+    }
+    .holiday-label {
+      font-size: 0.6em;
+      display: block;
+      margin-top: 2px;
+      color: darkgreen;
+    }
+    .today {
+      border: 5px solid #F00;
+      font-weight: bold;
+      background: MistyRose;
+      border-radius: 50% 50%;
+    }
+  </style>
+</head>
+<body>
+  <h1>2025 & 2026 Calendar - Singapore</h1>
+  <div id="calendar-container"></div>
+
+  <script>
+    const holidayMap = {
+      // 2025
+      '2025-01-01': "New Year's Day",
+      '2025-01-29': "Chinese New Year",
+      '2025-01-30': "Chinese New Year",
+      '2025-03-31': "Hari Raya Puasa",
+      '2025-04-18': "Good Friday",
+      '2025-05-01': "Labour Day",
+      '2025-05-12': "Vesak Day",
+      '2025-06-07': "Hari Raya Haji",
+      '2025-08-09': "National Day",
+      '2025-10-20': "Deepavali",
+      '2025-12-25': "Christmas Day",
+      // 2026 (tentative)
+      '2026-01-01': "New Year's Day",
+      '2026-02-17': "Chinese New Year",
+      '2026-02-18': "Chinese New Year",
+      '2026-04-03': "Good Friday",
+      '2026-05-01': "Labour Day",
+      '2026-05-22': "Vesak Day",
+      '2026-05-26': "Hari Raya Puasa",
+      '2026-06-17': "Hari Raya Haji",
+      '2026-08-09': "National Day",
+      '2026-10-20': "Deepavali",
+      '2026-12-25': "Christmas Day"
+    };
+
+    const holidays = Object.keys(holidayMap);
+    const today = new Date();
+
+    function generateCalendar(year) {
+      const container = document.getElementById('calendar-container');
+      for (let month = 0; month < 12; month++) {
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'calendar';
+
+        const title = document.createElement('div');
+        title.className = 'month-title';
+        title.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+        monthDiv.appendChild(title);
+
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        days.forEach(d => {
+          const dayName = document.createElement('div');
+          dayName.className = 'day-name';
+          dayName.textContent = d;
+          monthDiv.appendChild(dayName);
+        });
+
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+
+        for (let i = 0; i < firstDay.getDay(); i++) {
+          const empty = document.createElement('div');
+          monthDiv.appendChild(empty);
+        }
+
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+          const date = new Date(year, month, day);
+          const dayDiv = document.createElement('div');
+          dayDiv.className = 'day';
+
+          const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+          if (date.getDay() === 0 || date.getDay() === 6) {
+            dayDiv.classList.add('weekend');
+          }
+
+          if (holidays.includes(dateStr)) {
+            dayDiv.classList.add('holiday');
+            dayDiv.title = holidayMap[dateStr];
+            const label = document.createElement('span');
+            label.className = 'holiday-label';
+            label.textContent = holidayMap[dateStr];
+            dayDiv.appendChild(label);
+          }
+
+          if (date.toDateString() === today.toDateString()) {
+            dayDiv.classList.add('today');
+            dayDiv.id = 'today';
+          }
+
+          dayDiv.insertAdjacentText('afterbegin', day);
+          monthDiv.appendChild(dayDiv);
+        }
+
+        container.appendChild(monthDiv);
+      }
+
+      const todayElem = document.getElementById('today');
+      if (todayElem) {
+        todayElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    generateCalendar(2025);
+    generateCalendar(2026);
+  </script>
+</body>
+</html>
