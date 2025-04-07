@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        #exam-mode, #view-mode {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden { display: none; }
+        .highlight { border: 1.5px solid HotPink; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .modal.active { display: block; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .question-options label {
+            display: block;
+            margin: 10px 0;
+        }
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .question-card {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question-options ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .question-options li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f4f4f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="exam-mode">
+        <div id="question-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        <div class="action-buttons">
+            <button onclick="submitAnswer()">Submit</button>
+            <button onclick="showAnswer()">Answer</button>
+        </div>
+        <div class="navigation-buttons">
+            <button id="previous">Previous</button>
+            <button id="view">View</button>
+            <button id="next">Next</button>
+        </div>
+    </div>
+
+    <div id="view-mode" class="hidden">
+        <div id="result"></div>
+        <div id="all-questions">
+            <!-- All questions will be displayed here in view mode -->
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <p id="modal-message"></p>
+        <button id="modal-ok">Ok</button>
+        <button id="modal-next" class="hidden">Next</button>
+    </div>
+
+    <script>
+        const questions = [
+			// ---------------------- starter ---------------------- //
+			
+            { // --- <<<<< Question card ---
+                id: 'q1',
+                content: 'What is the capital of France?',
+                options: [
+					'Paris', 
+					'London', 
+					'Berlin', 
+					'Madrid'
+					],
+                correct: 0,
+                explanation: 'Paris is the capital of France.'
+            },// --- Question card >>>>>--- //
+            { // --- <<<<< Question card ---
+                id: 'q2',
+                content: 'Which planet is known as the Red Planet?',
+                options: [
+					'Earth', 
+					'Mars', 
+					'Jupiter', 
+					'Saturn'
+					],
+                correct: 1,
+                explanation: 'Mars is known as the Red Planet due to its reddish appearance.'
+            },// --- Question card >>>>>--- //
+            { // --- <<<<< Question card ---
+                id: 'q3',
+                content: 'What is the largest ocean on Earth?',
+                options: [
+					'Atlantic Ocean', 
+					'Indian Ocean', 
+					'Arctic Ocean', 
+					'Pacific Ocean'
+					],
+                correct: 3,
+                explanation: 'The Pacific Ocean is the largest ocean on Earth.'
+            },// --- Question card >>>>>--- //
+            // ---------------------- ender ---------------------- //
+        ];
+
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+
+        function showQuestion(index) {
+            const questionContainer = document.getElementById('question-container');
+            questionContainer.innerHTML = '';
+            const question = questions[index];
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question-card');
+            questionElement.innerHTML = `
+                <p><strong>Question:</strong> ${question.content}</p>
+                <div class="question-options">
+                    ${question.options.map((option, i) => `
+                        <label>
+                            <input type="radio" name="option" value="${i}">
+                            ${option}
+                        </label>
+                    `).join('')}
+                </div>
+                <p class="hidden explanation"><strong>Explanation:</strong> ${question.explanation}</p>
+            `;
+            questionContainer.appendChild(questionElement);
+        }
+
+        function submitAnswer() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (!selectedOption) {
+                showModal('Please input answer!');
+                return;
+            }
+            const isCorrect = selectedOption.value == questions[currentQuestionIndex].correct;
+            if (isCorrect) {
+                correctAnswers++;
+                showModal('It is correct!', true);
+            } else {
+                showModal('Do you want to try again?', false, true);
+            }
+        }
+
+        function showAnswer() {
+            const question = questions[currentQuestionIndex];
+            document.querySelector(`input[name="option"][value="${question.correct}"]`).checked = true;
+            document.querySelector(`input[name="option"][value="${question.correct}"]`).parentElement.classList.add('highlight');
+            document.querySelector('.explanation').classList.remove('hidden');
+        }
+
+        function showModal(message, correct = false, retry = false) {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal-ok').classList.remove('hidden');
+            document.getElementById('modal-next').classList.toggle('hidden', !retry);
+            modal.classList.add('active');
+            if (correct) {
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    document.querySelector('.explanation').classList.remove('hidden');
+                }, 1000);
+            }
+        }
+
+        document.getElementById('modal-ok').addEventListener('click', () => {
+            document.getElementById('modal').classList.remove('active');
+        });
+
+        document.getElementById('modal-next').addEventListener('click', () => {
+            document.getElementById('modal').classList.remove('active');
+            nextQuestion();
+        });
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+            } else {
+                alert('No next question is found, click [View] to check the result.');
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+            } else {
+                alert('No previous question is found');
+            }
+        }
+
+        function viewMode() {
+            document.getElementById('exam-mode').classList.add('hidden');
+            document.getElementById('view-mode').classList.remove('hidden');
+            document.getElementById('result').textContent = `${correctAnswers}/${questions.length} = ${(correctAnswers / questions.length * 100).toFixed(2)}%`;
+            const allQuestionsContainer = document.getElementById('all-questions');
+            allQuestionsContainer.innerHTML = questions.map(question => `
+                <div class="question-card">
+                    <p><strong>Question:</strong> ${question.content}</p>
+                    <p><strong>Options:</strong></p>
+                    <div class="question-options">
+                        <ul>
+                            ${question.options.map((option, i) => `
+                                <li class="${i == question.correct ? 'highlight' : ''}">
+                                    ${option}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <p><strong>Explanation:</strong> ${question.explanation}</p>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('previous').addEventListener('click', previousQuestion);
+        document.getElementById('next').addEventListener('click', nextQuestion);
+        document.getElementById('view').addEventListener('click', viewMode);
+
+        showQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>

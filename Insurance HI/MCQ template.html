@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body onload="funcClearAllRadioSelection()">
+<style>
+
+input[type="radio"] { 
+	transform: scale(2); 
+	margin: 1.5em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	font-size : 1em;
+	margin : 0.2em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 90%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	font-size : 1.5em;
+	/*
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+.highlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
+</head>
+<body>
+<!-- ----- start ----- -->
+
+
+<div class = "questionCard" id="_Q01">
+	<p class = "questionHeader">Question 01 of 12</p>
+	<p>Which of the following statements about the Community Health Assist Scheme (CHAS) in Singapore is TRUE?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Eligible Singapore Permanent Residents can receive subsidised treatments at participating GPs and dental clinics. 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Merdeka Generation (MG) and Pioneer Generation (PG) cardholders are not covered under the CHAS.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		CHAS cardholders enjoy subsidised referrals to public Specialist Outpatient Clinics (SOCs).
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		CHAS Blue cardholders are not eligible for subsidised referrals to National University Centre for Oral Health, Singapore.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q01')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Under the Community Health Assist Scheme (CHAS), eligible Singapore Citizens can also receive subsidised treatments at participating GPS and dental clinics, without the need to travel to the polyclinics. CHAS enables all Singapore Citizens, including Merdeka Generation (MG) and Pioneer Generation (PG) cardholders, to receive subsidies for medical and/or dental care at participating General Practitioner (GP) and dental clinics. CHAS, MG and PG cardholders enjoy subsidised referrals to public SOCS, as well as subsidised referrals to the National Dental Centre Singapore and National
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q02">
+	<p class = "questionHeader">Question 02 of 12</p>
+	<p>Which of the following MOST CORRECTLY depicts the main challenge faced by most governments regarding providing healthcare to their citizens?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		To match the rising expectations of the citizens for quality healthcare and yet keep the costs affordable. 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		The rising expectations of the citizens for quality healthcare.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		The rising expectations of healthcare providers.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Keeping healthcare costs affordable.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q02')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: The challenge faced by most governments is how to balance the rising expectations for quality healthcare and yet keep the costs affordable.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q03">
+	<p class = "questionHeader">Question 03 of 12</p>
+	<p>Which of the following hospitals is suitable for intermediate healthcare for the convalescent sick and aged person who does not require the care of the general hospitals?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Public hospitals
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Restructured hospitals
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		National specialty centres
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		Community hospitals
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q03')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: The government has introduced community hospitals for intermediate healthcare for the convalescent sick and aged who do not require the care of the general hospitals.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q04">
+	<p class = "questionHeader">Question 04 of 12</p>
+	<p>Which of the following statements about the healthcare system in Singapore is FALSE?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		The public hospitals are structured by regions split into three clusters. 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		Community-based ILTC services provide only home-based care for patients during the day and night.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Residential ILTC services care is suitable for patients who stay in these facilities both in the day and at night.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Support services to hospitals and primary healthcare programmes include forensic pathology.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q04')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Community-based ILTC services comprise centre-based and home-based care provided to patients during the day. The other statements are true.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q05">
+	<p class = "questionHeader">Question 05 of 12</p>
+	<p>Which level of the healthcare system involves the provision of basic medical treatment, preventive healthcare and health education?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Students' Healthcare 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Institutional Healthcare
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		Primary Healthcare
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		None of the above
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q05')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Primary healthcare involves the provision of basic medical treatment, preventive healthcare and health education.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q06">
+	<p class = "questionHeader">Question 06 of 12</p>
+	<p>There are six national specialty centres in Singapore that provide care for various specialities. The specialities DO NOT include:</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		Orthopaedic care 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Cancer care
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Eye care
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Skincare
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q06')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: The six national specialty centres provide cancer, cardiac, eye, skin, neuroscience and dental care.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q07">
+	<p class = "questionHeader">Question 07 of 12</p>
+	<p>Which of the following is a part of the healthcare philosophy of the Singapore Government?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		Encouraging healthy lifestyles 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Emphasising collective responsibility for health
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Keeping healthcare costs down by reducing control over supply of healthcare services
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Providing subsidies in respect of fees charged by private institutions
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q07')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: The healthcare philosophy of the Singapore government consists of three pillars: Building up a healthy population with preventive health care and encouraging healthy lifestyles, Emphasising personal responsibility towards healthy living through Medisave, Medishield and Medifund, and Keeping healthcare costs down by controlling the supply of healthcare services and providing heavy subsidies in respect of fees charged by public healthcare institutions.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q08">
+	<p class = "questionHeader">Question 08 of 12</p>
+	<p>How did Singapore start to have universal healthcare insurance?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		The government introduced it. 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		The private insurers initiated it.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		The expat community drove the initial demand for it.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		It started from a local grassroot initiative.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q08')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: The government has introduced universal healthcare insurance for lifelong protection. MediShield Life gives better protection, for all Singaporeans, for life. This is part of a more inclusive society, where Singapore residents look after one another.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q09">
+	<p class = "questionHeader">Question 09 of 12</p>
+	<p>The Community Health Assist Scheme (CHAS) is aimed at benefiting the:</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct">
+		eligible Singapore Citizens. 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		old and elderly Singaporeans only.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		low and middle income Permanent Residents.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		old and elderly Permanent Residents.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q09')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: In the public sector, primary healthcare services are provided through a network of outpatient polyclinics. Under the Community Health Assist Scheme (CHAS), eligible Singapore Citizens can also receive subsidised treatments at participating GPS and dental clinics, without the need to travel to the polyclinics.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q10">
+	<p class = "questionHeader">Question 10 of 12</p>
+	<p>Intermediate & Long-Term Care ILTC Services in which seniors are dropped off by their caregivers during working hours are provided through ___.</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Xpolyclinics 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		home-based services
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		residential ILTC services
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		centre-based healthcare services
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q10')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Intermediate & Long-Term Care ILTC Services in which seniors are dropped off by their caregivers during working hours are provided through centre-based healthcare services.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q11">
+	<p class = "questionHeader">Question 11 of 12</p>
+	<p>Which of the following does NOT belong to primary healthcare?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Basic medical treatment 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Preventive healthcare
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		Nursing homes
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Health education
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q11')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Primary healthcare involves the provision of basic medical treatment, preventive healthcare and health education. Nursing homes are part of Residential Intermediate & Long-Term Care (ILTC), NOT primary healthcare.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q12">
+	<p class = "questionHeader">Question 12 of 12</p>
+	<p>Which of the following statements about subsidies provided at public hospitals for admissions to various classes of wards is TRUE?</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Treatments at B2 class wards are subsidized up to 25-35%.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		Treatments at B1 class wards are subsidized up to 30-40%.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		Treatments at A class wards are subsidized up to 10%.
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		Patients will receive up to 80% subsidies in B2 class wards from the middle of 2022.
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q12')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation: Within the public hospitals, patients have a choice of the different types of ward accommodations on their admission, and subsidies provided differ according to the ward class. The wards with basic amenities like C class wards are heavily subsidised up to 80% while B2 wards are subsidized from 25-65%. Those who desire more amenities can choose a higher ward class but will receive less subsidies. Class B1 admissions are subsidized at 20%, while there is no subsidy for Class A ward admissions. However, patients will receive up to 80% in subsidies regardless of whether they are admitted to B2 or C class wards from the middle of 2022.
+	</details>
+</div><br/>
+
+<div class = "questionCard" id="_Q00">
+	<p class = "questionHeader">Question 00 of 12</p>
+	<p>Question</p>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		option1 
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="">
+		option2
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value =""/>
+		option3
+	</input></span></br></br>
+	<span class="questionChoiceText" ><input type = "radio" name = "radio" value ="correct"/>
+		option4
+	</input></span></br></br>
+	<button class="tagButton" onclick = "funcCheckResult('_Q00')"> Check result </button>
+	<p id = "checkResult"></p>
+	<details><summary class="highlight">Show Answer</summary>
+		Explanation
+	</details>
+</div><br/>
+
+<!-- ----- end ----- -->
+
+<script>
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	//let checkResult = document.getElementById("checkResult");
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		//console.log("radioButtons : " + radioButtons); 
+		
+		var biRadioButtonChecked = false;
+        for (let radio of radioButtons) {
+			//console.log("radio.id : " + radio.id); 
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		console.log("biRadioButtonChecked : " + biRadioButtonChecked); 
+		
+		if (!biRadioButtonChecked) {
+			alert("Please select an answer! "); 
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			alert("That is correct! "); 
+		} else {
+			alert("Want to try again? ");
+		}
+	}
+	
+	
+</script>
+</body>
+</html>
