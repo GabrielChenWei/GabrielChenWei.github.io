@@ -1,54 +1,966 @@
-🔝
-A+
-A
-A-
-妈妈在菜市场 作者：不详
-5岁那年，父亲得了一场重病，在病中他特别想吃胡萝卜，而在当时，胡萝卜是很贵的东西。而我家呢，又因父亲的病把所有的钱都花光了，并且还欠了数万元钱的债。平常我与母亲吃的都是街坊邻居接济的玉米面做成的窝窝头，就着自己盐制的咸菜疙瘩，实在是没钱买胡萝卜了。但母亲是深爱着父亲的，看着父亲那可怜巴巴不知能活多久的样子，母亲狠了狠心，那天赶集，还是决定给父亲买胡萝卜吃。那天，正是夏天里最热的一天。骄阳似火，火辣辣地烤着大地。人在屋里，即使是一动也不动，那汗也是哗哗的往下流，何况是去在那人山人海的集上挤来挤去的呢。
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
 
-那天，母亲上身穿着一件淡黄色半透明的半袖低领衬衣，里面穿着一件很小的胸衣，下身穿着一件黑色绸缎带摺的半裙，里面是一件很小的淡黄色的裤头，脚上穿着一双高跟凉鞋。
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
 
-说到这儿，我不能不说一下我的母亲。到现在，虽然发生了我将要说的这件事，但我还是为我能有这样的母亲而感到自豪。她实在是太漂亮了：她有象雪一样的肌肤。
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
 
-1.65米，修长健美的双腿让人产生无限遐想。那对丰满而挺拔的乳房高高地耸立着，随着她身体的走动轻轻地颤动，因为天热出汗太多，她的衣服紧紧地贴在身上，两个粉红色花生米粒大小的乳头若隐若现。她的裙子也紧紧的贴在她的屁股上，两半性感的臀部紧紧绷着。裙下浑圆的屁股向上翘起一个优美的弧线，修长匀称的双腿没有穿丝袜，白嫩的大腿光裸着。母亲身上的这种独特丰满成熟优雅的韵味让她有一种让人心醉的诱惑力，每每看着母亲，我的小鸡巴就会情不自禁地硬起来，尽管那时我刚六岁，对男人之间的事还不懂。
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
 
-到了集上，我们放好车子，就开始转着找卖胡萝卜的。人太多了，我们就往那人少的地方走，但我却发现有的人还好像特别往母亲身上挤，有的男人还用手向外拽母亲扎着腰的上衣，还有一个四十多岁的男人还用他长满黑毛的大手来摸母亲的屁股。
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+		glbBiUserPanelVisible = false;  
+	} else {
+		showUserPanel() ;
+		glbBiUserPanelVisible = true;
+	}
+  }
 
-让我感到奇怪的是，母亲好像没感觉到似的，只是低着头领着我往前走。我们在集上转了一圈才在菜市的最外面？
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'flex';
+  }
 
-见我们过来，那个卖胡萝卜的眼一亮，连忙打招呼：“大姐，买萝卜吗？个大，味鲜，价钱又合适。”卖胡萝卜的是个四十岁左右体格很壮的大胡子。“怎么卖的？”母亲走到他的摊前蹲下边看胡萝卜边问。这时，我注意到母亲的上衣的后面已被扯了出来，当她的身子前俯时通过她的裙子后边能看到她那淡黄色的小内裤，那内裤也太小了，露出了一小部分的屁股沟。“十……”大胡子只说了一个字便停住了。母亲觉着奇怪，便抬头向大胡子看去，却见他的两眼直勾勾的盯着自己的胸脯。我一看，原来母亲往下一蹲，那膝盖便把她的两个奶子往上一顶，而她的上衣领口又很低，于是那白白的奶子的上部便露了出来，要不是还有胸衣，那奶头也就露了出来。母亲脸一红，急忙把两腿往两边一分，把两个奶子夹在两腿中间，又把上衣的领口往上一提，盖住了奶子，而后又把身子向后一仰，蹲直了。“十块钱一斤。”大胡子也觉着很不好意思，急忙收回目光。“十块钱？
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'none';
+  }
+/************* userPanel vibility toggle script *************/
 
-太贵了！能不能便宜点？“母亲还价道。？
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
 
-“大兄弟，你看，孩子他爸病重，还不知道能活几天呢。这为了给他爸治病，还欠了几万块钱的债务，我实在是没钱了，你看能不能便宜点？”
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
 
-母亲哀求道。“不行，我家老小还靠这个吃饭呢！”大胡子摆开了架子，把玩着手中的秤，拒绝的很干脆。“大兄弟，你就行行好吧。”母亲低着继续哀求。
 
-“不……”大胡子又看了一眼母亲，这一看，他那目光再也挪不动了。我觉着奇怪，这个大胡子总看我母亲脚底下干什么？我顺着他的目光一看，他哪里是在看我母亲的脚底，分明是在看我母亲的……母亲叉着两腿，两条光洁的大腿，还有整个的阴部完全> 我注意到大胡子的两腿开始一张一合的晃动着，并且他的裆部，被一根类似于棍子的东西顶起，越顶越高，顶的他裆部的拉链也开了一点。“那…这样吧，你回答我几个问题，如果让我满意的话，我非但便宜，而且还免费奉送。”大胡子收回目光，想了想说。“真的？那你问吧？”
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
 
-母亲一脸的惊喜，世上还有这么的事！她当成大胡子发善心了。“真的是孩子他爸想吃胡萝卜？”大胡子一本正经。“是。”“那你与孩子想不想吃？”大胡子一脸的关切。“想。”“那你想不想吃肉萝卜？
+</script> 
 
-啊？肉萝卜？“母亲不解，抬头看大胡子。却见他一手摸着自己的裆部，一手拿着一根胡萝卜对着母亲的跨部比划着。母亲低头一看，自己竟大叉着双腿，急忙夹紧两腿，紧接着两朵红云飞上了母亲的双颊。”这…大兄弟，你看，能不能换个问题。“母亲轻声地问。”不行。你知道，我这份萝卜是全集市唯一的一份，当然，我这根肉萝卜也是全集市唯一的一根，想不想吃你可要想明白了。哼！
 
-哼！！“母亲不作声，低着头，脸红红的。”想不想？“大胡子又问。母亲还是不作声，仍低着头，咬着自己的一绺头发，好像在思索着什么。我想，母亲这是怎么了，白给的胡萝卜还不想吃？！真是怪事！如果知道大胡子是什么意思，我就不会这样想了。”想不想？“大胡子追问道。母亲又咬着头发想了一会儿，终于下定了决心。”想。“母亲在牙缝里挤出一个字来，声音低地几乎听不见。”
 
-这就对了。我也知道你想。“大胡子淫邪地笑了一声，站起身来。”小朋友，你过来坐我这儿。“大胡子招呼我说，”给我看着摊子，我和你母亲到后面拿胡萝卜去，拿来给你吃。可要给我把摊子看好了啊。“我很高兴地坐在了他的位子上。
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
 
-母亲低着头瞥了我一眼，跟在大胡子后头向后面草垛间走去。没几分钟，我就听到后面草垛孔里传来大胡子与母亲说话的声音，接着是母亲忽高忽低的呻吟声，这声音持续了大约四十分钟。又等了一会儿，还没见她们回来，我就着急了，不过是到后面去，怎么用了这么长时间？这是到哪儿去拿胡萝卜啊，怎么还不回来呢？这时，我看了看四周，咦？大胡子的东西都是这儿，他还能领着母亲到哪儿去拿呢？我便向他们离去的方向走去，走了没几步，便听到一男一女的声音，但听不清他们说什么。我顺着声音转过一个草垛，这时声音清楚了。“哇，好爽好舒服啊。啊――嗨－嗨－肏死你――插死你――我要肏烂你的屄”　――一个男声，不是大胡子是谁？“啊――啊――好兄弟，用力，好舒服啊―――用―――用力――啊―――啊―――你这肉萝卜好厉害啊，我半年没尝过是什么滋味了。”
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
 
-这声音不是母亲的是谁的？我悄悄蹲下身子，向草垛里看去，首先看到地下扔着几件衣服，是大胡子的上衣，母亲的上衣及裙子，母亲的凉鞋也胡乱的扔在衣服的旁边。我再抬头向上看去，正看到大胡子与母亲的右侧面。大胡子赤着上身，光着屁股，两腿大叉着，裤子褪到了右脚踝处；母亲的胸衣捋到奶子的上方，两个大奶子完全露着，她光着屁股，也叉着两人看起来很舒服。大胡子每一次顶的时候，并不是一下子插到底，而是先把他的鸡巴缓缓地插进一部分，这时，母亲嘴中发出轻轻的哼叫声，而后他把上身往后一仰，屁股往前一顶，那粗大的鸡巴猛地插进了母亲的腿间，连根没入，母亲不知是疼的还是爽的发出一声大叫，不过我想应该是爽的，因为她嘴中还说着“好舒服！好舒服！”她的神态也是很舒服的样子。大胡子长出一口气，抽出鸡巴，一些粘乎乎的液体随着他鸡巴的抽出流出，有的直接滴下，有的顺着他的鸡巴流到他的腿上，又流到地上，还有一些在母亲那两边翻起的肉缝中滴下，也有一些顺着母亲的腿流下。在地上，已经有几滩湿渍，已经分不清是汗水还是别的什么东西了。
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
 
-接着，大胡子又开始下一次的插入，并且抽插的速度也越来越快。十几分钟后，大胡子松开了母亲的奶子，紧紧地扶着她的腰，快速地抽插着自己的肉棒，母亲闭着眼，嘴中发出连续不断的啊啊声，她的两个奶子上下翻滚，打在自己的胸上，发出啪啪地响声。猛地，大胡子把他的小腹紧紧地贴在母亲的屁股上，两手抱住母亲一动也不动了。
+img {
+	max-width: 100%;
+	height: auto;
+}
 
-随着大胡子的屁股不由自主地抽动了几下，两人同时发出“啊――――”的大叫，接着倒在了草垛上，又倒在了地上。两人躺在地上呼哧呼哧地喘着粗气。
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
 
-“怎么样？我这肉萝卜还可以吧？”大胡子摸着母亲的奶子亲了她一口问。“去你的，死样。你抓的人家的奶子好疼啊。”母亲娇嗔道。“你下面的嘴舒服不舒服啊？”大胡子的手又摸向了母亲那正流着淫水的肉缝。“别笑话人家啦。
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
 
-都快被你插烂啦，你那玩意儿太大了，比我老公要大的多。当然很舒服了，啊――人家的腿都合不拢了。“母亲撒着娇。这时，大胡子无意有意地向我这儿看了一眼，我急忙回去了。
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+	
+}
 
-过了一会儿，两人说笑着出来了。母亲的头发很凌乱，蓬松地扎着，头发梢上还有一根草，上衣完全露在外面，未扎在裙子里，还只扣了上面两个扣子。大胡子走在她后面，一只手放在她的屁股上。我注意到母亲走路的姿势有点怪，本来，她走路时两腿是紧夹着的，绝对的淑女走法，而现在两腿轻叉着，还一拐一拐的。“小鬼，没等急吧？”大胡子走到我身边，摸着我的头说，“你给我看摊看的很好啊，什么东西也没丢。来，奖励你五十元钱。不要把我让你替我看摊的事说出去，为我保密，别让别人笑话我，说是让个孩子看摊。”大胡子拿出五十元钱递给我。我转过身去接钱，脸正对着他的裆部，我刚一喘气，就闻到一股又腥又骚的气味。我一看，大胡子裤裆处的拉链竟没拉上，他那小小的白色的前面湿淋淋的，我能看到他的大鸡巴缩成一团卷曲着卧在那里，他裤头上那湿淋淋的印渍还在继续扩大。我的目光往下扫，在他的拉链旁边还有几几滴白色的粘液。
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
 
-“真丢人！都是个大人了也不知道把裤子的拉链拉上。”我接过钱，取笑着对他说。“是吗？”大胡子斜了正在蹲着装胡萝卜的母亲一眼，把拉链拉上了。“对了，你们怎么没拿来胡萝卜呢？”我问。“让你母亲吃了。你母亲回去后再吐给你父亲吃，绝对能把他的病治好。”大胡子色迷迷地看着母亲对我说。“我母亲吃了？吐出来给我父亲吃，给他治病？？”我很奇怪，就看了母亲一眼。我看到母亲叉着腿，她的内裤前部完全湿了，还有一个什么东西向前把母亲的内裤顶得很高。
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
 
-“别听他瞎说，他在骗你呢！”母亲的脸刷地红了，对我？
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	right: 7em;
+	font-size: 1.2em;
+	width: 80%;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
 
-很快，我们就把大胡子的胡萝卜装好了。他果然不食言，把他所有的胡萝卜都给了我们。到了放车处，看了看四周没人，母亲蹲下身子，从裙子下面拿出一根胡萝卜，上面湿淋淋的满是粘液。我很惊讶，难道母亲会变魔术？我刚想问问母亲，却见她对我摆了摆手，止住了我，我就没问。父亲吃了那些胡萝卜后，病很快好了。果然应了大胡子的那句话，他给的胡萝卜真的把父亲的病治好了。从此，父亲对胡萝卜很感激，便经常要母亲买来吃。每次做胡萝卜前，母亲总是要找一根最粗最长的洗净放好。半夜里，她拿着那根胡萝卜走进浴室，坐在浴盆里，叉开腿，把那根胡萝卜插进她的腿间，轻轻地抽插着……
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+/****************************** list element template ******************************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   spankbang.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<!--<div id="_userPanel" onclick="event.stopPropagation()">-->
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails()">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails()">📁</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">🔽</button>
+</div>
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 妈妈在菜市场 作者：不详  </h3>
+
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+
+	<p class='firstLineIndent'>5岁那年，父亲得了一场重病，在病中他特别想吃胡萝卜，而在当时，胡萝卜是很贵的东西。而我家呢，又因父亲的病把所有的钱都花光了，并且还欠了数万元钱的债。平常我与母亲吃的都是街坊邻居接济的玉米面做成的窝窝头，就着自己盐制的咸菜疙瘩，实在是没钱买胡萝卜了。但母亲是深爱着父亲的，看着父亲那可怜巴巴不知能活多久的样子，母亲狠了狠心，那天赶集，还是决定给父亲买胡萝卜吃。那天，正是夏天里最热的一天。骄阳似火，火辣辣地烤着大地。人在屋里，即使是一动也不动，那汗也是哗哗的往下流，何况是去在那人山人海的集上挤来挤去的呢。</p>
+	<p class='firstLineIndent'>那天，母亲上身穿着一件淡黄色半透明的半袖低领衬衣，里面穿着一件很小的胸衣，下身穿着一件黑色绸缎带摺的半裙，里面是一件很小的淡黄色的裤头，脚上穿着一双高跟凉鞋。</p>
+	<p class='firstLineIndent'>说到这儿，我不能不说一下我的母亲。到现在，虽然发生了我将要说的这件事，但我还是为我能有这样的母亲而感到自豪。她实在是太漂亮了：她有象雪一样的肌肤。</p>
+	<p class='firstLineIndent'>1.65米，修长健美的双腿让人产生无限遐想。那对丰满而挺拔的乳房高高地耸立着，随着她身体的走动轻轻地颤动，因为天热出汗太多，她的衣服紧紧地贴在身上，两个粉红色花生米粒大小的乳头若隐若现。她的裙子也紧紧的贴在她的屁股上，两半性感的臀部紧紧绷着。裙下浑圆的屁股向上翘起一个优美的弧线，修长匀称的双腿没有穿丝袜，白嫩的大腿光裸着。母亲身上的这种独特丰满成熟优雅的韵味让她有一种让人心醉的诱惑力，每每看着母亲，我的小鸡巴就会情不自禁地硬起来，尽管那时我刚六岁，对男人之间的事还不懂。</p>
+	<p class='firstLineIndent'>到了集上，我们放好车子，就开始转着找卖胡萝卜的。人太多了，我们就往那人少的地方走，但我却发现有的人还好像特别往母亲身上挤，有的男人还用手向外拽母亲扎着腰的上衣，还有一个四十多岁的男人还用他长满黑毛的大手来摸母亲的屁股。</p>
+	<p class='firstLineIndent'>让我感到奇怪的是，母亲好像没感觉到似的，只是低着头领着我往前走。我们在集上转了一圈才在菜市的最外面？</p>
+	<p class='firstLineIndent'>见我们过来，那个卖胡萝卜的眼一亮，连忙打招呼：“大姐，买萝卜吗？个大，味鲜，价钱又合适。”卖胡萝卜的是个四十岁左右体格很壮的大胡子。“怎么卖的？”母亲走到他的摊前蹲下边看胡萝卜边问。这时，我注意到母亲的上衣的后面已被扯了出来，当她的身子前俯时通过她的裙子后边能看到她那淡黄色的小内裤，那内裤也太小了，露出了一小部分的屁股沟。“十……”大胡子只说了一个字便停住了。母亲觉着奇怪，便抬头向大胡子看去，却见他的两眼直勾勾的盯着自己的胸脯。我一看，原来母亲往下一蹲，那膝盖便把她的两个奶子往上一顶，而她的上衣领口又很低，于是那白白的奶子的上部便露了出来，要不是还有胸衣，那奶头也就露了出来。母亲脸一红，急忙把两腿往两边一分，把两个奶子夹在两腿中间，又把上衣的领口往上一提，盖住了奶子，而后又把身子向后一仰，蹲直了。“十块钱一斤。”大胡子也觉着很不好意思，急忙收回目光。“十块钱？</p>
+	<p class='firstLineIndent'>太贵了！能不能便宜点？“母亲还价道。？</p>
+	<p class='firstLineIndent'>“大兄弟，你看，孩子他爸病重，还不知道能活几天呢。这为了给他爸治病，还欠了几万块钱的债务，我实在是没钱了，你看能不能便宜点？”</p>
+	<p class='firstLineIndent'>母亲哀求道。“不行，我家老小还靠这个吃饭呢！”大胡子摆开了架子，把玩着手中的秤，拒绝的很干脆。“大兄弟，你就行行好吧。”母亲低着继续哀求。</p>
+	<p class='firstLineIndent'>“不……”大胡子又看了一眼母亲，这一看，他那目光再也挪不动了。我觉着奇怪，这个大胡子总看我母亲脚底下干什么？我顺着他的目光一看，他哪里是在看我母亲的脚底，分明是在看我母亲的……母亲叉着两腿，两条光洁的大腿，还有整个的阴部完全> 我注意到大胡子的两腿开始一张一合的晃动着，并且他的裆部，被一根类似于棍子的东西顶起，越顶越高，顶的他裆部的拉链也开了一点。“那…这样吧，你回答我几个问题，如果让我满意的话，我非但便宜，而且还免费奉送。”大胡子收回目光，想了想说。“真的？那你问吧？”</p>
+	<p class='firstLineIndent'>母亲一脸的惊喜，世上还有这么的事！她当成大胡子发善心了。“真的是孩子他爸想吃胡萝卜？”大胡子一本正经。“是。”“那你与孩子想不想吃？”大胡子一脸的关切。“想。”“那你想不想吃肉萝卜？</p>
+	<p class='firstLineIndent'>啊？肉萝卜？“母亲不解，抬头看大胡子。却见他一手摸着自己的裆部，一手拿着一根胡萝卜对着母亲的跨部比划着。母亲低头一看，自己竟大叉着双腿，急忙夹紧两腿，紧接着两朵红云飞上了母亲的双颊。”这…大兄弟，你看，能不能换个问题。“母亲轻声地问。”不行。你知道，我这份萝卜是全集市唯一的一份，当然，我这根肉萝卜也是全集市唯一的一根，想不想吃你可要想明白了。哼！</p>
+	<p class='firstLineIndent'>哼！！“母亲不作声，低着头，脸红红的。”想不想？“大胡子又问。母亲还是不作声，仍低着头，咬着自己的一绺头发，好像在思索着什么。我想，母亲这是怎么了，白给的胡萝卜还不想吃？！真是怪事！如果知道大胡子是什么意思，我就不会这样想了。”想不想？“大胡子追问道。母亲又咬着头发想了一会儿，终于下定了决心。”想。“母亲在牙缝里挤出一个字来，声音低地几乎听不见。”</p>
+	<p class='firstLineIndent'>这就对了。我也知道你想。“大胡子淫邪地笑了一声，站起身来。”小朋友，你过来坐我这儿。“大胡子招呼我说，”给我看着摊子，我和你母亲到后面拿胡萝卜去，拿来给你吃。可要给我把摊子看好了啊。“我很高兴地坐在了他的位子上。</p>
+	<p class='firstLineIndent'>母亲低着头瞥了我一眼，跟在大胡子后头向后面草垛间走去。没几分钟，我就听到后面草垛孔里传来大胡子与母亲说话的声音，接着是母亲忽高忽低的呻吟声，这声音持续了大约四十分钟。又等了一会儿，还没见她们回来，我就着急了，不过是到后面去，怎么用了这么长时间？这是到哪儿去拿胡萝卜啊，怎么还不回来呢？这时，我看了看四周，咦？大胡子的东西都是这儿，他还能领着母亲到哪儿去拿呢？我便向他们离去的方向走去，走了没几步，便听到一男一女的声音，但听不清他们说什么。我顺着声音转过一个草垛，这时声音清楚了。“哇，好爽好舒服啊。啊――嗨－嗨－肏死你――插死你――我要肏烂你的屄”　――一个男声，不是大胡子是谁？“啊――啊――好兄弟，用力，好舒服啊―――用―――用力――啊―――啊―――你这肉萝卜好厉害啊，我半年没尝过是什么滋味了。”</p>
+	<p class='firstLineIndent'>这声音不是母亲的是谁的？我悄悄蹲下身子，向草垛里看去，首先看到地下扔着几件衣服，是大胡子的上衣，母亲的上衣及裙子，母亲的凉鞋也胡乱的扔在衣服的旁边。我再抬头向上看去，正看到大胡子与母亲的右侧面。大胡子赤着上身，光着屁股，两腿大叉着，裤子褪到了右脚踝处；母亲的胸衣捋到奶子的上方，两个大奶子完全露着，她光着屁股，也叉着两人看起来很舒服。大胡子每一次顶的时候，并不是一下子插到底，而是先把他的鸡巴缓缓地插进一部分，这时，母亲嘴中发出轻轻的哼叫声，而后他把上身往后一仰，屁股往前一顶，那粗大的鸡巴猛地插进了母亲的腿间，连根没入，母亲不知是疼的还是爽的发出一声大叫，不过我想应该是爽的，因为她嘴中还说着“好舒服！好舒服！”她的神态也是很舒服的样子。大胡子长出一口气，抽出鸡巴，一些粘乎乎的液体随着他鸡巴的抽出流出，有的直接滴下，有的顺着他的鸡巴流到他的腿上，又流到地上，还有一些在母亲那两边翻起的肉缝中滴下，也有一些顺着母亲的腿流下。在地上，已经有几滩湿渍，已经分不清是汗水还是别的什么东西了。</p>
+	<p class='firstLineIndent'>接着，大胡子又开始下一次的插入，并且抽插的速度也越来越快。十几分钟后，大胡子松开了母亲的奶子，紧紧地扶着她的腰，快速地抽插着自己的肉棒，母亲闭着眼，嘴中发出连续不断的啊啊声，她的两个奶子上下翻滚，打在自己的胸上，发出啪啪地响声。猛地，大胡子把他的小腹紧紧地贴在母亲的屁股上，两手抱住母亲一动也不动了。</p>
+	<p class='firstLineIndent'>随着大胡子的屁股不由自主地抽动了几下，两人同时发出“啊――――”的大叫，接着倒在了草垛上，又倒在了地上。两人躺在地上呼哧呼哧地喘着粗气。</p>
+	<p class='firstLineIndent'>“怎么样？我这肉萝卜还可以吧？”大胡子摸着母亲的奶子亲了她一口问。“去你的，死样。你抓的人家的奶子好疼啊。”母亲娇嗔道。“你下面的嘴舒服不舒服啊？”大胡子的手又摸向了母亲那正流着淫水的肉缝。“别笑话人家啦。</p>
+	<p class='firstLineIndent'>都快被你插烂啦，你那玩意儿太大了，比我老公要大的多。当然很舒服了，啊――人家的腿都合不拢了。“母亲撒着娇。这时，大胡子无意有意地向我这儿看了一眼，我急忙回去了。</p>
+	<p class='firstLineIndent'>过了一会儿，两人说笑着出来了。母亲的头发很凌乱，蓬松地扎着，头发梢上还有一根草，上衣完全露在外面，未扎在裙子里，还只扣了上面两个扣子。大胡子走在她后面，一只手放在她的屁股上。我注意到母亲走路的姿势有点怪，本来，她走路时两腿是紧夹着的，绝对的淑女走法，而现在两腿轻叉着，还一拐一拐的。“小鬼，没等急吧？”大胡子走到我身边，摸着我的头说，“你给我看摊看的很好啊，什么东西也没丢。来，奖励你五十元钱。不要把我让你替我看摊的事说出去，为我保密，别让别人笑话我，说是让个孩子看摊。”大胡子拿出五十元钱递给我。我转过身去接钱，脸正对着他的裆部，我刚一喘气，就闻到一股又腥又骚的气味。我一看，大胡子裤裆处的拉链竟没拉上，他那小小的白色的前面湿淋淋的，我能看到他的大鸡巴缩成一团卷曲着卧在那里，他裤头上那湿淋淋的印渍还在继续扩大。我的目光往下扫，在他的拉链旁边还有几几滴白色的粘液。</p>
+	<p class='firstLineIndent'>“真丢人！都是个大人了也不知道把裤子的拉链拉上。”我接过钱，取笑着对他说。“是吗？”大胡子斜了正在蹲着装胡萝卜的母亲一眼，把拉链拉上了。“对了，你们怎么没拿来胡萝卜呢？”我问。“让你母亲吃了。你母亲回去后再吐给你父亲吃，绝对能把他的病治好。”大胡子色迷迷地看着母亲对我说。“我母亲吃了？吐出来给我父亲吃，给他治病？？”我很奇怪，就看了母亲一眼。我看到母亲叉着腿，她的内裤前部完全湿了，还有一个什么东西向前把母亲的内裤顶得很高。</p>
+	<p class='firstLineIndent'>“别听他瞎说，他在骗你呢！”母亲的脸刷地红了，对我？</p>
+	<p class='firstLineIndent'>很快，我们就把大胡子的胡萝卜装好了。他果然不食言，把他所有的胡萝卜都给了我们。到了放车处，看了看四周没人，母亲蹲下身子，从裙子下面拿出一根胡萝卜，上面湿淋淋的满是粘液。我很惊讶，难道母亲会变魔术？我刚想问问母亲，却见她对我摆了摆手，止住了我，我就没问。父亲吃了那些胡萝卜后，病很快好了。果然应了大胡子的那句话，他给的胡萝卜真的把父亲的病治好了。从此，父亲对胡萝卜很感激，便经常要母亲买来吃。每次做胡萝卜前，母亲总是要找一根最粗最长的洗净放好。半夜里，她拿着那根胡萝卜走进浴室，坐在浴盆里，叉开腿，把那根胡萝卜插进她的腿间，轻轻地抽插着……</p>
+
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<p>&nbsp;</p><p>&nbsp;</p>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
