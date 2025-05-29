@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+		glbBiUserPanelVisible = false;  
+	} else {
+		showUserPanel() ;
+		glbBiUserPanelVisible = true;
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'flex';
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'none';
+  }
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+	
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	right: 7em;
+	font-size: 1.2em;
+	width: 80%;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+/****************************** list element template ******************************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   spankbang.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<!--<div id="_userPanel" onclick="event.stopPropagation()">-->
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails()">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails()">📁</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">🔽</button>
+</div>
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 妻子穿着丝袜被人搞 作者:不详  </h3>
+
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+
+	<p class='firstLineIndent'>我的老婆是个比较追求性爱质量的女人，可我一开始并没注意到，我老婆喜欢穿丝袜和高跟鞋，平常她只是穿着连裤袜和普通的高跟鞋，但是有时出去玩就会换一些性感的吊带丝袜等等。</p>
+	<p class='firstLineIndent'>我也喜欢丝袜，但是我从没让我老婆满足过我，因为我怕她会笑话我，可事实证明我错了，我把最好的享受给了别的男人。</p>
+	<p class='firstLineIndent'>我老婆不是一个很骚的女人，但是，再老实的女人也有出轨的时候，我老婆以前是有贼心没贼胆，她每次穿的很性感出去都会有人搭讪，但她从来没和别人上过（至少她是这样对我说的），但是后来她认识了一个音乐制作人，我老婆一直想要当个歌手，于是就毅然在本职工作之外抽时间去练歌，和音乐制作人混的很熟，那男人我也见过，形象还可以。</p>
+	<p class='firstLineIndent'>一开始我有时还去陪她或接她下课，后来的公司事务忙起来了也就没再管了。</p>
+	<p class='firstLineIndent'>突然有一天我老婆回家后对我说音乐制作人给她找了一家公司可以作全职歌手，我老婆高兴死了，每天忙着整理自己的形象，她也对我说过那音乐制作人对她很好，给她提了很多服装上的建议（其中包括丝袜）。</p>
+	<p class='firstLineIndent'>我老婆深知丝袜的性感魅力对有感觉的男人有多重要，于是我看到了我老婆不再只是穿普通的连裤袜，我有次见她穿了吊带的长统丝袜，很性感。</p>
+	<p class='firstLineIndent'>就在这时候倒霉事来了，我要到外地去解决分公司出现的状况，我临走前就有点不安，但是也没办法，两个半月在外地，时常给老婆打电话，有时候她不接电话，她说是在录音棚里听不到。其余时间她的歌唱事业好象还不错。</p>
+	<p class='firstLineIndent'>但是她再也没说过音乐制作人的事，这让我越发紧张，我总觉得有点不对。</p>
+	<p class='firstLineIndent'>两个半月后的一天我回到了家，但我没有通知老婆，她如果按我走时所说，应该是晚到两天，我回到家看到屋里井井有条，床上散放着一些衣物，没什么，我老婆定是在练歌什么的，因为电话她不接。</p>
+	<p class='firstLineIndent'>当天是星期六，我老婆经常借着周末去练歌，平时只能练几个小时，周末没别的歌手，可以整天练。</p>
+	<p class='firstLineIndent'>于是我抱着比较平静的心态来到了那个录音棚。快到录音棚的时候，我老婆给我发了短信说：“老公，对不起，我在练歌，没听见，我已经练完了，正准备回家了，到家了再给你打吧。”我一想已经练完了，那我就不进去了，因为进门还要登记，于是就在门口等，等了半天也不见出来。</p>
+	<p class='firstLineIndent'>于是我还是登记进去了，我来到了顶楼录音棚外，但是我看到门外的铁栅栏门上锁是挂着的，那就说明有人在，但是正在录音，请勿进入。</p>
+	<p class='firstLineIndent'>可是我还是忍不住，因为我越来越觉得不对劲了，于是我慢慢的拿掉锁，进了大门，来到了录音室门外，慢慢推开一道隔音门，进了里面，走过一个短通道，我推开了第二层隔音门，我的眼前就是调音台。</p>
+	<p class='firstLineIndent'>我一眼就看到了沙发上我一个女人的包，不知是不是我老婆的，但是我紧接着看到了录音间里面，隔着大大的玻璃，我赫然看到了里面的麦克风架子上挂着一双肉色的女士丝袜。我当时的站位只能看到半个录音间，于是我往前走，心里带着一种受刺激之前的狂乱情绪准备看到那一目，我的心里还存有一丝侥幸，但是很快的，我失望了，因为我又看到了第二双丝袜，这回是两只长统袜散放在乐谱架上，那丝袜挂在那里，淫气就逼来了，这原本很严肃的录音间里充满了淫荡的气味，我一咬牙，决定赶快看到里面的全部景象，于是一个闪身，站到了大玻璃的正前方。</p>
+	<p class='firstLineIndent'>我惊呆了，我看到了在三角钢琴的边缘上，一个男人的背影，他的裤子拖到了地上，他的身体不断的向前冲击着，他的前面显然有一个女人坐在钢琴的琴键部分，钢琴盖着盖子，没有声音，隔着隔音玻璃，我也听不到里面的声音。</p>
+	<p class='firstLineIndent'>但是，我能看到，那个女人的腿上闪闪发着珠光，那是我所喜欢的丝袜质地，女人的长腿上穿着黑色的尖头细跟高根凉鞋，女人的两腿被男人抱在腰两侧，被举的挺高，小腿搭下来，性感的随着男人的冲击晃动着。</p>
+	<p class='firstLineIndent'>女人的双臂环抱着男人，但是她的脸被男人身体挡住了，我抱着最后一线希望希望有奇迹，于是我往左又往右，就是看不到女人的脸，而这期间，男人干的非常快，女人经常是一阵乱刨才能抱住男人的肩膀，两人很疯狂的搞着，我竟然开始有点冲动了。</p>
+	<p class='firstLineIndent'>突然间，男人好象进入高潮了，他把女人往起抱了抱，女人立刻就悬空了，紧接着另我完全丧失信念的情况出现了，女人用手臂紧抱着男人，她的身体在男人的猛干下上下窜动着，修长的腿穿着长统肉色丝袜搭在男人腰间，两脚的高跟鞋盘着男人的腰。</p>
+	<p class='firstLineIndent'>女人将头越过男人肩膀靠在男人肩头，嘴大张的，淫荡的表情还说着什么话，而那确实就是我既想看不到但又为之冲动的面孔——我老婆。</p>
+	<p class='firstLineIndent'>我老婆淫荡的舔着男人的耳朵，男人也不停的干她，还同时抚摩着她的丝袜美腿，那双从来没为我穿过性感的吊带丝袜的美腿现在被别人玩弄着，那从来和我做爱规规矩矩每次来了一次高潮就对我说谢谢的老婆此时正没够的享受被男人玩弄的乐趣并且心甘情愿的作着淫荡挑逗动作，她从不穿着丝袜和我做爱此时却在录音间里散放着两双她穿过的或者准备第二次插入作爱时作挑逗之用的丝袜。</p>
+	<p class='firstLineIndent'>她所说的练歌录音棚现在成了他们的淫乐室，也不知道这是他们第几次在这里淫乱了，也不知道我老婆是因为我的出差觉得孤独寂寞才被人占了便宜呢还是我老婆在我告诉她我要出差时内心早已流下了淫水呢。</p>
+	<p class='firstLineIndent'>我一边呆呆的想着，一边看着她继续被人狂搞，她的动作明显加快了，她在男人身上满足的不停上下窜动，嘴里大叫着。</p>
+	<p class='firstLineIndent'>我觉得难以忍受了，于是我几步向前，拉开了录音间的隔音门，猛然间，淫词浪语窜入我耳中“啊，好爽，干我”“使劲，摸我的丝袜，我为你穿的”“啊</p>
+	<p class='firstLineIndent'>让我爽，快让我爽呀”我的门只开了一半就再也不想打开了，我站在那里，继续听着我老婆从她娇小的嘴里喊出的最刺激男人的淫贱话语，继续听着两人的性器交合的噗滋噗滋的声音，继续看着眼前挂在麦克风架子上的丝袜（那上面沾满了精液，显然这不是今天第一次了），我的心在猛跳，我多想冲进去爆捶那个男人，我又多想我老婆能这样淫荡的和我做爱，而我此时的受侮辱感和性冲动却又是那么的真实，让我不知所措!</p>
+	<p class='firstLineIndent'>自从上次发现老婆背着我和别的男人搞以后，我的生活发生了翻天覆地的变化，一切都不再象以前那样单纯了，虽然我很气愤，但是毕竟我们之间有感情，这种关系不是那么简单就可以割舍的。</p>
+	<p class='firstLineIndent'>所以经过一段日子的持久战后，我们还是要回到日常生活里来。但是之前发生的事使我们的关系非常畸形。我们的内心里，一种淫欲的本性正在不断扩张。</p>
+	<p class='firstLineIndent'>终于有一天，我们之间开始了一次长谈，将我们一直避而不谈的性话题完全展开了，我虽然气愤老婆背叛我，但是我确实从中得到了前所未有的刺激，她也有同样的收获，于是我们之间竟然达成了一种协议。我想，在我们之间再也不会有纯的感情，只有纯的欲望了。我们都陷入了一种燃烧自我的生活里，我们享受着这种生活，乐此不疲，谁也没有勇气去考虑我们之间的未来。</p>
+	<p class='firstLineIndent'>我们开始展开各种性爱游戏，我老婆进行着各种勾引别人的行为，我则满足于这种变态的性刺激中。她和其他男人之间的接触越是出轨，我就越是兴奋，每次都能在老婆风流之后再次让她体验高潮。</p>
+	<p class='firstLineIndent'>我们甚至来到外地玩，那一天，我和老婆在街上闲逛，我老婆穿着短裙和高根凉鞋。浅色的衬衣里面显露出黑色的胸罩。她的下体没穿内裤，穿着肉色的珠光裤袜。她走在大街上，依偎着我，目光却在挑逗所有看她的男人。</p>
+	<p class='firstLineIndent'>这一切我一清二楚。我老婆的心里想必是越来越兴奋，于是在一个街拐角的矮树丛边，她故意的将腿往树枝上划，可想而知，她的丝袜破了一个大洞。老婆当着众多行人的面说要再买一双丝袜。</p>
+	<p class='firstLineIndent'>于是我们来到了一家内衣店，一看就是那种情趣内衣的店。里面有各种撩人的物件。我老婆自然选择了一双很挑眼的丝袜，她选择了一双纯尼龙丝的肉色长袜，腿后面还带有一条细线直到丝袜跟部，这是电影里风尘女子的典型打扮。</p>
+	<p class='firstLineIndent'>我老婆略带脸红的买下了，并且当即在更衣间里换上了那双代表着放荡的丝袜，薄薄的短裙上显露出吊袜带的形状，袜子上端只比裙子高一点，只要一个蹲下，吊袜带就会暴露。</p>
+	<p class='firstLineIndent'>我老婆兴奋的对我小声说。：“我很紧张。”从内衣店出来，走不多远，已经是数个男人从身后抄上来看我老婆了，她兴奋的要死。我老婆对我说让我和她分开，让我跟随着她，她要开展行动了。</p>
+	<p class='firstLineIndent'>我于是和她转身进了一家商场，简单兜了一圈之后，我老婆独自一人迈着挑逗的步子，高跟鞋哒哒的敲着地走开了，我则一直跟随着后面十米的距离。我老婆走的不快，但她渐渐转入了人较少的路。</p>
+	<p class='firstLineIndent'>我发现了有一个穿西装的中年男人跟了进去，我小心的跟着，看到那中年男人一直盯着我老婆的腿看，我老婆慢慢走进一家咖啡厅。那人跟了进去，我找了一个不偏不倚正好能看到她的地方，我老婆坐在那里，喝着咖啡，等待着那人的搭讪，看来她对那人很满意，那人过了一会主动和我老婆开始聊天。</p>
+	<p class='firstLineIndent'>我老婆姿态开放，双腿也没完全紧闭，男人知道是个好上手的猎物，就发动攻势，开始开色情玩笑，对我老婆动手动脚。通过他们的动作我看出男人肯定再和我老婆聊那性感的丝袜，我老婆也毫不羞涩的自己抚摩着膝盖部分的丝袜，男人和我老婆秘密低语了几句。我老婆半推半就的答应着什么。</p>
+	<p class='firstLineIndent'>不一会，男人和我老婆走出了咖啡厅。我老婆站在门外，给我打了一个电话，我没有接，这是我们的暗号，这说明她要把那人带到我们的酒店去。我立刻出门上了出租车，眼看着男人把我老婆带上另一辆车。</p>
+	<p class='firstLineIndent'>我率先到达酒店，来到房间。我讲老婆的很多双丝袜散放在床上和椅子上，这样会让我老婆兴奋。然后，我躲到卫生间里。不一会，我老婆开门进来了，就在她开门的一瞬间，那个男人从后面一把抱住她，我老婆尖叫一声，她的裙子已被男人掀起，露出了只系着吊带长袜的下体，男人看傻了。我老婆迅速关上门，那个男人把我老婆挤在墙上，从身后疯狂的抚摩着她的大腿。。。。。</p>
+	<p class='firstLineIndent'>我老婆今年30了，我们结婚的这几年。一直感情很好，但性生活一直不太顺。每次做她都好象没有什么感觉。我喜欢老婆做爱时穿的骚一些，比如丝袜和高跟鞋，皮靴什么的，她每次都答应，她说知道我喜欢这些，她穿上也觉得兴奋一些，但是她仍然很少来高潮。</p>
+	<p class='firstLineIndent'>后来我们想了很多办法，其中一个就是边看毛片边做。这个方法很有成效，我们很投入。她要求的次数也多了起来。我们都陷入了刺激的疯狂的性爱方式里。有一次看毛片，看到一对夫妻出去旅行，妻子背着老公和好几个男人上床。我看的很兴奋，甚至在日后的日子里幻想老婆和别人干的样子。</p>
+	<p class='firstLineIndent'>一次做爱时，我突然问老婆想不想和别人干，她竟然很快就来了高潮。我心里有点不是滋味，但是又兴奋。过了一段时间，我们之间又平淡了，我决定了，要让老婆骚起来。</p>
+	<p class='firstLineIndent'>于是我鼓励她上班的时候多穿短裙和丝袜高根。她说闲上班路上不方便，我就给她也添了一辆车。我经常给她买丝袜和跟很高的高跟鞋，让她穿着上班。逐渐的她也喜欢这么穿了。我过生日那天，早上我拉着她在床上亲热了一番，但没有做。我看她兴奋起来了，就跟她说“你今天穿我给你买的那双纯丝的吊带丝袜吧。她不好意思。我就说：“你一定要穿，我要你穿那双丝袜，穿高跟鞋，而且不准你穿内裤”她推脱了一番，我说就当是送我的生日礼物。终于她穿着这些出门了。</p>
+	<p class='firstLineIndent'>我一整天兴奋着。回家后她说她的同事可能发觉了她没穿内裤。我问她兴奋吗。她没说话，马上抱着我，疯狂的要求做爱。我知道，她上道了。以后的日子里，我经常要求她这么穿。她渐渐的也不再推辞了。即使是来月经，她也是穿裤袜里面垫卫生巾就出门了。</p>
+	<p class='firstLineIndent'>又过了一段日子，这样的刺激又平淡了。她有时还要求我跟她做，但是我总说累。后来她也不问了，终于有一天，她打电话回来说要加班到很晚。接着那段日子，几乎天天加班。有时加通宵。</p>
+	<p class='firstLineIndent'>我给她打电话她总是半天才接，而且说正在忙，但是周围听着很安静，根本不象有很多同事在的样子。我知道，我成功了，我的老婆很有可能已经被别人搞上了。为什么这么确定呢，因为她的那双纯丝长袜后来莫名其妙的不见了，她就又买了几双，她仍然穿的很骚。但是却不和我要求了，她那么强烈的欲望去那里发泄了呢？肯定有问题。</p>
+	<p class='firstLineIndent'>于是我开始我的行动，我偷偷的配了她办公室的钥匙，有一天她生病。我就偷偷去了他们单位。</p>
+	<p class='firstLineIndent'>她是在一个国家机构工作。我到了那里，想她的同事说是她有东西拉下了，我来取。顺利的进了她的屋。原来她已经自己一个屋了。奇怪！没听她说自己升官了？我悄悄的装了一个电话窃听器。然后趁着没人。我打开了她的抽屉，我兴奋死了，我在她的抽屉里发现了几双纯丝的长袜，其中有我送她的那双。我还在里面找到了一盒避孕套，只剩下两个了。看到这些，我的心里非常激动，我仿佛已经看到她和别人在这里，这个严肃的办公室里淫荡的做爱的样子。我不能就此罢休。我要看到！几天以后，我又借机来到了她的办公室，这次我安装了摄象头，非常小，很难发现。</p>
+	<p class='firstLineIndent'>这个摄象头真的花了我不少钱呢。</p>
+	<p class='firstLineIndent'>第二天一早，我又在床上挑逗她，她装出很兴奋的样子，我看的出来，她实际上有点不耐烦了。我依然要求她穿丝袜和高根不穿内裤。她顺当的接受了，并没表现的很兴奋。一个小时以后。</p>
+	<p class='firstLineIndent'>我开始监听和监视她了。我打开摄象头和窃听器。正好这时候她推门进来了，真准时呀。我看到她关上自己的门。靠着门发了一会呆。不知道再想什么，接下来，她坐到椅子上，竟然拉起了裙子。手伸到自己私处慢慢摸了几下。接着象是决定了什么似的。拿起电话。我听见她在和一个男人通话。“喂，是我”“怎么了，语气不太高兴啊？”“我不知道，我看今天先别弄了，我老公要求我晚上早回去，估计是想要我。我怕他发现”呵呵，骚货，不想要还自己手淫，别装了。“没事，回去之前弄干净就行了，我可忍不住了”男人淫话说着。“哦，好吧，那你过来吧”电话挂了。我看我老婆很高兴的样子。她整理了一下自己的丝袜。然后坐着等待。几分钟以后，一个男人进来了，我一看，原来是她的领导。一个老男人，快50了，原来是这种人。</p>
+	<p class='firstLineIndent'>两人关上门以后，立刻抱着亲了起来。老婆竟然一边抱者男人一边往桌子边退，然后自己主动坐到桌子上。男人开始把头埋在她裙子里亲着。我老婆露出舒服的表情，我还能听到微微的呻吟声。老婆把腿举高，男人不停的抚摩着那双漂亮的丝袜腿。男人突然把头凑到老婆面前。问：水很多呀？是想我了吗？”老婆点头。男人又问：“晚上你老公怎么办呢，你还玩了了吗？”</p>
+	<p class='firstLineIndent'>老婆说：“没办法，应付一下吧，快点，别停下”男人挑逗我老婆说：“我不快，我偏要停，晚上你就是你老公的了，我要好好享受一下你，来，再来说说你为什么喜欢和我干？”</p>
+	<p class='firstLineIndent'>老婆说：“讨厌，还不是你勾引我，你看我的眼神都色色的”男人问：“你不喜欢我那样看你？”老婆：喜欢呀，当然喜欢了。你看我我就想象你在干我！”男人问：“承认吧，是不是早就想被我干了”老婆：“没有”男人：“不是吧，我来了没多久你就天天穿吊带丝袜和高跟鞋，还不穿内裤，难道不是你在发骚吗”男人说完开始舔我老婆的乳头，我老婆兴奋的说：“那是我老公要我穿的，谁勾引你了，是你勾引我，你送给我新的丝袜。难道不算勾引吗？呵呵”男人：“那也是你在我办公室里故意把丝袜挂坏了，挑逗我，说，是不是你当时就想要我了？”男人说着把鸡吧掏出来了，顶在我老婆下体，摩擦着”我老婆兴奋的扭动着身体说：“是，啊 ，是我想和你做爱才故意弄破丝袜的，是我想要你，快来吧”男人这才猛的一插，鸡吧实实的插入我老婆的阴道。</p>
+	<p class='firstLineIndent'>老婆马上捂住嘴。但是淫叫还是被我听见了。男人抽插着，还不停的问：“骚货，是不是喜欢在办公室里干？”老婆点点头。男人又问：“是不是喜欢被别的男人看才穿那么骚，是不是喜欢偷着和别的男人干？”老婆兴奋的都顾不上点头了，一手捂着嘴，一手扶着男人屁股，使劲的往里推。穿着吊带丝袜的大腿在空中晃来晃去，高跟鞋穿在脚上更显得淫荡。男人问：“爽不爽，你是不是骚货？”老婆终于忍不住了，放开手，双手抱住男人脖子，在男人耳边说：“对，啊，对，我是骚货，喜欢穿丝袜给男人看，喜欢男人色咪咪的看我，干我。老公不能让我兴奋，我的丝袜和高跟鞋一开始就是为你穿的，啊，快 ”老婆的淫叫声音随小，但是听的非常真切，我在家里简直兴奋的不行。另一边，那两个奸夫淫妇正干的火热。我很快射了。强烈的刺激几乎让我眼前发黑昏过去，这正是我想要的呀！！！</p>
+	<p class='firstLineIndent'>今晚，老婆回来后，我要她好看！</p>
+	<p class='firstLineIndent'>上一次讲到我发现我老婆已经如我所愿和别人搞上了.她很陶醉于那种偷情的性关系,喜欢为别的男人穿丝袜和高跟鞋,喜欢勾引别的男人.这正是我所期望的,因为这样很刺激,后来我和老婆坦白了,告诉她之前那么长时间没和她做爱是为了促成她偷情.她也很兴奋,我们的性生活又燃起了火焰.要说这女人的性欲要是被挑起来了还真压不住.</p>
+	<p class='firstLineIndent'>不久她就和他的领导不再上床了,因为她说已经没什么刺激了.于是我们决定开始第2步,到新的地方去寻找刺激.由于我一直在网上和别人聊这些事,因此认识了一些志同道合的朋友,我们精心选择了一对夫妻,情况和我们差不多.人品应该也没问题.不久我们就见面聊了几次.约好时间,我们出发了.来到了广州.</p>
+	<p class='firstLineIndent'>经过几天的熟悉之后.我们打算开始我们的疯狂丝袜性之旅.那对夫妻看上去很不错,男的个子高高,长的虽一般,但身材很好,看上去也很好接触.女的和我老婆很象,表面端庄,其实是个很浪的女人,没几天我老婆就和她单独上街去购物了,买什么?当然是买丝袜高跟和情趣内衣了!</p>
+	<p class='firstLineIndent'>到达广州一周之后,大家彼此信任了.一晚我们来到早就看好的一家迪吧,这里气氛很开放.很多女孩都穿的非常挑逗.可以看到很多对男男女女在一起调情.气氛淫靡.但是我的老婆应该是这里最风骚最饥渴的女人.</p>
+	<p class='firstLineIndent'>离开酒店前,老婆就穿好了黑色超短裙,上身透视装,里面是黑胸罩,腿上是肉色的开裆裤袜,12公分的高跟鞋.她的装束就好象告诉了男人们她的渴望.我抱住她抚摩着,她很兴奋.对我说:"终于要开始了,好激动"我一摸她竟然还穿着内裤.我一把把内裤扯了下来,伸手一摸,老婆已经湿了.我对她说:"别藏着了,只穿裤袜多淫荡呀"她笑而不答.来到酒吧之后,老婆和我聊了一会,我就把她一个人留在舞池里了,她周围被很多男人包围着.</p>
+	<p class='firstLineIndent'>看的出她很兴奋,有几个男人慢慢和她贴近,我看的见,男人们都在吃她的豆腐,她一开始还会谨慎的看看情况,很快的,她也不再注意了,只顾自己扭动着身体.这时候一个老外贴了上来,挤走了其他人.从后面抱住我老婆.开始亲她的脖子.老婆陶醉的闭着眼.男人慢慢的手伸到老婆腿上摸起来,老婆开心的笑着.</p>
+	<p class='firstLineIndent'>她俩开心的调着情,看的我好兴奋.等了一会,老外竟然伸手进老婆的裙子里,紧接着老婆和他都象被电击了一样呆立了一秒.老外马上拉着老婆离开了舞池.老婆在后面被老外拉着快步走向角落里的洗手间.我也跟了过去.</p>
+	<p class='firstLineIndent'>老婆在进洗手间之前看了我一眼.眼神里充满了兴奋,淫荡和一丝不安.我点了点头.老婆进去了.门马上被关上.想必里面正开始一场疯狂的性事.而被干的就是我的漂亮老婆.这种感觉真刺激.</p>
+	<p class='firstLineIndent'>这时候我看到和我们一起来的那对夫妻正在和角落里呆着,显然他们还没找到感觉.我走过去,问了问他们的情况.两人说有点放不开.我对他们说:"我们已经达成了协议对吗?""什么协议?"我说:"就是交换的协议"男人点点头.</p>
+	<p class='firstLineIndent'>我立刻楼住女人的肩膀.把她抱紧.男人看着我,没说什么.我接着抚摩女人的丝袜腿,她的丝袜是那种纯丝的,手感很好.女人害羞的低着头.男人看上去兴奋起来了.我开始隔着衣服慢慢的揉搓女人的乳头.她开始有点呻吟了.我将头贴过去想听听她的叫声.</p>
+	<p class='firstLineIndent'>谁知道她开始咬我的耳朵,然后说:"舒服吗,其实我早就想了,是怕他不高兴"我一听马上将手伸进她裙里,摸她的阴部.她开始大声起来了.</p>
+	<p class='firstLineIndent'>一会,我将她的内裤脱了下来.交给她老公说:"玩吧,我去找我老婆".我刚一起身,就有一个中年的带眼镜的男人坐下来开始和他们交谈起来了.我来到了老婆偷情的洗手间外.</p>
+	<p class='firstLineIndent'>外面还有人在敲门,不过肯定是没人开门,所以那人又走了.我回到座位上.又要了一杯酒,刚喝没两口.看到洗手间的门开了,老外出来了.跟在后面的是我老婆.她一手捂着胸口,脸上还带着激动兴奋的表情,似乎还在陶醉于高潮中.</p>
+	<p class='firstLineIndent'>她转身向我这边走来.脚步不稳,高跟鞋一晃一晃的,看来刚才玩的挺疯狂.她来到我身边坐下了.倒在我怀里.满足的说了一句:"天哪".接着就继续喘粗气了.我这才看到,老婆腿上的丝袜早已被撕破了.丝袜裂出了很多长条的大洞.我问老婆:"怎么样?"老婆点头说:"太棒了,"我问:"这么半天,是不是玩了两次"老婆点点头.我又问:"你含了吗"老婆说:"讨厌,能不含吗,好粗"我急忙问:"带套了吗?"老婆说带了.老婆说:"她挺喜欢我的丝袜的,老摸,到后来就不抱着我,而是从后面拉着我的丝袜做,所以袜子全烂了."</p>
+	<p class='firstLineIndent'>老婆说出去透透气.我们来到外面.老婆脱掉破了的丝袜.散了一会步.老婆一直再说有多么刺激,多么舒服.快回到酒吧时看到那对夫妻里的妻子和那个带眼睛的中年男人还有一个年轻人一起钻进了一辆面包车.我和老婆相视而笑.我们回到酒吧里,老婆似乎又有了兴趣.和几个男人聊了两句.但都没多说.</p>
+	<p class='firstLineIndent'>这时候我们看到了和我们一起来得那个朋友.他竟然一个人坐在座位上喝闷酒.我和老婆赶快过去问他怎么了,他说心里还是有点别扭,一不敢碰别的女孩,二看到老婆和别人出去做爱了心里有点难受.</p>
+	<p class='firstLineIndent'>我老婆马上坐到他身边开始安慰他.我马上明白了我老婆的意思.坐在一边看好戏.我老婆犯起浪来,那张小甜嘴,撩人着呢!很快的,男人被说的有说有笑的.老婆开始靠在他身上,把腿翘到他腿上.男人开始摸起来,接着问:"你的丝袜呢?脱了"老婆笑呵呵的回答:"你说呢?你等会看你老婆的丝袜就知道了"男人想了想说:"想摸你的丝袜腿,可以吗?"老婆马上从包里掏出了一双新的长统袜穿上了.男人开始和我老婆接吻.接着开始摸我老婆的乳房.老婆显然又兴奋了.又开始闭眼享受着.老婆也不时的隔着裤子摸摸男人的鸡吧.</p>
+	<p class='firstLineIndent'>男人兴奋的不行,但他执意要和我老婆回酒店做.他说他们夫妻带了性用品.我想了想也好,但是需要叫上他老婆一起我才有人陪呀!</p>
+	<p class='firstLineIndent'>于是我们很快的来到外面.他给他老婆打电话,但没人接,他说不会有什么事吧,我和老婆知道他老婆就在边上的车了干呢,所以说没事等会就回来了.但他不放心.不得已我们带他来到那辆面包车边.</p>
+	<p class='firstLineIndent'>我突然想恶做剧一下.于是冲过去猛的拉开车门.谁知道差点被她老婆穿着高跟鞋的脚踢到,门一开立刻就看到他老婆穿着纯丝长袜和高跟鞋的两条玉腿高举着.两腿之间压着一个中年男人.门一开,中年男人吓的马上往车的深处躲.中年人一躲开,我们看到了非常刺激的一幕.朋友的老婆只穿着高跟丝袜和短裙,上身光着,内衣扔在一边.她在我们看到她的时候嘴里甚至还含着那个年轻男人的鸡吧呢!</p>
+	<p class='firstLineIndent'>这个女人可真厉害,头一次玩就能这么开放,真的是头一次吗?她老公估计已经被瞒了好一阵了吧!车厢内的三人立刻呆成一团.我装做有点生气的样子.那个中年男人马上说:"你们是一起的吗?"朋友的老婆马上穿上上衣,擦着嘴紧张的说:"那个是我老公"中年男人马上道歉.我们四个人马上打了车离开那里.在路上我从观后镜里看到朋友疯狂的吻和摸他老婆.我老婆则玩弄着朋友的鸡吧.我心里偷笑,看来大家都已经豁出去了!!!</p>
+	<p class='firstLineIndent'>上次说道我和我老婆还有一对夫妻一起去广州疯狂淫乱.自从那个晚上去过酒吧之后,我们四个人都非常的开放.朋友和他的老婆甚至比我们玩的更疯,当然我们两对夫妻之间也交换过好几次了.</p>
+	<p class='firstLineIndent'>有一天甚至我们四个人在房间里一直淫乱从中午到深夜.整趟广州之旅我老婆差不多消费掉了30多双丝袜和几双高跟鞋.我们玩的真是太疯狂了.两周之后,我们回到了家.</p>
+	<p class='firstLineIndent'>虽然保持着联系,但是由于工作较忙,很难再约到一起了.我老婆仍然老实的上她的班,偶尔听她说她的领导还向她提出性要求.不过我老婆已经对他没什么兴趣了.不到一个月,我老婆又开始觉得性生活乏味了.不过在自己的家乡,怕遇到熟人所以没有再去酒吧之类的地方偷情.此时正巧我为她从网上买的几双连身的超薄丝袜寄到了.老婆忍不住要求我想办法解决她的偷情的饥渴.</p>
+	<p class='firstLineIndent'>我左思右想终于想到了一个地方.我以前家住一个大学附近.校风比较古板.校园里很难见到穿着性感的女人.是个挑逗处男的好地方.老婆很兴奋.终于在周末.我们出发了.</p>
+	<p class='firstLineIndent'>出发前老婆开始打扮.里面穿上连身的肉色透明丝袜.丝袜全身包裹,只露出脖子以上,手和裆部.是适合做爱的好丝袜.老婆穿好丝袜,丰满的乳房包裹在透明的肉丝里,乳头坚挺,异常挑逗.老婆照旧不穿内裤,只穿短裙.上身套一件不透明的衬衫.10公分的高跟鞋.来到校园里,周末所以人很少.</p>
+	<p class='firstLineIndent'>我和老婆走在校园里心里很激动.老婆问我:"你有什么计划呀,赶快告诉我吧"我于是带她来到一间比较闭塞的实验楼,这里几乎没什么人.有好几间大教室.我和老婆转了几层,看到一间教室里有一个男学生正在看书.带着眼睛,表情木讷,眼看就是个书虫.老婆觉得他比较好上手.决定就是他了.</p>
+	<p class='firstLineIndent'>于是老婆踩着高跟鞋嗒塔做响的进了教室.站到窗边向外看.我从后门的玻璃外看到,男学生一直在看着老婆,老婆的背影看上去很性感.短裙加上丝袜,美腿扰乱着男学生的心思.</p>
+	<p class='firstLineIndent'>等了一会.老婆慢慢走了过去,问那个男学生:"你是这里的学生吧?"男生点头.老婆又问:"你们学校挺大的,今天人这么少呀?"男生说是周末,人都在宿舍休息.老婆说:"那你怎么在这里呢,这么用功!"男生有点不知所措的微笑.老婆顺势坐在了男生旁边.开始和男生说悄悄话,但是我仍然能听到.老婆说的话都很惹火.男生很快的就有一点声音颤抖.突然,男生问:"姐姐,你这么热的天还穿丝袜呀?"我一惊,知道男生已经上套了,而且已经开始不顾面子了.我老婆肯定心里也很高兴,于是说:"是呀,是热,但是姐姐喜欢穿,你觉得姐姐的丝袜好看吗?"男生点点头.</p>
+	<p class='firstLineIndent'>老婆开始抚摩自己的腿,直接就问:"你是不是喜欢看女孩子穿着丝袜?"男生有点吃惊,慢慢点了点头.老婆马上来了精神.问:"你是不是老盯着女孩的腿看?"男生没说话.老婆说:"没事的,这有什么呀.让你看看这个"老婆说着把衬衫的袖子往上拉起,说:"看,和腿上的丝袜是一个颜色,见过这样的吗?"男生看呆了说:"没见过,是连在一起的吗?"我老婆说:"对呀!"男生还在装:"那不是更热了,不会是连着的吧?"老婆假装很认真的说:"就是连着的,连身的丝袜,你要不信我到厕所脱下来给你看看."男生点头说行!</p>
+	<p class='firstLineIndent'>老婆说,"告诉我厕所在哪,算了,你带我去吧!"老婆马上和男生收准备出教室.我马上偷偷的跑到女厕所(虽然有点不雅).来到最里边的隔断.关上门等着他们来.很快的听到我老婆的笑声.接着我老婆就进来了.对着门外说:"等我一会".</p>
+	<p class='firstLineIndent'>老婆进了厕所,偷偷看到我正在等着.她的表情兴奋异常,脸红红的.我马上把摄象头藏到她那一边,这边连接着我手上的摄象机.老婆开始准备了.她解开上身的衬衫口子,露出被丝袜包裹着的乳房,很性感.她把皮包挂在勾上.自己撩起裙子,露出了开裆的丝袜,自己慢慢抚摩着阴部.我从摄象机里清楚的看到她淫荡的表情.</p>
+	<p class='firstLineIndent'>这时候,老婆对门外叫了一声:"喂,你进来一下,帮帮我"男生犹豫着.老婆说:"进来吧,没别人."男生于是蹑手蹑脚的进来了.当他走到老婆所在的隔断时.老婆推开了门.老婆的上衣敞开着,乳房裹在连身丝袜里,美丽的玉腿上闪着丝袜的光泽.她的双手很纯情的遮挡着自己的阴部.一副娇羞的样子,裙子却已经撩到腰部.</p>
+	<p class='firstLineIndent'>男生看呆了.老婆马上伸手拉住他的衣领,一把将他拉了进来,然后关上门锁好.老婆和男生面对面站着,男生仍然呆立着,盯着老婆的乳房,我老婆娇羞的问到:"是连身的丝袜,现在信了吧"男生这才反映过来,忙点头.老婆慢慢将自己贴近男生的胸前,问:"喜欢吗?你肯定刚才就想看了吧?"男生颤抖着说:"是,姐姐你真漂亮"老婆问:"有女朋友吗?"男生摇头.</p>
+	<p class='firstLineIndent'>老婆说着抚摩男生的身体,发着骚的说:"那你肯定没尝过这个了,我来让你尝尝"说着蹲下身体,拉下男生的短裤和内裤.一张嘴把男生的鸡吧含进去了.男生的身体立刻强烈的颤抖.老婆则不停的含着,不给他喘息的机会.男生压抑着声音,但仍然挺得到:"姐姐,姐姐,我,啊"老婆却加快了速度.很快的,男生身体紧绷着,老婆看出他要射了.立刻吐出鸡吧,用手猛搓几下.男生射了,射的好多.</p>
+	<p class='firstLineIndent'>老婆站起身来.搂着男生问:"舒服吗,是第一次吧"男生竟然说:"姐姐,转过身去,我还没玩够呢!我在毛片里看过.你们女人都喜欢被人从后面操.我也要从后面操你!"老婆淫荡的半呻吟半说话:"好呀,姐姐喜欢,来吧"男生毕竟是男生,还是有劲.</p>
+	<p class='firstLineIndent'>立刻把我老婆抱起来,紧压在墙上.掀起老婆的裙子.挺起鸡吧就插,却插的有点歪.老婆马上身手过来握住他的鸡吧,帮他对准.男生接着使劲一顶,鸡吧全根进入.</p>
+	<p class='firstLineIndent'>老婆忍不住真的叫出声来了.虽然只有一声,但是我知道,老婆现在肯定是非常快乐的.男生疯狂的抽插着,完全没有技巧.老婆也不需要技巧.因为她心理上已经很兴奋了.所以只要使劲插她,她就会很快达到高潮.</p>
+	<p class='firstLineIndent'>老婆被男生压在墙上,两条穿丝袜的玉腿绷的直直的,努力支撑着自己的身体.然而高跟鞋打滑让她有点站不稳,男生干脆抱住她的腰,将她微微抬起来,继续使劲的插.老婆的身体不住的颤动,两腿已软的不行了.两只手紧紧的抓住墙上的水管.大口的喘着气,却不敢叫出声来.</p>
+	<p class='firstLineIndent'>男生越来越使劲,看样子已经快要疯狂了.他一口从我老婆的背部咬住她的连身丝袜,用力的抬头向后扯.两只手从前面一手拉扯腹部的丝袜,一手拉扯腿部的丝袜.同时还在不停的插着.</p>
+	<p class='firstLineIndent'>老婆被他的动作弄的姿势很别扭,但老婆似乎很享受,完全不阻止他,而是忍由他使劲的玩弄自己.男生越来越使劲,开始了最后的冲刺.老婆这时也忍不住了,终于还是放声叫了起来.</p>
+	<p class='firstLineIndent'>男生疯了一样的插她的下体,两手加上嘴用力的撕扯的我老婆的连身丝袜.终于男生和我老婆似乎同时达到了高潮.男生射进了我老婆体内.接着男生把阴茎拔出来,靠在墙上休息.</p>
+	<p class='firstLineIndent'>我老婆则瘫软在角落里,连身丝袜被撕的乱七八糟,看上去象被强奸了一样.休息了一会.老婆起身脱掉了连身袜,将衣服穿好.男生也已经收拾整齐.老婆靠过去亲了他的脸说:"谢谢你,姐姐好舒服".男生抱着我老婆说:"姐姐把这双丝袜给我好吗?"老婆将丝袜塞给了他.他们一起离开了厕所.</p>
+	<p class='firstLineIndent'>按照我和老婆的约定.我先回到车上去等她.她肯定还要跟小男生再腻一会.十分种后.老婆来了,小男生还跟着呢.老婆带着小男生走过来.我打开车门和老婆打招呼.老婆介绍小男生说是她的学弟.男生不安的微笑.我故意问:"你的丝袜呢,不穿了?"老婆说:"天太热,脱掉了,结果不小心掉到厕所里了."</p>
+	<p class='firstLineIndent'>老婆说:"你不是要找张老师拿东西吗,拿了吗?" 我明白老婆的意思,才这么会她又性起了!</p>
+	<p class='firstLineIndent'>我马上说这就去拿,接着就离开了.我躲在远处看到老婆和小男生进了车里.半天没出来.后来男生悻悻的离开了.我回车上去.老婆告诉我小男生非要让她换双丝袜然后在车里给他再口交一次.老婆照做了,而且做的很快乐.老婆说在车里给人含鸡吧特别刺激.唉,我这个骚老婆.</p>
+	<p class='firstLineIndent'>从上次在大学里勾引小男生和她做爱之后.我的老婆越发的上瘾.她开始觉得大千世界哪里都有性爱在等着她.于是她不断的想要和我继续出去找乐子.</p>
+	<p class='firstLineIndent'>一个月后,我们终于又上路了,这次是老婆的主意,她准备在火车上勾引陌生男人和她搞.我觉得很刺激.我们带好了很多丝袜和高跟鞋.买了两张软卧的票.这条线路我们之前看过了.人不多,软卧车厢每间的人都不全,基本上只有两个人.</p>
+	<p class='firstLineIndent'>我和老婆分开上车,我先上车,放好行李后.有一个中年男人进来了,中年男人一看就是做点小买卖的那种.虽然穿的很得体,可是大包小包的带着,言谈举止不很文雅.我立刻给老婆打了一个短信告诉她条件合适.于是我老婆上车了.来到车厢内,推门进来,中年人立刻眼前一亮.忙和我老婆打招呼.我则装做不以为然的样子躺在上铺.</p>
+	<p class='firstLineIndent'>老婆穿着肉色的连裤袜,银色的高根凉鞋.黑色的超短裙.上身穿的又是黑色的透视装.看上去很骚,给人的第一印象肯定是个轻浮的女人.老婆收拾好东西后坐在下铺床边,翘起美腿假装给自己的老公打电话:"喂,老公呀,我上车了,明天上午到,准时接我呀!"这是故意给中年人听的.</p>
+	<p class='firstLineIndent'>中年人等老婆打完电话就一直和老婆套近乎.老婆甜甜的应答着,话语里不时的带一点暧昧.中年人挺高兴.车很快开了.老婆一直在和中年人聊天.中年人借着介绍自己产品的机会,坐到老婆的铺上了.和老婆越挨越近.</p>
+	<p class='firstLineIndent'>老婆不时的抚摩着自己的美腿.中年人的眼神色迷迷的.老婆和他聊的挺起劲,不一会就把高跟鞋脱了,腿搭在床边.中年人开始讲黄段子.每讲一个之后,我老婆都要撒娇似的用穿丝袜的脚轻轻踢一下中年人,还说他好坏什么的.中年人当然觉察出来了老婆的勾引.但碍于我在这里,不甘太明目张胆.否则估计早扑上去了.</p>
+	<p class='firstLineIndent'>夜晚来临.老婆起身去厕所.回来的时候撒娇似的抱怨:"破厕所什么门呀,把握的丝袜都挂破了."中年人赶紧借机贴近我老婆的美腿看着,还叹息到:"可惜了,挺好看的一双丝袜"老婆接着说:"两位大哥能不能先回避一下.我包里还有丝袜,我换一双."</p>
+	<p class='firstLineIndent'>中年人当然同意,我也装做不情愿的样子离开了.一会我老婆开门"换好了,谢谢你们啊".我进门一看,我这个骚老婆果然已经换了吊带的纯丝长统袜,深肉色的,非常透明.而且透过短裙可以看得到吊带扣的形状.只要稍一抬腿,就可看到袜子的边缘.</p>
+	<p class='firstLineIndent'>中年人赞不绝口:"妹妹这腿长的还真靓,穿什么丝袜都好看"老婆说谢谢.我知道老婆想进一步了.就偷偷的把藏在行李箱里的摄象机打开了.接着我说要去吃饭.中年人和我老婆当然都说不吃.</p>
+	<p class='firstLineIndent'>我一个人离开.来到厕所.打开摄象机的接收器.马上就看到中年人和我老婆在亲密交谈.中年人已经开始将手搭在我老婆的肩膀上.我老婆也将身体靠过去,一副骚货的样子,两个人仍旧说着口是心非的话,聊着我老婆的高跟鞋丝袜和婚姻生活.老婆说婚姻已经平淡了,自己喜欢外面的世界什么的.中年人越说越兴奋,开始摸我老婆的膝盖.老婆没有反对.仍然开心的聊着天.中年人脸贴的很近了.突然间,他开始亲我老婆的嘴唇.老婆身体颤抖了一下,就随他亲和摸了.</p>
+	<p class='firstLineIndent'>我马上离开厕所.回来拉门进入.两个人马上紧张的恢复原状.这时候灯也快熄了.我们就都各自躺到床上睡觉了.其实三人都是装睡,我躲在被子里将音量关掉继续看老婆的淫乱行为.老婆等待着中年人的玩弄,中年人则焦急的等待着.</p>
+	<p class='firstLineIndent'>半个小时后,中年人下床慢慢的来到老婆床前.看到老婆在睡觉,以为老婆已经睡着,觉得很遗憾.于是开始慢慢抚摩老婆的丝袜腿.老婆仍然装睡.中年人竟然解开自己的裤子.对着老婆手淫起来.自己弄了一会,觉得不刺激.她慢慢的拿起老婆搭在床边的手.轻轻的拉到自己的鸡吧上.</p>
+	<p class='firstLineIndent'>老婆马上不装睡了.立刻握住他的鸡吧.中年人吓了一跳.老婆马上抱住他,和他接吻.中年人一边接吻,一边使劲揉搓我老婆的乳房.我老婆则套弄着他的鸡吧.我老婆接着从自己的包里拿出一个避孕套,给男人套上.两个人就这么悄悄的进行着淫乱行为.</p>
+	<p class='firstLineIndent'>老婆跪在床上.男人站起身.老婆开始给男人含鸡吧.含了一会.老婆趴在床上,将上衣脱掉,慢慢掀起自己的短裙,中年人这才看到老婆根本没穿内裤,只穿着吊带的丝袜.中年人立刻不顾一切的压在老婆身上,用力的将鸡吧插进去.老婆被压着,表情看上去很满足,很舒服.大张着嘴.被男人一下下的干着.这种情景看的我鸡吧硬的不行.我只好自己在被子里手淫解决了.解决之后,我困了,累了.就关掉了摄象机.慢慢的睡着了.</p>
+	<p class='firstLineIndent'>睁眼的时候已经天亮了.我一翻身,就看到老婆仍然穿着吊带丝袜,竟然还又把高跟鞋穿上了.老婆趴在铺位上酣睡着.一看就是被操累了,什么也不顾的趴着.身边躺着中年人.</p>
+	<p class='firstLineIndent'>地上扔着好几个避孕套.不知道他们搞了多久,累到不收拾就睡着了.等了一会,火车到了一个小站,两人才惊醒.赶忙换好衣服.装做没事人一样.我也装做刚醒,和他们冷淡的打了招呼.</p>
+	<p class='firstLineIndent'>中年人去洗脸了.老婆说想让我离开几个小时,想好好放开了玩玩.我揉搓了老婆的阴部说:"我的骚老婆,被人操不够呀?"老婆娇羞的点点头说:"好刺激嘛".于是我借口换房间离开了,但是我把摄象机偷偷藏了起来.仍然可以到洗手间看到画面.</p>
+	<p class='firstLineIndent'>只见老婆喝了几口水之后就将衣服全脱掉,竟然又换上了那种最骚的连身丝袜,黑色的网袜.裆部开口.高跟鞋穿好.等了一会.门被拉开了.中年男人立刻冲近来.抱着老婆胡乱的抚摩.紧接着,竟然进来一个列车员.是一个小伙子,骚老婆,原来想被两个人同时操.</p>
+	<p class='firstLineIndent'>两个男人立刻脱掉衣服.套上避孕套.将我老婆的屁股抱起来.列车员开始抽插老婆的阴部.老婆同时还在给中年人含鸡吧.老婆含鸡吧的表情非常淫荡,她的嘴里含着男人的鸡吧,眼睛妩媚的盯着男人,还带着一丝满足的淫笑.非常细致的舔遍男人的鸡吧,然后前后嘬着.</p>
+	<p class='firstLineIndent'>中年人爽的不行了.仰着头低声哼哼着.列车员在后面也不甘示弱.疯狂的抽插我老婆.老婆的屁股也不停的扭动配合着男人的玩弄.就这样玩了好几次,两个人都射了很多回,避孕套扔了满地.</p>
+	<p class='firstLineIndent'>老婆也已经被玩的来了数次强烈的高潮.三个人都瘫软在铺上.这时候车也快到站了.两个男人赶紧收拾好行李离开了房间.老婆却仍然只穿着连身丝袜和高跟鞋趴在床上.</p>
+	<p class='firstLineIndent'>我赶紧来到她房间.看到了摄象机上看不清楚的景象.老婆很高兴的对我说:"看看我的屁股,"我一看,原来他们最后一次把我老婆的屁眼也给插了.老婆说现在有点疼,我赶紧扶着她起来.老婆说:"老公,真刺激.太过瘾了."</p>
+	<p class='firstLineIndent'>我们赶紧收拾好东西.在清洁工查房之前离开了我老婆偷情的这辆淫乱的列车.</p>
+
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<p>&nbsp;</p><p>&nbsp;</p>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
