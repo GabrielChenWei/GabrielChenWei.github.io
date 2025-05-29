@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+		glbBiUserPanelVisible = false;  
+	} else {
+		showUserPanel() ;
+		glbBiUserPanelVisible = true;
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'flex';
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'none';
+  }
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+	
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	right: 7em;
+	font-size: 1.2em;
+	width: 80%;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+/****************************** list element template ******************************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   spankbang.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+***************************************** list element template *****************************************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<!--<div id="_userPanel" onclick="event.stopPropagation()">-->
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails()">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails()">📁</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">🔽</button>
+</div>
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 爸爸居然和我老婆拍A片！ 作者：不详  </h3>
+
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+
+<p class='firstLineIndent'>我的家是一个比较和谐温馨的家庭，老爸、老妈以及我和我老婆居住在三室两厅的房间里，虽然生活中有时也有过不愉快，但总体来说还算相处得不错。</p>
+<p class='firstLineIndent'>5月的一个晚上，家里来了一个戴墨镜的男子，看起来好像是我爸的熟人，一来就寒暄着走进了里屋，大约过了1个多小时，那人对老爸说“一会儿再来”，就急匆匆地走了。</p>
+<p class='firstLineIndent'>我不解的问我爸：“哪的人呀，这么神神秘秘的？”</p>
+<p class='firstLineIndent'>我爸把我拉进屋，关上了门，支吾了半天才对我说：“儿子，有件事我想和你商量一下”。</p>
+<p class='firstLineIndent'>“嘿，有事就说呗”我轻松的答道。</p>
+<p class='firstLineIndent'>“嗯，刚才来的是位导演，我们很早就认识，他以拍三级片见长。”</p>
+<p class='firstLineIndent'>“啊，三级片？老爸，你还认识这样的人哪？”我不禁大吃一惊。“对，他现在想拍一部成人电影，想让我当男主角，女主角选的是……”老爸不说了。</p>
+<p class='firstLineIndent'>我当时听得目瞪口呆：“什么？你这么大岁数了还要拍成人电影？我的天，你不怕被人知道？”</p>
+<p class='firstLineIndent'>“嗨，直说了吧，这是一部乱伦的电影，女主角是你老婆王敏！”</p>
+<p class='firstLineIndent'>“什么？！这也太离谱了吧，要不是看在你是我爸，我、我就……”我恶狠狠的盯着我爸，拳头攥得紧紧地。</p>
+<p class='firstLineIndent'>我爸一看就马上说：“儿子，拍这部电影人家可给伍万呢，如果再算上发行的收入，可以得几十万没问题！我的片酬一分不要都给你，怎么样？”</p>
+<p class='firstLineIndent'>我思索着，几十万，我可从来没有过这么多钱，老婆又不是上别出去卖身，也算比较划算，考虑再三，我终于点下了头同意了。</p>
+<p class='firstLineIndent'>大约过了半个小时，刚才来的那个男人带着摄像器材匆匆赶来了。可这事怎么对老婆讲呢?</p>
+<p class='firstLineIndent'>“没关系，小伙子，我有办法。”那个男人对着我耳朵轻声说了几句。</p>
+<p class='firstLineIndent'>我问道“能行吗？”</p>
+<p class='firstLineIndent'>“我来上你家拍,就是听你爸说你老婆叫床的声音特别大，在床上很风骚”。</p>
+<p class='firstLineIndent'>“什么，我爸居然偷听偷看我们做爱？”我盯着老爸。</p>
+<p class='firstLineIndent'>我爸不安的说：“王敏的叫床声是很大，我和你妈都听得清清楚楚地，我还借着王敏的叫床声操过你妈呢！”</p>
+<p class='firstLineIndent'>我听得很不自然，因为毕竟还有别人在，也不好再发作什么。于是我就按着摄影师的安排忙碌起来……</p>
+<p class='firstLineIndent'>我找来了一张成人影片的光盘，放在播放器里，把声音开得很大，然后我就和他们躲在门后偷偷的看了起来。</p>
+<p class='firstLineIndent'>果然，一会我老婆王敏就下晚班回来了。她今天穿了一件白色的长裙，再配上白嫩的肌肤和丰满的线条，怎么看怎么让人有性欲。当她听见看见电视屏幕上播放的影片，一下就不动了，看着看着就急促的喘息起来，身体微微颤动，一只手不由自主地揉着自己的乳房。</p>
+<p class='firstLineIndent'>这时，摄影师桶了我爸一下，我爸急忙蹑手蹑脚的从后面走到王敏的身后，而此时王敏还浑然不觉。我爸猛地一下从后面报驻王敏的身体，已经膨胀的阴茎顶在了她的丰满屁股上。王敏拼命的扭动圆翘臀部,想摆脱离我爸的下体，但丰腴屁股却好似在主动淫荡磨擦硬挺的肉棍。</p>
+<p class='firstLineIndent'>此时我爸空出的右手快速撕扯下王敏的长裙,王敏翘着丰臀被压趴在桌面,长裙被扯落在地，上身不断挣扎,两条白嫩诱人美腿不时踢蹬抗拒,偶见扭出的屁股弧线圆美,臀肉绷颤,说不出的淫秽刺激。</p>
+<p class='firstLineIndent'>王敏再三挣扎,仍是被紧紧制压住,她一看想操自己的是我爸，不由得大惊失色，呼叫着：“公公！你怎么能这样？快放开我！老公，你爸想肏我，你快来救我呀”，我听的面红耳赤，事已至此，也不想别的了，只想那几十万块钱早些到手。</p>
+<p class='firstLineIndent'>只见摄影师的镜头里，我爸用头把王敏压贴到桌面,王敏的一头如云秀发凌乱披散。我爸右手掌猥摸数下王敏丰腴圆翘的右边屁股,迅即往下恣意的狎摸她性感的右大腿,触感光滑柔嫩，不由得满心欢喜，阴茎膨胀的更加厉害。</p>
+<p class='firstLineIndent'>而王敏嘴里呻吟着,身体不断慌乱的猛烈挣扎,我爸老练的右手已由王敏滑如凝脂的右腿根处斜滑下去,灵活的指头探出王敏阴毛的柔细浓密,手掌往上倒捧住敏感的阴唇，中指揉搓着细嫩柔软的阴唇嫩肉,中指前探,微微伸入娇嫩缝口,右手猛然用力将王敏右大腿往右掰开,双腿挤入她的两腿之间,辛苦的屈膝弯腿,龟头往前慢慢驶向肉缝，粗大的肉棒先整个扛贴住外翻的阴唇嫩肉,然后缓缓前后挺腰,用肉棒轻轻磨蹭起展平的阴唇嫩肉，王敏双腿被卡的大大张开,扭动腰臀反而阴唇肉缝与肉棒更加厮磨,王敏只能张着双腿,大肉棒在王敏羞涩外翻的阴唇嫩肉前后爱抚。</p>
+<p class='firstLineIndent'>王敏感受到我爸龟头形状粗大但硬度较软，感觉到龟头已顶开了自己的穴口嫩肉。</p>
+<p class='firstLineIndent'>我爸肉棒微微刺入肉缝，仅在穴口摩擦，王敏身体已不似先前的紧绷,似是颓然默认木已成舟,我爸突然左手放开王敏的右手,一手一腿两手同时搬抱起王敏的双腿，将她下半身整个抬起,两手往外拉开,王敏的双腿大角度的张开,迷人肉缝全然暴露。</p>
+<p class='firstLineIndent'>我爸的肉棒狠狠的往王敏肉缝深处刺入，王敏仅剩上半身在桌面上,双手不由自主的压住桌面撑起全身重量,女子阴道壁肉的包容弹性吃下了我爸的整根粗大肉棒,利用肉棒深埋在阴道里，王敏不敢乱动的时刻,我爸双手由腰下揽起她,将王敏娇躯平放侧躺在床上，自己贴躺于后,像两只弓形虾子，右手揽住王敏柔软腰段,让她无法乱动。一直插在王敏小穴的粗大肉棒开始缓缓抽出,再挤过层层叠叠的穴壁嫩肉,又整根消失无踪,深深插入王敏的小肉缝。</p>
+<p class='firstLineIndent'>我爸的手伸过我老婆右腿膝弯,将她雪白诱人的右腿腿往上抬,大大张开她迷人穴缝。，只见王敏发丝散乱,遮盖着白晰姣美脸庞，她闭目皱眉,成熟性感的娇躯无奈的侧躺着,任凭阴茎由背后丰臀股沟下缘一次又一次的钻刺肉穴，全身赤裸白嫩耀眼，光滑无瑕的右腿被扳抬在半空中,随着我爸急速强烈的抽肏节奏晃荡着，王敏柔媚成熟的性感身躯让初尝滋味的我爸没多久就溃决了，抽出泄软的肉棒躺在王敏身旁喘着气。</p>
+<p class='firstLineIndent'>经过刚才的一番折磨，王敏的性欲却被调动了起来，全身酸麻骚痒难耐,她爱惜的用手捧着我爸粗大的阴茎，轻声嗔骂道：“这么粗，却一点也禁不起折腾”说完竟用嘴舔起了我爸的阴茎，真是看得我目瞪口呆，摄影师一边拍一边对我说：“你老婆是够浪的！”</p>
+<p class='firstLineIndent'>在王敏的刺激下，我爸的阴茎一会就恢复了元气，他抓握我老婆有弹性的乳房揉捏着，吻着她的额头、脖子，渍渍的汗水一直滴流在两人身上，闷热的气氛中，我爸舔着王敏红色的乳头，碰触着乳房的上下部位，王敏闭着眼有点扭捏。</p>
+<p class='firstLineIndent'>我爸握起她的乳房，手按抚着腹丘的光滑，稍微动偏了就摸到肚脐下私处，杂乱的阴毛分布在大腿内侧，毛下暗红色的阴肉也微微显出来。那里的肌肤摸起来比较细致，嫩嫩的，平常男人的眼光是无法透视到这里的。我爸抓紧她的腰，抚摸王敏丰满的曲线臀部．</p>
+<p class='firstLineIndent'>他分开王敏的两条嫩腿，阴唇淫荡的张开着露出里面粉红的淫肉，沾满饥渴的淫水，我爸把那鸭蛋大的龟头对准那被挑逗的已然是蓬门洞开满是淫水的粉红肉洞轻轻一推。。。。。。"啵"的一声便插进去一多半，我爸的阴茎比我的要粗要长。</p>
+<p class='firstLineIndent'>“喔。。。。。轻一点。。。。好粗。。。。。。。好大呦。。。。。。。”粗壮肉茎的侵入使得我老婆忍不住浪叫着。</p>
+<p class='firstLineIndent'>“骚货，你的阴道居然还这么紧！。。。。。。。哦。。好热。。夹的我紧紧的。。。。。。”我爸耸动着屁股一进一出操了起来。火热紧窄的肉洞紧紧的包裹着粗硬的阴茎，每一次抽送都回带来无尽的快感，他驰骋起来。</p>
+<p class='firstLineIndent'>“啊，，，好爽，，，你好棒，，，啊，，”王敏呻吟着，双目微闭，满脸红晕，微启的樱唇吐出诱人的娇吟“喔，，，用力点，，，对，，，操，，操死我吧，，，啊，，，”王敏风骚的叫床声使的我爸越发兴奋，他加快了节奏，每一下都进入她身体最深处。随着他的进出，王敏胸前那两座雪白的肉山便如两颗肥硕的肉球般忽悠忽悠地晃动起来。那一对白胖的大奶子被操的前后左右颤荡着，幻出一片诱人的乳波。</p>
+<p class='firstLineIndent'>我爸伏下身在那饱满白嫩的肉峰上舔弄着，不时把乳头含到嘴里，下身更加粗鲁的在王敏体内抽送着，壮硕的身体碾压着她那粉嫩熟透的肉体，撞击着她肥嫩的大腿根部“啪啪”作响淫荡的老婆则上下筛动着屁股迎合着，嘴里“啊，，，啊，，，”的浪叫着。 不断挺臀,极力迎合我爸的动作。</p>
+<p class='firstLineIndent'>忽然小手伸下去, 推开我爸,丰腴白嫩的娇躯趴跪在床上上,翘起小巧圆润的屁股,淫水淋淋的肉缝毫不羞耻的蹶向我爸，我爸双手抚摸着王敏圆润的屁股,然后掰开她的两臀嫩肉,肉棒缓缓刺入,深抵花心。左手撑在床上,右手握抓住王敏下垂晃动的白嫩乳房, 大力搓揉。</p>
+<p class='firstLineIndent'>不待我爸抽插,王敏已忍不住自己主动摇摆丰臀,往后顶撞, 小小淫湿肉缝吞噬我爸的肉棒,一次又一次的将肉棒吞噬得消失无踪。</p>
+<p class='firstLineIndent'>随着王敏白晰圆润的臀部不住的向后用力撞击,忘情地交合，我爸几乎要招架不住，而王敏自己被肏得咬唇仰头,长发散乱,柔嫩的双乳摇摆晃动, 这时王敏已不想是哪个男人在肏她,也不想这根肉棒是她自己的公公的,干着为人所不齿的乱伦勾当，只想着这根肉棒要能继续硬挺下去,让她淫湿淋淋的肉缝能够继续充实快感的夹紧摩擦。</p>
+<p class='firstLineIndent'>王敏蹶着丰臀主动往后顶撞得呻吟狂颤,娇喘吁吁,欢畅淋漓,欲仙欲死， 突然王敏高高仰起上半身,静止不动,然后扑跌在床上，白嫩娇躯香汗淋漓,娇软无力的趴在床上,雪白诱人的大腿叉开,看着老婆淫荡的样子，我看得老二硬起来，忍不住打起手枪来。</p>
+<p class='firstLineIndent'>交缠了很久，我爸突然停止了动作，拔出了满含着淫水的阴茎说：“妳在上面吧”！ 王敏迟疑了一下儿，动作缓慢地两脚跨过他的脚边，一手抓住他的肉棒，一手撑开自己的肉唇，蹲着身子预备把臀部接近他的大腿上，对准了位置屁股坐了下去。。。。。</p>
+<p class='firstLineIndent'>“嗯。。。”王敏全身赤裸的骑在我爸身上。两手撑在他的肩上，摇摆着屁股噗嗤地上下套弄我爸的鸡巴，胸部悬垂的大奶在他的眼前晃呀晃。我爸还不时的用手去抓那两粒奶子!</p>
+<p class='firstLineIndent'>我老婆撇过羞红的脸，长发因摇晃而散乱披肩，她仰着头挺起大奶接受男人的冲击。哼哼哼地套动肉感的臀部来表示她的淫荡。我爸更努力的向上顶，从下面看大奶的晃动更是刺激。 扑嗤扑嗤的声响以让他沸腾到极点。随着快感的增加，肉体的冲击快让她的理智迷昏了。</p>
+<p class='firstLineIndent'>我爸一边抽插，一边欣赏着两个性器官交接的美妙动人画面，祇见自己一条引以自豪的大阴茎在王敏鲜艳欲滴的两片小阴唇中间出出入入，把一股又一股流出外的淫水给带得飞溅四散。难得她阴道口的嫩皮也特别长，随着阴茎的抽送而被拖得一反一反，清楚得像小电影中的大特写镜头；整个阴户由于充血而变得通红，小阴唇硬硬地裹着青筋毕露的阴茎，让磨擦得来的快感更敏锐强烈；阴蒂外面罩着的嫩皮被阴唇扯动，把它反复揉磨，令它越来越涨，越来越硬，变得像小指头般粗幼，向前直挺，几乎碰到正忙得不可开交的阴茎。</p>
+<p class='firstLineIndent'>一会，我爸抽得性起，干脆抬高王敏双腿，架上肩膊，让阴茎可以插得更深入，抽得更爽快。王敏看来也心有灵犀，两手放在腿弯处，用力把大腿拉向胸前，让下体可以挺得更高，肌肤贴得更亲蜜。</p>
+<p class='firstLineIndent'>果然，我爸每一下冲击，都把王敏的大腿压得更低，像小孩玩的跷跷板，一端按低，另一端便跷高，屁股随着他下身的高低起伏而上下迎送，合作得天衣无缝。一时间，满睡房声响大作，除了器官碰撞的辟哩啪啦声，还有淫水的伴奏，环回立体、春色无边。</p>
+<p class='firstLineIndent'>王敏耳中听到自己下面的小穴响个不停，上面的大嘴自然不会沉默，和着乐曲添加主音：“啊。。。。。。啊。。。。。。我的小亲亲。。。。。。爱公公。。。。。。啊。。。。。。啊。。。。。。你真会弄。。。。。。我的小屄都交给你了。。。。。。啊。。。。。。啊。。。。。。我的小屄舒服极了。。。。。。啊。。。。。。啊。。。。。。我要。。。。。。要飞上天啦。。。。。。嗯。。。。。。嗯。。。。。。嗯。。。。。。”说着便双眼紧闭，咬着牙关，两腿蹬得笔直，搂着我爸还在不断摆动的腰部，颤抖连连，香汗淫水同时齐喷。</p>
+<p class='firstLineIndent'>心中祇有一个念头：原来别的男人能带给我的这一刻死去活来的销魂感受！强烈的高潮令她身心畅快，我爸加速地抽插着她的阴部，手一直摸她的丰满屁股、大腿，把她的一只腿放在肩上进行刺激一些的交合动作。我老婆的阴肉这时一阵紧缩，一张一合的急速蠕动使得我爸感受到要泄了身。</p>
+<p class='firstLineIndent'>王敏给强力的碰撞弄得前后摇摆，一对乳房也随着荡漾不停，我爸伸手过去轮流抚摸，一会用力紧抓，一会轻轻揉捏，上下夹攻地把她弄双手在床上乱抓，差点把床单也给撕碎了，脚指尖挺得笔直，像在跳芭蕾舞。口中呻吟声此起彼落，耳里祇听到她一边喘着粗气，一边大声叫嚷：“哎呀！我的心肝。。。。。。啊。。。。。。啊。。。。。。啊。。。。。。哪学的好招式。。。。。。啊。。。。。。啊。。。。。。啊。。。。。。千万不要停。。。。。。啊。。。。。。啊。。。。。。啊。。。。。。好爽哩。。。。。。哎呀！快让你撕开两边了。。。。。。啊。。。。。。啊。。。。。。啊。。。。。。”话音未落，身躯便像触电般强烈地颤动，一大股淫水就往龟头上猛猛地冲去。</p>
+<p class='firstLineIndent'>“好公公！啊---啊-----啊------射。。精。。。液。。给。。我。。。！”我老婆已达到高潮，我爸抱紧了她，腰身贴紧耻部咻咻咻地把精液射到我老婆洞内， 我爸疲惫的抽出阴茎,躺在一旁喘息着，王敏两腿张得开开的……我只见一股白稠的精液缓缓从我她的两片泛红的阴唇之间流出来,我真担心王敏会怀上我爸的种……</p>
+<p class='firstLineIndent'>后记：自从这次拍摄经历之后，我老婆王敏却喜欢上了我爸的大鸡巴，经常和他出双入对，如胶似漆，并为他几次作流产。我心中很是不平，也报复性的操过他我妈多次，感觉到了心理上的平衡，从此开始了一种新型的亲情性爱……</p>
+
+
+<!-- <<<< End, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<p>&nbsp;</p><p>&nbsp;</p>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
