@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>🦜</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Malay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #2a9d8f;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e9c46a 3px solid;
+        }
+        header a {
+            color            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e9c46a;
+            font-weight: bold;
+                   color: #e9c46a;
+            font-weight: bold;
+        }
+        #main {
+            padding: 20px;
+            background: #fff;
+            color: #333;
+        }
+        .section-title {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .flashcard, .mcq {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .flashcard h2, .mcq h2 {
+            margin-top: 0;
+        }
+        .flashcard p, .mcq p {
+            font-size: 18px;
+        }
+        .flashcard button, .mcq button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #2a9d8f;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .flashcard button:hover, .mcq button:hover {
+            background: #e9c46a;
+        }
+        .next-button {
+            background: #e9c46a;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .next-button:hover {
+            background: #2a9d8f;
+        }
+        .mcq-options {
+            margin-top: 20px;
+            margin-left: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mcq-option {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #2a9d8f;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .mcq-option:hover {
+            background: #e9c46a;
+        }
+        .answer {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Learn Malay</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="#">Home</a></li>
+                    <li><a href="#flashcards">Flashcards</a></li>
+                    <li><a href="#mcq">MCQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="main" class="container">
+        <div id="flashcards" class="flashcard">
+            <h2>Flashcards</h2>
+            <p id="flashcard-content">Selamat datang - Welcome</p>
+            <button onclick="nextFlashcard()">Next</button>
+        </div>
+
+        <div id="mcq" class="mcq">
+            <h2>Multiple Choice Quiz</h2>
+            <p id="mcq-question">What is the Malay word for 'Hello'?</p>
+            <div class="mcq-options">
+                <button class="mcq-option" onclick="checkQuiz(this)">Selamat tinggal</button>
+                <button class="mcq-option" onclick="checkQuiz(this)">Selamat pagi</button>
+                <button class="mcq-option" onclick="checkQuiz(this)">Halo</button>
+                <button class="mcq-option" onclick="checkQuiz(this)">Apa khabar</button>
+            </div>
+            <button class="next-button" onclick="nextQuiz()">Next</button>
+            <div class="answer" id="mcq-answer"></div>
+        </div>
+    </section>
+
+    <script>
+        const data = {
+            flashcards: [
+				{ "malay": "Selamat datang", "english": "Welcome" },
+				{ "malay": "Terima kasih", "english": "Thank you" },
+				{ "malay": "Apa khabar?", "english": "How are you?" },
+				{ "malay": "Selamat pagi", "english": "Good morning" },
+				{ "malay": "Selamat malam", "english": "Good night" },
+				{ "malay": "Selamat tinggal", "english": "Goodbye" },
+				{ "malay": "Maaf", "english": "Sorry" },
+				{ "malay": "Tolong", "english": "Please" },
+				{ "malay": "Ya", "english": "Yes" },
+				{ "malay": "Tidak", "english": "No" },
+			    { "malay": "Nama saya", "english": "My name is" },
+			    { "malay": "Selamat petang", "english": "Good evening" },
+			    { "malay": "Selamat tengah hari", "english": "Good afternoon" },
+			    { "malay": "Jumpa lagi", "english": "See you again" },
+			    { "malay": "Selamat jalan", "english": "Safe journey" },
+			    { "malay": "Selamat sejahtera", "english": "Peace be upon you" },
+			    { "malay": "Selamat berkenalan", "english": "Nice to meet you" },
+			    { "malay": "Selamat makan", "english": "Enjoy your meal" },
+			    { "malay": "Selamat tidur", "english": "Good sleep" },
+			    { "malay": "Selamat bekerja", "english": "Have a good work" },
+			    { "malay": "Selamat belajar", "english": "Happy studying" },
+			    { "malay": "Selamat bercuti", "english": "Happy holidays" },
+			    { "malay": "Selamat hari jadi", "english": "Happy birthday" },
+			    { "malay": "Selamat hari raya", "english": "Happy Eid" },
+			    { "malay": "Selamat tahun baru", "english": "Happy New Year" },
+			    { "malay": "Selamat hari Krismas", "english": "Merry Christmas" },
+			    { "malay": "Selamat hari ibu", "english": "Happy Mother's Day" },
+			    { "malay": "Selamat hari bapa", "english": "Happy Father's Day" },
+			    { "malay": "Selamat hari guru", "english": "Happy Teacher's Day" },
+			    { "malay": "Selamat hari pekerja", "english": "Happy Labor Day" },
+			    { "malay": "Saya suka", "english": "I like" },
+			    { "malay": "Saya tidak suka", "english": "I don't like" },
+			    { "malay": "Saya lapar", "english": "I am hungry" },
+			    { "malay": "Saya dahaga", "english": "I am thirsty" },
+			    { "malay": "Saya penat", "english": "I am tired" },
+			    { "malay": "Saya gembira", "english": "I am happy" },
+			    { "malay": "Saya sedih", "english": "I am sad" },
+			    { "malay": "Saya marah", "english": "I am angry" },
+			    { "malay": "Saya takut", "english": "I am afraid" },
+			    { "malay": "Saya sakit", "english": "I am sick" },
+			    { "malay": "Saya sihat", "english": "I am healthy" },
+			    { "malay": "Saya perlukan bantuan", "english": "I need help" },
+			    { "malay": "Tolong saya", "english": "Help me" },
+			    { "malay": "Di mana tandas?", "english": "Where is the toilet?" },
+			    { "malay": "Berapa harganya?", "english": "How much is it?" },
+			    { "malay": "Saya tidak faham", "english": "I don't understand" },
+			    { "malay": "Boleh ulang?", "english": "Can you repeat?" },
+			    { "malay": "Cakap perlahan", "english": "Speak slowly" },
+			    { "malay": "Saya belajar Bahasa Melayu", "english": "I am learning Malay" },
+			    { "malay": "Saya dari", "english": "I am from" },
+			    { "malay": "Saya tinggal di", "english": "I live in" },
+			    { "malay": "Saya suka makan", "english": "I like to eat" },
+			    { "malay": "Saya suka minum", "english": "I like to drink" },
+			    { "malay": "Saya suka membaca", "english": "I like to read" },
+			    { "malay": "Saya suka menulis", "english": "I like to write" },
+			    { "malay": "Saya suka berjalan", "english": "I like to walk" },
+			    { "malay": "Saya suka melancong", "english": "I like to travel" },
+			    { "malay": "Saya suka belajar", "english": "I like to study" },
+			    { "malay": "Saya suka bekerja", "english": "I like to work" },
+			    { "malay": "Saya suka bermain", "english": "I like to play" },
+
+				// ... (continues up to 100 entries)
+			],
+            
+			mcq: [
+			        {
+			            question: "What is the Malay word for 'Welcome'?",
+			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
+			            answer: "Selamat datang"
+			        },
+			        {
+			            question: "What is the Malay word for 'Thank you'?",
+			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
+			            answer: "Terima kasih"
+			        },
+			        {
+			            question: "What is the Malay word for 'How are you?'?",
+			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
+			            answer: "Apa khabar?"
+			        },
+			        {
+			            question: "What is the Malay word for 'Good morning'?",
+			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
+			            answer: "Selamat pagi"
+			        },
+			        {
+			            question: "What is the Malay word for 'Good night'?",
+			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
+			            answer: "Selamat malam"
+			        },
+			        {
+			            question: "What is the Malay word for 'Goodbye'?",
+			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
+			            answer: "Selamat tinggal"
+			        },
+			        {
+			            question: "What is the Malay word for 'Sorry'?",
+			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
+			            answer: "Maaf"
+			        },
+			        {
+			            question: "What is the Malay word for 'Please'?",
+			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
+			            answer: "Tolong"
+			        },
+			        {
+			            question: "What is the Malay word for 'Yes'?",
+			            options: ["Ya", "Tidak", "Selamat datang", "Terima kasih"],
+			            answer: "Ya"
+			        },
+			        {
+			            question: "What is the Malay word for 'No'?",
+			            options: ["Ya", "Tidak", "Selamat datang", "Terima kasih"],
+			            answer: "Tidak"
+			        }
+			        // ... continue up to 100 entries
+			    ]
+
+        };
+
+        let flashcardIndex = 0;
+        let mcqIndex = 0;
+
+        function nextFlashcard() {
+            flashcardIndex = (flashcardIndex + 1) % data.flashcards.length;
+            const flashcard = data.flashcards[flashcardIndex];
+            document.getElementById('flashcard-content').innerText = `${flashcard.malay} - ${flashcard.english}`;
+        }
+
+        function checkQuiz(button) {
+            const selectedAnswer = button.innerText;
+            const correctAnswer = data.mcq[mcqIndex].answer;
+            const answerDiv = document.getElementById('mcq-answer');
+            if (selectedAnswer === correctAnswer) {
+                answerDiv.innerText = "Correct!";
+                answerDiv.style.color = "green";
+            } else {
+                answerDiv.innerText = `Incorrect! The correct answer is: ${correctAnswer}`;
+                answerDiv.style.color = "red";
+            }
+        }
+
+        function nextQuiz() {
+            mcqIndex = (mcqIndex + 1) % data.mcq.length;
+            const mcq = data.mcq[mcqIndex];
+            document.getElementById('mcq-question').innerText = mcq.question;
+            const optionsDiv = document.querySelector('.mcq-options');
+            optionsDiv.innerHTML = '';
+            mcq.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.className = 'mcq-option';
+                button.onclick = () => checkQuiz(button);
+                optionsDiv.appendChild(button);
+            });
+            document.getElementById('mcq-answer').innerText = '';
+        }
+    </script>
+</body>
+</html>
