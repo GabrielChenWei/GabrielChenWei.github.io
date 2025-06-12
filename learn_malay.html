@@ -20,35 +20,19 @@
         header {
             background: #2a9d8f;
             color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
             border-bottom: #e9c46a 3px solid;
         }
-        header a {
-            color            padding: 0;
-            list-style: none;
-        }
-        header li {
-            float: left;
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
+
         header #branding {
-            float: left;
+            text-align : center;
+			margin-top : 0.5em;
+			margin-bottom : 0.5em;
         }
         header #branding h1 {
             margin: 0;
         }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        header .highlight, header .current a {
-            color: #e9c46a;
-            font-weight: bold;
-                   color: #e9c46a;
-            font-weight: bold;
-        }
+
+
         #main {
             padding: 20px;
             background: #fff;
@@ -120,37 +104,31 @@
         }
     </style>
 </head>
-<body>
+<body onload="funcInitialization()">
     <header>
         <div class="container">
             <div id="branding">
                 <h1>Learn Malay</h1>
             </div>
-            <nav>
-                <ul>
-                    <li class="current"><a href="#">Home</a></li>
-                    <li><a href="#flashcards">Flashcards</a></li>
-                    <li><a href="#mcq">MCQ</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
     <section id="main" class="container">
         <div id="flashcards" class="flashcard">
             <h2>Flashcards</h2>
-            <p id="flashcard-content">Selamat datang - Welcome</p>
+            <p id="flashcard-content"></p>
+			<button onclick="playPronunciation()">🔊</button> <!--12-Jun-2025, -->
             <button onclick="nextFlashcard()">Next</button>
         </div>
 
         <div id="mcq" class="mcq">
             <h2>Multiple Choice Quiz</h2>
-            <p id="mcq-question">What is the Malay word for 'Hello'?</p>
+            <p id="mcq-question"></p>
             <div class="mcq-options">
-                <button class="mcq-option" onclick="checkQuiz(this)">Selamat tinggal</button>
-                <button class="mcq-option" onclick="checkQuiz(this)">Selamat pagi</button>
-                <button class="mcq-option" onclick="checkQuiz(this)">Halo</button>
-                <button class="mcq-option" onclick="checkQuiz(this)">Apa khabar</button>
+                <button class="mcq-option" onclick="checkQuiz(this)"></button>
+                <button class="mcq-option" onclick="checkQuiz(this)"></button>
+                <button class="mcq-option" onclick="checkQuiz(this)"></button>
+                <button class="mcq-option" onclick="checkQuiz(this)"></button>
             </div>
             <button class="next-button" onclick="nextQuiz()">Next</button>
             <div class="answer" id="mcq-answer"></div>
@@ -158,127 +136,1029 @@
     </section>
 
     <script>
+		function funcInitialization() {
+			nextFlashcard();
+			nextQuiz();
+		}
+		
         const data = {
+			// starter flashcard
             flashcards: [
-				{ "malay": "Selamat datang", "english": "Welcome" },
-				{ "malay": "Terima kasih", "english": "Thank you" },
-				{ "malay": "Apa khabar?", "english": "How are you?" },
-				{ "malay": "Selamat pagi", "english": "Good morning" },
-				{ "malay": "Selamat malam", "english": "Good night" },
-				{ "malay": "Selamat tinggal", "english": "Goodbye" },
-				{ "malay": "Maaf", "english": "Sorry" },
-				{ "malay": "Tolong", "english": "Please" },
-				{ "malay": "Ya", "english": "Yes" },
-				{ "malay": "Tidak", "english": "No" },
-			    { "malay": "Nama saya", "english": "My name is" },
-			    { "malay": "Selamat petang", "english": "Good evening" },
-			    { "malay": "Selamat tengah hari", "english": "Good afternoon" },
-			    { "malay": "Jumpa lagi", "english": "See you again" },
-			    { "malay": "Selamat jalan", "english": "Safe journey" },
-			    { "malay": "Selamat sejahtera", "english": "Peace be upon you" },
-			    { "malay": "Selamat berkenalan", "english": "Nice to meet you" },
-			    { "malay": "Selamat makan", "english": "Enjoy your meal" },
-			    { "malay": "Selamat tidur", "english": "Good sleep" },
-			    { "malay": "Selamat bekerja", "english": "Have a good work" },
-			    { "malay": "Selamat belajar", "english": "Happy studying" },
-			    { "malay": "Selamat bercuti", "english": "Happy holidays" },
-			    { "malay": "Selamat hari jadi", "english": "Happy birthday" },
-			    { "malay": "Selamat hari raya", "english": "Happy Eid" },
-			    { "malay": "Selamat tahun baru", "english": "Happy New Year" },
-			    { "malay": "Selamat hari Krismas", "english": "Merry Christmas" },
-			    { "malay": "Selamat hari ibu", "english": "Happy Mother's Day" },
-			    { "malay": "Selamat hari bapa", "english": "Happy Father's Day" },
-			    { "malay": "Selamat hari guru", "english": "Happy Teacher's Day" },
-			    { "malay": "Selamat hari pekerja", "english": "Happy Labor Day" },
-			    { "malay": "Saya suka", "english": "I like" },
-			    { "malay": "Saya tidak suka", "english": "I don't like" },
-			    { "malay": "Saya lapar", "english": "I am hungry" },
-			    { "malay": "Saya dahaga", "english": "I am thirsty" },
-			    { "malay": "Saya penat", "english": "I am tired" },
-			    { "malay": "Saya gembira", "english": "I am happy" },
-			    { "malay": "Saya sedih", "english": "I am sad" },
-			    { "malay": "Saya marah", "english": "I am angry" },
-			    { "malay": "Saya takut", "english": "I am afraid" },
-			    { "malay": "Saya sakit", "english": "I am sick" },
-			    { "malay": "Saya sihat", "english": "I am healthy" },
-			    { "malay": "Saya perlukan bantuan", "english": "I need help" },
-			    { "malay": "Tolong saya", "english": "Help me" },
-			    { "malay": "Di mana tandas?", "english": "Where is the toilet?" },
-			    { "malay": "Berapa harganya?", "english": "How much is it?" },
-			    { "malay": "Saya tidak faham", "english": "I don't understand" },
-			    { "malay": "Boleh ulang?", "english": "Can you repeat?" },
-			    { "malay": "Cakap perlahan", "english": "Speak slowly" },
-			    { "malay": "Saya belajar Bahasa Melayu", "english": "I am learning Malay" },
-			    { "malay": "Saya dari", "english": "I am from" },
-			    { "malay": "Saya tinggal di", "english": "I live in" },
-			    { "malay": "Saya suka makan", "english": "I like to eat" },
-			    { "malay": "Saya suka minum", "english": "I like to drink" },
-			    { "malay": "Saya suka membaca", "english": "I like to read" },
-			    { "malay": "Saya suka menulis", "english": "I like to write" },
-			    { "malay": "Saya suka berjalan", "english": "I like to walk" },
-			    { "malay": "Saya suka melancong", "english": "I like to travel" },
-			    { "malay": "Saya suka belajar", "english": "I like to study" },
-			    { "malay": "Saya suka bekerja", "english": "I like to work" },
-			    { "malay": "Saya suka bermain", "english": "I like to play" },
+{ "malay": "Selamat datang", "english": "Welcome" },
+{ "malay": "Terima kasih", "english": "Thank you" },
+{ "malay": "Apa khabar?", "english": "How are you?" },
+{ "malay": "Selamat pagi", "english": "Good morning" },
+{ "malay": "Selamat malam", "english": "Good night" },
+{ "malay": "Selamat tinggal", "english": "Goodbye" },
+{ "malay": "Maaf", "english": "Sorry" },
+{ "malay": "Tolong", "english": "Please" },
+{ "malay": "Ya", "english": "Yes" },
+{ "malay": "Tidak", "english": "No" },
+{ "malay": "Nama saya", "english": "My name is" },
+{ "malay": "Selamat petang", "english": "Good evening" },
+{ "malay": "Selamat tengah hari", "english": "Good afternoon" },
+{ "malay": "Jumpa lagi", "english": "See you again" },
+{ "malay": "Selamat jalan", "english": "Safe journey" },
+{ "malay": "Selamat sejahtera", "english": "Peace be upon you" },
+{ "malay": "Selamat berkenalan", "english": "Nice to meet you" },
+{ "malay": "Selamat makan", "english": "Enjoy your meal" },
+{ "malay": "Selamat tidur", "english": "Good sleep" },
+{ "malay": "Selamat bekerja", "english": "Have a good work" },
+{ "malay": "Selamat belajar", "english": "Happy studying" },
+{ "malay": "Selamat bercuti", "english": "Happy holidays" },
+{ "malay": "Selamat hari jadi", "english": "Happy birthday" },
+{ "malay": "Selamat hari raya", "english": "Happy Eid" },
+{ "malay": "Selamat tahun baru", "english": "Happy New Year" },
+{ "malay": "Selamat hari Krismas", "english": "Merry Christmas" },
+{ "malay": "Selamat hari ibu", "english": "Happy Mother's Day" },
+{ "malay": "Selamat hari bapa", "english": "Happy Father's Day" },
+{ "malay": "Selamat hari guru", "english": "Happy Teacher's Day" },
+{ "malay": "Selamat hari pekerja", "english": "Happy Labor Day" },
+{ "malay": "Saya suka", "english": "I like" },
+{ "malay": "Saya tidak suka", "english": "I don't like" },
+{ "malay": "Saya lapar", "english": "I am hungry" },
+{ "malay": "Saya dahaga", "english": "I am thirsty" },
+{ "malay": "Saya penat", "english": "I am tired" },
+{ "malay": "Saya gembira", "english": "I am happy" },
+{ "malay": "Saya sedih", "english": "I am sad" },
+{ "malay": "Saya marah", "english": "I am angry" },
+{ "malay": "Saya takut", "english": "I am afraid" },
+{ "malay": "Saya sakit", "english": "I am sick" },
+{ "malay": "Saya sihat", "english": "I am healthy" },
+{ "malay": "Saya perlukan bantuan", "english": "I need help" },
+{ "malay": "Tolong saya", "english": "Help me" },
+{ "malay": "Di mana tandas?", "english": "Where is the toilet?" },
+{ "malay": "Berapa harganya?", "english": "How much is it?" },
+{ "malay": "Saya tidak faham", "english": "I don't understand" },
+{ "malay": "Boleh ulang?", "english": "Can you repeat?" },
+{ "malay": "Cakap perlahan", "english": "Speak slowly" },
+{ "malay": "Saya belajar Bahasa Melayu", "english": "I am learning Malay" },
+{ "malay": "Saya dari", "english": "I am from" },
+{ "malay": "Saya tinggal di", "english": "I live in" },
+{ "malay": "Saya suka makan", "english": "I like to eat" },
+{ "malay": "Saya suka minum", "english": "I like to drink" },
+{ "malay": "Saya suka membaca", "english": "I like to read" },
+{ "malay": "Saya suka menulis", "english": "I like to write" },
+{ "malay": "Saya suka berjalan", "english": "I like to walk" },
+{ "malay": "Saya suka melancong", "english": "I like to travel" },
+{ "malay": "Saya suka belajar", "english": "I like to study" },
+{ "malay": "Saya suka bekerja", "english": "I like to work" },
+{ "malay": "Saya suka bermain", "english": "I like to play" },
+{ "malay": "Saya suka muzik", "english": "I like music" },
+{ "malay": "Saya suka menonton televisyen", "english": "I like to watch television" },
+{ "malay": "Saya suka berenang", "english": "I like to swim" },
+{ "malay": "Saya suka memasak", "english": "I like to cook" },
+{ "malay": "Saya suka melukis", "english": "I like to draw" },
+{ "malay": "Saya suka menari", "english": "I like to dance" },
+{ "malay": "Saya suka berlari", "english": "I like to run" },
+{ "malay": "Saya suka berbasikal", "english": "I like to cycle" },
+{ "malay": "Saya suka berkebun", "english": "I like gardening" },
+{ "malay": "Saya suka fotografi", "english": "I like photography" },
+{ "malay": "Saya suka haiwan", "english": "I like animals" },
+{ "malay": "Saya suka alam semula jadi", "english": "I like nature" },
+{ "malay": "Saya suka filem", "english": "I like movies" },
+{ "malay": "Saya suka seni", "english": "I like art" },
+{ "malay": "Saya suka bahasa", "english": "I like languages" },
+{ "malay": "Saya suka teknologi", "english": "I like technology" },
+{ "malay": "Saya suka membaca buku", "english": "I like reading books" },
+{ "malay": "Saya suka bermain muzik", "english": "I like playing music" },
+{ "malay": "Saya suka menonton wayang", "english": "I like watching movies" },
+{ "malay": "Saya suka melawat muzium", "english": "I like visiting museums" },
+{ "malay": "Apa ini?", "english": "What is this?" },
+{ "malay": "Di mana?", "english": "Where?" },
+{ "malay": "Bila?", "english": "When?" },
+{ "malay": "Kenapa?", "english": "Why?" },
+{ "malay": "Bagaimana?", "english": "How?" },
+{ "malay": "Siapa?", "english": "Who?" },
+{ "malay": "Boleh saya bantu?", "english": "Can I help?" },
+{ "malay": "Boleh saya duduk di sini?", "english": "Can I sit here?" },
+{ "malay": "Ada Wi-Fi?", "english": "Is there Wi-Fi?" },
+{ "malay": "Di mana stesen bas?", "english": "Where is the bus station?" },
+{ "malay": "Di mana stesen kereta api?", "english": "Where is the train station?" },
+{ "malay": "Di mana hotel?", "english": "Where is the hotel?" },
+{ "malay": "Di mana restoran?", "english": "Where is the restaurant?" },
+{ "malay": "Di mana pasar?", "english": "Where is the market?" },
+{ "malay": "Jam berapa sekarang?", "english": "What time is it now?" },
+{ "malay": "Hari ini hari apa?", "english": "What day is today?" },
+{ "malay": "Esok", "english": "Tomorrow" },
+{ "malay": "Semalam", "english": "Yesterday" },
+{ "malay": "Hari ini", "english": "Today" },
+{ "malay": "Sekarang", "english": "Now" },
+{ "malay": "Saya ingin membeli ini", "english": "I want to buy this" },
+{ "malay": "Berapa harga tiket?", "english": "How much is the ticket?" },
+{ "malay": "Saya perlukan doktor", "english": "I need a doctor" },
+{ "malay": "Di mana hospital?", "english": "Where is the hospital?" },
+{ "malay": "Saya suka cuaca hari ini", "english": "I like today's weather" },
+{ "malay": "Cuaca panas", "english": "It's hot" },
+{ "malay": "Cuaca sejuk", "english": "It's cold" },
+{ "malay": "Cuaca hujan", "english": "It's rainy" },
+{ "malay": "Cuaca mendung", "english": "It's cloudy" },
+{ "malay": "Cuaca cerah", "english": "It's sunny" },
+{ "malay": "Saya mahu pergi ke sana", "english": "I want to go there" },
+{ "malay": "Saya sedang mencari alamat ini", "english": "I am looking for this address" },
+{ "malay": "Saya suka makanan pedas", "english": "I like spicy food" },
+{ "malay": "Saya tidak makan daging", "english": "I don't eat meat" },
+{ "malay": "Saya alergi kepada kacang", "english": "I am allergic to nuts" },
+{ "malay": "Saya perlukan air", "english": "I need water" },
+{ "malay": "Saya mahu teh ais", "english": "I want iced tea" },
+{ "malay": "Saya mahu kopi panas", "english": "I want hot coffee" },
+{ "malay": "Saya mahu nasi goreng", "english": "I want fried rice" },
+{ "malay": "Saya mahu mee goreng", "english": "I want fried noodles" },
+{ "malay": "Saya bangun pagi", "english": "I wake up in the morning" },
+{ "malay": "Saya mandi", "english": "I take a shower" },
+{ "malay": "Saya bersarapan", "english": "I eat breakfast" },
+{ "malay": "Saya pergi kerja", "english": "I go to work" },
+{ "malay": "Saya pulang ke rumah", "english": "I return home" },
+{ "malay": "Saya berehat", "english": "I rest" },
+{ "malay": "Saya tidur", "english": "I sleep" },
+{ "malay": "Saya suka bersenam", "english": "I like to exercise" },
+{ "malay": "Saya suka yoga", "english": "I like yoga" },
+{ "malay": "Saya suka meditasi", "english": "I like meditation" },
+{ "malay": "Saya rasa letih", "english": "I feel tired" },
+{ "malay": "Saya rasa tenang", "english": "I feel calm" },
+{ "malay": "Saya rasa bimbang", "english": "I feel worried" },
+{ "malay": "Saya rasa teruja", "english": "I feel excited" },
+{ "malay": "Saya rasa kecewa", "english": "I feel disappointed" },
+{ "malay": "Saya rasa bangga", "english": "I feel proud" },
+{ "malay": "Saya rasa malu", "english": "I feel shy" },
+{ "malay": "Saya rasa bosan", "english": "I feel bored" },
+{ "malay": "Saya rasa sibuk", "english": "I feel busy" },
+{ "malay": "Saya rasa bebas", "english": "I feel free" },
+{ "malay": "Ke kiri", "english": "To the left" },
+{ "malay": "Ke kanan", "english": "To the right" },
+{ "malay": "Terus", "english": "Straight ahead" },
+{ "malay": "Berhenti di sini", "english": "Stop here" },
+{ "malay": "Saya mahu ke lapangan terbang", "english": "I want to go to the airport" },
+{ "malay": "Saya mahu ke hotel", "english": "I want to go to the hotel" },
+{ "malay": "Saya mahu ke stesen kereta api", "english": "I want to go to the train station" },
+{ "malay": "Saya mahu ke pusat bandar", "english": "I want to go to the city center" },
+{ "malay": "Berapa jauh?", "english": "How far is it?" },
+{ "malay": "Berapa lama perjalanan?", "english": "How long is the journey?" },
+{ "malay": "Adakah ini bas ke...", "english": "Is this the bus to..." },
+{ "malay": "Bila bas seterusnya?", "english": "When is the next bus?" },
+{ "malay": "Di mana saya boleh beli tiket?", "english": "Where can I buy a ticket?" },
+{ "malay": "Saya mahu sewa kereta", "english": "I want to rent a car" },
+{ "malay": "Adakah ini tempat letak kereta?", "english": "Is this a parking area?" },
+{ "malay": "Saya sesat", "english": "I am lost" },
+{ "malay": "Boleh tunjukkan peta?", "english": "Can you show me the map?" },
+{ "malay": "Adakah ini jalan ke...", "english": "Is this the way to..." },
+{ "malay": "Saya mahu pulang", "english": "I want to go home" },
+{ "malay": "Boleh saya tumpang?", "english": "Can I get a ride?" },
+{ "malay": "Saya mahu beli ini", "english": "I want to buy this" },
+{ "malay": "Ada saiz lain?", "english": "Do you have another size?" },
+{ "malay": "Ada warna lain?", "english": "Do you have another color?" },
+{ "malay": "Saya hanya tengok-tengok", "english": "I'm just looking" },
+{ "malay": "Boleh kurang harga?", "english": "Can you lower the price?" },
+{ "malay": "Saya mahu bayar tunai", "english": "I want to pay in cash" },
+{ "malay": "Saya mahu guna kad kredit", "english": "I want to use a credit card" },
+{ "malay": "Resit, tolong", "english": "Receipt, please" },
+{ "malay": "Ini terlalu mahal", "english": "This is too expensive" },
+{ "malay": "Ada diskaun?", "english": "Is there a discount?" },
+{ "malay": "Saya mahu makan di sini", "english": "I want to eat here" },
+{ "malay": "Saya mahu bungkus", "english": "I want takeaway" },
+{ "malay": "Menu, tolong", "english": "Menu, please" },
+{ "malay": "Ada makanan vegetarian?", "english": "Do you have vegetarian food?" },
+{ "malay": "Saya mahu air kosong", "english": "I want plain water" },
+{ "malay": "Makanan ini sedap", "english": "This food is delicious" },
+{ "malay": "Saya sudah kenyang", "english": "I am full" },
+{ "malay": "Boleh saya dapat bil?", "english": "Can I get the bill?" },
+{ "malay": "Terima kasih atas layanan", "english": "Thank you for the service" },
+{ "malay": "Jumpa lagi", "english": "See you again" },
+{ "malay": "Ini keluarga saya", "english": "This is my family" },
+{ "malay": "Ini ibu saya", "english": "This is my mother" },
+{ "malay": "Ini bapa saya", "english": "This is my father" },
+{ "malay": "Ini abang saya", "english": "This is my older brother" },
+{ "malay": "Ini kakak saya", "english": "This is my older sister" },
+{ "malay": "Ini adik saya", "english": "This is my younger sibling" },
+{ "malay": "Ini anak saya", "english": "This is my child" },
+{ "malay": "Ini suami saya", "english": "This is my husband" },
+{ "malay": "Ini isteri saya", "english": "This is my wife" },
+{ "malay": "Ini datuk saya", "english": "This is my grandfather" },
+{ "malay": "Ini nenek saya", "english": "This is my grandmother" },
+{ "malay": "Ini sepupu saya", "english": "This is my cousin" },
+{ "malay": "Ini kawan saya", "english": "This is my friend" },
+{ "malay": "Saya sayang awak", "english": "I love you" },
+{ "malay": "Saya rindu awak", "english": "I miss you" },
+{ "malay": "Awak sangat baik", "english": "You are very kind" },
+{ "malay": "Awak cantik", "english": "You are beautiful" },
+{ "malay": "Awak kacak", "english": "You are handsome" },
+{ "malay": "Saya suka berkawan dengan awak", "english": "I like being friends with you" },
+{ "malay": "Mari kita berkenalan", "english": "Let's get to know each other" },
 
-				// ... (continues up to 100 entries)
+
+				// ... add more flashcard elements here
 			],
-            
+            // starter mcq
 			mcq: [
-			        {
-			            question: "What is the Malay word for 'Welcome'?",
-			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
-			            answer: "Selamat datang"
-			        },
-			        {
-			            question: "What is the Malay word for 'Thank you'?",
-			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
-			            answer: "Terima kasih"
-			        },
-			        {
-			            question: "What is the Malay word for 'How are you?'?",
-			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
-			            answer: "Apa khabar?"
-			        },
-			        {
-			            question: "What is the Malay word for 'Good morning'?",
-			            options: ["Selamat datang", "Terima kasih", "Apa khabar?", "Selamat pagi"],
-			            answer: "Selamat pagi"
-			        },
-			        {
-			            question: "What is the Malay word for 'Good night'?",
-			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
-			            answer: "Selamat malam"
-			        },
-			        {
-			            question: "What is the Malay word for 'Goodbye'?",
-			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
-			            answer: "Selamat tinggal"
-			        },
-			        {
-			            question: "What is the Malay word for 'Sorry'?",
-			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
-			            answer: "Maaf"
-			        },
-			        {
-			            question: "What is the Malay word for 'Please'?",
-			            options: ["Selamat malam", "Selamat tinggal", "Maaf", "Tolong"],
-			            answer: "Tolong"
-			        },
-			        {
-			            question: "What is the Malay word for 'Yes'?",
-			            options: ["Ya", "Tidak", "Selamat datang", "Terima kasih"],
-			            answer: "Ya"
-			        },
-			        {
-			            question: "What is the Malay word for 'No'?",
-			            options: ["Ya", "Tidak", "Selamat datang", "Terima kasih"],
-			            answer: "Tidak"
-			        }
-			        // ... continue up to 100 entries
+			        {	"question": "Help",
+						"options": [
+							"Lapar",
+							"Terima kasih",
+							"Bantuan",
+							"Apa khabar?"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Good night",
+						"options": [
+							"Selamat malam",
+							"Selamat pagi",
+							"Tolong",
+							"Maaf"
+						],
+						"answer": "Selamat malam"	},
+					{	"question": "Welcome",
+						"options": [
+							"Ya",
+							"Maaf",
+							"Selamat datang",
+							"Sedih"
+						],
+						"answer": "Selamat datang"	},
+					{	"question": "How are you?",
+						"options": [
+							"Apa khabar?",
+							"Saya cinta kamu",
+							"Ya",
+							"Sedih"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Excuse me",
+						"options": [
+							"Lapar",
+							"Ya",
+							"Bantuan",
+							"Maafkan saya"
+						],
+						"answer": "Maafkan saya"	},
+					{	"question": "Sad",
+						"options": [
+							"Sedih",
+							"Lapar",
+							"Selamat malam",
+							"Terima kasih"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Sorry",
+						"options": [
+							"Tolong",
+							"Maaf",
+							"Saya cinta kamu",
+							"Gembira"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Welcome",
+						"options": [
+							"Selamat datang",
+							"Selamat tinggal",
+							"Tidak",
+							"Gembira"
+						],
+						"answer": "Selamat datang"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Sedih",
+							"Gembira",
+							"Dahaga",
+							"Lapar"
+						],
+						"answer": "Dahaga"	},
+					{	"question": "Good morning",
+						"options": [
+							"Selamat pagi",
+							"Tolong",
+							"Tidak",
+							"Selamat tinggal"
+						],
+						"answer": "Selamat pagi"	},
+					{	"question": "Yes",
+						"options": [
+							"Selamat malam",
+							"Sedih",
+							"Ya",
+							"Selamat pagi"
+						],
+						"answer": "Ya"	},
+					{	"question": "Happy",
+						"options": [
+							"Lapar",
+							"Gembira",
+							"Selamat tinggal",
+							"Tolong"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Friend",
+						"options": [
+							"Bantuan",
+							"Maaf",
+							"Kawan",
+							"Lapar"
+						],
+						"answer": "Kawan"	},
+					{	"question": "No",
+						"options": [
+							"Kawan",
+							"Sedih",
+							"Keluarga",
+							"Tidak"
+						],
+						"answer": "Tidak"	},
+					{	"question": "No",
+						"options": [
+							"Tidak",
+							"Maafkan saya",
+							"Selamat datang",
+							"Selamat pagi"
+						],
+						"answer": "Tidak"	},
+					{	"question": "Good night",
+						"options": [
+							"Bantuan",
+							"Tolong",
+							"Apa khabar?",
+							"Selamat malam"
+						],
+						"answer": "Selamat malam"	},
+					{	"question": "Thank you",
+						"options": [
+							"Maafkan saya",
+							"Terima kasih",
+							"Maaf",
+							"Tidak"
+						],
+						"answer": "Terima kasih"	},
+					{	"question": "Happy",
+						"options": [
+							"Selamat tinggal",
+							"Gembira",
+							"Tolong",
+							"Maaf"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Happy",
+						"options": [
+							"Kawan",
+							"Gembira",
+							"Selamat tinggal",
+							"Dahaga"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Sorry",
+						"options": [
+							"Maaf",
+							"Gembira",
+							"Tidak",
+							"Saya cinta kamu"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Happy",
+						"options": [
+							"Gembira",
+							"Ya",
+							"Kawan",
+							"Tolong"
+						],
+						"answer": "Gembira"	},
+					{	"question": "No",
+						"options": [
+							"Ya",
+							"Maafkan saya",
+							"Tidak",
+							"Selamat pagi"
+						],
+						"answer": "Tidak"	},
+					{	"question": "Sad",
+						"options": [
+							"Selamat datang",
+							"Selamat pagi",
+							"Maafkan saya",
+							"Sedih"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Hungry",
+						"options": [
+							"Selamat datang",
+							"Sedih",
+							"Lapar",
+							"Keluarga"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Good morning",
+						"options": [
+							"Gembira",
+							"Sedih",
+							"Tidak",
+							"Selamat pagi"
+						],
+						"answer": "Selamat pagi"	},
+					{	"question": "Goodbye",
+						"options": [
+							"Selamat tinggal",
+							"Terima kasih",
+							"Lapar",
+							"Selamat datang"
+						],
+						"answer": "Selamat tinggal"	},
+					{	"question": "Friend",
+						"options": [
+							"Lapar",
+							"Kawan",
+							"Selamat tinggal",
+							"Maaf"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Sorry",
+						"options": [
+							"Ya",
+							"Tolong",
+							"Maaf",
+							"Selamat datang"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Sorry",
+						"options": [
+							"Bantuan",
+							"Lapar",
+							"Dahaga",
+							"Maaf"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Friend",
+						"options": [
+							"Tidak",
+							"Ya",
+							"Kawan",
+							"Dahaga"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Please",
+						"options": [
+							"Tolong",
+							"Apa khabar?",
+							"Marah",
+							"Gembira"
+						],
+						"answer": "Tolong"	},
+					{	"question": "Family",
+						"options": [
+							"Ya",
+							"Dahaga",
+							"Maaf",
+							"Keluarga"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Yes",
+						"options": [
+							"Selamat datang",
+							"Ya",
+							"Marah",
+							"Sedih"
+						],
+						"answer": "Ya"	},
+					{	"question": "Please",
+						"options": [
+							"Saya cinta kamu",
+							"Tolong",
+							"Selamat pagi",
+							"Lapar"
+						],
+						"answer": "Tolong"	},
+					{	"question": "Hungry",
+						"options": [
+							"Tolong",
+							"Lapar",
+							"Ya",
+							"Maaf"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Goodbye",
+						"options": [
+							"Selamat tinggal",
+							"Tolong",
+							"Keluarga",
+							"Selamat malam"
+						],
+						"answer": "Selamat tinggal"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Ya",
+							"Selamat malam",
+							"Sedih",
+							"Dahaga"
+						],
+						"answer": "Dahaga"	},
+					{	"question": "Friend",
+						"options": [
+							"Kawan",
+							"Maaf",
+							"Apa khabar?",
+							"Saya cinta kamu"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Excuse me",
+						"options": [
+							"Bantuan",
+							"Terima kasih",
+							"Maafkan saya",
+							"Gembira"
+						],
+						"answer": "Maafkan saya"	},
+					{	"question": "Family",
+						"options": [
+							"Maafkan saya",
+							"Selamat datang",
+							"Selamat pagi",
+							"Keluarga"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Family",
+						"options": [
+							"Sedih",
+							"Kawan",
+							"Selamat pagi",
+							"Keluarga"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Angry",
+						"options": [
+							"Marah",
+							"Ya",
+							"Sedih",
+							"Tidak"
+						],
+						"answer": "Marah"	},
+					{	"question": "Friend",
+						"options": [
+							"Kawan",
+							"Bantuan",
+							"Maaf",
+							"Maafkan saya"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Good morning",
+						"options": [
+							"Selamat tinggal",
+							"Selamat pagi",
+							"Tolong",
+							"Terima kasih"
+						],
+						"answer": "Selamat pagi"	},
+					{	"question": "How are you?",
+						"options": [
+							"Saya cinta kamu",
+							"Apa khabar?",
+							"Sedih",
+							"Gembira"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Friend",
+						"options": [
+							"Kawan",
+							"Tidak",
+							"Selamat pagi",
+							"Bantuan"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Excuse me",
+						"options": [
+							"Maafkan saya",
+							"Marah",
+							"Bantuan",
+							"Dahaga"
+						],
+						"answer": "Maafkan saya"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Sedih",
+							"Selamat malam",
+							"Lapar",
+							"Dahaga"
+						],
+						"answer": "Dahaga"	},
+					{	"question": "How are you?",
+						"options": [
+							"Apa khabar?",
+							"Bantuan",
+							"Keluarga",
+							"Maaf"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Family",
+						"options": [
+							"Marah",
+							"Keluarga",
+							"Ya",
+							"Selamat pagi"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Friend",
+						"options": [
+							"Gembira",
+							"Kawan",
+							"Marah",
+							"Selamat malam"
+						],
+						"answer": "Kawan"	},
+					{	"question": "Sorry",
+						"options": [
+							"Selamat tinggal",
+							"Maaf",
+							"Tolong",
+							"Selamat pagi"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Help",
+						"options": [
+							"Lapar",
+							"Marah",
+							"Bantuan",
+							"Selamat pagi"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Goodbye",
+						"options": [
+							"Maaf",
+							"Selamat tinggal",
+							"Dahaga",
+							"Apa khabar?"
+						],
+						"answer": "Selamat tinggal"	},
+					{	"question": "Help",
+						"options": [
+							"Bantuan",
+							"Marah",
+							"Terima kasih",
+							"Tidak"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Angry",
+						"options": [
+							"Terima kasih",
+							"Tidak",
+							"Marah",
+							"Maaf"
+						],
+						"answer": "Marah"	},
+					{	"question": "I love you",
+						"options": [
+							"Terima kasih",
+							"Saya cinta kamu",
+							"Marah",
+							"Selamat datang"
+						],
+						"answer": "Saya cinta kamu"	},
+					{	"question": "Sad",
+						"options": [
+							"Sedih",
+							"Tolong",
+							"Selamat pagi",
+							"Selamat tinggal"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Hungry",
+						"options": [
+							"Apa khabar?",
+							"Lapar",
+							"Tolong",
+							"Ya"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Help",
+						"options": [
+							"Bantuan",
+							"Tidak",
+							"Apa khabar?",
+							"Selamat datang"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Help",
+						"options": [
+							"Lapar",
+							"Tidak",
+							"Ya",
+							"Bantuan"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Excuse me",
+						"options": [
+							"Tidak",
+							"Maafkan saya",
+							"Marah",
+							"Dahaga"
+						],
+						"answer": "Maafkan saya"	},
+					{	"question": "Sad",
+						"options": [
+							"Maaf",
+							"Sedih",
+							"Lapar",
+							"Marah"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Goodbye",
+						"options": [
+							"Tidak",
+							"Ya",
+							"Tolong",
+							"Selamat tinggal"
+						],
+						"answer": "Selamat tinggal"	},
+					{	"question": "How are you?",
+						"options": [
+							"Terima kasih",
+							"Sedih",
+							"Selamat malam",
+							"Apa khabar?"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Sorry",
+						"options": [
+							"Maaf",
+							"Ya",
+							"Saya cinta kamu",
+							"Terima kasih"
+						],
+						"answer": "Maaf"	},
+					{	"question": "Sad",
+						"options": [
+							"Terima kasih",
+							"Lapar",
+							"Sedih",
+							"Maafkan saya"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Good night",
+						"options": [
+							"Selamat malam",
+							"Saya cinta kamu",
+							"Marah",
+							"Tidak"
+						],
+						"answer": "Selamat malam"	},
+					{	"question": "Angry",
+						"options": [
+							"Marah",
+							"Kawan",
+							"Selamat malam",
+							"Selamat tinggal"
+						],
+						"answer": "Marah"	},
+					{	"question": "Hungry",
+						"options": [
+							"Keluarga",
+							"Bantuan",
+							"Tolong",
+							"Lapar"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Family",
+						"options": [
+							"Keluarga",
+							"Terima kasih",
+							"Ya",
+							"Lapar"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Hungry",
+						"options": [
+							"Terima kasih",
+							"Maaf",
+							"Selamat malam",
+							"Lapar"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Hungry",
+						"options": [
+							"Keluarga",
+							"Selamat datang",
+							"Lapar",
+							"Tidak"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Keluarga",
+							"Selamat tinggal",
+							"Selamat datang",
+							"Dahaga"
+						],
+						"answer": "Dahaga"	},
+					{	"question": "Hungry",
+						"options": [
+							"Lapar",
+							"Selamat tinggal",
+							"Maafkan saya",
+							"Maaf"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Help",
+						"options": [
+							"Bantuan",
+							"Terima kasih",
+							"Saya cinta kamu",
+							"Maafkan saya"
+						],
+						"answer": "Bantuan"	},
+					{	"question": "Family",
+						"options": [
+							"Keluarga",
+							"Sedih",
+							"Kawan",
+							"Lapar"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "I love you",
+						"options": [
+							"Saya cinta kamu",
+							"Selamat pagi",
+							"Selamat datang",
+							"Keluarga"
+						],
+						"answer": "Saya cinta kamu"	},
+					{	"question": "Sad",
+						"options": [
+							"Sedih",
+							"Selamat tinggal",
+							"Tolong",
+							"Tidak"
+						],
+						"answer": "Sedih"	},
+					{	"question": "How are you?",
+						"options": [
+							"Ya",
+							"Selamat tinggal",
+							"Apa khabar?",
+							"Selamat malam"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Angry",
+						"options": [
+							"Marah",
+							"Dahaga",
+							"Tidak",
+							"Maafkan saya"
+						],
+						"answer": "Marah"	},
+					{	"question": "Angry",
+						"options": [
+							"Marah",
+							"Sedih",
+							"Dahaga",
+							"Gembira"
+						],
+						"answer": "Marah"	},
+					{	"question": "Happy",
+						"options": [
+							"Gembira",
+							"Tidak",
+							"Keluarga",
+							"Selamat datang"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Welcome",
+						"options": [
+							"Selamat datang",
+							"Saya cinta kamu",
+							"Sedih",
+							"Selamat pagi"
+						],
+						"answer": "Selamat datang"	},
+					{	"question": "Happy",
+						"options": [
+							"Keluarga",
+							"Marah",
+							"Selamat pagi",
+							"Gembira"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Good morning",
+						"options": [
+							"Selamat datang",
+							"Selamat pagi",
+							"Tidak",
+							"Saya cinta kamu"
+						],
+						"answer": "Selamat pagi"	},
+					{	"question": "I love you",
+						"options": [
+							"Keluarga",
+							"Maaf",
+							"Saya cinta kamu",
+							"Kawan"
+						],
+						"answer": "Saya cinta kamu"	},
+					{	"question": "Good morning",
+						"options": [
+							"Terima kasih",
+							"Ya",
+							"Maafkan saya",
+							"Selamat pagi"
+						],
+						"answer": "Selamat pagi"	},
+					{	"question": "Hungry",
+						"options": [
+							"Kawan",
+							"Lapar",
+							"Saya cinta kamu",
+							"Ya"
+						],
+						"answer": "Lapar"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Selamat pagi",
+							"Dahaga",
+							"Maafkan saya",
+							"Ya"
+						],
+						"answer": "Dahaga"	},
+					{	"question": "I love you",
+						"options": [
+							"Keluarga",
+							"Marah",
+							"Terima kasih",
+							"Saya cinta kamu"
+						],
+						"answer": "Saya cinta kamu"	},
+					{	"question": "Sad",
+						"options": [
+							"Sedih",
+							"Saya cinta kamu",
+							"Dahaga",
+							"Tidak"
+						],
+						"answer": "Sedih"	},
+					{	"question": "Happy",
+						"options": [
+							"Selamat tinggal",
+							"Tolong",
+							"Dahaga",
+							"Gembira"
+						],
+						"answer": "Gembira"	},
+					{	"question": "Thank you",
+						"options": [
+							"Maaf",
+							"Selamat tinggal",
+							"Terima kasih",
+							"Maafkan saya"
+						],
+						"answer": "Terima kasih"	},
+					{	"question": "How are you?",
+						"options": [
+							"Kawan",
+							"Selamat malam",
+							"Selamat tinggal",
+							"Apa khabar?"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Family",
+						"options": [
+							"Selamat malam",
+							"Tolong",
+							"Maaf",
+							"Keluarga"
+						],
+						"answer": "Keluarga"	},
+					{	"question": "Angry",
+						"options": [
+							"Kawan",
+							"Marah",
+							"Bantuan",
+							"Saya cinta kamu"
+						],
+						"answer": "Marah"	},
+					{	"question": "No",
+						"options": [
+							"Tidak",
+							"Selamat tinggal",
+							"Apa khabar?",
+							"Terima kasih"
+						],
+						"answer": "Tidak"	},
+					{	"question": "How are you?",
+						"options": [
+							"Apa khabar?",
+							"Keluarga",
+							"Tidak",
+							"Selamat datang"
+						],
+						"answer": "Apa khabar?"	},
+					{	"question": "Thirsty",
+						"options": [
+							"Selamat tinggal",
+							"Dahaga",
+							"Selamat pagi",
+							"Gembira"
+						],
+						"answer": "Dahaga"
+					},
+			        // ... add more MCQ elements here
 			    ]
 
         };
+		
+		
+		shuffleArray(data.flashcards); // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
+		shuffleArray(data.mcq); // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
 
         let flashcardIndex = 0;
         let mcqIndex = 0;
@@ -287,6 +1167,7 @@
             flashcardIndex = (flashcardIndex + 1) % data.flashcards.length;
             const flashcard = data.flashcards[flashcardIndex];
             document.getElementById('flashcard-content').innerText = `${flashcard.malay} - ${flashcard.english}`;
+			playPronunciation(); // 12-Jun-2025, 10.43 AM, added for play Malay Pronunciation, this will play the pronumciation automatically when a flash card is shown;
         }
 
         function checkQuiz(button) {
@@ -302,21 +1183,44 @@
             }
         }
 
-        function nextQuiz() {
-            mcqIndex = (mcqIndex + 1) % data.mcq.length;
-            const mcq = data.mcq[mcqIndex];
-            document.getElementById('mcq-question').innerText = mcq.question;
-            const optionsDiv = document.querySelector('.mcq-options');
-            optionsDiv.innerHTML = '';
-            mcq.options.forEach(option => {
-                const button = document.createElement('button');
-                button.innerText = option;
-                button.className = 'mcq-option';
-                button.onclick = () => checkQuiz(button);
-                optionsDiv.appendChild(button);
-            });
-            document.getElementById('mcq-answer').innerText = '';
-        }
+        
+		function nextQuiz() { // 11-Jun-2025, 03.23 PM, modified for flashcard and MCQ randomization
+		    mcqIndex = (mcqIndex + 1) % data.mcq.length;
+		    const mcq = data.mcq[mcqIndex];
+		    document.getElementById('mcq-question').innerText = mcq.question;
+
+		    const options = [...mcq.options]; // clone the array
+		    shuffleArray(options); // shuffle the options
+
+		    const optionsDiv = document.querySelector('.mcq-options');
+		    optionsDiv.innerHTML = '';
+		    options.forEach(option => {
+		        const button = document.createElement('button');
+		        button.innerText = option;
+		        button.className = 'mcq-option';
+		        button.onclick = () => checkQuiz(button);
+		        optionsDiv.appendChild(button);
+		    });
+
+		    document.getElementById('mcq-answer').innerText = '';
+		}
+
+		
+		function shuffleArray(array) { // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+		}
+
+		function playPronunciation() { // 12-Jun-2025, 10.43 AM, added for play Malay Pronunciation
+		    const flashcard = data.flashcards[flashcardIndex];
+		    const utterance = new SpeechSynthesisUtterance(flashcard.malay);
+		    utterance.lang = 'ms-MY'; // Malay language code
+		    speechSynthesis.speak(utterance);
+		}
+
+		
     </script>
 </body>
 </html>
