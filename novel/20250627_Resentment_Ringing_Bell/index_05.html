@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+		glbBiUserPanelVisible = false;  
+	} else {
+		showUserPanel() ;
+		glbBiUserPanelVisible = true;
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'flex';
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+    document.getElementById('_userPanel').style.display = 'none';
+  }
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+	
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 50vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	right: 7em;
+	font-size: 1.2em;
+	width: 80%;
+	border: 2px solid red;
+	border-radius: 0.5em;
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<!--<div id="_userPanel" onclick="event.stopPropagation()">-->
+<div id="_userPanel">
+	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails()">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails()">📁</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+</div>
+
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">🔽</button>
+</div>
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 《怨气撞铃》 作者：尾鱼  </h3>
+<p class = "firstLineIndent">内容标签：异能 惊悚悬疑 三教九流 报仇雪恨</p>
+<p class = "firstLineIndent">一串只能被死人怨气撞响的风铃</p>
+<p class = "firstLineIndent">一段永远看不到终点的漂泊旅途</p>
+<p class = "firstLineIndent">主角：季棠棠，岳峰 ┃ 配角：神棍，毛哥，叶连成，秦苗，其它待设定的一干人 ┃ 其它：在路上</p>
+<p class = "firstLineIndent">Source : <a href="https://m.sxcnw.org/downpage/12/3689.html">书香中文网 > 怨气撞铃</a></p>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0001'><summary><a>【大结局】</a></summary>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0002'><summary><a>130第①章</a></summary>
+	<p class='firstLineIndent'>岳峰是最后得到消息的那一个。</p>
+	<p class='firstLineIndent'>手术之后,他罕见的出现了药物反应，经历了一次转院和重新诊疗,最终稳定下来，已经是几天后的事了。</p>
+	<p class='firstLineIndent'>醒来之后就发现事情有点不对劲,他记得当时千叮咛万嘱咐让光头的朋友别报警的,但是现在,病室里头正对着他床坐着的，明显就是个公安,想起之前麻烦光头做了那么多，岳峰想打个电话给他报平安,枕边摸了一圈没见着手机，那个公安估计看出了他的心思,客气地说有些事情需要调查，手机先收起来了。</p>
+	<p class='firstLineIndent'>岳峰表面上笑笑表示配合，一颗心却越来越往下沉，他猜测可能是为了秦守业那条被压断的腿，秦家可能已经报了警，而他如果给不出听起来正常合理的原因——极有可能是要进牢里兜一圈的。</p>
+	<p class='firstLineIndent'>他试探着向那公安打听，那公安不知道是口风紧还是真不知道，只是说是局里的安排，过两天就有分晓了。</p>
+	<p class='firstLineIndent'>过两天过两天，这两天等的，真TM叫一个度日如年。</p>
+	<p class='firstLineIndent'>第三天的上午，岳峰记得特别清楚，早上九点钟开始下雨，哗啦啦哗啦啦，半边天都黑了，护士进来给他换药的时候还说：“今年天太反常了，哪有三月多就雨季的。”</p>
+	<p class='firstLineIndent'>十点多的时候，那个公安接了个电话，提溜了把大黑伞就下去了，几分钟后走廊里传来杂乱的脚步声，足有四五个人，然后门开了。</p>
+	<p class='firstLineIndent'>岳峰做梦也没想到，最先看到的两个人居然是毛哥和光头。</p>
+	<p class='firstLineIndent'>这种惊讶很快就变成了不安，因为毛哥和光头的脸色都很局促尴尬，他们身后跟着另外两个便衣，一男一女，风尘仆仆的，两人看了岳峰一眼，那个女的跟毛哥确认：“这就是死者的男朋友？”</p>
+	<p class='firstLineIndent'>毛哥看了岳峰一眼，像是怕他听到，小声回了句：“哎。”</p>
+	<p class='firstLineIndent'>几个人进屋，屋里审视了一遍，像是想找最合适的落座方位，岳峰一直盯着毛哥，奇怪的问他：“你们说什么？”</p>
+	<p class='firstLineIndent'>毛哥心虚，总不敢看他：“峰子，让公安同志给你说，啊，让公安同志说。”</p>
+	<p class='firstLineIndent'>岳峰的胸口强烈着起伏着，心头不祥的预感越来越强，追着毛哥不放：“你什么意思啊你，什么叫死者男朋友，说谁啊，我啊？你咒谁呢你。”</p>
+	<p class='firstLineIndent'>毛哥硬着头皮让他骂，下意识往两个便衣身后缩，这种噩耗的传达，他打心眼里觉得应该是公安做的，自己不该出这个头，光头在边上搓着手干着急，那个男的便衣清清嗓子：“哎，这位同志，你克制一下，我们找你，也只是了解一下情况……”</p>
+	<p class='firstLineIndent'>岳峰吼他：“没跟你说话，毛子你过来，你把话给我说清楚！”</p>
+	<p class='firstLineIndent'>两个便衣互相看了看，倒是没生气，这种情况也不是第一次遇见了，一般至亲的家属听到噩耗，不能冷静配合也在情理之中，总得等人平复下来，但是一般第一反应做不了假，观察第一反应，也利于判断对方有没有涉案关联。</p>
+	<p class='firstLineIndent'>吼了两次，毛哥就是不挪窝儿，岳峰急红了眼，掀开被子就下床，他腿是吊在钢架上的，这么猛的一下子，整个人都倒吊着摔下去了，毛哥吓的一激灵，和光头两个抢过来扶他，那几个公安本来也要过来的，见这两人先了，也就不过来掺和。</p>
+	<p class='firstLineIndent'>岳峰躺在地上，一把就揪住毛哥的衣领往下拽：“毛子你把话说清楚，你把话说清楚啊，啊？”</p>
+	<p class='firstLineIndent'>毛哥看着岳峰，委实是无话可说，因为他觉得，岳峰心里头其实比谁都明白。</p>
+	<p class='firstLineIndent'>——这就是死者的男朋友？</p>
+	<p class='firstLineIndent'>这话说的这么直白，用脚趾头想也知道发生什么事了，而且要不是大事，他老毛子跑来干嘛呢，还是跟公安一起来的，更确切的说，是被公安带来的，岳峰心里一定明镜一样透亮，但他就是不愿承认，他就是歇斯底里地抓着他，想逼他改口说是讲错了，一场误会，不是他想的那样。</p>
+	<p class='firstLineIndent'>可能的话，毛哥真希望能顺着他的意说，但是不能，他就这么跟岳峰面对面的看着，看着看着，他自己眼圈先红了，说：“峰子，你节哀啊，事情挺突然的，我也难受，真的，我心里也怪难受的。”</p>
+	<p class='firstLineIndent'>岳峰看着毛哥，嘴唇都在微微翕动，喉结滚了一下，突然狠狠就把他推开了，毛哥咣当一声撞到空着的临床床框子上，后背硌的生疼，但他没心思去想了。</p>
+	<p class='firstLineIndent'>他看到岳峰像受伤的兽似的，整个身子都蜷缩着往床底去，额头死死抵在地上，喉咙里发出呜咽似的声音。</p>
+	<p class='firstLineIndent'>毛哥难受的要命，背抵着床框子低着头不吭声，光头把头偏向靠墙的一方不说话，那个男便衣看到边上那女的眼泪都快下来了，估计是觉得影响不好，咳嗽了两声之后，示意作为公安暂时回避。</p>
+	<p class='firstLineIndent'>三人退到走廊上，门掩上了些，但还是能听到里头的声音，那个女便衣出来就收不住泪了，一直抽纸巾擦眼泪，男便衣对着兄弟单位的公安笑笑：“女同志，就是太感性了。”</p>
+	<p class='firstLineIndent'>回头又说那女便衣：“做这么多年警察了真是……注意影响，不要太被涉案人员左右情绪……”</p>
+	<p class='firstLineIndent'>那女的抽了抽鼻子：“不是，看的出是有真感情的，不然这男的不得难受成这样……我一看我就……没忍住……”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>根据秦苗提供的线索，岳峰、毛哥、光头跟季棠棠之间都有过密关系，很难说有没有在其中出谋划策，出于办案的谨慎，每一个人都要查到。</p>
+	<p class='firstLineIndent'>毛哥当时正在店里忙活着，一抬头看到两公安真有点懵圈了，偏偏神棍还在边上幸灾乐祸地追问：“小毛毛你是不是违背国家法律了？你是不是背着我做了对不起党和人民的事了？”</p>
+	<p class='firstLineIndent'>毛哥不敢隐瞒，事实上，他也没什么可隐瞒的，这要感谢季棠棠和岳峰一直都对事情的关键部分讳莫如深，所以整件事看起来，他最失当的地方在于向季棠棠提供了秦苗家的住址——但是秦守业的住址不是什么机密，查查问问都能知道的。</p>
+	<p class='firstLineIndent'>而且后来从岳峰的手机上查到的毛哥的短信也证明了这一点。</p>
+	<p class='firstLineIndent'>回答的时候，毛哥多了个心眼，也替岳峰打了掩护，说警察同志我们峰子跟这姑娘也就是路上认识互有好感，但他对这姑娘来历也不怎么清楚，你们也知道，这种男欢女爱今朝有酒今朝醉的，哪至于去查人家户口呢？我真没想到这姑娘会做这事，这是犯法啊这是。</p>
+	<p class='firstLineIndent'>说这话的时候，他挺惭愧的，觉得怪对不起季棠棠的，但是没办法，人死了就是死了，多推给死人一点是一点，捞出活人最重要。</p>
+	<p class='firstLineIndent'>而随着调查的进一步深入，情势也是对岳峰他们有利的，很多人可以证明季棠棠和岳峰真的认识不深，比如去古城调查的人问了小米和石头，他们都记得季棠棠这个女客，也记得她和岳峰认识，但就是普通朋友，不是情侣。</p>
+	<p class='firstLineIndent'>最关键的一点来自对季棠棠的调查，那就是，查来查去，根本没这个人！</p>
+	<p class='firstLineIndent'>确切来讲，拥有身份证的原主几年前已经去世了，但是不知道什么原因，她的各项资料档案都没有消除，而是被另一个神秘的人接手使用，直到此次秦家的爆炸案。</p>
+	<p class='firstLineIndent'>也就是说，从某个角度来看，岳峰、毛哥、光头都可以是被蒙蔽的“受害人”，因为自始至终，他们都不知道面前站着的这个女孩儿是假冒的。</p>
+	<p class='firstLineIndent'>他们甚至有一个假设，由于岳峰的特殊身份，他是死者秦守业的女儿秦苗的前男友，如果季棠棠一开始的终极目标就是秦守业，那么季棠棠接近岳峰，是否根本不是为了感情，而是别有图谋？</p>
+	<p class='firstLineIndent'>疑窦丛生，百思不得其解，秦家那条线也是不查则已，一查四处起火：你秦守业作为国家公务人员，擅自离岗数十日已经非常有问题了，更何况据目击者称，他们一行足有十六七个人，大多数是青壮男。</p>
+	<p class='firstLineIndent'>想干嘛这是？家族旅游？骗鬼呢？</p>
+	<p class='firstLineIndent'>而且岳峰的伤不是假的，发现岳峰的地点跟秦守业最后一次在广西露面的地点是一样的，很明显是秦家人干的，于是局子里又有另一重偏向情感纠纷的假设：是否是秦守业迁怒于岳峰的移情，为了女儿带人报复打伤岳峰，那一头季棠棠为了泄愤，所以炸了秦守业的家？</p>
+	<p class='firstLineIndent'>虽然不合理的成分多，但是杀人的大多情感冲动，有几个合情合理的？有人为了女友父母不同意两人交往就操把菜刀砍了一大家子的，有人为了抢停车位就能拼个你死我活的，走极端的大有人在，要都能心态平和一笑置之，这世上早不需要警察和法庭了。</p>
+	<p class='firstLineIndent'>两条线并查，查着查着都查不下去，季棠棠身世成谜，秦家也是云遮雾罩，而且据说，秦家人走动了之后，上头有把这案子叫停的意思。</p>
+	<p class='firstLineIndent'>所以再从岳峰这里入手，多少有点碰运气的意思，调查的人都没报什么太大期望，但万一走了狗屎运踢出块金坷垃呢？</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>因为岳峰情绪太过激动，询问笔录也就相应推迟，下午的时候，岳峰的情绪稍微平复些了，毛哥断断续续给他讲了发生的事情，岳峰听完了，只说了句：“挺累的，毛子，我睡一会。”</p>
+	<p class='firstLineIndent'>他这一睡就睡了很久，到晚间熄灯的时候也没见醒，毛哥打发光头回去，自己在医院陪床，半夜起来去卫生间，怕吵醒岳峰，也没有开灯，摸黑回来，掀被子上床的时候，朝岳峰那头看了一眼，忽然愣了一下，揉了揉眼睛，又看过去。</p>
+	<p class='firstLineIndent'>没看错，岳峰的眼睛是睁着的。</p>
+	<p class='firstLineIndent'>毛哥暗暗叹了口气，又掀被子下床，拖了张凳子坐在岳峰床头，叫了声：“峰子。”</p>
+	<p class='firstLineIndent'>岳峰没说话，毛哥想开灯，想想算了，下了一天的雨，晚间已经停了，空气湿濡濡的，朝窗玻璃上看，还能看到雨滴的印子，毛哥说：“峰子，我开个窗，透个气。”</p>
+	<p class='firstLineIndent'>窗子推开半扇，冰凉而又清新的空气扑面而来，静下心听，能听到外头草地上不知名的虫子啾啾的叫声。</p>
+	<p class='firstLineIndent'>岳峰忽然说了句：“毛子，棠棠为什么这么做？”</p>
+	<p class='firstLineIndent'>毛哥愣了一下，他对季棠棠的身世了解的很少，根本没什么发言的立场，顿了很久才似是而非的说了句：“我也不知道，逼急了吧，人要不是逼急了，谁会愿意把自己搭进去？”</p>
+	<p class='firstLineIndent'>“可是为秦守业这样的人，值得吗？”</p>
+	<p class='firstLineIndent'>“峰子……”</p>
+	<p class='firstLineIndent'>“我挺气她的，真的，我们熬了那么久，两个人，什么事都遭了，都挺过来了，她为什么就放弃了？那个时候秦守成跟我说，别冲动，活着才有希望，他说棠棠在外头等我，我要是出事，她得难过死。我听他的话，我拼命的爬，拼命爬，我就想着，不要叫她为我难受……”</p>
+	<p class='firstLineIndent'>他说不下去了，把头偏向毛哥看不见的枕头内侧。</p>
+	<p class='firstLineIndent'>毛哥吸了吸鼻子，抽过床头柜上的纸巾擦了擦，帮着岳峰把被子往上拉了拉：“行了峰子，别多想了，事情已经这样了。”</p>
+	<p class='firstLineIndent'>“值得吗，为秦守业这样的人渣？她做这个决定之前，哪怕不想想我，也想想她自己，秦守业他配吗？值得她把自己搭进去吗？”</p>
+	<p class='firstLineIndent'>毛哥不知道该怎么安慰他，沉默很久之后才说了句：“峰子，别多想了，会过去的。”</p>
+	<p class='firstLineIndent'>岳峰笑起来：“是吗？多久？一年，十年，还是一辈子？”</p>
+	<p class='firstLineIndent'>他深深吸一口气，闭上眼睛，又睁开。</p>
+	<p class='firstLineIndent'>“今儿我才知道什么叫亲者痛仇者快，这辈子最痛的一刀子，她给的，真的，毛子，她给的。”</p>
+	<p class='firstLineIndent'>作者有话要说：小峰峰，要坚强。棠棠不在的日子里，你要把戏给演好啊。</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0003'><summary><a>131第②章</a></summary>
+	<p class='firstLineIndent'>广西这边善后的差不多之后,毛哥陪着岳峰回了家，他对光头说：“我得陪着峰子一段时间,怕他心里拧，想不开。”</p>
+	<p class='firstLineIndent'>毛哥在岳峰家里住了大概一个月,岳峰家里没别人,也亏得有他在,里里外外忙进忙出的，公安上门过几次,在这期间，他们找到了另外一些佐证：那个在季棠棠失聪时给她看过病的耳科大夫,很是笃定地表示这个姑娘不但耳朵听不见，精神也很有问题。</p>
+	<p class='firstLineIndent'>而岳峰这里,也依毛哥劝的，避重就轻，他承认和季棠棠的情侣关系，但对她的家世，以及和秦守业之间的瓜葛，一概不知，事实上，他也是受害者啊，他不明不白的，就被秦守业带人打折了一条腿。</p>
+	<p class='firstLineIndent'>不知道警方后来的判断是什么，也不知道秦家做了怎样的活动，总之到后来，用毛哥的话说，峰子的嫌疑，应该算是洗清了。</p>
+	<p class='firstLineIndent'>一个月之后，毛哥离开了，上车前，他告诉岳峰，这趟回去其实是做转手去的，他已经决定结束尕奈的生意，后续把店开到古城去。</p>
+	<p class='firstLineIndent'>岳峰当时没说话，车开了之后，毛哥接到岳峰的电话，他在那头沉默了一会，说：“毛子，我现在觉得，棠棠真跟一场梦似的，一点预兆也没有的，就成了梦里的人了，再然后一声招呼都不打的，就从梦里消失了。你那是我第一次见到棠棠的地方，现在也要转手了……我有时候想想，汗毛都竖起来，总觉得像有只看不见的手一样，从我的世界里，一点一点把她的痕迹都抹掉了，会不会有一天，连我自己都不相信她存在过，只是我梦出来的一个女孩儿。”</p>
+	<p class='firstLineIndent'>毛哥叹了口气说：“峰子，你想太多了。”</p>
+	<p class='firstLineIndent'>岳峰苦涩地笑笑：“不是的，毛子，说出来你都不信，我连她一张照片都没有。”</p>
+	<p class='firstLineIndent'>毛哥不说话了，车子上了土路，很颠，道旁的树一棵棵地往后飞掠，后来也不知道是谁先挂的电话，毛哥的心冰冰凉的，空落地想：还能怎么样，就这样呗，人生嘛，还不就是这么操*蛋。</p>
+	<p class='firstLineIndent'>两个月之后，岳峰参加了洁瑜的婚礼，原本真不想去，但洁瑜是孤儿，他算是洁瑜娘家人了，不给这个妹子充充场子说不过去，算起来，这是参加完苗苗婚礼之后的第二场，每一场他都格外失意，跟喜气洋洋的气氛格格不入。</p>
+	<p class='firstLineIndent'>事先司仪也没跟他讲，酒到一半时，忽然对着话筒大声宣布让大舅子上来讲几句，下头轰然鼓掌，洁瑜知道不合适，着急的真想一瓶酒浇司仪头上去，岳峰冲她笑笑，尽管当时腿脚还不方便，还是一步一步捱上了台去。</p>
+	<p class='firstLineIndent'>大喜的日子，总要叫洁瑜高兴才好。</p>
+	<p class='firstLineIndent'>场子里有瞬间的安静，岳峰举了举酒杯，满目的百合、玫瑰、飘纱、红酒，他说：“我不怎么会讲话……”</p>
+	<p class='firstLineIndent'>下头笑，有人起哄说：“大舅子太客气了……”</p>
+	<p class='firstLineIndent'>岳峰看洁瑜，洁瑜今天特别漂亮，白纱拂在细瓷样的脸颊边，梦一样美好，岳峰觉着特别欣慰，他眼眶有点发热，顿了顿说了句：“祝天下有情人……终成眷属吧。”</p>
+	<p class='firstLineIndent'>说完了举杯先干，不是什么烈酒，却火烧一样下肚，激的眼泪都出来了，洁瑜提着婚纱下摆小跑着迎上来扶他，问：“哥你没事吧。”</p>
+	<p class='firstLineIndent'>岳峰摇头说：“没事，心里高兴。”</p>
+	<p class='firstLineIndent'>方程式也过来扶他，岳峰搭着他胳膊那么死力一攥，方程式脸都痛歪了，岳峰说：“记着对我妹子好啊，不然我打断你的腿。”</p>
+	<p class='firstLineIndent'>方程式笑得合不拢嘴：“那是，那是。”</p>
+	<p class='firstLineIndent'>又说：“哥，不好意思啊，抢在你前头了。”</p>
+	<p class='firstLineIndent'>岳峰抬手肩窝里给了他一拳，夺了他手里的红酒瓶子过来给自己的空杯斟上，琥珀色的酒液倾斜入杯，在现场的打光下居然晕出彩色的炫光来了，岳峰忽然有点恍惚，他想起在八万大山时，曾经有过的那一刹那的梦想。</p>
+	<p class='firstLineIndent'>那时候，他想着能跟洁瑜一起摆酒来着。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>第五个月，生活渐渐流于平静，有时候你不得不承认，越是平静的日子越是嗖嗖嗖过的翻书一样快，早上想着中午吃什么，中午想着晚上吃什么，晚上想着明早吃什么，衣食住行，周而复始，惊觉间一回头，原来已经这么久了。</p>
+	<p class='firstLineIndent'>岳峰回了一趟八万大山。</p>
+	<p class='firstLineIndent'>他在那间村委会简陋的会客厅里等，那间屋里还有别人，翻着报纸，聊着新闻，嘴里骂骂咧咧的，骂抢小孩的人贩子、骂造假的不良商贩、骂仗势欺人的富二代，岳峰静静听着，那种铺天盖地的不真实感又来了：这到底是盛家还是个普普通通的小村子，盛家真的存在吗？</p>
+	<p class='firstLineIndent'>当然是存在的，下一个抬头，他看见了气喘吁吁赶过来的石嘉信。</p>
+	<p class='firstLineIndent'>不知道为什么，再见到石嘉信，没有太多的愤怒和过激情绪，平静的像是老友见面，石嘉信应该是这世上为数不多的知道季棠棠真实存在和真实身世的人，岳峰笑笑说：“没什么特别的意思，就是回来看看，找你聊聊。”</p>
+	<p class='firstLineIndent'>石嘉信带着岳峰在山上绕了一圈，密簇簇的林子，枝叶透着夏日才有的翠绿繁茂，微风吹过，在头顶上发出沙沙的响声。</p>
+	<p class='firstLineIndent'>从石嘉信口中，岳峰知道了一些后来发生的事。</p>
+	<p class='firstLineIndent'>调查秦家案子的警察居然也来过八万大山，当然他们只是例行查问，因为目击者曾看到秦家一行人走这条路，警察想不明白为什么秦守业要进这样荒僻的大山，他们几乎调查了沿线所能找到的所有住户去锁定秦守业当时的动向。</p>
+	<p class='firstLineIndent'>就是在这间屋子里，山下村的几个“村干部”积极配合询问，当然警察是什么都问不出来的，据说当时盛锦如也在，她蹲在角落的小马扎上抽水烟袋，听警察说起北边发生的那个案子，死者叫秦守业，炸死他的叫季棠棠，但是奇怪的，那个女孩儿的身份是假的。</p>
+	<p class='firstLineIndent'>盛锦如一直没挪窝儿，警察走的时候，她低着头磕水烟袋，鸟爪一样的手死死攥住水烟的把手，神经质一样往地上敲，砸了一个凹窝儿，又一个凹窝儿。</p>
+	<p class='firstLineIndent'>当天晚上，七十多岁的盛锦如突发脑血栓，从此右半边身子如常，左半边身子致瘫，左边的嘴一直歪着，口水从嘴角滴滴拉拉落下来，她嘴里常年念叨的什么话，但是从来没有人听懂。</p>
+	<p class='firstLineIndent'>石嘉信把岳峰领进一片林子的中央地带，这里密的有点阴，枝叶的背面总像是泅着水，空地上有个坟头，没立碑，坟前摆着三个空碗，里头积着带泥的雨水。</p>
+	<p class='firstLineIndent'>岳峰狐疑地看石嘉信。</p>
+	<p class='firstLineIndent'>石嘉信说：“我想着，这里该带你来看看的。”</p>
+	<p class='firstLineIndent'>“盛夏走的时候，托我照顾她的姨妈，她说她这个姨妈长了两个头。我从来没见过，也没听说过盛家有这么一个人物。但是盛锦如病发之后一两天，洞里抬出一具棉被包裹的尸首来，让我们处理，说是自杀死的。”</p>
+	<p class='firstLineIndent'>“你也知道，但凡盛家女人死了，是有一定丧葬规矩的，不会如此草率，我也是好奇，偷掀开棉被看了，她长了两个头。”</p>
+	<p class='firstLineIndent'>“我想，这就是盛夏口中的那个姨妈了。小夏既然托我照顾她，想必她对小夏是不错的，所以也领你来看看。”</p>
+	<p class='firstLineIndent'>季棠棠在溶洞里居然还有个让她记挂的姨妈，这是岳峰始料未及的，他在坟前下跪，额头触地磕了三下，低声说：“姨，这次来的匆忙，不知道您要什么，也没准备，下次来了，我多烧纸钱，给补上。”</p>
+	<p class='firstLineIndent'>“不知道姨在下头有没有见着棠棠，棠棠没有坟，连个栖身之处都没有，姨好好照顾她。”</p>
+	<p class='firstLineIndent'>说完了心里头翻江倒海一样难受，半天才手撑着地站起来，头顶的林叶上有只叫不出名字的鸟惊掠而过，留下一长串让人毛骨悚然的辄辄声。</p>
+	<p class='firstLineIndent'>岳峰头昏沉沉的，对石嘉信说了句：“走吧。”</p>
+	<p class='firstLineIndent'>他一边说一边往外走，才走了两步，身后扑通一声，石嘉信给他跪下了。</p>
+	<p class='firstLineIndent'>岳峰没扶他，这一瞬间，他的心境疲惫地对任何事都没有好奇，也不想触及，他就那么站着，看石嘉信葫芦里卖的什么药。</p>
+	<p class='firstLineIndent'>石嘉信苍白的嘴唇微微翕动着，说：“岳峰，我求你了，你把思思带走吧。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>于是岳峰完整的知道了尤思的故事，以及之后发生的一切。</p>
+	<p class='firstLineIndent'>故事的前半段，石嘉信说的很模糊，岳峰已经无从知晓当时究竟发生了什么，他只知道，重新清醒过来的尤思的各种歇斯底里和以死抗争，在知道自己怀孕的那一刻，全盘溃散化为乌有。</p>
+	<p class='firstLineIndent'>石嘉信抱着木然的尤思说：“思思，我知道我对不起你，我们重新来过好不好？我一定补偿你，我一定十倍百倍的补偿你。”</p>
+	<p class='firstLineIndent'>尤思沉默了很久，没人知道那个时候她究竟想了些什么，然后她抬起头，唇角掠过一丝近乎诡异的笑，说了句：“好。”</p>
+	<p class='firstLineIndent'>她的笑容让石嘉信脊背一凉，但他旋即安慰自己是自己多心了，没事的，一定没事的。</p>
+	<p class='firstLineIndent'>接下来的日子，尤思像极了多年前的盛泽惠，她好像突然就接受了发生的一切，不再斥骂也不再疯狂，对石嘉信也肯轻声细语的说话了，有的时候，她会突然向他微笑，温柔的眼波，一如当初两人刚刚恋爱的日子。</p>
+	<p class='firstLineIndent'>这段突如其来的日子，石嘉信真是幸福到惶恐，有时候睡梦里都会惊醒，看到一旁安睡的尤思才定下心来，安慰自己一切都过去了。</p>
+	<p class='firstLineIndent'>思思又是以前的思思了，石嘉信觉得，生活的这趟列车，又重新回到轨道上来了，呜哇呜哇的冒着白烟，在鲜花盛开的田野里穿梭。</p>
+	<p class='firstLineIndent'>他万万想不到的是，下一刻，这趟列车呼啸着飞离原定的轨道，跌落万丈深渊。</p>
+	<p class='firstLineIndent'>那一天，吃完晚饭，思思先进房间，轮到他的时候，里头反锁了，怎么拧都拧不开。</p>
+	<p class='firstLineIndent'>石嘉信焦急地拍门：“思思，思思，开门哪。”</p>
+	<p class='firstLineIndent'>尤思在屋里咯咯地笑，疯狂而又畅快，石嘉信一颗心都揪起来了，想也不想，一脚踹开了门。</p>
+	<p class='firstLineIndent'>屋里没开大灯，只壁灯暗暗的光笼在大床上，尤思就低着头坐在那束幽暗的光亮之中，长发盖住了整张脸，然后，她抬起头，脸上带着诡异的笑，双手从两腿之间慢慢举了起来，鲜血顺着十个指头缓缓滑落。</p>
+	<p class='firstLineIndent'>往下看，她的下*身浸在一摊血泊之中……</p>
+	<p class='firstLineIndent'>像是什么高分贝的声音钻击大脑，石嘉信无法控制地骇叫起来，尤思盯着他笑，说：“我死也不会生个怪物出来的，想让我给你生孩子吗？下辈子，下下辈子，你都别想。”</p>
+	<p class='firstLineIndent'>作者有话要说：我最近这是肿么了？真是勤劳到我不忍直视……</p>
+	<p class='firstLineIndent'>哦我想起来了，主要是文下以甜不辣为代表的几个妹纸要高考了，希望妹纸们好好考，加油加油！</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0004'><summary><a>132第③章</a></summary>
+	<p class='firstLineIndent'>岳峰问石嘉信：“你怎么还敢跟她生孩子？”</p>
+	<p class='firstLineIndent'>石嘉信不敢抬头看他：“我也不想的……可是化尸铃要传代，我不做的话,也会把她配给别人……我想着,那还不如……”</p>
+	<p class='firstLineIndent'>岳峰真想骂他两句,话到嘴边又咽回去了，想想一来自己没立场,二来……石嘉信也未尝不是个可怜人。</p>
+	<p class='firstLineIndent'>他沉默了一下，说：“带我去看看思思吧。”</p>
+	<p class='firstLineIndent'>尤思这一极其惨烈的举动,带来的直接后果是永远失去了生育能力,而一个不能生孩子的外姓女人,对盛家来讲实在是比条狗还不如的——再也没有人给她提供溶血,她身体里的血已经有了失去活性的迹象,而盛锦如重病之后,整个盛家在传承的交接混乱之下,也鲜有人再来关注她，偶尔看向她的目光，都像在看一个多日后的死人。</p>
+	<p class='firstLineIndent'>八万大山上下，也只有石嘉信还对她好了，他已经后悔没有听从季棠棠最后的劝诫，他有了把她送走的念头。</p>
+	<p class='firstLineIndent'>有一次，他跟尤思提过，说：“思思，如果你想回家的话，我可以把你送回父母身边。”</p>
+	<p class='firstLineIndent'>尤思盯着他直直的看，不说话，石嘉信让她看的后背发凉，正想解释几句，尤思咯咯笑起来了。</p>
+	<p class='firstLineIndent'>她说：“你把我送回去干什么？折磨他们吗？石头，一日夫妻百日恩，将来你真见到我父母，就跟他们说我是走路不小心，让车子给撞死了，当场死了，一点罪都没受。千万别真告诉他们我发生什么事了，我谢谢你大恩大德了。”</p>
+	<p class='firstLineIndent'>她笑着说的，说到最后痛哭不止，石嘉信也哭了，他在尤思身前跪下来，问她：“那我怎么办，思思，你说啊，说了我死也给你办到。”</p>
+	<p class='firstLineIndent'>尤思不看他，抬头盯着天花板，幽幽说了句：“我这样的还能去哪啊，我只能死在这了。”</p>
+	<p class='firstLineIndent'>石嘉信都快绝望了，直到忽然知道岳峰来了八万大山。</p>
+	<p class='firstLineIndent'>见到岳峰的那一刻，他开始相信这世上的事，冥冥中都是注定的，就像他和盛夏，原本应该是结亲的，虽然没了这层缘分，但他在盛夏最绝望的时候陪了她最后一程，现在是他濒临绝望的时候，岳峰又来拉了他一把。</p>
+	<p class='firstLineIndent'>岳峰带走了尤思。</p>
+	<p class='firstLineIndent'>尤思没什么行李，但石嘉信还是忙前忙后拾掇了很久，他对岳峰说：“思思用的钱算我的，生活费什么的，我给你打过去，不够你再问我拿。”</p>
+	<p class='firstLineIndent'>出八万大山，照例要走一段机耕道，拖拉机在凹凸不平的路上嘎拉嘎拉地颠簸，石嘉信坐在一侧，岳峰带着尤思坐在另一侧，尤思偎依在岳峰怀里，出发时天还是阴的，走了半程之后，云层后的阳光突然照射下来，尤思惊怔了一下，像是刚醒，忽然问岳峰：“棠棠呢，在家吗？”</p>
+	<p class='firstLineIndent'>岳峰说：“棠棠死了。”</p>
+	<p class='firstLineIndent'>尤思看着他不说话，岳峰把头偏开，沉默着没再作声，过了会，尤思小声的哭起来。</p>
+	<p class='firstLineIndent'>岳峰的车子停在第一次来时那个小镇的饭馆后面，下拖拉机时，饭馆门口有几只鸡，扑腾着翅膀争食，掐的脸红脖子粗的，岳峰当场就愣了，他想起第一次来，季棠棠还神智不清，非蹲在那看老母鸡啄食，什么叫物是人非，这就是物是人非了吧。</p>
+	<p class='firstLineIndent'>他不想再多停留，把尤思的行李拿到车上放好，让尤思坐副驾驶，帮她把安全带扣上，然后拉开车门，正想上驾驶座，石嘉信在后面叫他：“岳峰，你过来一下。”</p>
+	<p class='firstLineIndent'>岳峰还以为他有关于尤思的话要交代，示意尤思等会，谁知道石嘉信一直带着他往房子后头走，走了会停下来，说了句：“以前这都是铺石板的，还有棵树，现在砍了，都糊水泥了。”</p>
+	<p class='firstLineIndent'>岳峰奇怪地看他，石嘉信又走了两步，似乎是在找方位，末了不是很确定的停下来，指着正前方说：“我觉得应该让你知道……当时我带小夏先到的这里，她借了手机给她爸爸打电话，她就站那，然后跪下来给她爸磕头，让她爸爸一定要救你，我拉都拉不住……”</p>
+	<p class='firstLineIndent'>岳峰当时就收不住了，进八万大山这一路，他一直觉得还好，没失态，或许真的是过的久了，再痛苦也淡了，现在才知道是痂没被翻起来，真戳到痛处，血还是止都止不住。</p>
+	<p class='firstLineIndent'>他腿一软，坐在地上就起不来了，身边的水泥地糊的平整，几次想伸手去触，总像被烙到一样又颤抖着缩回来，石嘉信说：“岳峰，你要想哭，就痛痛快快哭一场吧，我不会笑话你的。”</p>
+	<p class='firstLineIndent'>岳峰没想哭，但是眼泪不知道怎么的还是下来了，他眼前就那么模糊着，跟石嘉信说了很多，语无伦次的，自己都不记得说什么了，但是有一段他记得，他记得自己说：“毛哥总给我打电话，说都这么久了，得过去，得往前看，得忘掉，你叫我怎么忘啊，啊？怎么忘？我这辈子都找不到第二个肯为我下跪肯为我去死的人了，我记着她有错吗？”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>末了，是尤思过来了，她在车里等了很久，自己下车来找，她在岳峰身边站了一会，伸手轻轻搭住他的肩膀，说：“岳峰，我们回去吧。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>前前后后，尤思在岳峰身边捱了不到四个月。</p>
+	<p class='firstLineIndent'>尤思死后，岳峰依照她的遗愿，没有通知她家里，火化之后就近买了块墓地葬掉，石嘉信也真的没有去祭拜，岳峰忙活的那几天，他只在边上帮衬着，岳峰进墓园烧纸的时候，他就在墓园大门外站着，呆呆看着园子里远处袅袅升起的那线纸烟。</p>
+	<p class='firstLineIndent'>丧事过后几天，石嘉信就回了八万大山，相继走了尤思和石嘉信，屋子里简直冷清的可怕，一天无意间看日历，岳峰忽然就怔愣了一下。</p>
+	<p class='firstLineIndent'>日子过的这么快，居然又到年底了。</p>
+	<p class='firstLineIndent'>又过了两天，有好消息传来，洁瑜怀孕了。</p>
+	<p class='firstLineIndent'>女人怀孕了之后，就不好那么劳累，方程式找到岳峰，吞吞吐吐地表示不想让洁瑜再打理酒吧的生意，岳峰也爽快，短时间内联系了两个买家，两个酒吧全转手了。</p>
+	<p class='firstLineIndent'>这一举动让九条大为光火，黑皮给岳峰发短信说：你这不是打九哥的脸吗，前段日子公安查你，九哥没好提让你帮忙的事，现在你倒好，底都起了，你悠着点，九哥肯定不得让你好过。</p>
+	<p class='firstLineIndent'>收到短信，岳峰连回都懒得回，冷笑了一声，心说：老子这些日子就没好过过，还能不好过到哪去。</p>
+	<p class='firstLineIndent'>除夕前一天，岳峰去母婴店转了一圈，买了不少东西送洁瑜，连婴儿床婴儿车都齐备了，洁瑜跺着脚埋怨他：“肚子还没大起来呢，你这不瞎花钱么。”</p>
+	<p class='firstLineIndent'>顿了顿又说：“哥，明儿过来吃饭呗，这儿人多，热闹。”</p>
+	<p class='firstLineIndent'>估计是因为洁瑜怀孕的缘故，方程式老家的父母和妹妹都过来一起住了，洁瑜说这话的时候，老人家正在面板旁边忙活着搓汤圆，长满褶子的老脸笑的跟一朵花似的，很是客气的招呼岳峰：“是啊是啊，一起过来吃吧，也就加双筷子。”</p>
+	<p class='firstLineIndent'>也就加双筷子，到底还是外人的筷子，大团圆的，何必呢，格格不入的，岳峰笑笑说：“不了，我明儿要……看我妈去。”</p>
+	<p class='firstLineIndent'>这话说出来，纯粹是当托辞说的，但是一出口，主意忽然就坚定下来，岳峰突然觉得，再怎么样，金梅凤到底也是生他养他的亲妈。</p>
+	<p class='firstLineIndent'>就像秦守成，千不是万不是，到底还是棠棠的爸爸。</p>
+	<p class='firstLineIndent'>往年都是晚上才过去，这一次他特意提早，置办了年货下午就开车过去了，路况挺好，到的时候才刚到晚饭的点，赵姨给他开门的时候简直不敢相信自己的眼睛，愣了会之后喜出望外：“峰子快进来，才刚要吃饭。”</p>
+	<p class='firstLineIndent'>金梅凤在沙发上坐着看电视，对岳峰的突然到来也很有点手足无措，她穿普普通通的黑色羊毛衣，绛紫色呢裤，保暖鞋，头发拢在耳后，丝丝的花白，往常那个出现在他面前紧绷着的，打扮的花枝招展不伦不类尖酸刻薄的金梅凤，好像只是另一个人。</p>
+	<p class='firstLineIndent'>又或许是，时间没到，她还没来得及换装登场。</p>
+	<p class='firstLineIndent'>岳峰也有点尴尬，一时间不知道该说什么，只是帮着赵姨把年货拎进屋里，赵姨把他让在沙发上坐下，又去端了饺子上来，金梅凤很不自在地往边上挪了挪，招呼赵姨坐下来一起吃。</p>
+	<p class='firstLineIndent'>三个人各吃各的，全程只有筷子磕碗和电视里的声音，吃到一半时，金梅凤说了句：“醋没味道。”</p>
+	<p class='firstLineIndent'>赵姨赶紧站起来：“晓得你爱吃辣的，冰箱里有刚买的辣酱，还没开呢。”</p>
+	<p class='firstLineIndent'>她去冰箱里拿了辣酱过来递给金梅凤，金梅凤撕了塑料覆膜，伸手去拧瓶盖，盖子卡的紧，两次都没拧开，岳峰看在眼里，忽然说了句：“妈，我来吧。”</p>
+	<p class='firstLineIndent'>这一声“妈”，震的金梅凤整个人都傻了，岳峰也没看她，伸手把瓶子拿过来，使了个力拧开了，递过去时，金梅凤还怔着，没接，又过了两秒钟，突然把面前的碗一推，回房去了。</p>
+	<p class='firstLineIndent'>岳峰的手僵在半空，好一会才放下去，赵姨赶紧打圆场：“峰子，你妈就是这脾气，你也不是不知道，这还算好的了，往年都摔锅摔碗的……”</p>
+	<p class='firstLineIndent'>岳峰笑笑说：“知道。”</p>
+	<p class='firstLineIndent'>说完了，低头吃饺子，味同嚼蜡，觉得自己怪没劲的，又觉得自己活该：找了全世界想找到个温暖的地方，很显然是自作多情了，自己怎么能幼稚成这样，这么多年风刀霜剑的对抗着，你现在想缓和，叫一声妈，就春暖花开了？</p>
+	<p class='firstLineIndent'>他掏红包给赵姨：“姨，你多帮衬着，我走了。”</p>
+	<p class='firstLineIndent'>赵姨很意外：“刚来这是……不守夜了？”</p>
+	<p class='firstLineIndent'>“不了，洁瑜……喊我过去吃饭，我先头应下了。”</p>
+	<p class='firstLineIndent'>赵姨没办法，千叮咛万嘱咐地送他出去了，回屋了之后赶紧去里屋看金梅凤，金梅凤坐在地上，趴在床沿上发呆，赵姨赶紧过去扶她：“姐，这大冬天的地上冷不冷啊。”</p>
+	<p class='firstLineIndent'>金梅凤没起来，哆嗦着抓住她的手，一开口就带了哭音：“小赵，峰子喊我妈呢，你听见没？”</p>
+	<p class='firstLineIndent'>赵姨让她这一句说的，眼角都湿了：“听到了姐，我早跟你说吧，别跟峰子犟，怎么着都是自己身上掉的肉不是？峰子大了，懂事了，就不像过去那么扭了。”</p>
+	<p class='firstLineIndent'>金梅凤眼泪慢慢流过被火烧过的坑坑洼洼的脸：“我知道峰子恨我，这么多年了，我知道他恨着我呢，我真不是故意的，我当时是慌了，我做那么不要脸的事，我心里怕，我就别了门，我真不知道会失火，那也是我男人不是，我得多黑心才会要把他烧死？我真是不知道，我后来也拼了命想去救他，火太大了，我救不了，还把脸给烧了，小赵我真不是故意的，峰子恨我呢，我都不知道怎么给孩子说……”</p>
+	<p class='firstLineIndent'>她说着说着就说不出连贯的话了，喉咙里哽咽着呛着，肩膀耸的厉害，赵姨蹲□子，一边抹眼泪一边劝她：“没事儿，峰子历的事多了，慢慢儿的会明白的，你看今年不就挺好吗，会好起来的啊姐，咱慢慢来啊……”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>这个点，不上不下的，街上仅有的行人，也都是行色匆匆往家里赶，岳峰忽然很羡慕他们：至少他们这个晚上，都有要赶回去的方向，只有他，方向盘左拧右拧的去哪都成——反正他那个所谓的“家”，也只不过是间只住了他一个人的砖头水泥房子。</p>
+	<p class='firstLineIndent'>正漫无目的地沿路开着，手机突然响了，看清来电显之后，岳峰犹豫了一下，还是接了。</p>
+	<p class='firstLineIndent'>是九条，多日不联系，那头的声音怎么听怎么觉得陌生和怪异：“峰子，年底了，兄弟们聚聚，金碧辉煌KTV，三楼301，给做哥哥的个面子，你会来吧？”</p>
+	<p class='firstLineIndent'>“你会来吧”四个字，拖着长长的尾音，意味深长的话里有话。</p>
+	<p class='firstLineIndent'>“好，会来。”</p>
+	<p class='firstLineIndent'>作者有话要说：小峰峰，坚持一下，下一章，嗯嗯，下一章会有一些消息……至于是什么消息，我可不能说啊</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0005'><summary><a>133第④章</a></summary>
+	<p class='firstLineIndent'>金碧辉煌KTV,301。</p>
+	<p class='firstLineIndent'>郊县赶回市里需要两个多小时，尽管紧赶慢赶，到的时候也已经赶不上开场了，推开门,光怪陆离的彩色灯光混着乌烟瘴气,酒瓶子开了一桌,两个脸熟的兄弟正勾肩搭背地握着话筒吼周华健的《朋友》,九条搂着个穿着暴露的年轻女人窝在沙发里调笑,蒋蓉坐在边上修剪指甲,黑皮和另几个在边台上吆五喝六地掷骰子,都没注意到岳峰已经来了。</p>
+	<p class='firstLineIndent'>这样的场合并不陌生,但不知为什么，很不适应,岳峰走到九条身边，叫了声：“九哥。”</p>
+	<p class='firstLineIndent'>九条应该是听见了，但装着没听见，还是一个劲地给那个女人劝酒，岳峰站了一会，又叫了两声，黑皮先注意到了，赶紧用眼色示意旁边的人安静下来，过了会唱歌的人也不吼了，蒋蓉抬头看了看岳峰，没吭声，包房里渐渐安静下来，只剩下九条带着酒气的声音：“喝，我知道你女中豪杰，海量……”</p>
+	<p class='firstLineIndent'>岳峰又叫了一声：“九哥。”</p>
+	<p class='firstLineIndent'>这一回终于是听到了，九条抬起头眯着眼睛打量他，忽然大惊小怪起来：“呦，这谁啊，这不峰子嘛，大驾光临啊，姗姗来迟啊，蓬荜生辉啊，还以为请不到你呢，太给你九哥长脸啦，受宠若惊啊。”</p>
+	<p class='firstLineIndent'>这词儿，说的一套一套的，看来都是事先备好了来膈应他的，岳峰笑笑：“不好意思啊九哥，刚赶回来，下午给我妈送年货去了。”</p>
+	<p class='firstLineIndent'>九条先没反应过来：“妈？”</p>
+	<p class='firstLineIndent'>反应过来之后，笑的阴阳怪气的：“你还认你那个妈啊峰子。”</p>
+	<p class='firstLineIndent'>“真孝子啊，不过也对，自己是从哪个肚子里钻出来的总知道的，不过爹是哪个，就难说了。”</p>
+	<p class='firstLineIndent'>岳峰的脸色很难看，忍了又忍，说了句：“九哥，我一直叫你哥，这话过了啊。”</p>
+	<p class='firstLineIndent'>让他这么一提点，九条也有点后悔，一直以来，到底也是把岳峰当兄弟看的，虽然这阵子对他恼火，出口气也就算了，还真没必要闹到兄弟反目——岳峰的家世，一直是不能碰的禁忌，今儿个真是酒喝多了，怎么脑子一热，就尽拣狠的说呢？</p>
+	<p class='firstLineIndent'>但是做大哥的，话出去了，又不好吞回来，九条冷着脸有点僵，黑皮几个面面相觑，碍于立场，说也不是不说也不是，一片死寂之中，蒋蓉忽然开口了。</p>
+	<p class='firstLineIndent'>“岳峰，也不赖你九哥说你，你说早几年你是什么啊，什么也不是，全靠九哥带你起家。你现在有点底子了，就不情不愿的，求你点小事三推四推，比请神都难，说句难听的，这叫给脸不要脸。你寻思着翅膀硬了，现在能单飞了，结果怎么着，落了个什么啊？跟秦苗掰了不算，搞得家没家人没人的，被公安抄了底的查，大过年的，没去处才会看你那个妈吧，落到你这份上，跟条狗似的……”</p>
+	<p class='firstLineIndent'>话没完呢，九条一酒瓶子就砸过去了：“臭*婊*子，还真当自己是棵葱了。”</p>
+	<p class='firstLineIndent'>一酒瓶子下去，蒋蓉额头上立马见血了，她捂着额头不做声，指缝里直往外冒血，九条又过来跟岳峰客套：“别跟这种女人一般见识，妈的，兄弟感情都让这些破鞋给糟烂了。”</p>
+	<p class='firstLineIndent'>岳峰笑了笑，蒋蓉平时怕九条怕的要死，没个授意，哪里敢在这种台面上乱说？说到底，做了出戏给他看，稳了九条的面子，又打了他的脸，帮九条出了气不说，杀鸡给猴看，也叫在场还跟着的人心里有数，别起什么活络的心思。</p>
+	<p class='firstLineIndent'>他说：“九哥，没什么事我先走了。大过节的，我不在这给你们找不痛快，以后有事，吭一声，能帮得上的我一定帮，帮不上的，也别怪我太废。”</p>
+	<p class='firstLineIndent'>九条皮笑肉不笑地打哈哈：“那哪能呢。”</p>
+	<p class='firstLineIndent'>岳峰也笑，道了别就离开了，到楼下时接到蒋蓉的电话，哭着低声给他道歉：“岳峰对不起啊，我也不想的，我现在跟九哥吃饭，得帮九哥下台的。”</p>
+	<p class='firstLineIndent'>岳峰沉默了一下，说：“我知道。”</p>
+	<p class='firstLineIndent'>顿了顿又问她：“你没事吧？”</p>
+	<p class='firstLineIndent'>蒋蓉哭声小了些：“没事，九哥夸我会做事，还塞了钱给我。岳峰你放心吧，九哥就是想出口气，他憋闷的很。他不会对你做绝的，黑皮他们都看着呢，他要真对你下手，也寒了黑皮他们的心了，你忍过这次，也就没事了。”</p>
+	<p class='firstLineIndent'>岳峰叹了口气，低声说了句：“蒋蓉，你身上也该存了点钱了，见好就收，能离开就离开吧，九哥不是靠得住的人，今晚上他拿酒瓶子砸你，改天他手边不是酒瓶子是刀子，他也能顺手拿刀子捅了你了，你别真把将来都托九哥身上，早点为自己谋出路，别把自个儿赔进去了。”</p>
+	<p class='firstLineIndent'>蒋蓉轻声说：“我这样的人，还能有什么办法呢，只能这样了。”</p>
+	<p class='firstLineIndent'>沉默中，岳峰先挂了电话。</p>
+	<p class='firstLineIndent'>——还能有什么办法呢？</p>
+	<p class='firstLineIndent'>这话，他隐约记得季棠棠说过，尤思也说过，现在，再从蒋蓉口中听到，他实在无从安慰。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>离开金碧辉煌已经十点多了，手机里的祝福短信一拨拨的进来，远处近处都是噼里啪啦的鞭炮声，岳峰在车里坐了一会，还是打方向盘回家，过街时，看到街口有家还没关的小卖店，下车买了盒泡面，想了想又要了一包烟和两瓶啤酒。</p>
+	<p class='firstLineIndent'>正付钱呢，又有短信进来，毛哥发的，彩信，打开一看岳峰就笑喷了，神棍穿一套喜气洋洋的大红唐装，抱一桶肯德基笑的巨矜持含蓄。</p>
+	<p class='firstLineIndent'>岳峰回了条：丫太坑了，给神棍穿这身，他怎么肯的？</p>
+	<p class='firstLineIndent'>毛哥回的很快：肯德基啊，有全家桶什么都干。</p>
+	<p class='firstLineIndent'>岳峰心说亏了，既然这样让他穿什么唐装啊，直接上旗袍旗头呗，正想这么回过去，毛哥电话进来了，问他：“我那张和神棍那张，哪张更喜气？”</p>
+	<p class='firstLineIndent'>感情毛哥先前也发了一张，岳峰估摸着是夹杂在一堆祝福短信里自己漏看了：“你等会，我翻翻看。”</p>
+	<p class='firstLineIndent'>不难找，就在前几条，毛哥是一大家子，也是穿的唐装，毛嫂斜拉一副春联，毛哥拎个灯笼，毛嫂的孩子手里捧着个大金元宝，一个个眉开眼笑的，岳峰说：“专门拍的艺术照啊，能上挂历了，甩神棍几条街。”</p>
+	<p class='firstLineIndent'>毛哥嘿嘿笑，末了问他：“你哪呢？不是一个人吧，有地儿吃饭没有？”</p>
+	<p class='firstLineIndent'>岳峰迟疑了一下，说：“我在洁瑜这呢，挺热闹的。”</p>
+	<p class='firstLineIndent'>毛哥哦了一声，想了想还是提醒他：“别待太久了，那毕竟是人家。”</p>
+	<p class='firstLineIndent'>岳峰让他说的心里有点不舒服，不耐烦地回了句：“关你什么事啊。”</p>
+	<p class='firstLineIndent'>毛哥解释：“不是，我怕你没分寸，洁瑜现在毕竟结婚了，不能像以前那样陪着你，不合适。”</p>
+	<p class='firstLineIndent'>岳峰止不住火：“我怎么就不懂分寸了？我没脑子吗，我会赖在人家不走吗？就你有分寸！”</p>
+	<p class='firstLineIndent'>毛哥让他吼的有点懵：“不是，峰子，我就提醒你一下，你怎么还上火了呢，我也是怕你没地方去，所以就问问……”</p>
+	<p class='firstLineIndent'>岳峰气的太阳穴都突突跳的：“老子怎么就没地方去了？老子可去的地方多着呢！”</p>
+	<p class='firstLineIndent'>毛哥还想说什么，那头已经挂电话了，毛哥捧着手机发呆，拨也不是不拨也不是，半晌懊恼地说一句：“早知道不打了，大过年的，把峰子撩拨的不痛快了。”</p>
+	<p class='firstLineIndent'>毛嫂在边上擀饺子皮儿，闻言白了他一眼：“早让你别打了，他情况你还不知道吗，这不刺激人家吗。”</p>
+	<p class='firstLineIndent'>毛哥闷闷的：“我也是怕他年纪轻，不懂人情世故，好心提醒了句，早知道该把峰子叫来古城过年的，他跟家里不和，先走了棠棠，思思前些日子又没了，肯定难捱的。”</p>
+	<p class='firstLineIndent'>毛嫂抖罗沾在手上的面：“行了，别多想了，会没事儿的。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>岳峰闷头开了一阵子停下来，自己也不知道到哪了，摇下车窗看了一阵子，突然就打了个寒噤。</p>
+	<p class='firstLineIndent'>这是秦守业家的小区。</p>
+	<p class='firstLineIndent'>秦守业家被炸之后，岳峰来过一次看现场，还是在公安的陪同之下来的，秦家几乎是被夷为平地，一楼地面有一块都凹了进去，周边墙拦腰截断，墙体中的钢筋突兀地支楞着，偶尔可见烧的焦融的家用电器，当时受到爆炸波及的临近的房屋已经在修缮中了，但是秦家的始终没动，不知道是不是因为产权的关系。</p>
+	<p class='firstLineIndent'>这里，来了一次之后，岳峰一直不愿来第二次，因为陪同的公安隐约提到，爆炸现场太过惨烈，几乎算是尸骨无存，仅有的几片小的骨碴飞片，还是在距离爆炸中心很远的地方找到的。</p>
+	<p class='firstLineIndent'>今天晚上，鬼使神差的，怎么就开到这里来了？</p>
+	<p class='firstLineIndent'>岳峰的周身泛起冷意，两只胳膊都起了些微的颤栗，但只是片刻之间，他就做出了决定。</p>
+	<p class='firstLineIndent'>他把车子停在小区外头，带上烟和酒，在小区外围走了大半圈，翻过一处不高的栅栏，循着以往来过的记忆，向着秦守业家所在的位置走了过去。</p>
+	<p class='firstLineIndent'>不难找，秦家始终没有再建，临近的几家出于忌讳，很多都已经搬离了，高档的灯火通透的小区，在这一块显得极其不协调，钢筋、水泥块、融掉的电器、积年的雨水、潮湿、青苔、野草，错落地杂靠，像个巨大的坟堆，岳峰的胸口堵的厉害，他深一脚浅一脚的走，磕磕绊绊地爬上破碎的水泥块堆坐下。</p>
+	<p class='firstLineIndent'>已经过了很久，早已没有了第一次来时隐隐的焦火味，天上的云很厚，月亮的周围糙糙的，像是长了一圈毛，岳峰把另一瓶酒打开，放在面前脚下，又拿起先前的那瓶，瓶颈子互相轻轻碰了碰，说了句：“棠棠，我来看你了。”</p>
+	<p class='firstLineIndent'>说完一句就哽住了，岳峰把头埋在膝盖里，沉默了很久很久，有风吹过，耳边呼呼的，这个晚上，他找来找去，想找个属于自己的地方，找了一圈才发现，只有这个地方，才是他最该来的。</p>
+	<p class='firstLineIndent'>“棠棠，你在吗？”</p>
+	<p class='firstLineIndent'>没有回答，风吹落水泥块上的小沙粒，细小的窸窸窣窣的声音，岳峰说：“我从来不信鬼的，棠棠，可是你要是真变了鬼的话，你出来跟我说会儿话吧，我挺想你的。”</p>
+	<p class='firstLineIndent'>岳峰一边说一边仰头喝酒，啤酒是不辣的，但那么一线顺着喉咙浇下去，辣的眼泪都快出来了，他缓了好一阵子，才又说话。</p>
+	<p class='firstLineIndent'>“我其实还好，就是有些时候提不起劲儿，觉得没什么可在乎的，日子就这么过，没什么奔头。”</p>
+	<p class='firstLineIndent'>“毛子总让我向前看，其实我也不想做大的改变，有时候我觉得，就这么有吃有喝的，心里有个可想的人，挺好的。你真让我再去爱别人，我也想象不出该怎么跟人家相处……”</p>
+	<p class='firstLineIndent'>“棠棠你是女孩儿，少喝点……”</p>
+	<p class='firstLineIndent'>“今天九哥给我颜色看，蒋蓉指着鼻子骂我，我真觉得她骂的挺对的，棠棠你是不是也觉得我挺失败的，到头来一无所有，想想是挺像条狗的……”</p>
+	<p class='firstLineIndent'>“思思也走了，在下头遇到了，你们要互相照应，思思也是可怜人……”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>岳峰喝了很多，也说了很多，迷迷糊糊的，觉得晕，又觉得不是醉，也不知道过了多久，头痛的像要裂开，有人摇着他的肩膀大声跟他说话：“怎么睡这呢，你怎么进来的？”</p>
+	<p class='firstLineIndent'>岳峰都听懂了，却不知道怎么回答，看着他只是笑，又伸手推他，那个保安没办法，转头嚷另一个：“翻他手机通讯录，打电话找家属……”</p>
+	<p class='firstLineIndent'>说完了架着岳峰下土堆，岳峰踉踉跄跄搭着他走，走了两步之后回头，全身的血一下子都冲到了头顶上！</p>
+	<p class='firstLineIndent'>他看到季棠棠站在土坡顶上，低着头，双手慢慢转着一个煤气罐的阀门。</p>
+	<p class='firstLineIndent'>岳峰一颗心跳的几乎就要蹦出来了，大叫：“棠棠你等一等，你停一停，你听我说。”</p>
+	<p class='firstLineIndent'>岳峰搡开了那个保安就往土坡上冲，脚下被支出的钢筋一绊就倒了，他紧张地后背直流汗，胳膊撑着地拼命往上爬，那两个保安也被他吓住了，一人一边过来往下拖他，岳峰急的都要疯了，不明白自己为什么就是爬不过去，他抬头看到季棠棠还是不管不顾地去转阀门，声音都不正常了，颤抖着大叫：“棠棠你等一等啊，你听我……”</p>
+	<p class='firstLineIndent'>话还没完，眼前忽然大亮，橘黄色的明亮火焰自煤气罐中央爆出，团团涌向四周，岳峰眼睁睁看着季棠棠的身体在这瞬间的光亮中四分五裂，感觉自己的身体里面也有什么东西刹那间崩裂了，眼前忽然一黑，就什么都不知道了。</p>
+	<p class='firstLineIndent'>那两个保安先费了死力拖也拖不动，忽然间又拖动了，其中一个力收不住，直接前载，痛的大叫：“妈的喝喝喝，撒酒疯，过年都不叫人安稳！”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>巡逻保安很愤怒，对着方程式唾沫星子乱喷：“什么行为这是，啊，大半夜的翻墙进来，有什么不轨意图？我们可以报警的你晓得不，这是危害小区住户的安全！”</p>
+	<p class='firstLineIndent'>方程式点头哈腰的：“是是，不好意思，真不好意思，我哥这是喝多了……”</p>
+	<p class='firstLineIndent'>洁瑜站在水泥块堆上，脸色很难看：“从打电话到现在，你们就让我哥躺这是吗？这么冷的天，冻出病来怎么办？”</p>
+	<p class='firstLineIndent'>方程式直朝她使眼色，心说姑奶奶你少说两句，我这正给人赔不是呢。</p>
+	<p class='firstLineIndent'>洁瑜是不怕的，她打理了那么久的酒吧，见多了各路牛鬼蛇神，见招拆招的，两个小保安还是不在话下的：“你们干什么吃的，我哥是喝了酒才迷迷糊糊进来的，你们要是工作尽职，我哥会进来嘛啊？玩忽职守还报警，住户知道了第一个开掉你们，指望你们保安，东西偷光了都不知道，我告诉你我哥这是没出事，要是进来你们小区磕着撞着绊着了，我跟你们没完！”</p>
+	<p class='firstLineIndent'>保安也来气了，威胁似的朝她走了两步：“哎你这个女人怎么不讲理呢？”</p>
+	<p class='firstLineIndent'>洁瑜冷笑：“怎么着，想打人啊，我告诉你我肚子里还有一个，吓着我没关系，把他吓出个好歹，你全家都吃不了兜着走！”</p>
+	<p class='firstLineIndent'>得，有横的就有更横的，保安也不想惹事，只好骂骂咧咧过来抬岳峰下去，见他们过来了，洁瑜扶着钢筋从另一边退着下，方程式看的心惊肉跳的，生怕她有个闪失，怕什么来什么，洁瑜那头突然哎呦一声，吓得方程式魂儿都飞了：“又怎么了啊？”</p>
+	<p class='firstLineIndent'>“陷了，过来帮我拔下。”</p>
+	<p class='firstLineIndent'>方程式一溜小跑着过去，洁瑜走的这头都是当时顶上横梁石板水泥砸着搭一起的，可以从板上走，也可以脚踩实在空隙露出的地上，洁瑜因为怀孕，怕走石板踩空，所以一步步尽量落地，也不知道走到第几处时，踩下去不是实地，直接下陷了。</p>
+	<p class='firstLineIndent'>方程式小心翼翼地帮她把腿□，洁瑜穿的平底靴子，从靴沿到靴筒全是烂泥，她没好气地掏纸巾擦，然后推方程式：“下头怎么回事啊？”</p>
+	<p class='firstLineIndent'>方程式把手机上的手电模式打开，探着身子眯着眼睛往里照，突然咦了一声，说：“有个洞。”</p>
+	<p class='firstLineIndent'>洁瑜奇怪：“什么洞？下水道洞？”</p>
+	<p class='firstLineIndent'>方程式脑袋都快钻到水泥板下面了：“不是，怪了，有个洞，以前是盖起来了，正好让你踩空了……有积水，往边上拐的。呦，现在的狗啊猫的也挺厉害，哪都能打洞……”</p>
+	<p class='firstLineIndent'>洁瑜不耐烦：“走了走了，有完没完，跟猫儿狗的还较上劲了。”</p>
+	<p class='firstLineIndent'>方程式悻悻的缩头，心说怀孕的女人还真是神神叨叨的，还不是你问是什么洞的，你不问我看个什么劲儿。</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0006'><summary><a>134第⑤章</a></summary>
+	<p class='firstLineIndent'>一觉醒来,是在自家的沙发上，岳峰头疼的厉害，抽着气起身，在旁边的台子上看到洁瑜留的字条,说是这两天要走亲戚,初三晚上得空,让他到时候去家里吃饭。</p>
+	<p class='firstLineIndent'>岳峰也没多想，字条揉了揉扔垃圾桶里，起身去冰箱里找吃的,冷藏三层冷冻三层，让他翻出袋速冻饺子来，想死了想不起来什么时候买的,翻来覆去找不到保质期,索性也不讲究了，下饺子的时候也不知跟谁发狠：不信就吃死老子了。</p>
+	<p class='firstLineIndent'>水沸了之后，正凉水点汤，旁边的手机响了，岳峰这头撂不下，索性脑袋一偏，把手机架在耳朵和肩膀之间接电话：“哪位？”</p>
+	<p class='firstLineIndent'>那头凶神恶煞的：“孙子，你知道我谁吗？”</p>
+	<p class='firstLineIndent'>声音听着耳熟，但一时半会想不起来，两只手都有活，又没法拿下来看来电显：“谁啊？”</p>
+	<p class='firstLineIndent'>那头大恸：“你妹的啊岳峰，你不要这么绝情好不好？我跟你睡过的啊……”</p>
+	<p class='firstLineIndent'>岳峰一呛，肩膀没夹稳，手机险些掉饺子锅里去，他关了煤气的火，腾出手来拿电话，咬牙切齿吼那一头：“陈二胖，说人话！”</p>
+	<p class='firstLineIndent'>陈二胖在另一头比他还气：“该，换号不告诉老子，老子费了多少周折才又找到你个龟儿孙子！”</p>
+	<p class='firstLineIndent'>这被骂的，还真不亏，当时带着季棠棠离开古城之后，岳峰怕沿用原先的手机号会被秦家设法定位，仓促间换号，只留了毛哥、光头和洁瑜几个的号码，后来出了太多的事情，身心俱疲，也就再也没想着把起先的号给用回来，反正那些要跟他联系的，周周转转也都联系上了，可联系可不联系的，失了联络也不痛不痒。</p>
+	<p class='firstLineIndent'>陈二胖这种，还真属于漏网之鱼，岳峰也不怎么给他面子：“也没怎么费心找我吧，不然也不至于等到今天。”</p>
+	<p class='firstLineIndent'>陈二胖有点尴尬，嘿嘿干笑几声：“后来秀儿不是生了吗，当爹的人了，精力有限，嘿嘿，精力有限。”</p>
+	<p class='firstLineIndent'>岳峰离开敦煌之后，陈二胖和他联系过一次，知道没起什么波折也就心安了，后来关秀生孩子，迎来角色大转换，这奶爸当的真是飙血三升，洗衣服做饭换尿布，睡觉满鼻子里都是奶腥味，很多亲近的朋友都联系的少了，何况是岳峰这样离得远的？再后来慢慢腾出空来，给岳峰发过几次短信，总不见回，打了两次电话也提示关机，还以为他是忘了充电了，直到这次有事笃定了要找他，左找不到右找不到，朋友托朋友的一问，鼻子都快气歪了，感情是换了号了。</p>
+	<p class='firstLineIndent'>岳峰在沙发上坐下来：“也怪我这段时间太忙，当初离开的时候嫂子就快生了，该打个电话问问的。男的女的？”</p>
+	<p class='firstLineIndent'>陈二胖声音里透着几分得意：“带把儿的，一生下来足八斤，块头忒吓人。”</p>
+	<p class='firstLineIndent'>岳峰笑起来，陈二胖兴致勃勃问他：“你呢，峰子，进展怎么样了？跟当时那姑娘，是分了还是更进一步了？”</p>
+	<p class='firstLineIndent'>岳峰愣了一下，沉默了一会才含糊说了句没在一起了，陈二胖也没多想，还给他打气：“那得加油了峰子，你看我都升级了，你连婚还没结呢，忒落后了这也。”</p>
+	<p class='firstLineIndent'>岳峰笑笑，强打起精神问他：“找我什么事啊？”</p>
+	<p class='firstLineIndent'>陈二胖激动的很，叽里呱啦说开了没完没了：“我告诉你啊峰子，这一年可把我给憋死啦，纯家庭妇男啊，洗衣服做饭换尿布，TMD那天在家里熨衣服，镜子里一瞅，我兰花指都翘起来了——峰子，再不做点爷们的事，我就彻头彻尾成娘么了，我跟秀儿说了，这一年含辛茹苦一把屎一把尿的，也该放我出去透个气了。”</p>
+	<p class='firstLineIndent'>岳峰嗯一声：“怎么说？”</p>
+	<p class='firstLineIndent'>“我和几个有车的朋友一合计，寻思着出去自驾一把，你也知道，自驾游东头没意思，都是往西边去。我这趟得有个二十来天，从新疆跑到西藏没问题。秀儿担心呢，说那边路不好走，我就想到你了，怎么样，有兴趣么，包吃包住，你给当个向导领队什么的，带我们这些个菜鸟出去跑一把？”</p>
+	<p class='firstLineIndent'>阖着是为这事找他，岳峰回的干脆：“没兴趣。”</p>
+	<p class='firstLineIndent'>陈二胖始料未及，失望之至：“怎么了啊，我寻思着你肯定没问题，你是自己干，又不需要请假什么的，再说了，你不是挺喜欢在路上跑的么，峰子，你可得卖兄弟个面子，秀儿可是听说有了你才松口的，不然她又要嘀嘀咕咕不让我去了……”</p>
+	<p class='firstLineIndent'>岳峰打断他：“没事儿，你们到了地儿可以请当地的司机作向导，价钱也不贵，新藏线没川藏险，注意点开就行。我……最近真忙，抽不开身。”</p>
+	<p class='firstLineIndent'>话说到这份上，也不好强人所难，陈二胖做最后的争取：“那……峰子，我把路线发给你看看，哪些地方要注意的，你给提个醒。这路线真不错，景美，没准你看了就变主意了。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>接完电话，锅里的饺子也成汤糊糊了，看了真心没食欲，岳峰索性出门觅食，再加上被陈二胖的电话提醒，他决定去一趟移动营业厅销号。</p>
+	<p class='firstLineIndent'>营业厅里人满为患，正赶上过节促销，都是充话费送手机送金龙油什么的，岳峰这样过来销号的还的确是寥寥无几，帮岳峰领号的工作人员极力向他推荐：“销什么号呢，有两个号方便啊，一个工作用一个生活用，分的清楚啊。现在话费又不贵，你看看这过年优惠，充满6个月话费就送一部智能手机，合算！”</p>
+	<p class='firstLineIndent'>岳峰随口问了一句：“送什么机子啊？”</p>
+	<p class='firstLineIndent'>悔就悔在多问了这么一句，那个工作人员拽着岳峰就不放了，以极其高亢的热情给他把这款山寨版智能手机介绍了个通透，从垫板到卡到充电器到抗摔外壳，从功能到软件到升级到通讯，什么只充一点点电都能□个两三天，总之这就是一款绝世手机，乔布斯早知道有这款手机都能抡把锤子把苹果给砸了。</p>
+	<p class='firstLineIndent'>从头这么听下来，岳峰倒是没怎么心动，但他不好意思说那个“不”字了，不然也太对不起这人滔滔不绝唾沫星子四溅的推销热情了。</p>
+	<p class='firstLineIndent'>反正……6个月的话费，也就是小几百块钱的事儿。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>回到家，岳峰开电脑，顺手把新手机用USB线充电开机，陈二胖的邮件已经进来了，攻略做的似模似样的，但是路线不那么合适，按照他们的安排，从乌鲁木齐到南疆喀什，经叶城、大红柳滩到狮泉河之后，居然往革吉、盐湖，经382道班往双湖方向走了，这里大片的藏北无人区，尤其双湖，前两年还发生过自驾陷车无救援死亡事件，陈二胖他们属于自驾的半吊子，最好还是不要走这样的线路。</p>
+	<p class='firstLineIndent'>岳峰给回了邮件，建议狮泉河之后，他们一直往南，过萨嘎、拉孜，去喜马拉雅看珠峰，毕竟世界最高峰，看一趟也算不虚此行了。</p>
+	<p class='firstLineIndent'>回完邮件，新手机忽然震了两下，拿起来一看，是移动来电提醒，都是陈二胖的，可见前两天陈二胖找他找的厉害，往原号码打了不少电话——刚在营业厅时岳峰问过，这种来电提醒，最多保留48小时，也就是说就算岳峰的原号码一直没有欠费停机，他也无从知晓过去到底有谁拨了他的电话。</p>
+	<p class='firstLineIndent'>岳峰把老的通讯录打开，一页页翻着看当时联系的人，翻着翻着，忽然顿了一下。</p>
+	<p class='firstLineIndent'>他看到了季棠棠的号码。</p>
+	<p class='firstLineIndent'>那还是在尕奈的时候，两人互换过一次手机号，但是季棠棠离开尕奈时，SIM卡都扔垃圾桶了，全然是个废号，当时不知道出于什么心理，没删号。</p>
+	<p class='firstLineIndent'>岳峰看了很久，揿下了拨号键。</p>
+	<p class='firstLineIndent'>揿下的一刹那，他突然特别紧张，明知道不该有期待，还是幻想着，会不会突然间，那头就接听了。</p>
+	<p class='firstLineIndent'>“您好，您所拨打的号码是空号，请核对后再拨……”</p>
+	<p class='firstLineIndent'>岳峰笑起来，笑着笑着，心里头涌上一股酸涩，他拔下USB线，抽开电脑旁边的抽屉，把手机扔到了最里头，然后狠狠关上。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>初三晚上在洁瑜家的用餐极其不愉快，岳峰开车过去的，车上就接到方程式的电话：“哥，你担待点儿，洁瑜要做了什么惹你不高兴的事，你别往心里去，她孕妇。”</p>
+	<p class='firstLineIndent'>岳峰当时还笑来着：“那是我妹子，你担待点才是。出什么事儿了？”</p>
+	<p class='firstLineIndent'>方程式支支吾吾的不愿讲，只是说到了就知道了。</p>
+	<p class='firstLineIndent'>一进洁瑜家的客厅，岳峰就大致猜到发生什么事了，洁瑜和一个年轻漂亮的女孩子正坐沙发上聊天，看到岳峰进来，那个女孩儿有点脸红，倒是洁瑜落落大方的介绍：“这是我哥，哥，这是我好姐妹，乔萌。”</p>
+	<p class='firstLineIndent'>岳峰脸上笑着，心里头那个堵啊，还给他留字条说初三吃饭，阖着除夕晚上就策划这事儿了。</p>
+	<p class='firstLineIndent'>几个人围桌坐下后，他掏手机给洁瑜发短信：“你有病啊。”</p>
+	<p class='firstLineIndent'>洁瑜坐桌子另一边，神色自若地拿起手机看了看，也不说给他回，没事人一样又把手机盖回去了。</p>
+	<p class='firstLineIndent'>方程式在厨房掌勺，洁瑜张罗岳峰和乔萌吃饭，吃到一半时，方程式借口咖喱虾的火候问题，又把洁瑜给叫进去了，算是给两人留场子。</p>
+	<p class='firstLineIndent'>既然没别人，乔萌也直入主题，她说：“你别怪我问的直接啊，我是觉得吧，有些东西先问明白了比较踏实，省得后面一点点知道了麻烦，相亲嘛，也就是一项项的做比较，是吧。”</p>
+	<p class='firstLineIndent'>岳峰克制住想把洁瑜捏死的冲动：“嗯。”</p>
+	<p class='firstLineIndent'>“洁瑜说你有套别墅，是全款还是按揭啊，尾款付清了吗？”</p>
+	<p class='firstLineIndent'>“别墅啊？借的，借亲戚的住的。”</p>
+	<p class='firstLineIndent'>乔萌愣了一下：“不是说是你的吗？”</p>
+	<p class='firstLineIndent'>岳峰很是无所谓地笑笑：“还不就好面子嘛，逢人就吹是自己的。你说了要直接，那我也就坦白，人要诚实嘛，对吧。”</p>
+	<p class='firstLineIndent'>乔萌的脸色有点不好看，顿了顿又问他：“听说你妈不和你一起住？”</p>
+	<p class='firstLineIndent'>岳峰坏笑：“暂时是这样，不过我这人孝顺，过去不把我妈接来是因为我忙，又没有媳妇儿照顾我妈，不方便。如果以后结婚了，我妈是一定要跟我一块住的，所以我未来的老婆一定要跟我一样孝顺，端茶倒水洗衣捶背什么的，那都得亲力亲为。”</p>
+	<p class='firstLineIndent'>乔萌勉强挤出一个微笑，开始一筷子一筷子地夹菜，顿了顿又跟他客气：“我觉着……你条件不错啊，怎么会没女朋友呢？”</p>
+	<p class='firstLineIndent'>岳峰叹了口气：“分手了。”</p>
+	<p class='firstLineIndent'>乔萌好奇：“因为什么分手啊？”</p>
+	<p class='firstLineIndent'>岳峰想了想：“其实没什么大事，我跟她感情挺好的，她就是……爱财，买了个金戒指吧，还要金项链，不买就不让，我一气之下打了她，其实打的也不重，就肿了个眼圈，她家里面不依不饶的，非叫她跟我分……”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>洁瑜送走了脸阴的能滴下水来的乔萌，回来对着岳峰就忍不住了：“哥，你就作死吧，你就一辈子念着个死人出不来吧，把人家对你的好当成屁都不是吧。”</p>
+	<p class='firstLineIndent'>岳峰让她说的冒火：“我念着谁是我自己的事，没妨着你碍着你，你有什么资格说三道四的！”</p>
+	<p class='firstLineIndent'>两人这里开火，把方程式急的汗流浃背，大舅子和老婆，都是开罪不得的角色，他慌得恨不得两头下跪了：“都消消气，消消气行么？”</p>
+	<p class='firstLineIndent'>洁瑜痛哭：“我为了谁啊，还不是为你好，那天晚上接到保安电话过去找你，看到你那样躺地上，我眼泪当时就收不住了。我不想你再这样，就想你能走出来，找个好女孩儿重新开始，我是事先没跟你讲，讲了你会来嘛，啊？”</p>
+	<p class='firstLineIndent'>“我是为我自己吗，找到女朋友还不是你的，我又不会多块肉！”</p>
+	<p class='firstLineIndent'>“乔萌也是我朋友，你跟她那样胡说八道一气，你考虑过我的面子没有？人家还以为我介绍多不靠谱的人给她呢，我以后还要跟人家见面的！”</p>
+	<p class='firstLineIndent'>洁瑜一哭，岳峰就没辙了，想想又觉得洁瑜说的也在理，自己这么一胡闹，她是挺难下台的，方程式过去安慰洁瑜，一边低声安慰她一边拼命向岳峰挥手使眼色，那意思是：走吧，你赶紧走吧。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>岳峰不知道是怎么把车子开回家的，路上，他给洁瑜发了道歉的短信，洁瑜一直没回，回到家里之后，岳峰胡乱擦了把脸，一头栽倒在床上。</p>
+	<p class='firstLineIndent'>他一直盯着天花板看，眼角不知不觉就湿了，想着短短几天不到，在金梅凤那里碰壁，跟九条翻脸，朝毛哥发怒，现在，居然连洁瑜这里都让他给搅和了。</p>
+	<p class='firstLineIndent'>真正的孤家寡人，死在这空洞洞的房子里，估计都没人知道。</p>
+	<p class='firstLineIndent'>岳峰笑出声来，笑着笑着，他把整条被子都拉过来，死死抱进怀里去。</p>
+	<p class='firstLineIndent'>棠棠为什么那么喜欢抱被子，他那时候不十分明白，现在终于明白了。</p>
+	<p class='firstLineIndent'>有一种痛苦，让人觉得骨头和骨头之间，脏器和脏器之间都是空的，迫不及待地想找东西去填，填进去了，即便虚假，也有虚假的充实和温暖。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>岳峰做了一个荒诞的梦。</p>
+	<p class='firstLineIndent'>他梦见自己和乔萌结婚了，还很快有了孩子，他像陈二胖一样，每天忙得团团转，洗衣服煮饭换尿布，然后场景忽然变换，乔萌在前头高傲而悠闲地遛狗，他穿着保姆的围兜，抱着孩子在后头一溜小跑的跟着。</p>
+	<p class='firstLineIndent'>跑着跑着，忽然就看到季棠棠的，她站在路边，脚边放着大包，死死地盯着他看，眼泪几乎都要出来了。</p>
+	<p class='firstLineIndent'>岳峰觉得自己要疯了，他大声跟她解释：“棠棠，我没结婚，我不知道这孩子是谁的，棠棠，我真没结婚，我不知道我怎么结婚的！”</p>
+	<p class='firstLineIndent'>他歇斯底里的大声解释，汗流浃背，然后惊醒。</p>
+	<p class='firstLineIndent'>醒来的那一刻，岳峰长长舒了一口气，真是噩梦，即便这么难得梦见了棠棠，也是彻头彻尾的噩梦。</p>
+	<p class='firstLineIndent'>他下床起夜，路过楼梯口的时候，忽然听到楼下传来一线微弱的音乐响铃声。</p>
+	<p class='firstLineIndent'>极其微弱，如果不是正好醒了，如果不是正好经过这里，一定听不到。</p>
+	<p class='firstLineIndent'>岳峰有点纳闷，他循着响铃声不确定地下楼，铃声很飘忽，闷闷的，他走到电脑桌前时都还很奇怪，然后突然反应过来，弯下*身子抽开靠下的抽屉。</p>
+	<p class='firstLineIndent'>那个充话费赠来的山寨手机，果然如同工作人员吹嘘的一样超强待电，当时只充了那么一小会，居然两三天了还没关机——屏幕上是个很生僻的座机号，与此同时，电量告罄的红色警示格一跳一跳的。</p>
+	<p class='firstLineIndent'>说不清为什么，岳峰没有立刻去接手机，好像屏了一口气，想看看那头打电话的人能坚持多久，夜半两点多了，接近一年没有使用的手机号码，到底是谁，在这个时候给他打电话？甚至不因为长时间的无人接听而放弃？推销电话？骚扰电话？或者仅仅是个……拨错了的电话？</p>
+	<p class='firstLineIndent'>红色警示格跳的更厉害了，岳峰拿起手机，揿下了接听键。</p>
+	<p class='firstLineIndent'>信号不好，沙沙的声音，很大的风，像是旷野里席天幕地着卷过，剧烈的喘息声，然后是颤抖着的沙哑问话。</p>
+	<p class='firstLineIndent'>“岳峰？”</p>
+	<p class='firstLineIndent'>轰的一声，岳峰觉得有什么东西把他的大脑轰的粉碎，有那么一瞬间，他完全不能思考，身体一寸寸的发烫发热，四周的一切突然都不存在了，家具、房子、乃至城市，他觉得自己好像站在云团翻滚的荒野之上，狂风肆虐着呼啸，但是卷不走他耳畔那一线极其熟悉的魂牵梦绕的声音。</p>
+	<p class='firstLineIndent'>“棠棠？”</p>
+	<p class='firstLineIndent'>作者有话要说：看完了这一章，很多妹纸们都跑来找我，焦急地问：总总，接下来发生了什么事了？</p>
+	<p class='firstLineIndent'>对此，我十分的痛心疾首，目前我也不知道接下来花生什么事情袅，因为小峰峰木有给手机充电！手机自动关机袅！</p>
+	<p class='firstLineIndent'>盆友们，这一章告诉我们，及时给手机充电是多么重要啊！</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0007'><summary><a>135第⑥章</a></summary>
+	<p class='firstLineIndent'>一大早起来,冷风呼茬呼茬往脖子里灌,头晚入住的家庭帐篷旅馆被吹的东倒西歪的,像是下一刻就要拔地而起，陈二胖哆哆嗦嗦酝酿了半天，眼见是不能再拖了，大吼一声“冲啊”，头一个拎包顶风奔向停在不远处的车子。</p>
+	<p class='firstLineIndent'>受陈二胖的精神鼓动,缩帐篷里的车友也都一个个往外奔了，喊什么口号的都有。</p>
+	<p class='firstLineIndent'>“冲啊,一鼓作气，战四百里！”</p>
+	<p class='firstLineIndent'>“死人沟里睡过觉，界山达坂撒泡尿,班公湖里洗过澡,一样都不能落！今儿要在死人沟睡觉！”</p>
+	<p class='firstLineIndent'>“go go go，今儿加把劲就进藏啦，呀拉索，这就是青藏高原……”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>不到一百米的距离，一个个跑的跟穿越火线似的，终于上了车，车门一关，里头暖和的让人流泪，后座的李文海媳妇给陈二胖递馕：“来，掰点，抵饿。”</p>
+	<p class='firstLineIndent'>陈二胖接过干巴的能在石头上写字的馕，热泪差点就汩汩而下了：“今儿馕，明儿馕，尼玛过了喀什顿顿都是馕，自驾不好玩，老子要回家吃葱油饼，加三蛋，煎蛋！”</p>
+	<p class='firstLineIndent'>李文海媳妇咯咯笑：“岳峰不是说了吗，今儿要能赶到狮泉河，那可就吃香的喝辣的了，想洗脚按摩都有地方。二胖，咱这车指着你了，得给力啊！”</p>
+	<p class='firstLineIndent'>陈二胖悻悻的，只好就着保温壶里的水干吞馕，车载对讲机开着，后头几辆车上也是叽里呱啦鼓噪个不停。</p>
+	<p class='firstLineIndent'>——“火腿肠，给根火腿肠。”</p>
+	<p class='firstLineIndent'>——“老子不吃馕，给个牛肉干，茶鸡蛋还有吗？你猪啊都吃光了。”</p>
+	<p class='firstLineIndent'>——“水不热。鬼地方，连包子都么得！”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>“15分钟之后上路，补给不多了，肉干什么的省着点吃。每趟车都把氧气罐备好，路上少说话，少兴奋，一辆咬一辆，不准超车，都跟在我车屁股后面，身体不适的马上吭声。”</p>
+	<p class='firstLineIndent'>岳峰的声音，对讲机里有那么一瞬间安静下来，只余窸窸窣窣整理塑料袋的杂声，陈二胖贴着窗玻璃往远处看，岳峰的丰田4500停在高坡上，车门半开着，从这个角度，可以看到岳峰倚着驾驶座，架着墨镜，单腿支地上，正拿着对讲机跟他们说话。</p>
+	<p class='firstLineIndent'>李文海媳妇凑过来，小声说了句：“呦，还挺酷。”</p>
+	<p class='firstLineIndent'>又跟陈二胖嘀咕：“你这朋友结婚了没？那几辆车上有小姑娘跟我打听呢。”</p>
+	<p class='firstLineIndent'>陈二胖嫉妒的不行：“酷个屁，车门开着能不冷啊，都尼玛装的。”</p>
+	<p class='firstLineIndent'>他凑向对讲机大声问岳峰：“峰子，今天能到狮泉河吗？”</p>
+	<p class='firstLineIndent'>“到不了。”</p>
+	<p class='firstLineIndent'>对讲机里一片倒抽凉气的声音，有人哀号：“那今天还要吃馕？”</p>
+	<p class='firstLineIndent'>还有人提议：“那加大油门，加快速度，人有多大胆地有多大产，我就不信到不了！”</p>
+	<p class='firstLineIndent'>岳峰回了句：“省省吧，今天的路程，海拔一路飙高的。”</p>
+	<p class='firstLineIndent'>那人不服气：“我还好啊，三十里营不是号称海拔3100米吗，还不是轻松拿下，能吃能睡的。”</p>
+	<p class='firstLineIndent'>岳峰冷笑：“海拔过三千，一百米一个样，待会过大红柳滩，升到4100，一路翻5000米的山口就有5个，当地藏人有句话，天不怕地不怕，就怕大红柳滩到多玛，300公里的路，走十几个小时都可能，今儿不准多歇，不准多停，不准动不动停下拍照，最后一条，绝不在死人沟过夜。”</p>
+	<p class='firstLineIndent'>话说的很不客气，半晌有个娇滴滴的女孩子声音：“哎呀岳峰，不要说的这么吓人嘛，我们又不是吓大的。”</p>
+	<p class='firstLineIndent'>“死人沟海拔5100，氧气含量只有海平面的60%，当年解放阿里，一个连的先头部队在那宿营过了一夜，第二天集体弥难，一个都没醒过来，要么叫死人沟了？前两年过死人沟高反猝死的游客，都是司机掘个坑草草埋了，埋的浅的，手都露在坑外头看得见。一路冻死的病死的翻车的不计其数，晚上过，道两边都是磷火，爱在那过夜你自己过，老子车不等人。”</p>
+	<p class='firstLineIndent'>“还有，海拔攀高的时候，真有反应的，马上掉头回新疆，一辆车有反应一辆车回，全有反应的全回，不准再往阿里开，阿里的海拔全是四五千，开进去就没活路了。”</p>
+	<p class='firstLineIndent'>这话说的，几辆车的人都毛骨悚然，陈二胖脸色都变了，上车了之后，偷偷给岳峰拨电话：“峰子，真这么玄乎啊？我不跟你打马虎眼，你说的时候我差点尿了。”</p>
+	<p class='firstLineIndent'>岳峰在那一头哈哈大笑：“也没那么玄，我说夸张了，你这趟带的一水的不知天高地厚的菜鸟，指东打西自说自话，我要不说重话，一个个都能上房揭瓦。”</p>
+	<p class='firstLineIndent'>陈二胖讪笑，确实也怪他自己，为了人多点热闹，跑到旅游门户网上发帖找人，结果凑了一堆没经验的，别说岳峰了，他自己都觉着不靠谱。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>岳峰先头叮嘱车上的人要少兴奋，其实不用他叮嘱，真上了路，所有人都兴奋不起来了，新藏线号称全世界海拔最高的公路，也称219国道，但实际上连条县级公路的水准都达不到，全是搓板路，车子一跑起来，车屁股后头腾的都是土烟，路上一个坑接着一个坑，颠的一车的人面无人色，有时候遇到被洪水冲垮的路，还得走河床和鹅卵石堆。</p>
+	<p class='firstLineIndent'>岳峰的车是越野车，跑这些路还能应付，其它的都是私家车，跑跑泊油路怪拉风的，一挨这种道苦不堪言，一路上状况不断，油箱翼子板震断的、排气管螺丝震断的，最离谱的是有辆车离合震断了，好在没有沙地翻车。</p>
+	<p class='firstLineIndent'>下午过界山达坂，也是真正意义上新疆和西藏的区界，所有人都兴奋的下车，摆出各种姿势和界碑拍照，岳峰一个人倚着车子抽烟，冷眼看一群人闹腾，中途的时候，突然烟头一掐大踏步上来，拽出一个黑呢子大衣裹羊毛围巾的四十岁左右男人，问他：“你是不是高反？”</p>
+	<p class='firstLineIndent'>他这么突兀一下子，所有人都安静下来，这才注意到那个男人的脸色苍白，口唇发紫，精神也有点萎靡，陈二胖是活动召集人，记得这人叫老赵，是什么事业单位的书记员，赶紧挤过来问他：“是不是高反了啊老赵，怎么样啊？适应不适应啊？”</p>
+	<p class='firstLineIndent'>老赵勉强笑了笑：“没事，有点气闷，前一晚没睡好，失眠。”</p>
+	<p class='firstLineIndent'>他这么一说，大家伙都放了心，只有岳峰不让：“你返车，回新疆。”</p>
+	<p class='firstLineIndent'>这一路上没怎么遇到别的车，老赵又不是司机，返车意味着有辆车要跟他回走，车上另外的人可能也得跟返，所以其它人倒还了了，同车的人都急了。</p>
+	<p class='firstLineIndent'>——“哪能说返车就返车，都到界山达坂了。”</p>
+	<p class='firstLineIndent'>——“没那么严重啊岳峰，这是最高点了，待会海拔就降下来了。”</p>
+	<p class='firstLineIndent'>——“都捱到这了，临门一脚了，走一步就是西藏了，现在返车太没人性了。”</p>
+	<p class='firstLineIndent'>……</p>
+	<p class='firstLineIndent'>老赵也强打起精神给岳峰保证：“真没事，这一路太颠了，有点晕车，谁还没个不舒服什么的。”</p>
+	<p class='firstLineIndent'>岳峰迟疑了一下，高反这东西还真因人而异，有些人到了高原如履平地，有些人就寸步难行，症状也表现不一，有些你觉得蔫巴蔫巴要挂了的吧反而全程扛下来了，有些虎背熊腰的反而咯嘣一下就倒了，这老赵看起来的确也不是太严重，真让他立马返车确实有点不近人情。</p>
+	<p class='firstLineIndent'>犹豫再三，他还是松了口：“行，那你跟车走，路上有什么立刻说知道吗，途中经过兵站，我能尽量想办法。”</p>
+	<p class='firstLineIndent'>因着这个突然的小插曲，大家都失去了玩闹的兴致，想想后头要赶的路还长，也就陆续回车，老赵那车上除了司机，还有另外两个年轻姑娘，心里头都怪别扭的，上了车就说他：“大叔你忍着点，都走到这儿了，要是因为你咱们一车都返，太坑了。”</p>
+	<p class='firstLineIndent'>司机也说他：“人小姑娘都没事，大老爷们的，有什么挺不过的，赵哥，我说句不中听的，岳峰要真让你返，你看看有什么顺路的车把你往回带吧，我是不想回的，我好不容易跑了这么远，又让我回去，下次来不知道哪辈子呢，请假哪那么好请啊。”</p>
+	<p class='firstLineIndent'>老赵人老实，让他们说的罪孽感油然而生，觉得自己是一个人连累了一车人，尴尬地笑着陪小心：“还好还好，没那么严重。”</p>
+	<p class='firstLineIndent'>这一天行车足有17个小时，夜半时分才到达日土，几辆车的人都疲惫不堪，陈二胖敲开一家简陋小旅馆的门，十来号人一拥而入，泡面的泡面洗漱的洗漱，架势真跟鬼子进村似的，还有人四仰八叉往藏床上一躺，赌咒发誓明儿再也不走了，喧闹声中唯独不见岳峰，陈二胖屋里张望了一回，打着手电出门去找。</p>
+	<p class='firstLineIndent'>岳峰还在停车的地方，倚着车身拨电话，拨完了凑到耳边听一会，又拿下来，陈二胖招呼他：“半夜了都，给谁打呢？”</p>
+	<p class='firstLineIndent'>岳峰没吭声，沉默着点着了一支烟，陈二胖厚着脸皮过去：“峰子，你这一路也多跟大伙儿交流交流，老闷头不作声的，不像你啊。”</p>
+	<p class='firstLineIndent'>顿了顿，见岳峰不理他，只好继续腆着脸自说自话：“这趟不是不来吗，怎么改的这么突然，咱认识这么多年了，你倒是给我说道说道啊，憋在心里不闷哪？跟哥们倾诉倾诉呗，咱都是睡过一条被子的人……”</p>
+	<p class='firstLineIndent'>岳峰笑起来，烟盒里弹了支烟给他，又帮他打火：“我来找棠棠。”</p>
+	<p class='firstLineIndent'>陈二胖莫名其妙：“棠棠谁啊？”</p>
+	<p class='firstLineIndent'>岳峰瞪了他足有一分钟，陈二胖才反应过来：“哦哦哦，她呀，不是分了吗？”</p>
+	<p class='firstLineIndent'>“她打了个电话给我。”</p>
+	<p class='firstLineIndent'>陈二胖匪夷所思：“然后呢？约你在……青藏高原见面复合？我擦这也太想一出是一出了，怎么着也约个长城啊西湖啊海南三亚什么的。”</p>
+	<p class='firstLineIndent'>岳峰白了他一眼，那意思是：你再可着劲YY吧你就。</p>
+	<p class='firstLineIndent'>陈二胖嘿嘿笑，拿胳膊肘捣捣他：“她说什么呢？”</p>
+	<p class='firstLineIndent'>“没说什么。”</p>
+	<p class='firstLineIndent'>陈二胖不相信：“怎么可能没说什么。”</p>
+	<p class='firstLineIndent'>“手机刚接通就没电了。”</p>
+	<p class='firstLineIndent'>“那有来电显没有？充了电打回去啊。”</p>
+	<p class='firstLineIndent'>岳峰闷头抽烟，顿了顿说了句：“打了，没人接。我每天都拨几次，始终没人接。查了区号，知道是藏北，我就来了。”</p>
+	<p class='firstLineIndent'>陈二胖目瞪口呆。</p>
+	<p class='firstLineIndent'>岳峰吐出一口烟气，然后看陈二胖：“讲完了，你倒是评论点什么啊，不是要我跟你倾诉吗，倾诉完了，你倒是放个屁啊。”</p>
+	<p class='firstLineIndent'>陈二胖磕磕巴巴地评论：“我们秀儿跟我吵架，顶多离家出走到隔壁小区，你家妹子太有个性了，跑这么鸟不拉屎的地方来给你玩一出不接电话。”</p>
+	<p class='firstLineIndent'>岳峰哈哈大笑，就着车身弹掉烟头积着的灰，有风吹过，烟灰在微光里四散开，像是细小的舞蹈。</p>
+	<p class='firstLineIndent'>过了会陈二胖问他：“是她吗？是不是别人给你闹的恶作剧啊。”</p>
+	<p class='firstLineIndent'>“我老打不通，自己也挺灰心的，有时候怀疑自己是做梦，怀疑根本没接过这通电话，要不是通讯记录里有这么一条……”</p>
+	<p class='firstLineIndent'>岳峰一边说一边把通讯记录翻开给陈二胖看，陈二胖看到，在一水的外拨记录的最下方，有一通接入电话，生僻的区号，座机，接入时间显示是凌晨2点44分。</p>
+	<p class='firstLineIndent'>一阵冷风掠过，陈二胖突然打了个寒噤，脱口说了句：“峰子，这不是鬼来电吧……”</p>
+	<p class='firstLineIndent'>岳峰浑身都颤了一下。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>临睡前，岳峰一直在想陈二胖的话，想的周身发冷，他仔细回忆那天晚上接通电话时的所有细节，他记得风特别大，铺天盖地的，夹杂着剧烈的喘息声，然后是飘渺遥远的像是从天边传来的声音。</p>
+	<p class='firstLineIndent'>“岳峰？”</p>
+	<p class='firstLineIndent'>陈二胖说的话，毒蛇一样往脑子里钻，岳峰的心头逐渐膨胀起一个可怕的念头：难道，真是是棠棠在另一个世界里打给他的？</p>
+	<p class='firstLineIndent'>辗转反侧，太阳穴生痛，高原冰凉的空气在夜间更显稀薄，到了凌晨三四点才略微有了些睡意，正迷迷糊糊间，有人砸门：“岳峰，岳峰，出事了，起来！”</p>
+	<p class='firstLineIndent'>岳峰惊坐而起。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>老赵高反了。</p>
+	<p class='firstLineIndent'>他的症状特别严重，岳峰赶到之前，已经吐过一次，呼吸频次很高，两只手呈鸡爪样抽搐，同屋的人已经在给他吸氧了，但是看起来没什么起色，嘴角边都已经溢出细小的白沫了。</p>
+	<p class='firstLineIndent'>同行的人都惊起来了，站了一屋子，七嘴八舌，支什么招的都有，老赵那车的司机也知道怕了，小心翼翼地提议说要么他带着老赵，再开回新疆去？新疆不是海拔低吗，去了低海拔就没事了。</p>
+	<p class='firstLineIndent'>回新疆？简直扯淡，把老赵往高海拔送，嫌他死的不够快是不是？</p>
+	<p class='firstLineIndent'>岳峰当机立断，所有氧气瓶都收上来，陈二胖随车照顾老赵帮忙吸氧，他要连夜开快车去狮泉河，狮泉河是阿里的首府，也是藏北重镇，那里的医疗资源充足，抢救老赵应该没问题。</p>
+	<p class='firstLineIndent'>所有人都帮忙拾掇，抬的抬理的理，其中一辆车的司机自告奋勇随车，说是岳峰也开了一天车了，路上累的话两个人可以换手，岳峰一句话就把他顶回去了：“这条线，夜路、快车，你敢不敢开？”</p>
+	<p class='firstLineIndent'>到底不是城市柏油路，不敢。</p>
+	<p class='firstLineIndent'>上车前，岳峰吊了桶井水扑脸，地下水冰冷刺骨，激得他登时就精神了，带着一身的寒气上车，陈二胖扶着老赵坐后座，还想提醒他慢点呢，话没出口，身子一仰，车子像脱缰的野马似的出去了。</p>
+	<p class='firstLineIndent'>一路上，几乎没有走夜道的车，山脉的轮廓线在近处起伏，越野车的引擎声在夜色里传出去很远很远，陈二胖扶着老赵，既照顾他，又担心岳峰：“峰子，你行吗，悠着点。”</p>
+	<p class='firstLineIndent'>岳峰抿着嘴唇，双手握方向盘，眼睛一直盯着正前方，陈二胖也就不再说话引他分心，老实说，上路之后，老赵的情况似乎好些了，呼吸频次也降下来了，也不知过了多久，陈二胖有点犯盹，脑袋一点一点的跟鸡啄米似的，忽然间身子一个前冲，惊得赶紧坐起来。</p>
+	<p class='firstLineIndent'>天已经蒙蒙亮了，往外看，周围大片大片的红柳滩，陈二胖揉了揉眼睛问岳峰：“怎么停了？”</p>
+	<p class='firstLineIndent'>岳峰摇下车窗：“好像有人要搭车。”</p>
+	<p class='firstLineIndent'>他一边说一边慢慢倒车，过了会又停下。</p>
+	<p class='firstLineIndent'>陈二胖愣愣看走近的人，居然是个喇嘛，或者说，更类似于苦行朝圣的喇嘛，身上的红色露半肩袈裟已经很旧，僧鞋两边都磨穿了，没磨破的地方也发白泛毛，看年纪应该有四十多，很是谦逊，眉目间一派安详宁和，会说汉话，很有礼貌地问岳峰能不能搭他的车到狮泉河。</p>
+	<p class='firstLineIndent'>上了车之后再问，才知道居然也是要到狮泉河镇医院去的，名叫桑珠，岳峰不知道哪里不对劲，总觉得这个人气度很不一样，不像是一般的喇嘛，言语间也就多了些谨慎，没有过多问什么，至于陈二胖，压根对藏文化一窍不通，生怕自己一个多嘴犯了藏地的忌讳，索性闷头不吭声，倒是桑珠上车时看见老赵，问了句：“是高反吗？”</p>
+	<p class='firstLineIndent'>得到肯定的答复之后，他从氆氇的胸前袋子里取出个药囊递给陈二胖，做了个掩在鼻子前的动作，陈二胖看懂了，很是感激的接过来，双手合十致谢。</p>
+	<p class='firstLineIndent'>约莫半个小时之后车进的镇医院，门诊大厅门口站了几个藏人和僧袍喇嘛，桑珠一下车，几个人就迎上来，岳峰无意间听到一句“仁波切”，心里咯噔一声，又仔细地打量了一下桑珠。</p>
+	<p class='firstLineIndent'>陈二胖看出不对了，问他：“怎么了？”</p>
+	<p class='firstLineIndent'>岳峰低声回了句：“藏族人把活佛称作‘仁波切’，怪不得我一路上都觉得他挺不一样的，原来是桑珠活佛。”</p>
+	<p class='firstLineIndent'>陈二胖吓了一跳：“活……活佛？他是□还是□？”</p>
+	<p class='firstLineIndent'>岳峰哭笑不得：“藏地的活佛很多的，成百上千，有时候一个小庙也有活佛。你说的那是至尊活佛，别搞混了行么。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>不知道是不是桑珠活佛给的药囊奏效，进急救室的时候，老赵的情况已经有稳定的迹象了，岳峰长长舒一口气，这才觉得头痛的厉害，他留陈二胖在急救室外头守着，自己下楼去透个气。</p>
+	<p class='firstLineIndent'>下到二楼的时候，又看到桑珠活佛，正在跟一个举着片子的大夫说话，旁边立着两个红衣喇嘛，远些的是那几个藏族人，估计听不懂汉话，半张着嘴在边上面面相觑的。</p>
+	<p class='firstLineIndent'>岳峰走近了些，听到那个大夫指着片子给桑珠解释：“藏族人的心肺都大一些，那是适应高原缺氧的环境的，汉地援藏的干部每年的假期都很长，就是为了回到平原疗养恢复。你看这里，心肺已经出现变化了，这是环境加重了心脏负担，身体本来就不好，又是阿里这么高海拔的地方，我建议马上回到平原……”</p>
+	<p class='firstLineIndent'>说话间，桑珠活佛也看见岳峰了，礼貌地朝他笑了一下，岳峰有点不好意思，觉得自己像在窥听人家的私事，他尴尬地朝桑珠活佛点了点头，顺着楼梯原路下去了。</p>
+	<p class='firstLineIndent'>桑珠活佛谢过大夫，卷了片子向走廊尽头处的病室走，其它人都跟在后面，桑珠活佛问其中一个喇嘛：“拉姆现在怎么样？”</p>
+	<p class='firstLineIndent'>“跟之前发作的时候一样，忽然什么都不记得了，也不说话，送进来两天了，一直没有起色，央宗每晚都给她念度母咒。”</p>
+	<p class='firstLineIndent'>桑珠活佛叹气：“我记得拉姆提过，说以前头部受过伤，受到刺激会失常，但她很久不这样了，这次出事之前，有什么异常没有？”</p>
+	<p class='firstLineIndent'>那个喇嘛想了想：“央宗说，拉姆当时在打电话。”</p>
+	<p class='firstLineIndent'>桑珠活佛奇怪：“打给谁？”</p>
+	<p class='firstLineIndent'>“不知道，央宗说，拉姆说了句很奇怪的话。”</p>
+	<p class='firstLineIndent'>“她说，这个号码，从来都打不通的，为什么今天晚上就通了呢？”</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0008'><summary><a>136第⑦章</a></summary>
+	<p class='firstLineIndent'>推开病室的门,央宗正坐在靠床边的椅子上垂着眼帘念经，手里的转经筒摇个不停，这是个年轻的小喇嘛，脸庞还都透着几分稚气，拉姆坐在床上，藏袍的两个袖子都拿下了搭在腰间,结很长的发辫，发辫上饰林林总总的绿松石、蜜蜡、红珊瑚,她皮肤比一般藏族姑娘白很多，被这些花花绿绿的发饰衬着,分外好看。</p>
+	<p class='firstLineIndent'>拉姆原本是抱着膝盖看央宗念经的,到底是不专心，先看到桑珠活佛进来，伸手去推央宗，央宗愣了一下，他是桑珠的弟子，看见师傅，赶紧毕恭毕敬上去行礼，桑珠活佛回礼之后，见拉姆一副戒备的样子，忍不住笑着对央宗说了句：“拉姆又不认识我了。”</p>
+	<p class='firstLineIndent'>在师傅面前，央宗总是莫名的局促和紧张，桑珠活佛的口气明明和缓，他也不敢造次去开玩笑：“拉姆开始也不认识我，这两天好一点。跟以前一样，她会慢慢想起来的。就是大夫说，她的身体不好了，应该回汉地去休养。”</p>
+	<p class='firstLineIndent'>桑珠活佛点了点头，上前在床边坐下，拉姆警惕地往后挪了一挪，央宗上前小声用汉话跟她说话：“拉姆，这是师傅，你见过的。”</p>
+	<p class='firstLineIndent'>桑珠活佛先不着急跟拉姆说话，问央宗：“怎么我才刚走，就出事了？”</p>
+	<p class='firstLineIndent'>“多玛那头的人年前两天送拉姆来寺里，拉姆说到了她们汉人的新历年，要为死去的亲人供养百盏酥油灯，头三天她要自己守，所以我们留拉姆在寺里住下，让多玛的人三天后来接。前面都没事，到最后一天，半夜之后，拉姆跟我说想打个电话。”</p>
+	<p class='firstLineIndent'>“师傅你也知道，多玛的人现在还没有安居，一直在藏北游牧，每隔几个月才会来寺里一次，平时在草原上，没有电也不通邮，我想，拉姆或许是在汉地有朋友要联系，时间太晚，没法去镇子上借电话，我就让她用了师傅房间里的电话。”</p>
+	<p class='firstLineIndent'>“接通电话之后，拉姆就不对劲了，她说这个电话她以前一直拨的，从来都是关机，这一次忽然就通了，等了好一会儿都没人接，我劝她挂掉，她不答应，坚持要听那边接电话，还说，可能这个号被收回，给新用户用了。”</p>
+	<p class='firstLineIndent'>“后来电话通了，很短的时间，也不知道她说了什么，忽然就甩了电话说头疼，后来越来越厉害，我就慌了，叫醒两位师兄，依着以前的法子给拉姆念经，谁知道到天亮时，她情况也不见好，多玛的人到了之后，我们就送拉姆到镇医院，医院的人说看不了，要送到大的医院，多玛的人不懂汉话，加上师傅你正好在这附近，我们就随着一起来了，桑扎寺先关掉了，我们知道师傅接下来要去布达拉朝圣，如果需要人，我们都可以跟着。”</p>
+	<p class='firstLineIndent'>最后一句话，他说的很小声，藏地的人，毕生都以能瞻仰一次布达拉为荣，央宗内心里，实在是很想去的，师兄们一定也一样，不然为什么都赶到这里来了呢，但是桑珠活佛既然不说，他也不敢太过提起，只是含蓄的说如果需要都可以跟着。</p>
+	<p class='firstLineIndent'>桑珠活佛微笑：“既然已经来了，都是佛祖的意愿，那就跟我一起走吧。除了布达拉，我还要去色拉寺见教友，色拉寺的辩经闻名藏地，你们多多学习。”</p>
+	<p class='firstLineIndent'>央宗大喜过望，边上的两个僧袍喇嘛是师兄，表现的不像他那么明显，但已然也是喜上眉梢了，那几个多玛藏人面露艳羡之色，过了会各自合掌，都念叨了句扎西德勒。</p>
+	<p class='firstLineIndent'>桑珠活佛和央宗对话时，说的都是藏语，等到跟拉姆说时，又转成汉话，问她：“拉姆，在汉地还有朋友吗？”</p>
+	<p class='firstLineIndent'>拉姆没说话，直到央宗拿眼神不住示意她，她才说了句：“没有。”</p>
+	<p class='firstLineIndent'>“拉姆，你生病了，你不能再回多玛。”</p>
+	<p class='firstLineIndent'>拉姆的态度很坚决：“我住在多玛，我要回多玛。”</p>
+	<p class='firstLineIndent'>桑珠活佛的口气很温和：“拉姆，你是汉人，你不想念家乡的人吗？你可以回去看看他们，休息一阵子，真的想念多玛，再回来。”</p>
+	<p class='firstLineIndent'>拉姆的眼圈渐渐红了，顿了好一会儿，她才说了句：“我一个人，家里没有人，我不想回去，不想见汉人。”</p>
+	<p class='firstLineIndent'>说完了，她不再理桑珠活佛，一个人退到床头，把边上的被子一点点往怀里扯，扯着扯着就抽搭抽搭哭起来，央宗说：“拉姆想不起来，但她就是不想回去。师傅，你不是说每个人都有隐秘的往事，如果她不提，佛就不希望我们追问。她可能在汉地真的没有朋友了。”</p>
+	<p class='firstLineIndent'>桑珠活佛抿着嘴唇没有说话。</p>
+	<p class='firstLineIndent'>第一次见拉姆，约莫在一年以前，当时有辆内地援建阿里的物资车经过桑扎镇，把她从车上放下来，她没什么行李，精神很差，在几乎没有汉人居住的桑扎分外醒目，她向当地人打听事情，藏人听不懂，让她去寺里找会汉话的喇嘛去问，她当时见到的是央宗，问的第一句话是：“我听说藏北是无人区，常年没有人的，是不是还要从桑扎往西走？”</p>
+	<p class='firstLineIndent'>央宗问她：“你是游客吗？”</p>
+	<p class='firstLineIndent'>她说：“不是，我要住下来。”</p>
+	<p class='firstLineIndent'>央宗觉得她很奇怪，只好来找师傅，桑珠活佛看人是能看到许多常人看不出的东西的，他跟拉姆谈了很久，问她：“为什么要去没人的地方？”</p>
+	<p class='firstLineIndent'>“不想见到人，人多了，我很难受。”</p>
+	<p class='firstLineIndent'>桑珠说：“无人区的环境很恶劣，你一个人，会死在那里的。”</p>
+	<p class='firstLineIndent'>她居然回答：“我知道啊。”</p>
+	<p class='firstLineIndent'>桑珠活佛留她在寺里住了几天，他对央宗说：“拉姆不是普通的汉人姑娘，她身上有一些我说不清的能力，有死气围裹着的怨气，也有导引人成魔的恶障，拉姆经过桑扎是佛的意愿，佛祖要我们做一些事情。”</p>
+	<p class='firstLineIndent'>央宗静静听着，在这里，一切都是佛的意愿，干旱或者雨露，争吵或者宁静，一片叶子的落下或是一颗果实的长成，既然这样，拉姆的到来，也一定是佛的意愿。</p>
+	<p class='firstLineIndent'>几天之后，多玛部落的人来寺里祈愿，桑珠征求拉姆的意思，他说：“多玛部落是藏北草原最淳朴的一群人，他们人数很少，远离城镇，逐水草而居，长年累月都见不到外人，你和他们一起，不会觉得人多难受，又能得到照顾。”</p>
+	<p class='firstLineIndent'>拉姆没有反对，至于多玛藏人，既然拉姆是活佛的客人，那同样也就是他们的贵客。</p>
+	<p class='firstLineIndent'>多玛藏人偶尔会来桑扎寺，带来一些消息，拉姆的孤僻远远超过桑珠的想象，她的帐篷永远距离大家很远很远，头人忧心忡忡，生怕她出事惹得活佛发怒，找过她几次，比划着告诉她这样太危险了，藏北有棕熊，还有狼。</p>
+	<p class='firstLineIndent'>拉姆已经学会了简单的藏语，她说：“没关系啊。”</p>
+	<p class='firstLineIndent'>她会帮多玛藏人照看牦牛，熬制酥油茶，做糌粑，但她喜欢一个人，很少跟人讲话，她经常爬到结着经幡的高坡上，一站就是很久，她会向半空撒五颜六色的风马旗，有时候莫名其妙会流泪，她的帐篷里有三盏不灭的酥油灯，无数个夜里，她就守着酥油灯转转经筒，每当酥油灯的光暗下来，她就停下往灯里添酥油。</p>
+	<p class='firstLineIndent'>有一次连日暴风雪，凌晨时分就近有狼嚎，头人悚然心惊，叫醒几个猎手操起家伙往她的帐篷赶，晨曦中看到拉姆在帐篷外头站着，身周斑斑血迹，奔到近前，几个人倒吸一口凉气。</p>
+	<p class='firstLineIndent'>三头狼，开膛破肚，肠子破了一地，拉姆笑了笑，说了句：“送你们皮子，做衣裳。”</p>
+	<p class='firstLineIndent'>为了这件事情，桑珠活佛带着央宗特地去了一趟多玛，带消息给他的藏人说，有两头狼的颈骨都被捏碎了，他们很害怕，询问活佛是否高原上枉死的邪灵上了拉姆的身，要不然她为什么要避开众人？要不然狼为什么会死在她的帐篷外面？</p>
+	<p class='firstLineIndent'>那一次桑珠活佛追问了很多，为什么孤身一人来荒原，父母在哪里，朋友在哪里，为什么有让人惧怕的能力，就是那次把拉姆追问的突然发病，她抱着头就跪在地上，尖叫，大哭，瞬间什么都忘记了，唯一记得的是冲回帐篷里，把床铺下藏着的东西紧紧抱进怀里。</p>
+	<p class='firstLineIndent'>善良的多玛藏人马上就把惧怕扔到了脑后，转而同情这个生病的姑娘，他们在帐篷外大声祈祷，狠狠把石子砸向黑暗里看不见的亡魂，桑珠和央宗为了安抚她，彻夜为她念绿度母咒，拉姆睡着之后，桑珠活佛从她手中抽出那个物件看。</p>
+	<p class='firstLineIndent'>是一个空空的破旧的钱包，打开了，透明的塑料膜后面有一朵干花，破碎的颓败颜色，使的力稍微不匀就会从中裂开，桑珠活佛后悔自己追问的太多，他对央宗说：每个人都有隐秘的往事，如果她不提，佛一定不希望我们追问，拉姆来到这里，自有她的道理，雪域高原既然接纳她，那么就让她在这里安定下来吧。</p>
+	<p class='firstLineIndent'>只是，万事总有时限，既然她的身体已经示警，显然是离开的时候，再开口时，桑珠活佛已经打定了主意。</p>
+	<p class='firstLineIndent'>他决定带拉姆一起去拉萨，那里教友众多，有不少汉族的供养居士，可以寻找可靠的汉人帮拉姆在汉地找合适的疗养院，或者哪怕只是在汉地找个住所都可以，拉姆需要离开高原休养一段时间。</p>
+	<p class='firstLineIndent'>他把这个意思先向多玛藏人讲了，他们都有些错愕，毕竟长时间的相处，早已把拉姆当成了其中一员——但他们没有习惯违背活佛的意思，第一反应就是行礼，遵从。</p>
+	<p class='firstLineIndent'>桑珠又和她商量：“拉姆，你身体不好，我们暂时离开多玛，去别处一段时间。”</p>
+	<p class='firstLineIndent'>拉姆摇头：“我要回桑扎寺。”</p>
+	<p class='firstLineIndent'>“桑扎寺已经关了，现在没有人。”</p>
+	<p class='firstLineIndent'>拉姆愣了一下，说：“那我也要回去。”</p>
+	<p class='firstLineIndent'>桑珠活佛失笑：“为什么呢？”</p>
+	<p class='firstLineIndent'>“有重要的事情。”</p>
+	<p class='firstLineIndent'>“什么重要的事？”</p>
+	<p class='firstLineIndent'>拉姆茫然，末了小声说了句：“不记得了。”</p>
+	<p class='firstLineIndent'>桑珠活佛又笑起来，那几个多玛藏人互相看了看，推选出一个人过来向桑珠活佛祈愿，他们每次见活佛，总有太多的事情需要指引，既然拉姆需要休息，桑珠活佛就带了央宗跟那几个藏人出去一一解决他们的问题，让那两个僧袍喇嘛留下来照顾拉姆。</p>
+	<p class='firstLineIndent'>可以朝圣布达拉宫，看色拉寺辩经，那两个喇嘛快活极了，一直在争辩布达拉宫到底有多高，听说是藏王松赞干布建的，听说建在山上，还有拉萨，听说拉萨的地形是个仰卧的魔女，为了镇住魔女，文成公主把大昭寺建在了魔女的心脏部位……</p>
+	<p class='firstLineIndent'>拉姆一边拿袖管擦眼泪一边听他们说话，忽然插嘴问了句：“我不去拉萨，我要回桑扎寺。”</p>
+	<p class='firstLineIndent'>其中一个喇嘛无可奈何地劝她：“拉姆，你不要太固执了，师傅不会回桑扎寺的，师傅要从这里开始，去布达拉宫朝圣的。”</p>
+	<p class='firstLineIndent'>拉姆很坚持：“那我自己回。”</p>
+	<p class='firstLineIndent'>“你回不去的，要坐很久的车，你不认识路，又生病了。跟我们去拉萨吧拉姆，能看到布拉达宫，全世界最美最伟大的宫殿。”</p>
+	<p class='firstLineIndent'>拉姆不说话了，她躺回床上，把被子蒙到头上，偶尔难过的抽噎两下。</p>
+	<p class='firstLineIndent'>那两个喇嘛没有把她的情绪放在心上，有哪一种快乐，能比得过去到圣城拉萨呢？</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>中午时分，其它的几辆车也陆续到狮泉河镇医院了，大夫的说法是老赵必须留院观察，情况太不稳定了，不敢冒险让他出院。</p>
+	<p class='firstLineIndent'>原本一团散沙似的十来号人，这时候反而团结了，估计是被老赵这一趟生死之间走个过场给吓的，纷纷表示说既然是一道出来的，那就得一道回去，观察就观察，等两天就两天，无所谓。</p>
+	<p class='firstLineIndent'>当然，不排除某些人是因为狮泉河是大北线上最大的城镇——勉强可以吃香的喝辣的，也算奢侈休整了。</p>
+	<p class='firstLineIndent'>只有岳峰不同意，他对陈二胖说：“你们可以留下来，我得赶路，我要去桑扎镇。”</p>
+	<p class='firstLineIndent'>陈二胖想留他，其它人反而帮岳峰说话了，就让他去呗，上午没他带路，我们也这么平安开过来了，新藏线最险的地方已经过去了，就让岳峰忙自个的去吧，别耽误人家的事不是？</p>
+	<p class='firstLineIndent'>说的人多了，陈二胖也就不好多讲，说了句：“那峰子，你忙完自己的事，要时间宽裕，还来找我们一起玩呗，人多热闹点。”</p>
+	<p class='firstLineIndent'>岳峰笑着答应了，陈二胖陪他去停车场开车，岳峰刚把车倒出来又停下，抬头看了看二楼的病室，说了句：“我去跟桑珠活佛说一声，认识一场，人家又是活佛，走了不说一声显得没礼貌。”</p>
+	<p class='firstLineIndent'>陈二胖点头：“行，那你去，也不用锁车了，我帮你看着。”</p>
+	<p class='firstLineIndent'>等了约莫五分钟，岳峰匆匆忙忙下来了，吩咐他：“胖子，把咱们的人召集一下，就近转一圈帮忙找人，桑珠活佛他们那边有个藏族姑娘叫拉姆，说是神智有点不清醒，刚转脸的功夫偷偷跑了，他们一个个急坏了，说是应该刚出医院，就在这附近，赶紧帮忙找，长头发，结辫子，皮肤白，会说汉话，应该好认。我先去外头看看，你去跟咱们的人说。”</p>
+	<p class='firstLineIndent'>陈二胖应了一声就往楼上跑，他这头的人都在老赵门口候着，陈二胖大概把情况说了说就往外赶人：“快快快，反正闲着也是闲着，都帮忙找找。”</p>
+	<p class='firstLineIndent'>把人赶完了，留自己一个杵老赵病室门口，怎么寻思怎么觉得漏了什么事，半晌想起来，一巴掌拍大腿上：妈的帮峰子看车呢，车钥匙都搁车门上没拔，可别叫人给开跑了！</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>刚跑到楼下，心里头突然咯噔一下子。</p>
+	<p class='firstLineIndent'>岳峰车子前头，站了个长头发结辫子的藏族姑娘。</p>
+	<p class='firstLineIndent'>她站在车子前头，愣愣地看着，偶尔迟疑地伸手去摸车前盖，然后围着车子走了半圈，伸手擦擦车玻璃，脑袋抵着车窗向里张望。</p>
+	<p class='firstLineIndent'>陈二胖大老远就朝她招手：“哎，哎，你是不是就是那个什么……拉姆？”</p>
+	<p class='firstLineIndent'>她听到声音，猛的一惊，迅速回头看了陈二胖一眼，接下来，她做了一件叫陈二胖傻眼的事情。</p>
+	<p class='firstLineIndent'>她拔了车钥匙，车门一开，整个人钻进去了。</p>
+	<p class='firstLineIndent'>陈二胖愣了足有五秒钟，什么拉姆不拉姆，他再也管不着了，气急败坏地大叫：“哎，你不要乱动峰子的车啊！”</p>
+	<p class='firstLineIndent'>他冲到岳峰的车子前面想开车门，这姑娘似乎对这车子不陌生，居然赶在他前头把门给锁上了，隔着茶色玻璃，又看不到她长的样子，陈二胖急得汗都出来了，藏族姑娘哪会开车呢，万一她在里头乱摸乱动，把车撞墙上，岳峰这种宝贝车跟宝贝命似的，可不得把他皮都给揭了？</p>
+	<p class='firstLineIndent'>他握着拳头砰砰砰砸窗子，然后又趴到车前盖上砰砰砸前视窗，边砸边叫：“你倒是出来啊你，哎你这个人讲不讲道理啊你！”</p>
+	<p class='firstLineIndent'>镇医院挺小的，陈二胖这里敲锣打鼓，很是惹人注意，很快周围就站了一圈人，有几个在医院里帮忙找人的车友也被吸引过来了：“胖子，你趴车盖上干嘛呢？”</p>
+	<p class='firstLineIndent'>陈二胖气坏了：“这女的，跑人车子里算怎么回事呢？”</p>
+	<p class='firstLineIndent'>任凭他这儿怎么发飙，里头的姑娘就是不挪窝，可把陈二胖给气糊涂了，过了会那几个喇嘛和藏族人也过来了，央宗先认出来：“是拉姆，拉姆在这儿！”</p>
+	<p class='firstLineIndent'>后头的桑珠活佛松了一口气，央宗和那两个喇嘛也过来敲窗户：“拉姆，开门，不送你去拉萨了，送你回桑扎，好不好？”</p>
+	<p class='firstLineIndent'>拉姆抱着膝盖坐副驾驶上，就是不吭气，后头的车友给陈二胖支招：“打电话给岳峰啊，让他带车钥匙来开门啊。”</p>
+	<p class='firstLineIndent'>陈二胖吐血的心都有了：“钥匙让她拔了！带在车里头呢！”</p>
+	<p class='firstLineIndent'>说完了，气的又是一通敲窗。</p>
+	<p class='firstLineIndent'>不知道是不是几个人敲窗的声音太吵，把拉姆给气着了，她突然在副驾驶的座上跪起身子，刷刷几下子把车窗摇下来，对着陈二胖恶狠狠吼了句：“我的车！”</p>
+	<p class='firstLineIndent'>陈二胖也贼精的，一见车窗摇下来了，迅速伸手进去开车门，拉姆没想到车门就这么被他开开了，眼泪差点都出来了，陈二胖满心没好气的：“下来下来。”</p>
+	<p class='firstLineIndent'>拉姆拼命摇头，一边摇头一边往主驾驶座上缩，陈二胖慌了，那边都是方向盘把手变速杆什么的，让她这么乱动一气给带起来了还得了？他赶紧探身过来拉她，刚拽住她胳膊，她就不行了，歇斯底里的大叫：“我的车！岳峰的车！”</p>
+	<p class='firstLineIndent'>陈二胖先还没反应过来，反应过来之后整个人都傻了，说：“你说什么？谁的车？”</p>
+	<p class='firstLineIndent'>他盯着这个姑娘看，忽然觉得，这姑娘的眉目挺熟悉的，似乎在哪见过。</p>
+	<p class='firstLineIndent'>僵持中，身后传来岳峰的声音：“胖子，你让开。”</p>
+	<p class='firstLineIndent'>作者有话要说：在此我想感慨一句，棠棠的脸皮也真厚，还没结婚呢就把人家的财产占为己有了。小峰峰，你家总总正告你一句，如果将来准备结婚的话，签个婚前财产协议吧，你媳妇儿多狠啊……</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0009'><summary><a>137第⑧章</a></summary>
+	<p class='firstLineIndent'>陈二胖没挪窝儿,直觉就差那么一丁点儿就要想起来了：“哎，峰子，她不就是那个……那个……”</p>
+	<p class='firstLineIndent'>话没说完，被岳峰揪住后领口狠狠搡到一边去了。</p>
+	<p class='firstLineIndent'>岳峰盯着拉姆看，拉姆在那被陈二胖气的直哭，低头拿手背抹眼泪,抹了一阵子抬头看岳峰，目光相触的刹那,岳峰突然就站不住了：“棠棠？”</p>
+	<p class='firstLineIndent'>拉姆跪起身子盯着他看，过了会,估计是觉得这个比陈二胖好欺负,恶狠狠强调了句：“我的车！”</p>
+	<p class='firstLineIndent'>岳峰下意识说了句：“是，你的车。”</p>
+	<p class='firstLineIndent'>拉姆愣了一下，没想到这个人好欺负到这份上，原本是攒足了劲要吵架的，现在也没对手了，末了只好狠狠瞪他一眼，砰一声，又把车门给撞上了。</p>
+	<p class='firstLineIndent'>岳峰原地站着不动，过了会扶着车身慢慢蹲了下去，陈二胖有点慌，也蹲下了问他：“峰子，怎么了？”</p>
+	<p class='firstLineIndent'>岳峰低声说了句：“没事，你让我缓一缓。”</p>
+	<p class='firstLineIndent'>陈二胖手足无措地站起来，周边无关的人眼见没热闹可看，也就议论着四下散去了，一道来的车友三两聚在一起窃窃私语，那几个多玛藏人面面相觑的，小声用藏语跟央宗几个询问着什么。</p>
+	<p class='firstLineIndent'>一群人中，只有桑珠活佛轻轻笑出声来。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>没人能把季棠棠拽得下那辆车子，央宗怎么跟她许诺送她回桑扎都不行，她慢吞吞地说：“不用你们送了，岳峰会开车送我的。”</p>
+	<p class='firstLineIndent'>同样的，也没人能上得了那辆车子，岳峰试图跟她说过话：“棠棠，我是岳峰。”</p>
+	<p class='firstLineIndent'>“岳峰穿的不是你这衣服。”</p>
+	<p class='firstLineIndent'>隐藏的台词是：你这个骗子！</p>
+	<p class='firstLineIndent'>岳峰没办法，又小心翼翼征询她的意见：“那我能上车坐会吗？”</p>
+	<p class='firstLineIndent'>回答的斩钉截铁：“不行，岳峰的车子！”</p>
+	<p class='firstLineIndent'>岳峰老老实实哦了一声，走到不远处的草坪水泥阶台上坐下，陈二胖气不过，隔着窗户凶她：“你的车啊？没见过脸皮这么厚的！”</p>
+	<p class='firstLineIndent'>一群人中，只有陈二胖对她最不客气，季棠棠有点怕他，没敢吭声，直到他走了才小声嘀咕了一句：“就是我的车。”</p>
+	<p class='firstLineIndent'>陈二胖本来就胖，这心头一躁，就更热了，手扇着风一屁股坐到岳峰边上：“这怎么整啊，就让她待车里啊？”</p>
+	<p class='firstLineIndent'>岳峰似乎根本没觉得这是个问题：“人在老子车里，还怕她跑了啊。”</p>
+	<p class='firstLineIndent'>陈二胖抬头看车子里的季棠棠，刚才他们已经跟桑珠活佛有过一番基本信息了解了，但依然忍不住恨的牙痒痒：“论理她生病，我不该跟她计较，可是峰子你没见她那小人得志的模样，欺软怕硬的主这是。你看我说她她就不敢吭气，你一开口她就吼你，对这种脑子不清楚的，你就得凶点，不然还不得骑到你头上来。”</p>
+	<p class='firstLineIndent'>岳峰也抬起头，看着季棠棠只是笑，半晌说了句让陈二胖差点飙血的话：“老子喜欢，关你屁事。”</p>
+	<p class='firstLineIndent'>陈二胖气的腾一下跳起来，一脚踹岳峰肩上，同时暗暗做好准备，预计着会像以前在部队似的，被岳峰追三圈揍一顿，谁知道岳峰身子晃了晃又坐正了，同时慢条斯理拿手掸了掸被踹的地方：“爷今儿心情好，不跟你计较，踹一次还免费送一次，来来，再踹！”</p>
+	<p class='firstLineIndent'>陈二胖看鬼一样看他：“你有病吧？”</p>
+	<p class='firstLineIndent'>岳峰哈哈大笑，往后一仰就躺到草坪上，双手枕在脑袋后面看天：“就是有病，怎么着，咬我啊？”</p>
+	<p class='firstLineIndent'>陈二胖啐了他一口，气哼哼地转身就走。</p>
+	<p class='firstLineIndent'>狮泉河的天真蓝，一丝杂质都没有，岳峰眯着眼睛看天，不知是不是被太阳给晒的，眼角酸酸的有点涩，但是心里头满满当当的都是踏实的感觉。</p>
+	<p class='firstLineIndent'>有人走过来，红色的袈裟下摆，起了毛的僧鞋，岳峰忽然反应过来这是桑珠活佛，赶紧撑了手臂站起来，活佛面前，还是不敢造次的。</p>
+	<p class='firstLineIndent'>桑珠活佛双手合十，向他行了一礼，问他：“和拉姆是不是早就认识？”</p>
+	<p class='firstLineIndent'>岳峰觉得不该隐瞒也不想隐瞒：“是。”</p>
+	<p class='firstLineIndent'>“我听说几天前，拉姆给人打过电话，是不是打给你？”</p>
+	<p class='firstLineIndent'>“是。”</p>
+	<p class='firstLineIndent'>桑珠活佛点头，似乎一切都在意料之中，顿了顿又问：“拉姆现在这样，你不担心吗？”</p>
+	<p class='firstLineIndent'>岳峰不明白：“担心什么？”</p>
+	<p class='firstLineIndent'>“她不记得你，像个不经事的小孩子。”</p>
+	<p class='firstLineIndent'>从再次见到季棠棠到现在，岳峰几乎没去想过这个问题，也不觉得这是个问题，他想了想，很诚恳地回答桑珠活佛。</p>
+	<p class='firstLineIndent'>“桑珠上师，能够再见到拉姆，我已经很满足了，对我来说，这是老天格外照顾，不敢要求更多，我怕要的太多，贪心不足，连眼前的都守不住，我真的满足了，真的。”</p>
+	<p class='firstLineIndent'>说到最后，忽然想起上次，光头问他同样的问题，他还曾经迟疑，这一次答，真真真正是发自肺腑。</p>
+	<p class='firstLineIndent'>或许是因为，在这期间，他彻头彻尾的失去过，所以，但凡能有一丝一毫的弥补找回，都觉得格外珍惜，治不好也没有关系，平平安安在身边就好，日子糊涂一天快乐一天辛苦一天颓废一天都是这么过，既然这样，他就慢慢照顾她好了，两个人总是在一起的。</p>
+	<p class='firstLineIndent'>桑珠活佛笑起来：“有时候，人不贪心，不伸手去讨要，佛祖反而会给你更多。你放心吧，拉姆会好起来的，事实上，她已经好起来了。”</p>
+	<p class='firstLineIndent'>岳峰不明白，桑珠活佛示意了一下车子那边：“你看她。”</p>
+	<p class='firstLineIndent'>岳峰转头看车子里的季棠棠，没人跟她争抢，她倒是挺自娱自乐的，一会鼓着腮帮子吹吹岳峰车子里挂的平安符，一会自己帮自己扣上安全带，还有一次，扯了张纸巾在车窗边上擦来擦去的。</p>
+	<p class='firstLineIndent'>桑珠活佛说：“我和拉姆认识这么久以来，她有时哭，大部分时候都是那么待着，没什么表情。一个正常人不该是这样的，正常人应该有七情六欲，会哭会笑会发脾气。拉姆的心打不开，感官也就打不开，多玛人豪爽善良淳朴热情，她生活其中，却从来没有被感染，藏北的风光那么美，她也从来看不见——这一年，她在藏北，跟她在其它任何一个角落都没什么两样，她就活在自己的世界里，她的感官屏蔽掉很多正面而美好的东西，只接收自己的情绪和回忆，把自己的痛苦无限放大，人的肌体，需要喂食很多养料，看见的，看不见的，物质的，精神的，好的要吸收，不好的要吸取教训改过，拉姆给自己供的养料太单一，太消耗元气，所以她身体不好，精神也每况愈下，突如其来的打击就会让她全面紊乱。世间万事万物，都因内在的平衡而平和长久，山没有平衡会崩，海没有平衡会起海难，我们的脚下，大地腹内，没有平衡会有地火地震，人也是一样的，包括拉姆，也包括……你。”</p>
+	<p class='firstLineIndent'>岳峰一直静静听着，听到桑珠活佛忽然提到自己，不觉愣住了。</p>
+	<p class='firstLineIndent'>“我看到了你见到拉姆的反应，拉姆对你一定很重要，过去这么久的时间，这个重要的人不在，你的生活是什么样子的？情爱失衡，环环相扣，必然影响到生活其它方面，友情亲情即便如故，在你眼里也会改换颜色，觉得处处悲苦。我搭你车时，并不觉得你太过异样，或许是你表面做的很好，应付得当，内里才失衡的厉害。”</p>
+	<p class='firstLineIndent'>“但是，你们都已经好起来了。这是我第一次看到拉姆这么不讲理的发脾气，她已经会发脾气，或许接下来就知道该怎么去笑了，各种情绪一一回来，感官也会依次打开。找回彼此，佛祖会保佑你们。”</p>
+	<p class='firstLineIndent'>桑珠活佛伸出左手，岳峰忽然省悟这是桑珠要给他摩顶，下意识跪下来。</p>
+	<p class='firstLineIndent'>“你有什么愿望？”</p>
+	<p class='firstLineIndent'>岳峰双目阖起，低声回答：“顶礼上师，我希望和棠棠相亲相爱，长长久久，像以前那样……吵吵闹闹，就这样过一辈子。”</p>
+	<p class='firstLineIndent'>桑珠活佛哈哈大笑：“汉地居士，祈愿常希望举案齐眉相敬如宾，吵吵闹闹很少听说，但终得有吵闹居中置衡，谁会为不相干之人吵闹置气，无非源于一个爱字。扎西德勒。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>桑珠活佛带着央宗和多玛藏人先回了病室，岳峰站起身来，慢慢走到车边，季棠棠眼角余光瞥到又有人走近，大为紧张，赶紧伸手扒住了车门不让开。</p>
+	<p class='firstLineIndent'>岳峰站在打开的车窗前看她，顿了顿忍不住伸手摩挲她的头发，季棠棠莫名其妙的，一时间不知道是护住车门重要还是把他手挡开重要，岳峰手心缓缓触到她柔软面颊，一时情动，低头就吻住了她的嘴唇。</p>
+	<p class='firstLineIndent'>季棠棠的眼睛一下子瞪大了。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>晚上，因为桑珠活佛他们明日就要启程，岳峰陪着桑珠活佛他们在病室里草草就餐，陈二胖原本是要跟那群车友一道出去饕餮的，临时改变主意，也死乞白赖的跟来了，说是要提升个人境界，近距离感受活佛的个人熏陶。</p>
+	<p class='firstLineIndent'>几个人围着小桌子坐着，央宗坐在床边照顾季棠棠，她一点点掰着馍往嘴里送，愁容满面无精打采的样子，桑珠活佛笑了笑，对岳峰说：“看，拉姆会发愁了。”</p>
+	<p class='firstLineIndent'>央宗也问她：“拉姆，你怎么了？”</p>
+	<p class='firstLineIndent'>季棠棠指着岳峰问他：“我是不是喜欢他啊？”</p>
+	<p class='firstLineIndent'>“喜欢”这样的话题，对央宗这样年轻的小喇嘛来说，似乎是有点不合适，央宗有点尴尬，说：“这要问你自己，你都不知道，我怎么会知道。”</p>
+	<p class='firstLineIndent'>季棠棠叹了一口气说：“他在那里亲了我了。”</p>
+	<p class='firstLineIndent'>可怜央宗的脸红的的猴屁股似的，岳峰正吃着饭，冷不防听到她这么说，想到桑珠活佛就在对面，窘的恨不得钻到地底下去，只有陈二胖乐坏了，捧着泡沫餐盒嘿嘿嘿嘿偷笑个不停。</p>
+	<p class='firstLineIndent'>季棠棠满怀期待地看央宗，等着他说话，央宗没办法，含含糊糊“哦”了一声。</p>
+	<p class='firstLineIndent'>季棠棠忧愁极了：“怎么办？岳峰会把我打死的！”</p>
+	<p class='firstLineIndent'>岳峰心里那个气啊，心说老子有那么凶么？陈二胖在边上实在忍不住了，噗一声，一口饭全喷了。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>临睡前，央宗照例给季棠棠念度母咒，桑珠活佛给了岳峰一本抄本，是色达五明佛学院版，有梵文和汉话对照的，吩咐他每天晚上也给季棠棠念一念，又带他找了大夫，大夫把许多注意事项重复了一遍，岳峰问的很仔细，一天睡满几个小时，吃什么，忌口什么，通通用手机提示记了下来，桑珠活佛笑着说：“等拉姆身体养好了，你可以带她回来看看我们，那个时候的拉姆应该会很不一样的。”</p>
+	<p class='firstLineIndent'>回到病室，季棠棠已经睡了，岳峰执意留下来守夜，换央宗他们回去休息，灯熄了，病室里却不是很暗，岳峰握着季棠棠的手，趴在床边上看她，觉得这一天经历的事情，真跟做梦似的。</p>
+	<p class='firstLineIndent'>花了一天才略微平复下去铺天盖地的喜悦，居然又重新抬头，把整个人围的团团的，他居然一点都不累，精神好的要命，真想把季棠棠叫醒了狠狠抱着狠狠亲一通狠狠倾诉一翻，到底舍不得，掏出手机调了静音，给洁瑜和毛哥各发了一条短信。</p>
+	<p class='firstLineIndent'>“老子要结婚了，准备红包吧。现在接电话不方便，有事短信回。”</p>
+	<p class='firstLineIndent'>两个人回的都巨快无比，而男人和女人的不同也在回复的短信中表现的淋漓尽致。</p>
+	<p class='firstLineIndent'>洁瑜先回。</p>
+	<p class='firstLineIndent'>“哥我错了还不行吗？我知道我找乔萌跟你相亲是我不对，但是哥你冷静一点，结婚是一辈子的事，这才几天啊你就结婚了，你了解人家吗，你们有基础吗，你——”</p>
+	<p class='firstLineIndent'>一条短信的限制字数到了，又转下一条。</p>
+	<p class='firstLineIndent'>“——不能因为气我们就随便找个人过啊，哥你想要红包我给你包几个都行，结婚必须缓一缓，这事咱回来再谈，别冲动啊哥，冲动是魔鬼。”</p>
+	<p class='firstLineIndent'>岳峰被洁瑜那句“你想要红包我给你包几个都行”给逗乐了，心说从前怎么没发现洁瑜这丫头这么有想象力的。</p>
+	<p class='firstLineIndent'>毛哥的短信只有言简意赅的一个字和言有尽意无穷的一个感叹号。</p>
+	<p class='firstLineIndent'>“啊！”</p>
+	<p class='firstLineIndent'>岳峰准备给毛哥回一个。</p>
+	<p class='firstLineIndent'>“别啊了，我意已决……”</p>
+	<p class='firstLineIndent'>正编辑着呢，毛哥的第二条短信进来了。</p>
+	<p class='firstLineIndent'>“神棍说他不同意。”</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0010'><summary><a>138第⑨章</a></summary>
+	<p class='firstLineIndent'>果然如桑珠活佛所说,季棠棠恢复的很快,第二天送桑珠活佛他们走时,她的表现已经跟常人没什么两样了,牵着央宗的衣角说：“央宗，你们要早一点回来，桑扎寺没有人就不好玩了。”</p>
+	<p class='firstLineIndent'>央宗有点难过,他是知道季棠棠要回到汉地去了,虽然师傅说她养好了身体之后“也许”会回来,但是以后的事,谁能说得准呢？他自小在桑扎寺长大，接触的除了师傅师兄就是前来祈愿跪拜的信民,季棠棠可算是唯一的朋友了。</p>
+	<p class='firstLineIndent'>他看着季棠棠上了岳峰的车子,忍不住问桑珠活佛：“师傅，就这样把她交给别人，真的没问题吗？拉姆是我们的朋友。”</p>
+	<p class='firstLineIndent'>桑珠说：“她的朋友来找她了，拉姆也到了该走的时候了。”</p>
+	<p class='firstLineIndent'>央宗忍不住争辩了句：“但是拉姆不认识他。”</p>
+	<p class='firstLineIndent'>桑珠活佛哈哈一笑，伸手指了指医院外头的大街：“你看到什么了？”</p>
+	<p class='firstLineIndent'>时候正是上午，大街上人来人往的，央宗睁大眼睛看了半天，很是迟疑地答了一句：“很多人。”</p>
+	<p class='firstLineIndent'>“这么多人，为什么拉姆只跟他走了呢？央宗，很多时候不要受耳眼口鼻的蒙蔽，内观其心，听听发自本心的声音。拉姆的本心已经认出他了，我们就不用再为她担心了。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>岳峰决定进大北线，一来是照应到陈二胖他们，二来北线的确景色独到，他想让季棠棠散散心，依桑珠活佛所说，“感官一一打开”，三来也是因为多玛在大北线上，他想去看看棠棠生活了这么久的地方。</p>
+	<p class='firstLineIndent'>但他很快就和陈二胖他们拉开距离了，原因是他老停车，季棠棠经常指着窗外“咦”一声，“咦”了他就停车，那种堆起来的草垛子，脖子上围了个大红圈就说是藏獒的獒犬，背上盖着彩色毛毡子的拍照牦牛，她都好奇的很，岳峰就牵着她近前看个究竟，陈二胖在前头等的满心纳闷，有一次忍不住开车掉头回来找，找到了差点吐血：“峰子，这一路上都是这个，有什么好看的啊，啊？再说了，她不都在这一年了吗，不是天天都看吗？”</p>
+	<p class='firstLineIndent'>岳峰不理他，就坐在草地上等季棠棠，当陈二胖是空气，过了会季棠棠看够了，过来拉岳峰，岳峰很麻利地跳起来：“走。”</p>
+	<p class='firstLineIndent'>季棠棠咯咯笑起来，对陈二胖说了句：“我喜欢他。”</p>
+	<p class='firstLineIndent'>陈二胖没好气：“为什么啊？”</p>
+	<p class='firstLineIndent'>“他乖乖的听话。”</p>
+	<p class='firstLineIndent'>陈二胖凶她：“那我要乖乖的听话你是不是也喜欢我啊？”</p>
+	<p class='firstLineIndent'>“不喜欢。”</p>
+	<p class='firstLineIndent'>“为什么？”</p>
+	<p class='firstLineIndent'>季棠棠歪着脑袋想了半天，说了句特伤陈二胖自尊的话。</p>
+	<p class='firstLineIndent'>“你胖！”</p>
+	<p class='firstLineIndent'>岳峰在一旁捂着肚子狂笑，陈二胖泪牛满面：“老子不跟你们一路了！”</p>
+	<p class='firstLineIndent'>陈二胖的车屁股后面腾起一股子土烟绝尘而去，接下来就没等过岳峰，只是每隔一段时间短信报一下到哪站了，反正根据岳峰停的频率，两边的距离是越拉越大就对了，最后一次报的时候，陈二胖已经彻底不指望他了，给他发短信说：你俩慢慢谈恋爱吧，我们要去“一措再措”了。</p>
+	<p class='firstLineIndent'>藏语里把“湖”称为“措”，譬如西藏三大圣湖纳木措、羊卓雍措、玛旁雍错。大北线以“措”多而闻名，所以大北线的旅行一般被称为“一措再措”，而大北线行近终点的色林措，更被一些人称为比圣湖还要美，但是当地人秉承不宣扬、不开发的理念。</p>
+	<p class='firstLineIndent'>“一旦开发，你们汉人就来啦，太多游客啦，哦呀，不要不要。”</p>
+	<p class='firstLineIndent'>不能第一时间“一措再措”，并不影响岳峰和季棠棠的好运气，车过茶卡盐湖时，他们看到了藏野驴。</p>
+	<p class='firstLineIndent'>还是季棠棠先发现的，她没“咦”，代之以惊讶的“哇”，岳峰车子刚停下来，她就迫不及待地摇下车窗，半个身子都探出去了。</p>
+	<p class='firstLineIndent'>岳峰从后面抱住她：“棠棠坐下，别摔着。”</p>
+	<p class='firstLineIndent'>季棠棠很不情愿的坐下来，很有些着急，但车子又不能开的太近，一旦听到车子的引擎声，藏野驴就会受惊逃散，岳峰从后座的包里把望远镜拿出来，调了远近之后给她：“拿着看。”</p>
+	<p class='firstLineIndent'>季棠棠高兴坏了，眼睛贴在望远镜上，看的目不转睛的。</p>
+	<p class='firstLineIndent'>已经是傍晚，天有些阴，茶卡盐湖好像蒙了一层淡淡的雾，远处的湖、近处的黄土和奔跑着的藏野驴，美的像是一幅油画。</p>
+	<p class='firstLineIndent'>没过多久，藏野驴就跑的无影无踪了，天上开始飘下细细的牛毛样的小雨，视野里只剩下碧蓝色的盐湖，还有湖边堆集着的雪一样的盐晶。</p>
+	<p class='firstLineIndent'>季棠棠惆怅似地叹了口气，岳峰从背后拥住她，亲亲她面颊：“走吗？”</p>
+	<p class='firstLineIndent'>“不走。”</p>
+	<p class='firstLineIndent'>不走就不走吧，岳峰就这么静静陪她待着，这里离镇子还有段距离，周围静悄悄的，偶尔有黄鸭忽然从湖面掠起，过了一会天就黑下来了，星星从盐湖四周升起来，密密麻麻，有些临在湖边，有些又像掉在湖里。</p>
+	<p class='firstLineIndent'>藏区的天气，一入夜温度就掉的特厉害，岳峰把车窗稍稍摇起了些，取了自己的围巾把她大半张脸都围起来，又把她的手包在自己手心帮她取暖。</p>
+	<p class='firstLineIndent'>也不知道过了多久，季棠棠把脸埋进他胸膛，含糊说了句：“困了。”</p>
+	<p class='firstLineIndent'>“走吗？”</p>
+	<p class='firstLineIndent'>“不走。”</p>
+	<p class='firstLineIndent'>岳峰把车窗摇上，车内空调打到最大，车灯全熄，没有光的时候，夜显得特别黑，星星也就特别亮，有时候，半空中光迹一闪，一颗流星拖着长长的尾巴就下去了，岳峰从后座拽了条毯子来把她给裹上：“棠棠，乖，好好睡觉。”</p>
+	<p class='firstLineIndent'>季棠棠提醒他：“你没给我念度母赞。”</p>
+	<p class='firstLineIndent'>岳峰暗骂自己疏忽，赶紧又把顶灯开开，从车前屉里摸出桑珠活佛给的那本书，原本以为照着汉话音译念就好，谁知道里头用字生僻，音译又没什么逻辑可循，开头就是“嗡顶礼至尊圣度母，顶礼奋迅救度母”，岳峰一字一顿，压根不知道怎么断句，读的磕磕绊绊，直觉电影电视里和尚念经伊伊呀呀摇头晃脑就这么完了，轮到自己，念了半段，汗都出来了。</p>
+	<p class='firstLineIndent'>季棠棠开始还瞪着眼睛仔细去听，后来就笑的不行，她是听惯了的，换了旁人听，只觉得是念得不顺，但她知道哪里错的离谱，所以在岳峰怀里笑的前仰后合的。</p>
+	<p class='firstLineIndent'>“岳峰，你念的没有央宗好听。”</p>
+	<p class='firstLineIndent'>岳峰正想回她一句“我又不是专业念经的”，忽然反应过来，一颗心跳的几乎快蹦出来：“棠棠，你刚叫我什么？”</p>
+	<p class='firstLineIndent'>季棠棠也看他，眼睛明澈极了：“岳峰啊，你不是叫岳峰吗，你连自己名字都不记得了吗？”</p>
+	<p class='firstLineIndent'>岳峰眼眶一热，想说什么又说不出来，末了嘴唇翕动了一下，低声说了句：“是，我念的没有央宗好听。”</p>
+	<p class='firstLineIndent'>季棠棠说：“我念给你听吧。”</p>
+	<p class='firstLineIndent'>她伸手就把顶灯关掉了，岳峰搂了搂她，轻声问：“不要灯吗？”</p>
+	<p class='firstLineIndent'>“不要，我都记下了。”</p>
+	<p class='firstLineIndent'>岳峰奇怪：“你能背下来？”</p>
+	<p class='firstLineIndent'>“桑珠活佛要我记的，他说，难过的时候，常赞颂度母，得诸佛大加持力，就能从种种灾难恐惧中解脱。”</p>
+	<p class='firstLineIndent'>她往岳峰怀里缩了缩，换了个舒服的姿势，凝神想了一下，轻声开始哼唱。</p>
+	<p class='firstLineIndent'>季棠棠是听熟念熟的，这么低声哼唱出来，分外熨帖流畅，佛教咒诵，原本就有安抚人心的力量，这样寂静夜里，低低的声音袅袅娜娜，似乎要传到无穷远处，但细细听却总在耳畔萦绕，岳峰轻轻拥着她，忽然就晃神了。</p>
+	<p class='firstLineIndent'>他想起被烧死的父亲，反目成仇的母亲，苗苗，洁瑜，雁子姐，九条，毛哥，蒋蓉，生命中兜兜转转进进出出的这些人，或让他觉得世事炎凉，或让他倍感温暖慰藉，有些他曾经想努力抓住的，最终渐行渐远，甚至反目成仇，有些当时不过尔尔的，居然闲闲淡淡，陪他走过经年，时至今日，仍是好友至交；有些以为明日可以再见的，一转身竟成永别……</p>
+	<p class='firstLineIndent'>生活就是在你意料之外发生的事，命运从不以人的意志为转移，如同一只翻云覆雨手，轻轻把你一扫一拨，你的世界就颠覆的片瓦不存，但是何其庆幸，最终的最终，繁华的末了，怀里的这个人，是他最想留住的那个。</p>
+	<p class='firstLineIndent'>一滴滚烫的热泪滴在脸上，季棠棠愣了一下，轻轻伸手抚上岳峰的脸庞，低声问他：“你哭了吗岳峰？”</p>
+	<p class='firstLineIndent'>岳峰轻轻握住她的手：“棠棠，谢谢你。”</p>
+	<p class='firstLineIndent'>“谢我什么？”</p>
+	<p class='firstLineIndent'>“谢谢你去尕奈，让我遇到你。谢谢你喜欢我，一直喜欢我，谢谢你打这个电话，让我知道你还在……谢谢……你还在……”</p>
+	<p class='firstLineIndent'>岳峰哽咽着说不下去了。</p>
+	<p class='firstLineIndent'>季棠棠有些明白，更多的是茫然，她轻声说：“岳峰，你不要难过了，我会陪着你的。”</p>
+	<p class='firstLineIndent'>岳峰低下头，轻轻吻她眼睑：“好。”</p>
+	<p class='firstLineIndent'>他还有一句没有说完，他想跟她说：“谢谢你给我一个家。”</p>
+	<p class='firstLineIndent'>少年起从那个支离破碎的家走出来，他就再也没有过家了，曾经也做过努力和尝试，时也命也，机缘不合，最终化为泡影。</p>
+	<p class='firstLineIndent'>但是这一次，他觉得不一样了，从前挡玻璃看出去，漫天的星模糊着闪耀，像是一盏又一盏归家的灯火。</p>
+	<p class='firstLineIndent'>此心安处即为家。</p>
+	<p class='firstLineIndent'>作者有话要说：这一章本来想并到下章一起发的，后来想想还是单独成一章了。或许是因为我太喜欢茶卡盐湖了，那个画一样的地方，让两人在这里驻足一晚，自己想想都觉得好美。</p>
+	<p class='firstLineIndent'>下一章可以大结局了，我应该会写个几天，不过下周之内会全部写完的。</p>
+	<p class='firstLineIndent'>放几张在大北线拍的图片，棠棠你看你待在多美的地方啊。</p>
+	<p class='firstLineIndent'>这是在茶卡盐湖拍的藏野驴，当时在越野车上，颠吧颠的对焦不准，出的片很多都糊了，但是很喜欢这种感觉，文里说像油画一样，发自肺腑啊。</p>
+	<p class='firstLineIndent'>路遇藏羚羊</p>
+	<p class='firstLineIndent'>当琼措文布村，当时是早上，拍的时候，下头的藏族小孩儿在玩耍，其中一个看见我拍，马上立正，啊啊啊啊当时肿么没有捏捏他的小脸啊</p>
+	<p class='firstLineIndent'>最后是我最喜欢的一个措，羊卓雍湖，啊啊啊啊，大美羊湖，我爱你啊，大半夜的我睡不着觉了……</p>
+</details></li>
+<li id='_primaryli'><details class='detailsSwitch' id='_details_0011'><summary><a>139【大结局】</a></summary>
+	<p class='firstLineIndent'>第三天下午,终于来到多玛。</p>
+	<p class='firstLineIndent'>季棠棠渐渐恢复,言谈之间,和一个正常人没有什么两样,但偌大拼图还缺最后也是最重要的那一块，她不记得盛家秦家，也不记得这一生最惨最痛的经历。</p>
+	<p class='firstLineIndent'>或许人的潜意识天生有自我保护机制,会自动屏蔽那些痛苦的记忆,岳峰也说不清是希望她记得还是不希望她记得,听天由命吧,老天怎么安排，自然有道理的。</p>
+	<p class='firstLineIndent'>多玛很小,只有十来顶毡帐,错落地间在山脚下，没有看到牦牛，因为来的前一日刚降了大雪，外头太冷，都被牵进毡帐里去了，倒是有只藏狗被两三个半大的小孩追的在毡帐间乱串，小孩儿大声嚷嚷着，季棠棠听了会，告诉岳峰说他们在雪地上看到了银狐，想带着藏狗去追。</p>
+	<p class='firstLineIndent'>引擎声很大，小孩儿不再揪弄藏狗，好奇而又忐忑地朝这里张望，陆续有毡帐的帘子掀开，几个藏族女人疑惑地交换着质询的眼神，直到季棠棠从车上下来，她们才舒了一口气。</p>
+	<p class='firstLineIndent'>“哦呀，拉姆。”</p>
+	<p class='firstLineIndent'>男人们都不在，头人的老婆边巴白玛比划着跟季棠棠说了很久，进帐篷的时候，季棠棠向岳峰解释，邻近的部落曲扎昨晚上有小孩被熊咬死了，曲扎的人一早上就找过来，男人们都带上家伙帮曲扎人去撵了。</p>
+	<p class='firstLineIndent'>边巴白玛把他们让进毡帐里，给岳峰倒酥油茶，奶黄色的茶面上浮着细细小小的茶渣，入口有些涩，岳峰谢过之后，捧着茶碗仔细打量四周，这里的毡帐跟一般旅游区的藏民帐篷不能同日而语，简陋的一无是处，里头一遭用草泥块混着土胚垒成矮墙，墙上堆放着青稞、酥油袋和牛粪，地上铺着羊皮子，皮子铺不到的地方，露着裸地。</p>
+	<p class='firstLineIndent'>边巴白玛看着两个人只是笑，不一会儿有个藏族女人捧着盛了牦牛肉的盆子进来，盆子边上搁了把木头柄子的小藏刀，白玛接了盆子放到桌上，一直热情地朝岳峰面前推，岳峰拿小刀切下来一条，刚送到嘴边就闻着一股腥膻味，离得近了能看到肉条上干巴巴暗红色的一道道血丝，这是生肉洒了一些盐巴暴晒风干成的，岳峰硬着头皮咬了一口，感觉像是嚼柴，又带着一股子滑腻的腥臭味，胃里面翻江倒海，差点就吐出来，季棠棠担心地看着他，乘着白玛转身的当儿，忽然从他手里头拿过来，卷折了塞进嘴里，三两下嚼了，喝了口酥油茶给硬吞下去了。</p>
+	<p class='firstLineIndent'>岳峰心里难受的很，去季棠棠毡帐的路上，他突然就在雪地里坐下来不走了，季棠棠俯□子拉他：“地上冷不冷啊。”</p>
+	<p class='firstLineIndent'>岳峰拉住她的手，硬把她也拉的蹲下：“棠棠，就过这种日子吗？”</p>
+	<p class='firstLineIndent'>季棠棠奇怪：“大家都这样啊。”</p>
+	<p class='firstLineIndent'>“你以前不这样的。”</p>
+	<p class='firstLineIndent'>“我以前什么样啊？”</p>
+	<p class='firstLineIndent'>岳峰没吭声，她还是不记得，他也不想去扰乱她，她现在这种看似平衡的状态是经不起多想和推敲的，万一引的她敏感，想起些什么导致思维混乱，又会有不必要的麻烦。</p>
+	<p class='firstLineIndent'>但岳峰还是难受，这种难受从一到多玛就开始了，季棠棠的生活比他设想的还要单调许多倍，多玛的人太少，天空太灰暗，景色也太单调，她以前那么挑食，这不吃那不吃，现在帮他吃那么难于下咽的东西，还觉得理所当然。</p>
+	<p class='firstLineIndent'>“棠棠，女孩子娇气一点才好。”</p>
+	<p class='firstLineIndent'>季棠棠奇怪地看他，不明白他怎么会提出这么个没头没脑的要求来。</p>
+	<p class='firstLineIndent'>岳峰也搞不明白自己，她渐渐恢复了，那个熟悉的棠棠渐渐回来了，自己怎么反而越来越难过了呢？</p>
+	<p class='firstLineIndent'>细细回想，他居然发现自己很喜欢她失去神智的时候，虽然让人好笑好气哭笑不得，但是那时候她想哭就哭想笑就笑，应该是最坦然开心的，也是最接近盛夏的时候——而被称作盛夏的那段日子，是她一生中最幸福的日子了吧，母亲娇着，父亲宠着，还有叶连成陪在身边，怕是连痛苦两个字长什么轮廓都不知道。</p>
+	<p class='firstLineIndent'>但是慢慢的，太多的经历打击和痛苦，她整个人就开始收敛、隐忍、谨慎、小心翼翼，变成了那个安静的棠棠，不管出了什么事，问她时总是笑笑，说“没什么”，再严重些，偷偷背着包就走掉，天大的事情一个人的肩膀就扛走了，不想连累任何一个人。</p>
+	<p class='firstLineIndent'>恃宠而骄，是骄傲还是娇气呢？如果是娇气的话，有人宠着才会也才敢娇气吧，全世界都是冷眼暗算落井下石，跌倒了还有人来踩一脚，你会娇气吗？你只会磨砺的越来越坚强，习惯笑一笑，对别人也对自己说一声“没什么”。</p>
+	<p class='firstLineIndent'>岳峰捏捏季棠棠的下巴：“棠棠，以后在我面前，想怎么样就怎么样。”</p>
+	<p class='firstLineIndent'>“想怎么样就怎么样？”</p>
+	<p class='firstLineIndent'>“想怎么样就怎么样。”</p>
+	<p class='firstLineIndent'>季棠棠眼珠子滴溜溜转了转：“想打也打吗？”</p>
+	<p class='firstLineIndent'>岳峰拽着她狠狠搂进怀里，贴着她耳边说了句：“想打就打！”</p>
+	<p class='firstLineIndent'>季棠棠惊讶极了，她挣脱出来，瞪大了眼睛看岳峰，岳峰很淡定地补充了一句：“大不了打完了，我再打你一顿，打回来呗。”</p>
+	<p class='firstLineIndent'>季棠棠险些笑岔气了，笑着笑着就咳嗽起来，岳峰搂着她帮她拍背，她说：“岳峰你也太坏了，这叫想打就打啊，我打你一顿，你再打我一顿，我哪有你劲大啊，还不是我吃亏吗。”</p>
+	<p class='firstLineIndent'>岳峰笑着不说话，他忽然想起来，自己真的是打过她的。</p>
+	<p class='firstLineIndent'>那时候，为了十三雁的死，误会丛生，气急攻心之下，抬手就抽了一记出去。</p>
+	<p class='firstLineIndent'>这么好的棠棠，自己怎么会舍得打她呢？</p>
+	<p class='firstLineIndent'>岳峰忽然就好想狠狠抽自己几巴掌，他搂紧季棠棠，轻声说了句：“棠棠，我一定对你好的，一辈子对你好的。”</p>
+	<p class='firstLineIndent'>季棠棠下巴搁在岳峰肩膀上，眯着眼睛看远处天边飘着的一丝儿云，慢悠悠下结论：“这两天说了这么多让人感动的话，一会谢谢我一会赌咒发誓的，肯定是做了对不起我的事了，嗯，肯定的。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>掀开帘子跨进季棠棠毡帐的那一刻，岳峰的胸口堵了一下，倒不是因为环境的简陋，头人的毡帐都只是那副样子，她的能好到哪里去？</p>
+	<p class='firstLineIndent'>同样的黑牦牛毛编织的毡帐，边巴白玛的帐篷里至少还是亮堂有光的，季棠棠的却没有，一掀开就是满眼的黑，角落处却又飘忽着三点橘黄色的酥油灯火，有一种潮霉的死气一直往鼻子里钻。</p>
+	<p class='firstLineIndent'>季棠棠也恍惚了一下，在帘子边站了好一会儿，才迟疑着跨了进去，帘子一放下，像是被人关进了个找不到出口的黑洞，岳峰问她：“棠棠，你住这吗？”</p>
+	<p class='firstLineIndent'>“好像……是吧。”</p>
+	<p class='firstLineIndent'>“怎么这么黑呢？”</p>
+	<p class='firstLineIndent'>“可能是因为……我不喜欢光吧。”</p>
+	<p class='firstLineIndent'>她每一次的回答都是开头迟疑，但落音时又突然笃定，这里毕竟是她熟悉的地方，岳峰有些担心，他眼看着她在外头时还言笑晏晏，进来之后，突然就像是被丝丝死气缠绕，渐渐流露出消沉避世和得过且过。</p>
+	<p class='firstLineIndent'>岳峰拉住她的手：“棠棠，我们出去走走吧。”</p>
+	<p class='firstLineIndent'>季棠棠反常的挣脱了，她盯着那三盏酥油灯看了很久，说了句：“还没有灭，白玛一直在帮我添酥油。”</p>
+	<p class='firstLineIndent'>她一边说着一边过去，到近前时两脚叠起，顺势盘腿坐下，双手合十上举，掌根先抵额，然后贴唇，最后止于心口，双唇翕动，念出六字真言。</p>
+	<p class='firstLineIndent'>唵嘛呢叭咪吽。</p>
+	<p class='firstLineIndent'>岳峰也走过去，轻轻蹲□子，问她：“棠棠，给谁点的酥油灯？”</p>
+	<p class='firstLineIndent'>季棠棠茫然，过了一会，低声说了句：“忘记了，重要……的人吧。”</p>
+	<p class='firstLineIndent'>她一边说一边自然而然把手探向边上的一盏酥油灯后，拿起来一个造相精致的手摇转经筒，手柄有些油渍发黑，显然是藏族人流传下来的老物件，季棠棠没有再看岳峰，眼帘低低垂下，慢慢摇起手中的转经筒来。</p>
+	<p class='firstLineIndent'>藏族人把经书放在转经筒里，每转动一次就相当于念诵经文一次，四处张结的经幡也是同样道理，经幡结在野外，常年累月被风吹动，吹动一次也等同念诵经文一次，自此藏地不分年月不论昼夜，经声长诵经文流转，也算是功德无量。</p>
+	<p class='firstLineIndent'>手动的转经筒如此小巧，里头当然是藏不了经书的，转轴似乎有些卡了，每转几圈，就会发出极细微的吱呀声，岳峰在羊皮毡子上坐下来，愣愣盯着她看，酥油灯的光很暗，她整个人有一半都浸在阴影里，眼睛闭着，睫毛一直在颤，有几次，岳峰发现她转动木柄的手一直不受控制的小幅度痉挛，很久才又恢复回来。</p>
+	<p class='firstLineIndent'>一个下午的漫长时光，就这样在有节律的转经筒木柄卡轴声中过去了，直到从曲扎回来的头人格列掀开毡帐的帘子，岳峰才发现外头已经跟里头一样黑了。</p>
+	<p class='firstLineIndent'>季棠棠没有动，好像对周遭的一切充耳不闻，岳峰起身去到帐篷外面跟格列说话，格列大概是多玛部落里唯一会说汉话的人，虽然发音不准，他骄傲地对岳峰说自己去过西藏第二大的城市日喀则，又热情地邀请岳峰去自己毡帐里喝酒。</p>
+	<p class='firstLineIndent'>岳峰不去，比比划划地对格列说拉姆一个人在这，他得陪着，等拉姆念完了，带她一起过去。</p>
+	<p class='firstLineIndent'>格列哈哈大笑，说，拉姆么，一直那么奇怪的。</p>
+	<p class='firstLineIndent'>她念不完的，她开始念的时候，你抬头可以看到天上的尼玛（太阳），再抬头，都看到达瓦（月亮）了，她还是没有念完呢。</p>
+	<p class='firstLineIndent'>不念经的时候，她就一个人去山坡上看云，早上给牦牛挤奶，哦呀，她站在那，太阳落山了，编牛毛的时候，她还在，不饿也不累，可是你吓不倒她的，还没有走到她身后，她就说是你啊格列。</p>
+	<p class='firstLineIndent'>她不回头就能知道来的是谁，哦呀，拉姆的眼睛是长在后脑勺上的。</p>
+	<p class='firstLineIndent'>格列可能在曲扎那里喝过酒了，说着说着就嗨的不行，一边大笑一边大力捶着岳峰的背，后来自己也说忘记了，对着岳峰叽里咕噜只是说藏语，似乎是在接连问他要不要去喝酒，末了两手一摊，一只空袍袖子往肩膀上一搭就回去了，走了没几步，忽然左右腿跨开，自顾自地唱起歌来。</p>
+	<p class='firstLineIndent'>唱的是藏语，岳峰听不懂，嗓音沙哑粗犷，拖着长长的调子，这样的环境里听起来，别有一番滋味。</p>
+	<p class='firstLineIndent'>岳峰突然就喜欢上多玛人了。</p>
+	<p class='firstLineIndent'>这样的快乐，心无城府，坦荡热情而又善良宽容，日子和环境再怎么艰苦也妨碍不了他们去大笑，去歌唱。</p>
+	<p class='firstLineIndent'>岳峰想起桑珠活佛的话。</p>
+	<p class='firstLineIndent'>——多玛人豪爽善良淳朴热情，她生活其中，却从来没有被感染。</p>
+	<p class='firstLineIndent'>岳峰为季棠棠感到庆幸，多玛人是用一颗怎样善良的心收留和包容了这个素不相识的汉族女孩儿啊，他们不了解她，纳闷于她的孤僻和面无表情，甚至惧怕她身上一些无法解释的能力，但还是接纳她，关心她，在他不及赶来的时候，力所能及地照顾她。</p>
+	<p class='firstLineIndent'>有时候，在世界尽头最荒凉的地方，摒除那些蒙蔽双目的虚幻繁华，反而能收获最淳朴的大爱，藏北一年，于季棠棠而言，不啻于一次修行，修身也修心，慢慢找回丢失了许久的宁静，还有桑珠活佛口中的，平衡。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>晚上，岳峰陪季棠棠睡在毡帐里，格列另外拿了羊毛毡子和两床被子过来让岳峰打地铺，一入夜，藏北的风就突突的，风声像是闷在喉咙里的暗吼，下一刻就要把毡帐扯没了顶去，岳峰怕季棠棠冷，睡了一会心里不踏实，又爬起来挪了一床给她盖，掖被角时她突然就睁开眼睛了，岳峰笑笑，摸了摸她头发，又低下头亲亲她眼睑，说：“乖，好好睡。”</p>
+	<p class='firstLineIndent'>季棠棠有些恍惚，轻声问了句：“你在吗？”</p>
+	<p class='firstLineIndent'>岳峰指了指地上的被子：“在呢棠棠，我就在边上，你伸伸手，我就握住你的手啦。”</p>
+	<p class='firstLineIndent'>安顿好她，岳峰才踏实下来睡觉，三盏酥油灯的光一直在角落里晃啊晃啊，岳峰翻来覆去很久才约莫有了些睡意，却又睡的不实，做各色各样的梦，最荒唐的一次，他居然梦见了季棠棠和叶连成，两个人都只四五岁年纪，蹲在一起拿小锅铲挖沙子垒城堡，季棠棠对叶连成说：“我是公主，我被妖怪抓走了，你来救我吧。”</p>
+	<p class='firstLineIndent'>岳峰又看到自己，也只有四五岁的样子，蹲在两个人边上羡慕的看，然后可怜巴巴的说：“棠棠你也跟我玩一下呗！”</p>
+	<p class='firstLineIndent'>季棠棠凶巴巴地举着铲子威胁他：“走不走？再不走我就打你了。”</p>
+	<p class='firstLineIndent'>说完一铲子就抽在他腿上。</p>
+	<p class='firstLineIndent'>钻心的痛，岳峰冷汗涔涔地醒过来，被打折过的那条腿痉挛着，好像连骨髓都在一抽一抽，他到底忽略了这里是藏北，地表下翻滚的不是熔岩热浪，而是年复一年积累下的雪域高寒，即便隔了两层羊毛毡子，寒气还是轻而易举透过，毒蛇样探头，狠狠咬了他一口。</p>
+	<p class='firstLineIndent'>岳峰咬牙撑着手臂慢慢坐起来，伸手帮着把那条腿屈近身体，整个膝盖以下木木凉凉的没有知觉，几乎不像是他身体的一部分，岳峰拽过脱在一边的衣服在腿上裹了两层，又隔着衣服搓了几下，感觉还是没什么好转，想起车里行李有暖宝宝，先寻思着出去拿，但腿上不得劲站不起来，又怕吵着了季棠棠，只好屈着身子拿手臂抱住小腿，借着怀里的温度想让小腿能尽量暖和些。</p>
+	<p class='firstLineIndent'>屏着气强忍着坐了一会，自觉痛的没那么厉害了，身子往下挪了挪，正想重新躺回去，目光所及，忽然愣了一下。</p>
+	<p class='firstLineIndent'>不知道什么时候，季棠棠已经坐起来了，就那么看着他。</p>
+	<p class='firstLineIndent'>“棠棠，我吵醒你了吗？”</p>
+	<p class='firstLineIndent'>“你的，妈妈的，还有阿成的。”</p>
+	<p class='firstLineIndent'>岳峰先还没反应过来，过了约莫五秒钟，脑子里突然一炸。</p>
+	<p class='firstLineIndent'>终于，她还是都想起来了。</p>
+	<p class='firstLineIndent'>岳峰不知道该说什么：“棠棠……”</p>
+	<p class='firstLineIndent'>“岳峰，我打了你很多电话……”</p>
+	<p class='firstLineIndent'>季棠棠只说了一句就说不下去了，她有些恍惚，眼泪不知不觉就下来了，岳峰伸手给她：“棠棠你过来。”</p>
+	<p class='firstLineIndent'>季棠棠伸手过去，岳峰握住，她的手冰凉，手臂在抖，一直担心这一刻的到来，但是真的来了，岳峰反而平静了。</p>
+	<p class='firstLineIndent'>他示意季棠棠下来，季棠棠欠身时，岳峰另一只手环住她腰，把她从床上抱下来，轻声说了句：“棠棠，要想哭的话，就狠狠哭一场吧。”</p>
+	<p class='firstLineIndent'>季棠棠没说话，她的眼泪收不住，但始终没有哭声，岳峰搂紧她，又扯了被子把她包住，哭出来才好，这么久的郁结，她是需要一次歇斯底里的发泄的。</p>
+	<p class='firstLineIndent'>“棠棠，想哭就大声哭，没人会笑话你的。”</p>
+	<p class='firstLineIndent'>季棠棠哭不出声音来，她能说话，也有眼泪，但就是哭不出声，忽然清醒之后，脑子里瞬间涌进无数的信息量，情绪的大起大落，接连而至的种种问题，现实和幻想的交叠，是梦和非梦的惶恐，她开口时，原本想问：“岳峰，我打了你很多电话，怎么从来不接呢？”</p>
+	<p class='firstLineIndent'>但是开口的一刹那，忽然觉得，那些都不重要了。</p>
+	<p class='firstLineIndent'>岳峰，你回来了。</p>
+	<p class='firstLineIndent'>回来就好。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>想象中的抱头痛哭并没有出现，这一刻真的降临，两个人都异乎寻常的安静，外头的风依然很大，有时候会呼啦一下子把什么东西掀翻，隐隐的，不知道是哪个毡帐里的牦牛烦躁，仔细听的话能听到沉闷的哼声。</p>
+	<p class='firstLineIndent'>岳峰低下头看季棠棠，在她的眼睛里清楚看到自己的样子，他伸手抚上她的脸，泪还半干，脸颊濡湿着，岳峰以前总觉得，再见到季棠棠的时候，会有一千一万句话跟她讲，真见到了，居然什么都不想说了。</p>
+	<p class='firstLineIndent'>再多的话都抵不过这样安静的拥抱。</p>
+	<p class='firstLineIndent'>“棠棠，都过去了。”</p>
+	<p class='firstLineIndent'>青藏高原被称为世界屋脊，阿里又被誉为屋脊的屋脊，这样的寂静夜里，离天最近的地方，过往种种，恍惚隔世。</p>
+	<p class='firstLineIndent'>那些永远倒在来路的人，盛泽惠，盛清屏，叶连成，双姨，秦守成，还有秦守业，那么长的纠葛，那么深的怨恨，大幕拉下，风吹白骨，浪打黄沙。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>黎明之前，季棠棠在岳峰怀里醒过来，她悄悄钻出被子，帮着岳峰掖好被角，岳峰这些日子是太累了，沉睡之下，居然没有察觉，季棠棠低头看了他很久，披上藏袍，轻手轻脚出了毡帐。</p>
+	<p class='firstLineIndent'>一片清晨的宁谧安静，黑幕中已经渗进丝丝晨曦的光，远处山尖上笼着肉眼几乎分辨不出的淡金色光弧。</p>
+	<p class='firstLineIndent'>季棠棠不停的走，直到攀上最高的土坡，高处的经幡猎猎而动，细细的拉幡绳上结着白雪，稍有风过，就淅淅簌簌掉落一些，迷迷蒙蒙地像雾。</p>
+	<p class='firstLineIndent'>上一次这么认真的守候日出，还是在……爬出秦守业家地下的时候。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>事后，季棠棠也曾无数次的想过，一个死志已萌的人，为什么突然之间又改变主意了呢？</p>
+	<p class='firstLineIndent'>只是因为秦守业不易察觉的那一笑。</p>
+	<p class='firstLineIndent'>她费尽全身的力气打开所有的煤气阀门之后，忽然双腿一软倚着个煤气罐滑坐下来，垂着头看地上，神经质一样大哭，哭完咯咯笑一阵，她是真的觉得好笑，每个人都好笑，忙忙碌碌紧紧张张，最后怎么样，谁有好下场了？</p>
+	<p class='firstLineIndent'>说不清是不是鬼使神差，她忽然就抬起头看了秦守业一眼，也正是因为这一眼，她万幸地没有错过秦守业唇角边那抹冷笑。</p>
+	<p class='firstLineIndent'>这个人至死都没有悔意，至死也不觉得抱歉，这抹冷笑像最腥的饵，勾出了她心里最毒的恶念。</p>
+	<p class='firstLineIndent'>凭什么啊，自己失去了母亲，失去了阿成，失去了岳峰，到头来还要陪上性命，但是秦守业呢？</p>
+	<p class='firstLineIndent'>他受到什么折磨了？没有，她甚至一时心软还放走了苗苗。</p>
+	<p class='firstLineIndent'>秦守业应该千刀万剐，秦家应该家破人亡。</p>
+	<p class='firstLineIndent'>季棠棠的笑声由失控转作森冷，秦守业敏感地察觉到了她的不同，愕然抬头，对上她冰锥一样的双眸。</p>
+	<p class='firstLineIndent'>察觉到她的用意之后，秦守业很快就从最初的惊惶中镇定下来：“你跑不掉的，警察都在外面，前后都有人守着，杀不杀我，你都完了。”</p>
+	<p class='firstLineIndent'>“我跑的掉。”</p>
+	<p class='firstLineIndent'>秦守业哈哈大笑：“跑得掉？你以为警察都是死的吗，除非你会飞天，又或者你像地鼠一样打个洞……”</p>
+	<p class='firstLineIndent'>他忽然不说话了，脸色刹那间暗如死灰。</p>
+	<p class='firstLineIndent'>季棠棠举起来的右手五个指尖幽碧发亮，她说：“谢谢你们秦家送我一条活路，老老少少，我一个都不会漏掉！”</p>
+	<p class='firstLineIndent'>秦守业骇极，突然歇斯底里地大叫，疯狂扭动着身体朝她爬过来，季棠棠大笑，胸腔里涌动着恶毒的报复的快意，这一刻，什么岳峰，什么叶连成，她通通抛到脑后去了，没有什么比让秦守业来的痛彻心扉更叫她畅快的了。</p>
+	<p class='firstLineIndent'>秦守业家的地砖在鬼爪面前碎如齑粉，她知道爆炸的威力会很大，所以一直往下挖，觉得足够深了之后又在壁上开偏洞，地基钢筋攀折如同竹条，地底深处的湿泥腥潮味扑面而来。</p>
+	<p class='firstLineIndent'>估摸着差不多了，她回头爬了几步，等来了洞口呼哧呼哧剧烈喘息的声音，还有那张这辈子她都不想再看到的脸。</p>
+	<p class='firstLineIndent'>她对着他微笑，用口型轻轻对他说了一句：“再见。”</p>
+	<p class='firstLineIndent'>鬼爪的力量弹出了那个刚刚打着火的火机，火焰擦过秦守业的脸，映亮他黑洞洞的眼眸，她看到秦守业愕然抬头，视线追随着那个被鬼爪弹的很高的打火机。</p>
+	<p class='firstLineIndent'>一切都好像电影里的慢动作，伴随着继之而来的一声巨响。</p>
+	<p class='firstLineIndent'>炽热的气浪迫进了地洞，沉闷、黑暗和阻滞迎头罩过来，季棠棠几乎是在瞬间就昏了过去。</p>
+	<p class='firstLineIndent'>醒过来的时候，黑的看不见五指，爆炸在地面上硬生生开出个深坑，而强大的气浪又把偏洞的洞口给堵上了，季棠棠静静地躺着，她觉得奇怪：底下一点空气都没有，她怎么没死呢？</p>
+	<p class='firstLineIndent'>下一刻她就想明白了：敦煌之后，她是可以在地下呼吸的，老天的安排多么巧妙，秦家的鬼爪和她险些丧失性命换来的异能，在最后的关卡联手把她推向活命的曙光。</p>
+	<p class='firstLineIndent'>但是又能怎么样呢，那一次有岳峰救她出来，这一次，那个人被埋在比她更深更黑的地下，永不苏醒。</p>
+	<p class='firstLineIndent'>季棠棠的眼泪慢慢顺着眼角滑落，静下来的时候，居然能听到地面透过土地传来的人声，上面一定很多人，警察吗？是不是像电视里那样带着白手套，忙着给犯罪现场拉警戒线？</p>
+	<p class='firstLineIndent'>她昏昏沉沉地想着，迷迷糊糊地再次睡过去，再次醒来是给饿的，人在饿昏了头的时候，只剩下最基本的本能反应，她再一次启用了鬼爪。</p>
+	<p class='firstLineIndent'>总不能啃地下的泥土充饥，她想要吃的。</p>
+	<p class='firstLineIndent'>她挖了很久很久，挖到了丛生的植物长长伸入地下的根须，她记得小区最外围是有绿化带的，这样很合适，总比在大马路中央突然探出头来收敛和低调。</p>
+	<p class='firstLineIndent'>实际情况比她想的还要好一些，确实是在绿化带，但是更远，距离那个小区差不多有一条街，天色蒙蒙黑，路面上没有人，她艰难的从洞里爬出来，又拔拉了边上的土块把洞口堵住，理了理散乱的头发，抖罗了一□上的泥，茫然的往路的另一头走。</p>
+	<p class='firstLineIndent'>走近了，渐渐有人声，原来这是商铺一条街，很多早起卖早点的摊贩陆续出摊了，季棠棠等在一个摊煎饼的推车前头，出摊的是个五十来岁的中年男人，一边摊一边跟她拉话：“开张生意，这个月最早的一次了。”</p>
+	<p class='firstLineIndent'>季棠棠没说话，煎饼摊好了叠起切段塞油纸袋里，油腻腻的，但是很香，她拿了坐到街边的台阶上，一口一口地咬，咬一口嚼很久，眼泪顺着脸颊滑进嘴里，下一刻抬头，忽然就看见了日出。</p>
+	<p class='firstLineIndent'>在远处的楼顶上，露出了橘红色的一角。</p>
+	<p class='firstLineIndent'>小时候写作文，她写“太阳公公露出了半边脸，慈祥的对我微笑”，中学的时候上英文课，老师说：“每天的太阳都是新的，tomorrowisanotherday，任何时候都要充满希望去拥抱明天。”</p>
+	<p class='firstLineIndent'>她新生了不是吗，秦家附骨入髓的追踪，盛家挥之不去的阴霾，纠葛，杀害，对亲人的连累，伴随着秦家那一声巨响，俱成飞灰，他们会以为她死了，而她又悄无声息的复活在这里，从此过正常人的生活，这不正是她这么久以来梦寐以求的事吗？</p>
+	<p class='firstLineIndent'>但是她的失去呢？她失去了那么多，那些她爱的人都是代价吗？何其荒唐，她可以拒绝吗？只要换他们平安。</p>
+	<p class='firstLineIndent'>在秦守业面前，她放过狠话要“一个都不放过”，但是现在，突然间心如死灰。</p>
+	<p class='firstLineIndent'>那块煎饼，到底没有吃完，她攥紧那个油纸袋，在街边失声痛哭到不能自已。</p>
+	<p class='firstLineIndent'>有个小姑娘好奇地在边上看她，忽然就指着她大叫：“妈妈妈妈，这个姐姐在哭。”</p>
+	<p class='firstLineIndent'>季棠棠抬起头，小姑娘的母亲有点慌，低声训斥女儿：“囡囡，不要乱说话。”</p>
+	<p class='firstLineIndent'>小姑娘有点委屈，胖乎乎的手指含在嘴里，一手攥着妈妈的裤脚往她背后缩，季棠棠冲着她微笑了一下，摇摇晃晃地站起来，向外走去。</p>
+	<p class='firstLineIndent'>她信步沿着街道一直走，走过市中心，走过人气渐消的市郊，走到出城的柏油道，地面微微颤动，身后来了辆货车重卡，季棠棠停下脚步，下意识扬手。</p>
+	<p class='firstLineIndent'>车子在她前头十来米处停下来，司机探出头来，操着一口四川口音：“妹儿，你去哪噻？”</p>
+	<p class='firstLineIndent'>这是跑长途去新疆的货车，季棠棠踩着脚蹬爬进驾驶室里，当着司机的面把身上所有的钱都掏出来，几张大额的，剩下的都是毛票子，她把钱往司机面前一推，说：“我也去。”</p>
+	<p class='firstLineIndent'>司机觉得她很奇怪，还想问她什么，她脱下外套盖到身上，说：“师傅你慢慢开，我要睡觉了。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>货车开的很慢，沿途在各个点停，卸货，又补货，司机是个老粗，每次看签收单都抓耳挠腮，季棠棠会接过来帮他看，帮他算每笔货该卸多少，还剩多少，司机大为感激，渐渐熟络，也愿意帮她行方便，知道她没身份证，遇到检查时会让她藏进货仓，或者提前下车，抄小路到前头的站点等，车到的时候再接上她。</p>
+	<p class='firstLineIndent'>也会劝她：“妹儿，跟家里认个错噻。”</p>
+	<p class='firstLineIndent'>季棠棠说：“我爸让我滚的，他说我不要脸，一分钱都不让带，身份证都让他撅了折了。”</p>
+	<p class='firstLineIndent'>她把十三雁的故事给套到自己身上了，主动说出不堪的事会轻而易举赢得信任和同情，跑长途的司机见多了黑的灰的，唏嘘之下，反而为她担心多些：“妹儿，你一个人在外头不是办法噻。”</p>
+	<p class='firstLineIndent'>“我在新疆有朋友，到了就好了。”</p>
+	<p class='firstLineIndent'>司机叹气，估计是觉得她也挺可怜的，后来寻了个机会把钱又还给她了。</p>
+	<p class='firstLineIndent'>有一次半夜行车，凌晨三点多停在个夜值的便利店门口，司机进去买烟，出来的时候看到季棠棠在外头的玻璃电话亭里打电话，他在驾驶室等着，她上车的时候，司机问她：“给家里打啊？”</p>
+	<p class='firstLineIndent'>季棠棠有点恍惚：“给朋友打。”</p>
+	<p class='firstLineIndent'>“说啥子？你爸妈找他打听你了没？”</p>
+	<p class='firstLineIndent'>季棠棠没说话，车子开动的时候，她低声说了句：“没人接，可能睡着了。”</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>车子一直开到喀什，季棠棠在那里待了几天，搭了一辆内地援建阿里的车进藏，司机一路都在跟她摆忽高原的可怕，高反、严寒、恶劣的天气、物资的匮乏，还有人口稀少。</p>
+	<p class='firstLineIndent'>季棠棠静静听着。</p>
+	<p class='firstLineIndent'>这不就是她想找的地方吗，安安静静的待着，不要那么吵，不要那么多人，苦一点没所谓，身体上受的苦多了，心里也会好受些。</p>
+	<p class='firstLineIndent'>车子在桑扎放下她，司机说：“车子要直接去工地上，后面就没大的镇子了，你就在这下吧。”</p>
+	<p class='firstLineIndent'>桑扎很小，但总有过路的车在这里中转，她觉得应该还有更安静的地方，她向当地人打听，藏民听不懂汉话，只好引着她去桑扎寺。</p>
+	<p class='firstLineIndent'>接待她的是个脸庞圆圆的年轻小喇嘛，叫央宗，她第一句话就问：“我听说藏北是无人区，常年没有人的，是不是还要从桑扎往西走？”</p>
+	<p class='firstLineIndent'>央宗吓了一跳，他头一次看到一个孤身的姑娘要去无人区的，他问她：“你是游客吗？”</p>
+	<p class='firstLineIndent'>“不是，我要住下来。”</p>
+	<p class='firstLineIndent'>住下来，住到无人区里去吗？那怎么活的下来？</p>
+	<p class='firstLineIndent'>央宗傻眼了，领着她去见桑珠活佛。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>往事历历，如在眼前，太阳渐渐升起来了，季棠棠蹲□子，捡了块石头去挖拉幡绳脚下的泥地。</p>
+	<p class='firstLineIndent'>桑珠活佛来多玛看过她，问她：“拉姆，帐子里太黑，为什么不留进光的地方呢？”</p>
+	<p class='firstLineIndent'>她说：“毡帐太厚了，光进不来。”</p>
+	<p class='firstLineIndent'>“拉姆，毡帐就像你的心，不把心打开，光是永远进不来的。”</p>
+	<p class='firstLineIndent'>“我习惯了。”</p>
+	<p class='firstLineIndent'>桑珠活佛笑起来。</p>
+	<p class='firstLineIndent'>他说：“我曾经去过青海和四川游学，交过很多汉人朋友。你们汉人常把光比作是希望，有谁会习惯没有希望的日子呢？拉姆，你心里没有希望吗？”</p>
+	<p class='firstLineIndent'>“没有。”</p>
+	<p class='firstLineIndent'>“真的没有？”</p>
+	<p class='firstLineIndent'>“不可能实现的。”</p>
+	<p class='firstLineIndent'>“那就是有。”</p>
+	<p class='firstLineIndent'>有，没有，没有，有，文字游戏吗？</p>
+	<p class='firstLineIndent'>“不可能实现的希望，也叫希望吗？”</p>
+	<p class='firstLineIndent'>“也叫希望。佛祖会知道。”</p>
+	<p class='firstLineIndent'>“但是佛祖不会帮我达成希望的。”</p>
+	<p class='firstLineIndent'>“你怎么知道不会呢？你觉得实现不了的事情，佛祖未必实现不了，我们都是凡人，他才是佛祖啊。”</p>
+	<p class='firstLineIndent'>临走之前，桑珠活佛带着季棠棠在拉幡绳下埋了一袋风马旗。</p>
+	<p class='firstLineIndent'>“拉姆，你要相信佛祖对每个人都有安排。”</p>
+	<p class='firstLineIndent'>“我不信佛，佛祖也会对我有安排吗？”</p>
+	<p class='firstLineIndent'>桑珠活佛又笑了：“会，佛祖对每一个善良的人都有安排。拉姆，希望实现的时候，回到这里来，扬风马旗，感谢佛祖的保佑。”</p>
+	<p class='firstLineIndent'>“那我一辈子都用不到这些风马旗了。”</p>
+	<p class='firstLineIndent'>桑珠活佛忽然就眨了眨眼睛：“你怎么知道不会呢？”</p>
+	<p class='firstLineIndent'>你怎么知道不会呢？</p>
+	<p class='firstLineIndent'>季棠棠抛下手中的石头，拿出被塑料袋绑的扎扎实实的一包风马旗，五颜六色的一沓沓，印的图案都是驮着佛法僧三宝的矫健宝马，四角是金翅鸟、龙、老虎和狮子。</p>
+	<p class='firstLineIndent'>风大起来，季棠棠默念六字真言，然后扬起风马，迎风洒向高空。</p>
+	<p class='firstLineIndent'>风马旗很薄很轻，借着风势，飘飘扬扬飞出去，又缓缓落下，半面皑皑雪坡，顷刻间就点缀上无数色彩纹络。</p>
+	<p class='firstLineIndent'>你怎么知道不会呢？</p>
+	<p class='firstLineIndent'>扎西德勒。</p>
+	<p class='firstLineIndent'>————————————————————</p>
+	<p class='firstLineIndent'>季棠棠原路返回，她低头看地上的风马，小心地不去踩踏，无意间一抬头，忽然就愣了。</p>
+	<p class='firstLineIndent'>岳峰就站在离她十多米远的地方，看着她微笑。</p>
+	<p class='firstLineIndent'>也不知道他在那里站了多久了。</p>
+	<p class='firstLineIndent'>见她不动，岳峰叫她：“棠棠，走过来啊。”</p>
+	<p class='firstLineIndent'>走过来？</p>
+	<p class='firstLineIndent'>季棠棠看地上，那里只有一行脚印，是她上山的脚印，小小深深的雪窝子，她沿着那行脚印慢慢向岳峰走过去，周围安静极了，脚下的雪发出沙沙的踩实声，她像是走独木桥，小心翼翼又摇摇晃晃，近前时，岳峰握住她一只手帮她站稳，季棠棠咯咯笑起来。</p>
+	<p class='firstLineIndent'>岳峰捏捏她下巴：“傻不傻啊？”</p>
+	<p class='firstLineIndent'>说完了，单腿缓缓屈膝下跪，然后抬头看她。</p>
+	<p class='firstLineIndent'>“棠棠，你知道我要干什么吗？”</p>
+	<p class='firstLineIndent'>季棠棠不说话，她有点慌，被岳峰托住的手微微发颤发烫，这热度慢慢就传到了脸颊上。</p>
+	<p class='firstLineIndent'>她避开岳峰的目光，嗫嚅着低声说了一句：“你要是不说，谁知道你想干什么呢。”</p>
+	<p class='firstLineIndent'>【全文完】</p>
+	<p class='firstLineIndent'>作者有话要说：恩恩，还有一章番外，神棍锅锅的番外，于是有一些大家关心的问题，会在番外里写到。</p>
+	<p class='firstLineIndent'>本文由TXT 书香中文网电子书网提供下载，更多好书请访问http://www.sxcnw.org/</p>
+</details></li>
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< Ender, insert new list item above this line >>>> -->
+</ul>
+<button class="navButtonLeft" onclick="window.location.href='index_04.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+<button class="navButtonRight" onclick="window.location.href='index_05.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+<script>
+
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-5;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+</script>
+</body>
+</html>
