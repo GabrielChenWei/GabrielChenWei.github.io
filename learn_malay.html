@@ -95,18 +95,33 @@
             font-size: 18px;
             color: #333;
         }
+        .level-select {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body onload="funcInitialization()">
     <header>
         <div class="container">
             <div id="branding">
-                <h1>Learn Malay</h1>
+                <h1>Learn Malay, 19-Jul-2025, 10.12 PM</h1>
             </div>
         </div>
     </header>
 
     <section id="main" class="container">
+		<div class="level-select">
+			<label for="level">Select Level:</label>
+			<select id="level" onchange="funcInitialization()">
+				<option value="1">Level 1</option>
+				<option value="2" selected>Level 2</option>
+				<option value="3">Level 3</option>
+				<option value="4">Level 4</option>
+				<option value="5">Level 5</option>
+			</select>
+		</div>
+
+
         <div id="flashcards" class="flashcard">
             <h2>Flashcards</h2>
             <p id="flashcard-content"></p>
@@ -126,354 +141,579 @@
     <script>
         const data = {
             flashcards: [
-{ "malay": "Selamat datang", "english": "Welcome" },
-{ "malay": "Terima kasih", "english": "Thank you" },
-{ "malay": "Apa khabar?", "english": "How are you?" },
-{ "malay": "Selamat pagi", "english": "Good morning" },
-{ "malay": "Selamat malam", "english": "Good night" },
-{ "malay": "Selamat tinggal", "english": "Goodbye" },
-{ "malay": "Maaf", "english": "Sorry" },
-{ "malay": "Tolong", "english": "Please" },
-{ "malay": "Ya", "english": "Yes" },
-{ "malay": "Tidak", "english": "No" },
-{ "malay": "Nama saya", "english": "My name is" },
-{ "malay": "Selamat petang", "english": "Good evening" },
-{ "malay": "Selamat tengah hari", "english": "Good afternoon" },
-{ "malay": "Jumpa lagi", "english": "See you again" },
-{ "malay": "Selamat jalan", "english": "Safe journey" },
-{ "malay": "Selamat sejahtera", "english": "Peace be upon you" },
-{ "malay": "Selamat berkenalan", "english": "Nice to meet you" },
-{ "malay": "Selamat makan", "english": "Enjoy your meal" },
-{ "malay": "Selamat tidur", "english": "Good sleep" },
-{ "malay": "Selamat bekerja", "english": "Have a good work" },
-{ "malay": "Selamat belajar", "english": "Happy studying" },
-{ "malay": "Selamat bercuti", "english": "Happy holidays" },
-{ "malay": "Selamat hari jadi", "english": "Happy birthday" },
-{ "malay": "Selamat hari raya", "english": "Happy Eid" },
-{ "malay": "Selamat tahun baru", "english": "Happy New Year" },
-{ "malay": "Selamat hari Krismas", "english": "Merry Christmas" },
-{ "malay": "Selamat hari ibu", "english": "Happy Mother's Day" },
-{ "malay": "Selamat hari bapa", "english": "Happy Father's Day" },
-{ "malay": "Selamat hari guru", "english": "Happy Teacher's Day" },
-{ "malay": "Selamat hari pekerja", "english": "Happy Labor Day" },
-{ "malay": "Saya suka", "english": "I like" },
-{ "malay": "Saya tidak suka", "english": "I don't like" },
-{ "malay": "Saya lapar", "english": "I am hungry" },
-{ "malay": "Saya dahaga", "english": "I am thirsty" },
-{ "malay": "Saya penat", "english": "I am tired" },
-{ "malay": "Saya gembira", "english": "I am happy" },
-{ "malay": "Saya sedih", "english": "I am sad" },
-{ "malay": "Saya marah", "english": "I am angry" },
-{ "malay": "Saya takut", "english": "I am afraid" },
-{ "malay": "Saya sakit", "english": "I am sick" },
-{ "malay": "Saya sihat", "english": "I am healthy" },
-{ "malay": "Saya perlukan bantuan", "english": "I need help" },
-{ "malay": "Tolong saya", "english": "Help me" },
-{ "malay": "Di mana tandas?", "english": "Where is the toilet?" },
-{ "malay": "Berapa harganya?", "english": "How much is it?" },
-{ "malay": "Saya tidak faham", "english": "I don't understand" },
-{ "malay": "Boleh ulang?", "english": "Can you repeat?" },
-{ "malay": "Cakap perlahan", "english": "Speak slowly" },
-{ "malay": "Saya belajar Bahasa Melayu", "english": "I am learning Malay" },
-{ "malay": "Saya dari", "english": "I am from" },
-{ "malay": "Saya tinggal di", "english": "I live in" },
-{ "malay": "Saya suka makan", "english": "I like to eat" },
-{ "malay": "Saya suka minum", "english": "I like to drink" },
-{ "malay": "Saya suka membaca", "english": "I like to read" },
-{ "malay": "Saya suka menulis", "english": "I like to write" },
-{ "malay": "Saya suka berjalan", "english": "I like to walk" },
-{ "malay": "Saya suka melancong", "english": "I like to travel" },
-{ "malay": "Saya suka belajar", "english": "I like to study" },
-{ "malay": "Saya suka bekerja", "english": "I like to work" },
-{ "malay": "Saya suka bermain", "english": "I like to play" },
-{ "malay": "Saya suka muzik", "english": "I like music" },
-{ "malay": "Saya suka menonton televisyen", "english": "I like to watch television" },
-{ "malay": "Saya suka berenang", "english": "I like to swim" },
-{ "malay": "Saya suka memasak", "english": "I like to cook" },
-{ "malay": "Saya suka melukis", "english": "I like to draw" },
-{ "malay": "Saya suka menari", "english": "I like to dance" },
-{ "malay": "Saya suka berlari", "english": "I like to run" },
-{ "malay": "Saya suka berbasikal", "english": "I like to cycle" },
-{ "malay": "Saya suka berkebun", "english": "I like gardening" },
-{ "malay": "Saya suka fotografi", "english": "I like photography" },
-{ "malay": "Saya suka haiwan", "english": "I like animals" },
-{ "malay": "Saya suka alam semula jadi", "english": "I like nature" },
-{ "malay": "Saya suka filem", "english": "I like movies" },
-{ "malay": "Saya suka seni", "english": "I like art" },
-{ "malay": "Saya suka bahasa", "english": "I like languages" },
-{ "malay": "Saya suka teknologi", "english": "I like technology" },
-{ "malay": "Saya suka membaca buku", "english": "I like reading books" },
-{ "malay": "Saya suka bermain muzik", "english": "I like playing music" },
-{ "malay": "Saya suka menonton wayang", "english": "I like watching movies" },
-{ "malay": "Saya suka melawat muzium", "english": "I like visiting museums" },
-{ "malay": "Apa ini?", "english": "What is this?" },
-{ "malay": "Di mana?", "english": "Where?" },
-{ "malay": "Bila?", "english": "When?" },
-{ "malay": "Kenapa?", "english": "Why?" },
-{ "malay": "Bagaimana?", "english": "How?" },
-{ "malay": "Siapa?", "english": "Who?" },
-{ "malay": "Boleh saya bantu?", "english": "Can I help?" },
-{ "malay": "Boleh saya duduk di sini?", "english": "Can I sit here?" },
-{ "malay": "Ada Wi-Fi?", "english": "Is there Wi-Fi?" },
-{ "malay": "Di mana stesen bas?", "english": "Where is the bus station?" },
-{ "malay": "Di mana stesen kereta api?", "english": "Where is the train station?" },
-{ "malay": "Di mana hotel?", "english": "Where is the hotel?" },
-{ "malay": "Di mana restoran?", "english": "Where is the restaurant?" },
-{ "malay": "Di mana pasar?", "english": "Where is the market?" },
-{ "malay": "Jam berapa sekarang?", "english": "What time is it now?" },
-{ "malay": "Hari ini hari apa?", "english": "What day is today?" },
-{ "malay": "Esok", "english": "Tomorrow" },
-{ "malay": "Semalam", "english": "Yesterday" },
-{ "malay": "Hari ini", "english": "Today" },
-{ "malay": "Sekarang", "english": "Now" },
-{ "malay": "Saya ingin membeli ini", "english": "I want to buy this" },
-{ "malay": "Berapa harga tiket?", "english": "How much is the ticket?" },
-{ "malay": "Saya perlukan doktor", "english": "I need a doctor" },
-{ "malay": "Di mana hospital?", "english": "Where is the hospital?" },
-{ "malay": "Saya suka cuaca hari ini", "english": "I like today's weather" },
-{ "malay": "Cuaca panas", "english": "It's hot" },
-{ "malay": "Cuaca sejuk", "english": "It's cold" },
-{ "malay": "Cuaca hujan", "english": "It's rainy" },
-{ "malay": "Cuaca mendung", "english": "It's cloudy" },
-{ "malay": "Cuaca cerah", "english": "It's sunny" },
-{ "malay": "Saya mahu pergi ke sana", "english": "I want to go there" },
-{ "malay": "Saya sedang mencari alamat ini", "english": "I am looking for this address" },
-{ "malay": "Saya suka makanan pedas", "english": "I like spicy food" },
-{ "malay": "Saya tidak makan daging", "english": "I don't eat meat" },
-{ "malay": "Saya alergi kepada kacang", "english": "I am allergic to nuts" },
-{ "malay": "Saya perlukan air", "english": "I need water" },
-{ "malay": "Saya mahu teh ais", "english": "I want iced tea" },
-{ "malay": "Saya mahu kopi panas", "english": "I want hot coffee" },
-{ "malay": "Saya mahu nasi goreng", "english": "I want fried rice" },
-{ "malay": "Saya mahu mee goreng", "english": "I want fried noodles" },
-{ "malay": "Saya bangun pagi", "english": "I wake up in the morning" },
-{ "malay": "Saya mandi", "english": "I take a shower" },
-{ "malay": "Saya bersarapan", "english": "I eat breakfast" },
-{ "malay": "Saya pergi kerja", "english": "I go to work" },
-{ "malay": "Saya pulang ke rumah", "english": "I return home" },
-{ "malay": "Saya berehat", "english": "I rest" },
-{ "malay": "Saya tidur", "english": "I sleep" },
-{ "malay": "Saya suka bersenam", "english": "I like to exercise" },
-{ "malay": "Saya suka yoga", "english": "I like yoga" },
-{ "malay": "Saya suka meditasi", "english": "I like meditation" },
-{ "malay": "Saya rasa letih", "english": "I feel tired" },
-{ "malay": "Saya rasa tenang", "english": "I feel calm" },
-{ "malay": "Saya rasa bimbang", "english": "I feel worried" },
-{ "malay": "Saya rasa teruja", "english": "I feel excited" },
-{ "malay": "Saya rasa kecewa", "english": "I feel disappointed" },
-{ "malay": "Saya rasa bangga", "english": "I feel proud" },
-{ "malay": "Saya rasa malu", "english": "I feel shy" },
-{ "malay": "Saya rasa bosan", "english": "I feel bored" },
-{ "malay": "Saya rasa sibuk", "english": "I feel busy" },
-{ "malay": "Saya rasa bebas", "english": "I feel free" },
-{ "malay": "Ke kiri", "english": "To the left" },
-{ "malay": "Ke kanan", "english": "To the right" },
-{ "malay": "Terus", "english": "Straight ahead" },
-{ "malay": "Berhenti di sini", "english": "Stop here" },
-{ "malay": "Saya mahu ke lapangan terbang", "english": "I want to go to the airport" },
-{ "malay": "Saya mahu ke hotel", "english": "I want to go to the hotel" },
-{ "malay": "Saya mahu ke stesen kereta api", "english": "I want to go to the train station" },
-{ "malay": "Saya mahu ke pusat bandar", "english": "I want to go to the city center" },
-{ "malay": "Berapa jauh?", "english": "How far is it?" },
-{ "malay": "Berapa lama perjalanan?", "english": "How long is the journey?" },
-{ "malay": "Adakah ini bas ke...", "english": "Is this the bus to..." },
-{ "malay": "Bila bas seterusnya?", "english": "When is the next bus?" },
-{ "malay": "Di mana saya boleh beli tiket?", "english": "Where can I buy a ticket?" },
-{ "malay": "Saya mahu sewa kereta", "english": "I want to rent a car" },
-{ "malay": "Adakah ini tempat letak kereta?", "english": "Is this a parking area?" },
-{ "malay": "Saya sesat", "english": "I am lost" },
-{ "malay": "Boleh tunjukkan peta?", "english": "Can you show me the map?" },
-{ "malay": "Adakah ini jalan ke...", "english": "Is this the way to..." },
-{ "malay": "Saya mahu pulang", "english": "I want to go home" },
-{ "malay": "Boleh saya tumpang?", "english": "Can I get a ride?" },
-{ "malay": "Saya mahu beli ini", "english": "I want to buy this" },
-{ "malay": "Ada saiz lain?", "english": "Do you have another size?" },
-{ "malay": "Ada warna lain?", "english": "Do you have another color?" },
-{ "malay": "Saya hanya tengok-tengok", "english": "I'm just looking" },
-{ "malay": "Boleh kurang harga?", "english": "Can you lower the price?" },
-{ "malay": "Saya mahu bayar tunai", "english": "I want to pay in cash" },
-{ "malay": "Saya mahu guna kad kredit", "english": "I want to use a credit card" },
-{ "malay": "Resit, tolong", "english": "Receipt, please" },
-{ "malay": "Ini terlalu mahal", "english": "This is too expensive" },
-{ "malay": "Ada diskaun?", "english": "Is there a discount?" },
-{ "malay": "Saya mahu makan di sini", "english": "I want to eat here" },
-{ "malay": "Saya mahu bungkus", "english": "I want takeaway" },
-{ "malay": "Menu, tolong", "english": "Menu, please" },
-{ "malay": "Ada makanan vegetarian?", "english": "Do you have vegetarian food?" },
-{ "malay": "Saya mahu air kosong", "english": "I want plain water" },
-{ "malay": "Makanan ini sedap", "english": "This food is delicious" },
-{ "malay": "Saya sudah kenyang", "english": "I am full" },
-{ "malay": "Boleh saya dapat bil?", "english": "Can I get the bill?" },
-{ "malay": "Terima kasih atas layanan", "english": "Thank you for the service" },
-{ "malay": "Jumpa lagi", "english": "See you again" },
-{ "malay": "Ini keluarga saya", "english": "This is my family" },
-{ "malay": "Ini ibu saya", "english": "This is my mother" },
-{ "malay": "Ini bapa saya", "english": "This is my father" },
-{ "malay": "Ini abang saya", "english": "This is my older brother" },
-{ "malay": "Ini kakak saya", "english": "This is my older sister" },
-{ "malay": "Ini adik saya", "english": "This is my younger sibling" },
-{ "malay": "Ini anak saya", "english": "This is my child" },
-{ "malay": "Ini suami saya", "english": "This is my husband" },
-{ "malay": "Ini isteri saya", "english": "This is my wife" },
-{ "malay": "Ini datuk saya", "english": "This is my grandfather" },
-{ "malay": "Ini nenek saya", "english": "This is my grandmother" },
-{ "malay": "Ini sepupu saya", "english": "This is my cousin" },
-{ "malay": "Ini kawan saya", "english": "This is my friend" },
-{ "malay": "Saya sayang awak", "english": "I love you" },
-{ "malay": "Saya rindu awak", "english": "I miss you" },
-{ "malay": "Awak sangat baik", "english": "You are very kind" },
-{ "malay": "Awak cantik", "english": "You are beautiful" },
-{ "malay": "Awak kacak", "english": "You are handsome" },
-{ "malay": "Saya suka berkawan dengan awak", "english": "I like being friends with you" },
-{ "malay": "Mari kita berkenalan", "english": "Let's get to know each other" },
-{ "malay": "Awak buat apa?", "english": "What are you doing?" },
-{ "malay": "Saya sedang bekerja", "english": "I am working" },
-{ "malay": "Saya sedang belajar", "english": "I am studying" },
-{ "malay": "Saya sedang berehat", "english": "I am resting" },
-{ "malay": "Saya sedang berjalan-jalan", "english": "I am going for a walk" },
-{ "malay": "Saya suka bahasa ini", "english": "I like this language" },
-{ "malay": "Boleh awak bantu saya?", "english": "Can you help me?" },
-{ "malay": "Sudah makan?", "english": "Have you eaten?" },
-{ "malay": "Belum lagi", "english": "Not yet" },
-{ "malay": "Sudah", "english": "Already" },
-{ "malay": "Saya tidak pasti", "english": "I am not sure" },
-{ "malay": "Tiada masalah", "english": "No problem" },
-{ "malay": "Ambil masa anda", "english": "Take your time" },
-{ "malay": "Saya suka suasana di sini", "english": "I like the atmosphere here" },
-{ "malay": "Awak dari mana?", "english": "Where are you from?" },
-{ "malay": "Awak buat kerja apa?", "english": "What do you do for work?" },
-{ "malay": "Saya seorang pelajar", "english": "I am a student" },
-{ "malay": "Saya seorang guru", "english": "I am a teacher" },
-{ "malay": "Saya bekerja di pejabat", "english": "I work in an office" },
-{ "malay": "Saya bercuti", "english": "I am on holiday" },
-{ "malay": "Saya di sini untuk melancong", "english": "I am here for travel" },
-{ "malay": "Saya suka tempat ini", "english": "I like this place" },
-{ "malay": "Cuaca hari ini sangat baik", "english": "The weather today is very nice" },
-{ "malay": "Mari kita pergi", "english": "Let's go" },
-{ "malay": "Jangan risau", "english": "Don't worry" },
-{ "malay": "Berhati-hati", "english": "Be careful" },
-{ "malay": "Saya suka belajar budaya baru", "english": "I like learning new cultures" },
-{ "malay": "Bahasa Melayu menyeronokkan", "english": "Malay is fun" },
-{ "malay": "Ini pengalaman yang baik", "english": "This is a good experience" },
-{ "malay": "Saya lapar", "english": "I am hungry" },
-{ "malay": "Saya dahaga", "english": "I am thirsty" },
-{ "malay": "Saya penat", "english": "I am tired" },
-{ "malay": "Saya gembira", "english": "I am happy" },
-{ "malay": "Saya sedih", "english": "I am sad" },
-{ "malay": "Saya sakit", "english": "I am sick" },
-{ "malay": "Saya mahu tidur", "english": "I want to sleep" },
-{ "malay": "Saya mahu makan", "english": "I want to eat" },
-{ "malay": "Mari makan", "english": "Let's eat" },
-{ "malay": "Awak sudah mandi?", "english": "Have you showered?" },
-{ "malay": "Saya belum mandi", "english": "I haven’t showered yet" },
-{ "malay": "Tolong buka lampu", "english": "Please turn on the light" },
-{ "malay": "Tolong tutup kipas", "english": "Please turn off the fan" },
-{ "malay": "Saya mahu keluar", "english": "I want to go out" },
-{ "malay": "Saya mahu balik", "english": "I want to go home" },
-{ "malay": "Saya di rumah", "english": "I am at home" },
-{ "malay": "Saya di luar", "english": "I am outside" },
-{ "malay": "Pintu terbuka", "english": "The door is open" },
-{ "malay": "Tingkap tertutup", "english": "The window is closed" },
-{ "malay": "Bilik ini bersih", "english": "This room is clean" },
-{ "malay": "Meja itu kotor", "english": "That table is dirty" },
-{ "malay": "Saya mahu berehat", "english": "I want to rest" },
-{ "malay": "Mari jalan-jalan", "english": "Let's go for a walk" },
-{ "malay": "Awak sibuk?", "english": "Are you busy?" },
-{ "malay": "Saya sedang tengok TV", "english": "I am watching TV" },
-{ "malay": "Saya sedang guna telefon", "english": "I am using the phone" },
-{ "malay": "Awak nak minum apa?", "english": "What would you like to drink?" },
-{ "malay": "Air kosong", "english": "Plain water" },
-{ "malay": "Air sejuk", "english": "Cold drink" },
-{ "malay": "Air panas", "english": "Hot drink" },
-{ "malay": "Satu", "english": "One" },
-{ "malay": "Dua", "english": "Two" },
-{ "malay": "Tiga", "english": "Three" },
-{ "malay": "Empat", "english": "Four" },
-{ "malay": "Lima", "english": "Five" },
-{ "malay": "Enam", "english": "Six" },
-{ "malay": "Tujuh", "english": "Seven" },
-{ "malay": "Lapan", "english": "Eight" },
-{ "malay": "Sembilan", "english": "Nine" },
-{ "malay": "Sepuluh", "english": "Ten" },
-{ "malay": "Merah", "english": "Red" },
-{ "malay": "Biru", "english": "Blue" },
-{ "malay": "Hijau", "english": "Green" },
-{ "malay": "Kuning", "english": "Yellow" },
-{ "malay": "Putih", "english": "White" },
-{ "malay": "Hitam", "english": "Black" },
-{ "malay": "Coklat", "english": "Brown" },
-{ "malay": "Ungu", "english": "Purple" },
-{ "malay": "Kelabu", "english": "Grey" },
-{ "malay": "Jingga", "english": "Orange" },
-{ "malay": "Merah jambu", "english": "Pink" },
+// Numbers
+{ malay: "Satu", english: "One", level: 1 },
+{ malay: "Dua", english: "Two", level: 1 },
+{ malay: "Tiga", english: "Three", level: 1 },
+{ malay: "Empat", english: "Four", level: 1 },
+{ malay: "Lima", english: "Five", level: 1 },
+{ malay: "Enam", english: "Six", level: 1 },
+{ malay: "Tujuh", english: "Seven", level: 1 },
+{ malay: "Lapan", english: "Eight", level: 1 },
+{ malay: "Sembilan", english: "Nine", level: 1 },
+{ malay: "Sepuluh", english: "Ten", level: 1 },
+
+// Colors
+{ malay: "Merah", english: "Red", level: 1 },
+{ malay: "Biru", english: "Blue", level: 1 },
+{ malay: "Hijau", english: "Green", level: 1 },
+{ malay: "Kuning", english: "Yellow", level: 1 },
+{ malay: "Putih", english: "White", level: 1 },
+{ malay: "Hitam", english: "Black", level: 1 },
+{ malay: "Coklat", english: "Brown", level: 1 },
+{ malay: "Ungu", english: "Purple", level: 1 },
+{ malay: "Kelabu", english: "Grey", level: 1 },
+{ malay: "Jingga", english: "Orange", level: 1 },
+
+// Days of the week
+{ malay: "Isnin", english: "Monday", level: 1 },
+{ malay: "Selasa", english: "Tuesday", level: 1 },
+{ malay: "Rabu", english: "Wednesday", level: 1 },
+{ malay: "Khamis", english: "Thursday", level: 1 },
+{ malay: "Jumaat", english: "Friday", level: 1 },
+{ malay: "Sabtu", english: "Saturday", level: 1 },
+{ malay: "Ahad", english: "Sunday", level: 1 },
+
+// Pronouns
+{ malay: "Saya", english: "I / Me", level: 1 },
+{ malay: "Awak", english: "You", level: 1 },
+{ malay: "Dia", english: "He / She", level: 1 },
+{ malay: "Kami", english: "We (exclusive)", level: 1 },
+{ malay: "Kita", english: "We (inclusive)", level: 1 },
+{ malay: "Mereka", english: "They", level: 1 },
+{ malay: "Ini", english: "This", level: 1 },
+{ malay: "Itu", english: "That", level: 1 },
+
+// Basic verbs
+{ malay: "Pergi", english: "Go", level: 1 },
+{ malay: "Datang", english: "Come", level: 1 },
+{ malay: "Makan", english: "Eat", level: 1 },
+{ malay: "Minum", english: "Drink", level: 1 },
+{ malay: "Tidur", english: "Sleep", level: 1 },
+{ malay: "Bangun", english: "Wake up", level: 1 },
+{ malay: "Lihat", english: "See", level: 1 },
+{ malay: "Dengar", english: "Hear", level: 1 },
+{ malay: "Cakap", english: "Speak", level: 1 },
+{ malay: "Tulis", english: "Write", level: 1 },
+
+// Everyday items
+{ malay: "Kerusi", english: "Chair", level: 1 },
+{ malay: "Meja", english: "Table", level: 1 },
+{ malay: "Telefon", english: "Phone", level: 1 },
+{ malay: "Buku", english: "Book", level: 1 },
+{ malay: "Pen", english: "Pen", level: 1 },
+{ malay: "Beg", english: "Bag", level: 1 },
+{ malay: "Kereta", english: "Car", level: 1 },
+{ malay: "Basikal", english: "Bicycle", level: 1 },
+{ malay: "Rumah", english: "House", level: 1 },
+{ malay: "Pintu", english: "Door", level: 1 },
+
+// Food
+{ malay: "Nasi", english: "Rice", level: 1 },
+{ malay: "Roti", english: "Bread", level: 1 },
+{ malay: "Air", english: "Water", level: 1 },
+{ malay: "Susu", english: "Milk", level: 1 },
+{ malay: "Kopi", english: "Coffee", level: 1 },
+{ malay: "Teh", english: "Tea", level: 1 },
+{ malay: "Ikan", english: "Fish", level: 1 },
+{ malay: "Ayam", english: "Chicken", level: 1 },
+{ malay: "Telur", english: "Egg", level: 1 },
+{ malay: "Buah", english: "Fruit", level: 1 },
+
+// Simple adjectives
+{ malay: "Besar", english: "Big", level: 1 },
+{ malay: "Kecil", english: "Small", level: 1 },
+{ malay: "Panas", english: "Hot", level: 1 },
+{ malay: "Sejuk", english: "Cold", level: 1 },
+{ malay: "Cepat", english: "Fast", level: 1 },
+{ malay: "Lambat", english: "Slow", level: 1 },
+{ malay: "Mahal", english: "Expensive", level: 1 },
+{ malay: "Murah", english: "Cheap", level: 1 },
+{ malay: "Cantik", english: "Beautiful", level: 1 },
+{ malay: "Gembira", english: "Happy", level: 1 },
+
+// Simple questions
+{ malay: "Siapa?", english: "Who?", level: 1 },
+{ malay: "Apa?", english: "What?", level: 1 },
+{ malay: "Bila?", english: "When?", level: 1 },
+{ malay: "Di mana?", english: "Where?", level: 1 },
+{ malay: "Kenapa?", english: "Why?", level: 1 },
+{ malay: "Bagaimana?", english: "How?", level: 1 },
+{ malay: "Berapa?", english: "How much / many?", level: 1 },
+{ malay: "Sudah", english: "Already", level: 1 },
+{ malay: "Belum", english: "Not yet", level: 1 },
+{ malay: "Tolong", english: "Please / Help", level: 1 }, 
+
+// Greetings & polite phrases
+{ malay: "Selamat pagi", english: "Good morning", level: 2 },
+{ malay: "Selamat tengah hari", english: "Good afternoon", level: 2 },
+{ malay: "Selamat petang", english: "Good evening", level: 2 },
+{ malay: "Selamat malam", english: "Good night", level: 2 },
+{ malay: "Apa khabar?", english: "How are you?", level: 2 },
+{ malay: "Khabar baik", english: "I’m fine", level: 2 },
+{ malay: "Terima kasih", english: "Thank you", level: 2 },
+{ malay: "Sama-sama", english: "You’re welcome", level: 2 },
+{ malay: "Maaf", english: "Sorry", level: 2 },
+{ malay: "Tumpang tanya", english: "Excuse me", level: 2 },
+
+// Family
+{ malay: "Ibu", english: "Mother", level: 2 },
+{ malay: "Ayah", english: "Father", level: 2 },
+{ malay: "Adik", english: "Younger sibling", level: 2 },
+{ malay: "Abang", english: "Older brother", level: 2 },
+{ malay: "Kakak", english: "Older sister", level: 2 },
+{ malay: "Nenek", english: "Grandmother", level: 2 },
+{ malay: "Datuk", english: "Grandfather", level: 2 },
+{ malay: "Anak", english: "Child", level: 2 },
+{ malay: "Keluarga", english: "Family", level: 2 },
+{ malay: "Isteri", english: "Wife", level: 2 },
+
+// Actions (everyday)
+{ malay: "Mandi", english: "Bathe", level: 2 },
+{ malay: "Basuh", english: "Wash", level: 2 },
+{ malay: "Potong", english: "Cut", level: 2 },
+{ malay: "Bersih", english: "Clean", level: 2 },
+{ malay: "Masak", english: "Cook", level: 2 },
+{ malay: "Beli", english: "Buy", level: 2 },
+{ malay: "Naik", english: "Get in / go up", level: 2 },
+{ malay: "Turun", english: "Get down / descend", level: 2 },
+{ malay: "Buka", english: "Open", level: 2 },
+{ malay: "Tutup", english: "Close", level: 2 },
+
+// Emotions
+{ malay: "Marah", english: "Angry", level: 2 },
+{ malay: "Sedih", english: "Sad", level: 2 },
+{ malay: "Letih", english: "Tired", level: 2 },
+{ malay: "Sakit", english: "Sick / Pain", level: 2 },
+{ malay: "Takut", english: "Afraid", level: 2 },
+{ malay: "Suka", english: "Like", level: 2 },
+{ malay: "Benci", english: "Hate", level: 2 },
+{ malay: "Tenang", english: "Calm", level: 2 },
+{ malay: "Risau", english: "Worried", level: 2 },
+{ malay: "Terkejut", english: "Surprised", level: 2 },
+
+// Places
+{ malay: "Sekolah", english: "School", level: 2 },
+{ malay: "Pasar", english: "Market", level: 2 },
+{ malay: "Kedai", english: "Shop", level: 2 },
+{ malay: "Pejabat", english: "Office", level: 2 },
+{ malay: "Rumah sakit", english: "Hospital", level: 2 },
+{ malay: "Klinik", english: "Clinic", level: 2 },
+{ malay: "Restoran", english: "Restaurant", level: 2 },
+{ malay: "Tandas", english: "Toilet", level: 2 },
+{ malay: "Masjid", english: "Mosque", level: 2 },
+{ malay: "Taman", english: "Park", level: 2 },
+
+// Time words
+{ malay: "Hari ini", english: "Today", level: 2 },
+{ malay: "Semalam", english: "Yesterday", level: 2 },
+{ malay: "Esok", english: "Tomorrow", level: 2 },
+{ malay: "Pagi", english: "Morning", level: 2 },
+{ malay: "Petang", english: "Evening", level: 2 },
+{ malay: "Malam", english: "Night", level: 2 },
+{ malay: "Sekarang", english: "Now", level: 2 },
+{ malay: "Kemudian", english: "Later", level: 2 },
+{ malay: "Lama", english: "Long time", level: 2 },
+{ malay: "Sebentar", english: "A while", level: 2 },
+
+// Clothing
+{ malay: "Baju", english: "Shirt", level: 2 },
+{ malay: "Seluar", english: "Pants", level: 2 },
+{ malay: "Kasut", english: "Shoes", level: 2 },
+{ malay: "Topi", english: "Hat", level: 2 },
+{ malay: "Kain", english: "Cloth", level: 2 },
+{ malay: "Sandal", english: "Sandal", level: 2 },
+{ malay: "Skirt", english: "Skirt", level: 2 },
+{ malay: "Gaun", english: "Dress", level: 2 },
+{ malay: "Stokin", english: "Socks", level: 2 },
+{ malay: "Tali pinggang", english: "Belt", level: 2 },
+
+// Misc
+{ malay: "Cepatlah", english: "Hurry up", level: 2 },
+{ malay: "Sekejap", english: "Wait a moment", level: 2 },
+{ malay: "Awas!", english: "Watch out!", level: 2 },
+{ malay: "Betul", english: "Correct", level: 2 },
+{ malay: "Salah", english: "Wrong", level: 2 },
+{ malay: "Senang", english: "Easy", level: 2 },
+{ malay: "Susah", english: "Hard", level: 2 },
+{ malay: "Kosong", english: "Empty", level: 2 },
+{ malay: "Penuh", english: "Full", level: 2 },
+{ malay: "Duduk", english: "Sit", level: 2 },
+
+// People
+{ malay: "Lelaki", english: "Man", level: 3 },
+{ malay: "Perempuan", english: "Woman", level: 3 },
+{ malay: "Kanak-kanak", english: "Child", level: 3 },
+{ malay: "Orang tua", english: "Elderly person", level: 3 },
+{ malay: "Guru", english: "Teacher", level: 3 },
+{ malay: "Doktor", english: "Doctor", level: 3 },
+{ malay: "Pekerja", english: "Worker", level: 3 },
+{ malay: "Polis", english: "Police", level: 3 },
+{ malay: "Pemandu", english: "Driver", level: 3 },
+{ malay: "Peniaga", english: "Shopkeeper / Trader", level: 3 },
+
+// Directions
+{ malay: "Kiri", english: "Left", level: 3 },
+{ malay: "Kanan", english: "Right", level: 3 },
+{ malay: "Lurus", english: "Straight", level: 3 },
+{ malay: "Belakang", english: "Back", level: 3 },
+{ malay: "Depan", english: "Front", level: 3 },
+{ malay: "Tepi", english: "Side", level: 3 },
+{ malay: "Atas", english: "Up / Above", level: 3 },
+{ malay: "Bawah", english: "Down / Below", level: 3 },
+{ malay: "Masuk", english: "Enter", level: 3 },
+{ malay: "Keluar", english: "Exit", level: 3 },
+
+// Body parts
+{ malay: "Kepala", english: "Head", level: 3 },
+{ malay: "Muka", english: "Face", level: 3 },
+{ malay: "Mata", english: "Eyes", level: 3 },
+{ malay: "Hidung", english: "Nose", level: 3 },
+{ malay: "Mulut", english: "Mouth", level: 3 },
+{ malay: "Telinga", english: "Ears", level: 3 },
+{ malay: "Tangan", english: "Hand", level: 3 },
+{ malay: "Kaki", english: "Leg / Foot", level: 3 },
+{ malay: "Perut", english: "Stomach", level: 3 },
+{ malay: "Lengan", english: "Arm", level: 3 },
+
+// Physical description
+{ malay: "Tinggi", english: "Tall", level: 3 },
+{ malay: "Pendek", english: "Short", level: 3 },
+{ malay: "Gemuk", english: "Fat", level: 3 },
+{ malay: "Kurus", english: "Thin", level: 3 },
+{ malay: "Cantik", english: "Beautiful", level: 3 },
+{ malay: "Kacak", english: "Handsome", level: 3 },
+{ malay: "Tua", english: "Old", level: 3 },
+{ malay: "Muda", english: "Young", level: 3 },
+{ malay: "Kuat", english: "Strong", level: 3 },
+{ malay: "Lemah", english: "Weak", level: 3 },
+
+// Feelings & personality
+{ malay: "Gembira", english: "Happy", level: 3 },
+{ malay: "Rajin", english: "Diligent", level: 3 },
+{ malay: "Malas", english: "Lazy", level: 3 },
+{ malay: "Sombong", english: "Arrogant", level: 3 },
+{ malay: "Baik", english: "Kind / Good", level: 3 },
+{ malay: "Jahat", english: "Bad / Evil", level: 3 },
+{ malay: "Pemalu", english: "Shy", level: 3 },
+{ malay: "Pelik", english: "Strange", level: 3 },
+{ malay: "Lucu", english: "Funny", level: 3 },
+{ malay: "Bijak", english: "Smart / Clever", level: 3 },
+
+// Community
+{ malay: "Bandar", english: "Town / City", level: 3 },
+{ malay: "Kampung", english: "Village", level: 3 },
+{ malay: "Sekolah rendah", english: "Primary school", level: 3 },
+{ malay: "Sekolah menengah", english: "Secondary school", level: 3 },
+{ malay: "Balai polis", english: "Police station", level: 3 },
+{ malay: "Balai bomba", english: "Fire station", level: 3 },
+{ malay: "Stesen minyak", english: "Petrol station", level: 3 },
+{ malay: "Pusat membeli-belah", english: "Shopping center", level: 3 },
+{ malay: "Perpustakaan", english: "Library", level: 3 },
+{ malay: "Kolam renang", english: "Swimming pool", level: 3 },
+
+// Transportation
+{ malay: "Bas", english: "Bus", level: 3 },
+{ malay: "Kereta", english: "Car", level: 3 },
+{ malay: "Motosikal", english: "Motorcycle", level: 3 },
+{ malay: "Kereta api", english: "Train", level: 3 },
+{ malay: "Kapal terbang", english: "Airplane", level: 3 },
+{ malay: "Bot", english: "Boat", level: 3 },
+{ malay: "Lori", english: "Lorry / Truck", level: 3 },
+{ malay: "Teksi", english: "Taxi", level: 3 },
+{ malay: "Basikal", english: "Bicycle", level: 3 },
+{ malay: "Jalan raya", english: "Road", level: 3 },
+
+// Rooms / Buildings
+{ malay: "Bilik tidur", english: "Bedroom", level: 3 },
+{ malay: "Dapur", english: "Kitchen", level: 3 },
+{ malay: "Bilik mandi", english: "Bathroom", level: 3 },
+{ malay: "Ruang tamu", english: "Living room", level: 3 },
+{ malay: "Tingkat bawah", english: "Ground floor", level: 3 },
+{ malay: "Tingkat atas", english: "Upper floor", level: 3 },
+{ malay: "Lif", english: "Elevator", level: 3 },
+{ malay: "Tangga", english: "Stairs", level: 3 },
+{ malay: "Pintu", english: "Door", level: 3 },
+{ malay: "Tingkap", english: "Window", level: 3 },
+
+// Food & Drinks
+{ malay: "Makanan", english: "Food", level: 4 },
+{ malay: "Minuman", english: "Drink", level: 4 },
+{ malay: "Air", english: "Water", level: 4 },
+{ malay: "Teh", english: "Tea", level: 4 },
+{ malay: "Kopi", english: "Coffee", level: 4 },
+{ malay: "Jus", english: "Juice", level: 4 },
+{ malay: "Roti", english: "Bread", level: 4 },
+{ malay: "Nasi", english: "Rice", level: 4 },
+{ malay: "Mee", english: "Noodles", level: 4 },
+{ malay: "Susu", english: "Milk", level: 4 },
+
+{ malay: "Sayur", english: "Vegetables", level: 4 },
+{ malay: "Buah", english: "Fruit", level: 4 },
+{ malay: "Ikan", english: "Fish", level: 4 },
+{ malay: "Daging", english: "Meat", level: 4 },
+{ malay: "Ayam", english: "Chicken", level: 4 },
+{ malay: "Telur", english: "Egg", level: 4 },
+{ malay: "Kari", english: "Curry", level: 4 },
+{ malay: "Sup", english: "Soup", level: 4 },
+{ malay: "Lada", english: "Chili / Pepper", level: 4 },
+{ malay: "Garam", english: "Salt", level: 4 },
+
+// Common Dishes
+{ malay: "Nasi lemak", english: "Nasi lemak", level: 4 },
+{ malay: "Roti canai", english: "Roti canai", level: 4 },
+{ malay: "Mee goreng", english: "Fried noodles", level: 4 },
+{ malay: "Satay", english: "Satay", level: 4 },
+{ malay: "Laksa", english: "Laksa", level: 4 },
+{ malay: "Nasi goreng", english: "Fried rice", level: 4 },
+{ malay: "Teh tarik", english: "Pulled tea", level: 4 },
+{ malay: "Ais kacang", english: "Shaved ice dessert", level: 4 },
+{ malay: "Cendol", english: "Cendol", level: 4 },
+{ malay: "Kari ayam", english: "Chicken curry", level: 4 },
+
+// In the restaurant
+{ malay: "Restoran", english: "Restaurant", level: 4 },
+{ malay: "Meja", english: "Table", level: 4 },
+{ malay: "Kerusi", english: "Chair", level: 4 },
+{ malay: "Pinggan", english: "Plate", level: 4 },
+{ malay: "Cawan", english: "Cup", level: 4 },
+{ malay: "Gelas", english: "Glass", level: 4 },
+{ malay: "Sudut", english: "Corner", level: 4 },
+{ malay: "Sudu", english: "Spoon", level: 4 },
+{ malay: "Garam", english: "Salt", level: 4 },
+{ malay: "Bil", english: "Bill / Check", level: 4 },
+
+{ malay: "Sedap", english: "Delicious", level: 4 },
+{ malay: "Pedas", english: "Spicy", level: 4 },
+{ malay: "Manis", english: "Sweet", level: 4 },
+{ malay: "Masin", english: "Salty", level: 4 },
+{ malay: "Tawar", english: "Bland", level: 4 },
+{ malay: "Saya mahu pesan", english: "I want to order", level: 4 },
+{ malay: "Satu lagi", english: "One more", level: 4 },
+{ malay: "Bungkus", english: "Takeaway", level: 4 },
+{ malay: "Makan sini", english: "Eat here", level: 4 },
+{ malay: "Sudah cukup", english: "That's enough", level: 4 },
+
+// Shopping
+{ malay: "Beli", english: "Buy", level: 4 },
+{ malay: "Harga", english: "Price", level: 4 },
+{ malay: "Murah", english: "Cheap", level: 4 },
+{ malay: "Mahal", english: "Expensive", level: 4 },
+{ malay: "Kedai", english: "Shop", level: 4 },
+{ malay: "Pasar", english: "Market", level: 4 },
+{ malay: "Diskaun", english: "Discount", level: 4 },
+{ malay: "Tunai", english: "Cash", level: 4 },
+{ malay: "Kad kredit", english: "Credit card", level: 4 },
+{ malay: "Resit", english: "Receipt", level: 4 },
+
+// Clothing & items
+{ malay: "Baju", english: "Shirt", level: 4 },
+{ malay: "Seluar", english: "Pants", level: 4 },
+{ malay: "Kasut", english: "Shoes", level: 4 },
+{ malay: "Topi", english: "Hat / Cap", level: 4 },
+{ malay: "Cermin mata", english: "Glasses", level: 4 },
+{ malay: "Jam tangan", english: "Watch", level: 4 },
+{ malay: "Beg", english: "Bag", level: 4 },
+{ malay: "Telefon", english: "Phone", level: 4 },
+{ malay: "Dompet", english: "Wallet", level: 4 },
+{ malay: "Payung", english: "Umbrella", level: 4 },
+
+// Travel
+{ malay: "Tiket", english: "Ticket", level: 4 },
+{ malay: "Lapangan terbang", english: "Airport", level: 4 },
+{ malay: "Pintu masuk", english: "Entrance", level: 4 },
+{ malay: "Keluar", english: "Exit", level: 4 },
+{ malay: "Peta", english: "Map", level: 4 },
+{ malay: "Bas ekspres", english: "Express bus", level: 4 },
+{ malay: "Stesen", english: "Station", level: 4 },
+{ malay: "Pelancong", english: "Tourist", level: 4 },
+{ malay: "Panduan", english: "Guide", level: 4 },
+{ malay: "Hotel", english: "Hotel", level: 4 },
+
+{ malay: "Bilik", english: "Room", level: 4 },
+{ malay: "Tempah", english: "Book / Reserve", level: 4 },
+{ malay: "Daftar masuk", english: "Check in", level: 4 },
+{ malay: "Daftar keluar", english: "Check out", level: 4 },
+{ malay: "Papan tanda", english: "Signboard", level: 4 },
+{ malay: "Arah", english: "Direction", level: 4 },
+{ malay: "Panduan pelancong", english: "Tour guide", level: 4 },
+{ malay: "Tempat menarik", english: "Attraction", level: 4 },
+{ malay: "Cuti", english: "Holiday", level: 4 },
+{ malay: "Lawatan", english: "Visit / Tour", level: 4 },
+
+// Greetings & Common Phrases
+{ malay: "Apa khabar?", english: "How are you?", level: 5 },
+{ malay: "Khabar baik", english: "I’m fine", level: 5 },
+{ malay: "Terima kasih", english: "Thank you", level: 5 },
+{ malay: "Sama-sama", english: "You're welcome", level: 5 },
+{ malay: "Maaf", english: "Sorry / Excuse me", level: 5 },
+{ malay: "Tolong", english: "Help / Please", level: 5 },
+{ malay: "Sila", english: "Please (formal)", level: 5 },
+{ malay: "Selamat jalan", english: "Goodbye", level: 5 },
+{ malay: "Selamat tinggal", english: "Farewell", level: 5 },
+{ malay: "Jumpa lagi", english: "See you again", level: 5 },
+
+// Requests & Offers
+{ malay: "Boleh saya bantu?", english: "Can I help?", level: 5 },
+{ malay: "Saya mahu ini", english: "I want this", level: 5 },
+{ malay: "Saya perlukan bantuan", english: "I need help", level: 5 },
+{ malay: "Boleh tolong saya?", english: "Can you help me?", level: 5 },
+{ malay: "Apa maksud ini?", english: "What does this mean?", level: 5 },
+{ malay: "Bagaimana sebut ini?", english: "How to pronounce this?", level: 5 },
+{ malay: "Boleh ulang?", english: "Can you repeat?", level: 5 },
+{ malay: "Lebih perlahan, tolong", english: "Slower, please", level: 5 },
+{ malay: "Saya tidak faham", english: "I don’t understand", level: 5 },
+{ malay: "Saya faham", english: "I understand", level: 5 },
+
+// Yes / No / Maybe
+{ malay: "Ya", english: "Yes", level: 5 },
+{ malay: "Tidak", english: "No", level: 5 },
+{ malay: "Mungkin", english: "Maybe", level: 5 },
+{ malay: "Sudah", english: "Already", level: 5 },
+{ malay: "Belum", english: "Not yet", level: 5 },
+{ malay: "Betul", english: "Correct", level: 5 },
+{ malay: "Salah", english: "Wrong", level: 5 },
+{ malay: "Pasti", english: "Sure / Certain", level: 5 },
+{ malay: "Tidak pasti", english: "Not sure", level: 5 },
+{ malay: "Tiada masalah", english: "No problem", level: 5 },
+
+// Emergency & Medical
+{ malay: "Tolong!", english: "Help!", level: 5 },
+{ malay: "Kecemasan", english: "Emergency", level: 5 },
+{ malay: "Saya sakit", english: "I am sick", level: 5 },
+{ malay: "Saya perlukan doktor", english: "I need a doctor", level: 5 },
+{ malay: "Sakit perut", english: "Stomach ache", level: 5 },
+{ malay: "Demam", english: "Fever", level: 5 },
+{ malay: "Pening", english: "Dizzy", level: 5 },
+{ malay: "Allergi", english: "Allergy", level: 5 },
+{ malay: "Ambulans", english: "Ambulance", level: 5 },
+{ malay: "Hospital", english: "Hospital", level: 5 },
+
+// Directions & Questions
+{ malay: "Di mana ...?", english: "Where is ...?", level: 5 },
+{ malay: "Bagaimana ke ...?", english: "How to go to ...?", level: 5 },
+{ malay: "Dekat", english: "Near", level: 5 },
+{ malay: "Jauh", english: "Far", level: 5 },
+{ malay: "Kiri", english: "Left", level: 5 },
+{ malay: "Kanan", english: "Right", level: 5 },
+{ malay: "Terus", english: "Straight", level: 5 },
+{ malay: "Belok", english: "Turn", level: 5 },
+{ malay: "Lampu isyarat", english: "Traffic light", level: 5 },
+{ malay: "Simpang", english: "Junction", level: 5 },
+
+// Telephone & Communication
+{ malay: "Telefon bimbit", english: "Mobile phone", level: 5 },
+{ malay: "Talian", english: "Line (telephone)", level: 5 },
+{ malay: "Sinyal lemah", english: "Weak signal", level: 5 },
+{ malay: "Saya akan hubungi awak", english: "I will contact you", level: 5 },
+{ malay: "Boleh saya telefon?", english: "Can I call?", level: 5 },
+{ malay: "Hantar mesej", english: "Send message", level: 5 },
+{ malay: "Bateri habis", english: "Battery dead", level: 5 },
+{ malay: "Tak dengar", english: "Can’t hear", level: 5 },
+{ malay: "Talian terputus", english: "Line disconnected", level: 5 },
+{ malay: "Sambung semula", english: "Reconnect", level: 5 },
+
+// Scheduling & Appointments
+{ malay: "Temu janji", english: "Appointment", level: 5 },
+{ malay: "Pukul berapa?", english: "What time?", level: 5 },
+{ malay: "Hari apa?", english: "Which day?", level: 5 },
+{ malay: "Awal", english: "Early", level: 5 },
+{ malay: "Lambat", english: "Late", level: 5 },
+{ malay: "Lewat", english: "Delayed", level: 5 },
+{ malay: "Sekarang", english: "Now", level: 5 },
+{ malay: "Nanti", english: "Later", level: 5 },
+{ malay: "Besok", english: "Tomorrow", level: 5 },
+{ malay: "Lusa", english: "Day after tomorrow", level: 5 },
+
+// Social & Politeness
+{ malay: "Boleh saya duduk sini?", english: "May I sit here?", level: 5 },
+{ malay: "Berapa umur anda?", english: "How old are you?", level: 5 },
+{ malay: "Dari mana awak?", english: "Where are you from?", level: 5 },
+{ malay: "Siapa nama anda?", english: "What is your name?", level: 5 },
+{ malay: "Saya suka ini", english: "I like this", level: 5 },
+{ malay: "Saya tidak suka itu", english: "I don't like that", level: 5 },
+{ malay: "Saya setuju", english: "I agree", level: 5 },
+{ malay: "Saya tidak pasti", english: "I'm not sure", level: 5 },
+{ malay: "Selamat hari jadi", english: "Happy birthday", level: 5 },
+{ malay: "Tahniah", english: "Congratulations", level: 5 },
+
+// Expressions
+{ malay: "Hati-hati", english: "Be careful", level: 5 },
+{ malay: "Cepat!", english: "Hurry!", level: 5 },
+{ malay: "Tunggu sebentar", english: "Wait a moment", level: 5 },
+{ malay: "Apa yang berlaku?", english: "What happened?", level: 5 },
+{ malay: "Tak apa", english: "Never mind / It’s okay", level: 5 },
+{ malay: "Saya gembira", english: "I’m happy", level: 5 },
+{ malay: "Saya sedih", english: "I’m sad", level: 5 },
+{ malay: "Saya marah", english: "I’m angry", level: 5 },
+{ malay: "Bagus!", english: "Good!", level: 5 },
+{ malay: "Hebat!", english: "Great!", level: 5 },
+
+
 
             ]
         };
 
-        shuffleArray(data.flashcards);
-
-        let flashcardIndex = 0;
+        let filteredFlashcards = [];
+        let flashcardIndex = -1;
 
         function funcInitialization() {
+            const selectedLevel = parseInt(document.getElementById("level").value);
+            filteredFlashcards = data.flashcards.filter(card => card.level <= selectedLevel);
+            shuffleArray(filteredFlashcards);
+            flashcardIndex = -1;
             nextFlashcard();
             nextQuiz();
         }
 
         function nextFlashcard() {
-            flashcardIndex = (flashcardIndex + 1) % data.flashcards.length;
-            const card = data.flashcards[flashcardIndex];
+            flashcardIndex = (flashcardIndex + 1) % filteredFlashcards.length;
+            const card = filteredFlashcards[flashcardIndex];
             document.getElementById('flashcard-content').innerText = `${card.malay} - ${card.english}`;
             playPronunciation();
         }
 
-		function nextQuiz() {
-			const correctIndex = Math.floor(Math.random() * data.flashcards.length);
-			const correctCard = data.flashcards[correctIndex];
+        function nextQuiz() {
+            const correctIndex = Math.floor(Math.random() * filteredFlashcards.length);
+            const correctCard = filteredFlashcards[correctIndex];
+            const isReversed = Math.random() < 0.5;
 
-			const isReversed = Math.random() < 0.5; // 50% chance to reverse
+            const question = isReversed ? correctCard.malay : correctCard.english;
+            const correctAnswer = isReversed ? correctCard.english : correctCard.malay;
 
-			// Determine question and correct answer direction
-			const question = isReversed ? correctCard.malay : correctCard.english;
-			const correctAnswer = isReversed ? correctCard.english : correctCard.malay;
+            const distractors = filteredFlashcards
+                .filter((_, i) => i !== correctIndex)
+                .map(c => isReversed ? c.english : c.malay);
 
-			// Prepare distractors in the same direction
-			const distractors = data.flashcards
-				.filter((_, i) => i !== correctIndex)
-				.map(c => isReversed ? c.english : c.malay);
+            shuffleArray(distractors);
+            const options = distractors.slice(0, 3);
+            options.push(correctAnswer);
+            shuffleArray(options);
 
-			shuffleArray(distractors);
+            document.getElementById('mcq-question').innerText = question;
 
-			const options = distractors.slice(0, 3);
-			options.push(correctAnswer);
-			shuffleArray(options);
+            const optionsDiv = document.querySelector('.mcq-options');
+            optionsDiv.innerHTML = '';
 
-			// Render question
-			document.getElementById('mcq-question').innerText = question;
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.className = 'mcq-option';
+                button.onclick = () => {
+                    const answerDiv = document.getElementById('mcq-answer');
+                    if (option === correctAnswer) {
+                        answerDiv.innerText = "Correct!";
+                        answerDiv.style.color = "green";
+                    } else {
+                        answerDiv.innerText = `Incorrect! The correct answer is: ${correctAnswer}`;
+                        answerDiv.style.color = "red";
+                    }
+                };
+                optionsDiv.appendChild(button);
+            });
 
-			// Render options
-			const optionsDiv = document.querySelector('.mcq-options');
-			optionsDiv.innerHTML = '';
-
-			options.forEach(option => {
-				const button = document.createElement('button');
-				button.innerText = option;
-				button.className = 'mcq-option';
-				button.onclick = () => {
-					const answerDiv = document.getElementById('mcq-answer');
-					if (option === correctAnswer) {
-						answerDiv.innerText = "Correct!";
-						answerDiv.style.color = "green";
-					} else {
-						answerDiv.innerText = `Incorrect! The correct answer is: ${correctAnswer}`;
-						answerDiv.style.color = "red";
-					}
-				};
-				optionsDiv.appendChild(button);
-			});
-
-			document.getElementById('mcq-answer').innerText = '';
-		}
-
+            document.getElementById('mcq-answer').innerText = '';
+        }
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -483,7 +723,7 @@
         }
 
         function playPronunciation() {
-            const card = data.flashcards[flashcardIndex];
+            const card = filteredFlashcards[flashcardIndex];
             const utterance = new SpeechSynthesisUtterance(card.malay);
             utterance.lang = 'ms-MY';
             speechSynthesis.speak(utterance);
