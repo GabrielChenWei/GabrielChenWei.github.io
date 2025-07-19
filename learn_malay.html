@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>🦜</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%2280%22>🦜</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Malay</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
         .container {
             width: 80%;
@@ -22,17 +22,10 @@
             color: #fff;
             border-bottom: #e9c46a 3px solid;
         }
-
         header #branding {
-            text-align : center;
-			margin-top : 0.5em;
-			margin-bottom : 0.5em;
+            text-align: center;
+            padding: 0.5em 0;
         }
-        header #branding h1 {
-            margin: 0;
-        }
-
-
         #main {
             padding: 20px;
             background: #fff;
@@ -117,32 +110,21 @@
         <div id="flashcards" class="flashcard">
             <h2>Flashcards</h2>
             <p id="flashcard-content"></p>
-			<button onclick="playPronunciation()">🔊</button> <!--12-Jun-2025, -->
+            <button onclick="playPronunciation()">🔊</button>
             <button onclick="nextFlashcard()">Next</button>
         </div>
 
         <div id="mcq" class="mcq">
             <h2>Multiple Choice Quiz</h2>
             <p id="mcq-question"></p>
-            <div class="mcq-options">
-                <button class="mcq-option" onclick="checkQuiz(this)"></button>
-                <button class="mcq-option" onclick="checkQuiz(this)"></button>
-                <button class="mcq-option" onclick="checkQuiz(this)"></button>
-                <button class="mcq-option" onclick="checkQuiz(this)"></button>
-            </div>
+            <div class="mcq-options"></div>
             <button class="next-button" onclick="nextQuiz()">Next</button>
             <div class="answer" id="mcq-answer"></div>
         </div>
     </section>
 
     <script>
-		function funcInitialization() {
-			nextFlashcard();
-			nextQuiz();
-		}
-		
         const data = {
-			// starter flashcard
             flashcards: [
 { "malay": "Selamat datang", "english": "Welcome" },
 { "malay": "Terima kasih", "english": "Thank you" },
@@ -346,881 +328,88 @@
 { "malay": "Mari kita berkenalan", "english": "Let's get to know each other" },
 
 
-				// ... add more flashcard elements here
-			],
-            // starter mcq
-			mcq: [
-			        {	"question": "Help",
-						"options": [
-							"Lapar",
-							"Terima kasih",
-							"Bantuan",
-							"Apa khabar?"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Good night",
-						"options": [
-							"Selamat malam",
-							"Selamat pagi",
-							"Tolong",
-							"Maaf"
-						],
-						"answer": "Selamat malam"	},
-					{	"question": "Welcome",
-						"options": [
-							"Ya",
-							"Maaf",
-							"Selamat datang",
-							"Sedih"
-						],
-						"answer": "Selamat datang"	},
-					{	"question": "How are you?",
-						"options": [
-							"Apa khabar?",
-							"Saya cinta kamu",
-							"Ya",
-							"Sedih"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Excuse me",
-						"options": [
-							"Lapar",
-							"Ya",
-							"Bantuan",
-							"Maafkan saya"
-						],
-						"answer": "Maafkan saya"	},
-					{	"question": "Sad",
-						"options": [
-							"Sedih",
-							"Lapar",
-							"Selamat malam",
-							"Terima kasih"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Sorry",
-						"options": [
-							"Tolong",
-							"Maaf",
-							"Saya cinta kamu",
-							"Gembira"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Welcome",
-						"options": [
-							"Selamat datang",
-							"Selamat tinggal",
-							"Tidak",
-							"Gembira"
-						],
-						"answer": "Selamat datang"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Sedih",
-							"Gembira",
-							"Dahaga",
-							"Lapar"
-						],
-						"answer": "Dahaga"	},
-					{	"question": "Good morning",
-						"options": [
-							"Selamat pagi",
-							"Tolong",
-							"Tidak",
-							"Selamat tinggal"
-						],
-						"answer": "Selamat pagi"	},
-					{	"question": "Yes",
-						"options": [
-							"Selamat malam",
-							"Sedih",
-							"Ya",
-							"Selamat pagi"
-						],
-						"answer": "Ya"	},
-					{	"question": "Happy",
-						"options": [
-							"Lapar",
-							"Gembira",
-							"Selamat tinggal",
-							"Tolong"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Friend",
-						"options": [
-							"Bantuan",
-							"Maaf",
-							"Kawan",
-							"Lapar"
-						],
-						"answer": "Kawan"	},
-					{	"question": "No",
-						"options": [
-							"Kawan",
-							"Sedih",
-							"Keluarga",
-							"Tidak"
-						],
-						"answer": "Tidak"	},
-					{	"question": "No",
-						"options": [
-							"Tidak",
-							"Maafkan saya",
-							"Selamat datang",
-							"Selamat pagi"
-						],
-						"answer": "Tidak"	},
-					{	"question": "Good night",
-						"options": [
-							"Bantuan",
-							"Tolong",
-							"Apa khabar?",
-							"Selamat malam"
-						],
-						"answer": "Selamat malam"	},
-					{	"question": "Thank you",
-						"options": [
-							"Maafkan saya",
-							"Terima kasih",
-							"Maaf",
-							"Tidak"
-						],
-						"answer": "Terima kasih"	},
-					{	"question": "Happy",
-						"options": [
-							"Selamat tinggal",
-							"Gembira",
-							"Tolong",
-							"Maaf"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Happy",
-						"options": [
-							"Kawan",
-							"Gembira",
-							"Selamat tinggal",
-							"Dahaga"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Sorry",
-						"options": [
-							"Maaf",
-							"Gembira",
-							"Tidak",
-							"Saya cinta kamu"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Happy",
-						"options": [
-							"Gembira",
-							"Ya",
-							"Kawan",
-							"Tolong"
-						],
-						"answer": "Gembira"	},
-					{	"question": "No",
-						"options": [
-							"Ya",
-							"Maafkan saya",
-							"Tidak",
-							"Selamat pagi"
-						],
-						"answer": "Tidak"	},
-					{	"question": "Sad",
-						"options": [
-							"Selamat datang",
-							"Selamat pagi",
-							"Maafkan saya",
-							"Sedih"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Hungry",
-						"options": [
-							"Selamat datang",
-							"Sedih",
-							"Lapar",
-							"Keluarga"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Good morning",
-						"options": [
-							"Gembira",
-							"Sedih",
-							"Tidak",
-							"Selamat pagi"
-						],
-						"answer": "Selamat pagi"	},
-					{	"question": "Goodbye",
-						"options": [
-							"Selamat tinggal",
-							"Terima kasih",
-							"Lapar",
-							"Selamat datang"
-						],
-						"answer": "Selamat tinggal"	},
-					{	"question": "Friend",
-						"options": [
-							"Lapar",
-							"Kawan",
-							"Selamat tinggal",
-							"Maaf"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Sorry",
-						"options": [
-							"Ya",
-							"Tolong",
-							"Maaf",
-							"Selamat datang"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Sorry",
-						"options": [
-							"Bantuan",
-							"Lapar",
-							"Dahaga",
-							"Maaf"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Friend",
-						"options": [
-							"Tidak",
-							"Ya",
-							"Kawan",
-							"Dahaga"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Please",
-						"options": [
-							"Tolong",
-							"Apa khabar?",
-							"Marah",
-							"Gembira"
-						],
-						"answer": "Tolong"	},
-					{	"question": "Family",
-						"options": [
-							"Ya",
-							"Dahaga",
-							"Maaf",
-							"Keluarga"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Yes",
-						"options": [
-							"Selamat datang",
-							"Ya",
-							"Marah",
-							"Sedih"
-						],
-						"answer": "Ya"	},
-					{	"question": "Please",
-						"options": [
-							"Saya cinta kamu",
-							"Tolong",
-							"Selamat pagi",
-							"Lapar"
-						],
-						"answer": "Tolong"	},
-					{	"question": "Hungry",
-						"options": [
-							"Tolong",
-							"Lapar",
-							"Ya",
-							"Maaf"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Goodbye",
-						"options": [
-							"Selamat tinggal",
-							"Tolong",
-							"Keluarga",
-							"Selamat malam"
-						],
-						"answer": "Selamat tinggal"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Ya",
-							"Selamat malam",
-							"Sedih",
-							"Dahaga"
-						],
-						"answer": "Dahaga"	},
-					{	"question": "Friend",
-						"options": [
-							"Kawan",
-							"Maaf",
-							"Apa khabar?",
-							"Saya cinta kamu"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Excuse me",
-						"options": [
-							"Bantuan",
-							"Terima kasih",
-							"Maafkan saya",
-							"Gembira"
-						],
-						"answer": "Maafkan saya"	},
-					{	"question": "Family",
-						"options": [
-							"Maafkan saya",
-							"Selamat datang",
-							"Selamat pagi",
-							"Keluarga"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Family",
-						"options": [
-							"Sedih",
-							"Kawan",
-							"Selamat pagi",
-							"Keluarga"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Angry",
-						"options": [
-							"Marah",
-							"Ya",
-							"Sedih",
-							"Tidak"
-						],
-						"answer": "Marah"	},
-					{	"question": "Friend",
-						"options": [
-							"Kawan",
-							"Bantuan",
-							"Maaf",
-							"Maafkan saya"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Good morning",
-						"options": [
-							"Selamat tinggal",
-							"Selamat pagi",
-							"Tolong",
-							"Terima kasih"
-						],
-						"answer": "Selamat pagi"	},
-					{	"question": "How are you?",
-						"options": [
-							"Saya cinta kamu",
-							"Apa khabar?",
-							"Sedih",
-							"Gembira"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Friend",
-						"options": [
-							"Kawan",
-							"Tidak",
-							"Selamat pagi",
-							"Bantuan"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Excuse me",
-						"options": [
-							"Maafkan saya",
-							"Marah",
-							"Bantuan",
-							"Dahaga"
-						],
-						"answer": "Maafkan saya"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Sedih",
-							"Selamat malam",
-							"Lapar",
-							"Dahaga"
-						],
-						"answer": "Dahaga"	},
-					{	"question": "How are you?",
-						"options": [
-							"Apa khabar?",
-							"Bantuan",
-							"Keluarga",
-							"Maaf"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Family",
-						"options": [
-							"Marah",
-							"Keluarga",
-							"Ya",
-							"Selamat pagi"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Friend",
-						"options": [
-							"Gembira",
-							"Kawan",
-							"Marah",
-							"Selamat malam"
-						],
-						"answer": "Kawan"	},
-					{	"question": "Sorry",
-						"options": [
-							"Selamat tinggal",
-							"Maaf",
-							"Tolong",
-							"Selamat pagi"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Help",
-						"options": [
-							"Lapar",
-							"Marah",
-							"Bantuan",
-							"Selamat pagi"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Goodbye",
-						"options": [
-							"Maaf",
-							"Selamat tinggal",
-							"Dahaga",
-							"Apa khabar?"
-						],
-						"answer": "Selamat tinggal"	},
-					{	"question": "Help",
-						"options": [
-							"Bantuan",
-							"Marah",
-							"Terima kasih",
-							"Tidak"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Angry",
-						"options": [
-							"Terima kasih",
-							"Tidak",
-							"Marah",
-							"Maaf"
-						],
-						"answer": "Marah"	},
-					{	"question": "I love you",
-						"options": [
-							"Terima kasih",
-							"Saya cinta kamu",
-							"Marah",
-							"Selamat datang"
-						],
-						"answer": "Saya cinta kamu"	},
-					{	"question": "Sad",
-						"options": [
-							"Sedih",
-							"Tolong",
-							"Selamat pagi",
-							"Selamat tinggal"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Hungry",
-						"options": [
-							"Apa khabar?",
-							"Lapar",
-							"Tolong",
-							"Ya"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Help",
-						"options": [
-							"Bantuan",
-							"Tidak",
-							"Apa khabar?",
-							"Selamat datang"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Help",
-						"options": [
-							"Lapar",
-							"Tidak",
-							"Ya",
-							"Bantuan"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Excuse me",
-						"options": [
-							"Tidak",
-							"Maafkan saya",
-							"Marah",
-							"Dahaga"
-						],
-						"answer": "Maafkan saya"	},
-					{	"question": "Sad",
-						"options": [
-							"Maaf",
-							"Sedih",
-							"Lapar",
-							"Marah"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Goodbye",
-						"options": [
-							"Tidak",
-							"Ya",
-							"Tolong",
-							"Selamat tinggal"
-						],
-						"answer": "Selamat tinggal"	},
-					{	"question": "How are you?",
-						"options": [
-							"Terima kasih",
-							"Sedih",
-							"Selamat malam",
-							"Apa khabar?"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Sorry",
-						"options": [
-							"Maaf",
-							"Ya",
-							"Saya cinta kamu",
-							"Terima kasih"
-						],
-						"answer": "Maaf"	},
-					{	"question": "Sad",
-						"options": [
-							"Terima kasih",
-							"Lapar",
-							"Sedih",
-							"Maafkan saya"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Good night",
-						"options": [
-							"Selamat malam",
-							"Saya cinta kamu",
-							"Marah",
-							"Tidak"
-						],
-						"answer": "Selamat malam"	},
-					{	"question": "Angry",
-						"options": [
-							"Marah",
-							"Kawan",
-							"Selamat malam",
-							"Selamat tinggal"
-						],
-						"answer": "Marah"	},
-					{	"question": "Hungry",
-						"options": [
-							"Keluarga",
-							"Bantuan",
-							"Tolong",
-							"Lapar"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Family",
-						"options": [
-							"Keluarga",
-							"Terima kasih",
-							"Ya",
-							"Lapar"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Hungry",
-						"options": [
-							"Terima kasih",
-							"Maaf",
-							"Selamat malam",
-							"Lapar"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Hungry",
-						"options": [
-							"Keluarga",
-							"Selamat datang",
-							"Lapar",
-							"Tidak"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Keluarga",
-							"Selamat tinggal",
-							"Selamat datang",
-							"Dahaga"
-						],
-						"answer": "Dahaga"	},
-					{	"question": "Hungry",
-						"options": [
-							"Lapar",
-							"Selamat tinggal",
-							"Maafkan saya",
-							"Maaf"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Help",
-						"options": [
-							"Bantuan",
-							"Terima kasih",
-							"Saya cinta kamu",
-							"Maafkan saya"
-						],
-						"answer": "Bantuan"	},
-					{	"question": "Family",
-						"options": [
-							"Keluarga",
-							"Sedih",
-							"Kawan",
-							"Lapar"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "I love you",
-						"options": [
-							"Saya cinta kamu",
-							"Selamat pagi",
-							"Selamat datang",
-							"Keluarga"
-						],
-						"answer": "Saya cinta kamu"	},
-					{	"question": "Sad",
-						"options": [
-							"Sedih",
-							"Selamat tinggal",
-							"Tolong",
-							"Tidak"
-						],
-						"answer": "Sedih"	},
-					{	"question": "How are you?",
-						"options": [
-							"Ya",
-							"Selamat tinggal",
-							"Apa khabar?",
-							"Selamat malam"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Angry",
-						"options": [
-							"Marah",
-							"Dahaga",
-							"Tidak",
-							"Maafkan saya"
-						],
-						"answer": "Marah"	},
-					{	"question": "Angry",
-						"options": [
-							"Marah",
-							"Sedih",
-							"Dahaga",
-							"Gembira"
-						],
-						"answer": "Marah"	},
-					{	"question": "Happy",
-						"options": [
-							"Gembira",
-							"Tidak",
-							"Keluarga",
-							"Selamat datang"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Welcome",
-						"options": [
-							"Selamat datang",
-							"Saya cinta kamu",
-							"Sedih",
-							"Selamat pagi"
-						],
-						"answer": "Selamat datang"	},
-					{	"question": "Happy",
-						"options": [
-							"Keluarga",
-							"Marah",
-							"Selamat pagi",
-							"Gembira"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Good morning",
-						"options": [
-							"Selamat datang",
-							"Selamat pagi",
-							"Tidak",
-							"Saya cinta kamu"
-						],
-						"answer": "Selamat pagi"	},
-					{	"question": "I love you",
-						"options": [
-							"Keluarga",
-							"Maaf",
-							"Saya cinta kamu",
-							"Kawan"
-						],
-						"answer": "Saya cinta kamu"	},
-					{	"question": "Good morning",
-						"options": [
-							"Terima kasih",
-							"Ya",
-							"Maafkan saya",
-							"Selamat pagi"
-						],
-						"answer": "Selamat pagi"	},
-					{	"question": "Hungry",
-						"options": [
-							"Kawan",
-							"Lapar",
-							"Saya cinta kamu",
-							"Ya"
-						],
-						"answer": "Lapar"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Selamat pagi",
-							"Dahaga",
-							"Maafkan saya",
-							"Ya"
-						],
-						"answer": "Dahaga"	},
-					{	"question": "I love you",
-						"options": [
-							"Keluarga",
-							"Marah",
-							"Terima kasih",
-							"Saya cinta kamu"
-						],
-						"answer": "Saya cinta kamu"	},
-					{	"question": "Sad",
-						"options": [
-							"Sedih",
-							"Saya cinta kamu",
-							"Dahaga",
-							"Tidak"
-						],
-						"answer": "Sedih"	},
-					{	"question": "Happy",
-						"options": [
-							"Selamat tinggal",
-							"Tolong",
-							"Dahaga",
-							"Gembira"
-						],
-						"answer": "Gembira"	},
-					{	"question": "Thank you",
-						"options": [
-							"Maaf",
-							"Selamat tinggal",
-							"Terima kasih",
-							"Maafkan saya"
-						],
-						"answer": "Terima kasih"	},
-					{	"question": "How are you?",
-						"options": [
-							"Kawan",
-							"Selamat malam",
-							"Selamat tinggal",
-							"Apa khabar?"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Family",
-						"options": [
-							"Selamat malam",
-							"Tolong",
-							"Maaf",
-							"Keluarga"
-						],
-						"answer": "Keluarga"	},
-					{	"question": "Angry",
-						"options": [
-							"Kawan",
-							"Marah",
-							"Bantuan",
-							"Saya cinta kamu"
-						],
-						"answer": "Marah"	},
-					{	"question": "No",
-						"options": [
-							"Tidak",
-							"Selamat tinggal",
-							"Apa khabar?",
-							"Terima kasih"
-						],
-						"answer": "Tidak"	},
-					{	"question": "How are you?",
-						"options": [
-							"Apa khabar?",
-							"Keluarga",
-							"Tidak",
-							"Selamat datang"
-						],
-						"answer": "Apa khabar?"	},
-					{	"question": "Thirsty",
-						"options": [
-							"Selamat tinggal",
-							"Dahaga",
-							"Selamat pagi",
-							"Gembira"
-						],
-						"answer": "Dahaga"
-					},
-			        // ... add more MCQ elements here
-			    ]
 
+            ]
         };
-		
-		
-		shuffleArray(data.flashcards); // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
-		shuffleArray(data.mcq); // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
+
+        shuffleArray(data.flashcards);
 
         let flashcardIndex = 0;
-        let mcqIndex = 0;
+
+        function funcInitialization() {
+            nextFlashcard();
+            nextQuiz();
+        }
 
         function nextFlashcard() {
             flashcardIndex = (flashcardIndex + 1) % data.flashcards.length;
-            const flashcard = data.flashcards[flashcardIndex];
-            document.getElementById('flashcard-content').innerText = `${flashcard.malay} - ${flashcard.english}`;
-			playPronunciation(); // 12-Jun-2025, 10.43 AM, added for play Malay Pronunciation, this will play the pronumciation automatically when a flash card is shown;
+            const card = data.flashcards[flashcardIndex];
+            document.getElementById('flashcard-content').innerText = `${card.malay} - ${card.english}`;
+            playPronunciation();
         }
 
-        function checkQuiz(button) {
-            const selectedAnswer = button.innerText;
-            const correctAnswer = data.mcq[mcqIndex].answer;
-            const answerDiv = document.getElementById('mcq-answer');
-            if (selectedAnswer === correctAnswer) {
-                answerDiv.innerText = "Correct!";
-                answerDiv.style.color = "green";
-            } else {
-                answerDiv.innerText = `Incorrect! The correct answer is: ${correctAnswer}`;
-                answerDiv.style.color = "red";
+		function nextQuiz() {
+			const correctIndex = Math.floor(Math.random() * data.flashcards.length);
+			const correctCard = data.flashcards[correctIndex];
+
+			const isReversed = Math.random() < 0.5; // 50% chance to reverse
+
+			// Determine question and correct answer direction
+			const question = isReversed ? correctCard.malay : correctCard.english;
+			const correctAnswer = isReversed ? correctCard.english : correctCard.malay;
+
+			// Prepare distractors in the same direction
+			const distractors = data.flashcards
+				.filter((_, i) => i !== correctIndex)
+				.map(c => isReversed ? c.english : c.malay);
+
+			shuffleArray(distractors);
+
+			const options = distractors.slice(0, 3);
+			options.push(correctAnswer);
+			shuffleArray(options);
+
+			// Render question
+			document.getElementById('mcq-question').innerText = question;
+
+			// Render options
+			const optionsDiv = document.querySelector('.mcq-options');
+			optionsDiv.innerHTML = '';
+
+			options.forEach(option => {
+				const button = document.createElement('button');
+				button.innerText = option;
+				button.className = 'mcq-option';
+				button.onclick = () => {
+					const answerDiv = document.getElementById('mcq-answer');
+					if (option === correctAnswer) {
+						answerDiv.innerText = "Correct!";
+						answerDiv.style.color = "green";
+					} else {
+						answerDiv.innerText = `Incorrect! The correct answer is: ${correctAnswer}`;
+						answerDiv.style.color = "red";
+					}
+				};
+				optionsDiv.appendChild(button);
+			});
+
+			document.getElementById('mcq-answer').innerText = '';
+		}
+
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
-        
-		function nextQuiz() { // 11-Jun-2025, 03.23 PM, modified for flashcard and MCQ randomization
-		    mcqIndex = (mcqIndex + 1) % data.mcq.length;
-		    const mcq = data.mcq[mcqIndex];
-		    document.getElementById('mcq-question').innerText = mcq.question;
-
-		    const options = [...mcq.options]; // clone the array
-		    shuffleArray(options); // shuffle the options
-
-		    const optionsDiv = document.querySelector('.mcq-options');
-		    optionsDiv.innerHTML = '';
-		    options.forEach(option => {
-		        const button = document.createElement('button');
-		        button.innerText = option;
-		        button.className = 'mcq-option';
-		        button.onclick = () => checkQuiz(button);
-		        optionsDiv.appendChild(button);
-		    });
-
-		    document.getElementById('mcq-answer').innerText = '';
-		}
-
-		
-		function shuffleArray(array) { // 11-Jun-2025, 03.23 PM, added for flashcard and MCQ randomization
-			for (let i = array.length - 1; i > 0; i--) {
-				const j = Math.floor(Math.random() * (i + 1));
-				[array[i], array[j]] = [array[j], array[i]];
-			}
-		}
-
-		function playPronunciation() { // 12-Jun-2025, 10.43 AM, added for play Malay Pronunciation
-		    const flashcard = data.flashcards[flashcardIndex];
-		    const utterance = new SpeechSynthesisUtterance(flashcard.malay);
-		    utterance.lang = 'ms-MY'; // Malay language code
-		    speechSynthesis.speak(utterance);
-		}
-
-		
+        function playPronunciation() {
+            const card = data.flashcards[flashcardIndex];
+            const utterance = new SpeechSynthesisUtterance(card.malay);
+            utterance.lang = 'ms-MY';
+            speechSynthesis.speak(utterance);
+        }
     </script>
 </body>
 </html>
