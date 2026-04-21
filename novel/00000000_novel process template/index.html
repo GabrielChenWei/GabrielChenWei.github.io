@@ -29,24 +29,45 @@ function getGlbOriginalMangaImageWidth() {
 
   function toggleUserPanel() {
 	console.log("toggleUserPanel triggered");
+	
 	if (glbBiUserPanelVisible){
 		hideUserPanel();
-		glbBiUserPanelVisible = false;  
 	} else {
-		showUserPanel() ;
-		glbBiUserPanelVisible = true;
+		showUserPanel();
 	}
   }
 
   function showUserPanel() {
 	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
     document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
   }
 
   function hideUserPanel() {
     console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
     document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
   }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
 /************* userPanel vibility toggle script *************/
 
 /************* font size change script *************/
@@ -68,6 +89,7 @@ function initialization() {
 	implementFontSizeInLocalStorage();
 	implementMangaImageWidthInLocalStorage();
 	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
 }
 /************* body onload initialization script ******************/
 
@@ -151,17 +173,17 @@ details[open] summary {
 #_primaryli {
     border: 2px solid Orchid;
     border-radius: 6px;
-    /*
-	padding: 0.2em;
+    padding: 0.2em;
 	margin : 1em;
-	*/
-	list-style-type: none; /* Remove bullets */
-	padding: 0; /* Remove padding */
-	margin: 0.2em; /* keep very small margins */
 	
+	/***** if want to remove leading bullet, enable 3 rows *****/
+	/*list-style-type: none;*/ /* Remove bullets */
+	/*padding: 0;*/ /* Remove padding */
+	/*margin: 0.2em;*/ /* keep very small margins */
+	/***** if want to remove leading bullet, enable 3 rows *****/
 }
 
-#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_GoToBottom, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails {
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -195,11 +217,11 @@ details[open] summary {
 	border: 3px solid #73AD21;
 	background-color: powderblue;
 	right: 0.8em;
-
+	z-index: 1; /* Sit on top */
 	bottom: 0;
 	left: 0;
 	width: 100%;
-    max-height: 50vh;
+    max-height: 60vh;
     overflow-y: auto;
 	
 	/* 28-Apr-2024, 11.07 AM, flexible box test */
@@ -223,6 +245,7 @@ details[open] summary {
 	/*width: 80%;*/
 	border: 2px solid red;
 	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
 }
 
 
@@ -251,6 +274,29 @@ details[open] summary {
 	top:1px;
 }
 
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
 #_clearSearchButton {
 	position: fixed;
 	top: 1em;
@@ -261,6 +307,7 @@ details[open] summary {
 	background-color:Plum;
 	margin-top: 0.3em;
 	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
 }
 
 #_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
@@ -273,6 +320,7 @@ details[open] summary {
 	background-color : Chartreuse;
 	margin-top : 0.3em;
 	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
 }
 
 
@@ -438,11 +486,219 @@ Content goes here. Content goes here.
 https://www.google.com/search?tbm=isch&q=findSomeImage
 ******************* google image search query *******************/
 
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
 
-/****************************** list element template ******************************
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: white;
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
 <!---------------------------------------------------------->
 	<li id = "_primaryli">
-		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/{ahMei}.html" target="_blank">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
 		<img src="image_source"><br/>
 		{title} </a></summary>
 			<ul>
@@ -455,11 +711,11 @@ https://www.google.com/search?tbm=isch&q=findSomeImage
 <!---------------------------------------------------------->
 <!--------------------for mov------------------------>
 	<li id = "_primaryli">
-		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/hentai/mov/{folderName}" target="_blank">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
 		  <img src="image_source"><br/>
 		  {(Mov){folderName}} </a></summary>
 			  <ul>
-				<li>Source:   spankbang.com       </li>
+				<li>Source:   google.com       </li>
 				<li>Post date:  19-Nov-2000     </li>
 				<li>Collected date: 10-Oct-2021 </li>
 			  </ul> 
@@ -503,33 +759,84 @@ https://www.google.com/search?tbm=isch&q=findSomeImage
 	</li>
 <!-------------------- expendable details and summary display ------------------------>
 
-***************************************** list element template *****************************************/
+******************* list element template *******************/
 </style>
 </head>
   
 <body onload="initialization();">
 <div class="container">
-<!--<div id="_userPanel" onclick="event.stopPropagation()">-->
-<div id="_userPanel">
-	<button id="_backToContent" onclick="funcGotoTop()">🔝</button>
-	<button id="_GoToBottom" onclick="funcGotoBottom()">⬇️</button>
-	<button id="_OpenDetails" onclick="funcOpenAllDetails()">📂</button>
-	<button id="_CloseDetails" onclick="funcCloseAllDetails()">📁</button>
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
 	<button id="_biggify">A+</button>
 	<button id="_reset">A</button>
 	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+
 </div>
 
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
 
 <div id="_filter">
-	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">🔽</button>
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
 </div>
+
 <a id="TocTop"></a><ul id="_mainUL">
 <h3> Title  </h3>
 <p class = "firstLineIndent">introduction</p>
 <p class = "firstLineIndent">introduction</p>
 <p class = "firstLineIndent">introduction</p>
-<p class = "firstLineIndent"><a href="url" target="_blank">Source : </a></p>
+<p class = "firstLineIndent">Source : </p>
 <hr/>
 
 <!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
@@ -551,17 +858,22 @@ https://www.google.com/search?tbm=isch&q=findSomeImage
 </details></li>
 
 <!-- <<<< Ender, insert new list item above this line >>>><<<< Ender, insert new list item above this line >>>> -->
+
 </ul>
-<button class="navButtonLeft" onclick="window.location.href='index.html';"> Previous </button>
-<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
-<button class="navButtonRight" onclick="window.location.href='index_02.html';"> Next </button>
+
+<button class="navButtonLeft" onclick="window.location.href='HI Chapter 01 MCQ.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='HI Chapter 01 MCQ.html';"> Index </button>
+
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='HI Chapter 02 MCQ.html';"> Next </button>
+
 <p>&nbsp;</p><p>&nbsp;</p>
+</div>
 
 <div>
 <a id="TocBottom"></a>
 <p>&nbsp;</p><p>&nbsp;</p>
 </div>
-
 
 
 
@@ -741,8 +1053,8 @@ function funcCloseAllDetails() {
 /************* details progress script *************/
 </script>
 
-<script>
 
+<script>
 function funcGotoTop() {
 	window.location.href='#TocTop';
 }
@@ -899,14 +1211,14 @@ function getGlbOriginalFontSize() {
 
 $('#_biggify').on('click', function() {
   var fontSize = $('.container').css('font-size');
-  var newFontSize = parseInt(fontSize)+5;
+  var newFontSize = parseInt(fontSize)+2;
   
   $('.container').css('font-size', newFontSize+'px');
   updateFontSizeInLocalStorage();
 })
 $('#_smallify').on('click', function() {
   var fontSize = $('.container').css('font-size');
-  var newFontSize = parseInt(fontSize)-5;
+  var newFontSize = parseInt(fontSize)-2;
   
   $('.container').css('font-size', newFontSize+'px');
   updateFontSizeInLocalStorage();
@@ -955,8 +1267,194 @@ $('#_resume').on('click', function() {
   updateMangaImageWidthInLocalStorage();
 })
 /************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
 </script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+}
+</script>
+
 </body>
 </html>
-
-
