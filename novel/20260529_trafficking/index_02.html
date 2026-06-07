@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+	} else {
+		showUserPanel();
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
+  }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* dark mode, 23-May-2026 *********/
+/* Dark Mode CSS - Add this after your existing body styles */
+:root {
+  --bg-body: Moccasin;
+  --bg-gradient-start: Seashell;
+  --bg-gradient-end: PeachPuff;
+  --text-color: #000000;
+  --details-border: #1ab2ff;
+  --primary-li-border: Orchid;
+  --tag-button-bg: #44c767;
+  --tag-window-bg: HoneyDew;
+  --user-panel-bg: powderblue;
+  --input-border: red;
+  --question-header-bg: mediumslateblue;
+  --explanation-bg: SandyBrown;
+  --modal-bg: #fffaf0;
+  --choice-bg: #fff6ea;
+  --choice-border: #c5c9d1;
+}
+
+body.dark-mode {
+  --bg-body: #1a1a2e;
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+  --text-color: #e0e0e0;
+  --details-border: #5a9eff;
+  --primary-li-border: #aa6dc9;
+  --tag-button-bg: #2c5e2e;
+  --tag-window-bg: #1e2a3a;
+  --user-panel-bg: #2c3e50;
+  --input-border: #e74c3c;
+  --question-header-bg: #5b4b8c;
+  --explanation-bg: #b85c1a;
+  --modal-bg: #2c2c3a;
+  --choice-bg: #2a2a3a;
+  --choice-border: #4a4a5a;
+}
+
+body {
+  background: var(--bg-body);
+  background: linear-gradient(var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #7bb3ff;
+}
+
+/* Update existing elements to use CSS variables */
+details {
+  border-color: var(--details-border);
+}
+
+#_primaryli, #_novelli {
+  border-color: var(--primary-li-border);
+}
+
+.tagButton {
+  background-color: var(--tag-button-bg);
+}
+
+.tagWindow {
+  background-color: var(--tag-window-bg);
+}
+
+#_userPanel {
+  background-color: var(--user-panel-bg);
+}
+
+#_userInput {
+  border-color: var(--input-border);
+  background-color: var(--choice-bg);
+  color: var(--text-color);
+}
+
+.questionHeader {
+  background-color: var(--question-header-bg);
+}
+
+.explanationHighlight {
+  background-color: var(--explanation-bg);
+}
+
+.modal-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+}
+
+.questionCard .questionChoiceText {
+  background: var(--choice-bg);
+  border-color: var(--choice-border);
+}
+/******* dark mode, 23-May-2026 *********/
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    padding: 0.2em;
+	margin : 1em;
+}
+
+#_novelli { /* special li CSS for displaying novel like text, filter, open/close does not apply*/
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom, #_darkModeToggle {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+	z-index: 1; /* Sit on top */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	font-size: 1.2em;
+	right: 7em;
+	left: 1em;
+	/*width: 80%;*/
+	border: 2px solid red;
+	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: white;
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   google.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+******************* list element template *******************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+	<button id="_darkModeToggle" onclick="toggleDarkMode(); hideUserPanel();">🌓</button>
+</div>
+
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
+</div>
+
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 《贩罪》 作者：三天两觉  </h3>
+<p class = "firstLineIndent">天才。</p>
+<p class = "firstLineIndent">自闭、孤独、偏执、疯狂。</p>
+<p class = "firstLineIndent">每当时代变迁，逆十字的旗帜由他祭起。</p>
+<p class = "firstLineIndent">成则王侯将相，败则蛆蝇粪秽。</p>
+<p class = "firstLineIndent">平乱世，麾下四方辐辏，钟灵毓秀。</p>
+<p class = "firstLineIndent">隐市井，此生睥睨天下，唯有一人。</p>
+<p class = "firstLineIndent">Source : https://10000txt.com/?id=25022</p>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<li id='_novelli'><details class='detailsSwitch' id='_details_0001'><summary><a>第三卷 阴谋家</a></summary>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0002'><summary><a>序章 顾问</a></summary>
+	<p class='firstLineIndent'>芝加哥，当我踏足这座城市的时候，我就知道自己爱上了它。</p>
+	<p class='firstLineIndent'>二十四小时不间断的噪音，每天早晚两次让人想掐死自己的交通堵塞，空气散发出一种刺鼻、混浊的气味儿，而且还飘浮着肉眼可见的颗粒粉尘。难怪连露天咖啡馆儿都会设个“吸烟区”，我想比起在街上喘气儿来，人们更愿意找一个云雾缭绕的角落，弄几根烟枪，插进自己肺里，尽快了却残生。</p>
+	<p class='firstLineIndent'>这是一座典型的工人城市，属于劳动者的城市，就连球票都比星郡其他的地区要便宜。在我租的公寓楼下，辣起司热狗每个只卖三块钱，我每天都至少要来上一个。那沐浴在汽车尾气中的热狗摊儿，上完厕所从不洗手的店主，法兰克福肠的原料是来路不明的猪肉，面包的原料是来路不明的面粉，和在一起再浇上超市里批发来的，快要过期的热起司和辣肉酱。把这种热狗塞进嘴里的时刻，你能体会到，这就是一个老百姓的生活，你所品尝的，正是活着的味道。</p>
+	<p class='firstLineIndent'>来这儿已经快三周了，每晚我都至少会逛三到四个酒吧，而几乎每去一家都会被要求出示身份证。我真的很惊讶，这帮保安的眼力劲儿怎么就能那么差，即便是真正的身份证上，我也已经二十一岁了。不提也罢……这半个多月来，除去那些寻找一夜情的小妞、寻找稳定关系的小妞、寻找一夜情的同性恋、寻找稳定关系的同性恋、还有几个性别不明导致性取向不明的搭讪者以外，我总算也把本地帮派的大体情况搞清楚了。</p>
+	<p class='firstLineIndent'>还记得第一个和我说话的老黑，我们在吧台上稍微聊了几句，我就说：“嘿，伙计，你那儿有什么能让人HIGH起来的东西吗？”</p>
+	<p class='firstLineIndent'>他说：“是的，当然有，看，这叫警徽，你觉得有点儿热了不是吗？小子，你被逮捕了，跟我回局里做个毒品测试，另外我认为你种族歧视，需要我宣读你的权利吗？”他一边说着，一边就掏出证件和枪。</p>
+	<p class='firstLineIndent'>还好那天我跑得快，不然就在个普通便衣身上栽了。这家伙居然还说我种族歧视？他坐在吧台边上，穿着背心外面套件西装，双手戴了八个戒指，还挂着条狗链那么粗的金链子，这种皮条客标配造型，我不问你有没有药，难道还问你有没有人？</p>
+	<p class='firstLineIndent'>撇开这个钓鱼执法的家伙不谈，又有一次，我遇见一个金发男人，冲天短发，人到中年却也没有啤酒肚，手背上还有条疤，看上去像个退伍军人什么的。他带着个手提箱，穿着皮衣一个人坐在角落里。他散发的那种气场很像是某位大佬手下的得力干将，就是那种有重要交易时你必须托付的那种人。</p>
+	<p class='firstLineIndent'>接着我就过去，用道儿上的暗语和他聊了大约半个小时，他说自己叫泰德，泰德的回答也显示他确实是个大人物。结果，他打开那箱子，展示了一下里面装的“货”，满满一手提箱的肥皂，是的，他穿着皮衣，金发，手上有疤，用手提箱装肥皂，名字叫“泰德”。好吧，大家都看过那部老电影，但没几个人会干到这种地步的，你一把年纪了还在酒吧里玩儿角色扮演是不是太带感了一点。</p>
+	<p class='firstLineIndent'>也有那么几次，我试图制造一些冲突，就算只能找出几个帮会中的马仔也罢，可惜，我运气真的很差，每次遇上的都是面相凶恶的守法市民，他们会敲碎酒瓶、推搡你、用拳头揍你的脸，但你只要用上那么一丁点儿真正意义上的格斗技巧，放倒其中一个，他们就怂了。好戏就此结束，酒吧保安们过来把闹事的人请出去，或者直接打电话报警，相信我，每回都会有个穿得像皮条客一样的便衣第一个赶到。</p>
+	<p class='firstLineIndent'>总之，这番经历可以算得上是一种挫折了，不过正所谓吃一堑长一智，经过这些事，我得到的经验就是，电影里那些走进酒吧，立刻就能从酒保和旁边随便哪个醉汉的口中问出有价值情报来的事情完全就是导演脑损伤或者编剧脑溢屎的具象化呈现。我看帝国的电视新闻都比自己去酒吧里能套来的情报多。</p>
+	<p class='firstLineIndent'>浪费了我这大能人整整二十多天的人生，终于，今天我有机会去见一下卢切斯家族的一名成员了，希望计划可以顺利进行，因为我比较看好卢切斯家族的实力，况且我也不想再绞尽脑汁搭上杰诺维塞家族那条线了，天知道得再花多长时间。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0003'><summary><a>第一章 学生</a></summary>
+	<p class='firstLineIndent'>2101年，2月14日。</p>
+	<p class='firstLineIndent'>节日是人类堕落的标志之一，我们需要在一年中定下几个特殊的日子，提醒自己去做一些在平常同样能做的事情，却又装作意义不凡的样子。</p>
+	<p class='firstLineIndent'>每个节日基本都由谎言和惨剧这两部分组成；大人们骗孩子，说这世界上有个驾着飞行雪橇的胖老头儿会给你们带来礼物；男人们骗女人，我一辈子只爱你一个；女人们则骗男人，我爱的是你的人，和钱无关；感恩节让你有了一整年都不知感恩的理由；春节给了你一整年都不回家的理由；非宗教和民俗传统演变而来的节日基本就是纪念某个人的死或者某一群人的死，而我们为什么要纪念他们？因为他们是时代英雄，他们的牺牲改变了一些事情，甚至带给了我们今人切实的利益。</p>
+	<p class='firstLineIndent'>所以，归根结底，这是一种另类的交易。玫瑰、鞭炮、扮鬼、当个好孩子等等，挑准了日子，目标就是滚床单、发财、糖果、礼物。当然如果你运气不好，也可能得到好人卡、罚款单、恋童癖和家暴之类的。</p>
+	<p class='firstLineIndent'>这天是二十二世纪的第一个情人节，下午，芝加哥一家普通的网吧，一个男青年走了进来。</p>
+	<p class='firstLineIndent'>他大约二十岁左右年纪，褐色头发，白种人，看上去没什么特别的。进屋后，他的视线很快就停留在了一个和自己年纪相仿的年轻人身上，然后径直走了过去。</p>
+	<p class='firstLineIndent'>“你好，我叫德维特。”褐发青年坐在那人旁边的沙发上，开口打了招呼。</p>
+	<p class='firstLineIndent'>坐在那儿上网喝咖啡的年轻人戴着副眼镜，看上去挺斯文的，亚裔，黑色的短发中规中矩，脸长得很白净，给人感觉像个书呆子。</p>
+	<p class='firstLineIndent'>眼镜青年出于礼貌回道：“嗯……你好，你可以叫我迈克。”</p>
+	<p class='firstLineIndent'>“不必紧张，小子，这不是搭讪，我是直的，你不用露出那种表情。”德维特道：“是桑尼跟我说，可以在这儿找到你，提供一些‘技术支持’。”</p>
+	<p class='firstLineIndent'>迈克用狐疑的眼神看着德维特：“哪个桑尼？”</p>
+	<p class='firstLineIndent'>德维特回道：“桑尼·卢切斯。”</p>
+	<p class='firstLineIndent'>迈克道：“我跟他见过几次，不是很熟，你又是谁？”就算是再业余的黑帮成员，也能看出他显然在说谎。</p>
+	<p class='firstLineIndent'>“我说过了，我叫德维特。”</p>
+	<p class='firstLineIndent'>“卢切斯家族可没有你这号人。”</p>
+	<p class='firstLineIndent'>德维特道：“因为今天上午，我才开始与他们合作，你可以把我视为提供某种咨询的‘顾问’。”</p>
+	<p class='firstLineIndent'>迈克的表情微变：“等等……呵……”他似乎有些不信，所以笑了：“你说你是‘顾问’？”他又重复加重语气问了一遍：“你走到我面前，做了自我介绍，然后告诉我，你是那个‘顾问’？”</p>
+	<p class='firstLineIndent'>德维特倒显得十分平静：“这么说来，你听过这个名号。”</p>
+	<p class='firstLineIndent'>“听过？”迈克略有些激动了：“顾问是互联网上的传奇，从三年前首次出现至今，已经有无数他的事迹流传，现阶段那些故事多得已经难辨真假了，有人说他已经被捕，还有人说他根本就是个不存在的虚构人物，我以前的大学甚至有一群人为他建立了粉丝俱乐部。你最多就比我大个一两岁，怎么可能是……”</p>
+	<p class='firstLineIndent'>德维特打断他道：“迈克·拜伦，伊利诺伊大学三年级的学生，故乡在田纳西州，家中除了父母还有一个姐姐，两个兄弟，邻居叫弗雷德，给你们家送报的邮差叫萨图克。父亲的二手车买卖不是很景气，姐姐的男友陷入一桩官司中已经有半年了，两个弟弟上大学的钱还没有着落，我想这也很好地解释了为什么你这样有大好前途的青年会为本地的黑帮办事。”</p>
+	<p class='firstLineIndent'>迈克突然紧张起来，压低了声音道：“这些你是从哪儿查到的？你是条子？HL？”</p>
+	<p class='firstLineIndent'>德维特道：“你们学校有着世界上最先进的超级计算机研究中心，每年有帝国资助的庞大资金做后盾，但学生的资料却很容易弄到手，无论是计算机专业、理工科、还是戏剧系的学生，在校方看来，学生的个人信息这种玩意儿与研究数据相比根本就是垃圾，垃圾是没有严密保护价值的。我想从小到大都上公立学校的你应该可以明白我的意思。”</p>
+	<p class='firstLineIndent'>迈克不自在的动了动脖子：“好吧，你攻破了伊利诺伊大学的第三套虚拟防护系统，你还需要我干什么？你自己不就已经可以黑入这世界上90%以上的计算机了吗。”他还颇为不服地补充了一句：“而且在我看来，这点能耐仍然不能证明你就是顾问。”</p>
+	<p class='firstLineIndent'>德维特道：“我准备干一笔大买卖，明白吗？小子。卢切斯家族的人还信不过我，他们需要我办几件事情来证明自己的能力，当然这我也可以理解，每当我到一个新的城市，都会遇到类似的情况，雇主们的素质是不同的，你要让这群整天揣着枪和手榴弹做些违禁品贸易的大老粗相信这世界上有‘安乐椅侦探’这类事情，他们只会说：那是鬼扯。</p>
+	<p class='firstLineIndent'>因此，当面对这种客户的时候，我往往需要稍稍解放一下自己的大脑，来干一些不那么需要精打细算的事情，而眼下要做的，正需要你的帮助。”</p>
+	<p class='firstLineIndent'>迈克也是个聪明人，他直接道：“报酬呢？”</p>
+	<p class='firstLineIndent'>“小子，跟我合作，你不但可以解决所有的经济问题，还能得到许多无形资产，所以我建议你不要做拒绝之类的蠢事。”</p>
+	<p class='firstLineIndent'>迈克斟酌了一下：“好吧，那就这样……我不能仅凭你空口说白话就答应些什么，我要跟桑尼确认一下这件事，如果他能肯定你不是条子，我愿意听听接下来的计划，另外，别叫我小子，即使你是真的顾问。”</p>
+	<p class='firstLineIndent'>德维特起身道：“桑尼的联系方式不用我告诉你了，我到外面抽根烟等你，就在今天之内，还有很多事要做，你最好快点儿。”</p>
+	<p class='firstLineIndent'>迈克见其走远，一个人若有所思地嘀咕着：“今天之内……该不会是要我去掺和杰诺维塞家族交货的事情吧……可真会挑日子。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0004'><summary><a>第二章 交货</a></summary>
+	<p class='firstLineIndent'>迈克坐在德维特的车里，看着周围掠过的路标：“并不是我很喜欢聊天，但不得不说一下，你这样往东南方走，让我有不好的预感。”</p>
+	<p class='firstLineIndent'>德维特道：“桑尼说你坐在电脑前就足以知道这城里正在发生的许多事，看来这是真的。”</p>
+	<p class='firstLineIndent'>“听着，我可以帮你去黑别人的情报，但我拒绝出现在任何可能发生枪战的现场。”迈克道：“今天这笔买卖可是托尼和乔在操办，也许你不太了解情况，他们都是非常喜欢拔枪射活靶的那种类型，我可不想靠近这种人二百米以内。”</p>
+	<p class='firstLineIndent'>德维特回道：“待会儿你坐在车里就行，我负责出去交涉。你要做的，就是用你此刻藏在右边裤袋里的那部‘超级手机’，我也不知道该怎么称呼那东西，总之你用它黑掉交易现场每个人身上的所有电子仪器就行，另外，保持车不要熄火。”</p>
+	<p class='firstLineIndent'>“你怎么知道……”迈克颇为惊讶地问道。</p>
+	<p class='firstLineIndent'>德维特道：“我在抽烟的时候，你除了联系桑尼以外，还干了一件事情，就是入侵我的手机，你用的显然不是网吧里的电脑，像你这种级别的黑客，随身携带经过改装的微型计算机，里面装几款自己写的、随时能黑进附近电子系统的软件，那是很正常的事情，这就如同约会时男方带着安全措施一样，有备无患总没错。”</p>
+	<p class='firstLineIndent'>迈克歪着眉毛道：“你的比喻不是很恰当……不过这个暂且不提。我用这部手机，无论黑进任何民用电子设备的系统——普通手机、GULP、PVP、甚至机械义肢，都不会被发现，即便是事后交给专家去查，短时间也看不出来，你是如何察觉的？”</p>
+	<p class='firstLineIndent'>德维特从口袋里掏出自己的手机，随手扔给了迈克：“山寨机，一次性电话卡，还有一个简单的信号接收测试器，总共成本一百块。”</p>
+	<p class='firstLineIndent'>迈克立即就明白了：“你来见我时根本就没带自己的手机，身上揣着个刚买来的破烂，而电话卡的号码也没人知道，所以只要测试器有反应，你就能知道……”</p>
+	<p class='firstLineIndent'>德维特接着他的话道：“就能知道那肯定是你搞的小动作。我说是在抽烟，其实也是想试探一下，如果你没有黑进这破烂，才让我失望。另外，我通过移动时信号强度的变化，大致测算出了你入侵电子仪器的范围，五十到两百米的范围内应该没有任何问题。还有，你欠我一百块。”</p>
+	<p class='firstLineIndent'>迈克对眼前这人立即有了些改观，看来他的城府比想象中要深许多，他想了想道：“好吧，既然你也了解情况了，那咱们事先说好。我就坐在车里，负责搞定他们身上的手机，你可以得到杰诺维塞那帮人和提货那帮人所有的通讯记录、信息记录、上网记录，如果他们不换电话卡，你还可以在日后随时窃听并追踪他们每个人的行踪。但是，你听着，我还想多活几年，所以是不会下车的，你非要下去趟浑水是你的事，如果你在交涉中被人突然拔枪击毙，或者被打晕带走，我可立刻挂倒挡走人。”</p>
+	<p class='firstLineIndent'>德维特看对方紧张的样子，只是不置可否地笑笑：“放心，我不会引起什么骚动的。”</p>
+	<p class='firstLineIndent'>他们说话间，正遇红灯，街边一个流浪汉闪电般凑了上来，用一块沾水的、脏兮兮的海绵擦着德维特面前的挡风玻璃。</p>
+	<p class='firstLineIndent'>黄灯亮起，德维特毫无征兆地一脚油门，车子冲了出去，那流浪汉躲闪不及，上半身趴在挡风玻璃上，两脚悬空乱蹬，整个人被带着往前移动。当车速超过每小时八十公里时，德维特又是一脚急刹，流浪汉侧着倒飞出去，摔在了马路上，然后这条街上便响起了接二连三的刹车声和司机们的叫骂声，交通顿时陷入了一片混乱中。</p>
+	<p class='firstLineIndent'>这一切发生得太快，迈克反应过来时立即破口大骂：“该死！你在干什么？！”</p>
+	<p class='firstLineIndent'>“放心，他不会有事的，只是跟着惯性飞出去，和骑自行车摔一跤差不多。”德维特调转车头，冲上了人行道：“我们现在差不多可以开始肇事后的逃逸了。”</p>
+	<p class='firstLineIndent'>“肇事的是你吧！我要下车！”</p>
+	<p class='firstLineIndent'>他的车在人行道上横冲直撞，如入无人之境，路人们纷纷使出各种犀利姿势闪过了车头的撞击，不少路灯杆和消防栓纷纷遭殃：“放松，四眼儿，我知道自己在干什么。”</p>
+	<p class='firstLineIndent'>迈克在德维特口中的称谓就这样由“小子”变成了“四眼儿”，但此刻他也没工夫计较了，方向盘在别人手里，他只能绑好了安全带，抓紧车门上的把手大喊：“快停车你这疯子！”</p>
+	<p class='firstLineIndent'>德维特语气平稳地解释着：“适当的混乱，可以把警察引来，这不是抢银行，他们不会来得太快，但交通瘫痪也不是小事，所以他们也不会来得太慢。交易地点在北风岛公园，除了游泳过去，就只有走1400公路转E公路。我先用这种方法，稍稍调整一下城里的警力部署，如果我和托尼还有乔处得不好，一旦发生枪战，或者有火光冲天的大爆炸，警方可以更快赶到现场。”</p>
+	<p class='firstLineIndent'>这时车已重新驶上公路，从人行道抄近路让他们避开了堵塞的交通。</p>
+	<p class='firstLineIndent'>迈克回道：“我说过了，你要是跟他们发生暴力冲突，我就直接逃跑。”</p>
+	<p class='firstLineIndent'>德维特道：“是啊，我刚才的行为也考虑到了这种情况，当你企图抛下我独自离开公园时，应该会正好在E公路上和赶来的警方大部队擦肩而过，他们会看到一辆在不久前引起交通骚动的肇事逃逸车辆正驶离枪战现场。顺便说一下，这车是我偷的，因此你会被捕，并同时面临多项指控。”</p>
+	<p class='firstLineIndent'>迈克瘫在座位上，目光呆滞：“我想我得再次评估一下你在我心中的印象，顺便重新考量一下这次服务的收费。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十五分钟后，北风岛公园。</p>
+	<p class='firstLineIndent'>托尼是个胖子，一脸横肉，眼神凶悍，他在杰诺维塞家族里算不上是优秀的杀手，但在残忍这方面却不会输于任何人；而乔是个一头灰白头发的老黑手党了，混到他这个年纪还在负责这种交货工作，只能说明他不够聪明，但在第一线上能活到今天，除了命大，肯定也是有两把刷子的。</p>
+	<p class='firstLineIndent'>这二人都在枪战中受过致命伤，当然了，在二十一世纪中后期，所谓的致命伤也未必致命。因此，托尼的右手和乔的左腿在那以后有了许多新的功能，比如射出子弹，或者储藏手雷等等。改造人技术在帝国军队和HL中早已广泛运用，所以民间的犯罪者们也不甘落后，他们很快便从从黑市、退伍人员、乃至腐败的官员那里获得了这方面的技术信息。时至今日，在黑帮中，这种程度的改造也属十分常见了，但其战斗能力和真正意义上的改造人相距甚远，充其量算是装了些高科技武器来代替假肢。</p>
+	<p class='firstLineIndent'>此刻，托尼和乔正站在一辆厢式车边上抽着烟，除了他们俩，还有一个司机和四个负责搬运的手下待命。不多时，另一辆车驶来，就停在了他们旁边，从上面下来四五个人，其中一人提着个黑色的手提箱，那里面显然装着现金。</p>
+	<p class='firstLineIndent'>“哦，托尼，老伙计，最近过得怎么样？”提货那方为首的中年男子热情地打着招呼。</p>
+	<p class='firstLineIndent'>托尼从嘴里拿出烟头，丢到地上踩灭：“还行吧，只是我不太喜欢等人，刚才我和乔正商量着，你要是再晚来一会儿，我们就把你扔到湖里喂鱼。”</p>
+	<p class='firstLineIndent'>那人哈哈大笑，貌似觉得这玩笑真的挺不错的，而托尼和乔也皮笑肉不笑地挤出笑脸来。这种交易中，谁也不会相信谁，谁也不会真正当对方是朋友，在下一秒，玩笑可能只是玩笑，也可能会变成现实。</p>
+	<p class='firstLineIndent'>双方验货、点钱，然后头目们聚在一起抽着烟，扯些废话，而喽啰们开始搬货。其实这种工作说起来也并不复杂，把跨洋弄来的毒品藏在装巧克力的盒子里，运送给另外一群人，那群人则负责把这些纯度极高的白色粉末加工成各种不同层次的需求品，散给一些负责销售的小头目，最后再落实到那些奋战在第一线的药贩子，他们在街边、便利店门口、夜总会、大学附近随处可找，这是一个非常成熟的销售网络，有着悠久的历史，只有战争短暂中止过这买卖的运营。</p>
+	<p class='firstLineIndent'>而在这些环节中，许多经手人甚至根本不像是在混黑帮，他们干的事情和一般蓝领一样，司机负责开车，马仔们负责运货，地下工厂的“工人”们负责加工处理，销售人员寻找收入稳定的瘾君子以及开拓新客户。这些特殊蓝领们的工作其实并不轻松，只不过他们有更合理的报酬，以及随时面临着十年以上有期徒刑的威胁。</p>
+	<p class='firstLineIndent'>总结一下，这生意和一般日用品销售的唯一区别就是，他们不能明目张胆租个店面去卖，仅此而已。</p>
+	<p class='firstLineIndent'>两帮人只花了十分钟就完成了这次交易，可谓驾轻就熟，托尼和对方头目互相拥抱了一下，道了几句合作愉快之类的废话，双方正准备分道扬镳，意外却在此时发生了。</p>
+	<p class='firstLineIndent'>一个二十岁左右的青年朝他们走了过去，并边靠近边到了句：“嘿！肥佬托尼！”</p>
+	<p class='firstLineIndent'>此时公园已近关门时间，这附近四下无人，一张生面孔忽然出现已让交易双方紧张起来，而这家伙一开口就说了托尼非常不爱听的一个绰号，这无疑就像是往油锅里撒了一把盐。</p>
+	<p class='firstLineIndent'>“你是谁？混蛋。”托尼不客气地喝骂道。</p>
+	<p class='firstLineIndent'>德维特冷笑一声回道：“我？我只是路过而已，顺便代表桑尼跟你问声好。”</p>
+	<p class='firstLineIndent'>听到这个名字，托尼像是被打了鸡血一样，冲上前去一拳把德维特放倒在地，然后左肘摁住对方锁骨，亮出戴着黑色皮手套的右手，用四根手指指着德维特的脸：“这副手套的下面，是只金属右手，它可以在两秒内把你的头打成一个流着脑浆的蜂窝，所以现在我问你什么，你最好就如实回答。”</p>
+	<p class='firstLineIndent'>德维特表情还是很欠揍，很轻松，他随意地回道：“OK。”</p>
+	<p class='firstLineIndent'>“桑尼派你来干什么？”</p>
+	<p class='firstLineIndent'>“他并没有派我来。”德维特回道：“他只是告诉我，今天杰诺维塞家族的托尼会在这儿进行一次交货，我想以他的智慧，无非就是暗示我报警来破坏这件事罢了。”</p>
+	<p class='firstLineIndent'>“哈哈哈哈哈……”托尼大笑：“结果你这个白痴自己一个人走到我们面前来找死？”</p>
+	<p class='firstLineIndent'>“从这胖子的反应看来，他和桑尼之间一定有过节，意裔黑手党成员间不能为私仇轻易杀人或者破坏对方家族的买卖，因此桑尼想利用我这个局外人来搞些事情，嗯……看来他还是不太相信我的能力，想着如果能利用我报复这胖子一次也不错，事后全推到我这个连合伙人都不算的家伙身上，真的牺牲掉也无所谓。”德维特完全不在意对方的恐吓，自顾自在心中盘算着：“还真是个让人恼火的废物啊，不知道卢切斯的当家是否也如此愚蠢。算了，先把手头的事情做完再说吧。”</p>
+	<p class='firstLineIndent'>他突然抓住托尼的右手，在对方震惊的目光中，将这块金属给折断成了两截。</p>
+	<p class='firstLineIndent'>提货那帮人见到情势变化，立即道：“现在已经钱货两清了，这是你们和卢切斯家族之间的事情，我们就不掺和了。”说完就上了自己那辆车，迅速开走了。</p>
+	<p class='firstLineIndent'>而乔和托尼手下的其他马仔们皆是掏出了身上的枪，逼近了德维特。</p>
+	<p class='firstLineIndent'>“你们应该知道，枪一响，就会有麻烦。”德维特拍了拍身上的灰尘，站了起来。</p>
+	<p class='firstLineIndent'>“那得看这种麻烦和让你活着造成的麻烦哪个比较严重了。”乔阴狠地说着，让对方明白，自己毫不介意扣下扳机。</p>
+	<p class='firstLineIndent'>托尼此时已不敢再靠近对方，他谨慎地拿出枪来，保持距离，道：“难道你也是改造人吗？”</p>
+	<p class='firstLineIndent'>“改造？呵呵……你们难道以为自己这种缺胳膊少腿的情况下，装点带军火的零件上去就是改造了吗？哈哈哈。”德维特不屑地笑着：“肥佬，你也不比桑尼聪明，既然我敢单枪匹马出现在你们这帮全副武装的歹徒面前，自然是有所准备的。”</p>
+	<p class='firstLineIndent'>他不紧不慢地说道：“我确实没有报警，但我用某种方法，让许多警察在离这儿并不远的地方转悠，如果你们开枪，我建议先考虑一下退路。”</p>
+	<p class='firstLineIndent'>乔用他那沙哑的嗓音说道：“我不知道你是什么来路，但你可以看到，我们的交易已经完成了，你现在还想怎么样？杀了托尼去桑尼那边领赏吗？我们这边可有绝对的人数优势，我劝你考虑清楚。”</p>
+	<p class='firstLineIndent'>德维特沉下了脸：“当然，要做的事情，我来之前就想清楚了，你们的反应也在我意料之中，计划是不会改变的……”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0005'><summary><a>第三章 审问</a></summary>
+	<p class='firstLineIndent'>房间外面有重型机械正在运作着的声音，听上去像是某种流水线，也许这里是汽车厂、肉罐头厂或是饮料厂什么的，德维特脑子里想的就是这些事，无关紧要的事。</p>
+	<p class='firstLineIndent'>一小时前，他被套上黑色的头套带到这里，一间只有十平方米左右的空屋子，窗户都被封了起来，整个屋子只有头顶一盏吊灯，光线照不到四周的墙壁和角落。</p>
+	<p class='firstLineIndent'>德维特被绳子绑在一张椅子上，揭开头套后，跟在桑尼身边的那个大个儿打手就开始揍他。打手的名字叫加瓦，业余拳击手，看块头也至少是中量级的，他把纱布缠在自己双手上，对着德维特的腹部，胸口、脖子和脸足足打了四十分钟，另外还花了二十分钟左右来问问题，但他得到的答案基本是“你出拳像个醉汉”或者“我看你快喘不上气了，要不要休息一会儿”。</p>
+	<p class='firstLineIndent'>满地的烟头说明桑尼的时间和耐心都已被磨得差不多了，而加瓦似乎也放弃了审问，他走到桑尼身边，凑在他耳边压低声音道：“我看再打下去也不会有什么结果，我曾经在中东遇到过类似家伙，两个小时的电击连名字都没问到。”</p>
+	<p class='firstLineIndent'>桑尼推开加瓦，从上衣里掏出手枪，顶着德维特的额头：“听着，混蛋，这是你最后的机会，把你上级的名字说出来。”</p>
+	<p class='firstLineIndent'>“我早就说过了，如果你稍稍运用一下自己装在脑壳儿里的那个器官，早就可以排除我是警察的可能性了。”</p>
+	<p class='firstLineIndent'>枪托重重地敲在了德维特的下巴上，桑尼愤然道：“好，既然撬不开你的嘴……”他转身，从屋子一角的黑影中，拉出了另一张椅子，迈克正被绑在上面，不过看上去他还一拳未挨。</p>
+	<p class='firstLineIndent'>“对不起了，伙计，我只能从你这儿想想办法了。”桑尼挥手示意加瓦过来，看来准备对迈克动手了。</p>
+	<p class='firstLineIndent'>“嘿！嘿！这是干什么！我跟这事儿有什么关系？！这人是你介绍给我的，我认识他还不到二十四小时，我连他姓什么都不知道。”迈克赶紧叫道：“况且我把自己知道的全都告诉你们了！”</p>
+	<p class='firstLineIndent'>“是的，你全都告诉我们了，你说他一个人把杰诺维塞家族来交货的人统统干掉，扔进了密歇根湖，然后拿上钱，带着你逃离了近半个城市警力的追捕。你以为这是在电视游戏还是在拍电影？我看上去像是三岁小孩儿吗？迈克，我的伙计，我们之前的合作还是很愉快的，但如果你继续编故事，可不能怪我不顾及往日的交情。”</p>
+	<p class='firstLineIndent'>“你不是三岁小孩儿，只是有点蠢而已。”德维特在桑尼背后笑道。</p>
+	<p class='firstLineIndent'>“你这杂种！”桑尼气得暴跳如雷，冲上前去对着德维特就是两记老拳。</p>
+	<p class='firstLineIndent'>加瓦这时把双手上沾满血的纱布解开扔在地上，换了两条干净的，重新缠在手上。他早已脱掉上衣，两条胳膊上肌肉虬结，青筋突起，这虎背熊腰的壮汉往白净消瘦的迈克面前一站，越发显得这四眼儿学生弱不禁风，就是把绳子解开，估计迈克也会被三拳揍趴下。</p>
+	<p class='firstLineIndent'>“小子，要我帮你摘掉眼镜儿吗？我可不希望镜片儿插进眼珠子以后，你像个娘儿们似的叫唤。”加瓦的右拳往自己左手掌心敲了两下，貌似是准备动手了。</p>
+	<p class='firstLineIndent'>迈克赶紧道：“等等等等……你们等等，别动手，我可以解释。”</p>
+	<p class='firstLineIndent'>桑尼又走了过来：“我听着呢。”</p>
+	<p class='firstLineIndent'>迈克道：“既然你们不相信我之前说的，我可以帮你们分析一下你们所担心的最糟糕情况，无非就是……德维特是警察、特工或者HL什么的，而我则和他达成了某种交易，帮他隐瞒昨天发生的一些事情。但你们可以再好好想想，这是绝对不可能的。”</p>
+	<p class='firstLineIndent'>桑尼道：“为什么？就因为你昨天才遇到这个人，我就该相信，你没有任何可能被他收买吗？像你这种小子我见得多了，自恃受了点儿高等教育，暗地里做些非法勾当，只要条子找上门，用坐牢和前途来威胁你时，你就像个婊子似的立即转作线人，盼着能把像我这样的人送进牢里，去换取一个证人保护计划什么的不是吗？”</p>
+	<p class='firstLineIndent'>迈克咽了口口水，回道：“卢切斯先生，我得再重申一下，是你让他来找我的。”</p>
+	<p class='firstLineIndent'>桑尼道：“是的，因为我觉得这家伙是个骗子。他居然自称‘顾问’……”他回头抓起德维特的头发，对着他的脸道：“你以为我没听说过那个顾问吗？如果是一个四十岁左右男人走到我面前，也许我还会有那么百分之一的可能相信这件事儿，但你这小子不觉得自己要冒充一个传奇人物还显得太嫩了点儿吗？”</p>
+	<p class='firstLineIndent'>德维特只是笑笑，懒得回应。</p>
+	<p class='firstLineIndent'>桑尼又回到了迈克面前：“所以我就把托尼的交货时间还有地点都告诉了他，并对他说，‘如果你真是顾问，你知道该怎么做来证明自己’。”</p>
+	<p class='firstLineIndent'>迈克回道：“接着你就把我介绍给他，因为我对城里的各种交易情报都有所了解，如果德维特真的报警去破坏交易，事后你可以把自己完全撇清了。”</p>
+	<p class='firstLineIndent'>桑尼笑道：“猜得不错。”</p>
+	<p class='firstLineIndent'>迈克继续道：“到时的结果，托尼可能被捕，或者干脆因拒捕被击毙，即便他没死，或者警方告不了他而把他放了，可这条线上的买卖肯定黄了，托尼在杰诺维塞家内部也会很不好过，你的报复目的就达到了。</p>
+	<p class='firstLineIndent'>但无论结果如何，杰诺维塞都会怀疑这件事是你在背后搞鬼，因为你和托尼一直有过节。到时候，你可以假装什么都不知道，就算德维特指认你，你也可以说他是个骗子，想靠卢切斯家族的势力保护自己，并且在恰当的时机把我推出去，当成某种证据，证明交易的信息不是你透露的。”</p>
+	<p class='firstLineIndent'>德维特又在后边儿发言了：“桑尼，这小子要比你聪明多了。”</p>
+	<p class='firstLineIndent'>“你这混蛋再不闭嘴，我就割断你的舌头。”桑尼回头威吓道。</p>
+	<p class='firstLineIndent'>迈克话锋一转：“可是你没想到，德维特根本没有按照你想象中的去报警，而是选择了黑吃黑，并且成功逃脱了。因为你不相信他能办到这件事，所以就怀疑，他是警方的人，不管昨晚他干了什么，都是由于警方的暗中配合才能完成的。”</p>
+	<p class='firstLineIndent'>桑尼道：“对，所以我们的话题不还是说回来了吗？小子，这条子给了你什么好处？昨晚到底发生了什么？”</p>
+	<p class='firstLineIndent'>迈克长吁了一口气：“如果芝加哥这城市还在正常运转，我想昨晚发生的一切，你今天上午已经在报上读到了。”</p>
+	<p class='firstLineIndent'>桑尼闻言神色微变。</p>
+	<p class='firstLineIndent'>迈克接着说道：“媒体的报道应该是，发现了两辆烧毁的车，一辆是厢式货车，一辆是在下午制造过交通混乱的肇事逃逸车辆，现场发现了一些脚印，但没有找到任何人。”他说到此处顿了一下：“你不觉得这和我之前告诉你的实际情况是完全对得上的吗？”</p>
+	<p class='firstLineIndent'>桑尼冷哼一声：“对得上？我怎么觉得，条子们抓走了托尼一伙，并故意放跑了你们，然后对外封锁消息这种情况更对得上？”他看着迈克：“而且你们今天上午十一点来找的我，早晨事先看过几张报纸也很正常。”</p>
+	<p class='firstLineIndent'>迈克道：“那么，完全按照你的推测，假设德维特就是警方派来的卧底，事情的经过应该是这样的……</p>
+	<p class='firstLineIndent'>首先，德维特企图以一种非常惊人的方式打入你们家族——冒充顾问，我觉得任何一个头脑正常的卧底警探，就算选择在酒吧里朝你脸上扔花生都比这种方式要好。</p>
+	<p class='firstLineIndent'>而你从一开始就没相信他，可见他第一步就走失败了；然后他又跳入了你设计的明显圈套之中，并且他还用威逼利诱之类的手段贿赂了我，一个认识才半天不到的人，接着在昨晚一切设计完成后，带着我这个完全谈不上忠诚、没有经过任何训练的人，自投罗网般地再来见你，丝毫不担心我因为扛不住严刑逼供而出卖他。”</p>
+	<p class='firstLineIndent'>桑尼脸上的表情数变，看样子是动摇了，而迈克还没说完：“卢切斯先生，你该好好想想，你的怀疑是毫无根据的，不合乎逻辑的。另外，即便你一意孤行，非要说他是警察，我也强烈建议你不要再拷问我这个本来就置身事外的人了，你直接一枪把他解决掉就是，他跟我毫无关系，今天我会跟他一起过来，是因为这个混蛋拒绝付钱给我。”</p>
+	<p class='firstLineIndent'>话到此处，屋中又响起了第五个人的声音，那低沉的声音道：“好了，桑尼，你和加瓦先出去吧，别忘了关上门。”</p>
+	<p class='firstLineIndent'>桑尼应了一声，又瞪了椅子上的两人一眼，和加瓦一起走了出去。</p>
+	<p class='firstLineIndent'>屋子的角落，那黑暗中，还有一个人，他从一开始就在那儿，不过德维特和迈克都没注意到他，桑尼和加瓦也有意装作屋里只有四个人的样子。</p>
+	<p class='firstLineIndent'>阴影中，走出一个白发老者，留着络腮胡，穿着一套工薪阶层一年工资才能买得起的西装，他也搬了张凳子，坐在两人前方，开口道：“我很欣赏两位，要知道，我在你们这个年纪的时候，整天到处瞎混，过着花花公子的日子，让父母非常担心。”他的目光移到了德维特的脸上：“希望你能原谅我的多疑，我完全相信顾问是一位才能卓越并且十分年轻的人，我只是讨厌那些卧底。</p>
+	<p class='firstLineIndent'>我们是一个大的家族，有些心怀叵测的人混进来也是很难免的，我接纳他们，将他们当成是家人，可这些内贼却只想着破坏家族的利益，将兄长们送入监狱，伤害着我们的感情和自尊。”</p>
+	<p class='firstLineIndent'>德维特吐掉口中的鲜血：“那么，刚才的戏码是最终测试，还是说，以后会有更多的试探？”</p>
+	<p class='firstLineIndent'>老者回道：“我想已经够了，孩子，如果你是某个从警校里被长官秘密挑出的优等生，当枪指着你的头时，你的眼神不该是那样的。”</p>
+	<p class='firstLineIndent'>“哦？哪样？”德维特笑着道。</p>
+	<p class='firstLineIndent'>“我见过很多卧底面临致命威胁时的样子，人到了那个时候，会想起家人、任务或是他的长官，总之会回忆些有意义的事情，即便他表面上很镇定，准备好了面对死亡，但有些情感是无法掩饰的。</p>
+	<p class='firstLineIndent'>而如果是个被冤枉了的恶徒，在那一刻会表现出愤怒、不甘，更疯狂一些的家伙，比如你，看上去在想些无聊的事情，比如今晚的晚餐会吃些什么。”</p>
+	<p class='firstLineIndent'>“呃……先生，请问您是？”迈克在旁边打断道。</p>
+	<p class='firstLineIndent'>“约瑟夫·卢切斯，我想你应该听过这个名字，年轻人。”约瑟夫回道。</p>
+	<p class='firstLineIndent'>迈克低头笑了：“呵呵……很荣幸见到你先生，我想如果我今天能活着走出这里，今后也当不成守法公民了。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“你早就不是什么守法公民了，迈克。”</p>
+	<p class='firstLineIndent'>德维特则显得颇为兴奋：“是什么让卢切斯家的老板选择亲自见我呢？你最初坐在这间屋子中的时候，应该还没有听到迈克的叙述，只是看过报上的报道而已，难道……”</p>
+	<p class='firstLineIndent'>约瑟夫接道：“即便是我，在看到报道以后，第一个怀疑的人也是桑尼，而他，不敢在我面前说谎。”</p>
+	<p class='firstLineIndent'>“哼……明白了，哪怕只有万分之一的可能，你也想赌一赌，我就是真正的顾问，因为你现在就需要‘顾问’。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“年轻人，我已经查了一些你的事情，德维特·莱尔这个名字只是个符号，就如同‘顾问’这个称号一样，代表不了任何东西。目前，我有九成把握，你不是警方的人，但对于你就是顾问本人这件事，我却连三成把握都没有。</p>
+	<p class='firstLineIndent'>也许昨晚你确实干了笔黑吃黑的买卖，但据我所知，这世界上，有一些具有特殊才能的人，有人叫他们超能者、能力者或者干脆叫怪胎，如果你是他们中的一员，我想，对付托尼和乔那几个人，还是有可能的，逃过一般警察的追捕也都说得通了。”</p>
+	<p class='firstLineIndent'>德维特道：“你不需要能力者，因为那会召来HL这种级别的部门介入，是黑帮的禁忌，也是一道危险界线；你所需要的是‘顾问’的智慧，是犯罪的策略，这才是你想要的。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“很正确，昨天你主动找上桑尼，说明至少短期内，你只想跟我们卢切斯家族合作，而你的立场问题，刚才也已经测试过了，现在我不管你是否是所谓的能力者，假如你是顾问，我会雇佣你的，当然我只需要你提供的计划。”</p>
+	<p class='firstLineIndent'>德维特道：“假如我不是呢？”</p>
+	<p class='firstLineIndent'>约瑟夫站起来，亲自为德维特和迈克松绑，并一边说道：“你最好证明自己是，因为我的期待已经被提到了一个很高的高度。”他又对迈克说道：“还有你，以后就只为卢切斯家族服务了，我想，以你的才能，很快就能位居桑尼之上了。”</p>
+	<p class='firstLineIndent'>迈克道：“先生，桑尼可是姓卢切斯的，是你真正的亲戚吧……”</p>
+	<p class='firstLineIndent'>约瑟夫耸耸肩：“那当然，不然那种蠢货早就被我扔进海里了。”</p>
+	<p class='firstLineIndent'>“呵……呵呵……”迈克生硬地笑着。</p>
+	<p class='firstLineIndent'>德维特则是活动了一下筋骨：“我确实有一笔大买卖要和你谈，卢切斯先生，不过在那以前，既然你仍然对我的身份有质疑，我就趁着托尼和乔尸骨未寒，再免费替你完成一件事吧。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0006'><summary><a>第四章 追查</a></summary>
+	<p class='firstLineIndent'>路边，一个普通的报摊，在人流往来如梭的芝加哥街头显得毫不起眼。</p>
+	<p class='firstLineIndent'>“有什么新闻吗？”一名四十出头的男子问道。</p>
+	<p class='firstLineIndent'>他不是在问报摊的老板，而是在问自己身旁刚刚拿起报纸的一个矮胖男人。</p>
+	<p class='firstLineIndent'>矮胖男人没有回答，只是回头使了个眼色，然后迈开步子朝一个方向走去。</p>
+	<p class='firstLineIndent'>五分钟后杰诺维塞家族的二老板弗兰克和阿瑟警官就并肩坐在了一张广场边的长椅上，各自低头喂着鸽子。</p>
+	<p class='firstLineIndent'>“你是想问昨天傍晚北风岛公园的爆炸吗？”阿瑟先开口道，他虽然是在跟弗兰克说话，但目光却根本不与对方接触，头也偏在一边，看上去像在专心喂鸽子。</p>
+	<p class='firstLineIndent'>作为一个腐败的警察，阿瑟已十分老练，当警察超过二十年了，他看到过许多拿脏钱的同僚或上级最终锒铛入狱，他也知道，只要在利益面前动摇过那么一次，自己就永远都不会干净了。所以小心谨慎现在成了阿瑟的习惯，像现在这种场合，就算被人偷拍下来，他也可以说，“我只是在喂鸽子的时候碰巧和一个黑手党家族的二当家坐在同一张长椅上，公共场合他要坐过来我有什么办法？”</p>
+	<p class='firstLineIndent'>如果指望着十年后可以活着拿到退休金，他就必须每分每秒都当好一个演员，设想着摄像机无处不在，正所谓一路上演出难得糊涂，一路上回顾难得麻木，在这条无间的路，只有在梦中解脱清醒的苦。</p>
+	<p class='firstLineIndent'>弗兰克在表演艺术方面的造诣显然和阿瑟差了一大截，不过有个好老师在身边，他也是有样学样，揉着脖子，很不自然地看着别的地方回道：“是的，说说吧，阿瑟警官。”</p>
+	<p class='firstLineIndent'>阿瑟道：“其实我掌握的情况也不比报上的报道多多少，昨天傍晚，也就是公园关门前的一小会儿，在一个靠近水边的偏僻地区有爆炸发生，短时间内两声巨响，接着有个公园的管理人员听到动静报了警，他被吓坏了，以为是恐怖袭击什么的，因为他在附近，除了爆炸还依稀听到了一些枪击声，所以他在电话里描述的像是世界大战。</p>
+	<p class='firstLineIndent'>而就在大约半个小时前，41号公路周边地区发生了一次肇事逃逸引起的交通混乱，局里派了很多巡逻车和警力去维持秩序，正好赶上这事儿，再加上那个管理员描述得真像那么回事儿，于是上百警力调转车头开上了E公路，我们甚至都做好了对方是自由前线的心理准备，差点儿呼叫HL来支援。结果到了公园，只看到了两辆被烧毁的车和一些脚印，搜索了方圆半英里，没发现半具尸体，也没有任何伤员，更没有任何组织或个人留下的标语之类的玩意儿。</p>
+	<p class='firstLineIndent'>这个星期局里对这件事的后续调查应该会持续下去，现在不少警员都在联络他们的线人，期望能从这次爆炸里揪出个大案来，你还需要知道些什么？”</p>
+	<p class='firstLineIndent'>弗兰克不动声色，继续问道：“阿瑟警官，以你专业的角度出发来分析一下，这件事的真相可能是什么呢？”</p>
+	<p class='firstLineIndent'>阿瑟手里撒着玉米粒儿，想了一会儿：“如果你今天不来问我这件事，我会建议负责这案子的同事在结案报告上写，一群嬉皮士在公园里high药时不小心引发了火灾，进而导致两辆汽车爆炸，其中一辆经确认是被盗车辆，且在之前有交通肇事逃逸的记录，现暂无目击证人与疑犯具体人数或特征。最后归档，记录备案。”</p>
+	<p class='firstLineIndent'>弗兰克笑道：“那么，我的好奇心，让你的看法有所改变吗？”</p>
+	<p class='firstLineIndent'>阿瑟道：“你得先告诉我一些我所不知道的，我才会有结论。”</p>
+	<p class='firstLineIndent'>弗兰克道：“假设昨天那两辆车中，有一辆是我们公司的员工用来运货的车；但另一辆车，并不属于提货方，而是来路不明的。”</p>
+	<p class='firstLineIndent'>阿瑟的动作停止了大约两秒，然后嘴里骂了声：“见鬼……”</p>
+	<p class='firstLineIndent'>弗兰克只是不置可否地笑笑，等待着对方的回应。</p>
+	<p class='firstLineIndent'>这次阿瑟沉默了许久，思索几番方才回道：“根据现场勘查的情况，我给你两种可能性的结论。第一种，你的员工吞掉了货或者钱，然后跑路了。</p>
+	<p class='firstLineIndent'>他们事先去偷了辆车，并故意用那辆车制造了交通意外引起骚动，最后停在运货的车边上，走之前制造爆炸，仿佛他们遭遇某股势力或者某人的袭击，而现场有两辆车正好说明了这点，但其实这种种假象迷雾，都是用来掩盖简单的真相，所有一切都是做给杰诺维塞家族看的，以免事后遭遇追杀。”</p>
+	<p class='firstLineIndent'>弗兰克闻言后想了想道：“我还得告诉你一些情况，阿瑟警官，可能会对你有所帮助。我们已经联系了提货方，他们说昨晚的交易一开始很顺利，但结束后，有一个年轻人忽然出现搅局，他来的时候是徒步的，没有车，所以他可能还有同伙儿。</p>
+	<p class='firstLineIndent'>根据你的第一种结论，我也不排除那个年轻人是我的员工雇来演戏的这种可能性。也许他们间的冲突只是做给提货方看的，但我觉得如果真的要演，应该雇一群荷枪实弹的煞星开着辆SUV冲到现场直接开枪，这样更有说服力。”</p>
+	<p class='firstLineIndent'>阿瑟瞥了对方一眼：“你这逢人只说三分话的脾气可不好，弗兰克，还有没有别的要告诉我？让我根据有限的信息作出错误的判断，然后又被你否定掉，这是浪费时间。”</p>
+	<p class='firstLineIndent'>弗兰克道：“请原谅，阿瑟警官，但我能活到今天，靠的就是多疑和谨慎，我可没法儿确定你的上衣口袋里现在是不是藏着某种录音设备，以备将来不时之需。”</p>
+	<p class='firstLineIndent'>阿瑟没有继续这个话题，因为他心里有鬼，他跟杰诺维塞家族合作已经很久了，以备不时之需的那种录音其实家里早就有不少了……</p>
+	<p class='firstLineIndent'>“好吧，那我来说说第二种可能的情况，那就是，你口中的那个‘年轻人’和他人数不明的同伙，把你的员工全部干掉，吞掉了交易后的货款，扔掉交通工具，也许他们还有别的车，也许没有，总之他们想法子逃出去了。”</p>
+	<p class='firstLineIndent'>弗兰克又道：“你们警方没有设卡检查吗？”</p>
+	<p class='firstLineIndent'>“当然设了，接到爆炸案的报警后，很快就在E公路上设了卡，所有离开北风岛公园的车都要盘查，其实数量也不多，可疑的家伙当场就进行搜查并记录下驾照信息，但查出来的不法分子也就是几个没交罚单的司机而已。搜了不少人，也没搜到你口中的货款或者我们当时预期中的爆炸装置，唯一的违禁品就是几盎司大麻。”阿瑟顿了一下道：“根据你刚才告诉我的新情况，我猜那伙人一定是用什么巧妙的方法躲过了追查，也许他们把钱藏在公园的某个地方，打算事后再去取。”</p>
+	<p class='firstLineIndent'>弗兰克道：“那么……能否麻烦你，阿瑟警官，试着找找那笔钱，以及我们员工的尸体。”</p>
+	<p class='firstLineIndent'>阿瑟撒光了手上的玉米，拍了拍手站起来：“我也只是推测而已，没准钱昨晚已经被他们带出公园了，不过我还是会尝试去找的；至于你的员工们，恕我直言，弗兰克，如果他们的尸体被抛进了密歇根湖，现在可能都已经漂到密尔沃基去了，更不用提别的弃尸方法了，那些能让人从世界上消失的办法你比我知道得还要多不是吗？”</p>
+	<p class='firstLineIndent'>弗兰克从怀里掏出一个信封放在长椅中间，那厚度足以让人浮想联翩：“其实我也不抱太大希望，但我们也有自己的规矩，家族成员失踪或者被杀，不是件小事，就跟你们警察一样，你们按章办事，我们则按传统，所以找归找。</p>
+	<p class='firstLineIndent'>查明事情的真相以及制裁的工作，杰诺维塞家会自己处理的。”他说完便离开了。</p>
+	<p class='firstLineIndent'>阿瑟四处张望一番，才拿起长椅上的信封，塞进上衣的内侧口袋，朝着另一个方向离去。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0007'><summary><a>第五章 战前的谈判</a></summary>
+	<p class='firstLineIndent'>很多年以前，“叉骨”只是一家以乳酪丁为卖点的南方风味餐厅，可谁也没能预料，到了二十二世纪，在北美大陆上，叉骨成了豪华连锁酒店的代名词。</p>
+	<p class='firstLineIndent'>在芝加哥，叉骨有两家分店，分别在卢普区和密歇根大道，备受城中金融寡头和贵族们的青睐。</p>
+	<p class='firstLineIndent'>而这天，在卢普区的叉骨餐厅豪华包厢内，卢切斯家族和杰诺维塞家族的两位二老板要聚在一起吃个饭。当然他们不是只身赴宴，几个老练的枪手，一个贴身保镖，这是黑帮大佬们谈判时必备的，你要是不带个把弟兄全副武装地出门，都不好意思跟同行打招呼。</p>
+	<p class='firstLineIndent'>这顿饭的主意是德维特提出的，他要求约瑟夫派一个有身份的人，带上桑尼和自己一同到席，就情人节晚上那次黑吃黑跟对方沟通一下。约瑟夫在单独听取了的德维特的某个计划以后，表示了同意，并派出了卢切斯家族的二老板，自己的堂弟汤米·加利亚诺来做谈判代表。</p>
+	<p class='firstLineIndent'>约瑟夫似乎对德维特的计划非常有信心，他甚至暗中授意汤米在谈判中少说话，让德维特去跟对方谈。至于桑尼，约瑟夫只对他说了一句话：“我亲爱的侄子，关于这次晚餐，我对你的要求很简单，闭紧你的嘴！”</p>
+	<p class='firstLineIndent'>而杰诺维塞家族那边，为了以示郑重，弗兰克·杰诺维塞身为二老板责无旁贷地准备赴宴，他们那边其实感到颇为惊讶。按常理说，以桑尼和托尼两人之间势同水火的关系，出了这种事以后，卢切斯家族应该按兵不动，想尽办法把事情撇清才是。可没想到对方竟突然打个电话到总公司（杰诺维塞家族表面上的有许多合法产业）来，说要请你们老板吃饭。难道约瑟夫那只老狐狸终于决定大义灭亲，自己把桑尼交出来平息事端？</p>
+	<p class='firstLineIndent'>这倒也不是没有可能，但更有可能的是，鸿门宴，凶多吉少。</p>
+	<p class='firstLineIndent'>弗兰克向来多疑，生在这个年代的人，无论受到怎样的教育，被灌输了何种信念，当你真正开始了解世界和历史的时候就会明白，那些传统、信仰，根本是靠不住的。纯粹的暴力可以粉碎一切，就连宗教都被帝国给毁灭了，黑手党人们究竟还在拘泥于什么呢。</p>
+	<p class='firstLineIndent'>所以弗兰克除了随行的手下们，还在酒店周围埋伏了许多枪手，做好了随时开战的准备。</p>
+	<p class='firstLineIndent'>胜利的结果会被历史记下，至于手段，就留给败者去纠结吧。托尼和乔的死，只是压垮骆驼的最后一根稻草，今晚，很可能就是一场战争的开始，两个芝加哥最强大的家族，也许终于要分出一个胜负来了。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>二月十七日，晚七点。</p>
+	<p class='firstLineIndent'>几辆加长版的林肯正朝着叉骨酒店驶去，坐在车中的，是卢切斯家族的大佬们和其随行的手下。</p>
+	<p class='firstLineIndent'>而在其中一辆车里，坐着两个家族非正式成员，即黑手党口中所谓的合伙人。</p>
+	<p class='firstLineIndent'>德维特和迈克今天也算是正装出席了，不过迈克的脸色很不好看，其实他不想来的，但德维特找了个很充分的理由，你有机会黑掉杰诺维塞家一大批高级成员的信息，为什么不来？</p>
+	<p class='firstLineIndent'>迈克本就苍白的脸色，此时更是满脸的大汗：“你知道吗，我眼前不断浮现出，司机忽然回头用消音手枪射杀我们，或者是正乘坐的豪华轿车忽然爆炸的场面。”</p>
+	<p class='firstLineIndent'>“你电影看太多了。”德维特立即回道。</p>
+	<p class='firstLineIndent'>“你今晚究竟想干什么，我不太明白。”迈克说道。</p>
+	<p class='firstLineIndent'>“你不是挺聪明的吗？猜猜看呢。”德维特道。</p>
+	<p class='firstLineIndent'>迈克的嘴角抽着：“我能想到的三种情况，一，你把屎盆子扣到桑尼头上，把他推出去给杰诺维塞家族的人，任人处置，这已经算是上策了；二，你承认事情全是自己干的，把黑吃黑的经过叙述一番，道个歉，把钱还给人家，请求对方看在卢切斯家族的面子上饶你一命，这算中策，你能不能活命还得看对方的反应；三，自然是下策了，也是凭我对你并不算深的了解，预计你会干的事情，比如一脸不屑地对杰诺维塞家的二老板说‘就是我干的，你们这帮蠢猪，钱我是不会还的，今天就是让你们知道知道，以后见了爷都认着点儿，绕道走’。”</p>
+	<p class='firstLineIndent'>“呵呵呵……”德维特笑道：“你的中文很好嘛，我以为你只是生在北美的亚裔而已。”</p>
+	<p class='firstLineIndent'>“废话……全世界学校都教中英文，我怎么说也是个高材生，熟练掌握两门语言是起码的。况且我只是觉得在这种时候用中文可以更加形象地表现出你的为人……”迈克道：“你别东拉西扯，你能不能事先告诉我你准备采取哪种方式。虽然我认为这三种情况的任何一种都很有可能最终以枪战和屠杀告终，但至少我希望有个心理准备。”</p>
+	<p class='firstLineIndent'>德维特道：“告诉你又能怎么样呢？”</p>
+	<p class='firstLineIndent'>迈克道：“怎么样？以更快的速度钻到桌子底下，你看怎么样？”</p>
+	<p class='firstLineIndent'>德维特道：“办法不错，但我觉得事态升级以后，手榴弹之类的东西可能会加入战局，到时你钻哪儿都没用了。”</p>
+	<p class='firstLineIndent'>迈克干笑两声：“说得好，你看这样如何，在矛盾升级以前，你暗示一下，我离席去上一次长时间的厕所。”</p>
+	<p class='firstLineIndent'>德维特非常干脆地回道：“没门儿。”</p>
+	<p class='firstLineIndent'>两人闲聊间，车已停下，一名酒店的侍者打开了后座的门：“欢迎光临叉骨酒店，先生们，预祝你们有个愉快的夜晚。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>包厢里的气氛，说不出的诡异。过去城里的教父们谈判，虽然有时也会去酒店，但一般都是在宽敞的屋里，抽着雪茄聊。</p>
+	<p class='firstLineIndent'>但今晚，一张精致的四方形餐桌上，入席四个人，卢切斯家族这边有汤米·加利亚诺和德维特，杰诺维塞家族则是弗兰克·杰诺维塞和他的心腹保镖，吉卜赛人欧尼。其余所有人，包括已经满脸怒意的桑尼，始终跟随他的打手加瓦，还有迈克，全都站在周围呈围观之势。</p>
+	<p class='firstLineIndent'>这包厢本就不算很大，两帮人还要分开站，互相警戒，当中的四人，在这种目光灼灼，剑拔弩张的环境下还要进食，这场面看上去实在是颇为滑稽。</p>
+	<p class='firstLineIndent'>“叫几十个出来一起吃饭，真他娘的是个好主意不是吗？据说二十世纪末的香港黑帮都这么干，不过他们不会去高级酒店，而且携带的武器都是冷兵器。”迈克对着身边的加瓦说道，语气似是抱怨又似是开玩笑。</p>
+	<p class='firstLineIndent'>加瓦则用那凶神恶煞的眼神瞪了过来：“你想被自己人撕成碎片吗？”</p>
+	<p class='firstLineIndent'>迈克只好一缩脖子，闭上了嘴，看来他和这种粗汉是找不到什么共同语言了。</p>
+	<p class='firstLineIndent'>酒店服务员的心理素质十分过硬，他进来上菜时镇定自若，面带微笑地报出菜名，该干嘛干嘛，倒酒的手稳如泰山，全都搞定妥当还不忘问一句：“还有什么需要效劳吗？先生。”</p>
+	<p class='firstLineIndent'>待这位大哥被支出去以后，德维特一边往嘴里塞着东西，一边道：“怎么了先生们？为什么不动刀叉呢？不合胃口吗？”</p>
+	<p class='firstLineIndent'>弗兰克绷着脸，根本当德维特是空气，他对汤米道：“这小子是谁？”</p>
+	<p class='firstLineIndent'>汤米直言不讳地回道：“约瑟夫说，他是顾问。”</p>
+	<p class='firstLineIndent'>这句话如平地惊雷，除了事先知情的几人以外，整个屋里的黑手党人们都起了不小的骚动。</p>
+	<p class='firstLineIndent'>弗兰克的脸色只是微变，很快恢复了冷静：“你在开玩笑吗？”</p>
+	<p class='firstLineIndent'>德维特又插嘴进来：“嘿，先生们，你们知道在这儿点杯奶昔都要四十块钱吗？那是牛奶和冰激凌，没加酒加料，放上点儿切片的水果就要卖四十元，而你们对着自己面前的这些菜无动于衷，你们才是在开玩笑吗？”</p>
+	<p class='firstLineIndent'>弗兰克忍无可忍，转向德维特道：“你小子要是再指挥我怎么吃饭，我就把你的脑袋拧下来，挖空以后用来装四十块钱一杯的奶昔。”</p>
+	<p class='firstLineIndent'>德维特道：“这就对了，这才是谈判应有的态度。那么，让我把你感兴趣的问题一次性全都告诉你好了，首先，我他娘的才不在乎你相信与否，反正我就是顾问。其次，十四号晚上，你的那笔钱现在在我那儿，而且我也不准备还给你。最后，你的手下全都完蛋了，我表示对此事负责。你还有什么想知道的吗？”</p>
+	<p class='firstLineIndent'>“呵呵呵呵……”弗兰克忽然笑了，大笑：“汤米，你有什么要说的吗？”</p>
+	<p class='firstLineIndent'>汤米很平静：“他现在是我们的合伙人，这就是我要说的。”</p>
+	<p class='firstLineIndent'>“我想你很清楚，这意味着什么。”弗兰克道。</p>
+	<p class='firstLineIndent'>汤米回道：“我当然清楚，不清楚情况的是你，你好像还不太了解自己此刻的处境。”</p>
+	<p class='firstLineIndent'>弗兰克冷哼一声：“卢普区可不是你们的地盘儿，老朋友，难道你就如此肯定，只有你在酒店里埋伏了人手吗？”</p>
+	<p class='firstLineIndent'>德维特道：“你的自信无非来源于你事先安排在走廊尽头那两间房里的十二名枪手，还有埋伏在停车场里、以及附近两个街区内总共五十五人。”</p>
+	<p class='firstLineIndent'>弗兰克心中一怔，令他觉得惊讶的并非是对方已知道设伏之事，而是德维特竟然能说出如此精确的人数，难道自己身边有内奸？这种可怕的假设让性格上本就不相信任何人的弗兰克几近抓狂，他的脸瞬间布满阴霾，逼视着德维特道：“你知道得倒是很具体啊。”</p>
+	<p class='firstLineIndent'>德维特若无其事地用手中的餐叉指了指身后的迈克：“那个四眼儿在来的路上顺手就黑了你几个手下的手机，我什么都知道，你看，他现在拿着自己的掌上电脑在搞事呢。”</p>
+	<p class='firstLineIndent'>刹那间，整个屋子的人都把目光投到了迈克身上，原本他就和房间内的其他人显得格格不入，完全就是个在玩儿手机的大学生走错片场的样子，现在众人终于有了恍然大悟之感。</p>
+	<p class='firstLineIndent'>迈克此刻真的很想顺势上前，从背后把德维特勒死，不过他也只是想想而已，现实是，他嘿嘿傻笑两声，跟弗兰克目光接触了一下，还挥手打了个招呼。</p>
+	<p class='firstLineIndent'>德维特接着道：“杰诺维塞先生，话说到这儿，据我估计你也快掀桌子了，这是大家都能预见到的状况，所以我建议你还是先缓一缓，再听我说一些比较实质性的内容，也就是今天找你来谈的重点。”</p>
+	<p class='firstLineIndent'>“哦？你还准备说些什么？‘顾问’先生。”他说顾问这二字的时候明显带着嘲讽的语气。</p>
+	<p class='firstLineIndent'>“首先，我要声明，我和杰诺维塞家族没有什么仇怨，我的本意也并不是消灭你们，当然，以目前计划的进程来看，消灭你们是必然的，如果今天你或者你的手下有谁能活着回去，不妨直接跟萨缪尔·杰诺维塞先生解释一下，你们只是一个实验品，我本人绝没有针对诸位的意思。”</p>
+	<p class='firstLineIndent'>连弗兰克都想亲自挥拳打他的脸了，但德维特还是轻松地说着：“无论如何，今晚过后，卢切斯和杰诺维塞就算是开战了，我可以肯定的是，你们今晚会损失惨重，并且在非常短的时间内土崩瓦解。但杰诺维塞是一个庞大的集团，你们还有很多正经生意，名下有很多产业，这些完全是可以利用的资源，试想如果各位都死绝了，那么这些财产很快会被帝国侵吞殆尽的，到时候，我就难处理了，所以我现在可以给你一个机会，弗兰克。”德维特吃光了自己盘中最后一口食物：“现在，就是此时此刻，你还有机会，代表你的兄长，接受无条件投降。”</p>
+	<p class='firstLineIndent'>弗兰克貌似已经气过头了，他怒极反笑：“汤米，呵呵呵……约瑟夫从哪儿找来的这个小子，他是喜剧演员吗？你是不是疯了？哈哈哈哈。”他忽然就掀了桌子：“你杀了我们的人，劫了我们的钱，挑起战争，然后在还没付出任何流血的代价前，就要我们投降？”他说着，就一边后退一边拔枪，保镖欧尼的动作比弗兰克更快，他已平举起枪来，瞄准了汤米·加利亚诺的眉心。</p>
+	<p class='firstLineIndent'>“看来答案是‘不’了。”德维特耸了耸肩，丝毫不在意被人用枪指着，他按下了早已藏在袖口中的一个遥控按钮。</p>
+	<p class='firstLineIndent'>只是一秒间，整个酒店陷入了一片漆黑，器皿的碎裂声在黑暗中此起彼伏。酒店中的每一块玻璃，无论是灯管、酒瓶、镜子、窗户、吊灯全都在同时迸裂塌碎，而酒店里的人，都像是被某种无形的冲击波击中一样倒在了地上，许多人都双眼充血，有些严重者鼻孔中也血流不止。</p>
+	<p class='firstLineIndent'>但卢切斯家的人却都安然无恙地站着，每个人都拿出了事先准备好的液体照明枪，漆黑的包厢中再次亮起了许多蓝青色的光。</p>
+	<p class='firstLineIndent'>杰诺维塞家的人手无一例外地倒地不起，有几个虽然还能动弹，可也是视线模糊，完全找不到平衡感，脑袋里嗡嗡作响，根本就没有站起来抵抗的可能了。</p>
+	<p class='firstLineIndent'>“哦？那个欧尼，果然是能力者吗……”德维特喃喃自语道，他已用极快的速度扫视了包厢内的角角落落，唯有弗兰克和欧尼已不知所终。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0008'><summary><a>第六章 无竞争者的市场</a></summary>
+	<p class='firstLineIndent'>二月十八日的上午，德维特走进了约瑟夫的办公室，他高傲地仰着头，像是只耀武扬威的孔雀。随意跟卢切斯家族的教父问了声好，这态度丝毫不像是面对一位长辈或是自己的老板。然后他便直接就坐到了沙发上。</p>
+	<p class='firstLineIndent'>德维特一向自大，约瑟夫似乎也不介意这位年轻人的特殊秉性，只是笑着开口道：“你的办事能力让我印象深刻，德维特，不管你是不是顾问，仅凭你在七十二个小时内干掉杰诺维塞家族这么多杀手，并险些活捉弗兰克·杰诺维塞这一役，已足够让你在任何一座城市的黑帮中扬名立万。”</p>
+	<p class='firstLineIndent'>德维特从口袋拿出一包烟：“介意吗？”</p>
+	<p class='firstLineIndent'>“请随意，孩子。”约瑟夫回道。</p>
+	<p class='firstLineIndent'>德维特点上火，吐了口烟：“科学，卢切斯先生，这才是二十二世纪应有的趋势，用几十公斤可卡因的利润，就能搞到一台军方的WM2030，还有一定量的防护用药物。”他又抽了一口：“现在黑市上有不少类似的产品，虽然都是帝国多年前就淘汰的玩意儿，性能远不如现在的新型号来的先进，但用在非正规军的身上，已算是杀鸡用牛刀了。”</p>
+	<p class='firstLineIndent'>“我以前也知道这些奇奇怪怪的军火，但总觉得还不如在口袋里放一把勃朗宁来得实在。”约瑟夫也点燃了一支雪茄：“事实上，小伙子，你说的那个什么WM的，就算你交到我的手上，我都不会用。”</p>
+	<p class='firstLineIndent'>“也不算是什么复杂的机械，不过是超强的声波、冲击波，利用声屏障的绕射作用，放大导射，以前军队拿来当炮用的。在酒店地下放上一台，纵向朝上的圆柱形范围内全都能辐射到，要是空中经过一架飞机没准也能打下来。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“呵呵……行了，孩子，怎么运用的你就不必告诉我细节了，现在我关心的只有两件事，第一，就是杰诺维塞家族什么时候从这座城里消失。”</p>
+	<p class='firstLineIndent'>德维特道：“你可以直接说第二个问题了。”</p>
+	<p class='firstLineIndent'>约瑟夫吐了口烟：“那当然就是你口中的‘大计划’了。”</p>
+	<p class='firstLineIndent'>德维特抽烟很快，他已经抽完了一支：“中文里这样一句话‘敢于第一个吃螃蟹的人’，我觉得这句话可以把我们即将要做的事情形容得很贴切，在任何一个领域中，最初的开拓者未必会成为牺牲品，他们中有很多人都尝到了甜头。当那些保守、胆小的人，伸直了脖子围观或是嘲笑别人的时候，先驱者们已经迅速抢占了市场，一片空白的市场。</p>
+	<p class='firstLineIndent'>如果这是正经生意，接下来会发生的事情就是，以前持观望态度的那些人终于认清了市场规律，于是他们开始恬不知耻地跟风。而且这群废物的数量、剽窃手段以及无耻程度往往都是很惊人的。</p>
+	<p class='firstLineIndent'>但幸运的是，卢切斯先生，你做的不是什么正经生意，所以到时如果有那种小人冒出来，你可以把他们赶出市场，送进坟墓。”</p>
+	<p class='firstLineIndent'>约瑟夫拿下嘴里的雪茄：“说下去，顾问。”他对德维特的称呼变了，神情也变得严肃起来。</p>
+	<p class='firstLineIndent'>德维特道：“我并没有不尊重的意思，卢切斯先生，但今时今日的黑手党，和二十世纪鼎盛时期相比，早已无法相提并论，即便你们恪守着那些传统，也很难在一般市民当中再次建立起威信了。也许在某个时期人们曾以为黑手党关心平民、不会滥杀无辜，甚至在特定的情况下还代表了正义。但眼下来看，你可以随便在芝加哥的街头找几个小混混，根本不可能有人会知道一般匪徒和黑手党人的区别。</p>
+	<p class='firstLineIndent'>这是一个没有信仰的时代，至少大多数人都没有。当今世界的主流价值观，就是钱和权力，帝国就像一个金字塔，每个人都想着往上爬，当人们站在高处，看着那些被压在底下的人，心中丝毫不会有同情和愧疚，只会有恐惧和庆幸，而这种恐惧也促使着他们进一步地攀登。</p>
+	<p class='firstLineIndent'>已到了该改变观念的时候了，卢切斯先生，不用在意什么‘私仇’、‘宣战’这些从十九世纪就开始束缚你们的繁文缛节，甚至是教父这种称谓也是可以舍弃的，连天主教都被帝国给废了，还有什么意义呢。</p>
+	<p class='firstLineIndent'>我们要做的买卖，具有很高的风险性，所以需要许多随时可弃的棋子，比如那种为了奢华的生活可以放弃人生的人，或是将不择手段得到财富视为理所应当的人，他们就非常合适。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“你口中的买卖究竟是……”</p>
+	<p class='firstLineIndent'>“是你非常熟悉的走私业，卢切斯先生，走私某种特殊的金属——净合金。”</p>
+	<p class='firstLineIndent'>约瑟夫皱眉问道：“我从来没听说过这种东西。”</p>
+	<p class='firstLineIndent'>德维特笑道：“我也是花了很久才从帝国的机密文案里找到这玩意儿的资料，假如我把这项技术卖个某个抵抗组织，恐怕能开到天价，但我更喜欢经营。池塘会干涸，小溪却能流淌。发一笔财不如开一条财路。”</p>
+	<p class='firstLineIndent'>“这东西的价值大约是多少呢？或者，你能给我一个比较具体的概念吗？你口中的金属，一公斤能卖多少钱？比黄金还贵吗？”</p>
+	<p class='firstLineIndent'>“黄金？呵呵呵……”德维特大笑：“黄金和净合金比起来就像狗屎。”</p>
+	<p class='firstLineIndent'>“难道净合金这东西和等重的钻石一样值钱？”约瑟夫虽然难以置信，但心中的惊讶和贪婪早已被勾了起来。</p>
+	<p class='firstLineIndent'>德维特道：“还不明白吗？卢切斯先生，这是无价的，因为在这个世界上，任何地方都买不到它。就像是沙漠里有根自来水管，石器时代时有个打火机或是在中世纪时手中拿着一把狙击枪。</p>
+	<p class='firstLineIndent'>你可以自己定价，并且垄断整个市场。用更加容易理解的比喻就是，全世界所有的罂粟，都从你家后院里长出来，需求者只能向你买，并且接受你提出的任何价格。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“可这净合金，到底有什么用？如果是合金，那无非就是特种金属而已。”</p>
+	<p class='firstLineIndent'>德维特道：“呵……如果这东西只是比较好的金属而已，为什么帝国不用在民用设施上？”他顿了一下道：“我可以提示一下，一百多年前，帝国为何能横扫这个星球。”</p>
+	<p class='firstLineIndent'>约瑟夫手中的雪茄掉了下来，他的反应让德维特很满意。</p>
+	<p class='firstLineIndent'>“我说过了，敢于走在前面的人，会尝到甜头的。当然，净合金只是帝国许多秘而不宣的技术之一，我身上现在就有样品。”德维特很随意地从上衣口袋里拿出一块肥皂大小的金属，那是个银色的长方体，表面看上去平滑却不光滑，给人一种厚重感。</p>
+	<p class='firstLineIndent'>约瑟夫拿起来仔细端详着，德维特则在旁解说道：“密度适中，硬度无法估计，可抵御一万摄氏度高温，热传导性接近零，几乎完全不受磁力影响的抗磁性，无法被已知的任何化学物质腐蚀，不受放射性元素影响，而且熔点如此恐怖的合金，还具备形状记忆能力，也就是说，即使真的加热到一万度的零界点，净合金的物质形态开始变化，只要在一定时间内冷却下来，它还是会复原。”</p>
+	<p class='firstLineIndent'>约瑟夫道：“那怎么熔炼这东西？”</p>
+	<p class='firstLineIndent'>“哼……这就是帝国的秘密技术所在了，也是我弄到的信息中，最核心的内容，这东西根本无法熔炼，也无需熔炼，它是用分子结构下的一体成型技术制造的，比如你要一把刀，我就直接造一把刀给你，从刀柄到刀刃，全部是净合金，只要持刀的人力量足够，他可以斩断世界上一切固体，除非那固体也是净合金。”</p>
+	<p class='firstLineIndent'>“原来如此……”约瑟夫道：“帝国是担心这种合金制造技术被民间掌握后，终有一天会被用于制造武器……那些反抗组织的能力者们，有许多是使用冷兵器就能对抗军队的怪物，他们会对这种净合金刀剑趋之若鹜。”</p>
+	<p class='firstLineIndent'>德维特接道：“从禁酒令时代至今，芝加哥的黑手党还是停留在冲锋枪和手榴弹这个级别上，那早就过时了，比WM2030最新型号更强的武器在HL中有的是。跟我们今后要做的买卖比起来，杰诺维塞家族根本算不上问题。将眼光放得远些，卢卡斯先生，也许以后我们要对付的是HL这种角色了。”</p>
+	<p class='firstLineIndent'>“我对当反抗军可不感兴趣。”约瑟夫道。</p>
+	<p class='firstLineIndent'>德维特回道：“我知道，我也不需要你当，你只要当一个连帝国都动不了的财阀，就可以了。”</p>
+	<p class='firstLineIndent'>约瑟夫盯着德维特，这个年轻人的野心和魄力让他竟生出了几分佩服，话到此时，他也已经无所顾忌，直接说道：“看来卢切斯家族的‘参谋’，今天要换人了。”</p>
+	<p class='firstLineIndent'>他从老板椅上站起来，转过身去，面对着背后的落地窗，看着眼前繁华喧嚣的城市，得意地道：“不用多久，我将是新的芝加哥之王。”</p>
+	<p class='firstLineIndent'>德维特冷哼一声，坐在沙发上笑道：“唾手可得的已不是这座城市，而是整个世界。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0009'><summary><a>第七章 追杀</a></summary>
+	<p class='firstLineIndent'>二月剩余的日子里，从林肯伍德到伯纳姆，从中途机场到密歇根湖畔，芝加哥浸沐在一片腥风血雨之中，谋杀发生在每个角落。</p>
+	<p class='firstLineIndent'>拥堵的街头、僻静的小巷、出租车里、地铁站、理发店、工厂、民宅，甚至北部的富人区别墅中，或是在某个贵族的眼皮底下。到处都能见到黑手党人的尸首，这就是真正意义上的战争。</p>
+	<p class='firstLineIndent'>情况的发展在德维特的预计之外，卢切斯家族并没有在这种相互暗杀的行动中占到多少便宜，杰诺维塞家族的人不会总聚在一起遭人算计的。</p>
+	<p class='firstLineIndent'>而在这种战争期间，净合金买卖的开展几乎没有任何进展，约瑟夫腾不出手来做这个事情，家族的正式成员在战事结束以前人人都有生命危险。</p>
+	<p class='firstLineIndent'>三月一日，德维特的耐心到了极限，他决定去找四眼儿谈谈，也就是迈克，这小子自从谈判那晚以后就像局外人一样没了踪影，估计是天天躲在家里害怕被干掉。</p>
+	<p class='firstLineIndent'>迈克住在一幢出租公寓的三层，邻居都不是什么好人，这种地方的租金非常便宜，环境和德维特刚到芝加哥时住的地方差不多。</p>
+	<p class='firstLineIndent'>敲了几下门，里面没动静，德维特就在门口喊道：“开门，四眼儿，我是德维特，没人的话我可就破门而入了。”</p>
+	<p class='firstLineIndent'>接着房间里突然就有动静了……</p>
+	<p class='firstLineIndent'>迈克把门开了一条缝，里面的铁链还耷拉着，他左张右望，对德维特道：“转一圈。”</p>
+	<p class='firstLineIndent'>“什么？”德维特皱眉问道。</p>
+	<p class='firstLineIndent'>迈克道：“我怎么知道在我看不见的角度，是不是有人用枪正顶着你的后背，你转一圈我确认一下。”</p>
+	<p class='firstLineIndent'>德维特歪着头：“听着，你要想看男人转圈，我可以推荐几个比较另类的酒吧给你。现在把这该死的门打开，别逼我毁了它。”</p>
+	<p class='firstLineIndent'>迈克把门关上，放下链锁，重新开门道：“有何贵干？”</p>
+	<p class='firstLineIndent'>“哦，所以，现在我们就在走廊里谈话了，让这栋楼里的皮条客们和毒贩子一起听听黑手党的逸闻趣事吗？早知道这样我应该拿个扩音器站在楼下跟你聊的。”</p>
+	<p class='firstLineIndent'>迈克叹了口气：“好吧好吧，进来吧。”他闪过身，让德维特进屋，然后又谨慎地四下查看一番，方才关上了房门。</p>
+	<p class='firstLineIndent'>“你刚才在干什么？看重口味影片吗？”德维特像回自己家似的，进去就乱摸乱翻，最后视线停留在了迈克桌上的笔记本电脑屏幕上。</p>
+	<p class='firstLineIndent'>迈克赶紧从后面跟上来，把电脑合上：“嘿！尊重别人的隐私是一种礼貌。”</p>
+	<p class='firstLineIndent'>德维特摊开手：“‘烟土俱乐部论坛’？你的嗜好还真奇怪，你是不是在柜子里偷偷收集水烟壶什么的？”他直接就开始用自己刚才看到的网页拿迈克开涮。</p>
+	<p class='firstLineIndent'>迈克道：“烟土俱乐部不是一个研究烟土的俱乐部……那是个退休老人的兄弟会，他们只是取了这个名字而已。”</p>
+	<p class='firstLineIndent'>“哦，你是指那种专门招收工薪阶层退休男会员，聚在一起抽烟喝啤酒蒸桑拿的组织吗？”德维特继续着语言攻击。</p>
+	<p class='firstLineIndent'>“对，这种团体里充斥着一群疯狂的退休老人，其中包括我的一个表舅，你还有什么要问的吗？”</p>
+	<p class='firstLineIndent'>德维特自顾自地点燃了一支烟：“我想没有了，因为据我估计，像我这样的人，很难享受到退休这种奢侈。”</p>
+	<p class='firstLineIndent'>迈克冷笑一声：“哈，你是指自己会英年早逝吗？”</p>
+	<p class='firstLineIndent'>德维特回道：“不，我会握着权力和金钱睡进棺材，享受国王一般的葬礼，死后成为无数同行争相模仿和试图超越的对象。”</p>
+	<p class='firstLineIndent'>“你少做梦了……”</p>
+	<p class='firstLineIndent'>德维特觉得差不多该把话题转移到正事儿上了，他说道：“杰诺维塞家族的人比我想象中要强悍，我已经没有耐心了迈克，我需要可以一锤定音的情报。”</p>
+	<p class='firstLineIndent'>“我早跟你说了，谈判那晚过后，他们把所有的手机全部换掉了，还包括网上的秘密联络方式，现在他们是如何通讯的，我根本无从查起。”迈克不耐烦地道：“哦，对了，如果你记性不好忘了，我可以提醒一下，是你非常得瑟地把我是个黑客的事情告诉对方才造成这种结果的。”</p>
+	<p class='firstLineIndent'>“四眼儿啊四眼儿，你实在太较真儿了，我还准备培养你作为我的助手呢，可你却总是在抱怨客观困难。”德维特若无其事地回道。</p>
+	<p class='firstLineIndent'>迈克道：“客观困难？我见到你的第一天，你说需要我的技术支持，然后当我在车里盗取别人信息的时候，你把人杀光了，扔进了湖里。”</p>
+	<p class='firstLineIndent'>德维特解释道：“没办法，我本来是想抢了钱就把他们给放了的，谁知道他们的抵抗能力和顽强程度超过了我的预期。”</p>
+	<p class='firstLineIndent'>迈克接着道：“那也就算了，至少你知道事先在后备箱里准备两套警察的制服以便逃走，把车烧了以后也没留下什么痕迹。但第二次，你直接就在一群全副武装，怒火中烧的杀手面前把我卖了。”</p>
+	<p class='firstLineIndent'>德维特又道：“有什么好紧张的，当时我的位置比你危险，再说我早有准备，你不也事先服了WM2030的防护药品了吗。”</p>
+	<p class='firstLineIndent'>“出发前你把药丸给我的时候说那里面是维生素和2.5毫克安定。”</p>
+	<p class='firstLineIndent'>“你看上去像个刚绝经的更年期妇女一样焦虑，所以我觉得这种解释更省时省力。”</p>
+	<p class='firstLineIndent'>迈克道：“好吧，现在你又要能够‘一锤定音’的情报，你觉得我能像变戏法儿一样把杰诺维塞家某个重要人物的行踪变出来吗？”</p>
+	<p class='firstLineIndent'>“是的，不然我为什么来找你。”德维特理所当然道。</p>
+	<p class='firstLineIndent'>“嘿……你个臭不要脸的孙子。”迈克道：“你等着。”说完他就拿着笔记本电脑去了隔壁房间。</p>
+	<p class='firstLineIndent'>事实上，德维特的中文不算精通，所以他对迈克的第一句话没完全听明白，只能知道他在骂人而已。</p>
+	<p class='firstLineIndent'>十五分钟，德维特燃了三支烟，再等下去估计他要开始抽大麻了，而这时迈克也回来了，手里还拿着张刚刚打印出来的纸。</p>
+	<p class='firstLineIndent'>“给你，混蛋，这家旅馆，具体哪间房间我不知道，你自己去找，有80%以上的可能弗兰克·杰诺维塞住在那儿。”</p>
+	<p class='firstLineIndent'>德维特挑起眉毛：“我能问问你是怎么干的吗？”</p>
+	<p class='firstLineIndent'>迈克不耐烦地回道：“弗兰克和警察之间有交易，在这种特殊时期他们的接触会更频繁。那警察有一个专门和黑手党联系的手机号，一般是不会更换的，而我很早以前搞定了它。所以刚才我查询他们的通话记录，追踪那警察这几周内的活动，除了警局、家和他常去的商店以及一些有记录的案发现场，还剩下那么几个公共场所，他在那里都有比较长时间的逗留。</p>
+	<p class='firstLineIndent'>然后我在城市地图上标出了那些停留点，做了一张图，圈定一个范围。以弗兰克的性格绝不会冒险到距离住处非常远的地方去和一个警察接头，因此他肯定在这范围内。</p>
+	<p class='firstLineIndent'>大酒店里人多眼杂，他不敢住，于是我就黑掉这个地区所有中小型旅馆的电脑，用排除法，去掉那些用真名入住的人，最后嘛……就这样了。”</p>
+	<p class='firstLineIndent'>德维特愣了大约五秒：“嗯……”他从迈克手上接过写着寥寥几行字的那张纸，决定还是换个话题，别再激怒这死宅了：“那个……四眼儿，你一直待在城里，不用回学校的吗？”</p>
+	<p class='firstLineIndent'>迈克道：“对，我一般不去上课，但我明年依然能毕业，办法你就不用多问了，没什么事儿了赶紧走人。”</p>
+	<p class='firstLineIndent'>德维特离开了迈克的公寓，心中确有些暗喜，看来四眼儿是个不可多得的人才，这种人一定要收为自己个人的心腹，而不是卢切斯家族的。</p>
+	<p class='firstLineIndent'>虽然他心里还有着自己的算盘，但眼下还得借助卢切斯家的势力。所以当务之急，还是先把弗兰克·杰诺维塞活捉或是干掉，从而让战争尽早结束，如果再拖下去，那约瑟夫·卢切斯可不是什么善茬，很难保证这老狐狸会不会突然翻脸。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>一小时后，在那个已被迈克标示的旅馆中。</p>
+	<p class='firstLineIndent'>塞缪尔·杰诺维塞正和他的弟弟弗兰克交谈着。</p>
+	<p class='firstLineIndent'>“昨天又有三名家族成员牺牲了，最近我们损失了不少人，其中不乏一些狠角色，但卢切斯家绝不比我们好过。约瑟夫·卢切斯和汤米·加利亚诺已经很久没在公共场合露面了，他们的豪宅也是空着的，这是空前绝后的较量，没有什么人是绝对安全的，只有将对方消灭干净才算胜利，而我们将是胜利者。”弗兰克略显激动地说着。</p>
+	<p class='firstLineIndent'>塞缪尔道：“你的那位警察朋友能提供更具体些的帮助吗？他的胃口可不小，但能力却很有限不是吗？”</p>
+	<p class='firstLineIndent'>“我已经授意阿瑟帮我们抓了很多卢切斯的人了，当场击毙的情况也有，但他能做的也只有如此了，警察们毕竟不能随意杀人，而如果没有实际证据，只要卢切斯家的人不抵抗，很快就能从局子里出来。”弗兰克解释道：“我们假如过度借助阿瑟的力量，他很快会被自己的同事怀疑，这种时刻要挽回劣势只能靠咱们自己的杀手。”</p>
+	<p class='firstLineIndent'>塞缪尔猛吸了一口烟：“那么必要时，欧尼也得出手。”</p>
+	<p class='firstLineIndent'>说曹操曹操就到，欧尼忽然没敲门就冲进了屋里：“老板，二老板，外面的情况有些反常。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0010'><summary><a>第八章 欧尼</a></summary>
+	<p class='firstLineIndent'>欧尼话未说完，外面的枪声却已经打响。</p>
+	<p class='firstLineIndent'>就在他背后，旅馆前的停车空地上，卢切斯家族的杀手们身着整齐的黑衣，举着半自动冲锋枪徐徐推进，枪口吐着火舌，将旅馆一楼的门窗、墙壁打得碎片横飞。那些房间里大多数藏着杰诺维塞家族的成员，不过也有一般市民和一些旅馆的工作人员，但无论是谁，在这几乎不间断的疯狂扫射下，就算没有当场中弹身亡，也不可能有人会探出头来。</p>
+	<p class='firstLineIndent'>德维特、桑尼和加瓦待在一辆车里，停在距离旅馆仅隔一条街的地方，平静地观察着这场屠杀。</p>
+	<p class='firstLineIndent'>“要是我就破门而入，侧跳飞出，转身横扫，翻滚落地，对手血浆迸溅，肝脑涂地，最后我再淡定地吹掉枪口上泛起的一缕青烟。”德维特在封闭的环境里抽着口味很呛人的烟，开玩笑般地说道。</p>
+	<p class='firstLineIndent'>桑尼不屑地回道：“如果你需要特技替身演员的话，可以去好莱坞雇几个，但如果你要在尽量不损失自身战力的情况下杀人，他们是全城最优秀的枪手。”</p>
+	<p class='firstLineIndent'>德维特笑了笑：“不管多优秀也是徒劳，只要弗兰克·杰诺维塞在里面，那么欧尼肯定也在里面，一般人肯定对付不了他，等会儿待他出来，由我亲自搞定。”</p>
+	<p class='firstLineIndent'>桑尼眯缝着眼睛，用奇怪的眼神看着德维特：“所以……你和欧尼就是那种所谓的能力者？”</p>
+	<p class='firstLineIndent'>德维特道：“这是显而易见的，普通人要是单枪匹马干掉了托尼和乔还有他们的一干手下，那才是电影里的故事呢。”</p>
+	<p class='firstLineIndent'>这是一家典型的汽车旅馆，停车场很宽敞，但房间不多，一共只有两层，在几乎把一楼的墙都打成筛子时，杀手们停止了射击，在这等待枪管冷却的几十秒内，他们分成两拨，一拨上了二楼，另一拨开始搜索一楼还有没有漏网之鱼。</p>
+	<p class='firstLineIndent'>这个过程很像是在恐怖游戏里搜索僵尸，你永远不知道门后面有什么，他们可能在墙角，柜子中，床底下，翻倒的桌子后面，或者卫生间里。比较稳妥的办法就是在你打开某个封闭空间之前，先用子弹来开道。</p>
+	<p class='firstLineIndent'>死了多少市民是无关紧要的，死了多少杰诺维塞家的人，也在其次，今天行动的目标，是弗兰克·杰诺维塞，活要见人，死要见尸。当然，此刻正往二楼去的那十几名枪手，还不知道在某一个房间的门里，不但藏着杰诺维塞家的二老板弗兰克，连他们的教父塞缪尔也正好在此。</p>
+	<p class='firstLineIndent'>开门前对着门里先打完一梭子弹是必经程序，就这样，当他们来到第三个房间的门口时，正对门口的枪手刚要扣下扳机，门板突然像被炸飞一样弹了出来，屋子的墙壁被这股力道给扯碎。门口的枪手们被撞得四散倒地，有几人还从二楼走廊跌到了外面的空地上。</p>
+	<p class='firstLineIndent'>“哼……果然……”德维特打开车门，下车，整了整衣领，回头对车里的二人道：“估计警察快要来了，你们帮我争取一些时间吧。”</p>
+	<p class='firstLineIndent'>桑尼问道：“你准备干什么？”</p>
+	<p class='firstLineIndent'>德维特道：“对方的杂鱼也清理得差不多了，厉害角色当然是由我来搞定，你不是说要尽可能避免损失吗？在你问我这些废话的时候，损失可是在增大。”他说完就甩手关上了车门。</p>
+	<p class='firstLineIndent'>欧尼拿着枪，大刀阔斧地出门，射杀每一个在他视线内的枪手，虽说他不是百发百中，但枪法也绝对不差，一时间，楼上楼下的众多卢切斯家族杀手纷纷挂彩或是一命呜呼。而他们的子弹打向欧尼时，只要弹道接近欧尼周身半米，就如同撞上了一层防弹玻璃，然后被偏移弹开。</p>
+	<p class='firstLineIndent'>德维特道：“先生们，这里由我来应付，你们都出去，周围地区应该还有杰诺维塞家的人，另外，警察的脚步也需要你们来拖延。”</p>
+	<p class='firstLineIndent'>欧尼看到德维特时，就停止了射击，卢切斯家的杀手们似乎已经明白这二人不是正常人类，所以也没有再逗留，快速离开了。</p>
+	<p class='firstLineIndent'>欧尼从二楼直接跳下，就落在德维特面前三米不到的地方，他用枪指着德维特的脑袋，开口道：“叉骨酒店那晚的形势非常不利，所以我才选择优先带杰诺维塞先生逃走。”他往前继续走着：“其实按我的想法，假如那晚只有我一个人，我早就把你们全部杀光了。”</p>
+	<p class='firstLineIndent'>“哦？你这种自信，究竟来源于什么呢？难道你还是强级的能力者不成？”德维特轻松地说道，此时，欧尼手中的枪管已顶住了他的额头。</p>
+	<p class='firstLineIndent'>欧尼冷笑：“难道并级就杀不了你吗？我倒想问问，你是强级的能力者吗？我看只有那种目中无人的态度有点像而已。”</p>
+	<p class='firstLineIndent'>德维特道：“哼……我和你一样是并级，但你依然杀不了我，因为至今为止，我遇到的能力者，只要是强级以下，没有一个能和我对抗。”</p>
+	<p class='firstLineIndent'>“废话！”欧尼扣下了扳机。</p>
+	<p class='firstLineIndent'>砰一声枪响，下一秒，在欧尼的想象中，德维特的头理应像个西瓜似的爆开。但现实是，他毫发无损。爆开的是欧尼手中的枪，那枪管像是被扯成了七八片布条儿一样呈喇叭状向后翻起，欧尼的手掌也被严重灼烧，他扔掉手中那块已经彻底变形了的铁疙瘩，戒备着后撤了好几米，右手上血肉模糊，一股烧焦的肉味儿飘起来，就像是德维特的嘲笑一样传入欧尼的鼻子中。</p>
+	<p class='firstLineIndent'>“我得事先说明，改造人是不可能打赢我的，但我和你没有私人仇怨，你要是肯离开这座城市，不再和我作对，我可以放你一条生路。”</p>
+	<p class='firstLineIndent'>欧尼自然不会这样就轻易放弃：“你怎么知道我是……”</p>
+	<p class='firstLineIndent'>德维特抢道：“上次见面后我就对你的实力进行了一些分析，能够在WM2030的攻击下不受影响，除了服用防护用药品以外，最简单的方法就是躲在特质的防护装甲里，因此，你肯定是改造人，真正意义上的改造人。</p>
+	<p class='firstLineIndent'>当然，还有另一种可能，如果你真的拥有强级以上能力者的肉体强度，一样能挺过来。但我觉得你没有，因为那种级别的人根本不会加入黑手党这样的组织。要钱要地位，他们可以直接加入HL，有点理想信仰的会加入反抗组织，而要自由的那些人，都是独来独往的散兵游勇。总之在强级以上的人，一般不会为了生存问题而去犯罪。</p>
+	<p class='firstLineIndent'>呵呵……但你我这样的人，只好为了五斗米而折腰了。因此，我再问一遍，为了节约我们的时间，也为了自己的些许怜悯之心。你是否可以从我视线中消失呢？”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0011'><summary><a>第九章 崩盘</a></summary>
+	<p class='firstLineIndent'>欧尼用拳头回答了德维特的问题，他暴喝一声，右臂的肘部突然向外溅出些火花，这一拳像是导弹一样，在一种反作用力的推进下，急速冲向了德维特的面门。</p>
+	<p class='firstLineIndent'>但他的胳膊和刚才握在手中的枪一样爆开了，欧尼的口中喷出鲜血，被爆炸的力道放倒在地，再也未能重新站起来。</p>
+	<p class='firstLineIndent'>他三分之一的躯干和整条右臂都被炸没了，露出了半机械改造过的内脏器官，防护装甲下的电路冒着浓烟，还嗞嗞作响。</p>
+	<p class='firstLineIndent'>德维特道：“这才像样嘛，特制的超声震动力场装甲，还有内部复杂的生理机械，即使遭遇如此程度的爆炸力破坏，能源仍然可以维持生命。”</p>
+	<p class='firstLineIndent'>欧尼道：“攻击时发生故障是不可能的……难道你可以控制金属？”</p>
+	<p class='firstLineIndent'>德维特回道：“不，如果我有控制某一种物质的能力，而且是金属这种东西，即便我本人坐在轮椅上，都可以算作强级能力者。我的能力是使距离自己非常近的那些非生物体所制造的动能逆向运行。简单地说，子弹不会射出来，发射药所产生的全部压力会全部在枪管里爆开；而你那条胳膊，刚才的冲拳和你打飞楼上的门时用的是同一种原理吧，弯曲手臂，让手肘的压力推进装置在短距离内爆发一下，可这股力量如果返回去作用于你的机械臂内部，就会造成现在这样的结果了。”德维特说着便拿出了自己身上的枪：“这就是为什么，改造人是不可能赢我的，另外，我也不觉得光凭肉体能力你就能赢。”说着便扣动了扳机，德维特的枪运作很正常，子弹射入了欧尼的额头，他的头被打爆了，血液喷了出来，脑子里的电路部分还被引燃，火焰很快蔓延到其整个身体。</p>
+	<p class='firstLineIndent'>德维特竖起枪管，装模作样做了个吹烟的动作：“真可惜，遭遇重创以后震动力场就失效了。”</p>
+	<p class='firstLineIndent'>这时，此起彼伏的警笛声几乎已经包围了旅馆周边的整个地区，但德维特还是不慌不忙地走上二楼，找到了那扇没有门的房间。</p>
+	<p class='firstLineIndent'>塞缪尔·杰诺维塞和他的弟弟弗兰克·杰诺维塞依然不失风度的待在房间里抽着雪茄，虽然没有出去观战，但当德维特出现在眼前时，他们明白，欧尼完了。那吉卜赛人的忠诚和强大在家族中无人能出其右，可他走出房间后，才五分钟就被干掉了。</p>
+	<p class='firstLineIndent'>德维特直接道：“先生们，我知道，即便我想让你们活着，对你们来说也不过是一种羞辱而已，所以请你们别乱动。”他举起枪来：“作为失败者，能在葬礼上有一具遗容尚算端正的尸体，也能称得上是仅有的欣慰了吧，或者说，是我留给二位最后的一些尊严和馈赠。”</p>
+	<p class='firstLineIndent'>“警察，快放下枪，小子。”阿瑟的手枪抵在了德维特的颈后。</p>
+	<p class='firstLineIndent'>德维特略微露出了惊讶的神情：“哦？来得这么快？”</p>
+	<p class='firstLineIndent'>阿瑟道：“哼……警笛声还远，所以你觉得还有时间吗？”他伸手去缴下了德维特手中的武器：“不好意思，我和手下们都是步行过来的，警车还停在两条街以外，麻烦你跟我们走一段吧。”他回头招呼道：“拷上他。”然后他重新转过脸来，看着杰诺维塞家族的两位大佬：“把他们俩也拷上。”</p>
+	<p class='firstLineIndent'>警察们鱼贯而入，送了德维特和两位杰诺维塞每人一副银手镯，当中连一块儿的那种。</p>
+	<p class='firstLineIndent'>德维特恶狠狠地道：“桑尼那个混蛋，带着人开溜了吗……哼……被摆了一道啊。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>两天后，一则则轰动全城的新闻接二连三地爆出。</p>
+	<p class='firstLineIndent'>杰诺维塞兄弟与警方合作了，城中所有与黑手党有瓜葛的组织或个人，一时间人人自危。因为以这二人的级别和证词，可以送上千人进监狱，其中还包括许多商界和政界的要员。</p>
+	<p class='firstLineIndent'>阿瑟警官平步青云，他很有希望在退休前成为芝加哥警界的头号人物之一，而不仅仅是个战斗在第一线的探长了。当深陷囹圄时，弗兰克才发现，这个腐败的警察其实远比自己精明，一贯谨慎的阿瑟根本没留什么把柄下来，至此，他还可以大言不惭地说，自己是反卧底。</p>
+	<p class='firstLineIndent'>阿瑟代表官方提出了一笔交易，杰诺维塞兄弟可以用自己的证词和全部的家产，来换一项证人保护计划，是的，这就是他们最后可以得到的东西，过上普通人的生活，永远隐姓埋名。</p>
+	<p class='firstLineIndent'>但在现实面前，曾在芝加哥叱咤风云的黑手党巨头也不得不低下高贵的头颅，因为如果他们拒绝这交易，那么面对的可能就是数十项罪名的指控以及牢底坐穿的下场。</p>
+	<p class='firstLineIndent'>在之前与卢切斯家族的仇杀中，他们已经损失了家族的参谋（法律顾问，黑手党家族中地位仅次于老板，负责将所有生意合法化的重要任务）和欧尼这样的悍将，无论是合法手段还是越狱，他们都很难脱身了，待他们俩被判个百八十年徒刑以后，帝国方面仍然可以合法没收他们的所有产业。</p>
+	<p class='firstLineIndent'>但现在，至少他们两兄弟还能借助警方的力量，破釜沉舟，给卢切斯那老狐狸以致命的一击。他们眼见复仇无望，便极尽所能，将掌握的卢切斯家族的犯罪证据以及情报，所有不法买卖的销售网络等等和盘托出，他们几乎是发了疯似的不眠不休，主动坦白。警方请来的几名法官和专家加班加点地详细记录着他们提供的每一句话。</p>
+	<p class='firstLineIndent'>这一切如同一场风暴，改变着整座城市的格局，芝加哥陷入了比黑手党两大家族间仇杀更加混乱的状态之中。卢切斯家族并没有停止对杰诺维塞家族的杀戮，而他们自己也遭到了对方的报复以及警方严重的打击。</p>
+	<p class='firstLineIndent'>才一周光景，杰诺维塞家的成员不是被杀，就是逃走了，或者干脆加入了其他的黑手党组织，毕竟他们的首领都已经跟帝国方面合作，再坚持下去也没有了意义。</p>
+	<p class='firstLineIndent'>而卢切斯家族更可谓损失惨重，所有的地下生意几乎全线崩盘，无数高级成员锒铛入狱，桑尼和加瓦二人也不例外，连约瑟夫·卢切斯本人都被警局请进去喝茶聊天，最后交了几十万保释金才出来，可谓自身难保。他的豪宅周围现在被警察层层包围，和软禁差不多，不过这也好。有这么多警察站岗，就不怕杰诺维塞家还有死忠的余党来报复了。在三月底出庭审理他的案子以前，估计这状态会一直持续下去。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>三月二十三日。</p>
+	<p class='firstLineIndent'>夜色中，有人打开了约瑟夫·卢切斯卧室的门，走了进来。</p>
+	<p class='firstLineIndent'>约瑟夫瞬间惊醒，他夜不能寐也不是一两天了，摸出枕头边的手枪，指着黑暗中的人影，他还是表露出一个教父该有的威严：“你是谁？”</p>
+	<p class='firstLineIndent'>“当然是您的参谋了。”德维特说着，打开了房里的灯，偌大的房间顺势明亮起来，照出了德维特的模样，他此刻狼狈极了，穿着破烂的衣服，灰头土脸，蓬头垢面。</p>
+	<p class='firstLineIndent'>“你不是……”约瑟夫惊道。</p>
+	<p class='firstLineIndent'>德维特打断道：“不是还在牢里吗？呵呵呵……还好只是关普通人的监狱，想想办法总能出来的。”他走到迷你酒吧的边上，拿下酒柜里一瓶开过的红酒，不用杯子就灌了几口：“请原谅我这幅德行来见您，我是刚逃出来的，路上得找点儿伪装，嗯……不好意思，确实有点渴了。”</p>
+	<p class='firstLineIndent'>约瑟夫也没给德维特什么好脸色看，他沉下脸道：“顾问，事情到了这一步，你得负全责！什么杰诺维塞家族根本不成问题，都是胡扯！看看现在的结果！你的计划都完蛋了！”</p>
+	<p class='firstLineIndent'>“不，我还有办法的，我这次出来……”德维特解释道。</p>
+	<p class='firstLineIndent'>但约瑟夫没能听完他的话，这位卢切斯家族的教父，突然间，毫无征兆地人头落地了，那伤口就像镜子一样平滑，血过了几秒才飞洒出来。</p>
+	<p class='firstLineIndent'>德维特瞪大了双眼，看着眼前的场景，一贯自负从容的他，连话都说不利索：“什……”</p>
+	<p class='firstLineIndent'>“你犯的错误实在太多，我只能宣布测试彻底失败。”迈克的声音响起，他从门外进来，缓缓走过德维特身边，在吧台后的小冰箱里翻了半天，拿出了一瓶番茄汁，用高脚杯给自己倒了半杯，然后对着已经呆若木鸡的德维特道：“首先，你搞错了‘顾问’的含义，各方面的。</p>
+	<p class='firstLineIndent'>一般来讲，这是个职位，但你做的事情根本不是一个顾问该做的不是吗？哼……这个待会儿再说吧；</p>
+	<p class='firstLineIndent'>而‘顾问’也可以是个绰号或者说尊称，大多数人也是如此想的，你在冒充我以前应该也是这么认为的，可你们全都错了。</p>
+	<p class='firstLineIndent'>‘顾问’，是我的名字，我姓顾，单名一个问字，这是个中文名字，仅此而已。”</p>
+	<p class='firstLineIndent'>顾问将杯中的番茄汁一饮而尽，长吁一口气：“你是个糟糕的模仿者，不过在你死以前，我可以给你上最后一课，你是怎么称呼这种事儿的来着，哦……对了，无形资产。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0012'><summary><a>第十章 测试（上）</a></summary>
+	<p class='firstLineIndent'>顾问喝着番茄汁，从容不迫地开始了他的叙述：“德维特，我就叫你德维特吧，反正你总是换名字不是吗？”他深深叹了口气：“隐藏身份最拙劣的方式，就是凭空捏造。因为你使用的是一张伪造出来的证件，所以你拥有的就只有一个名字而已，这个名字的背后什么都没有，经不起推敲。</p>
+	<p class='firstLineIndent'>而如果使用一个类似于迈克·拜伦这样的身份，就会好很多了，他是个有血有肉的人，就如同你查到的，他有家庭，有自己的生活和学业，你甚至可以从那些资料来揣测他的性格。”</p>
+	<p class='firstLineIndent'>“哼……拙劣？那么请问你，顾问，你查到我的真实身份了吗？”德维特稍稍回过神来，摆出了原本应有的嚣张态度。</p>
+	<p class='firstLineIndent'>顾问回道：“你是说山姆·海德曼？”</p>
+	<p class='firstLineIndent'>德维特没有回答，他抽搐般的表情解释了一切。</p>
+	<p class='firstLineIndent'>顾问笑道：“你以为我是谁？芝加哥警察？只要你磨掉指纹，保持沉默，用一个不存在的姓名，我就束手无策了？呵呵……那就让我们谈谈你那所谓的真实身份吧，山姆·海德曼，十五岁辍学，在底特律的街头开始了一个职业大盗的生涯。从最简单的赌博圈套到后来盗窃艺术品、伪造债券等等，胆量和胃口这些年来倒是水涨船高，总体而言手法也很精明，但你有个缺点，就是挥霍无度，至今为止几十万到上百万的买卖你都干过，但你几乎没有什么积蓄，一旦钱用得差不多了，你就不得不再次作案。”</p>
+	<p class='firstLineIndent'>“够了！你查到了我身份，又如何？你究竟有什么目的？你又为什么杀了卢切斯先生？”德维特道。</p>
+	<p class='firstLineIndent'>“呵……别急，我这不正说着呢吗……”顾问道：“我的目的有二，其一，是测试。</p>
+	<p class='firstLineIndent'>近几年随着业务的开展，客户增多，我一人颇有些应接不暇，所以便试着要找一个高智商犯罪者来当自己的助手。在你之前我也测试了一些人，可是都不理想，当然了，你也非常令我失望。</p>
+	<p class='firstLineIndent'>我就从最初开始讲吧，早在四个月以前，我就锁定了你，把你查了个底儿朝天，待你差不多又该寻觅下手目标的时候，我便开始了我的计划。第一步，就是给你一个契机，这个契机必须具有足够的诱惑力，让你敢于铤而走险，去干一件大案。于是，某天你打开电脑，黑进帝国资料库里闲逛的时候，我暗中做了些手脚，帮你打开了一条通道，引导你找到了净合金的相关资料，并成功盗出了那些数据。”</p>
+	<p class='firstLineIndent'>“有这种事……”德维特惊道，无论是身为骗子或者黑客，他的自尊心都受到了严重打击。</p>
+	<p class='firstLineIndent'>顾问冷哼一声：“哼……‘科学，才是二十二世纪应有的趋势’不是吗？”</p>
+	<p class='firstLineIndent'>德维特道：“你怎么会知道这句话？”</p>
+	<p class='firstLineIndent'>顾问道：“当然是听到的。”</p>
+	<p class='firstLineIndent'>“你在卢切斯的办公室里装了窃听器？！”</p>
+	<p class='firstLineIndent'>“不，我在你身上装了窃听器。”</p>
+	<p class='firstLineIndent'>“不可能！”德维特斩钉截铁地道。</p>
+	<p class='firstLineIndent'>顾问道：“哦？你这么肯定，是因为你以为窃听器只能装在体外吧？”</p>
+	<p class='firstLineIndent'>德维特的表情这次像是吞下一只苍蝇。</p>
+	<p class='firstLineIndent'>顾问笑了：“记得你刚来这座城市时，每天都要吃的热狗吗？”</p>
+	<p class='firstLineIndent'>德维特怒得说不出话来。</p>
+	<p class='firstLineIndent'>顾问则是自顾自地接着说：“热狗摊的老板收了我的钱，每次你去，他都会给你加一种特殊的料，当然他也不知道那是什么，还以为只是几滴普通的酱汁，我的某种恶作剧罢了，但其实那酱里藏着纳米级机器人。</p>
+	<p class='firstLineIndent'>这才是当今帝国顶尖的军事技术，可以分解组合的高精密微型机械，胃酸无法腐蚀，牙也咬不碎，一滴酱汁里可能就有十几个纳米机器人，如果你把数以千计这种肉眼根本见不到的东西拼在一起，它们最终的体积比一节手指还要大，你自然是不会吞下这种坚硬异物的。可是如果分成几十次吞下，你就浑然不知了，于是那些超微型机械吸附在你的胃壁上，等待数量达标后拼接起来，窃听器便完成了。”</p>
+	<p class='firstLineIndent'>德维特不自觉地摸了摸自己的胃部：“你这疯子……”</p>
+	<p class='firstLineIndent'>顾问道：“还好吧，让我们继续说下去……在装上窃听器以前，掌握你的动向也并不难，你在电脑上查资料，订机票，全都逃不过我的眼睛。所以当你还在迈阿密的住处研究净合金的技术，并大致有了来芝加哥和黑手党们合作的意向时，我已先于你来到了此地，在附近的大学里选了一个华裔学生，把伊利诺伊大学学生数据库中，迈克·拜伦的照片修改了一下，其他信息则原封不动地保留，这样我就有了一个看似真实的身份。</p>
+	<p class='firstLineIndent'>紧接着我就给卢切斯家族制造了一些麻烦，并因一个很‘偶然’的机会，和桑尼·卢切斯做了一笔还算愉快的生意，算是和本地的黑手党家族有了接触。再后来他还主动来找过我几次，我也扮演好自己的角色，替他做了些事情。</p>
+	<p class='firstLineIndent'>没过多久，在一月底，你来到了芝加哥，当时我正好接到一单颇为麻烦的咨询业务，策划很是费了番工夫，但很不幸的，那位顾客后来还把计划搞砸了，导致某个由我介绍的职业杀手组织在威尼斯损失了不少人手，后来他们还写了封言辞颇为激烈的邮件来恐吓我。</p>
+	<p class='firstLineIndent'>总之，那段时间我挺忙的，分身乏术，因此就想到利用这段时间给你装个二十四小时不离身的窃听器吧。花了二十多天，事情成了，我也从那边的事情中脱身出来，接了另一笔买卖，芝加哥本地的买卖。</p>
+	<p class='firstLineIndent'>到二月中旬，和我推测的一样，你找上的是卢切斯家族而非杰诺维塞。但我倒是没想到会和你有面对面的直接接触，最初我以为当个旁观者就行了，和黑手党之间有些许联系即可，但命运如此，那个愚蠢的桑尼想让我这个学生来做挡箭牌，于是，我得以近距离地来观察你的表现。”</p>
+	<p class='firstLineIndent'>顾问停顿了一下，又喝了口番茄汁：“当你一开口就毫无顾忌地冒充顾问时，我是有些吃惊的，同时也有些高兴，并不是因为被人模仿而沾沾自喜，只是觉得你的这种做法十分大胆而且有一定的实际作用。甚至我怀疑，有没有可能，你可以凭自己的能力发现我的身份，于是我随即给出了你一个关于迈克·拜伦此身份的破绽。可惜，你完全没留意到。”</p>
+	<p class='firstLineIndent'>德维特已记不清那天在网吧的对话，只是道：“那天我们只说了几句话，如果你有破绽我会注意到。”</p>
+	<p class='firstLineIndent'>顾问道：“是吗？类似‘我以前的大学甚至有一群人为他建立了粉丝俱乐部’这种破绽。”</p>
+	<p class='firstLineIndent'>德维特闻言两秒后才反应过来：“‘以前的’！”</p>
+	<p class='firstLineIndent'>顾问道：“英语是你的母语吧，可当我说‘以前的大学’时，你却没什么反应，一个三年级正在学校就读的学生用了这个词，你却没有深究，所以我就放弃了提示。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0013'><summary><a>第十一章 测试（下）</a></summary>
+	<p class='firstLineIndent'>“当第一次提示宣告失败后，我便如你所愿的，在你自称出去抽烟的时候，用我随身携带的改装手机入侵了你事先买好的廉价电话，让你觉得一切都在自己的掌控之中。当然这也不难，因为当你来找我之前，我就知道桑尼和你的对话以及你企图试探我的事。”</p>
+	<p class='firstLineIndent'>顾问的叙述渐渐唤起了德维特的记忆，不过这些记忆现在想来就不那么愉快了，甚至有些恐怖。</p>
+	<p class='firstLineIndent'>“上了你的车以后，我就进行了第二次提示，我直接就跟你说‘你这样往东南方走，让我有不好的预感’，你依然没有抓住这次机会，你以为我只是卖弄，结果就顺水推舟地夸奖了一下我的情报能力。</p>
+	<p class='firstLineIndent'>可你没有考虑到，即便我的情报能力很出色，也不可能随时掌握着城里大大小小所有的犯罪活动。而从你见到我，直到我跟你上车，期间我离开你视线的时间非常短，而那段时间我用来入侵你的电话，并为了把戏做全，真的给桑尼打了个电话进行确认。”</p>
+	<p class='firstLineIndent'>德维特道：“所以关于交易的事情也是你事先窃听了桑尼跟我的对话，早就查好了的。”</p>
+	<p class='firstLineIndent'>顾问回道：“没错，我本还以为说东南方太模糊了，干脆就在下一句话里把托尼和乔的名字都报了出来，并把这两个家伙都是狠角色的秉性也说了一下。以此告诉你，我对你要去搅和的交易了如指掌，不止是知道个大致的地点，而是把时间、人物、内容等等都调查清楚了，甚至比桑尼告诉你的信息还要多。</p>
+	<p class='firstLineIndent'>可你并没有觉得我可疑，认为我会知道得如此具体也是很正常的，依然继续着自己的计划，那么好吧，我可以假设有这样一种可能，你的推理是，我在先前跟桑尼的那通电话里已经知道了所有信息。所以你才做出了若无其事的反应，因此我这第二次提示本就无用。”</p>
+	<p class='firstLineIndent'>德维特灌了口烈酒，心中愤然，因为他内心真实的想法其实并没有那么复杂，他当时只是单纯地没有从顾问的话里考虑到那么多而已。</p>
+	<p class='firstLineIndent'>顾问继续道：“接下来，我就给你上了第一课，也就是‘顾问’该做的事情，顾问的工作并不是冲到对方面前，把人杀光，把钱抢走，这种事情你可以随便找别人去做，顾问提供的是犯罪咨询，而不是扮演侠盗猎车手。</p>
+	<p class='firstLineIndent'>我在车里就跟你说了，我不会管你的死活，我只负责窃取情报这件事，更不会出现在枪战现场，这就是在告诉你真正的顾问该干什么，但你却只把这当作一个怕死的大学生所提出的要求。</p>
+	<p class='firstLineIndent'>你还立即就撞了一个流浪汉，引起骚动，并企图用这种连自己都不可控的局面来要挟我，于是我当时就说了‘我想我得再次评估一下你在我心中的印象’。”</p>
+	<p class='firstLineIndent'>顾问喝光了杯中的番茄汁，又重新给自己满上一杯：“半小时后，我坐在车里，藏在交易现场的百米远处，你和托尼、乔他们的对话我自然是全都能听见的。你所谓早已准备好的计划，结果就是用警察在附近41号公路地区徘徊的情况，还有自己是能力者这两点来威胁对方，企图让他们不战而退，让你把钱卷走，并通过我来盗取他们的信息、监听他们今后的动向。</p>
+	<p class='firstLineIndent'>事情的发展最后还是偏离了你的预料，他们选择了反抗，没错，那种选择很愚蠢，并让他们送了命。可这也说明了你对局势发展的判断力不足，好在你还能用武力来进行修正，就像是不会使用‘查找替换’命令的人，只能用肉眼去找、用手动逐一替换，结果还是能达到目的。</p>
+	<p class='firstLineIndent'>然后你事先藏在后备箱里的警服这时派上了用场，这还算值得夸奖，如果你打算用暴力去突破警方的围堵，那就实在太难看了。</p>
+	<p class='firstLineIndent'>烧毁现场的车辆也算是不错的善后，但我这个情报黑客‘迈克·拜伦’在那天并没有发挥实质的作用，这是因你的决策失误而导致的人力资源浪费。”</p>
+	<p class='firstLineIndent'>德维特的脸色越发难看起来，顾问的叙述逐渐将他贬得一文不值。</p>
+	<p class='firstLineIndent'>顾问道：“第二天的审问完全在我的意料之中，不过你的对应方式不值得夸奖，也许你认为被人连续胖揍时不断嘲笑对方是硬汉的行为，可我觉得你搞错了对象，你面对的桑尼那样的蠢货，以及一个和他智力不相上下的打手加瓦，天才尚可算计，傻子和疯子可就难说了，万一他们一股气血冲上脑门儿，把那本就低下的脑容量沾满，一枪毙了你，那可就不好玩儿了。</p>
+	<p class='firstLineIndent'>你那天所表现出的从容，还是来源于自己是能力者这一点，也就是我说的用武力来修正，你随时可以挣脱束缚，把他们两个杀掉，但你却没有考虑过我遭受的威胁。现在你知道我就是顾问，但当时，和你在一起的是弱不禁风的迈克，你的行为极有可能导致别人为此皮肉受苦，对一个有价值的棋子做这种事，很容易失掉人心。</p>
+	<p class='firstLineIndent'>因此，这也可以说明，你的领导能力不足。”</p>
+	<p class='firstLineIndent'>顾问接着道：“好在那天约瑟夫·卢切斯也在场，我费了些口舌终于是摆平了事情。于是你觉得机会来了，当即向他献策，这就有了叉骨酒店那晚的圈套。</p>
+	<p class='firstLineIndent'>说实话，我觉得开战是非常不明智的，那天去酒店的路上我还帮你分析了形势，告诉了你上中下三种策略，就是希望你重新考虑一下，牺牲掉桑尼那个笨蛋，继续维持和平的状态，那不会对你的净合金买卖有什么影响，但你没有理会，你仗着自己事先准备了一台WM2030，觉得当晚胜券在握，一意孤行。</p>
+	<p class='firstLineIndent'>哼……你口口声声称自己是顾问，但却每每都在那些危险的场合身先士卒，这只能说明你迷信武力，但你又过分自大，将非能力者视为草芥，因此你后来才会对杰诺维塞家族所造成的武力威胁估计不足。”</p>
+	<p class='firstLineIndent'>德维特不快地回道：“你这无非是马后炮而已。”</p>
+	<p class='firstLineIndent'>顾问道：“你要这么想是你的事情，我不和你做无谓的争辩。”他喝着番茄汁道：“开战那晚以后我就藏了起来，一方面是我不想因卷入战争而遭到毫无意义的追杀，另一方面，我知道接下来的一段日子你会很忙，并逐渐开始意识到自己的决策错误。直到你束手无策时，你会再次来找我的。</p>
+	<p class='firstLineIndent'>果然，不到半个月的时间，你来了，还是在一个很不好的时机出现。当时我正在和我的客户沟通，他们是本地一个并不算大的黑手党团体，实力和卢切斯或者杰诺维塞这种传统的意裔黑手党差很多，但他们是我的客户，在二月中旬见到你不久前接的那个‘芝加哥本地客户’，也是我刚才提到的，两个目的其二。”</p>
+	<p class='firstLineIndent'>德维特瞪大了眼睛，想到那时的情景，也只能对自己的大意感到后悔。</p>
+	<p class='firstLineIndent'>顾问笑道：“无论是迈克·拜伦，还是我本人，都没有表舅，而且也没有烟土俱乐部这样的退休工人组织，这可以说是我露出的最大破绽，但你仍没有深究。</p>
+	<p class='firstLineIndent'>于是我又演示了一下真正的顾问该做的事情，帮你查了信息，把弗兰克·杰诺维塞的所在缩小到了一个旅店的范围，期待着你能动动脑筋，用外交手段来结束这些破事，我想杰诺维塞家族的人未必不肯坐下来跟你谈，但你，却又一次付诸于武力，直接导致了后来自己被捕。</p>
+	<p class='firstLineIndent'>呵呵，恕我直言，你谋划的所有事情在三步以内就会超出自己最初的预料范围，而你还觉得自己可以‘握着权力和金钱睡进棺材，享受国王一般的葬礼，死后成为无数同行争相模仿和试图超越的对象’。我听到时真的觉得很好笑，所以也只好奉劝‘你少做梦了’。”</p>
+	<p class='firstLineIndent'>顾问叹了口气：“再后来，你又扮演了一次杀人犯的角色，好像那很有趣似的。你杀了欧尼，找到了杰诺维塞，但桑尼那蠢货对你在家族中迅速上位早已感到不满，决定出卖你，于是警察们在一个不恰当的时机出现了。</p>
+	<p class='firstLineIndent'>你当即选择了投降，因为杰诺维塞兄弟并没有亲眼看到你杀死欧尼的经过，你也从未在他们面前明确表示过自己是能力者，所以当时果断装孙子是最好的办法，假如你用能力逃脱警察的围捕，或是在过程中不小心干掉几个警务人员，上HL的黑名单是肯定的了，要是被他们盯上，以你并级的实力，用什么假名都没用了，净合金的走私大计也必然破灭。”</p>
+	<p class='firstLineIndent'>顾问又喝完了一杯：“等风声过去再越狱倒是正确的，成功掩盖掉了自己是能力者的事。不过看看你现在的样子。”他摇着头：“哎……卢切斯早就失去了对你的信任，他被你害得可不轻，你回来找他也没什么用了，他最近正考虑着把这一个多月来所发生的事情都推卸给你，再把你和你的‘净合金计划’作为谈判的最后一张底牌，到万不得已时去跟警方交换自己的自由。</p>
+	<p class='firstLineIndent'>嗯……我的测试完全失败，你太令我失望了。总结一下，你喜欢以身犯险，不谙为人处世之道，狂妄和能力不成正比，对结果的失败率远远考虑不足，把‘顾问’演得像个小流氓。</p>
+	<p class='firstLineIndent'>你就是个赌徒，德维特，如果你不是个能力者，摆在桑尼这个位置上可能正合适，再让你做大就会白白丢掉自己和别人的性命。”</p>
+	<p class='firstLineIndent'>德维特放下酒瓶，那一瞬间，他毫不掩饰眼中的杀气：“哼……说到丢掉性命，你觉得在这番嘲弄和贬低之后，我这个崇拜武力的骗子还会让你活着离开吗？”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0014'><summary><a>第十二章 假象</a></summary>
+	<p class='firstLineIndent'>顾问平静地回道：“当我走进这房间的时候，就说过了，会死的是你，而不是我。”</p>
+	<p class='firstLineIndent'>德维特说道：“那就要看你有没有这个本事了！”他说这话的时候，其实就想动手的，但下一秒，他的脸色变得非常难看，因为他发现自己的身体动弹不了半分，“你做了什么？！”</p>
+	<p class='firstLineIndent'>顾问笑道：“哈，在我割下卢切斯先生头颅的时候，你应该就知道我是能力者了，但你依然太过自大，你觉得我至多和你一样属‘并’级。”他离开了迷你酒吧的吧台，慢慢朝卢切斯的床走去：“所以决定让我说完，解答了所有问题以后，再将我干掉泄愤。”顾问一挥手指，卢切斯握枪的右手和他的脑袋一样被轻易切断，伤口和脖子上的一样整齐。</p>
+	<p class='firstLineIndent'>那只断手诡异地飞起到了顾问身前，他一手抓着那断开的手腕，一手伸到了扳机前，卡住卢切斯的手指，“其实我的能力判定确实不高，只是‘纸’级而已，但像你这样的庸人自然认为级别高者必胜。”顾问回到了德维特面前，把着个死人的手，用那死人手里的枪对准了德维特的心脏。</p>
+	<p class='firstLineIndent'>“等等……我们之间并无仇怨！”德维特慌张地回道：“你没有必要杀我，我承认我无能，我狂妄！我不配做你的手下，我可以从你面前消失！永远不再假扮顾问！”</p>
+	<p class='firstLineIndent'>“不，我需要你假扮顾问。”顾问说道：“今晚，顾问，也就是你，潜入了卢切斯的卧室。警觉的黑手党教父用枪率先击中了你，而你趁着自己还没断气，用超能力反过来干掉了卢切斯，但没过多久也不治身亡了。我想，警方的报告最终就是如此。”他笑了笑：“至于你说的仇恨……就在一分钟前，我俩同样‘并无仇怨’，但你不也是欲除我而后快吗？此刻再摆出这副求饶的嘴脸既可笑又可悲，你这种永远在反反复复的失算中挣扎的家伙，却试图告诉我什么是‘必要’？</p>
+	<p class='firstLineIndent'>哼……还是让我告诉你，为什么你必须死吧。</p>
+	<p class='firstLineIndent'>我的两个目的同时进行，帮助烟土俱乐部除掉挡在眼前的两大家族是工作，而测试你的能力是我的私事，这两件事一项成功则另一项自然失败。反正对我来说，要么就完成工作，损失一个不合格的测试者；要么就得到一个合格的助手，损失一笔买卖。无论哪种都有得赚。</p>
+	<p class='firstLineIndent'>现在测试失败了，你对我来说已失去了价值，但由于你之前的所作所为，你是‘顾问’的假象没多久应该就会被桑尼那笨蛋供出来，这时，你就有价值了，你的尸体可以再冒充我一次，我想以你的演技去演一个死人应该是没多大问题的，更何况是在你死了以后出演，那就是本色演出了。</p>
+	<p class='firstLineIndent'>警方可不是你，他们会详查很多事情，迈克·拜伦这个名字很快也会被人提到。你的尸体可以扰乱警方的视线，吸引他们的注意，给我离开这座城市争取时间。最终，无论警方对本案中那个冒充大学生的情报黑客有什么结论，不久以后，顾问还是会在互联网上再次出现，而你的死，无非就是为我又增添了几分传奇色彩罢了。”</p>
+	<p class='firstLineIndent'>德维特又拼命挣扎了几下，可仍然不能动弹。他满脸大汗，让其此刻的流浪汉形象显得更加狼狈不堪，他的眼中早已布满惊恐，喉咙中发出困兽般的咆哮。</p>
+	<p class='firstLineIndent'>顾问似是忽然想起来了什么，他“哦”了一声，然后对德维特说了最后一段话：“其实我比你大一岁，你这辈子估计是没资格叫我小子了，至于四眼儿这个称呼。”他摘下眼镜给扔了：“这副眼镜是平光的，我本人的视力还不错，角色需要才会戴这个。所以如果你死后到了别的世界，请记住，你是被伟大的‘顾问’先生杀掉的，而且你还拥有一大笔该死的无形资产！”</p>
+	<p class='firstLineIndent'>一声枪响，德维特的生命结束了。顾问是一个不可知论者，他觉得有可能存在着上帝，也有可能地球只是外星人控制下的蚂蚁农场，还有可能自己其实只存在于别人臆想之中……所以无论如何，他只是随便试试，说不定刚才的话就成了提前在阴间扬名立万的机会。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>第二天，顾问已收拾好了行囊，斜挎着一个旅行包，销毁了一些可能成为证据的东西，便离开了公寓。</p>
+	<p class='firstLineIndent'>早上九点，他来到了一条小巷。</p>
+	<p class='firstLineIndent'>这地方是烟土俱乐部的地盘儿，很少有行人经过，来这儿的人一般是来买毒品的，但今天，药贩子一个都没出来，这小巷出奇的安静。</p>
+	<p class='firstLineIndent'>顾问没等多久，一辆车驶到了此处，停下，熄火。四个男子从一辆车上下来，为首的叫胡安·罗塞尔，他是烟土俱乐部的老板，而他身边的另外三人，即是二老板，参谋和贴身护卫。</p>
+	<p class='firstLineIndent'>这不是顾问第一次见他们，因为是在同一座城市，顾问领订金的时候，就提出了当面取现金，这能省不少麻烦，同时增加这些低层次顾客对自己的信赖。他们就像是那些不信任网购的老年人一样，总觉得这种黑帮电影中总在渲染的、鬼鬼祟祟的接头，才像是真正的交易。</p>
+	<p class='firstLineIndent'>两帮人很客气地打了招呼，不过胡安那帮人的表情有些奇怪，他们看上去很高兴，但眼神中似乎还藏着些什么，这些当然逃不过顾问的明察秋毫，但他暂时也不道破，只期望着这几位顾客别做蠢事。</p>
+	<p class='firstLineIndent'>“卢切斯和杰诺维塞家族已经从城中被根除，你们也趁机吸收了不少他们的地盘和残兵败将，现在烟土俱乐部只要扩大经营，占据那些空出来的市场，不出一个月，就能成为芝加哥新的巨头，至于能不能独霸一方，那就看各位自己的本事吧。”顾问见寒暄的差不多了，便开始说正题：“那么，酬金余下的三十万……”</p>
+	<p class='firstLineIndent'>胡安直接道：“啊，当然了，这是您应得的。”他打了个响指，身后的保镖便走上前来，拿出一个油布包，看这包东西的体积，应该是没什么问题。</p>
+	<p class='firstLineIndent'>顾问道：“不用手提箱装吗？那拆开来看一下吧，我可不想拿着包报纸就离开。”</p>
+	<p class='firstLineIndent'>保镖看了一眼胡安，后者点了点头，于是保镖拿出随身带着的小刀，去开那油布。</p>
+	<p class='firstLineIndent'>正在所有人的视线都集中在那包东西上时，胡安突然拔出了枪，举起指着顾问的脑袋，“我不得不这么做，抱歉了，伙计。”</p>
+	<p class='firstLineIndent'>这下他们刚才怪异的表现就清楚了，顾问不屑地冷哼一声道：“真的吗？这不是开玩笑吧？罗塞尔先生，当你得到了这么大的利益时，却不肯付给我三十万的尾款，如此器量，怎成大业？”</p>
+	<p class='firstLineIndent'>胡安身旁的三人也纷纷掏出了武器：“少废话！”</p>
+	<p class='firstLineIndent'>但就在这瞬间，他们也皆是人头落地的下场，伤口平滑，身体几秒后才倒地。</p>
+	<p class='firstLineIndent'>顾问叹息道：“这年头，上到王宫贵族，下到地痞流氓，一个个儿的……都是越来越没有水准了，何必为了这么点钱来威胁我的生命呢……”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0015'><summary><a>尾声 游戏之中</a></summary>
+	<p class='firstLineIndent'>顾问挥了挥手指，地上的油布包自己浮了起来，然后外面那一层薄薄的油布被精准地切开了，丝毫没有损伤里面的纸。</p>
+	<p class='firstLineIndent'>可惜，里面的只是纸，而不是钱。</p>
+	<p class='firstLineIndent'>顾问叹了口气：“哎……果然吗……”他伸手接住了那包报纸，忽然发现分量不太对。</p>
+	<p class='firstLineIndent'>用手将报纸层层扯开，那里面是一块铁，显然是故意为了改变重量而放进去的，铁块上刻着三个汉字——“接电话”。</p>
+	<p class='firstLineIndent'>顾问的脑中出现了非常不好的预感，他也不知为什么，但一种本能告诉他，事情不对！</p>
+	<p class='firstLineIndent'>他冲出小巷，看到距离巷口十米不到的地方，就有一部露天的公用电话。他走到话机前，又低头看了看手中的铁板，大约几十秒后，电话铃声果然响起了。</p>
+	<p class='firstLineIndent'>“你好。”顾问接起来道。</p>
+	<p class='firstLineIndent'>对面传来一个男人的声音，天一的声音。</p>
+	<p class='firstLineIndent'>“顾问……是吧，测试很成功啊。”天一开口便道。</p>
+	<p class='firstLineIndent'>顾问道：“你知道我的测试？”</p>
+	<p class='firstLineIndent'>天一回道：“我当然知道你的测试，我也知道你的测试失败了，但是，我的测试很成功。”</p>
+	<p class='firstLineIndent'>“你说什么？”顾问的语气变得冰冷，因为以他的聪明，其实已经洞察到了天一的话中之意。</p>
+	<p class='firstLineIndent'>天一没有回答这显而易见的问题，而是直接道：“要骗你不容易，我处处得小心谨慎，原本想直接捏造一个帮派出来，自己扮演大哥来雇佣你，但后来还是决定让烟土俱乐部的几位大佬牺牲一下吧。”</p>
+	<p class='firstLineIndent'>顾问的脑中立即闪过了胡安·罗塞尔的最后遗言“我不得不这么做，抱歉了，伙计。”</p>
+	<p class='firstLineIndent'>“哦？这么说你才是我真正的客户吗？”顾问笑了，古怪的笑容，似乎他突然就转怒为喜。</p>
+	<p class='firstLineIndent'>天一道：“啊，不错，而且我也算是你半个同行吧。”</p>
+	<p class='firstLineIndent'>“哦？为什么是半个？”顾问问道。</p>
+	<p class='firstLineIndent'>天一道：“我留意你好几年了，你的正业是犯罪咨询，业余爱好是玩儿人，而我的正业是经营书店，副业是犯罪咨询。”</p>
+	<p class='firstLineIndent'>顾问道：“你就用这么糙的词儿来形容我的业余爱好？”</p>
+	<p class='firstLineIndent'>“有些事情，用些糙词儿也好，如果非要说得十分详细规范，那我的正业岂不是成了掌管人类命运之类的了吗？”</p>
+	<p class='firstLineIndent'>顾问大笑：“有趣，我的半个同行，竟觉得自己是神。”</p>
+	<p class='firstLineIndent'>天一道：“这你就过奖了，在下也是有人名的，天一。”</p>
+	<p class='firstLineIndent'>顾问道：“那么，天一，姑且不论你的这次测试目的何在，也暂且不问你是如何可以操控一帮黑手党做自己不愿意做的事情。总之，你现在欠我三十万。”</p>
+	<p class='firstLineIndent'>天一道：“那么你现在的计划是什么呢？”</p>
+	<p class='firstLineIndent'>顾问笑道：“那就得看你的反应了。”</p>
+	<p class='firstLineIndent'>“我猜猜，如果我要赖账，你就设法找到我的所在，然后用‘真理之线’勒住我的脖子逼我还钱是吗？”</p>
+	<p class='firstLineIndent'>“呵呵……我可没这么说过，不过这确实是方案的一种。”</p>
+	<p class='firstLineIndent'>“那好吧，我帮你省点儿时间。我的书店现在就在芝加哥，地址离这儿不远，刻在铁板背面，见了面再谈钱的事吧。”天一也没道声再见，就挂断了电话。</p>
+	<p class='firstLineIndent'>顾问翻过铁板看了一眼，耸了耸肩，提上挎包，上了烟土俱乐部开来的那辆车，绝尘而去。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0016'><summary><a>第四卷 食人雨林</a></summary>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0017'><summary><a>序章 枪匠</a></summary>
+	<p class='firstLineIndent'>当我睁开眼睛的时候，看到了茂密的丛林，而不是天堂或者别的什么地方，好吧，看来我还活着，这应该算是个好消息。</p>
+	<p class='firstLineIndent'>二十分钟前，我还坐在舒适的专机上，看着完全靠特效制作的烂电影，吃着可口的高级午餐。但现在，我的半截身子已经沉在沼泽地里了，而那架飞机也在距离我大约一两公里远的地方变成了四分五裂的废铁，并冒着滚滚浓烟，希望这次坠机不会引起森林大火，或是无意中摧毁了某个丛林里的土著部落。</p>
+	<p class='firstLineIndent'>估计飞行员和其他几名随行工作人员生还的几率不大了，因为这一切发生得太快，我也只能勉强在坠落前一小会儿打破机身跳出来，而一般人在这种时候的反应基本上是尖叫着抓住身边距离自己最近的东西，然后顺势遇难，一命呜呼。</p>
+	<p class='firstLineIndent'>总之……先考虑一下眼前的状况吧，我快要沉下去了，泥水已经漫到了脖子，全身都很疼，但应该没有骨折，貌似有什么东西钻进了我的衣服里，也许是蜘蛛、线虫，要不就是水蛭，不过这也没什么大碍了，没什么会比窒息而死的感觉来得更糟。</p>
+	<p class='firstLineIndent'>让我试着挣扎几下，嗯……很好，又下沉了几分，周围也没有什么能抓的藤条树枝，看来此刻我只能祈祷有一条拥有人类智慧的鳄鱼把我拖出去了，我愿意为这付给它一磅肉做报酬。</p>
+	<p class='firstLineIndent'>十几秒后，我的口鼻全都没入泥沼中，那一瞬间我想了很多，人生从我的眼前飞逝而过，那无法呼吸的两秒钟仿佛有二十多年那么长，但很快，我注意到了一件事情，那就是……其实这地方水不深，我伸直脚以后能站在里面，头可以探出水面……</p>
+	<p class='firstLineIndent'>于是我试着走出这泥沼，越往边缘走，泥水越是浅，很快也就不那么费力了，没多久，我就倒在了松软的泥土上，仰面朝天喘上了一阵。空气中的味道可真难闻，而且潮湿闷热，我不太喜欢热带，真希望能尽快离开这鬼地方。</p>
+	<p class='firstLineIndent'>现在回想起来，这次到南十字星郡的会议很可能是个阴谋，他们要求我穿上这让人难受的西装，打上领带，像模像样地亲自出席，结果那帮老家伙在会上的发言根本就没什么实质内容。而会议结束后，返航的飞机又偏偏在这人迹罕至的雨林上空突然失控，蹊跷的地方太多了……不过话说回来，HL真要除掉我的话，直接找几个高手来把我暗杀掉似乎更加方便，我又不是什么公众人物，不需要伪装成事故来掩人耳目，难道这次坠机是钢铁戒律搞的鬼？</p>
+	<p class='firstLineIndent'>算了，一时间也想不明白的，走一步算一步吧，先设法回到文明社会再说。</p>
+	<p class='firstLineIndent'>我翻出了身上带着的东西，想看看有哪些能帮上忙的。骨枪，用处应该不大，除非有那种电影里的巨大怪物出来才需要我用枪；万能开罐器，我最喜欢的小发明，切、扳、锉、剁、割、挖样样都行，这个肯定能用上；真皮钱包，里面有一些零钱、各种磁卡和我的无限信用卡，这些应该是完全没用了。</p>
+	<p class='firstLineIndent'>好吧，情况还不算太糟，先去飞机残骸那儿看看是否能发现些什么吧。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0018'><summary><a>第一章 求生</a></summary>
+	<p class='firstLineIndent'>南美洲，亚马逊河流域。</p>
+	<p class='firstLineIndent'>这里延绵着四万平方公里的热带雨林，是地球上最后几片杳无人烟的所在。而枪匠的飞机，正是坠落于此。</p>
+	<p class='firstLineIndent'>早在十九世纪末，殖民者们就来到了此地，从此以后的一个世纪，所谓的文明人就开始了摧毁部落和破坏生态的行为。直至帝国统一战的爆发，从侧面影响人类世界的格局，这一切才停止下来。</p>
+	<p class='firstLineIndent'>曾有人预测，温室效应和降雨量的下降，会导致这片雨林的消失，但二十一世纪中叶，许多全新的科技已经让人类有了干预环境的能力，一些新能源的诞生，以及帝国的铁腕政策，使那些靠破坏环境来发财的人基本绝种了，请注意，我说的绝种不是洗手不干，而是杀绝种的。</p>
+	<p class='firstLineIndent'>在多国并立的时代里，黑心商人勾结官府，通过破坏环境的买卖来牟取暴利，当别人质问他们为何不顾及子孙后代的时候，他们可以坦然回答，等有了钱，可以移民去温哥华或者新加坡这样的城市，至于别人的子孙后代怎样，和他们没有任何关系。</p>
+	<p class='firstLineIndent'>而到了帝国统一的年代，皇族们暂时还没有找到移民外星球的方法，所以，他们对环境的态度是，谁敢在我家园子里刨一根儿萝卜，我就把他全家都填那坑里去。</p>
+	<p class='firstLineIndent'>2100年，十一月。</p>
+	<p class='firstLineIndent'>枪匠从飞机残骸里找出了五具尸体，除了自己，其他人不出所料，全部遇难了。虽然他连这些人的名字都不知道，但他还是费了番工夫，用半截钢板挖坑把他们给埋了。</p>
+	<p class='firstLineIndent'>如果这次坠机是针对自己的一次谋杀，那么这五个人无疑就是无辜的牺牲品，枪匠心中是这样想的，他并不是个迷信的人，可也不至于眼睁睁看着让那些人曝尸荒野。</p>
+	<p class='firstLineIndent'>“换了天一的话，会把他们扔到河里喂鱼吧……”枪匠自言自语着，遇到困境时，他经常会想起这位老友，这世间似乎没有什么事对天一来说是困难的，仿佛你把他抛进地狱，他也肯定能爬出来。</p>
+	<p class='firstLineIndent'>雨林的泥土松软，埋人花去不少时间，但却没用去枪匠多少体力，尽了人事后，就得考虑生存和脱险的问题了。</p>
+	<p class='firstLineIndent'>枪匠坐在地上，吃掉了副机长口袋里的巧克力条，那是他找到唯一还能吃的东西了。稍稍补充一番后，他又一次进入了机身，十多分钟后，返回了外面，右肩上套了一圈机舱座椅上的安全带，至少有十几条，右手提着一叠座椅上的布套，左手拎着许多机械零件，也不知是从哪里拆下来的。</p>
+	<p class='firstLineIndent'>把东西全都堆放好后，枪匠便去寻找水源。刚才他就听到了流水声，就在飞机坠落处不远，所以此刻他循着声音的方向，很快找到了一条小河。</p>
+	<p class='firstLineIndent'>在雨林里寻找水源不算太困难，但水未必干净，有些沼泽洼地中，一片片水塘连绵数里之远，看似是通着某条河流，其实这些都是死水，因为地势和空气湿度的原因，在降雨后形成并一直存在着，水质非常浑浊，而且天知道里面有多少动植物和寄生虫。</p>
+	<p class='firstLineIndent'>枪匠找到的这条河虽然不宽，但显然是某条大河的支流，几根横在河上的树干说明降雨后河水可能会暴涨，那些树干就是那时被冲过来的，当潮水退去就被卡在河上。</p>
+	<p class='firstLineIndent'>这里的水也谈不上清澈，但总比泥沼要好得多，枪匠下了河，此时的水流并不是很急，他站在靠岸的地方，把衣服脱下洗净，喝了些河里的水，味道很不咋地，但至少能补充些水分。临走前他还观察了周围的地形地势，以及动物留下的痕迹，但没什么收获。通常河马一类的大型动物能够在开阔的河谷地区找到，但此地，看来是沼泽、河流、丛林最为复杂密集的核心地区。</p>
+	<p class='firstLineIndent'>枪匠的方向感很差，也不会驾驶任何交通工具，甚至包括骑马，但他却是个出色的猎手，小时候，在西伯利亚苍茫一片的白色雪原上，一场小雪就能把五分钟前留下的脚印遮盖掉，但他依然能辨识出路径来，在这丛林中往返，自然是不在话下。</p>
+	<p class='firstLineIndent'>循着自己的足迹，他很快返回了飞机残骸边，此刻他一丝不挂，虽然不觉得冷，但这地方的蚊子可不是好惹的，所以最好还是快点儿生火把衣服烤干穿上。</p>
+	<p class='firstLineIndent'>残破的机体上到处能找到残留的火星，点着火并不难，十多分钟后，枪匠就已烤干了衣服。</p>
+	<p class='firstLineIndent'>他坐在火边，用刀割开飞机座椅上的布套，拉成长条，然后把自己的裤腿往上翻到一个比较合适的长度，用一根比自己手指也细不了多少的钢针领着布线，把裤腿缝好，这样他的行动可以更自如些，好在之前由于实在是觉得不舒服，所以没有穿皮鞋，而是穿着平时的靴子，不然在这丛林里，皮鞋这玩意儿很快就会被磨穿，最终演变成光脚的局面。</p>
+	<p class='firstLineIndent'>如天一所指，枪匠是这个时代最杰出的工匠，因此他在接下来的三十分钟里，把一堆意义不明的、看似是废铁的设备，改造成了简易的无线电台，并且还做了个录音装置，开始自动呼叫救援。</p>
+	<p class='firstLineIndent'>不过仅有的电力估计维持不了多久，而且枪匠也明白，这只是在博运气罢了，百分之九十以上的概率是没有人会收到求救信号的，在这种地方，除了期待天上有另一架飞机飞过，其距离还正好能接收到信号以外，也只有寄期望于附近有那种藏得很深的毒贩子存在了。</p>
+	<p class='firstLineIndent'>枪匠做完了求救无线电，便来到一根断掉的树干前，半截空树干里已经积了些水，他摘下一片比手掌略小的叶子。从口袋里掏出领带，把领带上的金属别针取下，在丝绸领带上朝着同方向反复摩擦了一阵，然后把树叶放到那一小洼平稳的水面上，别针则放到树叶中心的叶脉上。</p>
+	<p class='firstLineIndent'>这类似于指南针，载着别针的树叶浮在水面上，会渐渐偏转，但此刻出现在枪匠眼前的场景却诡异非常，只见那别针不断旋转着，没有稳定地指向任何一个方向，直到一段时间后失去了磁性，才停止不动。</p>
+	<p class='firstLineIndent'>枪匠望天，自言自语道：“这飞机该不会是被磁场给弄坠落的吧……”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0019'><summary><a>第二章 西行</a></summary>
+	<p class='firstLineIndent'>时近黄昏，无线电的电力耗尽，求救信号停止了。此刻摆在枪匠面前的路有两条，留在原地等救援或是自行走出雨林。</p>
+	<p class='firstLineIndent'>如果这场坠机事故并不是帝国的阴谋，那不出二十个小时，他的失踪一定会被察觉，应该会有人来寻找这架突然失去联络的飞机，这种情况下选择等待无疑比较明智；可如果这本就是场人为制造出来的事故，那此举恐怕就没有意义了。</p>
+	<p class='firstLineIndent'>虽然以枪匠的能力来讲，在这沼泽地里要活下去并不算太困难，就算是十天半拉月他都能坚持，但他实在不想在一件不能确定结果的事情上浪费太多时间。</p>
+	<p class='firstLineIndent'>最终他还是决定自行寻找出路，因为枪匠觉得依靠自己的能力完全可以脱险，这和等待救援的结果其实是一致的，多花点儿时间和精力而已。再者说，要是真有救援也就罢了，万一等了一个礼拜都没人来找，或者是等了两三天之后等来了几个收尸的杀手，那岂不是作茧自缚？</p>
+	<p class='firstLineIndent'>他下定决心，便开始做各种能够帮助自己在丛林间长期行进所需要的准备，将厚布和安全带缝制成了简易背包，剩余的安全带则连结成长绳备用，飞机上的氧气面罩改造一下便成了蓄水袋，用残油和火花塞制作的点火装置可以用上很长一段时间。</p>
+	<p class='firstLineIndent'>枪匠的计划是朝西走，或者说，朝着日落的方向，因为他分不太清东南西北……</p>
+	<p class='firstLineIndent'>他预定每天日出就起，趁着清晨抓紧赶路，就算此地磁场紊乱，但只要太阳照常升起，至少他能确定自己始终是朝着同一个方向前进而不是在绕圈子。等到中午时，太阳到头顶，他就停下，找个地方起火做饭，稍作休息，下午就去打猎，提前准备好第二天的口粮，完成这些后，回到生火的地方，从这个点重新开始赶路，直到太阳完全下山。</p>
+	<p class='firstLineIndent'>待他的计划和准备都已完成，天色也已漆黑。</p>
+	<p class='firstLineIndent'>雨林中总是持续着一种让人压抑的安静，但又不间断地会有细小琐碎的声音传来，那影影绰绰的树木中，时不时会传来几声古怪的响动，那可能是鸟的鸣叫声、蛇的嘶嘶声、虫子的鼓噪声或者是只蟾蜍之类的玩意儿在呼吸，当然，也可能是食物链中两个位置相近的物种正在互相吞噬。</p>
+	<p class='firstLineIndent'>下午在救援信号没断时，枪匠也没闲着，他估计今晚很可能要在此过夜了，因此就用椅套做了个睡袋，以防止睡觉时被一些寻找热源的动物给占了便宜。为了明天起早赶路，他穿上一件救生衣，钻进睡袋便草草睡了。</p>
+	<p class='firstLineIndent'>这个晚上很难熬，空气湿度非常高，而且潮热，但保持体温依然重要，所以满身汗腻的枪匠睡得很不舒服，断断续续醒了好几次。</p>
+	<p class='firstLineIndent'>在迷懵之中，他做了个梦，那是小时候，爷爷带着他一起打猎，在白雪皑皑的山坡上，他们像两块岩石般匍匐着，纹丝不动，等待着猎物放松警惕的刹那。纵然全身裹着厚厚的袄子，但他稚嫩的双手依然暴露在冰冷的空气当中。</p>
+	<p class='firstLineIndent'>爷爷从不让枪匠戴手套，即便这孩子的手被冻得像个小冰疙瘩，那细小的手指在扣动扳机时仿佛都会断掉，但固执的老罗尔没有妥协过一次。因为扣动扳机时，赤手的感觉和戴着手套是不同的，这就是他的理由。他总是对枪匠说：“查尔斯，这世界上没有‘第二枪’这种事，就像人生无法来第二回。”这句话是老人总挂在嘴边的口头禅。</p>
+	<p class='firstLineIndent'>所以年幼的枪匠从来也就只有一次机会，一枪不中，晚餐泡汤，是鹿肉还是冰冷的面包，他只有一颗子弹来决定。</p>
+	<p class='firstLineIndent'>九岁的小查尔斯·罗尔端的是一把足以进入博物馆的老式猎枪，没有什么红外线定点，没有十字瞄准器，甚至连个望远镜都没有，他得靠肉眼，三点一线地瞄准猎物，并计算温度、风速、空气阻力、猎物听到枪声时那刹那的反应等等一切可能影响结果的因素，才有机会命中那个距离自己数百米的目标。</p>
+	<p class='firstLineIndent'>神枪手的每一颗子弹，都可能会带走一条生命，所以这些子弹是神圣的，它们寄托了主人的灵魂，传达着敬意、决心并展示了卓绝的技术。</p>
+	<p class='firstLineIndent'>随着梦中的枪声响起，枪匠醒来。</p>
+	<p class='firstLineIndent'>天色已然微亮，他一睁眼就看见了一只彩蛙，正趴在自己面前不到一米处，见自己醒来，那家伙就迅速跳起溜进了林子。</p>
+	<p class='firstLineIndent'>他很快就起来收拾了一番，带上昨天预留的食物，将睡袋卷起来，绑在事先准备好的行囊上，双肩背上背包，背着初升的太阳开始前行。</p>
+	<p class='firstLineIndent'>其实以枪匠并级的实力，在高处行进也可以，不过是上树然后跳跃罢了，但这样比较耗费体力，因此他还是尽量在地面上走，遇到水位高过腰身的沼泽才考虑走上空路线，没人知道那水里会有什么，蜘蛛、蛇、鳄龟……任何带毒、带病菌的动物都可能栖息在那泥泞的水中，就算这些东西的撕咬比处女还要纯洁，你也不会愿意在这种潮湿的环境中留下一个伤口的，因为这伤口有很高的几率会被别的什么东西感染，如果你得了某种寄生虫病，那在未来十五年以内要么瞎、要么残，最轻的也就是永远无法参与献血之类的活动并长期服用药物，当然，很多人没活那么久就玩儿完了。</p>
+	<p class='firstLineIndent'>一上午就这么过去了，枪匠也说不准自己走了多远，反正有那么几次，他跳上树去张望，看到的只有更多的树……</p>
+	<p class='firstLineIndent'>他正考虑着是不是早点儿开饭，突然就闻到了一股异味，显然是腐臭，而且离自己并不算远。按理说中小型动物很少会有曝尸荒野的情况，它们基本会被掠食者整个儿吞掉，最多剩一点点骨头，上面的残渣也会被食腐类迅速收拾干净，怎么此刻会有到这么明显的味儿？难道有大型动物死在附近？这倒奇了，雨林里又没有狮子土狼，就算运些过来，它们能搞定鳄鱼？</p>
+	<p class='firstLineIndent'>枪匠一边思索着，已经接近了气味的来处，他拨开几片巨大的叶子，眼前出现了令人震惊的一幕。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0020'><summary><a>第三章 尖顶</a></summary>
+	<p class='firstLineIndent'>出现在枪匠眼前的是那股腐臭的来源，鱼。它们三三两两地在泥地上躺着，散发着尸体应有的气味儿。当然了，本来鱼也不可能站着，更何况是死鱼。</p>
+	<p class='firstLineIndent'>枪匠观察了一下，这块小高地不到百平米，明显比周围的地势要高出一些，他很奇怪，为什么会有鱼死在这种地方，而且数量还不少，这些热带鱼的品种不同，零零散散加起来可能超过三四十条了。</p>
+	<p class='firstLineIndent'>他起先觉得是当地土著干的，但想了想又觉得不像，人类怎么会费劲把鱼捕起来，不吃不养，却扔到高地上让其腐烂发臭？然后他又寻思着是不是某种动物干的，但很快就发现这更不可能，动物又不会用渔网鱼钩，它们捕鱼多多少少都会在鱼身上留伤痕，但眼前这些鱼的状况，看上去却是……</p>
+	<p class='firstLineIndent'>枪匠脑中闪过了一个念头，他立即走到附近一棵树的旁边，凑近观察那树干，果然，有水痕，而且还未干透，这棵树的下半部分原先应该是泡在水里的，也即是说，在不久前，此地还是一条河或者一个池塘，脚下泥泞的淤泥也说明了这点。</p>
+	<p class='firstLineIndent'>那么，眼前这些鱼会死的原因就是，这里的水位在几个小时之前，瞬间下降了数米，它们根本连游离的时间都没有。但这里明明是一块高地，如果说水位曾到过这么高的地方，那周围的地区岂不是都应被淹在水底了？</p>
+	<p class='firstLineIndent'>枪匠走下坡，又检查了一下周围的树木，树干露在外面的部分颜色一致，泡水的只有最下面的根部。如此一来，眼前这诡异的现象只有一种解释了，并不是水位有变化，而是那块地面，突然间自行隆起了。</p>
+	<p class='firstLineIndent'>地震？没感觉到啊，难道地底下有只体型巨大的远古异兽翻了个身？开玩笑呢？</p>
+	<p class='firstLineIndent'>枪匠的好奇心很重，发明家从小基本都有这毛病，一旦发现了什么古怪现象，他不去探个究竟，那是浑身不舒服。</p>
+	<p class='firstLineIndent'>此时是正午，按理说是开饭休息时间，不过枪匠不解开这个谜团是不会有胃口吃东西的了。于是他想了个很直接的法子，挖。</p>
+	<p class='firstLineIndent'>他从背包里取出些东西，用两块布给自己做了简易的手套，反正干这活儿也不需要五指分开，他就简单地用安全带固定了一下两个布套，仅仅是为了防止淤泥嵌入指甲，然后就徒手干了起来。</p>
+	<p class='firstLineIndent'>这些泥本是泡在水底的，刨起来不费什么力，枪匠那动作就跟狗打洞似的，挖得飞快，很快整个人就进坑里了。</p>
+	<p class='firstLineIndent'>就这么干了大约一小时，他已入地十米有余，为了防止在底下干活儿时被滑落的淤泥给掩埋，枪匠不敢挖成直上直下的井状，他挖的坑是个漏斗形，保持上宽下窄，每往下挖深一两米，就得回来扩大开口，所以劳动量也就上去了，不过他反正也不算正常人类，干这活儿也不嫌累。</p>
+	<p class='firstLineIndent'>正当枪匠开始觉得在这荒郊野岭里为了一个不着边际的推论这么牛干有点儿傻时，他一爪子下去竟撞到了非常坚硬的物体，手指被震得生疼。</p>
+	<p class='firstLineIndent'>“石头？拜托你千万别是石头。”枪匠自言自语道，他分开了最后的一层泥土，看到了他最想看到的东西。</p>
+	<p class='firstLineIndent'>那确实不是石头，而是金属。</p>
+	<p class='firstLineIndent'>“哈哈哈哈哈！”枪匠狂笑起来，有那么一瞬间，他觉得自己挖到了外星人的飞船。</p>
+	<p class='firstLineIndent'>刨开更多泥土后，枪匠逐渐否定了这个猜测，因为他有了个更加不可思议的想法——这片沼泽地的下面有座金属建成的金字塔。</p>
+	<p class='firstLineIndent'>这片高地，或者说这片池塘，正处于塔尖的上方，不知是什么原因，底下的建筑升起了，导致了地面隆起，如果上面不是沼泽，地面可能就不是隆起而是崩裂。</p>
+	<p class='firstLineIndent'>枪匠很快停止了挖掘，这个尖顶下面究竟是怎样的庞然大物已不可预估，说不定下面有一座城市那么大，那塔尖到地底的垂直高度就高得够呛，他要是顺着外面的斜坡向下挖，可能几公里都到不了头。</p>
+	<p class='firstLineIndent'>他踏着金属，一跃便回到了地面。生起火来，烤了两只昨天抓的海狸鼠，一边吃着，一边琢磨接下来该如何。</p>
+	<p class='firstLineIndent'>比较靠谱的办法是重新把坑填上，以后有机会带个工程队卷土重来；不过枪匠一向都是个不怎么靠谱的人，他已迫不及待想知道这下面究竟是什么东西，这东西是何时被埋下的，又为何会偏偏在最近才隆起？此地的磁场异常肯定和这玩意儿脱不了干系，说不定里面有着什么失落的古代文明之类……</p>
+	<p class='firstLineIndent'>越往深处想，枪匠的好奇心越是熊熊燃烧，今日既然来到此地，便是机缘，若错失机会，将来能否再寻到这个塔尖的位置就难说了。这地方指南针都没法儿用，地貌又极其复杂多变，可以说，过这村儿就没这店儿了。</p>
+	<p class='firstLineIndent'>他填饱了肚子，原本的逃生计划完全被抛到了九霄云外，现在可不是考虑一餐一宿的时候，在这人类文明无法触及的丛林之中，竟有巨大的金属被深埋地下，枪匠岂能坐视不理。</p>
+	<p class='firstLineIndent'>他检查了一下行囊，背上，然后拿出了骨枪，对着坑下的金属尖顶，果断扣下了扳机。</p>
+	<p class='firstLineIndent'>骨枪的响声和一般手枪响略有区别，其声音更加闷一些，而骨枪打出的子弹，类似一种高度凝练的能量块，在接触其命中的目标时，会根据目标的结构，强度，使自身能量发生变化，因此用骨枪射击越是坚硬的物体，产生的威力和能量就会越大。举例就是，打中人的身体，威力和普通子弹差不多，而打中钢铁，威力就会提升至穿甲弹的级别，要是打中钻石，溢出的能量没准会引起爆炸。</p>
+	<p class='firstLineIndent'>当然，击穿强度连一般子弹都无法抵御的表面或介质是不会触发这种能量转变的，比如水、空气、防弹衣表层的化纤等等。这是枪匠的独门武器，帝国也未获取这项技术。</p>
+	<p class='firstLineIndent'>枪匠原以为射穿这金属不会有太高的难度，据他估计，这么大块的东西，不可能比钻石还硬。他的估计没错，那尖顶的硬度是不如钻石，但从射击的结果看来，也差不了多少。</p>
+	<p class='firstLineIndent'>那小小的一颗子弹打中地下十余米的金属塔尖，产生的威力像是C4爆炸一般，气浪直接把枪匠给掀飞了，他也没啥心理准备，最后就像只猴儿似的挂在了远处的一棵树上。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0021'><summary><a>第四章 笼中的幸存者</a></summary>
+	<p class='firstLineIndent'>枪匠从树上下来，确认了一下自己没有受伤，便迅速回到了爆炸的中心位置，刚才挖的坑已经被扩张了，地下那个金字塔形的金属塔尖露出了一大截。</p>
+	<p class='firstLineIndent'>骨枪不但打穿了这金属的外层，在上面留下了一个直径在四十厘米左右的圆柱形通道，能量子弹穿透这种金属物体外层时，就会留下这种比炮弹还要宽的弹道，形状规则而整齐。</p>
+	<p class='firstLineIndent'>枪匠捡起一块石子儿，正准备扔到塔尖里去测测深度，结果他刚一弯腰，忽然就一个踉跄，跪倒在地。</p>
+	<p class='firstLineIndent'>“怎么回事……”他的双腿失去了支撑身体的力量，视线也模糊起来。</p>
+	<p class='firstLineIndent'>几条人影进入了枪匠的视线，但枪匠看不清来者的样子，在他眼中只是些人形的黑影。很快，又增添了一些人影，他们之间开始交谈，用的是枪匠完全听不懂的语言。</p>
+	<p class='firstLineIndent'>没多久，枪匠已经仰面栽倒在地上，他的头脑依然清醒，只是视线模糊，全身无力。他只觉得自己被绑了起来，像牲口似的被拴在一根长棍上，由两个人挑起来抬走了。</p>
+	<p class='firstLineIndent'>他也不知道被带了多远，过了多久。反正应该是被抬进了某个村落里，他看到了一些类似茅草屋的建筑，还闻到了烧烤食物的味道。接着就被人从棍上解下来，扔进了个像笼子似的地方。他身旁貌似还有个人在，但那人一动不动，坐在笼子的角落里，也不知是死是活。枪匠的眼睛暂时看不清东西，也没有力气说话，所以他只能干等着。</p>
+	<p class='firstLineIndent'>直到视力和体力逐渐恢复时，已是夕阳斜下，枪匠试着对身边那个眼神涣散的难兄难弟说了句话：“喂，老兄，听得懂我说话吗？”</p>
+	<p class='firstLineIndent'>那人看上去三十多岁，白种人，年少谢顶，但胡子拉碴，他抬起眼皮看了枪匠一眼，答道：“哦，你的药劲儿过去了啊。”</p>
+	<p class='firstLineIndent'>枪匠问道：“什么药劲儿？”</p>
+	<p class='firstLineIndent'>那人道：“当然是麻醉药了，这些土著用自制的吹箭，射出一种细小的刺，上面涂了某种可以麻痹你身体的东西，可能是草药的汁液，或者是被他们磨出来的粉磨，我也不太清楚。”</p>
+	<p class='firstLineIndent'>枪匠闻言，本能般地摸了摸自己颈后，那里果然有两个细小的伤口，“什么时候中箭的……还真没注意到呢……”</p>
+	<p class='firstLineIndent'>那人道：“是很难察觉，感觉就和被蚊子叮一下差不多。”他伸出手来，“约翰·德索托，你可以叫我约翰。”</p>
+	<p class='firstLineIndent'>枪匠勉强抬起胳膊和他握了握手：“查尔斯·罗尔，怎么叫都行。”</p>
+	<p class='firstLineIndent'>约翰问道：“那么，查尔斯，你也是来丛林里探险的？”</p>
+	<p class='firstLineIndent'>枪匠苦笑一声：“不，飞机失事，怎么，你是个探险家？”</p>
+	<p class='firstLineIndent'>约翰道：“是啊，不过我得遗憾地说，这次探险不怎么成功。”</p>
+	<p class='firstLineIndent'>枪匠道：“让我猜猜，你的指南针不知在什么时候突然失灵，然后你就在这块区域里迷路了？”</p>
+	<p class='firstLineIndent'>“不止是指南针，伙计，我和我的朋友们是一个探险团队，一共有六个人，装备着各种先进的仪器。”约翰道：“但那些东西到这儿以后就全部失效了，这块地方好像有某种力量，可以让近一百年内发明出来的先进装置集体罢工，而且那种力量还同时散发着混乱的磁场，影响着指南针这种最基础的工具，到最后唯一能派上用场的就是一些最为简易的电子仪器，比如无线电之类的。”</p>
+	<p class='firstLineIndent'>枪匠四下张望了一番：“你说有六个人，那另外五个呢？”</p>
+	<p class='firstLineIndent'>约翰竟然冷笑了一声，但同时他眼中有泪光闪过，枪匠知道这不是什么好兆头，这人可能已处在了精神崩溃的边缘。</p>
+	<p class='firstLineIndent'>果然，约翰的回答和他的表情一样阴森：“被吃了……”</p>
+	<p class='firstLineIndent'>枪匠吞了口口水：“被鳄鱼？”他只是试探着问出了一个比较合理的推测。</p>
+	<p class='firstLineIndent'>约翰却答道：“不，是被这些土著。”他的语气开始歇斯底里起来：“我们大约在前天中午遭遇了这个部落的埋伏，当天晚上，路易和亚伯就被吃了，第二天晚上，就轮到其余三人。”他抬起头，用绝望的眼神，凄凉的笑容，看着枪匠道：“今天是第三天，我想该轮到我了……”</p>
+	<p class='firstLineIndent'>枪匠道：“约翰，你得振作一点，情况还不算最糟。”</p>
+	<p class='firstLineIndent'>“不算最糟？”约翰的声音忽然高了起来，好在不远处负责看守笼子的两个土著似乎并未在意这两个阶下囚的谈话。</p>
+	<p class='firstLineIndent'>“和我一起出生入死的队友就在我的面前被活活杀死，这群野人把他们扒个精光，绑在木桩上，从活生生的人身上割肉，像是派发战利品一样分掉他们的舌头、脑子、内脏，然后点上篝火，来个全村的烧烤大会，你看见那些挂在外面架子上的熟肉了吗？你认为那是什么？”约翰凑近了几分，把声音压低，但语气依旧非常狂躁：“无论是被杀的人，还是关在笼子里的人，都叫喊着、哀求着，但他们根本不停下。也许他们听不懂我们的语言，但动物最本能的哀嚎和哭喊是通用的，所以……对这帮食人族来说，我们跟牲口没有区别，你会怜悯猪、牛、羊吗？屠夫会在意食物的叫喊吗？不会！今天就要轮到我了，也许还会带上你，谁知道呢！查尔斯！你觉得这还不算最糟的情况吗？！比起那种死法，我宁可找根尖木刺，自己用额头朝上面一撞了事。”</p>
+	<p class='firstLineIndent'>枪匠等了一会儿，待对方把气喘平了才道：“冷静点儿，约翰，至少我们现在还活着。”</p>
+	<p class='firstLineIndent'>约翰冷哼一声，无力地靠在笼子上：“这全怪我，我是这个探险团队的领队，队友们把命交给我，我却害死了他们，我早该想到会有这么一天的，善水者溺于水，我罪有应得……”他说着便开始呜咽起来，这是一个男人在生命最后一段时间里的倾诉和忏悔，如果此刻枪匠不在这里，约翰可能只能对着上帝说这段话了。</p>
+	<p class='firstLineIndent'>枪匠这时也基本恢复了知觉，他目测了一下，自己身处的笼子还不小，挤一挤大概能关下十来个人，构建笼子的木头也很坚固，他用手敲了几下，估计这地儿就算河马也逃不出去。而笼子出口的周围，由许多密集的藤条编织封住，使人的手臂伸不出去，卡死的机关只有从外面才能打开，看来这帮食人族造这笼子时就考虑到不但能关野兽，更得关得住人。</p>
+	<p class='firstLineIndent'>不过枪匠怎么说也是并级能力者，木头扎得再牢固，也是木头，他完全有自信可以徒手破坏这禁锢，然后逃出生天。</p>
+	<p class='firstLineIndent'>他想了想，又转向约翰问道：“这些食人族在把你的朋友带出笼子时，你们没试着反抗吗？”</p>
+	<p class='firstLineIndent'>“当然试了，但他们会用麻醉药，我们在笼子里根本不可能躲开，被麻醉以后也就没有反抗能力了。”</p>
+	<p class='firstLineIndent'>枪匠道：“那么……要逃跑，最好就趁现在吧，免得他们提前开饭……”他摸了一下，骨枪还在，那帮野人没动他身上的东西，只是他的行囊丢了，但那种东西也已经无所谓了，枪在就行。</p>
+	<p class='firstLineIndent'>约翰道：“别费力了，就是撞断你的肩胛骨这笼子的木头也不会裂开的。”他真的已经失去了希望，刚才的那通发泄，可能是最后的爆发了。</p>
+	<p class='firstLineIndent'>枪匠道：“约翰老兄，我可不能带着个彻底失去求生意志的人上路，你得振作起来，因为我打破笼子以后不可能背着你逃跑。”</p>
+	<p class='firstLineIndent'>约翰的表情忽然变了，他盯着枪匠的脸，看上去这家伙不像是在开玩笑，探险家那一丁点尚未被磨尽的意志如火星般再次燃起：“你是认真的？”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0022'><summary><a>第五章 逃脱</a></summary>
+	<p class='firstLineIndent'>枪匠问道：“你现在还能跑吗？是否被麻醉或者腿有伤？”</p>
+	<p class='firstLineIndent'>约翰瞪大着眼睛，有些木讷地回道：“没……没有问题，只是我将近两天没吃没喝了，我想不会跑得很快，而且也跑不远。”</p>
+	<p class='firstLineIndent'>“那没关系，能跑就行。”枪匠指了一个方向：“我一会儿把笼子打开时，你就往那条路走。”</p>
+	<p class='firstLineIndent'>“嘿，伙计，如果你真能把我们从笼子里弄出去，我建议还是换个方向逃跑，比如那边。”他指着另一个方向道：“我在这儿关了两天，一直在寻找逃跑的机会，据我观察，你指的方向是这帮土著平时最常走的路，而我指的那边，是个死角，两天来我没见一个人往那儿去过。”</p>
+	<p class='firstLineIndent'>枪匠道：“对，这我知道，那边长着齐腰高的狼尾草，建筑的形势也说明那里几乎没什么人去。”他伸出一只手抓住了身边的木栅栏：“所以往那个方向跑不远，就很有可能遇到深沼或是悬崖。”</p>
+	<p class='firstLineIndent'>约翰想了想，接道：“而他们最常走的路，一般就是取水或者打猎要去的方向，那肯定是活路！”</p>
+	<p class='firstLineIndent'>枪匠道：“没错。”</p>
+	<p class='firstLineIndent'>“你在干什么？”约翰见枪匠一边说话，一边双手握住了木栅栏，“你该不会是想用蛮力把这么粗的木头折断吧？”</p>
+	<p class='firstLineIndent'>枪匠回道：“倒也不是不行，但很费力，动静也太大，我有更好的办法。”他说话间，和他手掌接触的木栅栏竟突然化成了沙子，散落到了地上。</p>
+	<p class='firstLineIndent'>约翰惊道：“你是怎么干的？魔术？魔法？”</p>
+	<p class='firstLineIndent'>枪匠道：“用你立即就能明白的词来解释，就是超能力。”</p>
+	<p class='firstLineIndent'>“这世界上真有超能力？要不是亲眼看见，我还真不敢相信。”约翰道。</p>
+	<p class='firstLineIndent'>“也并不是什么了不起的事，魔术尚需学习，超能力却是天生的，当然，两者要运用得精进都需要使用者后天努力琢磨。”枪匠说着，又把手伸向了另一根木栅栏：“我的能力被EAS命名为‘炼金术’，凡是没有意识的物体都可以像这样转换，把海水变成钻石都行。”</p>
+	<p class='firstLineIndent'>约翰觉得这话有些没边儿了，先不提那个EAS究竟是什么玩意儿，点水成钻的事情但凡谁都不会轻易相信的：“伙计，你太夸张了吧，把木头变成沙子是一回事儿，但要变出……”</p>
+	<p class='firstLineIndent'>他话未说完，枪匠已经将第二根木栅栏弄没了，并直接打断道：“说白了就是碳而已……话说碳还能烧火取暖呢。”他并不是清高，而是对金钱有着与众不同的理解。</p>
+	<p class='firstLineIndent'>约翰却道：“钻石控制着女人，女人控制着男人，男人控制着世界。”</p>
+	<p class='firstLineIndent'>枪匠不置可否地笑笑，把话题绕回了自己的能力上：“转换的物质分子性质、结构相差越远，我所需要的时间和精神就会加倍，我曾经试着把一只鞋变成一块手表，花了整整四十分钟。而且我还得清楚地知道那块表的内部结构，不然只会变出一块外观和真表一模一样但完全不走字儿的玩具来。”他长吁一口气，似乎光是把这两块木头变成沙子也挺费力的：“有那种时间，我自己动手能做出四块表来，只不过原材料不能用鞋子。”</p>
+	<p class='firstLineIndent'>不远处看守他们的两名土著，这时回过头来，往笼子里瞅了一眼，枪匠用身体正好能挡住那两根中段已经消失了的木栅栏。</p>
+	<p class='firstLineIndent'>两名土著随即交谈了几句，然后朝笼子走来，看来他们已察觉了某种异样。</p>
+	<p class='firstLineIndent'>枪匠尽量压低声音，用平缓的语气道：“约翰，这宽度你能钻出去了吧？”</p>
+	<p class='firstLineIndent'>约翰知道此刻的情况已是箭在弦上，虽然身体虚弱，但他还是强打起精神回道：“随时可以。”</p>
+	<p class='firstLineIndent'>枪匠道：“他们显然在准备篝火大餐，守备比较松懈，眼前这两个我自会处理，你现在就钻出去，朝着我指的方向，有多快跑多快，我会跟上你并负责断后。我的体力还很充沛，所以你千万别回头，只管自己跑，哪怕听到我被毒镖射中倒地的声音，也不要试图返回来救我。”</p>
+	<p class='firstLineIndent'>约翰眼看两名土著守卫越走越近，他咬咬牙回道：“伙计，我不知道该怎么谢你，遇到你以前我这条命已当作是没了，如果我还能活着回到文明世界，我一定要为你的英勇行为写一本书，或是拍一部电影。”</p>
+	<p class='firstLineIndent'>枪匠道：“行了，我还没死……”</p>
+	<p class='firstLineIndent'>他们对话时，两名土著已经走到了笼子跟前，之前由于角度的原因，他们没有看清，但此刻，后面那个能过人的缺口已经是遮不住了。他们顿时表情大变，用土著语互相交谈着，话声越来越响。</p>
+	<p class='firstLineIndent'>枪匠的骨枪瞬间滑至其手中，但他没有开枪，而单手是从骨枪的枪身上取下了两块牙状的尖骨，将这两块骨头分别夹在中指两侧，在两名土著反应过来之前，枪匠已闪电般出手。</p>
+	<p class='firstLineIndent'>两名守卫应声倒地，双双痛苦地捂住自己的喉咙，他们喉部已然都被骨牙击中，纵然在地上还能折腾几下，但是喊不出声音来。</p>
+	<p class='firstLineIndent'>约翰看呆了，都忘了逃跑，枪匠回头道：“嘿，别愣着啊，很快会被发现的。”</p>
+	<p class='firstLineIndent'>约翰这才停止发愣，钻出牢笼，猫着腰，借着几栋茅草屋的掩护，一溜烟儿地往计划好的逃生方向窜去。</p>
+	<p class='firstLineIndent'>枪匠也跟着出了笼子，路过时还低头瞥了眼地上尚未完全气绝的两名食人族土著：“别用这种眼神看着我，你们也在我脖子上扎了两镖，这很公平。”</p>
+	<p class='firstLineIndent'>约翰和枪匠刚刚奔出百米，笼子这边的异状就已经被发现了，紧接着他们的身影也落入了食人族们的视线中。</p>
+	<p class='firstLineIndent'>于是，在这个通信基本靠吼的部落里，吼声响起来了，几十个成年男子拿起长矛和吹箭，迅速集结，开始对正在逃跑的晚餐进行追捕。</p>
+	<p class='firstLineIndent'>正所谓慌不择路，约翰虽然是按照枪匠指的方向逃出了村落，但进入丛林以后，他立刻乱了方寸，见林就钻，见坡就翻，加之其两天来水米未进，没过多久就慢了下来。</p>
+	<p class='firstLineIndent'>这可怜的探险家显然是被食人族吓破了胆，他跑不动了，就手脚并用，连滚带爬，恐惧和求生的本能告诉他，不能停下，停下便是剥皮拆骨，死无全尸。</p>
+	<p class='firstLineIndent'>而枪匠则和他完全不同，举个例子，就好比在玩某某无双的时候，我们经常可以看到，一个大众脸的武将半道杀出，张口便是“让我从兵法的基础开始教你”。你花了五秒钟将其挑翻，他就会立即道“撤退也是兵法的一种”。</p>
+	<p class='firstLineIndent'>虽然有点搞笑，但这句对白本质上没错，撤退和溃退是两个概念，前者是且战且退、井然有序，后者则是丢盔卸甲，夺路而逃。</p>
+	<p class='firstLineIndent'>枪匠深知，如果自己也像约翰一样，那想要摆脱追捕是肯定没戏了。虽然他还有最后一套方案，就是可以考虑将追来的人全部杀光，但那也是要冒风险的。就算这次他有了防备，可食人族人多势众，只需一支吹箭中的，对这边来说就是万劫不复的境地。</p>
+	<p class='firstLineIndent'>所以枪匠这一路行来，也并不急着去追赶约翰，他有意放慢速度，用随手捡到的石子等硬物将那些追得最近最靠前的食人族打得头破血流，从而起到心理上的威慑作用，让对方有所忌惮，拖慢整个群体的步伐。</p>
+	<p class='firstLineIndent'>另外，枪匠还要负责抹掉约翰留下的足迹，并制造一些假的踪迹使追踪者朝错误的方向行进。当追兵受到枪匠的阻击，渐渐被拉开距离后，枪匠就开始做这些。约翰的足迹可谓独树一帜，很容易伪造，其脚印沉重、散乱，并且还有手印或者是手肘撑地的痕迹混在里面……</p>
+	<p class='firstLineIndent'>大约一小时后，天色渐暗，食人部落基本已经被枪匠忽悠得快在自己的地头迷路了，这时，约翰终于停下，趴在了地上，他实在动不了半分了。</p>
+	<p class='firstLineIndent'>他的呼吸断断续续，脸色苍白，胃中又是突然一阵翻腾，使他吐了一地，但他连支撑起上身的力气都没了，只能任由自己的脸贴在流满呕吐物的泥地上，不过那也只是些胃液而已，他的腹中早已空空如也，没半点食物。</p>
+	<p class='firstLineIndent'>枪匠只过了几分钟就赶了上来，他走过去道：“别担心，他们被甩开了，短时间内不可能追上来，你看上去糟透了，得多休息一会儿。”</p>
+	<p class='firstLineIndent'>约翰闻言，虽还未完全放心，但好歹松懈了一点儿，待呼吸渐渐平稳，他才有力气翻身坐起来：“呼……伙计……这没想到，我还能活着离开那个村子。”</p>
+	<p class='firstLineIndent'>枪匠从口袋里掏出了自制的点火装置，递给约翰：“这个可以点火，你还得起来再走几步，那边有个山洞，到洞里去生火吧，我去给你弄点儿吃的和干净的水，不然食人族还没追上来你就自己挂了。”</p>
+	<p class='firstLineIndent'>“谢谢……查尔斯，没有你，我根本不可能逃出来。”</p>
+	<p class='firstLineIndent'>“我也是自救，带上你是举手之劳，你不必太放在心上。”枪匠倒是没怎么当回事儿，他摆了摆手，独自进了林子，找食儿去了。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0023'><summary><a>第六章 黑水</a></summary>
+	<p class='firstLineIndent'>当夜，枪匠和约翰选择在山洞中休息。</p>
+	<p class='firstLineIndent'>吃饱喝足后，约翰恢复了体力，但他精神上的疲劳恐怕是无法治愈了，如果说世界上有种人连睡觉时都睁着一只眼，那约翰无疑已经加入了这支队伍。</p>
+	<p class='firstLineIndent'>枪匠没有提出轮流守夜，他知道食人族的土著是不会在夜间进行搜索的，因为那样做事倍功半，而且有很高的风险，捕猎者不到万不得已时，不会做这样的选择。</p>
+	<p class='firstLineIndent'>黑暗是文明与原始的分界线，现代社会的人们也许能借助先进的设备在黑夜中一边隐藏自己一边安静地潜行，但食人族的野人们在夜间行进的唯一方式就是火把，自然界中只要是长了脑子的猎物都会被那玩意儿的光和热吓跑，更何况是已成惊弓之鸟的约翰。</p>
+	<p class='firstLineIndent'>超过一半的雨林动物都是夜间觅食，但人类做不到这点，在漫长的进化过程中，人类没有被赋予夜间行动的能力，这也是为什么我们的生物钟生来就适应白天的生活。在这种特定的蛮荒环境下，物种与生俱来的能力比任何复杂的工具都可靠。</p>
+	<p class='firstLineIndent'>这是枪匠在雨林度过的第二晚，他依然没睡好。</p>
+	<p class='firstLineIndent'>枪匠原本只需要考虑如何独自穿过丛林回到外面的文明世界。而现在，身边多了个没有任何装备、且已身心俱疲的探险家当累赘；先前挖出的神秘金属塔尖是何情况，他也是瞎子望天窗，不明不白；雨林深处还有一群树大根深、兵强将勇的食人族土著随时可能在暗处给自己来上一镖。</p>
+	<p class='firstLineIndent'>身陷如此境地，恐怕也只有遭遇铁血战士这种发展，才能使事情变得更糟了。</p>
+	<p class='firstLineIndent'>当然，我只是说个构思而已，没打算真的这样写。</p>
+	<p class='firstLineIndent'>枪匠睡得不熟，他又做梦了，还是小时候的事。那也是个夜晚，寒冷的暴风雪之夜，在一间屋子里，壁炉前，他裹着毯子，等待爷爷归来，这天小查尔斯感冒了，所以没跟爷爷一起出去打猎。</p>
+	<p class='firstLineIndent'>最初他的心中满怀期盼，希望爷爷今天的收获能让他喝上热腾腾的肉汤，但太阳逐渐被乌云遮蔽，天空变得阴霾，暴风雪不知何时已然降临。从中午到晚上的这段时间，期盼变成了担忧，好在并没有变成绝望，因为爷爷还是回来了，当老罗尔打开门的瞬间，凛冽的强风冲入屋内，老人用他高大的身躯挡住了身后的风雪，重新抵上了门。</p>
+	<p class='firstLineIndent'>壁炉中闪动的火光再次趋于平稳，一大块捆绑着的兽肉被扔在了地上，老罗尔显然遇到了难缠的猎物，而恶劣的天气使他无法带回大部分战利品。那天，老人失去的不仅是大半具野兽的尸体，同时还有他的右眼，当他回到家的时候，眼眶中流出的血水都早已冻成了冰……</p>
+	<p class='firstLineIndent'>“嘿，查尔斯，醒醒，查尔斯！”约翰叫着枪匠的名字。</p>
+	<p class='firstLineIndent'>劣质的睡眠换来立竿见影的头疼，他迷迷糊糊地回道：“什么事儿？”</p>
+	<p class='firstLineIndent'>约翰基本也没怎么睡着，但他似乎挺有精神的：“我听到外面有声音，可能是食人族追来了。”</p>
+	<p class='firstLineIndent'>一听到食人族这三个字，枪匠也精神了，人这种生物，小吓提神，大吓丢魂，惊吓没准能造成心梗。</p>
+	<p class='firstLineIndent'>“我出去看看。”枪匠说罢，一个鲤鱼打挺，起身便疾行而去，待到洞口时，稍稍探头张望了一下，没见到什么异状，他抓起几个石子儿，朝着三四个不同的方向，呈扇形投掷出去，树林里很快就响起了窸窸窣窣的声音。</p>
+	<p class='firstLineIndent'>他回头对约翰道：“不像人的动静，可能只是动物，你刚才听到什么了？”</p>
+	<p class='firstLineIndent'>约翰回道：“我也不确定，哦，对了，是从树上传来的，会不会是这帮野人派人爬在树上侦查？”</p>
+	<p class='firstLineIndent'>枪匠便把视线上移，又扔了几块石子儿，这次是朝着高处飞行。飞石除了惊起几只鸟儿外，并没有什么其他的活物做出反应。</p>
+	<p class='firstLineIndent'>“可能只是猴子，亦或者在我第一次扔石子儿时打草惊蛇了，他们已经逃走。”枪匠道：“此地不宜久留，我们还是尽快赶路，前进是摆脱追捕最好的方法。”</p>
+	<p class='firstLineIndent'>约翰对此建议自然是举双手表示赞同。</p>
+	<p class='firstLineIndent'>二人出了山洞，根据太阳的方位来判断方向行进。前一天晚上他们已经达成一致，继续朝西走，因为约翰的探险队最初是由西向东探索的，当然，那时他们的指南针还没有坏。</p>
+	<p class='firstLineIndent'>有枪匠在前面开路，他们在林间穿梭的难度骤减，约翰是专业的探险家，身体素质和生存技能方面自然都强于普通人，他本来就没受什么伤，也未感染疾病，经过一晚上的休憩喘息，体力已恢复了七八成，跟在枪匠后面，赶路变得十分省力。</p>
+	<p class='firstLineIndent'>即使在这陌生环境中，他们的行动也绝不会比食人族土著要慢。根据约翰的经验判断，只要像这样走个三天左右，即便仍未走出雨林，食人族的追捕肯定也已停止了，原始部落的行动范围一般不会超出自己的领地，交通基本靠走的这帮野人，对于脚程太远的地方，他们是断然不会去的，对他们来说，走出领地就跟哥伦布当年朝“世界尽头”航行一样需要勇气。</p>
+	<p class='firstLineIndent'>行了半日，一路上也未发现有人在追踪他们的迹象，看来上午确实是约翰太过疑神疑鬼，草木皆兵了。</p>
+	<p class='firstLineIndent'>离那部落的村落越远，二人的安全就越有保障，因为仅仅从生存层面来讲，他们没有太多值得担忧的东西。</p>
+	<p class='firstLineIndent'>到中午时，二人没有停下生火，为了防止预留的肉在潮热的环境中变质，昨晚已经烤至七分熟，这样做也能方便今天赶路。所以他们只是稍作休息，啃了几口没滋没味儿的蝙蝠肉干，就继续上路。</p>
+	<p class='firstLineIndent'>要说这些蝙蝠也真够倒霉的，它们本来住在那个地势较低的山洞里，没招谁没惹谁，偏偏遇上了枪匠，他扔东西是例无虚发，甭管天上的鸟，河里的鱼，被他发现一般都逃脱不了魔掌。</p>
+	<p class='firstLineIndent'>到了下午，两人的神经基本都松懈下来，他们赶了大半天路，过沼泽、趟小河，披荆斩棘，几乎没怎么停下，这时速度便慢了下来。</p>
+	<p class='firstLineIndent'>就在一个毫无征兆的时刻，枪匠在一次无意识回头想和约翰说话时，眼角突然瞥到了一些东西。</p>
+	<p class='firstLineIndent'>他的表情不由得变了，他知道自己看到的景象绝不是幻觉，所以此刻，他只觉得毛骨悚然，因为刚才闪过的那条黑影显然不是丛林中的动物，而是个人。</p>
+	<p class='firstLineIndent'>“约翰，有个黑影跟在咱们后面。”枪匠直接就开口说道。</p>
+	<p class='firstLineIndent'>约翰的脸色瞬间就白了，他立即转身，戒备地注视着四周：“在哪里？是食人族吗？”</p>
+	<p class='firstLineIndent'>枪匠道：“不……那个……怎么跟你形容呢……”他稍稍组织了一下语言：“我说是‘黑’影，并不是因为我没看清，事实上，我看得很清楚，只不过，‘它’是黑色的……就跟在后面不远的地方，在一棵树上……我怀疑早上你听到的声音就是它发出的。”</p>
+	<p class='firstLineIndent'>“什么意思？它到底是不是食人族？什么叫黑色的？”约翰的慌乱全写在脸上。</p>
+	<p class='firstLineIndent'>枪匠已经拿出了骨枪，直觉告诉他，眼前的事物，可能比食人族更加凶险：“身高像十岁的孩子，但身形上看无疑是成年人，不过又不是侏儒，很奇怪……就像是个小号的人，而且全身上下从头到脚都是黑色的，不是黑人能有的那种肤色，而是油漆才能喷出的那种漆黑。七成可能是全身每一寸都涂了黑色的染料，两成是穿了一种特制的服装，还有一成可能……他天生就是这种样子。”</p>
+	<p class='firstLineIndent'>枪匠一边跟约翰解释着自己看到的，一边也在分析那东西究竟是什么。</p>
+	<p class='firstLineIndent'>约翰紧张地回道：“你要做什么……如果它没有直接危险，我觉得我们还是不要主动去惹不明的生物，快点逃才是吧。”</p>
+	<p class='firstLineIndent'>枪匠道：“没什么危险？那它一路上跟过来是想向你求婚吗？”</p>
+	<p class='firstLineIndent'>约翰渐渐退到了枪匠身后，压低了身子，仿佛随时会有毒镖朝自己射来似的：“查尔斯，现在可不是开玩笑损人的好时机。”</p>
+	<p class='firstLineIndent'>枪匠不禁笑了：“改天我介绍个人给你认识认识，你可以领教一下什么才是损人……”</p>
+	<p class='firstLineIndent'>最后一个字没说出口，他就扣下了扳机，骨枪的响声惊了一大片雨林中鸟兽，下一秒，一条黑影就从茂密的树杈间落下，摔落在地。</p>
+	<p class='firstLineIndent'>约翰抬头张望了一下，道：“你是怎么打中它的？我什么都没看见。”</p>
+	<p class='firstLineIndent'>枪匠没有回答这问题，只是挥手示意约翰跟上，他一边向那不明生物靠近，一边道：“我打的是腿，这能让它活下来，却无法逃走。”他笑了笑：“如果它真的只是想向你求婚，它依然可以单膝跪地给你送上戒指。”</p>
+	<p class='firstLineIndent'>约翰撇了撇嘴：“这笑话第二次就不那么好笑了。”</p>
+	<p class='firstLineIndent'>当他们来到那树下，眼前的景象确实不那么好笑了，因为那不明生物并不在此地。</p>
+	<p class='firstLineIndent'>“看来它膝盖中枪也能逃走不是吗？”这次轮到约翰说风凉话了。</p>
+	<p class='firstLineIndent'>枪匠朝四周扫视了一圈，那黑色生物已经无迹可寻，他蹲下，凝视着地面上的一小摊黑色液体，也不敢贸然用手去碰，只是凑近闻了闻：“你觉得这是它的血吗？”</p>
+	<p class='firstLineIndent'>约翰也观察了一番周围的环境，回道：“如果是血，它逃走时，会一路滴落，但你看，没有脚印，没有黑色的血滴，连爬上树的痕迹都没有。”</p>
+	<p class='firstLineIndent'>枪匠接道：“所以……它在几秒内就完成了止血，然后悄无声息地飞窜出去，直接逃出五十米以上的距离。”</p>
+	<p class='firstLineIndent'>约翰摊开双手：“还有一种解释，只要它的一部分中弹，整个身体都会顷刻间蒸发，最后只留下这么点儿黑水。”</p>
+	<p class='firstLineIndent'>枪匠站起身：“接着赶路吧……希望你才是对的。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0024'><summary><a>第七章 渡河</a></summary>
+	<p class='firstLineIndent'>虽然暂时摆脱了黑色的不明生物，但疑云仍然笼罩在枪匠和约翰的心上。这片雨林的蹊跷之处着实很多，每当二人的精神稍有松懈，新的异状就会出现。好在此地不是沙漠，获取食物和水源没有太大的问题。否则在这种巨大的心理压力下，基本的生理需求也得不到保障，约翰那厮随时可能精神崩溃。</p>
+	<p class='firstLineIndent'>那段黑色的小插曲转眼已过去两个小时，这段时间里枪匠和约翰没有说太多话，两人又恢复了上午的行进速度，就算感到累，也咬牙坚持，仿佛背后有什么未知的危险正在追赶着他们。</p>
+	<p class='firstLineIndent'>不知何时，头顶已是乌云滚滚，看来一场大雨即将落下，与此同时，两人的面前出现了一片浅滩。</p>
+	<p class='firstLineIndent'>“我们得抢在大雨到来前过河，不然水位会涨。”约翰看着前面的情形说道。</p>
+	<p class='firstLineIndent'>枪匠朝水里趟了几步，回头道：“现在水只到膝盖，但走到河中心可能会齐腰深甚至是踩不到底。你确定要这么干吗？我目测到对岸至少要趟三四百米，可能更远，万一走到河中心时开始下雨……”</p>
+	<p class='firstLineIndent'>约翰直接打断道：“我们就会被困在那儿，既无法到达对岸，也来不及回来，上涨后湍急的河水会将我们冲走，是的，我知道，所以咱最好别再啰唆，快点儿过去。”他说着就已朝前走去。</p>
+	<p class='firstLineIndent'>枪匠没有再说什么，紧跟上去。他心里也清楚，如果大雨降下，要趟水过河就不可能了，剩下的两种办法。一是绕道，往上游去，看看还有哪儿的水位较低，河道较窄，但天知道这条河哪一段最窄，没准这片浅滩就是两岸间距离最近的地方，雨林里的降水又很频繁，水位上涨后持续不退也很正常。</p>
+	<p class='firstLineIndent'>至于第二种方法，就是花点时间，造个简易的筏子渡河，但万一涨潮后河水很急，筏子和人一样得被冲走，再者，下雷雨时待在宽阔的河面上非常容易遭到雷击。</p>
+	<p class='firstLineIndent'>当然，还有第三种选择，等在原地，雨停以后再做计较，不过从枪匠和约翰之前经历的那些状况来看，他们都是宁可绕道也不愿停下脚步的。</p>
+	<p class='firstLineIndent'>云层很厚、很低，雷声很沉、很近。这都不是好兆头，最多五分钟，此地便是风雨如磐，到时这片浅滩可就成河底了。</p>
+	<p class='firstLineIndent'>而枪匠和约翰此时才走了三分之一，他们面临着一个问题，是否应该立刻折返回去，现在应该还来得及，回到岸边后至少两人还能选择绕路而行。</p>
+	<p class='firstLineIndent'>“你认为回去是个好主意吗？”枪匠问道。</p>
+	<p class='firstLineIndent'>约翰果断否决了这个提议：“不，我有一种很强的预感，后面仍然有危险，而且很近。这条河和这场雨，就是我们摆脱那些魑魅魍魉最好的一次机会。就算被河冲走，一路跌下瀑布，我也绝不回那一侧的岸边。”</p>
+	<p class='firstLineIndent'>“也许你是对的，不过……”枪匠说着话，雨滴已经打在了他的身上：“要顺利过河，我们得加快速度。”</p>
+	<p class='firstLineIndent'>约翰回道：“那就拼了！”说罢干脆往前一跃，游了起来。</p>
+	<p class='firstLineIndent'>丛林中的暴雨是都市人难以想象的，淋在人身上的激烈程度，简直就像拍烂俗电视剧时的那种人工降雨，男女主角不撑伞在雨中哭作一团，而镜头外停着一辆消防车……</p>
+	<p class='firstLineIndent'>约翰和枪匠从趟水改为了自由泳，眼下的情况不必再考虑保存体力了，目前的问题还只是水位激增而已，但再磨蹭个几分钟，很可能会出现急流或者食人鱼群之类的情况，就算是能力者，到时也得玩儿完。</p>
+	<p class='firstLineIndent'>枪匠最初预估的距离还是比较准确的，两分钟后，精疲力竭的二人爬上了对岸的泥地，两人一上岸，皆是脸朝上，胸口剧烈起伏，气喘不止，这百余米距离游起来可绝不轻松，他们连鞋都没脱，河里的水流也逐渐加快。两人最终能安全上岸，不得不说有一定的运气成分，要是他们在水里多待几十秒，或是上游忽然飘过来一棵断树，事情就难说了。</p>
+	<p class='firstLineIndent'>回望着身后的激流恶浪，枪匠只觉后怕。所谓的能力者，在大自然的力量面前也不过就是个人而已，他还远未强到超人的地步。在有生之年，如果自己到了强级以上的境界，或许就有能力在这种境况前从容度过了吧。</p>
+	<p class='firstLineIndent'>雨越来越大了，水位继续上涨着，这河岸也有被淹的危险，他们稍稍缓过气儿来，便起身，欲找个地方避雨。约翰的心情大好，虽然他成了落汤鸡，但那些凶恶诡异之物，已被隔在了河的对面，这次冒险还是很值得的，今晚或许可以睡个安稳觉了。</p>
+	<p class='firstLineIndent'>“约翰，我有个坏消息要告诉你，你可得有心理准备。”枪匠突然说道。</p>
+	<p class='firstLineIndent'>约翰道：“是什么？你口袋里的东西掉河里了？”</p>
+	<p class='firstLineIndent'>“不，我的口袋都缝改过，倒挂在树上也不会掉东西出来。”枪匠回道：“我要说的事情比丢东西可怕多了，事实上，此刻我已经被吓到了，你千万要稳住，不要尖叫或者发狂……”</p>
+	<p class='firstLineIndent'>约翰已感到头皮发麻，他问道：“到底是什么事？”</p>
+	<p class='firstLineIndent'>枪匠指着前方不远处的丛林：“这条路……你还记得吗，是我们渡河前来的路。”</p>
+	<p class='firstLineIndent'>约翰顺着枪匠手指的方向望去，他的脸色瞬间变得惨白。</p>
+	<p class='firstLineIndent'>“事实上，我的视力不错，我还看到了我们来时留下的足迹，虽然现在已经逐渐被雨水冲没了。”枪匠说着又回过头去：“你看对面，是我们渡河前所见到的对岸，景物完全一致。”</p>
+	<p class='firstLineIndent'>约翰坐倒在地上：“怎么回事……不可能……为什么会这样？！”</p>
+	<p class='firstLineIndent'>枪匠道：“比较合理的解释是，我们自己调头回来了。”</p>
+	<p class='firstLineIndent'>“不可能！难道我们转了一百八十度，游错方向自己却浑然不知？”约翰吼道。</p>
+	<p class='firstLineIndent'>枪匠长吁一口气，雨水使他额前的头发贴在了眼皮上，他往后撩起头发，神色凝重地道：“我们很可能遇到了一种近似于折叠空间的情况，那条河，就像一面镜子，看似我们是过去了，其实最终还是折返了回来。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0025'><summary><a>第八章 再次尝试</a></summary>
+	<p class='firstLineIndent'>约翰颓丧地靠在树上，双手抓着自己的头发：“是诅咒！这地方被诅咒了！这片该死的雨林！一定是这样的！因此所有的仪器、指南针，全都没有作用！我们完了，哈哈，我们完了！”他笑了，又一次变成了那个被关在食人族笼子里绝望等死的男人。当然，在经历了这种怪诞恐怖的变故后，这也是正常人该有的反应。</p>
+	<p class='firstLineIndent'>枪匠却依然镇定：“与其归结于灵异现象，不如做些合理的揣测，在我看来，这很可能是人为的。”</p>
+	<p class='firstLineIndent'>约翰瞪大了眼睛，上前抓住枪匠的衣领，激动地问道：“你知道这里发生了什么？”他此刻的神情活像一个疯汉。</p>
+	<p class='firstLineIndent'>枪匠道：“首先，这可能是某个具有超能力的人在作祟，我的能力你也看到过了，世界上有各种各样的能力者，具体有多少种能力根本无法统计，要做到刚才事情也并非很难，也许我们只是被某种障眼法所迷惑，或者大脑受到了干扰。”</p>
+	<p class='firstLineIndent'>约翰松开了手，他稍稍冷静了一些，枪匠的话很有道理，比起那些想象出来的骇人诅咒，能力者不是更有可能吗？</p>
+	<p class='firstLineIndent'>枪匠接着道：“另外，关于空间折叠这件事，是可以通过机械来实现的，在帝国高层，并非没有这种技术……”</p>
+	<p class='firstLineIndent'>他说到此处，忽然想起了天一的书店，当年为那家书店做转移装置的时候，枪匠就接触过与空间有关的高深科学，一直到完工，他也没明白天一给他的技术信息从何而来，这种科学的能力远远超越了现阶段人类该有的水准。</p>
+	<p class='firstLineIndent'>后来，枪匠当上了帝国的武器顾问，他原以为帝国秘而不宣的科技就是天一那古怪书店中各种邪门玩意儿的出处，但深入了解后，他发现两者间相去甚远，根本就属于不同的体系。</p>
+	<p class='firstLineIndent'>约翰见枪匠忽然愣住，也不知该不该插话，过了会儿，他打了两个响指，在枪匠眼前挥了挥手道：“嘿！查尔斯！没事儿吧？！”</p>
+	<p class='firstLineIndent'>枪匠回过神来：“哦，没什么，想到些事情。”他继续刚才的话题：“总之，你也不必太过惊慌，只不过是没能过河罢了，与其手足无措、自暴自弃，不如考虑一下接下来的计划。”</p>
+	<p class='firstLineIndent'>约翰这时基本也从最初的震惊和恐慌中恢复了过来，他定了定神，用雨水抹了把脸：“继续赶路恐怕是不行了。这雨实在太大，刚才渡河又耗了太多体力，最糟的是能见度越来越低，恐怕几个小时后就得一片漆黑。”</p>
+	<p class='firstLineIndent'>“嗯，那就先找个能躲雨的地方吧。”枪匠应了一句，便立即动身。</p>
+	<p class='firstLineIndent'>约翰自然也不可能穿着满身泥泞的衣服在雨里一直站着，所以迅速跟了上去。</p>
+	<p class='firstLineIndent'>雨林的地形地势高低错落，连绵起伏，他们花了十多分钟才找到了一块合适的地界儿，背靠悬崖，头顶倾斜凸出的山壁正好能把雨挡在几米外的地方，虽然蹲在这狭隘的避雨处很不舒服，但总比站在外面强。</p>
+	<p class='firstLineIndent'>刚才那次失败的渡河真可谓是劳形苦心，两百米趟水跑步加两百米穿衣自由泳，上岸后发现自己还在原地，头顶又是瓢泼大雨，最可怕的是在目力可及的范围之外，还有一种未知的力量，仿佛时刻都在注视着他们，企图阻止他们离开这片雨林。</p>
+	<p class='firstLineIndent'>纵然天空中乌云蔽日，但四周却并非伸手不见五指的漆黑，这说明太阳还未落山。此地不是久留之处，等雨小一些，两人还得另觅一个隐蔽安全的所在才敢生火休息。</p>
+	<p class='firstLineIndent'>他们并没有等太久，大约一小时后，夕阳便穿透云层和密林洒了下来，两人都不禁庆幸这场豪雨的短暂。</p>
+	<p class='firstLineIndent'>经过这段时间的休憩，加之雨过天晴，约翰的情绪高涨了不少，在遭遇了接二连三的悲剧后，他的神经坚韧程度可谓一日千里，恢复速度快了很多，当然距离枪匠这种处变不惊的境界还差点儿。</p>
+	<p class='firstLineIndent'>不多时，两人又回到了那条河边，此时的水位很高，但看上去风平浪静，水流较为平缓，枪匠提出再尝试一次过河，只不过这次全程都得游泳。</p>
+	<p class='firstLineIndent'>而约翰的建议是造个筏子，这样能在很大程度上减小风险。要知道河里可能会有食人鱼群经过，再者，乘筏子不但节约体力，还可以清楚地看到渡河时两岸的景物，要是真的有人躲在暗处捣鬼，他们能掌握更多细节。</p>
+	<p class='firstLineIndent'>枪匠同意了这个点子，此时的他也已经非常劳累了，他心想：假如真的是被折叠空间束缚，造筏子所消耗的体力总比来回自由泳N次要来得划算。</p>
+	<p class='firstLineIndent'>接着约翰就提出让枪匠用其超能力变两把砍刀出来，既能砍树又能防身，而且以后穿越丛林时，有一把砍刀在手，约翰就能帮着开道了。</p>
+	<p class='firstLineIndent'>枪匠欣然同意，但半天没找到相近的材料，无奈，他只能抓起一坨泥巴开始蓄力，整了二十分钟，终于完成了一把。</p>
+	<p class='firstLineIndent'>“你先去砍树，我做完自己那把就来帮你。”枪匠把刀递给了约翰。</p>
+	<p class='firstLineIndent'>约翰回道：“你就没顺便弄个刀鞘？”</p>
+	<p class='firstLineIndent'>枪匠道：“滚蛋，自己去杀条鳄鱼拿皮做。”</p>
+	<p class='firstLineIndent'>约翰笑了笑，独自砍树去了。</p>
+	<p class='firstLineIndent'>“炼金术”这能力很是麻烦，还好砍刀并不是构造复杂的精密机械，否则以枪匠现在的状态，未必能做出这种体积的东西。</p>
+	<p class='firstLineIndent'>又是二十分钟过去，当枪匠的第二把砍刀出炉，准备去帮上约翰一把时，那家伙居然已经把所需的木头都搞定了，手脚还真是利落。</p>
+	<p class='firstLineIndent'>“这些木头的浮力应该足够承受两个人，桨也已经做好了，我们再弄些坚固的藤，用刀修葺一下，扎紧筏子就行。”约翰说这话的时候，事情其实已经做了大半。</p>
+	<p class='firstLineIndent'>他挑选的树木粗细适中，劈树的时候已计算过长短，多余的树枝也都砍掉了，所以留给枪匠的活儿并不多。想来约翰也看出枪匠的超能力是很费神的，所以不声不响地把力所能及的工作都揽下了。</p>
+	<p class='firstLineIndent'>眼见太阳渐渐西斜而下，筏子也在此时完成了，两人这段时间一直没有放下戒备，不过食人族和黑色生物都没有出现，最大的危险也就是几条路过打酱油的蛇而已。</p>
+	<p class='firstLineIndent'>将筏子放下水，没沉，两人持桨坐了上去，还是没沉，这就没什么问题了。</p>
+	<p class='firstLineIndent'>约翰划着水道：“天快黑了，要是真的过不去，我们可以考虑改走水路，顺流而下远离这里。”</p>
+	<p class='firstLineIndent'>枪匠在另一侧挥动着手里桨，默不作声，他回头看了一眼逐渐远去的河岸，内心不祥的预感却是丝毫没有减弱。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0026'><summary><a>第九章 漩涡</a></summary>
+	<p class='firstLineIndent'>天都，HighestLaws，帝国最高总部。</p>
+	<p class='firstLineIndent'>拥有占地数万平米的行政办公机构，深入浮岛内部的巨大设施，全球范围内挑选的HL最精英成员，战力最强的战斗人员、军备能力，一个平民永远无法触及的世界。</p>
+	<p class='firstLineIndent'>2100年，十一月，枪匠失踪后五十五小时。</p>
+	<p class='firstLineIndent'>某个宽阔的会议室中，乔瑟夫·诺兰独自坐在长桌前，敲打着笔记本电脑的键盘，他在等人，不过又不想闲着，所以便顺手去做一些书面报告的工作。</p>
+	<p class='firstLineIndent'>这时，有人用磁卡打开了会议室的自动门，走了进来，那是个身宽体胖的男人，看上去三十不到，虽是穿着HL的制服，却是流里流气的德行。</p>
+	<p class='firstLineIndent'>他一进门就道：“我说今天怎么一起来眼皮就跳呢，这不是时侍大人嘛，怎么？什么风把EAS的副局长吹到我们这儿来了？”</p>
+	<p class='firstLineIndent'>时侍听声音就知道这是谁，他根本没打算放下手头的事情，目不转睛地盯着屏幕，开口回道：“上头就派你来见我？”</p>
+	<p class='firstLineIndent'>那男子脸上明显露出了不悦：“怎么？你觉得本上校的级别还不够吗？”</p>
+	<p class='firstLineIndent'>时侍没回答这个问题，而是平静地道：“‘茶仙’不在本部吗？”</p>
+	<p class='firstLineIndent'>“七皇子大人去澳洲公干了，再说，以他的身份，是像你这种贱民出身之人说见就能见的吗？”</p>
+	<p class='firstLineIndent'>时侍的语气依然很冷静，一边打字一边回道：“那么，克莱斯上校，请你去叫个将官级别的人来和我说话。”</p>
+	<p class='firstLineIndent'>克莱斯上前抓住时侍的领口，将其从靠背椅上提了起来：“混蛋，你以为在和谁说话？别以为自己有多强，信不信我现在就能杀了你！”</p>
+	<p class='firstLineIndent'>时侍回答得很快，很果断，很清晰：“不信。”</p>
+	<p class='firstLineIndent'>“好了，克莱斯少爷，你放下他吧，你们俩既然话不投机，少见面就是了，让我来和他谈。”一个四五十岁的中年男子走进了会议室，此人雾鬓灰发、身躯魁伟、气宇不凡，看军装的样式就知其级别要比克莱斯更高。</p>
+	<p class='firstLineIndent'>“呿……”克莱斯松开手，整了整自己的衣服，恶狠狠地瞪了时侍一眼，才悻悻然离去。</p>
+	<p class='firstLineIndent'>“你好，居将军。”时侍坐回了刚才的位置，不过没有继续打报告。</p>
+	<p class='firstLineIndent'>居胜官拜中将，但对时侍却是十分客气，两人似乎颇有交情：“那位大少爷好像一直看你不太顺眼啊，你可要小心了，克莱斯侯爵在朝廷里可是很有影响力的，你还年轻，将来的仕途长着呢。”</p>
+	<p class='firstLineIndent'>“我没有时间改善与这种废物之间的人际关系，他老爹年事已高，酒色过度，据我推测，其‘时间’已经不多了，至于克莱斯上校本人，机会恰当的话，可以考虑杀了他，一劳永逸。”</p>
+	<p class='firstLineIndent'>“嘿！嘿！别当着我的面说，我可什么都没听到。”居胜慌忙说道，虽然他早就听说过EAS敢于暗杀任何人，但他可万万不想卷入其中。</p>
+	<p class='firstLineIndent'>于是时侍改变了话题：“刚才听他说，茶仙去澳洲了？”</p>
+	<p class='firstLineIndent'>居胜回道：“去抓一个叫‘神钥’的家伙，你听说过那人吗？”</p>
+	<p class='firstLineIndent'>时侍道：“没有，也不感兴趣。”</p>
+	<p class='firstLineIndent'>“呵呵……你还这是善于用一句话把别人噎死。”居胜笑道：“你这次来是为了那个武器顾问的事情吧？”</p>
+	<p class='firstLineIndent'>“查尔斯·罗尔，二十七岁，前军火商，优秀的科学家及枪手，并级能力者，人称‘枪匠’，一年前被帝国招揽到麾下，赦免其过去的所有罪行。”时侍稍稍停顿了一秒，因为他接下来说的是重点：“收到他失踪的消息已经超过四十八小时，我想知道HL的搜寻调查进度如何了。”</p>
+	<p class='firstLineIndent'>居胜没有立即回答对方的问题，而是说道：“这个人很重要吗？需要你这副局长亲自来跑一趟？”</p>
+	<p class='firstLineIndent'>时侍回道：“他作为武器顾问的价值对我来说没有意义，我想这是你们需要斟酌的问题，但EAS方面，包括我个人强烈建议，无论死活，帝国务必需要掌握这个人的行踪。”</p>
+	<p class='firstLineIndent'>居胜道：“你的意思是……他的能力价值很高？可他只是个并级能力者而已。”</p>
+	<p class='firstLineIndent'>“我知道自己有些越权了，即便你们已经展开搜索，也不会告诉我进度的。”这次换时侍答非所问了：“所以我这次来，其实只是提出建议……你们最好把他找到。”他合上桌上的笔记本电脑，夹起就走。</p>
+	<p class='firstLineIndent'>“搜救小队十个小时前已经出发了。”居胜的声音从时侍身后响起，让后者停下了脚步：“上头的意思是，枪匠此人的搜寻不能交给地方办，得由总部派人进行，所以，从天都赶到南美，调查他所乘坐的飞机在何时、何地、为何坠落，这都需要时间。”</p>
+	<p class='firstLineIndent'>时侍回了一句：“谢谢。”接着立即道：“再见。”</p>
+	<p class='firstLineIndent'>“嘿！帮我跟你们局长问个好。”</p>
+	<p class='firstLineIndent'>“我的休假期快到了，近两个月都不想去见老头子，免得被他心血来潮打成重伤。”时侍毫不避讳地排遣自己的上司，然后又重复了一句：“再见。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>同时，在距离他们数千公里的南美丛林中。</p>
+	<p class='firstLineIndent'>枪匠那那不祥的预感很快就成为现实，当他和约翰的筏子行到河心时，水流忽然加快，两人手中简易的木桨立即便失去了意义。</p>
+	<p class='firstLineIndent'>他们随即也放弃了挣扎，任由筏子顺着河流疾驰而下，约翰看着身后渐渐沉入地平线的太阳，无奈地说道：“这种听天由命的感觉真是糟糕。”</p>
+	<p class='firstLineIndent'>枪匠说道：“很显然，有一种未知的力量不想让我们离开这片雨林。”</p>
+	<p class='firstLineIndent'>“那力量连河流都能操控？”约翰问道。</p>
+	<p class='firstLineIndent'>枪匠回道：“谁知道呢……也许大雨也不是什么巧合。”</p>
+	<p class='firstLineIndent'>约翰看着天空：“你相信有神明存在吗？”</p>
+	<p class='firstLineIndent'>枪匠笑道：“如果你信的话，麻烦你跟自己所信仰的神说一声，让他适可而止。”他此刻只能苦笑，因为他已看见面前的河道越来越宽，而更远一些的前方，在这种并不算深的河里，竟有一个漩涡。</p>
+	<p class='firstLineIndent'>约翰自然也看见了这一幕，他再次抄起了桨，“快，查尔斯，我们得让这筏子动起来，哪怕朝岸边多移动个几米也好。”</p>
+	<p class='firstLineIndent'>枪匠却无动于衷：“我可不认为在这种速度的水流下，这会有什么作用，漩涡的向心力还是会把我们卷进去。”</p>
+	<p class='firstLineIndent'>约翰喊道：“那跳河？这个距离应该还来得及。”</p>
+	<p class='firstLineIndent'>枪匠回道：“在我看来没什么区别，这么快的急流，游泳和划船是一样的结果。”他忽然转移了话题：“你不觉得此时、此地，正好有个漩涡出现在我们失控筏子的必经之路上有些太巧了吗？”</p>
+	<p class='firstLineIndent'>约翰冷哼道：“反正我这一个星期里都在交霉运。”</p>
+	<p class='firstLineIndent'>眼见筏子离那螺旋状的水流越来越近，枪匠非但没有稳定住身体，反而站了起来，举起骨枪，朝着水下，那漩涡的中心，扣下了扳机。天知道他脑子里在想些什么。</p>
+	<p class='firstLineIndent'>枪响后不久，水下发生了爆炸。巨大的冲力将筏子掀翻，一阵扩散形的水波过去，那漩涡的范围竟变得更加巨大了。</p>
+	<p class='firstLineIndent'>而宽广的水面上，枪匠和约翰二人皆是不见了踪影。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0027'><summary><a>第十章 遗迹</a></summary>
+	<p class='firstLineIndent'>白色的景物蔓延至天际，一眼望去，仿佛置身云端一般。在每年最冷的那几个月里，纵然石头和树木都会被裹上一层白霜。在这雪虐风饕之境，依稀能在一个山坡上看到幢被雪掩埋了一半的小木屋。</p>
+	<p class='firstLineIndent'>屋中，老罗尔坐在壁炉边，擦拭着手中的猎枪，这枪是他最忠诚也最熟悉的伙伴。年轻时他曾经养过猎犬，但狗的一生实在是太短，无法陪伴主人太多的岁月。妻子也死得很早，儿子和儿媳也因加入反抗组织被杀，能陪他一路走到老的，只剩下这把猎枪了。</p>
+	<p class='firstLineIndent'>可是讽刺的是，因为一年前的一次打猎，他的右眼失明了，这把枪，从此也成了摆设，一辈子闭左眼来瞄准的神枪手，现在却只能勉强打中二十米内的目标。</p>
+	<p class='firstLineIndent'>好在查尔斯已经继承了罗尔家族神准的枪法，这孩子有着惊人的天赋，真不愧是自己的孙子。老人常常会像这样在心中沾沾自喜一番，只不过他很少当面表扬枪匠。</p>
+	<p class='firstLineIndent'>外面忽然响起了敲门声，老人放下枪，朝门走去，他想当然地认为是枪匠打猎回来了，因为有时那小子会腾不出手来转门把手。</p>
+	<p class='firstLineIndent'>为了抵御风雪，门的后面横着一条木杠，老人将其放下，打开了门，却看到了意料之外的景象。</p>
+	<p class='firstLineIndent'>“阿嚏！”约翰打了个喷嚏，就像要把自己的肺叶都喷出来那么响。</p>
+	<p class='firstLineIndent'>枪匠被喷嚏声吵醒了。他摇了摇头，把梦里的场景赶出脑袋，然后坐了起来，观察了一番周围的环境，当视线逐渐清晰起来时，他大吃一惊。</p>
+	<p class='firstLineIndent'>自己和约翰正身处一个四边形的房间里，周围的墙壁全都是金属质地，墙面呈黑色，大量散发着青绿色光芒的壁画和文字从墙里透射出来。</p>
+	<p class='firstLineIndent'>“这是哪儿？”枪匠问道。</p>
+	<p class='firstLineIndent'>约翰此时正站在一面墙边，注视上面的文字：“不知道，我也没醒多久。”他停顿了一下，似乎是要把眼前的那段文字念完：“我刚醒时来还以为自己被外星人抓住了，但读了一些这墙上的文字后，基本能确定这些是人类的文明。”</p>
+	<p class='firstLineIndent'>枪匠回想了一下自己失去意识前最后记得的事情，随即便反应了过来，高声道：“对了！地底遗迹！”</p>
+	<p class='firstLineIndent'>约翰回头问道：“你说什么？遗迹？”</p>
+	<p class='firstLineIndent'>枪匠把自己之前遇到的地面隆起，还有在地下挖到金字塔尖的事情和盘托出，顺带说了一下骨枪的原理以及其击中未知金属外壳后的效果。</p>
+	<p class='firstLineIndent'>约翰还没能把这些消化完，枪匠又接着说道：“那条河不算很深，产生漩涡的可能性很小，我看到时就在猜测，是不是河底发生了某种异状。当时我也并没有想到是地底遗迹，在短时间内，我能想象到的就是，在河底有某种装置正在制造漩涡，于是便开了枪……”他站了起来：“现在我明白了，一定是遗迹对那条河产生了影响，而骨枪打穿了其外部金属，结果漩涡变得更大，我们就进来了。”</p>
+	<p class='firstLineIndent'>约翰愣了几秒，问道：“不可能啊……如果此地正处河床下方，并且如你所说的，从地底隆起，对河流产生了影响，那么那些水去哪儿了？跟我们一起流进来的河水、淤泥、筏子的碎片，都到哪儿去了？再说这房间不过几十立方米，真的有水流进来，这么点空间很快就会被灌满，怎么可能持续产生漩涡？”</p>
+	<p class='firstLineIndent'>枪匠抬头看了看房间顶部，回道：“天花板是完整的，没有被骨枪打穿的痕迹，这里显然不是我们最初进来的地方。”他边说边想：“嗯……也许我们随着水流被卷入遗迹以后，又被某种力量移动了一次，才到了现在的这个房间。”</p>
+	<p class='firstLineIndent'>约翰摊开双手：“好吧，那么……是美人鱼？还是某种专门针对活物的排水过滤系统？”</p>
+	<p class='firstLineIndent'>枪匠对这玩笑一笑置之：“呵呵……你可以保留这两种假设，直到我们发现真相。”</p>
+	<p class='firstLineIndent'>约翰回过头去继续研究起那些壁画来：“之前刚做好的砍刀又不见了，你随身带的东西还在吗？”</p>
+	<p class='firstLineIndent'>枪匠检查了一下，贴身物品还真都在，但失去意识前握在手中的骨枪此刻却是不见了：“不太妙，我的枪丢了，要重做一把可不容易。”</p>
+	<p class='firstLineIndent'>约翰道：“其他还有什么有用的东西吗？”</p>
+	<p class='firstLineIndent'>“当然有，前提是你能在这里找到可以刷信用卡的机器。”枪匠确实无奈，在此境况下毫无用处的钱包倒是一直没丢。</p>
+	<p class='firstLineIndent'>“我得说，情况很不妙，查尔斯，我们没有食物和水源，被关在六面都是铁壁的地方，即便你能用超能力打个洞出去，我们也不知道墙的对面是什么，也许会有水灌进来，又或者外面充斥着地底的泥土，而我们被埋在地下几百米深的地方。”约翰道。</p>
+	<p class='firstLineIndent'>枪匠却比较乐观：“哼……既然能进来就肯定能出去，这地方一定有某种机关。”他说着就已经开始沿着墙摸索起来：“说实话，我甚至怀疑这些到底是不是遗迹，先前挖出那个金字塔尖的时候我本以为地底会是个巨大的建筑物。但现在，置身在这个房间中，我可以顺畅呼吸，周围的温度也适合人类生存，而且非常干燥，还有光源。搞不好这里是某个反抗组织的地下基地，或者是帝国设在丛林里的秘密研究所。”</p>
+	<p class='firstLineIndent'>约翰接道：“又或者是外星人在几千万年前埋在地底的军队设施，它们等待着某天可以用这些玩意儿上来消灭我们。”</p>
+	<p class='firstLineIndent'>“那不是一部电影吗？”</p>
+	<p class='firstLineIndent'>“对，我喜欢那部电影，知道为什么吗？因为主角最后还活着。”</p>
+	<p class='firstLineIndent'>枪匠绕着房间转了半圈：“你从那些文字上瞧出什么来了吗？”</p>
+	<p class='firstLineIndent'>本以为约翰又会说些无关痛痒的废话，没想到此刻他却忽然一本正经地道：“是的，这里确实是个古代遗迹，属于奥尔梅克文明。”</p>
+	<p class='firstLineIndent'>枪匠回过头去：“你真的能读懂墙上的文字？”</p>
+	<p class='firstLineIndent'>约翰道：“有件事我想向你坦白，我的探险小队，并不是那种登山穿林，然后拍几张照片，捎回些土特产的队伍。我们更侧重于做一些考古学的工作。”</p>
+	<p class='firstLineIndent'>枪匠耸耸肩：“你直接说盗墓不就得了。”他表面上没太大反应，心中却是颇为惊讶的。</p>
+	<p class='firstLineIndent'>枪匠突然发现，人这东西，还真是不能轻信，和约翰接触的时间虽只有两天不到，但自己怎么说也救了约翰的命，求生途中一路走来，也可谓仁至义尽，还说了不少自己所知的情况。没想到这几番处于崩溃边缘的约翰，却是一直隐瞒着真正的身份和目的。</p>
+	<p class='firstLineIndent'>“那么……你们这次就是冲着这个什么梅克而来的？”枪匠随即问道。</p>
+	<p class='firstLineIndent'>约翰摇头：“不，这不是我们最初的目标。奥尔梅克文明应该是在中美洲地区的，会在此情此境下看到这种文字我也很惊讶。事实上，我也并不完全能解读这些内容，只是以前读过佛罗里达大学某个教授的论文，上面提到玛雅文字和奥尔梅克的关系。</p>
+	<p class='firstLineIndent'>撇开这些不谈，即便他们真的有某个分支来到了这南美丛林深处，但据我所知，奥尔梅克文明存在于公元前千余年，是美洲大陆已知的最古老文明，目前发现的所有的遗迹和手工制品都表明他们没有超出石器时代该有的文明阶层。所以，我们身处的这个房间……”</p>
+	<p class='firstLineIndent'>枪匠接过话头道：“你想说是外星人造的？”</p>
+	<p class='firstLineIndent'>约翰道：“我只是假设。”</p>
+	<p class='firstLineIndent'>枪匠道：“你的假设要是成立，以后就不用当盗墓贼了，回去后发表一篇论文，把几千年前那段故事编圆，顺便用这套理论解释一下后来的玛雅人在天文学上的成就，我估计你要是能拿回些这里的东西当佐证，到时论文一发表，直接就能拿诺贝尔奖。”他说到此处，动作忽然一滞，接着道了声：“啊呕……”</p>
+	<p class='firstLineIndent'>约翰听了这声啊呕，立即就知道事情要遭，想必是枪匠触发了什么机关，他慌忙问道：“怎么了？”</p>
+	<p class='firstLineIndent'>枪匠没来得及回答，两人脚下的地面已亮了起来，青绿色的光芒吞没了整个房间……</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0028'><summary><a>第十一章 寻找出路</a></summary>
+	<p class='firstLineIndent'>两人因这强烈的光线无法睁眼，出于本能地举起双手遮在眼前，但无济于事。</p>
+	<p class='firstLineIndent'>好在片刻后，这青绿色的强光便自行暗了下去，枪匠和约翰几乎同时睁开眼睛，看到了令人匪夷所思的变化。</p>
+	<p class='firstLineIndent'>他们所处的环境变了，原本四方形的金属房间，现在成了圆柱形。相同的黑色墙壁，透射出光线的壁画和文字，唯一的区别就是房间的形状。</p>
+	<p class='firstLineIndent'>“你刚才干了什么？”约翰问道。</p>
+	<p class='firstLineIndent'>枪匠回道：“我找到一个很像手印的符号，就试着把手掌按在上面，接着那个符号背后的光就越来越亮……”</p>
+	<p class='firstLineIndent'>约翰道：“那是个可以让房间改变形状的开关？”</p>
+	<p class='firstLineIndent'>枪匠道：“不……房间没变，只是房间里的生物被移动了……我猜这就是我们掉入河底以后再次移动的秘密。”他说着便观察了周围一番，随即朝一处靠墙的地方走去。</p>
+	<p class='firstLineIndent'>“看，这个圆柱形房间也有这样一个手印符号。”枪匠半蹲下，看着那个符号道：“比成年人的手掌要小，看上去像是孩子的……”他停顿了一下：“这让你想到了什么？”</p>
+	<p class='firstLineIndent'>约翰神情微变：“那个黑色的类人生物？”</p>
+	<p class='firstLineIndent'>“对，而且你看这个高度，和那个生物站立时伸手可及的高度差不多，我们要碰到的话，就得弯腰才行。”枪匠道。</p>
+	<p class='firstLineIndent'>“所以？”约翰看着枪匠，期待对方能给一个答案。</p>
+	<p class='firstLineIndent'>枪匠道：“就算你很有诚意地看着我，我也无法给你确切的解释，我只能推测……或许你口中的奥尔梅克文明确实和外星人有关？也可能这个公元前一千多年的文明其实远比我们现代人推测的要发达，他们也并没有灭亡，而是在遭遇某种重大灾难或变故后，躲在地底世界中生存了下来，我们看到的黑色生物，没准就是幸存者之一。”</p>
+	<p class='firstLineIndent'>约翰听着这话，表情数遍，最后只能回道：“看来你去写篇论文竞争诺贝尔奖的成功可能更大啊……”</p>
+	<p class='firstLineIndent'>枪匠道：“我也就是随便猜猜，不过基于之前那黑色生物偷偷跟着我们的情况，我的推测应该还是比较靠谱的。我乘坐的飞机坠落，还有你的探险小队遇难，归根结底都是由某种未知的磁场干扰引起，十有八九就是这片遗迹所致。</p>
+	<p class='firstLineIndent'>天知道下午看到的那个黑色生物是什么时候跟上我们的，也许早在你和你的队员被食人族抓住以前它就在跟踪你们；又或许他是从我破坏的遗迹尖顶中爬出来的；说不定这生物还不止一个……</p>
+	<p class='firstLineIndent'>唯一可以确定的是，这些遗迹开始活动是近期内发生的事情，很不幸的，正巧被我们赶上了。现在这遗迹里的生物出于某种目的，不想让我们离开头上的那片雨林，甚至有可能……它想把我们吸引到这地下的世界来。”</p>
+	<p class='firstLineIndent'>约翰想了想，说道：“假设你分析出的结论都是真的，此地有一种史前的高级生物在几千年前进入了沉睡，到最近才苏醒过来，如果我是它们，回到地面以前，我会先抓几个标本，研究目前地球上的人类文明和进化程度，再作计较。”</p>
+	<p class='firstLineIndent'>“有道理，和穿着草叶吃人肉的土著们比，你我看上去更有研究价值。”枪匠此时已经移动到了房间的另一侧：“这里也有手印符号，整个房间一共有三个这样的标记，我估计按中不同的机关，就会被传送到不同的房间。”</p>
+	<p class='firstLineIndent'>约翰一下来了精神：“也就是说，我们有机会出去了？！”</p>
+	<p class='firstLineIndent'>枪匠道：“可现在的问题是，我们读不懂房间里的文字，根本不知道按下哪个标记，会通往哪里，而且完成转移后，也只能靠房间形状来判断之前是否来过，万一这里有成千上万的房间，而且形状有许多是重复的，那我们恐怕永远也无法离开。”</p>
+	<p class='firstLineIndent'>两人陷入了沉默，一时间想不到很好的对策，其实他们也明白，这是在浪费时间，最后的对策无非就是不断地按机关，期待能有一次被传送到外面。</p>
+	<p class='firstLineIndent'>过了会儿，约翰又开口了：“其实你有没有发现，这些房间根本没什么功能，除了壁画和文字，空空如也，只有博物馆会建成这样，但不同的形状又有什么意义？”</p>
+	<p class='firstLineIndent'>枪匠叹息了一声：“也许这种文明已经超出我们认知太多了吧，就好比你让丛林里的土著去乘电梯，他进去以前只会疑惑这大铁盒子的作用，而电梯停到别的楼层打开门后，眼前环境的变化对他来说也成了一个谜，呵呵……跟我们现在碰到的情况还真像。”</p>
+	<p class='firstLineIndent'>约翰站起身来，走到其中的一个开关前：“不管了，坐以待毙最多活不过两天，就当我是个进了电梯的土著好了，把几十个键全都按一遍，也迟早会打开电梯门的。”他说着，就摁在了手印形的符号上。</p>
+	<p class='firstLineIndent'>青绿色的光又一次亮起，吞没了两人，近十秒后，周遭又恢复了正常的亮度。</p>
+	<p class='firstLineIndent'>这次的房间呈之字形，像一条曲折的走廊，枪匠和约翰待在中间的一段，他们又搜寻了一番，房间里一样空无一物，除了壁画和文字，手印符号这次竟有九处之多。</p>
+	<p class='firstLineIndent'>枪匠道：“奇怪的技术，只要一个人按开关，整个房间里的生物都会被送到另一个空间，而且我们的衣服和随身的物品也跟着移动……对了！要不要试试，我们俩同时按下两个不同地方的手印符号，看看会是什么结果？”</p>
+	<p class='firstLineIndent'>约翰抹了把额头上渗出的冷汗：“我突然想到了变蝇人……”</p>
+	<p class='firstLineIndent'>枪匠道：“嗯……当我没说吧。”</p>
+	<p class='firstLineIndent'>那之后，按手印的工作由约翰全权接手，也不知这些房间之间的移动究竟是何原理，反正他们一直没有遇到形状相同的房间，因此也没有回到过之前一个房间的情况出现，每次按下手印符号，都会被送到新的地方。</p>
+	<p class='firstLineIndent'>就这样，枪匠心中默数着，一共转移了二十九个房间，时间也许过了几小时，也许只有半小时，他们身上没有表，也看不见太阳，掉河里的时候是黄昏，此刻也许是深夜，也可能已是清晨，总之两人对时间的感觉早已完全丧失。</p>
+	<p class='firstLineIndent'>起初每到一个房间，他们都会找遍墙上的每个手印符号，但后来也就罢了，这符号的数量没什么规律可循，最少的有三个，最多的就是九个，总之不管哪种情况，他们都只是被传送到从未到过的地方。</p>
+	<p class='firstLineIndent'>枪匠有些奇怪，假设现在是深夜，自己从中午起水米未进，最多就是呛了几口河水撑饱肚子，为什么过了这么久仍然没有丝毫疲劳感和饥饿感产生？思来想去，肯定和这遗迹有关，即使此处气温、湿度、空气质量都还不错，但人该饿的时候，总是要饿的，超过二十个小时，总是要乏的，还有……枪匠的神情忽然变得很怪，他突然意识到，自己连如厕的需求感都丝毫没有产生，这可就奇了。</p>
+	<p class='firstLineIndent'>正当他准备问问约翰是否也是这种状况时，眼前又是一阵青光，他还未完全睁眼，约翰就叫道：“快看！查尔斯！是条通道！”</p>
+	<p class='firstLineIndent'>枪匠恢复了视线，发现竟置身于一条笔直的走廊中，这通道通往极远处，一眼望去，根本看不到头，而壁画和文字也被两条青绿色的光轨取而代之，周围没有任何手印符号。</p>
+	<p class='firstLineIndent'>约翰激动地道：“你觉得这是出路吗？”</p>
+	<p class='firstLineIndent'>枪匠的表情看上去却并没有多兴奋，他只是平静地回道：“走下去才知道。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0029'><summary><a>第十二章 暗水</a></summary>
+	<p class='firstLineIndent'>沿着通道行了许久，由于周围的黑色金属壁和青绿色光道别无二致，两人根本无法判断到底走了多远。</p>
+	<p class='firstLineIndent'>枪匠心中的不安越来越强烈，他不但没有困乏和饥饿感，连体力的下降都感觉不到，仿佛可以永远这样向前走去。他甚至一度怀疑身体的新陈代谢已经完全停止，成了行尸走肉，但是呼吸和心跳还很正常，这些都说明他还活着。</p>
+	<p class='firstLineIndent'>直到看到了通道的尽头，枪匠压抑的情绪才有所恢复。</p>
+	<p class='firstLineIndent'>尽头也是一堵黑色的金属墙，只不过那上面有个手印形的符号。</p>
+	<p class='firstLineIndent'>走在前面的约翰这时停下来，回头道：“只有一个符号，看来我们别无选择。”</p>
+	<p class='firstLineIndent'>枪匠回道：“那就按吧。”</p>
+	<p class='firstLineIndent'>十几秒后，在青色强光亮起又消失后，两人来到了一个非常开阔的空间，足有一个足球场那么大，屋顶也非常的高。这个空间的顶部呈半圆形，地面则是平的，地板上青色的光轨绘出山川河岳之景，而位于顶上的光基本都是文字，另有两个挺显眼的图形，看上去应该是代表着太阳和月亮。</p>
+	<p class='firstLineIndent'>枪匠心中不禁赞叹着这番壮观的光景，此地估计是建造遗迹的人以他们想象中的世界来建造的微观天地。但枪匠稍稍琢磨一下又觉得奇怪，拥有如此科技的史前神秘文明，难道只知天圆地方？</p>
+	<p class='firstLineIndent'>约翰走到房间正中，盯着这“大地”的中心，朝枪匠招了招手：“嘿！查尔斯，你看这儿有个手印符号，两个手印并列着的情况还是第一次出现。”</p>
+	<p class='firstLineIndent'>枪匠走到约翰身边，低头看去，只看了两秒，他就明白了那个记号的意思：“两个对称的掌印，拇指向内，而上方那个小的椭圆形是额头的印迹，应该是需要有人双手撑地，磕个头来触发，当然看这个尺寸，还是适合那种黑色生物的孩童体型。”</p>
+	<p class='firstLineIndent'>约翰道：“那我们试试？也许这就是出去的方式。”</p>
+	<p class='firstLineIndent'>枪匠退后几步，做了个“请便”的手势。</p>
+	<p class='firstLineIndent'>约翰坐到地上，身体前倾，双手对准了那一对手印符号按下，然后把头低了下去，当他的额头接触地面的刹那，并没有想象中的强光产生，取而代之的是大块的金属移动所产生的摩擦声。</p>
+	<p class='firstLineIndent'>一个高二十英尺有余的巨大人头雕像从地下缓缓升起，位置就在约翰的正前方两米之处，在那一刻，约翰仿佛在朝着那雕像跪拜。</p>
+	<p class='firstLineIndent'>“好吧，这又是什么？复活节岛石像的金属复刻版？”约翰站起来，抬头望着面前的雕像道。</p>
+	<p class='firstLineIndent'>枪匠观察着那雕像的面目，大体来说是张人的脸，只是看上去和现代人类有些出入。其眉骨和鼻梁都非常突出靠前，但自上而下的角度却是垂直平缓的，因此不会显得鼻子隆起；雕像的眼眶非常扁，眼睛几乎缩在了脸的内部，但眼球的大小比例却也比较正常；鼻下没有人中，下巴和嘴没什么特别的；耳朵略显奇特，比之今人，其生长的位置要稍稍靠上，形状也更长一些。</p>
+	<p class='firstLineIndent'>雕像完全升起后，那张巨大的嘴便打开了，枪匠凑近了一些，发现雕像嘴里没有舌头和牙齿，也许是制造者懒得雕了？他再仔细凑近看了看，看到了一块形状不规则的青色晶体，正散发着微弱的光。</p>
+	<p class='firstLineIndent'>约翰伸手进去把那块东西拿了起来，举到眼前端详着：“虽然不知道这是什么玩意儿，但我有种感觉，要是能把它带出去，肯定能卖个好价钱。”</p>
+	<p class='firstLineIndent'>枪匠道：“给我看看。”</p>
+	<p class='firstLineIndent'>约翰把晶体递给枪匠，枪匠瞅了一眼，随即说道：“接下来，你是不是想说，这块晶体很或许能够帮助我们离开这个鬼地方。”</p>
+	<p class='firstLineIndent'>约翰愣了一下：“你说什么？”</p>
+	<p class='firstLineIndent'>枪匠接着道：“哦？难道你还有别的什么计划吗？是不是准备再带我去遗迹里面转转？我看还是省省吧，当我看到这块东西的时候，我就明白了，你的最终目的……”</p>
+	<p class='firstLineIndent'>约翰的表情忽然变了，或者说，他忽然变得没有任何表情了：“你是什么时候识破我的？”</p>
+	<p class='firstLineIndent'>枪匠道：“完全确定的话……是在那条通道里吧。”</p>
+	<p class='firstLineIndent'>“我在前面带路，显得太勇敢了吗？”对方问道。</p>
+	<p class='firstLineIndent'>枪匠否定道：“不，你的模仿天衣无缝，你所作出的每一个反应、推测、神态，都和约翰的性格相符，也没有明显的说谎迹象，从你的表现来看，我根本不可能想到你并非约翰本人。”</p>
+	<p class='firstLineIndent'>假约翰道：“那么？为什么你最终还是知道了呢？”</p>
+	<p class='firstLineIndent'>“当然是从那些‘你没有表现出来’的事情上。”枪匠回道：“饥饿和疲劳，我已经许久没有感受到了……</p>
+	<p class='firstLineIndent'>你和我所处的环境相同，至少从我醒来那一刻起，我们一样没吃没喝没睡。真正的约翰在经过这番折腾后，要么就精疲力竭，要么就惊讶于这种不知疲惫的异状，但你没有任何表示，什么都没说。在我刚醒来时，你还提了没有食物的水就会困死的事情，可之后，你竟然就完全忽视了生理需求，而且还理所当然一般，这就相当奇怪了。”</p>
+	<p class='firstLineIndent'>假约翰道：“原来如此，这确实是个疏忽，起初我根本就不知道饥饿和疲劳是什么感觉，直到吸收了这个叫约翰的人，我才从他的记忆里获取了一些大致的情报。可惜人脑中的记忆和切实的感受还是有很大的差距。”</p>
+	<p class='firstLineIndent'>“吸收啊……”枪匠道：“约翰果然死了吗？”</p>
+	<p class='firstLineIndent'>“是的，在你们通过那条河进入遗迹以后，我就把他吸收了，然后将失去意识的你带到内部来，再伪装成约翰的样子。”对方竟主动将情况说明了一番，好似约翰的死跟他一点关系都没有。</p>
+	<p class='firstLineIndent'>枪匠用厌恶的眼神问道：“你究竟是什么？”</p>
+	<p class='firstLineIndent'>“用你们能够理解的语言，你可以称我为‘暗水’。”暗水回道。</p>
+	<p class='firstLineIndent'>枪匠一听对方自报家门就明白了，正站在眼前的冒牌约翰无疑就是之前遇到过的黑色生物伪装的：“这算是你的名字还是你们整个种族的称谓？”</p>
+	<p class='firstLineIndent'>“没有区别。”暗水道：“我族已经灭亡，我在这世上是独一无二的。”</p>
+	<p class='firstLineIndent'>枪匠冷笑道：“除了第一次我触发机关，接下来每个手印都是你来按的，把我一路引来此处，又假装‘发现’了那房间正中的雕像启动符号，最终的目的，就是为了这个吗？”他举起手上青色的晶体。</p>
+	<p class='firstLineIndent'>“是的，我需要你的能力，炼金术。”暗水依然直言不讳。</p>
+	<p class='firstLineIndent'>枪匠道：“那么……我能不能这样理解，你所谓的‘吸收’，可以获得生物记忆中的知识，并模仿其外表，但却无法获得被吸收者的能力，至少不能得到全部能力。”他看着眼前的暗水：“就算你现在看上去和约翰一样，可本质你仍旧是个黑色的怪物。”</p>
+	<p class='firstLineIndent'>暗水对怪物的称呼没什么反应，只是回道：“是的，因此我没有吸收你，而是救了你，我需要你的炼金术来修补‘永恒核心’。”</p>
+	<p class='firstLineIndent'>根据枪匠推断，眼前的这货估计是个没有任何感情的生物，至少他的情绪反应远没有现代人类这么敏感，他只会做“需要”去做的事情，根本不会质疑这件事的正确性，因为他连“对与错”的观念都没有，就更不要提人类社会中的传统道德观念了。</p>
+	<p class='firstLineIndent'>“我要是拒绝帮助你呢？”枪匠问道，他也不怕这么问，反正没有感情的生物既不会生气，也不会撒谎。</p>
+	<p class='firstLineIndent'>暗水确实是这样的，但他不加修饰的回答让人觉得很像恐吓：“我会在不伤害你生命和超能力的基本条件下，对你进行折磨，直到你同意修补永恒核心。”</p>
+	<p class='firstLineIndent'>枪匠道：“敢问这么聪明的点子阁下是如何想到的……”</p>
+	<p class='firstLineIndent'>暗水道：“我是比你高级许多的物种，自然懂得如何通过学习来达到自己的目的，从约翰的记忆中获得的知识，已经让我足够了解你们的种族和这个时代的现状，欺骗和折磨都是很好的方法，据我目前所知，这两种途径要比恳求管用得多。</p>
+	<p class='firstLineIndent'>因此我建议你立即同意我的要求，没有任何伪善的枷锁可以束缚我的行动，我一定会达到目的。”</p>
+	<p class='firstLineIndent'>枪匠想了想，回道：“可以，但我有个条件。”</p>
+	<p class='firstLineIndent'>暗水道：“你想用‘交易’的形式吗？那也可以，你需要什么？”</p>
+	<p class='firstLineIndent'>“把骨枪还给我。”枪匠道，他貌似很有自信：“我想，对于那种能够破坏你们文明所制造装甲的武器，以你的智慧，是不会让其随波流走的吧。”</p>
+	<p class='firstLineIndent'>暗水二话没说，就做了件非常恶心的事情。他把手伸进自己的嘴里，其下巴瞬间脱臼，但他却仍然是摆着面瘫一般的神情，继续伸入，他的半条胳膊伸进了自己身体，颈部被明显撑大，腹腔几度鼓起又憋下，最后他从食道里拿出了沾满黑色粘液，滑腻腻、湿乎乎的骨枪。</p>
+	<p class='firstLineIndent'>他将枪送到枪匠面前：“那两把弯刀你还要吗？”</p>
+	<p class='firstLineIndent'>枪匠的下巴也快脱臼了，那是惊的，他赶忙回道：“刀……你还是留着吧……”他真怕对方当着自己的面把这种体内取物的勾当再干一回，万一暗水改走下三路，那估计枪匠唯有自挖双目才能保全狗眼的贞操了。</p>
+	<p class='firstLineIndent'>枪匠接过骨枪，从暗水的衣服上扯下一块布来，擦了又擦，对方在这过程中竟还非常平静地说了句：“我身上的衣服和这种黑色粘液的成分是一样的。”</p>
+	<p class='firstLineIndent'>枪匠擦干净枪，把那块布拍到暗水肩上：“是吗？”</p>
+	<p class='firstLineIndent'>那块布渐渐没入了暗水的身体，解答了枪匠的问题。</p>
+	<p class='firstLineIndent'>暗水看着枪匠道：“我把骨枪还给你了，该你修理永恒核心了。”</p>
+	<p class='firstLineIndent'>回应他的是一声枪响，子弹穿过了暗水的眉心，他的头颅爆开，黑色的粘液泼墨般朝其身后溅出了十余米。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0030'><summary><a>第十三章 回忆</a></summary>
+	<p class='firstLineIndent'>枪匠装模作样地举起骨枪吹了口气，“反正你迟早是死，千刀万剐不如一枪以毙之。”</p>
+	<p class='firstLineIndent'>他并非是个拘泥于道德操守的迂腐之人，遇事往往都是率性而为，因此，当暗水表露身份后，枪匠唯一的念头就是想杀了他。为约翰报仇倒是其次，只是枪匠隐隐感到让这样一个生物存在于世是非常危险的。</p>
+	<p class='firstLineIndent'>他收起骨枪，将那散发着青色微光的“永恒核心”握在手心，闭上双眼，开始用炼金术去感受这物体的结构和性质。</p>
+	<p class='firstLineIndent'>仅过了数秒，浩瀚的星空浮现在其脑海，宇宙中那些无形的作用力，都被染上了色彩，变得肉眼可见，却又倏忽万状，聚散无常。</p>
+	<p class='firstLineIndent'>枪匠的意识被另一种庞大而未知的精神力量吞没，他已无法感受到自身的存在，仿佛肉体已成齑粉尘埃；时间如同虚无之幻想；有形即无形，抽象即具体；所有身为人类时学习到的物理知识都变得毫无意义，那些玩意儿就好比是低维度生物不断提出荒谬的理论却又不断用新的理论去自圆其说的一系列衍生品。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>2084年，乌拉尔山脉以东，一片被风雪覆盖的山林中。</p>
+	<p class='firstLineIndent'>两个穿着军装大衣的男子正站在一幢小木屋的门前，其中一个敲响了房门。不多时，屋内的人打开了门，那是一个老者，他的右眼应该是瞎了，脸上还留着狰狞的疤痕。</p>
+	<p class='firstLineIndent'>老罗尔见到这两个陌生的男人时感到颇为惊讶，同时，高大的老人越过眼前二人的肩膀，还看到了一队人马。人数大概是七八个，他们全都骑着造型与鸵鸟类似的双足代步机甲，身背先进的枪械。其中有一人显得颇为扎眼，他并未穿制式军装，且腰间佩剑，这说明他至少是贵族，而那珠光宝气、华而不实的剑柄还说明了这是位非常富有且地位较高的贵族。</p>
+	<p class='firstLineIndent'>“有什么事吗，长官。”老罗尔问道。</p>
+	<p class='firstLineIndent'>门口的士兵回道：“伯爵老爷今天来山里打猎，你也看到了，现在天气变得有点儿糟糕，我们需要征用你的屋子休息一下。”</p>
+	<p class='firstLineIndent'>老罗尔又瞥了他们身后一眼，心中颇为不屑，因为到了这个点，真正的猎人们已该满载而归了，但这位伯爵和随从的士兵们皆是两手空空，大队人马貌似还没开张的样子。</p>
+	<p class='firstLineIndent'>“哦，那位伯爵先生想进屋来躲避一下风雪……”老罗尔道：“好吧，我想可以腾出点儿地方……”</p>
+	<p class='firstLineIndent'>可对方的回答却是：“不，我说过了，这不是请求，是征用。还有，伯爵不喜欢和平民待在一个屋子里，你得待在外面，直到伯爵离开。”</p>
+	<p class='firstLineIndent'>“什么？”老罗尔又惊又怒，不过对方有人有枪，他不好发作：“可这里是我的家！”</p>
+	<p class='firstLineIndent'>“所以你应该感到荣幸。”那士兵说到此处忽然压低了声音道：“老头，别再啰唆了，快穿上件衣服出来，我们也都得站在屋子外面的……”</p>
+	<p class='firstLineIndent'>他身旁的男人用更加细微的声音，几乎如同腹语般道：“伯爵现在的心情很不好，你要是再磨磨蹭蹭，天知道他会干出什么来，别连累我们了！”</p>
+	<p class='firstLineIndent'>老罗尔也看出了他们的难处，他叹息一声，罢了，只能希望这位伯爵别在壁炉旁休息到三更半夜才走。谁知他刚刚回过身去，竟忽然响起一声枪响。</p>
+	<p class='firstLineIndent'>子弹穿过了一名士兵的肩膀，击中了老罗尔的后背，小木屋的门前瞬间绽开朵朵血花。</p>
+	<p class='firstLineIndent'>那士兵痛苦地叫喊着，捂住肩跪在地上，他身旁的同伴将他扶住，表情惊慌却不敢作声。而老罗尔，他没能再说一句话，半分钟不到，就停止了呼吸。</p>
+	<p class='firstLineIndent'>“看吧，我早就跟你们说了，本爵是神枪手，隔着障碍我也能命中目标，之前那只鹿会跑掉只是因为我眨了下眼而已。”伯爵对这次谋杀表现得若无其事，用十分得意的语气炫耀着，仿佛他用精良的枪械命中了一个十米开外毫无防备的老头是一件很了不起的事情。</p>
+	<p class='firstLineIndent'>士兵们并未显露出多少同情和悲伤，他们很了解这位爵爷的脾气，沉默和顺从才能保证自己的安全，并在这位贵族的手中拿到一份额外的报酬。</p>
+	<p class='firstLineIndent'>但在远处，一个少年却被眼前的情景惊呆了，他手中的猎物掉落在了地上，稚嫩的脸上布满骇然之色，他根本不明白，这一切是怎么发生的，他的爷爷，世上唯一的亲人，就在刚才，被一个自己根本不认识的人杀死了。小查尔斯正巧看到了枪响的那一瞬间，甚至都来不及做任何反应。</p>
+	<p class='firstLineIndent'>他是谁？难道是父亲的仇家？他们是怎么找到这深山中来的？</p>
+	<p class='firstLineIndent'>十一岁的枪匠像一只受惊的小动物，他匍匐到地上，隐藏好自己，喉中发出哽咽之声，视线也有些模糊起来，但他很快抹掉那些眼泪，泪水要是顺着脸颊流到一半就会结冰，扯掉时会非常疼。</p>
+	<p class='firstLineIndent'>枪匠穿的皮袄是白色的，能够在雪地中很好地隐藏自己，他逐渐靠近小木屋，视线死死盯着那群人，伯爵很快独自进了屋子，其余七人则仍然留在外面。两名士兵把老罗尔的尸体拖进了附近的林子里，随手浅埋，那种深度不出一天就会被食腐动物刨出来吃掉，另外几人聚在一起，貌似这样能暖和些。肩膀受伤的士兵很快得到了治疗，帝国的医疗技术是非常优秀的，伯爵外出打猎，自然也准备了万全的外伤处理措施。</p>
+	<p class='firstLineIndent'>枪匠在雪地上缓缓移动前进，他自小耳聪目明，大约来到百余米距离时，他已依稀可以听到那些士兵们的谈话了。</p>
+	<p class='firstLineIndent'>“滥杀无辜的猪，呃……该死，万一贯透了骨头，我可就残了。”受伤的士兵捂着肩膀，他的血已经止住了，但对刚才那瞬间的恐惧，仍是心有余悸。</p>
+	<p class='firstLineIndent'>“别抱怨了，你要是再往左边站一步，他会毫不犹豫地打穿你的脖子。”一个年长些的老兵抽着烟道：“以前有几个家伙就是被伯爵本人打死的，到时我还得打份报告，编个谎话，说是走火什么的，伯爵再赔一笔钱，一条人命就这么没了。”</p>
+	<p class='firstLineIndent'>另一个士兵道：“那这个老头的报告怎么写？他头上插了两根树枝，伯爵还以为他是头鹿？”</p>
+	<p class='firstLineIndent'>“哼……怎么写？”老兵回道：“根本不用写，这老头住在这种深山里，就算帝国有他的资料，也是多年没有更新的那种，只要我们不说，谁会知道这人的死活？所以，你该庆幸，这个月的奖金会比平时更多一些，就是那头猪给你的封口费。要是你不识抬举乱说话，相信我，不需要太久我就会为你写一份死亡原因报告了，我可不希望发生这种事。”</p>
+	<p class='firstLineIndent'>“哎，要不是为了养家糊口，这护卫工作我他娘的早就不干了，我当兵可不是为了给什么伯爵做奴才的。”</p>
+	<p class='firstLineIndent'>“全是放屁，就算不给他当奴才，也是给别人当，要想不当奴才，你就得往上爬，等有钱有权了，你就能当主子，就能像那头猪一样到处开枪乱杀人，到处抢人家媳妇儿，也没人能抓你。”</p>
+	<p class='firstLineIndent'>正当这帮人在抽烟闲侃时，枪匠已经悄然溜到了距离他们三十米不到的地方……</p>
+	<p class='firstLineIndent'>伯爵在屋里的壁炉旁烤着火，惬意地抽着高级的雪茄，一整天没弄到任何猎物的坏情绪稍稍得以缓解。不过他的休憩时间很短，才十分钟左右，小木屋的门就被人打开了。</p>
+	<p class='firstLineIndent'>伯爵回头便破口大骂：“混蛋，谁允许你们进来的？”话刚一出口，他就愣在当场。</p>
+	<p class='firstLineIndent'>眼前，一个少年站在门口，身高只有一米三四十的样子，他身着白色的皮袄，手持一枝猎枪，此时此刻，其浑身上下似是洗了一场血浴，那些温热的血液还未干涸结冰，说明这是刚刚才溅上去的。</p>
+	<p class='firstLineIndent'>伯爵的第一反应是伸手去拿枪，但他的这个意图在刚刚抬手的瞬间就被一颗子弹扼杀了。</p>
+	<p class='firstLineIndent'>“啊！！！啊！！！”伯爵疯狂地惨叫着，这叫声远比刚才那个被他击中的士兵还凄厉得多，因为他的右手手掌被打出了一个血洞。</p>
+	<p class='firstLineIndent'>枪匠看着他的反应，却面无表情。</p>
+	<p class='firstLineIndent'>“小杂种！你以为你在干什么！你知道我是谁吗？！”伯爵咆哮着，但他不敢轻举妄动，因为那个小杂种的手上可拿着枪呢。</p>
+	<p class='firstLineIndent'>“知道，你是杀死我爷爷的凶手。”枪匠回道。</p>
+	<p class='firstLineIndent'>这话无疑在告诉伯爵，名号和地位在一个孩子看来都是没有意义的，但伯爵依然道：“你这杂种！贱民！你竟敢伤害高贵的吉尔森家族成员，这是犯上的死罪，我要杀光你的全家！把你的心脏挖出来煮了！”</p>
+	<p class='firstLineIndent'>残忍和愚蠢都是非常危险的品质，而很显然这位吉尔森伯爵同时兼具了两者，他的反应简直等同于给自己敲响了丧钟。</p>
+	<p class='firstLineIndent'>“杀死外面的七个人，我没有用枪。”枪匠从身后拿出一把鲜血淋漓的匕首：“因为我不想让你听到声音，从而有机会逃走。”</p>
+	<p class='firstLineIndent'>伯爵顿感毛骨悚然，心中惊道：这个瘦弱的小孩儿竟然无声无息地干掉了七个持枪的帝国士兵？</p>
+	<p class='firstLineIndent'>“我一直知道自己有些与众不同，即使很少能遇见爷爷以外的人，我也清楚，我和正常的人不一样。”枪匠关上了门，拿着匕首朝伯爵逼近：“我可以用这把匕首杀死一只六百公斤的棕熊，并且在几分钟内就将其肢解，我想成年人也不会比我更快。”他顿了一下：“我以前没有杀过人，但刚才杀了一些，原来这也没什么难的。”</p>
+	<p class='firstLineIndent'>吉尔森伯爵显然是害怕了，他无法用自己的身份去威吓到这个孩子，论武力估计也不占上风，所以这时，他唯有一个办法了：“这……这只是个意外……我的枪走火了，对，是的，我不是有意的，听着，只要你肯放我离开，我可以给你一大笔钱，你可以搬到城里去，过上衣食无忧的生活，不必在这深山里打猎为生……”</p>
+	<p class='firstLineIndent'>“这就是你的遗言吗？一个谎言？”小查尔斯那稚气未脱的面孔，浸沐在鲜血中的身影和手上的凶器，在火光的映衬下，显得恐怖而诡异。</p>
+	<p class='firstLineIndent'>伯爵狂怒地吼了一声，一脚踹向枪匠的脸，但迎接他的是尖锐的匕首。血芒闪过，他的一只脚飞了出去，小腿之下，连骨头都被切割得很平整。</p>
+	<p class='firstLineIndent'>经常能听到有人形容，所谓“叫的像杀猪一样”，其实这句不确切，此刻吉尔森伯爵的惨叫声，应该算是“叫的像被杀的猪一样”。</p>
+	<p class='firstLineIndent'>“啊！！！你这小杂种！！啊啊……啊！！狗娘养的贱民！我要杀了你！把你的皮剥下来！我告诉你！那个老杂种死了也是活该！！老子杀你们是看得起你！！！你这……”他不断叫骂，伤口却是血流如注。臃肿的伯爵在地上疼得到处打滚，脸色憋得通红，狂怒使其五官都扭曲起来。</p>
+	<p class='firstLineIndent'>枪匠已经举起枪，瞄准了仇人的头，但他没有扣下扳机，几秒后，他竟又把枪放下了。</p>
+	<p class='firstLineIndent'>伯爵看到了这一幕，他还以为对方改变了想法，立即道：“怎么？你想通了是不是，小子，这就对了！把枪放下！你放我走！我许诺的钱依然算数！”他的表情由扭曲中，又平添了几许兴奋之色，仿佛在绝境中看到了希望。</p>
+	<p class='firstLineIndent'>枪匠的回答却是：“你不配。”</p>
+	<p class='firstLineIndent'>“什么？”伯爵又愣住了。</p>
+	<p class='firstLineIndent'>“你不配死在枪下，你的血会亵渎子弹的神圣。”他走上前去，单手按在了伯爵的额头上，伯爵的眼睛忽然失去了神采，他的身体逐渐化为了黑色，当枪匠收回手时，一堆黑色的渣滓粉碎，散落在了地板上。</p>
+	<p class='firstLineIndent'>几乎在同时，枪匠也晕死过去，那是他第一次对有意识的活物使用炼金术，也是目前为止唯一的一次。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>手中的灼痛让枪匠从往事中清醒过来，他像是拿着个刚出炉的烘山芋一样，两只手将永恒核心来回抛弄了几下，那青色碎片忽然就恢复了常温。</p>
+	<p class='firstLineIndent'>使劲儿摇了摇头，他不但没能搞明白永恒核心的情况，自己的精神还险些崩溃，看来这是个非常危险的事情，而且得费不少时间，还是从长计议比较妥当。</p>
+	<p class='firstLineIndent'>枪匠把永恒核心放进了口袋，决定先想办法离开这个遗迹再说，第一步自然是寻找这个房间里还有没有什么机关，但他刚用余光一扫，就看到了暗水的尸体已然发生了剧变。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0031'><summary><a>第十四章 生还</a></summary>
+	<p class='firstLineIndent'>暗水的身体全然变成了黑色，看上去就像凝固后的焦油，其体型没有回归袖珍人类般的大小，而是保持着约翰那种现代人类的身高，最惊人的在于，其头部已经开始复原。</p>
+	<p class='firstLineIndent'>刚刚被子弹打爆了的头颅，脖子以上应该是空无一物的，但现在，黑色的粘液正在蠕动滋长，一个下巴的轮廓已经完成，就整个脑袋来说，鼻子以下大约三分之一的体积基本已完成重组再生。</p>
+	<p class='firstLineIndent'>枪匠举起了骨枪，准备再给对方补上几下，但转念一想，又把枪放下了。</p>
+	<p class='firstLineIndent'>之前暗水从食道里掏出物体，可见其身体内部并没有什么重要而致命的器官，并且从侧面证明了他具有自愈的能力，所以枪匠才会选择攻击头部。但此刻，他的头部被打成浆糊涂了一地，竟还能再生，说明他的要害肯定也不在头部。</p>
+	<p class='firstLineIndent'>枪匠的视线从上到下，从左到右，从前到后，扫视了暗水的“尸体”五六遍，当他开始觉得自己有些变态的时候，想到了转变思维方式。</p>
+	<p class='firstLineIndent'>假设暗水类似于某电影中的液体金属机器人，那么根据质量守恒定律，那些泼洒出去的黑色粘液应该会流回来，汇聚成形，再次变成暗水的头部。按照那种方式，这货应该只需要一分钟就能复原。所以，暗水的自愈显然是依靠别的形式。</p>
+	<p class='firstLineIndent'>“听他之前所言，他应该是生物而非机械……他不会饥饿、疲劳，未必需要呼吸，八成也没有心跳。”枪匠小声嘀咕着，揣度暗水的自愈原理。</p>
+	<p class='firstLineIndent'>人类的伤口愈合一般是依靠细胞增殖分化，修复塑形。以当今世界，帝国最顶尖的医疗手段而言，即便是全身大面积物理性创伤，只要配合先进设备和干细胞辅助治疗，最少需七十小时左右就能复原。但这种手段的价格十分高昂，也需要承受一定的痛苦，即便贵族也很少有人轻易尝试。</p>
+	<p class='firstLineIndent'>可暗水的这种自愈能力，远比枪匠所知的任何治疗方法都要优越，他不用借助任何仪器或化学品，仅凭自身的分泌物，连脑袋被轰掉都可以长出来，难道这货没有脑子？不可能啊，脑子长在屁股里？不至于吧？</p>
+	<p class='firstLineIndent'>枪匠又开了一枪，这次是打心脏，结果暗水的胸腔爆开，可以看到两把被裹在黑色粘液中的砍刀在其体内，暗水身下的地板上只留下一个很浅的弹痕，和刚才轰穿暗水头部的子弹打中远处墙壁时产生了一样的痕迹。这说明暗水的身体已经触发了骨枪子弹的威力变化，没有发生爆炸是因为其坚硬度不足，但韧性很强。</p>
+	<p class='firstLineIndent'>暗水头部的重生丝毫未受这一枪的影响，而他的胸腔也开始了自愈，恢复速度和头部差不多，虽慢，却是太阳落坡月上山，接连不曾中断。</p>
+	<p class='firstLineIndent'>骨枪里最多可以装十发子弹，枪匠估计把剩下的全打在暗水身上也是徒劳了。或许暗水的生命形式真的远远超过了人类，就如同这个遗迹里的科学超出了枪匠的理解范畴一样。</p>
+	<p class='firstLineIndent'>他到现在也没明白待在此地就会丧失生理需求的原因；之前的空间转移技术也让他费解，他也做过空间转移装置，但那种转移需要一定的准备时间，并且只能无差别地传送某个载体中的所有物体，就这，还是他以天一提供的神秘技术做基础才完成的。而遗迹中的转移却是可以在启动的瞬间就开始进行，有选择性地传送内部的物体，使载体本身不受影响。</p>
+	<p class='firstLineIndent'>想想先前在河上遇到的空间翻转，还有不明的、能够让机械仪器失灵的磁场，以及他口袋中的永恒核心，枪匠越发觉得，这个文明的科学过于危险了，危险到对整个星球产生威胁的地步。这里不该被任何人发现，暗水这厮，应该长埋地下。</p>
+	<p class='firstLineIndent'>枪匠转过身，暂时不再去管暗水，反正照这速度，过半天他都未必能起来。枪匠要继续探索遗迹，看看有什么方法可以让这地方再次停止运作。</p>
+	<p class='firstLineIndent'>谁知他刚刚走出几步，周围的光线竟突然暗下来，最明显的就是穹顶壁画上的日月符号。枪匠僵在原地，舔了舔舌头，东张西望几眼，又试着往前走了两步，这下，屋子几近漆黑一片，周围只剩星星点点的些许青色光芒还在坚持。这种场面，感觉就像是有个歌星在一个能容纳三万人的场馆里开演唱会，结果灯一关，发现带荧光棒的观众人数不到一个连，坐得还特别分散那种。</p>
+	<p class='firstLineIndent'>枪匠脸朝前，保持姿势，又往后退了几步，仿佛是想假装自己刚才什么都没干，没想此举还真的让巨室里的光亮恢复了些许。</p>
+	<p class='firstLineIndent'>一个念头闪过他的脑海，他回头朝着那雕像直冲过去，周围的青光果然越来越亮。当枪匠奔到那雕像面前，从口袋里掏出永恒核心，把手往前一伸，一切又恢复了正常。</p>
+	<p class='firstLineIndent'>枪匠的嘴角泛起笑意，他知道了，永恒核心就是这整个遗迹的动力，原本暗水以某种形式在地下的世界里躲藏着，但有一天，永恒核心因为某种原因发生了损坏，成了现在这个样子，所以暗水才被个什么装置给唤醒了，或者他本来就是醒着的，谁知道呢，反正在这没有生理需求的地方，天知道他是否在意时间的流动，天知道他为什么没有精神崩溃，天知道他有没有精神这东西……</p>
+	<p class='firstLineIndent'>总之，暗水利用永恒核心剩余的能源，让遗迹上升，或者说，让遗迹的一些部分上升，并运作起来，对外界进行干预，试图与几千年后的世界沟通一下，看看有没有办法能解决自己的问题。但暗水却万万想不到，当年自己的家乡，科技文明一度盛兴之地，现在却是片蛮荒之地，距离最近的文明人群体可能是一帮卖K粉的，而且要遇上这帮毒枭起码也得再搜索个几十公里。</p>
+	<p class='firstLineIndent'>这下枪匠明白了，把永恒核心从雕像嘴里拿走，就等于拿走了遥控器里的干电池，什么折叠空间、磁场干扰、突起的遗迹尖顶，全都得报废。难怪暗水要把自己引到这里来再行动，如果他选择把核心带出去，是需要冒很大风险的，他根本不知道地上的生物是友善还是敌意，是弱小还是强大。以暗水的行事规律来讲，也不会做这种选择。</p>
+	<p class='firstLineIndent'>想通以后，他就不再犹豫，举起骨枪便朝着高处的穹顶射击，这个巨室墙壁的金属和之前挖到的尖顶属于同类，所以子弹击中墙壁后爆炸的气浪还是非常强烈。</p>
+	<p class='firstLineIndent'>这层金属壁很厚，但仅仅一层，被击破后，外面便是沼泽下的泥土，淤泥和土像瀑布似的倾泻下来，在巨室中堆起一座土堆，好在此地空间足够巨大，要被填满尚需不少时间。</p>
+	<p class='firstLineIndent'>穹顶上的窟窿直径在半米左右，形状比较规则，和之前打在尖顶上时是一样的，骨枪子弹攻击同种材料的反应结果不会有太大偏差。灌入的淤泥也并未让这个洞扩大，当然这也在枪匠的意料之中，这种金属可不是石头木头，不会因为这点压力就变形。</p>
+	<p class='firstLineIndent'>暗水的躯体和雕像很快都被掩埋，枪匠退到了墙边，拿着永恒核心来照明，这东西的光很弱，但好在周围墙上和高处的那些光符号仍然没有全部熄灭，因此这地方还不算是一片漆黑。枪匠的视力很不错，有这点光就足够了。待那些泥土灌出一座小山，不再上升，而是朝四周加快泻落时，枪匠沿着坡冲向那个高点，他也顾不上脏，并忍耐着口鼻中让人作呕的味道，他奋力站到一个尽可能高的地方，以一个接近垂直的角度向着顶上的窟窿里又开了一枪。</p>
+	<p class='firstLineIndent'>枪匠以前做过这种实验，即对骨枪的有效防御方式有哪些，其中的一项测试，就是用密度高于水，但低于触发值的物体来挡住骨枪的子弹。比如泥土，其强度和韧性都无法使骨枪射出的子弹发生质变，那么是否只要泥土达到足够的厚度，就能在消耗完骨枪子弹的动能以后，让其停留在这种介质之中？</p>
+	<p class='firstLineIndent'>可惜，当时的实验以失败告终，那颗子弹不断穿透类似于泥土的物质，直到其速度降到一个偏低的值时，依然发生了质变，威力以之前穿越泥土密度多次方计。所以依据那次的数据，这一枪还是会像火箭筒一样爆炸穿透目标，但不是立即，而是在一段距离以后。</p>
+	<p class='firstLineIndent'>枪匠估摸着遗迹不会太深，不然之前自己遇到的地面隆起就可能演变为地壳裂痕之类的情况，而且他推测这些遗迹在地下很可能是许多个分开的个体建筑，不然也无需用到什么转移技术，相邻的两处直接造个门不就行了。</p>
+	<p class='firstLineIndent'>他又对着那窟窿垂直射出四枪，每次都隔开数秒，纵然落下的泥土不断冲击枪匠的身体，流到他的衣服里面，他的手也纹丝不动，稳如磐石，那四枚子弹以完全相同的弹道向上贯穿出去。</p>
+	<p class='firstLineIndent'>枪匠也不确定自己这样做能否成功逃生，但他必须试试。做完这些以后，理想的状态应该是，雨林的地面上有个和游泳池差不多大的圆锥形大坑，深度大概在三十米上下，底部是封住的，再往下有十余米到几十米区间的泥土层，而再往下就是这个窟窿了。</p>
+	<p class='firstLineIndent'>当然这些都是假设，如果这个遗迹真的埋得非常深，那枪匠的子弹不过是造了个奶酪里的空心窟窿，很快会被四周的泥土填满，而他，正位于这个空心窟窿下方几十米的实心窟窿里，爬上去也得闷死。</p>
+	<p class='firstLineIndent'>留给他的时间不多，巨室马上要被灌满，正当他准备在这尘土味浓重的环境下深吸一口气来一次长憋时，头顶灌下的泥竟然停止了。</p>
+	<p class='firstLineIndent'>枪匠愣神的当口，一道光线射了下来，那无疑是阳光，久违了的紫外线。</p>
+	<p class='firstLineIndent'>他欣喜若狂，从土堆顶部跃上去，扒住那圆形的口子，翻身出去，外面的地貌状态和他预估的形状类似，只是深度比他想象的更加乐观，那十余米的土层并不存在，因为巨室里的空间把这些泥都消化掉了，爬出来的枪匠正待在一个类似于甜筒的锥形土穴底部，大约离地面二十余米深度。</p>
+	<p class='firstLineIndent'>刚刚呼吸了一口外面的空气，脚下就像地震一般颤动起来，眼看头顶逃出生天的路径在这突变下就要将自己掩埋，枪匠一惊，猴儿一般地往上直窜，没几秒就逃出了深坑，回到了地面上。</p>
+	<p class='firstLineIndent'>接着，他脚下方圆数百米的地面发生了地陷，刚刚爬出来的深坑也被填掩消失。事后枪匠想起这事儿，还有些后怕，不过他很快也就明白了，因为永恒核心被带出来的缘故，巨室彻底失去动力，才发生了下沉。</p>
+	<p class='firstLineIndent'>“哈哈哈哈哈！！”当一切归于平静，枪匠呈大字型躺在地上，仰天大笑，尽情呼吸着雨林中潮湿的空气，现在这股难闻的味儿在他嗅来简直舒爽极了。</p>
+	<p class='firstLineIndent'>两秒后，他表情一变，但闻自己的肚子咕咕叫了几声，一股极度疲惫的感觉海啸般卷来，但他没有昏睡过去，而是一个鲤鱼打挺，起身狂奔，冲入树林，解开了裤子……</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0032'><summary><a>尾声 吞噬</a></summary>
+	<p class='firstLineIndent'>枪匠已经超过三十个小时没有睡眠，浑身都是肮脏的淤泥，长时间没有进食和休息，并且在期间多次使用超能力并从事消耗大量体力的活动。纵然如此，他还是决定咬牙坚持，要把永恒核心带得离那片遗迹越远越好。</p>
+	<p class='firstLineIndent'>他还是朝着西面走，抱着能挪多远是多远的想法，一直坚持到了这天的黄昏。终于支持不住，饥困交乏之下，倒在了一棵树边，现在就是有条蛇爬上他的脸，他都懒得抬手去碰了。</p>
+	<p class='firstLineIndent'>当天深夜，枪匠的腿被什么东西咬了一口，刺痛让其瞬间清醒，他顺手摸去，没碰到东西，再摸了摸伤口，似乎也不严重，并没流多少血。</p>
+	<p class='firstLineIndent'>但枪匠依然变得心神不宁起来，乐观估计，这口是被一只大蚊子咬的，但稍微不乐观点儿的估计，什么蜘蛛、毒蛇、蝎子，搞不好要出人命。</p>
+	<p class='firstLineIndent'>他睡了不下五个小时，精神恢复了不少，干脆就坐直身子，等等看身体会不会有什么变化。大约十分钟过去，没有明显不适感，脉搏和呼吸都很正常，伤口也没有恶化肿痛的趋势。枪匠这下才稍微松了口气，心想可能只是遇到一条无毒的草蛇，这些生物白天都躲在树底的缝隙或者枯枝烂叶中睡觉，也许自己正挡在了人家的家门口。</p>
+	<p class='firstLineIndent'>正当枪匠准备倒头继续睡下时，忽然，他竟听见了脚步声。那不是动物的脚步，而是人的，还是穿着靴子的人！</p>
+	<p class='firstLineIndent'>在黑暗的夜里，视觉受限，人的其他感官自然就灵敏起来，枪匠原本就机警过人，耳听八方，此时听得更是分外清晰。</p>
+	<p class='firstLineIndent'>枪匠心中默数着，一个，两个……一共有四个人，是食人族？不对……人类赤脚踩在植物或者泥土上的声音和穿着鞋子时是不同的，这帮人全都穿着鞋，而且绝对不是拿草编的那种。难道是来救援自己的人？</p>
+	<p class='firstLineIndent'>果然，他很快便听到这些人之间在小声对话，说的不是土著语，而是自己能听懂的语言，枪匠心中一喜，这帮哥儿们可算来了，还真敬业，半夜里依然在丛林里行进搜索。他刚想站起来弄点儿动静，忽又感到一丝异样：为什么他们没有喊我的名字？这是雨林又不是居民小区，动物也不可能抱怨人类太吵，而且到了晚上声音能传得更远。</p>
+	<p class='firstLineIndent'>随即他想到，也许这些救援者白天已经喊了一天，所以累了。但是，还有个问题，怎么这帮人前进时连照明设备也不带？他们夜能视物？难道救援时不带手电而带夜视镜？不发声音也不暴露行踪，被救援者要是睡着了，不就很可能和他们错过了吗？</p>
+	<p class='firstLineIndent'>一个可怕而几率极高的结论立即诞生，有五成可能，这些人和自己毫无瓜葛；另外五成，他们就是冲着自己来的，但并非是来实施救援……</p>
+	<p class='firstLineIndent'>枪匠不但没有现身，还藏得更隐蔽了一些，对方很可能有夜视装备，他得万分小心。</p>
+	<p class='firstLineIndent'>“我刚才好像听见了什么动静。”一个声音说道。</p>
+	<p class='firstLineIndent'>他说话时，正站在距离枪匠五米左右的地方，另外三人站得也不远，这句话把枪匠吓出一身冷汗，连大气儿都不敢喘一声。</p>
+	<p class='firstLineIndent'>“少啰唆，就你事儿多，白天你也说发现了目标的足印，结果咱们跟着那脚印绕了半天，到河边就断了踪迹。”</p>
+	<p class='firstLineIndent'>“所以我说，也许他已经掉河里淹死了。”</p>
+	<p class='firstLineIndent'>“上头的命令是，活要见人，死要见尸，而且要我们尽快，没有什么‘也许’懂吗？”</p>
+	<p class='firstLineIndent'>“我还不是不明白，一个武器顾问而已，为什么这么大费周章。”</p>
+	<p class='firstLineIndent'>“哼……你没听说吗？他可是个重要人物，他之前乘坐的那架飞机上，所有的机组成员都悄悄换成了我们的人，原打算是要把他带去一个秘密的地方拘禁起来的，没想到他竟然会在这种地方突然失踪。”</p>
+	<p class='firstLineIndent'>枪匠闻言后脑海中飞速闪过了许多种可能，他在琢磨这群人究竟是谁，是HL？EAS？或是属于天都的某位权势者麾下？即便帝国之中，众多党派间的权力斗争也是非常复杂的，不排除有人会很看重自己的才能。也有可能……这帮家伙是钢铁戒律的人，他们的卧底要混上一架飞机估计也不会太难，如果真是这群人，要抓自己的理由就很可能是为了报复上次的“蓝色礼物”计划。</p>
+	<p class='firstLineIndent'>“我看就是那小子特贼，发现了异样以后杀光了飞机上的人，自己跑了，飞机最后那短短几秒的求救通信不过是故弄玄虚。”</p>
+	<p class='firstLineIndent'>“那些问题等找到目标以后再考虑吧。另外，你不觉得奇怪吗，原本所有的仪器在进入这片雨林后都神秘失灵，但上午又突然自行恢复工作，我对那求救通信也持怀疑态度，但是……此处发生的事情，可能远比我们想象中要复杂。”</p>
+	<p class='firstLineIndent'>另一个声音打断了两人：“都别废话了，谁知道夜视仪还能工作多久，万一机械和指南针再次停止工作，一晚上的时间又要浪费了。”</p>
+	<p class='firstLineIndent'>他们的说话声越来越远，后来四人间的话就少了，只剩下脚步声，直至消失。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>又一个清晨，潮湿而闷热。</p>
+	<p class='firstLineIndent'>飞机残骸，与雨林格格不入的景物，四个身着完备越野装备的男人正在附近勘察着。</p>
+	<p class='firstLineIndent'>他们刨开泥土，挖出了枪匠掩埋的尸体，结果也没发现死因有异常，飞机内部也没留下什么有价值的线索，除了一些安全带和椅套不见了。</p>
+	<p class='firstLineIndent'>“全毁了，要查明具体的坠落原因，得把这堆破烂拖到一个停机库里才行，或者干脆找一整队人马带着设备来这该死的林子里检验。”其中一人抱怨着。</p>
+	<p class='firstLineIndent'>“至少我们可以确认一件事，查尔斯·罗尔，也就是枪匠，并没有死，他把这些人给埋了，说明他完全还有行动能力，并且很可能不知道机组成员的计划，我们得加紧搜索，要是遇见他，可以假装成救援人员和他接触。”</p>
+	<p class='firstLineIndent'>“嘿！你是谁！”刚才还在抱怨的男子看到了一个陌生人。</p>
+	<p class='firstLineIndent'>那是个白种人男性，看上去三四十岁模样，年少谢顶，胡子拉碴，他朝四人不紧不慢地走去，看上去倒并没有什么危险，因为他手上没有武器，神情看上去也没什么敌意。</p>
+	<p class='firstLineIndent'>但四人还是十分警惕地靠近他，并在距离两米左右的地方形成一个小的包围圈，将其围在了中间。</p>
+	<p class='firstLineIndent'>“先生，你听得懂我们说话吗？”</p>
+	<p class='firstLineIndent'>暗水沉默了两秒，扫视了那四个人一圈：“我有许多事想问你们。”</p>
+	<p class='firstLineIndent'>“什么？”四人皆是没明白他为何蹦出这句莫名其妙的话。</p>
+	<p class='firstLineIndent'>一分钟后，暗水还是站在原地，而他的周围则躺着四具尸体，一个强级能力者，三个并级。</p>
+	<p class='firstLineIndent'>“现在我知道得就足够了。”他的脸在顷刻间数次变化，五种不同的面目分别扭曲地出现在其脸上，最后，他的头成了一颗黑色的、无发的头颅，质地如半凝固体般，五官却是该有的都有，一双深陷在眼眶中眼睛，没有眼白和瞳孔之分，透出阵阵深邃摄人的青色光芒。</p>
+</details></li>
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< Ender, insert new list item above this line >>>> -->
+
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='index.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='index_03.html';"> Next </button>
+
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+
+<script>
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
+</script>
+
+<script>
+/************* Dark Mode Functions *************/
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    }
+}
+
+function initDarkMode() {
+    const darkModeSetting = localStorage.getItem('darkMode');
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    }
+}
+/************* Dark Mode Functions *************/
+</script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+}
+</script>
+
+</body>
+</html>

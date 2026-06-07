@@ -1,0 +1,3183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+	} else {
+		showUserPanel();
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
+  }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* dark mode, 23-May-2026 *********/
+/* Dark Mode CSS - Add this after your existing body styles */
+:root {
+  --bg-body: Moccasin;
+  --bg-gradient-start: Seashell;
+  --bg-gradient-end: PeachPuff;
+  --text-color: #000000;
+  --details-border: #1ab2ff;
+  --primary-li-border: Orchid;
+  --tag-button-bg: #44c767;
+  --tag-window-bg: HoneyDew;
+  --user-panel-bg: powderblue;
+  --input-border: red;
+  --question-header-bg: mediumslateblue;
+  --explanation-bg: SandyBrown;
+  --modal-bg: #fffaf0;
+  --choice-bg: #fff6ea;
+  --choice-border: #c5c9d1;
+}
+
+body.dark-mode {
+  --bg-body: #1a1a2e;
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+  --text-color: #e0e0e0;
+  --details-border: #5a9eff;
+  --primary-li-border: #aa6dc9;
+  --tag-button-bg: #2c5e2e;
+  --tag-window-bg: #1e2a3a;
+  --user-panel-bg: #2c3e50;
+  --input-border: #e74c3c;
+  --question-header-bg: #5b4b8c;
+  --explanation-bg: #b85c1a;
+  --modal-bg: #2c2c3a;
+  --choice-bg: #2a2a3a;
+  --choice-border: #4a4a5a;
+}
+
+body {
+  background: var(--bg-body);
+  background: linear-gradient(var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #7bb3ff;
+}
+
+/* Update existing elements to use CSS variables */
+details {
+  border-color: var(--details-border);
+}
+
+#_primaryli, #_novelli {
+  border-color: var(--primary-li-border);
+}
+
+.tagButton {
+  background-color: var(--tag-button-bg);
+}
+
+.tagWindow {
+  background-color: var(--tag-window-bg);
+}
+
+#_userPanel {
+  background-color: var(--user-panel-bg);
+}
+
+#_userInput {
+  border-color: var(--input-border);
+  background-color: var(--choice-bg);
+  color: var(--text-color);
+}
+
+.questionHeader {
+  background-color: var(--question-header-bg);
+}
+
+.explanationHighlight {
+  background-color: var(--explanation-bg);
+}
+
+.modal-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+}
+
+.questionCard .questionChoiceText {
+  background: var(--choice-bg);
+  border-color: var(--choice-border);
+}
+/******* dark mode, 23-May-2026 *********/
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    padding: 0.2em;
+	margin : 1em;
+}
+
+#_novelli { /* special li CSS for displaying novel like text, filter, open/close does not apply*/
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom, #_darkModeToggle {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+	z-index: 1; /* Sit on top */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	font-size: 1.2em;
+	right: 7em;
+	left: 1em;
+	/*width: 80%;*/
+	border: 2px solid red;
+	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: white;
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   google.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+******************* list element template *******************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+	<button id="_darkModeToggle" onclick="toggleDarkMode(); hideUserPanel();">🌓</button>
+</div>
+
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
+</div>
+
+<a id="TocTop"></a><ul id="_mainUL">
+<h3> 《贩罪》 作者：三天两觉  </h3>
+<p class = "firstLineIndent">天才。</p>
+<p class = "firstLineIndent">自闭、孤独、偏执、疯狂。</p>
+<p class = "firstLineIndent">每当时代变迁，逆十字的旗帜由他祭起。</p>
+<p class = "firstLineIndent">成则王侯将相，败则蛆蝇粪秽。</p>
+<p class = "firstLineIndent">平乱世，麾下四方辐辏，钟灵毓秀。</p>
+<p class = "firstLineIndent">隐市井，此生睥睨天下，唯有一人。</p>
+<p class = "firstLineIndent">Source : https://10000txt.com/?id=25022</p>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<li id='_novelli'><details class='detailsSwitch' id='_details_0001'><summary><a>第一卷 罪由心生</a></summary>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0002'><summary><a>序章 天一</a></summary>
+	<p class='firstLineIndent'>十二月三日，阴。</p>
+	<p class='firstLineIndent'>睁开眼时已经是上午十点多了，不用拉开窗帘我也知道外面的天空一片阴霾。潮湿的空气渗透到了屋里、被窝里，还有我的骨头里。</p>
+	<p class='firstLineIndent'>我只有两个选择：要么给自己弄一杯咖啡，要么闭上眼，期待再次睁开时已是十二月四号。</p>
+	<p class='firstLineIndent'>总之我最终还是起来了。</p>
+	<p class='firstLineIndent'>今天和往常一样，我坐在店里，祈祷着人们别来光顾我这破地方。</p>
+	<p class='firstLineIndent'>阴天的午后就像小孩儿打针前排队的那几分钟，或是恐怖片中鬼怪出现前的几十秒。</p>
+	<p class='firstLineIndent'>你知道糟糕的事情肯定会发生，却永远无法判断第一滴雨水何时将落下。</p>
+	<p class='firstLineIndent'>拜这天气所赐，几个小时很快过去，直到下午四点，还真的是一个顾客都没有。</p>
+	<p class='firstLineIndent'>对我来说，这是一段令人沉醉的时光，我可以坐在办公桌后面安静地看书喝咖啡，不受任何人的打扰。</p>
+	<p class='firstLineIndent'>四点半，有个人推门进来了，好吧，我恨他。</p>
+	<p class='firstLineIndent'>不过他还是给我带来了些许惊喜，因为他不是来买书的，而是进来抢劫的。</p>
+	<p class='firstLineIndent'>当这家伙一边掏枪一边朝我这儿走过来时，我真的很想冲他抱怨几句，要知道最近处理尸体是越来越困难了，老有人这么逼我让我非常难办。</p>
+	<p class='firstLineIndent'>我算了一下，拔掉牙齿，剃光毛发，锯成六块，这大约就得花半小时，开车把他送去鲍勃的养猪场又得花一小时，等我回来还得收拾血污和垃圾，再准备晚饭可就太晚了。</p>
+	<p class='firstLineIndent'>于是我举起双手，摆出一副惊惧的神色，声音颤抖地告诉他，钱全在抽屉里，请放我一条生路吧。</p>
+	<p class='firstLineIndent'>我认为自己演得很逼真，无论眼神、语气，还是肢体动作都刻画得很完美，他应该会拿完钱扭头就走，那样我就可以继续享受独处的好时光了。</p>
+	<p class='firstLineIndent'>但当他伸手去拉抽屉时，我忽然又想起来，我早已经没有任何形式的货币了……</p>
+	<p class='firstLineIndent'>于是，他拉开抽屉以后看到了半块被我吃剩下的披萨，和半只被不明生物吃剩下的老鼠。接着他就发怒了，边说着脏话边用枪顶着我的头，瞪大了眼睛问我是不是认为耍他很好玩。</p>
+	<p class='firstLineIndent'>因为怕他太激动了走火，最终我只能无奈地将他那整支手枪塞进了他的食道里。</p>
+	<p class='firstLineIndent'>这家伙在地上扑腾的时候，我想明白了——费城的治安太差，我要搬走。</p>
+	<p class='firstLineIndent'>如今街上到处都是这种拿着把破枪就想弄“快钱”的小子，结果他转悠了半天还跑进了门面这么破败的书店里来，我真是严重怀疑这种人的智商。以常识来讲，如果计划抢劫中小型店铺，无疑应该首选餐饮行业和日用品商店；其次是售票处、服装、家电行业；最差的选择才是卖家具、古董和书籍的铺子。</p>
+	<p class='firstLineIndent'>难道现在的人连预估一下日营业额和风险系数的时间都没有吗？那还抢什么商店？随便来个持械私闯民宅不就完了，屋里总会有些现金的。</p>
+	<p class='firstLineIndent'>哦，当然了，眼前提现金没什么意义，去地铁里洗劫流浪汉也比来我这儿强。</p>
+	<p class='firstLineIndent'>几十秒过去，看他的症状似乎是快要休克了，不过还在挣扎着向门口爬去。</p>
+	<p class='firstLineIndent'>我走到他前面把门关上，将门后OPEN的牌子翻转到CLOSE那一面向外，然后放下了旁边橱窗上的卷帘。转身时他正爬到我的脚边，为了以防万一我顺手把他两肘的骨头打碎。</p>
+	<p class='firstLineIndent'>终于又能回到我那舒服的沙发椅上，喝上一口咖啡，端起书，继续着惬意的时光。</p>
+	<p class='firstLineIndent'>我估计以他目前的身体状况是很难站起身来了，即使勉强支起身体，也无法用嘴去转那么大的门把手，半小时左右他应该就会断气了，尸体正好可以堵住门，完美。</p>
+	<p class='firstLineIndent'>无论如何，今天总体来说，依然是个令人讨厌的日子。直到最后，我也有些没想明白的事情，比如我、老鼠、披萨以及不明生物之间的关系以及各自在食物链中的位置。</p>
+	<p class='firstLineIndent'>嗯……算了，这同样不重要。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0003'><summary><a>第一章 心之书</a></summary>
+	<p class='firstLineIndent'>在无数个平行宇宙中，有无数个地球存在，其中有那么一个非常无关紧要的地儿。而我要讲的故事就发生在那里。</p>
+	<p class='firstLineIndent'>在这个世界中，二十世纪末时，一股势力用绝对的武力打破了民族、国界、信仰这一切隔阂，让全人类在反应过来之前已经沦为了臣民。凡是敢于反抗者，在两年内就被清剿得干干净净。</p>
+	<p class='firstLineIndent'>人类于2000年完成了整个星球权力的统一，地球从这一年起就不再存在国界的概念了，原本的“国”均被重新冠以“府”或者“郡”的新称谓，只有各个城市的名称保留了下来。</p>
+	<p class='firstLineIndent'>一个很久没有被提起的词重新登上了历史舞台——皇帝。</p>
+	<p class='firstLineIndent'>不管是好是坏，至少在这个宇宙中，地球人不是以联邦的形式最终团结在一起的，而是通过帝国的形式。</p>
+	<p class='firstLineIndent'>其实从长远角度来讲，如果若干年以后，有一群猴子，或者一群虫子，乃至一群机器人之类的东西从银河系外侵略过来，地球帝国肯定比地球联邦更具备战斗力。</p>
+	<p class='firstLineIndent'>当然了，在这个故事里还不会有这种情况发生。</p>
+	<p class='firstLineIndent'>事情要从2100年的十二月开始说起。</p>
+	<p class='firstLineIndent'>樱之府，是世界上最小的“府”之一，本来帝国准备将其归入龙郡的，但考虑到其地理位置是在海上，自古又多发地震海啸，上面还有座火山是活的，保不齐哪天就有沉海里去的可能；而龙郡的辖区本来就很广阔了，因此帝国上层最后还是决定将樱之府单独设为了“府”。</p>
+	<p class='firstLineIndent'>这年的冬天，在北海道的街上，一个少年气喘吁吁地狂奔着，清晨冷冽的空气如刀子般刮在他脸上。</p>
+	<p class='firstLineIndent'>他不高不矮、不胖不瘦，大众脸，鼻梁上的眼镜镜片活像两个啤酒瓶底那般厚。身上穿着黑色的校服，双肩背着寒酸的书包，从鬓角到风纪扣再到裤脚，全都挑不出一丝毛病的家伙，典型的好学生。</p>
+	<p class='firstLineIndent'>但这个好学生，却又一次迟到了。</p>
+	<p class='firstLineIndent'>“哦，池田君啊，今天也满头大汗地跑来了呢，好吧，快坐下吧。”说这话的老师姓松尾，是个谢顶的中年男人，池田的班主任，教的是数学。</p>
+	<p class='firstLineIndent'>这是一所很不错的学校，在整个樱之府的升学高中里也属于排得上座次的。不过和贵族及王族就读的学院相比也就变得不值一提罢了。</p>
+	<p class='firstLineIndent'>因为住的地方比较偏僻，池田每天早上都得赶上一辆班次极少的巴士才能准时上学，一旦错过了这部车，池田就只好跑上四十分钟左右才能到学校，所以他虽然很努力，但一个月里总会因为各种原因没赶上巴士而迟到这么几回。</p>
+	<p class='firstLineIndent'>松尾是个势利眼，而池田就是那种令他非常鄙视的穷学生，他经常以池田犯的一点点小错作为借口当众给他难堪。好在今天松尾的心情似乎还不错，没有进一步去羞辱池田取乐，而是继续讲他的课。</p>
+	<p class='firstLineIndent'>这也让池田松了口气，他一溜烟儿地窜到自己的座位上，轻手轻脚地放好书包，拿出课本来。</p>
+	<p class='firstLineIndent'>因为迟到的缘故，池田坐下后十多分钟第一节课就结束了。</p>
+	<p class='firstLineIndent'>松尾也没多废话，伴随着下课铃声向教室外走去，但到了门口，他却转过脸，用一种不善的眼神望了池田一眼，池田分明从松尾的嘴角看到了冷笑。</p>
+	<p class='firstLineIndent'>“喂，湿蚊香，我有事跟你说，来天台。”班长三浦是个高大健壮的胖子，家里很有钱，听说父亲是大医院的院长，所以势利的松尾才会让学习成绩一般的三浦来当班长。</p>
+	<p class='firstLineIndent'>“哦，好吧……”池田并未对“湿蚊香”这叫法有什么反应，因为平时班里的其他男生，甚至女生都是这么叫他的。蚊香是指他那可笑的眼镜，而湿掉的蚊香，其实就是不能用了的意思，所以这绰号基本等同于“废物”。</p>
+	<p class='firstLineIndent'>因为是升学高中，很少有真正意义上的不良少年存在，但像三浦这种仗势欺人的家伙是遍布全宇宙的，从幼儿园到踏上社会，唯独这种人物随处可见。</p>
+	<p class='firstLineIndent'>池田平时就一直被三浦欺压，除了跑腿干活，还得代写作业什么的，而像松尾这样的老师自然是睁一只眼闭一只眼。</p>
+	<p class='firstLineIndent'>来到天台以后，三浦一句话都没说，莫名其妙地就揍了池田一顿，他下手很重，不讲分寸，而池田在整个过程中只是抱着头蜷成一团，没有任何会因为愤怒而还手的迹象，只是咬牙忍受着。</p>
+	<p class='firstLineIndent'>也许是习惯了吧，刚进学校就被高年级的学长故意找茬揍过，后来连同年级的也把他当成最好欺负的对象。现在已经高二的池田，在一年级新生的眼中也只是个废物傻瓜罢了，完全没被当成前辈。</p>
+	<p class='firstLineIndent'>上课铃响了，三浦停了手，转身欲走。</p>
+	<p class='firstLineIndent'>“为什么？”池田费力地挤出这么一句话来。</p>
+	<p class='firstLineIndent'>“啊？”三浦啐了口唾沫，若无其事地回道：“要说理由嘛，可能是无聊吧，好久没揍人了。”</p>
+	<p class='firstLineIndent'>通往天台的门被关上了，池田仍然倒在地上，和身上的淤青相比，他的自尊或许受伤更重。</p>
+	<p class='firstLineIndent'>或许这时该哭，但他早已哭不出来了。</p>
+	<p class='firstLineIndent'>像池田这样的学生，貌似唯有转校或自杀这两条路了。</p>
+	<p class='firstLineIndent'>可惜，他没有转校的条件，也没有自杀的勇气。</p>
+	<p class='firstLineIndent'>他能做的，唯有继续这种生活。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十二月十日的傍晚。</p>
+	<p class='firstLineIndent'>放学的铃声响起，对池田来说，高中生活的每一天都是度日如年，而回到家还得做许多家务，因为赌徒兼酒鬼的父亲整天都醉醺醺的，一般就干三件事：耍酒疯秀下限、打儿子练身体、流口水睡大觉。</p>
+	<p class='firstLineIndent'>池田迈着无力的步伐，走过熟悉的街道，整个世界对他来说都灰暗无比，人生的每时每刻都如同煎熬。</p>
+	<p class='firstLineIndent'>渐渐行至了偏僻的地段，池田忽然停住脚步，望着路边的一家店铺，自言自语道：“这里原本有一家书店的吗？”他依稀记得前几天这儿还只是一片空地，可现在眼前分明有一栋几十平米的单层建筑。招牌上写着“BOOKS”，面向大街的橱窗后面堆满了书，让人看不清屋中情形。</p>
+	<p class='firstLineIndent'>也许是出于好奇，或单纯是因为不想太早回到自己那个脏乱的家，池田推门进去了。</p>
+	<p class='firstLineIndent'>进屋后让人感觉这里面空间似乎比外面看上去还要大一些，房间的布局大体是个十字形，除了四周的书架以外，当中几张拼在一起的桌子上堆满了书本，墙角和地上也都堆放着书籍，这杂乱无章的地方供人站立行走的通道几乎没有，空间都被那些随意摆放着的书堆给占了。</p>
+	<p class='firstLineIndent'>纸张和皮革特有的气味充斥在空气中，也说不上难闻。再往里走几步，可以看到一张办公桌，桌子后面的沙发椅上坐着个男人，看上去二三十岁，头发乱糟糟的，穿着黑色的衬衫和西装，敞开着领口，一副不修边幅的模样。</p>
+	<p class='firstLineIndent'>天一并未对顾客上门作出任何的反应，依然故我地单手捧书看着，另一只手则拿着勺子，缓缓搅拌桌上摆着的一杯咖啡。</p>
+	<p class='firstLineIndent'>“那个……老板……请问……”池田出于本能地想问这书店究竟是从何而来。</p>
+	<p class='firstLineIndent'>天一根本不让他把话说完，而视线也没有离开自己手头的书，只是放下勺子，懒洋洋地抬起胳膊，用手指着自己左侧角落里的三排书架道：“你要看的东西在那儿。”</p>
+	<p class='firstLineIndent'>池田觉得眼前的情况说不出的诡异，但还是木讷地朝着那几排书架走了过去，他也不知为何会照着天一的话去做，仿佛这位老板简单的一句话就能引领他解开心中的所有疑惑。</p>
+	<p class='firstLineIndent'>走到那儿时，池田才发现，这个书架上的所有书都有黑色的书皮，仅从外表根本无法判断内容，所以拿起任何一本都无关紧要。因此他随手从书架上取下了一本书，又转头看了天一一眼，他还在那儿看书喝咖啡，完全无视自己。</p>
+	<p class='firstLineIndent'>“真是个古怪的家伙……”池田低声嘀咕着，打开了手上的书。</p>
+	<p class='firstLineIndent'>第一页是张白纸，翻到第二页，正中偏上写着书名。</p>
+	<p class='firstLineIndent'>那是一种让人看着就很不舒服的绿色墨水所写的三个字——池田望。</p>
+	<p class='firstLineIndent'>“我的名字？”池田瞬间起了一身鸡皮疙瘩，心道：“是巧合？恶作剧？电视台的整人节目？”</p>
+	<p class='firstLineIndent'>他往后翻了几页，除了书名以外，其他文字倒是中规中矩的黑色印刷字体，但其内容却让池田险些吓得叫出声来。</p>
+	<p class='firstLineIndent'>“像老爸那样的人，还是去死吧。”</p>
+	<p class='firstLineIndent'>“三浦那混蛋，真想把他从楼上推下去。”</p>
+	<p class='firstLineIndent'>“想成为藤田那类受欢迎的男生。”</p>
+	<p class='firstLineIndent'>池田飞快地翻阅这些内容，脸上逐渐布满了惊恐与羞愤的神情，直到阅至整本书的三分之二左右时，后面的内容中断了，剩下的只有几十页的白纸。</p>
+	<p class='firstLineIndent'>而那最后的两行字分别是：“是巧合？恶作剧？电视台的整人节目？”以及“怎么可能？！”</p>
+	<p class='firstLineIndent'>天一这时终于搁下了自己手上的书，抿了口咖啡，然后转头看着池田：“把书放回去，我们来谈一笔买卖。”</p>
+	<p class='firstLineIndent'>池田颤抖着，犹豫着，对不可理解的事物本能的恐惧，还有不想放下写满自己“心声”书本的心情，让他挣扎着，一时间没有按照天一的话去做。</p>
+	<p class='firstLineIndent'>天一叹了口气：“把书放下，走过来，否则我把你切碎了喂猪。”</p>
+	<p class='firstLineIndent'>池田妥协了，他将书放回书架，并牢牢记住了位置，然后紧张地朝天一的那张办公桌走去。</p>
+	<p class='firstLineIndent'>天一露出一个假得不能再假的微笑：“池田君，喂猪什么的都是玩笑，你别介意，刚才你看到的内容都是免费的，不过仅此一次。”天一举起了从池田进屋到现在为止，自己一直拿在手上看的那本书，书本同样是黑色书皮包裹着的外观。</p>
+	<p class='firstLineIndent'>“这本书的书名，叫三浦和哉。”天一对池田闻言后的表情非常满意，他用极富煽动性的语气接着道：“只要你办一件事作为交换，就能看里面的内容。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0004'><summary><a>第二章 首个死者</a></summary>
+	<p class='firstLineIndent'>天色已暮，池田终于到了家里，父亲还没有回来，可能还在居酒屋里泡着吧。</p>
+	<p class='firstLineIndent'>从冰箱里拿出一根速食棒，然后钻进暖炉，打开电视，这就是池田除了睡觉以外最珍惜的时光，在电视前一边吃最贫寒的家庭才会储备的垃圾食品，一边完成作业。</p>
+	<p class='firstLineIndent'>从很小的时候起，电视仿佛成了池田的父亲，在属于他的那本书里也有这样的句子：“电视不会喝醉酒回家，电视不会把我忘在动物园，电视不会打骂我，电视才是教我做人道理的家伙。”</p>
+	<p class='firstLineIndent'>他曾不止一次地幻想自己能像那些虚构故事的主角们一样，某天会突然遭遇外星人、或遇到神秘少女、或被政府秘密机构征召、甚至是被一道闪电带往另一个世界，从而改变自己的一生；他更希望自己能像那些影片里的英雄一样被人依靠，而不是藐视和欺压。</p>
+	<p class='firstLineIndent'>但每天睁开眼睛的那一刻，池田都要面对残酷的现实。</p>
+	<p class='firstLineIndent'>生活对一个十七岁的少年来说，竟已是如此痛苦。</p>
+	<p class='firstLineIndent'>最深切的恐怖，并不是来自眼前，而是未来；最彻底的绝望，并不是你还不清楚未来，而是即便还年轻，但已能预见自己可悲的一生。</p>
+	<p class='firstLineIndent'>不知何时，池田手里的笔停下了，他看了一眼墙上的钟，十点二十分，父亲依然没有回家。</p>
+	<p class='firstLineIndent'>池田从暖炉里出来，重新来到家门口，穿上了鞋子，快步朝夜色中行去。</p>
+	<p class='firstLineIndent'>僻静的街道上，这个少年露出从未有过的认真表情，眼镜下的眼神甚至颇有些骇人与狰狞。</p>
+	<p class='firstLineIndent'>天一的书店已经关门打烊了，池田经过时本来还想进去再确认一次，但很显然敲门是得不到任何回应的。</p>
+	<p class='firstLineIndent'>“既然已经出来了，就绝不回头！”池田是这样告诉自己的。</p>
+	<p class='firstLineIndent'>他走了一个多小时，来到学校已将近午夜。漆黑的校园，只有门卫的小屋中还有一点点灯光。</p>
+	<p class='firstLineIndent'>到了这个点，执勤保安应该早已经睡着了，因为校方规定上夜班的保安在午夜以后到五点这段时间要巡逻一次，这帮家伙通常就很早睡下，到第二天四点左右起来，巡逻之后直接出去买点早餐什么的。</p>
+	<p class='firstLineIndent'>学校大门并不高，横向折叠拉伸式的设计，池田没费什么劲就翻了进去，一路走到教学大楼的前面，他终于停下了脚步。</p>
+	<p class='firstLineIndent'>一鼓作气地来到了这儿，才发现教学大楼的门在晚上是用一把环形锁给锁上的，也许对虚构的英雄们来说这不是什么难题，但池田是束手无策了。</p>
+	<p class='firstLineIndent'>“我在想什么呢……”池田苦笑。</p>
+	<p class='firstLineIndent'>他转身准备回去了，一边低声自言自语：“没办法了呢……别说现在两手空空，即便是事先预料到了这种情况拿着根管钳过来的话，破坏学校公物也是很严重的事情吧。”</p>
+	<p class='firstLineIndent'>池田真的很恨自己，他也知道说这些废话毫无意义，事实就是，即便他是下定了决心要做某件事的，也会因为任何一桩很小的意外状况而轻易放弃。</p>
+	<p class='firstLineIndent'>“我果然是个废物而已吗……被人叫做湿蚊香也是活该啊……”池田的内心开始了自我折磨，他不甘心地回过头去又望了一眼教学大楼，仿佛这样做就还有机会能找出一丝希望来。</p>
+	<p class='firstLineIndent'>“那个是！”池田忽然瞪大了眼睛，希望真的出现了，他那悲惨的人生中，竟也会有意外的好运。</p>
+	<p class='firstLineIndent'>走得越近，池田看得越是分明，一楼的走廊有一扇窗户没有关好，留着很小的缝隙，乍一看并非十分明显，但却被自己回头这一眼给发现了。</p>
+	<p class='firstLineIndent'>来到窗前，深呼吸，寒夜里清冷的空气冲入脑中，他伸出手去，拉开了窗。几秒后，他顺利地爬进了走廊。</p>
+	<p class='firstLineIndent'>池田抑制不住心中的兴奋，浑身都在发抖，数小时前天一的那句话犹在耳边：“午夜时潜入到松尾的办公室里，随便拿一样他的东西出来，我就允许你看三浦的书。”</p>
+	<p class='firstLineIndent'>虽然不知道为什么对方会提这样的要求，更不知道为什么对方会认识松尾和三浦，但有那种写满人心声的古怪书籍做铺垫，这种事也并不能说有多古怪了。</p>
+	<p class='firstLineIndent'>直到站立在教员办公室的门前时，池田的心中还不能说是十分的坚定，毕竟他是池田啊，那个被人揍了都不敢还手的池田，连他自己都不敢相信此刻正在做那么出格的事情，但这从未尝过的体验却也使他感到前所未有的刺激，恐怕此刻他的肾上腺素分泌得已有些太多了，伸出去拉门的手抖得非常厉害。</p>
+	<p class='firstLineIndent'>门开了，清朗的月光下，最先进入池田视线的是一双脚。</p>
+	<p class='firstLineIndent'>一双离地的脚，两只脚的脚尖偏向内侧，摇摇晃晃地悬在半空。</p>
+	<p class='firstLineIndent'>池田觉得自己的心脏停止了跳动，他的视线本能地上移，不久就看到了松尾的脸。</p>
+	<p class='firstLineIndent'>双眼的眼球鼓起，半吐舌头，脸色紫黑，这显然已是死透了。</p>
+	<p class='firstLineIndent'>“啊……啊……咳……唔……”池田坐倒在地上，朝后方急退，他的后背很快便贴住了走廊的墙壁，他一开始想叫，随即想吐，不过最终，他用双手死死捂住了自己的嘴，无论是喊声还是胃酸都给憋了回去。</p>
+	<p class='firstLineIndent'>不能喊，因为招来保安后他不能解释自己半夜来学校的原因；更不能吐，因为会在现场留下明显的痕迹。</p>
+	<p class='firstLineIndent'>池田自己都不知道为何脑中会有这么清晰合理的思路，如此冷静的判断竟是在如此恐怖的环境下冒了出来，难道自己生性残忍，或是对死亡麻木不仁？</p>
+	<p class='firstLineIndent'>由不得他想太多，眼前需要思考的问题是，接下来该怎么办？</p>
+	<p class='firstLineIndent'>“从这个状况来看，松尾八成是自杀的，但如果报警，在午夜潜入学校的事情是怎么都说不清的，即便调查到最后证实松尾的死与我无关，学校也绝对会开除我。”池田权衡计较一番后，猛捶了自己的大腿几下，然后勉强支撑着站了起来。虽说腿还是有些软，但至少疼痛使其恢复了一些知觉，可以行走了。</p>
+	<p class='firstLineIndent'>池田走进教员办公室，视线刻意回避开松尾那可怖的面容。他匆匆绕过悬挂的尸体，从松尾桌上的笔筒里快速抓了一支笔，然后头也不回地就跑。</p>
+	<p class='firstLineIndent'>从三楼一路猛冲到了一楼，池田来到了自己翻进来时的那扇窗前，刚想跨出去，低头时却忽然发现了一件事，窗台上竟有两种不同的脚印！</p>
+	<p class='firstLineIndent'>刚才进来时是背光，自己的影子遮住了窗沿没注意到，而此刻在白皙的月光下，这个发现让他毛骨悚然。窗台上的鞋印有两个，鞋头均是朝着走廊这一侧，而其中一只鞋印明显要比另一只大。那个比较小的鞋印估计是自己的没错，但那个大一些的呢？</p>
+	<p class='firstLineIndent'>在这种时候，他的思维竟是出奇得敏捷，池田很快有了答案，较大的脚印应该是松尾留下的。因为晚上七八点的时候，保安会在睡下之前先把教学大楼和体育馆的每个房间都巡视一番，确认没有什么异常后才锁门。所以松尾不可能在那之前就已自杀，他一定是在八点后潜入学校，然后才死亡的，这也解释了为什么只有朝走廊里的脚印，而没有返回的。</p>
+	<p class='firstLineIndent'>想明白了这点，也就没什么好怕了，池田翻到窗外那一侧，仔仔细细地擦干净自己进出时的脚印，甚至连窗户边缘上的指纹都抹掉了，而松尾的脚印他没有去碰。</p>
+	<p class='firstLineIndent'>自觉没留下任何痕迹的池田把手缩在袖口中小心翼翼地拉上窗，使其回到自己来时那样的状态，接着便迅速逃出了校园，在回家的路上狂奔起来。</p>
+	<p class='firstLineIndent'>而与此同时，教学大楼那漆黑的走廊里，有一个人影正望着池田离去的背影，默默地伫立着。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0005'><summary><a>第三章 案发以后</a></summary>
+	<p class='firstLineIndent'>接近凌晨一点时，全身被冷汗浸湿的池田跑回了家，他一路上魂不守舍，直到看见熟悉的家门才稍稍冷静下来。</p>
+	<p class='firstLineIndent'>屋里有灯光，看来父亲已然酒醉归来。</p>
+	<p class='firstLineIndent'>他蹑手蹑脚地进屋，试探着说了声：“我回来了。”</p>
+	<p class='firstLineIndent'>没人回应，唯有自己粗重的呼吸声。</p>
+	<p class='firstLineIndent'>池田来到有亮光的房间，将门拉开一半，看到的景象让他松了口气，父亲醉醺醺地卧在被炉里睡着了，几个空酒瓶散落在其身边。</p>
+	<p class='firstLineIndent'>“半夜回到家发现儿子不在，竟还满不在乎地睡了。”池田帮父亲关上灯，拉好门，低声嘀咕道。</p>
+	<p class='firstLineIndent'>他去冲了个澡，回到自己的房间，虽是躺在了床上，但完全没有睡意。只要一闭上眼睛，吊在绳下的尸体，还有松尾那凄惨的面孔就会反复出现。</p>
+	<p class='firstLineIndent'>直到外面的天蒙蒙亮了，池田还是睁着布满血丝双眼，望着天花板。</p>
+	<p class='firstLineIndent'>他想了一夜，什么都没想明白，只换得脑中的一片混乱，还有头疼欲裂，精神萎靡的糟糕感觉。</p>
+	<p class='firstLineIndent'>松尾为什么要自杀？而且还非得到教员办公室里上吊，这有什么意义吗？那个古怪的书店到底是怎么回事？书店老板究竟是什么人？为何要指定我在午夜去松尾的办公室偷东西？难道松尾的死和他有关系？</p>
+	<p class='firstLineIndent'>又辗转反侧了一会儿，池田看了看钟，差不多该准备上学了，他虽然很累，但不敢请假，可能是心虚的缘故，池田觉得自己偏偏在学校里发现尸体的当天缺勤会显得很可疑。</p>
+	<p class='firstLineIndent'>今天他赶上了巴士，因此也就没有经过天一的书店。其实就算选择走路上学，池田也知道那个书店老板是不会在那么早就开门的，看他的德行就是那种早晨十点前绝不会爬出被窝的货，所以就算路过书店也是白搭。</p>
+	<p class='firstLineIndent'>学校的情况和池田想象中差不多，值夜班的那位仁兄在四点左右发现了尸体，他也没叫救护车，直接就报了警，估计是松尾的造型已经非常明确地表现出“我没救了”这个事实。</p>
+	<p class='firstLineIndent'>天亮时，警察已把教学大楼的三楼整层给封了，调查取证工作慢条斯理地进行着，不少老师乃至学生都被问了话。池田倒是没被人问到，可能是他的样子太不起眼了，又或是给人内向、不好搭话的印象。</p>
+	<p class='firstLineIndent'>一上午学生们都在窃窃私语，讨论的内容当然是松尾的死；老师们讲课似乎也心不在焉，所以对课堂纪律也就听之任之。</p>
+	<p class='firstLineIndent'>“啊……松尾啊，那真是最恶劣的人了！刻薄又猥琐的中年大叔，四十多岁了却还是未婚吧，平时对一些女教师毛手毛脚的，听说还有女学生被他骚扰过呢。不过这家伙做坏事不留什么证据，和校董事会的关系又不错，还很会巴结家长，所以校长都没法儿开除他，于是大家就只好天天看他摆着小人得志的嘴脸来学校碍眼地乱晃。</p>
+	<p class='firstLineIndent'>这种人能自杀真是太好了，终于为世界干了件好事啊，喂，警官，别用那种眼神看我，我这个人说话就是这么直的，我只是把大家都不愿意说的事实讲出来了而已。”</p>
+	<p class='firstLineIndent'>对警察说这话的是黑泽老师。更年期已过，接近退休年龄的国文教师，口无遮拦的热血大婶。性格如此要升到领导层很难，不过这种类型的人倒绝不会被同事或学生讨厌，除了松尾……</p>
+	<p class='firstLineIndent'>如果把松尾比作滑腻的脏水，黑泽就是烧开的热油。势利的松尾在不同的人面前会娴熟地运用卑躬屈膝和趾高气昂两种形态，但遇到黑泽大婶，他唯有躲得远远的一途。这道理十分简单：把一个小人和普通人放在一起，他就只是个讨厌的家伙罢了；而把一个小人和一个特正直的人去比较，那他除了渣滓什么也不是。</p>
+	<p class='firstLineIndent'>警方收集到的证词自然会去进行筛选分析，不过大伙儿对松尾的性格似乎已有公认了，总之就是给人以死有余辜的感觉。</p>
+	<p class='firstLineIndent'>可正因为如此，问题才变得更加扑朔迷离。</p>
+	<p class='firstLineIndent'>像这种人，会自杀？而且他明明是独居，何必要特地在半夜潜入学校里自杀？不能在家里上吊吗？</p>
+	<p class='firstLineIndent'>时近中午，学校终于宣布了停课半天，学生们吃完午饭就可以回去了。</p>
+	<p class='firstLineIndent'>这对池田来说无疑是好消息，他迫不及待要赶去那家书店，有太多的问题需要解答。不过他还是在食堂里平静的吃完了午餐，和大多数人一起陆续地离开。</p>
+	<p class='firstLineIndent'>池田告诉自己，必须非常谨慎才行，不能做任何异常的举动，即便根本没有人会去注意他，他也要尽可能地小心。</p>
+	<p class='firstLineIndent'>他走了一个小时回到家，一路上都显得很淡定，经过天一的书店时都没往里瞟上一眼。</p>
+	<p class='firstLineIndent'>“我回来了。”池田道完这句，随手关上门，坐在玄关上换了鞋。</p>
+	<p class='firstLineIndent'>他走进起居室，父亲正叼着根烟，坐在被炉里看电视，听到池田拉开门的声音，头也不回道：“这么早回来是翘课了吗？”</p>
+	<p class='firstLineIndent'>池田也坐到被炉旁，从书包里往外拿作业，“松尾老师昨晚在学校里自杀了，所以下午停课。”</p>
+	<p class='firstLineIndent'>老爸听了以后微皱眉头：“啊……那个家伙，是你的班主任吧，我还记得他。去年来家访过一次吧，用那种厌恶的眼神走进来，对我说话时也摆出一副嚣张的表情，什么呀那家伙。”他猛吸了一口烟：“是怎么死的？从学校天台跳下来？还是上吊什么的？”</p>
+	<p class='firstLineIndent'>池田神情麻木，推了推厚厚的眼镜：“是吊死的，听说是晚上潜入学校在自己办公室里干的，具体情况我也不是很清楚。”</p>
+	<p class='firstLineIndent'>“哦，对了。”池田老爸伸手去拿桌上的遥控器，他一动就打了个嗝儿，一股酒气从嘴里冲出来，不过池田没怎么在意，反正已经习惯了。</p>
+	<p class='firstLineIndent'>“说不定这事儿会上新闻呢。”老爸切了几个台，找到了某个正在放新闻的频道然后停下。</p>
+	<p class='firstLineIndent'>“新年将至，今年北海道的治安状况在年底依然呈下滑趋势，和全府各地区相比再次是倒数第一，除了频发的入室盗窃以外，暴力犯罪也有增加，警方发言人拒绝对此数据作出回应，今天由本台记者和我们请来的几位专家一同来……”</p>
+	<p class='firstLineIndent'>新闻还是一如既往的调调，播报着一些令人沮丧的消息，然后找来几个所谓专家，发表一些无济于事的马后炮意见。</p>
+	<p class='firstLineIndent'>“要是你们学校的事情上新闻了，说不定你也会出现在电视上呢。”老爸一边说着还把电视的音量调高了。</p>
+	<p class='firstLineIndent'>池田只是无所谓地回了句：“我可不记得上午有记者之类的人来过。”</p>
+	<p class='firstLineIndent'>时间过得很快，池田坐在那儿做了两个小时作业，他老爹喝了几盅，盯着无聊的新闻看着看着又睡过去了。</p>
+	<p class='firstLineIndent'>收拾好东西，关掉电视，池田回到了自己的房间，从枕头下取出了一支笔，这是昨晚从松尾的办公桌上拿出来的，一支普通的水笔。</p>
+	<p class='firstLineIndent'>这支笔提醒着池田，昨晚的一切不是梦，不是幻觉，更不是想象，而是真真切切发生过的事实。</p>
+	<p class='firstLineIndent'>十二月十一日，下午四点。</p>
+	<p class='firstLineIndent'>池田又来到了天一的书店，推门进屋后看到的场面和昨天几乎完全一样。</p>
+	<p class='firstLineIndent'>不过今天，天一没有无视池田，他直接放下了手中的书和咖啡，率先开口道：“过来，随便坐。”</p>
+	<p class='firstLineIndent'>池田走到天一的办公桌前，然后发现根本没有椅子之类的东西，这屋里唯一一张沙发椅被书店的主人给占了，于是他只能应道：“我还是站着吧。”</p>
+	<p class='firstLineIndent'>天一打开手边的抽屉，拿出一本黑色书皮的书放到桌上：“三浦和哉的秘密都在这里面。”他把手压在书上，没有半点要拿开的意思：“你取来的东西呢？”</p>
+	<p class='firstLineIndent'>池田反问道：“既然你手上也有我的那本书，肯定已经知道我办到了你交代的事情，何必多此一问。”他说着就把松尾的笔搁在了天一的桌上。</p>
+	<p class='firstLineIndent'>天一打着哈欠，一脸不屑：“就是因为我知道的远比你想象中多，所以我暂时还不能把三浦的书给你看。”</p>
+	<p class='firstLineIndent'>“你要反悔？！”池田提高了声音，震惊与愤怒一触即发。</p>
+	<p class='firstLineIndent'>不过天一很快把他的这种情绪浇灭了：“你想看这本书的原因，是为了报复三浦，为了发泄这两年被他欺压而积攒的怨气，嗯……也可能是准备把短短人生中所有的怨气都撒在三浦身上。无所谓，我很支持你，但我觉得，现阶段你可能有更加紧迫的事情需要去做。”他话锋一转：“今天上午，就在你们学校，有一个警察，他很出色，甚至可以说是非常精明。早晨五点他是第一个到达松尾‘自杀’现场的警员，立刻就发现了疑点，并做了正确的判断——松尾是被人杀害的。”</p>
+	<p class='firstLineIndent'>池田脸色铁青，不由自主地后退一步：“你说什么……”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0006'><summary><a>第四章 逆十字</a></summary>
+	<p class='firstLineIndent'>天一不顾池田表现出的惊讶，抛出了更加惊世骇俗的言论：“这个警察和我一样都属‘纸’级，与你们一般人类不在一个阶层上，因此我的店里无法找到印有他名字的书来。不过这无所谓，他多多少少会向同事和上级透露一些推理的进展，我可以从其他人的心声中拼凑出线索。”</p>
+	<p class='firstLineIndent'>“你究竟……”池田结结巴巴地道。</p>
+	<p class='firstLineIndent'>“究竟是什么人？”天一直接道出了池田要问的话：“我叫天一，天下的天，第一的一，这可不是艺名，我可以给你看身份证。”他又吮了口咖啡：“当然了，这不重要，对你来说，重要的是记住那个警察的名字，鲸鸟。</p>
+	<p class='firstLineIndent'>以他的能力来讲，最多四十八小时，就能找到并把你逼入绝境。”</p>
+	<p class='firstLineIndent'>池田慌张地回道：“开什么玩笑！松尾老师的死和我一点关系都没有，无论他是自杀还是他杀，都与我无关啊！”</p>
+	<p class='firstLineIndent'>天一拿起了三浦的心之书：“我现在给你提供第二笔交易。</p>
+	<p class='firstLineIndent'>如果你放弃去看三浦的心声，我就告诉你杀死松尾的真凶，以及你昨晚留下来的、将来会引火烧身的破绽。”</p>
+	<p class='firstLineIndent'>池田又一次面临了选择，但这次他很快就做了决定：“好，三浦的书我不看了，你快告诉我关于昨晚的事情！”</p>
+	<p class='firstLineIndent'>“哈哈哈哈……”天一癫狂地大笑：“因为恐惧而轻易放弃了报复三浦的机会吗？居然这么快就答应了呢。”</p>
+	<p class='firstLineIndent'>这笑声在池田听来异常刺耳，他感觉自己犹如玩偶一样被这个怪人耍得团团转，但却也无能为力。</p>
+	<p class='firstLineIndent'>足足抽了一分钟后，天一才停下，“好吧，我是言而有信的，起码在交易这方面。”他清了清嗓子：“你昨晚想到要去做的事情，基本都是画蛇添足，而忘记去做的事情，却都很致命。”</p>
+	<p class='firstLineIndent'>天一又端起旁边的咖啡壶往自己的杯子里续了点儿，继续讲道：“从你打开教员办公室的门开始讲起吧。</p>
+	<p class='firstLineIndent'>留在门上的指纹并不能作为证据，因为那种办公室的门上就算有几十个人的指纹都不奇怪，相信你也是想到了这一点的，所以后来没有折返回去擦门上的指纹，而只是擦掉了一楼走廊那扇窗上的。</p>
+	<p class='firstLineIndent'>但你忘记了，你在某个别人绝不会用手触碰的地方留了一整排指纹，或者说……掌纹。”</p>
+	<p class='firstLineIndent'>池田心中一怔：“糟了！”</p>
+	<p class='firstLineIndent'>天一道：“当你被一具冰冷的尸体吓得坐在地上往后倒退的过程中，在地板上留了不少掌印，那种人人都用脚踩的地方，你留下了这么诡异而整齐的一排掌纹，是准备解释成‘白天时曾倒立着进入了办公室’吗？如果你真的那么干过了肯定会有人注意到吧。”</p>
+	<p class='firstLineIndent'>池田可没有心情和对方开玩笑，他回道：“但是……一般的自杀案，不，就算是谋杀！会有人做到在门外的地板上采集指纹这种地步吗？！”</p>
+	<p class='firstLineIndent'>天一一拍桌子：“说得好！好见地！你推测的一点不错。</p>
+	<p class='firstLineIndent'>就以樱之府来举例，但凡命案，第一个到现场的警员负责保护现场，并做初步勘查。那之后会有一帮提着高价设备负责采集证物的技术宅姗姗来迟，也就是所谓物证科。这时，最先赶到的警员就会根据自己的初步判断来决定案件的性质以及调查方向。</p>
+	<p class='firstLineIndent'>如果只是被当成一般的自杀案件处理，根本不需要做太细致的取证，在致死的物件上象征性地弄几个指纹下来，给现场环境、证物以及死者各拍几张照片，然后把尸体运走，收队。整个过程快的话两三个小时就能完成。</p>
+	<p class='firstLineIndent'>询问相关人员的工作完全可以在取证时就搞定，后续的验尸工作也只是找出死因罢了，不会做太多测试的。等到证据、证词、验尸报告全都出炉，负责文案工作的警员写个简短的报告，把该记录的信息归入电脑存档备份，而各种乱七八糟的物证就往档案袋里一扔，结案了事。</p>
+	<p class='firstLineIndent'>樱之府一直就是个自杀率超高的地方，警方处理这种案子就算不能说信手拈来，至少也是熟能生巧。</p>
+	<p class='firstLineIndent'>像那种高中毕业后直接进化为全职NEET，坐在不见阳光的屋里和二次元人物相恋多年并登记结婚，直到最后撸管过多而精尽人亡的家伙可不在少数。</p>
+	<p class='firstLineIndent'>这类案件绝不可能会做到在死亡现场周围地毯式采集指纹的地步。”</p>
+	<p class='firstLineIndent'>他一鼓作气说了这一大堆，最后蹦出两个要命的字来：“但是！”</p>
+	<p class='firstLineIndent'>天一拿起了三浦的心之书，翻到其中一页，手指着当中的一行字，将其摆到了池田面前：“念。”</p>
+	<p class='firstLineIndent'>当池田的目光和那本书上的文字接触的一瞬，他的浑身都颤抖起来：“湿蚊香那个笨蛋，擦掉自己的脚印不就好了，把窗框上的指纹擦光了不就太可疑了吗？”</p>
+	<p class='firstLineIndent'>天一立即合上了书，收回了自己的书桌抽屉里：“结果连三浦的思路都比你清楚呢，人家当时可是刚刚亲手杀过人的，和你这种看了一眼尸体就失魂落魄的家伙的确是不同啊。”他继续讥讽地笑道：“用你的脑子好好想想，如果松尾是一个要自杀的人，会特意去擦掉自己的指纹吗？然后，一个连指纹都擦干净了的人，却会留下脚印？</p>
+	<p class='firstLineIndent'>保安做人证，一把大锁当物证，凭这两件证据，正常人都能推断出松尾是在晚上八点后通过正门以外的某个地方潜入教学楼里的，警察再不负责，也至少得去查一下松尾进入案发现场的途径。这些你全都预计到了，可偏偏犯了这样的低级错误，哎，愚蠢啊……你干脆把松尾的脚印一起擦干净，倒也说得过去。”</p>
+	<p class='firstLineIndent'>“你刚才说什么……”池田根本没听天一的后半段话，他的思绪还停留在那句“人家当时可是刚刚亲手杀过人的”上面。</p>
+	<p class='firstLineIndent'>天一拍着桌子大笑：“哈哈哈……这就是你另一个愚蠢之处，如果你坚持做第一笔交易，当你看到三浦的书时，仍然可以知道真凶是谁。”</p>
+	<p class='firstLineIndent'>池田恨得咬牙切齿，可对方确实给过自己选择的余地，他无话可说。</p>
+	<p class='firstLineIndent'>天一道：“好了，该说的我都说了，交易结束，没什么事就请赶紧滚蛋。”</p>
+	<p class='firstLineIndent'>池田不甘心就这样离去：“你可以作证的，你知道是三浦杀了人！只要你指证他……”</p>
+	<p class='firstLineIndent'>天一摇着手指打断了池田的话：“我没有时间、心情、兴趣、义务去做这种事。”</p>
+	<p class='firstLineIndent'>“那……那么……三浦是为了什么要杀死松尾？还有松尾怎么会在半夜里自己跑去学校？”池田追问着。</p>
+	<p class='firstLineIndent'>天一摊开双手：“三浦的行凶手段、动机、松尾的举动，以及，如何摆脱被鲸鸟追查的方法。你需要知道这些的话，我们可以再做一笔交易。”他灌了口咖啡又道：“当然你也可以趁早滚出这里，洗干净脖子等着鲸鸟根据有限的线索和他有限的智慧，最终把你逮捕。”</p>
+	<p class='firstLineIndent'>“可人是三浦杀的！你不也知道吗！”池田回道。</p>
+	<p class='firstLineIndent'>“哈哈哈……三浦杀完人以后，还伪造成了自杀；三浦杀完人以后，还不忘随手关门；三浦杀人的过程中，别说指纹脚印，连头发丝他都没留下一根；最后，在三浦逃离现场前，看见了你，他能够毫不慌乱地隐藏在暗处监视，直到你离开以后他才撤。”天一鄙视地看着池田：“那么……你觉得，自己和三浦谁更有可能被警方逮住？”</p>
+	<p class='firstLineIndent'>池田闻言，胸中如一锅煮沸的开水，血气上涌，一种莫名的情绪轻易就击溃了理智，天一的每一句话都刺中了人性中最微妙的弱点，诱导着池田迈出下一步。</p>
+	<p class='firstLineIndent'>“你要我做什么？”池田问出这个问题的时候，表情已变得像一个瘾君子。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十二月十一日，凌晨四时五十三分。鲸鸟正穿着件破旧的皮衣，蹲在尸体边上大嚼豆沙包。</p>
+	<p class='firstLineIndent'>他到达现场已有十多分钟，同事们还没有来。简单问了保安几个问题，看了看周围环境，他就自己站上桌子并把尸体弄了下来。</p>
+	<p class='firstLineIndent'>“天还没亮就爬出被窝，顶着低温跑到学校里来，让我感觉年轻了十岁呢。”鲸鸟边检查尸体，边在那里自嘲着。</p>
+	<p class='firstLineIndent'>“喂喂……这是怎么回事……”就在鲸鸟的眼前，松尾那张苍白的面孔上，竟逐渐浮现出了一个图案。</p>
+	<p class='firstLineIndent'>那是两条垂直交错的黑色长方形线条，宽两指有余。较长的黑线从松尾的额头经过鼻梁延伸至下巴处，仿佛把他的脸分成了左右两部分；而略短的一根从其左腮延伸至右腮，似是条胶带封住了嘴。</p>
+	<p class='firstLineIndent'>“解开绳子再把尸体放平以后，被阻塞的血液通过了脖子终于到达头部，结果就显现出来了吗……”鲸鸟看着松尾的脸自言自语道：“黑色逆十字……会是代表什么呢？是这家伙笃信了某种奇怪的教团从而用这种极端的表现手法自尽，还是某个新的变态杀人狂独创的记号呢……哼，变得有趣起来了。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0007'><summary><a>第五章 老友</a></summary>
+	<p class='firstLineIndent'>夜。</p>
+	<p class='firstLineIndent'>月黑风高，云稠星稀。</p>
+	<p class='firstLineIndent'>圣马可大教堂的屋脊之上，一个人影站立着。</p>
+	<p class='firstLineIndent'>他叫天一。</p>
+	<p class='firstLineIndent'>此刻呈现在其眼前的场景，让天一也不得不感到惊讶。</p>
+	<p class='firstLineIndent'>教堂屋顶的塔尖、十字架和雕像，还有外墙、阳台、甚至是门外的圣马可广场上，都仿佛被淋了一场尸雨。残肢断臂、内脏器官、血骨脑浆，可谓应有尽有，就是没有一具全尸。</p>
+	<p class='firstLineIndent'>原来人的血真的能流成小溪一般，原来上百具凄厉的死尸堆叠在这样一个美丽的地方，会是这般光景。</p>
+	<p class='firstLineIndent'>瞬间，他睁开了眼，看到的是熟悉的天花板。</p>
+	<p class='firstLineIndent'>“又是这个梦呢……”天一打着哈欠，一脸不爽的样子。窗帘缝隙中透进来的光线说明今天是个好天气，而这种天气，让天一的精神更加萎靡，情绪更加低落。</p>
+	<p class='firstLineIndent'>刚才的梦困扰了天一十年，虽然在这十年里此梦出现的次数加起来也不超过十次，但已足够让天一这种人感到不快了。</p>
+	<p class='firstLineIndent'>十年前的威尼斯，究竟是什么人杀掉了那些警察？天一很想知道答案，他对那个凶手非常感兴趣，可事后却无法追查到那人的行踪，就算动用了书店中的所有资源，那凶手的身份还是裹在层层迷雾之中。</p>
+	<p class='firstLineIndent'>要残忍的杀害某一个人，不算太难，但要残忍的杀害那么多人，是非常困难的，就算有实施这种行为的能力，人的心理承受力恐怕也不允许。凶手究竟要何等疯狂，才能做到那种程度？</p>
+	<p class='firstLineIndent'>一想到这个世界上还有这样的家伙存在，天一就很想去研究研究，但偏偏与之无缘，也无可奈何。</p>
+	<p class='firstLineIndent'>他抓起床头柜上半杯凉透了的隔夜咖啡，往自己脸上一泼，冻了一个激灵，跌下了床，滚出了被窝。</p>
+	<p class='firstLineIndent'>他睡觉时穿的竟然就是西装，衬衣，长裤。起来以后，用一块脏不拉几像抹布一样的毛巾抹干净脸上的咖啡以后，就算完成了洗漱。</p>
+	<p class='firstLineIndent'>走出后面狭窄的生活区域，随手带上门，然后娴熟地迈开步子跨过地上堆放的那些书本，将店门口CLOSE的牌子转到OPEN那一面，再打开暖气，往书桌后面一坐，今日的营业又开始了。</p>
+	<p class='firstLineIndent'>时间是十二月十二日的中午。</p>
+	<p class='firstLineIndent'>天一的第一壶咖啡还没煮开，就有顾客上门了。</p>
+	<p class='firstLineIndent'>“又是你这个王八蛋。”那人刚一推门进来，这句话就从天一嘴里脱口而出。</p>
+	<p class='firstLineIndent'>走进来的人却也不是很在意天一的恶语相向：“我前一阵子遇难了你知不知道？”</p>
+	<p class='firstLineIndent'>“跟你的智商所遭遇的灾难比起来，那肯定不算什么。”</p>
+	<p class='firstLineIndent'>那人依然无视天一的嘲讽，也不知是听不懂还是不在乎：“话说你知道吗，虽说我是遇难了，但可谓因祸得福啊，我在南美丛林里找到了好东西……”</p>
+	<p class='firstLineIndent'>他自顾自地在那里说着，天一也不理他了，从抽屉拿出一张纸，迅速在上面写了几个字，折了两下做成三角柱形，然后放在了桌上。</p>
+	<p class='firstLineIndent'>纸张朝外的那一截上写着：“枪匠与狗不得入内。”</p>
+	<p class='firstLineIndent'>枪匠看了那纸一眼：“嘿，我只是顺道进来看看老朋友，你不用做到这种地步吧。”</p>
+	<p class='firstLineIndent'>天一很严肃地望着枪匠：“顺道？你是怎么找到我这里的？”</p>
+	<p class='firstLineIndent'>枪匠木讷地回道：“就是……走着走着，就来到你书店门口了。”</p>
+	<p class='firstLineIndent'>“你在哪里遇难的？”</p>
+	<p class='firstLineIndent'>“嗯……南美洲。”</p>
+	<p class='firstLineIndent'>“那三个字代表了八百万平方公里，你能不能具体点。”</p>
+	<p class='firstLineIndent'>“呃……那我也不知道了。”</p>
+	<p class='firstLineIndent'>“你现在在哪儿？”</p>
+	<p class='firstLineIndent'>“嗯……亚洲的某个地方……是吧？”枪匠一副不是很确定的表情。</p>
+	<p class='firstLineIndent'>天一道：“你知道自己是在北海道吧？”</p>
+	<p class='firstLineIndent'>枪匠显然是得到了提示：“哦，对对对，不就是北海道嘛，在冰岛附近，北极圈附近的那个城市嘛。”</p>
+	<p class='firstLineIndent'>天一半张着嘴，视线实在无法从枪匠的脸上移开：“你知道哪儿是北吧？”</p>
+	<p class='firstLineIndent'>“嗯……”枪匠举起了手，犹豫了几秒，指了指天花板：“是那个方向？”</p>
+	<p class='firstLineIndent'>天一的脸重重地砸在了桌子上：“我不想再看见你。”</p>
+	<p class='firstLineIndent'>枪匠无奈道：“好吧好吧，帮你做转移装置的时候我留了条……嗯……类似于系统后门的东西，只要我做一个跟踪器，就能查到你书店的所在。”</p>
+	<p class='firstLineIndent'>天一仍然没有抬起头：“然后呢？”</p>
+	<p class='firstLineIndent'>枪匠回道：“很简单啊，做完跟踪器以后，我对跟踪器上显示的坐标进行测算定位，在世界地图上标出你所在的点，找了个出租车司机，我把地图给他看，他就送我去了机场；我再把地图给售票处的女士看了下，她给了我一张票，乘了几十个小时的飞机，出机场后我又找了个出租车司机……”</p>
+	<p class='firstLineIndent'>天一叹了很长很长的一口气，抬头坐直身子，问：“你想怎么样？”</p>
+	<p class='firstLineIndent'>“我需要到一个与世隔绝的地方去研究在南美获得的新原料。”枪匠答。</p>
+	<p class='firstLineIndent'>天一歪过头，看了看站在书桌对面的枪匠：“东西呢？”</p>
+	<p class='firstLineIndent'>“哦，在我裤子口袋里。”</p>
+	<p class='firstLineIndent'>“你还真随身带着。”</p>
+	<p class='firstLineIndent'>“是啊。”</p>
+	<p class='firstLineIndent'>“那你的行李呢？”</p>
+	<p class='firstLineIndent'>“要那干嘛？我自己做了一张无法被追踪的信用卡，使用时不会留下真实ID，而且里面的金额永远是十万。”</p>
+	<p class='firstLineIndent'>“哦。”天一点点头：“那不如你现在带上你的那张卡，出去找个出租车司机，让他带你去机场，再找一位好心的女士给你一张去冰岛的机票，到了以后出机场，问问路，当你看到大海的时候，就租艘船，乘到对面的格林兰岛，再跟当地人买个雪橇和几条雪橇犬，策狗扬鞭冲入北极圈，造个冰屋，想干嘛干嘛。”</p>
+	<p class='firstLineIndent'>枪匠好像真的认真考虑了一会儿：“在那儿我吃什么？”</p>
+	<p class='firstLineIndent'>天一摊开双手：“啊……谁知道呢，数十万年前的早期智人可能会选择在冰上凿个洞，捕些鱼烧熟吃来维持生计；你的话，吃屎应该就足够了吧。”</p>
+	<p class='firstLineIndent'>枪匠一甩手，袖中便滑出一支造型诡异的手枪来，那枪身看上去竟是白骨一般的材质，握在枪匠手中，显得威势不凡。</p>
+	<p class='firstLineIndent'>“玩笑到此为止，你到底帮不帮我？”</p>
+	<p class='firstLineIndent'>天一单手撑着下巴，完全无所谓的表情，有气无力地道：“啊呀，救命啊，事情好严重啊，严重得就像黑手党给我寄了一条鱼一样啊。”</p>
+	<p class='firstLineIndent'>枪匠的枪口慢慢平移，最终，指向了旁边正在沸腾的一壶咖啡。</p>
+	<p class='firstLineIndent'>天一的额头顺势冒出了冷汗，双眼突然变得有神起来：“你敢打咖啡壶我就把你切碎了喂猪。”</p>
+	<p class='firstLineIndent'>“那……说句实话，我之前会遇到事故身陷丛林，据我分析绝不是意外，肯定是人为的，可能性无非就两种，要么是帝国的人想把我这个不太听话的‘武器顾问’处理掉，要么就是欧洲那帮‘钢铁戒律’的孙子干的，无论哪一边都不好得罪。我毕竟只是‘并’级，被他们盯上的话，必须要不断逃亡，绝不可能在一个地方待得太久，因此现在只有你才能帮我躲起来了。”</p>
+	<p class='firstLineIndent'>天一又是一声长叹：“那你准备躲多长时间？”</p>
+	<p class='firstLineIndent'>枪匠道：“这就难说了……大概就几个月吧，不过只要我把新到手的原料做成枪，至少也能提升到‘强’级，那时我就可以在整个地球上横着走了。”</p>
+	<p class='firstLineIndent'>天一打了个响指，一张黑色的书签出现在他的两指间：“你右手边第二排书架，最左下角那本书。”</p>
+	<p class='firstLineIndent'>枪匠接过书签道：“嘿嘿，谢谢。”</p>
+	<p class='firstLineIndent'>天一用极其厌恶的语气又说了四个字：“跟踪装置。”</p>
+	<p class='firstLineIndent'>枪匠道：“知道了，等我出来了就帮你拆了。”</p>
+	<p class='firstLineIndent'>他屁颠儿屁颠儿地跑到书架前蹲下，天一又从其背后拉长声音吼了一句：“你他爹的！那是左！”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0008'><summary><a>第六章 第二个死者</a></summary>
+	<p class='firstLineIndent'>十二月十二日，警方已经从学校撤走了，教学楼的一切都已恢复如常，再也变不回去的，是人的心。</p>
+	<p class='firstLineIndent'>教职员室里的气氛看似很平和，老师们也尽力表现的像平时一样，聊天，休息，训斥学生。但每个人的余光，时不时地都会朝着松尾原本的座位撇上一眼，在那一刻，他们的心里也说不出是个什么滋味。</p>
+	<p class='firstLineIndent'>因为死的是班主任，短时间内找不到替代者，于是校方暂时给池田他们班找了代课老师。</p>
+	<p class='firstLineIndent'>那是个头发花白的老者，应该是外聘来的退休老师吧，看着他一把年纪还顶着寒风、骑自行车到学校来发挥余热，不禁让人心生出几分同情来。</p>
+	<p class='firstLineIndent'>无论他是对教育真的很有兴趣还是生活所迫，终究要比松尾那样的家伙强许多，即便学生们对他谈不上什么尊敬，至少不会像看待松尾那样厌恶。</p>
+	<p class='firstLineIndent'>半天的时间悄然而逝，虽然曾也有人谈论起松尾的事情来，但神情远不如昨天来得那么兴致勃勃了。或许这就是“人”最可悲的地方吧。人这玩意儿，实在太容易被同类所忘记了，因为我们每一个，都只记得自己而已。</p>
+	<p class='firstLineIndent'>“三浦。”池田走到三浦面前，直呼其名地喊道。</p>
+	<p class='firstLineIndent'>三浦闻言后立即就变脸了，池田竟敢主动找他搭话，这令他心中颇为惊讶。因为池田平时总被三浦欺负，根本没什么可能主动找他讲话，就算被迫要讲上几句，也一定会先用敬语称呼，可今天，他却一脸严肃地直接说了“三浦”二字。</p>
+	<p class='firstLineIndent'>“有什么事吗？”三浦的反应很快，他推测这种反常的现象一定和前天晚上的事情有关。</p>
+	<p class='firstLineIndent'>难道湿蚊香他看见我了？</p>
+	<p class='firstLineIndent'>三浦的担忧没有变成现实，但更可怕的情况发生了，池田的下一句话让三浦如遭雷击。</p>
+	<p class='firstLineIndent'>“九月四日。”</p>
+	<p class='firstLineIndent'>池田说完这句话，平静地转头离开了，回到了自己座位上，好像什么事都没发生过一般。</p>
+	<p class='firstLineIndent'>三浦没有叫住他，只是震惊地坐在位置上，双眼失去了焦点。</p>
+	<p class='firstLineIndent'>下午的第一节课上了一半时，三浦突然称身体不适，然后离开了教室，接着就去教员办公室请了假提前回家去了。</p>
+	<p class='firstLineIndent'>“杀了他……杀了他……混蛋……那个混蛋……一定要杀了他……”从三浦走出教室的那一刻，他的口中就开始咬牙切齿地念叨起来，脸上那凶恶的神情让人毛骨悚然。</p>
+	<p class='firstLineIndent'>九月四日，知道这句话意义的人不多，但池田肯定不是其中之一，他会去对三浦讲，理由只有一个，因为那是和天一交易的条件。</p>
+	<p class='firstLineIndent'>“你在明天下午一点跟三浦说一句‘九月四日’，就可以了，做完这件事就可以来找我完成交易。”</p>
+	<p class='firstLineIndent'>回想起天一当时的话，池田并不能想明白，但已无所谓了，不过是说一句没头没脑的话而已，又能有怎样的后果呢。</p>
+	<p class='firstLineIndent'>当天傍晚，几只野猫翻找食物时推倒了一个垃圾桶，三浦的头颅从里面滚了出来。</p>
+	<p class='firstLineIndent'>他的尸体就是这样在一条小巷中被人发现的，那个地方并不在他回家的路上，而且他的家人事后也证明当天他在学校请假后并没有回去。</p>
+	<p class='firstLineIndent'>警方推测这地方不是第一现场，因为三浦已被分尸，扔在垃圾桶里的尸体被劈成了十多块，是装在一个很大的垃圾袋里才塞进去的。</p>
+	<p class='firstLineIndent'>放学后的池田对此事浑然不知，他迫不及待地来到了天一的书店。推门进去后，跌跌撞撞地冲到了天一的办公桌前道：“快！快告诉我！松尾晚上潜入学校的目的！还有三浦为什么要杀人！”</p>
+	<p class='firstLineIndent'>天一挠了挠头发，打了个哈欠：“三浦已经死了。”</p>
+	<p class='firstLineIndent'>池田僵在原处，“什……什么……你说什么……”</p>
+	<p class='firstLineIndent'>“我不想重复讲同一句话，这样会显得我很傻，就像你一样。”</p>
+	<p class='firstLineIndent'>“不可能！他今天明明还来过学校！我还对他说了……”</p>
+	<p class='firstLineIndent'>“对，我知道，后来他请假回家去了，接着就死了。”</p>
+	<p class='firstLineIndent'>“怎么会……他怎么会死的？”</p>
+	<p class='firstLineIndent'>“被人砍死的。”天一喝了口咖啡，抬起眼皮瞄了池田一眼：“你想知道是谁干的吗？”</p>
+	<p class='firstLineIndent'>“是谁？”</p>
+	<p class='firstLineIndent'>“想知道吗？那就做交换吧，如果你肯用眼下这笔交易中应得的所有信息作交换，我就告诉你是谁杀了三浦。”天一又抛出了选择。</p>
+	<p class='firstLineIndent'>池田怒道：“又想骗我上当吗？”</p>
+	<p class='firstLineIndent'>“骗？可笑，交易中的选择一直都是你的自由，不要将你的愚蠢归结于我。”天一冷笑着。</p>
+	<p class='firstLineIndent'>池田这次再三思索了一番，才答道：“我要原来的信息，不改变选择！”</p>
+	<p class='firstLineIndent'>天一还是冷嘲热讽：“哦，这次却是个偏执的选择了，但依旧很蠢就是了。”他两手枕着头开始说道：“首先，松尾去学校的原因，很简单，三浦约他去的。”</p>
+	<p class='firstLineIndent'>“为什么？”池田问道。</p>
+	<p class='firstLineIndent'>“那个等大体情况讲完了再解释。”天一道，“三浦从一开始就下定决心要杀人灭口了，那天他故意待到很晚才回家，等做值日的学生和打扫卫生的勤杂工都离开了，他在一楼的拉窗上做了手脚。只要一根透明胶带就可以了，无论从哪边看上去都像关着的，其实离锁死还有很小的缝隙。</p>
+	<p class='firstLineIndent'>晚上十点他用电话联系了松尾，然后带着准备好的行凶器具赶去了学校。</p>
+	<p class='firstLineIndent'>松尾随后不久就到了，他也不傻，他觉得对方半夜里将其约到无人的学校里来十分蹊跷，可三浦在电话里提到的数字很大，贪欲使松尾无法控制自己。</p>
+	<p class='firstLineIndent'>教员办公室的门是朝侧面拉开的，三浦在门后距离地面十五厘米的高度横了一条铁丝。明目张胆地开灯是不可能的，在光线不好的情况下，松尾拉开门后就只能模糊地看到桌上放的钱箱，这家伙果然不负所望，激动地迈步上前，马上被绊倒了。躲在门后墙角阴影中的三浦就扑了上去，用体重压制住对方，不让其起身，然后迅速用膝盖顶住松尾的后颈，双手拿绳，将其勒死。</p>
+	<p class='firstLineIndent'>用这种方式，勒颈的力量是自下方向上提的，而反作用力则可以将被害人死死压在地上，即便腕力一般的人，也可以将那些比自己强壮许多的人勒毙，虎背熊腰的三浦同学要勒死瘦弱的松尾自然是很轻松的。</p>
+	<p class='firstLineIndent'>松尾断气以后，三浦就把他吊了起来，这对他来说也不算太费力气，收拾好现场的钢丝，检查清理了踩在高处留下的脚印后，把可能成为证据的东西都装进带来的空钱箱里，三浦完成了一次还算不错的谋杀。</p>
+	<p class='firstLineIndent'>但问题出在，他关上门，刚要离开，就听到了你上楼的声音。”</p>
+	<p class='firstLineIndent'>池田越听越是胆寒，一场凶杀竟被天一用这么随性的语气讲了下来，“接着三浦就躲到暗处观察我？”</p>
+	<p class='firstLineIndent'>天一道：“没错，其实他当时也对你动过杀心，不过最终还是没做。你很争气地没有叫出声来，也没做出留下排泄物在走廊里之类的举动，只是干了些画蛇添足的事情，三浦也没有再管，反正他是做到滴水不漏了。”天一又喝了口咖啡：“当然了，我认为，如果他之前做的不是如此精细，可能就会一不做二不休把你给干掉了。恰恰是由于之前将松尾伪装成自杀的举动很成功，他才不想节外生枝。”</p>
+	<p class='firstLineIndent'>想到前天晚上那一幕幕恐怖的景象，现在又知道了当时黑暗中原来一直有一双随时可以杀死自己的手，池田心中的后怕不言而喻，背后已是一片冷汗。</p>
+	<p class='firstLineIndent'>天一接着道：“现在我们回头说说最初的问题，三浦为何会约松尾去学校。</p>
+	<p class='firstLineIndent'>其实从我刚才的话里你应该也能猜到大半了，松尾这家伙呢……确实是企图勒索三浦，对方毕竟是大医院院长的公子，家里是很有钱的。</p>
+	<p class='firstLineIndent'>三浦的把柄落到了松尾手中，而松尾这种人又不敢直接勒索对方的父亲，于是就对三浦说了‘偷家里的存折也好，去求你父亲也好，怎么样都好。’这样的话。最终就导致了这场谋杀。”</p>
+	<p class='firstLineIndent'>池田又问道：“是什么把柄？还有，三浦又怎么会被杀死？谁要杀他？”</p>
+	<p class='firstLineIndent'>天一摸着下巴，用无所谓的语气道：“把柄啊？嗯……是什么呢？可能是去年九月四日发生的某件事吧。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0009'><summary><a>第七章 更早的顾客</a></summary>
+	<p class='firstLineIndent'>十二月十三日，上午十点。</p>
+	<p class='firstLineIndent'>白色的日光灯沿着天花板铺开去，走廊两侧的墙也都是白色的。</p>
+	<p class='firstLineIndent'>每次经过这条路，鲸鸟都会觉得眼睛很不舒服，他从上衣口袋里掏出常备的墨镜戴上，继续前行，越是接近尽头的房间，化学药剂特有的味道和难掩的尸臭便越发浓烈。</p>
+	<p class='firstLineIndent'>停尸间中，松尾的尸体横陈在解剖台上，一旁的手推车上摆满了带血的工具，地上的脸盆中也积攒了各种恶臭难当的体液。</p>
+	<p class='firstLineIndent'>鲸鸟进来时没看见人，不过里面的清洗间有水声，他站在房间中央等了一会儿，桑原就从清洗间推门进来了。</p>
+	<p class='firstLineIndent'>“啊，是鲸鸟先生啊，亲自来拿尸检报告吗，哈哈，最近大伙儿都是一副焦头烂额的样子呢。”桑原准一，用一句比较通俗的话来讲，这是个很喜兴的人，他常年留着寸头，戴着副老土的大黑框眼镜，见人就乐呵呵地笑，好像每时每刻都有值得高兴的事情。第一眼见他绝不会想到此人的工作是整天与死人打交道。</p>
+	<p class='firstLineIndent'>“你也辛苦了，桑原君。”鲸鸟回道。</p>
+	<p class='firstLineIndent'>“嘛……我倒是还好啦，其实做尸检也并不是件压力太大的工作，如果闲得没事干，反而觉得不自在。”桑原笑嘻嘻地回道。</p>
+	<p class='firstLineIndent'>“那么，确认后的死因是？”鲸鸟也不多客套了，开始谈正事。</p>
+	<p class='firstLineIndent'>桑原回道：“脑供氧不足，呼吸道堵塞，总之哪一种都是会死人的，同时发生的话……”他也没说下去，反正结果也已经呈现在眼前了。</p>
+	<p class='firstLineIndent'>随手拿起推车上的一把手术刀，桑原指着松尾的脸道：“值得一提的是这黑色的十字标记。”</p>
+	<p class='firstLineIndent'>鲸鸟神情微变：“怎么了？”</p>
+	<p class='firstLineIndent'>“鲸鸟先生还不知道吧。”桑原推了推眼镜：“脸上有十字的死者可不止这一个。”</p>
+	<p class='firstLineIndent'>“哦？”鲸鸟虽是摆出疑问的神情，但其实心中基本已有了答案。</p>
+	<p class='firstLineIndent'>桑原回道：“昨天傍晚送进来的那个……”他不自在地回头望了望不远处存放尸体的抽屉柜：“就是被切成很多块的高中生，他脸上也有。”</p>
+	<p class='firstLineIndent'>鲸鸟若有所思道：“果然呢……老师和学生时隔一天先后被杀，而且脸上都有那种记号吗……”</p>
+	<p class='firstLineIndent'>桑原又道：“其实还不止这两人。”</p>
+	<p class='firstLineIndent'>这突如其来的一句话，让鲸鸟真的有些吃惊了，“什么？”</p>
+	<p class='firstLineIndent'>桑原道：“邻近我们辖区的第三分局也发现了类似的黑十字，同样是出现的死者的脸上，横的一道像封条一样封住嘴，竖的一道从额头延伸至下巴。”</p>
+	<p class='firstLineIndent'>“还有几个这样的死者？”鲸鸟赶紧问道。</p>
+	<p class='firstLineIndent'>桑原答：“我也是昨天才听到这传闻的，十二月七日，他们就发现了第一个脸上有黑十字的死者，到昨天上午为止，总共三个。”</p>
+	<p class='firstLineIndent'>鲸鸟转身就走，口中念叨着：“混蛋……至少也有五人了吗……原来如此，不能再等下去了……”</p>
+	<p class='firstLineIndent'>“鲸鸟先生，你的验尸报告！”桑原在后面喊着，不过鲸鸟没有再回来。</p>
+	<p class='firstLineIndent'>永远。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十二月八日，下午三时十五分。</p>
+	<p class='firstLineIndent'>“可恶，住在这种一天只有几班公车会经过的破地方，害我要走那么远。”松尾穿着件厚得夸张的羽绒大衣，在寒风中行走着。</p>
+	<p class='firstLineIndent'>“不行了，实在是受不了，得先找个地方歇一歇。”松尾四下张望了一下，在这种偏僻的地段，路边连家像样的商店都没有，除了民宅，就是那种连门都没有的卖菜铺子。</p>
+	<p class='firstLineIndent'>他好不容易看到了一家书店，便逃也似的飞奔了进去。</p>
+	<p class='firstLineIndent'>“呼……还好这家店里有暖气。”松尾关上门后长吁了一口气。</p>
+	<p class='firstLineIndent'>“真不容易啊，大冷天的还要去那种穷学生家里做家访。”天一端着本黑色封皮包裹着的书，懒散地坐在办公桌后，似乎也没打算抬头看松尾一眼。</p>
+	<p class='firstLineIndent'>“嗯？”松尾一愣：“那个……是在跟我说话吗？”</p>
+	<p class='firstLineIndent'>天一无视他，接着自言自语般说道：“像那种寒酸的家伙，出现在我班上真是碍眼呢。”</p>
+	<p class='firstLineIndent'>松尾忽然察觉到了什么，神色起了变化。</p>
+	<p class='firstLineIndent'>“最近班上的女生真是越长越漂亮了呢，嘿嘿嘿……”天一猥琐地笑了起来。</p>
+	<p class='firstLineIndent'>但松尾却一点都不觉得好笑，他快步走向桌前：“混蛋！你在那儿说什么呢！”</p>
+	<p class='firstLineIndent'>天一把书平放到桌上，翻到第一页，将书调了个头，推到松尾面前。</p>
+	<p class='firstLineIndent'>白色的纸，紫色的墨水，让人不舒服的颜色和字体，写着一个人的名字，或者说，这本书的标题——松尾原琦。</p>
+	<p class='firstLineIndent'>松尾对天一怒目而视，喝道：“喂！你这是什么意思！你是什么人？是谁让你这么干的！”</p>
+	<p class='firstLineIndent'>天一那无所谓的眼神在很短的一瞬间，就变得异常冷酷而致命，他只和松尾对视了一秒，后者就再也说不出半句话来。</p>
+	<p class='firstLineIndent'>“松尾老师，你可以免费先看一下这本书。”天一躺回了沙发椅中，伸了个懒腰，打着哈欠道：“过会儿，我们来谈一笔交易。”</p>
+	<p class='firstLineIndent'>十分钟过去了。</p>
+	<p class='firstLineIndent'>松尾就站在那里，神情复杂地观看着自己这四十多年来的心声。</p>
+	<p class='firstLineIndent'>这时，天一觉得差不多了，便忽然伸手，从对方手上把书拿了回来：“好了，没什么值得多看的。”</p>
+	<p class='firstLineIndent'>松尾有些不知所措，他紧张地问道：“你……你到底……”</p>
+	<p class='firstLineIndent'>天一没工夫听他磨磨蹭蹭地往外蹦词儿，直接打断道：“在我看来，你这本东西就像一叠被装订在一起的厕纸，每张还都是擦过屎的那种。翻阅时，我的手指，眼睛和心灵都深深地受到了伤害。因此……”他盯着松尾：“我很希望快点儿把这本书低价兜售给你。”</p>
+	<p class='firstLineIndent'>松尾愣神了两秒，立刻点头：“好，好！你要多少钱，我现在就买……”他说着，还真的去掏钱包。</p>
+	<p class='firstLineIndent'>天一摆手示意他停下：“不必了，如果我要钱这种东西，完全可以去抢劫银行；或者指导别人去抢劫银行，然后从中提成；又或者指导别人去抢劫完银行，再抢劫他们……嗯……有些扯远了，总之，你不必用钱来买这本书，只要你答应替我做件事就可以了。”</p>
+	<p class='firstLineIndent'>松尾立即警惕了起来，他这种人，做任何事情，都要计算一番得失的：“你要我做什么？”</p>
+	<p class='firstLineIndent'>不过天一的话很快让他放心下来：“你帮我把这个邮包，放到三浦家的邮箱里去。”他说着便从抽屉里取出一个大信封，放到了桌上。</p>
+	<p class='firstLineIndent'>从外面看那包东西的轮廓，似乎是一本装在信封里的书，松尾想了想，问道：“喂，这该不会是什么危险的东西吧？”</p>
+	<p class='firstLineIndent'>天一道：“放心，只是一盘录影带而已，你不要打开信封，直接把东西放进三浦家的邮箱里就可以了，他的地址你应该清楚的吧。”他一边说着，一边拿起笔，在信封上写了一行字：三浦和哉收。</p>
+	<p class='firstLineIndent'>“怎么样？决定了没有。帮我做一回邮差，我就把你的那本书给你。”天一冷笑着问道。</p>
+	<p class='firstLineIndent'>松尾的反应是十分容易预测的，他把邮包揣进怀里：“你可得守信用。”</p>
+	<p class='firstLineIndent'>“那就看你的完成情况了。”他语气戏谑地道：“别想着先拿回去看看之类的事情，你的举动……”天一用手拍了拍桌面上松尾的心之书，“我可都略知一二的。”</p>
+	<p class='firstLineIndent'>“切……”松尾转身离开了。</p>
+	<p class='firstLineIndent'>他没有问对方让自己这样做的目的，也没去思考为什么会有一本写满自己心声的书。他的反应，和两天后的池田完全一样。在荒诞的现实前，他没有质疑、没有无视，而是选择了交易，选择了遵从别人的游戏规则。</p>
+	<p class='firstLineIndent'>天一看着松尾的身影消失在门口，不禁摇头晃脑地笑了几声。喝上一口咖啡，随手拿起地上的另一本黑皮书，他又津津有味地翻阅起来。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0010'><summary><a>第八章 录像带</a></summary>
+	<p class='firstLineIndent'>当夜，三浦九点才回到家，他望了眼玄关旁的鞋箱，父亲早晨穿走的皮鞋不在里面。</p>
+	<p class='firstLineIndent'>从冰箱里拿出些剩菜，加热后胡乱吃了几口。刚准备回自己房间，母亲从楼上下来了。</p>
+	<p class='firstLineIndent'>“是和哉啊，回来也不说一声，老妈还以为家里进贼了呢。”</p>
+	<p class='firstLineIndent'>“是贼就不会让你听见动静了。”</p>
+	<p class='firstLineIndent'>“今天又和学长他们玩到那么晚呢，也不打个电话回来。”</p>
+	<p class='firstLineIndent'>三浦不爽地道：“都说了那么多回了，那是排练！”</p>
+	<p class='firstLineIndent'>“是，是，排练，那排练的怎么样了？”母亲其实对这个问题的答案并不怎么感兴趣。</p>
+	<p class='firstLineIndent'>三浦回道：“切……烂透了，西园寺那家伙说是家里有事突然不来了，三年级的前辈们也都一整天无精打采的，在那儿长吁短叹，感叹又到年底了，明年这时自己就已经不是高中生了什么的，满口都是升学压力啊，前途啊，工作啊。在后辈面前也不觉得丢脸，真是群没用的家伙。”</p>
+	<p class='firstLineIndent'>“我倒觉得你的学长们说得没错啊，如果和哉你还是这么蹉跎下去的话，明年可就跟学长们一样了。”</p>
+	<p class='firstLineIndent'>“啰唆，反正到时候只要随便考进个一般的大学就可以了吧，毕业后的工作父亲肯定会托人拉关系帮我指定好的不是吗？”三浦说着就准备起身走人了，与母亲之间类似的对话往往都是这样结束的。</p>
+	<p class='firstLineIndent'>母亲叹了口气，不再就这个问题与他说下去。她忽然又想到了什么，对着三浦的背影道：“哦，对了和哉，在邮箱里找收到一个邮包，上面有你的名字，已经放在你书桌上了。”</p>
+	<p class='firstLineIndent'>“知道了。”三浦随便应付了一声，关上了房门。</p>
+	<p class='firstLineIndent'>背靠着门，面对着漆黑一片的房间，三浦眼前浮现了许多。起初他加入轻音乐部的理由有两个，一是对父亲的逆反心理，二是他认为在这个社团应该很好混。</p>
+	<p class='firstLineIndent'>结果却十分出人意料，这群在外人看来叛逆难驯的青年，根本不是他想象中那样整天聚在一起抽烟厮混，反而是一年到头都在拼命练习着。入社以后，自己的业余休息时间几乎全部搭了进去，双休日经常会像今天一样练习到很晚。就连当初坚决反对他去玩乐器的父亲，态度也逐渐有所转变了。</p>
+	<p class='firstLineIndent'>只要努力去做的话，就能改变某些事了吧……</p>
+	<p class='firstLineIndent'>三浦产生这种想法后，就开始对乐队的事情变得上心了，可惜这一阵子，原本坚定而可靠的学长们，却都变了。</p>
+	<p class='firstLineIndent'>“我说，父母还指望着我能上大学呢，即便现在不退社，到毕业那时还是得离开的不是吗。”</p>
+	<p class='firstLineIndent'>“哦，我啊，最后一个学期可能会直接去老爸的工厂里开始见习了吧，还能在一起演奏多久呢……”</p>
+	<p class='firstLineIndent'>“还是算了吧，大家心里都清楚，再怎么努力拼命，也是早晚得放弃的事情，难道你以后想当职业的音乐人吗？才学了一年多的新手还是早些断了这念头吧，国中生里也能找到比前辈我们还出色的家伙呢，那种父母都是搞音乐的，家庭条件允许又很有天赋的孩子才会走那条路吧。”</p>
+	<p class='firstLineIndent'>“三浦君，为了换套弦半个月不吃午饭的日子你可想象不出啊，我也很想跟你说出一样的话来，但这个世界是很现实的，学长们得跟今后的人生做出妥协。这已经是轻音乐社不成文的规则了，三年级的学生基本都是不会留到最后的，所以你要做好随时接手社长的准备，要成为后辈的依靠啊。”</p>
+	<p class='firstLineIndent'>近几个月来，三浦听到的都是诸如此类的话，他时常会想：“一帮混蛋，说什么成为后辈的依靠，自己不还是一个个都逃跑了吗？！”</p>
+	<p class='firstLineIndent'>他抛开这些压抑的念头，打开了灯。</p>
+	<p class='firstLineIndent'>书桌上摆放着一个大信封，里面似乎是一个厚厚的长方形物件。</p>
+	<p class='firstLineIndent'>“切……老妈又擅自跑到我房间里来。”三浦自言自语发着牢骚，然后走到桌前拆开了信封。</p>
+	<p class='firstLineIndent'>里面是一盘录像带和一张卡片。</p>
+	<p class='firstLineIndent'>卡片正面是大写的英文字母：BOOKS；反面则是手写的几行小字。</p>
+	<p class='firstLineIndent'>“这就是录像带吗？还是第一次见到呢，要我怎么看啊？”三浦拿起带子，一时不知该如何是好，虽然他知道一百多年前人们曾用一种叫做录像机的东西作为主要的影像录制及播放媒体，但这已经被数代产品淘汰了再淘汰的东西，现在估计只能去博物馆里找了。</p>
+	<p class='firstLineIndent'>他只好先把带子放在一边，去读卡片背面的字：“那件事以后，铃木一家搬去了冲绳，好离你远远的，不过三个月过去，2099年12月8日，即去年的今天，铃木乱刀刺死了熟睡中的父母，然后下楼打开了燃气灶，一家三口最后全部化为了灰烬。”</p>
+	<p class='firstLineIndent'>三浦脸色惨白，太阳穴突突直跳，拿着纸片的手颤抖着，继而是全身发抖。他的脖子已经僵硬了，缓缓转过头去，盯着桌上那盘录像带，视线再难寸移。</p>
+	<p class='firstLineIndent'>三浦忽然想起了自己曾经听过的一个鬼故事，那故事发生的年代，人们还在用录像带。具体内容他已经很模糊了，但有一段他记得很清楚，是关于附在录像带上的鬼怪从电视里爬出来索命的桥段……</p>
+	<p class='firstLineIndent'>五分钟后，他把卡片和带子锁到抽屉里，冲出房间，到玄关换了鞋子，然后出门。</p>
+	<p class='firstLineIndent'>这夜很冷，但三浦感觉自己全身的血液已降到了比气温更低的冰点。</p>
+	<p class='firstLineIndent'>他家住的地段不错，住宅周围不会很嘈杂，但步行到繁华的商店街却也花不了几分钟。</p>
+	<p class='firstLineIndent'>附近的音像店少说也不下十家，不过都相隔了一定的距离，三浦花了一个多小时一家家去询问，终于在找到第七家店的时候得到了想要的答案。</p>
+	<p class='firstLineIndent'>“啊？录像机？”一位满头绿发，还穿着鼻环的青年老板，露出了和之前每家店的老板完全一样的表情，不过他接下来的一句话让三浦精神一振。</p>
+	<p class='firstLineIndent'>“昨天还真有个臭要饭的拿来一台，我刚走开五分钟去拉个屎，我那个没大脑的老爸花了一百多块给收了，怎么？你想要？”</p>
+	<p class='firstLineIndent'>从老板背后的屋里传来一声嗓音巨糙的喝骂：“不孝子！有这么说自己老子的吗？”</p>
+	<p class='firstLineIndent'>“啰唆！糟老头子，想和你收来的老古董一起被送去废品回收站吗？！”这位老板回头扯着喉咙喊的这一嗓子，竟发出了和他老爸别无二致的沙哑音质，喊完后他若无其事地转过头来，用平常的语气接着道：“喂，小哥，我就当半卖半送，收你……”</p>
+	<p class='firstLineIndent'>他话还没说完，三浦拍下两百块在桌上，“不用找了，东西快给我。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十二月九日，凌晨一点。</p>
+	<p class='firstLineIndent'>三浦终于把录像机准备妥当，放入了录像带。</p>
+	<p class='firstLineIndent'>原本他不需要花那么久才能看上的，只是在第一次把录像机搬回家里以后，他又出去了一次，因为忘了买相应的连接线，而把线买回来以后，他不得不出去第三次，因为他发现还得买另一组线和一个AVSWITCH才能让这古老设备和自己房间里的平板彩电兼容。</p>
+	<p class='firstLineIndent'>前后忙了三四个小时，录像带的画面终于展现在了三浦面前。</p>
+	<p class='firstLineIndent'>一上来就是字幕，非常无厘头的两行字幕，内容是：“本片由本人亲自出品，请牢记片中的每一个细节，在不久之后会对你有很大的帮助。”</p>
+	<p class='firstLineIndent'>接着是那位“本人”的署名——天一，以及一个不明的地址。</p>
+	<p class='firstLineIndent'>录像带中的影片并不怎么可怕，当然也可以说这情节在现实中是挺吓人的。</p>
+	<p class='firstLineIndent'>片中只有两个人物，皆是电脑做出的3D模型，形象像是涂鸦出来的小人，圆形的头部，身体的各个边缘还有明显的多边形棱角，两个人物全身都只有一种颜色，可能是为了区分它们，所以一个是橙色的，一个是紫色的。而且全片没有一句对白，甚至连音效也没有。这简直就像小孩做出来的东西。</p>
+	<p class='firstLineIndent'>不过，片中的人物形象虽然设计的很随意，但场景却异常逼真，那个学校，分明就是三浦他们就读的高中，连操场上的一花一草都得到了还原，至于人物手上使用的所有物件，简直是做到了极致，就像实物摆在眼前一样。即便是2100年的计算机视觉特效已经非常发达，可这种水准的真实度，也只能在一些一线的超级大片里才能看到。</p>
+	<p class='firstLineIndent'>三浦冒着冷汗，看完了整部片子，时间并不算长，最终橙色的小人杀死了紫色的那个。</p>
+	<p class='firstLineIndent'>用透明胶在一楼的窗缘留下缝隙，绊人的钢丝，躲藏的位置，勒杀的动作，处理尸体的方法……每个细节都呈现在三浦的眼前。许多地方还用了特写慢放，比如橙色小人在扑向对方以前，握绳子的手法，绳子的总长度，在手掌上绕几圈，保证中段的长度在反手勒时更加顺手等等……这些画面似乎是有意要提醒三浦牢牢去记住。</p>
+	<p class='firstLineIndent'>但是为什么？</p>
+	<p class='firstLineIndent'>三浦想不明白，所以他反复看这卷带子，这些内容和去年九月四日的事情有什么关联？为什么那个天一要自己看这些？</p>
+	<p class='firstLineIndent'>七点半时，天完全亮了，这时三浦已将录像带看了不下十遍，仍然“一无所获”，至少当时的他认为是如此。</p>
+	<p class='firstLineIndent'>今天也是休息日，三浦看了眼时间，随后去浴室里将自己收拾了一番，拿着上那张卡片，再次离开了家。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0011'><summary><a>第九章 焚罪</a></summary>
+	<p class='firstLineIndent'>十二月十三日，正午，天一的书店。</p>
+	<p class='firstLineIndent'>一个穿着皮衣，胡子拉碴的男人推门进来了。</p>
+	<p class='firstLineIndent'>他径直走到了老板的办公桌前，开口便道：“你被逮捕了。”</p>
+	<p class='firstLineIndent'>天一这天并没有看书，只是坐在那儿悠闲地喝着咖啡，仿佛早已在等待这一刻。</p>
+	<p class='firstLineIndent'>“鲸鸟警官是吗？久违了。”</p>
+	<p class='firstLineIndent'>鲸鸟回道：“哼，你知道我会来吗？”</p>
+	<p class='firstLineIndent'>“我当然知道。”天一单手托着腮帮子，镇定自若。</p>
+	<p class='firstLineIndent'>“既然知道我会来，却没有事先逃跑，说明你要么就是已有了认罪的觉悟，要么就是彻头彻尾的疯子。”</p>
+	<p class='firstLineIndent'>“我没有疯，疯的是这个世界。”</p>
+	<p class='firstLineIndent'>“随你讲好了。”鲸鸟摸出一副手铐扔到桌上：“你自己戴上还是要我动手？”</p>
+	<p class='firstLineIndent'>“你有逮捕令吗？”天一完全不为所动。</p>
+	<p class='firstLineIndent'>“哈哈哈哈……”鲸鸟居然忍不住大笑起来：“你这种人居然跟我讲起法律程序来了？”</p>
+	<p class='firstLineIndent'>天一没有笑：“原来你也知道自己的行为不合法。”</p>
+	<p class='firstLineIndent'>鲸鸟瞬间收起了笑容，从枪套里掏出枪来指向了天一的眉心：“这就是我的法律！”</p>
+	<p class='firstLineIndent'>天一瘫坐在椅子上，从容地为其鼓掌：“不，这不是法律，而是正义。”他终于露出了微笑：“法律只是工具，写在纸上，为强权者服务，随时可以使用、修改、废除；但正义，其意义远不止如此。”</p>
+	<p class='firstLineIndent'>鲸鸟握枪的手依然坚定：“那么就请你趁着还没被正义打爆脑袋之前，乖乖把手铐戴上，去接受法律的制裁吧。”</p>
+	<p class='firstLineIndent'>“我的话还没有说完。”天一站起身来。</p>
+	<p class='firstLineIndent'>鲸鸟警觉地后退了半步，枪口跟着天一的动作，毫无偏差地指向其头部。</p>
+	<p class='firstLineIndent'>天一不紧不慢地走向了边上的书架：“但我得说，正义，是最令我厌恶和作呕的东西，那不过是人类的一种错觉罢了。”他伸手指着鲸鸟：“你恪守着一套广义的道德伦理所衍生出的是非善恶观念，用‘正义’这两个字自我催眠，将其变成信仰，使自己相信，做出的每一件事，每一个选择都是正确的。</p>
+	<p class='firstLineIndent'>说白了，这也不过是一种高级的虚伪罢了。”</p>
+	<p class='firstLineIndent'>他从书架上取下了四本黑色的书，放到桌上，然后又走向房间的一角，蹲下身去开一个柜子。</p>
+	<p class='firstLineIndent'>“对狮子来说，捕食羚羊就是正义，不然它和它的孩子都会饿死；对羚羊来说，逃脱狮子的捕食也是正义，不然它会被吃掉。在这种情况下，正义是自相矛盾的吗？不对，它们遵从的东西是一致的，动物只是依循着生存的本能而已，这是自然的规律，冥冥之中维持并运转着这个世界的规则。是无法写在纸上的，是不容篡改与违背的。将其冠以所谓‘正义’之名，简直就是莫大的侮辱。”</p>
+	<p class='firstLineIndent'>天一从柜子里拿出的是一个铁桶，他一手夹着书，一手拎着桶，往店门口走去，“不介意的话，帮我开一下门。”</p>
+	<p class='firstLineIndent'>鲸鸟此时已经放下了枪，他看得出来，天一根本没有逃跑的打算。</p>
+	<p class='firstLineIndent'>“你究竟要干什么？”虽是这样问着，但鲸鸟还是替天一把门推开了，随后跟着他一起走出了书店。</p>
+	<p class='firstLineIndent'>外面是天空阴霾，北风凛冽，只穿着衬衫西装的天一明显有些打哆嗦。</p>
+	<p class='firstLineIndent'>他将铁桶放在地上，拿出一个煤油打火机，点燃了手中的一本书。</p>
+	<p class='firstLineIndent'>继续着刚才的话，天一说道：“所以，人类也是一样的，以任何一个普通人类的观点出发，只有他自己才是其人生唯一的主角，其他人，无论再怎么抢眼，也不过是配角罢了。</p>
+	<p class='firstLineIndent'>而正义也就成了很主观的东西。乱世中成长的孩子，盛世中成长的孩子，贫民窟里长大的孩子，王公贵族的后裔……接触到不同的层次，被灌输不同的价值观，最后每个人，都会有属于自己的正义。</p>
+	<p class='firstLineIndent'>鲸鸟，你以为你在做的事是对的，也只不过是因为，那符合你心中的正义而已。”</p>
+	<p class='firstLineIndent'>鲸鸟冷哼一声：“那么……你的意思是，你滥杀无辜的行为才是对的？”</p>
+	<p class='firstLineIndent'>天一将那本已经被烧焦了一半的书扔进了脚边的铁桶中，“我可没有杀他们，自十二月五日来到北海道那天起，我从来没离开过书店，最多是到门口来烧烧书，签收些外卖，你怎么能说我滥杀无辜呢？”</p>
+	<p class='firstLineIndent'>“但案件全部是由你操控的！”</p>
+	<p class='firstLineIndent'>“是吗？那么，你有证据能够证明吗？即便那些人死而复生，他们也会告诉你，我从来没有‘指使’他们去做杀人这样的事情，我只是让他们做些无关紧要的小事而已，作为交换，他们可以听我说有些有趣的消息，或是看我手上的这些书。”</p>
+	<p class='firstLineIndent'>鲸鸟的视线不自觉地望向桶里那本几乎被烧尽的书，冒出的烟中，竟透出淡淡的紫色。</p>
+	<p class='firstLineIndent'>“这些到底是什么书？”</p>
+	<p class='firstLineIndent'>天一仰头望着天空：“这些书，记载着人的‘罪’。”他深呼吸了一次，眼角瞥了一眼桶里的灰烬：“贪婪宵小之辈，悬尸于众。”</p>
+	<p class='firstLineIndent'>鲸鸟闻言心中一怔，松尾的死相从其眼前闪过。</p>
+	<p class='firstLineIndent'>天一又将第二本书扔进桶中，这次冒出的烟中有些许的橙色。</p>
+	<p class='firstLineIndent'>“暴戾凶横之徒，乱刀分躯。”</p>
+	<p class='firstLineIndent'>鲸鸟瞪着牛眼，上前一把抓住天一的领口：“除了松尾和三浦，你手上还有两本书是谁？你还杀了谁？！是不是把池田也杀了！”</p>
+	<p class='firstLineIndent'>天一笑着，随手把第三本书也扔进桶里，红色的烟雾升腾而起：“怠惰纵欲之人，开膛破肚。”他盯着鲸鸟的眼睛：“这本书的主人确实叫池田，但不是池田望，而是池田猛。”</p>
+	<p class='firstLineIndent'>鲸鸟咬牙切齿道：“你这混蛋……”</p>
+	<p class='firstLineIndent'>天一举起最后一本书：“这才是‘懦弱善妒’的池田君，放心，他还没有死。”但两秒后，天一还是将这本书扔进了燃烧的桶中：“可惜，他疯了，‘生不如死’。所以说，他这本书也没什么用了，后面的内容都是些看不懂的疯言疯语，哦，对了，他是昨晚回到家看到了一些事情，受了刺激才疯的，今天还没去上学呢，不知道现在怎么样了啊……”</p>
+	<p class='firstLineIndent'>鲸鸟松开了天一，往池田家的方向狂奔而去，嘴里骂着：“可恶……”</p>
+	<p class='firstLineIndent'>天一整了整领口，朝着鲸鸟的背影疯狂地笑着：“你现在明白了吧！何谓正义！哈哈哈哈！”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0012'><summary><a>第十章 最初的顾客</a></summary>
+	<p class='firstLineIndent'>十二月七日，晚九点。</p>
+	<p class='firstLineIndent'>天一望了墙上的钟一眼，随即合上手头正在看的书，起身伸了个懒腰。</p>
+	<p class='firstLineIndent'>他走到后排的书架边，手指从当中一排书的标签上一一抚过，口中念念有词：“2010、2000、1990……化学、卫生用品、野外生存……嗯……有了有了……家用电器。”</p>
+	<p class='firstLineIndent'>几分钟后，他抱着个录像机，走出了店门。</p>
+	<p class='firstLineIndent'>门外，书店的橱窗下，一个酒鬼醉醺醺地坐在那儿，嘴里哼哼唧唧地说着些什么。</p>
+	<p class='firstLineIndent'>虽然从屋里往外看，这是个看不到的死角，但天一好像早就知道这里坐着个人了。</p>
+	<p class='firstLineIndent'>“池田先生，醉得太离谱了吧，忘记回家的方向了吗？”天一笑着说道。</p>
+	<p class='firstLineIndent'>池田猛胡乱挥舞了一下手里已经见底的酒瓶子：“少啰唆！老子清醒的很！酒！快点儿拿来！”</p>
+	<p class='firstLineIndent'>天一蹲下身：“池田先生，我想麻烦你去做件事。”他把录像机放到了池田猛的身边：“帮我去把这个卖掉。”</p>
+	<p class='firstLineIndent'>“混蛋！”池田猛突然大喝一声，然后停顿一下，打了个嗝儿：“你当老子是收破烂的吗！看不起我是吧！”</p>
+	<p class='firstLineIndent'>天一没有理会他，自顾自站起身，朝书店里走去：“建议你拿到市区南边的商店街那里去卖，多找几家音像店，应该会有人收去的，价格肯定会比卖废铁要高一些。”</p>
+	<p class='firstLineIndent'>池田猛还是迷迷糊糊地嚷着：“喂！混蛋，我说话你听不到吗？”</p>
+	<p class='firstLineIndent'>天一这时一只脚已经迈进了屋里，他把半截身子探出门外，转头又说了一句：“哦，对了，请在明天下午之前把这件事办了，卖掉以后的钱全归你，你还可以到我店里来另外得到一份酬劳。”</p>
+	<p class='firstLineIndent'>话音未落，书店的门已被关上了。</p>
+	<p class='firstLineIndent'>而门外的醉汉，在清醒了些许之后，拿起地上的录像机，接受了这笔交易。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十二月八日，松尾来到书店前半小时。</p>
+	<p class='firstLineIndent'>“喂，小子，昨天你丢给我的破烂已经卖掉了，你说过还有酬劳的是吗？”池田猛一进屋就直奔主题。</p>
+	<p class='firstLineIndent'>天一笑道：“呵呵……我非常欣赏开门见山的人。”他将手中正在看的书扔到桌上：“可惜，我不能和你想象中一样再给你些酒钱。”他伸手做了个“请”的动作：“这就是额外酬劳，你可以拿走了。”</p>
+	<p class='firstLineIndent'>池田猛根本连碰都没打算碰那本书：“什么呀？混蛋，耍我吗？！书这种东西，有什么用啊！”他转身就欲离开，嘴里骂骂咧咧：“可恶，害老子白来一趟。”</p>
+	<p class='firstLineIndent'>天一双手枕着头：“你确定要放弃这交易得来的报酬吗？池田先生。”</p>
+	<p class='firstLineIndent'>池田猛头也不回往外走：“没错，混蛋小子，你自己留着擦鼻涕吧。”</p>
+	<p class='firstLineIndent'>下一秒，天一发了疯似的大笑起来。</p>
+	<p class='firstLineIndent'>池田猛停下脚步：“你有病吗？白痴。”</p>
+	<p class='firstLineIndent'>天一摇着头，渐渐止住笑意，喝了口咖啡，“哎……要说白痴嘛，这屋里确实是有一个呢……”他抬眼看着天花板：“收了别人一张空头支票去打输拳赛，被查明之后，对方因为背景深厚完全没事儿，而自己的职业生涯彻底断送，继而酗酒赌博，负债累累，最终妻子自杀，自己则带着年幼的儿子离开东京，过上家徒四壁的美满生活。”他的视线重新下移，正好和怒目圆睁的池田猛对上：“你说，这样的人，是不是白痴？”</p>
+	<p class='firstLineIndent'>池田猛突然暴起，翻过桌子，双手抓着天一的领口将其提了起来，“你是谁？！谁告诉你这些的！”</p>
+	<p class='firstLineIndent'>天一歪着头，继续笑着，对对方的行为毫不在意：“呵呵……都在那本书里写着呢。”</p>
+	<p class='firstLineIndent'>池田猛松开天一，转身就要去拿桌上的心之书，但一股不知从何而来的力量，从其身后将其托起，直接扔出了三米远。他落在屋子中央那几张拼在一起的四角桌上，桌上那些原本就堆得像小山一般却杂乱不堪的书籍散落了一地，不过桌子倒是没被压垮。</p>
+	<p class='firstLineIndent'>奇怪的是，池田猛并没有感觉到疼痛，自己就像一件物体，被拿起，又放下，而不是摔在地上。</p>
+	<p class='firstLineIndent'>天一又稳稳地卧回了自己的沙发中，他的双脚翘到面前的办公桌上，脚跟正好压住了桌上的黑皮书。</p>
+	<p class='firstLineIndent'>“池田先生，有两件事我需要提醒你，第一件，即便你是个白痴，但记性还不至于差到会忘记刚刚才发生过的事情，因此，你应该还记得自己已经放弃了我的报酬。既然你选择放弃了一件东西，要重新获得它，就得付出一些代价，不然，我即使真的拿来擦鼻涕，也与你无关。</p>
+	<p class='firstLineIndent'>第二件事，请不要翻过我的办公桌，这张桌子就像是一条界线，近些年来，所有选择翻过它的人，都被切碎喂猪了。”</p>
+	<p class='firstLineIndent'>池田猛从桌上下来站定，警觉地问道：“你刚才到底干了什么？”</p>
+	<p class='firstLineIndent'>天一道：“那不重要，重要的是，我让你了解了，暴力在我这里，解决不了问题。所以，让我们来谈交易吧，你只需要完成我交代的一件小事，就可以拿走这本书了。”他说着，把脚收回桌子下面，拿起那本书，随意地打开，把其中一页摆到了池田猛的面前。</p>
+	<p class='firstLineIndent'>“算是让你先验验货吧，这样你才能相信这本书的内容和真实性并非是我杜撰的。”</p>
+	<p class='firstLineIndent'>池田猛看到那些白纸黑字上写满了自己的心声，这怪诞荒诡的现实让他直冒冷汗：“你为什么要这样做？”</p>
+	<p class='firstLineIndent'>天一回道：“我行事的理由，说了你也不会懂的。你需要知道的就是，我的书店里藏有很多人的秘密，你可以在取回自己的书以后，再来找我交易，去看别人的。就算你很蠢，但也该明白，当掌握了另一个人心中不想被人揭露的过去或是对未来的计划时，能够得到多大的利益。</p>
+	<p class='firstLineIndent'>那些高官权贵，操控着经济或是军事的人，你应该知道他们心里的想法多值钱。哦，当然了，我这里也有你这种酒鬼的书，纵然是没什么价值，也不排除会有人拿去看看，当作茶余饭后的笑料谈资什么的。”</p>
+	<p class='firstLineIndent'>“好的，我知道了，你要我做什么？！”池田猛急切地问道。</p>
+	<p class='firstLineIndent'>天一挠了挠头：“很简单的事情而已，后天的下午，你和平时一样去居酒屋里呆着，到午夜十二点再回家，然后直到天亮以前，不要跟你儿子讲一句话，一个字都不行。”</p>
+	<p class='firstLineIndent'>池田猛犹豫了一下，回道：“这关我儿子什么事？！我警告你，别把他卷进来。”</p>
+	<p class='firstLineIndent'>“我只是让你保持沉默而已。”天一道：“当然，写在纸上，或是打手势什么的，也不行，你连想都不要想。”</p>
+	<p class='firstLineIndent'>“想也会被你知道是吗？”</p>
+	<p class='firstLineIndent'>天一冷笑一声，他将池田猛的书收起来，又拿出另一本书翻阅起来：“你可以走了，不要影响我做生意。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0013'><summary><a>第十一章 围斗</a></summary>
+	<p class='firstLineIndent'>时间，现在。</p>
+	<p class='firstLineIndent'>鲸鸟的背影远去，消失。</p>
+	<p class='firstLineIndent'>铁桶里的书都已完全化为灰烬，最终徒留一缕烟线还在缓缓上升着，但其仍未飘远就在寒风中散去。</p>
+	<p class='firstLineIndent'>天一没有进屋，他依然站在门口，似是等待着什么。</p>
+	<p class='firstLineIndent'>“本来鲸鸟是不必死的。”他突然开口道。</p>
+	<p class='firstLineIndent'>但此时街上空无一人。</p>
+	<p class='firstLineIndent'>“就在几秒钟前，你们迫使我改变了主意。”天一叹气：“早知道我刚才就该顺手把鲸鸟杀了，现在我还不得不等到收拾完你们，再特地去他那儿跑一趟。”</p>
+	<p class='firstLineIndent'>此时街上突然又有人了。</p>
+	<p class='firstLineIndent'>四个人。</p>
+	<p class='firstLineIndent'>“虽然我听不明白你在说什么，但无疑是在对我们讲吧？”四人中最高大的男子说道。</p>
+	<p class='firstLineIndent'>天一望着天空，一副懒得去看他们的样子：“喝着起床后第一杯咖啡的时候就知道你们埋伏在这条街上了，只是我还不太清楚诸位的级别。刚才出来烧书时，你们缩小了包围圈，而鲸鸟离开时，你们又离我更近了。”他长叹一声：“哎……就在我对你们说第一句话之前，已可以十分确认地判定，各位全都属于并级。所以……你们的身份也可以确认了。”</p>
+	<p class='firstLineIndent'>四人中的另一人道：“就算真的如你所说，我们的埋伏早已被识破，也姑且当你蒙对了，我们都是并级，可是，你如何得出能够‘收拾掉我们’这个结论的？”他不屑地笑道：“逆十字，即便把过去这些年里，每一桩有可能和你有关的案件都拿出来分析，再往高了推算，你也绝没有达到强级吧？”</p>
+	<p class='firstLineIndent'>天一回道：“我是纸级，还有，我的名字是天一。”</p>
+	<p class='firstLineIndent'>高大男子冷笑：“天一先生，既然你也清楚自己的级别，就别再考虑做徒劳的抵抗了，束手就擒还能留下性命。”</p>
+	<p class='firstLineIndent'>“呵呵……”天一挠着乱糟糟的头发：“难道诸位如此确定纸级就必然赢不了并级吗？”</p>
+	<p class='firstLineIndent'>四人皆是面露不屑，而高大男子的表情显示出他是最狂妄也最强的一个，他又回道：“你想故弄玄虚或者自欺欺人都可以，纸级能赢并级这种事情，在一对一的情况下，可能性也绝不会超过5%，难道你想说，自己不但可以以下克上，还能以一敌四？！”</p>
+	<p class='firstLineIndent'>天一歪着头，冷哼一声：“那先杀一个让你瞧瞧好了。”</p>
+	<p class='firstLineIndent'>话音未落，四人中的一人表情剧变，他的胸口一声巨响，竟突然从内部爆开，金属碎片、内脏、血液溅射而出，焦糊的肉味和血腥味顷刻间弥漫至四周，如恐怖的阴影，笼罩住了他的三个同伴。</p>
+	<p class='firstLineIndent'>“对肉体进行器官更替和机械兵器化的改造确实是个不错的点子，几十年前想出这种方法的家伙还是值得钦佩的，他成功地让一些如同你们这样不怎么有能力的平凡人，有机会踏入并级强者的行列。”天一镇定自若地叙述着：“但人是人，机器是机器，一般人只要吃喝就行，可改造人不止要摄取食物和水，还需要能源。考虑到战斗消耗的需要，你们不可能和日常生活一样只靠生物能源转换装置就行动。所以你们今天来我这里以前，肯定充过能。”</p>
+	<p class='firstLineIndent'>天一用冷淡的眼神看着地上那上半身被炸碎的尸体：“一个体内装着精密仪器的家伙，突然因为某个部件短路而使得机械部分由内部燃起，爆炸……呵呵呵……死于这种搞笑的死法，能算是并级吗？”</p>
+	<p class='firstLineIndent'>活着的三人回过神来，略略散开几步，其中二人平举双手，他们手掌正中的皮肤由内侧打开，六管旋转机关枪的枪口从中伸出，他们的尺骨和桡骨已被这重火力火器所替代。</p>
+	<p class='firstLineIndent'>而高大男子只抬起了右臂，同样是手掌中探出了枪管，他侧过身，瞄准了天一的方向，喝道：“动手！”</p>
+	<p class='firstLineIndent'>连绵不绝的刺耳爆响开始了，从某种意义上来说，他们确实是在“动手”，三个人，五条胳膊，三十支枪管，一分钟内，超过六千发子弹经由三条交叉的线路射向了天一。</p>
+	<p class='firstLineIndent'>但天一仍站在原地，毫发无伤，直到对方弹药耗尽，不得不停止了射击。</p>
+	<p class='firstLineIndent'>“这不可能！”三人对眼前的景象难以置信。</p>
+	<p class='firstLineIndent'>天一道：“这当然有可能，比如，三条射击线上每一发可以击中我的子弹，都在空中与另一条轨道上的子弹互相碰撞，从而被弹飞了，而大多数子弹，因为后坐力，细微的空气阻力，甚至气温等等因素，飞行轨迹发生了细小的偏移，本来就打不中我。”</p>
+	<p class='firstLineIndent'>“区区纸级的混蛋！”之前称天一为逆十字的男子面露狠色，俯身朝天一突进而来，他的右手肘外侧伸展出了鲨鱼鳍形状的锋利刀刃，数秒间已欺身而至。</p>
+	<p class='firstLineIndent'>但他却和天一擦身而过，朝着无人的空地冲去，奋力挥出一刀，之后茫然地转身看着自己右侧空无一人的地方。</p>
+	<p class='firstLineIndent'>天一背对着他，宣判了他的命运：“如果体内输送化学制剂的管道因为长年累积下的磨损而破裂，那些绿油油的液体说不定会流到脑子里去的，这种情况下，就连抢救的必要都没有了。”</p>
+	<p class='firstLineIndent'>“你……你……唔……咕……”那人的右眼充盈着鲜血，流出了眼眶，最终连眼珠子都连着筋爆裂出来，鼻孔里留下了浑浊浓厚的液体，红的、白的、绿的。他跪倒在地，口中语无伦次地说了几句，然后因为身体的抽搐，声音也剧烈发抖。直到一声类似于鞭炮炸碎大堆猫粪的声音从他脑中响起，他便脸朝下永远地躺在了地上，不再动弹了。</p>
+	<p class='firstLineIndent'>活着的两人也不敢再动弹半分，因为恐惧是人的本能。</p>
+	<p class='firstLineIndent'>高大男子试探着问道：“你究竟是怎么办到的……”</p>
+	<p class='firstLineIndent'>“哼……废话，现在告诉你，会对我不利，一会儿等你死了，我也不可能对着尸体讲，你就不能问些比较有建设性的问题，比如，我怎样才肯饶了你们。”</p>
+	<p class='firstLineIndent'>“啊！！！”高大男子身边的男人转身就跑，他可不想不明不白地惨死在此。</p>
+	<p class='firstLineIndent'>但他还未跑出十米远，竟莫名地摔倒了，短短数秒后，他就停止了呼吸。</p>
+	<p class='firstLineIndent'>“现在，只剩你一个人了，如果以你刚才的观点出发，你觉得发生这种情况的概率是多少？0%？”天一笑着问道。</p>
+	<p class='firstLineIndent'>高大男子回头望着最后那名同伴的尸体，脸色苍白：“怎么可能……他摔断了脖子……在这种平地上……”</p>
+	<p class='firstLineIndent'>天一的语气像个在街上看热闹的路人：“是啊，摔得不巧，几节台阶都可能死人的。”</p>
+	<p class='firstLineIndent'>“你要怎样才肯放我走？”高大男子放下了尊严，问出了一个很现实的问题。</p>
+	<p class='firstLineIndent'>“问的好，你还算聪明，懂得听人劝。”天一又一次抬起了头，望着天空：“但是……我怎样都不准备放你走，只是打算在你死前羞辱你一番，找找乐子罢了。”</p>
+	<p class='firstLineIndent'>“你这混蛋！！”高大男子暴虐地狂喝着，他一脚将地面踏碎出了蛛网状的裂痕，眨眼便冲到了天一跟前，但与此同时，在他尚未作出任何攻击动作的刹那，他的身体以人中为轴，被整齐地切割成了两半。</p>
+	<p class='firstLineIndent'>身高两米左右的魁梧身躯，被分成两份，由惯性引领，从天一的两侧飞了过去。站在天一的位置上，可以看到，一侧尽是血肉内脏，一侧尽是机械金属。</p>
+	<p class='firstLineIndent'>“哎，连脑子都只有半个的家伙，就是蠢啊……”天一看着一地碎尸，表情仍是无动于衷的颓然，他提起脚边的铁桶，把灰烬倒在地上，吹着口哨，走进书店，关上了门。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0014'><summary><a>第十二章 通话</a></summary>
+	<p class='firstLineIndent'>东经160°，纬度0，太平洋上空。</p>
+	<p class='firstLineIndent'>距离海平面四千余米的高度，有一座永不降落的人工浮岛——天都。</p>
+	<p class='firstLineIndent'>这是皇宫所在的都市，集结了人类最尖端的技术而建成，无论是海平面上升、核战爆发、地壳变动、气候剧变、病毒肆虐，都不会对天都产生威胁。</p>
+	<p class='firstLineIndent'>因为这座都市是帝国中枢的最后一道屏障，所以在建造时就考虑到了所有的可能性。从硬件到软件，从整个浮岛对外的武器防御系统，到内部无懈可击的进出安检审查，即便王族和贵族们都要严格遵守，早在百年前就已是如此，从不曾有过疏漏。</p>
+	<p class='firstLineIndent'>而就在天都以东二十海里处，却是一个被称为地狱的地方。</p>
+	<p class='firstLineIndent'>地狱岛，每隔九天才会从海中出现一次，也只有在这一天，世界上最森严的监狱——潮汐监狱，才会有机会与外面的世界进行一次短暂的交流。</p>
+	<p class='firstLineIndent'>今天就是这样一个日子。</p>
+	<p class='firstLineIndent'>大批的物资和囚犯从不同的两个通道被送入岛内，直抵位于海底的监狱中，狱警和运输工人都打着十二分的精神，绝不敢有半分大意和疏漏，每个人都只盼着能快点儿完成今天的差事，不要出什么岔子。</p>
+	<p class='firstLineIndent'>但事实上，这是不可能的。每一次地狱岛浮出水面，都会有囚犯企图越狱的事件发生。</p>
+	<p class='firstLineIndent'>可是这监狱建成已经超过六十年了，还未有一个囚犯成功地逃离过此处。</p>
+	<p class='firstLineIndent'>也就是说，每隔九天，就会有人因逃跑而被杀死。</p>
+	<p class='firstLineIndent'>“喂，陈哥，你看那艘船。”货船上的一名船员对他身边的大副道：“那是哪个单位的船，以前从来没有见过啊，是不是军队的什么部门？”</p>
+	<p class='firstLineIndent'>大副顺着他的目光，看到了一艘黑色的“装甲飞梭舰”，船身上印有金色的帝国徽章（菱形，被两条星轨环绕）。那船停在岛的另一侧，似乎是不想引起别人注意，周围也没什么人把守。</p>
+	<p class='firstLineIndent'>“那个部门叫‘少打听’，你要是还想活着混到我这个位置，就记住，趁早把你的好奇心扔到马桶里，冲进大海。”</p>
+	<p class='firstLineIndent'>那船员不屑地撇了撇嘴：“切，我就是混到退休，也最多就是个货船船长吧。”他用大拇指点了点脑袋后面的天空：“在那座浮岛上的大佬们看来，还不是个连狗都不如的玩意儿。”</p>
+	<p class='firstLineIndent'>大副朝着那船员的后脑勺就是顺手一扇：“瞧你那鸟人德行，宁为太平狗，不做乱世人，这话听过没有？嫌日子苦，早点撞死投胎去，你要是带种的，欧洲有‘钢铁戒律’，南非有‘炎武联合’，北美还有‘自由前线’，去那儿做你的大佬梦去，别跟老子混了。”</p>
+	<p class='firstLineIndent'>“嘿嘿，陈哥，瞧你说的，我也就是这么一说，咱们现在这日子，天天有鱼有肉的，每年还能上个几次岸潇洒潇洒，已经不错了。我哪儿敢跟帝国对着干哪，那帮闹叛乱的神经病，就算有万分之一的可能性，真成事儿了，又有谁知道今天他们在那儿抛头颅洒热血的，最后是哪代儿女在享清福呢。”</p>
+	<p class='firstLineIndent'>大副本还想和那船员再闲扯几句，却突然神情一变，把原来到嘴边儿的话忘了个干干净净，他有些结巴地指着那艘黑船道：“你……你看……那人……”</p>
+	<p class='firstLineIndent'>船员的目力不及大副好，但很快也看清了，有一个蓝发的青年正缓缓向黑船走去，而在其身边一路随行，点头哈腰着的中年男子，竟是平日里一贯目中无人的监狱长。</p>
+	<p class='firstLineIndent'>“行了，不必再送了，典狱长先生。”蓝发青年挥手示意对方停下。</p>
+	<p class='firstLineIndent'>“叫我杰弗逊就行了，大人。”典狱长毕恭毕敬地道，而他的脚步也在对方说出“不必”二字时戛然而止，不敢再贸然上前半步。</p>
+	<p class='firstLineIndent'>蓝发青年虽是不太待见他，但谈吐还是很有礼貌的：“好吧，杰弗逊先生，感谢你的热情，但送就到此处好了，你应该还有工作要做吧。”</p>
+	<p class='firstLineIndent'>典狱长略低下头，避免与对方目光接触，以示谦卑：“大人所言甚是，待大人上船，属下即刻便回。”</p>
+	<p class='firstLineIndent'>“嗯。”青年应了一声，本准备转身离开，忽又想起了什么，回头道：“对了，并不是不相信你，但刚才那个犯人，请一定要严格按照我所布置的方式来囚禁，不然他很可能会逃掉的。”</p>
+	<p class='firstLineIndent'>“明白，属下不敢有半点闪失。”</p>
+	<p class='firstLineIndent'>“那就好。”</p>
+	<p class='firstLineIndent'>“大人慢走。”直到对方黑船驶离，典狱长都前倾着上半身，站在那儿，也不知是做给谁看。</p>
+	<p class='firstLineIndent'>五分钟后，黑船内。</p>
+	<p class='firstLineIndent'>蓝发青年的房间虽不能说是奢华，但也显然不比一般游轮上船长住的屋子要差。</p>
+	<p class='firstLineIndent'>他泡上一壶茶，打开电脑，检查着似乎永远看不完的邮件。忽然，其中一封的标题引起了他的注意——“北海道‘逆十字’连环杀人案”。</p>
+	<p class='firstLineIndent'>他只是粗略地看了看内容，就立即放下了手中的杯子，拨通了一个电话：“你好，是樱之府的总督吗？”</p>
+	<p class='firstLineIndent'>电话对面的声音在颤抖：“是……是的……请问大人您是？”</p>
+	<p class='firstLineIndent'>“真对不起，因为有非常紧急的事情，走司法部门的程序联络实在太慢了，所以才用了王室的直线，你那边还是凌晨吧，吵醒你了吗。”</p>
+	<p class='firstLineIndent'>“不！不不！绝对没有！大人您有什么事尽管吩咐。”其实总督他一开始是很火的，大冬天在被窝里睡得正酣时，突然床头柜上电话响了，甭管对面是什么人，他都准备拿起来骂人了。但当他看到来电的号码是从总督府转接过来的时候，当他看到王室直线这几个字显示出来的时候，基本上害怕的情绪已经把愤怒完全浇灭了，而此刻对方和气的态度简直让总督先生受宠若惊。</p>
+	<p class='firstLineIndent'>“好的，是这样……”蓝发青年也没在意，继续说着自己要办的事情。</p>
+	<p class='firstLineIndent'>与总督通话后，总督用闪电般的速度在凌晨吵醒了很多人，而那些人又叫醒了更多人……然后，大约二十分钟后，当黑船上的蓝发青年再次拨通樱之府总督的直线电话后，便直接被转接到了某一个人的手机上。</p>
+	<p class='firstLineIndent'>“我是HL樱之府分部组员，桑原准一，军衔级别：少尉；战斗级别：并；驻北海道，对外身份是警署的验尸官。请问长官有何吩咐？”对面的人一丝不苟地做了自我介绍，语气不卑不亢。</p>
+	<p class='firstLineIndent'>“我看到了你上级部门发给总部的一封邮件，你就是最终端的上报者吗？”</p>
+	<p class='firstLineIndent'>“是的，长官。”</p>
+	<p class='firstLineIndent'>“那案子怎么样了，报告中说你已经有犯人的眉目了？”</p>
+	<p class='firstLineIndent'>“那当然了。”电话对面的语气忽然变得有些不对：“犯人不正在和你通话吗？哈哈哈哈哈！”</p>
+	<p class='firstLineIndent'>阵阵癫狂的笑声传进了蓝发青年的耳中，他瞪大了双眼，一时竟不知该说些什么。</p>
+	<p class='firstLineIndent'>“桑原君昨天按照HL的标准流程，在发现异状后立即叫了四个‘清理者’过来监视我，呵呵，其实那倒也无所谓啦，但因为申请清理者出击肯定是要写报告的，所以据我估计，很快你就会介入这件事了。”天一得意地笑着：“如果生在十九世纪，你会是个很不错的侦探。要知道，这些年来有能力追在我屁股后边儿吹毛求疵的角色都越来越少了，你可是很令我期待的啊，赶快来北海道吧，大把新鲜的线索正在等着你。”</p>
+	<p class='firstLineIndent'>蓝发青年呼了口气，稳定了一下情绪：“你已经不在北海道了吧？”</p>
+	<p class='firstLineIndent'>“那是啊，我早就想走了，来这儿的第二天我就后悔了，果然螃蟹和寿司是只能偶尔尝尝鲜的东西，我还是喜欢一桶桶的辣味炸鸡翅啊。”</p>
+	<p class='firstLineIndent'>“所以你决定在离开之前，留下一个局，来测试我？”</p>
+	<p class='firstLineIndent'>天一依然是无所谓的态度：“只是个游戏而已，你也不必太认真了。尽管放心好了，不会有那种让事情变得无趣的东西留给你的，像什么有逆光视力的警察，舞刀弄枪的验尸官，我全都处理掉了，剩下的物证和一些平民的证词，你可以好好玩味一阵子的。”</p>
+	<p class='firstLineIndent'>“看来你已经把桑原杀了……”</p>
+	<p class='firstLineIndent'>“你废话还真多呢，不然你拨桑原的手机怎么会找到我呢？哈哈哈哈！那家伙的直系长官到现在还不知道自己的手下已经死了，你说，如今通信这么发达，究竟是把人的距离拉近还是拉远了啊？哈哈哈……”</p>
+	<p class='firstLineIndent'>“我一定会抓到你的，天一。”蓝发青年冷冰冰地说道。</p>
+	<p class='firstLineIndent'>电话对面传来了吐舌头模仿放屁的声音，然后又是一阵大笑，接着，通话中断了。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0015'><summary><a>第十三章 棋子</a></summary>
+	<p class='firstLineIndent'>十二月十二日，池田精神失常前一小时。</p>
+	<p class='firstLineIndent'>当“九月四日”这几个字从天一口中说出的刹那，池田惊慌失色，他觉得自己又一次陷入彀中，却又不知这圈套的全貌。</p>
+	<p class='firstLineIndent'>天一冷笑道：“我每次看到你这种嘴脸都会觉得非常厌烦，简直是可悲到了极点，你是所有这些交易者当中最让我不快的一个。”</p>
+	<p class='firstLineIndent'>“所有交易者？！”池田惊呼：“你还和别人交易过！”</p>
+	<p class='firstLineIndent'>到了这时，他似乎才明白了一些事情，可惜太晚了。</p>
+	<p class='firstLineIndent'>天一道：“对，就是你这种反应，多年来我都看过多少回了，你们每一个人，都忽略了还有其他交易者的可能性。说实话，我并不吃惊，基本上人类的反应九成都如此，所以你们这些人考虑任何问题，得出来的答案除了愚蠢，还是愚蠢。”</p>
+	<p class='firstLineIndent'>池田问道：“你还和谁交易过？难道……三浦？！松尾！”</p>
+	<p class='firstLineIndent'>天一叹气：“哎，和你这蠢货交流实在太辛苦，够了，这游戏到此为止吧，我已经不想和你玩下去了，反正线索条件差不多也凑齐了……”</p>
+	<p class='firstLineIndent'>他喝上一口咖啡，不紧不慢地道：“早在事情还未发生的时候，我已推测了你们可能做出的举动，交易只是一种引导，看你们的表现会不会超出我的预期，可惜，没有任何在我的计算范围之外的事情发生。</p>
+	<p class='firstLineIndent'>嗯……先来说说你的父亲吧，多年来你一直认为他是个不负责任的酒鬼，这个判断并没有错，但池田猛这个男人是有一条底线的，那就是你。</p>
+	<p class='firstLineIndent'>虽然你总觉得自己的人生不怎么样，但请睁大眼睛好好看看，纵然生活拮据，他还是送你去优秀的升学高中念书，打骂让你成为一个正派的人，小时候把你丢在动物园的男人，不也正是后来拼了命地四处找你的人吗？</p>
+	<p class='firstLineIndent'>在你把自己当成悲剧主角，抱怨着生活没有给你足够的条件时，却从未想过要靠自己去改变什么，你这种人的眼前看到的当然只有绝望。</p>
+	<p class='firstLineIndent'>你从未站在别人的角度上考虑过，今年也已经十七岁了，你知道父亲的生日吗？知道他的过去吗？了解他的想法吗？你什么都不知道，你和每一个凡人一样，只去考虑自己的感受，嫉妒那些天生就比自己优越的人，比如藤田、三浦那样的家伙。</p>
+	<p class='firstLineIndent'>但如果把你放到他们的位置上，你就不会是池田了，你便是另一个三浦而已。</p>
+	<p class='firstLineIndent'>你的父亲造就了你，可你不知感恩。你的心中填满了嫉妒和哀怨，但你懦弱怕事，能力又差，最终，你父亲为你买了单，他帮你杀了三浦。”</p>
+	<p class='firstLineIndent'>“什么！”池田颤抖，摇头，目光呆滞，口中念道：“不可能……不可能的……老爸为什么要杀三浦？！他们根本就……”</p>
+	<p class='firstLineIndent'>“所以我刚才就问你，要不要改变交易的内容，听听是谁杀了三浦，但你的选择跟第一次交易完成时一样的自私和愚蠢。”天一打断了池田的话道：“前天晚上，你目睹了松尾的死亡后回家，那时你的父亲其实并没有睡着，他只是为了完成我的交易而‘不和你说话’，因此他只能假装睡着。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>“半夜回到家发现儿子不在，竟还满不在乎地睡了。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>“昨天上午，你在学校时，他来到我的店里完成交易，接着便问我有关你昨晚究竟去哪儿了的问题。因为是我让他在特定的时间对你保持沉默的，他理所当然会认为我知道些什么。</p>
+	<p class='firstLineIndent'>我就告诉他，你儿子半夜去了学校，发现了尸体，并留下了线索，但没有提到任何细节。</p>
+	<p class='firstLineIndent'>于是，后来我们就有了一笔新的交易，我让你父亲帮我传达一个信息给你，想看看你是否能够得到启发。你应该还记得，你父亲突然心血来潮去搜电视新闻吧？”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>“新年将至，今年北海道的治安状况在年底依然呈下滑趋势，和全府各地区相比再次是倒数第一，除了频发的入室盗窃以外，暴力犯罪也有增加，警方发言人拒绝对此数据作出回应，今天由本台记者和我们请来的几位专家一同来……”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>天一慵懒地活动了两下脖子：“从你此刻的表情来看，记性不算太差嘛。其实我本人倒也不怎么看媒体报道的，我习惯直接去翻别人的想法，所以能提前知道电视上会播什么新闻。”</p>
+	<p class='firstLineIndent'>“你到底和多少人做过交易？”池田惊愕地问道。</p>
+	<p class='firstLineIndent'>天一回道：“你认识的，你不认识的，你认识的人所认识的，哈！人与人之间的联系就像错综复杂的线，只要找对了方法，像北海道这么个小地方，用极少的交易次数，就能达到牵一发而动全身的效果。”他转过头，望着身侧角落里的一个柜子：“这几天真是烧书烧得手酸啊……”</p>
+	<p class='firstLineIndent'>杯中的咖啡又见底了，天一添了些，继续道：“可惜你这总是幻想自己能成英雄人物的家伙，实际上太缺乏社会使命感了。实话实说，我认为你所憧憬的梦想，并不是当个英雄，而是享受英雄的待遇，却不承担英雄的代价，仅此而已。</p>
+	<p class='firstLineIndent'>所以你在看了新闻后完全没有反应，没有质疑，没有情绪，可悲啊，这也就是为什么，在我告诉你有‘其他交易者’之前，你根本想不到的原因。”</p>
+	<p class='firstLineIndent'>天一从抽屉拿出一本书，翻到了末尾，转向池田：“这是三浦最后的一些想法。”</p>
+	<p class='firstLineIndent'>池田看着那些文字：“杀了他……杀了他……混蛋……那个混蛋……一定要杀了他……”</p>
+	<p class='firstLineIndent'>“湿蚊香那家伙住得很偏僻，就在他放学的路上……无论如何也要宰了他……”</p>
+	<p class='firstLineIndent'>“该死，这里怎么有个酒鬼，得把他赶走。”</p>
+	<p class='firstLineIndent'>“这家伙！究竟……”</p>
+	<p class='firstLineIndent'>文字到此终止了。</p>
+	<p class='firstLineIndent'>天一道：“你昨天跑来我这里，其实你父亲一直在后面跟着，不过他要赶在你之前回家继续装睡，因此就没能进来找我。</p>
+	<p class='firstLineIndent'>今天上午你在学校跟三浦闹腾的时候，鲸鸟去了你的家，问了你父亲很多问题，让他变得越发不安起来。于是到了下午，你父亲来我这里寻求答案，我就给他看了三浦的书，当时的文字正到三浦企图杀你的内容，你爸看完以后，就回家去拿了把刀。</p>
+	<p class='firstLineIndent'>本来他是想打个埋伏，吓吓三浦，可那死胖子天生好斗，和你爸缠斗起来，最终，你爸就一不做二不休，把人杀了。”</p>
+	<p class='firstLineIndent'>池田扑向前，抓住天一的领口：“是你！都是你操纵的！这些都怪你！”</p>
+	<p class='firstLineIndent'>天一随手就将他推开：“有其父必有其子啊，真是一个德行。”他整理了一下衣物：“亏我还好心好意地帮你爸清理了现场，把尸体切片后转移到别的地方去了。那个大叔啊……杀完人扔了刀就跑怎么行呢，又不是随地大小便。”</p>
+	<p class='firstLineIndent'>“你为什么要做这些！为什么！”池田吼出声来。</p>
+	<p class='firstLineIndent'>天一淡然地说道：“八号晚上，松尾送完录像带回来，也问了我这个问题，我告诉他，‘因为我想看看你的贪婪’，后来在我的提点下，他放弃了自己的心之书，而和我交易了一个别人的秘密，可以让他发财的秘密。前天早上你搞错了，他不是在对你冷笑，而是在看坐在你后排的三浦。</p>
+	<p class='firstLineIndent'>而三浦，在九号也来问过我这个问题，我告诉他，‘因为我想看看你的暴戾’，于是他也和我做了笔交易，我承诺他，会永远守口如瓶，而条件只是让他第二天早晨揍你一顿。虽然半信半疑，但打你是家常便饭，他没理由拒绝这买卖。</p>
+	<p class='firstLineIndent'>十号，也就是前天，当你怀着满腹的怨恨走进我店里时，又有没有想过，今时今日，我会对你说，我只是想看看你的妒恨罢了。”</p>
+	<p class='firstLineIndent'>“你是疯子……疯子！”池田后退着。</p>
+	<p class='firstLineIndent'>“哈哈哈哈……”天一笑得确实像个疯子：“行了，快滚吧。你这种废物，我连留下‘逆十字’的兴趣都没有。不过你好歹也在我的游戏中发挥了一些作用，我最后再告诉你两件事好了。</p>
+	<p class='firstLineIndent'>第一，鲸鸟从最初就不曾怀疑过你，他有一种异能，像指纹、脚印、血迹等等这些，鲸鸟用肉眼就能立即看到，那天现场发生的每一件事他都能还原出来。</p>
+	<p class='firstLineIndent'>松尾的脖子上有两条勒痕，虽然中间部分是重合的，但当他在梁上吊久了以后，颈两侧的痕迹深浅会和中间的不一样，随便哪个警察最终都能判断出这是伪装自杀；而你在地上留下的指纹，不会成为什么证据的，因为那天的夜班保安和你做了完全一样的事情，他也在看到尸体后坐到地上倒退着爬行了。凶手是不会留下这种痕迹的，没有人会被自己刚刚布置好的现场给吓到。</p>
+	<p class='firstLineIndent'>昨天我只是用三浦刺激你一下，你就顺着我的意愿行事了，其实三浦也并没有如此高明，他的杀人手法是我提供的，但他执行的时候依然有瑕疵，这就是为什么我说他‘完成了一次还算不错的谋杀’，不错和完美，还差得远呢。</p>
+	<p class='firstLineIndent'>所以说，你在我这里所做的每笔交易，都未得到任何实质的利益，只是你那狭隘的意识在逼迫着自己成为我的棋子罢了。</p>
+	<p class='firstLineIndent'>还有第二点，你老爸……”天一满不在乎地说道：“会不会畏罪自杀呢……你要不要赶回去看看？”</p>
+	<p class='firstLineIndent'>伴随着身后让人不寒而栗的大笑，池田横冲直撞地奔出了书店的门口，再也不曾回来。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0016'><summary><a>第十四章 灭口</a></summary>
+	<p class='firstLineIndent'>鲸鸟从池田家走了出来，屋里压抑的气氛让他一秒都不想多待。</p>
+	<p class='firstLineIndent'>“喂，我是鲸鸟……嗯……是的……发现一具男尸，初步判断是自杀，还有一个精神失常的高中生，是死者的儿子……对……没错……救护车和凶杀科的都来吧……地址在……”</p>
+	<p class='firstLineIndent'>他跟警局简短地交代了一下，刚刚将手机挂断，一支枪管就抵在了其脑后。</p>
+	<p class='firstLineIndent'>天一的声音从鲸鸟背后传来：“又见面了，鲸鸟警官。”</p>
+	<p class='firstLineIndent'>“你终于要亲自动手了吗？”鲸鸟没有转身，没有移动脖子，甚至连手指都不敢动一下，因为他很明白，在自己身后拿着枪的是一个视人命如草芥的男人。</p>
+	<p class='firstLineIndent'>在这短暂的瞬间，鲸鸟的判断是，对方既然没有直接射杀他，就一定有什么话要跟他说，也许是炫耀，也许是谈交易，总之肯定是出于某种原因才会如此。所以他设法和天一进行交涉，试图找机会摆脱这必死的局面。</p>
+	<p class='firstLineIndent'>“转过来。”天一道。</p>
+	<p class='firstLineIndent'>鲸鸟照办了，他面对着天一，面无惧色：“你有话要跟我说是吗？”</p>
+	<p class='firstLineIndent'>天一抬起头，东张西望了一番，好似是在想些什么，但是他仅仅花了三秒钟，像这样做了做样子，然后就道：“嗯……我以为是有的，不过现在想了想，好像没有。”</p>
+	<p class='firstLineIndent'>下一秒，枪就响了。</p>
+	<p class='firstLineIndent'>鲸鸟错愕的脸上，留下了一个焦黑的弹孔，子弹从眉心进入，整个后脑极其夸张地爆开，脑浆和血液喷洒到数米远处。</p>
+	<p class='firstLineIndent'>几秒后，尸体仰面栽倒了下去。</p>
+	<p class='firstLineIndent'>天一拿着张厚纸巾，擦了擦枪口，扔到地上，耸了耸肩：“好吧，至少这样你躺在棺材里的时候，看上去仪容会比较端正，他们只要给你弄个高一点的枕头就好了。”他貌似是对着鲸鸟的尸体开了个玩笑。</p>
+	<p class='firstLineIndent'>收起枪后，天一蹲下身，取走了鲸鸟口袋里的证件，接着起身，哼着小调离开了。</p>
+	<p class='firstLineIndent'>半小时后，警局，停尸房。</p>
+	<p class='firstLineIndent'>桑原准一的直属上级，岛木少校，拨通了桑原的手机。</p>
+	<p class='firstLineIndent'>“请问有什么指示，长官。”桑原看到号码后，也没有过多的废话，接起来就说正事。</p>
+	<p class='firstLineIndent'>岛木道：“桑原君，C小队那里发生了异状。”</p>
+	<p class='firstLineIndent'>桑原回道：“是被对方发现了吗？难道是打斗中出现了伤亡？”</p>
+	<p class='firstLineIndent'>岛木的语气变得很怪：“桑原君，你之前的申请报告里写着，初步评估能力为‘纸’级的连怀杀人犯，这个判断是否过低了？”</p>
+	<p class='firstLineIndent'>桑原从这话里听出了些门道，他也紧张起来：“不太可能……如果‘强’级以上的人物进入樱之府，应该早就被监视起来了，我们的辖区里不会有这种人存在的……这长官您也该清楚，那家伙……最多是‘并’级吧。”</p>
+	<p class='firstLineIndent'>岛木道：“你说得很对，但你能不能解释一下，为什么C小队的四个人在大约一个小时前与本部失去了联系呢……我本来以为是设备故障或是通信受到干扰之类的，但眼下看来，是不会有错了。”</p>
+	<p class='firstLineIndent'>桑原神情一变：“难道……C小队集体叛逃了？”</p>
+	<p class='firstLineIndent'>岛木冷冷道：“桑原君，你是不是和死人待在一起太久，脑子也变得僵硬了，不要总是用问题来回答我的问题，也不要总是给我未经确认的情报。”</p>
+	<p class='firstLineIndent'>桑原的喉结上下蠕动，脸色铁青：“明白了，长官，我这就去确认……”</p>
+	<p class='firstLineIndent'>岛木道：“哼……改造人毕竟只是改造人，虽然也被归为并级，但谁都清楚，他们和真正的并级强者根本是两回事，所以死多少都无妨。但你，桑原君，希望你能带着能令我满意的结果，活着回来。”</p>
+	<p class='firstLineIndent'>“是，长官！”桑原铿锵有力地回答。</p>
+	<p class='firstLineIndent'>而电话则在这一刻被对方挂断了。</p>
+	<p class='firstLineIndent'>桑原收起手机，眼神和平时那笑呵呵的模样判若两人，他扔掉了正准备享用的午餐，杀气腾腾地朝着停尸房的门口走去。</p>
+	<p class='firstLineIndent'>正在此时，门却从外面被推开了，有人推了具尸体进来。</p>
+	<p class='firstLineIndent'>“啊，桑原前辈，正巧您在啊，又送进来一具呢。”那年轻警官指了指推床上那具装在袋子里的尸体：“打开拉链的时候可留神了，这家伙的死相可吓人了。”</p>
+	<p class='firstLineIndent'>桑原的心中升腾起一阵不祥的预感，一种本能让他感到事有蹊跷，为什么偏偏这时候有具尸体送进来？难道……</p>
+	<p class='firstLineIndent'>他随手抓起附近托盘上的一把骨锯，另一手小心翼翼地缓缓拉开了裹尸袋的拉链。</p>
+	<p class='firstLineIndent'>“喂……前辈……这是干什么啊……”</p>
+	<p class='firstLineIndent'>“少啰唆……你站远些……”桑原懒得多解释，头也不回地喝止了身旁的警员，眼睛死死盯住那装尸体的袋子，仿佛里面会忽然蹦出头猛兽一般。</p>
+	<p class='firstLineIndent'>尸体的头部逐渐露了出来，那张脸已经血肉模糊，血腥味扑鼻而来。</p>
+	<p class='firstLineIndent'>桑原不敢大意，如果这只是化妆而已，对方随时可能暴起并突下杀手。</p>
+	<p class='firstLineIndent'>继续拉动拉链，尸体的上半身已经全部露了出来，这时桑原才意识到，这男尸竟是一丝不挂的，刚送进来的尸体，怎会连件衣服都没有？方想到此处，他忽然瞥见这尸体胸口的血迹似乎是……是字！</p>
+	<p class='firstLineIndent'>往前凑上几分，桑原看清了这用血模模糊糊写下的几个字：“你猜错了。”</p>
+	<p class='firstLineIndent'>他脑中嗡然一响，这才注意到，尸体的体温还未完全消失，而血迹也根本没干！</p>
+	<p class='firstLineIndent'>噗一声，利刃破开皮肤，撕裂肌肉，刺入内脏。整把手术刀连同刀柄一起都被拍入了桑原的身体，他踉跄转身，脸上写满了惊愕与悔恨。</p>
+	<p class='firstLineIndent'>那年轻的警员扔掉了头上的帽子，松了松警服的领口，然后脱了下来，在警服下，是黑色的衬衫和西装。</p>
+	<p class='firstLineIndent'>“呵呵……”天一嘲笑道：“我刚才都问你了，你这是干什么啊……”</p>
+	<p class='firstLineIndent'>“你……”桑原坐倒在地上，他的肺叶被割伤了，呼吸和说话都变得十分困难。</p>
+	<p class='firstLineIndent'>“死人有什么好提防的？难道你不觉得活人更可怕吗？”天一朝着桑原走去：“其他同事对你的印象都还停留在……每年的年会上都会乐呵呵地表演‘荞麦面’的验尸官，谁又能想到你竟会是HL的人呢。”</p>
+	<p class='firstLineIndent'>桑原抓在手上的骨锯并没有松开，他在等待着，等着对方慢慢靠近，一旦进入自己的攻击范围，伺机做出最致命的一击。</p>
+	<p class='firstLineIndent'>但天一，偏偏在一个令桑原十分尴尬的距离上停下了脚步：“起初我以为你和鲸鸟一样，这个警局里有两个纸级以上的人存在只是碰巧而已。</p>
+	<p class='firstLineIndent'>可惜，连我的判断也出现了偏差，因为鲸鸟这家伙吸引了太多注意力，导致我忽略了你身上的可能性。</p>
+	<p class='firstLineIndent'>前天早上，尸体被发现后不到五个小时，当一群傻帽警察还在松尾被害的现场拼命取证时，鲸鸟就已经通过池田、松尾、三浦等人留下的痕迹找到了我的书店，不得不说他的能力确实很适合做刑侦工作。</p>
+	<p class='firstLineIndent'>那时我已可以确认，这个我无法读取心声的家伙是纸级强者，但他当天并没有选择进我的书店，可能是打算等掌握了更多证据以后再回来。</p>
+	<p class='firstLineIndent'>而你，直到今天早上为止，我都没有怀疑过你的身份，可偏偏清理者们出现了。”</p>
+	<p class='firstLineIndent'>天一转过身去，满不在乎地踱步，似乎是有意要卖出破绽，引诱对方攻过来：“那时我就明白了，你不但比鲸鸟厉害，而且是HL的潜伏人员。”他居然还悠闲地伸了个懒腰：“放心吧，你死了以后，我会帮你写一份报告的，一定会让你的上级‘满意’的，哈哈哈哈哈……”</p>
+	<p class='firstLineIndent'>正在天一笑声未绝之时，桑原动了，他如一支弩箭般窜起，手中骨锯直指天一的脊椎处。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0017'><summary><a>尾声 还未开始</a></summary>
+	<p class='firstLineIndent'>十二月十四日，晚八点，北海道。</p>
+	<p class='firstLineIndent'>这条街地处偏僻，平日里行人不多。</p>
+	<p class='firstLineIndent'>昨天下午的爆炸声和枪响让周围的居民都成了惊弓之鸟，连仅有的几家商铺都没有开门。</p>
+	<p class='firstLineIndent'>数辆警车停在一片空地旁。</p>
+	<p class='firstLineIndent'>这块并不算大的地界儿昨天分明还坐落着一家书店，但现在，什么都没有。</p>
+	<p class='firstLineIndent'>可能是那屋子飞走了吧。</p>
+	<p class='firstLineIndent'>从空中俯瞰，地面上有一个巨大的黑色十字痕迹，似乎那书店就像一个印章，虽被拿走了，却是留了痕迹下来。</p>
+	<p class='firstLineIndent'>一个蓝发青年默然地站在空地旁许久，方才对身边的一名中年男子道：“岛木先生。”</p>
+	<p class='firstLineIndent'>岛木回道：“是！”</p>
+	<p class='firstLineIndent'>“过会儿找人来把这个痕迹洗掉吧，还有街上那些血迹，都已没有价值了。”</p>
+	<p class='firstLineIndent'>“遵命！”</p>
+	<p class='firstLineIndent'>蓝发青年接着道：“哦，还有个唯一的幸存者吧，是叫……池田望，对吗？”</p>
+	<p class='firstLineIndent'>“是的，目前他正在精神病院，属下已派人将其看管起来，需要的话，可以随时带来见您。”</p>
+	<p class='firstLineIndent'>“对了，他的脸上有没有逆十字？”</p>
+	<p class='firstLineIndent'>岛木想了想，回道：“没有。”</p>
+	<p class='firstLineIndent'>“这样啊……”蓝发青年若有所思地道。</p>
+	<p class='firstLineIndent'>“长官，鲸鸟警员、桑原少尉、以及C小队……嗯……部分脸部完整的队员尸体上，也没有发现逆十字，不知这线索是否对案情有帮助？”岛木提醒道。</p>
+	<p class='firstLineIndent'>“哎……”蓝发青年叹了口气：“其实他的界线很简单，因‘罪’而死者，才会被留下那诅咒的十字。而他亲自动手杀死的人，一般不会有那记号。至于活人……那得看看才知道了吧。”他抬头望天，影影绰绰的乌云后，藏着模糊的月：“天一，有自己的一套游戏规则，和这世界上的任何人都不同。好像他是某种更高位的生物一般，觉得用藐视和戏弄来对待正统治着这个星球的物种，是件理所当然的事。”</p>
+	<p class='firstLineIndent'>岛木试探着问道：“长官……似乎很了解这次的嫌疑人？”</p>
+	<p class='firstLineIndent'>“不，我甚至都不曾见过他，这就是最令我恼火的……”他说到此处，一挥衣袖，天上的乌云竟旋转着化散开，月色瞬间清明起来。</p>
+	<p class='firstLineIndent'>岛木心中不寒而栗，自己虽拥有“强”级的实力，但眼前这年轻人轻描淡写的手笔，竟已是让他望尘莫及的境界了，HL的上层，当真如传闻中一样深不可测。</p>
+	<p class='firstLineIndent'>“他就像那月亮一样高不可攀，立于万物之上，时隐时现，你知道他就在那儿，始终都在，每一秒，都仿佛在嘲笑着你的所作所为。”蓝发青年转身朝警车走去：“这个人太危险了，虽然他现在还没有对帝国做出什么具有直接威胁的举动，但如果有一天，他真的开始那样做了，就是灾难。</p>
+	<p class='firstLineIndent'>他会打破、改写这个时代的所有规则，给整个世界带去混乱，无数一手遮天的大人物，利益团体，甚至是……”他没有说出那个词语来：“总之，他们会发狂的，像泼妇一样发狂，而最终的受害者，恐怕还是平民。”</p>
+	<p class='firstLineIndent'>岛木此时已走到了蓝发青年的左前侧，恭敬地为其打开了车门。</p>
+	<p class='firstLineIndent'>“谢谢。”他对岛木道：“好吧，出发去看看这个幸存者到底有什么价值。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0018'><summary><a>第二卷 水城血影</a></summary>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0019'><summary><a>序章 血枭</a></summary>
+	<p class='firstLineIndent'>我很讨厌眼前这个女人。</p>
+	<p class='firstLineIndent'>并不是因为她的性格。</p>
+	<p class='firstLineIndent'>当然了，我也不了解她的性格。</p>
+	<p class='firstLineIndent'>我只是讨厌她那张脸。</p>
+	<p class='firstLineIndent'>这张脸很美，大眼睛，高鼻梁，没有皱纹，皮肤十分光滑，还用了不少闻起来就很名贵的化妆品，电影明星的脸也不过如此了。</p>
+	<p class='firstLineIndent'>但有一个问题。</p>
+	<p class='firstLineIndent'>她的表情。</p>
+	<p class='firstLineIndent'>这个女人的表情太不自然了。</p>
+	<p class='firstLineIndent'>“啊！！！！！”</p>
+	<p class='firstLineIndent'>她又在尖叫了，都一整天了，完全没有喉咙嘶哑的征兆。我倒是有点佩服她了，要知道在她之前那几十个实验品，不管男女老少，能够每一声都这么鬼哭狼嚎的还真没有。</p>
+	<p class='firstLineIndent'>但她那脸上的表情依然很违和。</p>
+	<p class='firstLineIndent'>我判断，她整过容，而且很多次。</p>
+	<p class='firstLineIndent'>做解剖的时候，我验证了这件事，天知道她动了几次整容手术，我要是对自己的脸也狠狠心，没准能整成和她一样。</p>
+	<p class='firstLineIndent'>活体实验是个非常累的活儿，但这是我的爱好，我的事业，我的生命。生活中必不可少的一部分。</p>
+	<p class='firstLineIndent'>八岁那年，我用一份儿三明治把邻居家那只总爱叫唤的老狗骗到了我爸的车库里，然后用一把管钳和一把小钢锯让它永远闭了嘴。</p>
+	<p class='firstLineIndent'>那是我迈出的第一步，就像莫扎特三岁摸琴的那一刻般，我知道，这就是我的天赋所在，人生向往。</p>
+	<p class='firstLineIndent'>不过后来的事情并没有那么顺利，当我浑身是血回到家里时，我父母的表现令我十分不安。</p>
+	<p class='firstLineIndent'>好在我几周后解决了这件事，也同时完成了两例以人类为标本的实验。</p>
+	<p class='firstLineIndent'>处理尸体没有花费太多力气，我从小就是个十分强壮的男孩儿，不过说起来，直到最近我才听说有个很好的办法，就是切碎了喂猪。</p>
+	<p class='firstLineIndent'>这算什么？这消息太伤人了，我这挖了几十年坟的人到底算什么？</p>
+	<p class='firstLineIndent'>记得有一次，我在迈阿密的沙滩上刨坑，当时是凌晨两点，我有两个满满的行李箱要处理，血都已经开始往外渗了，谁知道刚开挖不久，我竟然挖到了东西，猜猜是什么？</p>
+	<p class='firstLineIndent'>没错，是该死的尸体，是的，我去弃尸，却在他娘的几英里长的沙滩上，一个随机的地点，几铲子下去，挖到了尸体。</p>
+	<p class='firstLineIndent'>这就好像你在荒山野岭里突然肚子疼，刚找了个草丛蹲下来，却发现这儿已经埋了一大坨屎，还是形状非常猎奇的一坨稀屎。</p>
+	<p class='firstLineIndent'>我得告诉你们，迈阿密那地方的黑手党，穿着可笑的花衬衫，个个儿以为自己是老电影里的冷血硬汉，但事实上，这帮混蛋最多算是半职业流氓，他们用几个愚蠢的蛇皮袋把死人一裹就埋沙地里了。你们以为自己在火车站鼓捣黄片儿呢？有种你干脆用草席啊？看看哪个先臭出来。</p>
+	<p class='firstLineIndent'>我只能把那个坑填上，另外换个地方，猜猜怎么着？我刚拖着箱子跑了不出二百米，就看到两个穿着花衬衫的傻×正在一棵椰树下挖坑。</p>
+	<p class='firstLineIndent'>那天晚上，我多埋了两个人，对，这就是我要说的，随地大小便的人，我就把他们推进粪坑里，盖上盖子。</p>
+	<p class='firstLineIndent'>言归正传，刚才的故事只是想说明，这个星球上的空间实在是太珍贵了，我们要善加利用，到处乱扔东西是不文明的行为。</p>
+	<p class='firstLineIndent'>反正如今我也不得不承认，喂猪确实是个不错的方法，至少比自己吃掉好很多，有段日子里，我也试过那么几回，真是非常糟糕的回忆。</p>
+	<p class='firstLineIndent'>等等，那是什么声音，有人进屋了……这脚步声……一个、两个、三个……一共有五个人，是警察吗……果然这地下室的隔音还是太差，也不知是被谁给发现的。</p>
+	<p class='firstLineIndent'>屋外估计还有后援部队，杀光他们以后，在这城市里也待不下去了吧。</p>
+	<p class='firstLineIndent'>其实首尔的气候还是不错的……算了，去欧洲吧，十年没到过那儿了，风头总该过去了。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0020'><summary><a>第一章 监控录像</a></summary>
+	<p class='firstLineIndent'>威尼斯，从诞生之日起就注定不平凡的城市。文艺复兴重镇，工商业贸易中心，地中海最繁华的港口。二十世纪前的欧洲历史上，这里经历过数次兴盛与衰败，最后留下的，是一座风光旖旎，诗情画意的水上都市。</p>
+	<p class='firstLineIndent'>但这些都已成为过去。</p>
+	<p class='firstLineIndent'>近百年前，帝国的统治改变了这里的格局。</p>
+	<p class='firstLineIndent'>在那反抗军四起的动荡年代里，诬陷、暗杀、侵占，发生在每一个角落；没过多久，宗教也成为了下一个必须收拾的目标，世界上所有宗教的实际权力几乎被完全废止；而最后，商业也同样被介入，从那时起，这个星球每笔大买卖的背后，贵族和皇族们都能从核心利益中分到一杯羹。</p>
+	<p class='firstLineIndent'>威尼斯只是无数受影响的历史名城之一罢了。</p>
+	<p class='firstLineIndent'>今时今日，这里是的七座教堂都是要买门票才能进入的，有些基本等同于博物馆在对外开放，有些则单纯作为旅游参观使用，教堂里的“神父”和“修女”只是在扮演神职人员而已，下班后没准直接就进了夜总会。大运河沿岸数以百计的宫殿豪宅，也都被帝国画地为界。这些古代欧洲建筑艺术的精粹，如今多半成了帝国政府的办事机构，极少一部分仍被用作私人宅邸，只不过住在里面的，基本都是那些白天在隔壁的宫殿里办公，晚上回自己的豪宅睡觉的人物。</p>
+	<p class='firstLineIndent'>如此时日一多，浮华的水面下，必然积淀着腐朽的淤泥。</p>
+	<p class='firstLineIndent'>2101年的威尼斯，隶属于帝国西欧五郡之一的冠之郡。这里已找不到多少浪漫水城的感觉，昔日的荣光再难重现。人口组成主要是港口工人、海员、服务行业者、游客和个体经营者这五类。酒吧、夜店遍地皆是，这些与欧洲艺术气息格格不入的营业场所，才是常住此地的平民们聊以慰藉的唯一途径。</p>
+	<p class='firstLineIndent'>一月，旅游淡季，威尼斯一年中最阴冷多雨的时节。</p>
+	<p class='firstLineIndent'>铜鹦鹉酒吧的门前，拉着一条黄色警示线，几名警员将围观的人群挡在了外面。</p>
+	<p class='firstLineIndent'>夜色中，一个男子沉默地走来。</p>
+	<p class='firstLineIndent'>高领风衣，老气横秋的鸭舌帽，他就像在扮演黑白电影时代的老派侦探。</p>
+	<p class='firstLineIndent'>向警员出示了一下证件，他便朝酒吧里走去，挡在他面前的警示线，在无人触碰的情形下自行歪曲升起，让其顺利通过，这一幕只有短短两秒，根本没人注意到他的双手一直插在风衣口袋里不曾动过。</p>
+	<p class='firstLineIndent'>他叫埃洛特·奈斯，三十三岁，“强”级，威尼斯警局的传奇人物，城中的恶棍们称其为“纸侠”。</p>
+	<p class='firstLineIndent'>纸侠很喜欢这个称呼，他的观点是，出生时的名字再响亮，也是父母给予的，但纸侠之名，却是他自己挣来的。就像超人之所以被称为超人，并不是因为他有超能力，而是因为他用超能力帮助并拯救了很多人，如果他什么都不干，他就是克拉克而已。</p>
+	<p class='firstLineIndent'>“嘿，你终于来了，埃洛特。”大腹便便的警长迪肯向纸侠招了招手：“你得过来看看这个，哈哈，刚才有个菜鸟看了以后吐了一地。”</p>
+	<p class='firstLineIndent'>纸侠走到迪肯身边，接过他手上的PVP670，直接点击了播放，“这是监控录像？”</p>
+	<p class='firstLineIndent'>“没错，你看，嫌犯就是画面左侧的大个子，正坐在吧台边喝酒的那个……看那儿，三个小混混在骚扰女招待，她打翻了托盘里的酒，洒到了大个子的衣服上。”迪肯对着纸侠手中的播放器屏幕指指点点解说道：“接着……伙计，你可得好好看看这个……”</p>
+	<p class='firstLineIndent'>画面中的嫌犯，身高在一米九零以上，体格像是水上运动员，留着寸头，在灯光昏暗的酒吧中还戴着墨镜。</p>
+	<p class='firstLineIndent'>当女招待不慎将饮料打翻到他身上时，他缓缓转过头，摘下墨镜，冲着那群小混混说了句什么。一般情况下，这句很可能是“离她远点儿”，然后就会上演一场英雄救美的好戏。不过，录像中的下一幕却是，他单手抓住了女招待的头，将她整个人都提了起来，随手扔了出去。</p>
+	<p class='firstLineIndent'>纸侠略抬起头，瞥了眼录像中未能拍到的位置，顺着那个女招待被抛出去的方向，他看到了靠墙处一片狼藉的酒柜。</p>
+	<p class='firstLineIndent'>“那女招待现在怎么样了？”纸侠问道，视线已回到录像画面上。</p>
+	<p class='firstLineIndent'>迪肯回道：“还活着，身上多处割伤，软组织挫伤，脖子的损伤较严重，但没有生命危险，半个月就能出院了吧，和那帮混混相比，她够走运的了。”他说着又指了指PVP670的屏幕：“看，这是第一个死者。”</p>
+	<p class='firstLineIndent'>只见画面中的大个儿一拳打向最靠近自己的那个混混，拳头从左胸进入，后背伸出，干净利落，如锐利的尖刀穿透一块儿脂肪般平滑无阻。</p>
+	<p class='firstLineIndent'>“我想那一幕帮当时这屋里的每个醉鬼都醒了酒，之后大概只过了20秒，我们就失去了所有的目击者，他们的动作比逃离火灾现场还要迅速。”迪肯从上衣口袋里拿出一支巧克力，自顾自地吃了起来。</p>
+	<p class='firstLineIndent'>纸侠眉头深锁，眼前的这一拳是如此恐怖，若是五指并拢作掌势，以指尖探出的一击，尚可理解，但以普通的拳面来冲贯，竟能打穿身体，也没有碎掉的内脏从死者后背爆溅出来，说明这贯透的力道和速度何其惊人。</p>
+	<p class='firstLineIndent'>录像中，另外两个混混呆立了两秒，也欲逃跑，可大个子在其中一个离开监控镜头前就抓住了其后颈，从那个混混脸上的表情来看，大个子的手越握越紧，才短短几秒工夫，混混的嘴里溢出了大量鲜血，这场景就像一管牙膏被人从中间用力握死一样，他的脖子被捏得变形，面色紫青，翻起白眼，整个脸部开始肿起。</p>
+	<p class='firstLineIndent'>最后大个子狞笑着将混混的头狠狠撞向了坚硬的吧台。那场景，如同一颗鼓鼓的脓包，被针挑破，溅出来的液体能飞好远……</p>
+	<p class='firstLineIndent'>纸侠又抬起头，看了看吧台的方向：“好吧，这就解释了从我走进来时就一直弥漫着的那股味儿……”他关掉了PVP670，交还给迪肯，随即问道：“逃出镜头的那个呢？”</p>
+	<p class='firstLineIndent'>迪肯道：“奔到门口时被大个子抓住了，你绝对难以想象，凶器是什么。”他朝着桌球台的方向歪了歪头。</p>
+	<p class='firstLineIndent'>纸侠半开玩笑般问道：“怎么？他用球杆做了串‘烤肉’？”</p>
+	<p class='firstLineIndent'>“哈！”迪肯并没有笑，只是装模作样地干笑一声：“我说了你想不到了。”他用手做了个握的动作，对着自己的眼睛道：“嫌犯把一颗桌球，塞到了那小子的眼窝里。”</p>
+	<p class='firstLineIndent'>“哦？我以为那玩意儿的直径比我们的眼眶要大呢。”</p>
+	<p class='firstLineIndent'>迪肯对纸侠的冷笑话不以为然：“对，这就是为什么死者的眉骨和颧骨都有碎裂的情况，那个凶手就像强行把拼图卡进不合适的插槽般，填充了一下死者的脑容量，不用说，我们收集到了一些从鼻孔和耳朵里溢出的脑浆，而验尸官还将从一坨被搅得稀烂的脑浆里发现一颗眼球，新年派对以来最有趣的事儿了不是吗？”他绷起脸来：“好了，玩笑到此为止，这事儿从现在起就全权交给你了，我可不想趟这浑水。”</p>
+	<p class='firstLineIndent'>纸侠道：“我知道，你只负责结案时邀功的那部分。”</p>
+	<p class='firstLineIndent'>“嘿！听着，知道你那堆该死的文案工作都是谁在……”</p>
+	<p class='firstLineIndent'>“好吧好吧，你和你的人，继续清场，我得去出去透透气。”纸侠打断了迪肯的唠叨，转身便走，在经过一个脸色发绿的年轻警员身边时，他笑着说：“嘿，伙计，喜欢奶酪三明治吗？”</p>
+	<p class='firstLineIndent'>对方闻言的瞬间便转身弯腰一阵恶吐。</p>
+	<p class='firstLineIndent'>只听背后传来了迪肯的咆哮：“混蛋！刚才我就说了，找个纸袋！”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0021'><summary><a>第二章 清理</a></summary>
+	<p class='firstLineIndent'>冠之郡，HL北方第二分部。</p>
+	<p class='firstLineIndent'>吉姆·马龙正坐在办公室里惬意地抽雪茄，但这世上的不速之客都喜欢在这种时候不请自来。</p>
+	<p class='firstLineIndent'>桌上的话机响了，马龙无奈地按下通话键。</p>
+	<p class='firstLineIndent'>“长官，奈斯先生来了，他说要立刻见您。”</p>
+	<p class='firstLineIndent'>“让他进来。”马龙说完便挂断了。</p>
+	<p class='firstLineIndent'>几分钟后，纸侠直接就推门进来了，自行省去了敲门打招呼的礼貌，走到马龙的办公桌前就道：“我需要你解封一份秘密档案。”</p>
+	<p class='firstLineIndent'>“呼……”马龙吐了个烟圈：“嗯，我怎么一点都不吃惊呢，你还要什么？总督情妇的照片？”</p>
+	<p class='firstLineIndent'>“听着，吉姆，我想我找到了。”纸侠一脸肃容对马龙道：“十年前圣马可‘血色午夜’的那个凶手。”</p>
+	<p class='firstLineIndent'>马龙将雪茄从嘴里拿了出来，表情不置可否：“你知道我常年上夜班就是为了躲你的吧？”</p>
+	<p class='firstLineIndent'>纸侠依然没理会对方的调侃：“我不是在开玩笑。”</p>
+	<p class='firstLineIndent'>“好吧，我懂你的意思了。”马龙站了起来：“说说你现在掌握的线索吧。”</p>
+	<p class='firstLineIndent'>纸侠道：“今天下午在铜鹦鹉酒馆发生了凶杀案，看一下监控录像你就明白了。”</p>
+	<p class='firstLineIndent'>马龙道：“好的，你等等。”他转身按了下桌上的话机……</p>
+	<p class='firstLineIndent'>HL的办事效率非常之高，且可以任意调动到辖区内所有监控录像的存档。片刻后，两人在马龙办公室墙上的巨大屏幕上，将案发过程又看了一遍。之后马龙便吩咐下去，派一个调查小组将那家酒店近一周内的所有监控录像调去进行分析研究，看看能不能有新的发现。</p>
+	<p class='firstLineIndent'>纸侠显得颇为兴奋，在那儿自顾自地说着：“一样的身高和体型，残忍的手法，完全不把杀人当回事儿的这种行事风格，和十年前得到的那些残缺线索描述的完全一致，肯定就是他！如果DNA对比无误，那……”</p>
+	<p class='firstLineIndent'>“那又怎么样？”马龙泼了一盆冷水上去：“十年前我们得到的DNA，在全世界的数据库里也找不到任何匹配者。就算这次DNA对照结果无误，我们也只能知道，十年前那个杀人魔王回来了，对其他的事情仍然一无所知。”</p>
+	<p class='firstLineIndent'>“这种人是否有合法身份本来就不重要，关键是我们现在掌握了他比较具体的相貌特征，可以从出入境记录开始进行地毯式的……”纸侠话未说完，马龙就打断道：“这件案子不需要你的介入，交给我们HL就可以了。”</p>
+	<p class='firstLineIndent'>“你说什么？！”</p>
+	<p class='firstLineIndent'>马龙道：“如果你非要查，也可以。”他指了指纸侠背后的门：“出去左转，走到底，找我的秘书，然后在一张无关紧要的合同上签个字就行了。”</p>
+	<p class='firstLineIndent'>纸侠道：“吉姆，你知道我是不会加入HL的。”</p>
+	<p class='firstLineIndent'>“那你应该也知道每年有多少人不惜忍受极大的痛苦将自己变成改造人，只求在HL当个打杂的角色。更不用说，他们还得填上论斤来算的纸质文件。我在几年前就帮你办好了一切，而你到今天还不肯去签个名。”</p>
+	<p class='firstLineIndent'>纸侠道：“这话题我们谈论过很多次了，我喜欢当警察，更自由，而且……”</p>
+	<p class='firstLineIndent'>马龙没让他讲话说下去：“既然你要自由，就享受不到任何HL的办案资源和权限，我出于私人交情给你信息，那是因为我有权力可以抵挡一些事情。但现在我们正谈论的是一个危险程度四级的通缉犯，只有背负着‘那四个字’的人，才有权追查。”</p>
+	<p class='firstLineIndent'>“那如果我非要查呢？”纸侠强硬地问道。</p>
+	<p class='firstLineIndent'>马龙重新点燃了一支雪茄道：“那你就去查吧，别挡HL的道儿就行，这是我的职权内，可以给你最大的宽容了。”</p>
+	<p class='firstLineIndent'>纸侠不冷不热地回了句：“那就谢谢了。”话音未落已出了门口。</p>
+	<p class='firstLineIndent'>他刚走不到一分钟，马龙便拿起桌上话机的听筒，拨通了HL欧洲总部加密号码：“我是北方第二分部的马龙上校，请为我接一下将军……是的，我知道是凌晨，所以你最好快点儿把他叫起来。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>与此同时，凤凰歌剧院，地下二十米深处。</p>
+	<p class='firstLineIndent'>“干得真不错啊，这水下的倒影都市，呵呵呵……”血枭狞笑着道：“难以想象要在整个威尼斯的底下建造这种蚁穴般复杂的互联地道要花费多少时间、人力和财力，更不用说那设计者的心机了。”</p>
+	<p class='firstLineIndent'>他的面前倒着一个左腿膝盖以下已空无一物的男子，对方的声音因恐惧与绝望而颤抖着：“你究竟是谁？！第二分部根本没有你这种人物！”</p>
+	<p class='firstLineIndent'>血枭笑了笑：“所以你们钢铁戒律只派了一群废物驻守在此吗？我一路上散步过来，一个强级的都没遇见。怎么，听你的意思，威尼斯的HL也没有比我强的人吗？那还真有点寂寞啊……这城市如今确实是没落了。”</p>
+	<p class='firstLineIndent'>那男子似乎听明白了，血枭也不是帝国高层派来的人，他几乎是疯狂地大叫出来：“你为什么要这样做？！！”</p>
+	<p class='firstLineIndent'>“啊？做什么？”血枭脸上是一副莫名的表情，他回头看了看身后一直蔓延至远处的血和残肢：“你是指清理工作吗？这有什么值得你激动得乱嚎的？我只是需要一个没人打扰的地方栖身，顺便做一些科研工作。你也懂的，搬进新家总该先收拾收拾，免得有蛇虫鼠蚁什么的总是碍眼地爬出来。”</p>
+	<p class='firstLineIndent'>“你……你……”男子不知该说什么，他明白了，眼前的狂魔绝不会留下任何活口，于是他将手摸向了自己怀中：“今天，你将钢铁戒律的两名高级教士，三十六名教士，九十名信徒屠戮殆尽……这种规模的伤亡，上层绝不会坐视不理……”他手中攥着个怀表，在额头和胸前画了一次十字，随即大喝：“意遂我主，身予神罚！”</p>
+	<p class='firstLineIndent'>话音未落，那怀表爆发出一阵白光。</p>
+	<p class='firstLineIndent'>血枭知道那意味着什么，只一瞬间，他便移动到了那男子身边，将对方整只手从手腕上硬生生扯了下来，顺势一脚踏碎了男子的头颅。</p>
+	<p class='firstLineIndent'>那怀表的光芒也逐渐暗淡，消失……</p>
+	<p class='firstLineIndent'>“真希望他们能来得快一些。”血枭用嗜血的目光注视地上那已经支离破碎的尸体：“我更喜欢用活体来实验。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0022'><summary><a>第三章 中间人</a></summary>
+	<p class='firstLineIndent'>钢铁戒律具体的建立时间已经无法考证，它的前身可以追溯到十二世纪初的圣城耶路撒冷，最早的成员只有九人，建立的初衷是为了保护欧洲各地前来的朝圣者免于强盗的攻击。</p>
+	<p class='firstLineIndent'>至十二世纪末时，这个组织的规模已是空前庞大，在欧洲拥有9000余处产业，其中还包括许多知名的教堂和城堡；成员数以万计，可以自行向人民征税或是直接掠夺，连当时的贵族们都很知趣地慷慨解囊捐赠金银；他们立于王权之上，直接听命于教皇，这就是当时欧洲最强大的宗教军事力量——圣殿骑士。</p>
+	<p class='firstLineIndent'>但这过分膨胀的权力和财富，也成了最终刺向这个组织心口的一根椿。</p>
+	<p class='firstLineIndent'>法国，1307年10月13日，星期五，黑色的星期五。圣殿骑士灭亡的日子。</p>
+	<p class='firstLineIndent'>一个精明的国王就足以办妥这件事，理由很简单，在那个时代，任何一个国家的统治者都很难忍受一个组织在自己的王国中拥有数千座城堡和巨额的财富，而自己却无法染指。</p>
+	<p class='firstLineIndent'>七年后，骑士团的残党流亡欧洲各地，大部分成员已死于审讯或是被处以火刑。而他们的最后一任大团长莫莱，在火刑架上对当时的主教和国王道出了诅咒：一年之内，二人将死于“永恒的审判”。</p>
+	<p class='firstLineIndent'>还不到一年，教皇和国王便相继去世，死因是暴病，以及打猎时离奇身亡。</p>
+	<p class='firstLineIndent'>这一切恩怨看似都已结束，但圣殿骑士的火种其实从未熄灭。</p>
+	<p class='firstLineIndent'>传言莫莱早在黑色星期五之前就已秘密将职位传给了自己的侄子，年轻的伯爵伯恩，并让他在上帝面前发誓为了将来拯救圣殿骑士团，要把一些宝藏保存到“世界末日”。那些宝藏就藏在前任总团长的墓穴巨柱中，后来被伯爵所操控的“纯建筑师”组织偷偷运出，转移到了别处，只有通过圣殿骑士自有的一套神秘符号和秘密宗教仪式才能找到并重新取出。</p>
+	<p class='firstLineIndent'>直至七个世纪以后，仍没人能破解那些符号的秘密，宝藏也成了历史之谜。</p>
+	<p class='firstLineIndent'>2000年，帝国将星球统一后的时代开始。</p>
+	<p class='firstLineIndent'>在那个天下初定的混乱年代中，无数反抗组织出现，然后被无情地毁灭，最终仅有几个深藏于暗处，得以生存下来，其中一个，就是钢铁戒律。</p>
+	<p class='firstLineIndent'>他们是圣殿骑士的传承，将天主教与东正教的教义归并改写，建立了自己的教廷与律法。由统领全团的大团长兼任教皇，传承信仰与军魂。</p>
+	<p class='firstLineIndent'>今时今日，帝国的统治已经持续了一个世纪。而钢铁戒律，已是这个星球上最庞大的反抗组织，是极少数能在正面战场与帝国的军事力量一战的组织之一，在欧洲如同第二王朝一般的存在。就算想将他们根除也是无济于事，因为人是可以杀的，但信仰杀不死。</p>
+	<p class='firstLineIndent'>所以HL在欧洲的分部也是全球最多，整体战力仅次位于天都的总部。</p>
+	<p class='firstLineIndent'>行走于黑暗世界的超能力犯罪者，根本无人敢去惹钢铁戒律的成员，谁都知道，一旦与他们结下梁子，就会被其以审判之名追杀到天涯海角，直至达到目的为止。</p>
+	<p class='firstLineIndent'>但血枭不会考虑类似的问题，对他来说，钢铁戒律、HL，不管落到他手上的人是哪种立场，都是实验素材罢了。</p>
+	<p class='firstLineIndent'>无论外表长得多像职业打手或者游泳健将，血枭都是个不折不扣的科学家，事实上，他有常青藤学历，虽然在那儿学习时用的是别人的身份，而被他冒名顶替的学生和其全家也都成了实验品。</p>
+	<p class='firstLineIndent'>多年来，血枭一直在追寻着“治愈”自己的方法，目前阶段来看，有两种方法可以达到这个最终目的，第一，他的研究成功；第二，全世界的人类灭亡。</p>
+	<p class='firstLineIndent'>所以，无论从哪个角度看，血枭都在朝着理想稳步前进着。</p>
+	<p class='firstLineIndent'>在处理完了最后一名高级教士后，他花了半天时间就搜索完了钢铁戒律的这个地下倒影都市，确认了此地不再有任何生还者，然后就开始了设计与布置的工作。</p>
+	<p class='firstLineIndent'>这个地下迷宫由通道和房间构成，每一条通道看上去都别无二致，四面皆是厚实的金属墙，头顶上有一条发光的灯道与通道平行延伸，走在其中任何一段，都很难感觉到与别处区别。而房间，只会出现在一些地标性建筑的地下，除了比通道更加宽敞一些，以及天花板上有更多照明的灯道外，没有任何多余的特点，每个房间的大小和内貌都是完全相同的长方形，约能容纳四十人左右，没有任何桌椅或者物品，就是个空荡荡的铁盒子，与通道一样，即便站在里面，也无法判断自己身处的究竟是哪个房间。</p>
+	<p class='firstLineIndent'>这种设计可以很好地防止外部入侵，因为外来者只要进入这些通道，根本连自己的位置都无法确认，很快就会被钢铁戒律的成员包围并捕获。</p>
+	<p class='firstLineIndent'>通过这些房间和通道，可以在城市下面快速行动，花很短的时间到达指定的位置，并随时通过秘密入口从地面上消失，这地下迷宫是威尼斯的钢铁戒律成员互相传递消息与逃避追捕时最强大的硬件。如今，却落到了血枭的手中。这地方让他非常满意，他一直渴望着这样一个地方，可以放足够的实验器材，不会被热心的邻居打扰，两米的水深加上近二十米的浅滩沙土，这种深度就算他在下面开演唱会声音都不会传到地面上。</p>
+	<p class='firstLineIndent'>而且最令人激动的就是那名高级教士在临死前的威胁，预示了对方会派更加强大的组织成员来消灭自己，会有强级的人吗？血枭心中期待着。</p>
+	<p class='firstLineIndent'>说到能力级别，没有人知道这套评价级别的说法是从何时开始流传的，它似乎从古至今一直存在于那个不为普通人所知的神秘世界里。</p>
+	<p class='firstLineIndent'>在那个国家众多的时代，各国政府隐瞒超能者、改造人、变种人等等群体的存在，将其作为自己的武器培养。而在统一的这个时代，帝国也从未向一般民众公开过这种力量。但他们倒是制定了一套比较规范化的体系，来做更准确的分级。</p>
+	<p class='firstLineIndent'>其实这套体系很简单，从纸级到神级，只需要参考两种数据，“时间”和“数量”。比如一个纸级的人，可以在一个小时内杀死二十个普通人，那么一个并级的人，可以是一个小时内杀死二百人，或者是只花十分钟就是杀死二十个人。</p>
+	<p class='firstLineIndent'>这种假设都是建立在那些人会反抗或逃跑的真实前提之上的。时间越短，人数越多，则级别越高，用一秒钟杀死一百万人，那自然就是神。当然，级别测定的意义在于，必须是使用自身的力量办到这些，轰炸机驾驶员之类的人自然不能算。</p>
+	<p class='firstLineIndent'>在帝国用于评估的这个体系中，“时间”大致可以代表最高破坏力，所以时间这个量较优秀的能力者，一般是倾向于攻击性的；而“数量”则代表着能力者的持续破坏能力及自身的生存能力。</p>
+	<p class='firstLineIndent'>当然，有时这套级别也会有意外，比如改造人，这类能力者本身一般都没有特殊能力，借助着被兵器化的身体来战斗，虽然从级别评定上来说可以达到要求，但如果一对一遇到同级别的超能力者，尤其是那些攻击型的能力者，输的那个肯定是改造人。</p>
+	<p class='firstLineIndent'>不过，整体而言，这套体系是较为准确的，而且宽泛地适用于这个星球上的所有人类，因为至今为止，地球上还未曾出现过几个达到“神”这个等级的人物，超能力者穷其一生往往也就止步于强级，能够达到第四级“凶”这个级别的人，已算是绝世高手了。</p>
+	<p class='firstLineIndent'>血枭就是这样的高手，而且他才三十岁出头，完全有进一步提升的可能。他需要的只是更多的猎物和实验品……</p>
+	<p class='firstLineIndent'>在铜鹦鹉酒吧凶案的第二天正午，血枭又一次出现在了威尼斯，他就这么大摇大摆地走在路上，丝毫不担心颇为惹眼的形象会引起路人的注意。</p>
+	<p class='firstLineIndent'>其实这现象很奇怪，越是害怕自己被抓的犯罪者，越是会散发出一种贼眉鼠眼的气场，而血枭这种人却可以消失于人海之中，就算有人多看他一眼，也仅仅是因为他高大的形象而已。</p>
+	<p class='firstLineIndent'>人们是无法想象一个昨晚刚刚在公共场合做下血案的凶手竟还敢若无其事地上街溜达的，这是符合常理的惯性思维。</p>
+	<p class='firstLineIndent'>下午一点，在一家餐厅，血枭坐在双人份的新鲜鱼虾和螃蟹前大快朵颐，甚至连提拉米苏都叫了两份。</p>
+	<p class='firstLineIndent'>不久后，一个戴着小圆墨镜，梳着老长马尾辫的亚裔男子走进了餐厅，此人獐头鼠目，鬼鬼祟祟，用立起的风衣领口遮住下巴和脸，一进来就娴熟地看好了一切可能的逃亡路线，再将视线中的每个男男女女都瞧了个遍，确定没有条子以后，他坐到了血枭对面。</p>
+	<p class='firstLineIndent'>“奇里奥斯先生，是我。”他一边问问题，眼神还在周围飘忽不定地扫着。</p>
+	<p class='firstLineIndent'>血枭回道：“我为你也点了一份餐，不过因为你迟到了，所以我把你那份儿也吃了。”</p>
+	<p class='firstLineIndent'>“我只晚来了五分钟，你连甜品都吃了，这里的菜可是一道一道上的……”</p>
+	<p class='firstLineIndent'>“少废话，我要的东西都搞到了吗？”</p>
+	<p class='firstLineIndent'>“嘿……听着，伙计，昨晚我离开酒吧以后，你干的事情都快轰动全城了，说不定警察已经通过监控录像查到我跟你说过话了，现在我也陷入了麻烦之中……”</p>
+	<p class='firstLineIndent'>血枭打断了对方：“左道先生，你是想加价吗？”</p>
+	<p class='firstLineIndent'>左道是想加价，在血枭问这个问题前他还想来着，但此刻，和对方的眼神一触，左道立刻就怂了：“不敢不敢……我干中间人这行已经不是一两天了，那一向是有口皆碑……”</p>
+	<p class='firstLineIndent'>“阁下的为人，是非常有名的，你也不必再解释什么，告诉我，东西什么时候能到。”</p>
+	<p class='firstLineIndent'>左道墨镜下的眼珠子转了两圈：“你那幅画，已经找到买主了，私人收藏家，皇族的，背景够硬，什么都敢买，两天内就付款。等他的钱到我账上，按照之前说好的，我抽卖画10%的净利润，剩下90%买你要的器材，黑市上的卖家我都联系好了，医疗仪器当天就到，化学品也好弄，就是刑具比较难搞，他们得去其他城市的成人用……嗯……我是说供应商那里弄点儿货过来，至于计算机设备，要现货的话就是稍微贵点，不难弄到。</p>
+	<p class='firstLineIndent'>至于最后剩下的钱，你之前说要洗白了的现金，这个贫道已帮你和附近的几位大佬斡旋了一番，他们说这笔钱你得抽15%出来才给洗，没得商量，你看行不行吧？不行我就把账户直接给你。”</p>
+	<p class='firstLineIndent'>血枭也没多想，扫完了盘子里最后一点儿食物，站起来道：“三天后，老时间来这里碰头。”说罢便扔了两张大面额的钞票在桌上，扬长而去。</p>
+	<p class='firstLineIndent'>左道隔着橱窗望着血枭渐渐离开视线，接着，他东张西望一番，用闪电般的速度将那两张钞票纳入自己怀中，随后清了清嗓子：“服务员，埋单！”他一边说着，一边从皮夹里摸出了一张负债累累的信用卡……</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0023'><summary><a>第四章 复仇</a></summary>
+	<p class='firstLineIndent'>喧哗声中，纸侠醒来，他看了看表，又已是傍晚。</p>
+	<p class='firstLineIndent'>坐在办公桌旁睡着时，一般不会有人来吵他，除非是炸弹邮包被寄到警局里来的那种情况。</p>
+	<p class='firstLineIndent'>“行了，都给我蹲下！老实点儿，嘿！你！把那个吐白沫的送到医院去！你是新来的吗！别把吸毒过量的人铐进来！死在走廊里怎么办！”门外传来了迪肯的吼叫声。</p>
+	<p class='firstLineIndent'>又有两伙小流氓因为械斗被抓进来了，头破血流的混混们戴着手铐还不肯老实，在走廊里打着嘴仗。当地的治安着实让警员们头疼不已，几乎每天晚上到天亮前这段时间，警局里都热闹非凡。</p>
+	<p class='firstLineIndent'>纸侠叹了口气，心想反正也睡不成了，便晃了晃脑袋，解开已锁屏的电脑，继续调查工作。他眼中噙泪，哈欠连连，对这坐在办公室里干的工作实在是提不起半点儿兴趣。像纸侠这样的警察，让他徒步追凶几十公里，他肯定会精神抖擞，但让他做这些信息筛选和分析调查，无疑是种折磨。</p>
+	<p class='firstLineIndent'>“光是航空这条渠道，每天就有这么多人在进出……该死的旅游城市。”纸侠边浏览着从机场那里调来的出入境记录，边骂骂咧咧地说着。</p>
+	<p class='firstLineIndent'>因为从姓名方面根本无法下手侦查，所以要找血枭，唯有一张一张去看那些入境旅客的身份证（全世界不分国家，只分地区，因此无护照概念）照片了。纸侠从七天以前的记录开始搜索，非常仔细地观看了每一个入境者的相貌，如果是HL方面，完全可以调配大量人手同时来进行这部分工作，但纸侠在老朋友马龙那里吃了闭门羹，于是他这权力有限的普通警察唯有单干一途了。他实在不放心让警局里的其他人帮忙，因为追捕这个犯人容不得半点差池，如果有人看漏了，可能抓捕的机会就会永远与自己失之交臂。</p>
+	<p class='firstLineIndent'>又这样连续工作了三个小时，纸侠仍然没有半点进展。</p>
+	<p class='firstLineIndent'>“长官！”门忽然被打开了，一个警员没敲门就跌跌撞撞地跑进来大声道：“钢……钢铁……”</p>
+	<p class='firstLineIndent'>“别结结巴巴的，像个惊慌失措的普通市民，你可是警察。”纸侠语气沉稳地回道。</p>
+	<p class='firstLineIndent'>这份冷静和威严让那警员也稍稍平静了些，至少话说顺溜了：“长官！是钢铁戒律！您快到外面去看一看！”</p>
+	<p class='firstLineIndent'>纸侠站了起来，没有再多说什么，直接向外走去，其实他心里还有点高兴，虽然不知道具体发生了什么，但终于有了个理由能出去透透气了。</p>
+	<p class='firstLineIndent'>走出警局，街上的行人们都在仰望着北方的天空，露出惊恐或是茫然的表情。</p>
+	<p class='firstLineIndent'>夜空中，悬浮着一个巨大的炽白十字，那不是烟火，也不是全息影像，而是正在燃烧的某种能量所构建出的图案。</p>
+	<p class='firstLineIndent'>“开玩笑啊……”纸侠看着那十字，嘴角竟泛起笑意：“圣城监察长这种大人物都来了，想挑起战争吗？”他的风衣中，缓缓飞散出层层叠叠的白色纸张，自行铺陈到其脚下，结成一张纸飞毯，载着他高速升至空中，朝着那遥远的十字腾飞而去。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>HL，北方第二支部。</p>
+	<p class='firstLineIndent'>吉姆·马龙办公室的大屏幕中，正显示着那白色的空中十字。而他，正半张着嘴，两眼瞪直了，手中雪茄的烟灰已掉落到了自己锃亮的皮鞋上。</p>
+	<p class='firstLineIndent'>“上校，你刚才说到哪儿了？”提问的男子正坐在马龙的办公桌对面，身着黑色的HL军服，留着一头简洁的金发，那张脸本来也算英俊，却有一道横着将整张脸一分为二的刀疤，让其面相显得颇为狰狞。</p>
+	<p class='firstLineIndent'>马龙将自己的椅子转了个方向，朝对方道：“嗯……别担心，法鲁先生，一切都在控制之中。我现在就派人过去。”他说着就将手伸向了桌上的对讲机。</p>
+	<p class='firstLineIndent'>法鲁挥手示意他停下，并开口道：“不必了，就由我一个人去好了，并不是不信任贵部的战力，只是……钢铁戒律那边，我有几个想见的人，这种场面说不定能遇到。”</p>
+	<p class='firstLineIndent'>马龙慌忙道：“法鲁先生，您才刚下飞机几个小时，而且将军是派您来……”</p>
+	<p class='firstLineIndent'>“上校无需多言，将军的命令和HL的职责，是不存在冲突的。”法鲁从椅子上站了起来：“危险等级四的凶犯，要杀；那些敢于招摇过市的叛乱者，更要杀。”他转过身去，似是要用军服后的“王权无上”四字去提醒对方些什么：“既然是HighestLaws，任何被判定为威胁帝国安定统治的因素，无奏无赦，尽斩之。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>威尼斯北方。</p>
+	<p class='firstLineIndent'>至穆拉诺岛不到两公里的海面上，竟出现了一块直径百米的浮冰，冰的颜色也是种非常诡异的白。而冰面上面竟还站着十余个人。</p>
+	<p class='firstLineIndent'>他们脚踏金属重靴，着白色衣裤，上衣的衣摆直线延伸至膝盖处，皮腰带的代扣是十字章的图案，双肩至领口处采用坚硬的材质，衣领高至颧骨，遮住了下半张脸，白色长袄的前胸，映有一个显眼的标志，那颠狂冶艳的红色大十字，正是钢铁戒律的象征。</p>
+	<p class='firstLineIndent'>率领这十余名重装骑士的是圣城监察长卡莫·博特里尼，足足两米的个头，背上斜背着一个比路灯杆还高的十字架，身着的白色长袍上金锻宽镶，但却是没有那些金属甲胄的部分。他从怀中取出一枚怀表，只见那指针疯狂地颤动，可他却只是冷笑：“看来，此地高手倒确是不少。”</p>
+	<p class='firstLineIndent'>一名形销骨立的黑面男子正立于博特里尼的身侧道：“大人，之前牧师长感应到杀死我们百余名兄弟仅一人所为，现在这样，若真将其引来倒也罢了，但万一他不来，反而来了HL的大部队……”</p>
+	<p class='firstLineIndent'>博特里尼却道：“冠之郡是我们的根基所在，虽说威尼斯只是个小地方，但不到半日，此地的百余名兄弟被屠杀，而且是一个人干的，我不管他是谁，是哪股势力，总之，绝不能让他看到明晨的阳光。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>威尼斯地下，倒影都市。</p>
+	<p class='firstLineIndent'>白天时，血枭见过左道以后，自己跑了很多个商店，购买了大量防腐剂和其他材料，调配了一种可以掩盖尸臭的化学喷雾剂，还抽时间用一些五金店里搞来的东西将地下通道其中两个房间的通风系统改装了一番。之后他把所有尸体和残肢都集中到了那两个房间中，忙活了整整一天，算是真正意义上的清理完了，至于那些血迹和各种不明体液，直接就被他当成糊墙用的油漆了，反正他也不在乎那味道，因此根本就不去进行任何处理。</p>
+	<p class='firstLineIndent'>实验器材和电脑设备还得等左道的消息，而床和冰箱之类的正常家具用品他还没时间去弄，所以血枭决定今晚再去地面上找个旅馆对付一宿。</p>
+	<p class='firstLineIndent'>他随便寻了个出口上去，经过几次的搜索清理以及对威尼斯上层地理的了解，血枭基本上知道自己会出现在上面的什么地区，可这次他一上地面，还没看清身边的路牌，就看到了更有意思的场面。</p>
+	<p class='firstLineIndent'>血枭看着那北方的天空，站在街上狂放地大笑，他的瞳孔中，正映出一个白色的十字。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0024'><summary><a>第五章 三条指示</a></summary>
+	<p class='firstLineIndent'>纸侠飞至码头上空时，正瞧见那夜色中忽现一枚人影，由远及近，踩着建筑的屋顶，起伏跃进，由南方徐徐而来。此番身手自然不是凡人，但此人面目来历，却是一时难以辨清。纸侠不由得停下脚步，戒备起来，以防出现腹背受敌的情况。</p>
+	<p class='firstLineIndent'>时间毕竟还是夜晚，纵有海面上炽白十字发出的光芒，可那人身着黑衣，行动又迅速，到了百米不到的距离，纸侠仍然难分其是敌是友。</p>
+	<p class='firstLineIndent'>那人也在这时突然停住步履，站在远处的一个高点与纸侠遥遥相望，八成是在揣测纸侠的身份。</p>
+	<p class='firstLineIndent'>两人都是强级高手，心中想法基本一致，此刻的这个距离，差不多就是自己的安全范围，攻守兼备，可战可遁，若要再进，出手便是你死我活。</p>
+	<p class='firstLineIndent'>当然，如此的对峙是双方都假设对方的能力等级小于或等于自己的情况，要是对面站的是个凶级高手，距离就没有太大意义了。</p>
+	<p class='firstLineIndent'>还是纸侠率先开口：“听着，朋友，我是警察，如果你是海上那帮人的同伙，很抱歉，我不能让你通过。”</p>
+	<p class='firstLineIndent'>法鲁闻言松了口气，心道：原来只是个警察罢了，飞行的能力倒是不多见，不过待在威尼斯这种小地方……他最多是个并级的角色吧。想到此处，他笑了笑，回道：“哦，原来是自己人，不好意思，你没穿制服，我没认出来。”语气中多少有些骄傲和不屑。</p>
+	<p class='firstLineIndent'>二人都移动了些许，之间的距离稍稍缩短了，但双方仍然没完全松懈，谁知道对方是不是耍诈。</p>
+	<p class='firstLineIndent'>直到纸侠看清了法鲁身上那黑色的服装，确实是HL的军服，他才算是基本解除了戒备，问道：“你是吉姆的人？以前没见过你啊。”</p>
+	<p class='firstLineIndent'>“吉姆？你是指马龙上校吗？”法鲁狐疑地打量了眼前的男子一番：“看来你这警察跟本地的HL很熟啊。”</p>
+	<p class='firstLineIndent'>“还好吧。”纸侠道：“这么说来，你不是本地的HL成员？”</p>
+	<p class='firstLineIndent'>法鲁不想和区区一个警察浪费太多时间，便转移话题道：“好了，按我的军衔，是没有理由透露任何HL内部的信息给你的，我看你似乎也是个能力者，你就守在这里帮我防止有神志不清的平民或者酒鬼靠近吧，免得一会儿的战斗造成误伤，同时也是为了你自己的安全。”他说罢便转身朝着海面的方向如疾风般席卷而出，几秒后便踏着水面跑远了。</p>
+	<p class='firstLineIndent'>纸侠虽然对对方的态度有些恼火，但看对方那言语气度，想必在HL中也算是高手了，光是眼前这蜻蜓点水的步子，自己就肯定做不来。</p>
+	<p class='firstLineIndent'>“也罢，我就先站远点儿看着，不需要我出手的话，那就最好。”纸侠见有人自愿打头阵了，便如其所愿，做个支援工作得了。圣城监察长的战力，也只是几年前在一些资料报告里读到过，今天就当回观众，去看看真人是否有三头六臂吧。</p>
+	<p class='firstLineIndent'>于是他坐着纸飞毯，朝着法鲁跑出的方向，不急不缓地追了上去。</p>
+	<p class='firstLineIndent'>说到三头六臂，此刻城里还真有个三头六臂的暴徒在往这儿赶，当然了，三头六臂只是一种比喻，用在血枭身上还真有点委屈他了，他何止是三头六臂，要是放在信息闭塞的年代里，他这种人的名声基本上应该是：八只手，有角，会吃人，等等。</p>
+	<p class='firstLineIndent'>“老头，你算有胳膊吗？”血枭正坐在一艘贡多拉尖舟上，用很不耐烦的眼神瞪着船家。</p>
+	<p class='firstLineIndent'>船家头发斑白，戴着假得不能再假的大胡子，一口意大利川音：“呵呵呵，年轻人，我这是观光船，速度和那些电动的玩意儿不能比啊。”</p>
+	<p class='firstLineIndent'>“断腿的海盗用他的木蹬子划船也比你快。”</p>
+	<p class='firstLineIndent'>“NO，NO，NO……年轻人，要知道，在这城市的河渠里，就是要慢才有情调。”船家还指了指天上：“好好享受这地中海的月光嘛。”</p>
+	<p class='firstLineIndent'>血枭低声自言自语着：“为什么我还没杀了他……十分钟前看见他那张脸我就想杀他来着。”</p>
+	<p class='firstLineIndent'>他深深叹了口气，看着船家：“老头，哦不，老弟，我再重复一下十分钟前我跟你说的话，就是我把钱给你时的那句，我想你有印象。”他突然大喊道：“用他娘的！最快的！速度！送我到那该死的！有白光的地方！！”</p>
+	<p class='firstLineIndent'>“噢！年轻人，我可没有你说得那么年轻……”船家的口音不知为何又成了法式维吾尔腔。</p>
+	<p class='firstLineIndent'>血枭道：“要不是我走了一天想歇会儿……”他握拳，然后又强忍着放下：“听着，伙计，我知道你怕到那儿会有危险，所以在拖拖拉拉的，想等我失去耐心自己上岸，白赚点外快。不过，让我跟你分析一下形势。”说到这儿，他停顿了一下，用左手硬生生掰下一块船上的木头，还未等船家喊出声来，他力贯左臂，一甩手将这片木头扔了出去，那木头像导弹一样击碎了旁边十余米处河道上的一座小桥。</p>
+	<p class='firstLineIndent'>船家当即目瞪口呆，下巴脱臼般完全呆滞地站在船舷，血枭这时接着说道：“如果再过十分钟，我还没到码头，你就会被变成一样东西——桨。如果你打算跳船逃跑，相信我，你依然会立刻变成桨，如果你叫喊，或者继续用骗观光客的假胡子和地方口音说出半个词儿，桨！</p>
+	<p class='firstLineIndent'>而当我在说桨的时候，我指的是一种僵直的，不会呼吸，没有任何生物特征的东西，我会抓着他的中段，用三百公斤左右的臂力，在船尾将其高速成轴转动，那速度肯定比电动的玩意儿快！”他说到最后一句时已是暴喝出声。</p>
+	<p class='firstLineIndent'>船家心中惊呼：还是螺旋桨啊！这货是不是人！会死的……完了……常在河上漂，哪儿有不挨削，骗了这么多年观光客，今天算栽了。</p>
+	<p class='firstLineIndent'>他虽然害怕，但手上却突然给劲儿起来了，那撑船的速度，简直是龙舟队里出来的，所以说，人都是逼出来的，刀架在脖子上了能不哭爹喊娘的又有几个呢，这叫求生意志。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>正当血枭与无良船家在河渠上观光的时候，在海面上，法鲁已与钢铁戒律的十余人相遇了。</p>
+	<p class='firstLineIndent'>法鲁从南面一路直进而来，片刻便到，一跃便站上那浮冰，但对方并没有立即对他展开突袭，全然是一副若无其事的样子，好似这一个不速这客还不足以让他们有所行动。</p>
+	<p class='firstLineIndent'>法鲁的视线扫过了每个骑士的脸，又看了一眼消瘦的黑面男子，最终停在了博特里尼的脸上：“以前只在通缉令上看到过的脸，今天终于得以相见了。”</p>
+	<p class='firstLineIndent'>博特里尼用鄙夷的眼神瞄着对方，很显然军服已说明了来者的身份，他冷哼一声：“果然最先到场的是HL的走狗啊，那么……二十个小时前，杀死教士们的就是你吗？”</p>
+	<p class='firstLineIndent'>“身为反贼，你的口气倒是很大。”法鲁并没有否认关于教士的事情，当然也未承认，他不知道对方指的是什么，也许暂时沉默可以换来更多情报，所以他只是回道：“记住了，博特里尼，你马上就会死在我格·法鲁的手中。”</p>
+	<p class='firstLineIndent'>博特里尼道：“哦？‘猿雀蟒龙’之一的法鲁是吗，很好，看到我的十字还敢单刀赴会的果然不是等闲之辈，就算那个杀手今晚没来，把你干掉，我也算没白跑一趟。”</p>
+	<p class='firstLineIndent'>法鲁心高气傲，自不会言败：“哼……不知死活的反贼……”</p>
+	<p class='firstLineIndent'>二人杀意已起，死斗一触即发。</p>
+	<p class='firstLineIndent'>那黑面男子却在此时凑到博特里尼耳边道：“大人，切记牧师长大人给出的预言劝诫，必要等到那个杀人者现身方可使用圣十字架。”</p>
+	<p class='firstLineIndent'>博特里尼冷冷回道：“我自会斟酌。”</p>
+	<p class='firstLineIndent'>其实他这监察长心中对牧师长早有不满，不止是因为对方根本不曾参战就有着仅次于大团长的崇高地位，更让他恼火的偏偏是那些预言的准确度确实不容置疑，不听劝诫，以身犯险者，无一不是死无葬身之地的下场。</p>
+	<p class='firstLineIndent'>这次博特里尼带领随身的十名善战骑士离开圣城时，牧师长给了他三条指示：第一，当杀人者出现在你面前时，你自会知道就是他；第二，杀人者现身后方可使用圣十字架；第三，无论行动的结果如何，结束后立即撤回，两个月内都不可再踏足威尼斯。</p>
+	<p class='firstLineIndent'>这三条让自视甚高的博特里尼觉得十分蹊跷，难道杀死那百余名教士的人会是需要动用到圣十字架才能消灭的强者？</p>
+	<p class='firstLineIndent'>“大人，又有人来了。”前排的一名骑士禀道。</p>
+	<p class='firstLineIndent'>只见天上一张白色的纸飞毯飘然而至，上面坐的不是印度阿三，而是个穿风衣戴鸭舌帽的欧洲男子，纸侠确实是缺了点儿高手该有的范儿，无论是自己人还是敌人，都低看他一眼，没把他当什么厉害角色。</p>
+	<p class='firstLineIndent'>博特里尼道：“你们去把他处理掉，然后去岸边，别再让喽啰过来了。”他继续盯着法鲁的所在：“我来扒了这条蟒蛇的皮。”</p>
+	<p class='firstLineIndent'>纸侠也没空对喽啰这样的定位做出回击，因为那十名骑士在得令以后半句废话都没有就朝他杀了过来。</p>
+	<p class='firstLineIndent'>即便是负重不轻，这些骑士们依然可以轻松地从冰面上高高跃起，或是长剑，或是短矛，兵刃自他们腰间纷纷亮出，十人在空中呈一个半圆的趋势围住纸侠，个个皆是出手疾刺，眼见已是避无可避的局面。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0025'><summary><a>第六章 包围网</a></summary>
+	<p class='firstLineIndent'>法鲁与博特里尼对峙着，不敢妄动，只是用余光看着纸侠，心道：让你守在岸边，你却非要跟来，现在我若要冒险救你，难免漏出破绽，真是麻烦……</p>
+	<p class='firstLineIndent'>短短数秒，法鲁已在心中权衡一番，最终决定放弃纸侠。他觉得这个警察最多是个并级的能力者，真的救下了也帮不上太大的忙，反成累赘，万一自己有个闪失，陷入被动，那两人仍是死路一条。</p>
+	<p class='firstLineIndent'>而正在这一瞬间，却发生了出乎所有人意料的变化，层层叠叠的白色纸张从纸侠的风衣中飞出，将他包裹在其中，像个超大号的鸵鸟蛋。</p>
+	<p class='firstLineIndent'>骑士们的武器击打在“蛋壳”之上，竟发出了金铁交加之声。那纸结成壁垒比金属更加坚硬，无论是砍是刺，都没留下半点痕迹，反倒是骑士们握着武器的胳膊被震得发麻。几秒后，他们纷纷由空中落下，重回冰面，再也没半个人打算跃上去了。</p>
+	<p class='firstLineIndent'>仅用这几乎透明的一层纸墙，便挡下了十名善战骑士的攻击，顷刻间，在场的所有人都对这个“喽啰”有了全新的看法。</p>
+	<p class='firstLineIndent'>黑面男子退回博特里尼附近，请示道：“大人，此人也是高手，属下可否收旗与之一战？”</p>
+	<p class='firstLineIndent'>博特里尼冷哼一声：“随你吧，如果那杀人者还在威尼斯，肯定已经看到了这里的十字光旗，如果不在，那继续维持十字也是浪费时间了。”</p>
+	<p class='firstLineIndent'>黑面男子闻言便一挥右臂，空中的白色十字光芒骤然消失，而他的手中，出现一杆三米左右的旗杆，上面悬挂着白底赤十字的长方形旗帜。他也不多废话，手持旗杆武器再次跃向空中。</p>
+	<p class='firstLineIndent'>法鲁高声对纸侠道：“警察！想活命就快用你的能力逃回岸边去，这人可是危险等级二的通缉犯！”</p>
+	<p class='firstLineIndent'>“你先管好自己吧。”话声起，人已至，博特里尼高大的身影杀到了法鲁身前，他趁着对方喊话的这一刻，突然发难。</p>
+	<p class='firstLineIndent'>很难想象背着巨大十字架的大个儿能拥有如此惊人的速度，但法鲁也仍有反应的空间，他向侧面移动了几分，虽不是太远的距离，却正好是人的四肢无法触及的长度。</p>
+	<p class='firstLineIndent'>空中，纸侠周围的纸墙散去，脚下的飞毯此刻已经不见，取而代之的是一对巨大的白色纸翼，他双肩和胸口绑着纸构成的安全带，安全带连接着翅膀，那形象要说像天使，确实有点牵强，鸟人却是差不多了。</p>
+	<p class='firstLineIndent'>总之，此刻的纸侠可以在天上更加随心所欲地行动了，他干脆飞得更高一些，直接逃离了对方能跳跃到的最大范围，悠哉地回道：“我知道，他的通缉令我在你们HL的档案里见过，掌旗官苏伊赛德，并级能力者，能改变自己所接触物体的温度。”</p>
+	<p class='firstLineIndent'>苏伊赛德这一手，原本可挥出一道巨大的光刃，他很有信心能破开纸侠的防御，但此刻眼见距离太远，攻击必然落空，他索性在空中调整身形，借下落之势，转而攻向了法鲁的背后，那十名骑士也悄无声息地散开，隐隐形成了一个包围圈逼向法鲁，并逐步缩小着范围。</p>
+	<p class='firstLineIndent'>这圆形的冰面直径本就不过百米，法鲁可以闪躲腾挪的空间并不算大。眼下，身后有苏伊赛德自空中袭杀而来，侧前方被博特里尼占据，外围又被十名骑士封住，看来是已无处可躲。但法鲁的神色仍是十分从容，他竟然向后疾退，直接踩在了冰冷的海水上，如履平地，轻松化解了危机。</p>
+	<p class='firstLineIndent'>纸侠此刻方才明白，原来这厮刚才的蜻蜓点水并不是靠单纯的速度所使出，而是他本身就有着某种在水上行走的能力。</p>
+	<p class='firstLineIndent'>苏伊赛德攻击落空后，迅速分析着下一步形势，很快便猜到了法鲁的想法，于是偏过头对博特里尼道：“大人，看来这二人的能力都不属于进攻型，他们想拖延时间，等待HL的增援和机械化部队从海陆空包围过来。”</p>
+	<p class='firstLineIndent'>博特里尼面露不屑：“即便我把战场设在狭小冰面上，却正好遇到两个可以脚不沾地的角色，哼……HL还真是堕落，净派些耍小聪明的货色来混事吗？”</p>
+	<p class='firstLineIndent'>法鲁自然知道这是简单的激将法罢了，在有限的空间和这种攻击型能力者刀刀见血地拼，最后纵然自己能赢，也必然是惨胜，更何况对方还有人数上的优势，如果勉强上前，无异于自杀。</p>
+	<p class='firstLineIndent'>“哈哈哈哈……”法鲁忽然笑了起来，他回道：“在见到你们以前，我本有十足把握可以将你们全部擒杀，但是……撇开能力不谈，刚才稍稍看了看各位的身手，我也知道全灭你们是很困难的了，不过全身而退我还是有把握的。”他止住笑意：“可是，此刻，你卡莫·博特里尼，竟会用挑衅这种方式来索战。我反倒是安心了一些，看来你们既没有后援，也没有什么周密的部署，只是企图以十字光旗引出‘某个人’来，也就是那个杀死了你们教士的人。引出目标后，达成复仇的目的，然后迅速撤退，这即是你们要做的。”</p>
+	<p class='firstLineIndent'>从对方的表情可以看出自己的推理是正确的，于是法鲁说话的语气越发得意：“可你们没想到，会在威尼斯这小地方遇上我格·法鲁；同样没想到你们的目标迟迟未到；还有天上的那位警官，你们一时也无法收拾；于是现在就是骑虎难下。</p>
+	<p class='firstLineIndent'>一无所获便逃走，很失颜面；放手一搏，又未必能杀我们两个；而拖延下去，早晚会被HL包围的。”他伸手指着博特里尼：“所以，你现在说什么都没用了，我不会让你们逃走的，也不会蠢到和你们硬碰硬，你就等着第二分部的军力到来，然后考虑是投降还是就地伏法吧。”</p>
+	<p class='firstLineIndent'>博特里尼的太阳穴突突直跳，浑身肌肉膨胀到快要破衣的地步，他愤怒地将手伸向了背在背上的巨大十字架：“鼠辈！真以为我认真起来杀不了你……”</p>
+	<p class='firstLineIndent'>苏伊赛德欲言又止，他本想制止监察长大人的行动，但转念一想，既然法鲁已经识破了己方的目的，以及无后援的情况，而杀人者又迟迟没有出现的迹象，现在速战速决才是上策，于是他也不再说话，准备支援博特里尼的行动。</p>
+	<p class='firstLineIndent'>纸侠听着他们的对话，又见到下方的异动，觉得情况可能要遭，于是降低了自己所在的高度，来到水平面上仅一米处，对法鲁道：“要小心应付了，我来帮你。”</p>
+	<p class='firstLineIndent'>法鲁只觉得好笑，身为HL欧洲大陆的数的过来的高手之一，会需要你一个普通警察的帮忙？不过他也知道，此刻的情况不容他多言：“随你便吧，你要是被杀我也没办法。”</p>
+	<p class='firstLineIndent'>与此同时，遥远的夜空中，已可以依稀看到几点微弱的光芒渐渐靠近，那是HL的悬停战斗机，而海平面上也星星点点地出现了一些影子，定然是装甲飞梭舰。至于陆地方向，码头上早已停满了警车，至于HL的路面部队来得比警察更快，他们在法鲁和纸侠离开码头后一分钟便到了。</p>
+	<p class='firstLineIndent'>博特里尼知道事不宜迟，迅速杀了法鲁，回穆拉诺岛的地下，乘潜艇逃走应该还来得及。再退一步打算，可以杀到威尼斯城内，和手下各自分头遁入倒影都市，躲上一阵再混出城去。</p>
+	<p class='firstLineIndent'>他念及此处，下定了决心，便也无所顾忌。猛然将圣十字架抡起，一击挥下，但见一条白线撕开海与天，直扑上岸。</p>
+	<p class='firstLineIndent'>码头瞬间如遭遇了一场三倍速度的小型海啸，站在那儿的警察和HL成员们只觉劲风扑面，突然口中一咸，已喝下两口海水去，随即就发现自己两脚已经离地，和汽车，碎木头，水泥块一并飞在了空中，最后重重摔落。几秒钟过去，这码头边方圆百米的景象，仿佛是一桶被泼在街边的泔脚，人和物，全都残破不全地搅和在一起，狼藉一片。</p>
+	<p class='firstLineIndent'>这一切实在发生得太快，当幸存者们回过神来时，方才听见万马奔腾般的轰轰巨响，也不知是声音滞后了，还是他们被震得短暂失聪。</p>
+	<p class='firstLineIndent'>海面上，法鲁直瞪着双眼，浑身肌肉紧绷，握紧的拳头正在不由自主地颤抖。刚才那短短几秒，他纵然明白发生了什么，却也不可能有躲开的余地和能力。可此刻他毫发无伤，因为他的身边的男人，用纸翼为其挡住了海水的冲击。</p>
+	<p class='firstLineIndent'>纸侠那对纸翼，一翼歪曲环绕着自己的身体，另一翼张开挡在了法鲁身前，在圣十字掀起的巨浪前纹丝不动，稳如泰山。</p>
+	<p class='firstLineIndent'>“你到底是什么人……”法鲁看纸侠的眼神就像在看个怪物，就算是博特里尼这种危险程度三的罪犯，如果没有圣十字在手，法鲁也未放在眼里，但这个警察居然用自身的能力轻松挡下了圣十字的冲击？难道……他也是强级的强者？！而且这种人还在当警察，没有加入HL？</p>
+	<p class='firstLineIndent'>博特里尼只觉得自己后背发凉，纸侠的表现显然也震慑了他，此时的监察长已经无心恋战，欲寻的杀人者始终未出现，却来了个猿雀蟒龙之一的法鲁，还不知怎么冒出个神秘的警察，实力貌似还不在法鲁之下，同时应对两个强级高手，那就别说快速杀死他们了，最后的胜负都是未知数。</p>
+	<p class='firstLineIndent'>苏伊赛德适时地开口道：“大人，我看今日这事不寻常，此地不宜久留，不如……”</p>
+	<p class='firstLineIndent'>博特里尼就等着这台阶下去了，赶紧道：“哼……既然掌旗官这样说了，这账且就记着，来日……”</p>
+	<p class='firstLineIndent'>“想走？”一个低沉的声音从脚下传来，只见一条肌肉精实的胳膊从水里伸了出来，扒在了浮冰的边缘，接着，海水里猛然爬上来一条高大的汉子。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0026'><summary><a>第七章 震慑</a></summary>
+	<p class='firstLineIndent'>在场的每一个人，注意力都被这突然杀入战场的不速之客所吸引。纸侠认得出这男人就是铜鹦鹉酒吧的凶手，而法鲁也看过那段监控录像，他基本可以确认，此人就是十年前圣马可广场惨案的缔造者，在HL的通缉名单中代号为“血枭”，危险程度高达四级的凶犯。</p>
+	<p class='firstLineIndent'>而博特里尼看他的表情更是可以用惊恐来形容，牧师长的指示在他脑海中闪过：“当杀人者出现在你面前时，你自会知道就是他。”</p>
+	<p class='firstLineIndent'>“是你……”十名骑士中竟有数人在看到血枭的时候吓得脸色惨白，呆若木鸡，一贯冷静的掌旗官苏伊赛德也惊惧的无以复加。</p>
+	<p class='firstLineIndent'>血枭的那张脸，凡是钢铁戒律的高级别成员都会认识，他的形象就画在《戒律法典》上，这本一百多年前的法典，也正是钢铁戒律遵行的最高准则，而这本书的最后，刻画了一个魔头，当时的牧师长曾经预言，那是一个会在未来毁灭他们信仰的恶鬼。</p>
+	<p class='firstLineIndent'>血枭本人却是不知道这帮骑士们的破事，但他可以感受到他们的恐惧，这令他非常满意，糟糕的心情也稍微缓和了一些。他爬上冰面，把所有人都当成了空气一样无视，直接就望着纸侠，狞笑着道：“名字。”</p>
+	<p class='firstLineIndent'>纸侠没有说自己的本名，他说出了自己认为最合适的，也是对方最想听的答案，“纸侠。”</p>
+	<p class='firstLineIndent'>血枭一直知道自己被称为什么，他也欣然接受了HL给的这个称呼，所以他同样没说自己的本名，而是回应道：“我是血枭。”他说完，回过头，看着博特里尼：“你刚刚玩儿水玩儿得很开心啊，老子的船夫可是因此趁乱溜走了，我本来还想到了码头以后把他的腿卸下来自己划船过来的，现在只能游过来了，我讨厌沾水你知道吗？”</p>
+	<p class='firstLineIndent'>博特里尼心中一算计，从刚才掀起海啸到现在，码头到这里的距离再加上半公里左右……估计这人游泳的速度和鱼雷也差不了多少……</p>
+	<p class='firstLineIndent'>“你就是杀死教士们的人？”博特里尼谨慎地问道，百年前的传说是否是真，他不知道，但眼前这个男人，显然不好惹，若他真是这次复仇的目标，那此战的形势真是差到了极点。</p>
+	<p class='firstLineIndent'>血枭“啊？”了一声，显得很不愉快，“钢铁戒律派来的就是你吗？”他上下打量了博特里尼一番：“真是渣滓……”他再次将视线转向纸侠：“还好这儿有更佳的猎物。”</p>
+	<p class='firstLineIndent'>法鲁按捺不住了，此刻他感觉自己倒成了个喽啰，竟被血枭完全忽略了，他此次来威尼斯的正命就是捉拿血枭，无论死活。现在被人如此小觑安能无动于衷？</p>
+	<p class='firstLineIndent'>他想到此处，忍无可忍，忽地踏向水面，如利箭般向血枭袭去，到底也是强级的能力者，单就身体能力而言，也绝不输于改造人，这一式锋锐无比，威力不亚于雷鸣电轰，中宫直进，击向血枭面门，就看你是躲是接。</p>
+	<p class='firstLineIndent'>因为事出突然，纸侠想拦下法鲁也已是来不及了。</p>
+	<p class='firstLineIndent'>血枭对HL的情报即便不能说了如指掌，也算是烂熟于胸了，连自己在对方组织内部的秘密通缉犯名单上是啥绰号都知道，自然也认出得格·法鲁的长相。</p>
+	<p class='firstLineIndent'>血枭不屑地看着对方冲向自己，这短短两秒的时间，他就觉得无聊了，法鲁的攻击太慢，太无力，这就是所谓猿雀蟒龙？</p>
+	<p class='firstLineIndent'>二人交锋后景象基本就是……血枭像个捕手一般，接住了投手给他的球，接着顺势扔到了地上，当然，在这里并没有棒球。血枭的手是按在了法鲁的脸上，然后抓着他的头，将其整个人往脚下一掷，冰面碎裂，法鲁直入海底，下沉的速度比他自己突进时还要快。</p>
+	<p class='firstLineIndent'>扔完人以后，血枭活动了一下手腕，若无其事道：“这是蟒蛇？我看是蛞蝓吧，这种东西就该扔到盐水里去，让他自己化掉，漂在海面上多恶心。”</p>
+	<p class='firstLineIndent'>博特里尼见状，也不去管手下了，扛起圣十字架，撒丫子扭头就跑。苏伊赛德和骑士们的反应也是不慢，没敢撂半句狠话，一溜烟儿跟上，逃命要紧。血大爷您不就是杀了几百个教士吗，随便杀，您这样的咱们惹不起，改天请来骑士总管大人再与您较量。</p>
+	<p class='firstLineIndent'>“哼……”血枭冷哼一声，也不回头去看他们，只是用右手拇指朝后指着，对纸侠道：“你也忍了这帮废物很久了吧？”</p>
+	<p class='firstLineIndent'>纸侠知道血枭想干什么，平静地回道：“请便。”</p>
+	<p class='firstLineIndent'>血枭半旋身体，右手作刀，对着身后直劈下去，他身后的冰面被一分为二，接着，宽广的海面也被撕扯开了一道长约千米的痕迹，分离出的海沟过了近五秒才重新被填满。冲击波向两侧掀起了巨大的海浪，呈扇形朝着远处的海面上扩散，威力毫不亚于刚才博特里尼挥舞圣十字架时的一击。</p>
+	<p class='firstLineIndent'>坐在办公室里的马龙在三十秒后便接到了十几艘装甲飞梭舰不同程度损毁的报告，他只能下令海陆空三线部队暂时停止包围网的收缩，在远处等待下一步指示。</p>
+	<p class='firstLineIndent'>马龙在屋内来回踱步，思想上激烈斗争着。法鲁离开后他就立刻下了多道命令，做了万全的部署，但没想到战斗会升级的这种地步，也不知道海面上此时的状况究竟如何了。</p>
+	<p class='firstLineIndent'>“根据岸边发来的最后情报，那个飞在天上的男人肯定是埃洛特，加上法鲁中校……从目前的战况看来，钢铁戒律至少也有一个强级以上的能力者，那就已经是三人了。机械化部队合围如果也无法控制住局面的话，只能请欧洲总部派将官级别的救兵了吗……”马龙自言自语着，此刻他的精神压力之大，恨不得把嘴里的雪茄嚼碎了吞下去。</p>
+	<p class='firstLineIndent'>海上。</p>
+	<p class='firstLineIndent'>“他们应该都没死吧。”纸侠问道：“你不追上去赶尽杀绝么？”</p>
+	<p class='firstLineIndent'>血枭道：“我只是让丧家犬们也尝尝海水的味道而已，然后，他们会带着那份屈辱活下去，变强，或是找些更厉害的人来为他们雪耻，这不是很好吗？”</p>
+	<p class='firstLineIndent'>话至此处，只见自岸边徐徐飘来了一团云雾状的物体，近了一些，看起来又像是鸟群，再近些，就清楚了，这整团巨大的黑影里，全是飞旋杂乱的纸张。报纸，办公用纸，废纸，甚至纸箱片。无论大小、种类、完整与否，那体积总和起来，堆得能有一座沙丘般高大，此刻已飞到了纸侠的身后。</p>
+	<p class='firstLineIndent'>血枭知道已无需多言，他从脚下那徒留寸许的冰面上弹出，其身影瞬间消失在了纸侠的视线中。</p>
+	<p class='firstLineIndent'>纸侠并没有飞上天空，他没有时间那么做，在一秒之间，他的纸翼从两侧合拢收起，将自己裹得像个立着的饺子般严实。</p>
+	<p class='firstLineIndent'>果然，血枭的拳头打在了纸翼上，在这钢铁武器都无法留下伤痕的纸上，敲出一个四指拳印来。</p>
+	<p class='firstLineIndent'>纸侠心中大惊，刚才完全没看到血枭的动作，要不是有着这种不留死角的绝对防御，恐怕对方只要连续猛攻个一分钟左右，自己定然会被活活打死。</p>
+	<p class='firstLineIndent'>血枭却是满不在乎地道：“这算是打声招呼，你没有立即死掉真是令人欢欣鼓舞。”他的另一只拳头立刻招呼了过来。</p>
+	<p class='firstLineIndent'>纸侠原以为这第二拳的冲击力会小一些，毕竟对方现在双脚没沾地，根本无从借力，只是借着第一拳的反作用力，扭转上半身挥出来罢了。但当他的这个念头还没完全闪过脑海时，巨大的劲道已隔着纸翼传到了他的身上。</p>
+	<p class='firstLineIndent'>纸侠只得急退卸力，顺势滑出一个弧度高高升起，纵然如此，胸中也是气血翻腾，御敌的纸翼竟被打得出现了裂痕。</p>
+	<p class='firstLineIndent'>他惊魂未定地再次展开了双翼，以更快的速度爬升至高空，监控录像中血枭杀人的一幕再次浮现在眼前，那个被他用拳头贯穿的小混混就是死在这种刺拳之下。</p>
+	<p class='firstLineIndent'>这第二拳是完全不同的攻击方式，以厚钢板为例，如果血枭的第一拳打在钢板上，那钢板会从中间凹陷变形，然后朝后直飞出去；但那第二拳，如果打在钢板上，钢板根本不会移动半分，但中间会被开个洞，血枭的手臂会穿过去。</p>
+	<p class='firstLineIndent'>“他在这么短的时间里想好了这种策略吗？不可能……那是本能……杀人的本能。他会这样打，不是出于战术，也绝没有考虑过我的心理活动，他只凭直觉就知道，怎样才能更有效率地杀死一个能力者，哪怕是初次交手……”纸侠明白了，自己面对的是一个前所未有的怪物。危险等级四……不止是强级而已，比如博特里尼，他也是强级，但却是危险等级三。危险等级四，是初步判定就为强级上位者，实际等级不明的情况，也是纸侠所知的最高危险级别。</p>
+	<p class='firstLineIndent'>“‘狂’的话，我恐怕早就死了，那么……他是凶这个级别的能力者吗……”</p>
+	<p class='firstLineIndent'>纵是如此，他也必须一战，因为他是纸侠，就像每个英雄一样，他绝不会逃跑的。</p>
+	<p class='firstLineIndent'>纸侠遥望着浮在海面上的血枭越来越渺小，自己周围的空气也越发稀薄，预估高度应该差不多了。从纸雾中招来大量纸张，在身前聚起，呈锥形高速旋转起来，自岸边望去，恍若海面上出现了龙卷风一般。</p>
+	<p class='firstLineIndent'>十数秒后，纸侠脚下的纸龙卷外围不再散乱，越发平整笔直，而那龙卷的最下端也逐渐形成了一个尖锐的顶点，此时这招的真面目才看得分明，远看像个倒过来的塔尖，近看，就是个每秒转速上千，体积巨大无比的钻头。</p>
+	<p class='firstLineIndent'>血枭抬头望去，冷笑，他泡在冰冷的海水里，却觉得热血沸腾，已等不及要接下试试。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0027'><summary><a>第八章 转交</a></summary>
+	<p class='firstLineIndent'>威尼斯城中，一幢普通的民宅天台上，一个留着马尾辫儿的亚裔男子正搬了张折凳坐在那儿，用夜视望远镜看着海面上的景象，但因为距离实在太远，他也看不清什么东西，勉强能瞧见巨大的纸钻头罢了。</p>
+	<p class='firstLineIndent'>忽然，他放下了望远镜，猛一回头，对着身后的一片黑暗道：“什么人？！”</p>
+	<p class='firstLineIndent'>“和他说的一样，你还真是警觉……”一个提着巨大手提箱的男人从阴影中走了出来，“你就是左道先生吧？”</p>
+	<p class='firstLineIndent'>左道一只脚已经跨到了护栏外面：“你别过来，再过来我就跳下去了。”</p>
+	<p class='firstLineIndent'>“呵呵……初次见面，你又何故以死相要挟呢？你觉得一个陌生人会在乎你的死活？”</p>
+	<p class='firstLineIndent'>左道眼珠子转了两圈：“所以……你不是来要账的？”</p>
+	<p class='firstLineIndent'>“你是否考虑先把脚跨回来再说。”男子说话间已放下了手提箱。</p>
+	<p class='firstLineIndent'>左道从护栏上下来了：“好吧，顺便确认一下，你不要介意，那个……我没有和你的某个家人睡过对吧？”</p>
+	<p class='firstLineIndent'>男子长吁了一口气，似乎是在为左道的人品进行哀悼，他没有回答问题，而是转移了话题：“你可以叫我会计，我想咱们彼此用绰号来称呼很公平。”</p>
+	<p class='firstLineIndent'>“嗯……左道是我的真名……”</p>
+	<p class='firstLineIndent'>会计呆滞了三秒钟左右，又叹了很长的一口气：“那什么……我原本是想说什么来着，哦，对了，有人让我来给你送件东西。”他说着就弯腰想打开手提箱。</p>
+	<p class='firstLineIndent'>左道一溜烟窜上了护栏：“你确定那不是炸弹？”</p>
+	<p class='firstLineIndent'>会计翻了翻白眼：“对，我确定。”</p>
+	<p class='firstLineIndent'>“你要是以为能趁我放松警惕的某个瞬间从箱子突然拿出冲锋枪或者手榴弹来对付我，那就太天真了，我每天睡觉都睁着一只眼睛，枕戈待旦，毫无破绽！”</p>
+	<p class='firstLineIndent'>会计此时已经把东西拿了出来，只是一盒录像带而已。</p>
+	<p class='firstLineIndent'>“伙计……说真的……你可以下来说话么？”</p>
+	<p class='firstLineIndent'>左道第二次从护栏上爬了下来：“哈哈，真抱歉，你也知道，我们这行是高危职业。”</p>
+	<p class='firstLineIndent'>会计道：“行了，你不必解释了……准备接电话吧。”</p>
+	<p class='firstLineIndent'>“什么电话？”左道莫名地问道，正当此刻，他怀里的手机居然响了起来。</p>
+	<p class='firstLineIndent'>这一下吓得左道脸色惨白，比白种人还白，对方怎么知道自己的手机会响？又怎么知道自己的号码？等等……自己的住处又是如何被发现的？！</p>
+	<p class='firstLineIndent'>会计见了那惊讶的表情只觉得好笑：“别慌，伙计，大约十六个小时之前我也遭遇了和你此刻差不多的情形，你接完这通电话就全明白了。”</p>
+	<p class='firstLineIndent'>以左道的性格，自然是将信将疑，他吞了口口水，按下通话键，声音颤抖地道：“你好？”</p>
+	<p class='firstLineIndent'>电话那头的人道：“我要你帮我把这卷录像带交给血枭。”</p>
+	<p class='firstLineIndent'>“谁……谁是血枭？”左道问道：“你又是谁？”</p>
+	<p class='firstLineIndent'>“血枭就是奇里奥斯，你把会计手里的东西交给他时可以说，是一个叫天一的人让你转交的，你也可以把今晚遇到的情景描述给他听，当然了，据我的估计，就算你到时不想说，他也有办法威胁你说出来。”</p>
+	<p class='firstLineIndent'>“你有什么企图？我为什么要帮你？还有，你是如何掌握我的行踪的？”左道接二连三的提出了问题。</p>
+	<p class='firstLineIndent'>天一则不紧不慢地逐一回答道：“首先，我的企图你不会明白的，与你也没有直接的利害关系；其次，你必须帮我的理由，请参照我接下来要解答你的第三个问题；也就是，如何掌握你行踪的问题，我的答案是，你找我，苍茫大地无踪影，我杀你，神兵天降难提防。你他喵的还想多活几年就少来跟我提问，让你干什么就干什么，否则随时会有几百个警察把你围在类似公共厕所小隔间之类的地方，以信用卡诈骗的罪名把你逮捕，然后把你送进某个可以在一个月内改变你性取向的重刑犯监狱里安度晚年。”</p>
+	<p class='firstLineIndent'>“大大大……大大……大哥，您可怜可怜我，我我……”左道结结巴巴地求道。</p>
+	<p class='firstLineIndent'>天一打断了他：“让陌生人直接和血枭沟通太危险了，所以我才找上你，我知道你正在为血枭跑腿做中间人。下次你遇到血枭时，把录像带交给他，任务就算完成了，如果我以后没有用得着你的地方，我们就永远不会再有联络了，就这样吧。”</p>
+	<p class='firstLineIndent'>电话被挂断了，左道听着手机中传来的急促忙音，一脸惊恐地向会计投去了求助的目光：“大哥……”</p>
+	<p class='firstLineIndent'>“行了……我担当不起。我和你一样，自以为没人知道我的行踪，接着，该死的手机响了，一个叫天一的家伙让我去某个车站的储物箱里拿这盒录像带。”他无奈地叹息：“你还算走运，我都超过二十个小时没合眼了，就因为他告诉我，在此时此地，可以找到一个叫左道的人，然后把东西转交给你。”</p>
+	<p class='firstLineIndent'>左道只觉得后脊梁发凉：“难道他能预测未来？全知全能？”</p>
+	<p class='firstLineIndent'>“那倒未必，这几十个小时来我一直在思考这个人究竟是如何办到这些的。最后我明白了，从理论上来讲，要做到这些，是完全有可能的，虽然实际上实施成功的概率极低……”会计说道：“他并不是看到了未来，而是做了某种计算。如果我们假设有这样一种公式，（人的思维模式+实际行动）×物理位面的既定事实=某件事的结果。那么这个天一，就是完成了这种推衍，他一定掌握着某种海量的，且绝对可靠的情报，然后把众多变量全都考虑了进去，所以能提前推测甚至影响一些事情的发生。”</p>
+	<p class='firstLineIndent'>左道瞪大了双眼：“朋友，你说的是哪国语言？”</p>
+	<p class='firstLineIndent'>会计回道：“你不明白也无所谓，这也只是我的判断而已，没准他还真是能预测未来什么的呢，谁又知道呢？我先得找个地方睡会儿。”他说着便走向前，把录像带往左道手上一拍，接着便带上他的大手提箱离开了。</p>
+	<p class='firstLineIndent'>左道孤零零地站在那儿愣了片刻，忽然听得北方一声巨响，他赶忙举起望远镜，远眺海面，只见一条白龙在空中飞腾，也不知此刻是谁在那儿打斗，竟能接二连三地搞出这种灾难片一般的景象来。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0028'><summary><a>第九章 狩猎结束</a></summary>
+	<p class='firstLineIndent'>巨大的钻头从天而降，这奇袭是无法朝旁边避开的，因为钻头探入海面后，势必将搅动起巨大的漩涡海流，将四周的海水扯向中心。若要不受影响，只有垂直向下潜入深海这一途。</p>
+	<p class='firstLineIndent'>纸侠在动手前就已考虑到了这些，对方胸腔以下都浸没在冰冷的海水之中，水中难以借上力来，硬接此招实为下策，而躲避的话，无论如何还是得沉下海，那就依然将处于被动之中。纸侠深知对方的级别很可能在自己之上，此刻已是孤注一掷，唯有不断地累积优势，才可能找到得胜的契机。</p>
+	<p class='firstLineIndent'>血枭则迥然不同，对他来说，别人眼中的下策，正是他最想做的应对方法。</p>
+	<p class='firstLineIndent'>钻头在距离血枭头顶两米不足的距离时，突然加速下坠，虽然这纸构成的巨型钻头的底部半径足有十五米，但那顶点却极其锋锐，不偏不倚地瞄准着血枭的眼球袭来。</p>
+	<p class='firstLineIndent'>血枭双臂举起，两掌并拢一握，这一瞬间，每秒转速至少在两千以上的钻头，竟停了下来，纹丝不动。</p>
+	<p class='firstLineIndent'>力量强的一方才可以对另一方的运动做出影响，按常理说，此时血枭应该抱着钻头自转，或是由两条胳膊开始，自上而下被磨碎成肉泥。但现实是，他就那样浮在海面上，仅用双手就停住了体积比自己大上近百倍的钻头。</p>
+	<p class='firstLineIndent'>“光凭腕力就可以做到这种地步，力量上太悬殊了吗……”纸侠心中有了结论，但依然十分冷静地分析着情况：“速度快到我看不见，力量方面，我的纸武器有着与精钢比肩的坚硬度，通过增加体积来累积质量，重力加速度加自转，结果被他像掐住纸风车一样轻易给停住了……现在我唯一的优势就是制空权，但也不能说绝对就安全……真是最糟糕的情况了，这种人到底是怎么提升到如此实力的。”</p>
+	<p class='firstLineIndent'>这时，纸钻头突然爆散开，化为无数纸张飘在空中，然后重新连接而起，形成一个巨大的平面，如一张巨毯，遮蔽住了血枭头顶千米见方的海面。</p>
+	<p class='firstLineIndent'>“挡住我的视线？”血枭冷笑着道：“在上面酝酿着什么吧，是某种杀招么……”</p>
+	<p class='firstLineIndent'>有时，野兽般的本能比思考得出的结论更为准确，纸侠确实在准备着什么。他的能力很强，几乎没有限制，但人的体力和精力是有限的，精神高度集中的情况下，这种消耗可能并不明显，自己也不易察觉，但一旦遭到肉体上的创伤，或是因战斗时间太长意志稍有松懈，自身的疲惫就会突然如决堤般爆发，这比对手的招式来得更为致命。纸侠深知继续拖延对自己是不利的，持久战后，对方绝不会是先倒下的那一个，最好的结果也不过是自己战死，然后海陆空三线部队对着这片海域进行毁灭式的恐怖打击。所以，还是早点出绝招吧。</p>
+	<p class='firstLineIndent'>血枭吹着口哨，耐心地等待着，他不急着杀死纸侠，因为这是场狩猎的游戏，享受过程很重要。决定这游戏何时结束，还有以什么方式结束的人，必须是猎人，而不是猎物。</p>
+	<p class='firstLineIndent'>纸毯仅是一个平面，不需多少纸张就可形成，而那些剩下的纸，全部汇聚到了天上，渐渐结成了某种蛇形生物的姿态。不到一分钟，遮蔽在血枭头顶的那些纸也散去了，除了纸侠用来飞行的纸翼，天空中的每一张纸，都附到了那生物的身上。</p>
+	<p class='firstLineIndent'>但见云中巨影，虎须鬣尾，身长若蛇，有鳞若鱼，有角仿鹿，有爪似鹰，这纸汇成的巨龙，栩栩如生，灵神兼具，海上的风声此时听来也恍若成了低沉磅礴的龙吟。</p>
+	<p class='firstLineIndent'>“虚构的生物吗……有趣。”血枭望着空中飞舞的纸巨龙，神情愈发兴奋。</p>
+	<p class='firstLineIndent'>有道是，龙不能神人神之，这飞龙便是纸侠的杀手锏。用能力做出这种仿照生物的形态看似意义不大，还不如结成巨大的刀剑或是上万支纸镖。其实不然，那道理就好比，一道菜色面上光鲜亮丽，另一道相同的菜，则做成了屎一样的形状，吃在嘴里的味道明明应该是相同的，但吃的人仍然会觉得第一道菜比较好吃。再举个正常点的例子就是，一个穿着衣服的木偶可以去参加喜剧表演，而一个没穿衣服的木偶往往就只能参演恐怖片了。</p>
+	<p class='firstLineIndent'>降龙十八掌就该有龙吟声，打狗棒法还就得使棒子，黯然销魂掌就该被NTR的苦逼去练，六脉神剑就他娘的得从动脉里喷出来。形神一体，方是最高境界。</p>
+	<p class='firstLineIndent'>纸侠操纵着巨龙向血枭扑去，带起的劲风在极远处就对海面产生了影响，张开的龙口正好能把血枭给吞了。一晃眼，纸龙的半截身子已经入海，而血枭也已不见踪影，想必已入龙腹之中。</p>
+	<p class='firstLineIndent'>亚得里亚海平均水深不足500米，而且威尼斯是片浅滩，近海水深更浅，纸侠知道，就算是拖到海底，这压力他的纸龙也完全可以承受，所以血枭自然也没问题。在强攻无胜算的情况下，只有把他溺死了，这厮总不可能在水下呼吸吧？</p>
+	<p class='firstLineIndent'>原计划是让纸龙吞下血枭，蜷成一团，再调整龙内部的纸，用浸湿的纸张紧紧裹住血枭，然后毫无缝隙地在外围不断加厚纸张，就像用水泥逐渐灌满木乃伊的棺材，就算尸变你也得再死一回。</p>
+	<p class='firstLineIndent'>可现在水下的真实情况却是，血枭跨着四平大马，脚踏巨龙下颚，双手撑着龙的上颚，那龙嘴愣是合不起来。</p>
+	<p class='firstLineIndent'>“果然不止是改变了形状而已，在水下的咬力竟比刚才的钻头还要强上许多。”血枭心中想着。</p>
+	<p class='firstLineIndent'>与纸侠的距离越远，他的能力会变得越弱。所以逐渐难以支撑，随着水压的加强，肺也开始不堪重荷，纸龙的巨口就要闭拢了，血枭的姿势就像是盘古吃了泻药以后仍然在坚持工作的形态，就在这千钧一发之际，转机来了，附近有人！</p>
+	<p class='firstLineIndent'>血枭原以为是刚才被扔到水下的法鲁，但转念一想应该不对，那家伙肯定早就恢复意识溜上岸去了，人类在海里待到现在估计已呛死十回有余，那么……在这种地方的，肯定是军队，这附近应该有HL的潜艇在。</p>
+	<p class='firstLineIndent'>无论如何，有人就好，血枭身上的力量又重新开始提升起来，半个龙头被他奋力扯碎。一举摆脱了巨龙的钳制，挥开双臂，在海底带出一阵强劲的海流，游泳速度如鲨鱼般惊人，直窜海面而去。</p>
+	<p class='firstLineIndent'>当血枭与纸之间的接触停止，纸侠就无法判断对方的位置了，在夜间用肉眼根本不可能看到海面下的物体。现在形势不明，纸侠唯有将纸龙唤回天上再作计较。</p>
+	<p class='firstLineIndent'>血枭浮上水面，喘上两口气，心中不快地念道：“这个人的负面情绪太少，是件麻烦事，在陆地上倒也无妨，海里的话，对我太不利了，不玩儿了，杀掉算了。”想到此处，他掌击水面，竟直接弹起了数十米的高度。</p>
+	<p class='firstLineIndent'>此时纸侠也看到了血枭，龙头也已修补完毕，所以他再次驱策着巨龙扑向血枭，意图故技重施。</p>
+	<p class='firstLineIndent'>血枭呈弧线下落的那个点，正有一块碎裂的浮冰，虽只有一平米见方，但这就够了，水的浮力，和这块冰能借给血枭立足的那点力道，就足以让他发动一次恐怖的对空袭击了。</p>
+	<p class='firstLineIndent'>飞龙在天，斜刺着俯冲而下，而血枭自下方跃起杀来。纸飞龙这次确确实实把血枭给吞了，然后从头部开始被解体，由内部层层叠叠地爆开，化为天空中一条碎开的圆柱形纸道。</p>
+	<p class='firstLineIndent'>血枭破龙后来势丝毫不减，直指纸侠所在。而纸侠在那纸龙崩毁之际，顿觉胸中一滞，一时难以动弹。凝聚心神操控着的能力被人突然强行破坏，给他带来了相当的影响。</p>
+	<p class='firstLineIndent'>血枭终于飞到纸侠面前，回转身体，一肘击出，纸侠的纸翼这次没有完全裹住他，而是堆叠到其身前，全力去接这一击。</p>
+	<p class='firstLineIndent'>空中散开的纸如羽毛般缓缓飘落，纸侠的身体则像炮弹一样飞向了码头，坠入了一片狼藉的废墟中，落地处的海水真如遭遇了炮击一般炸开了。</p>
+	<p class='firstLineIndent'>“这些纸还真能扛……”血枭估计纸侠极有可能未死，他前几年做过实验，肋骨被击碎以后插进内脏也是可以抢救回来的。</p>
+	<p class='firstLineIndent'>血枭重新落至海面，不由得打了个喷嚏，在这种冰冷的水里泡得太久了，体内反而会缺水，他此刻的感觉非常糟糕，脑中已经在考虑是否要游到岸边从泥沙里翻出纸侠补上一刀了。</p>
+	<p class='firstLineIndent'>不过十几个红外线的瞄准准星让血枭改变了主意，那些晃动着的红点意味着机械化部队的密集火力，所以他立即猛地深吸了一口气，扎下水去，刚才所在的位置在两秒后被多个方向的无数门机关枪炮火连续招呼了一分钟，打得水花四溅，却不见有血浮上来，看来是一枪没中。</p>
+	<p class='firstLineIndent'>血枭的游速比潜艇还快，雷达又捕捉不到人类，所以他安然遁走，结束了这混乱的一夜。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>那天后，各路媒体的报道层出不穷，官方的解释是——钢铁戒律针对平民的一次恐怖武装袭击，从某种意义上来说，这说法也没错，因为血枭的确是平民，而那位圣十字架的持有者，圣城监察长博特里尼，最初确实是为了干掉他才来的。</p>
+	<p class='firstLineIndent'>被众多目击者以及照片记录下的白十字被描述为某种特制的烟火，之后的小型海啸和爆炸等也被一一解释成了正常的军事武装对抗所引起。</p>
+	<p class='firstLineIndent'>一些不可知论者拿着自己拍下的模糊视频短片传到网上，大肆宣传着“白色的旋风和巨龙”之类的言论，这些声音很快淹没在“这是游戏宣传片吧？”“电影预告？”“图P得也太假了？”“老婆，快点出来看上帝”诸如此类的评论中，成了一则则并不怎么吸引人的小道消息，渐无声息。总之，事件掀起的波澜虽是不小，但平息也很快。</p>
+	<p class='firstLineIndent'>纸侠被送进了医院，而法鲁却成了英雄，这家伙被人一拳打懵以后，悄悄逃走，狼狈上岸，但事后却还能领功。这也是HL稳定人心的一种做法，政府是无敌的，荣耀应该属于一名HL的中校，是他英明地指挥我们战无不胜的军事力量保卫了民众。</p>
+	<p class='firstLineIndent'>而你永远不会知晓，有一个古怪的警察在这件事当中出现过。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0029'><summary><a>第十章 合作</a></summary>
+	<p class='firstLineIndent'>时间可能是早晨，血枭正待在倒影都市的某个房间中，在这里实在很难感觉到时间的流逝。</p>
+	<p class='firstLineIndent'>这地方现在已经颇像一个住处了。虽然照明设施依然是头顶的光道，但一些家具和生活用品却让这房间和其他的方盒子有了区别。当然，整体的布局还是非常诡异的，因为这房间的空间非常大，家具之间的距离太远又不方便，所以血枭的生活区域只占了大约三分之一的面积。</p>
+	<p class='firstLineIndent'>他此刻正坐在沙发上，对面是一面挂在墙上的平板电视，电视背侧有几条凌乱的线一直连接到地板上一个黑色的长方形扁盒子后面，这玩意儿就是传说中的录像机。</p>
+	<p class='firstLineIndent'>血枭将一卷录像带放进了机器里，然后重新转身坐到了他的旧沙发上，按下了遥控器的播放按键。</p>
+	<p class='firstLineIndent'>这是他和纸侠交手后的第五天，从前天开始，左道陆续地完成了交货，作为中间人，他干的确实不错，各种设备、化学品、合法的现金，甚至来历不明的家具，都十分令人满意。</p>
+	<p class='firstLineIndent'>在完成所有的交接后，各奔东西，形同陌路，直至下一次合作之前最好是老死不相往来的状态，这次合作就算是完美了。</p>
+	<p class='firstLineIndent'>但出乎意料的情况是，左道还给了血枭一盘录像带。</p>
+	<p class='firstLineIndent'>血枭也问了左道一些问题，但得到的情报仅仅是两个听上去根本不像是真名的名字，“会计”和“天一”。</p>
+	<p class='firstLineIndent'>左道原以为对方会质疑或者干脆对自己大刑伺候，但血枭却没有这样做，似乎他能够分辨出别人什么时候是在说真话。</p>
+	<p class='firstLineIndent'>录像开始播放，开头画面是一片雪花状，几秒后，响起了古怪的嘟嘟声，听着像是某种电子闹钟的铃音。又过了大约十秒，屏幕上出现了一个场景，那是一间屋子，屋里到处都是书架和堆放杂乱的书籍，镜头似乎被放在了一张办公桌上，但桌前的椅子上没有人。</p>
+	<p class='firstLineIndent'>然后画面外传来了马桶冲水的声音，接着，一个穿着黑色的衬衫和西装，领口耷拉着的男人走进了镜头中，他瞥了一眼镜头，然后道：“哦，血枭先生，你好。”</p>
+	<p class='firstLineIndent'>血枭看着电视画面，表情麻木，当画面中的天一问出那句话以后，血枭直接就按下了遥控器上的停止键，嘴里骂了句：“白痴。”</p>
+	<p class='firstLineIndent'>结果录像并没有停止，电视中的天一缓缓走到办公桌后的沙发椅上坐下，清了清嗓子道：“首先，这不是某种想骗你对着电视自言自语的恶作剧影片，所以‘白痴’这个结论显然不正确，即便我真的要做一部那种性质的影片出来，也绝对是大师级别。”</p>
+	<p class='firstLineIndent'>血枭以为自己按遥控的时候没对准，于是他又多按了几下，可影片仍在继续。</p>
+	<p class='firstLineIndent'>“录像机是左道弄来给你的吧，前几天他想偷看一下录像带的内容，结果被吓得半死。他好像觉得我会从屏幕里爬出来，所以把电源给拔了。”天一端起了咖啡，说道：“血枭先生，你可以不必再按录像机的遥控了，这不是一卷普通的录像带，而是一种通讯媒介，只要有人播放这卷录像带，我桌上的电脑就会有提示音，然后自动连接你那边的电视屏幕。所以你现在其实是在进行一次视屏通话。”他露出一个不快的表情来：“和我预估的时间有些出入啊，血枭先生，这几天我觉都没睡好，生怕因为时差错过通信。”</p>
+	<p class='firstLineIndent'>“我从来没有听说过可以用二十世纪的音像制品配合电视与别人的计算机进行视屏通话。”血枭虽是这样说，但他终究还是对着画面开口了。</p>
+	<p class='firstLineIndent'>“啊，确实如此，但你要知道，制作这卷的带子的人可以说是这个时代最优秀的匠师，如果他早生一百年，那天都的设计工作一定将由他领衔。”天一回道。</p>
+	<p class='firstLineIndent'>血枭冷笑道：“你是在指自己？”</p>
+	<p class='firstLineIndent'>“我？不不，我根本不知道这玩意儿是怎么运行的，我只负责下订单罢了。而且刚才的话，也丝毫没有吹捧的意思，这个时代最优秀的匠师是个十足的白痴，你有机会见到他，别忘了帮我捅他几刀，顺手切碎喂猪。”</p>
+	<p class='firstLineIndent'>血枭道：“那么，对于这录像带我也已经知道的足够多了，你可以说正题了吗？找我有什么事？天一先生。”</p>
+	<p class='firstLineIndent'>天一也直言不讳地回道：“我想跟你合作。”</p>
+	<p class='firstLineIndent'>血枭冷哼一声道：“我怎么觉得，这句话听上去像‘我想让你做我的手下’或者是‘我想利用你’。”</p>
+	<p class='firstLineIndent'>天一笑道：“合作，血枭先生，意思就是互相利用，直到对方没有价值了，再散伙，之后你如果觉得合作者非常碍眼，再顺手杀掉就是了。”</p>
+	<p class='firstLineIndent'>“哦，看来你对事情的看法还是挺有见地的嘛，不过既然是你先找上了我……”</p>
+	<p class='firstLineIndent'>血枭话未说尽，天一已经知道对方所需了，他直接回道：“没问题，我可以告诉你。”灌下半杯咖啡，天一开始道：“事情得从十年前圣马可惨案的那晚说起，你可能不太清楚，在那之前的一个月左右，有一伙职业窃贼雇佣了我，为他们提供一次针对圣马可大教堂的盗窃计划。这群人身手不错，脑子也不笨，有些还有军事背景。我觉得这笔买卖可以做，就接下了。</p>
+	<p class='firstLineIndent'>我用半天就拟定了计划，但情报搜集，侦查，准备以及训练和演习占去了大部分时间，所以很不巧的，他们动手的那天晚上，正好遇见了你。</p>
+	<p class='firstLineIndent'>和他们通讯很快就中断了，当我赶到现场时，看到了一个非常有趣的犯罪现场，没有计划，没有犹豫，没有怜悯，没有……活口。</p>
+	<p class='firstLineIndent'>那时起，我就对你产生了兴趣。”</p>
+	<p class='firstLineIndent'>血枭抓起了手边的零食：“哦，说起来，那晚大教堂里确实出现了一伙奇怪的人，也不是保安的样子。”</p>
+	<p class='firstLineIndent'>天一接着道：“我认为有两条途径可以通向完美的犯罪，第一条，周密的计划，精确地执行，妥当的善后；第二条，干了再说。</p>
+	<p class='firstLineIndent'>多年来，我以兜售有计划的犯罪活动为生，对第一条路可以说驾轻就熟。但是你，血枭先生，制造了一个看似是冲动犯罪的现场。迈进教堂，把艺术品打包，拿出来，杀死每一个企图阻止你的人，直到无人可杀，然后迅速离开，这景象无论在我脑中重演多少次，无论看上去留下了多少痕迹与破绽，其实却是完美的。</p>
+	<p class='firstLineIndent'>无数的侦探小说家以破获精巧的布局为故事主线，但他们永远触碰不了那第二条路，就是最简单最直接的犯罪，比如交通肇事逃逸，夜间持械抢劫，公车上的扒手，这些犯罪者如果能够逃脱一时，永不再犯，往往就能逍遥法外，再精明的人也无从查起。”</p>
+	<p class='firstLineIndent'>血枭道：“你是在间接炫耀自己有办法联系到我吗？”</p>
+	<p class='firstLineIndent'>天一撇了撇嘴：“不，没什么值得炫耀的，十年来我一直无法找到你的行踪，这真的非常失败，直到你在铜鹦鹉酒吧里杀人，我才有了头绪。那么接下来就说一下你最想听的部分，我是如何找到你的。”他将杯中咖啡一饮而尽，指了指自己身后的书架：“在我的这家书店里，有一种心之书，每一本都代表了一个人，我可以看到所有纸级以下普通人的心声，这是我的情报来源。”</p>
+	<p class='firstLineIndent'>血枭面露不屑之色，似乎根本不信对方的话：“你是说你的书店里有一百多亿本书？”</p>
+	<p class='firstLineIndent'>天一回道：“血枭先生，为什么你要像那些俗人一样，被空间和数量所局限了思想呢？刚才你还认为自己放进录像机里的是一种二十世纪的影像记录载体，现在你却在跟我说话不是吗。”他回头看了一眼那些书架上的书：“从外观上来看，这些书没有什么区别，全都由黑色的书皮包裹着。”他随手拿下来一本道：“所以，我拿下的这本书，翻开的时候，里面的名字可以是张三，也可以是李四。而当你将注意力转移到我手上的时候，你又有没有注意到，我刚才拿掉一本书的地方，现在是满的，没有空隙。”</p>
+	<p class='firstLineIndent'>血枭貌似明白了，他道：“这是你的能力吗？”</p>
+	<p class='firstLineIndent'>天一道：“喔喔喔……老兄，这个问题可越界了。”</p>
+	<p class='firstLineIndent'>“哼……无所谓，我也不是太想打听。”</p>
+	<p class='firstLineIndent'>“接下来的事情，应该就比较容易解释了。”天一又给自己满上了一杯：“HL当中自然也不可能全部都是能力者或者改造人，没有异能的普通人想将肉体锻炼到纸级以上也是很困难的事情。</p>
+	<p class='firstLineIndent'>但你的档案很特殊，十年前开始就几乎未经过几个凡人之手，即使过过手，他们也没资格看，于是乎我连你在HL里的代号都是最近才知道的。茫茫人海，我不可能去监视所有的人，当然现在我确认了你的长相与身份之后，可以将一些情报对号入座，知晓一些过去可能是你干的事情。</p>
+	<p class='firstLineIndent'>之前的话，很惭愧，我除了对你在圣马可广场的所作所为以外，一无所知。好在那个叫纸侠的警察将前些日子的杀人案和你联系在了一起，冠之郡HL的北方第二分部里有些文职人员经手了你的案子，于是我便有了目标和线索，继而开始着手调查威尼斯一些人的心声，其实也并没有花太长时间，我就把那些乱糟糟的线索像编麻花儿辫一样缠在一块儿，拼凑出了这座城市正在发生的事情。”</p>
+	<p class='firstLineIndent'>血枭问道：“这么说来，钢铁戒律，左道，HL，还有那个纸侠，每个人的行踪，你都掌握了。”</p>
+	<p class='firstLineIndent'>天一道：“啊……其实也不算太麻烦的事情，活在这世上总要和人接触的，街上无数的路人，钢铁戒律的普通成员，警局里的警察，每一个都能给我提供情报，他们都可以成为我的眼睛、耳朵，而且绝不会撒谎。有了这样的情报网，结合一些简单的推理，不难猜出事情的进展。</p>
+	<p class='firstLineIndent'>根据你之前几年的行踪判断，我估计你的习惯就是将艺术品作为货币来使用，这是最高明的方法。支票需要去银行兑换，现金则无法在各个地区间大量携带。而那些画，可以轻易通过机场安检，不需要银行就能兑换成钱，而且换一次就能为你提供足够肆意挥霍一阵的资金。十年前你会去抢博物馆就是出于这个原因。”</p>
+	<p class='firstLineIndent'>血枭接过话头：“所以你通过各种情报了解到，找到左道这个中间人，就可以联系到我。”</p>
+	<p class='firstLineIndent'>“没错，透露以上的信息就是我所表达的合作诚意了。”</p>
+	<p class='firstLineIndent'>“呵呵呵……”血枭的笑容中透出阵阵杀气：“我怎么觉得你若无其事地说出这么恐怖的事情来，带有相当的恐吓成分呢。”</p>
+	<p class='firstLineIndent'>天一也笑着回道：“哦？这种说法倒很新奇啊，一般人听完这席话，绝不会用恐怖来形容我的办事能力，血枭先生，你的理解力远远超出我的预估啊。”</p>
+	<p class='firstLineIndent'>血枭突然话锋一转，狞笑道：“你究竟想做什么？”</p>
+	<p class='firstLineIndent'>只有天一知道这个莫名其妙的问题该如何答：“我要做的事情，现在还不到说出来的时候，但血枭先生，你是其中很重要的一分子。”</p>
+	<p class='firstLineIndent'>“有多重要？”</p>
+	<p class='firstLineIndent'>“我已选中了一些合作者，有几位已经与我达成协议，有几位还没有。他们部分有着不输于那位纸侠先生的能力，部分是像左道一样有着特殊才能的人，当然也有些只是单纯的变态疯子。而你，血枭……”天一的表情像是在品味一道难吃的小菜：“你比他们任何一个都重要，因为你是目前为止，我见过最最变态的疯子，可谓前无古人，后也难有来者。”</p>
+	<p class='firstLineIndent'>“哈哈哈哈哈……”血枭仰面朝天地大笑，笑了一阵，站起身来，朝电视屏幕走去。</p>
+	<p class='firstLineIndent'>“你想把电视打碎是吗？”天一问道。</p>
+	<p class='firstLineIndent'>血枭已经握起了拳头准备挥下。</p>
+	<p class='firstLineIndent'>天一无奈地耸肩道：“好吧好吧，就当谈判破裂了也罢……哦，出于好意，我提供一个免费的情报给你，就一句话……”</p>
+	<p class='firstLineIndent'>血枭一拳打向了电视屏幕，画面中的天一最后说的五个字是：“你已在局中……”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0030'><summary><a>第十一章 时侍</a></summary>
+	<p class='firstLineIndent'>与血枭交手后的第五周，医院。</p>
+	<p class='firstLineIndent'>纸侠的伤势基本已经复原，以二十二世纪的医学能力而言，基本上只要不是当场死亡的，都能给救回来。</p>
+	<p class='firstLineIndent'>预计再休息个几天，纸侠就可以出院了，他恢复的速度本就比常人快，何况HL还报销了所有的费用，让他住最好的病房，并使用昂贵的药品。</p>
+	<p class='firstLineIndent'>这天上午，迪肯那胖子没敲门就闯了进来，手里提着一个食品盒，放下就道：“有空就尝尝，我老婆做的松饼。”</p>
+	<p class='firstLineIndent'>纸侠正在翻阅一张浮在半空中的报纸：“说实话，我上次让你不要再拿来了，并不是客气，而是因为你老婆做的松饼真的很难吃。”</p>
+	<p class='firstLineIndent'>“哈，我当然知道，不然我拿来给你干嘛？好吃我就自己吃了。”迪肯十分无耻地回道，然后转身关上门，把屁股挪到屋里的一张凳子上：“听着，你过几天就要出院了，局长和我一致认为应该让你再休假一段时间。”</p>
+	<p class='firstLineIndent'>纸侠放下报纸：“我已经歇得够久了。”</p>
+	<p class='firstLineIndent'>迪肯道：“我就知道你会这么说，所以我得给你带个信儿，这次出院，你需要对一些事情保持‘沉默’。”他用手比划了一个双引号的动作。</p>
+	<p class='firstLineIndent'>“放心，那晚的事情我本来就不想多提。”纸侠说道。</p>
+	<p class='firstLineIndent'>迪肯摇头：“那只是一部分，还有你的那些超能力，以后尽量不要展示出来。”</p>
+	<p class='firstLineIndent'>“有这种必要吗？隐瞒一些连局里清洁工都知道的事情。”</p>
+	<p class='firstLineIndent'>“这是你的老朋友马龙，也就是HL方面的意思。而且，伙计，大家以前只是以为你的那些‘小戏法儿’很有趣而已，可从来没想象过你能变出龙卷风或者一条巨蛇之类的东西来。”迪肯道：“像什么读心术，弄弯汤匙，引爆灯泡儿这种事情，思想稍微开放一点的人都是可以接受的，但你在那晚所表现出来的能力，可真是吓到大家了，你仿佛一夜间成了超人那样的漫画人物，我想公众还没做好准备来接受这些。”</p>
+	<p class='firstLineIndent'>纸侠歪着眉毛道：“这话是马龙对你说的吧？”</p>
+	<p class='firstLineIndent'>“我只是引用了几句，大致确实是这么个意思。”迪肯自己从怀里拿出了巧克力条啃了起来，完全没有要动那些松饼的打算。</p>
+	<p class='firstLineIndent'>“好了，我明白，要低调，我一向如此。”纸侠无奈地回道。</p>
+	<p class='firstLineIndent'>他们俩又闲聊了一会儿，迪肯便告辞了。纸侠吃了午饭后本想到走廊里去走走，结果又有意料之外的不速之客到来。</p>
+	<p class='firstLineIndent'>这次对方敲了门，纸侠道了声：“请进。”</p>
+	<p class='firstLineIndent'>两个男人走了进来，其中之一是法鲁，他今天也穿着黑色的军装大衣，只是在纸侠面前，那神情不再像上次见面时那般趾高气昂。</p>
+	<p class='firstLineIndent'>另一名男子则是一副便秘了三天左右的嘴脸，乱糟糟的灰色中发，戴着副浅色太阳镜，令人在意的是，他身上的那套银灰色制服，纸侠从来没见过。</p>
+	<p class='firstLineIndent'>法鲁率先开口了：“你好，奈斯警官，我们见过一面的，正式自我介绍一下，我是驻HL欧洲总部中校，格·法鲁。”</p>
+	<p class='firstLineIndent'>纸侠没有太大反应，只是平静地回道：“嗯，幸会。”</p>
+	<p class='firstLineIndent'>法鲁随即伸手介绍道：“这位是EAS的……”</p>
+	<p class='firstLineIndent'>“我叫乔瑟夫·诺兰，同事们都叫我时侍，本来我是在休假的，本来我也不负责眼下的这项工作，但现在那帮残酷的、冷血的、丧尽天良的剥削者们肆意地挥霍着我宝贵的休憩时间，打乱了我所有的日程安排，让我突然从热带地区飞到这里来见你，所以你也应该看出事情的紧迫性和重要性了，麻烦你就配合我一下，好让我回去休假吧！”时侍直接顺着法鲁的话往下讲，从嘴里往外蹦字儿的语速比一般人敲打字机还快，难能可贵的是，他的吐字还抑扬顿挫，十分清晰。</p>
+	<p class='firstLineIndent'>纸侠干笑了两声：“那请问你找我有什么事？”</p>
+	<p class='firstLineIndent'>“根据EAS得到的情报，现在上级做出决定，对埃洛特·奈斯警官，也就是纸侠，你，进行一次能力的评估，数据必须尽快反馈。”时侍回道。</p>
+	<p class='firstLineIndent'>纸侠道：“我可以先问问EAS是什么部门吗？”</p>
+	<p class='firstLineIndent'>时侍回答的速度仍旧不减：“百年前，帝国的战斗英雄卡尔洛公爵曾秘密被授权了一项职务，代号为EAS，即ExtraAbilitySupervisor，经过发展演变，今天以组织的形式保留了下来。办公地点经常更换，成员数量无可奉告，福利待遇人神共愤，反正每年我的休假时间只有两个星期而已。总而言之，EAS主要的职能是负责监督和管理这个星球上的能力者。”</p>
+	<p class='firstLineIndent'>法鲁在旁补充道：“别担心，奈斯先生，他们也是公事公办罢了，对于所有强级以上的能力者，在条件允许的情况下，帝国都会争取得到其资料，这也是为了你的安全着想。”</p>
+	<p class='firstLineIndent'>纸侠冷笑一声：“不必多说，这我理解，强级能力者，要么就通缉在逃，要么就是被HL或者某些我听都没听过的组织吸纳了，像我这种情况的极少吧。怎么说都得大致估算一下我的实力，顺便监视起来，才能让一些大人物们放心啊。”</p>
+	<p class='firstLineIndent'>时侍似乎毫不介意对方的说法，“很好，互相理解能有效提高办事效率，请你下午到第二分部那里走一趟，测试的准备工作已经完成了。”</p>
+	<p class='firstLineIndent'>纸侠道：“我怎么觉得这种邀请像是某种惨无人道的人体实验呢。”</p>
+	<p class='firstLineIndent'>时侍道：“这可不是体检，奈斯先生，EAS对你这类能力者不需要做任何生理方面的检测，只是需要一个特定的环境，看看你的能力所能达到的破坏力极限就可以了。”</p>
+	<p class='firstLineIndent'>纸侠奇道：“哦？原来还有那种测试？是不是在一个特别坚固的环境内，准备几百个金属假人，看我多久能把它们大卸八块？”</p>
+	<p class='firstLineIndent'>时侍回头走出了房间，不浪费一分一秒，也不知道他赶着去干什么，在其背影消失前，抛下了一句：“承受破坏的工作由我担任，恭候大驾。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0031'><summary><a>第十二章 间接评估</a></summary>
+	<p class='firstLineIndent'>下午三点刚过，纸侠便已轻车熟路地来了到冠之郡HL北方第二分部的门口，他还是穿着那破旧的风衣，头顶鸭舌帽。虽是重伤初愈，但这并不影响能力的发挥，所以他还是来了。</p>
+	<p class='firstLineIndent'>纸侠对那个叫时侍的人印象还不错，纵然是显而易见的性格缺陷也比满口官腔来得有亲切感。</p>
+	<p class='firstLineIndent'>前台的工作人员和纸侠也挺熟的，两人寒暄了几句，纸侠便自己进去了，反正他三天两头跑马龙的办公室，就跟跑丈母娘家干活儿似的勤快，带路引见什么的都是多此一举。</p>
+	<p class='firstLineIndent'>与以往一样，到了地方，纸侠不敲门就进去了，结果就看到了这样一幕：时侍躺在马龙的办公桌上做仰卧起坐，马龙在给他压腿。</p>
+	<p class='firstLineIndent'>最初那几秒，纸侠觉得自己的脑子可能已经被血枭打坏了，或者是精神上留下了什么严重后遗症，再不然就是自己此刻仍然在医院里处于昏迷之中，眼前一切皆是一个植物人的噩梦。</p>
+	<p class='firstLineIndent'>不过他在迷懵之中也没有神游太久，时侍便看见了他，然后便从桌子上下来了：“你来了，很好，跟我来。”</p>
+	<p class='firstLineIndent'>时侍在前引路，纸侠和马龙跟在后面，纸侠看马龙的眼神非常奇怪，说不清是厌恶还是鄙视，马龙则摆出一副死猪不怕开水烫的神情，淡定地叼起雪茄：“他从医院回来以后，就到我的办公室里等你，大约坐下三十秒后，他就用一种十分惊恐表情和迫在眉睫的语气说自己的人生正在被浪费。”</p>
+	<p class='firstLineIndent'>纸侠斜视着马龙，用将信将疑的语气道：“所以他在你的桌子上做了两个小时的仰卧起坐？”</p>
+	<p class='firstLineIndent'>“不，先是折返跑，然后倒立，接着还有俯卧撑，再来折返蹲跳，折返倒立行走……”马龙的眼中尽是沧桑：“每一项运动当中，穿插一组仰卧起坐作为调整休息。”</p>
+	<p class='firstLineIndent'>纸侠的嘴角不住地抽动：“你告诉过他二楼有健身房的事情了吧……”</p>
+	<p class='firstLineIndent'>时侍这时又用冲锋枪一般的语速打断了他们的对话：“在办公室里等你进来，然后立即去地下的测试地点是最有效率的，如果我去二楼的健身房里锻炼，从你到达上校的办公室，到他通知到我，再到我来到办公室，然后再去地下，从通信时间，多余的直线移动距离等各个方面总和，大约会浪费八到十分钟的时间。</p>
+	<p class='firstLineIndent'>这段时间我可以选择听两首歌、吃一顿午餐、上一次厕所、做两遍眼保健操、玩三圈斗地主、阅读大约三千字的书面材料等等等等，更不用说以上的事情有许多还是可以两件一起做的。”</p>
+	<p class='firstLineIndent'>马龙掩面摇头：“我告诉他健身房的位置以后他就是这样回答我的。”</p>
+	<p class='firstLineIndent'>纸侠叹了口气：“好吧，我有点理解你的心情了。”</p>
+	<p class='firstLineIndent'>时侍依然头也不回地说着：“人生是非常短暂的，先生们，有效地利用每一分每一秒，在相同的时间里做比别人更多的事情，那是一种盈利，东方有句古话叫一寸光阴一寸金，从这个角度来讲，我是亿万富翁，你们则穷困潦倒。”</p>
+	<p class='firstLineIndent'>纸侠耸了耸肩：“前两年我曾经听一位贵族说过这样一句话，在此处也可以引用一下，他的意思大概是‘穷人自当一贫如洗，富人理应腰缠万贯’。”</p>
+	<p class='firstLineIndent'>时侍回道：“难道你不认为持这种观点的人是非常令人厌恶的吗？”</p>
+	<p class='firstLineIndent'>纸侠道：“当然令人厌恶，那婊子养的玩意儿，但你得承认，这就是现实。”</p>
+	<p class='firstLineIndent'>时侍回头瞥了纸侠一眼：“我明白了，你的观点是，无论怎么样，你我都不可能在时间观念上达成一致了，所以就让你自甘堕落的穷死算了是吗？”</p>
+	<p class='firstLineIndent'>纸侠笑道：“哈哈哈，你能理解太好了。”</p>
+	<p class='firstLineIndent'>马龙吐了个烟圈，也笑着道：“我也已经没救了，千万别同情我。”</p>
+	<p class='firstLineIndent'>时侍一副莫名的表情，他完全没找到笑点：“明明都比我年长，却还在无谓地挥霍时光，两位对于工作和人生的态度实在是无药可救了。”他说着，已站在了一扇门前，将磁卡探到扫描仪前，门便自动打开了。</p>
+	<p class='firstLineIndent'>“好了，行走过程中附带的闲聊时间四分二十三秒已经结束了，接下来请配合我尽快完成工作，我的计划是五点前上飞机，在旅程中完成书面报告，传真到总部以后，直接在休假地降落，希望你们不要再打乱我刚才做仰卧起坐时最新完成的这个日程。”时侍引着纸侠进了一间长宽高皆是五十米的正方形大屋。</p>
+	<p class='firstLineIndent'>马龙停在门口没有进去，道了句：“我在隔壁的观察屋里，你们可以通过广播直接和我通话。”接着，电子门就关上了。</p>
+	<p class='firstLineIndent'>这屋子的周围都是深色金属，位于顶上的照明设备似乎是可以提供各种色调的光线，但现在只是一般的、柔和的白光。</p>
+	<p class='firstLineIndent'>纸侠以前从未来过这里，不过他也曾听说过许多HL的分部里都建有这么一个可供能力者对战的测试屋，在紧急情况下，这种屋子还可以防核，防空袭，防病毒爆发等等特殊情况。</p>
+	<p class='firstLineIndent'>“如果要测试我的极限，我还需要一些东西。”纸侠说道。</p>
+	<p class='firstLineIndent'>“都已经准备好了。”时侍高声道：“马龙上校，请把准备好的纸送进来。”</p>
+	<p class='firstLineIndent'>广播里传来马龙的回应：“注意脚下。”</p>
+	<p class='firstLineIndent'>屋子正中间的地板应声打开，升起了整整十立方米整齐堆叠着的办公用白纸。</p>
+	<p class='firstLineIndent'>纸侠低声道：“伙计，你确认这间屋子的承受力够吗？万一这个分部遭到破坏，吉姆会像个酒鬼一样抓狂的。”</p>
+	<p class='firstLineIndent'>“我可以听到你讲话！混球！”马龙在广播里骂道。</p>
+	<p class='firstLineIndent'>时侍道：“别再浪费时间了，奈斯警官，人能造出钢铁，却不能用拳头打破钢铁。同理，我们既然能造出这金属，就有绝对的自信，只要不是凶级以上的能力者，不可能破坏这屋子，不然潮汐监狱里的能力者罪犯们早就集体从牢里逃出来了。”</p>
+	<p class='firstLineIndent'>这时，纸侠面前的纸已自行飘散开，升到空中，开始凝聚成形：“那么请问如果有‘凶’这个层级的能力者，在他同意的情况下，又该如何进行测试呢？”</p>
+	<p class='firstLineIndent'>时侍神情平静地回道：“这方面的情报还不能对你这种身份的人透露，想知道的话，你就达到那个级别再来问我好了。”</p>
+	<p class='firstLineIndent'>但见纸侠操控下的纸张渐渐汇成一头巨兽，齿可分筋错骨，爪可攫閷援簭，脊似铁铸，尾似钢鞭，目若金睛，额有王纹；这纵、跳、蹿、扑、凶、狠、残、暴集于一身的生物是……一头纸老虎。</p>
+	<p class='firstLineIndent'>“上次你和危险级别四的罪犯对抗时，貌似用的是龙吧，到底哪一种拟态生物才是你的绝招呢？”时侍问道。</p>
+	<p class='firstLineIndent'>纸侠道：“虎踞山上，龙游海中。”</p>
+	<p class='firstLineIndent'>“明白了，你是说，在眼前的环境中用虎更加合适。”时侍双手插袋，也根本没有任何要移动或是做准备的意思，直接道：“那么，请快点攻过来，我赶时间。”</p>
+	<p class='firstLineIndent'>话音未落，纸虎猛然突进而上，纸侠只是道了句：“你可别死啊。”</p>
+	<p class='firstLineIndent'>时侍以左脚单腿直立，右腿不紧不慢地抬起，待那巨虎欺杀至身前的刹那，弹腿一蹬，巨虎被踢成万千碎纸，爆散在了空中。</p>
+	<p class='firstLineIndent'>纸侠瞪大了双眼，血枭击破纸龙时的一幕仿佛重演了，没想到这世上还不止一人可以仅凭力量就打碎自己的纸兽。</p>
+	<p class='firstLineIndent'>时侍的表情说明他觉得这件事也没什么大不了的，重新站定后，他问道：“立于食物链顶端的猫科动物我已经领教过了，刚才那次冲击就可以代表你最强的破坏力了是吗？”</p>
+	<p class='firstLineIndent'>纸侠直言不讳地答道：“是的，那就是我的极限了。”</p>
+	<p class='firstLineIndent'>时侍缓步向前走去：“那现在烦请你用那些纸结成最强的防卫，接我一拳。”</p>
+	<p class='firstLineIndent'>“可以。”纸侠重新将纸控制结合，形成一个金字塔形的护盾，浮在身前。</p>
+	<p class='firstLineIndent'>十几秒后，时侍问道：“完成了吗？”</p>
+	<p class='firstLineIndent'>纸侠道：“出手吧。”</p>
+	<p class='firstLineIndent'>一拳，没有任何声响，纸侠也未能捕捉到时侍的动作，只觉一股气浪从打击点爆发出来，如狂风过境般席卷了整个测试屋。两秒后，纸金字塔从顶端开始出现裂痕，但没有完全崩塌，只是碎了大半，剩下底部的边缘部分仍未溃散。</p>
+	<p class='firstLineIndent'>时侍道：“很好，非常感谢你的配合，奈斯警官，最后我还有个问题。”他一边说话，一边朝门口走去，不想浪费一分一秒：“假设我这拳的力量是一百，血枭最后打中你的那一击是多少？”</p>
+	<p class='firstLineIndent'>纸侠想了一下，时侍已走出屋去了，在电子门关闭前，纸侠才回道：“至少在五百以上吧。”</p>
+	<p class='firstLineIndent'>“谢谢，再见。”时侍说完这句，身后的门正好关上。</p>
+	<p class='firstLineIndent'>纸侠长长地吁了一口气：“呼……这都是些什么人啊……”</p>
+	<p class='firstLineIndent'>这时，马龙的声音再次从广播中传来：“埃洛特，就在刚才收到了一条紧急消息，你得来听听，到我的办公室见。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>与此同时，时侍在一条无人的走廊中快步前行着，他拿出怀中的手机，用速拨键拨了个号码，只过了三秒对方就接了起来，一个声音道：“副局长您好，请问有什么指示？”</p>
+	<p class='firstLineIndent'>时侍回道：“告诉老头子，关于血枭战斗能力的间接评估已经有了，之后我会写一份书面材料给他，至于埃洛特·奈斯，和预料的一致，没有归入档案的价值。交完报告我会继续休假，请不要再联系我了。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0032'><summary><a>第十三章 血案再起</a></summary>
+	<p class='firstLineIndent'>“男性死者大约五十至五十五岁，身体自胸椎中段处被巨大的撕扯力分为两截，当场毙命……”天气虽然很冷，但迪肯此时正抹着满脑门子的汗，听着手下的报告。</p>
+	<p class='firstLineIndent'>凶案现场是在卧室，一间非常宽敞的卧室，宽敞到可以抵得上某些平民全家的居住面积。因为尸体都支离破碎，所以暂时还不能确认具体死亡数字，但至少是五个人以上。这屋里的景象简直就是个屠宰场，纵然大部分残肢都已被清理掉了，但那些残留的鲜血、体液，以及一些不知是什么玩意儿的滑腻物质依然不断散发出令人作呕的气息。</p>
+	<p class='firstLineIndent'>纸侠这时从门口进来了：“好吧好吧，这股熟悉的味道……”他刚跨进来一步就皱着眉头，将风衣的领口拉高了一些。</p>
+	<p class='firstLineIndent'>迪肯回头道：“你怎么出院了？”</p>
+	<p class='firstLineIndent'>纸侠道：“刚才去HL的分部办了点事儿，接着在那儿就收到了消息，既然都来了，就跟我说说吧。”</p>
+	<p class='firstLineIndent'>迪肯道：“我离开医院，挑了家餐厅，刚坐下点了两道菜，局长就打了个电话过来，用黑死病已经在城中爆发一般的语气告诉我，出大事儿了。”</p>
+	<p class='firstLineIndent'>纸侠道：“啊，贵族嘛……我记得这是朱塞佩男爵的府邸吧。”</p>
+	<p class='firstLineIndent'>迪肯接着道：“应该今天凌晨死的，佣人按惯例到了中午才来敲门，没有回应，接着他就闻到了怪味。”</p>
+	<p class='firstLineIndent'>“看这些痕迹，死的还不止男爵一个。”纸侠蹲下查看着那些血迹。</p>
+	<p class='firstLineIndent'>迪肯道：“啊，男爵肯定是死了，他胸腔以上的部分还比较完整，从脸就能确认，其他人嘛……大概四个，或者五个女人吧。”</p>
+	<p class='firstLineIndent'>“呵，穷则独善其身，富则妻妾成群啊。”纸侠冷笑道：“这巨大的卧室，六面隔音，佣人‘按惯例’到中午才来敲门，看来是夜夜笙歌，死得其所了。”</p>
+	<p class='firstLineIndent'>“现在就不要再去评论他的生活作风问题了，像这样过日子的贵族多得是，咱们做好本职工作就好。”迪肯也偶尔说出了几句挺诚恳的话，显然他不想让纸侠在公共场合发表些不合时宜的言论。</p>
+	<p class='firstLineIndent'>纸侠却是满不在乎：“当然，当然，这是应该的，不过我觉得这儿也没什么工作好做了，单从这现场来判断，杀人的是谁，便已经十分明显了吧。”</p>
+	<p class='firstLineIndent'>迪肯也不笨，他接道：“铜鹦鹉酒吧的那个？”</p>
+	<p class='firstLineIndent'>纸侠道：“他叫血枭。”</p>
+	<p class='firstLineIndent'>迪肯赶紧问道：“你有他行踪的线索？”</p>
+	<p class='firstLineIndent'>纸侠苦笑一声：“没有，即便有我也抓不住他。”他说着便要离开：“不得不承认，吉姆当初对我说的都是正确的意见，危险等级四的犯人，只能让HL派救兵来了。”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>当晚，吉姆·马龙的办公室。</p>
+	<p class='firstLineIndent'>纸侠造访时，马龙和法鲁都已等候多时了。</p>
+	<p class='firstLineIndent'>“不好意思，来晚了。”纸侠这话是对着法鲁说的，以他和马龙的交情，没必要这么客气。</p>
+	<p class='firstLineIndent'>法鲁道：“没关系，我们也没等太久。”</p>
+	<p class='firstLineIndent'>纸侠也坐下道：“现场我看过了，朱塞佩无疑是血枭杀的。”</p>
+	<p class='firstLineIndent'>马龙又点起了雪茄：“你觉得他的目的究竟是什么？”</p>
+	<p class='firstLineIndent'>纸侠道：“按照正常人的思维来说，他这次干的事情，往大了说是替天行道，往小了说便是为民除害。”</p>
+	<p class='firstLineIndent'>法鲁清了清嗓子：“奈斯先生，请注意一下你的措辞。”</p>
+	<p class='firstLineIndent'>纸侠耸肩，转而说道：“但依我看来，揣测他的目的是毫无意义的。我和他接触不多，但我基本可以确定，他不是什么正常人，而是十足的疯子。他随性而为，敢于在任何时间、地点，杀死任何人，出于任何目的，或者根本没有目的。”他对法鲁道：“你当晚也听到血枭和博特里尼之间的对话了吧，他不止在酒吧里杀普通混混，还去杀钢铁戒律的教士。圣城监察长带着掌旗官和一群善战骑士，大张旗鼓地来寻仇，可见他杀的绝对不少，也许是三十个，五十个？谁知道呢，你觉得这个世界上会有那种独来独往的能力者莫名其妙去和钢铁纪律结下梁子吗？换位思考一下，如果你，或者我，跟他一样没有合法身份，没有任何立场，敢做这种事吗？”</p>
+	<p class='firstLineIndent'>法鲁斟酌一番，接着回道：“从这件案子来看，血枭还在威尼斯，他确实和正常的通缉犯不同，一般人在经过了那晚的事件后，肯定是选择藏身一段时间，等风头过去再伺机离开这个城市。可他竟在时隔一个多月后又一次犯下血案。</p>
+	<p class='firstLineIndent'>我倒觉得，这也是可以利用的一点，既然他猖狂到了这种地步，或者说性格上就是如此，那我们就调集远超他想象的力量，全力捕杀他。让这个目中无人的杀人狂见识一下HL上层战力的恐怖。”</p>
+	<p class='firstLineIndent'>马龙道：“你有计划或者是人选了吗？”</p>
+	<p class='firstLineIndent'>法鲁道：“我打算联系总部的卢卡教官，那位大人是我的导师，若他肯来威尼斯帮助我们，即便血枭，也将死无葬身之地。”</p>
+	<p class='firstLineIndent'>就在此时，马龙桌上的话机又响了，他刚拿起来，还没说上半个字，对面就用颤抖的声音吼道：“马……马龙上校……总……总督……”</p>
+	<p class='firstLineIndent'>办公桌边的三人神情陡变，难道总督出事了？</p>
+	<p class='firstLineIndent'>“总督的公子……刚刚被证实遇害了！”那人终于把话说完了。</p>
+	<p class='firstLineIndent'>虽然这也是个坏消息，但好在总督没事，让人惊出一身冷汗。</p>
+	<p class='firstLineIndent'>纸侠起身道：“好吧，我去看看，不过据我猜测，会干出这种事情来的也没有别人了。”</p>
+	<p class='firstLineIndent'>法鲁也坐不住了：“我现在就去联系卢卡教官，希望能在这疯子把威尼斯的达官贵人门给斩尽杀绝以前让他停下来。”</p>
+	<p class='firstLineIndent'>马龙在三人中最为年长，确有些大将风范，他放下雪茄，神情肃穆地开口：“调动部队支援的工作，还有所有那些善后事宜，都交由我来处理。在可以打倒血枭的战力凑齐之前，这座城市的安危就仰仗二位了。他也不过是个人而已，说白了就是个强大而残暴的杀人魔，但人终究是人，这世上没有任何个体是不可击败的，我们不能自乱阵脚，要按章办事。”</p>
+	<p class='firstLineIndent'>二人皆是应了一声，走出办公室，各自分头行事而去。</p>
+	<p class='firstLineIndent'>法鲁在走廊中独行着，回想着一个月前自己初来此地时的情景，刚下飞机，时差还没倒过来就是一场恶战，一夜间至少遭遇了两个实力在自己之上的人，然后负伤，再接着就是事件后的一系列报告，无数的问题要回答，无数的谎言要公布，再至今日，连环血案重燃……</p>
+	<p class='firstLineIndent'>这一个月来，法鲁也暗中调查了许多感兴趣的事情，比如纸侠和马龙的关系以及历史，这二人十二年前在同一个部队中服役，八年前，南非大陆上持续了四年的乱战告捷，二人活着凯旋归来。马龙本就是军官，官升数级，被调到HL的这个分部作为最高长官，而纸侠竟去混了个警察的工作。</p>
+	<p class='firstLineIndent'>现在看来，这座水上都市真可谓藏龙卧虎，那晚对于军队的调度，以及事后一系列滴水不漏的信息封锁，外交措辞等等，都能看出吉姆·马龙这个人的办事能力，具有这种才能的人，对帝国来说远比一个只会打斗的能力者要有用得多。</p>
+	<p class='firstLineIndent'>而纸侠更是严重伤害了法鲁的自尊，这个没有经过任何HL强化训练的能力者，同属强级，却远远超越了他，这只能说是天赋上的差距了。如果纸侠也加入了HL，现在的军衔极有可能还高法鲁一级。</p>
+	<p class='firstLineIndent'>这些念头虽然让人颇为在意，但法鲁现在也没有深究这二人底细的精力和时间，眼前最要紧的还是追捕血枭，这个混世魔王在外面游荡一天，自己睡觉都得睁着一只眼。</p>
+	<p class='firstLineIndent'>他很快便回到了自己的房间，打开视屏通讯的屏幕，接通了一个叫卢卡的名字……</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>十五分钟后，纸侠刚到总督公子的府邸门口，就撞上迪肯，这胖子看上去快要疯了，焦头烂额，六神无主。</p>
+	<p class='firstLineIndent'>“埃洛特！你知道这究竟是怎么回事儿吗？知道的话就快点儿想想办法，想让局里上下集体丢掉饭碗吗？！”</p>
+	<p class='firstLineIndent'>纸侠只觉得好笑：“你冷静一些，放心吧，你可以把这些案子视为某种人力不可抗的自然灾害，HL很快会派神一样的家伙赶来解决一切的。”</p>
+	<p class='firstLineIndent'>“你还摆得出这种轻松的嘴脸？最近一阵，什么抢劫、入室行窃、性犯罪很久都没人来报案了，警局里除了给人贴贴寻人启事找几个夜不归宿的酒鬼以外，连晚上小流氓械斗都几乎不发生了，本以为犯罪率显著下降，社会风气呈一片大好的和谐景象，结果你一出院，突然间城里就来个一天内连杀两户贵族的事件，我说你这人是不是被什么巫毒诅咒过啊！回医院多躺几天行不行啊！”</p>
+	<p class='firstLineIndent'>纸侠懒得理他，往大屋中走去，“你已经勘察完了吧，我进去看看现场，一会儿局里见吧。”</p>
+	<p class='firstLineIndent'>迪肯比划了一下中指，咆哮几声，带着几个随行的警员回去了。纸侠一路行到屋里，现场的其余警员都认识他，所以也没拦着。</p>
+	<p class='firstLineIndent'>这次现场的尸体还没运走，可以看到总督公子，一个十六七岁的少年，其整个身体像是一条被拧干的毛巾般扭曲着，这麻花状的尸体，骨头从身体中错位探出，神情极度扭曲痛苦，地上扩散出大摊的血渍。</p>
+	<p class='firstLineIndent'>威尼斯的总督晚年得子，他今年已是六十有三，据纸侠估计，老头的情绪在接下来的一段时间内应该是三步走：悲痛→愤怒→疯狂。</p>
+	<p class='firstLineIndent'>当然他也管不了这些，此时的纸侠，心境早已和过去不同，他不再只有“伸张正义”的想法了，警察的身份和职责，也早就被他抛开。</p>
+	<p class='firstLineIndent'>越发轻浮的态度，和那对事颓废、无所谓的表面之下，另一种情绪正在纸侠心中悄然滋长，且将在并不遥远的未来，改变他后半生的命运。</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0033'><summary><a>第十四章 围城</a></summary>
+	<p class='firstLineIndent'>中欧，水晶郡，HighestLaws欧洲大陆总部。</p>
+	<p class='firstLineIndent'>占地1285平方公里，全金属风格的建筑群，外围是高耸的铁壁，人造运河，以及平原。这种地理条件是经过多年时间才创造出来的，在帝国尚未建立时，此地曾是全世界最富裕、经济最发达和生活水准最高的国家之一，红底白十字旗上，白色象征和平、公正和光明，红色象征着人民的胜利、幸福和热情。能够生活在这个地方是大多数地球人的美好愿望。</p>
+	<p class='firstLineIndent'>但现在提到水晶郡，人们脑中浮现出的是一个金色的徽记，一个被两条星轨环绕着的菱形图案，还有一群本身就高于法律的执法者，因为他们背负着那四个字。</p>
+	<p class='firstLineIndent'>卢卡教官身着得体的黑色军服，来到了会议室，进门以后他向坐在那里等候的将军们行了个军礼。</p>
+	<p class='firstLineIndent'>“坐下吧卢卡。”坐在中间席位上的男人说道。</p>
+	<p class='firstLineIndent'>“是。”卢卡正襟危坐。</p>
+	<p class='firstLineIndent'>“昨天，法鲁中校已经与你进行过私人通话了是吗？”</p>
+	<p class='firstLineIndent'>“是的。”卢卡回道。</p>
+	<p class='firstLineIndent'>“那就好，省下我们不少口舌。那么……根据冠之郡第二分部，马龙上校提交的正式报告，我们现在委派你去威尼斯缉拿代号为‘血枭’的第四级通缉犯，尽速执行。”</p>
+	<p class='firstLineIndent'>卢卡应了一声，起身道了句：“告辞。”便离开了会议室。</p>
+	<p class='firstLineIndent'>待卢卡出去后，屋里的几人再度开口道：“在过去的二十四个小时内，威尼斯已经死了四位重要人物了，其中还包括总督的儿子，就算是那些反抗组织也不会盲目地执行这种连续暗杀行动，这个血枭的行为真的是随意为之的吗？我认为马龙的报告可信程度值得商榷。”</p>
+	<p class='firstLineIndent'>“即便如此，当务之急还是停止这种杀戮，不然当地的皇族和贵族们会向更上层施压的，如果天都方面怪罪下来，我们欧洲部的脸面会不太好看。”</p>
+	<p class='firstLineIndent'>中间席位上的男人又开口了：“这些都不必担心，我已有计较，先等卢卡把那个‘凶’级的疯子处理掉，我再向天都方面申请，派一位‘专家’来查清事情的始末，让他去趟威尼斯这潭浑水便是，到时候，责任也由那人承担。”</p>
+	<p class='firstLineIndent'>“您是指？”会议室中的众位将军都知道他说的是谁。</p>
+	<p class='firstLineIndent'>“啊，没错，就是他，听说他从去年底就在北海道滞留了，查一些民事凶杀案，不知道那有什么意义……”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>威尼斯，纸侠出院后的第二天，晚七点。</p>
+	<p class='firstLineIndent'>卢卡的专机至少要到凌晨才能降落，而针对贵族与富商的凶杀仍在继续，此时，被害人数已经上升到了十二人，那些连带着被杀掉的眷属还不算在其中。</p>
+	<p class='firstLineIndent'>这座小城彻底被恐怖的气息所笼罩，总督已下令宵禁，所有的营业场所关闭，居民不得外出，游客不允许离开旅馆，出入城市的各种交通枢纽都被严格监控，处于停运状态。在凶手被抓获以前，任何在街上滞留的人，警方和军队都有权将其逮捕，如遇反抗或逃跑者，可直接开枪，后果由当事人自负。</p>
+	<p class='firstLineIndent'>这是帝国治下，总督这个职位于安全级别上所能行使的最高权限，只有在极为严重的突发情况下才能进行。</p>
+	<p class='firstLineIndent'>地方的守备军队、警察、HL的整备军，所有可以调动的力量已经开始逐户对城里的平民进行合法身份的排查，街上尽是穿着制服巡逻的小队，连那些无家可归的流浪汉都难觅踪影，也不知是去哪处躲了起来。</p>
+	<p class='firstLineIndent'>现在外面唯一还穿着便装四处溜达的人，就是纸侠了。他已经超过三十个小时没有睡觉，但依然在空中四处巡视着，因为这接二连三的凶杀表明，血枭也没有休息过。</p>
+	<p class='firstLineIndent'>他望着这座死城自言自语：“你究竟在哪儿……”</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>地下，倒影都市。</p>
+	<p class='firstLineIndent'>血枭正在用氢氟酸溶尸体玩儿，这种受管制的化学品不太好弄到，如果便利店里就有卖这种玩意儿，那处理尸体可就方便多了。</p>
+	<p class='firstLineIndent'>忽然，从通道中传来了人的说话声，“身为客人，你不觉得自己待得太久了吗？”这声音忽近忽远，无法判断从何而来，只觉其在四通八达的地下通道中乱窜。</p>
+	<p class='firstLineIndent'>血枭冷笑，提高了声音回道：“钢铁戒律啊……这次又派了什么杂碎来？”</p>
+	<p class='firstLineIndent'>“血枭先生，你与我们之间并无绝对的利益冲突，而且从你的所作所为看来，我们还有着共同的敌人，你也遭到帝国的通缉不是吗？”</p>
+	<p class='firstLineIndent'>血枭脸上的表情更加不屑：“哦……这次是来谈判的吗。”</p>
+	<p class='firstLineIndent'>那声音接着说道：“如果你愿意与我们钢铁戒律合作，像博特里尼那样的人，你随时可以取而代之，杀死教士们的事情也可以一笔勾销，大团长会宽恕你的。”</p>
+	<p class='firstLineIndent'>“宽恕我？”血枭发自内心地笑了：“你知道吗，听了你的话，我突然觉得上次某个和我谈‘合作’的人，简直是太有教养，太他娘的聪明了。”</p>
+	<p class='firstLineIndent'>那人似乎明白了血枭的意思，语气愈发冰冷：“那么，你的回答是？”</p>
+	<p class='firstLineIndent'>血枭道：“你到我面前来，让我告诉告诉你。”</p>
+	<p class='firstLineIndent'>傻子都知道出现在他面前，估计他就会扑上来把你撕了，那声音答道：“哼……既然你不识抬举，那么也就没什么好谈的了，即便暂时无法取回倒影都市的控制权，你认为我们会让你一直安然地躲在这里吗？”话音未落，连续的爆炸声就从通道各处响起。</p>
+	<p class='firstLineIndent'>血枭自然明白发生了什么，他走到电脑前，把今天的实验数据也存到了自己惯用的虚拟网盘中，然后一拳打穿机箱，把硬盘扯出来，捏碎。</p>
+	<p class='firstLineIndent'>他颇为惋惜地最后瞥了一眼那些刑具和实验器材，至于那些随意堆放在地上的大堆现金，他连看都不看。</p>
+	<p class='firstLineIndent'>此时，海水已经漫到了他的膝盖，这地方被淹没的速度极快，得尽快赶去附近的出口。</p>
+	<p class='firstLineIndent'>当血枭爬上某处的攀梯时，那个忽远忽近的声音又一次响起，也不知这说话的人究竟身在何处，难道他还泡在淹水的通道中？</p>
+	<p class='firstLineIndent'>“血枭，拒绝我是很愚蠢的，失去倒影都市的庇护，现在的威尼斯，已没有了你的藏身之地，我根本不必出手，你就会死在那些帝国走狗的手中。永别了，异教徒。”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0034'><summary><a>第十五章 血洗</a></summary>
+	<p class='firstLineIndent'>血枭刚回到地面上，还没弄清楚什么状况，周围就有十几个端着枪的把他给围起来了。</p>
+	<p class='firstLineIndent'>他运气也背，正好有两队巡逻的人在此路过，一队是HL的人，另一队是守备军。这大晚上的，又是宵禁期间，空无一人的街上突然冒出一个身高近两米，长得像动作片影星的壮汉，不抓你还有天理吗？</p>
+	<p class='firstLineIndent'>“举起你的双手，转过来。”拉枪栓的声音不绝于耳，士兵们与血枭的距离已不足十米。</p>
+	<p class='firstLineIndent'>其中一支巡逻小队的士官已经打开了别在肩带上的通讯器，试图与上级取得联系，但突然，他的脖子被什么东西给勒住，说不出半个字来。其余士兵几乎也在同时遭遇了相同的状况，他们的双脚离地，身体不由自主地被一股力量提起，高速飞了出去，消失在夜空中。</p>
+	<p class='firstLineIndent'>顷刻间，这条街上，以及附近的区域，已经空无一人。</p>
+	<p class='firstLineIndent'>“呵呵呵……哈哈哈哈……”血枭笑了，笑声越来越大，透着狂热与亢奋。</p>
+	<p class='firstLineIndent'>天空中，一个踩着纸的人缓缓落下，开口便道：“终于出来了吗。”</p>
+	<p class='firstLineIndent'>“看来你想打第二回合。”血枭道。</p>
+	<p class='firstLineIndent'>“如果你有时间的话。”纸侠回道：“反正那些碍事的人我也已经请走了，从某种意义上来讲，虽然方式比较粗暴，但我还是救了他们。”</p>
+	<p class='firstLineIndent'>血枭道：“我当然有时间……真没想到距离上次交手才一个多月，你竟然又变强了，为以示敬意，我就痛快地把你宰了吧。”</p>
+	<p class='firstLineIndent'>纸侠不再多言，抬手一挥，一轮巨大的纸刃斩向血枭，势如疾风。血枭本想用单手接下，谁知那锋锐的纸刃竟在飞到自己面前时自己化散为普通的纸张。</p>
+	<p class='firstLineIndent'>但此刻，血枭的本能却让他觉得事有蹊跷，果然，那些柔软的纸快速吸附到了他的身上，把他从头到脚包得像个木乃伊一般。</p>
+	<p class='firstLineIndent'>“一味追求破坏力是赢不了你的，但我的能力，可以有无数的变化，仅凭这点，你这种只靠蛮力的人就无法抗衡。”纸侠一边说着，吸附在血枭身上的纸便越来越厚实。</p>
+	<p class='firstLineIndent'>坚硬的钢铁可以被挣裂，但这种紧贴皮肤的薄纸，却怎么也无法摆脱。血枭的呼吸开始困难，视觉和听力受限，行动也被束缚，变得缓慢。</p>
+	<p class='firstLineIndent'>纸侠在手中凝聚起一支尖锐的纸锥，瞄准了血枭的额头，“结束了。”纸锥疾射而出，血枭却还站在原地未动。</p>
+	<p class='firstLineIndent'>突然，血枭伸出了手，他竟然稳稳接住了那支夺命的利锥，然后隔着纸，发出了嗡嗡的笑声。</p>
+	<p class='firstLineIndent'>一声虎吼，覆盖他全身的白纸皆被震碎，他手中握着的纸锥也被轻易折断：“刚才有这么一瞬间，你觉得已经赢了是吗？”</p>
+	<p class='firstLineIndent'>纸侠惊道：“你竟能挣脱这种束缚……”</p>
+	<p class='firstLineIndent'>“我当然可以，我只是适当表演一下，看看猎物的反应，这是很有趣的一部分。”血枭道：“你确实变强了一些，但你已经不是一个月前我遇见的那个人了，是你灵魂深处的阴暗面使你更强，可这同时，也会成为我的力量。”他挥起一拳，拳风擦着纸侠的右耳掠过，击中了其身后远处的建筑物，那墙壁上被轰出了巨大的蛛网状裂痕。</p>
+	<p class='firstLineIndent'>“明白了没有？此时此刻，我们的差距，比起上一次，反而更巨大。”血枭向前逼近：“你改变战术也好，去抽几包大麻再来和我打也行，但结果不会有什么区别，这次是在人口密集的城里，不是在海面上，你这种人来五个我都可以对付。”</p>
+	<p class='firstLineIndent'>血枭举起拳头，朝着呆若木鸡的纸侠头部打去，准备结束这无趣的“第二回合”，未曾想，此时侧面忽然杀来一人，飞起一脚直指他的颈部。</p>
+	<p class='firstLineIndent'>血枭只好用原本准备打向纸侠的右拳去挡这一腿，他很轻松地用手掌接住了对方的脚，紧接着一探手，抓着来袭者的脚脖子就将其甩了出去，跟抛链球差不多。</p>
+	<p class='firstLineIndent'>法鲁这次没有被直接秒杀，他在空中调整身形，轻盈地踏了几脚周边建筑的墙，重新落回了地上。</p>
+	<p class='firstLineIndent'>“哦，是你啊，原来你的能力是这样的东西吗……上次用拳头朝我冲过来是脑子坏了吗？”血枭转身朝法鲁问道，丝毫不介意在他背后一米不到的地方，站着纸侠这个强级能力者。</p>
+	<p class='firstLineIndent'>“上次是对你的实力估计不足，我承认是失算。”法鲁回道。</p>
+	<p class='firstLineIndent'>血枭哼了声：“难道你认为打起十二分的精神就有用吗？”他用拇指点了点自己身后：“既然来了，你和他都得死。”</p>
+	<p class='firstLineIndent'>嘶嘶几声，血枭背后突然喷出大量鲜血，原以为已经丧失战斗意志的纸侠，这时却是忽然发难，一对纸翼护在身前，那些锯齿状的“羽毛”如刀一般割向了血枭。</p>
+	<p class='firstLineIndent'>血枭的脸上没有痛苦，也没有惊讶，他的反应只是快速向前移动了几步，正好离开对方的攻击范围，回身又是一拳冲击，之前的一击是他故意打偏，但这次，却是纸侠自己避开了。</p>
+	<p class='firstLineIndent'>“呵呵呵……继续啊，对自己无能的愤怒、那嗜血的战意，再多一些，让我感受一下。”血枭的背上血流如注，可他竟还笑着对正在攀升的纸侠说话。</p>
+	<p class='firstLineIndent'>纸侠飞到空中，狂喝一声，城中的大量纸张聚集了过来，在空中汇成一团雾状，然后由整化碎，变成了无数纸蝗虫，每一只虫子的身上，还生有许多小的尖刺。</p>
+	<p class='firstLineIndent'>黑夜中，这恐怖的景象宛若是末日一般。</p>
+	<p class='firstLineIndent'>在纸侠的操控下，那些纸的坚硬度堪比钢铁，纸蝗虫群从天而降，所过之处，连建筑物都被蚕食殆尽，法鲁已退到远处，但血枭仍然不动，立于那虫群风暴的中央，任由这攻击撕扯自己的身体。</p>
+	<p class='firstLineIndent'>几分钟后，这灾难终于停止，整片区域被毁得面目全非，台风过境也不过如此了。</p>
+	<p class='firstLineIndent'>刚才黑压压的虫群彻底将血枭掩埋在其中，那时起他就不见了，这时，漫天的纸蝗虫重新化为碎纸落地，却也不见其踪影。</p>
+	<p class='firstLineIndent'>法鲁估计血枭已经粉碎成几千万片碎肉碎骨夹在纸里灰飞烟灭了，他总算松了口气。</p>
+	<p class='firstLineIndent'>纸侠也降落下来，站定时有些摇摇欲坠。</p>
+	<p class='firstLineIndent'>“干的太好了，奈斯警官，我想没有人能在这种攻击下生还，你这次立了大功了。”法鲁走上前去想扶纸侠一把。</p>
+	<p class='firstLineIndent'>谁知此刻，异变陡生，一瞬间，两人周围枪声四起，纸侠几乎已没有了抵抗之力，法鲁勉强拉着他避开了密集射击，但二人皆是身中数弹，伤得不轻。</p>
+	<p class='firstLineIndent'>纸侠倒在地上，勉强还有意识，法鲁的内脏没事，但四肢中弹，一时动弹不得。他发疯似得大叫：“什么人！是谁开枪的！我是HL的法鲁中校！你们……”</p>
+	<p class='firstLineIndent'>“别费力气了，法鲁。”一个熟悉的声音传来，这句话让纸侠和法鲁如坠冰窟一般，这才是真正的绝望感。</p>
+	<p class='firstLineIndent'>吉姆·马龙叼着雪茄，从远处的断垣残壁中缓缓走来，他身后还跟着四个全副武装的特种兵，那四人皆是全身黑衣、黑色面罩，端着全自动武器，准星已经瞄向了重伤的二人。</p>
+	<p class='firstLineIndent'>“我建议你们不要耍什么花招，没有退路的，你们已经被包围了。”马龙说话间，又有十多个黑衣特种兵从四面八方冒了出来。</p>
+	<p class='firstLineIndent'>法鲁咆哮道：“马龙上校！你知道自己在干什么吗？！”</p>
+	<p class='firstLineIndent'>“废话，所以说你们这些只会打打杀杀的所谓‘高手’，都是有勇无谋之辈，我当然很清楚自己在干什么。蒙在鼓里的人一直都是你们而已。”</p>
+	<p class='firstLineIndent'>“呵呵……哈哈哈哈……哈哈哈哈！”纸侠狂笑不止，鲜血从他口中涌出：“枉我还一直当你是朋友。”</p>
+	<p class='firstLineIndent'>“是你不识抬举！”马龙喝道：“埃洛特，在部队里的时候我觉得你算是个可造之材，想要栽培你。离开部队后，你却不肯加入HL，要当什么警察，人往高处走水往低处流，那时我就明白，你这条狗是养不熟了。从一开始你就不要掺和到血枭这件事里来，也许我会看在多年的交情上放你一条生路。</p>
+	<p class='firstLineIndent'>难道我对你说的话，你都没有听吗？‘你知道我常年上夜班就是为了躲你的吧？’，你以为我说这话的时候是在开玩笑吗？！”</p>
+	<p class='firstLineIndent'>法鲁道：“你到底想干什么？马龙上校！还有你们，我是欧洲总部的中校法鲁！我命令你们放下武器！”</p>
+	<p class='firstLineIndent'>纸侠道：“哼……你还没看出来吗，他身边那些人，根本不是帝国的军队。”</p>
+	<p class='firstLineIndent'>“什……”法鲁终于意识到了，那些带着面罩的人，他们只是穿着特种兵的服装而已，以马龙的身份要搞到这些衣服并不算难，那些黑色面罩下，究竟是一群什么样的人？</p>
+	<p class='firstLineIndent'>马龙接着道：“一个多月前，你们跟那个血枭还有博特里尼那伙人交过手以后，我就知道，这是一个契机。所以我启动了你们眼前所见的这个计划，准备工作花去了这一个月，前天午夜，开始执行。</p>
+	<p class='firstLineIndent'>EAS的那个时侍，昨天突然出现，确实让我有些手忙脚乱，好在那个怪人来去匆匆，从男爵的尸体被发现，到警局联系第二分部这段时间，他正好完成了对你的测试，然后立即乘他的专机离开了。</p>
+	<p class='firstLineIndent'>因此，一切计划都按照我的意图得以顺利进行，再过几个小时，当那个卢卡教官从总部来到这里，会得到这样一份报告。”</p>
+	<p class='firstLineIndent'>马龙扔掉了半截雪茄，接着说道：“内容大致就是……血枭杀死了那些贵族和富商，然后和你们两个同归于尽，二位为帝国尽忠，着实令人佩服。”</p>
+	<p class='firstLineIndent'>纸侠仰面朝天，苦笑着道：“总督已经年迈，根据贵族世袭制，过几年等他的公子成年很可能顺理成章地直接当上副总督，但现在，那种事不会发生了。而威尼斯政界、商界那些有权势的、正当壮年的贵族富商们，也都相继被杀。</p>
+	<p class='firstLineIndent'>像威尼斯这样的中小型城市，总督由HL的长官兼任的情况普遍存在，到时候，你吉姆·马龙，就是此地总督的不二人选。”</p>
+	<p class='firstLineIndent'>法鲁闻言，神色惊愕无比，他对马龙道：“你知道谋杀HL总部军官，还有杀死贵族是什么罪吗！”</p>
+	<p class='firstLineIndent'>“罪名？有意义吗？无论按什么罪名不都是一死吗？”马龙笑道：“可惜，在这整个事件中，只要你们一死，报告我想怎么写，就怎么写。而且我敢打赌，那位总督大人会在近期内‘意外暴病’身亡，可能是因为失去儿子太悲痛了吧，呵呵呵……</p>
+	<p class='firstLineIndent'>到那时，地方军，警察，HL，都在我的手中，谁来查我？谁能管我？威尼斯，便是我吉姆·马龙一人脚下的城市了，哈哈哈哈哈！”他说到此处，似是得意到了极点，狂放地大笑起来。</p>
+	<p class='firstLineIndent'>“哦，好计划，我大概也听明白了。”一名神色狰狞的恶汉从旁边的一条河里爬上岸来，身上虽有无数血痕，却看不到什么明显的致命伤。</p>
+	<p class='firstLineIndent'>所有人都愣住了，仿佛爬上来的不是个人，而是嗜血与杀戮所化身的恶鬼。</p>
+	<p class='firstLineIndent'>血枭活动了一下脖子，用不怀好意的眼神看着马龙：“你派手下模仿我，到处去杀人是吧？”</p>
+	<p class='firstLineIndent'>马龙扭头就跑，边跑边喊：“杀了他！”</p>
+	<p class='firstLineIndent'>那些黑衣人举枪便打，他们的火力层次分明，且枪法不差，但只见血影一闪，原本站在马龙身后的四人瞬间身首异处，应声倒地。</p>
+	<p class='firstLineIndent'>远处三名黑衣杀手见状，立即扔掉了自动步枪，提着军刺上前，那身法速度，竟也不比法鲁慢上多少。</p>
+	<p class='firstLineIndent'>“哦？能力者。”血枭就像是狼遇见羊一样来了兴致。</p>
+	<p class='firstLineIndent'>三人的武器已逼到身前，血枭却是赤手空拳向前直进，一手一把，嘴里再叼上一把，夺下了三把军刺。除了嘴里那把，他徒手去握其余两把军刺的刀刃，血槽中流淌着自己的血，可血枭竟饶有兴致地提起刀来，饮下几口鲜血，仿佛是不想浪费。</p>
+	<p class='firstLineIndent'>那三人皆是久经杀阵的冷血杀手，但也从未见过这等阵仗，人一旦感到畏惧，就会本能地和自己惧怕的事物拉开距离，所以他们又掏出了枪带上的手枪，稍微退后几步，开始朝着血枭射击。</p>
+	<p class='firstLineIndent'>“呸……”血枭啐了口唾沫，顺便吐掉了嘴里的军刺：“废物。”他抛起手中双刀，顺势握住刀柄，血影一闪，三人便僵住不动，几秒后，身体被分割成了不规则的数段，像积木一般倒塌下来。</p>
+	<p class='firstLineIndent'>一回头，发现剩下的黑衣杀手们竟然跑光了，血枭不快地走到法鲁和纸侠面前：“我帮你把马龙杀死如何？”</p>
+	<p class='firstLineIndent'>法鲁已经说不出话来，纸侠道：“你可不像这种人。”</p>
+	<p class='firstLineIndent'>血枭笑道：“说得对，杀他以前，我要先送你们上路！”</p>
+</details></li>
+<li id='_novelli'><details class='detailsSwitch' id='_details_0035'><summary><a>尾声 必死者，幸存者</a></summary>
+	<p class='firstLineIndent'>马龙在威尼斯蜿蜒的小巷中穿行，他此刻只想尽可能远离血枭的所在，以确保自身的安全。</p>
+	<p class='firstLineIndent'>他率领着“银影”的杀手们赶来此地时，本以为血枭已死，所以才敢突下杀手。谁料这杀人魔王竟在刚才那种恐怖的攻击下活了下来，其实这变故也并不致命，他仍然可以把杀死纸侠和法鲁以及谋害那些达官显贵的罪名全推到血枭身上。</p>
+	<p class='firstLineIndent'>但眼下马龙担心的问题是，在他逃跑时那二人还未完全断气，假如他们中有人生还，并说出一些对自己不利的证词来，那整个计划都将付诸东流，而吉姆·马龙这个名字，也会带着屈辱被帝国抹杀。</p>
+	<p class='firstLineIndent'>银影的杀手虽然很强，但马龙心中清楚，他们是对付不了血枭的，无非就是给自己的逃离争取一些时间罢了。还有什么办法可以杀人灭口？他脑中很快就闪过了一个念头，于是一边奔跑着，一边拿出了一部通讯器。</p>
+	<p class='firstLineIndent'>马龙要呼叫空军，对刚才那片城市区域进行无差别的破坏，无论是建筑、桥梁、街巷、居民，全部都炸成灰烬，即便炸不死血枭，至少可以赶在那个卢卡教官到来之前让纸侠和法鲁永远闭嘴。事后如果追究起责任来，他可以摆出一副愧疚的嘴脸，称血枭杀死了法鲁中校和自己的挚友，所以自己失去理智所致；同时也是为了帝国剪除高危险等级的祸害，相信这种程度的牺牲上层还是可以接受的。退一万步讲，他马龙罪不至死。</p>
+	<p class='firstLineIndent'>可他还没能开始通讯，一个高大的黑影就挡在了眼前，用闪电般地速度夺过了那个通讯器，徒手将其捏成了一堆废铁。</p>
+	<p class='firstLineIndent'>马龙站住不动了，不是他不想动，而是动不了。此刻他内心深处恨不得自己能长出四条腿来逃跑，可仅有的两条除了不住地发抖以外还丧失了其他功能。癞蛤蟆被眼镜蛇瞪着的时候估计就是这种状态。</p>
+	<p class='firstLineIndent'>血枭浑身浴血，狞笑着站在马龙面前，俯视着这个即将死去的软弱猎物，开口道：“我现在要问你几个问题，有五件事你不能做——拒绝回答、说谎、答非所问、讨价还价还有跪地求饶，否则我也不知道会发生什么。听明白了吗？”</p>
+	<p class='firstLineIndent'>马龙点头，声音颤抖：“明……明白……”</p>
+	<p class='firstLineIndent'>血枭冷笑一声，问道：“刚才跟着你的那群杀手，是些什么人？”</p>
+	<p class='firstLineIndent'>“他们是‘银影’的杀手，世界上最昂贵的雇佣兵，但只要有钱，任何任务都敢执行。”</p>
+	<p class='firstLineIndent'>“模仿我杀人的就是他们？”</p>
+	<p class='firstLineIndent'>“是的。”</p>
+	<p class='firstLineIndent'>“你说这个计划准备了一个月，那么，你又怎么知道，那晚以后我还会继续待在威尼斯？”</p>
+	<p class='firstLineIndent'>“你是否还在这城里都没关系，一个月前，你确实就是危险等级四的通缉犯血枭这件事已经由法鲁和纸侠亲眼确认，那就够了。由于你近期在此地现身过一次，只要我的行动不是时隔太久，自然会被联系到你身上。找人模仿你的手法将我要除去的人都杀掉，最后再把有可能查出破绽的两个当局者灭口，我的目的就达到了。”</p>
+	<p class='firstLineIndent'>血枭逼视着马龙的眼睛：“最后一个问题，你还有任何具备价值的情报可以提供给我，来换你这条命的吗？”</p>
+	<p class='firstLineIndent'>马龙的心机也颇为深沉，他知道，在血枭这种人面前要活命，这是唯一的机会，可以说，他早已在等着这个问题：“有！这整个计划，其实并不是我策划的！而是另有其人！”</p>
+	<p class='firstLineIndent'>血枭脑中马上闪过了“天一”这个名字，但他表面上却也不动声色，只是用疑问的语气道：“那么……是谁？”</p>
+	<p class='firstLineIndent'>“是‘顾问’！全盘布局，所有的细节，包括跟‘银影’牵线搭桥，谋杀发生的时间、手法，我对外应该表现出的反应，这些都是他教我的！在一个月前的事件后，我虽然察觉到这是个契机，有了夺取这座城市的念头，但我根本没有这么详尽的计划，真正谋划一切的人，是顾问！所以想陷害你的不是我，而是他！”</p>
+	<p class='firstLineIndent'>“哦？”血枭来了兴致：“你知道这个‘顾问’的名字吗？或者……长相？”</p>
+	<p class='firstLineIndent'>马龙道：“不……我从没见过他，也不知道这个顾问的真名，我只是两年前在一份危险等级一的通缉犯名单上见过这个代号，根据HL的情报，这个人在网络上通过一个公共的邮箱接受别人的委托，进行‘犯罪咨询’的服务。HL曾用过各种方法尝试抓捕他，但无论是用技术手段追踪，还是假冒雇主去引他上钩，都没有任何结果。总部方面也曾怀疑这个邮箱的真实性，但关于顾问的传闻却从不间断，那些无超能力的普通罪犯中，有许多案子的背后都有他的影子。根据一些人模糊的描述，顾问今年应该还不到二十岁，是近几年兴起的天才型罪犯。</p>
+	<p class='firstLineIndent'>一个多月前，我也是抱着试试看的心情给他发了邮件，之后他居然主动联系到了我，还告诉我，他自有办法甄别发邮件的人是真想要犯罪咨询，还是出于别的什么目的，所以他不可能被抓，并且很乐意给我这种具有HL背景的人提供服务。”</p>
+	<p class='firstLineIndent'>血枭听到此处，再次开口问道：“你确定他还不到二十岁？”</p>
+	<p class='firstLineIndent'>“是的……虽然未必准确，但年龄已经是极少数HL可以大致掌握到的东西了，这个人真的非常谨慎，很难追查。”</p>
+	<p class='firstLineIndent'>“你现在还能联系到他吗？”</p>
+	<p class='firstLineIndent'>马龙的神色开始紧张起来：“不……一个月前，他花了很短的时间，就将计划交给了我，并给了我‘银影’方面的联系方法，之后我就交了钱，再也联系不上他了。”</p>
+	<p class='firstLineIndent'>血枭摸着下巴：“哦，我明白了。”他把手搭在了马龙肩上，后者吓得差点儿没失禁。</p>
+	<p class='firstLineIndent'>“别害怕，嗯……马通。”</p>
+	<p class='firstLineIndent'>“是马龙……血枭先生。”</p>
+	<p class='firstLineIndent'>“那种事情怎样都好，我只是想告诉你，不必担心，我会亲自去拜会一下那个‘顾问’，然后把他干掉的。这整个阴谋里，你扮演的也不过是个无能的野心家罢了，这个星球上，像你这种废物实在是太多了，我并不是非杀你不可的。”</p>
+	<p class='firstLineIndent'>“谢……谢……谢谢你，血枭先生。”马龙不知道这种时候除了感谢这位大爷饶自己一命还能说什么。</p>
+	<p class='firstLineIndent'>结果下一秒，血枭话锋一转：“可你竟敢纠正我的错误，马通，你这是找死。”然后他轻而易举地就把马龙给撕了。</p>
+	<p class='firstLineIndent'>…………</p>
+	<p class='firstLineIndent'>清晨，废墟中，HL的清理小队正在干着“洗地”的工作，搬走残缺的尸体以及彻底消毒那些被血浸透的地面。</p>
+	<p class='firstLineIndent'>“嘿，伙计们，快过来。”其中一名队员忽然喊道。</p>
+	<p class='firstLineIndent'>五六人围了上来，眼尖的很快就看到了一具穿着黑色军装的尸体，被埋在地面下半米左右，身体由中间被折断成两截，内脏溢了出来。那景象感觉就像一根放在木板上的春卷，被人一锤子敲下去，木板都断了，而那春卷，就是此刻的法鲁中校。</p>
+	<p class='firstLineIndent'>正当他们对着这位不怎么熟的上级唏嘘不已时，另一处又有人高喊：“这儿还有个活的！”</p>
+	<p class='firstLineIndent'>这次清理队几乎所有在附近的人员都涌了过去，抬担架的冲在最前面。</p>
+	<p class='firstLineIndent'>那是一个穿着风衣的男人，他的半张脸已不见了，一排牙齿和血骨皮肉暴露在外，但他胸口却仍有微弱的起伏，显示着他仍然没有向死亡妥协……</p>
+</details></li>
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< Ender, insert new list item above this line >>>> -->
+
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='index.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='index.html';"> Index </button>
+
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='index_02.html';"> Next </button>
+
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+
+<script>
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
+</script>
+
+<script>
+/************* Dark Mode Functions *************/
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    }
+}
+
+function initDarkMode() {
+    const darkModeSetting = localStorage.getItem('darkMode');
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    }
+}
+/************* Dark Mode Functions *************/
+</script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+}
+</script>
+
+</body>
+</html>
