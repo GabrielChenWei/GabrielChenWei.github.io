@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+	<meta name="description" content="The Curriculum Vitae of Gabriel Chen Wei."/>
+	<link rel="shortcut icon" type="image/png" href="Eye_transBG.png"/>
+	<title>Gabriel Profile V12</title>
+	<style>
+		body {
+			margin: 0;
+			background: HoneyDew;
+			font-family: Segoe UI, Arial, sans-serif;
+			color: #222
+		}
+
+		.wrap {
+			width: 90%;
+			max-width: 800px;
+			margin: 20px auto
+		}
+
+		.nav {
+			position: sticky;
+			top: 0;
+			background: #fff;
+			padding: 10px;
+			border-radius: 10px;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+			margin-bottom: 15px
+		}
+
+		.nav a {
+			margin-right: 12px;
+			color: #0078d4;
+			text-decoration: none
+		}
+
+		.card {
+			background: #fff;
+			border-radius: 14px;
+			padding: 22px;
+			margin-bottom: 18px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 220px 1fr;
+			gap: 20px;
+		}
+
+		.portrait {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+			object-position: center top;
+			border-radius: 12px
+		}
+
+		.slideWrap {
+			position: relative
+		}
+
+		.slide {
+			width: 100%;
+			border-radius: 10px;
+			transition: opacity 1s
+		}
+
+		.fade {
+			opacity: .15
+		}
+
+		.arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 42px;
+			height: 72px;
+			border: none;
+			background: rgba(255, 255, 255, .75);
+			border-radius: 6px;
+			font-size: 30px;
+			cursor: pointer
+		}
+
+		.left {
+			left: 10px
+		}
+
+		.right {
+			right: 10px
+		}
+
+		.cap {
+			text-align: center;
+			color: #666;
+			padding: 8px
+		}
+
+		.job {
+			border-left: 4px solid #0078d4;
+			padding-left: 14px;
+			margin: 20px 0
+		}
+
+		.proj {
+			display: grid;
+			grid-template-columns: 1fr 320px;
+			gap: 18px;
+			background: #fafafa;
+			padding: 12px;
+			border-radius: 10px;
+			margin: 14px 0
+		}
+
+		.video {
+			position: relative;
+			display: block;
+			border: 1px solid #ddd;
+			border-radius: 12px;
+			overflow: hidden
+		}
+
+		.video img {
+			width: 100%;
+			display: block
+		}
+
+		.play {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 84px;
+			height: 84px;
+			border-radius: 50%;
+			background: rgba(0, 0, 0, .45)
+		}
+
+		.play:before {
+			content: '';
+			position: absolute;
+			left: 34px;
+			top: 24px;
+			border-left: 24px solid #fff;
+			border-top: 16px solid transparent;
+			border-bottom: 16px solid transparent
+		}
+
+		.skill {
+			display: inline-block;
+			background: #eef6ff;
+			padding: 8px 10px;
+			margin: 4px;
+			border-radius: 8px
+		}
+
+		@media(max-width:700px) {
+
+			.hero,
+			.proj {
+				grid-template-columns: 1fr
+			}
+		}
+	</style>
+
+</head>
+<body>
+	<div class='wrap'>
+		<!--<div class='nav'><a href='#summary'>Summary</a><a href='#experience'>Experience</a><a href='#skills'>Skills</a><a href='#education'>Education</a></div>-->
+		<!-- starter -->
+		<div class='card hero'>
+			<img class='portrait' src='profileWebPhotos/501x702gabrielPortrait.jpg'>
+			<div id='summary'>
+				<h1>Gabriel Chen Wei</h1>
+				<!--<h3>Senior Systems & Services Specialist</h3>-->
+				<p style="font-size:0.75em;">📞: <b>+65 81338589</b></p>
+				<p style="font-size:0.75em;">📧: <a href="mailto:gabriel.chen.wei@gmail.com" target="_blank">Gabriel.Chen.Wei@gmail.com</a></p>
+				<p style="font-size:0.75em;">🔗: <a href="https://gabrielchenwei.github.io/">https://gabrielchenwei.github.io/</a></p>
+				<p style="font-size:0.75em;"><img style="width: 18px; height: auto;" src='https://cdn-icons-png.flaticon.com/512/3665/3665172.png'>  : <a href="https://www.linkedin.com/in/gabriel-chen-wei-178430a4/">https://www.linkedin.com/in/gabriel-chen-wei-178430a4/</a></p>
+				<h2>Executive Summary</h2>
+				<p>A 42-year-old Singaporean with over <b>20 years' experience</b> in electrical engineering across Asia. Specialized in <b>designing, building and coordinating</b> electrical projects and <b>system integrations</b>. Proven record delivering large technical projects <b>(S$140M+)</b>, with hands-on experience in <b>EMS integration, power system components</b>, and <b>technical commissioning</b>.</p>
+			</div>
+		</div>
+		<div class='card'>
+			<h2>Project Gallery</h2>
+			<div class='slideWrap'>
+				<img id='slide' class='slide' src='profileWebPhotos/800x500adelaide-oval-vaya-rainbow-trees.jpg'><button class='arrow left' onclick='prevSlide()'>&lsaquo;</button>
+				<button class='arrow right' onclick='nextSlide()'>&rsaquo;</button>
+			</div>
+			<div id='cap' class='cap'>(Adelaide Oval) VAYA Rainbow trees</div>
+		</div>
+		<div class='card'>
+			<h2>CORE COMPETENCIES OR KEY SKILLS</h2>
+				<ul>
+					<li><b>Technical coordination</b> across multi-discipline teams and contractors, ensuring engineering compliance and safe execution.</li>
+					<li><b>System integration and EMS</b> : PV SCADA, EV CSMS, REMS — participated in development and deployment within cross-functional teams.</li>
+					<li><b>Programming & automation</b> : PLC/HMI programming, scripting for automation and process improvement, <b>data interfacing (Modbus/SCADA)</b>.</li>
+					<li><b>Power system fundamentals</b> : single-line design, protection basics, fault impact awareness, and grid-connected renewable systems.</li>
+					<li><b>Process standardization</b> for technical deliverables, FAT/SAT coordination, and engineering documentation.</li>
+				</ul>
+		</div>
+		<div class='card'>
+			<h2>KEY ACHIEVEMENTS</h2>
+				<ul>
+					<li>Successfully planned and led contractors in completing largest electrical/smart streetlighting upgrading and integration with government energy monitoring platform project in APAC region which worths S$ 140+ millions in total.</li>
+					<li>Successfully completed one of the iconic stadium electrical/smart lighting project in Perth, Australia, including integration with external event control system, worths S$ 100+ millions in total.</li>
+					<li>Successfully closed the deal with one of the Singapore government agencies for one of the largest IoT electrical lighting systems in Singapore, worths S$1+ millions.</li>
+					<li>Successfully designed and deployed Solar PV powered smart grid system (BESS and hybrid) for Thailand Royal Arena, worths S$1+ millions.</li>
+					<li>Successfully improved system designing and proposal productivity over 500% (reduced to 2 days from 2 weeks) via implementing process standardization.</li>
+					<li>Promoted to be section head/project team lead in view of excellent performance over the years of service.</li>
+					<li>M.sc dissertation project in the area of renewable energy sources, smart grid and energy storage system.</li>
+				</ul>
+		</div>
+		<div class='card' id='experience'>
+			<h2>Work Experience</h2>
+			<div class='job'>
+				<h3>Principal Engineer @ LITE-ON SINGAPORE PTE LTD (Mar 2023 – Present)</h3>
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Manage internal and external project teams, focusing on the successful deployment of Energy Management Systems (EMS), including PV SCADA, EV Charging Station Management System (CSMS) and Residential Energy Management System (REMS).</li>
+					<li>Serve as Scrum Master for the Integrated Energy Management System (EMS) development, negotiating scope of work, arranging resources, and ensuring timely delivery while maintaining high team morale.</li>
+					<li>Oversee the entire project lifecycle for external Energy Management System deployments, from proposal through to handover, balancing scope, budget, and schedule to meet project objectives.</li>
+					<li>Act as the key point of contact between stakeholders, ensuring clear communication and alignment on project goals and expectations.</li>
+					<li>Implement risk management strategies and provide solutions for any issues that arise during project execution, ensuring smooth and successful project completion. </li>
+				</ul>
+			</div>
+			<div class='job'>
+				<h3>Project and Operation Manager @ ECTIVISE SOLUTIONS PTE LTD (Nov 2022 – Feb-2023)</h3>
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Lead a team of 5 and overseeing the implementation of Singapore and Malaysia projects in the scale of million SGD.</li>
+					<li>Reported to senior management on the project implementation portfolio and be responsible for operational and safety related issues.</li>
+					<li>Underpinned network deployment related issues during project execution phase to ensure smooth project execution as well as carry out ad-hoc problem solving.</li>
+				</ul>
+			</div>
+			<div class='job'>
+				<h3>Head of Engineering, System Center APAC @ SIGNIFY SINGAPORE PTE LTD (formerly known as Philips Lighting) (May 2021 – May 2022)</h3>
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Led a team of 6 and overseeing the implementation of APAC region projects in the scale of billion SGD.</li>
+					<li>Reported to senior management on the project implementation portfolio and responsible for operational and safety related issues.</li>
+					<li>Underpinned technical difficulties and milestones during project execution phase to ensure smooth project execution as well as ad-hoc problem-solving.</li>
+					<li>Supported proposal preparation of the crossing section design for both indoor and outdoor electrical/lighting control systems, including manhour estimation and method of statement. </li>
+				</ul>
+			</div>
+			<div class='job'>
+				<h3>Senior Systems & Services Specialist @ SIGNIFY SINGAPORE PTE LTD (formerly known as Philips Lighting)  (Oct 2013 – May 2021)</h3>
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Design and implementation of public/outdoor lighting control systems for road, street, tunnel, stadium, facade and solar applications.</li>
+					<li>Install, troubleshoot, test and commission lighting control systems.</li>
+					<li>Support country teams, conduct training and customer engagements.</li>
+					<li>Coordinate with regional and global teams for system upgrades and issue resolution.</li>
+				</ul>
+				<h4>Project References</h4>
+				<div class='proj'>
+					<div>
+						<b>Adelaide Oval LED Upgrading (Australia, 2017)</b>
+						<p>220 units of ArenaVision LED luminaire are controlled Philips ArenaVision LED system to performance the dynamic light show as well as static scene according to global standard. 344 units of 3 types color changing luminaires light show programming according to customer requirement. Interfacing with CBUS, ROSS (Multi-media control) system for high level integration via TCP strings.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=RVoRj1j-lgA' target='_blank'>
+						<img src='https://img.youtube.com/vi/RVoRj1j-lgA/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Perth Stadium Sports Lighting Control (Australia, 2017)</b>
+						<p>890 units of ArenaVision LED luminaire are controlled Philips ArenaVision LED system to performance the dynamic light show as well as static scene according to global standard. Interfacing with Philips Dynalite system for high level integration via RS485.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=sjBjuvyAUTE' target='_blank'>
+						<img src='https://img.youtube.com/vi/sjBjuvyAUTE/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Jakarta DKI Smart LED Phase 1 & 2</b>
+						<p>Approximately 140,000 Smart streetlight points are controlled by Philips CityTouch system which is interfacing with Jakarta Smart City Dashboard (government supervision system) to provide individual light point remote monitoring and control ability.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=HGlwKCWEIQ0' target='_blank'>
+						<img src='https://img.youtube.com/vi/HGlwKCWEIQ0/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Sungai Kebun Facade Lighting (Brunei, 2017)</b>
+						<p>96 units of color changing Bridge façade lighting controlled by Philips Color Kinetics system.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=sNdbdTZSoEs' target='_blank'>
+						<img src='https://img.youtube.com/vi/sNdbdTZSoEs/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Melaka Smart Streetlight (Malaysia, 2016)</b>
+						<p>1060 Smart LED streetlight points are controlled by Philips CityTouch system to provide individual light point remote monitoring and control ability.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=Gd47cYGBtt8' target='_blank'>
+						<img src='https://img.youtube.com/vi/Gd47cYGBtt8/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Mono Stadium (Thailand, 2016)</b>
+						<p>32 units of ArenaVision LED luminaires are controlled Philips ArenaVision LED system to performance dynamic light show as well as static scene according to customer requirement.</p>
+					</div>
+					<a class='video'>
+						<img src='https://images.squarespace-cdn.com/content/v1/5ecb9168f51b0459bf76246a/1619716799742-LPWUI5HIHFDQE1R62YHM/PIC+COVER.jpg'>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Naga WWF Solar Centralized System (Philippines, 2016)</b>
+						<p>Centralized solar system for flood light application for fish man as one of WWF project.</p>
+					</div>
+					<a class='video'>
+						<img src='https://archive.wwf.org.ph/wp-content/uploads/2017/11/Kirahon-Solar-Park-Thumbnail.jpg'>
+					</a>
+				</div>
+				<div class='proj'>
+					<div>
+						<b>Sentosa Smart street lighting (Singapore, 2015)</b>
+						<p>255 streetlights which are connecting to 5 feeder pillars controlled by Philips AmpLight system to provide remote monitoring and control ability.</p>
+					</div>
+					<a class='video' href='https://www.youtube.com/watch?v=5b0p1VH2lWk' target='_blank'>
+						<img src='https://img.youtube.com/vi/5b0p1VH2lWk/hqdefault.jpg'>
+						<div class='play'></div>
+					</a>
+				</div>
+			</div>
+			<div class='job'>
+				<h3>Product Engineer @ POWER INSTRUMENTS PTE LTD (Mar 2011 – Oct 2013)</h3>
+				
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Gather customer requirements and develop complete remote monitoring system solutions, including hardware, software, and technical proposals.</li>
+					<li>Source system components, negotiate with vendors, and coordinate contractors to ensure cost-effective and successful project execution.</li>
+					<li>Plan and manage site surveys, project schedules, installation, commissioning, and system deployment for gensets, power plants, and vessels.</li>
+					<li>Provide technical leadership through system configuration, solution refinement, R&D support, technical meetings, and final documentation delivery.</li>
+				</ul>
+			</div>
+			<div class='job'>
+				<h3>Production / Software Engineer @ UNI-TEC ENGINEERING PTE LTD (Jun 2008 – Jul 2009)</h3>
+				
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Base on EIB (European Installation Bus) system, configure and program the building automation system, including background music system, motorize curtain system, power supply (UPS)/battery backup system and specialize in lighting management system and visualization monitoring system.</li>
+					<li>Design and integrate building automation system, including system design proposal base on the customer requirement, DB assembling, components programming, PC base visualization software programming.</li>
+				</ul>
+			</div>
+			<div class='job'>
+				<h3>Design & Production Engineer @ PMI CONSULTING GROUP PTE LTD (Aug 2005 – May 2008)</h3>
+
+				<h4>Responsibilities</h4>
+				<ul>
+					<li>Configuring, programming, testing and commissioning of security and building automation system, including closed circuit television (CCTV) system, audio/video intercom system, alarm monitoring system, access control system, integrated security control system, power saving control system and uninterruptedly power supply (UPS)/battery backup system.</li>
+					<li>Design and produce pedestrian gate system, including housing design, drive unit, mechanism and control circuit.</li>
+					<li>Design and produce mechanism and electrical circuit for the sign board and the shelf related to demonstration and exhibition products.</li>
+				</ul>
+			</div>
+		</div>
+		<div class='card' id='skills'>
+			<h2>Skills</h2>
+			<span class='skill'>MS Office</span><span class='skill'>MS VBA</span><span class='skill'>AutoCAD</span><span class='skill'>HTML/CSS/JavaScript</span><span class='skill'>Google App Script</span><span class='skill'>Modbus</span><span class='skill'>CoDeSys</span><span class='skill'>Time management</span><span class='skill'>Problem-solving</span><span class='skill'>Communication skill</span><span class='skill'>Relationship management</span><span class='skill'>Agile/Scrum</span><span class='skill'>Process Standardization</span><span class='skill'>Project Management</span>
+		</div>
+		<div class='card' id='education'>
+			<h2>Education</h2>
+			<p>NTU Singapore - Master of Science (Power Engineering)</p>
+			<p>Wuhan University of Technology - Bachelor (Measurement & Control Technology & Instruments)</p>
+			<h2>Languages</h2>
+			<p>English, Mandarin</p>
+		</div>
+	</div>
+	<script>
+		const data = [
+			['800x500adelaide-oval-vaya-rainbow-trees.jpg', '(Adelaide Oval) VAYA Rainbow trees'],
+			['800x500bangkokskylane-checking-solar-battery-condition.jpg', '(Bangkok)(Skylane) Checking Solar battery condition'],
+			['800x500bangkokskylane-fixing-light-control-unit.jpg', '(Bangkok)(Skylane) Fixing Light Control Unit'],			
+			['800x500brunei-amplight-commissioned.jpg', '(Brunei) AmpLight commissioned'],
+			['800x500brunei-iet-technical-talk-08-dec-2014.jpg', '(Brunei) IET Technical talk 08-Dec-2014'],
+			['800x500brunei-sungai-kebun-bridge-gabriel-is-fixing-dep-connection-issue.jpg', '(Brunei) Sungai Kebun bridge - Gabriel is fixing DEP connection issue'],
+			['800x500brunei-sungai-kebun-bridge-the-team.jpg', '(Brunei) Sungai Kebun bridge - the team'],
+			['800x500brunei-sungai-kebun-bridge-rainbow-shot-from-bridge.jpg', '(Brunei) Sungai Kebun bridge rainbow shot from bridge'],
+			['800x500brunei-sungai-kebun-bridge-facade-lighting-effect-view-cross-the-river.png', '(Brunei) Sungai Kebun bridge Facade Lighting effect view cross the river'],
+			['800x500melaka-gabriel-providing-the-operation-training.jpg', '(Melaka) Gabriel providing the Operation training'],
+			['800x500melaka-smart-streetlight-in-operation.jpg', '(Melaka) Smart Streetlight in operation'],
+			['800x500melaka-troubleshooting-streetlight.jpg', '(Melaka) Troubleshooting streetlight'],
+			['800x500perth-stadium-philips-logo-on-the-super-screen.jpg', '(Perth Stadium) Philips logo on the super screen'],
+			['800x500perth-stadium-top-view-of-the-pitch.png', '(Perth Stadium) top view of the pitch and sports lighting'],
+			['800x500singapore-investigating-feeder-pillar-condition.jpg', '(Singapore) Investigating Feeder pillar condition'],
+			['800x500singapore-solar-urbanspark-installation.jpg', '(Singapore) Solar UrbanSpark installation']
+		];
+		let i = 0,
+			s = document.getElementById('slide'),
+			c = document.getElementById('cap');
+
+		function show() {
+			s.classList.add('fade');
+			setTimeout(() => {
+				s.src = 'profileWebPhotos/' + data[i][0];
+				c.textContent = data[i][1];
+				s.classList.remove('fade');
+			}, 400)
+		}
+
+		function nextSlide() {
+			i = (i + 1) % data.length;
+			show()
+		}
+
+		function prevSlide() {
+			i = (i - 1 + data.length) % data.length;
+			show()
+		}
+		setInterval(nextSlide, 4500); 
+	</script>
+</body>
+</html>
