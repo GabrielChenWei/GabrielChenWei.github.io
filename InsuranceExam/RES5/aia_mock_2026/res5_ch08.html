@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+	} else {
+		showUserPanel();
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
+  }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* dark mode, 23-May-2026 *********/
+/* Dark Mode CSS - Add this after your existing body styles */
+:root {
+  --bg-body: Moccasin;
+  --bg-gradient-start: Seashell;
+  --bg-gradient-end: PeachPuff;
+  --text-color: #000000;
+  --details-border: #1ab2ff;
+  --primary-li-border: Orchid;
+  --tag-button-bg: #44c767;
+  --tag-window-bg: HoneyDew;
+  --user-panel-bg: powderblue;
+  --input-border: red;
+  --question-header-bg: mediumslateblue;
+  --explanation-bg: SandyBrown;
+  --modal-bg: #fffaf0;
+  --choice-bg: #fff6ea;
+  --choice-border: #c5c9d1;
+}
+
+body.dark-mode {
+  --bg-body: #1a1a2e;
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+  --text-color: #e0e0e0;
+  --details-border: #5a9eff;
+  --primary-li-border: #aa6dc9;
+  --tag-button-bg: #2c5e2e;
+  --tag-window-bg: #1e2a3a;
+  --user-panel-bg: #2c3e50;
+  --input-border: #e74c3c;
+  --question-header-bg: #5b4b8c;
+  --explanation-bg: #b85c1a;
+  --modal-bg: #2c2c3a;
+  --choice-bg: #2a2a3a;
+  --choice-border: #4a4a5a;
+  --bg-card: #2f3147;   /* dark blue/gray */
+}
+
+body {
+  background: var(--bg-body);
+  background: linear-gradient(var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #7bb3ff;
+}
+
+/* Update existing elements to use CSS variables */
+details {
+  border-color: var(--details-border);
+}
+
+#_primaryli, #_novelli {
+  border-color: var(--primary-li-border);
+}
+
+.tagButton {
+  background-color: var(--tag-button-bg);
+}
+
+.tagWindow {
+  background-color: var(--tag-window-bg);
+}
+
+#_userPanel {
+  background-color: var(--user-panel-bg);
+}
+
+#_userInput {
+  border-color: var(--input-border);
+  background-color: var(--choice-bg);
+  color: var(--text-color);
+}
+
+.questionHeader {
+  background-color: var(--question-header-bg);
+}
+
+.explanationHighlight {
+  background-color: var(--explanation-bg);
+}
+
+.modal-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+}
+
+.questionCard .questionChoiceText {
+  background: var(--choice-bg);
+  border-color: var(--choice-border);
+}
+/******* dark mode, 23-May-2026 *********/
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    padding: 0.2em;
+	margin : 1em;
+}
+
+#_novelli { /* special li CSS for displaying novel like text, filter, open/close does not apply*/
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom, #_darkModeToggle {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+	z-index: 1; /* Sit on top */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	font-size: 1.2em;
+	right: 7em;
+	left: 1em;
+	/*width: 80%;*/
+	border: 2px solid red;
+	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: var(--bg-card);
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   google.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+******************* list element template *******************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+	<button id="_darkModeToggle" onclick="toggleDarkMode(); hideUserPanel();">🌓</button>
+</div>
+
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
+</div>
+<h2><a id="TocTop"></a>{RES5 Chapter 08} </h2><ul id="_mainUL">
+<a target="_blank" href="https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/insurance/RES5/aia_mock_2026/res5_ch08/" > source : RES5 raw screenshots </a>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<div class = "questionCard" id="_Q001"><p class = "questionHeader">Question 001 of 68</p>
+<p>(QID: 5227e53812) What are the minimum years of relevant working experience that all Executive Directors of an FA must have in respect of the financial advisory services that the corporation is seeking to be licensed for?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>_2  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>_3  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value ='correct'>_5  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>_10  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q001')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q001"><summary class="explanationHighlight">Show Answer</summary>Explanation: (C) is correct because the Chief Executive Officer and all Executive Directors should have a minimum of 5 years of relevant working experience in respect of the financial advisory services that the corporation is seeking to be licensed, with at least 3 years in a managerial capacity.</details></div><br/>
+
+<div class = "questionCard" id="_Q002"><p class = "questionHeader">Question 002 of 68</p>
+<p>(QID: 5227e53813) A financial adviser must have a ______ for recommending an investment product to a client.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>Minimal basis  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value ='correct'>Reasonable basis  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>Exceptional basis  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>Adequate basis  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q002')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q002"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser must have a reasonable basis for recommending an investment product to a client. Therefore, (B) is correct.</details></div><br/>
+
+<div class = "questionCard" id="_Q003"><p class = "questionHeader">Question 003 of 68</p>
+<p>(QID: 5227e47809) Which of the following is NOT TRUE in respect of handling complaints?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Management should keep and review regularly a register of complaints.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value ='correct'>Management should have a senior officer for each business unit to handle complaints.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Management should ensure that complaints are investigated and responded to promptly.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Management should ensure that complaints are handled in a fair, timely and appropriate manner.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q003')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q003"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should maintain a register of complaints, containing details of complaints received and how they have been dealt with. Management should review the register regularly. It should ensure that the complaints are handled in a fair, timely and appropriate manner, and complaints are promptly investigated and responded to, and AN officer is designated to handle ALL complaints.</details></div><br/>
+
+<div class = "questionCard" id="_Q004"><p class = "questionHeader">Question 004 of 68</p>
+<p>(QID: 5227e47816) A financial adviser can disclose to another person the information given by a client if:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>required by a private corporation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>the disclosure can help the client financially.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>asked by another company in the same industry.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value ='correct'>required by the MAS under any law.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q004')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q004"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should not disclose to any person any information that given by a client, unless the information obtained from the client is given to the MAS or any other government agencies in accordance with any relevant LAW, or the client has given his consent to the financial adviser to disclose the information.</details></div><br/>
+
+<div class = "questionCard" id="_Q005"><p class = "questionHeader">Question 005 of 68</p>
+<p>(QID: 5227e47817) A financial adviser SHOULD NOT use ______ as the basis for its recommendation  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>client's risk profile  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value ='correct'>any rebate of commissions  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>client's investment view  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>clients investment horizon  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q005')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q005"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should not use any rebate of commissions as the basis for its recommendation. Clients' risk profiles, investment views and investment horizons must be considered.</details></div><br/>
+
+<div class = "questionCard" id="_Q006"><p class = "questionHeader">Question 006 of 68</p>
+<p>(QID: cannot be determined) ABC Ltd. applies for a financial adviser's licence for advising clients directly on futures contracts and OTC currency derivatives. Its NAV at the end of the previous year was $10 million. To be considered eligible, ABC:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Must take a standalone non-hybrid professional indemnity insurance policy (PII) cover with the limit of indemnity covered of minimum $2 million.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Need not have a PII because its NAV at the end of the preceding year was $10 million.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value ='correct'>May take a group PII cover with minimum coverage of $2.5 million and a maximum deductible of $2 million.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Must take a group hybrid PII but the deductible of the PII must not be greater than $2 million.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q006')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q006"><summary class="explanationHighlight">Show Answer</summary>Explanation: ABC must have in force a standalone non-hybrid PII under which the limit of indemnity covered should be minimum $500,000 and under which the deductible allowed must not be more than 20% of its NAV at the end of its immediately preceding financial year. Alternatively, it may have a group PII policy with a cover of minimum 5 times that required for a standalone policy ($5 x $500,000 = $2.5 million). The deductible should be maximum 20% of the NAV as above (= $10 million x 20% = $2 million). If the deductible is higher, ABC must give an undertaking from its parent company to cover the excess in the event of a claim. Similar undertaking may work if ABC goes for a group hybrid PII. Therefore, the 20% deductible limit is NOT a must.</details></div><br/>
+
+<div class = "questionCard" id="_Q007"><p class = "questionHeader">Question 007 of 68</p>
+<p>(QID: 5227e47811) John and Jane are licensed financial advisers in ABC Limited. John abets Jane to breach the code of conduct of ABC. Consequently, John may fail the ____ test of fitness and propriety.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>financial standing  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value ='correct'>honesty, integrity and reputation  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>competence and capability  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>criminal liability  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q007')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q007"><summary class="explanationHighlight">Show Answer</summary>Explanation: Abetting another person in breach of any laws or regulations, business rules or codes of conduct, whether in Singapore or elsewhere, may lead to a failure of the honesty, integrity and reputation test of fitness and propriety.</details></div><br/>
+
+<div class = "questionCard" id="_Q008"><p class = "questionHeader">Question 008 of 68</p>
+<p>(QID: 5227e47806) An FA is required to disclose, in writing, the remuneration that it has received under the FAA, except:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>soft dollar commissions from product providers.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>trailer commissions from product providers.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>details of all fees charged to the client.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value ='correct'>details of all fees charged for non-financial advisory activities.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q008')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q008"><summary class="explanationHighlight">Show Answer</summary>Explanation: Except for fees charged for non-financial activities, an FA should disclose, in writing, all remuneration (include any commissions, fees, and other benefits) that it (will) receive for making any recommendation in respect of an investment product, or executing a purchase or sale contract relating to an investment product on the client's behalf. If an FA is charging a fee, it should disclose the details of the charges at the outset. When remuneration is not quantifiable, an FA should furnish its client with a description of how it will be remunerated. If its precise rate or value is not known in advance, the FA should provide a reasonable estimate.</details></div><br/>
+
+<div class = "questionCard" id="_Q009"><p class = "questionHeader">Question 009 of 68</p>
+<p>(QID: 5227e47808) Which of the following is NOT an investment product defined in the FAA?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>Spot foreign exchange contracts for leveraged forex trading  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>A life policy  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>Shares of an SGX-listed company  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value ='correct'>Term deposits  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q009')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q009"><summary class="explanationHighlight">Show Answer</summary>Explanation: FAA defines investment products as any capital market product as defined in Section 2(1) of the Securities and Futures Act, spot foreign exchange contracts other than for the purposes of leveraged foreign exchange trading, any life policy, or any other products as may be prescribed. Deposit-taking products (e.g., fixed/term deposits) offered by banks are EXCLUDED as such products are at the low end of the risk spectrum and are well understood. Capital markets products include any securities, units in a CIS, derivatives contracts, and spot foreign exchange contracts for leveraged foreign exchange trading. The term securities includes shares or units in business trusts.</details></div><br/>
+
+<div class = "questionCard" id="_Q010"><p class = "questionHeader">Question 010 of 68</p>
+<p>(QID: 5227e47814) In the context of applying for a Financial Adviser's license, the CEO of an applicant which does not have a minimum 3 years of proven track record in the financial advisory business should own at least ___ shareholding of the applicant.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>_10%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value ='correct'>_20%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>_30%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>_50%  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q010')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q010"><summary class="explanationHighlight">Show Answer</summary>Explanation: For an applicant which does not satisfy the 3-year track record requirement, the CEO should own not less than 20% shareholding of the applicant.</details></div><br/>
+
+<div class = "questionCard" id="_Q011"><p class = "questionHeader">Question 011 of 68</p>
+<p>(QID: 5227e47805) The minimum paid-up capital for an applicant for a Financial Adviser's licence for arranging contracts of insurance in respect of life policies is ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>_$300,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value ='correct'>_$150,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>_$220,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>_$500,000  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q011')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q011"><summary class="explanationHighlight">Show Answer</summary>Explanation: Guidance No: FAA-G01: The minimum paid-up capital for an applicant for a Financial Adviser's licence for arranging contracts of insurance in respect of LIFE policies is $150,000.</details></div><br/>
+
+<div class = "questionCard" id="_Q012"><p class = "questionHeader">Question 012 of 68</p>
+<p>(QID: 5227e47822) In the case of a life policy, a financial adviser should disclose to its client the --- item in the Benefit Illustration.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>soft dollar commission  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>trailer commission  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value ='correct'>distribution cost  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>fees  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q012')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q012"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the case of a life policy, a financial adviser should disclose to its client the distribution cost item in the Benefit Illustration, and will not be required to disclose the amount and type of other remuneration such as soft dollars, trailer commission and fee.</details></div><br/>
+
+<div class = "questionCard" id="_Q013"><p class = "questionHeader">Question 013 of 68</p>
+<p>(QID: 5227e53811) If the applicant of an FA license has less than ___ years of proven track record in the financial advisory business, the CEO should own ___ or more shareholding, and the CEO and Executive Directors should in aggregate own ___ or more, of the applicant.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>2; 30%; 50%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value ='correct'>3; 20%; 50%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>4; 20%; 40%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>5; 30%; 50%  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q013')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q013"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the case of an applicant which does not satisfy the 3-year track record requirement, the CEO should own not less than 20% shareholding of the applicant. The CEO and EDs should in the aggregate own not less than 50% shareholding of the applicant. Therefore, (B) is correct.</details></div><br/>
+
+<div class = "questionCard" id="_Q014"><p class = "questionHeader">Question 014 of 68</p>
+<p>(QID: 5227e47804) In the context of an FI's due diligence on a proposed representative's fitness and propriety, the FI should:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>conduct a yearly assessment of capability and integrity of the individual.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value ='correct'>maintain adequate documentation evidencing that it had conducted the relevant checks and assessment in relation to the provision of the fit and proper certification.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>submit a yearly declaration that the individual has passed all the relevant examinations.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>undergo a yearly independent audit to certify that the individual satisfies all the requirements to be a representative.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q014')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q014"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the context of an FI's due diligence on a proposed representative's fitness and propriety, the FI should endeavour to maintain adequate documentation evidencing that it had conducted the relevant checks and assessment in relation to the provision of the fit and proper certification.</details></div><br/>
+
+<div class = "questionCard" id="_Q015"><p class = "questionHeader">Question 015 of 68</p>
+<p>(QID: 5227e47821) Potential conflicts with the representative's proposed regulated activities or financial advisory services can arise as a result of his:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>shareholdings or business interests.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>other roles within the company, such as back-office operations.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>connected person's occupation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q015')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q015"><summary class="explanationHighlight">Show Answer</summary>Explanation: Potential conflicts with the representative's proposed regulated activities or financial advisory services can also arise as a result of his shareholdings or business interests, other roles within the company, e.g., back-office operations, or connected person's occupation.</details></div><br/>
+
+<div class = "questionCard" id="_Q016"><p class = "questionHeader">Question 016 of 68</p>
+<p>(QID: 5227e58332) In the context of Fit and Proper Declaration, how many years of one's history applies for assessing Honesty, Integrity, Reputation and Financial Soundness?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value ='correct'>The past 10 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>The past 15 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>The past 20 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>The entire life  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q016')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q016"><summary class="explanationHighlight">Show Answer</summary>Explanation: The assessment is done based on the past 10 years.</details></div><br/>
+
+<div class = "questionCard" id="_Q017"><p class = "questionHeader">Question 017 of 68</p>
+<p>(QID: 5227e47810) An FA is required to notify MAS of any change in a representative's particulars within ___ days from the date of change using Form 16 of the SFR and Form 18 or the FAR.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>7 days  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value ='correct'>14 days  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>21 days  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>28 days  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q017')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q017"><summary class="explanationHighlight">Show Answer</summary>Explanation: The FA is required to notify MAS of any change in a representative's particulars within 14 days of the change.</details></div><br/>
+
+<div class = "questionCard" id="_Q018"><p class = "questionHeader">Question 018 of 68</p>
+<p>(QID: 5227647815) The financial advisory services specified in the Second Schedule to the FAA EXCLUDES:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>advising others by promulgating research analysis in electronic form concerning spot foreign exchange contracts other than for the purposes of leveraged forex trading.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>advising others by issuing research reports in print form on any unit in a CIS.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value ='correct'>arranging any contract of reinsurance in respect of a life policy.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>advising others directly on any units in a business trust.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q018')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q018"><summary class="explanationHighlight">Show Answer</summary>Explanation: The financial advisory services specified in the Second Schedule to the Act include advising others, either directly or through publications or writings, whether in electronic, print or other form, concerning any investment product, other than advising on corporate finance within the meaning of the SFA. Advising others by issuing or promulgating research analyses or research reports, whether in electronic, print or other form, concerning any investment product, and Arranging of any contract of insurance in respect of life policies, OTHER THAN a contract of REINSURANCE. The FAA defines investment products as any capital market product as defined in Section 2(1) of the SFA, spot foreign exchange contracts other than for the purposes of leveraged foreign exchange trading, any life policy, or any other products as may be prescribed. Capital markets products include any securities, units in a CIS, derivatives contracts, and spot foreign exchange contracts for leveraged foreign exchange trading. The term securities includes shares, units in a business trust or any instrument conferring or representing a legal or beneficial ownership interest in a corporation, partnership or limited liability partnership.</details></div><br/>
+
+<div class = "questionCard" id="_Q019"><p class = "questionHeader">Question 019 of 68</p>
+<p>(QID: 5227e47818) The MAS Guideline No: FAA-G05 adopts a ____ approach in determining whether a financial adviser can use the term independent.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value ='correct'>principle-based  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>prescriptive  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>detailed  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>check box  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q019')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q019"><summary class="explanationHighlight">Show Answer</summary>Explanation: The guidelines adopt a principle-based approach, rather than a detailed prescriptive approach, in determining whether a financial adviser can use the term independent.</details></div><br/>
+
+<div class = "questionCard" id="_Q020"><p class = "questionHeader">Question 020 of 68</p>
+<p>(QID: 5227e47803) The suitability of the recommendations made by representatives of financial advisers to their clients are reviewed by:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value ='correct'>the management.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>the clerical staff.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>the board of directors.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>the CEO.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q020')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q020"><summary class="explanationHighlight">Show Answer</summary>Explanation: The management should regularly review the records to evaluate the suitability of the recommendations made by their representatives.</details></div><br/>
+
+<div class = "questionCard" id="_Q021"><p class = "questionHeader">Question 021 of 68</p>
+<p>(QID: 5227e47812) The minimum paid-up capital for an applicant for a Financial Adviser's licence for advising others in respect of spot foreign exchange contracts through printed publications is _ _ _ .  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>S$500,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>S$220,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value ='correct'>S$300,000  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>S$150,000  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q021')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q021"><summary class="explanationHighlight">Show Answer</summary>Explanation: The minimum paid-up capital for an applicant for a Financial Adviser's licence for advising others in respect of SPOT FOREX contracts through PRINTED publications is S$300,000.</details></div><br/>
+
+<div class = "questionCard" id="_Q022"><p class = "questionHeader">Question 022 of 68</p>
+<p>(QID: 5227e47819) In the context of Guideline No: FAA-G01 (Guidelines On Criteria For The Grant Of A Financial Adviser's Licence), the term 'paid-up capital' INCLUDES:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>partly paid ordinary shares.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>partly paid non-redeemable preference shares.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value ='correct'>fully paid non-redeemable preference shares.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>fully paid redeemable preference shares.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q022')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q022"><summary class="explanationHighlight">Show Answer</summary>Explanation: The term paid-up capital means ordinary shares and non-redeemable preference shares that have been fully paid for.</details></div><br/>
+
+<div class = "questionCard" id="_Q023"><p class = "questionHeader">Question 023 of 68</p>
+<p>(QID: 5227e47769) A financial adviser should have adequate procedures and processes for handling complaints relating to its financial advisory business to ensure that:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>the complaints are handled in a fair, timely and appropriate manner.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>the complaints are promptly investigated and responded to.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>an officer is designated to handle all complaints.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q023')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q023"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should have adequate procedures and processes for handling complaints relating to its financial advisory business to ensure that complaints are handled in a fair, timely and appropriate manner; complaints are promptly investigated and responded to; and an officer is designated to handle all complaints. Therefore, all the given options are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q024"><p class = "questionHeader">Question 024 of 68</p>
+<p>(QID: 5227e47794) Criteria for grant of a Financial Adviser's license include:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>The applicant should be a corporation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>The applicant should have a physical presence in Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>The Chief Executive Officer of the applicant should have at least 5 years relevant experience.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q024')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q024"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser's licence will only be granted to a corporation. A corporation applying for a financial adviser's licence is required to establish a physical presence in Singapore. The CEO (or the Executive Director) of the applicant should have at least minimum 5 years relevant experience. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q025"><p class = "questionHeader">Question 025 of 68</p>
+<p>(QID: 5227e47775) The Financial Institution is required to notify the MAS of any change in the particulars of its representative within ___ of the change.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value ='correct'>_14 days.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>_21 days.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>_7 days.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>_30 days.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q025')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q025"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial institution is required to notify MAS of any change in a representative's particulars within 14 days of the change.</details></div><br/>
+
+<div class = "questionCard" id="_Q026"><p class = "questionHeader">Question 026 of 68</p>
+<p>(QID: 5227e47799) In the context of the Professional Indemnity Insurance (PII) required by an applicant for the Financial Adviser's licence, a hybrid PII is a PII policy ————.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>Which offers coverage on the PII alone.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>Which only offers coverage on risks such as crime and directors' and officers' liability.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value ='correct'>Which offers both coverage on PII as well as other risks.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>Which only covers risks related to frauds by directors and officers.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q026')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q026"><summary class="explanationHighlight">Show Answer</summary>Explanation: A hybrid PII is a PII policy which offers coverage on PII as well as other risks, such as crime and directors and officers' liability.</details></div><br/>
+
+<div class = "questionCard" id="_Q027"><p class = "questionHeader">Question 027 of 68</p>
+<p>(QID: 5227e47759) What will happen if the product provider has the power to participate in the financial or/and operating policy decisions of the Financial Adviser?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>It will lead to the Financial Adviser developing a product bias.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>It will lead to customers being recommended products that are not suitable.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>Conflict of interest may arise.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q027')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q027"><summary class="explanationHighlight">Show Answer</summary>Explanation: A product provider has significant influence if it has the power to participate in the financial and operating policy decisions of the financial adviser. Such a power will lead to product bias, conflict of interest, and unsuitable products, all to the detriment of the customers. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q028"><p class = "questionHeader">Question 028 of 68</p>
+<p>(QID: 5227e47795) Which of the following is/are criteria for grant of Financial Adviser's licence to an applicant?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>The applicant should employ or appoint at least 2 full time individuals as appointed representatives for providing the relevant FA services.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>All Executive Directors should have acceptable academic or professional qualifications.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>The Chief Executive Officer of the applicant should be a resident of Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q028')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q028"><summary class="explanationHighlight">Show Answer</summary>Explanation: All Executive Directors should have acceptable academic or professional qualifications and the CEO should be the resident of Singapore. The applicant should employ or appoint at least 2 full time individuals as appointed representatives for providing the relevant FA services. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q029"><p class = "questionHeader">Question 029 of 68</p>
+<p>(QID: 5227e47787) In assessing the competency and capability of a relevant person, which of the following factors can be considered?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>Past performance in his business.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>Concurrent responsibilities which will give rise to a conflict of interest.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>If the relevant person is an exempt financial institution, whether it employs persons who possess satisfactory educational qualifications.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q029')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q029"><summary class="explanationHighlight">Show Answer</summary>Explanation: All the given options state factors that may help to assess the competency and capability of a relevant person.</details></div><br/>
+
+<div class = "questionCard" id="_Q030"><p class = "questionHeader">Question 030 of 68</p>
+<p>(QID: 5227e47791) Which of the following is/are TRUE for exempt entities to meet the fit & proper criteria?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>All its shareholders who directly control minimum 20% of the issued shares meet the fit and proper criteria.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>Each of its key officers meet the fit and proper criteria.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>It has suitable internal control systems to ensure employment of persons who meet the fit and proper criteria.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q030')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q030"><summary class="explanationHighlight">Show Answer</summary>Explanation: All the given statements about the fit and proper criteria for exempt entities are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q031"><p class = "questionHeader">Question 031 of 68</p>
+<p>(QID: 5227e47764) A remuneration or benefit received by a Financial Adviser from a product provider may be considered significant enough to create a bias in favour of a product or product class to preclude him from using the word 'independent' if ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>The remuneration is insignificant relative to its total revenue.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>The remuneration for a product is of the same level as that received for similar other products by other providers.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value ='correct'>The remuneration for a class of product is significantly higher compared to that received for other class of products.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q031')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q031"><summary class="explanationHighlight">Show Answer</summary>Explanation: Among the given options, a bias can be created in favour of the product if the remuneration for a class of product is SIGNIFICANTLY higher compared to that received for other class of products.</details></div><br/>
+
+<div class = "questionCard" id="_Q032"><p class = "questionHeader">Question 032 of 68</p>
+<p>(QID: 5227e47793) Which one of the following statements about the requirements related to approval of a foreign company's application for a financial adviser's licence is FALSE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>Its shareholders, officers and employees must satisfy the fit and proper criteria.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>It should be subject to proper supervision of a recognised home regulatory authority.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value ='correct'>It should have a minimum of five-year proven track record in the financial advisory business.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>It should have compliance systems commensurate with the size and complexity of its financial advisory business.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q032')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q032"><summary class="explanationHighlight">Show Answer</summary>Explanation: An applicant should have a minimum 3-year proven track record in the financial advisory business. The other statements are requirements related to approval of a foreign company's application for a financial adviser's licence.</details></div><br/>
+
+<div class = "questionCard" id="_Q033"><p class = "questionHeader">Question 033 of 68</p>
+<p>(QID: 5227e47777) Which of the following are ways a Financial Institution (FI) can check a person's financial soundness?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Run bankruptcy checks.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Run credit rating checks.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Verify with CPF Board on whether the person has CPF arrears.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q033')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q033"><summary class="explanationHighlight">Show Answer</summary>Explanation: Bankruptcy checks, credit rating checks, verification with CPF board about any CPF arrears are some checks that may help in determining a person's financial soundness. Therefore, all the given options are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q034"><p class = "questionHeader">Question 034 of 68</p>
+<p>(QID: 5227e47766) Under the Guidelines on Standards of Conduct (FAA-G04), which one of the following is an appropriate business conduct requirement for a financial adviser?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>Publishing client's info on its website.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value ='correct'>Conducting business with integrity and professionalism.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>Always following a subjective approach to conduct of business.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>Rendering advice before being registered in the Public Register of Representatives.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q034')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q034"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting business with integrity and professionalism is a must. The FA should NOT publish client-info on its website, or follow a SUBJECTIVE approach, or render advice before being registered in the Public Register of Representatives.</details></div><br/>
+
+<div class = "questionCard" id="_Q035"><p class = "questionHeader">Question 035 of 68</p>
+<p>(QID: 5227e47761) According to MAS Guideline No: FAA-G05, difference in rate of commissions between two products can be considered significant if it is more than ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>_5%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>_10%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>_15%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value ='correct'>_20%  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q035')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q035"><summary class="explanationHighlight">Show Answer</summary>Explanation: Difference in rate of commissions between two products can be considered significant if it is more than 20%.</details></div><br/>
+
+<div class = "questionCard" id="_Q036"><p class = "questionHeader">Question 036 of 68</p>
+<p>(QID: 5227e47771) Due diligence check to be conducted by financial advisers on the fitness and propriety of their representatives includes a check on their ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>marital status  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value ='correct'>financial status  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>family background  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>political background  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q036')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q036"><summary class="explanationHighlight">Show Answer</summary>Explanation: Due diligence checks to be conducted by financial advisers on the fitness and propriety of their representatives include a check on their financial status.</details></div><br/>
+
+<div class = "questionCard" id="_Q037"><p class = "questionHeader">Question 037 of 68</p>
+<p>(QID: 5227e47773) The due diligence checks on the fitness and propriety of their representatives to be carried out by Financial Institutions (FIs) does NOT include probity checks on:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>Identity  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>Past records  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>Financial status  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value ='correct'>Family ties  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q037')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q037"><summary class="explanationHighlight">Show Answer</summary>Explanation: Due diligence checks to be conducted by financial advisers on the fitness and propriety of their representatives include checks on their identity, past records, and financial status. Checks on family ties are NOT relevant.</details></div><br/>
+
+<div class = "questionCard" id="_Q038"><p class = "questionHeader">Question 038 of 68</p>
+<p>(QID: 5227e47774) Probiy checks on a representative's ______ is NOT part of the due diligence checks the FA should conduct as part of the Fit & Proper declaration.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>identity  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>past records  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value ='correct'>risk tolerance  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>financial status  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q038')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q038"><summary class="explanationHighlight">Show Answer</summary>Explanation: Due diligence checks to be conducted by financial advisers on the fitness and propriety of their representatives include checks on their identity, past records, and financial status. Checks on risk tolerance are NOT relevant.</details></div><br/>
+
+<div class = "questionCard" id="_Q039"><p class = "questionHeader">Question 039 of 68</p>
+<p>(QID: 5227e47800) In the context of criteria for grant of Financial Adviser's licence to an applicant, which of the following statements is TRUE?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>The applicant should have minimum five-year proven track record in the financial advisory business.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>In case the applicant does not have the required minimum track record, its Executive Directors (EDs) should own minimum 20% shareholding of the applicant.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value ='correct'>In case the applicant does not have the required minimum track record, its CEO should own minimum 20% shareholding of the applicant.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>In case the applicant does NOT have the required minimum track record, its ED and CEO should own not more than 50% shareholding of the applicant in aggregate.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q039')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q039"><summary class="explanationHighlight">Show Answer</summary>Explanation: If the applicant does NOT have the required minimum track record, its CEO should own minimum 20% shareholding of the applicant. The CEO and EDs should in the aggregate own NOT LESS THAN 50% shareholding of the applicant. An applicant should have a minimum 3-year proven track record in the financial advisory business.</details></div><br/>
+
+<div class = "questionCard" id="_Q040"><p class = "questionHeader">Question 040 of 68</p>
+<p>(QID: 5227e47792) In which of the following cases an individual may risk not satisfying the fit and proper criteria?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>He had been a director, partner, substantial shareholder or concerned in the management of a business that had gone into insolvency, liquidation or administration.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>He had been asked to resign from a position in the past.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>He had faced disqualification, suspension or disciplinary proceedings in the past of any sort.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q040')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q040"><summary class="explanationHighlight">Show Answer</summary>Explanation: In all the given options, the individual will fail the fit and proper test of Honesty, Integrity And Reputation.</details></div><br/>
+
+<div class = "questionCard" id="_Q041"><p class = "questionHeader">Question 041 of 68</p>
+<p>(QID: 5227e47798) Which of the following statements about the Professional Indemnity Insurance (PII) required by an applicant for the Financial Adviser's licence is/are TRUE?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>In case of a Group PII, the minimum coverage has to be at least 5 times the required quantum under a standalone non-hybrid PII.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>Total coverage for the Group hybrid PII less the sub-limits for the non-PII sections has to be at least 5 times the required quantum under a standalone non-hybrid PII.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>Sub-limits have to be set for the non-PII sections of the hybrid PII.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q041')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q041"><summary class="explanationHighlight">Show Answer</summary>Explanation: In case of a Group PII, the minimum coverage has to be at least 5 times the required quantum under a stand alone non-hybrid PII. Total coverage for the Group hybrid PII less the sub-limits for the non-PII sections has to be at least 5 times the required quantum under a standalone non-hybrid PII. Sub-limits have to be set for the non-PII sections of the hybrid PII. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q042"><p class = "questionHeader">Question 042 of 68</p>
+<p>(QID: 5227e47758) In considering whether the ownership links between the product provider and the Financial Adviser would create a product bias, the MAS does NOT consider:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>The ownership structure of the Financial Adviser.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>The relationship of the Financial Adviser with the product provider.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value ='correct'>The size of the Financial Adviser's organisation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>The products on which advice or recommendation is given.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q042')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q042"><summary class="explanationHighlight">Show Answer</summary>Explanation: In considering whether the ownership links between the product provider and the Financial Adviser would create a product bias, the MAS DOES NOT consider the size of the Financial Adviser's organisation. The factors mentioned in options A, B and D are considered.</details></div><br/>
+
+<div class = "questionCard" id="_Q043"><p class = "questionHeader">Question 043 of 68</p>
+<p>(QID: 5227e47788) In evaluating the integrity, honesty and reputation of a representative from a FA, one of the factors being considered is whether:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>the rep. has been in the financial industry for more than 10 years.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value ='correct'>the rep. has been issued a prohibition order by the MAS before.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>compliments have been given to the rep. by his or her customers.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>the FA has issued any commendation or award to the rep.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q043')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q043"><summary class="explanationHighlight">Show Answer</summary>Explanation: In evaluating the integrity, honesty and reputation of a representative of a Financial Adviser, one of the factors being considered is whether the rep. has been issued a prohibition order by the MAS before. The aspects or situations mentioned in the other three options are not considered for evaluating integrity, honesty and reputation. For example, Satisfactory past performance or expertise in the relevant business is considered to evaluate COMPETENCE AND CAPABILITY.</details></div><br/>
+
+<div class = "questionCard" id="_Q044"><p class = "questionHeader">Question 044 of 68</p>
+<p>(QID: 5227e47789) The criteria to determine the competency or capability of an Appointed Actuary or a Certifying actuary in relation to the fit and proper criteria of the MAS include:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_044' value =''>whether the actuary has satisfactory past performance or expertise indicating knowledge of the local life or general insurance market  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_044' value =''>whether an Appointed Actuary is a Fellow of the Singapore Actuarial Society (SAS)  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_044' value =''>whether a Certifying Actuary is a member of the SAS and is a Fellow of an association recognised by the International Actuarial Association  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_044' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q044')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q044"><summary class="explanationHighlight">Show Answer</summary>Explanation: In relation to an Appointed Actuary or a Certifying Actuary, the competence and capability criteria includes the ones mentioned in three given options.</details></div><br/>
+
+<div class = "questionCard" id="_Q045"><p class = "questionHeader">Question 045 of 68</p>
+<p>(QID: 5227e47762) A financial adviser enters into a contract with a product provider where he is required to meet specific sales targets. Which of the following is/are TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_045' value =''>The financial adviser may not be considered as independent.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_045' value =''>MAS considers an indirect product restriction is in place.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_045' value =''>A product bias is created.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_045' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q045')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q045"><summary class="explanationHighlight">Show Answer</summary>Explanation: It is possible for a financial adviser to enter into a contract with a product provider, where the financial adviser is required to meet specified sales targets. The MAS considers such an arrangement as a form of indirect product restriction, which is likely to create a product bias in favour of the product provider with whom the financial adviser has entered into such agreement. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q046"><p class = "questionHeader">Question 046 of 68</p>
+<p>(QID: 5227e47760) The MAS will not regard FA as being 'independent' if it represents less than ______ product providers for each class of investment product.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_046' value =''>_2  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_046' value =''>_3  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_046' value ='correct'>_4  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_046' value =''>_10  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q046')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q046"><summary class="explanationHighlight">Show Answer</summary>Explanation: Notwithstanding the absence of a contractual agreement, the MAS will not normally regard a financial adviser as being independent if it represents less than FOUR product providers for each class of investment product.</details></div><br/>
+
+<div class = "questionCard" id="_Q047"><p class = "questionHeader">Question 047 of 68</p>
+<p>(QID: 5227e47768) A financial adviser should consider which of the following factors while recommending any investment product to its client?.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_047' value =''>Product suitability  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_047' value =''>Opportunity cost  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_047' value =''>Risk-reward  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_047' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q047')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q047"><summary class="explanationHighlight">Show Answer</summary>Explanation: Product suitability, opportunity cost (alternative investments) and risk-reward are all factors that must be considered.</details></div><br/>
+
+<div class = "questionCard" id="_Q048"><p class = "questionHeader">Question 048 of 68</p>
+<p>(QID: 5227e47772) The 'Guidelines on Standards of Conduct for Financial Advisers and Representatives' is meant to:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_048' value =''>standardise the conducts of FAs and their reps.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_048' value =''>provide conflict resolutions for the FAs and their reps.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_048' value =''>regulate marketing activities conducted by the FAs and their reps.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_048' value ='correct'>set out the standards of conduct expected of FAs and their reps.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q048')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q048"><summary class="explanationHighlight">Show Answer</summary>Explanation: The 'Guidelines on Standards of Conduct for Financial Advisers and Representatives' is meant to set out the standards of conduct expected of financial advisers and their representatives.</details></div><br/>
+
+<div class = "questionCard" id="_Q049"><p class = "questionHeader">Question 049 of 68</p>
+<p>(QID: 5227e47796) Regarding criteria for grant of a Financial Adviser's Licence to an applicant, which of the following statements is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_049' value =''>The applicant's board of directors should comprise of minimum 3 members.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_049' value =''>The applicant's board of directors should comprise of minimum 4 members.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_049' value ='correct'>At least one of the members of applicant's board of directors should be a resident of Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_049' value =''>At least two of the members of applicant's board of directors should be residents of Singapore.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q049')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q049"><summary class="explanationHighlight">Show Answer</summary>Explanation: The applicant's board of directors should comprise a minimum of 2 members, with at least one of whom being resident in Singapore.</details></div><br/>
+
+<div class = "questionCard" id="_Q050"><p class = "questionHeader">Question 050 of 68</p>
+<p>(QID: 5227e47767) What is the basic test for independence of a Financial Adviser?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_050' value ='correct'>Whether a reasonable investor, who knows all the relevant facts and circumstances will perceive the financial adviser as being objective and impartial, and without any conflict of interest.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_050' value =''>Whether the MAS will consider the Financial Adviser as being objective and impartial, and without any conflict of interest.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_050' value =''>Whether the members of the general public will consider the financial adviser as being objective and impartial, and without any conflict of interest.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_050' value =''>Whether the board of directors of the Financial Adviser consider it as being objective and impartial, and without any conflict of interest.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q050')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q050"><summary class="explanationHighlight">Show Answer</summary>Explanation: The basic test for independence of a Financial Adviser is whether a reasonable investor, who knows all the relevant facts and circumstances will perceive the financial adviser as being objective and impartial, and without any conflict of interest.</details></div><br/>
+
+<div class = "questionCard" id="_Q051"><p class = "questionHeader">Question 051 of 68</p>
+<p>(QID: 5227e47780) A Financial Institution (FI) is required to put in place clearly defined and documented policies and procedures to ensure that it only recruits and retains fit and proper person as appointed representatives. In the FI's organisation, who is responsible to ensure this?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_051' value ='correct'>Board and senior managers.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_051' value =''>Audit and accounting manager.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_051' value =''>Compliance and legal manager.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_051' value =''>Recruitment and training manager.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q051')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q051"><summary class="explanationHighlight">Show Answer</summary>Explanation: The Board and Senior Management of a FI are responsible for putting in place clearly defined and documented policies and procedures to ensure that it recruits and retains only a fit and proper person as an appointed, provisional or temporary representative.</details></div><br/>
+
+<div class = "questionCard" id="_Q052"><p class = "questionHeader">Question 052 of 68</p>
+<p>(QID: 5227e47778) A Financial Institution is required to conduct which of the following checks when hiring a representative?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_052' value =''>Confirm from the previous employer whether the representative has any material adverse record.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_052' value =''>Verify whether any regulatory actions have been taken against the representative from the Public Register of Representatives on the MAS website.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_052' value =''>Ask the representative the reasons for any period of unemployment in the past.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_052' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q052')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q052"><summary class="explanationHighlight">Show Answer</summary>Explanation: The checks mentioned in the three given options are part of the Probity Checks On Representative's Past Records.</details></div><br/>
+
+<div class = "questionCard" id="_Q053"><p class = "questionHeader">Question 053 of 68</p>
+<p>(QID: 5227e47783) The MAS determines whether a rep. of a FA is fit and proper by the criteria of:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_053' value ='correct'>competence and capability.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_053' value =''>confidence and capability.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_053' value =''>competitiveness and competence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_053' value =''>competence and confidence.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q053')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q053"><summary class="explanationHighlight">Show Answer</summary>Explanation: The criteria for considering whether a relevant person is fit and proper include, but are not limited to the following: honesty, integrity and reputation; competence and capability; and financial soundness.</details></div><br/>
+
+<div class = "questionCard" id="_Q054"><p class = "questionHeader">Question 054 of 68</p>
+<p>(QID: 5227e47784) Which one of the following is NOT a criterion for determining whether a relevant person is fit and proper for employment in the financial advisory business?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_054' value =''>Financial soundness.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_054' value ='correct'>Nationality.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_054' value =''>Competence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_054' value =''>Reputation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q054')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q054"><summary class="explanationHighlight">Show Answer</summary>Explanation: The criteria for considering whether a relevant person is fit and proper include, but are not limited to the following: honesty, integrity and reputation; competence and capability; and financial soundness. Nationality is NOT a criteria for fitness and propriety.</details></div><br/>
+
+<div class = "questionCard" id="_Q055"><p class = "questionHeader">Question 055 of 68</p>
+<p>(QID: 5227e47786) Which of the following is NOT a criteria for considering whether a relevant person is fit and proper?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_055' value ='correct'>Nationality or country of origin  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_055' value =''>Reputation  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_055' value =''>Financial soundness  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_055' value =''>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q055')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q055"><summary class="explanationHighlight">Show Answer</summary>Explanation: The criteria for considering whether a relevant person is fit and proper include, but are not limited to the following: honesty, integrity and reputation; competence and capability; and financial soundness. Nationality or country of origin is NOT a criteria for fitness and propriety.</details></div><br/>
+
+<div class = "questionCard" id="_Q056"><p class = "questionHeader">Question 056 of 68</p>
+<p>(QID: 5227e47781) In relation to the fit and proper criteria laid down by the MAS, the duties of the Financial Institutions (FIs) include:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_056' value =''>Putting in place clearly defined and documented policies to ensure recruitment and retention of only fit and proper persons as appointed representatives (ARs).  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_056' value =''>Obtaining and maintaining written self-declaration from its proposed representatives that he has read and understood the relevant MAS guidelines.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_056' value =''>Declaring to the MAS that it is aware of and has assessed the adverse info given by the individual.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_056' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q056')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q056"><summary class="explanationHighlight">Show Answer</summary>Explanation: The duties mentioned in all the given options are relevant for ensuring that the fit and proper criteria are met at all times.</details></div><br/>
+
+<div class = "questionCard" id="_Q057"><p class = "questionHeader">Question 057 of 68</p>
+<p>(QID: 5227e47790) Which of the following factors are relevant for assessing whether a relevant person satisfies the fit and proper criteria of honesty laid down by the MAS? Whether the relevant person  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_057' value =''>Has been the subject of disciplinary proceedings in Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_057' value =''>Has been convicted of any offence outside Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_057' value =''>Has abetted another person in breach of any business rules outside Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_057' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q057')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q057"><summary class="explanationHighlight">Show Answer</summary>Explanation: The factors mentioned in all the three options are considered for evaluating the integrity, honesty and reputation of a representative of a FA.</details></div><br/>
+
+<div class = "questionCard" id="_Q058"><p class = "questionHeader">Question 058 of 68</p>
+<p>(QID: 5227e47776) The MAS expects the Financial Institutions (FIs) to conduct periodic due diligence checks on its representatives to determine whether they meet the fit and proper criteria. The frequency prescribed for these checks is ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_058' value =''>Monthly.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_058' value =''>Annual.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_058' value =''>Quarterly.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_058' value ='correct'>To be determined by the FI based on the representative's background and compliance track record.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q058')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q058"><summary class="explanationHighlight">Show Answer</summary>Explanation: The frequency prescribed for these checks is to be determined by the FI based on the representative's background and compliance track record.</details></div><br/>
+
+<div class = "questionCard" id="_Q059"><p class = "questionHeader">Question 059 of 68</p>
+<p>(QID: 5227e47801) The 'Guidelines on Criteria for the Grant of a Financial Adviser's Licence' is intended to:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_059' value =''>ensure only fit and proper individuals can apply.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_059' value =''>ensure the renewal terms of the licence is clear to applicants.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_059' value ='correct'>provide guidance on the licensing admission criteria for persons applying for the licence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_059' value =''>spell out the code of conducts expected of the FAs and their reps.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q059')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q059"><summary class="explanationHighlight">Show Answer</summary>Explanation: The guidelines are intended to provide guidance on the licensing admission criteria for persons applying for a financial adviser's licence under the Act.</details></div><br/>
+
+<div class = "questionCard" id="_Q060"><p class = "questionHeader">Question 060 of 68</p>
+<p>(QID: 5227e47765) When is a financial adviser allowed to use the word 'independent' in his name in respect of its provision of any financial advisory service in Singapore?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_060' value =''>After obtaining the approval from the Ministry of Finance.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_060' value =''>After obtaining the approval from the Association of Financial Advisers (Singapore).  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_060' value =''>If it can demonstrate that it operates in accordance with the directions of any product provider.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_060' value ='correct'>If it can demonstrate that it operates free from any restriction relating to any recommended investment product.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q060')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q060"><summary class="explanationHighlight">Show Answer</summary>Explanation: The MAS is of the view that to assist investors to have confidence in the advice that they receive, the term independent should only be used by financial advisers who can clearly demonstrate that they do not have financial or commercial links with product providers which are capable of influencing their recommendation, or these are relatively insignificant. The MAS considers that a financial adviser can use the word independent, inter-alia, if it operates free from any direct or indirect restriction relating to the investment products that it provides financial advisory services on.</details></div><br/>
+
+<div class = "questionCard" id="_Q061"><p class = "questionHeader">Question 061 of 68</p>
+<p>(QID: 5227e47763) According to MAS Guideline No: FAA-G05, commissions or benefits receive by financial adviser's are considered significant if they constitute more than ___ of his total revenue.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_061' value =''>_10%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_061' value =''>_5%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_061' value ='correct'>_20%  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_061' value =''>_15%  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q061')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q061"><summary class="explanationHighlight">Show Answer</summary>Explanation: The MAS will, as a general rule of thumb, consider commissions or benefits to be significant, if they constitute more than 20% of the financial adviser's total revenue.</details></div><br/>
+
+<div class = "questionCard" id="_Q062"><p class = "questionHeader">Question 062 of 68</p>
+<p>(QID: 5227e47785) The onus of proving whether a relevant person satisfies the 'fit and proper' criteria or not rests with the ______.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_062' value =''>The MAS.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_062' value ='correct'>The relevant person.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_062' value =''>The senior management of the organisation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_062' value =''>The board of directors of the organisation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q062')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q062"><summary class="explanationHighlight">Show Answer</summary>Explanation: The onus is on each relevant person to establish that it or he is fit and proper person rather than for MAS to show otherwise. The Guidelines also stated that where a relevant person is required under the relevant legislation to ensure that another relevant person is fit and proper, the onus is on the former to establish to the satisfaction of MAS that the latter is fit and proper.</details></div><br/>
+
+<div class = "questionCard" id="_Q063"><p class = "questionHeader">Question 063 of 68</p>
+<p>(QID: 5227e47797) Which of the following statements about Professional Indemnity Insurance (PII) of an applicant for Financial Advisor's licence is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_063' value =''>The PII cannot be non-hybrid.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_063' value ='correct'>The allowed deductible should be not more than 20% of the applicant's Net Head Office Funds at the end of its immediately preceding financial year if the applicant is a foreign company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_063' value =''>The limit of indemnity covered should be minimum SGD 100,000.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_063' value =''>For Group coverage, Minimum coverage has to be at least 3 times the required quantum under a stand-alone non-hybrid PII.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q063')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q063"><summary class="explanationHighlight">Show Answer</summary>Explanation: The PII CAN be non-hybrid. The allowed deductible should be not more than 20% of the applicant's Net Head Office Funds at the end of its immediately preceding financial year if the applicant is a foreign company. The limit of indemnity covered should be minimum SGD 500,000. Minimum coverage has to be at least FIVE times the required quantum under a stand-alone non-hybrid PII.</details></div><br/>
+
+<div class = "questionCard" id="_Q064"><p class = "questionHeader">Question 064 of 68</p>
+<p>(QID: 5227e47782) The significance and relevance of a relevant person failing to satisfy any of the 'fit and proper' criteria set by the MAS depends on:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_064' value =''>The surrounding circumstances leading to the relevant person not meeting the criteria.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_064' value =''>The amount of time passed since the failure by the relevant person.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_064' value =''>The relevance of the failure to the duties to be performed by the relevant person.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_064' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q064')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q064"><summary class="explanationHighlight">Show Answer</summary>Explanation: The significance and relevance of a relevant person failing to satisfy the MAS that it or he meets a specific criteria depends on: the seriousness of, and surrounding circumstances resulting in, the relevant person not meeting the specific criteria; the relevance of the failure by the relevant person to meet the specific criteria to the duties that are, or are to be, performed and the responsibilities that are, or are to be, assumed by the relevant person; and the passage of time since the failure by the relevant person to meet the specific criteria. Therefore, all the given statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q065"><p class = "questionHeader">Question 065 of 68</p>
+<p>(QID: 5227e47779) Which of the following is/are what a Financial Institutions (FIs) should do to determine an individual's fitness and propriety?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_065' value =''>Verifying from the CPF board to ensure that the candidate is not in arrears of payment of contributions on his own CPF accounts.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_065' value =''>Verifying the candidate's CMFAS exams results.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_065' value =''>Conducting independent due diligence checks to ensure that the proposed representative satisfies the fit and proper requirements.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_065' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q065')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q065"><summary class="explanationHighlight">Show Answer</summary>Explanation: Verifying from the CPF board to ensure that the candidate is not in arrears of payment of contributions on his own CPF accounts, confirming CMFAS exam results are steps that should be taken, and conducting independent due diligence checks to ensure that the proposed representative satisfies the fit and proper requirements are ways to determine an individual's fitness and propriety. Therefore, all the given actions must be taken.</details></div><br/>
+
+<div class = "questionCard" id="_Q066"><p class = "questionHeader">Question 066 of 68</p>
+<p>(QID: 5227e47770) A financial adviser is required to have a reasonable basis for any recommendation made with respect to designated investment products. Which one of the following considerations CANNOT form the basis for any recommendation?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_066' value ='correct'>Client's lifestyle preferences.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_066' value =''>Client's Individual needs.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_066' value =''>Client's financial situation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_066' value =''>Client's investment objectives.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q066')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q066"><summary class="explanationHighlight">Show Answer</summary>Explanation: When making a recommendation on an investment product to a client, a financial adviser should take all reasonable steps to determine the client's financial objectives, risk tolerance, financial situation, investment experience and particular needs. Lifestyle preferences are NOT relevant.</details></div><br/>
+
+<div class = "questionCard" id="_Q067"><p class = "questionHeader">Question 067 of 68</p>
+<p>(QID: 5227e47802) Under MAS Guidelines On Criteria For The Grant Of A Financial Adviser's Licence (No: FAA-G01), the MAS may require an applicant to perform a:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_067' value =''>penetration test of its internet-accessible web applications after deployment.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_067' value ='correct'>penetration test of its internet-accessible mobile applications before deployment.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_067' value =''>stress test of its internet-accessible web applications before deployment.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_067' value =''>efficiency test of its internet-accessible mobile applications before deployment.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q067')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q067"><summary class="explanationHighlight">Show Answer</summary>Explanation: Where appropriate, the Authority may require an applicant to perform a penetration test of its internet-accessible web or mobile applications prior to deployment.</details></div><br/>
+
+<div class = "questionCard" id="_Q068"><p class = "questionHeader">Question 068 of 68</p>
+<p>(QID: cannot be determined) Which of the following statements is TRUE? (You may pick more than one)  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_068' value ='correct'>Records should be kept for at least 5 years following the termination/completion of a relationship/transaction or acknowledgement.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_068' value =''>For ILPs, the insurer shall retain a copy of the audit certificate on the ILP subfunds which are terminated or matured for a period of 5 years, from the date of termination or maturity of the ILP sub-fund.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_068' value =''>To be granted a FA's license, the CEO and all Executive Directors must have a minimum of 5 years of relevant working experience with at least 3 years in a managerial capacity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_068' value =''>A Financial Institution should maintain proper records of the bases and supporting documents of its analysts' research recommendations for a period of not less than 5 years from the date of publication of the research recommendation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q068')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q068"><summary class="explanationHighlight">Show Answer</summary>Explanation: <b>ALL OF THE OPTIONS SHOULD BE SELECTED.</b> This question serves to help you memorise the '5 years' series. The default period to retain data / record keeping is 5 years, be it CDD records, transaction records, retaining audit certificate of terminated/matured subfunds, or analysts' research recommendations. Also, CEOs and Executive Directors are required to have 5 years of relevant working experience, including 3 years in managerial capacity. The RES 5 exam format requires you to only pick 1 out of 4 options.</details></div><br/>
+
+
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='res5_ch07.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/library.html#Insurance%20exam%20materials';"> Index </button>
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='res5_ch09.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+
+<script>
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
+</script>
+
+<script>
+/************* Dark Mode Functions *************/
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    }
+}
+
+function initDarkMode() {
+    const darkModeSetting = localStorage.getItem('darkMode');
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    }
+}
+/************* Dark Mode Functions *************/
+</script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+  initDarkMode();   // <--- ADD THIS LINE
+}
+</script>
+
+</body>
+</html>
