@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+	} else {
+		showUserPanel();
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
+  }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* dark mode, 23-May-2026 *********/
+/* Dark Mode CSS - Add this after your existing body styles */
+:root {
+  --bg-body: Moccasin;
+  --bg-gradient-start: Seashell;
+  --bg-gradient-end: PeachPuff;
+  --text-color: #000000;
+  --details-border: #1ab2ff;
+  --primary-li-border: Orchid;
+  --tag-button-bg: #44c767;
+  --tag-window-bg: HoneyDew;
+  --user-panel-bg: powderblue;
+  --input-border: red;
+  --question-header-bg: mediumslateblue;
+  --explanation-bg: SandyBrown;
+  --modal-bg: #fffaf0;
+  --choice-bg: #fff6ea;
+  --choice-border: #c5c9d1;
+}
+
+body.dark-mode {
+  --bg-body: #1a1a2e;
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+  --text-color: #e0e0e0;
+  --details-border: #5a9eff;
+  --primary-li-border: #aa6dc9;
+  --tag-button-bg: #2c5e2e;
+  --tag-window-bg: #1e2a3a;
+  --user-panel-bg: #2c3e50;
+  --input-border: #e74c3c;
+  --question-header-bg: #5b4b8c;
+  --explanation-bg: #b85c1a;
+  --modal-bg: #2c2c3a;
+  --choice-bg: #2a2a3a;
+  --choice-border: #4a4a5a;
+  --bg-card: #2f3147;   /* dark blue/gray */
+}
+
+body {
+  background: var(--bg-body);
+  background: linear-gradient(var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #7bb3ff;
+}
+
+/* Update existing elements to use CSS variables */
+details {
+  border-color: var(--details-border);
+}
+
+#_primaryli, #_novelli {
+  border-color: var(--primary-li-border);
+}
+
+.tagButton {
+  background-color: var(--tag-button-bg);
+}
+
+.tagWindow {
+  background-color: var(--tag-window-bg);
+}
+
+#_userPanel {
+  background-color: var(--user-panel-bg);
+}
+
+#_userInput {
+  border-color: var(--input-border);
+  background-color: var(--choice-bg);
+  color: var(--text-color);
+}
+
+.questionHeader {
+  background-color: var(--question-header-bg);
+}
+
+.explanationHighlight {
+  background-color: var(--explanation-bg);
+}
+
+.modal-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+}
+
+.questionCard .questionChoiceText {
+  background: var(--choice-bg);
+  border-color: var(--choice-border);
+}
+/******* dark mode, 23-May-2026 *********/
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    padding: 0.2em;
+	margin : 1em;
+}
+
+#_novelli { /* special li CSS for displaying novel like text, filter, open/close does not apply*/
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom, #_darkModeToggle {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+	z-index: 1; /* Sit on top */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	font-size: 1.2em;
+	right: 7em;
+	left: 1em;
+	/*width: 80%;*/
+	border: 2px solid red;
+	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: var(--bg-card);
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   google.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+******************* list element template *******************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+	<button id="_darkModeToggle" onclick="toggleDarkMode(); hideUserPanel();">🌓</button>
+</div>
+
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
+</div>
+<h2><a id="TocTop"></a>{RES5 Chapter 18} </h2><ul id="_mainUL">
+<a target="_blank" href="https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/insurance/RES5/aia_mock_2026/res5_ch18/" > source : RES5 raw screenshots </a>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<div class = "questionCard" id="_Q001"><p class = "questionHeader">Question 001 of 66</p>
+<p>(QID: 5227e53865) Which of the following best describes biased advice?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio001' value ='correct'>It is a manifestation of conflict of interest.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio001' value =''>It is a market misconduct.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio001' value =''>It is a sales skill.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio001' value =''>It is never used in churning.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q001')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q001"><summary class="explanationHighlight">Show Answer</summary>Explanation: (A) is correct because biased advice is one of the most frequent manifestations of misaligned interests. (B), (C) and (D) are incorrect.</details></div><br/>
+
+<div class = "questionCard" id="_Q002"><p class = "questionHeader">Question 002 of 66</p>
+<p>(QID: 5227e53866) Which of the following describes a potential conflict of interest?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio002' value ='correct'>A financial institution tying its compensation policy to the sale of products that generate higher revenue for it.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio002' value =''>A competition among representatives to reach sales targets.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio002' value =''>A special incentive scheme by the financial institution to encourage representatives to undergo a training in finance.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio002' value =''>A financial institution starting a research department to reduce administrative costs.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q002')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q002"><summary class="explanationHighlight">Show Answer</summary>Explanation: (A) is correct because conflicts of interests can arise if the financial institution ties its compensation policy to the sale of products that generate greater revenue for it. Options B, C and D are incorrect because the described scenarios are not conflicts of interests.</details></div><br/>
+
+<div class = "questionCard" id="_Q003"><p class = "questionHeader">Question 003 of 66</p>
+<p>(QID: 5227e53864) Which of the following is NOT a manifestation of conflict of interest?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio003' value =''>Involuntary cross-selling</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio003' value ='correct'>Wrong advice</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio003' value =''>Excessive trading</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio003' value =''>Insufficient disclosure</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q003')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q003"><summary class="explanationHighlight">Show Answer</summary>Explanation: (B) is incorrect as providing wrong advice is not a conflict of interest situation. A biased advice is a manifestation of conflict of interest. (A), (C), (D), along with failure to execute and violation of privacy, are manifestations of conflict of interest.</details></div><br/>
+
+<div class = "questionCard" id="_Q004"><p class = "questionHeader">Question 004 of 66</p>
+<p>(QID: 5227e53863) John Doe advises his client to switch to a cheaper insurance policy. In the context of churning, which of the following statements is correct?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio004' value =''>If John Doe does not inform the client all the pros and cons of switching, his action should be considered churning.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio004' value =''>John Doe's action cannot be considered churning because he is recommending a cheaper product.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio004' value ='correct'>John Doe's action will be considered churning if he recommends the switch merely to get more commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio004' value =''>Acts of switching cannot be considered churning.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q004')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q004"><summary class="explanationHighlight">Show Answer</summary>Explanation: (C) is correct because Churning can occur through the 'switching' of investment products where an FA representative recommends a client to switch from one investment product to another investment product without any real benefits. The switch only benefits the FA representative and his principal through generating fees or commissions.</details></div><br/>
+
+<div class = "questionCard" id="_Q005"><p class = "questionHeader">Question 005 of 66</p>
+<p>(QID: 5227e48543) Which of the following best describes the impact of a conflict of interest on the objectivity of financial adviser representatives?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio005' value ='correct'>It compromises their ability to give unbiased and objective advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio005' value =''>It enhances their reputation for integrity.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio005' value =''>It has no significant impact on their advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio005' value =''>It increases their reliance on ethical guidelines.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q005')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q005"><summary class="explanationHighlight">Show Answer</summary>Explanation: A conflict of interest compromises the objectivity and independence of financial adviser representatives, affecting their ability to give unbiased advice.</details></div><br/>
+
+<div class = "questionCard" id="_Q006"><p class = "questionHeader">Question 006 of 66</p>
+<p>(QID: 5227e48521) Which of the following best defines a conflict of interest?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio006' value =''>A situation where a person's private interests align perfectly with their professional duties.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio006' value =''>A scenario where two parties have the same objectives and goals.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio006' value ='correct'>A situation in which a person can derive personal benefits from their position at the expense of another party.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio006' value =''>A condition where financial institutions operate without any ethical dilemmas.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q006')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q006"><summary class="explanationHighlight">Show Answer</summary>Explanation: A conflict of interest occurs when a person can exploit their position for personal gain, which is incompatible with the interests of another party.</details></div><br/>
+
+<div class = "questionCard" id="_Q007"><p class = "questionHeader">Question 007 of 66</p>
+<p>(QID: 5227e48495) John Doe is a client looking for financial advice. Which of the following factors should a financial adviser consider to provide John with suitable recommendations?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio007' value =''>The adviser's personal financial goals.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio007' value =''>The most popular financial products currently on the market.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio007' value ='correct'>John's financial situation, needs, objectives, and risk tolerance.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio007' value =''>The financial products with the highest commissions for the adviser.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q007')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q007"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should consider John's financial situation, needs, objectives, and risk tolerance to provide him with suitable recommendations.</details></div><br/>
+
+<div class = "questionCard" id="_Q008"><p class = "questionHeader">Question 008 of 66</p>
+<p>(QID: 5227e48498) In the context of the Financial Advisers Act and related notices, what is a fundamental requirement for financial advisers when making product recommendations?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio008' value =''>To ensure the product is the most expensive available.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio008' value ='correct'>To have a reasonable basis for the recommendation.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio008' value =''>To recommend only products that are new to the market.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio008' value =''>To focus on products that the adviser personally prefers.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q008')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q008"><summary class="explanationHighlight">Show Answer</summary>Explanation: A fundamental requirement for financial advisers when making product recommendations is to have a reasonable basis for the recommendation.</details></div><br/>
+
+<div class = "questionCard" id="_Q009"><p class = "questionHeader">Question 009 of 66</p>
+<p>(QID: 5227e48533) In the context of the Financial Advisers Act (2001), which of the following is a key requirement for financial intermediaries and their representatives when making recommendations to clients?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio009' value =''>To prioritize the sale of products with the highest commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio009' value ='correct'>To have a reasonable basis for any recommendation made.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio009' value =''>To exclusively sell products from their own financial institution.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio009' value =''>To avoid disclosing potential conflicts of interest to clients.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q009')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q009"><summary class="explanationHighlight">Show Answer</summary>Explanation: A key requirement under the Financial Advisers Act (2001) is for financial intermediaries and their representatives to have a reasonable basis for any recommendation made.</details></div><br/>
+
+<div class = "questionCard" id="_Q010"><p class = "questionHeader">Question 010 of 66</p>
+<p>(QID: 5227e54758) Which approach would MOST likely lead a financial adviser to decline an investment recommendation that technically meets all regulatory requirements but might not serve the client's best interests?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio010' value =''>Rules-based standard</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio010' value ='correct'>Principles-based standard</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio010' value =''>Compliance-focused approach</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio010' value =''>Risk management framework</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q010')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q010"><summary class="explanationHighlight">Show Answer</summary>Explanation: A principles-based standard requires advisers to assess decisions against broader ethical principles like duty of care and good faith, rather than merely checking regulatory compliance boxes. This approach encourages advisers to prioritize client interests beyond strict legal requirements.</details></div><br/>
+
+<div class = "questionCard" id="_Q011"><p class = "questionHeader">Question 011 of 66</p>
+<p>(QID: 5227e48513) Which of the following best describes a financial adviser's duty under the fiduciary standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio011' value ='correct'>Acting in the best interest of the client, including ongoing monitoring of investments.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio011' value =''>Selling the most popular financial products to meet sales targets.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio011' value =''>Recommending products based on the adviser's personal investment success.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio011' value =''>Focusing on short-term gains regardless of the client's long-term objectives.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q011')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q011"><summary class="explanationHighlight">Show Answer</summary>Explanation: Acting in the best interest of the client, including ongoing monitoring of investments, best describes a financial adviser's duty under the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q012"><p class = "questionHeader">Question 012 of 66</p>
+<p>(QID: 5227e48496) Which of the following best captures the essence of the fiduciary standard in the context of financial advising?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio012' value ='correct'>Acting in the client's best interest in both the legal and ethical sense.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio012' value =''>Ensuring that financial products are sold at the highest possible profit.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio012' value =''>Focusing solely on products that are easiest for the adviser to understand.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio012' value =''>Recommending financial products based on the adviser's personal preferences.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q012')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q012"><summary class="explanationHighlight">Show Answer</summary>Explanation: Acting in the client's best interest in both the legal and ethical sense best captures the essence of the fiduciary standard in the context of financial advising.</details></div><br/>
+
+<div class = "questionCard" id="_Q013"><p class = "questionHeader">Question 013 of 66</p>
+<p>(QID: 5227e48546) You are a financial adviser representative. Which of the following actions would most likely NOT contribute to the problem of biased advice?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio013' value =''>Recommending products that offer you the highest commission.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio013' value =''>Failing to disclose your incentive and compensation structure to clients.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio013' value =''>Offering only a narrow range of products from a single provider.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio013' value ='correct'>Actively seeking to understand the client's needs and recommending products that best meet those needs.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q013')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q013"><summary class="explanationHighlight">Show Answer</summary>Explanation: Actively seeking to understand the client's needs and recommending suitable products is an action that counters biased advice.</details></div><br/>
+
+<div class = "questionCard" id="_Q014"><p class = "questionHeader">Question 014 of 66</p>
+<p>(QID: 5227e48523) You are a financial adviser facing a conflict of interest situation. Which of the following actions aligns with dealing with the situation in an honest and professional manner?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio014' value =''>Ignoring the conflict and proceeding with your decision.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio014' value =''>Prioritizing your personal gain over the client's interest.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio014' value =''>Disclosing the conflict to a select few colleagues.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio014' value ='correct'>Addressing the conflict openly and seeking a resolution that protects the client's interests.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q014')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q014"><summary class="explanationHighlight">Show Answer</summary>Explanation: Addressing the conflict openly and seeking a resolution that protects the client's interests is the honest and professional way to handle a conflict of interest situation.</details></div><br/>
+
+<div class = "questionCard" id="_Q015"><p class = "questionHeader">Question 015 of 66</p>
+<p>(QID: 5227e48515) John Doe is advised to invest in a high-risk product without a proper assessment of his risk tolerance and investment knowledge. This practice contravenes which of the following standards or regulations?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio015' value =''>The principle of maximum profitability.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio015' value =''>The guideline for product diversity.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio015' value =''>The suitability standard's focus on client-specific factors.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio015' value ='correct'>The requirement for a reasonable basis for recommendations under the Financial Advisers Act.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q015')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q015"><summary class="explanationHighlight">Show Answer</summary>Explanation: Advising to invest in a high-risk product without proper assessment contravenes the requirement for a reasonable basis for recommendations under the Financial Advisers Act, highlighting the importance of suitability and client understanding in financial advising.</details></div><br/>
+
+<div class = "questionCard" id="_Q016"><p class = "questionHeader">Question 016 of 66</p>
+<p>(QID: 5227e48506) John Doe is advised by his financial adviser to invest in a high-risk product without a proper assessment of his risk tolerance and investment knowledge. This practice contravenes which of the following standards or regulations?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio016' value =''>The principle of maximum profitability.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio016' value =''>The guideline for product diversity.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio016' value ='correct'>The requirement for a reasonable basis for recommendations under the Financial Advisers Act.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio016' value =''>The rule for prioritizing adviser's personal investments.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q016')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q016"><summary class="explanationHighlight">Show Answer</summary>Explanation: Advising to invest in a high-risk product without proper assessment contravenes the requirement for a reasonable basis for recommendations under the Financial Advisers Act.</details></div><br/>
+
+<div class = "questionCard" id="_Q017"><p class = "questionHeader">Question 017 of 66</p>
+<p>(QID: 5227e48554) Which of the following scenarios best represents a violation of privacy or breach of confidentiality in the financial services industry?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio017' value =''>A financial adviser openly discusses the general benefits of a product with a client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio017' value =''>A representative uses client data to improve the suitability of product recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio017' value ='correct'>An adviser sells personal data of clients to third parties for marketing campaigns.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio017' value =''>A financial institution implements strict data protection policies.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q017')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q017"><summary class="explanationHighlight">Show Answer</summary>Explanation: An adviser selling personal data of clients to third parties for marketing campaigns best represents a violation of privacy or breach of confidentiality.</details></div><br/>
+
+<div class = "questionCard" id="_Q018"><p class = "questionHeader">Question 018 of 66</p>
+<p>(QID: 5227e48555) John Doe is a client who values privacy. Which of the following scenarios would be a breach of confidentiality in the financial services industry?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio018' value =''>A financial adviser uses client data to improve the suitability of product recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio018' value =''>A representative discusses general benefits of a product with a client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio018' value ='correct'>An adviser sells personal data of clients to third parties for marketing campaigns.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio018' value =''>A financial institution implements strict data protection policies.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q018')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q018"><summary class="explanationHighlight">Show Answer</summary>Explanation: An adviser selling personal data of clients to third parties for marketing campaigns would be a breach of confidentiality, violating the trust essential for the success of the financial services industry.</details></div><br/>
+
+<div class = "questionCard" id="_Q019"><p class = "questionHeader">Question 019 of 66</p>
+<p>(QID: 5227e48551) Which of the following scenarios best illustrates a failure to execute in the context of financial services?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio019' value ='correct'>An agent collects insurance premium from a client but fails to promptly hand it over to the principal to issue the policy.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio019' value =''>A financial adviser provides comprehensive and timely advice to a client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio019' value =''>A representative accurately discloses all fees associated with a product.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio019' value =''>An adviser ensures that client data is stored securely and privately.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q019')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q019"><summary class="explanationHighlight">Show Answer</summary>Explanation: An agent failing to promptly hand over collected insurance premium for policy issuance best illustrates a failure to execute.</details></div><br/>
+
+<div class = "questionCard" id="_Q020"><p class = "questionHeader">Question 020 of 66</p>
+<p>(QID: 5227e48531) John Doe is evaluating whether to follow a fiduciary or suitability standard in his practice as a financial adviser. Which of the following is a key obligation under the fiduciary standard that is NOT explicitly required under the suitability standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio020' value =''>Having a reasonable basis for product recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio020' value =''>Conducting a Client Knowledge Assessment for unlisted Specified Investment Products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio020' value ='correct'>Avoiding conflicts of interest and disclosing unavoidable ones to the client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio020' value =''>Completing documentation and record keeping for each client interaction.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q020')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q020"><summary class="explanationHighlight">Show Answer</summary>Explanation: Avoiding conflicts of interest and disclosing unavoidable ones to the client is a key obligation under the fiduciary standard not explicitly required under the suitability standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q021"><p class = "questionHeader">Question 021 of 66</p>
+<p>(QID: 5227e48534) John Doe is advised to invest in a Specified Investment Product (SIP) by his financial adviser. According to FAA Notice No. 16, what must the adviser do before recommending an unlisted SIP?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio021' value =''>Automatically approve John's account for trading derivatives.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio021' value =''>Recommend the product based solely on its potential for high returns.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio021' value ='correct'>Conduct a Client Knowledge Assessment to assess John's understanding of the risks.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio021' value =''>Ignore John's lack of experience with similar investment products.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q021')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q021"><summary class="explanationHighlight">Show Answer</summary>Explanation: Before recommending an unlisted SIP, the adviser must conduct a Client Knowledge Assessment to assess the client's understanding of the risks.</details></div><br/>
+
+<div class = "questionCard" id="_Q022"><p class = "questionHeader">Question 022 of 66</p>
+<p>(QID: 5227e48499) John Doe is exploring investment options with his financial adviser. According to FAA Notice No. 16, before recommending a Specified Investment Product (SIP) that is unlisted, what must the adviser assess regarding John?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio022' value =''>John's preference for high-risk investments.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio022' value =''>The highest commission products for the adviser.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio022' value ='correct'>John's knowledge or experience in understanding the risks of the SIP.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio022' value =''>The adviser's personal investment success with similar products.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q022')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q022"><summary class="explanationHighlight">Show Answer</summary>Explanation: Before recommending an unlisted Specified Investment Product (SIP), the adviser must assess John's knowledge or experience in understanding the risks of the SIP, according to FAA Notice No. 16.</details></div><br/>
+
+<div class = "questionCard" id="_Q023"><p class = "questionHeader">Question 023 of 66</p>
+<p>(QID: 5227e48545) Which of the following is a frequent manifestation of misaligned interests where clients depend heavily on financial adviser representatives for advice?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio023' value =''>Transparent communication.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio023' value ='correct'>Biased advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio023' value =''>Ethical conduct.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio023' value =''>Unbiased product recommendations.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q023')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q023"><summary class="explanationHighlight">Show Answer</summary>Explanation: Biased advice is a frequent manifestation of misaligned interests in scenarios where clients rely heavily on financial adviser representatives.</details></div><br/>
+
+<div class = "questionCard" id="_Q024"><p class = "questionHeader">Question 024 of 66</p>
+<p>(QID: 5227e54754) A financial institution designs a compensation structure where representatives receive significantly higher commissions for selling high-risk investment products compared to lower-risk alternatives. This scenario most directly illustrates:</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio024' value =''>Misalignment between financial adviser and client</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio024' value ='correct'>Misalignment between financial institution and client</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio024' value =''>Misalignment between representative and multiple clients</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio024' value =''>Misalignment between financial institution and representative</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q024')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q024"><summary class="explanationHighlight">Show Answer</summary>Explanation: By creating a compensation structure that incentivizes the sale of high-risk products, the financial institution prioritizes its revenue over the client's best interests. This represents a systemic misalignment where the institution's financial goals conflict with providing client-centric, risk-appropriate financial advice.</details></div><br/>
+
+<div class = "questionCard" id="_Q025"><p class = "questionHeader">Question 025 of 66</p>
+<p>(QID: 5227e54756) Maria, a 55-year-old retiree, notices her investment portfolio has been traded 12 times in six months by her financial adviser, resulting in significant transaction costs. Each trade was for a different instrument, yet her overall portfolio returns remained unchanged. What best describes this situation?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio025' value ='correct'>Churning</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio025' value =''>Prudent portfolio management</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio025' value =''>Regular investment rebalancing</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio025' value =''>Strategic asset allocation</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q025')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q025"><summary class="explanationHighlight">Show Answer</summary>Explanation: Churning occurs when trades are executed excessively without providing tangible benefits to the client, primarily to generate commissions. The frequent trades that don't improve portfolio performance, coupled with increased transaction costs, indicate the representative is prioritizing personal gain over the client's financial interests.</details></div><br/>
+
+<div class = "questionCard" id="_Q026"><p class = "questionHeader">Question 026 of 66</p>
+<p>(QID: 5227e48508) John Doe is a financial adviser. He conducts a Client Knowledge Assessment (CKA) before recommending an unlisted Specified Investment Product (SIP). Which of the following requirements is he aligning with?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio026' value =''>The suitability standard's focus on product profitability.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio026' value ='correct'>FAA Notice No. 16's provisions for ensuring client understanding of product risks.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio026' value =''>The principle of prioritizing the adviser's personal investment success.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio026' value =''>The guideline for minimizing documentation and record-keeping efforts.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q026')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q026"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting a Client Knowledge Assessment (CKA) before recommending an unlisted Specified Investment Product (SIP) aligns with FAA Notice No. 16's provisions for ensuring client understanding of product risks.</details></div><br/>
+
+<div class = "questionCard" id="_Q027"><p class = "questionHeader">Question 027 of 66</p>
+<p>(QID: 5227e48503) When a financial adviser is making a recommendation for an investment product under the Financial Advisers Act (FAA), what is one of the key requirements they must fulfill according to FAA Notice No. 16?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio027' value =''>They must ensure the product is exclusively offered by their institution.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio027' value ='correct'>They must conduct a needs analysis and know their client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio027' value =''>They must prioritize products that have been newly launched in the market.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio027' value =''>They must focus on products that require minimal explanation.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q027')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q027"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting a needs analysis and knowing their client is one of the key requirements financial advisers must fulfill when making a recommendation for an investment product under the FAA, according to FAA Notice No. 16.</details></div><br/>
+
+<div class = "questionCard" id="_Q028"><p class = "questionHeader">Question 028 of 66</p>
+<p>(QID: 5227e48512) John Doe is considering hiring a financial adviser. Which of the following actions should John expect from an adviser adhering to FAA Notice No. 16?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio028' value =''>The adviser focusing solely on products with the highest commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio028' value ='correct'>Conducting a thorough needs analysis and understanding John's specific situation before recommending products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio028' value =''>Recommending only the newest financial products on the market.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio028' value =''>Limiting advice to products from financial institutions with which the adviser is affiliated.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q028')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q028"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting a thorough needs analysis and understanding John's specific situation before recommending products is an action John should expect from an adviser adhering to FAA Notice No. 16, ensuring recommendations are suitable.</details></div><br/>
+
+<div class = "questionCard" id="_Q029"><p class = "questionHeader">Question 029 of 66</p>
+<p>(QID: 5227e48526) John Doe is a financial adviser following the suitability standard. Which of the following actions best aligns with this standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio029' value =''>Recommending products based solely on the highest commission.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio029' value ='correct'>Conducting a thorough needs analysis to recommend suitable products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio029' value =''>Ignoring the client's financial situation and objectives.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio029' value =''>Focusing exclusively on short-term gains regardless of client needs.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q029')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q029"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting a thorough needs analysis to recommend suitable products best aligns with the suitability standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q030"><p class = "questionHeader">Question 030 of 66</p>
+<p>(QID: 5227e48529) In the context of the Financial Advisers Act (FAA) and FAA Notice No. 16, which of the following is a requirement for financial advisers when recommending investment products to clients?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio030' value =''>Prioritizing products from affiliated companies.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio030' value =''>Recommending only the most profitable products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio030' value =''>Ignoring the client's financial knowledge and experience.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio030' value ='correct'>Conducting needs analysis and knowing the client.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q030')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q030"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting needs analysis and knowing the client are requirements for financial advisers when recommending investment products, according to the FAA and FAA Notice No. 16.</details></div><br/>
+
+<div class = "questionCard" id="_Q031"><p class = "questionHeader">Question 031 of 66</p>
+<p>(QID: 5227e48535) Which of the following is a primary safeguard intended to ensure that financial intermediaries and their representatives recommend suitable products to clients, especially those lacking relevant knowledge or experience?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio031' value =''>Encouraging clients to make independent investment decisions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio031' value =''>Limiting recommendations to products with the highest commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio031' value =''>Focusing solely on products offered by the financial intermediary's institution.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio031' value ='correct'>Conducting thorough client knowledge assessments and needs analysis.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q031')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q031"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting thorough client knowledge assessments and needs analysis is a primary safeguard intended to ensure suitable product recommendations for clients lacking relevant knowledge or experience.</details></div><br/>
+
+<div class = "questionCard" id="_Q032"><p class = "questionHeader">Question 032 of 66</p>
+<p>(QID: 5227e48501) In ensuring the suitability of financial advice for clients, which of the following is a proactive step financial institutions and their representatives can take?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio032' value ='correct'>Conduct thorough fact-finding and needs analysis to understand the client's specific financial situation.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio032' value =''>Recommend only the most popular financial products to all clients.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio032' value =''>Focus solely on products that offer the highest commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio032' value =''>Limit advice to products that the institution has in excess.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q032')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q032"><summary class="explanationHighlight">Show Answer</summary>Explanation: Conducting thorough fact-finding and needs analysis to understand the client's specific financial situation is the proactive step that financial institutions and their representatives should take to ensure the suitability of financial advice.</details></div><br/>
+
+<div class = "questionCard" id="_Q033"><p class = "questionHeader">Question 033 of 66</p>
+<p>(QID: 5227e48536) In the comparison between the fiduciary and suitability standards, which of the following best describes a characteristic unique to the fiduciary standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio033' value ='correct'>Continual monitoring of product performance and changes in the client's personal factors.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio033' value =''>Strict adherence to rules and regulations without consideration of the client's best interest.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio033' value =''>The absence of any requirement to disclose conflicts of interest to the client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio033' value =''>Limiting the assessment of suitability to the initial sale of the product or service.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q033')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q033"><summary class="explanationHighlight">Show Answer</summary>Explanation: Continual monitoring of product performance and changes in the client's personal factors is a characteristic unique to the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q034"><p class = "questionHeader">Question 034 of 66</p>
+<p>(QID: 5227e48511) You are a financial adviser reviewing your obligations towards your clients. Which of the following practices is a key distinction of the fiduciary standard compared to the suitability standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio034' value =''>Recommending the most popular financial products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio034' value =''>Focusing on investments that have performed well for you personally.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio034' value =''>Prioritizing products from a single provider without comparison.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio034' value ='correct'>Continuously monitoring and adapting to the client's changing needs.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q034')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q034"><summary class="explanationHighlight">Show Answer</summary>Explanation: Continuously monitoring and adapting to the client's changing needs is a key distinction of the fiduciary standard, emphasizing the adviser's commitment to act in the best interest of the client.</details></div><br/>
+
+<div class = "questionCard" id="_Q035"><p class = "questionHeader">Question 035 of 66</p>
+<p>(QID: 5227e48507) In the context of the fiduciary standard, which of the following is a key action that distinguishes a financial adviser's obligations towards their client?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio035' value =''>Selling the most popular financial products to meet sales targets.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio035' value =''>Recommending products based solely on the adviser's personal preferences.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio035' value =''>Focusing on short-term gains regardless of the client's long-term objectives.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio035' value ='correct'>Continuously monitoring the client's investments and adapting advice to changes in the client's circumstances.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q035')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q035"><summary class="explanationHighlight">Show Answer</summary>Explanation: Continuously monitoring the client's investments and adapting advice to changes in the client's circumstances is a key action that distinguishes a financial adviser's obligations under the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q036"><p class = "questionHeader">Question 036 of 66</p>
+<p>(QID: 5227e48541) Which of the following scenarios does NOT illustrate a misalignment of interest as described in the financial services industry context?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio036' value =''>A financial adviser is compensated for selling client information without consent.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio036' value ='correct'>A financial institution develops universally beneficial products transparently marketed.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio036' value =''>A representative prioritizes one family member's interest over another's, despite equal obligations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio036' value =''>An institution creates exclusive opportunities for high net-worth clients at the expense of retail clients.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q036')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q036"><summary class="explanationHighlight">Show Answer</summary>Explanation: Developing universally beneficial products transparently marketed does not illustrate a misalignment of interest.</details></div><br/>
+
+<div class = "questionCard" id="_Q037"><p class = "questionHeader">Question 037 of 66</p>
+<p>(QID: 5227e48504) In the context of providing financial advice, which of the following actions best aligns with the principles of the fiduciary standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio037' value =''>Recommending products that are easy to sell regardless of client needs.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio037' value =''>Focusing on investments that have performed well for the adviser personally.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio037' value =''>Prioritizing products from a single provider without comparison.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio037' value ='correct'>Disclosing all potential conflicts of interest and ensuring recommendations are in the client's best interest.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q037')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q037"><summary class="explanationHighlight">Show Answer</summary>Explanation: Disclosing all potential conflicts of interest and ensuring recommendations are in the client's best interest best aligns with the principles of the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q038"><p class = "questionHeader">Question 038 of 66</p>
+<p>(QID: 5227e48514) John Doe is assessing the practices of his financial adviser. Which practice indicates that the adviser is adhering to the fiduciary standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio038' value =''>The adviser frequently switches John's investments to generate commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio038' value ='correct'>The adviser discloses all potential conflicts of interest and focuses on John's best interests.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio038' value =''>The adviser recommends products without explaining their risks and benefits.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio038' value =''>The adviser prioritizes products from a single provider without considering others.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q038')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q038"><summary class="explanationHighlight">Show Answer</summary>Explanation: Disclosing all potential conflicts of interest and focusing on the client's best interests indicate that the adviser is adhering to the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q039"><p class = "questionHeader">Question 039 of 66</p>
+<p>(QID: 5227e48497) John Doe is assessing the practices of his financial adviser. Which practice would indicate that the adviser is adhering to the fiduciary standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio039' value =''>The adviser frequently switches John's investments to generate commissions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio039' value =''>The adviser recommends products without explaining their risks and benefits.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio039' value =''>The adviser prioritizes products from a single provider without considering others.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio039' value ='correct'>The adviser discloses all potential conflicts of interest and focuses on John's best interests.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q039')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q039"><summary class="explanationHighlight">Show Answer</summary>Explanation: Disclosing all potential conflicts of interest and focusing on the client's best interests would indicate that the adviser is adhering to the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q040"><p class = "questionHeader">Question 040 of 66</p>
+<p>(QID: 5227e48525) Which one of the following is NOT a duty associated with the fiduciary standard for financial adviser representatives?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio040' value ='correct'>Duty of Profit Maximization.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio040' value =''>Duty of Care.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio040' value =''>Duty of Loyalty.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio040' value =''>Duty of Good Faith.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q040')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q040"><summary class="explanationHighlight">Show Answer</summary>Explanation: Duty of Profit Maximization is not associated with the fiduciary standard; the fiduciary standard involves duties of care, loyalty, obedience, and good faith.</details></div><br/>
+
+<div class = "questionCard" id="_Q041"><p class = "questionHeader">Question 041 of 66</p>
+<p>(QID: 5227e48522) Which of the following is NOT a consequence of improperly managed conflicts of interest?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio041' value ='correct'>Enhanced trust in financial institutions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio041' value =''>Serious ethical problems for all concerned.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio041' value =''>Potential investigations for violating codes of ethics.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio041' value =''>Legal considerations of corruption offences.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q041')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q041"><summary class="explanationHighlight">Show Answer</summary>Explanation: Enhanced trust is not a consequence of improperly managed conflicts of interest; rather, it results from properly managing them.</details></div><br/>
+
+<div class = "questionCard" id="_Q042"><p class = "questionHeader">Question 042 of 66</p>
+<p>(QID: 5227e48510) John Doe's financial adviser ensures that every piece of advice and product recommendation is suitable based on John's age, financial situation, objectives, and risk tolerance. This approach is most closely aligned with which standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio042' value =''>The fiduciary standard's principle-based approach.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio042' value =''>The Financial Advisers Act's compliance requirements.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio042' value ='correct'>The suitability standard's focus on client-specific factors.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio042' value =''>The self-regulation standard of the financial services industry.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q042')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q042"><summary class="explanationHighlight">Show Answer</summary>Explanation: Ensuring that every piece of advice and product recommendation is suitable based on client-specific factors is most closely aligned with the suitability standard's focus.</details></div><br/>
+
+<div class = "questionCard" id="_Q043"><p class = "questionHeader">Question 043 of 66</p>
+<p>(QID: 5227e48505) Which of the following is a fundamental aspect of the suitability standard as applied in the financial services industry?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio043' value ='correct'>Ensuring that recommended products are appropriate for the client based on a comprehensive understanding of their needs and circumstances.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio043' value =''>Guaranteeing the highest possible returns on all recommended investment products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio043' value =''>Advising clients to invest in products that are most beneficial for the financial adviser's personal portfolio.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio043' value =''>Limiting recommendations to products that have received the highest media attention.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q043')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q043"><summary class="explanationHighlight">Show Answer</summary>Explanation: Ensuring that recommended products are appropriate for the client based on a comprehensive understanding of their needs and circumstances is a fundamental aspect of the suitability standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q044"><p class = "questionHeader">Question 044 of 66</p>
+<p>(QID: 5227e48552) Which of the following actions by a financial adviser representative would constitute insufficient disclosure?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio044' value =''>Clearly explaining all potential fees and commissions associated with a product.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio044' value =''>Providing a detailed and understandable breakdown of product features.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio044' value =''>Ensuring that the client is fully aware of the risks involved in an investment.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio044' value ='correct'>Failing to inform the client about significant surrender charges for early policy termination.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q044')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q044"><summary class="explanationHighlight">Show Answer</summary>Explanation: Failing to inform the client about significant surrender charges for early policy termination constitutes insufficient disclosure.</details></div><br/>
+
+<div class = "questionCard" id="_Q045"><p class = "questionHeader">Question 045 of 66</p>
+<p>(QID: 5227e48528) John Doe is considering a career as a financial adviser. In choosing between adhering to a fiduciary or a suitability standard, which aspect should John consider if he wants to prioritize ongoing client relationship management, including monitoring product performance and adapting to changes in the client's situation?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio045' value ='correct'>Fiduciary standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio045' value =''>Suitability standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio045' value =''>Financial Advisers Act compliance.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio045' value =''>Client Knowledge Assessment requirement.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q045')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q045"><summary class="explanationHighlight">Show Answer</summary>Explanation: If John wants to prioritize ongoing client relationship management, including monitoring product performance and adapting to changes in the client's situation, he should consider adhering to the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q046"><p class = "questionHeader">Question 046 of 66</p>
+<p>(QID: 5227e48539) Which one of the following is NOT a type of conflict of interest in the financial services industry?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio046' value ='correct'>A financial adviser representative investing in personal development to better serve clients.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio046' value =''>Built-in conflict of interest situations found by a financial adviser representative.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio046' value =''>Conflict of interest situations created by a financial adviser representative's actions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio046' value =''>Misalignment of interest between financial institutions and clients.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q046')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q046"><summary class="explanationHighlight">Show Answer</summary>Explanation: Investing in personal development to better serve clients is not considered a conflict of interest.</details></div><br/>
+
+<div class = "questionCard" id="_Q047"><p class = "questionHeader">Question 047 of 66</p>
+<p>(QID: 5227e48509) Which of the following best captures the essence of acting in accordance with the fiduciary standard for financial advisers?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio047' value ='correct'>Prioritizing the client's interests above all others, including the adviser's own interests and those of third parties.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio047' value =''>Focusing exclusively on financial products that are easiest to explain to clients.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio047' value =''>Recommending only the financial products that have the highest commission rates.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio047' value =''>Limiting advice to products from financial institutions with which the adviser is affiliated.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q047')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q047"><summary class="explanationHighlight">Show Answer</summary>Explanation: Prioritizing the client's interests above all others, including the adviser's own interests and those of third parties, best captures the essence of acting in accordance with the fiduciary standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q048"><p class = "questionHeader">Question 048 of 66</p>
+<p>(QID: 5227e48530) Which of the following best describes the action that financial institutions and their representatives should take to ensure the suitability of financial advice and recommended products for their clients?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio048' value =''>Limiting the advice to the most commonly purchased financial products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio048' value ='correct'>Proactively seeking to "know their clients" through thorough fact-finding and needs analysis.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio048' value =''>Recommending only those products that have the highest historical returns.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio048' value =''>Focusing exclusively on products that are easiest to explain and sell.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q048')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q048"><summary class="explanationHighlight">Show Answer</summary>Explanation: Proactively seeking to "know their clients" through thorough fact-finding and needs analysis is the action that financial institutions and their representatives should take to ensure the suitability of financial advice and recommended products.</details></div><br/>
+
+<div class = "questionCard" id="_Q049"><p class = "questionHeader">Question 049 of 66</p>
+<p>(QID: 5227e48524) Which of the following best describes the likely outcome when financial intermediaries and their representatives manage conflicts of interest properly?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio049' value =''>Decreased trust in the financial services industry.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio049' value =''>Increased legal suits against financial advisers.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio049' value =''>Reduced integrity and professionalism in financial advising.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio049' value ='correct'>Enhanced public faith and trust in the financial services industry.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q049')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q049"><summary class="explanationHighlight">Show Answer</summary>Explanation: Proper management of conflicts of interest is likely to enhance public faith and trust in the financial services industry.</details></div><br/>
+
+<div class = "questionCard" id="_Q050"><p class = "questionHeader">Question 050 of 66</p>
+<p>(QID: 5227e48500) Which of the following best distinguishes the fiduciary standard from the suitability standard in financial advising?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio050' value =''>The fiduciary standard requires less documentation and record-keeping.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio050' value =''>The suitability standard allows for a broader range of investment recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio050' value =''>The fiduciary standard focuses on the financial benefits of the adviser.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio050' value ='correct'>The fiduciary standard obliges advisers to act in the best interest of the client, beyond just making suitable recommendations.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q050')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q050"><summary class="explanationHighlight">Show Answer</summary>Explanation: The fiduciary standard distinguishes itself by obliging advisers to act in the best interest of the client, beyond just making suitable recommendations.</details></div><br/>
+
+<div class = "questionCard" id="_Q051"><p class = "questionHeader">Question 051 of 66</p>
+<p>(QID: 5227e48532) Which of the following best explains why the fiduciary standard is considered more open-ended than the suitability standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio051' value ='correct'>It is based on principles of what is morally and ethically right, rather than strictly legal requirements.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio051' value =''>It allows financial advisers to recommend any product as long as it is profitable.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio051' value =''>It requires less documentation and record-keeping compared to the suitability standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio051' value =''>It focuses solely on the financial benefits of the adviser and the financial institution.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q051')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q051"><summary class="explanationHighlight">Show Answer</summary>Explanation: The fiduciary standard is considered more open-ended because it is based on principles of what is morally and ethically right, rather than strictly legal requirements.</details></div><br/>
+
+<div class = "questionCard" id="_Q052"><p class = "questionHeader">Question 052 of 66</p>
+<p>(QID: 5227e48537) John Doe is a financial adviser who prides himself on ethical conduct. Which standard obliges John to place his client's interest above his own and any third party's interest in relation to a particular investment product or financial service?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio052' value =''>Suitability standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio052' value ='correct'>Fiduciary standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio052' value =''>Self-regulation standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio052' value =''>Financial Advisers Act standard.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q052')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q052"><summary class="explanationHighlight">Show Answer</summary>Explanation: The fiduciary standard obliges John to place his client's interest above his own and any third party's interest in relation to a particular investment product or financial service.</details></div><br/>
+
+<div class = "questionCard" id="_Q053"><p class = "questionHeader">Question 053 of 66</p>
+<p>(QID: 5227e48527) Which of the following best distinguishes the fiduciary standard from the suitability standard?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio053' value =''>The fiduciary standard allows for a wider range of product recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio053' value =''>The suitability standard requires ongoing monitoring of product performance and client factors.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio053' value ='correct'>The fiduciary standard requires actions to align with principles of duty of care, loyalty, obedience, and good faith.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio053' value =''>The suitability standard prioritizes the financial adviser's interests over the client's.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q053')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q053"><summary class="explanationHighlight">Show Answer</summary>Explanation: The fiduciary standard requires actions to align with principles of duty of care, loyalty, obedience, and good faith, distinguishing it from the suitability standard.</details></div><br/>
+
+<div class = "questionCard" id="_Q054"><p class = "questionHeader">Question 054 of 66</p>
+<p>(QID: 5227e48502) John Doe wants to ensure that his financial adviser is providing advice that is in his best interest. Which standard requires the adviser to continually monitor the performance of recommended products and adapt to changes in John's situation?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio054' value =''>Suitability standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio054' value =''>Self-regulation standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio054' value ='correct'>Fiduciary standard.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio054' value =''>Financial Advisers Act compliance.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q054')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q054"><summary class="explanationHighlight">Show Answer</summary>Explanation: The fiduciary standard requires the adviser to continually monitor the performance of recommended products and adapt to changes in John's situation.</details></div><br/>
+
+<div class = "questionCard" id="_Q055"><p class = "questionHeader">Question 055 of 66</p>
+<p>(QID: 5227e48549) Which of the following best describes the goal of meeting a client's investment objective through trading?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio055' value =''>Maximizing the financial adviser's commission.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio055' value =''>Ensuring frequent trading activity in the client's account.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio055' value =''>Selling the most profitable products regardless of client needs.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio055' value ='correct'>Achieving the client's specific financial needs and wants on a given time horizon at the appropriate risk tolerance level.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q055')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q055"><summary class="explanationHighlight">Show Answer</summary>Explanation: The goal of meeting a client's investment objective through trading is to achieve the client's specific financial needs and wants on a given time horizon at the appropriate risk tolerance level.</details></div><br/>
+
+<div class = "questionCard" id="_Q056"><p class = "questionHeader">Question 056 of 66</p>
+<p>(QID: 5227e48547) Which of the following best describes the main benefit of cross-selling when executed properly?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio056' value ='correct'>Increased sales revenue and improved client satisfaction.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio056' value =''>Reduced operational costs for financial institutions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio056' value =''>Simplified product offerings for easier client understanding.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio056' value =''>Enhanced privacy protection for client data.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q056')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q056"><summary class="explanationHighlight">Show Answer</summary>Explanation: The main benefits of proper cross-selling include increased sales revenue and improved client satisfaction.</details></div><br/>
+
+<div class = "questionCard" id="_Q057"><p class = "questionHeader">Question 057 of 66</p>
+<p>(QID: 5227e54752) A financial adviser representative sells a complex investment product to a divorcee with the following characteristics: - Annual premium: S_$40,000 - Client's annual income: Below S_$40,000 - Client's primary need: Short-term savings for home purchase - Actual product: Long-term insurance policy with high penalties for early surrender What ethical principle was MOST likely violated in this scenario?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio057' value =''>Client confidentiality</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio057' value ='correct'>Suitability of financial advice</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio057' value =''>Transparency of product features</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio057' value =''>Conflict of interest disclosure</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q057')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q057"><summary class="explanationHighlight">Show Answer</summary>Explanation: The representative recommended a product that fundamentally mismatched the client's financial situation and immediate liquidity needs. The high premium relative to income and inappropriate product structure demonstrates a clear breach of the suitability principle, which requires financial advisers to recommend products that align with the client's financial capacity, goals, and risk profile.</details></div><br/>
+
+<div class = "questionCard" id="_Q058"><p class = "questionHeader">Question 058 of 66</p>
+<p>(QID: 5227e54755) A bank manager recommends a retirement policy with premium financing to a client who recently received an inheritance, where: - The client doesn't fully understand the product - The inheritance is used as a deposit for unfinanced premiums - The product creates strain on the client's cash flow when interest rates change Which principle of financial advisory is MOST compromised?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio058' value ='correct'>Information symmetry</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio058' value =''>Information transparency</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio058' value =''>Fiduciary responsibility</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio058' value =''>Product complexity disclosure</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q058')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q058"><summary class="explanationHighlight">Show Answer</summary>Explanation: The scenario demonstrates a violation of client autonomy, where the client is effectively pressured into a complex financial product without fully understanding its implications. The recommendation exploits information asymmetry, limiting the client's ability to make an independent, informed decision about their financial resources.</details></div><br/>
+
+<div class = "questionCard" id="_Q059"><p class = "questionHeader">Question 059 of 66</p>
+<p>(QID: 5227e48538) Which of the following best explains the difference in the application of the fiduciary and suitability standards to the recommendation of financial products?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio059' value =''>The suitability standard applies to the ethical conduct of financial intermediaries, while the fiduciary standard guides product recommendations.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio059' value =''>The fiduciary standard allows for a broader range of financial products to be recommended without client consent.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio059' value ='correct'>The suitability standard focuses on the legal rightness of product recommendations, while the fiduciary standard emphasizes ethical conduct leading to the recommendation of suitable products.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio059' value =''>The fiduciary standard mandates a fixed set of product recommendations, whereas the suitability standard allows for flexibility based on client needs.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q059')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q059"><summary class="explanationHighlight">Show Answer</summary>Explanation: The suitability standard focuses on the legal rightness of product recommendations, while the fiduciary standard emphasizes ethical conduct leading to the recommendation of suitable products.</details></div><br/>
+
+<div class = "questionCard" id="_Q060"><p class = "questionHeader">Question 060 of 66</p>
+<p>(QID: 5227e48544) John Doe is a financial adviser who frequently recommends products that result in higher commissions for himself, despite not being the best option for his clients. Which manifestation of misaligned interests does this behavior best exemplify?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio060' value =''>Insufficient disclosure.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio060' value =''>Violation of privacy.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio060' value ='correct'>Biased advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio060' value =''>Failure to execute.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q060')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q060"><summary class="explanationHighlight">Show Answer</summary>Explanation: This behavior exemplifies biased advice, where the adviser's recommendations are influenced by personal gain rather than the client's best interest.</details></div><br/>
+
+<div class = "questionCard" id="_Q061"><p class = "questionHeader">Question 061 of 66</p>
+<p>(QID: 5227e48550) John Doe is a financial adviser who frequently engages in unnecessary trading within a client's account to generate commissions, without benefiting the client. This practice is known as:</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio061' value =''>Twisting.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio061' value ='correct'>Churning.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio061' value =''>Biased advising.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio061' value =''>Cross-selling.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q061')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q061"><summary class="explanationHighlight">Show Answer</summary>Explanation: This practice is known as churning, where unnecessary trading is done to generate commissions without benefiting the client.</details></div><br/>
+
+<div class = "questionCard" id="_Q062"><p class = "questionHeader">Question 062 of 66</p>
+<p>(QID: 5227e54757) A financial adviser representative discovers a potential investment opportunity that could significantly benefit his client. However, the opportunity also involves a minor conflict of interest as the adviser would receive a small referral fee. The MOST ethical action would be to:</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio062' value =''>Conceal the referral fee completely and recommend the investment</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio062' value =''>Decline to recommend the investment</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio062' value ='correct'>Fully disclose the referral fee and let the client decide</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio062' value =''>Recommend the investment without mentioning the exact fee amount</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q062')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q062"><summary class="explanationHighlight">Show Answer</summary>Explanation: This response demonstrates the fiduciary duty of loyalty by providing full disclosure, enabling the client to make an informed decision. Transparency about potential conflicts of interest is a fundamental principle of ethical financial advisory practices.</details></div><br/>
+
+<div class = "questionCard" id="_Q063"><p class = "questionHeader">Question 063 of 66</p>
+<p>(QID: 5227e48548) John Doe is considering purchasing a mortgage from a financial institution that insists he must also buy their credit insurance. This practice can potentially create a conflict of interest known as:</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio063' value =''>Biased advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio063' value =''>Excessive trading.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio063' value ='correct'>Involuntary cross-selling.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio063' value =''>Insufficient disclosure.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q063')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q063"><summary class="explanationHighlight">Show Answer</summary>Explanation: This scenario describes involuntary cross-selling, where a client is pressured into buying additional products.</details></div><br/>
+
+<div class = "questionCard" id="_Q064"><p class = "questionHeader">Question 064 of 66</p>
+<p>(QID: 5227e48540) John Doe is advising a husband and wife on their financial planning. He decides to act in the husband's interest at the expense of the wife. Which type of conflict of interest does this scenario best represent?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio064' value =''>A "built-in" conflict of interest.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio064' value =''>A misalignment of interest between the financial institution and the client.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio064' value ='correct'>A conflict of interest situation created by the financial adviser's own actions.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio064' value =''>A conflict of interest between the financial institution and multiple clients.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q064')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q064"><summary class="explanationHighlight">Show Answer</summary>Explanation: This scenario represents a conflict of interest created by the financial adviser's own actions.</details></div><br/>
+
+<div class = "questionCard" id="_Q065"><p class = "questionHeader">Question 065 of 66</p>
+<p>(QID: 5227e48542) Which of the following is NOT a manifestation of misaligned interests within the financial services industry?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio065' value =''>Biased advice.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio065' value =''>Involuntary cross-selling.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio065' value =''>Excessive trading.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio065' value ='correct'>Transparent and unbiased product recommendations.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q065')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q065"><summary class="explanationHighlight">Show Answer</summary>Explanation: Transparent and unbiased product recommendations are not a manifestation of misaligned interests but rather the opposite.</details></div><br/>
+
+<div class = "questionCard" id="_Q066"><p class = "questionHeader">Question 066 of 66</p>
+<p>(QID: 5227e48553) John Doe is reviewing a financial product with his adviser. The adviser uses complex jargon without explaining it, making it difficult for John to understand the product fully. This practice is an example of:</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio066' value =''>Adequate disclosure.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio066' value ='correct'>Misleading disclosure.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio066' value =''>Ethical advising.</input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio066' value =''>Transparent communication.</input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q066')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q066"><summary class="explanationHighlight">Show Answer</summary>Explanation: Using complex jargon without explanation, making it difficult for the client to understand, is an example of misleading disclosure.</details></div><br/>
+
+
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='res5_ch17.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/library.html#Insurance%20exam%20materials';"> Index </button>
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='res5_ch19.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+
+<script>
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
+</script>
+
+<script>
+/************* Dark Mode Functions *************/
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    }
+}
+
+function initDarkMode() {
+    const darkModeSetting = localStorage.getItem('darkMode');
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    }
+}
+/************* Dark Mode Functions *************/
+</script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+  initDarkMode();   // <--- ADD THIS LINE
+}
+</script>
+
+</body>
+</html>
