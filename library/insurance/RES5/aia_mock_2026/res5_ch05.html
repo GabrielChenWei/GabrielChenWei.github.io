@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted  ==> (17-Oct-2023) resume it for mobile phone display ------->
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
+<!------------ (07-May-2023, 03.33 PM) adding this line makes mobile phone view distorted ==> (17-Oct-2023) resume it for mobile phone display ------->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%221em%22 font-size=%22 80 %22>⛱️</text></svg>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--used by changeFontSizeUserPanel-->
+<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!--<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> <!--used by equation display, source : https://www.mathjax.org/ -->
+<!-- MathJax online editor : https://jsbin.com/caqehoweba/edit?html,output -->
+</script> 
+<script>
+
+/************* change manga image width script *************/
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+/************* change manga image width script *************/
+
+/************* userPanel vibility toggle script *************/
+  glbBiUserPanelVisible = false;  
+
+  function toggleUserPanel() {
+	console.log("toggleUserPanel triggered");
+	
+	if (glbBiUserPanelVisible){
+		hideUserPanel();
+	} else {
+		showUserPanel();
+	}
+  }
+
+  function showUserPanel() {
+	console.log("showUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'flex';
+	objShowHideButton.innerHTML = "➖";
+	glbBiUserPanelVisible = true;
+  }
+
+  function hideUserPanel() {
+    console.log("hideUserPanel triggered");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+    document.getElementById('_userPanel').style.display = 'none';
+	objShowHideButton.innerHTML = "➕";
+	glbBiUserPanelVisible = false;  
+  }
+  
+  /* === Auto-hide User Panel when clicking outside === */
+  document.addEventListener('click', function (event) {
+    if (!glbBiUserPanelVisible) return;
+
+    const userPanel = document.getElementById('_userPanel');
+    const toggleButton = document.getElementById('_showHiddenElementButton');
+
+    const clickedInsidePanel = userPanel.contains(event.target);
+    const clickedToggleButton = toggleButton.contains(event.target);
+
+    if (!clickedInsidePanel && !clickedToggleButton) {
+        hideUserPanel();
+    }
+  });
+
+/************* userPanel vibility toggle script *************/
+
+/************* font size change script *************/
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+/************* font size change script *************/
+
+
+/************* body onload initialization script ******************/
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+	implementFontSizeInLocalStorage();
+	implementMangaImageWidthInLocalStorage();
+	funcResumeDetailsProgress();
+	funcClearAllRadioSelection();
+}
+/************* body onload initialization script ******************/
+
+</script> 
+
+
+
+<style>
+/******* Main page background settings *********/
+body {
+	font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+	background: Moccasin; /* For browsers that do not support gradients */
+	line-height: 2;
+	background: linear-gradient(Seashell, PeachPuff); // Standard syntax (must be last)
+
+/*
+background: linear-gradient(Moccasin, PeachPuff);  //Standard syntax (must be last)
+background-repeat: repeat-x;
+background-size: auto;
+background-image: url("https://78.media.tumblr.com/20b34e8d12d4230f9b362d7feb148c57/tumblr_oiwytz4dh41tf8vylo1_1280.png");
+background-color: #ffeedd;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: right top;
+*/
+}
+/******* dark mode, 23-May-2026 *********/
+/* Dark Mode CSS - Add this after your existing body styles */
+:root {
+  --bg-body: Moccasin;
+  --bg-gradient-start: Seashell;
+  --bg-gradient-end: PeachPuff;
+  --text-color: #000000;
+  --details-border: #1ab2ff;
+  --primary-li-border: Orchid;
+  --tag-button-bg: #44c767;
+  --tag-window-bg: HoneyDew;
+  --user-panel-bg: powderblue;
+  --input-border: red;
+  --question-header-bg: mediumslateblue;
+  --explanation-bg: SandyBrown;
+  --modal-bg: #fffaf0;
+  --choice-bg: #fff6ea;
+  --choice-border: #c5c9d1;
+}
+
+body.dark-mode {
+  --bg-body: #1a1a2e;
+  --bg-gradient-start: #16213e;
+  --bg-gradient-end: #0f3460;
+  --text-color: #e0e0e0;
+  --details-border: #5a9eff;
+  --primary-li-border: #aa6dc9;
+  --tag-button-bg: #2c5e2e;
+  --tag-window-bg: #1e2a3a;
+  --user-panel-bg: #2c3e50;
+  --input-border: #e74c3c;
+  --question-header-bg: #5b4b8c;
+  --explanation-bg: #b85c1a;
+  --modal-bg: #2c2c3a;
+  --choice-bg: #2a2a3a;
+  --choice-border: #4a4a5a;
+  --bg-card: #2f3147;   /* dark blue/gray */
+}
+
+body {
+  background: var(--bg-body);
+  background: linear-gradient(var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode a {
+  color: #7bb3ff;
+}
+
+/* Update existing elements to use CSS variables */
+details {
+  border-color: var(--details-border);
+}
+
+#_primaryli, #_novelli {
+  border-color: var(--primary-li-border);
+}
+
+.tagButton {
+  background-color: var(--tag-button-bg);
+}
+
+.tagWindow {
+  background-color: var(--tag-window-bg);
+}
+
+#_userPanel {
+  background-color: var(--user-panel-bg);
+}
+
+#_userInput {
+  border-color: var(--input-border);
+  background-color: var(--choice-bg);
+  color: var(--text-color);
+}
+
+.questionHeader {
+  background-color: var(--question-header-bg);
+}
+
+.explanationHighlight {
+  background-color: var(--explanation-bg);
+}
+
+.modal-content {
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
+}
+
+.questionCard .questionChoiceText {
+  background: var(--choice-bg);
+  border-color: var(--choice-border);
+}
+/******* dark mode, 23-May-2026 *********/
+
+/******* Text first line indent *********/
+.firstLineIndent {
+	text-indent:2em;
+}
+/******* Text first line indent *********/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/******* Main page background settings *********/
+/******* Details element *********/
+details {
+    border: 2px solid #1ab2ff;
+    border-radius: 6px;
+    padding: .5em .5em 0;
+	margin: 0.2em;
+}
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+/*
+details[open] {
+    padding: .5em;
+}
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+    margin-bottom: .5em;
+}
+*/
+details[open] summary {
+    border-bottom: 1px solid #0099e6;
+}
+/******* Details element *********/
+/******* changeFontSizeUserPanel element *********/
+.container {
+	font-size: 16px;
+  	/*width:85%*/
+	margin-top: 5em;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#_mainUL {
+	padding: 0em;
+}
+/*
+*/
+
+#_primaryli {
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    padding: 0.2em;
+	margin : 1em;
+}
+
+#_novelli { /* special li CSS for displaying novel like text, filter, open/close does not apply*/
+    border: 2px solid Orchid;
+    border-radius: 6px;
+    /*
+	padding: 0.2em;
+	margin : 1em;
+	*/
+	list-style-type: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+	margin: 0.2em; /* keep very small margins */
+}
+
+#_biggify, #_reset, #_smallify, #_narrower, #_resume, #_wider, #_backToContent, #_goToMov, #_goToManga, #_goToTxt, #_OpenDetails, #_CloseDetails, #_activeViewModeButton, #_activateExamModeButton, #_GoToBottom, #_darkModeToggle {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    /*
+	display: inline-block;
+    display: block;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	*/
+	margin: 0.1em;
+    cursor: pointer;
+	border-radius: 12px;
+	width: 20%; 
+}
+#_userPanel {
+	position: fixed;
+	/*
+	top: 4em;
+	height : 80%;
+	top: 0px;
+	overflow: scroll;
+	width: 15em;
+	*/
+	border: 3px solid #73AD21;
+	background-color: powderblue;
+	right: 0.8em;
+	z-index: 1; /* Sit on top */
+	bottom: 0;
+	left: 0;
+	width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+	
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	display: none; /* showUserPanel() will set it to flex */
+	flex-wrap: wrap;
+	justify-content: space-around;
+	/*
+	justify-content: center;
+	display: flex;
+	*/
+	/* 28-Apr-2024, 11.07 AM, flexible box test */
+	
+}
+
+#_userInput {
+	position: fixed;
+	top: 1.2em;
+	font-size: 1.2em;
+	right: 7em;
+	left: 1em;
+	/*width: 80%;*/
+	border: 2px solid red;
+	border-radius: 0.5em;
+	z-index:1; /* 23-Feb-2026, added to make filter not been covered by other elements */
+}
+
+
+/******* changeFontSizeUserPanel element *********/
+/******* tag search element *********/
+
+.tagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.tagButton:hover {
+	background-color:#5cbf2a;
+}
+.tagButton:active {
+	position:relative;
+	top:1px;
+}
+
+.fullWidthTagButton {
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:0.2em 0.5em;
+	margin-top: 0.5em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:100%;
+}
+.fullWidthTagButton:hover {
+	background-color:#5cbf2a;
+}
+.fullWidthTagButton:active {
+	position:relative;
+	top:1px;
+}
+
+#_clearSearchButton {
+	position: fixed;
+	top: 1em;
+	right: 5em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color:Plum;
+	margin-top: 0.3em;
+	padding:0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+#_showHiddenElementButton { /* add 02-Oct-2023 for hideAndShow */
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	height : 2em;
+	width : 3em;
+	font-size: 1em;
+	background-color : Chartreuse;
+	margin-top : 0.3em;
+	padding : 0.2em 0.2em;
+	z-index: 1; /* Sit on top */
+}
+
+
+.tagWindow {
+	border: 0.1em solid Violet;
+	background-color: HoneyDew;
+	padding: 1em;
+	height: 10em;
+	/* width: 75%; */
+	overflow: scroll;
+	width: 96%;
+}
+/******* tag search element *********/
+
+/******* navigation button *********/
+
+.navButtonLeft {
+	box-shadow: 3px 4px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border-radius:15px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;    
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+.navButtonRight {
+	box-shadow: 3px 4px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border-radius:15px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em; 
+	padding:2px 8px;  
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+	
+	width : 5em;
+	float : right;
+	margin-left : 2em;
+}
+
+.navButtonCenter {
+	box-shadow: 3px 4px 0px 0px #fbafe3;
+	background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+	background-color:#ff5bb0;
+	border-radius:15px;
+	border:1px solid #ee1eb5;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1em;
+	padding:2px 8px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c70067;
+	
+	width : 5em;
+	float : left;
+	margin-left : 2em;
+}
+
+/******* navigation button *********/
+
+
+/******************* manga image setting *******************/
+.mangaImage {
+	display:block;
+	width:80%;
+	margin: auto;
+	margin-bottom : 0.5em;
+	box-shadow: 8px 8px 8px 0 CadetBlue;
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 2%;
+}
+/******************* manga image setting *******************/
+
+/******************* tool tip *******************/
+img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+	width: 400px;
+	height: auto;
+    background-color: Azure;
+    color: #0f73ff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 5px;
+	box-shadow: 0px 0px 5px 5px #888888;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltipRight {
+    top: -5px;
+    left: 125%;
+}
+.tooltipLeft {
+    top: -10px;
+    right: 110%; 
+}
+.tooltipTop {
+    width: 100px;
+    bottom: 100%;    
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+.tooltipBottom {
+	width: 100px;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px; /* This makes the margin half of the width to the center */
+}
+/******************* tool tip *******************/
+
+/******************* tool tip example *******************
+<span class="tooltip">right tooltip<span class="tooltiptext tooltipRight">right tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+Content goes here. Content goes here. 
+<span class="tooltip">left tooltip<span class="tooltiptext tooltipLeft">left tooltip content, can has image <img src="https://www.tortoiseowner.com/wp-content/uploads/2019/04/Tortoise-Anatomy.jpg"></span></span>
+******************* tool tip example *******************/
+
+/******************* functional elements hide and show *******************/
+/* added 02-Oct-2023, 07.49 PM */
+
+.hideAndShow {
+	display : none;
+}
+
+/******************* functional elements hide and show *******************/
+
+/******************* google image search query *******************
+https://www.google.com/search?tbm=isch&q=findSomeImage
+******************* google image search query *******************/
+
+/******* MCQ question card CSS *********/
+/* added 16-Apr-2025, 11.30 AM */
+input[type="radio"] { 
+	transform: scale(1.5); 
+	/*margin: 1.5em;*/
+	margin: 1em;
+}
+
+.questionHeader {
+	background-color : mediumslateblue; 
+	color : white; 
+	/*font-size : 1em;*/
+	margin : 0.1em;
+	border-radius : 0.2em;
+	padding : 0.2em; 
+}
+.questionCard {
+	width : 95%; 
+	margin : auto; 
+	padding : 0.5em; 
+	border-style : outset ; 
+	border-width : 0.2em; 
+	border-color : mediumslateblue; 
+	border-radius : 0.5em;
+	/*
+	font-size : 1.5em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	*/
+}
+.questionChoiceText {
+	//display: in-line;
+
+	padding-bottom : 0.5em;
+	/*
+	margin-top : 1em;
+	padding-left : 1em;
+	*/
+	//align-items: center;
+}
+
+.correctAnswerHighlight { 
+	border: 0.1em solid HotPink; 
+	border-radius: 1em;
+	padding-bottom : 0.2em;
+	padding-top : 0.2em;
+	padding-right : 0.5em;
+}
+
+.explanationHighlight {
+	font-size : 1.2em;
+	color : Cornsilk; 
+	background-color : SandyBrown;
+	border-color : red; 
+	border-radius : 0.2em;
+	padding : 0.2em; 
+	margin : 0.1em;
+}
+
+/* Updated Modal Styling */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it stays above the user panel */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Darker overlay for focus */
+    backdrop-filter: blur(3px); /* Modern blur effect */
+}
+
+.modal-content {
+    background-color: #fffaf0; /* FloralWhite to match your warm theme */
+    margin: 15% auto; 
+    padding: 25px;
+    border: 3px solid var(--brand-600); /* Uses your slateblue variable */
+    border-radius: 15px;
+    width: 70%; 
+    max-width: 400px; /* Prevents it from being too wide on desktop */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: inherit;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Modal Buttons Styling */
+.modal-content button {
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.1s;
+}
+
+#yesButton, #examYesButton, #submitYesButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noButton, #examNoButton, #submitNoButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal-content button:active {
+    transform: scale(0.95);
+}
+
+/******* MCQ question card CSS *********/
+
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+:root {
+  /* Keep colors in the same family as your page */
+  --brand-600: mediumslateblue;   /* matches .questionCard border */
+  --brand-700: slateblue;
+  --border: #c5c9d1;              /* slightly darker neutral for visibility */
+  --bg-card: #fff6ea;             /* soft off-white to fit PeachPuff background */
+  --focus-outline: 3px solid #1d4ed8;
+}
+
+/* Each answer row becomes a “card” */
+.questionCard .questionChoiceText {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;   /* custom dot + text */
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+/* Make the whole row clickable by overlaying the native input */
+.questionCard .questionChoiceText input[type="radio"] {
+  position: absolute;
+  inset: 0;                 /* stretch to cover the entire card */
+  width: 100%;
+  height: 100%;
+  opacity: 0;               /* keep it accessible & focusable, just invisible */
+  margin: 0 !important;     /* override earlier margins */
+  transform: none !important;
+  cursor: pointer;
+}
+
+/* Custom radio visual (left dot) using ::before so we don’t touch your HTML */
+.questionCard .questionChoiceText::before {
+  content: "";
+  inline-size: 20px;
+  block-size: 20px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 4px #fff;
+  transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover affordance ==> disabled on 20-Apr-2026, 1.35 PM, as it is a distraction
+.questionCard .questionChoiceText:hover {
+  border-color: #9aa3b2;
+  background: #fffefd;
+}
+*/
+
+/* Focus ring on keyboard focus (card-level) */
+.questionCard .questionChoiceText:has(input[type="radio"]:focus-visible) {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Selected state: thicker blue aura and filled dot */
+.questionCard .questionChoiceText:has(input[type="radio"]:checked) {
+  border-color: var(--brand-600);
+  box-shadow: 0 0 0 4px rgba(123, 104, 238, 0.20); /* MediumSlateBlue aura */
+  background: var(--bg-card);
+}
+.questionCard .questionChoiceText:has(input[type="radio"]:checked)::before {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Your “correct answer” highlight plays nicely with the new card */
+.questionCard .questionChoiceText.correctAnswerHighlight {
+  border-color: hotpink !important;
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.25);
+  background: white;
+}
+
+/* (Optional) If the extra <br> after each choice feels too tall, you can reduce vertical rhythm */
+.questionCard br + .questionChoiceText,
+.questionCard .questionChoiceText + br {
+  //line-height: 0;
+}
+/* === Enhanced clickable radio options for MCQ, added 12-Mar-2026, 01.40 PM === */
+
+/******************* list element template *******************
+<!---------------------------------------------------------->
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../sample.html" target="_blank">
+		<img src="image_source"><br/>
+		{title} </a></summary>
+			<ul>
+			<li>Source:          </li>
+			<li>Post date:       </li>
+			<li>Collected date:  </li>
+			</ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+<!--------------------for mov------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary><a href="http://gabrielchenwei.synology.me/~Gabriel Chen Wei/library/.../{folderName}" target="_blank">
+		  <img src="image_source"><br/>
+		  {(Mov){folderName}} </a></summary>
+			  <ul>
+				<li>Source:   google.com       </li>
+				<li>Post date:  19-Nov-2000     </li>
+				<li>Collected date: 10-Oct-2021 </li>
+			  </ul> 
+		</details>
+	</li>
+<!---------------------------------------------------------->
+
+<!--------------------one line text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+	</li>
+<!--------------------one line text direct display ------------------------>
+
+<!--------------------ul text direct display ------------------------>
+	<li id = "_primaryli">
+		<a>textContent</a>
+		<ul>
+			<li>listItem</li>
+			<li>listItem</li>
+			<li>listItem</li>
+		</ul> 
+	</li>
+<!--------------------ul text direct display ------------------------>
+
+<!--------------------image direct display ------------------------>
+	<li id = "_primaryli">
+		<a><img class="mangaImage" src="image_source"><br/>imageTitleForSearch</a>
+	</li>
+<!--------------------image direct display ------------------------>
+
+<!-------------------- expendable details and summary display ------------------------>
+	<li id = "_primaryli">
+		<details class="detailsSwitch" id="_details_001"><summary>
+			<a>summaryStatement</a></summary>
+			<ul>
+				<li>listItem</li>
+				<li>listItem</li>
+				<li>listItem</li>
+			</ul> 
+		</details>
+	</li>
+<!-------------------- expendable details and summary display ------------------------>
+
+******************* list element template *******************/
+</style>
+</head>
+  
+<body onload="initialization();">
+<div class="container">
+<div id="_userPanel" onclick="event.stopPropagation()">
+<!--<div id="_userPanel">-->
+	<button id="_backToContent" onclick="funcGotoTop(); hideUserPanel();">🔝</button>
+	<button id="_goToMov" onclick="window.location.href='#TocMov'; hideUserPanel();">🎞️</button>
+	<button id="_OpenDetails" onclick="funcOpenAllDetails(); hideUserPanel();">📂</button>
+	<button id="_CloseDetails" onclick="funcCloseAllDetails(); hideUserPanel();">📁</button>
+	<button id="_goToTxt" onclick="window.location.href='#TocTxt'; hideUserPanel();">🈳</button>
+	<button id="_biggify">A+</button>
+	<button id="_reset">A</button>
+	<button id="_smallify">A-</button>
+	<button id="_goToManga" onclick="window.location.href='#TocManga'; hideUserPanel();">🖼️</button>
+	<button id="_wider">🖼️+</button>
+	<button id="_resume">🖼️O</button>
+	<button id="_narrower">🖼️-</button>
+	<button id="_GoToBottom" onclick="funcGotoBottom(); hideUserPanel();">⬇️</button>
+	<button id="_activeViewModeButton" onclick="funcShowAllAnswersAndExplanations(); hideUserPanel();">📖</button>
+	<button id="_activateExamModeButton" onclick="funcActivateExamMode(); hideUserPanel();">📝</button>
+	<button id="_darkModeToggle" onclick="toggleDarkMode(); hideUserPanel();">🌓</button>
+</div>
+
+<!----------- MCQ Check Result response modal ----------->
+<div id="MCQresultModal" class="modal">
+    <div class="modal-content">
+        <p id="resultModalMessage"></p>
+        <button class="tagButton" onclick="document.getElementById('MCQresultModal').style.display='none'">OK</button>
+    </div>
+</div>
+<!----------- MCQ Check Result response modal ----------->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+<div id="MCQviewModeModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to activate View Mode?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+</div>
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+<div id="MCQexamModeModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to activate exam mode?</p>
+    <button id="examYesButton">Yes</button>
+    <button id="examNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Exam mode double confirm modal ----------- -->
+
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+<div id="MCQsubmitModal" class="modal">
+  <div class="modal-content">
+    <p id="submitModalMessage">Correct rate : 0%.
+Do you want to review?</p>
+    <button id="submitYesButton">Yes</button>
+    <button id="submitNoButton">No</button>
+  </div>
+</div>
+<!-- ----------- MCQ Submit modal (score + review prompt) ----------- -->
+
+<!----------- MCQ question card View mode double confirm modal ----------->
+
+<div id="_filter">
+	<input type="text" id="_userInput" onkeyup="funcGetFilteredList()" placeholder="type to filter..."><button id="_clearSearchButton" class="tagButton" onclick="funcClearUserInput();">Clear</button><button id="_showHiddenElementButton" class="tagButton" onclick="toggleUserPanel()">➕</button>
+</div>
+<h2><a id="TocTop"></a>{RES5 Chapter 05} </h2><ul id="_mainUL">
+<a target="_blank" href="https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/insurance/RES5/aia_mock_2026/res5_ch05/" > source : RES5 raw screenshots </a>
+<hr/>
+
+<!-- <<<< Starter, insert new list item below this line >>>><<<< Starter, insert new list item below this line >>>> -->
+
+<div class = "questionCard" id="_Q001"><p class = "questionHeader">Question 001 of 43</p>
+<p>(QID: 5227e53798) In the context of FAA-N06, John Doe is a representative of an FA whose non-compliance to the notice has caused money to be laundered through his FA. Under which of the following will he be penalized?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value ='correct'>Financial Advisers Act (FAA)  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>MAS Act  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>Corruption, Drug Trafficking and Other Serious Crimes (Confiscation of Benefits) Act (CDSA)  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_001' value =''>Common Law  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q001')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q001"><summary class="explanationHighlight">Show Answer</summary>Explanation: (A) is correct because Notices are legally binding regulatory instruments issued by the MAS. (B) is incorrect as the question clearly references FAA-N06. (C) is incorrect, except if the offence is tipping-off in relation to filing a STRO. (D) is incorrect as common law is more for other crimes.</details></div><br/>
+
+<div class = "questionCard" id="_Q002"><p class = "questionHeader">Question 002 of 43</p>
+<p>(QID: 5227e53796) Which of the following is NOT considered a family member of a politically exposed person?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value ='correct'>paternal uncle  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>adopted brother  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>step-sister  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_002' value =''>step-daughter  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q002')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q002"><summary class="explanationHighlight">Show Answer</summary>Explanation: (A) is correct because paternal uncle is NOT considered a family member of a PEP. Family member means a parent, step-parent, child, step-child, adopted child, spouse, sibling, step-sibling and adopted sibling of the politically exposed person.</details></div><br/>
+
+<div class = "questionCard" id="_Q003"><p class = "questionHeader">Question 003 of 43</p>
+<p>(QID: 5227e53799) In the context of FAA-N06 (AML), which of the following is NOT a risk assessment exercise?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value ='correct'>Developing systems to enable FA to manage risks  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Consider all relevant risk factors before setting the level of overall risk and the appropriate type/extend of mitigation required  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Keep FA's risk assessments updated  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_003' value =''>Prepare appropriate mechanisms to provide risk assessment information to MAS  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q003')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q003"><summary class="explanationHighlight">Show Answer</summary>Explanation: (A) is incorrect because developing systems to enable FA to manage risks comes under Risk Mitigation. The other options are Risk Assessment exercises.</details></div><br/>
+
+<div class = "questionCard" id="_Q004"><p class = "questionHeader">Question 004 of 43</p>
+<p>(QID: 5227e53797) Which of the following approaches does the MAS Notice FAA-N06 adopt in fighting money laundering and terrorism financing?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>Doubt-based  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value ='correct'>Risk-based  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>Point-based  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_004' value =''>Sanction-based  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q004')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q004"><summary class="explanationHighlight">Show Answer</summary>Explanation: (B) is correct because the MAS Notice adopts a risk-based approach.</details></div><br/>
+
+<div class = "questionCard" id="_Q005"><p class = "questionHeader">Question 005 of 43</p>
+<p>(QID: 5227e47589) Simplified CDD measures should NOT be performed on:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>a Singapore Government entity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>companies listed on the SGX.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value =''>an REIT listed on the SGX.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_005' value ='correct'>a foreign unlisted company in a country with high ML/TF risks.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q005')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q005"><summary class="explanationHighlight">Show Answer</summary>Explanation: FAA-N06: SCDD CANNOT be performed in the case of a foreign unlisted company in a country with high ML/TF risks. SCDD can be performed only where the ML/TF risks are low. Examples of entities where ML/TF risks are low include Singapore government entities and entities listed on the SGX.</details></div><br/>
+
+<div class = "questionCard" id="_Q006"><p class = "questionHeader">Question 006 of 43</p>
+<p>(QID: 5227e47594) In the context of performing enhanced CDD for a PEP, which of the following is NOT considered as a family member?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Step-parent  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value ='correct'>First cousin  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Step-sibling  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_006' value =''>Adopted child  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q006')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q006"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the context of PEPs, a family member means a parent, step-parent, child, step-child, adopted child, spouse, sibling, step-sibling and adopted sibling of the PEP. First cousin is not a family member.</details></div><br/>
+
+<div class = "questionCard" id="_Q007"><p class = "questionHeader">Question 007 of 43</p>
+<p>(QID: 5227e47591) Which of the following persons CANNOT normally be considered domestic politically exposed persons (PEPs) for Singapore?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value ='correct'>Junior bureaucrats  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>Government ministers  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>Members of Parliament  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_007' value =''>Non-Constituency Members of Parliament  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q007')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q007"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the context of Singapore, domestic PEPs should include all Government Ministers, Members of Parliament, Nominated Members of Parliament and Non-Constituency Members of Parliament. Junior bureaucrats CANNOT be considered PEPs.</details></div><br/>
+
+<div class = "questionCard" id="_Q008"><p class = "questionHeader">Question 008 of 43</p>
+<p>(QID: 5227e47593) Which of the following persons CANNOT normally be considered international politically exposed persons (PEPs)?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value ='correct'>President of the Festival De Cannes  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>President of the International Monetary Fund  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>Secretary General of the United Nations  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_008' value =''>Regional head of the North Atlantic Treaty Organisation in Europe  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q008')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q008"><summary class="explanationHighlight">Show Answer</summary>Explanation: International PEPs include persons serving in high positions in politically influential organisations such as the United Nations (or its affiliated organisations), the IMF, WTO, NATO, etc. Chairman of the Festival De Cannes board is unlikely to be a PEP unless there are specific reasons to consider him a PEP. PEPs are people with higher risk of ML/TF by virtue of their position or status.</details></div><br/>
+
+<div class = "questionCard" id="_Q009"><p class = "questionHeader">Question 009 of 43</p>
+<p>(QID: 5227e47596) An FA is NOT required to perform CDD when it:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>establishes business relations with a customer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value ='correct'>markets its products or services to the general public.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>has doubts about the veracity or adequacy of the information previously obtained from the customer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_009' value =''>has suspicions about the customer's business activities where due diligence measures are not necessary.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q009')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q009"><summary class="explanationHighlight">Show Answer</summary>Explanation: It is simply not possible to conduct CDD to all members of the general public. The FA must perform CDD in the scenarios mentioned in the other three options.</details></div><br/>
+
+<div class = "questionCard" id="_Q010"><p class = "questionHeader">Question 010 of 43</p>
+<p>(QID: 5227e47585) FAs may encounter a customer who is actually a manager of a portfolio of assets whose beneficial owners may be unknown. Which of the following customers is the FA required to make inquiries about possible beneficial owners and determine whether to conduct CDD measures?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>A direct life insurer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value ='correct'>A public accounting firm.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>A merchant bank.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_010' value =''>A fund management company.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q010')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q010"><summary class="explanationHighlight">Show Answer</summary>Explanation: Most FIs are subject to compliance with AML/CFT requirements consistent with standards set by the FATF. A public accountancy firm is not subject to such compliance, so inquiries must be made.</details></div><br/>
+
+<div class = "questionCard" id="_Q011"><p class = "questionHeader">Question 011 of 43</p>
+<p>(QID: 5227e47586) In the context of Record Keeping, the licensed FA must keep for at least ______ the data, documents and information relating to a transaction.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>3 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value ='correct'>5 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>7 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_011' value =''>9 years  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q011')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q011"><summary class="explanationHighlight">Show Answer</summary>Explanation: Notice FAA-N06 A financial adviser must retain data, documents and info relating to a transaction, including any info needed to explain and reconstruct the transaction, for a period of at least 5 years following the completion of the transaction.</details></div><br/>
+
+<div class = "questionCard" id="_Q012"><p class = "questionHeader">Question 012 of 43</p>
+<p>(QID: 5227e47584) An FA must retain data, documents and information needed to explain and reconstruct a client's transaction for a minimum period of _____ following the completion of the transaction.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>2 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>3 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value =''>4 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_012' value ='correct'>5 years  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q012')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q012"><summary class="explanationHighlight">Show Answer</summary>Explanation: Notice No: FAA-N06: An FA must retain data, documents and info needed to explain and reconstruct a transaction for a minimum period of 5 years following the completion of the transaction.</details></div><br/>
+
+<div class = "questionCard" id="_Q013"><p class = "questionHeader">Question 013 of 43</p>
+<p>(QID: 5227e47587) Jane is a representative of a FA who is servicing John, apparently a body guard of the son of a PEP. Jane notices that John needs to wait for messages on his phone whenever Jane asks for instructions pertaining to his account. What should Jane do?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>File a STR secretly.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>Freeze the account.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value ='correct'>Apply ECDD on John.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_013' value =''>Apply ECDD on the PEP.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q013')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q013"><summary class="explanationHighlight">Show Answer</summary>Explanation: Notice No: FAA-N06: Note that no suspicious transaction is taking place yet. A FA may apply ECDD measures on the customer if it assesses that the PEP has considerable influence on the customer. It is perfectly legal for a PEP to be the beneficial owner of the bodyguard's account – it just needs to be known to the FA.</details></div><br/>
+
+<div class = "questionCard" id="_Q014"><p class = "questionHeader">Question 014 of 43</p>
+<p>(QID: 5227e47592) In the context of prevention of ML and TF, Connected Party of a customer that is a partnership DOES NOT include:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>the managing partner.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value ='correct'>a sales executive in the partnership.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>any partner of the partnership.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_014' value =''>any manager of the partnership.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q014')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q014"><summary class="explanationHighlight">Show Answer</summary>Explanation: Partners, managers or managing partners (having executive authority) are connected parties of a partnership. A sales executive is NOT considered a connected party.</details></div><br/>
+
+<div class = "questionCard" id="_Q015"><p class = "questionHeader">Question 015 of 43</p>
+<p>(QID: 5227e53795) A new client, a trust company licensed under Section 5 of the Trust Companies Act 2005, establishes a business relationship with your financial institution. Which type of due diligence should you carry out?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>Minimal CDD  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>Enhanced CDD  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value =''>Standard CDD  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_015' value ='correct'>Simplified CDD  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q015')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q015"><summary class="explanationHighlight">Show Answer</summary>Explanation: SCDD can be performed for Trust companies licensed under Section 5 of the Trust Companies Act 2005.</details></div><br/>
+
+<div class = "questionCard" id="_Q016"><p class = "questionHeader">Question 016 of 43</p>
+<p>(QID: 5227e47588) Jane is a HNWI and owns and operates a chain of restaurants in Singapore. She receives USD 1 million from a charitable organisation in Europe and asks her financial adviser John to invest the money in highly-liquid equity ETFs trading on the SGX. Jane invests in shares and ETFs in large amounts regularly. John should:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>Comply with Jane's request based on her transaction history, financial standing, and risk profile.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>File a Suspicious Transactions Report immediately without informing Jane.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value =''>Comply with the request but ask her to confirm in writing that she will sell the ETFs only after one year.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_016' value ='correct'>Ask Jane to explain her relation with the charitable organisation and the reason why she is investing such funds in ETFs.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q016')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q016"><summary class="explanationHighlight">Show Answer</summary>Explanation: Such a large amount of funds coming in from a charitable organisation in Europe should raise suspicion. John should NOT comply with Jane's request. He should ask the relevant questions so that he can understand the nature of the transaction and file an STR if he is not satisfied with the reply.</details></div><br/>
+
+<div class = "questionCard" id="_Q017"><p class = "questionHeader">Question 017 of 43</p>
+<p>(QID: 5227e53794) To combat money laundering and terrorism financing, what is the minimum retention period for relevant records?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>3 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>4 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value ='correct'>5 years  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_017' value =''>6 years  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q017')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q017"><summary class="explanationHighlight">Show Answer</summary>Explanation: The record retention period is 5 years. Therefore, (C) is correct.</details></div><br/>
+
+<div class = "questionCard" id="_Q018"><p class = "questionHeader">Question 018 of 43</p>
+<p>(QID: 5227e47590) In the context of prevention of ML and CFT, Connected Party of a customer that is a company DOES NOT include:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>the chairman of the company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>the director of the company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value =''>the CEO of the company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_018' value ='correct'>the stationery supplier of the company.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q018')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q018"><summary class="explanationHighlight">Show Answer</summary>Explanation: The term connected party in relation to a legal person (other than a partnership), means any director or any natural person having executive authority in the legal person. Examples of natural persons with executive authority in a company include the Chairman and Chief Executive Officer.</details></div><br/>
+
+<div class = "questionCard" id="_Q019"><p class = "questionHeader">Question 019 of 43</p>
+<p>(QID: 5227e47595) If a Singapore Government entity is the customer, which of the following information is the FA required to obtain from the entity?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value ='correct'>Proof that the customer is indeed a Singapore Government entity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>Proof of financial viability of the entity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>Identities of the beneficial owner(s) of the entity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_019' value =''>Proof of authority to act for the entity.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q019')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q019"><summary class="explanationHighlight">Show Answer</summary>Explanation: Where the customer is a Singapore Government entity, the financial adviser shall only be required to obtain such info as may be required to confirm that the customer is a Singapore Government entity.</details></div><br/>
+
+<div class = "questionCard" id="_Q020"><p class = "questionHeader">Question 020 of 43</p>
+<p>(QID: 5227e47564) A FA may apply ______ customer due diligence where it is satisfied that there is low risk of money laundering.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>detailed  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>intermediate  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value =''>enhanced  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_020' value ='correct'>simplified  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q020')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q020"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser may apply simplified customer due diligence where it is satisfied that there is low risk of money laundering.</details></div><br/>
+
+<div class = "questionCard" id="_Q021"><p class = "questionHeader">Question 021 of 43</p>
+<p>(QID: 5227e47563) A FA should file a/an _____ report if any suspicion arises during Customer Due Diligence.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>anti-money laundering  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value ='correct'>suspicious transactions  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>high risk  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_021' value =''>anti-terrorism  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q021')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q021"><summary class="explanationHighlight">Show Answer</summary>Explanation: A Financial Adviser should file a Suspicious Transaction Report if any suspicion arises during Customer Due Diligence.</details></div><br/>
+
+<div class = "questionCard" id="_Q022"><p class = "questionHeader">Question 022 of 43</p>
+<p>(QID: 5227e47573) A financial adviser should inquire if there exists any beneficial owner in relation to a customer that is:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>A listed entity on the SGX.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value ='correct'>A private company in a foreign country that is not listed on any stock exchange.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>A financial institution subject to and supervised for AML/CFT requirements in Singapore.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_022' value =''>A listed company on a foreign stock exchange subject to regulatory disclosure requirements, including those for beneficial owners.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q022')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q022"><summary class="explanationHighlight">Show Answer</summary>Explanation: A financial adviser should inquire if there exists any beneficial owner in relation to a customer that is a private company in a foreign country that is not listed on any stock exchange.</details></div><br/>
+
+<div class = "questionCard" id="_Q023"><p class = "questionHeader">Question 023 of 43</p>
+<p>(QID: 5227e47583) MAS Notice No FAA-N06 defines the term legal person. Which of the following CANNOT be considered a legal person based on the definition?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value ='correct'>An individual who can own a property.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>A company that can own a property.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>A trust that owns a property.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_023' value =''>A corporation which can establish a permanent customer relationship with a bank.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q023')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q023"><summary class="explanationHighlight">Show Answer</summary>Explanation: A legal person means an entity, other than a natural person, that can establish a permanent customer relationship with a financial institution or otherwise own property. Therefore an individual (a natural person) cannot be considered a legal person under the definition.</details></div><br/>
+
+<div class = "questionCard" id="_Q024"><p class = "questionHeader">Question 024 of 43</p>
+<p>(QID: 5227e47575) In the context of prevention of money laundering and countering the financing of terrorism, which one of the following natural persons is considered a 'beneficial owner' in relation to a corporate customer of a financial adviser?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>One who advises the corporate customer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value ='correct'>One who controls the corporate customer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>One who works for the corporate customer.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_024' value =''>One who buys from the corporate customer.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q024')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q024"><summary class="explanationHighlight">Show Answer</summary>Explanation: A natural person who does not meet the shareholding threshold but who controls the customer (e.g. through exercising significant influence) is a beneficial owner of a corporate customer.</details></div><br/>
+
+<div class = "questionCard" id="_Q025"><p class = "questionHeader">Question 025 of 43</p>
+<p>(QID: 5227e47570) An individual who is or has been entrusted with prominent public functions in Singapore or overseas is known as a/ an ___ person.  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>politically motivated  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>high risk  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value =''>enhanced CDD  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_025' value ='correct'>politically exposed  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q025')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q025"><summary class="explanationHighlight">Show Answer</summary>Explanation: An individual who is or has been entrusted with prominent public functions in Singapore or overseas is known as a politically exposed person.</details></div><br/>
+
+<div class = "questionCard" id="_Q026"><p class = "questionHeader">Question 026 of 43</p>
+<p>(QID: 5227e47571) Which one of the following is NOT classified as a 'politically exposed person' in relation to the prevention of money laundering and countering the financing of terrorism?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>A senior military official.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>A senior official of a ruling political party.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value ='correct'>A senior executive of a public-listed private company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_026' value =''>A senior executive of a state owned corporation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q026')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q026"><summary class="explanationHighlight">Show Answer</summary>Explanation: An individual who is or has been entrusted with prominent public functions in Singapore or overseas is known as a politically exposed person. Therefore, a senior executive of a public-listed PRIVATE company is NOT a PEP.</details></div><br/>
+
+<div class = "questionCard" id="_Q027"><p class = "questionHeader">Question 027 of 43</p>
+<p>(QID: 5227e47581) MAS Notice No FAA-N06 defines the term Customer in relation to a financial adviser. Which of the following CAN be considered a customer of a financial adviser PQR based on the definition?</p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value ='correct'>LMN Limited, the owner of the master policy for a group life insurance arranged by PQR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>Jane, an employee of LMN Limited, LMN being the owner of the master policy for a group life insurance for its employees arranged by PQR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>OPQ, a trust that approaches PQR for opening an account, but PQR decides not to onboard it.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_027' value =''>FGH, an SGX-listed company that approaches PQR for opening an account, but PQR decides not to onboard it.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q027')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q027"><summary class="explanationHighlight">Show Answer</summary>Explanation: Customer, in relation to a financial adviser, means a person, whether a natural person, legal person or legal arrangement (e.g., a trust), with whom the financial adviser establishes or intends to establish business relations. The term includes in the case where the financial adviser arranges a group life insurance policy, the owner of the master policy. Therefore, LMN Limited is PQR's customer, the employees of LMN are not PQR's customers. OPQ and FGH are not PQR's customers because it does not even intend to establish business relationships with these entities.</details></div><br/>
+
+<div class = "questionCard" id="_Q028"><p class = "questionHeader">Question 028 of 43</p>
+<p>(QID: 5227e47568) Which of the following info is NOT required by a FA for conducting CDD?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>Nationality.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>Date of birth.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value ='correct'>Educational qualification.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_028' value =''>Unique identification number.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q028')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q028"><summary class="explanationHighlight">Show Answer</summary>Explanation: Educational qualifications are not required for CDD. Nationality, DOB and unique identification number are required.</details></div><br/>
+
+<div class = "questionCard" id="_Q029"><p class = "questionHeader">Question 029 of 43</p>
+<p>(QID: 5227e47574) A sum of $10,000 sits in Amy's bank account. Her husband, Ben, was the one who moved the money into Amy's account, and is scheduled to move the money next year to pay for their son's university fees, unless Ben's mother decides otherwise. Who is the Beneficial Owner of the $10,000?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>Amy, because she is the legal owner of the money.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>Ben, because he is the one who move the funds.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value =''>Ben's son, because he is the person who will ultimately benefit from the money.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_029' value ='correct'>Ben's mother, because she decides the movement of the money.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q029')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q029"><summary class="explanationHighlight">Show Answer</summary>Explanation: Essentially, it is important to find out who exercises significant CONTROL over the funds. In this case (although we are referring to natural persons), Ben's mother is the beneficial owner as she decides on the movement of funds.</details></div><br/>
+
+<div class = "questionCard" id="_Q030"><p class = "questionHeader">Question 030 of 43</p>
+<p>(QID: 5227e47567) Financial advisers can perform simplified customer due diligence measures on which of the following group of customers?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value ='correct'>Financial institutions supervised by MAS  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>Money Changer's Licencees  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>Remittance Licensees  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_030' value =''>PEPs  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q030')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q030"><summary class="explanationHighlight">Show Answer</summary>Explanation: Financial institutions supervised by MAS may be considered low-risk from the ML/TF perspective. Therefore, they may be subjected to SCDD.</details></div><br/>
+
+<div class = "questionCard" id="_Q031"><p class = "questionHeader">Question 031 of 43</p>
+<p>(QID: 5227e47576) MAS Notice No FAA-N06 defines the term Business Relations. Which of the following CANNOT be considered a business relation based on the definition?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>Financial Adviser PQR Limited opens a trading account for Jane.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>Financial Adviser PQR Limited maintains the trading account for LMN Limited.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value ='correct'>Financial Adviser PQR Limited gives its services brochure to various attendees in an investment conference.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_031' value =''>Financial Adviser PQR Limited provides investment advice to OPQ trust.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q031')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q031"><summary class="explanationHighlight">Show Answer</summary>Explanation: In the context of the notice, the term business relations means the opening or maintenance of an account by the financial adviser in the name of a person, or the provision of financial advice by the financial adviser to a person. The person can be a natural person, legal person or a legal arrangement (e.g., a trust). Therefore, distributing investment service brochures in a conference does not establish any business relationship (according to the definition). Note that a person with whom a financial adviser intends to establish a business relationship may be considered a customer under Notice. However, no business relation is established till an account is opened or maintained, or financial advice is provided.</details></div><br/>
+
+<div class = "questionCard" id="_Q032"><p class = "questionHeader">Question 032 of 43</p>
+<p>(QID: 5227e47582) John is the trustee of JJJ Trust. John has executive authority to make important decisions regarding all matters of the trust. JJJ Trust approaches financial adviser PQR for opening an investment account. During onboarding, PQR is unable to obtain the unique identification number of John. However, JJJ is an established trust with a good reputation. PQR assesses that the risks of ML/TF by JJJ are low. In this context, which of the following statements is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>PQR cannot establish business relationship with JJJ because it is unable to obtain the unique ID of John.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value ='correct'>PQR can establish a business relationship with JJJ if it can obtain some documents to prove the date of birth and the nationality of John.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>PQR can establish a business relationship with JJJ provided it obtains the trust deed and relevant documents appointing John as the trustee.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_032' value =''>PQR must file an STR if John is unable to provide the unique identification document.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q032')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q032"><summary class="explanationHighlight">Show Answer</summary>Explanation: John is a connected party in the context of the trust (a legal arrangement). Normally, in the context of a legal arrangement (e.g., a trust) the full name, including any aliases, and unique identification number (such as an identity card number, birth certificate number or passport number) of connected parties must be obtained. However, if the risks of ML/TF are not high, the financial adviser may obtain the date of birth and nationality of the connected party, in lieu of the unique identification number. Therefore, PQR can establish a business relationship with JJJ if it can obtain some documents to prove the date of birth and the nationality of John.</details></div><br/>
+
+<div class = "questionCard" id="_Q033"><p class = "questionHeader">Question 033 of 43</p>
+<p>(QID: 5227e58341) When onboarding a new client, which of the following information is not required for conducting Customer Due Diligence?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Residential address  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Nationality  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value =''>Date of birth  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_033' value ='correct'>Full names of family members  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q033')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q033"><summary class="explanationHighlight">Show Answer</summary>Explanation: Nationality, Residential address and Date of birth are basic. Requiring full names of family members would be too much.</details></div><br/>
+
+<div class = "questionCard" id="_Q034"><p class = "questionHeader">Question 034 of 43</p>
+<p>(QID: 5227e58328) A new client is seeking to establish business relationship and you are quite certain the source of funds are related to drug trafficking. You should:  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>establish business relations but perform enhanced customer due diligence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>establish business relations but file a STR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value ='correct'>not establish business relations and file a STR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_034' value =''>not establish business relations and convey your suspicions to the client.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q034')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q034"><summary class="explanationHighlight">Show Answer</summary>Explanation: Prior to a financial adviser establishing business relations or undertaking any transaction, where the financial adviser has any reasonable grounds to suspect that the assets or funds of a customer are proceeds of drug dealing or criminal conduct as defined in the CDSA, or are property related to the facilitation or carrying out of any terrorism financing offence as defined in the TSOFA, the financial adviser shall - not establish business relations with, or undertake a transaction for, the customer; and file an STR, and extend a copy to the Authority for information.</details></div><br/>
+
+<div class = "questionCard" id="_Q035"><p class = "questionHeader">Question 035 of 43</p>
+<p>(QID: 5227e47569) Which of the following circumstances is suspicious enough for filing a Suspicious Transaction Report (STR)?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>The customer decides to withdraw a request for a pending transaction after being requested to provide an info.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>The customer decides to terminate the business relationship after being reluctant to provide info.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value =''>The financial adviser is unable to complete CDD measures.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_035' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q035')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q035"><summary class="explanationHighlight">Show Answer</summary>Explanation: STRs should be filed in all the given scenarios.</details></div><br/>
+
+<div class = "questionCard" id="_Q036"><p class = "questionHeader">Question 036 of 43</p>
+<p>(QID: 5227e47577) Financial adviser PQR wholly acquires the business of LMN (another financial adviser). LMN had 100 clients on whom it had conducted appropriate onboarding and ongoing CDD measures as per its internal policies and procedures. In this context, which of the following statements is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>PQR must conduct simplified CDD measures on all the 100 customers as per its policies and procedures.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>PQR must conduct enhanced CDD measures on all the 100 customers as per its policies and procedures.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value =''>PDR need not conduct CDD measures on the clients acquired if LMN is a reputed company.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_036' value ='correct'>PQR need not conduct CDD measures on the clients if it obtains all their relevant records, it is sure the records are reliable, and is sure that the AML/CFT measures adopted by LMN were adequate.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q036')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q036"><summary class="explanationHighlight">Show Answer</summary>Explanation: The acquiring FA (PQR) need not conduct CDD on all the acquired customers if it obtains reliable records of the CDD conducted by the acquired FA (LMN). Moreover, the acquiring FA (PQR) should be satisfied about the adequacy of the CDD measures adopted by the acquired FA (LMN).</details></div><br/>
+
+<div class = "questionCard" id="_Q037"><p class = "questionHeader">Question 037 of 43</p>
+<p>(QID: 5227e47580) Jane is a well-reputed wealthy business tycoon settled in Singapore for decades. Jane opens an investment account with financial adviser PQR Limited. John, PQR's appointed representative, handles Jane's account. Jane executes several transactions in her account by sending email instructions. Because of her busy schedule, Jane authorizes James to give trading instructions to John for execution. John is unable to obtain the residential address of James but is able to confirm James' business address, as mentioned in Jane's authorisation letter. In this context, which of the following statements is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>John cannot allow James to act on Jane's behalf because his residential address could not be obtained.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>John may allow James to act on Jane's behalf only if he takes personal responsibility for any ML/TF risks associated with James.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value =''>John must allow James to act on Jane's behalf because Jane has submitted an authorisation letter to PQR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_037' value ='correct'>John may allow James to act on Jane's behalf if Jane is assessed to be of low-risk category from ML/TF perspective.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q037')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q037"><summary class="explanationHighlight">Show Answer</summary>Explanation: The FA must identify each natural person who acts or is appointed to act on behalf of the customer by obtaining at least the full name, including any aliases, unique identification number (such as an identity card number, birth certificate number or passport number), residential address, date of birth, nationality of such natural person, and verify the identity of each natural person. However, if the risks of ML/TF are low, instead of the residential address, the business address of such authorised person may be obtained. Therefore, John may allow James to act on Jane's behalf if the ML/TF risks are low because he has obtained the business address of James. Had the risks of ML/TF been high, obtaining the residential address would have been a must.</details></div><br/>
+
+<div class = "questionCard" id="_Q038"><p class = "questionHeader">Question 038 of 43</p>
+<p>(QID: 5227e47572) Which one of the following statements regarding non-face-to-face verification of business relationships with a customer by a financial adviser is FALSE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>The adviser should put in place policies and procedures to address any specific risks associated with non-face-to-face business relationships.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value ='correct'>The financial adviser should carry out Customer Due Diligence measures that are less stringent compared to those in case of face-to-face contact.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>The adviser should implement specific policies and procedures for addressing the risks related to non-face-to-face business relationship when conducting ongoing due diligence also.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_038' value =''>The financial adviser should remain vigilant to risks of ML/TF.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q038')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q038"><summary class="explanationHighlight">Show Answer</summary>Explanation: The financial adviser should carry out Customer Due Diligence measures that are MORE stringent compared to those in case of face-to-face contact. The other statements are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q039"><p class = "questionHeader">Question 039 of 43</p>
+<p>(QID: 5227e47565) The internal policies, procedures and controls developed by a financial adviser to help prevent money laundering are required to cover which of the following aspects?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>Record retention.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>Customer due diligence measures.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value =''>Detection of suspicious transactions.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_039' value ='correct'>All of the above  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q039')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q039"><summary class="explanationHighlight">Show Answer</summary>Explanation: The internal policies, procedures and controls developed by a financial adviser to help prevent money laundering are required to cover record retention, CDD measures and detection of suspicious transactions. Therefore, all the given options are true.</details></div><br/>
+
+<div class = "questionCard" id="_Q040"><p class = "questionHeader">Question 040 of 43</p>
+<p>(QID: 5227e47566) For which one of its corporate customers is the financial adviser NOT required to inquire about the presence of a beneficial owner?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>A holder of a remittance licence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>A holder of a money changer's licence.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value ='correct'>A financial institution incorporated outside Singapore and subject to and supervised for compliance with AML / CFT requirements consistent with standards set by the FATF.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_040' value =''>An investment vehicle that is not under the supervision of the MAS.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q040')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q040"><summary class="explanationHighlight">Show Answer</summary>Explanation: There is no need to inquire about the presence of a beneficial owner for a financial institution incorporated outside Singapore and subject to and supervised for compliance with AML / CFT requirements consistent with standards set by the FATF. In the other three cases, the FA should inquire about the presence of beneficial owners.</details></div><br/>
+
+<div class = "questionCard" id="_Q041"><p class = "questionHeader">Question 041 of 43</p>
+<p>(QID: 5227e47579) An appointed representative John notes that his client Jane has recently made 4 transfers of $1 million each from her account to high-risk jurisdictions such as the Cayman Islands. John escalates the matter and the preliminary investigation indicates a need for filing an STR. The STR is promptly filed. John informs Jane verbally that her transactions are under investigation under the CDSA for ML/TF and she should arrange for a lawyer to prove that she is clean. In this context, which of the following statements is TRUE?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>John has done the right thing by informing Jane because Jane has a right to know about such an investigation.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>John's conduct is legal because he has simply asked Jane to arrange for a lawyer to defend herself.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value ='correct'>John has committed the tipping-off offence under the CDSA.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_041' value =''>This is not a case of tipping-off because the investigation is not being conducted by John or the financial adviser organisation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q041')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q041"><summary class="explanationHighlight">Show Answer</summary>Explanation: Tipping off is the act of sharing information with someone (including the customer) that the customer is suspected of ML/TF or undergoing an investigation for ML/TF. Therefore, informing Jane about the investigation under the CDSA is an example of the tipping-off offence. It does not matter who is conducting the investigation.</details></div><br/>
+
+<div class = "questionCard" id="_Q042"><p class = "questionHeader">Question 042 of 43</p>
+<p>(QID: 5227e47578) Jane recently retired as a high-ranking official of a foreign government. Jane is settled in Singapore and approaches PQR Limited, a financial adviser, for opening a trading account. John, the relevant appointed representative, notices during onboarding that there are several large cash deposits in her savings account. John suspects that Jane could have received bribes and deposited the amount in her account. John investigates the matter further and finds some newspaper reports with allegations of corrupt practices by Jane when she was in office. John escalates the matter to his seniors. What should PQR do?  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>Perform enhanced due diligence on Jane and onboard her, unless she gets convicted by a court for corruption in her home country.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value ='correct'>File an STR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>Establish a business relationship with her and file an STR.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_042' value =''>Allow for a few low-value transactions by Jane without establishing business relations with her.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q042')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q042"><summary class="explanationHighlight">Show Answer</summary>Explanation: Under Notice FAA-N06, an STR may need to be filed even if no transaction has been undertaken and before establishing business relationship, if there are reasonable grounds to suspect that the assets or funds of a customer are proceeds of drug dealing or criminal conduct as defined in the CDSA (including bribery), or if the assets or funds are property related to the facilitation or carrying out of any terrorism financing offence as defined in the TSOFA. In such a scenario, the financial adviser must not establish business relations with, or undertake a transaction for, the customer. Therefore, PQR must not establish business relations with Jane and should file an STR.</details></div><br/>
+
+<div class = "questionCard" id="_Q043"><p class = "questionHeader">Question 043 of 43</p>
+<p>(QID: 5227e58342) Which of the following statements is TRUE? (You may pick more than one)  </p>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value ='correct'>Records should be kept for at least 5 years following the termination/ completion of a relationship/ transaction or acknowledgement.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>For ILPs, the insurer shall retain a copy of the audit certificate on the ILP subfunds which are terminated or matured for a period of 5 years, from the date of termination or maturity of the ILP sub-fund.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>To be granted a FA's license, the CEO and all Executive Directors must have a minimum of 5 years of relevant working experience with at least 3 years in a managerial capacity.  </input></span>
+<span class='questionChoiceText' ><input type = 'radio' name = 'radio_043' value =''>A Financial Institution should maintain proper records of the bases and supporting documents of its analysts' research recommendations for a period of not less than 5 years from the date of publication of the research recommendation.  </input></span>
+<button class="fullWidthTagButton" onclick = "funcCheckResult('_Q043')"> Check result </button><p id = "checkResult"></p>
+<details class="detailsSwitch" id="_Q043"><summary class="explanationHighlight">Show Answer</summary>Explanation: <b>ALL OPTIONS SHOULD BE SELECTED.</b> This question serves to help you memorise the '5 years' series. The default period to retain data / record keeping is 5 years, be it CDD records, transaction records, retaining audit certificate of terminated/matured subfunds, or analysts' research recommendations. Also, CEOs and Executive Directors are required to have 5 years of relevant working experience, including 3 years in managerial capacity. The RES 5 exam format requires you to only pick 1 out of 4 options.</details></div><br/>
+
+
+
+<!-- <<<< Ender, insert new list item above this line >>>><<<< End, insert new list item above this line >>>> -->
+</ul>
+
+<button class="navButtonLeft" onclick="window.location.href='res5_ch04.html';"> Previous </button>
+<button class="navButtonCenter" onclick="window.location.href='https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/library.html#Insurance%20exam%20materials';"> Index </button>
+<button id="_submitExam" class="navButtonLeft" style="display:none;" onclick="funcSubmitExam()"> Submit </button>
+<button class="navButtonRight" onclick="window.location.href='res5_ch06.html';"> Next </button>
+<p>&nbsp;</p><p>&nbsp;</p>
+
+</div>
+
+
+<div>
+<a id="TocBottom"></a>
+<p>&nbsp;</p><p>&nbsp;</p>
+</div>
+
+
+
+<script>
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+function funcShowHiddenElements() {
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	var objShowHideButton = document.getElementById("_showHiddenElementButton");
+	if (arrHideAndShowElements[0].style.display == "block") { 
+	// uses "block" as condition, if use "none" will cover "unset", results first click after onload malfunction
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "none";
+			objShowHideButton.innerHTML = "🔽";
+		}
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) {
+			arrHideAndShowElements[i].style.display = "block";
+			objShowHideButton.innerHTML = "🔼";
+		}
+	}
+}
+/***** (02-Oct-2023) added for hideAndShow elements *****/
+
+/***** (02-Oct-2023) detect click on body empty area, not in use *****/
+/* not in use
+document.body.addEventListener("click", function(e) { 
+// ref : https://stackoverflow.com/questions/20025685/detect-click-on-empty-area
+    var elm = e.target;
+	console.log ("elm.tagName.toUpperCase() : " + elm.tagName.toUpperCase());
+	
+    while (elm !== document.body) {
+		if (elm.tagName.toUpperCase() === "INPUT" || elm.tagName.toUpperCase() === "BUTTON") {
+            return; // exclude inputs and buttons
+        }
+		if (elm.tagName.toUpperCase() === "DIV" || elm.tagName.toUpperCase() === "IMG") {
+            return; // exclude DIVs and Images
+        }
+        elm = elm.parentNode;
+    }
+    console.log ("empty area clicked"); // actual code goes here.
+	//document.getElementsByClassName("hideAndShow").style.display = "block";
+	var arrHideAndShowElements = document.querySelectorAll("[class='hideAndShow']");
+	if (arrHideAndShowElements[0].style.display == "none") {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "block";
+	} else {
+		for(var i = 0; i < arrHideAndShowElements.length; i++) 
+		arrHideAndShowElements[i].style.display = "none";
+	}
+});
+not in use */
+
+/*
+// ***** detects back scroll (scroll up) ***** /
+// keep track of previous scroll position
+let prevScrollPos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+  // current scroll position
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // user has scrolled up
+    //document.querySelector('.navbar').classList.add('show');
+	alert("Hello! Can I help!!");
+  } else {
+    // user has scrolled down
+    //document.querySelector('.navbar').classList.remove('show');
+	//alert("Hello! I am going!!");
+  }
+
+  // update previous scroll position
+  prevScrollPos = currentScrollPos;
+});
+// ***** detects back scroll (scroll up) ***** /
+*/
+/***** (28-Sep-2023) detect click on body empty area *****/
+</script>
+
+<script>
+
+/************* date and time format script *************/
+
+function funcGetMonth3Char(numMonthNumber){
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return monthNames[numMonthNumber];
+}
+
+function funcFormattedToday() {
+    let date = new Date();
+    const day = date.toLocaleString('default', { day: '2-digit' });
+    const month = funcGetMonth3Char(date.getMonth());
+    const year = date.toLocaleString('default', { year: 'numeric' });
+    return day + '-' + month + '-' + year;
+}
+
+function funcFormattedCurrentTime() {
+    let date = new Date();
+    var hour = date.getHours();
+    var minute = String(date.getMinutes()).padStart(2, "0");
+    var second = String(date.getSeconds()).padStart(2, "0");
+	
+	var ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+	hour = String(hour).padStart(2, "0");
+	
+    return hour + '.' + minute + ' ' + ampm;
+}
+
+function funcShowDate() {
+	document.getElementById("dateDemo").innerHTML = funcFormattedToday();
+}
+
+function funcShowTime() {
+	document.getElementById("timeDemo").innerHTML = funcFormattedCurrentTime();
+}
+
+function funcShowDateTime() {
+	document.getElementById("dateTimeDemo").innerHTML = funcFormattedToday() + ", " + funcFormattedCurrentTime();
+}
+
+/************* date and time format script *************/
+
+/************* details progress script *************/
+    // Get all details elements on the page
+    var detailsElements = document.getElementsByTagName('details');
+
+    // Function to handle the open event
+    function handleDetailsOpen(event) {
+      // Check if the details element is open
+      if (event.target.open) {
+        // Get the ID of the opened details element
+        var openedDetailsId = event.target.id;
+
+        // Log the ID of the opened details element
+        console.log('Opened details ID:', openedDetailsId);
+		
+		// update the glbDetailsProgress value in local storage 
+		localStorage.setItem("glbDetailsProgress", openedDetailsId); 
+      }
+    }
+
+    // Loop through each details element and add the event listener
+    for (var i = 0; i < detailsElements.length; i++) {
+      detailsElements[i].addEventListener('toggle', handleDetailsOpen);
+    }
+	
+	function funcResumeDetailsProgress() {
+		console.log('Last read details ID:', localStorage.getItem("glbDetailsProgress"));
+		var EleViewedDetails = document.getElementById(localStorage.getItem("glbDetailsProgress"));
+		
+		EleViewedDetails.open = true; // 12-Nov-2023, 10.20 PM : add to open details before scrolling to 
+
+		EleViewedDetails.scrollIntoView({
+		  behavior: "smooth",
+		  block: "start",
+		  inline: "nearest"
+		});
+	}
+	
+
+function funcOpenAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = true; 
+}
+
+function funcCloseAllDetails() {
+	var arrDetailsSwitch = document.querySelectorAll("[class='detailsSwitch']");
+	for(var i = 0; i < arrDetailsSwitch.length; i++) 
+		arrDetailsSwitch[i].open = false; 
+}
+
+	
+/************* details progress script *************/
+</script>
+
+
+<script>
+function funcGotoTop() {
+	window.location.href='#TocTop';
+}
+function funcGotoBottom() {
+	window.location.href='#TocBottom';
+}
+</script>
+
+<script>
+
+  /************* Multiple Tags Search ******************/
+  const tagButtons = document.querySelectorAll('#tag-buttons button');
+  const tagOutput = document.getElementById('_userInput');
+	
+	  tagButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const tag = button.textContent;
+		  if (window.event.ctrlKey) { //ctrl was held down during the click
+			tagOutput.value += `,${tag}`;		  
+		  } else {
+			tagOutput.value = `${tag}`;
+		  }
+		  funcShowAllList();
+		  funcGetFilteredList();
+		});
+	  });
+	
+
+function funcClearUserInput() { 
+	// (20-Aug-2023) Add auto focus for next search string input after clicking the button
+	var objUserInput = document.getElementById("_userInput");
+	objUserInput.value = "";
+	funcShowAllList();
+	funcGotoTop();
+	objUserInput.focus();
+}
+
+</script>
+
+<script>
+
+/************* body onload initialization script ******************/
+
+/* --- moved to <head> section ---
+function initialization() {
+	getGlbOriginalFontSize();
+	getGlbOriginalMangaImageWidth();
+}
+*/
+
+/************* body onload initialization script ******************/
+
+/************* local storage script ******************/
+// for remember the user preferred font-size or mangaImage size
+// revised from localStorageSample.html : https://gabrielchenwei.synology.me/~Gabriel%20Chen%20Wei/library/WebDevelopment/localStorageSample.html
+
+function updateFontSizeInLocalStorage() {
+	// update user defined font-size
+	// been invoked every time when font-size been changed
+	glbCurrentFontSize = $('.container').css('font-size'); // update the glbCurrentFontSize
+	localStorage.setItem("glbCurrentFontSize", glbCurrentFontSize); // update the glbCurrentFontSize value in local storage 
+}
+
+function implementFontSizeInLocalStorage() {
+	// implement remembered latest user defined font-size
+	// been invoked when body is loaded
+	$('.container').css('font-size', localStorage.getItem("glbCurrentFontSize"));
+} 
+
+function updateMangaImageWidthInLocalStorage() {
+	// update user defined mangaImage width
+	// been invoked every time when mangaImage width been changed
+	glbCurrentMangaImageWidth = $('.mangaImage').css('width'); // update the glbCurrentMangaImageWidth
+	localStorage.setItem("glbCurrentMangaImageWidth", glbCurrentMangaImageWidth); // update the glbCurrentMangaImageWidth value in local storage 
+}
+
+function implementMangaImageWidthInLocalStorage() {
+	// implement remembered latest user defined mangaImage width
+	// been invoked when body is loaded
+	$('.mangaImage').css('width', localStorage.getItem("glbCurrentMangaImageWidth"));
+} 
+
+function clearLocalStorage() {
+	// clear ''ALL'' localStorage items 
+	localStorage.clear() 
+}
+
+/************* local storage script ******************/
+
+/************* Filter list script ******************/
+function funcGetFilteredList() {
+	funcShowAllList(); // resume showing everything first
+	// Declare variables
+	var input, filter, ul, objA, li, i, txtValue;
+	input = document.getElementById("_userInput");
+	filter = input.value.toUpperCase();
+	console.log("typeof filter : " + typeof filter); // typeof filter = string
+	console.log("filter : " + filter);
+	ul = document.getElementById("_mainUL");
+	li = ul.getElementsByTagName("li");
+	// Loop through all list items, and hide those who don't match the search query
+	var filterArray = filter.split(","); 
+	console.log("typeof filterArray : " + typeof filterArray);
+	console.log("filterArray : " + filterArray);
+	console.log("filterArray.length : " + filterArray.length);
+	
+	for (var j = 0; j < filterArray.length; j++) {
+		var filterItem = filterArray[j];
+		//console.log("typeof filterItem : " + typeof filterItem); 
+		// typeof filterItem = string
+		//console.log("filterItem : " + filterItem); 
+		for (i = 0; i < li.length; i++) {
+			if (li[i].id == "_primaryli" && li[i].style.display !== "none") {
+			// Hiding mechanism only applies to visible "_primaryli" 
+				//console.log(li.length);
+				objA = li[i].getElementsByTagName("a")[0]; // getting a tag first element, for anchor, hyperlink
+				//console.log("typeof objA : " + typeof objA);
+				//console.log("objA : " + objA);
+				if (objA !== undefined && objA !== null) {
+					txtValue = objA.textContent || objA.innerText; // getting a tag first element internal string
+					//console.log(txtValue);
+					if (txtValue.toUpperCase().indexOf(filterItem) > -1) { // Not found returns -1, found returns position
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+}
+
+function funcShowAllList() {
+	var ul = document.getElementById("_mainUL");
+	var li = ul.getElementsByTagName("li");
+	for (i = 0; i < li.length; i++) {
+		li[i].style.display = "";
+	}
+}
+
+/************* Filter list script ******************/
+
+/************* font size change script *************/
+/* --- moved to <head> section ---
+var glbOriginalFontSize; // global variable
+var glbCurrentFontSize; // global variable
+
+function getGlbOriginalFontSize() { 
+	// to be executed once body is loaded to get glbOriginalFontSize value ;
+	glbOriginalFontSize = $('.container').css('font-size');
+	console.log("glbOriginalFontSize :" + glbOriginalFontSize);
+}
+*/
+
+$('#_biggify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)+2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_smallify').on('click', function() {
+  var fontSize = $('.container').css('font-size');
+  var newFontSize = parseInt(fontSize)-2;
+  
+  $('.container').css('font-size', newFontSize+'px');
+  updateFontSizeInLocalStorage();
+})
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', glbOriginalFontSize);
+  updateFontSizeInLocalStorage();
+})
+/*
+$('#_reset').on('click', function() {
+  $('.container').css('font-size', '16px')
+})
+*/
+
+/************* font size change script *************/
+
+/************* change manga image width script *************/
+
+/* --- moved to <head> section ---
+var glbOriginalMangaImageWidth; // global variable
+var glbCurrentMangaImageWidth; // global variable
+
+function getGlbOriginalMangaImageWidth() { 
+	// to be executed once body is loaded to get glbOriginalMangaImageWidth value ;
+	glbOriginalMangaImageWidth = $('.mangaImage').css('width');
+	console.log("glbOriginalMangaImageWidth :" + glbOriginalMangaImageWidth);
+}
+*/
+
+$('#_wider').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)+50;
+
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_narrower').on('click', function() {
+  var mangaImageWidth = $('.mangaImage').css('width');
+  var newMangaImageWidth = parseInt(mangaImageWidth)-50;
+  
+  $('.mangaImage').css('width', newMangaImageWidth+'px');
+  updateMangaImageWidthInLocalStorage();
+})
+$('#_resume').on('click', function() {
+  $('.mangaImage').css('width', glbOriginalMangaImageWidth);
+  updateMangaImageWidthInLocalStorage();
+})
+/************* change manga image width script *************/
+
+/************* MCQ question card related script *************/
+	function funcClearAllRadioSelection() {
+		let radioButtons = document.getElementsByName('radio');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	function funcClearTargetQuestionRadioSelection(targetDivId) {	
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+        for (let radio of radioButtons) {
+			radio.checked = false;
+		}
+		//alert("I am an alert box!");
+	}
+	
+	/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+	function funcCheckResult(targetDivId) {
+		let radioButtons = document.getElementById(targetDivId).getElementsByTagName('input');
+		let modal = document.getElementById("MCQresultModal");
+		let messagePara = document.getElementById("resultModalMessage");
+		
+		var biRadioButtonChecked = false;
+		for (let radio of radioButtons) {
+			if (radio.checked) {
+				biRadioButtonChecked = true;
+			}
+		}
+		
+		if (!biRadioButtonChecked) {
+			messagePara.innerText = "Please select an answer!";
+			modal.style.display = "block";
+			return;
+		}
+		
+		var biIsCorrectAnswerSelected = false;
+		for (let radio of radioButtons) {
+			if (radio.checked && radio.value == "correct") {
+				biIsCorrectAnswerSelected = true;
+				radio.parentElement.classList.add("correctAnswerHighlight");
+			}
+		}
+		
+		if (biIsCorrectAnswerSelected) {
+			messagePara.innerText = "That is correct!";
+			var detailsElement = document.getElementById(targetDivId).querySelector('details');
+			detailsElement.open = true;
+		} else {
+			messagePara.innerText = "Want to try again?";
+		}
+		
+		modal.style.display = "block";
+	}
+
+	// Enables "Click anywhere else to close modal"
+	window.onclick = function(event) {
+		// Select all elements with the class 'modal'
+		var modals = document.getElementsByClassName("modal");
+		for (var i = 0; i < modals.length; i++) {
+			// If the user clicked the background overlay (the modal itself), hide it
+			if (event.target == modals[i]) {
+				modals[i].style.display = "none";
+			}
+		}
+	}	
+/************* Check Result modal upgrade, 14-Mar-2026, 10.21 AM *************/
+
+
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+	function funcShowAllAnswersAndExplanations() {
+		// Show the modal
+		var modal = document.getElementById("MCQviewModeModal");
+		modal.style.display = "block";
+
+
+		// Get the buttons
+		var yesButton = document.getElementById("yesButton");
+		var noButton = document.getElementById("noButton");
+
+		// When the user clicks on "No", close the modal and abort the operation
+		noButton.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks on "Yes", proceed with revealing answers and explanations
+		yesButton.onclick = function() {
+			modal.style.display = "none";
+
+			// Get all question cards
+			var questionCards = document.querySelectorAll('.questionCard');
+
+			questionCards.forEach(function(card) {
+				// Select the correct answer radio button and apply the class
+				var correctRadio = card.querySelector('input[value="correct"]');
+				correctRadio.checked = true;
+				correctRadio.parentElement.classList.add("correctAnswerHighlight");
+
+				// Open the details element
+				var detailsElement = card.querySelector('details');
+				detailsElement.open = true;
+			});
+		}
+	}
+	// <!-- 15-Apr-2025, 05.29 PM, View Mode activation double confirm -->
+
+/************* MCQ question card related script *************/
+
+</script>
+
+<script>
+/************* Dark Mode Functions *************/
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    } else {
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    }
+}
+
+function initDarkMode() {
+    const darkModeSetting = localStorage.getItem('darkMode');
+    const darkModeToggle = document.getElementById('_darkModeToggle');
+    
+    if (darkModeSetting === 'enabled') {
+        document.body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '☀️';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (darkModeToggle) darkModeToggle.innerHTML = '🌓';
+    }
+}
+/************* Dark Mode Functions *************/
+</script>
+
+<script>
+// ===== Exam Mode & Review Mode (added by Copilot, 23-Feb-2026) =====
+// Ensure each question has its own radio group name
+function funcFixRadioNames(){
+  var cards = document.querySelectorAll('.questionCard');
+  cards.forEach(function(card, idx){
+    var groupName = 'radio_' + String(idx+1).padStart(2,'0');
+    var radios = card.querySelectorAll('input[type="radio"]');
+    radios.forEach(function(r){ r.name = groupName; });
+  });
+}
+// Override: clear all selections (name-agnostic)
+function funcClearAllRadioSelection(){
+  document.querySelectorAll('.questionCard input[type="radio"]').forEach(function(r){ r.checked = false; });
+}
+// Exam Mode activation with confirmation modal
+function funcActivateExamMode(){
+  var modal = document.getElementById('MCQexamModeModal');
+  var yesBtn = document.getElementById('examYesButton');
+  var noBtn = document.getElementById('examNoButton');
+  if(!modal) return;
+  modal.style.display = 'block';
+  noBtn.onclick = function(){ modal.style.display='none'; };
+  yesBtn.onclick = function(){
+    modal.style.display='none';
+    window.glbExamMode = true;
+    // Hide all Check result buttons (by onclick signature)
+    document.querySelectorAll('button[onclick^="funcCheckResult"]').forEach(function(btn){ btn.style.display='none'; });
+    // Hide all details (Show Answer)
+    document.querySelectorAll('.questionCard details').forEach(function(det){ det.open = false; det.style.display='none'; });
+    // Show Submit button
+    var submitBtn = document.getElementById('_submitExam');
+    if (submitBtn) submitBtn.style.display = 'inline-block';
+    // Make sure user's previous selections (if any) are kept as-is
+  };
+}
+// Submit: evaluate score, then prompt for review
+function funcSubmitExam(){
+  var cards = document.querySelectorAll('.questionCard');
+  var total = cards.length;
+  var correct = 0;
+  cards.forEach(function(card){
+    var correctRadio = card.querySelector('input[type="radio"][value="correct"]');
+    if (correctRadio && correctRadio.checked) correct += 1;
+  });
+  var rate = total > 0 ? Math.round((correct/total)*100) : 0;
+  window.glbExamScoreRate = rate;
+  var modal = document.getElementById('MCQsubmitModal');
+  var msg = document.getElementById('submitModalMessage');
+  if (msg) msg.innerText = 'Correct rate : ' + rate + '%.\nDo you want to review?';
+  if (modal) modal.style.display = 'block';
+  // Wire buttons each time to ensure latest handlers
+  var yesBtn = document.getElementById('submitYesButton');
+  var noBtn = document.getElementById('submitNoButton');
+  if (noBtn) noBtn.onclick = function(){ modal.style.display='none'; };
+  if (yesBtn) yesBtn.onclick = function(){ modal.style.display='none'; funcActivateReviewMode(); };
+}
+// Review Mode: reveal correct answers & explanations WITHOUT changing user's selections
+function funcActivateReviewMode(){
+  // Reveal and open all explanations
+  document.querySelectorAll('.questionCard details').forEach(function(det){ det.style.display='block'; det.open = true; });
+  // Highlight correct options (do not change checked states)
+  document.querySelectorAll('.questionCard input[type="radio"][value="correct"]').forEach(function(r){
+    if (r && r.parentElement) r.parentElement.classList.add('correctAnswerHighlight');
+  });
+}
+// Override: initialization to include radio-name fix
+function initialization(){
+  getGlbOriginalFontSize();
+  getGlbOriginalMangaImageWidth();
+  implementFontSizeInLocalStorage();
+  implementMangaImageWidthInLocalStorage();
+  funcResumeDetailsProgress();
+  funcFixRadioNames();
+  funcClearAllRadioSelection();
+  initDarkMode();   // <--- ADD THIS LINE
+}
+</script>
+
+</body>
+</html>
